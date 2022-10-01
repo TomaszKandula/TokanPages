@@ -1,6 +1,6 @@
-import { IGetUpdateSubscriberContent } from "../../States";
+import { IContentUpdateSubscriber } from "../../States";
 
-export const GetUpdateSubscriberContentDefault: IGetUpdateSubscriberContent = 
+export const GetUpdateSubscriberContentDefault: IContentUpdateSubscriber = 
 {
     isLoading: false,
     content: 

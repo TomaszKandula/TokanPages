@@ -2,7 +2,7 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetAccountContent } from "../../../Store/States";
+import { IContentAccount } from "../../../Store/States";
 
 import { 
     ApplicationDialog, 
@@ -39,7 +39,7 @@ import {
     UPDATE_USER_WARNING 
 } from "../../../Shared/constants";
 
-export const UserAccount = (props: IGetAccountContent): JSX.Element => 
+export const UserAccount = (props: IContentAccount): JSX.Element => 
 {
     const dispatch = useDispatch();
     const history = useHistory();

@@ -1,6 +1,6 @@
 import { IActivateAccountContentDto } from "../../../Api/Models";
 
-export interface IGetActivateAccountContent extends IActivateAccountContentDto
+export interface IContentActivateAccount extends IActivateAccountContentDto
 {
     isLoading: boolean;
 }

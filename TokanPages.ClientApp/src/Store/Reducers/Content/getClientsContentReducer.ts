@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetClientsContent } from "../../States";
+import { IContentClients } from "../../States";
 import { 
     TKnownActions,
     REQUEST_CLIENTS_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getClientsContentAction";
 
 export const GetClientsContentReducer: 
-    Reducer<IGetClientsContent> = (state: IGetClientsContent | undefined, incomingAction: Action): 
-    IGetClientsContent => 
+    Reducer<IContentClients> = (state: IContentClients | undefined, incomingAction: Action): 
+    IContentClients => 
 {
     if (state === undefined) return ApplicationDefaults.contentClients;
 

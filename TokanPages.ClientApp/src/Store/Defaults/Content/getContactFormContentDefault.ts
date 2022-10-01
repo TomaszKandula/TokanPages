@@ -1,6 +1,6 @@
-import { IGetContactFormContent } from "../../States";
+import { IContentContactForm } from "../../States";
 
-export const GetContactFormContentDefault: IGetContactFormContent = 
+export const GetContactFormContentDefault: IContentContactForm = 
 {
     isLoading: false,
     content: 

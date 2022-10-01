@@ -1,6 +1,6 @@
-import { IGetWrongPagePromptContent } from "../../States";
+import { IContentWrongPagePrompt } from "../../States";
 
-export const GetWrongPagePromptContentDefault: IGetWrongPagePromptContent = 
+export const GetWrongPagePromptContentDefault: IContentWrongPagePrompt = 
 {
     isLoading: false,
     content: 

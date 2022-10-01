@@ -1,6 +1,6 @@
-import { IStoreUserData } from "../../States";
+import { IUserDataStore } from "../../States";
 
-export const StoreUserDataDefault: IStoreUserData = 
+export const StoreUserDataDefault: IUserDataStore = 
 {
     isShown: false,
     userData: 

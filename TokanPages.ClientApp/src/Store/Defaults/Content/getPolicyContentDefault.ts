@@ -1,6 +1,6 @@
-import { IGetPolicyContent } from "../../States";
+import { IContentPolicy } from "../../States";
 
-export const GetPolicyContentDefault: IGetPolicyContent = 
+export const GetPolicyContentDefault: IContentPolicy = 
 {
     isLoading: false,
     content: 

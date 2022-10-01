@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetUpdateSubscriberContent } from "../../States";
+import { IContentUpdateSubscriber } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_UPDATE_SUBSCRIBER_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getUpdateSubscriberContentAction";
 
 export const GetUpdateSubscriberContentReducer: 
-    Reducer<IGetUpdateSubscriberContent> = (state: IGetUpdateSubscriberContent | undefined, incomingAction: Action): 
-    IGetUpdateSubscriberContent => 
+    Reducer<IContentUpdateSubscriber> = (state: IContentUpdateSubscriber | undefined, incomingAction: Action): 
+    IContentUpdateSubscriber => 
 {
     if (state === undefined) return ApplicationDefaults.contentUpdateSubscriber;
 

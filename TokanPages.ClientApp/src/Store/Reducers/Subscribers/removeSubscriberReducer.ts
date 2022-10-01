@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IRemoveSubscriber } from "../../States";
+import { ISubscriberRemove } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions, 
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Subscribers/removeSubscriberAction";
 
 export const RemoveSubscriberReducer: 
-    Reducer<IRemoveSubscriber> = (state: IRemoveSubscriber | undefined, incomingAction: Action): 
-    IRemoveSubscriber => 
+    Reducer<ISubscriberRemove> = (state: ISubscriberRemove | undefined, incomingAction: Action): 
+    ISubscriberRemove => 
 {
     if (state === undefined) return ApplicationDefaults.subscriberRemove;
 

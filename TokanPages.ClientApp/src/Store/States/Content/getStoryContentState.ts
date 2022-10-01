@@ -1,6 +1,6 @@
 import { IDocumentContentDto } from "../../../Api/Models";
 
-export interface IGetStoryContent extends IDocumentContentDto
+export interface IContentStory extends IDocumentContentDto
 {
     isLoading: boolean;
 }

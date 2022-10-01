@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetUserSignupContent } from "../../../Store/States";
+import { IContentUserSignup } from "../../../Store/States";
 import { ApplicationDialog, UserSignupAction } from "../../../Store/Actions";
 import { IAddUserDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
@@ -28,7 +28,7 @@ const formDefaultValues: IValidateSignupForm =
     terms: false
 };
 
-export const UserSignup = (props: IGetUserSignupContent): JSX.Element => 
+export const UserSignup = (props: IContentUserSignup): JSX.Element => 
 {
     const dispatch = useDispatch();
     const state = useSelector((state: IApplicationState) => state.userSignup);

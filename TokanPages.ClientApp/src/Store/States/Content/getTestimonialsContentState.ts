@@ -1,6 +1,6 @@
 import { ITestimonialsContentDto } from "../../../Api/Models";
 
-export interface IGetTestimonialsContent extends ITestimonialsContentDto
+export interface IContentTestimonials extends ITestimonialsContentDto
 {
     isLoading: boolean;
 }

@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetCookiesPromptContent } from "../../States";
+import { IContentCookiesPrompt } from "../../States";
 import { 
     TKnownActions, 
     REQUEST_COOKIES_PROMPT_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getCookiesPromptContentAction";
 
 export const GetCookiesPromptContentReducer: 
-    Reducer<IGetCookiesPromptContent> = (state: IGetCookiesPromptContent | undefined, incomingAction: Action): 
-    IGetCookiesPromptContent => 
+    Reducer<IContentCookiesPrompt> = (state: IContentCookiesPrompt | undefined, incomingAction: Action): 
+    IContentCookiesPrompt => 
 {
     if (state === undefined) return ApplicationDefaults.contentCookiesPrompt;
 

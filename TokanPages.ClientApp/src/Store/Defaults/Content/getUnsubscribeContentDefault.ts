@@ -1,6 +1,6 @@
-import { IGetUnsubscribeContent } from "../../States";
+import { IContentUnsubscribe } from "../../States";
 
-export const GetUnsubscribeContentDefault: IGetUnsubscribeContent = 
+export const GetUnsubscribeContentDefault: IContentUnsubscribe = 
 {
     isLoading: false,
     content: 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Validate from "validate.js";
 import { IApplicationState } from "../../Store/Configuration";
 import { ApplicationDialog, ApplicationMessage } from "../../Store/Actions";
-import { IGetContactFormContent } from "../../Store/States";
+import { IContentContactForm } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
@@ -29,7 +29,7 @@ const formDefaultValues: IValidateContactForm =
     terms: false
 };
 
-export const ContactForm = (props: IGetContactFormContent): JSX.Element =>
+export const ContactForm = (props: IContentContactForm): JSX.Element =>
 {
     const dispatch = useDispatch();
     const state = useSelector((state: IApplicationState) => state.applicationMessage);

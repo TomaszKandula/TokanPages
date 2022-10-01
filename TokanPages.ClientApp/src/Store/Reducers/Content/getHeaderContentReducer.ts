@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetHeaderContent } from "../../States";
+import { IContentHeader } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_HEADER_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getHeaderContentAction";
 
 export const GetHeaderContentReducer: 
-    Reducer<IGetHeaderContent> = (state: IGetHeaderContent | undefined, incomingAction: Action): 
-    IGetHeaderContent => 
+    Reducer<IContentHeader> = (state: IContentHeader | undefined, incomingAction: Action): 
+    IContentHeader => 
 {
     if (state === undefined) return ApplicationDefaults.contentHeader;
 

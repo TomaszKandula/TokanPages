@@ -1,6 +1,6 @@
-import { IGetStoryContent } from "../../States";
+import { IContentStory } from "../../States";
 
-export const GetStoryContentDefault: IGetStoryContent = 
+export const GetStoryContentDefault: IContentStory = 
 {
     isLoading: false,
     content: 

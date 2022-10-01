@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { ISigninUser } from "../../States";
+import { IUserSignin } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions,
@@ -10,8 +10,8 @@ import {
 } from "../../Actions/Users/signinUserAction";
 
 export const SigninUserReducer: 
-    Reducer<ISigninUser> = (state: ISigninUser | undefined, incomingAction: Action): 
-    ISigninUser => 
+    Reducer<IUserSignin> = (state: IUserSignin | undefined, incomingAction: Action): 
+    IUserSignin => 
 {
     if (state === undefined) return ApplicationDefaults.userSignin;
 

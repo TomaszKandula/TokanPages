@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { ISignupUser } from "../../States/Users/signupUserState";
+import { IUserSignup } from "../../States/Users/signupUserState";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions,
@@ -9,7 +9,7 @@ import {
     SIGNUP_USER_RESPONSE
 } from "../../Actions/Users/signupUserAction";
 
-export const SignupUserReducer: Reducer<ISignupUser> = (state: ISignupUser | undefined, incomingAction: Action): ISignupUser => 
+export const SignupUserReducer: Reducer<IUserSignup> = (state: IUserSignup | undefined, incomingAction: Action): IUserSignup => 
 {
     if (state === undefined) return ApplicationDefaults.userSignup;
 

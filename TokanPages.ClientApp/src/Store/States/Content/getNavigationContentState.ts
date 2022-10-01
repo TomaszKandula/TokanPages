@@ -1,6 +1,6 @@
 import { INavigationContentDto } from "../../../Api/Models";
 
-export interface IGetNavigationContent extends INavigationContentDto
+export interface IContentNavigation extends INavigationContentDto
 {
     isLoading: boolean;
 }

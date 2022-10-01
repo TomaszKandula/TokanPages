@@ -53,7 +53,7 @@ export const ApplicationDefaults: IApplicationState =
     applicationMessage: ApplicationMessage,
     articleListing: ListArticlesDefault,
     articleSelection: SelectArticleDefault,
-    articleUpdated: UpdateArticleDefault,
+    articleUpdate: UpdateArticleDefault,
     contentAccount: GetAccountContentDefault,
     contentActivateAccount: GetActivateAccountContentDefault,
     contentArticleFeatures: GetArticleFeatContentDefault,

@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
 import { UserActivateAction } from "../../../Store/Actions";
-import { IGetActivateAccountContent } from "../../../Store/States";
+import { IContentActivateAccount } from "../../../Store/States";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { IActivateUserDto } from "../../../Api/Models";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-interface IGetActivateAccountContentExtended extends IGetActivateAccountContent
+interface IGetActivateAccountContentExtended extends IContentActivateAccount
 {
     id: string;
 }

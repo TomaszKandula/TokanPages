@@ -1,6 +1,6 @@
 import { INewsletterContentDto } from "../../../Api/Models";
 
-export interface IGetNewsletterContent extends INewsletterContentDto
+export interface IContentNewsletter extends INewsletterContentDto
 {
     isLoading: boolean;
 }

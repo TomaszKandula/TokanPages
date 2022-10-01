@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetWrongPagePromptContent } from "../../States";
+import { IContentWrongPagePrompt } from "../../States";
 import { 
     TKnownActions, 
     REQUEST_WRONG_PAGE_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getWrongPagePromptContentAction";
 
 export const GetWrongPagePromptContentReducer: 
-    Reducer<IGetWrongPagePromptContent> = (state: IGetWrongPagePromptContent | undefined, incomingAction: Action): 
-    IGetWrongPagePromptContent => 
+    Reducer<IContentWrongPagePrompt> = (state: IContentWrongPagePrompt | undefined, incomingAction: Action): 
+    IContentWrongPagePrompt => 
 {
     if (state === undefined) return ApplicationDefaults.contentWrongPagePrompt;
 

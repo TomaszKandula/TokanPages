@@ -1,6 +1,6 @@
 import { IFeaturedContentDto } from "../../../Api/Models";
 
-export interface IGetFeaturedContent extends IFeaturedContentDto
+export interface IContentFeatured extends IFeaturedContentDto
 {
     isLoading: boolean;
 }

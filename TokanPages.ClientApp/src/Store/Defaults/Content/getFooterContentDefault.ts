@@ -1,6 +1,6 @@
-import { IGetFooterContent } from "../../States";
+import { IContentFooter } from "../../States";
 
-export const GetFooterContentDefault: IGetFooterContent = 
+export const GetFooterContentDefault: IContentFooter = 
 {
     isLoading: false,
     content: 

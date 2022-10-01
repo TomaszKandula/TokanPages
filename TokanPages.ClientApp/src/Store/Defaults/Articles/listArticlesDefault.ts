@@ -1,6 +1,6 @@
-import { IArticles } from "../../States";
+import { IArticleListing } from "../../States";
 
-export const ListArticlesDefault: IArticles = 
+export const ListArticlesDefault: IArticleListing = 
 {
     isLoading: false,
     articles: []

@@ -1,6 +1,6 @@
-import { IGetUserSignoutContent } from "../../States";
+import { IContentUserSignout } from "../../States";
 
-export const GetUserSignoutContentDefault: IGetUserSignoutContent = 
+export const GetUserSignoutContentDefault: IContentUserSignout = 
 {
     isLoading: false,
     content: 

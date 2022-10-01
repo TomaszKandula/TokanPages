@@ -1,6 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface IUpdateUser
+export interface IUserUpdate
 {
     operationStatus: OperationStatus;
     attachedErrorObject: any;  

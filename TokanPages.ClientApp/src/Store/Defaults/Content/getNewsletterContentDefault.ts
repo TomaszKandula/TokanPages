@@ -1,6 +1,6 @@
-import { IGetNewsletterContent } from "../../States";
+import { IContentNewsletter } from "../../States";
 
-export const GetNewsletterContentDefault: IGetNewsletterContent = 
+export const GetNewsletterContentDefault: IContentNewsletter = 
 {
     isLoading: false,
     content: 

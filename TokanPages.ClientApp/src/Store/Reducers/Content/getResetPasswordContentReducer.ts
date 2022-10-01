@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetResetPasswordContent } from "../../States";
+import { IContentResetPassword } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_RESET_PASSWORD_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getResetPasswordContentAction";
 
 export const GetResetPasswordContentReducer: 
-    Reducer<IGetResetPasswordContent> = (state: IGetResetPasswordContent | undefined, incomingAction: Action): 
-    IGetResetPasswordContent => 
+    Reducer<IContentResetPassword> = (state: IContentResetPassword | undefined, incomingAction: Action): 
+    IContentResetPassword => 
 {
     if (state === undefined) return ApplicationDefaults.contentResetPassword;
 

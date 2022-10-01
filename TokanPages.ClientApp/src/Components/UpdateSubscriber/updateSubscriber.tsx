@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
 import { ApplicationDialog, SubscriberUpdateAction } from "../../Store/Actions";
-import { IGetUpdateSubscriberContent } from "../../Store/States";
+import { IContentUpdateSubscriber } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
@@ -19,7 +19,7 @@ import {
     UPDATE_SUBSCRIBER 
 } from "../../Shared/constants";
 
-interface IGetUpdateSubscriberContentExtended extends IGetUpdateSubscriberContent
+interface IGetUpdateSubscriberContentExtended extends IContentUpdateSubscriber
 {
     id: string;
 }

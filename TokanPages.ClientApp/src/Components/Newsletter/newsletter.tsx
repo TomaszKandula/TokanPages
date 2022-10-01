@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { IGetNewsletterContent } from "../../Store/States";
+import { IContentNewsletter } from "../../Store/States";
 import { SubscriberAddAction } from "../../Store/Actions";
 import { ApplicationDialog } from "../../Store/Actions";
 import { OperationStatus } from "../../Shared/enums";
@@ -14,7 +14,7 @@ import { IAddSubscriberDto } from "../../Api/Models";
 import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
 
-export const Newsletter = (props: IGetNewsletterContent): JSX.Element =>
+export const Newsletter = (props: IContentNewsletter): JSX.Element =>
 {
     const dispatch = useDispatch();
     const state = useSelector((state: IApplicationState) => state.subscriberAdd);

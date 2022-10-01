@@ -1,12 +1,12 @@
 import * as React from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Box, Container, Typography } from "@material-ui/core";
-import { IGetClientsContent } from "../../../Store/States";
+import { IContentClients } from "../../../Store/States";
 import { ICONS_PATH } from "../../../Shared/constants";
 import { ClientsStyle } from "./clientsStyle";
 import Validate from "validate.js";
 
-export const ClientsView = (props: IGetClientsContent): JSX.Element => 
+export const ClientsView = (props: IContentClients): JSX.Element => 
 {
     const classes = ClientsStyle();
 

@@ -1,6 +1,6 @@
-import { IGetUserSignupContent } from "../../States";
+import { IContentUserSignup } from "../../States";
 
-export const GetUserSignupContentDefault: IGetUserSignupContent = 
+export const GetUserSignupContentDefault: IContentUserSignup = 
 {
     isLoading: false,
     content: 

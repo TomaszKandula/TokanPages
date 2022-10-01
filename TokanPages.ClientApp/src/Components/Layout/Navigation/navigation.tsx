@@ -1,14 +1,14 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetNavigationContent } from "../../../Store/States";
+import { IContentNavigation } from "../../../Store/States";
 import { UserDataAction, ApplicationLanguage } from "../../../Store/Actions";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
-export const Navigation = (props: IGetNavigationContent): JSX.Element => 
+export const Navigation = (props: IContentNavigation): JSX.Element => 
 {
     const dispatch = useDispatch();
     const user = useSelector((state: IApplicationState) => state.userDataStore);

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetUserSigninContent } from "../../../Store/States";
+import { IContentUserSignin } from "../../../Store/States";
 import { ApplicationDialog, UserSigninAction } from "../../../Store/Actions";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
@@ -19,7 +19,7 @@ const formDefaultValues: IValidateSigninForm =
     password: ""
 };
 
-export const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
+export const UserSignin = (props: IContentUserSignin): JSX.Element =>
 {
     const dispatch = useDispatch();
     const history = useHistory();

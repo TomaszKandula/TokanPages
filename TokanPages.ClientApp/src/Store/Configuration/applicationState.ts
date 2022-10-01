@@ -1,47 +1,47 @@
 import { 
-    IActivateAccount,
-    IAddSubscriber,
-    IArticle,
-    IArticles,
-    IGetAccountContent,
-    IGetActivateAccountContent,
-    IGetArticleFeaturesContent,
-    IGetClientsContent,
-    IGetContactFormContent,
-    IGetCookiesPromptContent,
-    IGetFeaturedContent,
-    IGetFeaturesContent,
-    IGetFooterContent,
-    IGetHeaderContent,
-    IGetNavigationContent,
-    IGetNewsletterContent,
-    IGetResetPasswordContent,
-    IGetTestimonialsContent,
-    IGetUnsubscribeContent,
-    IGetUpdatePasswordContent,
-    IGetUpdateSubscriberContent,
-    IGetUserSigninContent,
-    IGetUserSignoutContent,
-    IGetUserSignupContent,
-    IGetWrongPagePromptContent,
+    IUserActivate,
+    ISubscriberAdd,
+    IArticleSelection,
+    IArticleListing,
+    IContentAccount,
+    IContentActivateAccount,
+    IContentArticleFeatures,
+    IContentClients,
+    IContentContactForm,
+    IContentCookiesPrompt,
+    IContentFeatured,
+    IContentFeatures,
+    IContentFooter,
+    IContentHeader,
+    IContentNavigation,
+    IContentNewsletter,
+    IContentResetPassword,
+    IContentTestimonials,
+    IContentUnsubscribe,
+    IContentUpdatePassword,
+    IContentUpdateSubscriber,
+    IContentUserSignin,
+    IContentUserSignout,
+    IContentUserSignup,
+    IContentWrongPagePrompt,
     IApplicationDialog,
     IApplicationError,
-    IReAuthenticateUser,
-    IRemoveAccount,
-    IRemoveSubscriber,
-    IResetUserPassword,
+    IUserReAuthenticate,
+    IUserRemove,
+    ISubscriberRemove,
+    IUserPasswordReset,
     IApplicationMessage,
-    ISigninUser,
-    ISignupUser,
-    IStoreUserData,
-    IUpdateArticle,
-    IUpdateSubscriber,
-    IUpdateUser,
-    IUpdateUserPassword,
+    IUserSignin,
+    IUserSignup,
+    IUserDataStore,
+    IArticleUpdate,
+    ISubscriberUpdate,
+    IUserUpdate,
+    IUserPasswordUpdate,
     IApplicationLanguage,
-    IGetPolicyContent,
-    IGetTermsContent,
-    IGetStoryContent
+    IContentPolicy,
+    IContentTerms,
+    IContentStory
 } from "../States";
 
 export interface IApplicationState 
@@ -50,45 +50,45 @@ export interface IApplicationState
     applicationError: IApplicationError;
     applicationLanguage: IApplicationLanguage;
     applicationMessage: IApplicationMessage;
-    articleListing: IArticles;
-    articleSelection: IArticle;
-    articleUpdated: IUpdateArticle;
-    contentAccount: IGetAccountContent;
-    contentActivateAccount: IGetActivateAccountContent;
-    contentArticleFeatures: IGetArticleFeaturesContent;
-    contentClients: IGetClientsContent;
-    contentContactForm: IGetContactFormContent;
-    contentCookiesPrompt: IGetCookiesPromptContent;
-    contentFeatured: IGetFeaturedContent;
-    contentFeatures: IGetFeaturesContent;
-    contentFooter: IGetFooterContent;
-    contentHeader: IGetHeaderContent;
-    contentNavigation: IGetNavigationContent;
-    contentNewsletter: IGetNewsletterContent;
-    contentPolicy: IGetPolicyContent;
-    contentResetPassword: IGetResetPasswordContent;
-    contentStory: IGetStoryContent;
-    contentTerms: IGetTermsContent;
-    contentTestimonials: IGetTestimonialsContent;
-    contentUnsubscribe: IGetUnsubscribeContent;
-    contentUpdatePassword: IGetUpdatePasswordContent;
-    contentUpdateSubscriber: IGetUpdateSubscriberContent;
-    contentUserSignin: IGetUserSigninContent;
-    contentUserSignout: IGetUserSignoutContent;
-    contentUserSignup: IGetUserSignupContent;
-    contentWrongPagePrompt: IGetWrongPagePromptContent;
-    subscriberAdd: IAddSubscriber;
-    subscriberRemove: IRemoveSubscriber;
-    subscriberUpdate: IUpdateSubscriber;
-    userActivate: IActivateAccount;
-    userDataStore: IStoreUserData;
-    userPasswordReset: IResetUserPassword;
-    userPasswordUpdate: IUpdateUserPassword;
-    userReAuthenticate: IReAuthenticateUser;
-    userRemove: IRemoveAccount;
-    userSignin: ISigninUser;
-    userSignup: ISignupUser;
-    userUpdate: IUpdateUser;
+    articleListing: IArticleListing;
+    articleSelection: IArticleSelection;
+    articleUpdate: IArticleUpdate;
+    contentAccount: IContentAccount;
+    contentActivateAccount: IContentActivateAccount;
+    contentArticleFeatures: IContentArticleFeatures;
+    contentClients: IContentClients;
+    contentContactForm: IContentContactForm;
+    contentCookiesPrompt: IContentCookiesPrompt;
+    contentFeatured: IContentFeatured;
+    contentFeatures: IContentFeatures;
+    contentFooter: IContentFooter;
+    contentHeader: IContentHeader;
+    contentNavigation: IContentNavigation;
+    contentNewsletter: IContentNewsletter;
+    contentPolicy: IContentPolicy;
+    contentResetPassword: IContentResetPassword;
+    contentStory: IContentStory;
+    contentTerms: IContentTerms;
+    contentTestimonials: IContentTestimonials;
+    contentUnsubscribe: IContentUnsubscribe;
+    contentUpdatePassword: IContentUpdatePassword;
+    contentUpdateSubscriber: IContentUpdateSubscriber;
+    contentUserSignin: IContentUserSignin;
+    contentUserSignout: IContentUserSignout;
+    contentUserSignup: IContentUserSignup;
+    contentWrongPagePrompt: IContentWrongPagePrompt;
+    subscriberAdd: ISubscriberAdd;
+    subscriberRemove: ISubscriberRemove;
+    subscriberUpdate: ISubscriberUpdate;
+    userActivate: IUserActivate;
+    userDataStore: IUserDataStore;
+    userPasswordReset: IUserPasswordReset;
+    userPasswordUpdate: IUserPasswordUpdate;
+    userReAuthenticate: IUserReAuthenticate;
+    userRemove: IUserRemove;
+    userSignin: IUserSignin;
+    userSignup: IUserSignup;
+    userUpdate: IUserUpdate;
 }
 
 export interface AppThunkAction<TAction> 

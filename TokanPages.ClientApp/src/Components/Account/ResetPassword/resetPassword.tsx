@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetResetPasswordContent } from "../../../Store/States";
+import { IContentResetPassword } from "../../../Store/States";
 import { ApplicationDialog, UserResetPasswordAction } from "../../../Store/Actions";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
@@ -24,7 +24,7 @@ const formDefaultValues: IValidateResetForm =
     email: ""
 };
 
-export const ResetPassword = (props: IGetResetPasswordContent): JSX.Element =>
+export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
 {
     const dispatch = useDispatch();
     const state = useSelector((state: IApplicationState) => state.userPasswordReset);

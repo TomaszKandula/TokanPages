@@ -52,7 +52,7 @@ export const ApplicationReducers =
     applicationMessage: ApplicationMessage,
     articleListing: ListArticlesReducer,
     articleSelection: SelectArticleReducer,
-    articleUpdated: UpdateArticleReducer,
+    articleUpdate: UpdateArticleReducer,
     contentAccount: GetAccountContentReducer,
     contentActivateAccount: GetActivateAccountContentReducer,
     contentArticleFeatures: GetArticleFeaturesContentReducer,

@@ -1,6 +1,6 @@
-import { IGetFeaturesContent } from "../../States";
+import { IContentFeatures } from "../../States";
 
-export const GetFeaturesContentDefault: IGetFeaturesContent = 
+export const GetFeaturesContentDefault: IContentFeatures = 
 {
     isLoading: false,
     content: 

@@ -1,6 +1,6 @@
-import { IGetHeaderContent } from "../../States";
+import { IContentHeader } from "../../States";
 
-export const GetHeaderContentDefault: IGetHeaderContent = 
+export const GetHeaderContentDefault: IContentHeader = 
 {
     isLoading: false,
     content: 

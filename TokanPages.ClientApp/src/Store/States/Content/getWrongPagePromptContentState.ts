@@ -1,6 +1,6 @@
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
 
-export interface IGetWrongPagePromptContent extends IWrongPagePromptContentDto
+export interface IContentWrongPagePrompt extends IWrongPagePromptContentDto
 {
     isLoading: boolean;
 }

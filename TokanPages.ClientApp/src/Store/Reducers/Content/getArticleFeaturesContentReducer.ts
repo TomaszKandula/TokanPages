@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetArticleFeaturesContent } from "../../States";
+import { IContentArticleFeatures } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_ARTICE_FEATURES, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getArticleFeaturesContentAction";
 
 export const GetArticleFeaturesContentReducer: 
-    Reducer<IGetArticleFeaturesContent> = (state: IGetArticleFeaturesContent | undefined, incomingAction: Action): 
-    IGetArticleFeaturesContent => 
+    Reducer<IContentArticleFeatures> = (state: IContentArticleFeatures | undefined, incomingAction: Action): 
+    IContentArticleFeatures => 
 {
     if (state === undefined) return ApplicationDefaults.contentArticleFeatures;
 

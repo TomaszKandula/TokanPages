@@ -1,6 +1,6 @@
 import { IUserSignoutContentDto } from "../../../Api/Models";
 
-export interface IGetUserSignoutContent extends IUserSignoutContentDto
+export interface IContentUserSignout extends IUserSignoutContentDto
 {
     isLoading: boolean;
 }

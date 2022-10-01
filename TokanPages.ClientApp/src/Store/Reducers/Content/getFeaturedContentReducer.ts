@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetFeaturedContent } from "../../States";
+import { IContentFeatured } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_FEATURED_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getFeaturedContentAction";
 
 export const GetFeaturedContentReducer: 
-    Reducer<IGetFeaturedContent> = (state: IGetFeaturedContent | undefined, incomingAction: Action): 
-    IGetFeaturedContent => 
+    Reducer<IContentFeatured> = (state: IContentFeatured | undefined, incomingAction: Action): 
+    IContentFeatured => 
 {
     if (state === undefined) return ApplicationDefaults.contentFeatured;
 

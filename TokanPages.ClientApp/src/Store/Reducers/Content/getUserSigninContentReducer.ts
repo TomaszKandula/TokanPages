@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetUserSigninContent } from "../../States";
+import { IContentUserSignin } from "../../States";
 import { 
     TKnownActions, 
     REQUEST_USER_SIGNIN_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getUserSigninContentAction";
 
 export const GetUserSigninContentReducer: 
-    Reducer<IGetUserSigninContent> = (state: IGetUserSigninContent | undefined, incomingAction: Action): 
-    IGetUserSigninContent => 
+    Reducer<IContentUserSignin> = (state: IContentUserSignin | undefined, incomingAction: Action): 
+    IContentUserSignin => 
 {
     if (state === undefined) return ApplicationDefaults.contentUserSignin;
 

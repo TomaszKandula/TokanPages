@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetActivateAccountContent } from "../../States";
+import { IContentActivateAccount } from "../../States";
 import { 
     TKnownActions,
     REQUEST_ACTIVATE_ACCOUNT_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getActivateAccountContentAction";
 
 export const GetActivateAccountContentReducer: 
-    Reducer<IGetActivateAccountContent> = (state: IGetActivateAccountContent | undefined, incomingAction: Action): 
-    IGetActivateAccountContent => 
+    Reducer<IContentActivateAccount> = (state: IContentActivateAccount | undefined, incomingAction: Action): 
+    IContentActivateAccount => 
 {
     if (state === undefined) return ApplicationDefaults.contentActivateAccount;
 

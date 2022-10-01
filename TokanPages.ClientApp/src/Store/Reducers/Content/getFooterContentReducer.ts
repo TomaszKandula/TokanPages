@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetFooterContent } from "../../States";
+import { IContentFooter } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_FOOTER_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getFooterContentAction";
 
 export const GetFooterContentReducer: 
-    Reducer<IGetFooterContent> = (state: IGetFooterContent | undefined, incomingAction: Action): 
-    IGetFooterContent => 
+    Reducer<IContentFooter> = (state: IContentFooter | undefined, incomingAction: Action): 
+    IContentFooter => 
 {
     if (state === undefined) return ApplicationDefaults.contentFooter;
 

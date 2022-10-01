@@ -1,6 +1,6 @@
 import { IUserSignupContentDto } from "../../../Api/Models";
 
-export interface IGetUserSignupContent extends IUserSignupContentDto
+export interface IContentUserSignup extends IUserSignupContentDto
 {
     isLoading: boolean;
 }

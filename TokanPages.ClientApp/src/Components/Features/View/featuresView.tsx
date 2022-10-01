@@ -9,13 +9,13 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IGetArticleFeaturesContent } from "../../../Store/States";
+import { IContentArticleFeatures } from "../../../Store/States";
 import { RenderCardMedia } from "../../../Shared/Components";
 import { ARTICLE_IMAGE_PATH } from "../../../Shared/constants";
 import { FeaturesStyle } from "./featuresStyle";
 import Validate from "validate.js";
 
-export const FeaturesView = (props: IGetArticleFeaturesContent): JSX.Element =>
+export const FeaturesView = (props: IContentArticleFeatures): JSX.Element =>
 {
     const classes = FeaturesStyle();
 

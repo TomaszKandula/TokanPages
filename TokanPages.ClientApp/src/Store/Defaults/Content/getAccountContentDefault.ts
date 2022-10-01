@@ -1,6 +1,6 @@
-import { IGetAccountContent } from "../../States";
+import { IContentAccount } from "../../States";
 
-export const GetAccountContentDefault: IGetAccountContent = 
+export const GetAccountContentDefault: IContentAccount = 
 {
     isLoading: false,
     content: 

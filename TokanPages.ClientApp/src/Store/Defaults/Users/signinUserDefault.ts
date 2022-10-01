@@ -1,7 +1,7 @@
-import { ISigninUser } from "../../States";
+import { IUserSignin } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const SigninUserDefault: ISigninUser = 
+export const SigninUserDefault: IUserSignin = 
 {
     operationStatus: OperationStatus.notStarted,
     attachedErrorObject: { }

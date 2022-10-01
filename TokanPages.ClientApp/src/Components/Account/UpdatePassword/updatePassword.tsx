@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
-import { IGetUpdatePasswordContent } from "../../../Store/States";
+import { IContentUpdatePassword } from "../../../Store/States";
 import { ApplicationDialog, UserUpdatePasswordAction } from "../../../Store/Actions";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
@@ -31,7 +31,7 @@ const formDefaultValues: IValidateUpdateForm =
     verifyPassword: ""
 };
 
-export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
+export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();

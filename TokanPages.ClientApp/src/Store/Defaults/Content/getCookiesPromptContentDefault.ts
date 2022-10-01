@@ -1,6 +1,6 @@
-import { IGetCookiesPromptContent } from "../../States";
+import { IContentCookiesPrompt } from "../../States";
 
-export const GetCookiesPromptContentDefault: IGetCookiesPromptContent = 
+export const GetCookiesPromptContentDefault: IContentCookiesPrompt = 
 {
     isLoading: false,
     content: 

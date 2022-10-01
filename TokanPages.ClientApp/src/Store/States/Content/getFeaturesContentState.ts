@@ -1,6 +1,6 @@
 import { IFeaturesContentDto } from "../../../Api/Models";
 
-export interface IGetFeaturesContent extends IFeaturesContentDto
+export interface IContentFeatures extends IFeaturesContentDto
 {
     isLoading: boolean;
 }

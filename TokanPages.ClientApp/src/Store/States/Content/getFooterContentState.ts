@@ -1,6 +1,6 @@
 import { IFooterContentDto } from "../../../Api/Models";
 
-export interface IGetFooterContent extends IFooterContentDto
+export interface IContentFooter extends IFooterContentDto
 {
     isLoading: boolean;
 }

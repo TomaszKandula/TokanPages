@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IAddSubscriber } from "../../States";
+import { ISubscriberAdd } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 import { 
     TKnownActions, 
@@ -10,8 +10,8 @@ import {
 } from "../../Actions/Subscribers/addSubscriberAction";
 
 export const AddSubscriberReducer: 
-    Reducer<IAddSubscriber> = (state: IAddSubscriber | undefined, incomingAction: Action): 
-    IAddSubscriber => 
+    Reducer<ISubscriberAdd> = (state: ISubscriberAdd | undefined, incomingAction: Action): 
+    ISubscriberAdd => 
 {
     if (state === undefined) return ApplicationDefaults.subscriberAdd;
 

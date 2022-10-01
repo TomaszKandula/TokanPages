@@ -1,6 +1,6 @@
-import { IGetTermsContent } from "../../States";
+import { IContentTerms } from "../../States";
 
-export const GetTermsContentDefault: IGetTermsContent = 
+export const GetTermsContentDefault: IContentTerms = 
 {
     isLoading: false,
     content: 

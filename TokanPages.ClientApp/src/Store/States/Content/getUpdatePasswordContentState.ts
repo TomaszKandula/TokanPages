@@ -1,6 +1,6 @@
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 
-export interface IGetUpdatePasswordContent extends IUpdatePasswordContentDto
+export interface IContentUpdatePassword extends IUpdatePasswordContentDto
 {
     isLoading: boolean;
 }

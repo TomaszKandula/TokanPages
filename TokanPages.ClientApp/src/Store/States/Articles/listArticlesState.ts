@@ -1,6 +1,6 @@
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
 
-export interface IArticles
+export interface IArticleListing
 {
     isLoading: boolean;
     articles: IArticleItem[];

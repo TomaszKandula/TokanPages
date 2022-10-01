@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetContactFormContent } from "../../States";
+import { IContentContactForm } from "../../States";
 import { 
     TKnownActions, 
     REQUEST_CONTACT_FORM_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getContactFormContentAction";
 
 export const GetContactFormContentReducer: 
-    Reducer<IGetContactFormContent> = (state: IGetContactFormContent | undefined, incomingAction: Action): 
-    IGetContactFormContent => 
+    Reducer<IContentContactForm> = (state: IContentContactForm | undefined, incomingAction: Action): 
+    IContentContactForm => 
 {
     if (state === undefined) return ApplicationDefaults.contentContactForm;
 

@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefaults } from "../../Configuration";
-import { IGetNewsletterContent } from "../../States";
+import { IContentNewsletter } from "../../States";
 import { 
     TKnownActions,
     RECEIVE_NEWSLETTER_CONTENT, 
@@ -8,8 +8,8 @@ import {
 } from "../../Actions/Content/getNewsletterContentAction";
 
 export const GetNewsletterContentReducer: 
-    Reducer<IGetNewsletterContent> = (state: IGetNewsletterContent | undefined, incomingAction: Action): 
-    IGetNewsletterContent => 
+    Reducer<IContentNewsletter> = (state: IContentNewsletter | undefined, incomingAction: Action): 
+    IContentNewsletter => 
 {
     if (state === undefined) return ApplicationDefaults.contentNewsletter;
 

@@ -1,6 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface IRemoveAccount
+export interface IUserRemove
 {
     operationStatus: OperationStatus;
     attachedErrorObject: any;  

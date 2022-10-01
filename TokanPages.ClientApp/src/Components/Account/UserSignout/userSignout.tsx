@@ -2,11 +2,11 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState, ApplicationDefaults } from "../../../Store/Configuration";
 import { UserDataAction, UserSigninAction } from "../../../Store/Actions";
-import { IGetUserSignoutContent } from "../../../Store/States";
+import { IContentUserSignout } from "../../../Store/States";
 import { USER_DATA } from "../../../Shared/constants";
 import { UserSignoutView } from "./View/userSignoutView";
 
-export const UserSignout = (props: IGetUserSignoutContent): JSX.Element => 
+export const UserSignout = (props: IContentUserSignout): JSX.Element => 
 {
     const dispatch = useDispatch();
     const data = useSelector((state: IApplicationState) => state.userDataStore);

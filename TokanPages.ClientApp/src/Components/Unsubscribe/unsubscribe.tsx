@@ -2,14 +2,14 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
 import { SubscriberRemoveAction } from "../../Store/Actions";
-import { IGetUnsubscribeContent } from "../../Store/States";
+import { IContentUnsubscribe } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IContent } from "../../Api/Models";
 import { IRemoveSubscriberDto } from "../../Api/Models";
 import { UnsubscribeView } from "./View/unsubscribeView";
 
-interface IGetUnsubscribeContentExtended extends IGetUnsubscribeContent
+interface IGetUnsubscribeContentExtended extends IContentUnsubscribe
 {
     id: string;
 }
