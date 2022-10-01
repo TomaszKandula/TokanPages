@@ -24,7 +24,7 @@ export const ApplicationDialogBox = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     const [dialogState, setDialogState] = React.useState(DialogState);
-    const raiseDialogState = useSelector((state: IApplicationState) => state.raiseDialog);
+    const dialog = useSelector((state: IApplicationState) => state.applicationDialog);
     
     const clearDialog = React.useCallback(() => 
     { 
@@ -38,18 +38,18 @@ export const ApplicationDialogBox = (): JSX.Element =>
     
     const raiseDialog = React.useCallback(() => 
     {
-        if (!Validate.isEmpty(raiseDialogState?.message))
+        if (!Validate.isEmpty(dialog?.message))
         {
             setDialogState(
             { 
                 state: true,
-                title: raiseDialogState?.title,
-                message: raiseDialogState?.message,
-                icon: raiseDialogState?.icon
+                title: dialog?.title,
+                message: dialog?.message,
+                icon: dialog?.icon
             });
         }
     }, 
-    [ raiseDialogState ]);
+    [ dialog ]);
 
     React.useEffect(() => raiseDialog(), [ raiseDialog ]);
     React.useEffect(() => clearDialog(), [ clearDialog ]);

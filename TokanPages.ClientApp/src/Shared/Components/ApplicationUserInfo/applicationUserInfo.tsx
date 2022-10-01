@@ -9,7 +9,7 @@ import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 export const ApplicationUserInfo = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const user = useSelector((state: IApplicationState) => state.storeUserData);
+    const user = useSelector((state: IApplicationState) => state.userDataStore);
 
     const onClickHandler = () => 
     {

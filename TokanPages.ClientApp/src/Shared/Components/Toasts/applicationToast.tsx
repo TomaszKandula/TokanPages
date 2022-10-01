@@ -31,7 +31,7 @@ export const ApplicationToast = (): JSX.Element =>
 
     const dispatch = useDispatch();
     const [toastState, setToastState] = React.useState(ToastState);   
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
     
     const clearError = React.useCallback(() => 
     { 
@@ -45,17 +45,17 @@ export const ApplicationToast = (): JSX.Element =>
     
     const raiseError = React.useCallback(() => 
     {
-        if (raiseErrorState?.dialogType !== DialogType.toast) return;
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.dialogType !== DialogType.toast) return;
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setToastState(
             { 
                 isOpen: true,
-                errorMessage: raiseErrorState?.attachedErrorObject 
+                errorMessage: error?.attachedErrorObject 
             });
         }
     }, 
-    [ raiseErrorState ]);
+    [ error ]);
 
     React.useEffect(() => raiseError(), [ raiseError ]);
     React.useEffect(() => clearError(), [ clearError ]);
