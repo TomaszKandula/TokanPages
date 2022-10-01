@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { POLICY_URL } from "../../../Shared/constants";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentPolicyAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentPolicy.content.language;
 
-        if (getState().contentPolicy.content !== ApplicationDefaults.contentPolicy.content && !isLanguageChanged) 
+        if (getState().contentPolicy.content !== ApplicationDefault.contentPolicy.content && !isLanguageChanged) 
         {
             return;
         }

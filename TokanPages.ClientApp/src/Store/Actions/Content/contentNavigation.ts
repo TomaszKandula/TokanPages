@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_NAVIGATION_CONTENT } from "../../../Shared/constants";
 import { INavigationContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentNavigationAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentNavigation.content.language;
 
-        if (getState().contentNavigation.content !== ApplicationDefaults.contentNavigation.content && !isLanguageChanged)
+        if (getState().contentNavigation.content !== ApplicationDefault.contentNavigation.content && !isLanguageChanged)
         {
             return;
         }

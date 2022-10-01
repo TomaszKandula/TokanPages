@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Shared/constants";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentWrongPagePromptAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentWrongPagePrompt.content.language;
 
-        if (getState().contentWrongPagePrompt.content !== ApplicationDefaults.contentWrongPagePrompt.content && !isLanguageChanged)
+        if (getState().contentWrongPagePrompt.content !== ApplicationDefault.contentWrongPagePrompt.content && !isLanguageChanged)
         {
             return;
         }

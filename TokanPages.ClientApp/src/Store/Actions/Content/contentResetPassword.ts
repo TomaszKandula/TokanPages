@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_RESET_PASSWORD_CONTENT } from "../../../Shared/constants";
 import { IResetPasswordContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentResetPasswordAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentResetPassword.content.language;
 
-        if (getState().contentResetPassword.content !== ApplicationDefaults.contentResetPassword.content && !isLanguageChanged) 
+        if (getState().contentResetPassword.content !== ApplicationDefault.contentResetPassword.content && !isLanguageChanged) 
         {
             return;
         }

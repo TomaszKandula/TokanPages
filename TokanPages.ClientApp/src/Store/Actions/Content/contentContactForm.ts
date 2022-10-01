@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_CONTACT_FORM_CONTENT } from "../../../Shared/constants";
 import { IContactFormContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentContactFormAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentContactForm.content.language;
 
-        if (getState().contentContactForm.content !== ApplicationDefaults.contentContactForm.content && !isLanguageChanged) 
+        if (getState().contentContactForm.content !== ApplicationDefault.contentContactForm.content && !isLanguageChanged) 
         {
             return;
         }

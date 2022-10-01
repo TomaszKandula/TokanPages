@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_TESTIMONIALS_CONTENT } from "../../../Shared/constants";
 import { ITestimonialsContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentTestimonialsAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentTestimonials.content.language;
 
-        if (getState().contentTestimonials.content !== ApplicationDefaults.contentTestimonials.content && !isLanguageChanged) 
+        if (getState().contentTestimonials.content !== ApplicationDefault.contentTestimonials.content && !isLanguageChanged) 
         {
             return;
         }

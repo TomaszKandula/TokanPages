@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { STORY_URL } from "../../../Shared/constants";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentStoryAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentStory.content.language;
 
-        if (getState().contentStory.content !== ApplicationDefaults.contentStory.content && !isLanguageChanged) 
+        if (getState().contentStory.content !== ApplicationDefault.contentStory.content && !isLanguageChanged) 
         {
             return;
         }

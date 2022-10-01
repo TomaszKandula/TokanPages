@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_HEADER_CONTENT } from "../../../Shared/constants";
 import { IHeaderContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentHeaderAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentHeader.content.language;
 
-        if (getState().contentHeader.content !== ApplicationDefaults.contentHeader.content && !isLanguageChanged) 
+        if (getState().contentHeader.content !== ApplicationDefault.contentHeader.content && !isLanguageChanged) 
         {
             return;
         }

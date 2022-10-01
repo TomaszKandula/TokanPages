@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_FOOTER_CONTENT } from "../../../Shared/constants";
 import { IFooterContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentFooterAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentFooter.content.language;
 
-        if (getState().contentFooter.content !== ApplicationDefaults.contentFooter.content && !isLanguageChanged) 
+        if (getState().contentFooter.content !== ApplicationDefault.contentFooter.content && !isLanguageChanged) 
         {
             return;
         }

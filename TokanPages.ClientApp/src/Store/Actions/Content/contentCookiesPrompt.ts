@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_COOKIES_PROMPT_CONTENT } from "../../../Shared/constants";
 import { ICookiesPromptContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentCookiesPromptAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentCookiesPrompt.content.language;
 
-        if (getState().contentCookiesPrompt.content !== ApplicationDefaults.contentCookiesPrompt.content && !isLanguageChanged) 
+        if (getState().contentCookiesPrompt.content !== ApplicationDefault.contentCookiesPrompt.content && !isLanguageChanged) 
         {
             return;
         }

@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Shared/constants";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentUpdateSubscriberAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUpdateSubscriber.content.language;
 
-        if (getState().contentUpdateSubscriber.content !== ApplicationDefaults.contentUpdateSubscriber.content && !isLanguageChanged) 
+        if (getState().contentUpdateSubscriber.content !== ApplicationDefault.contentUpdateSubscriber.content && !isLanguageChanged) 
         {
             return;
         }

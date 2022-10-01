@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_CLIENTS_CONTENT } from "../../../Shared/constants";
 import { IClientsContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentClientsAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentClients.content.language;
 
-        if (getState().contentClients.content !== ApplicationDefaults.contentClients.content && !isLanguageChanged) 
+        if (getState().contentClients.content !== ApplicationDefault.contentClients.content && !isLanguageChanged) 
         {
             return;
         }

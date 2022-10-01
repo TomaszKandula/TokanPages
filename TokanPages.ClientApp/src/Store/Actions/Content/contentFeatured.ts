@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_FEATURED_CONTENT } from "../../../Shared/constants";
 import { IFeaturedContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentFeaturedAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentFeatured.content.language;
 
-        if (getState().contentFeatured.content !== ApplicationDefaults.contentFeatured.content && !isLanguageChanged) 
+        if (getState().contentFeatured.content !== ApplicationDefault.contentFeatured.content && !isLanguageChanged) 
         {
             return;
         }

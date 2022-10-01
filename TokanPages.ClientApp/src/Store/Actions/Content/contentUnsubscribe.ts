@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_UNSUBSCRIBE_CONTENT } from "../../../Shared/constants";
 import { IUnsubscribeContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentUnsubscribeAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUnsubscribe.content.language;
 
-        if (getState().contentUnsubscribe.content !== ApplicationDefaults.contentUnsubscribe.content && !isLanguageChanged) 
+        if (getState().contentUnsubscribe.content !== ApplicationDefault.contentUnsubscribe.content && !isLanguageChanged) 
         {
             return;
         }

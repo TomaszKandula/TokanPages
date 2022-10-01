@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IContentUserSignup } from "../../States";
 import { 
     TKnownActions, 
@@ -11,7 +11,7 @@ export const ContentUserSignup:
     Reducer<IContentUserSignup> = (state: IContentUserSignup | undefined, incomingAction: Action): 
     IContentUserSignup => 
 {
-    if (state === undefined) return ApplicationDefaults.contentUserSignup;
+    if (state === undefined) return ApplicationDefault.contentUserSignup;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

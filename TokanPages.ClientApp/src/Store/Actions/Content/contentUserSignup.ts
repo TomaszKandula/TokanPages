@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_SIGNUP_CONTENT } from "../../../Shared/constants";
 import { IUserSignupContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentUserSignupAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUserSignup.content.language;
 
-        if (getState().contentUserSignup.content !== ApplicationDefaults.contentUserSignup.content && !isLanguageChanged) 
+        if (getState().contentUserSignup.content !== ApplicationDefault.contentUserSignup.content && !isLanguageChanged) 
         {
             return;
         }

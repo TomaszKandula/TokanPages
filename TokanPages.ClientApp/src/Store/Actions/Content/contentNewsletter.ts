@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_NEWSLETTER_CONTENT } from "../../../Shared/constants";
 import { INewsletterContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentNewsletterAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentNewsletter.content.language;
 
-        if (getState().contentNewsletter.content !== ApplicationDefaults.contentNewsletter.content && !isLanguageChanged) 
+        if (getState().contentNewsletter.content !== ApplicationDefault.contentNewsletter.content && !isLanguageChanged) 
         {
             return;
         }

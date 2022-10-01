@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_SIGNOUT_CONTENT } from "../../../Shared/constants";
 import { IUserSignoutContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentUserSignoutAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUserSignout.content.language;
 
-        if (getState().contentUserSignout.content !== ApplicationDefaults.contentUserSignout.content && !isLanguageChanged) 
+        if (getState().contentUserSignout.content !== ApplicationDefault.contentUserSignout.content && !isLanguageChanged) 
         {
             return;
         }

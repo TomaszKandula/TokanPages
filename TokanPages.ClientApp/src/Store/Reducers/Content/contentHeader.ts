@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefaults } from "../../Configuration";
+import { ApplicationDefault } from "../../Configuration";
 import { IContentHeader } from "../../States";
 import { 
     TKnownActions,
@@ -11,7 +11,7 @@ export const ContentHeader:
     Reducer<IContentHeader> = (state: IContentHeader | undefined, incomingAction: Action): 
     IContentHeader => 
 {
-    if (state === undefined) return ApplicationDefaults.contentHeader;
+    if (state === undefined) return ApplicationDefault.contentHeader;
 
     const action = incomingAction as TKnownActions;
     switch(action.type)

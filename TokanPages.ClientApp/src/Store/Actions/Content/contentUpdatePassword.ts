@@ -1,4 +1,4 @@
-import { IApplicationAction, ApplicationDefaults } from "../../Configuration";
+import { IApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GET_UPDATE_PASSWORD_CONTENT } from "../../../Shared/constants";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 import { GetContent } from "./Services/getContentService";
@@ -15,7 +15,7 @@ export const ContentUpdatePasswordAction =
     {
         const isLanguageChanged = getState().applicationLanguage.id !== getState().contentUpdatePassword.content.language;
 
-        if (getState().contentUpdatePassword.content !== ApplicationDefaults.contentUpdatePassword.content && !isLanguageChanged) 
+        if (getState().contentUpdatePassword.content !== ApplicationDefault.contentUpdatePassword.content && !isLanguageChanged) 
         {
             return;
         }
