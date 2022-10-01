@@ -1,29 +1,54 @@
 import { useDispatch } from "react-redux";
-import { ActionCreators } from "../../Redux/Actions/userLanguageAction";
+import { ApplicationLanguageAction } from "../../Store/Actions";
 import { IGetContentManifestDto, ILanguageItem } from "../../Api/Models";
+import { SELECTED_LANGUAGE } from "../../Shared/constants";
 import { GetDataFromStorage } from "./StorageServices";
 import Validate from "validate.js";
 
-const GetDefaultId = (items: ILanguageItem[]): string => 
+const GetDefaultId = (items: ILanguageItem[]): string | undefined => 
 {
-    let result = "eng";
-    items.forEach(items => 
+    for(let index in items) 
     {
-        if (items.isDefault)
+        if (items[index].isDefault)
         {
-            result = items.id
+            return items[index].id
         }
-    });
-    
-    return result;
+    };
+
+    return undefined;
+}
+
+const IsLanguageIdValid = (id: string, items: ILanguageItem[]): boolean => 
+{
+    if (Validate.isEmpty(id)) 
+    {
+        return false;
+    }
+
+    for(let index in items)
+    {
+        if (items[index].id === id)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 export const UpdateUserLanguage = (manifest: IGetContentManifestDto): void => 
 {
-    const defaultId = GetDefaultId(manifest.languages);
-    const preservedId = GetDataFromStorage({ key: "SELECTED_LANGUAGE" }) as string;
-    const languageId = Validate.isEmpty(preservedId) ? defaultId : preservedId;
+    const languages = manifest.languages;
+    const defaultId = GetDefaultId(languages);
+
+    if (defaultId === undefined)
+    {
+        throw new Error("Cannot find the default language ID.");
+    }
+
+    const preservedId = GetDataFromStorage({ key: SELECTED_LANGUAGE }) as string;
+    const languageId = IsLanguageIdValid(preservedId, languages) ? preservedId : defaultId;
 
     const dispatch = useDispatch();    
-    dispatch(ActionCreators.setLanguage({ id: languageId, languages: manifest.languages }));
+    dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
 }

@@ -1,0 +1,23 @@
+import { IContentArticleFeatures } from "../../States";
+
+export const ContentArticleFeatures: IContentArticleFeatures = 
+{
+    isLoading: false,
+    content: 
+    {
+        language: "",
+        title: "",
+        description: "",
+        text1: "",
+        text2: "",
+        action: 
+        {
+            text: "",
+            href: ""
+        },
+        image1: "",
+        image2: "",
+        image3: "",
+        image4: ""
+    }
+}

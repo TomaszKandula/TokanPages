@@ -1,3 +1,5 @@
+import { IContent } from "./Common/content";
+
 export interface IUnsubscribeContentDto
 {
     content: 
@@ -6,13 +8,4 @@ export interface IUnsubscribeContentDto
         contentPre: IContent,
         contentPost: IContent
     };
-}
-
-export interface IContent
-{
-    caption: string;
-    text1: string;
-    text2: string;
-    text3: string;
-    button: string;
 }

@@ -11,6 +11,6 @@ export const Initialize = async (callback: any): Promise<void> =>
         responseType: "json"
     }));
 
-    const content: IGetContentManifestDto[] = result.content as IGetContentManifestDto[];
+    const content: IGetContentManifestDto = result.content as IGetContentManifestDto;
     callback(content);
 }

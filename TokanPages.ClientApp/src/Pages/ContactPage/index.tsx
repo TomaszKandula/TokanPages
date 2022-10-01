@@ -1,28 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container } from "@material-ui/core";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as ContactFormContent } from "../../Redux/Actions/Content/getContactFormContentAction";
-import { IApplicationState } from "../../Redux/applicationState";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
+import { IApplicationState } from "../../Store/Configuration";
+import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
+
+import { 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentContactFormAction 
+} from "../../Store/Actions";
 
 export const ContactPage = () => 
 {
     const dispatch = useDispatch();
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const contactForm = useSelector((state: IApplicationState) => state.getContactFormContent);
+    const form = useSelector((state: IApplicationState) => state.contentContactForm);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(ContactFormContent.getContactFormContent());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentContactFormAction.get());
     }, 
     [ dispatch, language?.id ]);
 
@@ -31,7 +33,7 @@ export const ContactPage = () =>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <Box mt={8} >
-                    <ContactForm content={contactForm?.content} isLoading={contactForm?.isLoading} />
+                    <ContactForm content={form?.content} isLoading={form?.isLoading} />
                 </Box>
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />

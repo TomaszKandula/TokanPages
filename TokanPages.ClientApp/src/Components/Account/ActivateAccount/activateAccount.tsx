@@ -1,15 +1,15 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ActionCreators } from "../../../Redux/Actions/Users/activateAccountAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { IGetActivateAccountContent } from "../../../Redux/States/Content/getActivateAccountContentState";
+import { IApplicationState } from "../../../Store/Configuration";
+import { UserActivateAction } from "../../../Store/Actions";
+import { IContentActivateAccount } from "../../../Store/States";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { IActivateUserDto } from "../../../Api/Models";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-interface IGetActivateAccountContentExtended extends IGetActivateAccountContent
+interface IGetActivateAccountContentExtended extends IContentActivateAccount
 {
     id: string;
 }
@@ -46,9 +46,9 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const activateAccountState = useSelector((state: IApplicationState) => state.activateAccount);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
-    const activateAccount = React.useCallback((payload: IActivateUserDto) => dispatch(ActionCreators.activateAccount(payload)), [ dispatch ]);
+    const state = useSelector((state: IApplicationState) => state.userActivate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const activate = React.useCallback((payload: IActivateUserDto) => dispatch(UserActivateAction.activate(payload)), [ dispatch ]);
 
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
@@ -65,7 +65,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setContent(onError);
             setProgress(false);
@@ -73,13 +73,13 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        switch(activateAccountState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
                 if (progress && !requested) 
                 {
                     setRequested(true);
-                    setTimeout(() => activateAccount(
+                    setTimeout(() => activate(
                     { 
                         activationId: props.id 
                     }), 
@@ -94,8 +94,8 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             break;
         }
     }, 
-    [ content.type, props.id, progress, requested, activateAccount, 
-        activateAccountState, raiseErrorState, onProcessing, onSuccess, onError ]);
+    [ content.type, props.id, progress, requested, activate, 
+        state, error, onProcessing, onSuccess, onError ]);
     
     const buttonHandler = () =>
     {
@@ -105,7 +105,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             setRequested(false);
             setProgress(true);
             setButtonDisabled(true);
-            dispatch(ActionCreators.clear())
+            dispatch(UserActivateAction.clear())
         }
         
         if (content.type === "Success")

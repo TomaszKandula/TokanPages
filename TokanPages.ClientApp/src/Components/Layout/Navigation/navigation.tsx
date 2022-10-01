@@ -1,18 +1,18 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "Redux/applicationState";
-import { IGetNavigationContent } from "../../../Redux/States/Content/getNavigationContentState";
-import { ActionCreators as UserDataAction } from "../../../Redux/Actions/Users/storeUserDataAction";
-import { ActionCreators as UserLanguageAction } from "../../../Redux/Actions/userLanguageAction";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IContentNavigation } from "../../../Store/States";
+import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/Actions";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
+import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
-export const Navigation = (props: IGetNavigationContent): JSX.Element => 
+export const Navigation = (props: IContentNavigation): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const user = useSelector((state: IApplicationState) => state.storeUserData);
-    const languages = useSelector((state: IApplicationState) => state.userLanguage);
+    const user = useSelector((state: IApplicationState) => state.userDataStore);
+    const languages = useSelector((state: IApplicationState) => state.applicationLanguage);
 
     const isAnonymous = Validate.isEmpty(user?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
@@ -20,8 +20,8 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
     const languageHandler = (event: React.ChangeEvent<{ value: unknown }>) => 
     {
         const value = event.target.value as string;
-        SetDataInStorage({ selection: value, key: "SELECTED_LANGUAGE" });
-        dispatch(UserLanguageAction.setLanguage({ id: value, languages: languages.languages }));
+        SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
+        dispatch(ApplicationLanguageAction.set({ id: value, languages: languages.languages }));
     };
 
     const toggleDrawer = (open: boolean) => (event: any) => 
@@ -33,7 +33,7 @@ export const Navigation = (props: IGetNavigationContent): JSX.Element =>
     const onAvatarClick = () => 
     {
         if (isAnonymous) return;
-        dispatch(UserDataAction.show(true));
+        dispatch(UserDataStoreAction.show(true));
     }
 
     return (<NavigationView bind=

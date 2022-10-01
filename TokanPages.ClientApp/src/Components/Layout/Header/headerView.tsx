@@ -6,13 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { IGetHeaderContent } from "../../../Redux/States/Content/getHeaderContentState";
+import { IContentHeader } from "../../../Store/States";
 import { IMAGES_PATH } from "../../../Shared/constants";
 import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
-export const HeaderView = (props: IGetHeaderContent): JSX.Element => 
+export const HeaderView = (props: IContentHeader): JSX.Element => 
 {
     const classes = HeaderStyle();
 

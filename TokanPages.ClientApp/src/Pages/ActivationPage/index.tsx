@@ -2,13 +2,15 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Container } from "@material-ui/core";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as ActivateAccountContent } from "../../Redux/Actions/Content/getActivateAccountContentAction";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
+import { IApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
+import { Navigation, Footer } from "../../Components/Layout";
+
+import { 
+    ContentActivateAccountAction, 
+    ContentNavigationAction, 
+    ContentFooterAction 
+} from "../../Store/Actions";
 
 const useQuery = () => 
 {
@@ -21,16 +23,16 @@ export const ActivationPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id");
 
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const activation = useSelector((state: IApplicationState) => state.getActivateAccountContent);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const activation = useSelector((state: IApplicationState) => state.contentActivateAccount);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {
-        dispatch(ActivateAccountContent.getActivateAccountContent());
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
+        dispatch(ContentActivateAccountAction.get());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
     }, 
     [ dispatch, language?.id ]);
 

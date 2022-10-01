@@ -9,10 +9,10 @@ import StorageIcon from "@material-ui/icons/Storage";
 import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ReactHtmlParser from "react-html-parser";
-import { IGetFeaturesContent } from "../../../Redux/States/Content/getFeaturesContentState";
+import { IContentFeatures } from "../../../Store/States";
 import { TechnologiesStyle } from "./technologiesStyle";
 
-export const TechnologiesView = (props: IGetFeaturesContent): JSX.Element =>
+export const TechnologiesView = (props: IContentFeatures): JSX.Element =>
 {
     const classes = TechnologiesStyle();
     return (

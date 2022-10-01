@@ -1,19 +1,24 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { IGetUpdatePasswordContent } from "../../../Redux/States/Content/getUpdatePasswordContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { ActionCreators } from "../../../Redux/Actions/Users/updateUserPasswordAction";
-import { IApplicationState } from "../../../Redux/applicationState";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IContentUpdatePassword } from "../../../Store/States";
+import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
 import { IUpdateUserPasswordDto } from "../../../Api/Models";
 import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { IValidateUpdateForm, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
-import {RECEIVED_ERROR_MESSAGE, UPDATE_FORM, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_WARNING } from "../../../Shared/constants";
 import { UpdatePasswordView } from "./View/updatePasswordView";
 import Validate from "validate.js";
+
+import {
+    RECEIVED_ERROR_MESSAGE, 
+    UPDATE_FORM, 
+    UPDATE_PASSWORD_SUCCESS, 
+    UPDATE_PASSWORD_WARNING 
+} from "../../../Shared/constants";
 
 const useQuery = () => 
 {
@@ -26,48 +31,48 @@ const formDefaultValues: IValidateUpdateForm =
     verifyPassword: ""
 };
 
-export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
+export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     
-    const userDataState = useSelector((state: IApplicationState) => state.storeUserData);
-    const updateUserPasswordState = useSelector((state: IApplicationState) => state.updateUserPassword);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const data = useSelector((state: IApplicationState) => state.userDataStore);
+    const password = useSelector((state: IApplicationState) => state.userPasswordUpdate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
     
     const resetId = queryParam.get("id");
-    const userId = userDataState?.userData.userId;
+    const userId = data?.userData.userId;
     const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_FORM, text))), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_FORM, text))), [ dispatch ]);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const updateAction = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(ActionCreators.update(payload)), [ dispatch ]);
-    const clearAction = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
+    const update = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserPasswordUpdateAction.update(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserPasswordUpdateAction.clear()), [ dispatch ]);
     
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clearAction();
+        clear();
     }, 
-    [ progress, clearAction ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(updateUserPasswordState?.operationStatus)
+        switch(password?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) updateAction(
+                if (progress) update(
                 {
                     id: userId,
                     resetId: resetId as string,
@@ -82,7 +87,7 @@ export const UpdatePassword = (props: IGetUpdatePasswordContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, updateUserPasswordState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, password?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

@@ -1,10 +1,10 @@
 import * as React from "react";
-import { IGetFooterContent } from "../../../Redux/States/Content/getFooterContentState";
+import { IContentFooter } from "../../../Store/States";
 import { Colours } from "../../../Theme";
 import validate from "validate.js";
 import { FooterView } from "./View/footerView";
 
-interface IGetFooterContentExtended extends IGetFooterContent
+interface IGetFooterContentExtended extends IContentFooter
 {
     backgroundColor?: string;
 }

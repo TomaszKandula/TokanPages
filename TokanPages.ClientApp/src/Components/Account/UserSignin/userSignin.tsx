@@ -1,10 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { IGetUserSigninContent } from "../../../Redux/States/Content/getUserSigninContentState";
-import { ActionCreators as DialogAction } from "../../../Redux/Actions/raiseDialogAction";
-import { IApplicationState } from "../../../Redux/applicationState";
-import { ActionCreators } from "../../../Redux/Actions/Users/signinUserAction";
+import { IApplicationState } from "../../../Store/Configuration";
+import { IContentUserSignin } from "../../../Store/States";
+import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 import { IAuthenticateUserDto } from "../../../Api/Models";
 import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
 import { GetTextWarning } from "../../../Shared/Services/Utilities";
@@ -20,39 +19,40 @@ const formDefaultValues: IValidateSigninForm =
     password: ""
 };
 
-export const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
+export const UserSignin = (props: IContentUserSignin): JSX.Element =>
 {
     const dispatch = useDispatch();
     const history = useHistory();
-    const signinUserState = useSelector((state: IApplicationState) => state.signinUser);
-    const raiseErrorState = useSelector((state: IApplicationState) => state.raiseError);
+    const state = useSelector((state: IApplicationState) => state.userSignin);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const showWarning = React.useCallback((text: string) => dispatch(DialogAction.raiseDialog(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
-    const signinUser = React.useCallback((payload: IAuthenticateUserDto) => dispatch(ActionCreators.signin(payload)), [ dispatch ]);
-    const clearUser = React.useCallback(() => dispatch(ActionCreators.clear()), [ dispatch ]);
+    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
+    const signin = React.useCallback((payload: IAuthenticateUserDto) => dispatch(UserSigninAction.signin(payload)), [ dispatch ]);
+    const clear = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
+
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clearUser();
+        clear();
     }, 
-    [ progress, clearUser ]);
+    [ progress, clear ]);
 
     React.useEffect(() => 
     {
-        if (raiseErrorState?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(signinUserState?.operationStatus)
+        switch(state?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) signinUser(
+                if (progress) signin(
                 {
                     emailAddress: form.email,
                     password: form.password
@@ -65,7 +65,7 @@ export const UserSignin = (props: IGetUserSigninContent): JSX.Element =>
             break;
         }
     }, 
-    [ progress, raiseErrorState?.defaultErrorMessage, signinUserState?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
         OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});

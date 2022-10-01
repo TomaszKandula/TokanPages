@@ -1,28 +1,30 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Redux/applicationState";
-import { ActionCreators as NavigationContent } from "../../Redux/Actions/Content/getNavigationContentAction";
-import { ActionCreators as FooterContent } from "../../Redux/Actions/Content/getFooterContentAction";
-import { ActionCreators as SignoutContent } from "../../Redux/Actions/Content/getUserSignoutContentAction";
-import { Navigation } from "../../Components/Layout";
-import { Footer } from "../../Components/Layout";
+import { IApplicationState } from "../../Store/Configuration";
+import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignout } from "../../Components/Account";
+
+import { 
+    ContentNavigationAction, 
+    ContentFooterAction, 
+    ContentUserSignoutAction 
+} from "../../Store/Actions";
 
 export const SignoutPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
     
-    const language = useSelector((state: IApplicationState) => state.userLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.getNavigationContent);
-    const footer = useSelector((state: IApplicationState) => state.getFooterContent);
-    const signoutView = useSelector((state: IApplicationState) => state.getUserSignoutContent);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const signout = useSelector((state: IApplicationState) => state.contentUserSignout);
 
     React.useEffect(() => 
     {
-        dispatch(NavigationContent.getNavigationContent());
-        dispatch(FooterContent.getFooterContent());
-        dispatch(SignoutContent.getUserSignoutContent());
+        dispatch(ContentNavigationAction.get());
+        dispatch(ContentFooterAction.get());
+        dispatch(ContentUserSignoutAction.get());
     }, 
     [ dispatch, language?.id ]);
 
@@ -30,7 +32,7 @@ export const SignoutPage = (): JSX.Element =>
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <UserSignout content={signoutView?.content} isLoading={signoutView?.isLoading} />
+                <UserSignout content={signout?.content} isLoading={signout?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
