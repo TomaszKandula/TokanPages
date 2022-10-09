@@ -1,7 +1,12 @@
 import { Action, Reducer } from "redux";
 import { IApplicationLanguage } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
-import { SET_LANGUAGE, RESET_LANGUAGE, TKnownActions } from "../../Actions/Application/applicationLanguage";
+
+import { 
+    SET_LANGUAGE, 
+    RESET_LANGUAGE, 
+    TKnownActions 
+} from "../../Actions/Application/applicationLanguage";
 
 export const ApplicationLanguage: 
     Reducer<IApplicationLanguage> = (state: IApplicationLanguage | undefined, incomingAction: Action): 

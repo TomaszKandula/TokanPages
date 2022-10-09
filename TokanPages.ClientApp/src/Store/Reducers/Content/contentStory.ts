@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IContentStory } from "../../States";
+
 import { 
     TKnownActions,
     RECEIVE_STORY_CONTENT, 

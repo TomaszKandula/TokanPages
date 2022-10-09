@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IContentTerms } from "../../States";
+
 import { 
     TKnownActions,
     RECEIVE_TERMS_CONTENT, 

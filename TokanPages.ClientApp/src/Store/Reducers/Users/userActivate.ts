@@ -2,6 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IUserActivate } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
+
 import { 
     TKnownActions,
     ACTIVATE_ACCOUNT,
