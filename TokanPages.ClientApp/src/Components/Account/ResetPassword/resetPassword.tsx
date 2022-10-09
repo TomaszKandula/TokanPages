@@ -27,11 +27,8 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
     const appState = useSelector((state: IApplicationState) => state.userPasswordReset);
     const appError = useSelector((state: IApplicationState) => state.applicationError);
 
-    const raiseSuccess = (text: string) => ApplicationDialogAction.raise(SuccessMessage(RESET_FORM, text));
-    const raiseWarning = (text: string) => ApplicationDialogAction.raise(WarningMessage(RESET_FORM, text));
-
-    const showSuccess = React.useCallback((text: string) => dispatch(raiseSuccess(text)), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(raiseWarning(text)), [ dispatch ]);
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(RESET_FORM, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(RESET_FORM, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);

@@ -6,7 +6,6 @@ import { IContentUpdateSubscriber } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
-import { IUpdateSubscriberDto } from "../../Api/Models";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
 
@@ -26,16 +25,15 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 {
     const buttonDefaultState = props.id === null ? false : true;
     const dispatch = useDispatch();
-    const state = useSelector((state: IApplicationState) => state.subscriberUpdate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const appState = useSelector((state: IApplicationState) => state.subscriberUpdate);
+    const appError = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const subscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.update(payload)), [ dispatch ]);
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text)));
+    const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text)));
 
     const clearForm = React.useCallback(() => 
     { 
@@ -47,22 +45,22 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(state?.operationStatus)
+        switch(appState?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (progress) subscriber(
-                { 
+                if (progress) dispatch(SubscriberUpdateAction.update(
+                {
                     id: props.id, 
                     email: form.email, 
                     isActivated: true, 
                     count: 0 
-                });
+                }));
             break;
 
             case OperationStatus.hasFinished:
@@ -72,8 +70,8 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
             break;
         }           
     }, 
-    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
