@@ -14,8 +14,8 @@ import {
 export const ResetPasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
     const reset = useSelector((state: IApplicationState) => state.contentResetPassword);
@@ -26,8 +26,8 @@ export const ResetPasswordPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentResetPasswordAction.get());
     }, 
-    [ dispatch, language?.id ]);
-    
+    [ language?.id ]);
+
     return (
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />

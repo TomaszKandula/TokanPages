@@ -22,7 +22,7 @@ export const UnsubscribePage = (): JSX.Element =>
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
-    
+
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
@@ -34,8 +34,8 @@ export const UnsubscribePage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentUnsubscribeAction.get());
     }, 
-    [ dispatch, language?.id ]);
-    
+    [ language?.id ]);
+
     return(
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />

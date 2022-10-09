@@ -34,7 +34,7 @@ export const ActivationPage = (): JSX.Element =>
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     const ErrorMessage = () => 
     {
