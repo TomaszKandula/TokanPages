@@ -22,8 +22,8 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const state = useSelector((state: IApplicationState) => state.userActivate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const appState = useSelector((state: IApplicationState) => state.userActivate);
+    const appError = useSelector((state: IApplicationState) => state.applicationError);
 
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
@@ -40,7 +40,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setContent(onError);
             setProgress(false);
@@ -48,7 +48,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        switch(state?.operationStatus)
+        switch(appState?.operationStatus)
         {
             case OperationStatus.notStarted:
                 if (progress && !requested) 
@@ -69,8 +69,8 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             break;
         }
     }, 
-    [ content.type, props.id, progress, requested, state, error, 
-    onProcessing, onSuccess, onError ]);
+    [ content.type, props.id, progress, requested, 
+    appState, appError, onProcessing, onSuccess, onError ]);
  
     const buttonHandler = () =>
     {
