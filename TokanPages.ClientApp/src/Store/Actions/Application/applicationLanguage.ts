@@ -11,7 +11,7 @@ export type TKnownActions = IResetLanguage | ISetLanguage;
 
 export const ApplicationLanguageAction = 
 {
-    revert: (): IApplicationAction<TKnownActions> => (dispatch) => 
+    reset: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: RESET_LANGUAGE });
     },
