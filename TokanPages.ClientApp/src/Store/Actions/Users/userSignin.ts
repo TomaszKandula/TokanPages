@@ -29,11 +29,7 @@ export const UserSigninAction =
         { 
             method: "POST", 
             url: API_COMMAND_AUTHENTICATE, 
-            data: 
-            {  
-                emailAddress: payload.emailAddress,
-                password: payload.password
-            }
+            data: payload
         }))
         .then(response => 
         {
@@ -44,7 +40,7 @@ export const UserSigninAction =
                     dispatch({ type: SIGNIN_USER_RESPONSE });
                     dispatch({ type: UPDATE_USERDATA, payload: response.data });
                 }
-                
+
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
                     : pushData();

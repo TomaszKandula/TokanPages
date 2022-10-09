@@ -2,7 +2,6 @@ import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IResetUserPasswordDto } from "../../../Api/Models";
 import { API_COMMAND_RESET_USER_PASSWORD, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { EnrichConfiguration } from "../../../Api/Request";
@@ -13,7 +12,7 @@ export const RESET_USER_PASSWORD_RESPONSE = "RESET_USER_PASSWORD_RESPONSE";
 export interface IResetUserPassword { type: typeof RESET_USER_PASSWORD }
 export interface IResetUserPasswordClear { type: typeof RESET_USER_PASSWORD_CLEAR }
 export interface IResetUserPasswordResponse { type: typeof RESET_USER_PASSWORD_RESPONSE }
-export type TKnownActions = IResetUserPassword | IResetUserPasswordClear | IResetUserPasswordResponse | TUpdateActions;
+export type TKnownActions = IResetUserPassword | IResetUserPasswordClear | IResetUserPasswordResponse;
 
 export const UserPasswordResetAction = 
 {
@@ -29,10 +28,7 @@ export const UserPasswordResetAction =
         { 
             method: "POST", 
             url: API_COMMAND_RESET_USER_PASSWORD, 
-            data: 
-            {  
-                emailAddress: payload.emailAddress
-            }
+            data: payload
         }))
         .then(response => 
         {

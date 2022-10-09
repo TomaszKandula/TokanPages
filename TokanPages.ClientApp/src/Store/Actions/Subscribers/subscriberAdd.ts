@@ -28,7 +28,7 @@ export const SubscriberAddAction =
         { 
             method: "POST", 
             url: API_COMMAND_ADD_SUBSCRIBER, 
-            data: { email: payload.email }
+            data: payload
         }))
         .then(response => 
         {

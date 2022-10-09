@@ -61,36 +61,18 @@ export const ArticleUpdateAction =
     },
     updateContent: (payload: IUpdateArticleContentDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, 
-        {  
-            id: payload.id,
-            title: payload.title,
-            description: payload.description,
-            textToUpload: payload.textToUpload,
-            imageToUpload: payload.imageToUpload
-        });
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, payload);
     },
     updateCount: (payload: IUpdateArticleCountDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, 
-        {  
-            id: payload.id
-        });
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, payload);
     },
     updateLikes: (payload: IUpdateArticleLikesDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, 
-        {  
-            id: payload.id,
-            addToLikes: payload.addToLikes
-        });
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, payload);
     },
     updateVisibility: (payload: IUpdateArticleVisibilityDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, 
-        {  
-            id: payload.id,
-            isPublished: payload.IsPublished
-        });
+        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, payload);
     }
 }

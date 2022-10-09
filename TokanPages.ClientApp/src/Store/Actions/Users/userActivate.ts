@@ -28,10 +28,7 @@ export const UserActivateAction =
         { 
             method: "POST", 
             url: API_COMMAND_ACTIVATE_USER, 
-            data: 
-            {  
-                activationId: payload.activationId
-            }
+            data: payload
         }))
         .then(response => 
         {
