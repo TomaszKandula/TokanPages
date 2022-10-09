@@ -14,9 +14,7 @@ import {
     UserReAuthenticateAction 
 } from "../../../Store/Actions";
 
-import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { GetTextWarning } from "../../../Shared/Services/Utilities";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
 import { IRemoveUserDto, IUpdateUserDto, IUpdateUserPasswordDto } from "../../../Api/Models";
 import { UserAccountView } from "./View/userAccountView";

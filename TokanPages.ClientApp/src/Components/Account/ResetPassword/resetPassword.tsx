@@ -4,7 +4,7 @@ import { IApplicationState } from "../../../Store/Configuration";
 import { IContentResetPassword } from "../../../Store/States";
 import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
 import { IValidateResetForm, ValidateResetForm } from "../../../Shared/Services/FormValidation";
-import { GetTextWarning } from "../../../Shared/Services/Utilities";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";

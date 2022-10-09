@@ -6,9 +6,7 @@ import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/A
 import { IContentContactForm } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
-import { GetTextWarning } from "../../Shared/Services/Utilities";
-import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ISendMessageDto } from "../../Api/Models";
 import { ContactFormView } from "./View/contactFormView";
 
