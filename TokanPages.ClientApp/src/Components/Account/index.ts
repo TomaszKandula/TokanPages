@@ -8,3 +8,4 @@ export { UserSignup } from "./UserSignup/userSignup";
 
 export { UserInfo } from "./UserAccount/UserInfo/userInfo";
 export { UserPassword } from "./UserAccount/UserPassword/userPassword";
+export { UserRemoval } from "./UserAccount/UserRemoval/userRemoval";
