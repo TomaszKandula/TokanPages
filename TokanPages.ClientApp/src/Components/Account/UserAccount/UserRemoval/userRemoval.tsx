@@ -28,14 +28,14 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
     
-    const remove = useSelector((state: IApplicationState) => state.userRemove);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const appState = useSelector((state: IApplicationState) => state.userRemove);
+    const appError = useSelector((state: IApplicationState) => state.applicationError);
 
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
 
-    const removeAccountClear = React.useCallback(() => 
+    const clear = React.useCallback(() => 
     {
         if (!deleteAccountProgress) return;
 
@@ -49,13 +49,13 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setDeleteAccountProgress(false);
             return;
         }
 
-        switch(remove?.operationStatus)
+        switch(appState?.operationStatus)
         {
             case OperationStatus.notStarted:
                 if (deleteAccountProgress) 
@@ -65,12 +65,12 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
             break;
 
             case OperationStatus.hasFinished:
-                removeAccountClear();
+                clear();
                 showSuccess(REMOVE_USER);
             break;
         }
     }, 
-    [ deleteAccountProgress, error?.defaultErrorMessage, remove?.operationStatus, 
+    [ deleteAccountProgress, appError?.defaultErrorMessage, appState?.operationStatus, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const deleteButtonHandler = () => 

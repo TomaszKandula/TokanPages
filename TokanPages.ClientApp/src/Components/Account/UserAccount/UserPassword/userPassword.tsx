@@ -33,8 +33,8 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
 {
     const dispatch = useDispatch();
     
-    const password = useSelector((state: IApplicationState) => state.userPasswordUpdate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const appState = useSelector((state: IApplicationState) => state.userPasswordUpdate);
+    const appError = useSelector((state: IApplicationState) => state.applicationError);
 
     const passwordFormDefault: IValidatePasswordForm = 
     {
@@ -49,7 +49,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
     const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
 
-    const passwordFormClear = React.useCallback(() => 
+    const clear = React.useCallback(() => 
     {
         if (!passwordFormProgress) return;
 
@@ -61,29 +61,28 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
-            passwordFormClear();
+            clear();
             return;
         }
 
-        switch(password?.operationStatus)
+        switch(appState?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (passwordFormProgress) dispatch(UserPasswordUpdateAction.update(
+                if (passwordFormProgress) 
                 {
-                    oldPassword: passwordForm.oldPassword,
-                    newPassword: passwordForm.newPassword
-                }));
+                    dispatch(UserPasswordUpdateAction.update(passwordForm));
+                }
             break;
 
             case OperationStatus.hasFinished:
-                passwordFormClear();
+                clear();
                 showSuccess(UPDATE_PASSWORD_SUCCESS);
             break;
         }
     }, 
-    [ passwordFormProgress, error?.defaultErrorMessage, password?.operationStatus, 
+    [ passwordFormProgress, appError?.defaultErrorMessage, appState?.operationStatus, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const passwordFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
@@ -93,13 +92,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
 
     const passwordButtonHandler = () => 
     {
-        let validationResult = ValidatePasswordForm( 
-        {
-            oldPassword: passwordForm.oldPassword,
-            newPassword: passwordForm.newPassword,
-            confirmPassword: passwordForm.confirmPassword
-        });
-    
+        let validationResult = ValidatePasswordForm(passwordForm);
         if (!Validate.isDefined(validationResult))
         {
             setPasswordFormProgress(true);
