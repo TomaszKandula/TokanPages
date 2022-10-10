@@ -45,9 +45,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
 
     const accountFormDefault: IValidateAccountForm = 
     {
-        firstName: userStore.firstName,
-        lastName: userStore.lastName,
-        email: userStore.email,
+        ...userStore,
         userAboutText: userStore.shortBio ?? ""
     }
 
@@ -121,14 +119,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
 
     const accountButtonHandler = () => 
     {
-        let validationResult = ValidateAccountForm( 
-        { 
-            firstName: accountForm.firstName,
-            lastName: accountForm.lastName, 
-            email: accountForm.email,
-            userAboutText: accountForm.userAboutText
-        });
-
+        let validationResult = ValidateAccountForm(accountForm);
         if (!Validate.isDefined(validationResult))
         {
             setAccountFormProgress(true);
