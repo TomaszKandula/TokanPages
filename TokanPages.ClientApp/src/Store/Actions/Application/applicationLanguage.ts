@@ -1,19 +1,19 @@
 import { IApplicationAction } from "../../Configuration";
 import { IApplicationLanguage } from "../../States";
 
-export const SET_DEFAULT_LANGUAGE = "SET_DEFAULT_LANGUAGE";
+export const RESET_LANGUAGE = "RESET_LANGUAGE";
 export const SET_LANGUAGE = "SET_LANGUAGE";
 
-export interface ISetDefaultLanguage { type: typeof SET_DEFAULT_LANGUAGE }
+export interface IResetLanguage { type: typeof RESET_LANGUAGE }
 export interface ISetLanguage { type: typeof SET_LANGUAGE, language: IApplicationLanguage }
 
-export type TKnownActions = ISetDefaultLanguage | ISetLanguage;
+export type TKnownActions = IResetLanguage | ISetLanguage;
 
 export const ApplicationLanguageAction = 
 {
-    revert: (): IApplicationAction<TKnownActions> => (dispatch) => 
+    reset: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: SET_DEFAULT_LANGUAGE });
+        dispatch({ type: RESET_LANGUAGE });
     },
     set: (language: IApplicationLanguage): IApplicationAction<TKnownActions> => (dispatch) => 
     {

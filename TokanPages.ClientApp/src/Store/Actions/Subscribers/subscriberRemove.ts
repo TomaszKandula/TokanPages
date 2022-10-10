@@ -22,7 +22,7 @@ export const SubscriberRemoveAction =
         { 
             method: "POST", 
             url: API_COMMAND_REMOVE_SUBSCRIBER, 
-            data: { id: payload.id }
+            data: payload
         }))
         .then(response =>
         {

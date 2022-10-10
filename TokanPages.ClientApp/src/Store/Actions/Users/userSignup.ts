@@ -28,14 +28,7 @@ export const UserSignupAction =
         { 
             method: "POST", 
             url: API_COMMAND_ADD_USER, 
-            data: 
-            {  
-                userAlias: payload.userAlias,
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                emailAddress: payload.emailAddress,
-                password: payload.password
-            }
+            data: payload
         }))
         .then(response => 
         {
@@ -45,7 +38,7 @@ export const UserSignupAction =
                     ? RaiseError({dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
                     : dispatch({ type: SIGNUP_USER_RESPONSE });
             }
-            
+
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status})});
         })
         .catch(error => 

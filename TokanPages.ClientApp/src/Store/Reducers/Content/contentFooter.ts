@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IContentFooter } from "../../States";
+
 import { 
     TKnownActions,
     RECEIVE_FOOTER_CONTENT, 

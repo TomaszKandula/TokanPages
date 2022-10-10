@@ -18,8 +18,8 @@ export const UserSignout = (props: IContentUserSignout): JSX.Element =>
         dispatch(UserSigninAction.clear());
         dispatch(UserDataStoreAction.clear());
     }, 
-    [ progress, dispatch ]);
-    
+    [ progress ]);
+
     React.useEffect(() => 
     {
         const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_DATA) === null; 

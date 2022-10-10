@@ -14,6 +14,7 @@ export const AccountPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const account = useSelector((state: IApplicationState) => state.contentAccount);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
@@ -24,7 +25,7 @@ export const AccountPage = (): JSX.Element =>
         dispatch(ContentAccountAction.get());
         dispatch(ContentFooterAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return(
         <>

@@ -13,7 +13,7 @@ export const ArticleList = (): JSX.Element =>
     { 
         dispatch(ArticleListingAction.get())
     }, 
-    [ dispatch ]);
+    [ ]);
 
     return (<ArticleListView bind=
     {{

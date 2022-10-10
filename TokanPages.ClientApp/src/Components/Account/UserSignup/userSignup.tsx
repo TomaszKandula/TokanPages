@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUserSignup } from "../../../Store/States";
 import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
-import { IAddUserDto } from "../../../Api/Models";
-import SuccessMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { GetTextWarning } from "../../../Shared/Services/Utilities";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { IValidateSignupForm, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSignupView } from "./View/userSignupView";
@@ -37,18 +34,16 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text))), [ dispatch ]);
-    const signup = React.useCallback((payload: IAddUserDto) => dispatch(UserSignupAction.signup(payload)), [ dispatch ]);
-    const clear = React.useCallback(() => dispatch(UserSignupAction.clear()), [ dispatch ]);
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text)));
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clear();
+        dispatch(UserSignupAction.clear());
     }, 
-    [ progress, clear ]);
+    [ progress ]);
 
     React.useEffect(() => 
     {
@@ -64,14 +59,14 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
                 if (progress)
                 {
                     const userAlias: string = `${form.firstName.substring(0, 2)}${form.lastName.substring(0, 3)}`;
-                    signup(
+                    dispatch(UserSignupAction.signup(
                     {
                         userAlias: userAlias,
                         firstName: form.firstName,
                         lastName: form.lastName,
                         emailAddress: form.email,
                         password: form.password
-                    });
+                    }));
                 }
             break;
 
@@ -83,7 +78,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
         }
     }, 
     [ progress, error?.defaultErrorMessage, state?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

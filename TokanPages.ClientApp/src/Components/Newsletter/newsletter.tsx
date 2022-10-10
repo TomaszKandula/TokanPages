@@ -5,49 +5,53 @@ import { IContentNewsletter } from "../../Store/States";
 import { SubscriberAddAction } from "../../Store/Actions";
 import { ApplicationDialogAction } from "../../Store/Actions";
 import { OperationStatus } from "../../Shared/enums";
-import { GetTextWarning } from "../../Shared/Services/Utilities";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
-import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
-import { IAddSubscriberDto } from "../../Api/Models";
 import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
+
+import { 
+    NEWSLETTER, 
+    NEWSLETTER_SUCCESS, 
+    NEWSLETTER_WARNING, 
+    RECEIVED_ERROR_MESSAGE 
+} from "../../Shared/constants";
 
 export const Newsletter = (props: IContentNewsletter): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const state = useSelector((state: IApplicationState) => state.subscriberAdd);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const appState = useSelector((state: IApplicationState) => state.subscriberAdd);
+    const appError = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState({email: ""});
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(NEWSLETTER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(NEWSLETTER, text))), [ dispatch ]);
-    const subscriber = React.useCallback((payload: IAddSubscriberDto) => dispatch(SubscriberAddAction.add(payload)), [ dispatch ]);
-    const clear = React.useCallback(() => dispatch(SubscriberAddAction.clear()), [ dispatch ]);
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(NEWSLETTER, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(NEWSLETTER, text)));
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clear();
+        dispatch(SubscriberAddAction.clear());
     }, 
-    [ progress, clear ]);
+    [ progress ]);
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
         }
 
-        switch(state?.operationStatus)
+        switch(appState?.operationStatus)
         {
             case OperationStatus.notStarted: 
-                if (progress) subscriber({ email: form.email });
+                if (progress) 
+                {
+                    dispatch(SubscriberAddAction.add({ email: form.email }));
+                }
             break;
         
             case OperationStatus.hasFinished: 
@@ -57,8 +61,8 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
             break;
         }
     }, 
-    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 

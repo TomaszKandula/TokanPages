@@ -11,3 +11,7 @@ export { GetShortText } from "./GetShortText/getShortText";
 export { GetTextError } from "./GetTextError/getTextError";
 export { GetTextStatusCode } from "./GetTextStatusCode/getTextStatusCode";
 export { GetTextWarning } from "./GetTextWarning/getTextWarning";
+
+export { ErrorMessage } from "./Messages/errorMessage";
+export { SuccessMessage } from "./Messages/successMessage";
+export { WarningMessage } from "./Messages/warningMessage";

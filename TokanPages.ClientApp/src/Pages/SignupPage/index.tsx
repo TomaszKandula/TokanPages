@@ -14,8 +14,8 @@ import {
 export const SignupPage = (): JSX.Element =>
 {
     const dispatch = useDispatch();
-    
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
     const form = useSelector((state: IApplicationState) => state.contentUserSignup);
@@ -26,7 +26,7 @@ export const SignupPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentUserSignupAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return (
         <>
