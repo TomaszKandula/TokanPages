@@ -5,3 +5,5 @@ export { UserAccount } from "./UserAccount/userAccount";
 export { UserSignin } from "./UserSignin/userSignin";
 export { UserSignout } from "./UserSignout/userSignout";
 export { UserSignup } from "./UserSignup/userSignup";
+
+export { UserInfo } from "./UserAccount/UserInfo/userInfo";
