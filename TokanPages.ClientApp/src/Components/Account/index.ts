@@ -7,3 +7,4 @@ export { UserSignout } from "./UserSignout/userSignout";
 export { UserSignup } from "./UserSignup/userSignup";
 
 export { UserInfo } from "./UserAccount/UserInfo/userInfo";
+export { UserPassword } from "./UserAccount/UserPassword/userPassword";
