@@ -16,7 +16,6 @@ import {
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
-import { IRemoveUserDto, IUpdateUserDto, IUpdateUserPasswordDto } from "../../../Api/Models";
 import { UserAccountView } from "./View/userAccountView";
 import Validate from "validate.js";
 
@@ -71,63 +70,50 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
     const [passwordFormProgress, setPasswordFormProgress] = React.useState(false);
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text))), [ dispatch ]);
-
-    const updateUser = React.useCallback((payload: IUpdateUserDto) => dispatch(UserUpdateAction.update(payload)), [ dispatch ]);
-    const updateUserClear = React.useCallback(() => dispatch(UserUpdateAction.clear()), [ dispatch ]);
-
-    const updatePassword = React.useCallback((payload: IUpdateUserPasswordDto) => dispatch(UserPasswordUpdateAction.update(payload)), [ dispatch ]);
-    const updatePasswordClear = React.useCallback(() => dispatch(UserPasswordUpdateAction.clear()), [ dispatch ]);
-
-    const removeUser = React.useCallback((payload: IRemoveUserDto) => dispatch(UserRemoveAction.remove(payload)), [ dispatch ]);
-    const removeUserClear = React.useCallback(() => dispatch(UserRemoveAction.clear), [ dispatch ]);
-
-    const reAuthenticate = React.useCallback(() => dispatch(UserReAuthenticateAction.reAuthenticate()), [ dispatch ]);
-    const clearUser = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
-    const clearData = React.useCallback(() => dispatch(UserDataStoreAction.clear()), [ dispatch ]);
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
+    const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
 
     const accountFormClear = React.useCallback(() => 
     {
         if (!accountFormProgress) return;
         
-        updateUserClear();
+        dispatch(UserUpdateAction.clear());
         setAccountFormProgress(false);
 
         if (!isUserActivated.checked)
         {
-            clearUser();
-            clearData();
+            dispatch(UserSigninAction.clear());
+            dispatch(UserDataStoreAction.clear());
             history.push("/");
         }
         else
         {
-            reAuthenticate();
+            dispatch(UserReAuthenticateAction.reAuthenticate());
         }
     }, 
-    [ accountFormProgress, updateUserClear, reAuthenticate, clearUser, clearData ]);
+    [ accountFormProgress ]);
 
     const passwordFormClear = React.useCallback(() => 
     {
         if (!passwordFormProgress) return;
 
-        updatePasswordClear();
+        dispatch(UserPasswordUpdateAction.clear());
         setPasswordForm(passwordFormDefault);
         setPasswordFormProgress(false);
     }, 
-    [ passwordFormProgress, updatePasswordClear ]);
+    [ passwordFormProgress ]);
 
     const removeAccountClear = React.useCallback(() => 
     {
         if (!deleteAccountProgress) return;
 
-        removeUserClear();
+        dispatch(UserRemoveAction.clear);
         setDeleteAccountProgress(false);
-        clearUser();
-        clearData();
+        dispatch(UserSigninAction.clear());
+        dispatch(UserDataStoreAction.clear());
         history.push("/");
     }, 
-    [ deleteAccountProgress, removeUserClear, clearUser, clearData ]);
+    [ deleteAccountProgress ]);
 
     React.useEffect(() => 
     {
@@ -140,7 +126,7 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
         switch(user?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (accountFormProgress) updateUser(
+                if (accountFormProgress) dispatch(UserUpdateAction.update(
                 {
                     id: data.userId,
                     isActivated: isUserActivated.checked,
@@ -148,7 +134,7 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
                     lastName: accountForm.lastName,
                     emailAddress: accountForm.email,
                     userAboutText: accountForm.userAboutText
-                });
+                }));
             break;
 
             case OperationStatus.hasFinished:
@@ -158,7 +144,7 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
         }
     }, 
     [ accountFormProgress, error?.defaultErrorMessage, user?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     React.useEffect(() => 
     {
@@ -171,11 +157,11 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
         switch(password?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (passwordFormProgress) updatePassword(
+                if (passwordFormProgress) dispatch(UserPasswordUpdateAction.update(
                 {
                     oldPassword: passwordForm.oldPassword,
                     newPassword: passwordForm.newPassword
-                });
+                }));
             break;
 
             case OperationStatus.hasFinished:
@@ -185,7 +171,7 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
         }
     }, 
     [ passwordFormProgress, error?.defaultErrorMessage, password?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     React.useEffect(() => 
     {
@@ -198,7 +184,10 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
         switch(remove?.operationStatus)
         {
             case OperationStatus.notStarted:
-                if (deleteAccountProgress) removeUser({ });
+                if (deleteAccountProgress) 
+                {
+                    dispatch(UserRemoveAction.remove({ }));
+                }
             break;
 
             case OperationStatus.hasFinished:
@@ -208,7 +197,7 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
         }
     }, 
     [ deleteAccountProgress, error?.defaultErrorMessage, remove?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -264,7 +253,10 @@ export const UserAccount = (props: IContentAccount): JSX.Element =>
 
     const deleteButtonHandler = () => 
     {
-        if (!deleteAccountProgress) setDeleteAccountProgress(true);
+        if (!deleteAccountProgress) 
+        {
+            setDeleteAccountProgress(true);
+        }
     };
 
     return(
