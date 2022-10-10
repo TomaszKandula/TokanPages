@@ -83,7 +83,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
-                <Box pt={15}>
+                <Box pt={15} pb={5}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>

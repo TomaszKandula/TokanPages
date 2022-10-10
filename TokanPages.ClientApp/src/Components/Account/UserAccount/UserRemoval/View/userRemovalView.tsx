@@ -61,7 +61,7 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
-                <Box pt={8} pb={10}>
+                <Box pt={5} pb={10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
