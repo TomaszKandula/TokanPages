@@ -40,8 +40,6 @@ export const AccessDeniedView = (props: IContentAccount): JSX.Element =>
     }
 
     return(
-        <>
-        
         <section className={classes.section}>
             <Container maxWidth="md">
                 <Box pt={15} pb={8}>
@@ -70,7 +68,5 @@ export const AccessDeniedView = (props: IContentAccount): JSX.Element =>
                 </Box>
             </Container>
         </section>
-        
-        </>
     );
 }

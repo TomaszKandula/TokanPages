@@ -33,10 +33,8 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
 {
     const dispatch = useDispatch();
     
-    const data = useSelector((state: IApplicationState) => state.userDataStore.userData);
     const password = useSelector((state: IApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: IApplicationState) => state.applicationError);
-    const isAnonymous = Validate.isEmpty(data.userId);
 
     const passwordFormDefault: IValidatePasswordForm = 
     {
@@ -115,7 +113,6 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
         <UserPasswordView bind=
         {{
             isLoading: props.isLoading,
-            isAnonymous: isAnonymous,
             oldPassword: passwordForm.oldPassword,
             newPassword: passwordForm.newPassword,
             confirmPassword: passwordForm.confirmPassword,

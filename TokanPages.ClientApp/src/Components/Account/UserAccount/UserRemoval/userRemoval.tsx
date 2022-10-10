@@ -5,7 +5,6 @@ import { IApplicationState } from "../../../../Store/Configuration";
 import { IContentAccount } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { UserRemovalView } from "./View/userRemovalView";
-import Validate from "validate.js";
 
 import { 
     ApplicationDialogAction, 
@@ -29,10 +28,8 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
     
-    const data = useSelector((state: IApplicationState) => state.userDataStore.userData);
     const remove = useSelector((state: IApplicationState) => state.userRemove);
     const error = useSelector((state: IApplicationState) => state.applicationError);
-    const isAnonymous = Validate.isEmpty(data.userId);
 
     const [deleteAccountProgress, setDeleteAccountProgress] = React.useState(false);
 
@@ -88,7 +85,6 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
         <UserRemovalView bind=
         {{
             isLoading: props.isLoading,
-            isAnonymous: isAnonymous,
             deleteButtonHandler: deleteButtonHandler,
             deleteAccountProgress: deleteAccountProgress,
             sectionAccessDenied: props.content?.sectionAccessDenied,

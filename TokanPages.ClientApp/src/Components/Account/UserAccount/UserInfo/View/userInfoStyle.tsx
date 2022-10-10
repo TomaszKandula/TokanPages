@@ -38,10 +38,6 @@ export const UserInfoStyle = makeStyles((theme) => (
         marginRight: 15,
         marginBottom: 10
     },
-    access_denied_prompt:
-    {
-        color: Colours.colours.gray1
-    },
     user_id:
     {
         [theme.breakpoints.down("xs")]: 
@@ -65,7 +61,6 @@ export const UserInfoStyle = makeStyles((theme) => (
             marginBottom: "15px"
         },
         marginBottom: "30px"
-
     },
     user_avatar:
     {
@@ -86,21 +81,6 @@ export const UserInfoStyle = makeStyles((theme) => (
         color: Colours.colours.white,
         background: Colours.colours.violet
     },
-    delete_update:
-    {
-        [theme.breakpoints.down("xs")]: 
-        {
-            width: "100%",
-        },
-        width: "150px",
-        "&:hover": 
-        {
-            color: Colours.colours.white,
-            background: Colours.colours.red,
-        },
-        color: Colours.colours.white,
-        background: Colours.colours.redDark
-    },
     button_container_update:
     {
         [theme.breakpoints.down("xs")]: 
@@ -116,20 +96,6 @@ export const UserInfoStyle = makeStyles((theme) => (
         justifyContent: "flex-end"
     },
     button_upload:
-    {
-        "&:hover": 
-        {
-            color: Colours.colours.white,
-            background: Colours.colours.darkViolet1,
-        },
-        color: Colours.colours.white,
-        background: Colours.colours.violet
-    },
-    home_link:
-    {
-        textDecoration: "none"
-    },
-    home_button:
     {
         "&:hover": 
         {

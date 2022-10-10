@@ -42,7 +42,6 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
     const userStore = useSelector((state: IApplicationState) => state.userDataStore.userData);
     const appState = useSelector((state: IApplicationState) => state.userUpdate);
     const appError = useSelector((state: IApplicationState) => state.applicationError);
-    const isAnonymous = Validate.isEmpty(userStore.userId);
 
     const accountFormDefault: IValidateAccountForm = 
     {
@@ -143,7 +142,6 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
         <UserInfoView bind=
         {{
             isLoading: props.isLoading,
-            isAnonymous: isAnonymous,
             userStore: userStore,
             accountForm: accountForm,
             isUserActivated: isUserActivated.checked,

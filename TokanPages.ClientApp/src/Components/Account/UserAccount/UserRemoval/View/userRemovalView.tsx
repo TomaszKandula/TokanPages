@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -29,7 +28,6 @@ interface IBinding
 interface IProperties
 {    
     isLoading: boolean;
-    isAnonymous: boolean;
     deleteButtonHandler: any;
     deleteAccountProgress: boolean;
     sectionAccessDenied: ISectionAccessDenied;
@@ -51,17 +49,6 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
         );
     }
 
-    const HomeButton = (): JSX.Element => 
-    {
-        return(
-            <Link to="/" className={classes.home_link}>
-                <Button fullWidth variant="contained" className={classes.home_button} disabled={props.bind?.isLoading}>
-                    {props.bind?.sectionAccessDenied?.homeButtonText}
-                </Button>
-            </Link>
-        );
-    }
-
     const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
     {
         return(
@@ -72,39 +59,16 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
     }
 
     return(
-        <>
-        <section className={classes.section} style={props.bind?.isAnonymous ? { display: "block" }: { display: "none" }}>
+        <section className={classes.section}>
             <Container maxWidth="md">
-                <Box pt={15} pb={8}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
-                            <Box pt={0} pb={0}>
-                                <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccessDenied?.accessDeniedCaption}
-                                </Typography>
-                            </Box>
-                            <CustomDivider marginTop={2} marginBottom={1} />
-                            <Box pt={3} pb={3}>
-                                <Typography component="span" className={classes.access_denied_prompt}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" height="100px" /> : ReactHtmlParser(props.bind?.sectionAccessDenied?.accessDeniedPrompt)}
-                                </Typography>
-                            </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <HomeButton />}
-                        </CardContent>
-                    </Card>
-                </Box>
-            </Container>
-        </section>
-
-        <section className={classes.section} style={props.bind?.isAnonymous ? { display: "none" }: { display: "block" }}>
-            <Container maxWidth="md">
-
                 <Box pt={8} pb={10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.sectionAccountRemoval?.caption}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.sectionAccountRemoval?.caption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -112,7 +76,9 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item>
                                         <Typography className={classes.label}>
-                                            {props.bind?.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.bind?.sectionAccountRemoval?.warningText)}
+                                            {props.bind?.isLoading 
+                                            ? <Skeleton variant="text" /> 
+                                            : ReactHtmlParser(props.bind?.sectionAccountRemoval?.warningText)}
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -128,9 +94,7 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                         </CardContent>
                     </Card>
                 </Box>
-
             </Container>
         </section>
-        </>
     );
 }
