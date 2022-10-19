@@ -14,9 +14,9 @@ describe("Verify GetErrorMessage.", () =>
             {
                 "data":
                 {
-                    "ErrorCode": "USERNAME_ALREADY_EXISTS",
-                    "ErrorMessage": "This user name already exists",
-                    "ValidationErrors": null
+                    "errorCode": "USERNAME_ALREADY_EXISTS",
+                    "errorMessage": "This user name already exists",
+                    "validationErrors": null
                 }
             }
         }`
@@ -45,19 +45,19 @@ describe("Verify GetErrorMessage.", () =>
             {
                 "data":
                 {
-                    "ErrorCode": "CANNOT_ADD_DATA",
-                    "ErrorMessage": "Cannot add invalid data",
-                    "ValidationErrors": 
+                    "errorCode": "CANNOT_ADD_DATA",
+                    "errorMessage": "Cannot add invalid data",
+                    "validationErrors": 
                     [
                         {
-                            "PropertyName": "Id",
-                            "ErrorCode": "INVALID_GUID",
-                            "ErrorMessage": "Must be GUID"
+                            "propertyName": "Id",
+                            "errorCode": "INVALID_GUID",
+                            "errorMessage": "Must be GUID"
                         },
                         {
-                            "PropertyName": "UserAge",
-                            "ErrorCode": "INVALID_NUMBER",
-                            "ErrorMessage": "Cannot be negative number"
+                            "propertyName": "UserAge",
+                            "errorCode": "INVALID_NUMBER",
+                            "errorMessage": "Cannot be negative number"
                         }
                     ]
                 }
