@@ -19,8 +19,12 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
     const contentPost: IContent = props.content?.contentPost;
 
     const dispatch = useDispatch();
-    const appState = useSelector((state: IApplicationState) => state.subscriberRemove);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const remove = useSelector((state: IApplicationState) => state.subscriberRemove);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = remove?.status === OperationStatus.notStarted;
+    const hasFinished = remove?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [isRemoved, setIsRemoved] = React.useState(false);
     const [buttonState, setButtonState] = React.useState(true);
@@ -37,30 +41,26 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
 
     React.useEffect(() => 
     {
-        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(appState?.status)
+        if (hasNotStarted && progress)
         {
-            case OperationStatus.notStarted:
-                if (progress) 
-                {
-                    dispatch(SubscriberRemoveAction.remove({ id: props.id }));
-                }
-            break;
+            dispatch(SubscriberRemoveAction.remove({ id: props.id }));
+            return;
+        }
 
-            case OperationStatus.hasFinished:
-                setIsRemoved(true);
-                setButtonState(false);
-                setProgress(false);                        
-            break;
+        if (hasFinished)
+        {
+            setIsRemoved(true);
+            setButtonState(false);
+            setProgress(false);                        
         }
     }, 
-    [ progress, appError?.errorMessage, appState?.status, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const buttonHandler = () =>
     {

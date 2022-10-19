@@ -1,13 +1,26 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { IContentContactForm } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
-import { IValidateContactForm, ValidateContactForm } from "../../Shared/Services/FormValidation";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ContactFormView } from "./View/contactFormView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    ApplicationMessageAction 
+} from "../../Store/Actions";
+
+import { 
+    IValidateContactForm, 
+    ValidateContactForm 
+} from "../../Shared/Services/FormValidation";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../Shared/Services/Utilities";
 
 import { 
     CONTACT_FORM, 
@@ -29,8 +42,12 @@ const formDefaultValues: IValidateContactForm =
 export const ContactForm = (props: IContentContactForm): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const appState = useSelector((state: IApplicationState) => state.applicationEmail);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const email = useSelector((state: IApplicationState) => state.applicationEmail);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = email?.status === OperationStatus.notStarted;
+    const hasFinished = email?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
@@ -48,36 +65,36 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(appState?.status)
+        if (hasNotStarted && progress) 
         {
-            case OperationStatus.notStarted:
-                if (progress) dispatch(ApplicationMessageAction.send(
-                {
-                    firstName: form.firstName,
-                    lastName: form.lastName,
-                    userEmail: form.email,
-                    emailFrom: form.email,
-                    emailTos: [form.email],
-                    subject: form.subject,
-                    message: form.message
-                }));
-            break;
+            dispatch(ApplicationMessageAction.send(
+            {
+                firstName: form.firstName,
+                lastName: form.lastName,
+                userEmail: form.email,
+                emailFrom: form.email,
+                emailTos: [form.email],
+                subject: form.subject,
+                message: form.message
+            }));
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                setForm(formDefaultValues);
-                showSuccess(MESSAGE_OUT_SUCCESS);
-            break;
+            return;
+        }
+
+        if (hasFinished) 
+        {
+            clearForm();
+            setForm(formDefaultValues);
+            showSuccess(MESSAGE_OUT_SUCCESS);        
         }
     }, 
-    [ progress, appError?.errorMessage, appState?.status, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

@@ -7,7 +7,7 @@ import { ArticleListView } from "./View/articleListView";
 export const ArticleList = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const state = useSelector((state: IApplicationState) => state.articleListing);
+    const article = useSelector((state: IApplicationState) => state.articleListing);
     
     React.useEffect(() => 
     { 
@@ -17,7 +17,7 @@ export const ArticleList = (): JSX.Element =>
 
     return (<ArticleListView bind=
     {{
-        isLoading: state.isLoading,
-        articles: state.articles
+        isLoading: article.isLoading,
+        articles: article.articles
     }}/>);
 }

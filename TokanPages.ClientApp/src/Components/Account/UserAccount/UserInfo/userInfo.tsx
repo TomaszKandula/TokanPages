@@ -39,29 +39,33 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userStore = useSelector((state: IApplicationState) => state.userDataStore.userData);
-    const appState = useSelector((state: IApplicationState) => state.userUpdate);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const store = useSelector((state: IApplicationState) => state.userDataStore.userData);
+    const update = useSelector((state: IApplicationState) => state.userUpdate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = update?.status === OperationStatus.notStarted;
+    const hasFinished = update?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const accountFormDefault: IValidateAccountForm = 
     {
-        ...userStore,
-        userAboutText: userStore.shortBio ?? ""
+        ...store,
+        userAboutText: store.shortBio ?? ""
     }
 
     const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
     const [accountForm, setAccountForm] = React.useState(accountFormDefault);
-    const [accountFormProgress, setAccountFormProgress] = React.useState(false);
+    const [progress, setProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
     const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
 
     const clear = React.useCallback(() => 
     {
-        if (!accountFormProgress) return;
+        if (!progress) return;
         
         dispatch(UserUpdateAction.clear());
-        setAccountFormProgress(false);
+        setProgress(false);
 
         if (!isUserActivated.checked)
         {
@@ -74,38 +78,38 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             dispatch(UserReAuthenticateAction.reAuthenticate());
         }
     }, 
-    [ accountFormProgress ]);
+    [ progress ]);
 
     React.useEffect(() => 
     {
-        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clear();
             return;
         }
 
-        switch(appState?.status)
+        if (hasNotStarted && progress) 
         {
-            case OperationStatus.notStarted:
-                if (accountFormProgress) dispatch(UserUpdateAction.update(
-                {
-                    id: userStore.userId,
-                    isActivated: isUserActivated.checked,
-                    firstName: accountForm.firstName,
-                    lastName: accountForm.lastName,
-                    emailAddress: accountForm.email,
-                    userAboutText: accountForm.userAboutText
-                }));
-            break;
+            dispatch(UserUpdateAction.update(
+            {
+                id: store.userId,
+                isActivated: isUserActivated.checked,
+                firstName: accountForm.firstName,
+                lastName: accountForm.lastName,
+                emailAddress: accountForm.email,
+                userAboutText: accountForm.userAboutText
+            }));
 
-            case OperationStatus.hasFinished:
-                clear();
-                showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
-            break;
+            return;
+        }
+
+        if (hasFinished)
+        {
+            clear();
+            showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
         }
     }, 
-    [ accountFormProgress, appError?.errorMessage, appState?.status, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -122,7 +126,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
         let validationResult = ValidateAccountForm(accountForm);
         if (!Validate.isDefined(validationResult))
         {
-            setAccountFormProgress(true);
+            setProgress(true);
             return;
         }
 
@@ -133,10 +137,10 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
         <UserInfoView bind=
         {{
             isLoading: props.isLoading,
-            userStore: userStore,
+            userStore: store,
             accountForm: accountForm,
             isUserActivated: isUserActivated.checked,
-            accountFormProgress: accountFormProgress,           
+            accountFormProgress: progress,           
             accountFormHandler: accountFormHandler,
             accountSwitchHandler: accountSwitchHandler,
             accountButtonHandler: accountButtonHandler,

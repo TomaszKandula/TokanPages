@@ -22,8 +22,12 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const appState = useSelector((state: IApplicationState) => state.userActivate);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const activate = useSelector((state: IApplicationState) => state.userActivate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = activate?.status === OperationStatus.notStarted;
+    const hasFinished = activate?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
@@ -40,7 +44,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             setContent(onError);
             setProgress(false);
@@ -48,29 +52,27 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        switch(appState?.status)
+        if (hasNotStarted && progress && !requested) 
         {
-            case OperationStatus.notStarted:
-                if (progress && !requested) 
-                {
-                    setRequested(true);
-                    setTimeout(() => dispatch(UserActivateAction.activate(
-                    {
-                        activationId: props.id 
-                    })),
-                    1500);
-                }
-            break;
+            setRequested(true);
+            setTimeout(() => dispatch(UserActivateAction.activate(
+            {
+                activationId: props.id 
+            })),
+            1500);
 
-            case OperationStatus.hasFinished:
-                setContent(onSuccess);
-                setProgress(false);
-                setButtonDisabled(false);
-            break;
+            return;
+        }
+
+        if (hasFinished) 
+        {
+            setContent(onSuccess);
+            setProgress(false);
+            setButtonDisabled(false);
         }
     }, 
     [ content.type, props.id, progress, requested, 
-    appState, appError, onProcessing, onSuccess, onError ]);
+    hasError, hasNotStarted, hasFinished ]);
  
     const buttonHandler = () =>
     {

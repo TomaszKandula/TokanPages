@@ -3,12 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUserSignin } from "../../../Store/States";
-import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
-import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utilities";
-import { IValidateSigninForm, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSigninView } from "./View/userSigninView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    UserSigninAction 
+} from "../../../Store/Actions";
+
+import { 
+    GetTextWarning, 
+    WarningMessage 
+} from "../../../Shared/Services/Utilities";
+
+import { 
+    IValidateSigninForm, 
+    ValidateSigninForm 
+} from "../../../Shared/Services/FormValidation";
 
 import { 
     RECEIVED_ERROR_MESSAGE, 
@@ -27,8 +39,12 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const appState = useSelector((state: IApplicationState) => state.userSignin);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const signin = useSelector((state: IApplicationState) => state.userSignin);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = signin?.status === OperationStatus.notStarted;
+    const hasFinished = signin?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
@@ -48,30 +64,30 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(appState?.status)
+        if (hasNotStarted && progress)
         {
-            case OperationStatus.notStarted:
-                if (progress) dispatch(UserSigninAction.signin(
-                {
-                    emailAddress: form.email,
-                    password: form.password
-                }));
-            break;
+            dispatch(UserSigninAction.signin(
+            {
+                emailAddress: form.email,
+                password: form.password
+            }));
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                history.push("/");
-            break;
+            return;
+        }
+
+        if (hasFinished)
+        {
+            clearForm();
+            history.push("/");
         }
     }, 
-    [ progress, appError?.errorMessage, appState?.status, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
