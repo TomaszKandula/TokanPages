@@ -1,6 +1,6 @@
 export interface IValidationErrorsDto
 {
-    PropertyName: string;
-    ErrorCode: string;
-    ErrorMessage: string;
+    propertyName: string;
+    errorCode: string;
+    errorMessage: string;
 }

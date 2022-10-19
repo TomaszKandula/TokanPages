@@ -1,13 +1,22 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { ApplicationDialogAction, SubscriberUpdateAction } from "../../Store/Actions";
 import { IContentUpdateSubscriber } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    SubscriberUpdateAction 
+} from "../../Store/Actions";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../Shared/Services/Utilities";
 
 import { 
     NEWSLETTER_SUCCESS, 
@@ -25,8 +34,12 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 {
     const buttonDefaultState = props.id === null ? false : true;
     const dispatch = useDispatch();
-    const appState = useSelector((state: IApplicationState) => state.subscriberUpdate);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const update = useSelector((state: IApplicationState) => state.subscriberUpdate);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = update?.status === OperationStatus.notStarted;
+    const hasFinished = update?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
@@ -45,33 +58,33 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(appState?.operationStatus)
+        if (hasNotStarted && progress)
         {
-            case OperationStatus.notStarted:
-                if (progress) dispatch(SubscriberUpdateAction.update(
-                {
-                    id: props.id, 
-                    email: form.email, 
-                    isActivated: true, 
-                    count: 0 
-                }));
-            break;
+            dispatch(SubscriberUpdateAction.update(
+            {
+                id: props.id, 
+                email: form.email, 
+                isActivated: true, 
+                count: 0 
+            }));
+            
+            return;
+        }
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                setForm({email: ""});
-                showSuccess(NEWSLETTER_SUCCESS);
-            break;
-        }           
+        if (hasFinished)
+        {
+            clearForm();
+            setForm({email: ""});
+            showSuccess(NEWSLETTER_SUCCESS);        
+        }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

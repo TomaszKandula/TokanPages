@@ -20,14 +20,14 @@ describe("Verify RaiseError.", () =>
                 {
                     data:
                     {
-                        ErrorCode: "CANNOT_READ_FROM_AZURE_STORAGE",
-                        ErrorMessage: "Cannot read from Azure Storage Blob",
-                        ValidationErrors: 
+                        errorCode: "CANNOT_READ_FROM_AZURE_STORAGE",
+                        errorMessage: "Cannot read from Azure Storage Blob",
+                        validationErrors: 
                         [
                             {
-                                PropertyName: "Id",
-                                ErrorCode: "INVALID_GUID",
-                                ErrorMessage: "Must be GUID"
+                                propertyName: "Id",
+                                errorCode: "INVALID_GUID",
+                                errorMessage: "Must be GUID"
                             }
                         ]    
                     }

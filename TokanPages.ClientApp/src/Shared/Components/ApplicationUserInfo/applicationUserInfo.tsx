@@ -9,7 +9,7 @@ import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 export const ApplicationUserInfo = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const user = useSelector((state: IApplicationState) => state.userDataStore);
+    const store = useSelector((state: IApplicationState) => state.userDataStore);
 
     const onClickHandler = () => 
     {
@@ -18,13 +18,13 @@ export const ApplicationUserInfo = (): JSX.Element =>
 
     const data: IAuthenticateUserResultDto = 
     {
-        ...user?.userData,
-        avatarName: user?.userData.avatarName
+        ...store?.userData,
+        avatarName: store?.userData.avatarName
     }
 
     return (<ApplicationUserInfoView bind=
     {{
-        state: user?.isShown ?? false,
+        state: store?.isShown ?? false,
         data: data,
         closeHandler: onClickHandler
     }}/>);

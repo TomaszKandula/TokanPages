@@ -31,7 +31,7 @@ import {
     SubscriberRemove,
     UserPasswordReset,
     ArticleSelection,
-    ApplicationMessage,
+    ApplicationEmail,
     UserSignin,
     UserSignup,
     UserDataStore,
@@ -47,10 +47,10 @@ import {
 
 export const ApplicationDefault: IApplicationState = 
 {
-    applicationDialog: ApplicationDialog,
     applicationError: ApplicationError,
+    applicationEmail: ApplicationEmail,
+    applicationDialog: ApplicationDialog,
     applicationLanguage: ApplicationLanguage,
-    applicationMessage: ApplicationMessage,
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,

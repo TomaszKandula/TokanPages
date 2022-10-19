@@ -21,7 +21,7 @@ export const UPDATE_ARTICLE_CLEAR = "UPDATE_ARTICLE_CLEAR";
 export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
 export interface IUpdateArticle { type: typeof UPDATE_ARTICLE }
 export interface IUpdateArticleClear { type: typeof UPDATE_ARTICLE_CLEAR }
-export interface IUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE }
+export interface IUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE; payload: any; }
 export type TKnownActions = IUpdateArticle | IUpdateArticleClear | IUpdateArticleResponse;
 
 const DispatchCall = async (dispatch: any, url: string, data: any) =>
@@ -44,7 +44,7 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
     if (result.status === 200)
     {
-        dispatch({ type: UPDATE_ARTICLE_RESPONSE });
+        dispatch({ type: UPDATE_ARTICLE_RESPONSE, payload: result.content });
         dispatch({ type: UPDATE_ARTICLE_CLEAR });
         return;
     }

@@ -13,7 +13,7 @@ export const REAUTHENTICATE_USER_CLEAR = "REAUTHENTICATE_USER_CLEAR";
 export const REAUTHENTICATE_USER_RESPONSE = "REAUTHENTICATE_USER_RESPONSE";
 export interface IReAuthenticateUser { type: typeof REAUTHENTICATE_USER }
 export interface IReAuthenticateUserClear { type: typeof REAUTHENTICATE_USER_CLEAR }
-export interface IReAuthenticateUserResponse { type: typeof REAUTHENTICATE_USER_RESPONSE }
+export interface IReAuthenticateUserResponse { type: typeof REAUTHENTICATE_USER_RESPONSE; payload: any; }
 export type TKnownActions = IReAuthenticateUser | IReAuthenticateUserClear | IReAuthenticateUserResponse | TUpdateActions;
 
 export const UserReAuthenticateAction = 
@@ -44,7 +44,7 @@ export const UserReAuthenticateAction =
             {
                 const pushData = () => 
                 {
-                    dispatch({ type: REAUTHENTICATE_USER_RESPONSE });
+                    dispatch({ type: REAUTHENTICATE_USER_RESPONSE, payload: response.data });
                     dispatch({ type: UPDATE_USERDATA, payload: response.data });
                 }
                 

@@ -2,12 +2,25 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentResetPassword } from "../../../Store/States";
-import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
-import { IValidateResetForm, ValidateResetForm } from "../../../Shared/Services/FormValidation";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    UserPasswordResetAction 
+} from "../../../Store/Actions";
+
+import { 
+    IValidateResetForm, 
+    ValidateResetForm 
+} from "../../../Shared/Services/FormValidation";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../../Shared/Services/Utilities";
 
 import { 
     RECEIVED_ERROR_MESSAGE, 
@@ -24,8 +37,12 @@ const formDefaultValues: IValidateResetForm =
 export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const appState = useSelector((state: IApplicationState) => state.userPasswordReset);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const reset = useSelector((state: IApplicationState) => state.userPasswordReset);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = reset?.status === OperationStatus.notStarted;
+    const hasFinished = reset?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(RESET_FORM, text)));
     const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(RESET_FORM, text)));
@@ -43,30 +60,30 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(appState?.operationStatus)
+        if (hasNotStarted && progress) 
         {
-            case OperationStatus.notStarted:
-                if (progress) dispatch(UserPasswordResetAction.reset(
-                {
-                    emailAddress: form.email
-                }));
-            break;
+            dispatch(UserPasswordResetAction.reset(
+            {
+                emailAddress: form.email
+            }));
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                setForm(formDefaultValues);
-                showSuccess(RESET_PASSWORD_SUCCESS);
-            break;
+            return;
+        }
+
+        if (hasFinished)
+        {
+            clearForm();
+            setForm(formDefaultValues);
+            showSuccess(RESET_PASSWORD_SUCCESS);
         }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 

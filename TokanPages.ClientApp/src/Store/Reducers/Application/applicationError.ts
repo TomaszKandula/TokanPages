@@ -25,14 +25,14 @@ export const ApplicationError:
     {
         case CLEAR_ERROR:
             return {
-                defaultErrorMessage: NO_ERRORS,
-                attachedErrorObject: { },
+                errorMessage: NO_ERRORS,
+                errorDetails: { },
                 dialogType: DialogType.toast
             }
         case RAISE_ERROR:
             return { 
-                defaultErrorMessage: RECEIVED_ERROR_MESSAGE, 
-                attachedErrorObject: action.errorObject,
+                errorMessage: RECEIVED_ERROR_MESSAGE, 
+                errorDetails: action.errorDetails,
                 dialogType: action.dialogType ?? DialogType.toast
             }
         default: return state;

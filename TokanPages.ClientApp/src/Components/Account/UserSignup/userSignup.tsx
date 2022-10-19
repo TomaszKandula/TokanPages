@@ -2,12 +2,25 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUserSignup } from "../../../Store/States";
-import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
-import { IValidateSignupForm, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    UserSignupAction 
+} from "../../../Store/Actions";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../../Shared/Services/Utilities";
+
+import { 
+    IValidateSignupForm, 
+    ValidateSignupForm 
+} from "../../../Shared/Services/FormValidation";
 
 import {
     RECEIVED_ERROR_MESSAGE, 
@@ -28,8 +41,12 @@ const formDefaultValues: IValidateSignupForm =
 export const UserSignup = (props: IContentUserSignup): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const state = useSelector((state: IApplicationState) => state.userSignup);
+    const signup = useSelector((state: IApplicationState) => state.userSignup);
     const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = signup?.status === OperationStatus.notStarted;
+    const hasFinished = signup?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefaultValues);   
     const [progress, setProgress] = React.useState(false);
@@ -47,38 +64,35 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(state?.operationStatus)
+        if (hasNotStarted && progress) 
         {
-            case OperationStatus.notStarted:
-                if (progress)
-                {
-                    const userAlias: string = `${form.firstName.substring(0, 2)}${form.lastName.substring(0, 3)}`;
-                    dispatch(UserSignupAction.signup(
-                    {
-                        userAlias: userAlias,
-                        firstName: form.firstName,
-                        lastName: form.lastName,
-                        emailAddress: form.email,
-                        password: form.password
-                    }));
-                }
-            break;
+            const userAlias: string = `${form.firstName.substring(0, 2)}${form.lastName.substring(0, 3)}`;
+            dispatch(UserSignupAction.signup(
+            {
+                userAlias: userAlias,
+                firstName: form.firstName,
+                lastName: form.lastName,
+                emailAddress: form.email,
+                password: form.password
+            }));
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                setForm(formDefaultValues);
-                showSuccess(SIGNUP_SUCCESS);
-            break;
+            return;
+        }
+
+        if (hasFinished) 
+        {
+            clearForm();
+            setForm(formDefaultValues);
+            showSuccess(SIGNUP_SUCCESS);
         }
     }, 
-    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

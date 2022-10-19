@@ -21,19 +21,19 @@ export const UserRemove:
     {
         case REMOVE_ACCOUNT_CLEAR:
             return {
-                operationStatus: OperationStatus.notStarted,
-                attachedErrorObject: { }
+                status: OperationStatus.notStarted,
+                response: { }
             };
         case REMOVE_ACCOUNT:
             return { 
-                operationStatus: OperationStatus.inProgress,
-                attachedErrorObject: state.attachedErrorObject
+                status: OperationStatus.inProgress,
+                response: state.response
             };
 
         case REMOVE_ACCOUNT_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished,
-                attachedErrorObject: { }
+                status: OperationStatus.hasFinished,
+                response: action.payload
             };
 
         default: return state;

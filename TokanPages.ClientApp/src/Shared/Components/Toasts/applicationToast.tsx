@@ -47,12 +47,12 @@ export const ApplicationToast = (): JSX.Element =>
     const raiseError = React.useCallback(() => 
     {
         if (error?.dialogType !== DialogType.toast) return;
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setToastState(
             { 
                 isOpen: true,
-                errorMessage: error?.attachedErrorObject 
+                errorMessage: error?.errorDetails 
             });
         }
     }, 

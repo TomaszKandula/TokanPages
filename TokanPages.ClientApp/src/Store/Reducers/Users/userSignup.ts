@@ -19,19 +19,19 @@ export const UserSignup: Reducer<IUserSignup> = (state: IUserSignup | undefined,
     {
         case SIGNUP_USER_CLEAR:
             return {
-                operationStatus: OperationStatus.notStarted,
-                attachedErrorObject: { }
+                status: OperationStatus.notStarted,
+                response: { }
             };
         case SIGNUP_USER:
             return { 
-                operationStatus: OperationStatus.inProgress,
-                attachedErrorObject: state.attachedErrorObject
+                status: OperationStatus.inProgress,
+                response: state.response
             };
 
         case SIGNUP_USER_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished,
-                attachedErrorObject: { }
+                status: OperationStatus.hasFinished,
+                response: action.payload
             };
 
         default: return state;

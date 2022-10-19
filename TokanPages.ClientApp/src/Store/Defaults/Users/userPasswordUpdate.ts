@@ -3,6 +3,6 @@ import { OperationStatus } from "../../../Shared/enums";
 
 export const UserPasswordUpdate: IUserPasswordUpdate = 
 {
-    operationStatus: OperationStatus.notStarted,
-    attachedErrorObject: { }
+    status: OperationStatus.notStarted,
+    response: { }
 }

@@ -3,12 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUpdatePassword } from "../../../Store/States";
-import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
-import { IValidateUpdateForm, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { OperationStatus } from "../../../Shared/enums";
 import { UpdatePasswordView } from "./View/updatePasswordView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    UserPasswordUpdateAction 
+} from "../../../Store/Actions";
+
+import { 
+    IValidateUpdateForm, 
+    ValidateUpdateForm 
+} from "../../../Shared/Services/FormValidation";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../../Shared/Services/Utilities";
 
 import {
     RECEIVED_ERROR_MESSAGE, 
@@ -34,8 +47,12 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
     const dispatch = useDispatch();
 
     const data = useSelector((state: IApplicationState) => state.userDataStore);
-    const password = useSelector((state: IApplicationState) => state.userPasswordUpdate);
+    const update = useSelector((state: IApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = update?.status === OperationStatus.notStarted;
+    const hasFinished = update?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const resetId = queryParam.get("id");
     const userId = data?.userData.userId;
@@ -57,32 +74,32 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(password?.operationStatus)
+        if (hasNotStarted && progress) 
         {
-            case OperationStatus.notStarted:
-                if (progress) dispatch(UserPasswordUpdateAction.update(
-                {
-                    id: userId,
-                    resetId: resetId as string,
-                    newPassword: form.newPassword
-                }));
-            break;
+            dispatch(UserPasswordUpdateAction.update(
+            {
+                id: userId,
+                resetId: resetId as string,
+                newPassword: form.newPassword
+            }));
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                setForm(formDefaultValues);
-                showSuccess(UPDATE_PASSWORD_SUCCESS);
-            break;
+            return;
+        }
+
+        if (hasFinished) 
+        {
+            clearForm();
+            setForm(formDefaultValues);
+            showSuccess(UPDATE_PASSWORD_SUCCESS);
         }
     }, 
-    [ progress, error?.defaultErrorMessage, password?.operationStatus, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 

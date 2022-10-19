@@ -5,10 +5,15 @@ import { IContentNewsletter } from "../../Store/States";
 import { SubscriberAddAction } from "../../Store/Actions";
 import { ApplicationDialogAction } from "../../Store/Actions";
 import { OperationStatus } from "../../Shared/enums";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../Shared/Services/Utilities";
 
 import { 
     NEWSLETTER, 
@@ -20,8 +25,12 @@ import {
 export const Newsletter = (props: IContentNewsletter): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const appState = useSelector((state: IApplicationState) => state.subscriberAdd);
-    const appError = useSelector((state: IApplicationState) => state.applicationError);
+    const add = useSelector((state: IApplicationState) => state.subscriberAdd);
+    const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = add?.status === OperationStatus.notStarted;
+    const hasFinished = add?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState({email: ""});
     const [progress, setProgress] = React.useState(false);
@@ -39,30 +48,26 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(appState?.operationStatus)
+        if (hasNotStarted && progress)
         {
-            case OperationStatus.notStarted: 
-                if (progress) 
-                {
-                    dispatch(SubscriberAddAction.add({ email: form.email }));
-                }
-            break;
-        
-            case OperationStatus.hasFinished: 
-                clearForm();
-                setForm({email: ""});
-                showSuccess(NEWSLETTER_SUCCESS);
-            break;
+            dispatch(SubscriberAddAction.add({ email: form.email }));
+            return;
+        }
+
+        if (hasFinished)
+        {
+            clearForm();
+            setForm({email: ""});
+            showSuccess(NEWSLETTER_SUCCESS);
         }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
-    OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 

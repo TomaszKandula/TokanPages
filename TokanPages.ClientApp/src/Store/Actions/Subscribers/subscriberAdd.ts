@@ -11,7 +11,7 @@ export const ADD_SUBSCRIBER_CLEAR = "ADD_SUBSCRIBER_CLEAR";
 export const ADD_SUBSCRIBER_RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
 export interface IAddSubscriber { type: typeof ADD_SUBSCRIBER }
 export interface IAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
-export interface IAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE }
+export interface IAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE; payload: any; }
 export type TKnownActions = IAddSubscriber | IAddSubscriberClear | IAddSubscriberResponse;
 
 export const SubscriberAddAction = 
@@ -36,7 +36,7 @@ export const SubscriberAddAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: ADD_SUBSCRIBER_RESPONSE });
+                    : dispatch({ type: ADD_SUBSCRIBER_RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

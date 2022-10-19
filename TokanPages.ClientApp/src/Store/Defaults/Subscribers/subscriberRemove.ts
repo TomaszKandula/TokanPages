@@ -3,6 +3,6 @@ import { ISubscriberRemove } from "../../States";
 
 export const SubscriberRemove: ISubscriberRemove = 
 {
-    operationStatus: OperationStatus.notStarted,
-    attachedErrorObject: { }
+    status: OperationStatus.notStarted,
+    response: { }
 }
