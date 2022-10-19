@@ -184,7 +184,7 @@ public static class Dependencies
 				},
 				OnAuthenticationFailed = context =>
 				{
-					context.Fail(ErrorCodes.ACCESS_DENIED);
+					context.Fail(ErrorCodes.INVALID_USER_TOKEN);
 					return Task.FromException(ReturnInvalidToken());
 				}
 			};
