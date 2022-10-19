@@ -3,15 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentUserSignin } from "../../../Store/States";
-import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
-import { IAuthenticateUserDto } from "../../../Api/Models";
-import WarningMessage from "../../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { GetTextWarning } from "../../../Shared/Services/Utilities";
-import { IValidateSigninForm, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 import { OperationStatus } from "../../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../../Shared/constants";
 import { UserSigninView } from "./View/userSigninView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    UserSigninAction 
+} from "../../../Store/Actions";
+
+import { 
+    GetTextWarning, 
+    WarningMessage 
+} from "../../../Shared/Services/Utilities";
+
+import { 
+    IValidateSigninForm, 
+    ValidateSigninForm 
+} from "../../../Shared/Services/FormValidation";
+
+import { 
+    RECEIVED_ERROR_MESSAGE, 
+    SIGNIN_FORM, 
+    SIGNIN_WARNING 
+} from "../../../Shared/constants";
 
 const formDefaultValues: IValidateSigninForm =
 {
@@ -23,52 +38,62 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
 {
     const dispatch = useDispatch();
     const history = useHistory();
-    const state = useSelector((state: IApplicationState) => state.userSignin);
+
+    const signin = useSelector((state: IApplicationState) => state.userSignin);
     const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = signin?.status === OperationStatus.notStarted;
+    const hasFinished = signin?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [progress, setProgress] = React.useState(false);
 
-    const showWarning = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text))), [ dispatch ]);
-    const signin = React.useCallback((payload: IAuthenticateUserDto) => dispatch(UserSigninAction.signin(payload)), [ dispatch ]);
-    const clear = React.useCallback(() => dispatch(UserSigninAction.clear()), [ dispatch ]);
+    const showWarning = (text: string) => 
+    {
+        dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text)));
+    }
 
     const clearForm = React.useCallback(() => 
     {
         if (!progress) return;
         setProgress(false);
-        clear();
+        dispatch(UserSigninAction.clear());
     }, 
-    [ progress, clear ]);
+    [ progress ]);
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(state?.operationStatus)
+        if (hasNotStarted && progress)
         {
-            case OperationStatus.notStarted:
-                if (progress) signin(
-                {
-                    emailAddress: form.email,
-                    password: form.password
-                });
-            break;
+            dispatch(UserSigninAction.signin(
+            {
+                emailAddress: form.email,
+                password: form.password
+            }));
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                history.push("/");
-            break;
+            return;
+        }
+
+        if (hasFinished)
+        {
+            clearForm();
+            history.push("/");
         }
     }, 
-    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
+    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
+    }
+
     const buttonHandler = () => 
     {
         let validationResult = ValidateSigninForm( 

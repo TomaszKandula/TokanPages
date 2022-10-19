@@ -204,4 +204,7 @@
   <data name="ASSET_CONTENT_TYPE_MISSING" xml:space="preserve">
     <value>Cannot find asset content type in stream</value>
   </data>
+  <data name="INVALID_TOKEN_CLAIMS" xml:space="preserve">
+    <value>Provided claims are not valid</value>
+  </data>
 </root>

@@ -9,7 +9,7 @@ import { EnrichConfiguration } from "../../../Api/Request";
 export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
 export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
 export interface IRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
-export interface IRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE }
+export interface IRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE; payload: any; }
 export type TKnownActions = IRemoveSubscriber | IRemoveSubscriberResponse;
 
 export const SubscriberRemoveAction = 
@@ -22,7 +22,7 @@ export const SubscriberRemoveAction =
         { 
             method: "POST", 
             url: API_COMMAND_REMOVE_SUBSCRIBER, 
-            data: { id: payload.id }
+            data: payload
         }))
         .then(response =>
         {
@@ -30,7 +30,7 @@ export const SubscriberRemoveAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE });
+                    : dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

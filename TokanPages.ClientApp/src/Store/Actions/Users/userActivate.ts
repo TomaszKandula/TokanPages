@@ -11,7 +11,7 @@ export const ACTIVATE_ACCOUNT_CLEAR = "ACTIVATE_ACCOUNT_CLEAR";
 export const ACTIVATE_ACCOUNT_RESPONSE = "ACTIVATE_ACCOUNT_RESPONSE";
 export interface IActivateAccount { type: typeof ACTIVATE_ACCOUNT }
 export interface IActivateAccountClear { type: typeof ACTIVATE_ACCOUNT_CLEAR }
-export interface IActivateAccountResponse { type: typeof ACTIVATE_ACCOUNT_RESPONSE }
+export interface IActivateAccountResponse { type: typeof ACTIVATE_ACCOUNT_RESPONSE; payload: any; }
 export type TKnownActions = IActivateAccount | IActivateAccountClear | IActivateAccountResponse;
 
 export const UserActivateAction = 
@@ -28,10 +28,7 @@ export const UserActivateAction =
         { 
             method: "POST", 
             url: API_COMMAND_ACTIVATE_USER, 
-            data: 
-            {  
-                activationId: payload.activationId
-            }
+            data: payload
         }))
         .then(response => 
         {
@@ -39,7 +36,7 @@ export const UserActivateAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: ACTIVATE_ACCOUNT_RESPONSE });
+                    : dispatch({ type: ACTIVATE_ACCOUNT_RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

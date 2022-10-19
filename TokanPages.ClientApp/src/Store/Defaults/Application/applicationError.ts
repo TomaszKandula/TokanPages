@@ -4,7 +4,7 @@ import { NO_ERRORS } from "../../../Shared/constants";
 
 export const ApplicationError: IApplicationError = 
 {
-    defaultErrorMessage: NO_ERRORS,
-    attachedErrorObject: { },
+    errorMessage: NO_ERRORS,
+    errorDetails: { },
     dialogType: DialogType.toast
 }

@@ -29,7 +29,7 @@ export const ArticlesPage = (): JSX.Element =>
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return (
         <>

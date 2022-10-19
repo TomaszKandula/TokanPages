@@ -6,7 +6,6 @@ import { UserActivateAction } from "../../../Store/Actions";
 import { IContentActivateAccount } from "../../../Store/States";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
-import { IActivateUserDto } from "../../../Api/Models";
 import { ActivateAccountView } from "./View/activateAccountView";
 
 interface IGetActivateAccountContentExtended extends IContentActivateAccount
@@ -16,39 +15,19 @@ interface IGetActivateAccountContentExtended extends IContentActivateAccount
 
 export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element => 
 {
-    const onProcessing = 
-    { 
-        type: props.content?.onProcessing.type,
-        caption: props.content?.onProcessing.caption,
-        text1: props.content?.onProcessing.text1, 
-        text2: props.content?.onProcessing.text2, 
-        button: props.content?.onProcessing.button
-    };
-
-    const onSuccess = 
-    {
-        type: props.content?.onSuccess.type,
-        caption: props.content?.onSuccess.caption,
-        text1: props.content?.onSuccess.text1, 
-        text2: props.content?.onSuccess.text2, 
-        button: props.content?.onSuccess.button
-    };
-
-    const onError = 
-    {
-        type: props.content?.onError.type,
-        caption: props.content?.onError.caption,
-        text1: props.content?.onError.text1, 
-        text2: props.content?.onError.text2, 
-        button: props.content?.onError.button
-    };
+    const onProcessing = props.content?.onProcessing;
+    const onSuccess = props.content?.onSuccess;
+    const onError = props.content?.onError;
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const state = useSelector((state: IApplicationState) => state.userActivate);
+    const activate = useSelector((state: IApplicationState) => state.userActivate);
     const error = useSelector((state: IApplicationState) => state.applicationError);
-    const activate = React.useCallback((payload: IActivateUserDto) => dispatch(UserActivateAction.activate(payload)), [ dispatch ]);
+
+    const hasNotStarted = activate?.status === OperationStatus.notStarted;
+    const hasFinished = activate?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [content, setContent] = React.useState(onProcessing);
     const [buttonDisabled, setButtonDisabled] = React.useState(true);
@@ -65,7 +44,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             setContent(onError);
             setProgress(false);
@@ -73,30 +52,28 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        switch(state?.operationStatus)
+        if (hasNotStarted && progress && !requested) 
         {
-            case OperationStatus.notStarted:
-                if (progress && !requested) 
-                {
-                    setRequested(true);
-                    setTimeout(() => activate(
-                    { 
-                        activationId: props.id 
-                    }), 
-                    1500);
-                }
-            break;
+            setRequested(true);
+            setTimeout(() => dispatch(UserActivateAction.activate(
+            {
+                activationId: props.id 
+            })),
+            1500);
 
-            case OperationStatus.hasFinished:
-                setContent(onSuccess);
-                setProgress(false);
-                setButtonDisabled(false);
-            break;
+            return;
+        }
+
+        if (hasFinished) 
+        {
+            setContent(onSuccess);
+            setProgress(false);
+            setButtonDisabled(false);
         }
     }, 
-    [ content.type, props.id, progress, requested, activate, 
-        state, error, onProcessing, onSuccess, onError ]);
-    
+    [ content.type, props.id, progress, requested, 
+    hasError, hasNotStarted, hasFinished ]);
+ 
     const buttonHandler = () =>
     {
         if (content.type === "Error")

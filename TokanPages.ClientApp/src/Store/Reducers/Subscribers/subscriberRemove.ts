@@ -2,6 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ISubscriberRemove } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
+
 import { 
     TKnownActions, 
     REMOVE_SUBSCRIBER, 
@@ -19,14 +20,14 @@ export const SubscriberRemove:
     {
         case REMOVE_SUBSCRIBER:
             return { 
-                operationStatus: OperationStatus.inProgress, 
-                attachedErrorObject: state.attachedErrorObject 
+                status: OperationStatus.inProgress, 
+                response: state.response 
             };
 
         case REMOVE_SUBSCRIBER_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished, 
-                attachedErrorObject: { } 
+                status: OperationStatus.hasFinished, 
+                response: action.payload
             };
 
         default: return state;

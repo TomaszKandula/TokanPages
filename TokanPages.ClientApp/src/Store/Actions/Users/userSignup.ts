@@ -11,7 +11,7 @@ export const SIGNUP_USER_CLEAR = "SIGNUP_USER_CLEAR";
 export const SIGNUP_USER_RESPONSE = "SIGNUP_USER_RESPONSE";
 export interface ISignupUser { type: typeof SIGNUP_USER }
 export interface ISignupUserClear { type: typeof SIGNUP_USER_CLEAR }
-export interface ISignupUserResponse { type: typeof SIGNUP_USER_RESPONSE }
+export interface ISignupUserResponse { type: typeof SIGNUP_USER_RESPONSE; payload: any; }
 export type TKnownActions = ISignupUser | ISignupUserClear | ISignupUserResponse;
 
 export const UserSignupAction = 
@@ -28,14 +28,7 @@ export const UserSignupAction =
         { 
             method: "POST", 
             url: API_COMMAND_ADD_USER, 
-            data: 
-            {  
-                userAlias: payload.userAlias,
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                emailAddress: payload.emailAddress,
-                password: payload.password
-            }
+            data: payload
         }))
         .then(response => 
         {
@@ -43,9 +36,9 @@ export const UserSignupAction =
             {
                 return response.data === null 
                     ? RaiseError({dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: SIGNUP_USER_RESPONSE });
+                    : dispatch({ type: SIGNUP_USER_RESPONSE, payload: response.data });
             }
-            
+
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status})});
         })
         .catch(error => 

@@ -9,7 +9,7 @@ import { EnrichConfiguration } from "../../../Api/Request";
 export const UPDATE_SUBSCRIBER = "UPDATE_SUBSCRIBER";
 export const UPDATE_SUBSCRIBER_RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
 export interface IUpdateSubscriber { type: typeof UPDATE_SUBSCRIBER }
-export interface IUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE }
+export interface IUpdateSubscriberResponse { type: typeof UPDATE_SUBSCRIBER_RESPONSE; payload: any; }
 export type TKnownActions = IUpdateSubscriber | IUpdateSubscriberResponse;
 
 export const SubscriberUpdateAction = 
@@ -30,7 +30,7 @@ export const SubscriberUpdateAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE });
+                    : dispatch({ type: UPDATE_SUBSCRIBER_RESPONSE, payload: response.data });
             }
 
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

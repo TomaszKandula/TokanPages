@@ -14,8 +14,8 @@ import {
 export const UpdatePasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
     const form = useSelector((state: IApplicationState) => state.contentUpdatePassword);
@@ -26,8 +26,8 @@ export const UpdatePasswordPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentUpdatePasswordAction.get());
     }, 
-    [ dispatch, language?.id ]);
-    
+    [ language?.id ]);
+
     return (
         <>     
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />

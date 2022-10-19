@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IContentHeader } from "../../States";
+
 import { 
     TKnownActions,
     RECEIVE_HEADER_CONTENT, 

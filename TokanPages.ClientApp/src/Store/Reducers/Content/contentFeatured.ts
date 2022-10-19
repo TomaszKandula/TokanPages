@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IContentFeatured } from "../../States";
+
 import { 
     TKnownActions,
     RECEIVE_FEATURED_CONTENT, 

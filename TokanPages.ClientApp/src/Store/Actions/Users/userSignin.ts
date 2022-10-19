@@ -12,7 +12,7 @@ export const SIGNIN_USER_CLEAR = "SIGNIN_USER_CLEAR";
 export const SIGNIN_USER_RESPONSE = "SIGNIN_USER_RESPONSE";
 export interface ISigninUser { type: typeof SIGNIN_USER }
 export interface ISigninUserClear { type: typeof SIGNIN_USER_CLEAR }
-export interface ISigninUserResponse { type: typeof SIGNIN_USER_RESPONSE }
+export interface ISigninUserResponse { type: typeof SIGNIN_USER_RESPONSE; payload: any; }
 export type TKnownActions = ISigninUser | ISigninUserClear | ISigninUserResponse | TUpdateActions;
 
 export const UserSigninAction = 
@@ -29,11 +29,7 @@ export const UserSigninAction =
         { 
             method: "POST", 
             url: API_COMMAND_AUTHENTICATE, 
-            data: 
-            {  
-                emailAddress: payload.emailAddress,
-                password: payload.password
-            }
+            data: payload
         }))
         .then(response => 
         {
@@ -41,10 +37,10 @@ export const UserSigninAction =
             {
                 const pushData = () => 
                 {
-                    dispatch({ type: SIGNIN_USER_RESPONSE });
+                    dispatch({ type: SIGNIN_USER_RESPONSE, payload: response.data });
                     dispatch({ type: UPDATE_USERDATA, payload: response.data });
                 }
-                
+
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
                     : pushData();

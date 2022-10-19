@@ -34,7 +34,6 @@ import {
 export const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
@@ -64,7 +63,7 @@ export const MainPage = (): JSX.Element =>
         dispatch(ContentCookiesPromptAction.get());    
         dispatch(ContentTestimonialsAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return (
         <>

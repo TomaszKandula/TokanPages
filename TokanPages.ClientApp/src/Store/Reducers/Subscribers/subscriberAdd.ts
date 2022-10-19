@@ -2,6 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ISubscriberAdd } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
+
 import { 
     TKnownActions, 
     ADD_SUBSCRIBER, 
@@ -23,14 +24,14 @@ export const SubscriberAdd:
 
         case ADD_SUBSCRIBER:
             return { 
-                operationStatus: OperationStatus.inProgress, 
-                attachedErrorObject: state.attachedErrorObject
+                status: OperationStatus.inProgress, 
+                response: state.response
             };
 
         case ADD_SUBSCRIBER_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished, 
-                attachedErrorObject: { }
+                status: OperationStatus.hasFinished, 
+                response: action.payload
             };
 
         default: return state;
