@@ -11,7 +11,7 @@ export const SEND_MESSAGE_CLEAR = "SEND_MESSAGE_CLEAR";
 export const SEND_MESSAGE_RESPONSE = "SEND_MESSAGE_RESPONSE";
 export interface ISendMessage { type: typeof SEND_MESSAGE }
 export interface ISendMessageClear { type: typeof SEND_MESSAGE_CLEAR }
-export interface ISendMessageResponse { type: typeof SEND_MESSAGE_RESPONSE }
+export interface ISendMessageResponse { type: typeof SEND_MESSAGE_RESPONSE; payload: any; }
 export type TKnownActions = ISendMessage | ISendMessageClear | ISendMessageResponse;
 
 export const ApplicationMessageAction = 
@@ -36,7 +36,7 @@ export const ApplicationMessageAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: SEND_MESSAGE_RESPONSE })
+                    : dispatch({ type: SEND_MESSAGE_RESPONSE, payload: response.data })
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status })} );

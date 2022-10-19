@@ -24,14 +24,14 @@ export const ApplicationMessage:
             
         case SEND_MESSAGE:
             return { 
-                operationStatus: OperationStatus.inProgress, 
-                attachedErrorObject: state.attachedErrorObject 
+                status: OperationStatus.inProgress, 
+                response: state.response 
             };
 
         case SEND_MESSAGE_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished, 
-                attachedErrorObject: { } 
+                status: OperationStatus.hasFinished, 
+                response: action.payload
             };
 
         default: return state;
