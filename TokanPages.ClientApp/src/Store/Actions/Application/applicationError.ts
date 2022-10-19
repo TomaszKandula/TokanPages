@@ -5,7 +5,7 @@ export const CLEAR_ERROR = "CLEAR_ERROR";
 export const RAISE_ERROR = "RAISE_ERROR";
 
 export interface IClearError { type: typeof CLEAR_ERROR }
-export interface IRaiseError { type: typeof RAISE_ERROR, errorObject: any, dialogType?: DialogType }
+export interface IRaiseError { type: typeof RAISE_ERROR, errorDetails: any, dialogType?: DialogType }
 
 export type TErrorActions = IClearError | IRaiseError;
 
@@ -15,8 +15,8 @@ export const ApplicationErrorAction =
     {
         dispatch({ type: CLEAR_ERROR });
     },
-    raise: (errorMessage: any, dialogType?: DialogType): IApplicationAction<TErrorActions> => (dispatch) => 
+    raise: (message: any, dialogType?: DialogType): IApplicationAction<TErrorActions> => (dispatch) => 
     {
-        dispatch({ type: RAISE_ERROR, errorObject: errorMessage, dialogType: dialogType });
+        dispatch({ type: RAISE_ERROR, errorDetails: message, dialogType: dialogType });
     }
 }

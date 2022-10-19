@@ -40,7 +40,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setContent(onError);
             setProgress(false);

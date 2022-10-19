@@ -61,7 +61,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clear();
             return;
@@ -82,7 +82,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             break;
         }
     }, 
-    [ passwordFormProgress, appError?.defaultErrorMessage, appState?.status, 
+    [ passwordFormProgress, appError?.errorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const passwordFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

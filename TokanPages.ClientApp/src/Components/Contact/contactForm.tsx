@@ -48,7 +48,7 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
@@ -76,7 +76,7 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
             break;
         }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.status, 
+    [ progress, appError?.errorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

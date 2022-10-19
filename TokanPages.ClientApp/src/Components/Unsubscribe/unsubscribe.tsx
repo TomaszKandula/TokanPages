@@ -37,7 +37,7 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
@@ -59,7 +59,7 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
             break;
         }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.status, 
+    [ progress, appError?.errorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const buttonHandler = () =>

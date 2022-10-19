@@ -2,7 +2,7 @@ import { DialogType } from "../../../Shared/enums";
 
 export interface IApplicationError 
 {
-    defaultErrorMessage: string;
-    attachedErrorObject: any;
+    errorMessage: string;
+    errorDetails: any;
     dialogType: DialogType;
 }

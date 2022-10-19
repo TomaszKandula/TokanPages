@@ -49,7 +49,7 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             setDeleteAccountProgress(false);
             return;
@@ -70,7 +70,7 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
             break;
         }
     }, 
-    [ deleteAccountProgress, appError?.defaultErrorMessage, appState?.status, 
+    [ deleteAccountProgress, appError?.errorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const deleteButtonHandler = () => 

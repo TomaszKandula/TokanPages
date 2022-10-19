@@ -57,7 +57,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (error?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clearForm();
             return;
@@ -81,7 +81,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             break;
         }
     }, 
-    [ progress, error?.defaultErrorMessage, password?.status, 
+    [ progress, error?.errorMessage, password?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

@@ -78,7 +78,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
 
     React.useEffect(() => 
     {
-        if (appError?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (appError?.errorMessage === RECEIVED_ERROR_MESSAGE)
         {
             clear();
             return;
@@ -104,7 +104,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             break;
         }
     }, 
-    [ accountFormProgress, appError?.defaultErrorMessage, appState?.status, 
+    [ accountFormProgress, appError?.errorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
