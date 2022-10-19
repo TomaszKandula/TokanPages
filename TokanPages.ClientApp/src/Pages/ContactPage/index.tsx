@@ -14,9 +14,9 @@ import {
 export const ContactPage = () => 
 {
     const dispatch = useDispatch();
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
     const form = useSelector((state: IApplicationState) => state.contentContactForm);
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
 
@@ -26,7 +26,7 @@ export const ContactPage = () =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentContactFormAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return (
         <>

@@ -3,6 +3,6 @@ import { OperationStatus } from "../../../Shared/enums";
 
 export const UserActivate: IUserActivate = 
 {
-    operationStatus: OperationStatus.notStarted,
-    attachedErrorObject: { }
+    status: OperationStatus.notStarted,
+    response: { }
 }

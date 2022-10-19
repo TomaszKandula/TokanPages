@@ -34,8 +34,8 @@ export const UpdateSubscriberPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentUpdateSubscriberAction.get());
     }, 
-    [ dispatch, language?.id ]);
-    
+    [ language?.id ]);
+
     return(
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />

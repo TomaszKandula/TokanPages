@@ -14,8 +14,8 @@ import {
 export const SignoutPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
     const signout = useSelector((state: IApplicationState) => state.contentUserSignout);
@@ -26,7 +26,7 @@ export const SignoutPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentUserSignoutAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return (
         <>

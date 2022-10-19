@@ -1,6 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IContentUpdatePassword } from "../../States";
+
 import { 
     TKnownActions,
     RECEIVE_UPDATE_PASSWORD_CONTENT, 

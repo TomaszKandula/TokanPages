@@ -30,7 +30,7 @@ import {
     IUserRemove,
     ISubscriberRemove,
     IUserPasswordReset,
-    IApplicationMessage,
+    IApplicationEmail,
     IUserSignin,
     IUserSignup,
     IUserDataStore,
@@ -46,10 +46,10 @@ import {
 
 export interface IApplicationState 
 {
-    applicationDialog: IApplicationDialog;
     applicationError: IApplicationError;
+    applicationEmail: IApplicationEmail;
+    applicationDialog: IApplicationDialog;
     applicationLanguage: IApplicationLanguage;
-    applicationMessage: IApplicationMessage;
     articleListing: IArticleListing;
     articleSelection: IArticleSelection;
     articleUpdate: IArticleUpdate;

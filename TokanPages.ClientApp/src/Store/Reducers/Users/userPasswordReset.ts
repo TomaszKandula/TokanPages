@@ -2,6 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IUserPasswordReset } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
+
 import { 
     TKnownActions,
     RESET_USER_PASSWORD,
@@ -20,19 +21,19 @@ export const UserPasswordReset:
     {
         case RESET_USER_PASSWORD_CLEAR:
             return {
-                operationStatus: OperationStatus.notStarted,
-                attachedErrorObject: { }
+                status: OperationStatus.notStarted,
+                response: { }
             };
         case RESET_USER_PASSWORD:
             return { 
-                operationStatus: OperationStatus.inProgress,
-                attachedErrorObject: state.attachedErrorObject
+                status: OperationStatus.inProgress,
+                response: state.response
             };
 
         case RESET_USER_PASSWORD_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished,
-                attachedErrorObject: { }
+                status: OperationStatus.hasFinished,
+                response: action.payload
             };
 
         default: return state;

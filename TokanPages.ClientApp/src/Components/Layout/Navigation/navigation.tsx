@@ -2,26 +2,30 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentNavigation } from "../../../Store/States";
-import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/Actions";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
+import { 
+    UserDataStoreAction, 
+    ApplicationLanguageAction 
+} from "../../../Store/Actions";
+
 export const Navigation = (props: IContentNavigation): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const user = useSelector((state: IApplicationState) => state.userDataStore);
-    const languages = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const store = useSelector((state: IApplicationState) => state.userDataStore);
+    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
-    const isAnonymous = Validate.isEmpty(user?.userData?.userId);
+    const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
 
     const languageHandler = (event: React.ChangeEvent<{ value: unknown }>) => 
     {
         const value = event.target.value as string;
         SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
-        dispatch(ApplicationLanguageAction.set({ id: value, languages: languages.languages }));
+        dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
     };
 
     const toggleDrawer = (open: boolean) => (event: any) => 
@@ -44,11 +48,11 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
         closeHandler: toggleDrawer(false),
         infoHandler: onAvatarClick,
         isAnonymous: isAnonymous,
-        userAliasText: user?.userData?.aliasName,
+        userAliasText: store?.userData?.aliasName,
         logo: props.content?.logo,
-        avatarName: user?.userData?.avatarName,
-        languages: languages,
-        languageId: languages?.id,
+        avatarName: store?.userData?.avatarName,
+        languages: language,
+        languageId: language?.id,
         languageHandler: languageHandler,
         menu: props.content?.menu
     }}/>);

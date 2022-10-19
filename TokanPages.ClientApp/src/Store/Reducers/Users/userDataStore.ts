@@ -1,14 +1,19 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IUserDataStore } from "../../States";
+import { USER_DATA } from "../../../Shared/constants";
+
+import { 
+    DelDataFromStorage, 
+    SetDataInStorage 
+} from "../../../Shared/Services/StorageServices";
+
 import { 
     TKnownActions,
     SHOW_USERDATA,
     CLEAR_USERDATA,
     UPDATE_USERDATA
 } from "../../Actions/Users/userDataStore";
-import { USER_DATA } from "../../../Shared/constants";
-import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
 export const UserDataStore: 
     Reducer<IUserDataStore> = (state: IUserDataStore | undefined, incomingAction: Action): 

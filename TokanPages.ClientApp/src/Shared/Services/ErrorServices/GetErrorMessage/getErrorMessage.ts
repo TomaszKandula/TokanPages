@@ -11,13 +11,11 @@ export const GetErrorMessage = (props: IGetErrorMessage): string =>
     if (props.errorObject?.response?.data)
     {
         const parsedJson: IErrorDto = props.errorObject.response.data as IErrorDto;
-        result = Validate.isEmpty(parsedJson.ErrorMessage) 
-            ? UNEXPECTED_ERROR 
-            : parsedJson.ErrorMessage;
+        result = Validate.isEmpty(parsedJson.errorMessage) ? UNEXPECTED_ERROR : parsedJson.errorMessage;
 
-        if (parsedJson.ValidationErrors !== null) 
+        if (parsedJson.validationErrors !== null) 
         {
-            result = result + ". " + VALIDATION_ERRORS + ".";
+            result = `${result}. ${VALIDATION_ERRORS}.`;
         }
     }
 

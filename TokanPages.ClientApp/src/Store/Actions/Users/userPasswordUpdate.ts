@@ -11,7 +11,7 @@ export const UPDATE_USER_PASSWORD_CLEAR = "UPDATE_USER_PASSWORD_CLEAR";
 export const UPDATE_USER_PASSWORD_RESPONSE = "UPDATE_USER_PASSWORD_RESPONSE";
 export interface IUpdateUserPassword { type: typeof UPDATE_USER_PASSWORD }
 export interface IUpdateUserPasswordClear { type: typeof UPDATE_USER_PASSWORD_CLEAR }
-export interface IUpdateUserPasswordResponse { type: typeof UPDATE_USER_PASSWORD_RESPONSE }
+export interface IUpdateUserPasswordResponse { type: typeof UPDATE_USER_PASSWORD_RESPONSE; payload: any; }
 export type TKnownActions = IUpdateUserPassword | IUpdateUserPasswordClear | IUpdateUserPasswordResponse;
 
 export const UserPasswordUpdateAction = 
@@ -36,7 +36,7 @@ export const UserPasswordUpdateAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: UPDATE_USER_PASSWORD_RESPONSE });
+                    : dispatch({ type: UPDATE_USER_PASSWORD_RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status })});

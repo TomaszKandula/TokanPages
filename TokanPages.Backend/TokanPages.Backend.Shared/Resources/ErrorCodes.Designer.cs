@@ -218,5 +218,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("ASSET_CONTENT_TYPE_MISSING", resourceCulture);
             }
         }
+        
+        public static string INVALID_TOKEN_CLAIMS {
+            get {
+                return ResourceManager.GetString("INVALID_TOKEN_CLAIMS", resourceCulture);
+            }
+        }
     }
 }

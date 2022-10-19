@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
-import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { ArticleContent } from "./Helpers/articleContent";
 import { AuthorName } from "./Helpers/authorName";
@@ -12,6 +11,11 @@ import { ReadTime } from "./Helpers/readTime";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
+
+import {
+    LIKES_LIMIT_FOR_ANONYM, 
+    LIKES_LIMIT_FOR_USER 
+} from "../../../Shared/constants";
 
 export interface IArticleDetail
 {
@@ -25,7 +29,9 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const user = useSelector((state: IApplicationState) => state.userDataStore);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
+    {
         dispatch(ArticleSelectionAction.select(props.id));
+    }
 
     const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
@@ -38,16 +44,6 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const popoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
-
-    const updateUserLikes = React.useCallback(() => 
-    {
-        dispatch(ArticleUpdateAction.updateLikes(
-        { 
-            id: props.id, 
-            addToLikes: userLikes, 
-        }))
-    }, 
-    [ userLikes, props.id ]);
 
     React.useEffect(() =>
     {
@@ -78,7 +74,13 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         const intervalId = setInterval(() => 
         { 
             if (userLikes === 0 || !thumbClicked) return;
-            updateUserLikes(); 
+
+            dispatch(ArticleUpdateAction.updateLikes(
+            { 
+                id: props.id, 
+                addToLikes: userLikes, 
+            }));
+
             setUserLikes(0);
             setThumbsClicked(false);
         }, 
@@ -119,14 +121,26 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         setPopover(null);
     };
 
+    const smallAvatar = <UserAvatar 
+        isLargeScale={false} 
+        avatarName={selection.article.author.avatarName} 
+        userLetter={userLetter} 
+    />;
+
+    const largeAvatar = <UserAvatar 
+        isLargeScale={true} 
+        avatarName={selection.article.author.avatarName} 
+        userLetter={userLetter}
+    />;
+
     return (<ArticleDetailView bind={
     {
         backButtonHandler: backButtonHandler,
         articleReadCount: selection.article.readCount,
         openPopoverHandler: openPopoverHandler,
         closePopoverHandler: closePopoverHandler,
-        renderSmallAvatar: <UserAvatar isLargeScale={false} avatarName={selection.article.author.avatarName} userLetter={userLetter} />,
-        renderLargeAvatar: <UserAvatar isLargeScale={true} avatarName={selection.article.author.avatarName} userLetter={userLetter} />,
+        renderSmallAvatar: smallAvatar,
+        renderLargeAvatar: largeAvatar,
         authorAliasName: selection.article.author.aliasName,
         popoverOpen: popoverOpen,
         popoverElement: popoverElement,

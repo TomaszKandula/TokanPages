@@ -14,8 +14,8 @@ import {
 export const StoryPage = (): JSX.Element => 
 { 
     const dispatch = useDispatch();
-    
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
     const story = useSelector((state: IApplicationState) => state.contentStory);
@@ -26,8 +26,8 @@ export const StoryPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentStoryAction.get());
     }, 
-    [ dispatch, language?.id ]);
-    
+    [ language?.id ]);
+
     return (
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />

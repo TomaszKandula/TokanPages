@@ -1,7 +1,11 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Colours } from "../../../../Theme";
+import { withStyles } from "@material-ui/core/styles";
+import { purple } from "@material-ui/core/colors";
+import Switch from "@material-ui/core/Switch";
 
-export const UserAccountStyle = makeStyles((theme) => (
+import { makeStyles } from "@material-ui/core/styles";
+import { Colours } from "../../../../../Theme";
+
+export const UserInfoStyle = makeStyles((theme) => (
 {
     section: 
     {
@@ -34,10 +38,6 @@ export const UserAccountStyle = makeStyles((theme) => (
         marginRight: 15,
         marginBottom: 10
     },
-    access_denied_prompt:
-    {
-        color: Colours.colours.gray1
-    },
     user_id:
     {
         [theme.breakpoints.down("xs")]: 
@@ -61,7 +61,6 @@ export const UserAccountStyle = makeStyles((theme) => (
             marginBottom: "15px"
         },
         marginBottom: "30px"
-
     },
     user_avatar:
     {
@@ -81,21 +80,6 @@ export const UserAccountStyle = makeStyles((theme) => (
         },
         color: Colours.colours.white,
         background: Colours.colours.violet
-    },
-    delete_update:
-    {
-        [theme.breakpoints.down("xs")]: 
-        {
-            width: "100%",
-        },
-        width: "150px",
-        "&:hover": 
-        {
-            color: Colours.colours.white,
-            background: Colours.colours.red,
-        },
-        color: Colours.colours.white,
-        background: Colours.colours.redDark
     },
     button_container_update:
     {
@@ -120,19 +104,22 @@ export const UserAccountStyle = makeStyles((theme) => (
         },
         color: Colours.colours.white,
         background: Colours.colours.violet
-    },
-    home_link:
-    {
-        textDecoration: "none"
-    },
-    home_button:
-    {
-        "&:hover": 
-        {
-            color: Colours.colours.white,
-            background: Colours.colours.darkViolet1,
-        },
-        color: Colours.colours.white,
-        background: Colours.colours.violet
     }
 }));
+
+export const CustomSwitchStyle = withStyles(
+{
+    switchBase: 
+    {
+        color: purple[300], '&$checked': 
+        {
+            color: purple[500],
+        },
+        '&$checked + $track': 
+        {
+            backgroundColor: purple[500],
+        },
+    },
+    checked: { },
+    track: { }
+})(Switch);

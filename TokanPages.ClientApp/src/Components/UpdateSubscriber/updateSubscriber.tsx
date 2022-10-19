@@ -1,16 +1,22 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
-import { ApplicationDialogAction, SubscriberUpdateAction } from "../../Store/Actions";
 import { IContentUpdateSubscriber } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
-import { GetTextWarning } from "../../Shared/Services/Utilities";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
-import SuccessMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/successMessage";
-import WarningMessage from "../../Shared/Components/ApplicationDialogBox/Helpers/warningMessage";
-import { IUpdateSubscriberDto } from "../../Api/Models";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
+
+import { 
+    ApplicationDialogAction, 
+    SubscriberUpdateAction 
+} from "../../Store/Actions";
+
+import { 
+    GetTextWarning, 
+    SuccessMessage, 
+    WarningMessage 
+} from "../../Shared/Services/Utilities";
 
 import { 
     NEWSLETTER_SUCCESS, 
@@ -28,16 +34,19 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 {
     const buttonDefaultState = props.id === null ? false : true;
     const dispatch = useDispatch();
-    const state = useSelector((state: IApplicationState) => state.subscriberUpdate);
+    const update = useSelector((state: IApplicationState) => state.subscriberUpdate);
     const error = useSelector((state: IApplicationState) => state.applicationError);
+
+    const hasNotStarted = update?.status === OperationStatus.notStarted;
+    const hasFinished = update?.status === OperationStatus.hasFinished;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState({email: ""});
     const [buttonState, setButtonState] = React.useState(buttonDefaultState);
     const [progress, setProgress] = React.useState(false);
 
-    const showSuccess = React.useCallback((text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const showWarning = React.useCallback((text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text))), [ dispatch ]);
-    const subscriber = React.useCallback((payload: IUpdateSubscriberDto) => dispatch(SubscriberUpdateAction.update(payload)), [ dispatch ]);
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text)));
+    const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text)));
 
     const clearForm = React.useCallback(() => 
     { 
@@ -49,33 +58,33 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 
     React.useEffect(() => 
     {
-        if (error?.defaultErrorMessage === RECEIVED_ERROR_MESSAGE)
+        if (hasError)
         {
             clearForm();
             return;
         }
 
-        switch(state?.operationStatus)
+        if (hasNotStarted && progress)
         {
-            case OperationStatus.notStarted:
-                if (progress) subscriber(
-                { 
-                    id: props.id, 
-                    email: form.email, 
-                    isActivated: true, 
-                    count: 0 
-                });
-            break;
+            dispatch(SubscriberUpdateAction.update(
+            {
+                id: props.id, 
+                email: form.email, 
+                isActivated: true, 
+                count: 0 
+            }));
+            
+            return;
+        }
 
-            case OperationStatus.hasFinished:
-                clearForm();
-                setForm({email: ""});
-                showSuccess(NEWSLETTER_SUCCESS);
-            break;
-        }           
+        if (hasFinished)
+        {
+            clearForm();
+            setForm({email: ""});
+            showSuccess(NEWSLETTER_SUCCESS);        
+        }
     }, 
-    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
-        OperationStatus.notStarted, OperationStatus.hasFinished ]);
+    [ progress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {

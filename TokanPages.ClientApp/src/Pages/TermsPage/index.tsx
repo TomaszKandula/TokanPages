@@ -14,8 +14,8 @@ import {
 export const TermsPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+
     const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
     const footer = useSelector((state: IApplicationState) => state.contentFooter);
     const terms = useSelector((state: IApplicationState) => state.contentTerms);
@@ -26,7 +26,7 @@ export const TermsPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
         dispatch(ContentTermsAction.get());
     }, 
-    [ dispatch, language?.id ]);
+    [ language?.id ]);
 
     return (
         <>

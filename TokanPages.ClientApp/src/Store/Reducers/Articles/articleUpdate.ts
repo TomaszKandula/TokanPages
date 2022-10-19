@@ -2,6 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { IArticleUpdate } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
+
 import { 
     TKnownActions, 
     UPDATE_ARTICLE, 
@@ -23,14 +24,14 @@ export const ArticleUpdate:
         
         case UPDATE_ARTICLE:
             return { 
-                operationStatus: OperationStatus.inProgress, 
-                attachedErrorObject: state.attachedErrorObject
+                status: OperationStatus.inProgress, 
+                response: state.response
             };
 
         case UPDATE_ARTICLE_RESPONSE:
             return { 
-                operationStatus: OperationStatus.hasFinished, 
-                attachedErrorObject: { } 
+                status: OperationStatus.hasFinished, 
+                response: action.payload
             };
 
         default: return state;
