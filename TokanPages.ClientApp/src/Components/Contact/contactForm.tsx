@@ -29,7 +29,7 @@ const formDefaultValues: IValidateContactForm =
 export const ContactForm = (props: IContentContactForm): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const appState = useSelector((state: IApplicationState) => state.applicationMessage);
+    const appState = useSelector((state: IApplicationState) => state.applicationEmail);
     const appError = useSelector((state: IApplicationState) => state.applicationError);
 
     const [form, setForm] = React.useState(formDefaultValues);   

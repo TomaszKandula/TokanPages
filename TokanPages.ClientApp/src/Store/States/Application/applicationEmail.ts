@@ -1,6 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface IApplicationMessage
+export interface IApplicationEmail
 {
     status: OperationStatus;
     response?: any;
