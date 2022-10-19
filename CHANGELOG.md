@@ -1,3 +1,17 @@
+# [0.59.0](https://github.com/TomaszKandula/TokanPages/compare/v0.58.0...v0.59.0) (2022-10-19)
+
+
+### Bug Fixes
+
+* add missing JWT events ([f1505b6](https://github.com/TomaszKandula/TokanPages/commit/f1505b6b9625ec3f36fcadf3e3214bd88258a7e9))
+* change error message ([3adb061](https://github.com/TomaszKandula/TokanPages/commit/3adb061dc491fb2c2e2152ce8bdc62adcc2af679))
+* use camelCase for error model properties ([2000ec8](https://github.com/TomaszKandula/TokanPages/commit/2000ec8630f375c44861e8abaca5a680a2b3976c))
+
+
+### Features
+
+* add new error code ([d72ad71](https://github.com/TomaszKandula/TokanPages/commit/d72ad7108f35887b1ff74d7eca134280a2b2aec2))
+
 # [0.58.0](https://github.com/TomaszKandula/TokanPages/compare/v0.57.0...v0.58.0) (2022-10-01)
 
 
