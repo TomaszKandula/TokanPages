@@ -16,6 +16,8 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
@@ -171,10 +173,19 @@ public static class Dependencies
 			};
 			options.Events = new JwtBearerEvents
 			{
-				OnTokenValidated = tokenValidatedContext =>
+				OnTokenValidated = async context =>
 				{
-					ValidateTokenClaims(tokenValidatedContext);
-					return Task.CompletedTask;
+					await ValidateTokenClaims(context);
+				},
+				OnForbidden = context =>
+				{
+					context.Fail(ErrorCodes.ACCESS_DENIED);
+					return Task.FromException(ReturnAccessDenied());
+				},
+				OnAuthenticationFailed = context =>
+				{
+					context.Fail(ErrorCodes.ACCESS_DENIED);
+					return Task.FromException(ReturnInvalidToken());
 				}
 			};
 		});
@@ -192,31 +203,31 @@ public static class Dependencies
 		});
 	}
 
-	private static void ValidateTokenClaims(TokenValidatedContext tokenValidatedContext)
+	private static Task ValidateTokenClaims(TokenValidatedContext context)
 	{
-		var userAlias = tokenValidatedContext.Principal?.Claims
+		var userAlias = context.Principal?.Claims
 			.Where(claim => claim.Type == ClaimTypes.Name) ?? Array.Empty<Claim>();
 				        
-		var role = tokenValidatedContext.Principal?.Claims
+		var role = context.Principal?.Claims
 			.Where(claim => claim.Type == ClaimTypes.Role) ?? Array.Empty<Claim>();
 				        
-		var userId = tokenValidatedContext.Principal?.Claims
+		var userId = context.Principal?.Claims
 			.Where(claim => claim.Type == ClaimTypes.NameIdentifier) ?? Array.Empty<Claim>();
 				        
-		var firstName = tokenValidatedContext.Principal?.Claims
+		var firstName = context.Principal?.Claims
 			.Where(claim => claim.Type == ClaimTypes.GivenName) ?? Array.Empty<Claim>();
 				        
-		var lastName = tokenValidatedContext.Principal?.Claims
+		var lastName = context.Principal?.Claims
 			.Where(claim => claim.Type == ClaimTypes.Surname) ?? Array.Empty<Claim>();
 				        
-		var emailAddress = tokenValidatedContext.Principal?.Claims
+		var emailAddress = context.Principal?.Claims
 			.Where(claim => claim.Type == ClaimTypes.Email) ?? Array.Empty<Claim>();
 
-		if (!userAlias.Any() || !role.Any() || !userId.Any()
-		    || !firstName.Any() || !lastName.Any() || !emailAddress.Any())
-		{
-			tokenValidatedContext.Fail("Provided token is invalid.");
-		}
+		if (userAlias.Any() && role.Any() && userId.Any() && firstName.Any() && lastName.Any() && emailAddress.Any())
+			return Task.CompletedTask;
+
+		context.Fail("Provided token is invalid.");
+		return Task.FromException(ReturnInvalidClaims());
 	}
 
 	private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
@@ -232,4 +243,13 @@ public static class Dependencies
 			options.DefaultRequestHeaders.ConnectionClose = true;
 		}).AddPolicyHandler(HttpPolicyHandlers.SetupRetry());
 	}
+	
+	private static AccessException ReturnAccessDenied() 
+		=> new (nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
+	
+	private static AuthorizationException ReturnInvalidToken() 
+		=> new (nameof(ErrorCodes.INVALID_USER_TOKEN), ErrorCodes.INVALID_USER_TOKEN);
+
+	private static AuthorizationException ReturnInvalidClaims() 
+		=> new (nameof(ErrorCodes.INVALID_TOKEN_CLAIMS), ErrorCodes.INVALID_TOKEN_CLAIMS);
 }
