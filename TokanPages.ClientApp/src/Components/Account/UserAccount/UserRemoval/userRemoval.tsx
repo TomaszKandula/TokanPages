@@ -55,7 +55,7 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted:
                 if (deleteAccountProgress) 
@@ -70,7 +70,7 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
             break;
         }
     }, 
-    [ deleteAccountProgress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    [ deleteAccountProgress, appError?.defaultErrorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const deleteButtonHandler = () => 

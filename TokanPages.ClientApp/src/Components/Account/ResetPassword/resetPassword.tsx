@@ -49,7 +49,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted:
                 if (progress) dispatch(UserPasswordResetAction.reset(
@@ -65,7 +65,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
             break;
         }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    [ progress, appError?.defaultErrorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

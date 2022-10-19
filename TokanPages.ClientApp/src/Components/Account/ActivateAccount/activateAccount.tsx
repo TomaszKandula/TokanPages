@@ -48,7 +48,7 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted:
                 if (progress && !requested) 

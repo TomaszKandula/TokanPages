@@ -84,7 +84,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted:
                 if (accountFormProgress) dispatch(UserUpdateAction.update(
@@ -104,7 +104,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             break;
         }
     }, 
-    [ accountFormProgress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    [ accountFormProgress, appError?.defaultErrorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

@@ -11,7 +11,7 @@ export const RESET_USER_PASSWORD_CLEAR = "RESET_USER_PASSWORD_CLEAR";
 export const RESET_USER_PASSWORD_RESPONSE = "RESET_USER_PASSWORD_RESPONSE";
 export interface IResetUserPassword { type: typeof RESET_USER_PASSWORD }
 export interface IResetUserPasswordClear { type: typeof RESET_USER_PASSWORD_CLEAR }
-export interface IResetUserPasswordResponse { type: typeof RESET_USER_PASSWORD_RESPONSE }
+export interface IResetUserPasswordResponse { type: typeof RESET_USER_PASSWORD_RESPONSE; payload: any; }
 export type TKnownActions = IResetUserPassword | IResetUserPasswordClear | IResetUserPasswordResponse;
 
 export const UserPasswordResetAction = 
@@ -36,7 +36,7 @@ export const UserPasswordResetAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: RESET_USER_PASSWORD_RESPONSE });
+                    : dispatch({ type: RESET_USER_PASSWORD_RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status })});

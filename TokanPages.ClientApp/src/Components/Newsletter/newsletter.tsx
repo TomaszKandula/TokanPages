@@ -45,7 +45,7 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted: 
                 if (progress) 
@@ -61,7 +61,7 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
             break;
         }
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    [ progress, appError?.defaultErrorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

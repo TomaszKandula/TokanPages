@@ -11,7 +11,7 @@ export const REMOVE_ACCOUNT_CLEAR = "REMOVE_ACCOUNT_CLEAR";
 export const REMOVE_ACCOUNT_RESPONSE = "REMOVE_ACCOUNT_RESPONSE";
 export interface IRemoveAccount { type: typeof REMOVE_ACCOUNT }
 export interface IRemoveAccountClear { type: typeof REMOVE_ACCOUNT_CLEAR }
-export interface IRemoveAccountResponse { type: typeof REMOVE_ACCOUNT_RESPONSE }
+export interface IRemoveAccountResponse { type: typeof REMOVE_ACCOUNT_RESPONSE; payload: any; }
 export type TKnownActions = IRemoveAccount | IRemoveAccountClear | IRemoveAccountResponse;
 
 export const UserRemoveAction = 
@@ -36,7 +36,7 @@ export const UserRemoveAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: REMOVE_ACCOUNT_RESPONSE });
+                    : dispatch({ type: REMOVE_ACCOUNT_RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

@@ -67,7 +67,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted:
                 if (passwordFormProgress) 
@@ -82,7 +82,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             break;
         }
     }, 
-    [ passwordFormProgress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    [ passwordFormProgress, appError?.defaultErrorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const passwordFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

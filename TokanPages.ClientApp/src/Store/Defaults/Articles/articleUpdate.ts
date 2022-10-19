@@ -3,6 +3,6 @@ import { IArticleUpdate } from "../../States";
 
 export const ArticleUpdate: IArticleUpdate = 
 {
-    operationStatus: OperationStatus.notStarted,
-    attachedErrorObject: { }
+    status: OperationStatus.notStarted,
+    response: { }
 }

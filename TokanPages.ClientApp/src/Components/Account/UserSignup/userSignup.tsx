@@ -53,7 +53,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
             return;
         }
 
-        switch(state?.operationStatus)
+        switch(state?.status)
         {
             case OperationStatus.notStarted:
                 if (progress)
@@ -77,7 +77,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
             break;
         }
     }, 
-    [ progress, error?.defaultErrorMessage, state?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, state?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

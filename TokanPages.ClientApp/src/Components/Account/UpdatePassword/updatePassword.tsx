@@ -63,7 +63,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             return;
         }
 
-        switch(password?.operationStatus)
+        switch(password?.status)
         {
             case OperationStatus.notStarted:
                 if (progress) dispatch(UserPasswordUpdateAction.update(
@@ -81,7 +81,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             break;
         }
     }, 
-    [ progress, error?.defaultErrorMessage, password?.operationStatus, 
+    [ progress, error?.defaultErrorMessage, password?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

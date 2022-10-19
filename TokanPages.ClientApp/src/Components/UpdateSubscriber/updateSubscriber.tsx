@@ -51,7 +51,7 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
             return;
         }
 
-        switch(appState?.operationStatus)
+        switch(appState?.status)
         {
             case OperationStatus.notStarted:
                 if (progress) dispatch(SubscriberUpdateAction.update(
@@ -70,7 +70,7 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
             break;
         }           
     }, 
-    [ progress, appError?.defaultErrorMessage, appState?.operationStatus, 
+    [ progress, appError?.defaultErrorMessage, appState?.status, 
     OperationStatus.notStarted, OperationStatus.hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 

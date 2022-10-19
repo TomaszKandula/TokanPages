@@ -11,7 +11,7 @@ export const SIGNUP_USER_CLEAR = "SIGNUP_USER_CLEAR";
 export const SIGNUP_USER_RESPONSE = "SIGNUP_USER_RESPONSE";
 export interface ISignupUser { type: typeof SIGNUP_USER }
 export interface ISignupUserClear { type: typeof SIGNUP_USER_CLEAR }
-export interface ISignupUserResponse { type: typeof SIGNUP_USER_RESPONSE }
+export interface ISignupUserResponse { type: typeof SIGNUP_USER_RESPONSE; payload: any; }
 export type TKnownActions = ISignupUser | ISignupUserClear | ISignupUserResponse;
 
 export const UserSignupAction = 
@@ -36,7 +36,7 @@ export const UserSignupAction =
             {
                 return response.data === null 
                     ? RaiseError({dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: SIGNUP_USER_RESPONSE });
+                    : dispatch({ type: SIGNUP_USER_RESPONSE, payload: response.data });
             }
 
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status})});
