@@ -4,7 +4,7 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.EmailSenderService;
-using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.UserService;
 using Xunit;
 

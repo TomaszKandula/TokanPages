@@ -16,5 +16,5 @@ public class Configuration
 
     public IAuthentication? Authentication { get; set; }
 
-    public StringContent? StringContent { get; set; } 
+    public IPayloadContent? PayloadContent { get; set; }
 }

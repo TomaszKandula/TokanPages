@@ -1,12 +1,10 @@
-using System.Net;
 using System.Text;
-using Newtonsoft.Json;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Services.EmailSenderService.Models;
-using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
 using TokanPages.WebApi.Dto.Mailer;
@@ -27,7 +25,17 @@ public class EmailSenderService : IEmailSenderService
 
     public async Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        VerifyArguments(configuration);
+        var origin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
+        var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
+
+        var registerFormTemplate = _applicationSettings.ApplicationPaths.Templates.RegisterForm;
+        var resetPasswordTemplate = _applicationSettings.ApplicationPaths.Templates.ResetPassword;
+
+        var activationPath = _applicationSettings.ApplicationPaths.ActivationPath;
+        var updatePasswordPath = _applicationSettings.ApplicationPaths.UpdatePasswordPath;
+
+        var activationUrl = $"{origin}{activationPath}";
+        var updatePasswordUrl = $"{origin}{updatePasswordPath}";
 
         var subject = configuration switch
         {
@@ -35,7 +43,7 @@ public class EmailSenderService : IEmailSenderService
             ResetPasswordConfiguration => "Reset user password",
             _ => ""
         };
-        
+
         var emailAddress = configuration switch
         {
             CreateUserConfiguration createConfiguration => createConfiguration.EmailAddress,
@@ -43,38 +51,33 @@ public class EmailSenderService : IEmailSenderService
             _ => ""
         };
 
-        var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
-        var registerForm = _applicationSettings.ApplicationPaths.Templates.RegisterForm;
-        var resetPassword = _applicationSettings.ApplicationPaths.Templates.ResetPassword;
         var templateUrl = configuration switch
         {
-            CreateUserConfiguration =>  $"{baseUrl}{registerForm}",
-            ResetPasswordConfiguration => $"{baseUrl}{resetPassword}",
+            CreateUserConfiguration =>  $"{baseUrl}{registerFormTemplate}",
+            ResetPasswordConfiguration => $"{baseUrl}{resetPasswordTemplate}",
             _ => ""
         };
 
-        var deploymentOrigin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
-        var activationPath = _applicationSettings.ApplicationPaths.ActivationPath;
-        var passwordPath = _applicationSettings.ApplicationPaths.UpdatePasswordPath;
         var templateValues = configuration switch
         {
-            CreateUserConfiguration createConfiguration => new Dictionary<string, string>
+            CreateUserConfiguration model => new Dictionary<string, string>
             {
-                { "{ACTIVATION_LINK}", $"{deploymentOrigin}{activationPath}{createConfiguration.ActivationId}" },
-                { "{EXPIRATION}", $"{createConfiguration.ActivationIdEnds}" }
+                { "{ACTIVATION_LINK}", $"{activationUrl}{model.ActivationId}" },
+                { "{EXPIRATION}", $"{model.ActivationIdEnds}" }
             },
-            ResetPasswordConfiguration resetConfiguration => new Dictionary<string, string>
+            ResetPasswordConfiguration model => new Dictionary<string, string>
             {
-                { "{RESET_LINK}", $"{deploymentOrigin}{passwordPath}{resetConfiguration.ResetId}" },
-                { "{EXPIRATION}", $"{resetConfiguration.ExpirationDate}" }
+                { "{RESET_LINK}", $"{updatePasswordUrl}{model.ResetId}" },
+                { "{EXPIRATION}", $"{model.ExpirationDate}" }
             },
             _ => new Dictionary<string, string>()
         };
 
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
+        var sendFrom = _applicationSettings.EmailSender.Addresses.Contact;
         var payload = new SenderPayloadDto
         {
-            From = _applicationSettings.EmailSender.Addresses.Contact,
+            From = sendFrom,
             To = new List<string> { emailAddress },
             Subject = subject,
             Body = template.MakeBody(templateValues)
@@ -101,54 +104,15 @@ public class EmailSenderService : IEmailSenderService
             ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey
         };
 
-        var payload = JsonConvert.SerializeObject(content);
+        var payload = new ContentString { Payload = content };
         var configuration = new Configuration 
         { 
             Url = _applicationSettings.EmailSender.BaseUrl, 
             Method = "POST", 
             Headers = headers,
-            StringContent = new StringContent(payload, Encoding.Default, "application/json") 
+            PayloadContent = payload
         };
 
-        var result = await _httpClientService.Execute(configuration, cancellationToken);
-        var responseContent = result.Content != null ? Encoding.ASCII.GetString(result.Content) : string.Empty;
-
-        if (result.StatusCode != HttpStatusCode.OK)
-        {
-            var response = !string.IsNullOrEmpty(responseContent) ? responseContent : "n/a";
-            var message = $"{ErrorCodes.CANNOT_SEND_EMAIL}. Full response: {response}";
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SEND_EMAIL), message);
-        }
-    }
-
-    private static void VerifyArguments(IConfiguration configuration)
-    {
-        switch (configuration)
-        {
-            case CreateUserConfiguration createUserConfiguration:
-                VerifyCreateUserConfiguration(createUserConfiguration);
-                break;
-            case ResetPasswordConfiguration resetPasswordConfiguration:
-                VerifyResetPasswordConfiguration(resetPasswordConfiguration);
-                break;
-        }
-    }
-
-    private static void VerifyCreateUserConfiguration(CreateUserConfiguration configuration)
-    {
-        if (configuration.ActivationId == Guid.Empty)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_ACTIVATION_ID), ErrorCodes.INVALID_ACTIVATION_ID);
-
-        if (string.IsNullOrEmpty(configuration.EmailAddress))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), ErrorCodes.ARGUMENT_EMPTY_OR_NULL);
-    }
-
-    private static void VerifyResetPasswordConfiguration(ResetPasswordConfiguration configuration)
-    {
-        if (configuration.ResetId == Guid.Empty)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
-
-        if (string.IsNullOrEmpty(configuration.EmailAddress))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), ErrorCodes.ARGUMENT_EMPTY_OR_NULL);
+        await _httpClientService.Execute(configuration, cancellationToken);
     }
 }
