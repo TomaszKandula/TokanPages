@@ -224,5 +224,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_TOKEN_CLAIMS", resourceCulture);
             }
         }
+        
+        public static string HTTP_REQUEST_FAILED {
+            get {
+                return ResourceManager.GetString("HTTP_REQUEST_FAILED", resourceCulture);
+            }
+        }
     }
 }

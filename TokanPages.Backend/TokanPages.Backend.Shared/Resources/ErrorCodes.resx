@@ -207,4 +207,7 @@
   <data name="INVALID_TOKEN_CLAIMS" xml:space="preserve">
     <value>Provided claims are not valid</value>
   </data>
+  <data name="HTTP_REQUEST_FAILED" xml:space="preserve">
+    <value>HTTP request has failed</value>
+  </data>
 </root>
