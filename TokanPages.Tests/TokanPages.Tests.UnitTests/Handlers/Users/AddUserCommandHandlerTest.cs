@@ -12,7 +12,7 @@ using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.EmailSenderService;
-using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.UserService;
 using Xunit;
 

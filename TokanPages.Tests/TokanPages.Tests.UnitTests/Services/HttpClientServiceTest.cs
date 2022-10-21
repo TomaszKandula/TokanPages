@@ -3,6 +3,7 @@ using FluentAssertions;
 using Moq;
 using Moq.Protected;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Models;
 using Xunit;
@@ -21,8 +22,9 @@ public class HttpClientServiceTest : TestBase
             Method = "GET"
         };
 
+        var mockedLogger = new Mock<ILoggerService>();
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new HttpClientService(httpClient);
+        var customHttpClient = new HttpClientService(httpClient, mockedLogger.Object);
 
         // Act
         var result = await customHttpClient.Execute(configuration, CancellationToken.None);
@@ -44,9 +46,10 @@ public class HttpClientServiceTest : TestBase
             Method = "POST"
         };
 
+        var mockedLogger = new Mock<ILoggerService>();
         var stringContent = DataUtilityService.GetRandomString();
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(stringContent));
-        var customHttpClient = new HttpClientService(httpClient);
+        var customHttpClient = new HttpClientService(httpClient, mockedLogger.Object);
 
         // Act
         var result = await customHttpClient.Execute(configuration, CancellationToken.None);
@@ -68,8 +71,9 @@ public class HttpClientServiceTest : TestBase
             Method = "GET"
         };
 
+        var mockedLogger = new Mock<ILoggerService>();
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new HttpClientService(httpClient);
+        var customHttpClient = new HttpClientService(httpClient, mockedLogger.Object);
 
         // Act
         var result = await Assert.ThrowsAsync<BusinessException>(() => customHttpClient.Execute(configuration, CancellationToken.None));
@@ -88,8 +92,9 @@ public class HttpClientServiceTest : TestBase
             Method = string.Empty
         };
 
+        var mockedLogger = new Mock<ILoggerService>();
         var httpClient = SetHttpClient(HttpStatusCode.OK, new StringContent(string.Empty));
-        var customHttpClient = new HttpClientService(httpClient);
+        var customHttpClient = new HttpClientService(httpClient, mockedLogger.Object);
 
         // Act
         var result = await Assert.ThrowsAsync<BusinessException>(() => customHttpClient.Execute(configuration, CancellationToken.None));

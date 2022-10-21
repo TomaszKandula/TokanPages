@@ -1,4 +1,4 @@
-using TokanPages.Services.EmailSenderService.Models.Interfaces;
+using TokanPages.Services.EmailSenderService.Abstractions;
 
 namespace TokanPages.Services.EmailSenderService;
 
