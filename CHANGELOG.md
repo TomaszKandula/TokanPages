@@ -1,3 +1,13 @@
+# [0.60.0](https://github.com/TomaszKandula/TokanPages/compare/v0.59.0...v0.60.0) (2022-10-23)
+
+
+### Features
+
+* relocate DTO model, update paths ([25a16e6](https://github.com/TomaszKandula/TokanPages/commit/25a16e66de3a27b95af8a506a753bb14cec1d4bb))
+* remove unused files for simplified content handler implementation ([8f90012](https://github.com/TomaszKandula/TokanPages/commit/8f90012d29600a2744fb58d557cd5c545eee4fbc))
+* simplify implementation, remove additional deserialization for language filtering ([b920dec](https://github.com/TomaszKandula/TokanPages/commit/b920decad3b339bb498bf18592d0120aa3fad751))
+* update DTO models, relocate ([13efca7](https://github.com/TomaszKandula/TokanPages/commit/13efca7943546256cd034a352f7786a112c8812f))
+
 # [0.59.0](https://github.com/TomaszKandula/TokanPages/compare/v0.58.0...v0.59.0) (2022-10-19)
 
 
