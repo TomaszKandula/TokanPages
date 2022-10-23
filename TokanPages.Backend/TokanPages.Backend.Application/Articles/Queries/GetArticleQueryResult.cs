@@ -1,4 +1,4 @@
-﻿using TokanPages.WebApi.Dto.Content.Common;
+﻿using TokanPages.WebApi.Dto.Articles;
 using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
@@ -11,5 +11,5 @@ public class GetArticleQueryResult : GetAllArticlesQueryResult
 
     public GetUserDto? Author { get; set; }
 
-    public List<Section>? Text { get; set; }
+    public List<ArticleSectionDto>? Text { get; set; }
 }

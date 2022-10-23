@@ -12,7 +12,7 @@ using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.UserService;
-using TokanPages.WebApi.Dto.Content.Common;
+using TokanPages.WebApi.Dto.Articles;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;
@@ -199,7 +199,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
     private StorageStreamContent GetArticleSectionsAsJson()
     {
-        var sections = new List<Section>
+        var sections = new List<ArticleSectionDto>
         {
             new()
             {

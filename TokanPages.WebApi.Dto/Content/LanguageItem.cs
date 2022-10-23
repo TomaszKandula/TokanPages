@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.WebApi.Dto.Content.Common;
+namespace TokanPages.WebApi.Dto.Content;
 
 /// <summary>
 /// Language item

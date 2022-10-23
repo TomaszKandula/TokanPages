@@ -1,14 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
-#nullable enable
-namespace TokanPages.WebApi.Dto.Content.Common;
+namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
-/// Subitem
+/// Section
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class Subitem
+public class ArticleSectionDto
 {
     /// <summary>
     /// Id
@@ -20,29 +19,23 @@ public class Subitem
     /// Type
     /// </summary>
     [JsonProperty("type")]
-    public string? Type { get; set; }
-
+    public string Type { get; set; } = "";
+        
     /// <summary>
     /// Value
     /// </summary>
     [JsonProperty("value")]
-    public string? Value { get; set; }
-
+    public dynamic? Value { get; set; }
+        
     /// <summary>
-    /// Link
+    /// Prop
     /// </summary>
-    [JsonProperty("link")]
-    public string? Link { get; set; }
-
+    [JsonProperty("prop")]
+    public string Prop { get; set; } = "";
+        
     /// <summary>
-    /// Icon
+    /// Text
     /// </summary>
-    [JsonProperty("icon")]
-    public string? Icon { get; set; }
-
-    /// <summary>
-    /// Enabled
-    /// </summary>
-    [JsonProperty("enabled")]
-    public bool? Enabled { get; set; }
+    [JsonProperty("text")]
+    public string Text { get; set; } = "";
 }
