@@ -1,13 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
-namespace TokanPages.WebApi.Dto.Content.Common;
+namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
 /// Section
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class Section
+public class ArticleSectionDto
 {
     /// <summary>
     /// Id
