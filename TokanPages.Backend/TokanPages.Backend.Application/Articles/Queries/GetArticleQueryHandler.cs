@@ -8,7 +8,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.UserService;
-using TokanPages.WebApi.Dto.Content.Common;
+using TokanPages.WebApi.Dto.Articles;
 using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
@@ -35,7 +35,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var isAnonymousUser = user == null;
 
         var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
-        var textAsObject = _jsonSerializer.Deserialize<List<Section>>(textAsString);
+        var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString);
 
         var userLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
