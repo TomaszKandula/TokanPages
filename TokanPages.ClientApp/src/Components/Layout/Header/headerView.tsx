@@ -7,7 +7,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { IContentHeader } from "../../../Store/States";
-import { IMAGES_PATH } from "../../../Shared/constants";
+import { GET_IMAGES_URL } from "../../../Api/Request";
 import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
@@ -38,7 +38,7 @@ export const HeaderView = (props: IContentHeader): JSX.Element =>
                         <Box className={classes.image_box}>
                             {props.isLoading 
                             ? <Skeleton variant="circle" className={classes.image_skeleton} /> 
-                            : RenderImage(IMAGES_PATH, props.content?.photo, classes.image)}
+                            : RenderImage(GET_IMAGES_URL, props.content?.photo, classes.image)}
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>

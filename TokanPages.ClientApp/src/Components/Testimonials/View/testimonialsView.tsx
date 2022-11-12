@@ -8,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IContentTestimonials } from "../../../Store/States";
-import { TESTIMONIALS_PATH } from "../../../Shared/constants";
+import { GET_TESTIMONIALS_URL } from "../../../Api/Request";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { TestimonialsStyle } from "./testimonialsStyle";
 
@@ -19,7 +19,7 @@ export const TestimonialsView = (props: IContentTestimonials): JSX.Element =>
     const imageUrl = (name: string) => 
     {
         if (name === "") return " ";
-        return `${TESTIMONIALS_PATH}${name}`;
+        return `${GET_TESTIMONIALS_URL}/${name}`;
     }
 
     return(

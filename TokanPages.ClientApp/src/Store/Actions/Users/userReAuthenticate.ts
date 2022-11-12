@@ -1,30 +1,30 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IAuthenticateUserResultDto, IReAuthenticateUserDto } from "../../../Api/Models";
-import { API_COMMAND_REAUTHENTICATE, NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
-import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./userDataStore";
+import { NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
+import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { EnrichConfiguration } from "../../../Api/Request";
 
-export const REAUTHENTICATE_USER = "REAUTHENTICATE_USER";
-export const REAUTHENTICATE_USER_CLEAR = "REAUTHENTICATE_USER_CLEAR";
-export const REAUTHENTICATE_USER_RESPONSE = "REAUTHENTICATE_USER_RESPONSE";
-export interface IReAuthenticateUser { type: typeof REAUTHENTICATE_USER }
-export interface IReAuthenticateUserClear { type: typeof REAUTHENTICATE_USER_CLEAR }
-export interface IReAuthenticateUserResponse { type: typeof REAUTHENTICATE_USER_RESPONSE; payload: any; }
-export type TKnownActions = IReAuthenticateUser | IReAuthenticateUserClear | IReAuthenticateUserResponse | TUpdateActions;
+export const REAUTHENTICATE = "REAUTHENTICATE_USER";
+export const CLEAR = "REAUTHENTICATE_USER_CLEAR";
+export const RESPONSE = "REAUTHENTICATE_USER_RESPONSE";
+interface IReAuthenticate { type: typeof REAUTHENTICATE }
+interface IClear { type: typeof CLEAR }
+interface IResponse { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = IReAuthenticate | IClear | IResponse | TUpdateActions;
 
 export const UserReAuthenticateAction = 
 {
     clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
-        dispatch({ type: REAUTHENTICATE_USER_CLEAR });
+        dispatch({ type: CLEAR });
     },
     reAuthenticate: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: REAUTHENTICATE_USER });
+        dispatch({ type: REAUTHENTICATE });
 
         const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
         const payload: IReAuthenticateUserDto = 
@@ -35,7 +35,7 @@ export const UserReAuthenticateAction =
         axios(EnrichConfiguration(
         { 
             method: "POST", 
-            url: API_COMMAND_REAUTHENTICATE, 
+            url: REAUTHENTICATE, 
             data: payload
         }))
         .then(response => 
@@ -44,8 +44,8 @@ export const UserReAuthenticateAction =
             {
                 const pushData = () => 
                 {
-                    dispatch({ type: REAUTHENTICATE_USER_RESPONSE, payload: response.data });
-                    dispatch({ type: UPDATE_USERDATA, payload: response.data });
+                    dispatch({ type: RESPONSE, payload: response.data });
+                    dispatch({ type: UPDATE, payload: response.data });
                 }
                 
                 return response.data === null 

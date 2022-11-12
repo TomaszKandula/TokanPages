@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_COOKIES_PROMPT_CONTENT } from "../../../Shared/constants";
+import { GET_COOKIES_PROMPT_CONTENT } from "../../../Api/Request";
 import { ICookiesPromptContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_COOKIES_PROMPT_CONTENT = "REQUEST_COOKIES_PROMPT_CONTENT";
-export const RECEIVE_COOKIES_PROMPT_CONTENT = "RECEIVE_COOKIES_PROMPT_CONTENT";
-export interface IRequestCookiesPromptContent { type: typeof REQUEST_COOKIES_PROMPT_CONTENT }
-export interface IReceiveCookiesPromptContent { type: typeof RECEIVE_COOKIES_PROMPT_CONTENT, payload: ICookiesPromptContentDto }
-export type TKnownActions = IRequestCookiesPromptContent | IReceiveCookiesPromptContent;
+export const REQUEST = "REQUEST_COOKIES_PROMPT_CONTENT";
+export const RECEIVE = "RECEIVE_COOKIES_PROMPT_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: ICookiesPromptContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentCookiesPromptAction = 
 {
@@ -27,8 +27,8 @@ export const ContentCookiesPromptAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_COOKIES_PROMPT_CONTENT, 
-            receive: RECEIVE_COOKIES_PROMPT_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_COOKIES_PROMPT_CONTENT 
         });
     }

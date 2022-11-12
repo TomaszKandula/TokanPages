@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions, 
-    ADD_SUBSCRIBER, 
-    ADD_SUBSCRIBER_RESPONSE, 
-    ADD_SUBSCRIBER_CLEAR, 
+    ADD, 
+    RESPONSE, 
+    CLEAR, 
 } from "../../Actions/Subscribers/subscriberAdd";
 
 export const SubscriberAdd: 
@@ -19,16 +19,16 @@ export const SubscriberAdd:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case ADD_SUBSCRIBER_CLEAR:
+        case CLEAR:
             return ApplicationDefault.subscriberAdd;
 
-        case ADD_SUBSCRIBER:
+        case ADD:
             return { 
                 status: OperationStatus.inProgress, 
                 response: state.response
             };
 
-        case ADD_SUBSCRIBER_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished, 
                 response: action.payload

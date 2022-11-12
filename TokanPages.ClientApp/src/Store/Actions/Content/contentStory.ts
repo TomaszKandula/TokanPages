@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { STORY_URL } from "../../../Shared/constants";
+import { GET_STORY_CONTENT } from "../../../Api/Request";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_STORY_CONTENT = "REQUEST_STORY_CONTENT";
-export const RECEIVE_STORY_CONTENT = "RECEIVE_STORY_CONTENT";
-export interface IRequestStoryContent { type: typeof REQUEST_STORY_CONTENT }
-export interface IReceiveStoryContent { type: typeof RECEIVE_STORY_CONTENT, payload: IDocumentContentDto }
-export type TKnownActions = IRequestStoryContent | IReceiveStoryContent;
+export const REQUEST = "REQUEST_STORY_CONTENT";
+export const RECEIVE = "RECEIVE_STORY_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IDocumentContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentStoryAction = 
 {
@@ -27,9 +27,9 @@ export const ContentStoryAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_STORY_CONTENT, 
-            receive: RECEIVE_STORY_CONTENT, 
-            url: STORY_URL 
+            request: REQUEST, 
+            receive: RECEIVE, 
+            url: GET_STORY_CONTENT 
         });
     }
 }

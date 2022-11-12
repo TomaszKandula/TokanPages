@@ -1,33 +1,33 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IUpdateUserDto } from "../../../Api/Models";
-import { API_COMMAND_UPDATE_USER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { EnrichConfiguration, UPDATE_USER } from "../../../Api/Request";
 
-export const UPDATE_USER = "UPDATE_USER";
-export const UPDATE_USER_CLEAR = "UPDATE_USER_CLEAR";
-export const UPDATE_USER_RESPONSE = "UPDATE_USER_RESPONSE";
-export interface IUpdateUser { type: typeof UPDATE_USER }
-export interface IUpdateUserClear { type: typeof UPDATE_USER_CLEAR }
-export interface IUpdateUserResponse { type: typeof UPDATE_USER_RESPONSE; payload: any; }
-export type TKnownActions = IUpdateUser | IUpdateUserClear | IUpdateUserResponse;
+export const UPDATE = "UPDATE_USER";
+export const CLEAR = "UPDATE_USER_CLEAR";
+export const RESPONSE = "UPDATE_USER_RESPONSE";
+interface IUpdate { type: typeof UPDATE }
+interface IClear { type: typeof CLEAR }
+interface IResponse { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = IUpdate | IClear | IResponse;
 
 export const UserUpdateAction = 
 {
     clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
-        dispatch({ type: UPDATE_USER_CLEAR });
+        dispatch({ type: CLEAR });
     },
     update: (payload: IUpdateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: UPDATE_USER });
+        dispatch({ type: UPDATE });
 
         axios(EnrichConfiguration(
         { 
             method: "POST", 
-            url: API_COMMAND_UPDATE_USER, 
+            url: UPDATE_USER, 
             data: payload
         }))
         .then(response => 
@@ -36,7 +36,7 @@ export const UserUpdateAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: UPDATE_USER_RESPONSE, payload: response.data });
+                    : dispatch({ type: RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status })});

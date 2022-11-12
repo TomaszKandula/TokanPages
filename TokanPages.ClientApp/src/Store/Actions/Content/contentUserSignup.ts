@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_SIGNUP_CONTENT } from "../../../Shared/constants";
+import { GET_SIGNUP_CONTENT } from "../../../Api/Request";
 import { IUserSignupContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_USER_SIGNUP_CONTENT = "REQUEST_USER_SIGNUP_CONTENT";
-export const RECEIVE_USER_SIGNUP_CONTENT = "RECEIVE_USER_SIGNUP_CONTENT";
-export interface IRequestSignupFormContent { type: typeof REQUEST_USER_SIGNUP_CONTENT }
-export interface IReceiveSignupFormContent { type: typeof RECEIVE_USER_SIGNUP_CONTENT, payload: IUserSignupContentDto }
-export type TKnownActions = IRequestSignupFormContent | IReceiveSignupFormContent;
+export const REQUEST = "REQUEST_USER_SIGNUP_CONTENT";
+export const RECEIVE = "RECEIVE_USER_SIGNUP_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IUserSignupContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentUserSignupAction = 
 {
@@ -27,8 +27,8 @@ export const ContentUserSignupAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_USER_SIGNUP_CONTENT, 
-            receive: RECEIVE_USER_SIGNUP_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_SIGNUP_CONTENT 
         });
     }

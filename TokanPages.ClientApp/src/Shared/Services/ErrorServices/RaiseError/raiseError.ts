@@ -1,5 +1,5 @@
 import { UNEXPECTED_ERROR } from "../../../../Shared/constants";
-import { RAISE_ERROR } from "../../../../Store/Actions/Application/applicationError";
+import { RAISE } from "../../../../Store/Actions/Application/applicationError";
 import { GetErrorMessage } from "../GetErrorMessage/getErrorMessage";
 import { IRaiseError } from "./interface";
 
@@ -17,6 +17,6 @@ export const RaiseError = (props: IRaiseError): string =>
         error = props.errorObject;
     }
 
-    props.dispatch({ type: RAISE_ERROR, errorDetails: error });
+    props.dispatch({ type: RAISE, errorDetails: error });
     return error;
 }

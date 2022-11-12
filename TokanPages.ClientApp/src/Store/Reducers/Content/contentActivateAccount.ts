@@ -4,8 +4,8 @@ import { IContentActivateAccount } from "../../States";
 
 import { 
     TKnownActions,
-    REQUEST_ACTIVATE_ACCOUNT_CONTENT, 
-    RECEIVE_ACTIVATE_ACCOUNT_CONTENT
+    REQUEST, 
+    RECEIVE
 } from "../../Actions/Content/contentActivateAccount";
 
 export const ContentActivateAccount: 
@@ -17,13 +17,13 @@ export const ContentActivateAccount:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_ACTIVATE_ACCOUNT_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_ACTIVATE_ACCOUNT_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

@@ -1,27 +1,27 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IRemoveSubscriberDto } from "../../../Api/Models";
-import { API_COMMAND_REMOVE_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { EnrichConfiguration, REMOVE_SUBSCRIBER } from "../../../Api/Request";
 
-export const REMOVE_SUBSCRIBER = "REMOVE_SUBSCRIBER";
-export const REMOVE_SUBSCRIBER_RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
-export interface IRemoveSubscriber { type: typeof REMOVE_SUBSCRIBER }
-export interface IRemoveSubscriberResponse { type: typeof REMOVE_SUBSCRIBER_RESPONSE; payload: any; }
-export type TKnownActions = IRemoveSubscriber | IRemoveSubscriberResponse;
+export const REMOVE = "REMOVE_SUBSCRIBER";
+export const RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
+interface IRemove { type: typeof REMOVE }
+interface IResponse { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = IRemove | IResponse;
 
 export const SubscriberRemoveAction = 
 {
     remove: (payload: IRemoveSubscriberDto):  IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: REMOVE_SUBSCRIBER });
+        dispatch({ type: REMOVE });
 
         axios(EnrichConfiguration(
         { 
             method: "POST", 
-            url: API_COMMAND_REMOVE_SUBSCRIBER, 
+            url: REMOVE_SUBSCRIBER, 
             data: payload
         }))
         .then(response =>
@@ -30,7 +30,7 @@ export const SubscriberRemoveAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: REMOVE_SUBSCRIBER_RESPONSE, payload: response.data });
+                    : dispatch({ type: RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

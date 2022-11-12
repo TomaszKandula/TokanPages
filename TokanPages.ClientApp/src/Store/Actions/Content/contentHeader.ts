@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_HEADER_CONTENT } from "../../../Shared/constants";
+import { GET_HEADER_CONTENT } from "../../../Api/Request";
 import { IHeaderContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_HEADER_CONTENT = "REQUEST_HEADER_CONTENT";
-export const RECEIVE_HEADER_CONTENT = "RECEIVE_HEADER_CONTENT";
-export interface IRequestHeaderContent { type: typeof REQUEST_HEADER_CONTENT }
-export interface IReceiveHeaderContent { type: typeof RECEIVE_HEADER_CONTENT, payload: IHeaderContentDto }
-export type TKnownActions = IRequestHeaderContent | IReceiveHeaderContent;
+export const REQUEST = "REQUEST_HEADER_CONTENT";
+export const RECEIVE = "RECEIVE_HEADER_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IHeaderContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentHeaderAction = 
 {
@@ -27,8 +27,8 @@ export const ContentHeaderAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_HEADER_CONTENT, 
-            receive: RECEIVE_HEADER_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_HEADER_CONTENT 
         });
     }

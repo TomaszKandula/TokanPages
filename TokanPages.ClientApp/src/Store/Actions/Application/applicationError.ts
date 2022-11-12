@@ -1,22 +1,20 @@
 import { DialogType } from "../../../Shared/enums";
 import { IApplicationAction } from "../../Configuration";
 
-export const CLEAR_ERROR = "CLEAR_ERROR";
-export const RAISE_ERROR = "RAISE_ERROR";
-
-export interface IClearError { type: typeof CLEAR_ERROR }
-export interface IRaiseError { type: typeof RAISE_ERROR, errorDetails: any, dialogType?: DialogType }
-
-export type TErrorActions = IClearError | IRaiseError;
+export const CLEAR = "CLEAR_ERROR";
+export const RAISE = "RAISE_ERROR";
+interface IClear { type: typeof CLEAR }
+interface IRaise { type: typeof RAISE, errorDetails: any, dialogType?: DialogType }
+export type TErrorActions = IClear | IRaise;
 
 export const ApplicationErrorAction = 
 {
     clear: (): IApplicationAction<TErrorActions> => (dispatch) => 
     {
-        dispatch({ type: CLEAR_ERROR });
+        dispatch({ type: CLEAR });
     },
     raise: (message: any, dialogType?: DialogType): IApplicationAction<TErrorActions> => (dispatch) => 
     {
-        dispatch({ type: RAISE_ERROR, errorDetails: message, dialogType: dialogType });
+        dispatch({ type: RAISE, errorDetails: message, dialogType: dialogType });
     }
 }

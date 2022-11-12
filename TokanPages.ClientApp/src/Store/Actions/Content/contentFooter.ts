@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_FOOTER_CONTENT } from "../../../Shared/constants";
+import { GET_FOOTER_CONTENT } from "../../../Api/Request";
 import { IFooterContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_FOOTER_CONTENT = "REQUEST_FOOTER_CONTENT";
-export const RECEIVE_FOOTER_CONTENT = "RECEIVE_FOOTER_CONTENT";
-export interface IRequestFooterContent { type: typeof REQUEST_FOOTER_CONTENT }
-export interface IReceiveFooterContent { type: typeof RECEIVE_FOOTER_CONTENT, payload: IFooterContentDto }
-export type TKnownActions = IRequestFooterContent | IReceiveFooterContent;
+export const REQUEST = "REQUEST_FOOTER_CONTENT";
+export const RECEIVE = "RECEIVE_FOOTER_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IFooterContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentFooterAction = 
 {
@@ -27,8 +27,8 @@ export const ContentFooterAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_FOOTER_CONTENT, 
-            receive: RECEIVE_FOOTER_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_FOOTER_CONTENT 
         });
     }

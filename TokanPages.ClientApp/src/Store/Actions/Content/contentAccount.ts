@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_ACCOUNT_CONTENT } from "../../../Shared/constants";
 import { IAccountContentDto } from "../../../Api/Models";
+import { GET_ACCOUNT_CONTENT } from "../../../Api/Request";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_ACCOUNT_CONTENT = "REQUEST_ACCOUNT_CONTENT";
-export const RECEIVE_ACCOUNT_CONTENT = "RECEIVE_ACCOUNT_CONTENT";
-export interface IRequestAccountContent { type: typeof REQUEST_ACCOUNT_CONTENT }
-export interface IReceiveAccountContent { type: typeof RECEIVE_ACCOUNT_CONTENT, payload: IAccountContentDto }
-export type TKnownActions = IRequestAccountContent | IReceiveAccountContent;
+export const REQUEST = "REQUEST_ACCOUNT_CONTENT";
+export const RECEIVE = "RECEIVE_ACCOUNT_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IAccountContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentAccountAction = 
 {
@@ -27,8 +27,8 @@ export const ContentAccountAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_ACCOUNT_CONTENT, 
-            receive: RECEIVE_ACCOUNT_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_ACCOUNT_CONTENT 
         });
     }

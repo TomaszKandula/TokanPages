@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions,
-    SIGNUP_USER,
-    SIGNUP_USER_CLEAR,
-    SIGNUP_USER_RESPONSE
+    SIGNUP,
+    CLEAR,
+    RESPONSE
 } from "../../Actions/Users/userSignup";
 
 export const UserSignup: Reducer<IUserSignup> = (state: IUserSignup | undefined, incomingAction: Action): IUserSignup => 
@@ -17,18 +17,18 @@ export const UserSignup: Reducer<IUserSignup> = (state: IUserSignup | undefined,
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case SIGNUP_USER_CLEAR:
+        case CLEAR:
             return {
                 status: OperationStatus.notStarted,
                 response: { }
             };
-        case SIGNUP_USER:
+        case SIGNUP:
             return { 
                 status: OperationStatus.inProgress,
                 response: state.response
             };
 
-        case SIGNUP_USER_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished,
                 response: action.payload

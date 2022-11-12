@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions, 
-    SEND_MESSAGE, 
-    SEND_MESSAGE_RESPONSE, 
-    SEND_MESSAGE_CLEAR
+    SEND, 
+    RESPONSE, 
+    CLEAR
 } from "../../Actions/Application/applicationMessage";
 
 export const ApplicationEmail: 
@@ -19,16 +19,16 @@ export const ApplicationEmail:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case SEND_MESSAGE_CLEAR:
+        case CLEAR:
             return ApplicationDefault.applicationEmail;
             
-        case SEND_MESSAGE:
+        case SEND:
             return { 
                 status: OperationStatus.inProgress, 
                 response: state.response 
             };
 
-        case SEND_MESSAGE_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished, 
                 response: action.payload

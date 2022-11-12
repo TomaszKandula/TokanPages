@@ -1,33 +1,33 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IAddSubscriberDto } from "../../../Api/Models";
-import { API_COMMAND_ADD_SUBSCRIBER, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { EnrichConfiguration, ADD_SUBSCRIBER } from "../../../Api/Request";
 
-export const ADD_SUBSCRIBER = "ADD_SUBSCRIBER";
-export const ADD_SUBSCRIBER_CLEAR = "ADD_SUBSCRIBER_CLEAR";
-export const ADD_SUBSCRIBER_RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
-export interface IAddSubscriber { type: typeof ADD_SUBSCRIBER }
-export interface IAddSubscriberClear { type: typeof ADD_SUBSCRIBER_CLEAR }
-export interface IAddSubscriberResponse { type: typeof ADD_SUBSCRIBER_RESPONSE; payload: any; }
-export type TKnownActions = IAddSubscriber | IAddSubscriberClear | IAddSubscriberResponse;
+export const ADD = "ADD_SUBSCRIBER";
+export const CLEAR = "ADD_SUBSCRIBER_CLEAR";
+export const RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
+interface IAdd { type: typeof ADD }
+interface IClear { type: typeof CLEAR }
+interface IResponse { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = IAdd | IClear | IResponse;
 
 export const SubscriberAddAction = 
 {
     clear: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: ADD_SUBSCRIBER_CLEAR });
+        dispatch({ type: CLEAR });
     },    
     add: (payload: IAddSubscriberDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: ADD_SUBSCRIBER });
+        dispatch({ type: ADD });
 
         axios(EnrichConfiguration(
         { 
             method: "POST", 
-            url: API_COMMAND_ADD_SUBSCRIBER, 
+            url: ADD_SUBSCRIBER, 
             data: payload
         }))
         .then(response => 
@@ -36,7 +36,7 @@ export const SubscriberAddAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: ADD_SUBSCRIBER_RESPONSE, payload: response.data });
+                    : dispatch({ type: RESPONSE, payload: response.data });
             }
             
             RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
