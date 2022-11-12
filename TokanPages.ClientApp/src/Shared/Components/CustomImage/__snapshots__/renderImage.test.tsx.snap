@@ -6,6 +6,6 @@ exports[`Test rendering image component. Should render an image component. 1`] =
 <img
   alt=""
   className="style"
-  src="http://localhost:5000/test-image.jpg"
+  src="http://localhost:5000//test-image.jpg"
 />
 `;
