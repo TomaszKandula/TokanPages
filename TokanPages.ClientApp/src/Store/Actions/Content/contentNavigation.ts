@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_NAVIGATION_CONTENT } from "../../../Shared/constants";
+import { GET_NAVIGATION_CONTENT } from "../../../Api/Request";
 import { INavigationContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_NAVIGATION_CONTENT = "REQUEST_NAVIGATION_CONTENT";
-export const RECEIVE_NAVIGATION_CONTENT = "RECEIVE_NAVIGATION_CONTENT";
-export interface IRequestNavigationContent { type: typeof REQUEST_NAVIGATION_CONTENT }
-export interface IReceiveNavigationContent { type: typeof RECEIVE_NAVIGATION_CONTENT, payload: INavigationContentDto }
-export type TKnownActions = IRequestNavigationContent | IReceiveNavigationContent;
+export const REQUEST = "REQUEST_NAVIGATION_CONTENT";
+export const RECEIVE = "RECEIVE_NAVIGATION_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: INavigationContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentNavigationAction =
 {
@@ -27,8 +27,8 @@ export const ContentNavigationAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_NAVIGATION_CONTENT, 
-            receive: RECEIVE_NAVIGATION_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_NAVIGATION_CONTENT 
         });
     }

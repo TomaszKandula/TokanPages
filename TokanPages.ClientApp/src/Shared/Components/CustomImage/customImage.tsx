@@ -5,5 +5,5 @@ export const RenderImage = (basePath: string, imageSource: string, className: st
 {
     return validate.isEmpty(imageSource) || validate.isEmpty(basePath)
         ? null 
-        : <img src={basePath + imageSource} className={className} alt="" />;
+        : <img src={`${basePath}/${imageSource}`} className={className} alt="" />;
 };

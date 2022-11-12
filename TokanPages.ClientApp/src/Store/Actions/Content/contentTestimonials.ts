@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_TESTIMONIALS_CONTENT } from "../../../Shared/constants";
+import { GET_TESTIMONIALS_CONTENT } from "../../../Api/Request";
 import { ITestimonialsContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_TESTIMONIALS_CONTENT = "REQUEST_TESTIMONIALS_CONTENT";
-export const RECEIVE_TESTIMONIALS_CONTENT = "RECEIVE_TESTIMONIALS_CONTENT";
-export interface IRequestTestimonialsContent { type: typeof REQUEST_TESTIMONIALS_CONTENT }
-export interface IReceiveTestimonialsContent { type: typeof RECEIVE_TESTIMONIALS_CONTENT, payload: ITestimonialsContentDto }
-export type TKnownActions = IRequestTestimonialsContent | IReceiveTestimonialsContent;
+export const REQUEST = "REQUEST_TESTIMONIALS_CONTENT";
+export const RECEIVE = "RECEIVE_TESTIMONIALS_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: ITestimonialsContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentTestimonialsAction = 
 {
@@ -27,8 +27,8 @@ export const ContentTestimonialsAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_TESTIMONIALS_CONTENT, 
-            receive: RECEIVE_TESTIMONIALS_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_TESTIMONIALS_CONTENT 
         });
     }

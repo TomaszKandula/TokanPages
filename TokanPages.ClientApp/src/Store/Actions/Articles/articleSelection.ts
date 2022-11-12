@@ -1,30 +1,30 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
-import { API_QUERY_GET_ARTICLE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { EnrichConfiguration, GET_ARTICLE } from "../../../Api/Request";
 
-export const RESET_SELECTION = "RESET_SELECTION";
-export const REQUEST_ARTICLE = "REQUEST_ARTICLE";
-export const RECEIVE_ARTICLE = "RECEIVE_ARTICLE";
-export interface IResetSelection { type: typeof RESET_SELECTION; }
-export interface IRequestArticleAction { type: typeof REQUEST_ARTICLE; }
-export interface IReceiveArticleAction { type: typeof RECEIVE_ARTICLE; payload: IArticleItem; }
-export type TKnownActions = IResetSelection | IRequestArticleAction | IReceiveArticleAction;
+export const RESET = "RESET_SELECTION";
+export const REQUEST = "REQUEST_ARTICLE";
+export const RECEIVE = "RECEIVE_ARTICLE";
+interface IReset { type: typeof RESET; }
+interface IRequest { type: typeof REQUEST; }
+interface IReceive { type: typeof RECEIVE; payload: IArticleItem; }
+export type TKnownActions = IReset | IRequest | IReceive;
 
 export const ArticleSelectionAction = 
 {
     reset: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
-        dispatch({ type: RESET_SELECTION });
+        dispatch({ type: RESET });
     },
     select: (id: string): IApplicationAction<TKnownActions> => (dispatch) =>
     {
-        dispatch({ type: REQUEST_ARTICLE });
+        dispatch({ type: REQUEST });
 
-        const url = API_QUERY_GET_ARTICLE.replace("{id}", id);
+        const url = GET_ARTICLE.replace("{id}", id);
         axios(url, EnrichConfiguration(
         { 
             method: "GET", 
@@ -36,7 +36,7 @@ export const ArticleSelectionAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: RECEIVE_ARTICLE, payload: response.data });
+                    : dispatch({ type: RECEIVE, payload: response.data });
             }
 
             RaiseError({ dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

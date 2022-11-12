@@ -4,8 +4,8 @@ import { IArticleListing } from "../../States";
 
 import { 
     TKnownActions, 
-    RECEIVE_ARTICLES, 
-    REQUEST_ARTICLES, 
+    RECEIVE, 
+    REQUEST, 
 } from "../../Actions/Articles/articleListing";
 
 export const ArticleListing: Reducer<IArticleListing> = (state: IArticleListing | undefined, incomingAction: Action): IArticleListing => 
@@ -15,13 +15,13 @@ export const ArticleListing: Reducer<IArticleListing> = (state: IArticleListing 
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_ARTICLES:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 articles: state.articles
             };
 
-        case RECEIVE_ARTICLES:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 articles: action.payload

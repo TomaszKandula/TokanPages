@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions,
-    UPDATE_USER_PASSWORD,
-    UPDATE_USER_PASSWORD_CLEAR,
-    UPDATE_USER_PASSWORD_RESPONSE
+    UPDATE,
+    CLEAR,
+    RESPONSE
 } from "../../Actions/Users/userPasswordUpdate";
 
 export const UserPasswordUpdate: 
@@ -19,18 +19,18 @@ export const UserPasswordUpdate:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case UPDATE_USER_PASSWORD_CLEAR:
+        case CLEAR:
             return {
                 status: OperationStatus.notStarted,
                 response: { }
             };
-        case UPDATE_USER_PASSWORD:
+        case UPDATE:
             return { 
                 status: OperationStatus.inProgress,
                 response: state.response
             };
 
-        case UPDATE_USER_PASSWORD_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished,
                 response: action.payload

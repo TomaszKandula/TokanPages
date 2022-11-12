@@ -4,8 +4,8 @@ import { ApplicationDefault } from "../../Configuration";
 import { DialogType } from "../../../Shared/enums";
 
 import { 
-    CLEAR_ERROR, 
-    RAISE_ERROR, 
+    CLEAR, 
+    RAISE, 
     TErrorActions 
 } from "../../Actions/Application/applicationError";
 
@@ -23,13 +23,13 @@ export const ApplicationError:
     const action = incomingAction as TErrorActions;
     switch(action.type)
     {
-        case CLEAR_ERROR:
+        case CLEAR:
             return {
                 errorMessage: NO_ERRORS,
                 errorDetails: { },
                 dialogType: DialogType.toast
             }
-        case RAISE_ERROR:
+        case RAISE:
             return { 
                 errorMessage: RECEIVED_ERROR_MESSAGE, 
                 errorDetails: action.errorDetails,

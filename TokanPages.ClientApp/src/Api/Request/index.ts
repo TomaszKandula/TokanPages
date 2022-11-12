@@ -1,67 +1,64 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { USER_DATA } from "../../Shared/constants";
-import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
-import { IAuthenticateUserResultDto } from "../Models";
-import Validate from "validate.js";
-
-interface IPromiseResult 
-{
-    status: number | null;
-    content: any | null;
-    error: any | null;
-}
-
-export const EnrichConfiguration = (config: AxiosRequestConfig): AxiosRequestConfig => 
-{
-    const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
-    const hasAuthorization = Validate.isObject(userData) && !Validate.isEmpty(userData.userToken);
-    const timezoneOffset = new Date().getTimezoneOffset();
-
-    const withAuthorization: any = 
-    {
-        Authorization: `Bearer ${userData.userToken}`,
-        UserTimezoneOffset: timezoneOffset
-    }
-
-    const withoutAuthorization: any = 
-    {
-        UserTimezoneOffset: timezoneOffset
-    }
-
-    const withAuthorizationConfig = {...config, withCredentials: true, headers: withAuthorization};
-    const withoutAuthorizationConfig = {...config, withCredentials: false, headers: withoutAuthorization};
-
-    return hasAuthorization ? withAuthorizationConfig : withoutAuthorizationConfig;
-}
-
-export const ApiCall = async (configuration: AxiosRequestConfig): Promise<IPromiseResult> =>
-{
-    let result: IPromiseResult = 
-    {
-        status: null,
-        content: null,
-        error: null
-    };
-
-    await axios(configuration)
-    .then(response =>
-    {
-        result = 
-        {
-            status: response.status,
-            content: response.data,
-            error: null
-        }
-    })
-    .catch(error =>
-    {
-        result = 
-        { 
-            status: null,
-            content: null,
-            error: error 
-        };
-    });
-
-    return result;
-}
+export { EnrichConfiguration, ApiCall } from "./services";
+export {
+    GET_ARTICLES,
+    GET_ARTICLE,
+    ADD_ARTICLE,
+    UPDATE_ARTICLE_CONTENT,
+    UPDATE_ARTICLE_COUNT,
+    UPDATE_ARTICLE_LIKES,
+    UPDATE_ARTICLE_VISIBILITY,
+    REMOVE_ARTICLE,
+    GET_USERS,
+    GET_USER,
+    ADD_USER,
+    ACTIVATE_USER,
+    UPDATE_USER,
+    REMOVE_USER,
+    AUTHENTICATE,
+    REAUTHENTICATE,
+    RESET_USER_PASSWORD,
+    UPDATE_USER_PASSWORD,
+    GET_SUBSCRIBERS,
+    GET_SUBSCRIBER,
+    ADD_SUBSCRIBER,
+    UPDATE_SUBSCRIBER,
+    REMOVE_SUBSCRIBER,
+    VERIFY_EMAIL,
+    SEND_MESSAGE,
+    SEND_NEWSLETTER,
+    GET_CONTENT_MANIFEST,
+    GET_NAVIGATION_CONTENT,
+    GET_HEADER_CONTENT,
+    GET_FOOTER_CONTENT,
+    GET_ARTICLE_FEAT_CONTENT,
+    GET_CONTACT_FORM_CONTENT,
+    GET_COOKIES_PROMPT_CONTENT,
+    GET_CLIENTS_CONTENT,
+    GET_FEATURED_CONTENT,
+    GET_FEATURES_CONTENT,
+    GET_NEWSLETTER_CONTENT,
+    GET_RESET_PASSWORD_CONTENT,
+    GET_UPDATE_PASSWORD_CONTENT,
+    GET_SIGNIN_CONTENT,
+    GET_SIGNUP_CONTENT,
+    GET_SIGNOUT_CONTENT,
+    GET_TESTIMONIALS_CONTENT,
+    GET_UNSUBSCRIBE_CONTENT,
+    GET_ACTIVATE_ACCOUNT_CONTENT,
+    GET_UPDATE_SUBSCRIBER_CONTENT,
+    GET_WRONG_PAGE_PROMPT_CONTENT,
+    GET_ACCOUNT_CONTENT,
+    GET_STORY_CONTENT,
+    GET_TERMS_CONTENT,
+    GET_POLICY_CONTENT,
+    GET_IMAGE_URL,
+    GET_IMAGES_URL,
+    GET_ARTICLE_IMAGE_URL,
+    GET_FEATURED_IMAGE_URL,
+    GET_TESTIMONIALS_URL,
+    GET_ICONS_URL,
+    GET_AVATARS_URL,
+    MAIN_ICON,
+    MEDIUM_ICON,
+    ARTICLE_PATH,
+} from "./paths";

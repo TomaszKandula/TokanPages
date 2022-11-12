@@ -5,8 +5,8 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions, 
-    UPDATE_SUBSCRIBER, 
-    UPDATE_SUBSCRIBER_RESPONSE, 
+    UPDATE, 
+    RESPONSE, 
 } from "../../Actions/Subscribers/subscriberUpdate";
 
 export const SubscriberUpdate: 
@@ -18,13 +18,13 @@ export const SubscriberUpdate:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case UPDATE_SUBSCRIBER:
+        case UPDATE:
             return { 
                 status: OperationStatus.notStarted, 
                 response: state.response 
             };
 
-        case UPDATE_SUBSCRIBER_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished, 
                 response: action.payload 

@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_UPDATE_PASSWORD_CONTENT } from "../../../Shared/constants";
+import { GET_UPDATE_PASSWORD_CONTENT } from "../../../Api/Request";
 import { IUpdatePasswordContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_UPDATE_PASSWORD_CONTENT = "REQUEST_UPDATE_PASSWORD_CONTENT";
-export const RECEIVE_UPDATE_PASSWORD_CONTENT = "RECEIVE_UPDATE_PASSWORD_CONTENT";
-export interface IRequestUpdatePasswordContent { type: typeof REQUEST_UPDATE_PASSWORD_CONTENT }
-export interface IReceiveUpdatePasswordContent { type: typeof RECEIVE_UPDATE_PASSWORD_CONTENT, payload: IUpdatePasswordContentDto }
-export type TKnownActions = IRequestUpdatePasswordContent | IReceiveUpdatePasswordContent;
+export const REQUEST = "REQUEST_UPDATE_PASSWORD_CONTENT";
+export const RECEIVE = "RECEIVE_UPDATE_PASSWORD_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IUpdatePasswordContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentUpdatePasswordAction = 
 {
@@ -27,8 +27,8 @@ export const ContentUpdatePasswordAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_UPDATE_PASSWORD_CONTENT, 
-            receive: RECEIVE_UPDATE_PASSWORD_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_UPDATE_PASSWORD_CONTENT 
         });
     }

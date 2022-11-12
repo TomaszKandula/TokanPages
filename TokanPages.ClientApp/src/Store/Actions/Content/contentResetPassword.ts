@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_RESET_PASSWORD_CONTENT } from "../../../Shared/constants";
+import { GET_RESET_PASSWORD_CONTENT } from "../../../Api/Request";
 import { IResetPasswordContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_RESET_PASSWORD_CONTENT = "REQUEST_RESET_PASSWORD_CONTENT";
-export const RECEIVE_RESET_PASSWORD_CONTENT = "RECEIVE_RESET_PASSWORD_CONTENT";
-export interface IRequestResetPasswordContent { type: typeof REQUEST_RESET_PASSWORD_CONTENT }
-export interface IReceiveResetPasswordContent { type: typeof RECEIVE_RESET_PASSWORD_CONTENT, payload: IResetPasswordContentDto }
-export type TKnownActions = IRequestResetPasswordContent | IReceiveResetPasswordContent;
+export const REQUEST = "REQUEST_RESET_PASSWORD_CONTENT";
+export const RECEIVE = "RECEIVE_RESET_PASSWORD_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IResetPasswordContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentResetPasswordAction = 
 {
@@ -27,8 +27,8 @@ export const ContentResetPasswordAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_RESET_PASSWORD_CONTENT, 
-            receive: RECEIVE_RESET_PASSWORD_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_RESET_PASSWORD_CONTENT 
         });
     }
