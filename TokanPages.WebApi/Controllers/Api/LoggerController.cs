@@ -29,7 +29,7 @@ public class LoggerController : ApiBaseController
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(GetLogFilesListQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetLogFilesListQueryResult> GetLogFilesList()
+    public async Task<GetLogFilesListQueryResult> GetList()
         => await Mediator.Send(new GetLogFilesListQuery());
 
     /// <summary>
@@ -41,6 +41,6 @@ public class LoggerController : ApiBaseController
     [Route("{fileName}/[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetLogFileContent([FromRoute] string fileName)
+    public async Task<IActionResult> GetContent([FromRoute] string fileName)
         => await Mediator.Send(new GetLogFileContentQuery { LogFileName = fileName });
 }
