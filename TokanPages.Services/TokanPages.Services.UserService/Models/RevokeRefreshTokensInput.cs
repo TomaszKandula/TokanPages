@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
 
 namespace TokanPages.Services.UserService.Models;
 
+[ExcludeFromCodeCoverage]
 public class RevokeRefreshTokensInput
 {
     public IEnumerable<UserRefreshTokens>? UserRefreshTokens { get; set; }
