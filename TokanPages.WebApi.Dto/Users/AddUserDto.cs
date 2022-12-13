@@ -9,22 +9,22 @@ namespace TokanPages.WebApi.Dto.Users;
 public class AddUserDto
 {
     /// <summary>
-    /// Mandatory
+    /// First name.
     /// </summary>
     public string? FirstName { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Last name.
     /// </summary>
     public string? LastName { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// User email address.
     /// </summary>
     public string? EmailAddress { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// User account password.
     /// </summary>
     public string? Password { get; set; }
 }

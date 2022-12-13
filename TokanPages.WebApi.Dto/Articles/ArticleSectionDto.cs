@@ -4,37 +4,37 @@ using Newtonsoft.Json;
 namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
-/// Section
+/// Section definition.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class ArticleSectionDto
 {
     /// <summary>
-    /// Id
+    /// Id.
     /// </summary>
     [JsonProperty("id")]
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Type
+    /// Type.
     /// </summary>
     [JsonProperty("type")]
     public string Type { get; set; } = "";
         
     /// <summary>
-    /// Value
+    /// Value.
     /// </summary>
     [JsonProperty("value")]
     public dynamic? Value { get; set; }
         
     /// <summary>
-    /// Prop
+    /// Property.
     /// </summary>
     [JsonProperty("prop")]
     public string Prop { get; set; } = "";
         
     /// <summary>
-    /// Text
+    /// Text.
     /// </summary>
     [JsonProperty("text")]
     public string Text { get; set; } = "";

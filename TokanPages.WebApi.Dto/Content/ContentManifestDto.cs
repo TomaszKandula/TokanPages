@@ -4,31 +4,31 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.WebApi.Dto.Content;
 
 /// <summary>
-/// ContentManifestDto
+/// Content manifest definition.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class ContentManifestDto
 {
     /// <summary>
-    /// Manifest version
+    /// Manifest version.
     /// </summary>
     [JsonProperty("version")]
     public string Version { get; set; } = "";
     
     /// <summary>
-    /// Create date and time
+    /// Create date and time.
     /// </summary>
     [JsonProperty("created")]
     public DateTime Created { get; set; }
     
     /// <summary>
-    /// Update date and time
+    /// Update date and time.
     /// </summary>
     [JsonProperty("updated")]
     public DateTime Updated { get; set; }
 
     /// <summary>
-    /// Registered languages
+    /// Registered languages.
     /// </summary>
     [JsonProperty("languages")]
     public List<LanguageItem> Languages { get; set; } = new();

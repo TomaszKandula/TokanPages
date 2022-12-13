@@ -3,43 +3,43 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.WebApi.Dto.Mailer;
 
 /// <summary>
-/// Payload object for email sender
+/// Payload object for email sender.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class SenderPayloadDto
 {
     /// <summary>
-    /// From
+    /// From field.
     /// </summary>
     public string From { get; set; } = "";
 
     /// <summary>
-    /// To
+    /// To field.
     /// </summary>
     public IEnumerable<string>? To { get; set; }
 
     /// <summary>
-    /// Cc
+    /// Cc field.
     /// </summary>
     public IEnumerable<string>? Cc { get; set; }
 
     /// <summary>
-    /// Bcc
+    /// Bcc field.
     /// </summary>
     public IEnumerable<string>? Bcc { get; set; }
 
     /// <summary>
-    /// Subject
+    /// Subject field.
     /// </summary>
     public string Subject { get; set; } = "";
 
     /// <summary>
-    /// Body
+    /// Body field.
     /// </summary>
     public string Body { get; set; } = "";
 
     /// <summary>
-    /// IsHtml
+    /// IsHtml flag.
     /// </summary>
     public bool IsHtml { get; set; } = true;
 }

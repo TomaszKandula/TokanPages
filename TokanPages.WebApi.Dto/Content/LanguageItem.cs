@@ -4,25 +4,25 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.WebApi.Dto.Content;
 
 /// <summary>
-/// Language item
+/// Language item.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class LanguageItem
 {
     /// <summary>
-    /// Id
+    /// Identification.
     /// </summary>
     [JsonProperty("id")]
     public string Id { get; set; } = "";
 
     /// <summary>
-    /// Name
+    /// Name.
     /// </summary>
     [JsonProperty("name")]
     public string Name { get; set; } = "";
     
     /// <summary>
-    /// Default flag
+    /// Default flag.
     /// </summary>
     [JsonProperty("isDefault")]
     public bool IsDefault { get; set; }

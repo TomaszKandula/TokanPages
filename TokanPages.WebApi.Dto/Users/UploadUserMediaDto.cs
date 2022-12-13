@@ -6,23 +6,23 @@ using TokanPages.Backend.Domain.Enums;
 namespace TokanPages.WebApi.Dto.Users;
 
 /// <summary>
-/// Use it when you want to update existing user avatar
+/// Use it when you want to upload media file (image/video).
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UploadUserMediaDto
 {
     /// <summary>
-    /// Optional
+    /// User ID.
     /// </summary>
     public Guid? UserId { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Target (image/video).
     /// </summary>
     public UserMedia MediaTarget { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// File data.
     /// </summary>
     [DataType(DataType.Upload)]
     public IFormFile? Data { get; set; }

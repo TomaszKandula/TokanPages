@@ -3,18 +3,18 @@
 namespace TokanPages.WebApi.Dto.Mailer.Models;
 
 /// <summary>
-/// Subscriber basic data
+/// Subscriber basic data.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class SubscriberInfo
 {
     /// <summary>
-    /// Mandatory
+    /// Email address.
     /// </summary>
     public string Email { get; set; } = "";
 
     /// <summary>
-    /// Mandatory
+    /// Identification.
     /// </summary>
     public string Id { get; set; } = "";
 }
