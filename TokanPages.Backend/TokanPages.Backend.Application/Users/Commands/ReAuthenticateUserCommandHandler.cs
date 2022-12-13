@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Backend.Application.Users.Commands;

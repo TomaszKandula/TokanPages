@@ -18,7 +18,7 @@ using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
@@ -32,6 +32,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Persistence.Database.Initializer;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
+using TokanPages.Services.UserService;
 
 namespace TokanPages.WebApi.Configuration;
 

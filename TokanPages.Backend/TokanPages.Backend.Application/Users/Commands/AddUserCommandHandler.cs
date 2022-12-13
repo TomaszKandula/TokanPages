@@ -10,7 +10,7 @@ using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 

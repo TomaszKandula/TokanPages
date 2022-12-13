@@ -2,7 +2,7 @@
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Services.UserService.Models;
 
-namespace TokanPages.Services.UserService;
+namespace TokanPages.Services.UserService.Abstractions;
 
 public interface IUserService
 {
