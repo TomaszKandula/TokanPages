@@ -8,7 +8,7 @@ using TokanPages.Backend.Shared.Attributes;
 namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
-/// API endpoints definitions for logger
+/// API endpoints definitions for logger.
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
@@ -16,15 +16,15 @@ namespace TokanPages.WebApi.Controllers.Api;
 public class LogsController : ApiBaseController
 {
     /// <summary>
-    /// Logger controller
+    /// Logger controller.
     /// </summary>
     /// <param name="mediator"></param>
     public LogsController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
-    /// Returns list of log files
+    /// Returns list of log files.
     /// </summary>
-    /// <returns>Object</returns>
+    /// <returns>Object.</returns>
     [HttpGet]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
@@ -33,10 +33,10 @@ public class LogsController : ApiBaseController
         => await Mediator.Send(new GetLogFilesListQuery());
 
     /// <summary>
-    /// Returns file with server logs
+    /// Returns file with server logs.
     /// </summary>
-    /// <param name="fileName">Log file name</param>
-    /// <returns>File</returns>
+    /// <param name="fileName">Log file name.</param>
+    /// <returns>File.</returns>
     [HttpGet]
     [Route("{fileName}/[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]

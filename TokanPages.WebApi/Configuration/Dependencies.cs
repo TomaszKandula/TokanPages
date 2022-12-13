@@ -38,17 +38,17 @@ using TokanPages.Services.WebTokenService.Abstractions;
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// Register application dependencies
+/// Register application dependencies.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Dependencies
 {
 	/// <summary>
-	/// Register all services
+	/// Register all services.
 	/// </summary>
-	/// <param name="services">Service collections</param>
-	/// <param name="configuration">Provided configuration</param>
-	/// <param name="environment">Application host environment</param>
+	/// <param name="services">Service collections.</param>
+	/// <param name="configuration">Provided configuration.</param>
+	/// <param name="environment">Application host environment.</param>
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
@@ -58,10 +58,10 @@ public static class Dependencies
 	}
 
 	/// <summary>
-	/// Register common services
+	/// Register common services.
 	/// </summary>
-	/// <param name="services">Service collections</param>
-	/// <param name="configuration">Provided configuration</param>
+	/// <param name="services">Service collections.</param>
+	/// <param name="configuration">Provided configuration.</param>
 	public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		SetupAppSettings(services, configuration);

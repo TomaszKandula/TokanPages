@@ -9,7 +9,7 @@ using TokanPages.Backend.Shared.Resources;
 namespace TokanPages.WebApi.Middleware;
 
 /// <summary>
-/// Exceptions middleware
+/// Exceptions middleware.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class Exceptions
@@ -17,22 +17,22 @@ public class Exceptions
     private readonly RequestDelegate _requestDelegate;
 
     /// <summary>
-    /// Exceptions middleware
+    /// Exceptions middleware.
     /// </summary>
-    /// <param name="requestDelegate">RequestDelegate instance</param>
+    /// <param name="requestDelegate">RequestDelegate instance.</param>
     public Exceptions(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
 
     /// <summary>
     /// Pre-defined application exceptions for status codes:
     /// <list>
-    ///   <item>400 - Bad Request</item>
-    ///   <item>401 - Unauthorized</item>
-    ///   <item>403 - Forbidden</item>
-    ///   <item>422 - Unprocessable Entity</item>
-    ///   <item>500 - Internal Server Error</item>
+    ///   <item>400 - Bad Request.</item>
+    ///   <item>401 - Unauthorized.</item>
+    ///   <item>403 - Forbidden.</item>
+    ///   <item>422 - Unprocessable Entity.</item>
+    ///   <item>500 - Internal Server Error.</item>
     /// </list>
     /// </summary>
-    /// <param name="httpContext">Current HTTP context</param>
+    /// <param name="httpContext">Current HTTP context.</param>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try

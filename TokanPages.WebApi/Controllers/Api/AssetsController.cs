@@ -10,25 +10,25 @@ using TokanPages.WebApi.Dto.Assets;
 namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
-/// API endpoints definitions for assets
+/// API endpoints definitions for assets.
 /// </summary>
 ///<remarks>
-/// It uses Microsoft 'ResponseCache' for caching images/videos
+/// It uses Microsoft 'ResponseCache' for caching images/videos.
 /// </remarks>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]/[action]")]
 public class AssetsController : ApiBaseController
 {
     /// <summary>
-    /// Assets controller
+    /// Assets controller.
     /// </summary>
-    /// <param name="mediator">Mediator instance</param>
+    /// <param name="mediator">Mediator instance.</param>
     public AssetsController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
-    /// Returns list of uploaded assets (files)
+    /// Returns list of uploaded assets (files).
     /// </summary>
-    /// <returns>Object</returns>
+    /// <returns>Object.</returns>
     [HttpGet]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(GetAssetsListQueryResult), StatusCodes.Status200OK)]
@@ -36,10 +36,10 @@ public class AssetsController : ApiBaseController
         => await Mediator.Send(new GetAssetsListQuery());
 
     /// <summary>
-    /// Returns storage asset file
+    /// Returns storage asset file.
     /// </summary>
-    /// <param name="blobName">Full asset name</param>
-    /// <returns>File</returns>
+    /// <param name="blobName">Full asset name.</param>
+    /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "blobName" })]
@@ -48,10 +48,10 @@ public class AssetsController : ApiBaseController
         => await Mediator.Send(new GetSingleAssetQuery { BlobName = blobName });
 
     /// <summary>
-    /// Returns article asset (file associated with an article)
+    /// Returns article asset (file associated with an article).
     /// </summary>
-    /// <param name="id">Article ID</param>
-    /// <param name="assetName">Full asset name</param>
+    /// <param name="id">Article ID.</param>
+    /// <param name="assetName">Full asset name.</param>
     /// <returns>File</returns>
     [HttpGet]
     [ETagFilter]
@@ -61,13 +61,13 @@ public class AssetsController : ApiBaseController
         => await Mediator.Send(new GetArticleAssetQuery { Id = id, AssetName = assetName });
 
     /// <summary>
-    /// Allow to upload a single asset to an Azure Storage
+    /// Allow to upload a single asset to an Azure Storage.
     /// </summary>
     /// <remarks>
-    /// Requires: Roles.EverydayUser
+    /// Requires: Roles.EverydayUser.
     /// </remarks>
-    /// <param name="payLoad">Binary data to be uploaded</param>
-    /// <returns>Full blob name of uploaded asset</returns>
+    /// <param name="payLoad">Binary data to be uploaded.</param>
+    /// <returns>Full blob name of uploaded asset.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(AddSingleAssetCommandResult), StatusCodes.Status200OK)]

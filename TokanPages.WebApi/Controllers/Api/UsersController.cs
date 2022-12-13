@@ -12,7 +12,7 @@ using TokanPages.WebApi.Dto.Users;
 namespace TokanPages.WebApi.Controllers.Api;
 
 /// <summary>
-/// API endpoints definitions for users
+/// API endpoints definitions for users.
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
@@ -26,9 +26,9 @@ public class UsersController : ApiBaseController
         : base(mediator) => _usersCache = usersCache;
 
     /// <summary>
-    /// Returns visitor count
+    /// Returns visitor count.
     /// </summary>
-    /// <returns>Object</returns>
+    /// <returns>Object.</returns>
     [HttpGet]
     [Route("[action]")]
     [ProducesResponseType(typeof(GetUserVisitCountQueryResult), StatusCodes.Status200OK)]
@@ -36,10 +36,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(new GetUserVisitCountQuery());
 
     /// <summary>
-    /// Authenticates user
+    /// Authenticates user.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>Object</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
@@ -47,10 +47,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payLoad));
 
     /// <summary>
-    /// Re-authenticates user
+    /// Re-authenticates user.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>Object</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(ReAuthenticateUserCommandResult), StatusCodes.Status200OK)]
@@ -58,10 +58,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
 
     /// <summary>
-    /// Revokes existing user refresh token
+    /// Revokes existing user refresh token.
     /// </summary>
-    /// <param name="payLoad">Refresh Token</param>
-    /// <returns>Object</returns>
+    /// <param name="payLoad">Refresh Token.</param>
+    /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
@@ -70,10 +70,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));
 
     /// <summary>
-    /// Activates existing user account
+    /// Activates existing user account.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>MediatR unit value</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
@@ -81,10 +81,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payLoad));
 
     /// <summary>
-    /// Resets existing user password
+    /// Resets existing user password.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>MediatR unit value</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
@@ -92,10 +92,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payLoad));
 
     /// <summary>
-    /// Updates existing user password
+    /// Updates existing user password.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>MediatR unit value</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
@@ -103,10 +103,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
 
     /// <summary>
-    /// Returns all registered users
+    /// Returns all registered users.
     /// </summary>
-    /// <param name="noCache">Enable/disable REDIS cache</param>
-    /// <returns>Object</returns>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>Object.</returns>
     [HttpGet]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
@@ -115,11 +115,11 @@ public class UsersController : ApiBaseController
         => await _usersCache.GetUsers(noCache);
 
     /// <summary>
-    /// Returns registered user
+    /// Returns registered user.
     /// </summary>
-    /// <param name="id">User ID</param>
-    /// <param name="noCache">Enable/disable REDIS cache</param>
-    /// <returns>Object</returns>
+    /// <param name="id">User ID.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>Object.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
@@ -128,10 +128,10 @@ public class UsersController : ApiBaseController
         => await _usersCache.GetUser(id, noCache);
 
     /// <summary>
-    /// Adds new user account
+    /// Adds new user account.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>Guid</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>Guid.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
@@ -139,10 +139,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));
 
     /// <summary>
-    /// Updates existing user account
+    /// Updates existing user account.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>MediatR unit value</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
@@ -151,10 +151,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payLoad));
 
     /// <summary>
-    /// Removes existing user account
+    /// Removes existing user account.
     /// </summary>
-    /// <param name="payLoad">User data</param>
-    /// <returns>MediatR unit value</returns>
+    /// <param name="payLoad">User data.</param>
+    /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
@@ -163,11 +163,11 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
 
     /// <summary>
-    /// Returns user media file by its name
+    /// Returns user media file by its name.
     /// </summary>
-    /// <param name="id">User ID</param>
-    /// <param name="blobName">Full blob name (case sensitive)</param>
-    /// <returns>File</returns>
+    /// <param name="id">User ID.</param>
+    /// <param name="blobName">Full blob name (case sensitive).</param>
+    /// <returns>File.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
@@ -178,10 +178,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(new GetUserMediaQuery { Id = id, BlobName = blobName });
 
     /// <summary>
-    /// Allows to upload media file (image/video)
+    /// Allows to upload media file (image/video).
     /// </summary>
-    /// <param name="payload">File data</param>
-    /// <returns>Object with media name</returns>
+    /// <param name="payload">File data.</param>
+    /// <returns>Object with media name.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
@@ -190,10 +190,10 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToUploadUserMediaCommand(payload));
 
     /// <summary>
-    /// Removes uploaded user media file (image/video)
+    /// Removes uploaded user media file (image/video).
     /// </summary>
-    /// <param name="payload">Unique full blob name</param>
-    /// <returns>MediatR unit value</returns>
+    /// <param name="payload">Unique full blob name.</param>
+    /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]

@@ -7,7 +7,7 @@ using TokanPages.Persistence.Database.Initializer;
 namespace TokanPages.WebApi;
 
 /// <summary>
-/// Program
+/// Program.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
@@ -22,10 +22,10 @@ public static class Program
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
     /// <summary>
-    /// Main entry point
+    /// Main entry point.
     /// </summary>
-    /// <param name="args">Argument array</param>
-    /// <returns>Integer</returns>
+    /// <param name="args">Argument array.</param>
+    /// <returns>Integer.</returns>
     public static int Main(string[] args)
     {
         try

@@ -5,16 +5,16 @@ using TokanPages.WebApi.Dto.Articles;
 namespace TokanPages.WebApi.Controllers.Mappers;
 
 /// <summary>
-/// Articles mapper
+/// Articles mapper.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class ArticlesMapper
 {
     /// <summary>
-    /// Maps request DTO to given command 
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">AddArticleDto</param>
-    /// <returns>AddArticleCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static AddArticleCommand MapToAddArticleCommand(AddArticleDto model) => new()
     {
         Title = model.Title,
@@ -24,10 +24,10 @@ public static class ArticlesMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command 
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UpdateArticleContentDto</param>
-    /// <returns>UpdateArticleContentCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UpdateArticleContentCommand MapToUpdateArticleCommand(UpdateArticleContentDto model) => new()
     {
         Id = model.Id,
@@ -38,20 +38,20 @@ public static class ArticlesMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command 
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UpdateArticleCountDto</param>
-    /// <returns>UpdateArticleCountCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UpdateArticleCountCommand MapToUpdateArticleCommand(UpdateArticleCountDto model) => new()
     {
         Id = model.Id
     };
 
     /// <summary>
-    /// Maps request DTO to given command 
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UpdateArticleLikesDto</param>
-    /// <returns>UpdateArticleLikesCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UpdateArticleLikesCommand MapToUpdateArticleCommand(UpdateArticleLikesDto model) => new() 
     {
         Id = model.Id,
@@ -59,10 +59,10 @@ public static class ArticlesMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command 
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UpdateArticleVisibilityDto</param>
-    /// <returns>UpdateArticleVisibilityCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UpdateArticleVisibilityCommand MapToUpdateArticleCommand(UpdateArticleVisibilityDto model) => new()
     {
         Id = model.Id, 
@@ -70,10 +70,10 @@ public static class ArticlesMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command 
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">RemoveArticleDto</param>
-    /// <returns>RemoveArticleCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static RemoveArticleCommand MapToRemoveArticleCommand(RemoveArticleDto model) => new() 
     { 
         Id = model.Id

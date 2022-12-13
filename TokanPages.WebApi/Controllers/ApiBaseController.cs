@@ -6,7 +6,7 @@ using TokanPages.Backend.Core.Errors;
 namespace TokanPages.WebApi.Controllers;
 
 /// <summary>
-/// Base controller with MediatR
+/// Base controller with MediatR.
 /// </summary>
 [ApiController]
 [AllowAnonymous]
@@ -19,13 +19,13 @@ namespace TokanPages.WebApi.Controllers;
 public class ApiBaseController : ControllerBase
 {
     /// <summary>
-    /// Mediator instance
+    /// Mediator instance.
     /// </summary>
     protected readonly IMediator Mediator;
 
     /// <summary>
-    /// Base controller
+    /// Base controller.
     /// </summary>
-    /// <param name="mediator">Mediator instance</param>
+    /// <param name="mediator">Mediator instance.</param>
     public ApiBaseController(IMediator mediator) => Mediator = mediator;
 }
