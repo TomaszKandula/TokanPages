@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Errors;
 using TokanPages.Backend.Shared.Resources;
@@ -71,7 +72,8 @@ public class Exceptions
 
     private static Task WriteErrorResponse(HttpContext httpContext, ApplicationError applicationError, HttpStatusCode statusCode)
     {
-        var result = JsonConvert.SerializeObject(applicationError);
+        var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+        var result = JsonConvert.SerializeObject(applicationError, Formatting.None, settings);
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = (int)statusCode;
         return httpContext.Response.WriteAsync(result);
