@@ -1,6 +1,4 @@
-using TokanPages.Services.EmailSenderService.Abstractions;
-
-namespace TokanPages.Services.EmailSenderService;
+namespace TokanPages.Services.EmailSenderService.Abstractions;
 
 public interface IEmailSenderService
 {

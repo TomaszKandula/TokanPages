@@ -5,7 +5,7 @@ using TokanPages.Backend.Application.Mailer.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.WebApi.Dto.Mailer.Models;
 using Xunit;
 
