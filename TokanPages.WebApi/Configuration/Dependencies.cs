@@ -31,7 +31,7 @@ using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.Database.Initializer;
 using TokanPages.Services.EmailSenderService.Abstractions;
-using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
 
 namespace TokanPages.WebApi.Configuration;
 

@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Content.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
 
 namespace TokanPages.Persistence.Caching;
 
