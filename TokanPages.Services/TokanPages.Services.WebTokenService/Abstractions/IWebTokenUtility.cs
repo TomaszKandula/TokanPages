@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using TokanPages.Services.WebTokenService.Models;
 
-namespace TokanPages.Services.WebTokenService;
+namespace TokanPages.Services.WebTokenService.Abstractions;
 
 public interface IWebTokenUtility
 {

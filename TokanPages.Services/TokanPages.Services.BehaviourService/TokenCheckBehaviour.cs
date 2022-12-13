@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Attributes;
-using TokanPages.Services.WebTokenService.Validation;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Services.BehaviourService;
 

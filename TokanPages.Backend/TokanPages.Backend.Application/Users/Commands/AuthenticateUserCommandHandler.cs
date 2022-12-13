@@ -9,7 +9,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
-using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 

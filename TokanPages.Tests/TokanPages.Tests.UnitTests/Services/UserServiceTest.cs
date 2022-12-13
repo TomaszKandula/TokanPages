@@ -11,7 +11,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
-using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Roles = TokanPages.Backend.Domain.Enums.Roles;
 using Permissions = TokanPages.Backend.Domain.Enums.Permissions;

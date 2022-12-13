@@ -10,7 +10,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Xunit;
 

@@ -33,6 +33,7 @@ using TokanPages.Persistence.Database.Initializer;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.WebApi.Configuration;
 

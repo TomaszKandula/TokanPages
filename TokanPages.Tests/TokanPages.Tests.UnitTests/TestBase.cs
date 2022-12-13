@@ -6,6 +6,7 @@ using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Tests.UnitTests;
 
