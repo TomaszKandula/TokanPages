@@ -1,4 +1,6 @@
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokanPages.Persistence.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
@@ -42,6 +44,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var bytes = memoryStream.ToArray();
         var strings = Encoding.UTF8.GetString(bytes);
  
-        return _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings);
+        var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+        return _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
     }
 }

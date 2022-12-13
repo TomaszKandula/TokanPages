@@ -1,5 +1,7 @@
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -34,8 +36,9 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var user = await _userService.GetUser(cancellationToken);
         var isAnonymousUser = user == null;
 
+        var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
-        var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString);
+        var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString, settings);
 
         var userLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
