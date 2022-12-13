@@ -38,7 +38,7 @@ public class UsersCache : IUsersCache
         if (noCache)
             return await _mediator.Send(new GetAllUsersQuery());
 
-        var key = $"{_environment.EnvironmentName}:users/";
+        var key = $"{_environment.EnvironmentName}:users";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllUsersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -54,7 +54,7 @@ public class UsersCache : IUsersCache
         if (noCache)
             return await _mediator.Send(new GetUserQuery { Id = id });
 
-        var key = $"{_environment.EnvironmentName}:user/{id}";
+        var key = $"{_environment.EnvironmentName}:user:{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetUserQueryResult>(key);
         if (value is not null) return value;
 

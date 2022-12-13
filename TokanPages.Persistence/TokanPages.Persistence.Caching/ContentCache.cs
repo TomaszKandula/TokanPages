@@ -38,7 +38,7 @@ public class ContentCache : IContentCache
         if (noCache)
             return await _mediator.Send(new GetContentManifestQuery());
 
-        var key = $"{_environment.EnvironmentName}:content/component/manifest";
+        var key = $"{_environment.EnvironmentName}:content:component:manifest";
         var value = await _redisDistributedCache.GetObjectAsync<GetContentManifestQueryResult>(key);
         if (value is not null) return value;
 
@@ -54,7 +54,7 @@ public class ContentCache : IContentCache
         if (noCache)
             return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
 
-        var key = $"{_environment.EnvironmentName}:content/{type}/{name}/{language}";
+        var key = $"{_environment.EnvironmentName}:content:{type}:{name}:{language}";
         var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
         if (value is not null) return value;
 

@@ -38,7 +38,7 @@ public class SubscribersCache : ISubscribersCache
         if (noCache)
             return await _mediator.Send(new GetAllSubscribersQuery());
 
-        var key = $"{_environment.EnvironmentName}:subscribers/";
+        var key = $"{_environment.EnvironmentName}:subscribers";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllSubscribersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -54,7 +54,7 @@ public class SubscribersCache : ISubscribersCache
         if (noCache)
             return await _mediator.Send(new GetSubscriberQuery { Id = id });
 
-        var key = $"{_environment.EnvironmentName}:subscriber/{id}";
+        var key = $"{_environment.EnvironmentName}:subscriber:{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetSubscriberQueryResult>(key);
         if (value is not null) return value;
 
