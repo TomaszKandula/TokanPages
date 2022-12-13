@@ -4,7 +4,7 @@ namespace TokanPages.Services.EmailSenderService;
 
 public interface IEmailSenderService
 {
-    Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default);
+    Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default);
 
     Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default);
 

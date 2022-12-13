@@ -2,7 +2,7 @@ using TokanPages.Services.EmailSenderService.Abstractions;
 
 namespace TokanPages.Services.EmailSenderService.Models;
 
-public class CreateUserConfiguration : IConfiguration
+public class CreateUserConfiguration : IEmailConfiguration
 {
     public string EmailAddress { get; set; } = "";
     

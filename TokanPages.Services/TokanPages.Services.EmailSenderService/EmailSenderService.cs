@@ -23,7 +23,7 @@ public class EmailSenderService : IEmailSenderService
         _applicationSettings = applicationSettings;
     }
 
-    public async Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default)
+    public async Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var origin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
         var baseUrl = _applicationSettings.AzureStorage.BaseUrl;

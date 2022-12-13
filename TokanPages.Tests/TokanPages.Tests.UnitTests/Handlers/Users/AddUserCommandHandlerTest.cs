@@ -100,7 +100,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Returns(mockedPassword);
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var handler = new AddUserCommandHandler(
@@ -178,7 +178,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Returns(DateTimeService.Now);
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         mockedUserService
@@ -254,7 +254,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Returns("MockedPassword");
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var handler = new AddUserCommandHandler(

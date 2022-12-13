@@ -48,7 +48,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             .Returns(-120);
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
