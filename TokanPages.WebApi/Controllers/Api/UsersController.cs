@@ -16,6 +16,7 @@ namespace TokanPages.WebApi.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class UsersController : ApiBaseController
 {
     private readonly IUsersCache _usersCache;
@@ -29,6 +30,7 @@ public class UsersController : ApiBaseController
     /// </summary>
     /// <returns>Object</returns>
     [HttpGet]
+    [Route("[action]")]
     [ProducesResponseType(typeof(GetUserVisitCountQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserVisitCountQueryResult> GetVisitCount()
         => await Mediator.Send(new GetUserVisitCountQuery());
@@ -39,6 +41,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>Object</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payLoad));
@@ -49,6 +52,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>Object</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(ReAuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
@@ -59,6 +63,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">Refresh Token</param>
     /// <returns>Object</returns>
     [HttpPost]
+    [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payLoad)
@@ -70,6 +75,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payLoad));
@@ -80,6 +86,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto payLoad) 
         => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payLoad));
@@ -90,6 +97,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto payLoad) 
         => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
@@ -100,6 +108,7 @@ public class UsersController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
     [HttpGet]
+    [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(IEnumerable<GetAllUsersQueryResult>), StatusCodes.Status200OK)]
     public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
@@ -111,7 +120,8 @@ public class UsersController : ApiBaseController
     /// <param name="id">User ID</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    [HttpGet("{id:guid}")]
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(GetUserQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id, [FromQuery] bool noCache = false)
@@ -123,6 +133,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>Guid</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     public async Task<Guid> AddUser([FromBody] AddUserDto payLoad)
         => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));
@@ -133,6 +144,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payLoad)
@@ -144,6 +156,7 @@ public class UsersController : ApiBaseController
     /// <param name="payLoad">User data</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payLoad)
@@ -155,7 +168,8 @@ public class UsersController : ApiBaseController
     /// <param name="id">User ID</param>
     /// <param name="blobName">Full blob name (case sensitive)</param>
     /// <returns>File</returns>
-    [HttpGet("{id:guid}")]
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ETagFilter]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "id", "blobName" })]
@@ -169,6 +183,7 @@ public class UsersController : ApiBaseController
     /// <param name="payload">File data</param>
     /// <returns>Object with media name</returns>
     [HttpPost]
+    [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(UploadUserMediaCommandResult), StatusCodes.Status200OK)]
     public async Task<UploadUserMediaCommandResult> UploadUserMedia([FromForm] UploadUserMediaDto payload)
@@ -180,6 +195,7 @@ public class UsersController : ApiBaseController
     /// <param name="payload">Unique full blob name</param>
     /// <returns>MediatR unit value</returns>
     [HttpPost]
+    [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUserMedia([FromForm] RemoveUserMediaDto payload)

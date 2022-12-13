@@ -12,6 +12,7 @@ namespace TokanPages.WebApi.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class LoggerController : ApiBaseController
 {
     /// <summary>
@@ -25,6 +26,7 @@ public class LoggerController : ApiBaseController
     /// </summary>
     /// <returns>Object</returns>
     [HttpGet]
+    [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(GetLogFilesListQueryResult), StatusCodes.Status200OK)]
     public async Task<GetLogFilesListQueryResult> GetLogFilesList()
@@ -35,7 +37,8 @@ public class LoggerController : ApiBaseController
     /// </summary>
     /// <param name="fileName">Log file name</param>
     /// <returns>File</returns>
-    [HttpGet("{fileName}")]
+    [HttpGet]
+    [Route("{fileName}/[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetLogFileContent([FromRoute] string fileName)

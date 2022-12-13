@@ -13,6 +13,7 @@ namespace TokanPages.WebApi.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]/[action]")]
 public class MailerController : ApiBaseController
 {
     /// <summary>

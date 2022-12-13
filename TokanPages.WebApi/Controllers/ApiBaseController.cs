@@ -10,7 +10,6 @@ namespace TokanPages.WebApi.Controllers;
 /// </summary>
 [ApiController]
 [AllowAnonymous]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
 [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
 [ProducesResponseType(typeof(ApplicationError), StatusCodes.Status400BadRequest)]
 [ProducesResponseType(typeof(ApplicationError), StatusCodes.Status401Unauthorized)]
