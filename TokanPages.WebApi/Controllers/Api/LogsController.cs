@@ -13,13 +13,13 @@ namespace TokanPages.WebApi.Controllers.Api;
 [Authorize]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class LoggerController : ApiBaseController
+public class LogsController : ApiBaseController
 {
     /// <summary>
     /// Logger controller
     /// </summary>
     /// <param name="mediator"></param>
-    public LoggerController(IMediator mediator) : base(mediator) { }
+    public LogsController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
     /// Returns list of log files
