@@ -2,8 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Shared.Services;
-using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Shared.ApplicationSettings;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService;
 

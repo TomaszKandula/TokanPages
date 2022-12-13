@@ -8,7 +8,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService;

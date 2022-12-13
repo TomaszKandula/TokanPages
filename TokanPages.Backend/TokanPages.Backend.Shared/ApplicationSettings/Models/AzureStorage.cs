@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Shared.Services.Models;
+namespace TokanPages.Backend.Shared.ApplicationSettings.Models;
 
 [ExcludeFromCodeCoverage]
 public class AzureStorage
