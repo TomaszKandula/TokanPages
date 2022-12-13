@@ -50,8 +50,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY), ErrorCodes.COMPONENT_CONTENT_EMPTY);
 
         var parsed = _jsonSerializer.Parse(componentContent);
-        var selection = $"{request.Name}-{selectedLanguage}";
-        var content = parsed.SelectToken(selection);
+        var content = parsed.SelectToken(selectedLanguage);
 
         if (content == null)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN), ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN);
