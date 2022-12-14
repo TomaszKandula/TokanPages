@@ -2,8 +2,8 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Assets.Commands;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
-using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Shared.ApplicationSettings;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Validators.Assets;

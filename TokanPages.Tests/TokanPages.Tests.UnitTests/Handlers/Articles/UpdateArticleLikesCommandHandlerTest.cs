@@ -4,8 +4,8 @@ using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Shared.Services.Models;
-using TokanPages.Services.UserService;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
 

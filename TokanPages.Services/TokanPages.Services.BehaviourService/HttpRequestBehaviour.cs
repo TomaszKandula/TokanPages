@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Services.BehaviourService;
 

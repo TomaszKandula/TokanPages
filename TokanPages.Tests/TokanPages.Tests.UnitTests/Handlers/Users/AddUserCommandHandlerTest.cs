@@ -6,14 +6,13 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Factory;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.CipheringService;
-using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
@@ -100,7 +99,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Returns(mockedPassword);
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var handler = new AddUserCommandHandler(
@@ -178,7 +177,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Returns(DateTimeService.Now);
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         mockedUserService
@@ -254,7 +253,7 @@ public class AddUserCommandHandlerTest : TestBase
             .Returns("MockedPassword");
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var handler = new AddUserCommandHandler(

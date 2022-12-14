@@ -2,7 +2,7 @@ using System.Text;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService;
@@ -23,7 +23,7 @@ public class EmailSenderService : IEmailSenderService
         _applicationSettings = applicationSettings;
     }
 
-    public async Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default)
+    public async Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var origin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
         var baseUrl = _applicationSettings.AzureStorage.BaseUrl;

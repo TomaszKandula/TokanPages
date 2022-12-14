@@ -3,53 +3,53 @@
 namespace TokanPages.WebApi.Dto.Users;
 
 /// <summary>
-/// Use it when you want to update existing user 
+/// Use it when you want to update existing user.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UpdateUserDto
 {
     /// <summary>
-    /// Optional
+    /// Identification.
     /// </summary>
     public Guid? Id { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Activation flag.
     /// </summary>
     public bool IsActivated { get; set; }
 
     /// <summary>
-    /// Optional
+    /// User alias.
     /// </summary>
     public string? UserAlias { get; set; }
 
     /// <summary>
-    /// Optional
+    /// First name.
     /// </summary>
     public string? FirstName { get; set; }
 
     /// <summary>
-    /// Optional
+    /// Last name.
     /// </summary>
     public string? LastName { get; set; }
 
     /// <summary>
-    /// Optional
+    /// User email address.
     /// </summary>
     public string? EmailAddress { get; set; }
 
     /// <summary>
-    /// Optional
+    /// User 'about section' text.
     /// </summary>
     public string? UserAboutText { get; set; }
 
     /// <summary>
-    /// Optional
+    /// User image name/path.
     /// </summary>
     public string? UserImageName { get; set; }
 
     /// <summary>
-    /// Optional
+    /// User video name/path.
     /// </summary>
     public string? UserVideoName { get; set; }
 }

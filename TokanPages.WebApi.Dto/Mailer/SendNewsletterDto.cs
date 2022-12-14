@@ -4,23 +4,23 @@ using TokanPages.WebApi.Dto.Mailer.Models;
 namespace TokanPages.WebApi.Dto.Mailer;
 
 /// <summary>
-/// Use it when you want to send newsletter to many subscribers
+/// Use it when you want to send newsletter to many subscribers.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class SendNewsletterDto
 {
     /// <summary>
-    /// Mandatory
+    /// List of subscriber details.
     /// </summary>
     public List<SubscriberInfo> SubscriberInfo { get; set; } = new();
 
     /// <summary>
-    /// Mandatory
+    /// Subject field.
     /// </summary>
     public string Subject { get; set; } = "";
 
     /// <summary>
-    /// Mandatory
+    /// Message content.
     /// </summary>
     public string Message { get; set; } = "";
 }

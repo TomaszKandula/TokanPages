@@ -4,7 +4,7 @@ using TokanPages.Backend.Application.Subscribers.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
 

@@ -1,4 +1,4 @@
-namespace TokanPages.Services.WebTokenService.Validation;
+namespace TokanPages.Services.WebTokenService.Abstractions;
 
 public interface IWebTokenValidation
 {

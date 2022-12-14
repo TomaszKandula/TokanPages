@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
-using TokanPages.Backend.Shared.Configuration;
+using TokanPages.Backend.Shared.Services;
 
 namespace TokanPages.Backend.Shared.Attributes;
 

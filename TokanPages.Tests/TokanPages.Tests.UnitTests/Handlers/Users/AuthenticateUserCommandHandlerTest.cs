@@ -7,10 +7,10 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.CipheringService;
-using TokanPages.Services.UserService;
-using TokanPages.Services.WebTokenService;
+using TokanPages.Services.UserService.Abstractions;
+using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Xunit;
 

@@ -42,7 +42,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     {
         // Arrange
         var userId = Subscriber1.Id;
-        var uri = $"{BaseUriSubscribers}/GetSubscriber/{userId}/?noCache=true";
+        var uri = $"{BaseUriSubscribers}/{userId}/GetSubscriber/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
@@ -60,7 +60,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
     public async Task GivenIncorrectId_WhenGetSubscriber_ShouldReturnJsonObjectWithError()
     {
         // Arrange
-        const string uri = $"{BaseUriSubscribers}/GetSubscriber/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/?noCache=true";
+        const string uri = $"{BaseUriSubscribers}/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/GetSubscriber/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
         var httpClient = _webApplicationFactory

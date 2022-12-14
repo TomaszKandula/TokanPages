@@ -6,7 +6,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.HttpClientService.Abstractions;
-using TokanPages.Services.HttpClientService.Authentication;
 using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.HttpClientService;

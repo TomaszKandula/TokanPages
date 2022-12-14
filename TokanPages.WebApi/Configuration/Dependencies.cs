@@ -7,9 +7,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using TokanPages.Backend.Domain.Enums;
-using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Backend.Shared.Constants;
-using TokanPages.Backend.Shared.Services.Models;
+using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
@@ -18,7 +18,7 @@ using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
@@ -30,22 +30,26 @@ using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.Database.Initializer;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
+using TokanPages.Services.UserService;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// Register application dependencies
+/// Register application dependencies.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Dependencies
 {
 	/// <summary>
-	/// Register all services
+	/// Register all services.
 	/// </summary>
-	/// <param name="services">Service collections</param>
-	/// <param name="configuration">Provided configuration</param>
-	/// <param name="environment">Application host environment</param>
+	/// <param name="services">Service collections.</param>
+	/// <param name="configuration">Provided configuration.</param>
+	/// <param name="environment">Application host environment.</param>
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
@@ -55,10 +59,10 @@ public static class Dependencies
 	}
 
 	/// <summary>
-	/// Register common services
+	/// Register common services.
 	/// </summary>
-	/// <param name="services">Service collections</param>
-	/// <param name="configuration">Provided configuration</param>
+	/// <param name="services">Service collections.</param>
+	/// <param name="configuration">Provided configuration.</param>
 	public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
 	{
 		SetupAppSettings(services, configuration);

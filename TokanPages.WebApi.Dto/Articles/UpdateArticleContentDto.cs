@@ -3,33 +3,33 @@
 namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to update existing content
+/// Use it when you want to update existing content.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UpdateArticleContentDto
 {
     /// <summary>
-    /// Mandatory
+    /// Identification.
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Title.
     /// </summary>
     public string? Title { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Description.
     /// </summary>
     public string? Description { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Text to upload.
     /// </summary>
     public string? TextToUpload { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Image name to upload.
     /// </summary>
     public string? ImageToUpload { get; set; }
 }

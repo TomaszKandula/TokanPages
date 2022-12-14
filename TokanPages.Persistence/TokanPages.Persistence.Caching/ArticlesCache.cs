@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
 
 namespace TokanPages.Persistence.Caching;
 
@@ -38,7 +38,7 @@ public class ArticlesCache : IArticlesCache
         if (noCache)
             return await _mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
 
-        var key = $"{_environment.EnvironmentName}:articles/";
+        var key = $"{_environment.EnvironmentName}:articles";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllArticlesQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -54,7 +54,7 @@ public class ArticlesCache : IArticlesCache
         if (noCache)
             return await _mediator.Send(new GetArticleQuery { Id = id});
 
-        var key = $"{_environment.EnvironmentName}:article/{id}";
+        var key = $"{_environment.EnvironmentName}:article:{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetArticleQueryResult>(key);
         if (value is not null) return value;
 

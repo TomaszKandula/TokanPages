@@ -9,7 +9,7 @@ const API_CONTENT_URI = `${API_BASE_URI}/content`;
 const API_ASSETS_URI = `${API_BASE_URI}/assets`;
 
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getAllArticles`;
-export const GET_ARTICLE = `${API_ARTICLES_URI}/getArticle/{id}`;
+export const GET_ARTICLE = `${API_ARTICLES_URI}/{id}/getArticle`;
 export const ADD_ARTICLE = `${API_ARTICLES_URI}/addArticle`;
 export const UPDATE_ARTICLE_CONTENT = `${API_ARTICLES_URI}/updateArticleContent`;
 export const UPDATE_ARTICLE_COUNT = `${API_ARTICLES_URI}/updateArticleCount`;
@@ -18,7 +18,7 @@ export const UPDATE_ARTICLE_VISIBILITY = `${API_ARTICLES_URI}/updateArticleVisib
 export const REMOVE_ARTICLE = `${API_ARTICLES_URI}/removeArticle`;
 
 export const GET_USERS = `${API_USERS_URI}/getAllUsers`;
-export const GET_USER = `${API_USERS_URI}/getUser/{id}`;
+export const GET_USER = `${API_USERS_URI}/{id}/getUser`;
 export const ADD_USER = `${API_USERS_URI}/addUser`;
 export const ACTIVATE_USER = `${API_USERS_URI}/activateUser`;
 export const UPDATE_USER = `${API_USERS_URI}/updateUser`;
@@ -29,7 +29,7 @@ export const RESET_USER_PASSWORD = `${API_USERS_URI}/resetUserPassword`;
 export const UPDATE_USER_PASSWORD = `${API_USERS_URI}/updateUserPassword`;
 
 export const GET_SUBSCRIBERS = `${API_SUBSCRIBERS_URI}/getAllSubscribers`;
-export const GET_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/getSubscriber/{id}`;
+export const GET_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/{id}/getSubscriber`;
 export const ADD_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/addSubscriber`;
 export const UPDATE_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/updateSubscriber`;
 export const REMOVE_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/removeSubscriber`;

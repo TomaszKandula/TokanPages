@@ -1,10 +1,8 @@
-using TokanPages.Services.EmailSenderService.Abstractions;
-
-namespace TokanPages.Services.EmailSenderService;
+namespace TokanPages.Services.EmailSenderService.Abstractions;
 
 public interface IEmailSenderService
 {
-    Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default);
+    Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default);
 
     Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default);
 

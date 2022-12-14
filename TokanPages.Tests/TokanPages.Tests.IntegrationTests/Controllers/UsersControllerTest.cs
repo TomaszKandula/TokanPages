@@ -313,7 +313,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     {
         // Arrange
         var userId = User1.Id;
-        var uri = $"{BaseUriUsers}/GetUser/{userId}/?noCache=true";
+        var uri = $"{BaseUriUsers}/{userId}/GetUser/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
@@ -343,7 +343,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     {
         // Arrange
         var userId = User1.Id;
-        var uri = $"{BaseUriUsers}/GetUser/{userId}/?noCache=true";
+        var uri = $"{BaseUriUsers}/{userId}/GetUser/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
@@ -368,7 +368,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     public async Task GivenInvalidIdAndValidJwt_WhenGetUser_ShouldReturnJsonObjectWithError()
     {
         // Arrange
-        const string uri = $"{BaseUriUsers}/GetUser/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/";
+        const string uri = $"{BaseUriUsers}/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/GetUser/";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))

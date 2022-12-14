@@ -3,28 +3,28 @@
 namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to add article
+/// Use it when you want to add new article.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class AddArticleDto
 {
     /// <summary>
-    /// Mandatory
+    /// Title.
     /// </summary>
     public string? Title { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Description.
     /// </summary>
     public string? Description { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Text to upload.
     /// </summary>
     public string? TextToUpload { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Image name to upload.
     /// </summary>
     public string? ImageToUpload { get; set; }
 }

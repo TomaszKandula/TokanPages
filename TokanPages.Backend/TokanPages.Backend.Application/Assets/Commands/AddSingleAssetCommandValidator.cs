@@ -1,6 +1,6 @@
 using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
+using TokanPages.Backend.Shared.ApplicationSettings;
 
 namespace TokanPages.Backend.Application.Assets.Commands;
 

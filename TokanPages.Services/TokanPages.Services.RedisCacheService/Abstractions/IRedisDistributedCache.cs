@@ -1,4 +1,4 @@
-namespace TokanPages.Services.RedisCacheService;
+namespace TokanPages.Services.RedisCacheService.Abstractions;
 
 /// <summary>
 /// Redis distributed cache contract

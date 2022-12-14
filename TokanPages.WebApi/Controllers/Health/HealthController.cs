@@ -18,13 +18,13 @@ public class HealthController : ControllerBase
     private readonly DatabaseContext _databaseContext;
 
     /// <summary>
-    /// Health controller
+    /// Health controller.
     /// </summary>
-    /// <param name="databaseContext">DatabaseContext instance</param>
+    /// <param name="databaseContext">DatabaseContext instance.</param>
     public HealthController(DatabaseContext databaseContext) => _databaseContext = databaseContext;
 
     /// <summary>
-    /// Checks the critical components of the application
+    /// Checks the critical components of the application.
     /// </summary>
     /// <remarks>
     /// Because the application depends on a database, the health check endpoint connect to the component.
@@ -33,7 +33,7 @@ public class HealthController : ControllerBase
     /// Azure Health Check requires returned HTTP status code to be Internal Server Error (500) when tests fail;
     /// and OK (200) when all tests pass.
     /// </remarks>
-    /// <returns>JSON model with response details</returns>
+    /// <returns>JSON model with response details.</returns>
     [HttpGet("status")]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetStatus()

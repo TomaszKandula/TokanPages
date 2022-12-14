@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Errors;
 using TokanPages.Backend.Shared.Resources;
@@ -8,7 +9,7 @@ using TokanPages.Backend.Shared.Resources;
 namespace TokanPages.WebApi.Middleware;
 
 /// <summary>
-/// Exceptions middleware
+/// Exceptions middleware.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class Exceptions
@@ -16,22 +17,22 @@ public class Exceptions
     private readonly RequestDelegate _requestDelegate;
 
     /// <summary>
-    /// Exceptions middleware
+    /// Exceptions middleware.
     /// </summary>
-    /// <param name="requestDelegate">RequestDelegate instance</param>
+    /// <param name="requestDelegate">RequestDelegate instance.</param>
     public Exceptions(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
 
     /// <summary>
     /// Pre-defined application exceptions for status codes:
     /// <list>
-    ///   <item>400 - Bad Request</item>
-    ///   <item>401 - Unauthorized</item>
-    ///   <item>403 - Forbidden</item>
-    ///   <item>422 - Unprocessable Entity</item>
-    ///   <item>500 - Internal Server Error</item>
+    ///   <item>400 - Bad Request.</item>
+    ///   <item>401 - Unauthorized.</item>
+    ///   <item>403 - Forbidden.</item>
+    ///   <item>422 - Unprocessable Entity.</item>
+    ///   <item>500 - Internal Server Error.</item>
     /// </list>
     /// </summary>
-    /// <param name="httpContext">Current HTTP context</param>
+    /// <param name="httpContext">Current HTTP context.</param>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
@@ -71,7 +72,8 @@ public class Exceptions
 
     private static Task WriteErrorResponse(HttpContext httpContext, ApplicationError applicationError, HttpStatusCode statusCode)
     {
-        var result = JsonConvert.SerializeObject(applicationError);
+        var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+        var result = JsonConvert.SerializeObject(applicationError, Formatting.None, settings);
         httpContext.Response.ContentType = "application/json";
         httpContext.Response.StatusCode = (int)statusCode;
         return httpContext.Response.WriteAsync(result);

@@ -3,43 +3,43 @@
 namespace TokanPages.WebApi.Dto.Mailer;
 
 /// <summary>
-/// Use it when you want to send email message
+/// Use it when you want to send email message.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class SendMessageDto
 {
     /// <summary>
-    /// Mandatory
+    /// First name.
     /// </summary>
     public string FirstName { get; set; } = "";
 
     /// <summary>
-    /// Mandatory
+    /// Last name.
     /// </summary>
     public string LastName { get; set; } = "";
         
     /// <summary>
-    /// Mandatory
+    /// User email address.
     /// </summary>
     public string UserEmail { get; set; } = "";
         
     /// <summary>
-    /// Mandatory
+    /// 'From' field.
     /// </summary>
     public string EmailFrom { get; set; } = "";
 
     /// <summary>
-    /// Mandatory
+    /// 'To' field.
     /// </summary>
     public List<string> EmailTos { get; set; } = new();
         
     /// <summary>
-    /// Mandatory
+    /// Subject field.
     /// </summary>
     public string Subject { get; set; } = "";
         
     /// <summary>
-    /// Mandatory
+    /// Message content.
     /// </summary>
     public string Message { get; set; } = "";
 }
