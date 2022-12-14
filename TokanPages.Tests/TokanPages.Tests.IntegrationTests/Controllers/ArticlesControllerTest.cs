@@ -47,7 +47,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     {
         // Arrange
         var userId = Article1.Id;
-        var uri = $"{BaseUriArticles}/GetArticle/{userId}/?noCache=true";
+        var uri = $"{BaseUriArticles}/{userId}/GetArticle/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
@@ -68,7 +68,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     public async Task GivenIncorrectId_WhenGetArticle_ShouldReturnJsonObjectWithError()
     {
         // Arrange
-        var uri = $"{BaseUriArticles}/GetArticle/{Guid.NewGuid()}/?noCache=true";
+        var uri = $"{BaseUriArticles}/{Guid.NewGuid()}/GetArticle/?noCache=true";
         var httpClient = _webApplicationFactory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
