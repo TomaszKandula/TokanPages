@@ -36,6 +36,8 @@ using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
+using TokanPages.Services.WebSocketService;
+using TokanPages.Services.WebSocketService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.WebApi.Configuration;
@@ -115,6 +117,7 @@ public static class Dependencies
 		services.AddScoped<ICipheringService, CipheringService>();
 		services.AddScoped<IHttpClientService, HttpClientService>();
 		services.AddScoped<IEmailSenderService, EmailSenderService>();
+		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
