@@ -1,6 +1,7 @@
 using System.Text;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Services.EmailSenderService.Models;
@@ -13,14 +14,18 @@ namespace TokanPages.Services.EmailSenderService;
 
 public class EmailSenderService : IEmailSenderService
 {
-    private readonly IHttpClientService _httpClientService;
+    private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
     private readonly IApplicationSettings _applicationSettings;
 
-    public EmailSenderService(IHttpClientService httpClientService, IApplicationSettings applicationSettings)
+    private readonly ILoggerService _loggerService;
+
+    public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IApplicationSettings applicationSettings, 
+        ILoggerService loggerService)
     {
-        _httpClientService = httpClientService;
+        _httpClientServiceFactory = httpClientServiceFactory;
         _applicationSettings = applicationSettings;
+        _loggerService = loggerService;
     }
 
     public async Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
@@ -89,7 +94,8 @@ public class EmailSenderService : IEmailSenderService
     public async Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default)
     {
         var httpConfiguration = new Configuration { Url = templateUrl, Method = "GET" };
-        var result = await _httpClientService.Execute(httpConfiguration, cancellationToken);
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute(httpConfiguration, cancellationToken);
 
         if (result.Content == null)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -113,6 +119,7 @@ public class EmailSenderService : IEmailSenderService
             PayloadContent = payload
         };
 
-        await _httpClientService.Execute(configuration, cancellationToken);
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        await client.Execute(configuration, cancellationToken);
     }
 }
