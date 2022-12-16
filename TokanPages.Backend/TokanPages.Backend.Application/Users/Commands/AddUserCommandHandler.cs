@@ -7,7 +7,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Factory;
-using TokanPages.Services.CipheringService;
+using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
