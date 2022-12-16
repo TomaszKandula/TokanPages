@@ -24,7 +24,6 @@ using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.EmailSenderService;
-using TokanPages.Services.WebTokenService.Validation;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;

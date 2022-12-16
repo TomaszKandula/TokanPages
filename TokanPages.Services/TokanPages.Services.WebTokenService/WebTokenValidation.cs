@@ -5,7 +5,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService.Abstractions;
 
-namespace TokanPages.Services.WebTokenService.Validation;
+namespace TokanPages.Services.WebTokenService;
 
 public class WebTokenValidation : IWebTokenValidation
 {
