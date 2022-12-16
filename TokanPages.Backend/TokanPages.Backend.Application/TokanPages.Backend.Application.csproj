@@ -14,6 +14,7 @@
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebSocketService\TokanPages.Services.WebSocketService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi.Dto\TokanPages.WebApi.Dto.csproj" />
     <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
