@@ -5,7 +5,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
-using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 using TokanPages.WebApi.Dto.Mailer;
 
