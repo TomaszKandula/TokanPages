@@ -1,4 +1,6 @@
-namespace TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Abstractions;
+
+namespace TokanPages.Services.AzureStorageService;
 
 public class AzureBlobStorageFactory : IAzureBlobStorageFactory
 {

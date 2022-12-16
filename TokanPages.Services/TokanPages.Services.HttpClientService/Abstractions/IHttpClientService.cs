@@ -1,6 +1,6 @@
 using TokanPages.Services.HttpClientService.Models;
 
-namespace TokanPages.Services.HttpClientService;
+namespace TokanPages.Services.HttpClientService.Abstractions;
 
 public interface IHttpClientService
 {

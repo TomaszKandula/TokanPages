@@ -1,6 +1,6 @@
 using TokanPages.Services.CipheringService.Helpers;
 
-namespace TokanPages.Services.CipheringService;
+namespace TokanPages.Services.CipheringService.Abstractions;
 
 public interface ICipheringService
 {

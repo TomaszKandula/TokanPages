@@ -1,4 +1,4 @@
-namespace TokanPages.Services.AzureStorageService.Factory;
+namespace TokanPages.Services.AzureStorageService.Abstractions;
 
 public interface IAzureBlobStorageFactory
 {

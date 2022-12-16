@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Constants;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
 
 namespace TokanPages.Services.AzureStorageService;
