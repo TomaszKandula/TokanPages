@@ -1,7 +1,7 @@
 using TokanPages.Backend.Shared.Constants;
 using TokanPages.Services.AzureStorageService.Models;
 
-namespace TokanPages.Services.AzureStorageService;
+namespace TokanPages.Services.AzureStorageService.Abstractions;
 
 public interface IAzureBlobStorage
 {

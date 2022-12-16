@@ -2,8 +2,7 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Assets.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Abstractions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Assets;
