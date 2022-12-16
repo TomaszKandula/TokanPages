@@ -107,7 +107,7 @@ public static class Dependencies
 	private static void SetupServices(IServiceCollection services) 
 	{
 		services.AddHttpContextAccessor();
-		services.AddScoped<HttpClient>();
+		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
@@ -115,7 +115,6 @@ public static class Dependencies
 		services.AddScoped<IDbInitializer, DbInitializer>();
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<ICipheringService, CipheringService>();
-		services.AddScoped<IHttpClientService, HttpClientService>();
 		services.AddScoped<IEmailSenderService, EmailSenderService>();
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 

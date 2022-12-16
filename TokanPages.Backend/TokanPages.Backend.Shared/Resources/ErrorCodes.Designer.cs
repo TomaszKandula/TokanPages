@@ -230,5 +230,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("HTTP_REQUEST_FAILED", resourceCulture);
             }
         }
+        
+        public static string CANNOT_PARSE {
+            get {
+                return ResourceManager.GetString("CANNOT_PARSE", resourceCulture);
+            }
+        }
     }
 }
