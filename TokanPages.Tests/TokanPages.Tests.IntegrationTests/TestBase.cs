@@ -10,13 +10,12 @@ using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
+using TokanPages.Tests.IntegrationTests.Factories;
 
 namespace TokanPages.Tests.IntegrationTests;
 
 public class TestBase
 {
-    private readonly Factories.DatabaseContextFactory _databaseContextFactory;
-
     protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
 
     protected const string BaseUriArticles = "/api/v1.0/articles";
@@ -42,18 +41,16 @@ public class TestBase
     protected TestBase()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<Factories.DatabaseContextFactory>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
         services.AddScoped<IDateTimeService, DateTimeService>();
 
         using var scope = services.BuildServiceProvider(true).CreateScope();
-        var serviceProvider = scope.ServiceProvider;
+        var service = scope.ServiceProvider;
 
-        _databaseContextFactory = serviceProvider.GetRequiredService<Factories.DatabaseContextFactory>();
-        DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
-        WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
-        DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
+        DataUtilityService = service.GetRequiredService<IDataUtilityService>();
+        WebTokenUtility = service.GetRequiredService<IWebTokenUtility>();
+        DateTimeService = service.GetRequiredService<IDateTimeService>();
     }
 
     protected async Task RegisterTestJwtInDatabase(string? token, string? connection)
@@ -146,8 +143,9 @@ public class TestBase
         new Claim(ClaimTypes.Email, DataUtilityService.GetRandomString())
     });
 
-    private DatabaseContext GetTestDatabaseContext(string? connection) 
+    private static DatabaseContext GetTestDatabaseContext(string? connection)
     {
-        return _databaseContextFactory.CreateDatabaseContext(connection);
+        var options = TestDatabaseContextFactory.GetTestDatabaseOptions(connection);
+        return TestDatabaseContextFactory.CreateDatabaseContext(options);
     }
 }
