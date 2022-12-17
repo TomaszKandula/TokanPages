@@ -18,9 +18,9 @@ namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Fact]
     public async Task GivenValidCredentials_WhenAuthenticateUser_ShouldSucceed()
@@ -35,7 +35,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             Password = "user1password"
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -74,7 +74,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             Password = DataUtilityService.GetRandomString()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -99,7 +99,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new ReAuthenticateUserDto { RefreshToken = string.Empty };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -124,7 +124,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new ActivateUserDto { ActivationId = Guid.NewGuid() };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -149,7 +149,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new ActivateUserDto { ActivationId = Guid.NewGuid() };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -158,8 +158,8 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(
-            tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, 
-            _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            tokenExpires, GetValidClaimsIdentity(), _factory.WebSecret, 
+            _factory.Issuer, _factory.Audience);
             
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -205,7 +205,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new ResetUserPasswordDto { EmailAddress = DataUtilityService.GetRandomEmail() };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -230,7 +230,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new RevokeUserRefreshTokenDto { RefreshToken = DataUtilityService.GetRandomString(100) };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -254,7 +254,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new RevokeUserRefreshTokenDto { RefreshToken = DataUtilityService.GetRandomString(100) };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -262,10 +262,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _webApplicationFactory.WebSecret, 
-            _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _factory.WebSecret, 
+            _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -284,15 +284,15 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         const string uri = $"{BaseUriUsers}/GetAllUsers/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
             
-        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -315,15 +315,15 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var userId = User1.Id;
         var uri = $"{BaseUriUsers}/{userId}/GetUser/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -345,13 +345,13 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var userId = User1.Id;
         var uri = $"{BaseUriUsers}/{userId}/GetUser/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -370,15 +370,15 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         // Arrange
         const string uri = $"{BaseUriUsers}/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/GetUser/";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -439,7 +439,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             IsActivated = true
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -469,7 +469,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             NewPassword = DataUtilityService.GetRandomString()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -478,7 +478,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -505,7 +505,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             NewPassword = DataUtilityService.GetRandomString()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -514,7 +514,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -542,7 +542,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             NewPassword = DataUtilityService.GetRandomString()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -551,7 +551,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -579,7 +579,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             NewPassword = DataUtilityService.GetRandomString()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -588,7 +588,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -610,7 +610,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new RemoveUserDto { Id = Guid.NewGuid() };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 

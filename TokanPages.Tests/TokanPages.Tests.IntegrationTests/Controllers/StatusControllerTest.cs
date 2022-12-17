@@ -11,16 +11,16 @@ namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public StatusControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public StatusControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Fact]
     public async Task GivenCorrectConfiguration_WhenRequestStatusCheck_ShouldReturnSuccessful()
     {
         // Arrange
         const string uri = $"{BaseUriHeath}/Status/";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -44,7 +44,7 @@ public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplication
     {
         // Arrange
         const string uri = $"{BaseUriHeath}/Status/";
-        var webAppFactory = _webApplicationFactory.WithWebHostBuilder(builder =>
+        var webAppFactory = _factory.WithWebHostBuilder(builder =>
         {
             builder.UseSolutionRelativeContentRoot(TestRootPath);
             builder.ConfigureAppConfiguration((_, configurationBuilder) =>

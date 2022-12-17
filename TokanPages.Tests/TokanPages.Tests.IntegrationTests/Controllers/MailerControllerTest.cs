@@ -14,9 +14,9 @@ namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public MailerControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public MailerControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     // [Fact] TODO: redo test
     // public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
@@ -119,13 +119,13 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
             Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);

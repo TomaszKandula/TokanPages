@@ -15,16 +15,16 @@ namespace TokanPages.Tests.IntegrationTests.Controllers;
 
 public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public SubscribersControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public SubscribersControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Fact]
     public async Task GivenNoJwt_WhenGetAllSubscribers_ShouldReturnUnauthorized()
     {
         // Arrange
         const string uri = $"{BaseUriSubscribers}/GetAllSubscribers/?noCache=true";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -43,7 +43,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
         // Arrange
         var userId = Subscriber1.Id;
         var uri = $"{BaseUriSubscribers}/{userId}/GetSubscriber/?noCache=true";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -63,13 +63,13 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
         const string uri = $"{BaseUriSubscribers}/4b70b8e4-8a9a-4bdd-b649-19c128743b0d/GetSubscriber/?noCache=true";
         var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -91,7 +91,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new AddSubscriberDto { Email = DataUtilityService.GetRandomEmail() };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -123,7 +123,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
             IsActivated = null
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -148,7 +148,7 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
         var dto = new RemoveSubscriberDto { Id = Guid.NewGuid() };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
