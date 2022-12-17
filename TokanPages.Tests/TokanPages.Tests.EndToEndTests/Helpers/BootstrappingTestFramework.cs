@@ -2,7 +2,7 @@ using Xunit.Abstractions;
 using Xunit.Sdk;
 
 [assembly: Xunit.TestFramework(
-    "TokanPages.Tests.EndToEndTests.Helpers.TestBootstrap", 
+    "TokanPages.Tests.EndToEndTests.Helpers.BootstrappingTestFramework", 
     "TokanPages.Tests.EndToEndTests")
 ]
 
