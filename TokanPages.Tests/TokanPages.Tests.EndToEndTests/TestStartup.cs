@@ -9,7 +9,7 @@ using TokanPages.WebApi;
 using TokanPages.WebApi.Configuration;
 using TokanPages.WebApi.Middleware;
 
-namespace TokanPages.Tests.IntegrationTests;
+namespace TokanPages.Tests.EndToEndTests;
 
 public class TestStartup
 {

@@ -5,12 +5,12 @@ using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Tests.IntegrationTests.Helpers;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Mailer;
 using TokanPages.WebApi.Dto.Mailer.Models;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

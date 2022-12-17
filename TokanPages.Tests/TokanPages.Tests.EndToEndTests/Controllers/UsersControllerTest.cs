@@ -10,11 +10,11 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
-using TokanPages.Tests.IntegrationTests.Helpers;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Users;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

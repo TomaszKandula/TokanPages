@@ -10,9 +10,9 @@ using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
-using TokanPages.Tests.IntegrationTests.Helpers;
+using TokanPages.Tests.EndToEndTests.Helpers;
 
-namespace TokanPages.Tests.IntegrationTests;
+namespace TokanPages.Tests.EndToEndTests;
 
 public class TestBase
 {

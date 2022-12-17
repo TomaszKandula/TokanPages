@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using TokanPages.Backend.Application.Content.Queries;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Tests.IntegrationTests.Helpers;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

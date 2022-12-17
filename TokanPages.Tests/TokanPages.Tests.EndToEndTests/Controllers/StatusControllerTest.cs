@@ -3,11 +3,11 @@ using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using TokanPages.Tests.IntegrationTests.Helpers;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Health;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
