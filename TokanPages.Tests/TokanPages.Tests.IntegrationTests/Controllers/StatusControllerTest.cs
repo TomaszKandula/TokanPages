@@ -3,7 +3,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.IntegrationTests.Helpers;
 using TokanPages.WebApi.Dto.Health;
 using Xunit;
 

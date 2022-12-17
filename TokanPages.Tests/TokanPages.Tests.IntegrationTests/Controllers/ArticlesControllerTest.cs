@@ -8,7 +8,7 @@ using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.IntegrationTests.Helpers;
 using TokanPages.WebApi.Dto.Articles;
 using Xunit;
 

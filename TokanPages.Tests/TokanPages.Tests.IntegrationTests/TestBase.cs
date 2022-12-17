@@ -10,7 +10,7 @@ using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.IntegrationTests.Helpers;
 
 namespace TokanPages.Tests.IntegrationTests;
 

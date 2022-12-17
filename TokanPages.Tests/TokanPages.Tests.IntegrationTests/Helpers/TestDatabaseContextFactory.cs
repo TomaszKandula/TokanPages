@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.Database;
 
-namespace TokanPages.Tests.IntegrationTests.Factories;
+namespace TokanPages.Tests.IntegrationTests.Helpers;
 
 internal static class TestDatabaseContextFactory
 {

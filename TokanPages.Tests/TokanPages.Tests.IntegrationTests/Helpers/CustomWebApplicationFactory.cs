@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 
-namespace TokanPages.Tests.IntegrationTests.Factories;
+namespace TokanPages.Tests.IntegrationTests.Helpers;
 
 [UsedImplicitly]
 public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class

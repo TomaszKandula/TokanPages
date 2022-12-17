@@ -10,7 +10,7 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.IntegrationTests.Helpers;
 using TokanPages.WebApi.Dto.Users;
 using Xunit;
 
