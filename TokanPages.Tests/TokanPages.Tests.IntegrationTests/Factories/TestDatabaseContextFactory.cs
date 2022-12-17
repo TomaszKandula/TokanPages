@@ -3,16 +3,21 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Tests.IntegrationTests.Factories;
 
-internal class DatabaseContextFactory
+internal static class TestDatabaseContextFactory
 {
-    public DatabaseContext CreateDatabaseContext(string? connectionString)
+    public static DbContextOptions<DatabaseContext> GetTestDatabaseOptions(string? connectionString)
     {
-        var databaseOptions = new DbContextOptionsBuilder<DatabaseContext>()
+        var options = new DbContextOptionsBuilder<DatabaseContext>()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .EnableSensitiveDataLogging()
             .UseSqlServer(connectionString ?? string.Empty);
 
-        var databaseContext = new DatabaseContext(databaseOptions.Options);
+        return options.Options;
+    }
+
+    public static DatabaseContext CreateDatabaseContext(DbContextOptions<DatabaseContext> options)
+    {
+        var databaseContext = new DatabaseContext(options);
         databaseContext.Database.OpenConnection();
         databaseContext.Database.EnsureCreated();
         return databaseContext;
