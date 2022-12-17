@@ -3,7 +3,7 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Tests.IntegrationTests.Helpers;
 
-internal static class TestDatabaseContextFactory
+internal static class TestDatabaseContextProvider
 {
     public static DbContextOptions<DatabaseContext> GetTestDatabaseOptions(string? connectionString)
     {

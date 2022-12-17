@@ -145,7 +145,7 @@ public class TestBase
 
     private static DatabaseContext GetTestDatabaseContext(string? connection)
     {
-        var options = TestDatabaseContextFactory.GetTestDatabaseOptions(connection);
-        return TestDatabaseContextFactory.CreateDatabaseContext(options);
+        var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connection);
+        return TestDatabaseContextProvider.CreateDatabaseContext(options);
     }
 }
