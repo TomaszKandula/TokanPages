@@ -14,7 +14,7 @@ using TokanPages.Tests.EndToEndTests.Helpers;
 
 namespace TokanPages.Tests.EndToEndTests;
 
-public class TestBase
+public abstract class TestBase
 {
     protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.EndToEndTests";
 

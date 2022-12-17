@@ -10,7 +10,7 @@ using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Tests.UnitTests;
 
-public class TestBase
+public abstract class TestBase
 {
     protected readonly IDataUtilityService DataUtilityService;
 
