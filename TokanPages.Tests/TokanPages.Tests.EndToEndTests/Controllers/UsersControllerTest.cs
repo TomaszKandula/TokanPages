@@ -20,7 +20,11 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 {
     private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
+    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> factory)
+    { 
+        _factory = factory;
+        ExternalDatabaseConnection = _factory.Connection;
+    }
 
     [Fact]
     public async Task GivenValidCredentials_WhenAuthenticateUser_ShouldSucceed()
@@ -265,7 +269,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _factory.WebSecret, 
             _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
+        await RegisterTestJwtInDatabase(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -292,7 +296,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
             
-        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
+        await RegisterTestJwtInDatabase(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -323,7 +327,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
+        await RegisterTestJwtInDatabase(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -378,7 +382,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
+        await RegisterTestJwtInDatabase(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act

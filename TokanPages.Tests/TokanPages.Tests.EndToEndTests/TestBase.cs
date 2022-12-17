@@ -38,6 +38,8 @@ public abstract class TestBase
 
     protected readonly IWebTokenUtility WebTokenUtility;
 
+    protected string ExternalDatabaseConnection = "";
+
     protected TestBase()
     {
         var services = new ServiceCollection();
@@ -53,9 +55,9 @@ public abstract class TestBase
         DateTimeService = service.GetRequiredService<IDateTimeService>();
     }
 
-    protected async Task RegisterTestJwtInDatabase(string? token, string? connection)
+    protected async Task RegisterTestJwtInDatabase(string? token)
     {
-        var databaseContext = GetTestDatabaseContext(connection);
+        var databaseContext = GetTestDatabaseContext(ExternalDatabaseConnection);
 
         var handler = new JwtSecurityTokenHandler();
         var jsonToken = handler.ReadToken(token);

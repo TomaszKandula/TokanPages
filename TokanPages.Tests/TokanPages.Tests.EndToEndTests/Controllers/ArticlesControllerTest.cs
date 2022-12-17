@@ -18,7 +18,11 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
 {
     private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
+    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> factory)
+    {
+        _factory = factory;
+        ExternalDatabaseConnection = _factory.Connection;
+    }
 
     [Fact]
     public async Task WhenGetAllArticles_ShouldReturnCollection()
@@ -137,7 +141,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
+        await RegisterTestJwtInDatabase(jwt);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -278,7 +282,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _factory.Connection);
+        await RegisterTestJwtInDatabase(jwt);
 
         var dto = new UpdateArticleVisibilityDto
         {
