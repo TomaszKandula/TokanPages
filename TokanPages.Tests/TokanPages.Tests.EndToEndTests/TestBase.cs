@@ -16,7 +16,7 @@ namespace TokanPages.Tests.EndToEndTests;
 
 public class TestBase
 {
-    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
+    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.EndToEndTests";
 
     protected const string BaseUriArticles = "/api/v1.0/articles";
 
