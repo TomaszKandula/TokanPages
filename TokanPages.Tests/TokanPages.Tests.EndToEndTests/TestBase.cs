@@ -55,6 +55,16 @@ public abstract class TestBase
         DateTimeService = service.GetRequiredService<IDateTimeService>();
     }
 
+    protected static async Task EnsureStatusCode(HttpResponseMessage responseMessage, HttpStatusCode expectedStatusCode)
+    {
+        if (responseMessage.StatusCode != expectedStatusCode)
+        {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            var contentText = !string.IsNullOrEmpty(content) ? $"Received content: {content}." : string.Empty;
+            throw new Exception($"Expected status code was {expectedStatusCode} but received {responseMessage.StatusCode}. {contentText}");
+        }
+    }
+
     protected async Task RegisterTestJwt(string? token)
     {
         var databaseContext = GetTestDatabaseContext(ExternalDatabaseConnection);
@@ -78,16 +88,6 @@ public abstract class TestBase
 
         await databaseContext.UserTokens.AddAsync(newUserToken);
         await databaseContext.SaveChangesAsync();
-    }
-
-    protected static async Task EnsureStatusCode(HttpResponseMessage responseMessage, HttpStatusCode expectedStatusCode)
-    {
-        if (responseMessage.StatusCode != expectedStatusCode)
-        {
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var contentText = !string.IsNullOrEmpty(content) ? $"Received content: {content}." : string.Empty;
-            throw new Exception($"Expected status code was {expectedStatusCode} but received {responseMessage.StatusCode}. {contentText}");
-        }
     }
 
     protected ClaimsIdentity GetValidClaimsIdentity(string selectedUser = nameof(User1))
