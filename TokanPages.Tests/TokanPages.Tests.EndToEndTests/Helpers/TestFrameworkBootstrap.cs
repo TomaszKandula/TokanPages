@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 using Xunit.Sdk;
 
 [assembly: Xunit.TestFramework(
-    "TokanPages.Tests.EndToEndTests.Helpers.BootstrappingTestFramework", 
+    "TokanPages.Tests.EndToEndTests.Helpers.TestFrameworkBootstrap", 
     "TokanPages.Tests.EndToEndTests")
 ]
 
@@ -22,6 +22,7 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     public TestFrameworkBootstrap(IMessageSink messageSink) : base(messageSink)
     {
         GetTestDatabase();
+        RemoveTestDatabaseContent();
         MigrateTestDatabase();
     }
 
