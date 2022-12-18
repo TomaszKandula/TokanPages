@@ -52,6 +52,20 @@ public static class UsersSeeder
                 ModifiedAt = User3.ModifiedAt,
                 IsActivated = User3.IsActivated,
                 IsDeleted = User3.IsDeleted
+            },
+            new()
+            {
+                Id = User4.Id,
+                EmailAddress = User4.EmailAddress,
+                UserAlias = User4.UserAlias,
+                CryptedPassword = User4.CryptedPassword,
+                ResetId = User4.ResetId,
+                CreatedBy = User4.CreatedBy,
+                CreatedAt = User4.CreatedAt,
+                ModifiedBy = User4.ModifiedBy,
+                ModifiedAt = User4.ModifiedAt,
+                IsActivated = User4.IsActivated,
+                IsDeleted = User4.IsDeleted
             }
         };
     }

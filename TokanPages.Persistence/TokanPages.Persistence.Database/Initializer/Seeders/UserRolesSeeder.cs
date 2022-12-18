@@ -50,6 +50,16 @@ public static class UserRolesSeeder
                 CreatedBy = UserRole4.CreatedBy,
                 ModifiedAt = UserRole4.ModifiedAt,
                 ModifiedBy = UserRole4.ModifiedBy
+            },
+            new()
+            {
+                Id = UserRole5.Id,
+                UserId = UserRole5.UserId,
+                RoleId = UserRole5.RoleId,
+                CreatedAt = UserRole5.CreatedAt,
+                CreatedBy = UserRole5.CreatedBy,
+                ModifiedAt = UserRole5.ModifiedAt,
+                ModifiedBy = UserRole5.ModifiedBy
             }
         };
     }
