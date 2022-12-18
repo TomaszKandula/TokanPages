@@ -18,90 +18,92 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
 
     public MailerControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
-    // [Fact] TODO: redo test
-    // public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
-    // {
-    //     // Arrange
-    //     const string uri = $"{BaseUriMailer}/SendMessage/";
-    //     var request = new HttpRequestMessage(HttpMethod.Post, uri);
-    //
-    //     var dto = new SendMessageDto
-    //     {
-    //         FirstName = DataUtilityService.GetRandomString(),
-    //         LastName = DataUtilityService.GetRandomString(),
-    //         UserEmail = DataUtilityService.GetRandomEmail(),
-    //         EmailFrom = DataUtilityService.GetRandomEmail(),
-    //         EmailTos = new List<string> { string.Empty },
-    //         Subject = "Integration Test / HttpClient / Endpoint",
-    //         Message = $"Test run Id: {Guid.NewGuid()}.",
-    //     };
-    //
-    //     var httpClient = _webApplicationFactory
-    //         .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
-    //         .CreateClient();
-    //
-    //     var payload = JsonConvert.SerializeObject(dto);
-    //     request.Content = new StringContent(payload, Encoding.Default, "application/json");
-    //
-    //     // Act
-    //     var response = await httpClient.SendAsync(request);
-    //
-    //     // Assert
-    //     await EnsureStatusCode(response, HttpStatusCode.OK);
-    //     var content = await response.Content.ReadAsStringAsync();
-    //     content.Should().NotBeNullOrEmpty();
-    //     content.Should().Be("{}");
-    // }
+    [Fact]
+    public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
+    {
+        // Arrange
+        const string uri = $"{BaseUriMailer}/SendMessage/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-    // [Fact] TODO: redo test
-    // public async Task GivenValidEmailsAndValidJwt_WhenSendNewsletter_ShouldReturnEmptyJsonObject()
-    // {
-    //     // Arrange
-    //     const string uri = $"{BaseUriMailer}/SendNewsletter/";
-    //     var request = new HttpRequestMessage(HttpMethod.Post, uri);
-    //
-    //     var dto = new SendNewsletterDto
-    //     {
-    //         SubscriberInfo = new List<SubscriberInfo>
-    //         {
-    //             new()
-    //             {
-    //                 Id = Guid.NewGuid().ToString(),
-    //                 Email = "tomasz.kandula@gmail.com"
-    //             }
-    //         },
-    //         Subject = "Integration Test / HttpClient / Endpoint",
-    //         Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
-    //     };
-    //
-    //     var httpClient = _webApplicationFactory
-    //         .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
-    //         .CreateClient();
-    //
-    //     var tokenExpires = DateTime.Now.AddDays(30);
-    //     var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-    //         _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
-    //
-    //     await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
-    //
-    //     var payload = JsonConvert.SerializeObject(dto);
-    //     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
-    //     request.Content = new StringContent(payload, Encoding.Default, "application/json");
-    //
-    //     // Act
-    //     var response = await httpClient.SendAsync(request);
-    //
-    //     // Assert
-    //     await EnsureStatusCode(response, HttpStatusCode.OK);
-    //     var content = await response.Content.ReadAsStringAsync();
-    //     content.Should().NotBeNullOrEmpty();
-    //     content.Should().Be("{}");
-    // }
+        var dto = new SendMessageDto
+        {
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            UserEmail = DataUtilityService.GetRandomEmail(),
+            EmailFrom = DataUtilityService.GetRandomEmail(),
+            EmailTos = new List<string> { string.Empty },
+            Subject = "E2E Test / HttpClient / Endpoint",
+            Message = $"Test run Id: {Guid.NewGuid()}.",
+        };
+
+        var httpClient = _factory
+            .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
+            .CreateClient();
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+
+        // Act
+        var response = await httpClient.SendAsync(request);
+
+        // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+        content.Should().Be("{}");
+    }
+
+    [Fact]
+    public async Task GivenValidEmailsAndValidJwt_WhenSendNewsletter_ShouldReturnEmptyJsonObject()
+    {
+        // Arrange
+        const string testEmail = "contact@tomkandula.com";
+        const string uri = $"{BaseUriMailer}/SendNewsletter/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
+
+        var dto = new SendNewsletterDto
+        {
+            SubscriberInfo = new List<SubscriberInfo>
+            {
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Email = testEmail
+                }
+            },
+            Subject = "E2E Test / HttpClient / Endpoint",
+            Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
+        };
+
+        var httpClient = _factory
+            .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
+            .CreateClient();
+
+        var tokenExpires = DateTime.Now.AddDays(30);
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+
+        await RegisterTestJwt(jwt);
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+
+        // Act
+        var response = await httpClient.SendAsync(request);
+
+        // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+        content.Should().Be("{}");
+    }
 
     [Fact]
     public async Task GivenValidEmailsAndInvalidJwt_WhenSendNewsletter_ShouldReturnThrownError()
     {
         // Arrange
+        const string testEmail = "contact@tomkandula.com";
         const string uri = $"{BaseUriMailer}/SendNewsletter/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
@@ -112,10 +114,10 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
                 new()
                 {
                     Id    = Guid.NewGuid().ToString(),
-                    Email = "tomasz.kandula@gmail.com"
+                    Email = testEmail
                 }
             },
-            Subject = "Integration Test / HttpClient / Endpoint",
+            Subject = "E2E Test / HttpClient / Endpoint",
             Message = $"<p>Test run Id: {Guid.NewGuid()}.</p><p>Put newsletter content here.</p>"
         };
 

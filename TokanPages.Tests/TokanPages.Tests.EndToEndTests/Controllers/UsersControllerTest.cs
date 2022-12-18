@@ -146,7 +146,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     }
 
     [Fact]
-    public async Task GivenrandomActivationId_WhenActivateUserAsLoggedUser_ShouldReturnUnprocessableEntity()
+    public async Task GivenRandomActivationId_WhenActivateUserAsLoggedUser_ShouldReturnUnprocessableEntity()
     {
         // Arrange
         const string uri = $"{BaseUriUsers}/ActivateUser/";
@@ -177,29 +177,29 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         content.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
     }
 
-    // [Fact] TODO: redo test
-    // public async Task GivenUserEmail_WhenResetUserPassword_ShouldFinishSuccessful()
-    // {
-    //     // Arrange
-    //     const string uri = $"{BaseUriUsers}/ResetUserPassword/";
-    //     var request = new HttpRequestMessage(HttpMethod.Post, uri);
-    //     var dto = new ResetUserPasswordDto { EmailAddress = User3.EmailAddress };
-    //
-    //     var httpClient = _webApplicationFactory
-    //         .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
-    //         .CreateClient();
-    //
-    //     var payload = JsonConvert.SerializeObject(dto);
-    //     request.Content = new StringContent(payload, Encoding.Default, "application/json");
-    //
-    //     // Act
-    //     var response = await httpClient.SendAsync(request);
-    //
-    //     // Assert
-    //     await EnsureStatusCode(response, HttpStatusCode.OK);
-    //     var content = await response.Content.ReadAsStringAsync();
-    //     content.Should().NotBeNullOrEmpty();
-    // }
+    [Fact] //TODO: redo test
+    public async Task GivenUserEmail_WhenResetUserPassword_ShouldFinishSuccessful()
+    {
+        // Arrange
+        const string uri = $"{BaseUriUsers}/ResetUserPassword/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
+        var dto = new ResetUserPasswordDto { EmailAddress = User3.EmailAddress };
+
+        var httpClient = _factory
+            .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
+            .CreateClient();
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+
+        // Act
+        var response = await httpClient.SendAsync(request);
+
+        // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+    }
 
     [Fact]
     public async Task GivenInvalidUserEmail_WhenResetUserPassword_ShouldThrowError()
@@ -395,36 +395,37 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         content.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
     }
 
-    // [Fact] TODO: change test after implementation is updated
-    // public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
-    // {
-    //     // Arrange
-    //     const string uri = $"{BaseUriUsers}/AddUser/";
-    //     var request = new HttpRequestMessage(HttpMethod.Post, uri);
-    //
-    //     var dto = new AddUserDto 
-    //     { 
-    //         EmailAddress = DataUtilityService.GetRandomEmail(domain: "emailbox.nazwa.pl"),
-    //         FirstName = DataUtilityService.GetRandomString(),
-    //         LastName = DataUtilityService.GetRandomString(),
-    //         Password = DataUtilityService.GetRandomString()
-    //     };
-    //
-    //     var httpClient = _webApplicationFactory
-    //         .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
-    //         .CreateClient();
-    //
-    //     var payload = JsonConvert.SerializeObject(dto);
-    //     request.Content = new StringContent(payload, Encoding.Default, "application/json");
-    //
-    //     // Act
-    //     var response = await httpClient.SendAsync(request);
-    //
-    //     // Assert
-    //     await EnsureStatusCode(response, HttpStatusCode.OK);
-    //     var content = await response.Content.ReadAsStringAsync();
-    //     content.Should().NotBeNullOrEmpty();
-    // }
+    [Fact]
+    public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
+    {
+        // Arrange
+        const string domain = "tomkandula.com";
+        const string uri = $"{BaseUriUsers}/AddUser/";
+        var request = new HttpRequestMessage(HttpMethod.Post, uri);
+
+        var dto = new AddUserDto 
+        { 
+            EmailAddress = DataUtilityService.GetRandomEmail(domain: domain),
+            FirstName = DataUtilityService.GetRandomString(),
+            LastName = DataUtilityService.GetRandomString(),
+            Password = DataUtilityService.GetRandomString()
+        };
+
+        var httpClient = _factory
+            .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
+            .CreateClient();
+
+        var payload = JsonConvert.SerializeObject(dto);
+        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+
+        // Act
+        var response = await httpClient.SendAsync(request);
+
+        // Assert
+        await EnsureStatusCode(response, HttpStatusCode.OK);
+        var content = await response.Content.ReadAsStringAsync();
+        content.Should().NotBeNullOrEmpty();
+    }
 
     [Fact]
     public async Task GivenIncorrectIdNoJwt_WhenUpdateUser_ShouldReturnUnauthorized() 
