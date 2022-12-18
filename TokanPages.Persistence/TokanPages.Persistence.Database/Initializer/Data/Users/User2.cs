@@ -9,7 +9,7 @@ public static class User2
 
     public const string UserAlias = "vijus";
 
-    public const string EmailAddress = "victoria.justice@gmail.com";
+    public const string EmailAddress = "victoria.justice@tomkandula.com";
 
     public const string CryptedPassword = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 

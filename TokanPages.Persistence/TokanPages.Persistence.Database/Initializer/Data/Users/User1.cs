@@ -9,7 +9,7 @@ public static class User1
 
     public const string UserAlias = "esexp";
 
-    public const string EmailAddress = "ester.exposito@gmail.com";
+    public const string EmailAddress = "ester.exposito@tomkandula.com";
 
     public const string CryptedPassword = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 
