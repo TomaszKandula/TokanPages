@@ -38,7 +38,7 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
     }
 
     /// <summary>
-    /// Return test database instance based on given connection string.
+    /// Return the test database instance based on given connection string.
     /// </summary>
     /// <remarks>
     /// Connection string is taken from the current environment variable, and it is always overwritten by existing user secret.
@@ -60,7 +60,7 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
     }
 
     /// <summary>
-    /// Removes all the tests data from database tables.
+    /// Removes all the tests data from the database tables.
     /// </summary>
     private void RemoveTestDatabaseTablesContent()
     {
