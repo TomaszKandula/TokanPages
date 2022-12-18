@@ -183,7 +183,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         // Arrange
         const string uri = $"{BaseUriUsers}/ResetUserPassword/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
-        var dto = new ResetUserPasswordDto { EmailAddress = User3.EmailAddress };
+        var dto = new ResetUserPasswordDto { EmailAddress = User4.EmailAddress };
 
         var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
@@ -399,13 +399,13 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
     {
         // Arrange
-        const string domain = "tomkandula.com";
+        const string testEmail = "contact@tomkandula.com";
         const string uri = $"{BaseUriUsers}/AddUser/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
         var dto = new AddUserDto 
         { 
-            EmailAddress = DataUtilityService.GetRandomEmail(domain: domain),
+            EmailAddress = testEmail,
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             Password = DataUtilityService.GetRandomString()

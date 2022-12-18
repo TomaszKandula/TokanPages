@@ -16,7 +16,11 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
 {
     private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public MailerControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
+    public MailerControllerTest(CustomWebApplicationFactory<TestStartup> factory) 
+    {
+        _factory = factory;
+        ExternalDatabaseConnection = _factory.Connection;
+    }
 
     [Fact]
     public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
