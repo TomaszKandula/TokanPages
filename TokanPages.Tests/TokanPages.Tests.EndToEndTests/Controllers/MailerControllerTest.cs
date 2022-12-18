@@ -61,7 +61,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenValidEmailsAndValidJwt_WhenSendNewsletter_ShouldReturnEmptyJsonObject()
     {
         // Arrange
-        const string testEmail = "contact@tomkandula.com";
+        const string testEmail = "test.account@tomkandula.com";
         const string uri = $"{BaseUriMailer}/SendNewsletter/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
@@ -107,7 +107,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenValidEmailsAndInvalidJwt_WhenSendNewsletter_ShouldReturnThrownError()
     {
         // Arrange
-        const string testEmail = "contact@tomkandula.com";
+        const string testEmail = "test.account@tomkandula.com";
         const string uri = $"{BaseUriMailer}/SendNewsletter/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 

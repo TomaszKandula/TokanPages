@@ -399,7 +399,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
     {
         // Arrange
-        const string testEmail = "contact@tomkandula.com";
+        const string testEmail = "test.account@tomkandula.com";
         const string uri = $"{BaseUriUsers}/AddUser/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 

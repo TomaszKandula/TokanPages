@@ -9,7 +9,7 @@ public static class User4
 
     public const string UserAlias = "god";
 
-    public const string EmailAddress = "admin@tomkandula.com";
+    public const string EmailAddress = "test.account.dev@tomkandula.com";
 
     public const string CryptedPassword = "$2a$12$Bl4ebq6Qi8F4aY5w9wzs7echVwERkAyXxmAua3yUpvUX40DtpCKsK";
 
