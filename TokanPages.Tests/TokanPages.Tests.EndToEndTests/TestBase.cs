@@ -55,7 +55,7 @@ public abstract class TestBase
         DateTimeService = service.GetRequiredService<IDateTimeService>();
     }
 
-    protected async Task RegisterTestJwtInDatabase(string? token)
+    protected async Task RegisterTestJwt(string? token)
     {
         var databaseContext = GetTestDatabaseContext(ExternalDatabaseConnection);
 
@@ -73,7 +73,7 @@ public abstract class TestBase
             Expires = securityToken.ValidTo,
             Created = securityToken.ValidFrom,
             CreatedByIp = "127.0.0.1",
-            Command = nameof(RegisterTestJwtInDatabase)
+            Command = nameof(RegisterTestJwt)
         };
 
         await databaseContext.UserTokens.AddAsync(newUserToken);

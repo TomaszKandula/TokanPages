@@ -141,7 +141,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt);
+        await RegisterTestJwt(jwt);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -282,7 +282,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt);
+        await RegisterTestJwt(jwt);
 
         var dto = new UpdateArticleVisibilityDto
         {

@@ -269,7 +269,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _factory.WebSecret, 
             _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt);
+        await RegisterTestJwt(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -296,7 +296,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
             
-        await RegisterTestJwtInDatabase(jwt);
+        await RegisterTestJwt(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -327,7 +327,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt);
+        await RegisterTestJwt(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -382,7 +382,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
             _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt);
+        await RegisterTestJwt(jwt);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
