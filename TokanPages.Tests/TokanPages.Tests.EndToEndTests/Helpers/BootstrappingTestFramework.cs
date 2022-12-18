@@ -31,7 +31,7 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
     public new void Dispose()
     {
         GC.SuppressFinalize(this);
-        RemoveTestDatabaseTablesContent();
+        RemoveTestDatabaseContent();
         base.Dispose();
     }
 
@@ -73,7 +73,7 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
     /// <summary>
     /// Removes all the tests data from the database tables.
     /// </summary>
-    private void RemoveTestDatabaseTablesContent()
+    private void RemoveTestDatabaseContent()
     {
         if (_databaseContext is null) return;
 
