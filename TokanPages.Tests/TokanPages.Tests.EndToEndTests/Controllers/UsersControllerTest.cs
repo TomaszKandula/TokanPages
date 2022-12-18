@@ -177,7 +177,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         content.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
     }
 
-    [Fact] //TODO: redo test
+    [Fact]
     public async Task GivenUserEmail_WhenResetUserPassword_ShouldFinishSuccessful()
     {
         // Arrange
