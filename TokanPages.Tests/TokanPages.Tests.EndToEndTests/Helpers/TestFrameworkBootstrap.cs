@@ -11,7 +11,7 @@ using Xunit.Sdk;
 
 namespace TokanPages.Tests.EndToEndTests.Helpers;
 
-public class BootstrappingTestFramework : XunitTestFramework, IDisposable
+public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
 {
     private DatabaseContext? _databaseContext;
 
@@ -19,7 +19,7 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
     /// Prepares the test environment before all the tests are started.
     /// </summary>
     /// <param name="messageSink">Represents an endpoint for the reception of test message.</param>
-    public BootstrappingTestFramework(IMessageSink messageSink) : base(messageSink)
+    public TestFrameworkBootstrap(IMessageSink messageSink) : base(messageSink)
     {
         GetTestDatabase();
         MigrateTestDatabase();
