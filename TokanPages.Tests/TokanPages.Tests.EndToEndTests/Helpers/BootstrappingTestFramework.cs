@@ -22,9 +22,7 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
     public BootstrappingTestFramework(IMessageSink messageSink) : base(messageSink)
     {
         GetTestDatabase();
-        var dbInitializer = new DbInitializer(_databaseContext);
-        dbInitializer.StartMigration();
-        dbInitializer.SeedData();
+        MigrateTestDatabase();
     }
 
     /// <summary>
@@ -57,6 +55,19 @@ public class BootstrappingTestFramework : XunitTestFramework, IDisposable
         var connectionString = builder.GetConnectionString("DbConnectTest");
         var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connectionString);
         _databaseContext = TestDatabaseContextProvider.CreateDatabaseContext(options);
+    }
+
+    /// <summary>
+    /// Populates the test database table when no data exists; otherwise, it does nothing.
+    /// </summary>
+    /// <remarks>
+    /// It will create database if it does not already exist. 
+    /// </remarks>
+    private void MigrateTestDatabase()
+    {
+        var dbInitializer = new DbInitializer(_databaseContext);
+        dbInitializer.StartMigration();
+        dbInitializer.SeedData();
     }
 
     /// <summary>
