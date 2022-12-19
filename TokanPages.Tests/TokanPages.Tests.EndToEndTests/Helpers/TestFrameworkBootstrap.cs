@@ -27,7 +27,6 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
         GetTestDatabase();
         RemoveTestDatabaseContent();
         MigrateTestDatabase();
-        ConsolePrints.PrintOnSuccess(@"[TestFrameworkBootstrap]: Database has been migrated.");
     }
 
     /// <summary>
@@ -36,10 +35,14 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     public new void Dispose()
     {
         GC.SuppressFinalize(this);
-        ConsolePrints.PrintOnInfo(@"[TestFrameworkBootstrap]: Cleaning up the test environment...");
-        RemoveTestDatabaseContent();
-        ConsolePrints.PrintOnWarning(@"[TestFrameworkBootstrap]: Test data have been removed.");
-        ConsolePrints.PrintOnSuccess(@"[TestFrameworkBootstrap]: Completed!");
+        if (_databaseContext is not null)
+        {
+            ConsolePrints.PrintOnInfo(@"[TestFrameworkBootstrap]: Cleaning up the test environment...");
+            RemoveTestDatabaseContent();
+            ConsolePrints.PrintOnWarning(@"[TestFrameworkBootstrap]: Test data have been removed.");
+            ConsolePrints.PrintOnSuccess(@"[TestFrameworkBootstrap]: Completed!");
+        }
+
         base.Dispose();
     }
 
