@@ -10,10 +10,8 @@ using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Tests.UnitTests;
 
-public class TestBase
+public abstract class TestBase
 {
-    private readonly DatabaseContextFactory _databaseContextFactory;
-
     protected readonly IDataUtilityService DataUtilityService;
 
     protected readonly IWebTokenUtility WebTokenUtility;
@@ -23,7 +21,6 @@ public class TestBase
     protected TestBase()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<DatabaseContextFactory>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
         services.AddScoped<IDateTimeService, DateTimeService>();
@@ -31,13 +28,16 @@ public class TestBase
         using var scope = services.BuildServiceProvider(true).CreateScope();
         var serviceProvider = scope.ServiceProvider;
 
-        _databaseContextFactory = serviceProvider.GetRequiredService<DatabaseContextFactory>();
         DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
         WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
         DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    protected DatabaseContext GetTestDatabaseContext() => _databaseContextFactory.CreateDatabaseContext();
+    protected static DatabaseContext GetTestDatabaseContext()
+    {
+        var options = DatabaseContextProvider.GetTestDatabaseOptions();
+        return DatabaseContextProvider.CreateDatabaseContext(options);
+    }
 
     protected static Mock<IApplicationSettings> MockApplicationSettings(
         ApplicationPaths? applicationPaths = default, 

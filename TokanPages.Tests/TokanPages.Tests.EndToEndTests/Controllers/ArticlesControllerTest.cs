@@ -8,24 +8,28 @@ using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Articles;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> factory)
+    {
+        _factory = factory;
+        ExternalDatabaseConnection = _factory.Connection;
+    }
 
     [Fact]
     public async Task WhenGetAllArticles_ShouldReturnCollection()
     {
         // Arrange
         const string uri = $"{BaseUriArticles}/GetAllArticles/?IsPublished=false";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -48,7 +52,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         // Arrange
         var userId = Article1.Id;
         var uri = $"{BaseUriArticles}/{userId}/GetArticle/?noCache=true";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -69,7 +73,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
     {
         // Arrange
         var uri = $"{BaseUriArticles}/{Guid.NewGuid()}/GetArticle/?noCache=true";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -98,7 +102,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -129,15 +133,15 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwt(jwt);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -160,7 +164,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
         var dto = new RemoveArticleDto { Id = Guid.NewGuid() };
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -192,7 +196,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -216,7 +220,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
         var dto = new UpdateArticleCountDto { Id = Guid.NewGuid() };
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -246,7 +250,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             AddToLikes = 10
         };
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -270,15 +274,15 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         const string uri = $"{BaseUriArticles}/UpdateArticleVisibility/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
-        await RegisterTestJwtInDatabase(jwt, _webApplicationFactory.Connection);
+        await RegisterTestJwt(jwt);
 
         var dto = new UpdateArticleVisibilityDto
         {
@@ -307,13 +311,13 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
         const string uri = $"{BaseUriArticles}/UpdateArticleVisibility/";
         var request = new HttpRequestMessage(HttpMethod.Post, uri);
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
         var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _webApplicationFactory.WebSecret, _webApplicationFactory.Issuer, _webApplicationFactory.Audience);
+            _factory.WebSecret, _factory.Issuer, _factory.Audience);
 
         var dto = new UpdateArticleVisibilityDto
         {

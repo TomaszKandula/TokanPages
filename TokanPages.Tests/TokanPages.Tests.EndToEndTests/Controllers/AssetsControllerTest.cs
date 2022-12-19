@@ -3,16 +3,16 @@ using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public AssetsControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public AssetsControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Theory]
     [InlineData("images/icons/__github.png")]
@@ -21,7 +21,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     {
         // Arrange
         var uri = $"{BaseUriAssets}/getAsset/?BlobName={blobName}";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -39,7 +39,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     {
         // Arrange
         var uri = $"{BaseUriAssets}/getAsset/?BlobName={DataUtilityService.GetRandomString(useAlphabetOnly: true)}";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -58,7 +58,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
         // Arrange
         var userId = Article1.Id;
         var uri = $"{BaseUriAssets}/getArticleAsset/?Id={userId}&assetName=image.jpg";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -77,7 +77,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
         // Arrange
         var userId = Guid.NewGuid();
         var uri = $"{BaseUriAssets}/getArticleAsset/?Id={userId}&assetName=image.jpg";
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 

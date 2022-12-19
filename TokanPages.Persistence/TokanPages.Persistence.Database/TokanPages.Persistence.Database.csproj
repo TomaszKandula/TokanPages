@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using TokanPages.Backend.Application.Content.Queries;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Tests.IntegrationTests.Factories;
+using TokanPages.Tests.EndToEndTests.Helpers;
 using Xunit;
 
-namespace TokanPages.Tests.IntegrationTests.Controllers;
+namespace TokanPages.Tests.EndToEndTests.Controllers;
 
 public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
-    private readonly CustomWebApplicationFactory<TestStartup> _webApplicationFactory;
+    private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public ContentControllerTest(CustomWebApplicationFactory<TestStartup> webApplicationFactory) => _webApplicationFactory = webApplicationFactory;
+    public ContentControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Fact]
     public async Task GivenComponentNameAndType_WhenGetContent_ShouldSucceed()
@@ -23,7 +23,7 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         const string componentType = "component";
         const string uri = $"{BaseUriContent}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -47,7 +47,7 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         const string componentType = "component";
         var uri = $"{BaseUriContent}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
@@ -69,7 +69,7 @@ public class ContentControllerTest : TestBase, IClassFixture<CustomWebApplicatio
         var componentType = DataUtilityService.GetRandomString(6, "", true);
         var uri = $"{BaseUriContent}/GetContent/?Name={componentName}&Type={componentType}&noCache=true";
 
-        var httpClient = _webApplicationFactory
+        var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 

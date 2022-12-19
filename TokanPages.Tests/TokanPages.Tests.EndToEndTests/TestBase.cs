@@ -10,14 +10,13 @@ using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
+using TokanPages.Tests.EndToEndTests.Helpers;
 
-namespace TokanPages.Tests.IntegrationTests;
+namespace TokanPages.Tests.EndToEndTests;
 
-public class TestBase
+public abstract class TestBase
 {
-    private readonly Factories.DatabaseContextFactory _databaseContextFactory;
-
-    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.IntegrationTests";
+    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.EndToEndTests";
 
     protected const string BaseUriArticles = "/api/v1.0/articles";
 
@@ -39,26 +38,36 @@ public class TestBase
 
     protected readonly IWebTokenUtility WebTokenUtility;
 
+    protected string ExternalDatabaseConnection = "";
+
     protected TestBase()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<Factories.DatabaseContextFactory>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
         services.AddScoped<IDateTimeService, DateTimeService>();
 
         using var scope = services.BuildServiceProvider(true).CreateScope();
-        var serviceProvider = scope.ServiceProvider;
+        var service = scope.ServiceProvider;
 
-        _databaseContextFactory = serviceProvider.GetRequiredService<Factories.DatabaseContextFactory>();
-        DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
-        WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
-        DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
+        DataUtilityService = service.GetRequiredService<IDataUtilityService>();
+        WebTokenUtility = service.GetRequiredService<IWebTokenUtility>();
+        DateTimeService = service.GetRequiredService<IDateTimeService>();
     }
 
-    protected async Task RegisterTestJwtInDatabase(string? token, string? connection)
+    protected static async Task EnsureStatusCode(HttpResponseMessage responseMessage, HttpStatusCode expectedStatusCode)
     {
-        var databaseContext = GetTestDatabaseContext(connection);
+        if (responseMessage.StatusCode != expectedStatusCode)
+        {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            var contentText = !string.IsNullOrEmpty(content) ? $"Received content: {content}." : string.Empty;
+            throw new Exception($"Expected status code was {expectedStatusCode} but received {responseMessage.StatusCode}. {contentText}");
+        }
+    }
+
+    protected async Task RegisterTestJwt(string? token)
+    {
+        var databaseContext = GetTestDatabaseContext(ExternalDatabaseConnection);
 
         var handler = new JwtSecurityTokenHandler();
         var jsonToken = handler.ReadToken(token);
@@ -74,21 +83,11 @@ public class TestBase
             Expires = securityToken.ValidTo,
             Created = securityToken.ValidFrom,
             CreatedByIp = "127.0.0.1",
-            Command = nameof(RegisterTestJwtInDatabase)
+            Command = nameof(RegisterTestJwt)
         };
 
         await databaseContext.UserTokens.AddAsync(newUserToken);
         await databaseContext.SaveChangesAsync();
-    }
-
-    protected static async Task EnsureStatusCode(HttpResponseMessage responseMessage, HttpStatusCode expectedStatusCode)
-    {
-        if (responseMessage.StatusCode != expectedStatusCode)
-        {
-            var content = await responseMessage.Content.ReadAsStringAsync();
-            var contentText = !string.IsNullOrEmpty(content) ? $"Received content: {content}." : string.Empty;
-            throw new Exception($"Expected status code was {expectedStatusCode} but received {responseMessage.StatusCode}. {contentText}");
-        }
     }
 
     protected ClaimsIdentity GetValidClaimsIdentity(string selectedUser = nameof(User1))
@@ -146,8 +145,9 @@ public class TestBase
         new Claim(ClaimTypes.Email, DataUtilityService.GetRandomString())
     });
 
-    private DatabaseContext GetTestDatabaseContext(string? connection) 
+    private static DatabaseContext GetTestDatabaseContext(string? connection)
     {
-        return _databaseContextFactory.CreateDatabaseContext(connection);
+        var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connection);
+        return TestDatabaseContextProvider.CreateDatabaseContext(options);
     }
 }
