@@ -68,13 +68,19 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
         ConsolePrints.PrintOnWarning(@"[TestFrameworkBootstrap]: User secrets (if present) will overwrite environment settings...");
 
         var connectionString = builder.GetConnectionString("DbConnectTest");
-        var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connectionString);
-        _databaseContext = TestDatabaseContextProvider.CreateDatabaseContext(options);
-
-        var connection = new SqlConnectionStringBuilder(connectionString);
-        var server = connection.DataSource;
-        var database = connection.InitialCatalog;
-        ConsolePrints.PrintOnSuccess(@$"[TestFrameworkBootstrap]: Connected with {server} ({database}).");
+        try
+        {
+            var connection = new SqlConnectionStringBuilder(connectionString);
+            var server = connection.DataSource;
+            var database = connection.InitialCatalog;
+            var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connectionString);
+            _databaseContext = TestDatabaseContextProvider.CreateDatabaseContext(options);
+            ConsolePrints.PrintOnSuccess(@$"[TestFrameworkBootstrap]: Connected with {server} ({database}).");
+        }
+        catch (Exception exception)
+        {
+            ConsolePrints.PrintOnError($"[TestFrameworkBootstrap]: {exception.Message}");
+        }
     }
 
     /// <summary>
@@ -85,6 +91,12 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     /// </remarks>
     private void MigrateTestDatabase()
     {
+        if (_databaseContext is null)
+        {
+            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Test database instance is null!");
+            return;
+        }
+
         var dbInitializer = new DbInitializer(_databaseContext);
         dbInitializer.StartMigration();
         dbInitializer.SeedData();
