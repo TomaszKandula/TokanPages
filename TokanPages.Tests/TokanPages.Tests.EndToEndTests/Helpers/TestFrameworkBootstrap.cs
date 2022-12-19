@@ -96,7 +96,7 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     {
         if (_databaseContext is null)
         {
-            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Test database instance is null!");
+            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Cannot migrate and seed the test data. The test database instance is null!");
             return;
         }
 
@@ -112,7 +112,7 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     {
         if (_databaseContext is null)
         {
-            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Test database instance is null!");
+            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Cannot perform clean-up. The test database instance is null!");
             return;
         }
 
