@@ -23,7 +23,6 @@ public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContex
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
         var builder = new ConfigurationBuilder()
-            .AddJsonFile($"appsettings.json", true, true)
             .AddJsonFile($"appsettings.{environment}.json", true, true)
             .AddUserSecrets<DatabaseContext>(optional: true)
             .AddEnvironmentVariables()
