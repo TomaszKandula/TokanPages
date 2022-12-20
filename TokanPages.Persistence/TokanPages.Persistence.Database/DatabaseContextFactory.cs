@@ -7,18 +7,18 @@ namespace TokanPages.Persistence.Database;
 
 /// <summary>
 /// A factory for creating derived DbContext instances when performing
-/// database migrations (add, update, remove) from terminal (using dotnet command).
+/// database migrations (add, update, remove).
 /// <see href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1?view=efcore-5.0"/>
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
 {
     /// <summary>
-    /// This method requires connection string defined in either AppSettings.json (linked)
-    /// or User Secret that is referenced in project file (user secret file can be shared between projects).
+    /// This method requires a connection string defined in either 'appsettings.json' (linked)
+    /// or user secret file that is referenced in the project file (user secret can be shared between projects).
     /// </summary>
-    /// <param name="args"></param>
-    /// <returns></returns>
+    /// <param name="args">Input arguments.</param>
+    /// <returns>Database instance.</returns>
     public DatabaseContext CreateDbContext(string[] args)
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
