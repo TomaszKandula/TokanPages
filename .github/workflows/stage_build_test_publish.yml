@@ -65,7 +65,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
     
-    - name: Variable substitution appsettings file for Staging (NET Core)
+    - name: Variable substitution appsettings file for Staging (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
