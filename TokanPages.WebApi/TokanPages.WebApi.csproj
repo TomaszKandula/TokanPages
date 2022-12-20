@@ -28,6 +28,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\TokanPages.Configuration\appsettings.Development.json">
+      <Link>appsettings.Development.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\TokanPages.Configuration\appsettings.Testing.json">
+      <Link>appsettings.Testing.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\TokanPages.Configuration\appsettings.Staging.json">
+      <Link>appsettings.Staging.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\TokanPages.Configuration\appsettings.Production.json">
+      <Link>appsettings.Production.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj" />
     <ProjectReference Include="..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
