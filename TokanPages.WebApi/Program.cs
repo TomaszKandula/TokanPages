@@ -18,6 +18,9 @@ public static class Program
     private static readonly bool IsDevelopment 
         = EnvironmentValue == Environments.Development;
 
+    private static readonly bool IsStaging 
+        = EnvironmentValue == Environments.Staging;
+
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
@@ -91,11 +94,11 @@ public static class Program
         var services = scope.ServiceProvider;
         var dbInitializer = services.GetRequiredService<IDbInitializer>();
 
-        if (!IsDevelopment) 
-            return webHost;
-
         dbInitializer.StartMigration();
-        dbInitializer.SeedData();
+        if (IsDevelopment || IsStaging)
+        {
+            dbInitializer.SeedData();
+        }
 
         return webHost;
     }
