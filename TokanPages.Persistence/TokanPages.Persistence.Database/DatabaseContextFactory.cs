@@ -14,9 +14,12 @@ namespace TokanPages.Persistence.Database;
 public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
 {
     /// <summary>
-    /// This method requires a connection string defined in either 'appsettings.json' (linked)
-    /// or user secret file that is referenced in the project file (user secret can be shared between projects).
+    /// This method requires a connection string defined in either the linked application settings file or
+    /// the "user secret" file referenced in the project file. The same "user secret" file can be shared between projects.      
     /// </summary>
+    /// <remarks>
+    /// For local development, user secrets should be used.
+    /// </remarks>
     /// <param name="args">Input arguments.</param>
     /// <returns>Database instance.</returns>
     public DatabaseContext CreateDbContext(string[] args)
