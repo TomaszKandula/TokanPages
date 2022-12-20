@@ -84,6 +84,8 @@ jobs:
       if: needs.versioning.outputs.outputs2 == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
+    # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
+    # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Production | Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       if: needs.versioning.outputs.outputs2 == 'true'
