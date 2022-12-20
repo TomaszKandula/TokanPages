@@ -70,7 +70,7 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
         ConsolePrints.PrintOnInfo($"[{Caller}]: Using '{appSettingsEnv}'...");
         ConsolePrints.PrintOnWarning($"[{Caller}]: User secrets (if present) will overwrite environment settings...");
 
-        var connectionString = builder.GetConnectionString("DbConnectTest");
+        var connectionString = builder.GetConnectionString("DbConnect");
         try
         {
             var connection = new SqlConnectionStringBuilder(connectionString);
