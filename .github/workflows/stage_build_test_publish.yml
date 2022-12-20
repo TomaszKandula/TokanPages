@@ -86,7 +86,6 @@ jobs:
         AzureStorage.MaxFileSizeUserMedia: "${{ secrets.AZURESTORAGE__MAXFILESIZE_USERMEDIA }}"
         AzureStorage.MaxFileSizeSingleAsset: "${{ secrets.AZURESTORAGE__MAXFILESIZE_SINGLEASSET }}"
         ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
-        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
         EmailSender.PrivateKey: "${{ secrets.EMAILSENDER__PRIVATEKEY_STAGE }}"
         EmailSender.BaseUrl: "${{ secrets.EMAILSENDER__BASEURL_STAGE }}"
         EmailSender.Addresses.Admin: "${{ secrets.EMAILSENDER__ADDRESSES_ADMIN }}"
