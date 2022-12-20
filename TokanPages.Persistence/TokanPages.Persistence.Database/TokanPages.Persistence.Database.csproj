@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\TokanPages.Configuration\appsettings.Development.json">
-      <Link>appsettings.Development.json</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
       <Link>appsettings.Testing.json</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
