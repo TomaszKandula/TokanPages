@@ -52,10 +52,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
 
-    - name: Variable substitution appsettings file for Staging (NET Core)
+    - name: Variable substitution appsettings file for Testing (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Testing.json
       env:
         ApplicationPaths.UpdateSubscriberPath: "${{ secrets.APPLICATIONPATHS__UPDATESUBSCRIBERPATH_STAGE }}"
         ApplicationPaths.UnsubscribePath: "${{ secrets.APPLICATIONPATHS__UNSUBSCRIBEPATH_STAGE }}"
@@ -118,7 +118,7 @@ jobs:
         mkdir "${{ env.TARGET_DIRECTORY }}"
         reportgenerator "-reports:${{ env.COVERAGE_REPORT }}" "-targetdir:${{ env.TARGET_DIRECTORY }}" "-reporttypes:SonarQube"
       env:
-        ASPNETCORE_ENVIRONMENT: Development
+        ASPNETCORE_ENVIRONMENT: Testing
 
     - name: SonarQube end scan dotnet
       run: dotnet sonarscanner end /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }}
