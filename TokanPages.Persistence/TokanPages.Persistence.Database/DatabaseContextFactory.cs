@@ -30,7 +30,6 @@ public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContex
             .Build();
 
         var connectionString = builder.GetConnectionString("DbConnect");
-
         var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
         optionsBuilder.UseSqlServer(connectionString);
 
