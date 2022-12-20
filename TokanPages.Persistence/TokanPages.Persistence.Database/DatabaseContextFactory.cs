@@ -24,7 +24,7 @@ public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContex
     /// <returns>Database instance.</returns>
     public DatabaseContext CreateDbContext(string[] args)
     {
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
         var builder = new ConfigurationBuilder()
             .AddJsonFile($"appsettings.{environment}.json", true, true)
             .AddUserSecrets<DatabaseContext>(optional: true)
