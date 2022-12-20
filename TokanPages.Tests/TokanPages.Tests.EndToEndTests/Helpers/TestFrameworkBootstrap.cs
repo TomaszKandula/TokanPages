@@ -17,13 +17,15 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
 {
     private DatabaseContext? _databaseContext;
 
+    private const string Caller = nameof(TestFrameworkBootstrap);
+    
     /// <summary>
     /// Prepares the test environment before all the tests are started.
     /// </summary>
     /// <param name="messageSink">Represents an endpoint for the reception of test message.</param>
     public TestFrameworkBootstrap(IMessageSink messageSink) : base(messageSink)
     {
-        ConsolePrints.PrintOnInfo(@"[TestFrameworkBootstrap]: Preparing the test environment...");
+        ConsolePrints.PrintOnInfo($"[{Caller}]: Preparing the test environment...");
         GetTestDatabase();
         RemoveTestDatabaseContent();
         MigrateTestDatabase();
@@ -37,10 +39,10 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
         GC.SuppressFinalize(this);
         if (_databaseContext is not null)
         {
-            ConsolePrints.PrintOnInfo(@"[TestFrameworkBootstrap]: Cleaning up the test environment...");
+            ConsolePrints.PrintOnInfo($"[{Caller}]: Cleaning up the test environment...");
             RemoveTestDatabaseContent();
-            ConsolePrints.PrintOnWarning(@"[TestFrameworkBootstrap]: Test data have been removed.");
-            ConsolePrints.PrintOnSuccess(@"[TestFrameworkBootstrap]: Completed!");
+            ConsolePrints.PrintOnWarning($"[{Caller}]: Test data have been removed.");
+            ConsolePrints.PrintOnSuccess($"[{Caller}]: Completed!");
         }
 
         base.Dispose();
@@ -55,20 +57,18 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     /// </remarks>
     private void GetTestDatabase()
     {
-        ConsolePrints.PrintOnInfo(@"[TestFrameworkBootstrap]: Getting test database instance...");
+        ConsolePrints.PrintOnInfo($"[{Caller}]: Getting test database instance...");
 
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
-        const string appSettings = "appsettings.json";
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
         var appSettingsEnv = $"appsettings.{environment}.json";
         var builder = new ConfigurationBuilder()
-            .AddJsonFile(appSettings, true, true)
             .AddJsonFile(appSettingsEnv, true, true)
             .AddUserSecrets<DatabaseContext>(optional: true)
             .AddEnvironmentVariables()
             .Build();
 
-        ConsolePrints.PrintOnInfo(@$"[TestFrameworkBootstrap]: Using '{appSettingsEnv}'...");
-        ConsolePrints.PrintOnWarning(@"[TestFrameworkBootstrap]: User secrets (if present) will overwrite environment settings...");
+        ConsolePrints.PrintOnInfo($"[{Caller}]: Using '{appSettingsEnv}'...");
+        ConsolePrints.PrintOnWarning($"[{Caller}]: User secrets (if present) will overwrite environment settings...");
 
         var connectionString = builder.GetConnectionString("DbConnectTest");
         try
@@ -78,11 +78,11 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
             var database = connection.InitialCatalog;
             var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connectionString);
             _databaseContext = TestDatabaseContextProvider.CreateDatabaseContext(options);
-            ConsolePrints.PrintOnSuccess(@$"[TestFrameworkBootstrap]: Connected with {server} ({database}).");
+            ConsolePrints.PrintOnSuccess($"[{Caller}]: Connected with {server} ({database}).");
         }
         catch (Exception exception)
         {
-            ConsolePrints.PrintOnError($"[TestFrameworkBootstrap]: {exception.Message}");
+            ConsolePrints.PrintOnError($"[{Caller}]: {exception.Message}");
         }
     }
 
@@ -96,7 +96,7 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     {
         if (_databaseContext is null)
         {
-            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Cannot migrate and seed the test data. The test database instance is null!");
+            ConsolePrints.PrintOnError($"[{Caller}]: Cannot migrate and seed the test data. The test database instance is null!");
             return;
         }
 
@@ -112,7 +112,7 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     {
         if (_databaseContext is null)
         {
-            ConsolePrints.PrintOnError(@"[TestFrameworkBootstrap]: Cannot perform clean-up. The test database instance is null!");
+            ConsolePrints.PrintOnError($"[{Caller}]: Cannot perform clean-up. The test database instance is null!");
             return;
         }
 
@@ -162,6 +162,6 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
 
     private static void PrintWarning(string entity)
     {
-        ConsolePrints.PrintOnWarning(@$"[TestFrameworkBootstrap]: '{entity}' is marked for removal...");
+        ConsolePrints.PrintOnWarning($"[{Caller}]: '{entity}' is marked for removal...");
     }
 }
