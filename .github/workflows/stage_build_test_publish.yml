@@ -46,6 +46,8 @@ jobs:
     - name: Staging | Push Docker image
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-staging-${{ github.sha }}
 
+    # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
+    # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Staging | Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
@@ -123,8 +125,8 @@ jobs:
     - name: Staging | Push Docker image
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-staging-${{ github.sha }}
 
-    # Note: due to a budget constraints, we use separate Azure App Service for staging as the separate slots 
-    # are unavailable for B1, B2 and B3 pricing tiers
+    # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
+    # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Staging | Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
