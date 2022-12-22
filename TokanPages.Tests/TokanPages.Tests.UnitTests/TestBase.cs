@@ -44,8 +44,7 @@ public abstract class TestBase
         IdentityServer? identityServer = default, 
         LimitSettings? limitSettings = default, 
         EmailSender? emailSender = default, 
-        AzureStorage? azureStorage = default, 
-        SonarQube? sonarQube = default)
+        AzureStorage? azureStorage = default)
     {
         var applicationSettings = new Mock<IApplicationSettings>();
 
@@ -73,11 +72,6 @@ public abstract class TestBase
         applicationSettings
             .SetupGet(settings => settings.AzureStorage)
             .Returns(returnAzureStorage);
-
-        var returnSonarQube = sonarQube ?? new SonarQube();
-        applicationSettings
-            .SetupGet(settings => settings.SonarQube)
-            .Returns(returnSonarQube);
 
         return applicationSettings;
     }

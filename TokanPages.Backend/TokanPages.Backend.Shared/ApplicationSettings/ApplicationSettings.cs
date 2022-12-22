@@ -18,10 +18,8 @@ public class ApplicationSettings : IApplicationSettings
 
     public AzureRedis AzureRedis { get; }
 
-    public SonarQube SonarQube { get; }
-
     public ApplicationSettings(AzureStorage azureStorage, AzureRedis azureRedis, ApplicationPaths applicationPaths, 
-        IdentityServer identityServer, LimitSettings limitSettings, EmailSender emailSender, SonarQube sonarQube)
+        IdentityServer identityServer, LimitSettings limitSettings, EmailSender emailSender)
     {
         AzureStorage = azureStorage;
         AzureRedis = azureRedis;
@@ -29,6 +27,5 @@ public class ApplicationSettings : IApplicationSettings
         IdentityServer = identityServer;
         LimitSettings = limitSettings;
         EmailSender = emailSender;
-        SonarQube = sonarQube;
     }
 }

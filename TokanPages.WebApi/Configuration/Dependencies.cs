@@ -83,7 +83,6 @@ public static class Dependencies
 		services.AddSingleton(configuration.GetSection(nameof(AzureRedis)).Get<AzureRedis>());
 		services.AddSingleton(configuration.GetSection(nameof(EmailSender)).Get<EmailSender>());
 		services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
-		services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
 		services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
 		services.AddSingleton(configuration.GetSection(nameof(LimitSettings)).Get<LimitSettings>());
 		services.AddSingleton<IApplicationSettings, ApplicationSettings>();

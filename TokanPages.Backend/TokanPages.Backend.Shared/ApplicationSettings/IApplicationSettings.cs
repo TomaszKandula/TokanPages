@@ -15,6 +15,4 @@ public interface IApplicationSettings
     AzureStorage AzureStorage { get; }
 
     AzureRedis AzureRedis { get; }
-
-    SonarQube SonarQube { get; }
 }

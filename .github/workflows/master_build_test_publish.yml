@@ -142,8 +142,6 @@ jobs:
         LimitSettings.ActivationIdExpiresIn: "${{ secrets.LIMITSETTINGS__ACTIVATIONIDEXPIRESIN }}"
         LimitSettings.Likes.ForAnonymous: "${{ secrets.LIMITSETTINGS__LIKES_FORANONYMOUS }}"
         LimitSettings.Likes.ForUser: "${{ secrets.LIMITSETTINGS__LIKES_FORUSER }}"
-        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
-        SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN_API }}"
 
     - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v1
