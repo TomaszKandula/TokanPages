@@ -177,7 +177,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         content.Should().Contain(ErrorCodes.INVALID_ACTIVATION_ID);
     }
 
-    [Fact]
+    [Fact (Skip = "This test sends email and GitHub actions IPs cannot be whitelisted for now.")]
     public async Task GivenUserEmail_WhenResetUserPassword_ShouldFinishSuccessful()
     {
         // Arrange
@@ -395,7 +395,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         content.Should().Contain(ErrorCodes.USER_DOES_NOT_EXISTS);
     }
 
-    [Fact]
+    [Fact (Skip = "This test sends email and GitHub actions IPs cannot be whitelisted for now.")]
     public async Task GivenAllFieldsAreProvided_WhenAddUser_ShouldReturnNewGuid() 
     {
         // Arrange
