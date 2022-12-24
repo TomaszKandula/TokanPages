@@ -23,9 +23,9 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 
     public override async Task<Unit> Handle(SendNewsletterCommand request, CancellationToken cancellationToken)
     {
-        var deploymentOrigin = _configuration.GetValue<string>("");
-        var updateSubscriberPath = _configuration.GetValue<string>("");
-        var unsubscribePath = _configuration.GetValue<string>("");
+        var deploymentOrigin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var updateSubscriberPath = _configuration.GetValue<string>("Paths_UpdateSubscriber");
+        var unsubscribePath = _configuration.GetValue<string>("Paths_Unsubscribe");
 
         var updateSubscriberBaseLink = $"{deploymentOrigin}{updateSubscriberPath}";
         var unsubscribeBaseLink = $"{deploymentOrigin}{unsubscribePath}";
