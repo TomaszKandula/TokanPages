@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -7,7 +8,6 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
@@ -129,23 +129,38 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
+        var mockedConfig = new Mock<IConfiguration>();
 
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
+            .Returns(false);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
+            .Returns(90);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
+            .Returns(120);
+
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -249,23 +264,38 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
             .Returns(false);
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
-            
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        var mockedConfig = new Mock<IConfiguration>();
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
+            .Returns(false);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
+            .Returns(90);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
+            .Returns(120);
+
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert
@@ -315,23 +345,38 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
             .Returns(false);
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
+        var mockedConfig = new Mock<IConfiguration>();
 
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
+            .Returns(DataUtilityService.GetRandomString());
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
+            .Returns(false);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
+            .Returns(90);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
+            .Returns(120);
+
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert

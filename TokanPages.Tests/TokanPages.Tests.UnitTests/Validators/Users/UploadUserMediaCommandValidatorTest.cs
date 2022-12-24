@@ -1,10 +1,9 @@
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings;
-using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Validators.Users;
@@ -85,9 +84,13 @@ public class UploadUserMediaCommandValidatorTest : TestBase
         result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
     }
 
-    private static Mock<IApplicationSettings> SetupMockedSettings()
+    private static Mock<IConfiguration> SetupMockedSettings()
     {
-        var azureStorage = new AzureStorage { MaxFileSizeUserMedia = 2048 };
-        return MockApplicationSettings(azureStorage: azureStorage);
+        var mockedConfig = new Mock<IConfiguration>();
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("AZ_Storage_MaxFileSizeSingleAsset"))
+            .Returns(2048);
+
+        return mockedConfig;
     }
 }

@@ -1,5 +1,6 @@
 using FluentAssertions;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Mailer.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -33,7 +34,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = new Mock<IConfiguration>();
 
         var randomString = DataUtilityService.GetRandomString();
         mockedEmailSenderService
@@ -44,7 +45,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -73,7 +74,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = new Mock<IConfiguration>();
 
         mockedEmailSenderService
             .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))
@@ -83,7 +84,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert

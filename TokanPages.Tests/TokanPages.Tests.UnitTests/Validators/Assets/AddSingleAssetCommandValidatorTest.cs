@@ -1,9 +1,8 @@
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Assets.Commands;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings;
-using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Validators.Assets;
@@ -73,9 +72,13 @@ public class AddSingleAssetCommandValidatorTest : TestBase
         result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
     }
 
-    private static Mock<IApplicationSettings> SetupMockedSettings()
+    private static Mock<IConfiguration> SetupMockedSettings()
     {
-        var azureStorage = new AzureStorage { MaxFileSizeSingleAsset = 2048 };
-        return MockApplicationSettings(azureStorage: azureStorage);
+        var mockedConfig = new Mock<IConfiguration>();
+        mockedConfig
+            .Setup(configuration => configuration.GetValue<int>("AZ_Storage_MaxFileSizeSingleAsset"))
+            .Returns(2048);
+
+        return mockedConfig;
     }
 }
