@@ -2,7 +2,6 @@ using System.Net;
 using System.Security.Claims;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 using Moq;
 using TokanPages.Backend.Core.Exceptions;
@@ -37,7 +36,7 @@ public class UserServiceTest : TestBase
 
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -72,7 +71,7 @@ public class UserServiceTest : TestBase
 
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -99,7 +98,7 @@ public class UserServiceTest : TestBase
 
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -135,7 +134,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(users[0].Id);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -174,7 +173,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(Guid.NewGuid());
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -209,7 +208,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(null);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -253,7 +252,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -301,7 +300,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(Guid.NewGuid());
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -345,7 +344,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(null);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -380,7 +379,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(users[0].Id);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
             
         var userProvider = new UserService(
             httpContext.Object, 
@@ -417,7 +416,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(users[0].Id);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -453,7 +452,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(null);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -488,7 +487,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(users[0].Id);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -533,7 +532,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -579,7 +578,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -624,7 +623,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(null);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -668,7 +667,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -698,7 +697,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -728,7 +727,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId, ipAddress);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userProvider = new UserService(
             httpContext.Object, 
             databaseContext, 
@@ -768,7 +767,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId, ipAddress);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
@@ -823,7 +822,7 @@ public class UserServiceTest : TestBase
             .Returns(userToken);
 
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
         var userServiceProvider = new UserService(
             httpContext.Object, 
             databaseContext,
@@ -892,31 +891,7 @@ public class UserServiceTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
-            .Returns(false);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
-            .Returns(90);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
-            .Returns(120);
+        var mockedConfig = SetConfiguration();
 
         var userServiceProvider = new UserService(
             httpContext.Object, 
@@ -988,31 +963,7 @@ public class UserServiceTest : TestBase
         var ipAddress = DataUtilityService.GetRandomIpAddress();
         var httpContext = GetMockedHttpContext(userId, ipAddress);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
-            .Returns(false);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
-            .Returns(90);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
-            .Returns(120);
+        var mockedConfig = SetConfiguration();
 
         var userServiceProvider = new UserService(
             httpContext.Object, 
@@ -1102,31 +1053,7 @@ public class UserServiceTest : TestBase
                     It.IsAny<int>()))
             .Returns(refreshToken);
 
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
-            .Returns(false);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
-            .Returns(90);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
-            .Returns(120);
+        var mockedConfig = SetConfiguration();
 
         var userServiceProvider = new UserService(
             httpContext.Object, 
@@ -1239,31 +1166,7 @@ public class UserServiceTest : TestBase
                     It.IsAny<int>()))
             .Returns(refreshToken);
 
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
-            .Returns(false);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
-            .Returns(90);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
-            .Returns(120);
+        var mockedConfig = SetConfiguration();
 
         var userServiceProvider = new UserService(
             httpContext.Object, 
@@ -1324,31 +1227,7 @@ public class UserServiceTest : TestBase
         var httpContext = GetMockedHttpContext(userId, ipAddress);
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
 
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Issuer"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_Audience"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<string>("Ids_WebSecret"))
-            .Returns(DataUtilityService.GetRandomString());
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<bool>("Ids_RequireHttps"))
-            .Returns(false);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_WebToken_Maturity"))
-            .Returns(90);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Ids_RefreshToken_Maturity"))
-            .Returns(120);
+        var mockedConfig = SetConfiguration();
 
         var userServiceProvider = new UserService(
             httpContext.Object, 

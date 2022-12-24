@@ -34,7 +34,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
 
         var randomString = DataUtilityService.GetRandomString();
         mockedEmailSenderService
@@ -74,7 +74,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
 
         mockedEmailSenderService
             .Setup(sender => sender.GetEmailTemplate(It.IsAny<string>(), It.IsAny<CancellationToken>()))

@@ -35,7 +35,7 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
 
         var randomString = DataUtilityService.GetRandomString();
         mockedEmailSenderService
@@ -83,7 +83,7 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())

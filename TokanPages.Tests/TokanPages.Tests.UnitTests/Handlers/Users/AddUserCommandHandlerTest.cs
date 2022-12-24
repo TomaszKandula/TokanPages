@@ -79,7 +79,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
@@ -164,11 +164,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Activation_Maturity"))
-            .Returns(30);
+        var mockedConfig = SetConfiguration();
 
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))

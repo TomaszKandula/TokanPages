@@ -51,15 +51,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_Anonymous"))
-            .Returns(25);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_User"))
-            .Returns(50);
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
@@ -146,15 +138,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_Anonymous"))
-            .Returns(25);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_User"))
-            .Returns(50);
+        var mockedConfig = SetConfiguration();
 
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
@@ -239,15 +223,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_Anonymous"))
-            .Returns(25);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_User"))
-            .Returns(50);
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
@@ -345,15 +321,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_Anonymous"))
-            .Returns(25);
-
-        mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("Limit_Likes_User"))
-            .Returns(50);
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))

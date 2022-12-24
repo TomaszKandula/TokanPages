@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
@@ -41,7 +40,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
