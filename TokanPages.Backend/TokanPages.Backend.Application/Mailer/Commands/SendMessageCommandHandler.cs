@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -17,17 +17,17 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
 
     private readonly IUserService _userService;
 
     public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IApplicationSettings applicationSettings, IUserService userService) : base(databaseContext, loggerService)
+        IConfiguration configuration, IUserService userService) : base(databaseContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
         _userService = userService;
     }
 
@@ -46,14 +46,14 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
             { "{DATE_TIME}", dateTime }
         };
 
-        var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
-        var contactForm = _applicationSettings.ApplicationPaths.Templates.ContactForm;
+        var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
+        var contactForm = _configuration.GetValue<string>("Paths_Templates_ContactForm");
 
         var templateUrl = $"{baseUrl}{contactForm}";
         var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
         LoggerService.LogInformation($"Getting email template from URL: {templateUrl}.");
 
-        var contact = _applicationSettings.EmailSender.Addresses.Contact;
+        var contact = _configuration.GetValue<string>("Email_Address_Contact");
         var payload = new SenderPayloadDto
         {
             From = contact,

@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -17,14 +17,14 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly IUserService _userService;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
 
     public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IUserService userService, IConfiguration configuration) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
     }
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
@@ -71,7 +71,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
-        var tokenExpires = _dateTimeService.Now.AddMinutes(_applicationSettings.IdentityServer.WebTokenExpiresIn);
+        var tokenExpires = _dateTimeService.Now.AddMinutes(_configuration.GetValue<int>("Ids_WebToken_Maturity"));
         var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
