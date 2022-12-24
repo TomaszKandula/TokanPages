@@ -14,8 +14,8 @@ public static class RedisSupport
     {
         services.AddDistributedRedisCache(option =>
         {
-            option.Configuration = configuration.GetValue<string>("AzureRedis:ConnectionString");
-            option.InstanceName = "master";
+            option.Configuration = configuration.GetValue<string>("AZ_Redis_ConnectionString");
+            option.InstanceName = configuration.GetValue<string>("AZ_Redis_InstanceName");
         });
     }
 }

@@ -16,8 +16,8 @@ public static class CorsPolicy
     /// <param name="configuration">Provided configuration.</param>
     public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
-        var deploymentOrigin = configuration.GetValue<string>("ApplicationPaths:DeploymentOrigin");
-        var developmentOrigin = configuration.GetValue<string>("ApplicationPaths:DevelopmentOrigin");
+        var deploymentOrigin = configuration.GetValue<string>("Paths_DevelopmentOrigin");
+        var developmentOrigin = configuration.GetValue<string>("Paths_DeploymentOrigin");
         var origins = $"{deploymentOrigin};{developmentOrigin}".Split(";");
 
         builder.UseCors(policyBuilder =>
