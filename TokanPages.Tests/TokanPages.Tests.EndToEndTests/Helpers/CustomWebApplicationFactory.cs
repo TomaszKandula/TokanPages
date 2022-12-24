@@ -34,10 +34,10 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
                 configurationBuilder.AddConfiguration(testConfig);
 
                 var config = configurationBuilder.Build();
-                Issuer = config.GetValue<string>("IdentityServer:Issuer");
-                Audience = config.GetValue<string>("IdentityServer:Audience");
-                WebSecret = config.GetValue<string>("IdentityServer:WebSecret");
-                Connection = config.GetValue<string>("ConnectionStrings:DbConnect");
+                Issuer = config.GetValue<string>("Ids_Issuer");
+                Audience = config.GetValue<string>("Ids_Audience");
+                WebSecret = config.GetValue<string>("Ids_WebSecret");
+                Connection = config.GetValue<string>("Db_Connection");
             })
             .UseStartup<TTestStartup>()
             .UseTestServer();
