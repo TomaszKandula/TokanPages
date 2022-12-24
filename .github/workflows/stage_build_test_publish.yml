@@ -68,7 +68,7 @@ jobs:
     - name: Variable substitution appsettings file for Staging (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Staging.json
       env:
         Email_PrivateKey: "${{ secrets.STAGE_EMAIL_PRIVATEKEY }}"
         Email_BaseUrl: "${{ secrets.STAGE_EMAIL_BASEURL }}"

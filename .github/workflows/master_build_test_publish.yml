@@ -109,7 +109,7 @@ jobs:
     - name: Variable substitution appsettings file for Production (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Production.json
+        files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:
         Email_PrivateKey: "${{ secrets.PROD_EMAIL_PRIVATEKEY }}"
         Email_BaseUrl: "${{ secrets.PROD_EMAIL_BASEURL }}"

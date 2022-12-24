@@ -55,7 +55,7 @@ jobs:
     - name: Variable substitution appsettings file for Testing (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Testing.json
+        files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Testing.json
       env:
         Email_PrivateKey: "${{ secrets.TEST_EMAIL_PRIVATEKEY }}"
         Email_BaseUrl: "${{ secrets.TEST_EMAIL_BASEURL }}"
