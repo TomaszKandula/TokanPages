@@ -6,7 +6,6 @@ using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 
@@ -48,10 +47,8 @@ public class HttpClientService : IHttpClientService
 
         var stringContent = Encoding.ASCII.GetString(content);
         var error = $"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.";
-
         _loggerService.LogError(error);
-        ConsolePrints.PrintOnError(error);
-        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
+        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), error);
     }
 
     public async Task<T> Execute<T>(Configuration configuration, CancellationToken cancellationToken = default)
@@ -71,14 +68,12 @@ public class HttpClientService : IHttpClientService
         {
             var cannotParse = $"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.";
             _loggerService.LogError(cannotParse);
-            ConsolePrints.PrintOnError(cannotParse);
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), ErrorCodes.CANNOT_PARSE);
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), cannotParse);
         }
 
         var requestFailed = $"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.";
         _loggerService.LogError(requestFailed);
-        ConsolePrints.PrintOnError(requestFailed);
-        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
+        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), requestFailed);
     }
 
     private static HttpContent PrepareContent(IPayloadContent content)
