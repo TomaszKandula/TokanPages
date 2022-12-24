@@ -1,9 +1,6 @@
-﻿using Moq;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Shared.ApplicationSettings;
-using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -37,42 +34,5 @@ public abstract class TestBase
     {
         var options = DatabaseContextProvider.GetTestDatabaseOptions();
         return DatabaseContextProvider.CreateDatabaseContext(options);
-    }
-
-    protected static Mock<IApplicationSettings> MockApplicationSettings(
-        ApplicationPaths? applicationPaths = default, 
-        IdentityServer? identityServer = default, 
-        LimitSettings? limitSettings = default, 
-        EmailSender? emailSender = default, 
-        AzureStorage? azureStorage = default)
-    {
-        var applicationSettings = new Mock<IApplicationSettings>();
-
-        var returnApplicationPaths = applicationPaths ?? new ApplicationPaths();
-        applicationSettings
-            .SetupGet(settings => settings.ApplicationPaths)
-            .Returns(returnApplicationPaths);
-
-        var returnIdentityServer = identityServer ?? new IdentityServer();
-        applicationSettings
-            .SetupGet(settings => settings.IdentityServer)
-            .Returns(returnIdentityServer);
-
-        var returnExpirationSettings = limitSettings ?? new LimitSettings();
-        applicationSettings
-            .SetupGet(settings => settings.LimitSettings)
-            .Returns(returnExpirationSettings);
-
-        var returnEmailSender = emailSender ?? new EmailSender();
-        applicationSettings
-            .SetupGet(settings => settings.EmailSender)
-            .Returns(returnEmailSender);
-
-        var returnAzureStorage = azureStorage ?? new AzureStorage();
-        applicationSettings
-            .SetupGet(settings => settings.AzureStorage)
-            .Returns(returnAzureStorage);
-
-        return applicationSettings;
     }
 }
