@@ -6,6 +6,7 @@ using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 
@@ -46,7 +47,10 @@ public class HttpClientService : IHttpClientService
             };
 
         var stringContent = Encoding.ASCII.GetString(content);
-        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
+        var error = $"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.";
+
+        _loggerService.LogError(error);
+        ConsolePrints.PrintOnError(error);
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
@@ -65,11 +69,15 @@ public class HttpClientService : IHttpClientService
         }
         catch (Exception exception)
         {
-            _loggerService.LogError($"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.");
+            var cannotParse = $"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.";
+            _loggerService.LogError(cannotParse);
+            ConsolePrints.PrintOnError(cannotParse);
             throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), ErrorCodes.CANNOT_PARSE);
         }
 
-        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
+        var requestFailed = $"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.";
+        _loggerService.LogError(requestFailed);
+        ConsolePrints.PrintOnError(requestFailed);
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
