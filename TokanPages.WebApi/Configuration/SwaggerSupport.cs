@@ -87,7 +87,7 @@ public static class SwaggerSupport
         {
             options.SwaggerEndpoint($"/swagger/{ApiDocVersion}/swagger.json", ApiDocName);
             options.OAuthAppName(ApiDocName);
-            options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
+            options.OAuthClientSecret(configuration.GetValue<string>("Ids_WebSecret"));
         });
     }
 }

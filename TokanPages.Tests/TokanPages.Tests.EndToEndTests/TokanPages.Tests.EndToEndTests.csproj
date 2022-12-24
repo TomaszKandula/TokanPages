@@ -27,9 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\TokanPages.WebApi\appsettings.Staging.json">
-      <Link>appsettings.Staging.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
+      <Link>appsettings.Testing.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

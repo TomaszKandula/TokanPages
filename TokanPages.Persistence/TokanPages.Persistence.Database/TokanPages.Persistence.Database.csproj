@@ -13,21 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\TokanPages.WebApi\appsettings.Development.json">
-      <Link>appsettings.Development.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
+      <Link>appsettings.Testing.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\TokanPages.WebApi\appsettings.json">
-      <Link>appsettings.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\TokanPages.WebApi\appsettings.Production.json">
-      <Link>appsettings.Production.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\TokanPages.WebApi\appsettings.Staging.json">
+    <None Include="..\..\TokanPages.Configuration\appsettings.Staging.json">
       <Link>appsettings.Staging.json</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\TokanPages.Configuration\appsettings.Production.json">
+      <Link>appsettings.Production.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   

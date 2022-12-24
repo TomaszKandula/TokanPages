@@ -1,12 +1,12 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -18,14 +18,14 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
     
     public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
-    IDateTimeService dateTimeService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+    IDateTimeService dateTimeService, IConfiguration configuration) : base(databaseContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
     }
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
@@ -61,9 +61,9 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private async Task AddLikes(Guid? userId, UpdateArticleLikesCommand request, CancellationToken cancellationToken)
     {
-        var likesLimit = userId == null 
-            ? _applicationSettings.LimitSettings.Likes.ForAnonymous 
-            : _applicationSettings.LimitSettings.Likes.ForUser;
+        var likesLimit = userId == null
+            ? _configuration.GetValue<int>("Limit_Likes_Anonymous")
+            : _configuration.GetValue<int>("Limit_Likes_User");
 
         var entity = new ArticleLikes
         {
@@ -83,8 +83,8 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
     private void UpdateLikes(Guid? userId, ArticleLikes entity, int likesToBeAdded)
     {
         var likesLimit = userId == null 
-            ? _applicationSettings.LimitSettings.Likes.ForAnonymous 
-            : _applicationSettings.LimitSettings.Likes.ForUser;
+            ? _configuration.GetValue<int>("Limit_Likes_Anonymous") 
+            : _configuration.GetValue<int>("Limit_Likes_User");
 
         var sum = entity.LikeCount + likesToBeAdded;
         entity.LikeCount = sum > likesLimit ? likesLimit : sum;

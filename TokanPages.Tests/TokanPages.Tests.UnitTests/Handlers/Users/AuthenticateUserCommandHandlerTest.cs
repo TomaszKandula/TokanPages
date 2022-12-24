@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -7,7 +8,6 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings.Models;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -114,17 +114,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()));
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
-
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        var mockedConfig = SetConfiguration();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -132,7 +122,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object, 
             mockedDateTimeService.Object, 
             mockedUserServiceProvider.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
             
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -207,7 +197,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = new Mock<IConfiguration>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
@@ -215,7 +205,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object,
             mockedDateTimeService.Object,
             mockedUserServiceProvider.Object,
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert
@@ -260,7 +250,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = new Mock<IConfiguration>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
@@ -268,7 +258,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object,
             mockedDateTimeService.Object,
             mockedUserServiceProvider.Object,
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert
@@ -356,19 +346,8 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<Guid>(),
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()));
-            
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
 
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
-            
+        var mockedConfig = SetConfiguration();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -376,8 +355,8 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object, 
             mockedDateTimeService.Object, 
             mockedUserServiceProvider.Object, 
-            mockedApplicationSettings.Object);
-            
+            mockedConfig.Object);
+
         // Act
         // Assert
         var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));

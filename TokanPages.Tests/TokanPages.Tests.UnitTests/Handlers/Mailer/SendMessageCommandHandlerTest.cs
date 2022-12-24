@@ -1,5 +1,6 @@
 using FluentAssertions;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Mailer.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -34,7 +35,7 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = SetConfiguration();
 
         var randomString = DataUtilityService.GetRandomString();
         mockedEmailSenderService
@@ -52,7 +53,7 @@ public class SendMessageCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
-            mockedApplicationSettings.Object, 
+            mockedConfig.Object, 
             mockedUserService.Object);
 
         // Act
@@ -82,7 +83,7 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
@@ -99,7 +100,7 @@ public class SendMessageCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
-            mockedApplicationSettings.Object, 
+            mockedConfig.Object, 
             mockedUserService.Object);
 
         // Act

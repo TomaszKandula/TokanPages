@@ -21,13 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.EndToEndTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.UnitTests", "TokanPages.Tests\TokanPages.Tests.UnitTests\TokanPages.Tests.UnitTests.csproj", "{3A138774-9DA3-40E3-8DA3-50620F0FD310}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. WebApi", "8. WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Backend", "5. Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B30AF865-7C21-4323-B7E5-14762C5B1DC0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. Tests", "9. Tests", "{B30AF865-7C21-4323-B7E5-14762C5B1DC0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7B457C82-AEA6-49F3-8F9F-A7F0798166FF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Services", "7. Services", "{7B457C82-AEA6-49F3-8F9F-A7F0798166FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.BehaviourService", "TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj", "{0E68D499-C546-42A7-BFF7-9585002DA3A7}"
 EndProject
@@ -43,13 +43,40 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.EmailSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.WebApi.Dto", "TokanPages.WebApi.Dto\TokanPages.WebApi.Dto.csproj", "{831ECC1F-EC05-42E7-89BE-B7494A453C63}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Persistence", "6. Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.Caching", "TokanPages.Persistence\TokanPages.Persistence.Caching\TokanPages.Persistence.Caching.csproj", "{2C3954CF-EB27-45CA-8A22-5A44497BEC36}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.RedisCacheService", "TokanPages.Services\TokanPages.Services.RedisCacheService\TokanPages.Services.RedisCacheService.csproj", "{5252D6C7-6BAF-4FE0-A557-47600A853666}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.WebSocketService", "TokanPages.Services\TokanPages.Services.WebSocketService\TokanPages.Services.WebSocketService.csproj", "{E304E012-54C3-464A-ABEB-87830DF2C592}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Configuration", "2. Configuration", "{B1EAD444-3ADC-407F-AC1F-41032E3FADF6}"
+	ProjectSection(SolutionItems) = preProject
+		TokanPages.Configuration\appsettings.Production.json = TokanPages.Configuration\appsettings.Production.json
+		TokanPages.Configuration\appsettings.Staging.json = TokanPages.Configuration\appsettings.Staging.json
+		TokanPages.Configuration\appsettings.Testing.json = TokanPages.Configuration\appsettings.Testing.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Deployment", "3. Deployment", "{A6A91832-D2B6-4665-B081-A349B5B2B16C}"
+	ProjectSection(SolutionItems) = preProject
+		dev_build_test.yml = .github\workflows\dev_build_test.yml
+		stage_build_test_publish.yml = .github\workflows\stage_build_test_publish.yml
+		master_build_test_publish.yml = .github\workflows\master_build_test_publish.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Documentation", "{BAA4CC38-6421-46D8-816A-9684E08FABC5}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
+	ProjectSection(SolutionItems) = preProject
+		dockerfile = dockerfile
+		__testrun.sh = __testrun.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

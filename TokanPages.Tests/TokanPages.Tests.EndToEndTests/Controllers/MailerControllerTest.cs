@@ -22,7 +22,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
         ExternalDatabaseConnection = _factory.Connection;
     }
 
-    [Fact]
+    [Fact (Skip = "This test sends email and GitHub actions IPs cannot be whitelisted for now.")]
     public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
     {
         // Arrange
@@ -57,7 +57,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
         content.Should().Be("{}");
     }
 
-    [Fact]
+    [Fact (Skip = "This test sends email and GitHub actions IPs cannot be whitelisted for now.")]
     public async Task GivenValidEmailsAndValidJwt_WhenSendNewsletter_ShouldReturnEmptyJsonObject()
     {
         // Arrange

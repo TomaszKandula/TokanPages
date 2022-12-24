@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.ApplicationSettings;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.CipheringService.Abstractions;
@@ -22,20 +22,20 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IUserService _userService;
 
     public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, IEmailSenderService emailSenderService, IApplicationSettings applicationSettings, 
+        ICipheringService cipheringService, IEmailSenderService emailSenderService, IConfiguration configuration, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
         _emailSenderService = emailSenderService;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
     }
@@ -55,7 +55,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password!, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
-        var expiresIn = _applicationSettings.LimitSettings.ActivationIdExpiresIn;
+        var expiresIn = _configuration.GetValue<int>("Limit_Activation_Maturity");
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
 
