@@ -74,10 +74,15 @@ public class AddSingleAssetCommandValidatorTest : TestBase
 
     private static Mock<IConfiguration> SetupMockedSettings()
     {
+        var mockedSection = new Mock<IConfigurationSection>();
+        mockedSection
+            .Setup(x => x.Value)
+            .Returns("2048");
+
         var mockedConfig = new Mock<IConfiguration>();
         mockedConfig
-            .Setup(configuration => configuration.GetValue<int>("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(2048);
+            .Setup(c => c.GetSection(It.Is<string>(s => s == "AZ_Storage_MaxFileSizeSingleAsset")))
+            .Returns(mockedSection.Object);
 
         return mockedConfig;
     }
