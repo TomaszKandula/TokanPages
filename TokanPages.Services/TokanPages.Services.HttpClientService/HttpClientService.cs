@@ -46,9 +46,8 @@ public class HttpClientService : IHttpClientService
             };
 
         var stringContent = Encoding.ASCII.GetString(content);
-        var error = $"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.";
-        _loggerService.LogError(error);
-        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), error);
+        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
+        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
     public async Task<T> Execute<T>(Configuration configuration, CancellationToken cancellationToken = default)
@@ -66,14 +65,12 @@ public class HttpClientService : IHttpClientService
         }
         catch (Exception exception)
         {
-            var cannotParse = $"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.";
-            _loggerService.LogError(cannotParse);
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), cannotParse);
+            _loggerService.LogError($"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), ErrorCodes.CANNOT_PARSE);
         }
 
-        var requestFailed = $"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.";
-        _loggerService.LogError(requestFailed);
-        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), requestFailed);
+        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
+        throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
     private static HttpContent PrepareContent(IPayloadContent content)
