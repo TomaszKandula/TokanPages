@@ -22,7 +22,7 @@ public class DatabaseMigrator : IDatabaseMigrator
         var options = DatabaseOptions.GetOptions<T>(connectionString, IsTesting || IsStaging);
         var context = (T)Activator.CreateInstance(typeof(T), options)!;
 
-        ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Context created successfully!");
+        ConsolePrints.PrintOnSuccess($"[{Caller} | {contextName}]: Context created successfully!");
 
         if (!context.Database.CanConnect())
             throw new Exception($"Cannot connect to the database for context '{contextName}'!");
@@ -31,6 +31,6 @@ public class DatabaseMigrator : IDatabaseMigrator
 
         context.Database.Migrate();
 
-        ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Finished database migration!");
+        ConsolePrints.PrintOnSuccess($"[{Caller} | {contextName}]: Finished database migration!");
     }
 }
