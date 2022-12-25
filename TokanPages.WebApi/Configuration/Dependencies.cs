@@ -26,7 +26,6 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Initializer;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -97,7 +96,6 @@ public static class Dependencies
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 
-		services.AddScoped<IDbInitializer, DbInitializer>();
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<ICipheringService, CipheringService>();
 		services.AddScoped<IEmailSenderService, EmailSenderService>();
