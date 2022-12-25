@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace TokanPages.Persistence.MigrationRunner.DatabaseMigrator.Abstractions;
+namespace TokanPages.Persistence.MigrationRunner.Abstractions;
 
 public interface IDatabaseMigrator
 {

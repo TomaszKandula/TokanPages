@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Data.DefaultPermission;
+namespace TokanPages.Persistence.MigrationRunner.Data.DefaultPermission;
 
 [ExcludeFromCodeCoverage]
 public static class DefaultPermission5

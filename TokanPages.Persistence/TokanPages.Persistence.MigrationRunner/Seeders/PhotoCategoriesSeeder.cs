@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Seeders;
+namespace TokanPages.Persistence.MigrationRunner.Seeders;
 
 [ExcludeFromCodeCoverage]
 public static class PhotoCategoriesSeeder

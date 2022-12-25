@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Data.UserInfo;
+namespace TokanPages.Persistence.MigrationRunner.Data.UserInfo;
 
 [ExcludeFromCodeCoverage]
 public static class UserInfo2

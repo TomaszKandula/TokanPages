@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Data.Roles;
+namespace TokanPages.Persistence.MigrationRunner.Data.Roles;
 
 [ExcludeFromCodeCoverage]
 public static class Role1

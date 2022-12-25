@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Persistence.MigrationRunner.DataSeeder.Abstractions;
+using TokanPages.Persistence.MigrationRunner.Abstractions;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder;
+namespace TokanPages.Persistence.MigrationRunner;
 
 public class DataSeeder : IDataSeeder
 {

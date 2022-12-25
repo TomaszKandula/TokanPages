@@ -2,7 +2,7 @@
 using TokanPages.Persistence.Database.Initializer.Data.Articles;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Data.ArticleLikes;
+namespace TokanPages.Persistence.MigrationRunner.Data.ArticleLikes;
 
 [ExcludeFromCodeCoverage]
 public static class ArticleLike1

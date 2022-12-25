@@ -6,8 +6,8 @@ internal static class Program
 {
     private static void Main(string[] args)
     {
-        var databaseMigrator = new DatabaseMigrator.DatabaseMigrator();
-        var dataSeeder = new DataSeeder.DataSeeder();
+        var databaseMigrator = new DatabaseMigrator();
+        var dataSeeder = new DataSeeder();
 
         var connection = databaseMigrator.GetConnectionString<DatabaseContext>();
         databaseMigrator.ValidateConnectionString(connection);

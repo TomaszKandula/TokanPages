@@ -1,7 +1,7 @@
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Data.PhotoCategories;
+namespace TokanPages.Persistence.MigrationRunner.Data.PhotoCategories;
 
 [ExcludeFromCodeCoverage]
 public static class PhotoCategories

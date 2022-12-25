@@ -2,10 +2,10 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Services;
-using TokanPages.Persistence.MigrationRunner.DatabaseMigrator.Abstractions;
+using TokanPages.Persistence.MigrationRunner.Abstractions;
 using TokanPages.Persistence.MigrationRunner.Helpers;
 
-namespace TokanPages.Persistence.MigrationRunner.DatabaseMigrator;
+namespace TokanPages.Persistence.MigrationRunner;
 
 public class DatabaseMigrator : IDatabaseMigrator
 {

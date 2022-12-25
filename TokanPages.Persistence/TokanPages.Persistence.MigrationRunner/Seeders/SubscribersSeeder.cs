@@ -2,7 +2,7 @@
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database.Initializer.Data.Subscribers;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Seeders;
+namespace TokanPages.Persistence.MigrationRunner.Seeders;
 
 [ExcludeFromCodeCoverage]
 public static class SubscribersSeeder

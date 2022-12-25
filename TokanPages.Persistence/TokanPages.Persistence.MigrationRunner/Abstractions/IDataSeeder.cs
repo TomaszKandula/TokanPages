@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace TokanPages.Persistence.MigrationRunner.DataSeeder.Abstractions;
+namespace TokanPages.Persistence.MigrationRunner.Abstractions;
 
 public interface IDataSeeder
 {
