@@ -52,7 +52,7 @@ public class StatusControllerTest : TestBase, IClassFixture<CustomWebApplication
                 configurationBuilder.AddInMemoryCollection(
                     new Dictionary<string, string>
                     {
-                        ["Db_Connection"] = DataUtilityService.GetRandomString()
+                        ["Db_DatabaseContext"] = DataUtilityService.GetRandomString()
                     });
             });
         });

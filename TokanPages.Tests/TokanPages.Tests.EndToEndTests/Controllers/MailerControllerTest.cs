@@ -3,8 +3,10 @@ using System.Net.Http.Headers;
 using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
 using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Mailer;
 using TokanPages.WebApi.Dto.Mailer.Models;
@@ -16,11 +18,7 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
 {
     private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public MailerControllerTest(CustomWebApplicationFactory<TestStartup> factory) 
-    {
-        _factory = factory;
-        ExternalDatabaseConnection = _factory.Connection;
-    }
+    public MailerControllerTest(CustomWebApplicationFactory<TestStartup> factory)  => _factory = factory;
 
     [Fact (Skip = "This test sends email and GitHub actions IPs cannot be whitelisted for now.")]
     public async Task GivenValidEmail_WhenSendUserMessage_ShouldReturnEmptyJsonObject()
@@ -84,10 +82,12 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
-        await RegisterTestJwt(jwt);
+        await RegisterTestJwt<DatabaseContext>(jwt, _factory.Configuration!);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -130,8 +130,10 @@ public class MailerControllerTest : TestBase, IClassFixture<CustomWebApplication
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), webSecret, issuer, audience);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);

@@ -3,11 +3,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database;
 using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 using TokanPages.Tests.EndToEndTests.Helpers;
@@ -20,11 +22,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
 {
     private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> factory)
-    { 
-        _factory = factory;
-        ExternalDatabaseConnection = _factory.Connection;
-    }
+    public UsersControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Fact]
     public async Task GivenValidCredentials_WhenAuthenticateUser_ShouldSucceed()
@@ -161,9 +159,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(
-            tokenExpires, GetValidClaimsIdentity(), _factory.WebSecret, 
-            _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
             
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -266,10 +265,12 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), _factory.WebSecret, 
-            _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
-        await RegisterTestJwt(jwt);
+        await RegisterTestJwt<DatabaseContext>(jwt, _factory.Configuration!);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -293,10 +294,12 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
             
-        await RegisterTestJwt(jwt);
+        await RegisterTestJwt<DatabaseContext>(jwt, _factory.Configuration!);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -324,10 +327,12 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
-        await RegisterTestJwt(jwt);
+        await RegisterTestJwt<DatabaseContext>(jwt, _factory.Configuration!);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -354,8 +359,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), webSecret, issuer, audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -379,10 +386,12 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
-        await RegisterTestJwt(jwt);
+        await RegisterTestJwt<DatabaseContext>(jwt, _factory.Configuration!);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
         // Act
@@ -482,8 +491,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), webSecret, issuer, audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -518,8 +529,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), webSecret, issuer, audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -555,8 +568,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
@@ -592,8 +607,10 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         request.Content = new StringContent(payload, Encoding.Default, "application/json");
 
         var tokenExpires = DateTimeService.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(nameof(User2)), webSecret, issuer, audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 
