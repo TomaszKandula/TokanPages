@@ -34,6 +34,7 @@ public class DataSeeder : IDataSeeder
         switch (context)
         {
             case DatabaseContext databaseContext:
+                DatabaseContextUpdater.Remove(databaseContext);
                 DatabaseContextUpdater.Populate(databaseContext);
                 break;
             default:
