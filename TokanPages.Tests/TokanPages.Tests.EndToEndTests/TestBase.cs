@@ -65,7 +65,7 @@ public abstract class TestBase
         }
     }
 
-    protected async Task RegisterTestJwt<T>(string? token, IConfiguration configuration) where T : DbContext
+    protected async Task AddWebToken<T>(string? token, IConfiguration configuration) where T : DbContext
     {
         var databaseContext = GetTestDatabase<T>(configuration);
 
@@ -83,7 +83,7 @@ public abstract class TestBase
             Expires = securityToken.ValidTo,
             Created = securityToken.ValidFrom,
             CreatedByIp = "127.0.0.1",
-            Command = nameof(RegisterTestJwt)
+            Command = nameof(AddWebToken)
         };
 
         await databaseContext.UserTokens.AddAsync(newUserToken);
