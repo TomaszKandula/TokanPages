@@ -10,7 +10,7 @@ internal static class Program
     private const string Option2 = "                    It will create the database if it does not already exist.";
     private const string Option3 = "  --seed            Seeds the test data to the existing database.";
     private const string Option4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
-    
+
     private static void Main(string[] args)
     {
         var arguments = InputArguments.Normalize(args);
