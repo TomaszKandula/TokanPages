@@ -1,5 +1,5 @@
 using TokanPages.Backend.Shared.Services;
-using TokanPages.Persistence.MigrationRunner.Seeders;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext;
 

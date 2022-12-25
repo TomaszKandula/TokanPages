@@ -4,7 +4,7 @@ using TokanPages.Persistence.Database.Initializer.Data.DefaultPermission;
 using TokanPages.Persistence.Database.Initializer.Data.Permissions;
 using TokanPages.Persistence.Database.Initializer.Data.Roles;
 
-namespace TokanPages.Persistence.MigrationRunner.Seeders;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
 
 [ExcludeFromCodeCoverage]
 public static class DefaultPermissionsSeeder

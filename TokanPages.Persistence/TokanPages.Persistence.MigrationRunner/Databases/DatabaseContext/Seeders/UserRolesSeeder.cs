@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database.Initializer.Data.UserRoles;
 
-namespace TokanPages.Persistence.MigrationRunner.Seeders;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
 
 [ExcludeFromCodeCoverage]
 public static class UserRolesSeeder
