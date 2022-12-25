@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.Data.Subscribers;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Subscribers;
 
 [ExcludeFromCodeCoverage]
 public static class Subscriber2

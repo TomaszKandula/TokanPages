@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.Data.Users;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 
 [ExcludeFromCodeCoverage]
 public static class User2

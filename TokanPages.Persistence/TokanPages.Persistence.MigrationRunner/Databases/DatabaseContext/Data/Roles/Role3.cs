@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.Data.Roles;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Roles;
 
 [ExcludeFromCodeCoverage]
 public static class Role3

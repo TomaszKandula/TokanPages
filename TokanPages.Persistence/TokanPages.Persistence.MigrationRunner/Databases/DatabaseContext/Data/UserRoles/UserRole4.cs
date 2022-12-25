@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Persistence.Database.Initializer.Data.Roles;
 using TokanPages.Persistence.Database.Initializer.Data.Users;
 
-namespace TokanPages.Persistence.MigrationRunner.Data.UserRoles;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.UserRoles;
 
 [ExcludeFromCodeCoverage]
 public static class UserRole4

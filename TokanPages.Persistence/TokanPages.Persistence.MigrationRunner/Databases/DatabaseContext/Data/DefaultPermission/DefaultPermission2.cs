@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Persistence.MigrationRunner.Data.DefaultPermission;
+namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.DefaultPermission;
 
 [ExcludeFromCodeCoverage]
 public static class DefaultPermission2
