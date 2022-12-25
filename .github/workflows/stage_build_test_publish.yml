@@ -116,6 +116,7 @@ jobs:
     - name: Staging | Build Docker (execute with tests)
       run: |
         docker build . \
+        --build-arg "ENV_VALUE=Staging" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-staging-${{ github.sha }}
 
     - name: Staging | Push Docker image (prepare)
