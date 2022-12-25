@@ -9,12 +9,6 @@ public class DatabaseMigrator : IDatabaseMigrator
 {
     private const string Caller = nameof(DatabaseMigrator);
 
-    private static readonly string? EnvironmentValue = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-    private static readonly bool IsTesting = EnvironmentValue == "Testing";
-
-    private static readonly bool IsStaging = EnvironmentValue == "Staging";
-
     /// <summary>
     /// Migrates database for given database context.
     /// </summary>
@@ -26,7 +20,7 @@ public class DatabaseMigrator : IDatabaseMigrator
     {
         ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Creating context...");
 
-        var options = DatabaseOptions.GetOptions<T>(connectionString, IsTesting || IsStaging);
+        var options = DatabaseOptions.GetOptions<T>(connectionString, Environments.IsTestingOrStaging);
         var context = (T)Activator.CreateInstance(typeof(T), options)!;
 
         ConsolePrints.PrintOnSuccess($"[{Caller} | {contextName}]: Context created successfully!");

@@ -11,12 +11,6 @@ public class DataSeeder : IDataSeeder
 {
     private const string Caller = nameof(DataSeeder);
 
-    private static readonly string? EnvironmentValue = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-    private static readonly bool IsTesting = EnvironmentValue == "Testing";
-
-    private static readonly bool IsStaging = EnvironmentValue == "Staging";
-
     /// <summary>
     /// Seeds the test data for supported database context.
     /// </summary>
@@ -32,7 +26,7 @@ public class DataSeeder : IDataSeeder
     {
         ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Creating context...");
 
-        var options = DatabaseOptions.GetOptions<T>(connectionString, IsTesting || IsStaging);
+        var options = DatabaseOptions.GetOptions<T>(connectionString, Environments.IsTestingOrStaging);
         var context = (T)Activator.CreateInstance(typeof(T), options)!;
 
         ConsolePrints.PrintOnSuccess($"[{Caller} | {contextName}]: Context created successfully!");
