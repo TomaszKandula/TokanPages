@@ -54,7 +54,7 @@ internal static class Program
                     break;
 
                 default:
-                    throw new Exception("Unsupported option.");
+                    throw new ArgumentException("Unsupported option.");
             }
         }
     }
