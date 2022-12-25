@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Persistence.Database.Initializer.Data.Roles;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Roles;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
 

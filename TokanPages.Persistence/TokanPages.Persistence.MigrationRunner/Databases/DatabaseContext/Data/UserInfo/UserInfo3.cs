@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Persistence.Database.Initializer.Data.Users;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.UserInfo;
 

@@ -2,7 +2,7 @@ using System.Net;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.Database.Initializer.Data.Articles;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
 using TokanPages.Tests.EndToEndTests.Helpers;
 using Xunit;
 

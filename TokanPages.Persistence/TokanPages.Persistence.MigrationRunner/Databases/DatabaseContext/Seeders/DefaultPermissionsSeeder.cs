@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Persistence.Database.Initializer.Data.DefaultPermission;
-using TokanPages.Persistence.Database.Initializer.Data.Permissions;
-using TokanPages.Persistence.Database.Initializer.Data.Roles;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.DefaultPermission;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Permissions;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Roles;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
 

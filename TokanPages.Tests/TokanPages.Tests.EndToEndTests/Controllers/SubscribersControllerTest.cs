@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.Database.Initializer.Data.Subscribers;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Subscribers;
 using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Subscribers;
 using Xunit;

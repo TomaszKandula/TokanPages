@@ -9,7 +9,7 @@ using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Initializer.Data.Articles;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
 using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Articles;
 using Xunit;
