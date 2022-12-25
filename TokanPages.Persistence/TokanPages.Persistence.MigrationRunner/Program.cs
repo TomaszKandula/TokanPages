@@ -42,15 +42,18 @@ internal static class Program
             {
                 case "--migrate":
                     migrator.RunAndMigrate<DatabaseContext>(connection, nameof(DatabaseContext));
+                    ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--seed":
                     seeder.Seed<DatabaseContext>(connection, nameof(DatabaseContext));
+                    ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--migrate-seed":
                     migrator.RunAndMigrate<DatabaseContext>(connection, nameof(DatabaseContext));
                     seeder.Seed<DatabaseContext>(connection, nameof(DatabaseContext));
+                    ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 default:
