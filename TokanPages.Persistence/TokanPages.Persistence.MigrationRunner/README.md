@@ -8,10 +8,10 @@ Please note, that there ought to be an environment variable `ASPNETCORE_ENVIRONM
 
 ### Usage
 
-Navigate to the `net6.0` folder and run the following command:
+Navigate to the `net6.0` folder and run one of the following commands:
 
-`dotnet TokanPages.Persistence.MigrationRunner.dll`
+`dotnet TokanPages.Persistence.MigrationRunner.dll --migrate`
 
-or
+`dotnet TokanPages.Persistence.MigrationRunner.dll --seed`
 
-`TokanPages.Persistence.MigrationRunner.exe`.
+`dotnet TokanPages.Persistence.MigrationRunner.dll --migrate-seed`
