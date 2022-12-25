@@ -74,12 +74,65 @@ public static class DatabaseContextUpdater
             databaseContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
             PrintInfo(UserRolesSeeder.SeedUserRoles().Count(), nameof(databaseContext.UserRoles));
         }
-            
+
         databaseContext.SaveChanges();
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
+    }
+
+    public static void Remove(Database.DatabaseContext databaseContext)
+    {
+        databaseContext.RemoveRange(databaseContext.Albums);
+        PrintWarning(nameof(databaseContext.Albums));
+        databaseContext.RemoveRange(databaseContext.HttpRequests);
+        PrintWarning(nameof(databaseContext.HttpRequests));
+        databaseContext.RemoveRange(databaseContext.Subscribers);
+        PrintWarning(nameof(databaseContext.Subscribers));
+        databaseContext.RemoveRange(databaseContext.DefaultPermissions);
+        PrintWarning(nameof(databaseContext.DefaultPermissions));
+
+        databaseContext.RemoveRange(databaseContext.ArticleCounts);
+        PrintWarning(nameof(databaseContext.ArticleCounts));
+        databaseContext.RemoveRange(databaseContext.ArticleLikes);
+        PrintWarning(nameof(databaseContext.ArticleLikes));
+        databaseContext.RemoveRange(databaseContext.Articles);
+        PrintWarning(nameof(databaseContext.Articles));
+
+        databaseContext.RemoveRange(databaseContext.PhotoCategories);
+        PrintWarning(nameof(databaseContext.PhotoCategories));
+        databaseContext.RemoveRange(databaseContext.PhotoGears);
+        PrintWarning(nameof(databaseContext.PhotoGears));
+        databaseContext.RemoveRange(databaseContext.UserPhotos);
+        PrintWarning(nameof(databaseContext.UserPhotos));
+
+        databaseContext.RemoveRange(databaseContext.UserPermissions);
+        PrintWarning(nameof(databaseContext.UserPermissions));
+        databaseContext.RemoveRange(databaseContext.UserRoles);
+        PrintWarning(nameof(databaseContext.UserRoles));
+        databaseContext.RemoveRange(databaseContext.UserRefreshTokens);
+        PrintWarning(nameof(databaseContext.UserRefreshTokens));
+        databaseContext.RemoveRange(databaseContext.UserTokens);
+        PrintWarning(nameof(databaseContext.UserTokens));
+        databaseContext.RemoveRange(databaseContext.UserInfo);
+        PrintWarning(nameof(databaseContext.UserInfo));
+        databaseContext.RemoveRange(databaseContext.Users);
+        PrintWarning(nameof(databaseContext.Users));
+
+        databaseContext.RemoveRange(databaseContext.Permissions);
+        PrintWarning(nameof(databaseContext.Permissions));
+        databaseContext.RemoveRange(databaseContext.Roles);
+        PrintWarning(nameof(databaseContext.Roles));
+
+        databaseContext.SaveChanges();
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
     }
 
     private static void PrintInfo(int count, string entity)
     {
         ConsolePrints.PrintOnInfo($"[{Caller}]: Adding {count} entries to the '{entity}' table...");
-    }    
+    }
+
+    private static void PrintWarning(string entity)
+    {
+        ConsolePrints.PrintOnWarning($"[{Caller}]: '{entity}' is marked for removal...");
+    }
 }
