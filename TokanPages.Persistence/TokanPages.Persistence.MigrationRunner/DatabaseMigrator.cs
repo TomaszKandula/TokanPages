@@ -1,6 +1,4 @@
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Abstractions;
 using TokanPages.Persistence.MigrationRunner.Helpers;
@@ -16,37 +14,6 @@ public class DatabaseMigrator : IDatabaseMigrator
     private static readonly bool IsTesting = EnvironmentValue == "Testing";
 
     private static readonly bool IsStaging = EnvironmentValue == "Staging";
-
-    public string GetConnectionString<T>() where T : DbContext
-    {
-        ConsolePrints.PrintOnInfo($"[{Caller}]: Starting database migration...");
-
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
-        var appSettingsEnv = $"appsettings.{environment}.json";
-        var builder = new ConfigurationBuilder()
-            .AddJsonFile(appSettingsEnv, true, true)
-            .AddUserSecrets<T>(true)
-            .AddEnvironmentVariables()
-            .Build();
-
-        ConsolePrints.PrintOnInfo($"[{Caller}]: Using '{appSettingsEnv}'...");
-        ConsolePrints.PrintOnWarning($"[{Caller}]: User secrets (if present) will overwrite '{appSettingsEnv}'...");
-
-        return builder.GetValue<string>("Db_Connection");
-    }
-
-    public void ValidateConnectionString(string connectionString)
-    {
-        try
-        {
-            var connection = new SqlConnectionStringBuilder(connectionString);
-            ConsolePrints.PrintOnSuccess($"[{Caller}]: Using '{connection.InitialCatalog}' at '{connection.DataSource}'.");
-        }
-        catch (Exception exception)
-        {
-            ConsolePrints.PrintOnError($"[{Caller}]: {exception.Message}");
-        }
-    }
 
     public void RunAndMigrate<T>(string connectionString, string contextName) where T : DbContext
     {
