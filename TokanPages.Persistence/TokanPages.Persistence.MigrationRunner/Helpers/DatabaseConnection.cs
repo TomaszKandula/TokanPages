@@ -11,7 +11,7 @@ public static class DatabaseConnection
 
     public static string GetConnectionString<T>() where T : DbContext
     {
-        ConsolePrints.PrintOnInfo($"[{Caller}]: Starting database migration...");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Starting database migration...");
 
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
         var appSettingsEnv = $"appsettings.{environment}.json";
@@ -21,22 +21,22 @@ public static class DatabaseConnection
             .AddEnvironmentVariables()
             .Build();
 
-        ConsolePrints.PrintOnInfo($"[{Caller}]: Using '{appSettingsEnv}'...");
-        ConsolePrints.PrintOnWarning($"[{Caller}]: User secrets (if present) will overwrite '{appSettingsEnv}'...");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Using '{appSettingsEnv}'...");
+        ConsolePrints.PrintOnWarning($"[{Caller} | {typeof(T).Name}]: User secrets (if present) will overwrite '{appSettingsEnv}'...");
 
-        return builder.GetValue<string>("Db_Connection");
+        return builder.GetValue<string>($"Db_{typeof(T).Name}");
     }
 
-    public static void ValidateConnectionString(string connectionString)
+    public static void ValidateConnectionString<T>(string connectionString) where T : DbContext
     {
         try
         {
             var connection = new SqlConnectionStringBuilder(connectionString);
-            ConsolePrints.PrintOnSuccess($"[{Caller}]: Using '{connection.InitialCatalog}' from '{connection.DataSource}'.");
+            ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Using '{connection.InitialCatalog}' from '{connection.DataSource}'.");
         }
         catch (Exception exception)
         {
-            ConsolePrints.PrintOnError($"[{Caller}]: {exception.Message}");
+            ConsolePrints.PrintOnError($"[{Caller} | {typeof(T).Name}]: {exception.Message}");
         }
     }
 }
