@@ -31,7 +31,7 @@ internal static class Program
         }
 
         var connection = DatabaseConnection.GetConnectionString<DatabaseContext>();
-        DatabaseConnection.ValidateConnectionString(connection);
+        DatabaseConnection.ValidateConnectionString<DatabaseContext>(connection);
 
         var migrator = new DatabaseMigrator();
         var seeder = new DataSeeder();
