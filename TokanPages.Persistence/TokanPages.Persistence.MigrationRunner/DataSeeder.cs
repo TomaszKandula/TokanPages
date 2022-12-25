@@ -17,6 +17,17 @@ public class DataSeeder : IDataSeeder
 
     private static readonly bool IsStaging = EnvironmentValue == "Staging";
 
+    /// <summary>
+    /// Seeds the test data for supported database context.
+    /// </summary>
+    /// <remarks>
+    /// It removes database content before seeding new one.
+    /// </remarks>
+    /// <param name="connectionString">Connection string to a database.</param>
+    /// <param name="contextName">Name of the database context.</param>
+    /// <typeparam name="T">Type of the database context.</typeparam>
+    /// <exception cref="Exception">Throws when connection fail.</exception>
+    /// <exception cref="ArgumentException">Throws when unsupported context is passed.</exception>
     public void Seed<T>(string connectionString, string contextName) where T : DbContext
     {
         ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Creating context...");

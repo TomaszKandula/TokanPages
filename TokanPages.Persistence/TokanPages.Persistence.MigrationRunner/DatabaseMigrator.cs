@@ -15,6 +15,13 @@ public class DatabaseMigrator : IDatabaseMigrator
 
     private static readonly bool IsStaging = EnvironmentValue == "Staging";
 
+    /// <summary>
+    /// Migrates database for given database context.
+    /// </summary>
+    /// <param name="connectionString">Connection string to a database.</param>
+    /// <param name="contextName">Name of the database context.</param>
+    /// <typeparam name="T">Type of the database context.</typeparam>
+    /// <exception cref="Exception">Throws when connection fail.</exception>
     public void RunAndMigrate<T>(string connectionString, string contextName) where T : DbContext
     {
         ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Creating context...");
