@@ -34,11 +34,19 @@ public static class DatabaseConnection
 
     public static string GetNextProductionDatabase<T>(string sourceConnection) where T : DbContext
     {
-        var guid = Guid.NewGuid().ToString("N");
         var targetConnection = new SqlConnectionStringBuilder(sourceConnection);
-        targetConnection.InitialCatalog = $"{targetConnection.InitialCatalog}-{guid}";
+        var currentName = targetConnection.InitialCatalog;
 
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: New production database name is '{targetConnection.InitialCatalog}'.");
+        var elements = currentName.Split("-");
+        if (elements.Length is 0 or < 4)
+            throw new Exception("Invalid catalog name!");
+
+        var next = int.Parse(elements[3]);
+        var newName = $"{elements[0]}-{elements[1]}-{elements[2]}-{+next}";
+        targetConnection.InitialCatalog = newName;
+
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Current production database name is '{currentName}'.");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: New production database name is '{newName}'.");
         return targetConnection.ToString();
     }
 
