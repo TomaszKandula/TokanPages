@@ -30,7 +30,7 @@ public class DatabaseUpdater : IDatabaseUpdater
 
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Moving the production data from '{sourceDatabase}' to '{targetDatabase}'...");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Copying the production data from '{sourceDatabase}' to '{targetDatabase}'...");
 
         switch (typeof(T).Name)
         {
@@ -38,9 +38,9 @@ public class DatabaseUpdater : IDatabaseUpdater
                 DatabaseContextUpdater.UpdateProduction(sourceConnection, targetConnection);
                 break;
             default:
-                throw new ArgumentException("Cannot update the production data between databases. Unsupported database context!");
+                throw new ArgumentException("Cannot copy the production data between databases. Unsupported database context!");
         }
 
-        ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Finished production database update!");
+        ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: The current production database is copied to the new database!");
     }
 }
