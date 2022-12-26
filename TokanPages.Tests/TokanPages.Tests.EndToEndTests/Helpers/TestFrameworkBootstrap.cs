@@ -23,7 +23,6 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
     public TestFrameworkBootstrap(IMessageSink messageSink) : base(messageSink)
     {
         ConsolePrints.PrintOnInfo($"[{Caller}]: Preparing the test environment...");
-        Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Testing");
 
         var migrator = new DatabaseMigrator();
         var seeder = new DataSeeder();
