@@ -24,6 +24,12 @@ public class DataSeeder : IDataSeeder
     /// <exception cref="ArgumentException">Throws when unsupported context is passed.</exception>
     public void Seed<T>(string connectionString, string contextName) where T : DbContext
     {
+        if (!Environments.IsTestingOrStaging)
+        {
+            ConsolePrints.PrintOnWarning($"[{Caller} | {contextName}]: Cannot seed the test data to a production... skipped.");
+            return;
+        }
+
         ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Creating context...");
 
         var options = DatabaseOptions.GetOptions<T>(connectionString, Environments.IsTestingOrStaging);
