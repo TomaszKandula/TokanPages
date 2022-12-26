@@ -32,12 +32,13 @@ public static class DatabaseConnection
         return configuration.GetValue<string>($"{databaseName}");
     }
 
-    public static string GetNextProductionDatabase<T>(string sourceConnection, IConfiguration configuration) where T : DbContext
+    public static string GetNextProductionDatabase<T>(string sourceConnection) where T : DbContext
     {
-        var nextDatabaseNameSuffix = configuration.GetValue<string>($"Db_{typeof(T).Name}_Next");
+        var guid = Guid.NewGuid().ToString("N");
         var targetConnection = new SqlConnectionStringBuilder(sourceConnection);
-        targetConnection.InitialCatalog = $"{targetConnection.InitialCatalog}{nextDatabaseNameSuffix}";
+        targetConnection.InitialCatalog = $"{targetConnection.InitialCatalog}-{guid}";
 
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: New production database name is '{targetConnection.InitialCatalog}'.");
         return targetConnection.ToString();
     }
 
