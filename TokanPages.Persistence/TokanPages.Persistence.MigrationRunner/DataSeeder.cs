@@ -43,7 +43,7 @@ public class DataSeeder : IDataSeeder
                 DatabaseContextUpdater.Populate(databaseContext);
                 break;
             default:
-                throw new ArgumentException("Cannot seed the test data. Unsupported database type!");
+                throw new ArgumentException("Cannot seed the test data. Unsupported database context!");
         }
     }
 }
