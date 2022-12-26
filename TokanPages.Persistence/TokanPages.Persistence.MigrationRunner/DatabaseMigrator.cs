@@ -25,7 +25,7 @@ public class DatabaseMigrator : IDatabaseMigrator
         ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Context created successfully!");
 
         if (!context.Database.CanConnect())
-            throw new Exception($"Cannot connect to the database for context '{typeof(T).Name}'!");
+            ConsolePrints.PrintOnWarning($"[{Caller} | {typeof(T).Name}]: Database for the given context does not exist...");
 
         ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Database update started...");
 
