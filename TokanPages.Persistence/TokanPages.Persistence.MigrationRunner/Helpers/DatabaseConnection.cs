@@ -39,4 +39,17 @@ public static class DatabaseConnection
             ConsolePrints.PrintOnError($"[{Caller} | {typeof(T).Name}]: {exception.Message}");
         }
     }
+
+    public static string GetDatabaseTable(string connectionString)
+    {
+        try
+        {
+            var connection = new SqlConnectionStringBuilder(connectionString);
+            return connection.InitialCatalog;
+        }
+        catch (Exception exception)
+        {
+            throw new Exception(exception.Message);
+        }
+    }
 }
