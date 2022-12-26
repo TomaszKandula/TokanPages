@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -16,18 +15,18 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
     protected override IWebHostBuilder CreateWebHostBuilder()
     {
         var builder = WebHost.CreateDefaultBuilder()
-             .ConfigureAppConfiguration(configurationBuilder =>
-             {
-                 var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
-                 var testConfig = new ConfigurationBuilder()
-                     .AddJsonFile("appsettings.Testing.json", true, true)
-                     .AddUserSecrets(startupAssembly, true)
-                     .AddEnvironmentVariables()
-                     .Build();
-            
-                 configurationBuilder.AddConfiguration(testConfig);
-                 Configuration = configurationBuilder.Build();
-             })
+            .ConfigureAppConfiguration(configurationBuilder =>
+            {
+                var environment = Persistence.MigrationRunner.Helpers.Environments.CurrentValue;
+                var configuration = new ConfigurationBuilder()
+                    .AddJsonFile($"appsettings.{environment}.json", true, true)
+                    .AddUserSecrets<TTestStartup>(true)
+                    .AddEnvironmentVariables()
+                    .Build();
+
+                configurationBuilder.AddConfiguration(configuration);
+                Configuration = configurationBuilder.Build();
+            })
             .UseStartup<TTestStartup>()
             .UseTestServer();
 
