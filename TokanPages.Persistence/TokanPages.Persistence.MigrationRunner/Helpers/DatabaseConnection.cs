@@ -27,7 +27,7 @@ public static class DatabaseConnection
 
     public static string GetConnectionString<T>(IConfiguration configuration) where T : DbContext
     {
-        var databaseName = $"Db_{typeof(T).Name}";
+        var databaseName = $"Db_{typeof(T).Name}_Migrator";
         ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Getting connection for '{databaseName}'...");
         return configuration.GetValue<string>($"{databaseName}");
     }
