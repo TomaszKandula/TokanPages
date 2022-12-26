@@ -63,7 +63,7 @@ internal static class Program
                     var copier = new DatabaseCopier();
                     var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
                     migrator.RunAndMigrate<DatabaseContext>(target);
-                    copier.RunAndUpdate<DatabaseContext>(source, target);
+                    copier.RunAndCopy<DatabaseContext>(source, target);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
