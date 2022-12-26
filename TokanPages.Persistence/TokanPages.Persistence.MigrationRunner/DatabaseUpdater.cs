@@ -19,7 +19,6 @@ public class DatabaseUpdater : IDatabaseUpdater
     /// <param name="sourceConnection">Source database connection string.</param>
     /// <param name="targetConnection">Target database connection string.</param>
     /// <typeparam name="T">Type of the context for the source database and for the target database.</typeparam>
-    /// <exception cref="Exception">Throws an exception when the database connection fails.</exception>
     /// <exception cref="ArgumentException">Throws an exception for unsupported type.</exception>
     public void RunAndUpdate<T>(string sourceConnection, string targetConnection) where T : DbContext
     {
