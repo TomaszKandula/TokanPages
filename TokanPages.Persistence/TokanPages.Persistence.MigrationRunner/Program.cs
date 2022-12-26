@@ -10,7 +10,7 @@ internal static class Program
     private const string Option2 = "                    It will create the database if it does not already exist.";
     private const string Option3 = "  --seed            Seeds the test data to the existing database.";
     private const string Option4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
-    private const string Option5 = "  --update-prod     It will copy the production databases to the next production database.";
+    private const string Option5 = "  --next-prod       It will copy the production databases to the next production database.";
 
     private static void Main(string[] args)
     {
@@ -59,7 +59,7 @@ internal static class Program
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
-                case "--update-prod":
+                case "--next-prod":
                     var updater = new DatabaseUpdater();
                     var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
                     migrator.RunAndMigrate<DatabaseContext>(target);
