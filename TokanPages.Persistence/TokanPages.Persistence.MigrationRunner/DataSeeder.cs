@@ -19,9 +19,9 @@ public class DataSeeder : IDataSeeder
     /// </remarks>
     /// <param name="connectionString">Connection string to a database.</param>
     /// <typeparam name="T">Type of the database context.</typeparam>
-    /// <exception cref="Exception">Throws when connection fail.</exception>
-    /// <exception cref="ArgumentException">Throws when unsupported context is passed.</exception>
-    public void Seed<T>(string connectionString, string contextName) where T : DbContext
+    /// <exception cref="Exception">Throws an exception when connection fail.</exception>
+    /// <exception cref="ArgumentException">Throws an exception when unsupported context is passed.</exception>
+    public void Seed<T>(string connectionString) where T : DbContext
     {
         if (!Environments.IsTestingOrStaging)
         {
