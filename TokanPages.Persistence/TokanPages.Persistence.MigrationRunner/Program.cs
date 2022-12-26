@@ -61,7 +61,7 @@ internal static class Program
 
                 case "--update-prod":
                     var updater = new DatabaseUpdater();
-                    var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source, configuration);
+                    var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
                     migrator.RunAndMigrate<DatabaseContext>(target);
                     updater.RunAndUpdate<DatabaseContext>(source, target);
                     ConsolePrints.PrintOnInfo("All done!");
