@@ -10,6 +10,7 @@ internal static class Program
     private const string Option2 = "                    It will create the database if it does not already exist.";
     private const string Option3 = "  --seed            Seeds the test data to the existing database.";
     private const string Option4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
+    private const string Option5 = "  --next-prod       It will copy the production databases to the next production database.";
 
     private static void Main(string[] args)
     {
@@ -26,12 +27,14 @@ internal static class Program
             ConsolePrints.PrintOnInfo(Option2);
             ConsolePrints.PrintOnInfo(Option3);
             ConsolePrints.PrintOnInfo(Option4);
+            ConsolePrints.PrintOnInfo(Option5);
             ConsolePrints.PrintOnInfo("");
             return;
         }
 
-        var connection = DatabaseConnection.GetConnectionString<DatabaseContext>();
-        DatabaseConnection.ValidateConnectionString<DatabaseContext>(connection);
+        var configuration = DatabaseConnection.GetConfiguration<DatabaseContext>();
+        var source = DatabaseConnection.GetConnectionString<DatabaseContext>(configuration);
+        DatabaseConnection.ValidateConnectionString<DatabaseContext>(source);
 
         var migrator = new DatabaseMigrator();
         var seeder = new DataSeeder();
@@ -41,18 +44,26 @@ internal static class Program
             switch (option)
             {
                 case "--migrate":
-                    migrator.RunAndMigrate<DatabaseContext>(connection, nameof(DatabaseContext));
+                    migrator.RunAndMigrate<DatabaseContext>(source);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--seed":
-                    seeder.Seed<DatabaseContext>(connection, nameof(DatabaseContext));
+                    seeder.Seed<DatabaseContext>(source);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--migrate-seed":
-                    migrator.RunAndMigrate<DatabaseContext>(connection, nameof(DatabaseContext));
-                    seeder.Seed<DatabaseContext>(connection, nameof(DatabaseContext));
+                    migrator.RunAndMigrate<DatabaseContext>(source);
+                    seeder.Seed<DatabaseContext>(source);
+                    ConsolePrints.PrintOnInfo("All done!");
+                    break;
+
+                case "--next-prod":
+                    var copier = new DatabaseCopier();
+                    var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
+                    migrator.RunAndMigrate<DatabaseContext>(target);
+                    copier.RunAndCopy<DatabaseContext>(source, target);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 

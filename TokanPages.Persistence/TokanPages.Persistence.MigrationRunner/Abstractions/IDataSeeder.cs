@@ -4,5 +4,5 @@ namespace TokanPages.Persistence.MigrationRunner.Abstractions;
 
 public interface IDataSeeder
 {
-    void Seed<T>(string connectionString, string contextName) where T : DbContext;
+    void Seed<T>(string connectionString) where T : DbContext;
 }
