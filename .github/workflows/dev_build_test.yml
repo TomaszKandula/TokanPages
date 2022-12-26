@@ -116,7 +116,7 @@ jobs:
 
     - name: Test with the dotnet CLI
       run: |
-        dotnet test --no-build --collect:"XPlat Code Coverage"
+        ASPNETCORE_ENVIRONMENT=Testing dotnet test --no-build --collect:"XPlat Code Coverage"
         mkdir "${{ env.TARGET_DIRECTORY }}"
         reportgenerator "-reports:${{ env.COVERAGE_REPORT }}" "-targetdir:${{ env.TARGET_DIRECTORY }}" "-reporttypes:SonarQube"
       env:
