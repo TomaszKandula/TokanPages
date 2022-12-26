@@ -52,7 +52,7 @@ public class TestStartup
     {
         services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlServer(_configuration.GetValue<string>("Db_Connection"));
+            options.UseSqlServer(_configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"));
             options.UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll);
             options.EnableSensitiveDataLogging();
         });

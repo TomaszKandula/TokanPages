@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -11,33 +10,22 @@ namespace TokanPages.Tests.EndToEndTests.Helpers;
 [UsedImplicitly]
 public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
 {
-    public string WebSecret { get; private set; } = "";
-
-    public string Issuer { get; private set; } = "";
-
-    public string Audience { get; private set; } = "";
-
-    public string Connection { get; private set; } = "";
+    public IConfiguration? Configuration { get; private set; }
 
     protected override IWebHostBuilder CreateWebHostBuilder()
     {
         var builder = WebHost.CreateDefaultBuilder()
             .ConfigureAppConfiguration(configurationBuilder =>
             {
-                var startupAssembly = typeof(TTestStartup).GetTypeInfo().Assembly;
-                var testConfig = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.Testing.json", true, true)
-                    .AddUserSecrets(startupAssembly, true)
+                var environment = Persistence.MigrationRunner.Helpers.Environments.CurrentValue;
+                var configuration = new ConfigurationBuilder()
+                    .AddJsonFile($"appsettings.{environment}.json", true, true)
+                    .AddUserSecrets<TTestStartup>(true)
                     .AddEnvironmentVariables()
                     .Build();
 
-                configurationBuilder.AddConfiguration(testConfig);
-
-                var config = configurationBuilder.Build();
-                Issuer = config.GetValue<string>("Ids_Issuer");
-                Audience = config.GetValue<string>("Ids_Audience");
-                WebSecret = config.GetValue<string>("Ids_WebSecret");
-                Connection = config.GetValue<string>("Db_Connection");
+                configurationBuilder.AddConfiguration(configuration);
+                Configuration = configurationBuilder.Build();
             })
             .UseStartup<TTestStartup>()
             .UseTestServer();

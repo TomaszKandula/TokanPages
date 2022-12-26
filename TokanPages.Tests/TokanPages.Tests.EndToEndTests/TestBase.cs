@@ -1,13 +1,15 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
-using TokanPages.Persistence.Database.Initializer.Data.Users;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.UserInfo;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Tests.EndToEndTests.Helpers;
@@ -38,8 +40,6 @@ public abstract class TestBase
 
     protected readonly IWebTokenUtility WebTokenUtility;
 
-    protected string ExternalDatabaseConnection = "";
-
     protected TestBase()
     {
         var services = new ServiceCollection();
@@ -65,9 +65,9 @@ public abstract class TestBase
         }
     }
 
-    protected async Task RegisterTestJwt(string? token)
+    protected async Task AddWebToken<T>(string? token, IConfiguration configuration) where T : DbContext
     {
-        var databaseContext = GetTestDatabaseContext(ExternalDatabaseConnection);
+        var databaseContext = GetTestDatabase<T>(configuration);
 
         var handler = new JwtSecurityTokenHandler();
         var jsonToken = handler.ReadToken(token);
@@ -83,7 +83,7 @@ public abstract class TestBase
             Expires = securityToken.ValidTo,
             Created = securityToken.ValidFrom,
             CreatedByIp = "127.0.0.1",
-            Command = nameof(RegisterTestJwt)
+            Command = nameof(AddWebToken)
         };
 
         await databaseContext.UserTokens.AddAsync(newUserToken);
@@ -145,8 +145,9 @@ public abstract class TestBase
         new Claim(ClaimTypes.Email, DataUtilityService.GetRandomString())
     });
 
-    private static DatabaseContext GetTestDatabaseContext(string? connection)
+    private static DatabaseContext GetTestDatabase<T>(IConfiguration? configuration) where T : DbContext
     {
+        var connection = configuration.GetValue<string>($"Db_{typeof(T).Name}");
         var options = TestDatabaseContextProvider.GetTestDatabaseOptions(connection);
         return TestDatabaseContextProvider.CreateDatabaseContext(options);
     }

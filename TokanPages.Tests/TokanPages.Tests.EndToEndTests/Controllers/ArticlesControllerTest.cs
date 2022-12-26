@@ -3,11 +3,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.Database.Initializer.Data.Articles;
+using TokanPages.Persistence.Database;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
 using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Articles;
 using Xunit;
@@ -18,11 +20,7 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
 {
     private readonly CustomWebApplicationFactory<TestStartup> _factory;
 
-    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> factory)
-    {
-        _factory = factory;
-        ExternalDatabaseConnection = _factory.Connection;
-    }
+    public ArticlesControllerTest(CustomWebApplicationFactory<TestStartup> factory) => _factory = factory;
 
     [Fact]
     public async Task WhenGetAllArticles_ShouldReturnCollection()
@@ -138,10 +136,12 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
-        await RegisterTestJwt(jwt);
+        await AddWebToken<DatabaseContext>(jwt, _factory.Configuration!);
 
         var payload = JsonConvert.SerializeObject(dto);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
@@ -279,10 +279,12 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
-        await RegisterTestJwt(jwt);
+        await AddWebToken<DatabaseContext>(jwt, _factory.Configuration!);
 
         var dto = new UpdateArticleVisibilityDto
         {
@@ -316,8 +318,10 @@ public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicati
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetInvalidClaimsIdentity(), webSecret, issuer, audience);
 
         var dto = new UpdateArticleVisibilityDto
         {

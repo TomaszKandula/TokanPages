@@ -116,7 +116,7 @@ jobs:
         Email_Address_Admin: "${{ secrets.PROD_EMAIL_ADDRESSES_ADMIN }}"
         Email_Address_Contact: "${{ secrets.PROD_EMAIL_ADDRESSES_CONTACT }}"
         Email_Address_Support: "${{ secrets.PROD_EMAIL_ADDRESSES_ITSUPPORT }}"
-        Db_Connection: "${{ secrets.PROD_DBCONNECT }}"
+        Db_DatabaseContext: "${{ secrets.PROD_DBCONNECT }}"
         AZ_Storage_BaseUrl: "${{ secrets.PROD_AZSTORAGE_BASEURL }}"
         AZ_Storage_ContainerName: "${{ secrets.PROD_AZSTORAGE_CONTAINERNAME }}"
         AZ_Storage_ConnectionString: "${{ secrets.PROD_AZSTORAGE_CONNECTIONSTRING }}"

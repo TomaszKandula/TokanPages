@@ -3,10 +3,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.Database.Initializer.Data.Subscribers;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Subscribers;
 using TokanPages.Tests.EndToEndTests.Helpers;
 using TokanPages.WebApi.Dto.Subscribers;
 using Xunit;
@@ -68,8 +69,10 @@ public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplic
             .CreateClient();
 
         var tokenExpires = DateTime.Now.AddDays(30);
-        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), 
-            _factory.WebSecret, _factory.Issuer, _factory.Audience);
+        var webSecret = _factory.Configuration.GetValue<string>("Ids_WebSecret");
+        var issuer = _factory.Configuration.GetValue<string>("Ids_Issuer");
+        var audience = _factory.Configuration.GetValue<string>("Ids_Audience");
+        var jwt = WebTokenUtility.GenerateJwt(tokenExpires, GetValidClaimsIdentity(), webSecret, issuer, audience);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwt);
 

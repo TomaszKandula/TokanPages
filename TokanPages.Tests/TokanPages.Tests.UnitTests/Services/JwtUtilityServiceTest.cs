@@ -2,8 +2,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using FluentAssertions;
 using TokanPages.Backend.Domain.Enums;
-using TokanPages.Persistence.Database.Initializer.Data.UserInfo;
-using TokanPages.Persistence.Database.Initializer.Data.Users;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.UserInfo;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Services;

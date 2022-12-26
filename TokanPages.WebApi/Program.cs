@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore;
 using Serilog;
 using Serilog.Events;
-using TokanPages.Persistence.Database.Initializer;
 
 namespace TokanPages.WebApi;
 
@@ -14,12 +13,6 @@ public static class Program
 {
     private static readonly string? EnvironmentValue 
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-    private static readonly bool IsDevelopment 
-        = EnvironmentValue == Environments.Development;
-
-    private static readonly bool IsStaging 
-        = EnvironmentValue == Environments.Staging;
 
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
@@ -52,7 +45,6 @@ public static class Program
 
             CreateWebHostBuilder(args)
                 .Build()
-                .MigrateDatabase()
                 .Run();
 
             return 0;
@@ -80,23 +72,5 @@ public static class Program
         return WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
             .UseSerilog();
-    }
-
-    private static IWebHost MigrateDatabase(this IWebHost webHost)
-    {
-        if (webHost.Services.GetService(typeof(IServiceScopeFactory)) is not IServiceScopeFactory serviceScopeFactory) 
-            return webHost;
-
-        using var scope = serviceScopeFactory.CreateScope();
-        var services = scope.ServiceProvider;
-        var dbInitializer = services.GetRequiredService<IDbInitializer>();
-
-        dbInitializer.StartMigration();
-        if (IsDevelopment || IsStaging)
-        {
-            dbInitializer.SeedData();
-        }
-
-        return webHost;
     }
 }
