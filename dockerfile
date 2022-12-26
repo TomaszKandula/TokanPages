@@ -8,9 +8,8 @@ RUN dotnet restore
 
 # Build and run all tests
 ARG ENV_VALUE
-ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 RUN dotnet build -c Release --no-restore
-RUN dotnet test -c Release --no-build --no-restore
+RUN ASPNETCORE_ENVIRONMENT=${ENV_VALUE} dotnet test -c Release --no-build --no-restore
 
 # Publish build
 RUN dotnet publish -c Release -o out
