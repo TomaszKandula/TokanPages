@@ -11,8 +11,7 @@ public static class DatabaseConnection
 
     public static IConfiguration GetConfiguration<T>() where T : DbContext
     {
-        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
-        var appSettingsEnv = $"appsettings.{environment}.json";
+        var appSettingsEnv = $"appsettings.{Environments.CurrentValue}.json";
         var configuration = new ConfigurationBuilder()
             .AddJsonFile(appSettingsEnv, true, true)
             .AddUserSecrets<T>(true)
@@ -34,6 +33,9 @@ public static class DatabaseConnection
 
     public static string GetNextProductionDatabase<T>(string sourceConnection) where T : DbContext
     {
+        if (Environments.IsTestingOrStaging)
+            throw new Exception("Cannot perform on a non-production database context!");
+
         var targetConnection = new SqlConnectionStringBuilder(sourceConnection);
         var currentName = targetConnection.InitialCatalog;
 
@@ -41,8 +43,8 @@ public static class DatabaseConnection
         if (elements.Length is 0 or < 4)
             throw new Exception("Invalid catalog name!");
 
-        var next = int.Parse(elements[3]);
-        var newName = $"{elements[0]}-{elements[1]}-{elements[2]}-{+next}";
+        var next =+ int.Parse(elements[3]);
+        var newName = $"{elements[0]}-{elements[1]}-{elements[2]}-{next}";
         targetConnection.InitialCatalog = newName;
 
         ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Current production database name is '{currentName}'.");
