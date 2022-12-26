@@ -60,10 +60,10 @@ internal static class Program
                     break;
 
                 case "--next-prod":
-                    var updater = new DatabaseUpdater();
+                    var copier = new DatabaseCopier();
                     var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
                     migrator.RunAndMigrate<DatabaseContext>(target);
-                    updater.RunAndUpdate<DatabaseContext>(source, target);
+                    copier.RunAndUpdate<DatabaseContext>(source, target);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 

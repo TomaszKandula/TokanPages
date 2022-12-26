@@ -6,9 +6,9 @@ using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;
 
-public class DatabaseUpdater : IDatabaseUpdater
+public class DatabaseCopier : IDatabaseCopier
 {
-    private const string Caller = nameof(DatabaseUpdater);
+    private const string Caller = nameof(DatabaseCopier);
 
     /// <summary>
     /// Takes the data from the current production database and move it to the next production database.
