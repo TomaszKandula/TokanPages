@@ -2,11 +2,11 @@ namespace TokanPages.Persistence.MigrationRunner.Helpers;
 
 public static class Environments
 {
-    private static readonly string? EnvironmentValue = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    public static string CurrentValue => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    private static readonly bool IsTesting = EnvironmentValue == "Testing";
+    public static bool IsTesting => CurrentValue == "Testing";
 
-    private static readonly bool IsStaging = EnvironmentValue == "Staging";
+    public static bool IsStaging => CurrentValue == "Staging";
 
     public static bool IsTestingOrStaging => IsTesting || IsStaging;
 }
