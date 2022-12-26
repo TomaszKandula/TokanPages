@@ -7,6 +7,11 @@ public static class DatabaseContextUpdater
 {
     private const string Caller = nameof(DatabaseContextUpdater);
 
+    public static void UpdateProduction(string sourceConnection, string targetConnection)
+    {
+        //TODO: implement
+    }
+
     public static void PopulateTestData(Database.DatabaseContext databaseContext)
     {
         if (!databaseContext.Users.Any())
