@@ -39,8 +39,8 @@ public class DataSeeder : IDataSeeder
         switch (context)
         {
             case DatabaseContext databaseContext:
-                DatabaseContextUpdater.Remove(databaseContext);
-                DatabaseContextUpdater.Populate(databaseContext);
+                DatabaseContextUpdater.RemoveTestData(databaseContext);
+                DatabaseContextUpdater.PopulateTestData(databaseContext);
                 break;
             default:
                 throw new ArgumentException("Cannot seed the test data. Unsupported database context!");

@@ -7,7 +7,7 @@ public static class DatabaseContextUpdater
 {
     private const string Caller = nameof(DatabaseContextUpdater);
 
-    public static void Populate(Database.DatabaseContext databaseContext)
+    public static void PopulateTestData(Database.DatabaseContext databaseContext)
     {
         if (!databaseContext.Users.Any())
         {
@@ -79,7 +79,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
     }
 
-    public static void Remove(Database.DatabaseContext databaseContext)
+    public static void RemoveTestData(Database.DatabaseContext databaseContext)
     {
         databaseContext.RemoveRange(databaseContext.Albums);
         PrintWarning(nameof(databaseContext.Albums));
