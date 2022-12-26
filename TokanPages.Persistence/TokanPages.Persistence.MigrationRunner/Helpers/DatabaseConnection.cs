@@ -40,7 +40,7 @@ public static class DatabaseConnection
         }
     }
 
-    public static string GetDatabaseTable(string connectionString)
+    public static string GetDatabaseName(string connectionString)
     {
         try
         {
