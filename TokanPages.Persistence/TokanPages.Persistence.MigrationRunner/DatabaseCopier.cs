@@ -23,10 +23,7 @@ public class DatabaseCopier : IDatabaseCopier
     public void RunAndCopy<T>(string sourceConnection, string targetConnection) where T : DbContext
     {
         if (Environments.IsTestingOrStaging)
-        {
-            ConsolePrints.PrintOnWarning($"[{Caller} | {typeof(T).Name}]: Cannot perform an update on a non-production... skipped.");
-            return;
-        }
+            throw new Exception("Cannot perform on a non-production database context!");
 
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
