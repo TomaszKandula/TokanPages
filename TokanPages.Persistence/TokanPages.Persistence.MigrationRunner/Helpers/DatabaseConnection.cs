@@ -43,7 +43,7 @@ public static class DatabaseConnection
         if (elements.Length is 0 or < 4)
             throw new Exception("Invalid catalog name!");
 
-        var next =+ int.Parse(elements[3]);
+        var next = int.Parse(elements[3]) + 1;
         var newName = $"{elements[0]}-{elements[1]}-{elements[2]}-{next}";
         targetConnection.InitialCatalog = newName;
 
