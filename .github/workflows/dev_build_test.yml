@@ -62,7 +62,7 @@ jobs:
         Email_Address_Admin: "${{ secrets.TEST_EMAIL_ADDRESSES_ADMIN }}"
         Email_Address_Contact: "${{ secrets.TEST_EMAIL_ADDRESSES_CONTACT }}"
         Email_Address_Support: "${{ secrets.TEST_EMAIL_ADDRESSES_ITSUPPORT }}"
-        Db_Connection: "${{ secrets.TEST_DBCONNECT }}"
+        Db_DatabaseContext: "${{ secrets.TEST_DBCONNECT }}"
         AZ_Storage_BaseUrl: "${{ secrets.TEST_AZSTORAGE_BASEURL }}"
         AZ_Storage_ContainerName: "${{ secrets.TEST_AZSTORAGE_CONTAINERNAME }}"
         AZ_Storage_ConnectionString: "${{ secrets.TEST_AZSTORAGE_CONNECTIONSTRING }}"

@@ -75,7 +75,7 @@ jobs:
         Email_Address_Admin: "${{ secrets.STAGE_EMAIL_ADDRESSES_ADMIN }}"
         Email_Address_Contact: "${{ secrets.STAGE_EMAIL_ADDRESSES_CONTACT }}"
         Email_Address_Support: "${{ secrets.STAGE_EMAIL_ADDRESSES_ITSUPPORT }}"
-        Db_Connection: "${{ secrets.STAGE_DBCONNECT }}"
+        Db_DatabaseContext: "${{ secrets.STAGE_DBCONNECT }}"
         AZ_Storage_BaseUrl: "${{ secrets.STAGE_AZSTORAGE_BASEURL }}"
         AZ_Storage_ContainerName: "${{ secrets.STAGE_AZSTORAGE_CONTAINERNAME }}"
         AZ_Storage_ConnectionString: "${{ secrets.STAGE_AZSTORAGE_CONNECTIONSTRING }}"
