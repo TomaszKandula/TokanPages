@@ -4,8 +4,8 @@ import { ApplicationDefault } from "../../Configuration";
 import { IconType } from "../../../Shared/enums";
 
 import { 
-    CLEAR_DIALOG, 
-    RAISE_DIALOG, 
+    CLEAR, 
+    RAISE, 
     TDialogActions 
 } from "../../Actions/Application/applicationDialog";
 
@@ -18,13 +18,13 @@ export const ApplicationDialog:
     const action = incomingAction as TDialogActions;
     switch(action.type)
     {
-        case CLEAR_DIALOG:
+        case CLEAR:
             return {
                 title: "",
                 message: "",
                 icon: IconType.info 
             }
-        case RAISE_DIALOG:
+        case RAISE:
             return { 
                 title: action.dialog.title,
                 message: action.dialog.message,

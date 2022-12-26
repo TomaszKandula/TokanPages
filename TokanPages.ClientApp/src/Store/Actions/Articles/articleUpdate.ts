@@ -1,14 +1,17 @@
 import { IApplicationAction } from "../../Configuration";
-import { RAISE_ERROR } from "../Application/applicationError";
+import { RAISE } from "../Application/applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
-import { ApiCall, EnrichConfiguration } from "../../../Api/Request";
+
 import { 
-    API_COMMAND_UPDATE_ARTICLE_CONTENT, 
-    API_COMMAND_UPDATE_ARTICLE_COUNT, 
-    API_COMMAND_UPDATE_ARTICLE_LIKES, 
-    API_COMMAND_UPDATE_ARTICLE_VISIBILITY
-} from "../../../Shared/constants";
+    ApiCall, 
+    EnrichConfiguration, 
+    UPDATE_ARTICLE_CONTENT, 
+    UPDATE_ARTICLE_COUNT, 
+    UPDATE_ARTICLE_LIKES, 
+    UPDATE_ARTICLE_VISIBILITY
+} from "../../../Api/Request";
+
 import { 
     IUpdateArticleContentDto, 
     IUpdateArticleCountDto, 
@@ -16,17 +19,17 @@ import {
     IUpdateArticleVisibilityDto 
 } from "../../../Api/Models";
 
-export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
-export const UPDATE_ARTICLE_CLEAR = "UPDATE_ARTICLE_CLEAR";
-export const UPDATE_ARTICLE_RESPONSE = "UPDATE_ARTICLE_RESPONSE";
-export interface IUpdateArticle { type: typeof UPDATE_ARTICLE }
-export interface IUpdateArticleClear { type: typeof UPDATE_ARTICLE_CLEAR }
-export interface IUpdateArticleResponse { type: typeof UPDATE_ARTICLE_RESPONSE; payload: any; }
-export type TKnownActions = IUpdateArticle | IUpdateArticleClear | IUpdateArticleResponse;
+export const UPDATE = "UPDATE_ARTICLE";
+export const CLEAR = "UPDATE_ARTICLE_CLEAR";
+export const RESPONSE = "UPDATE_ARTICLE_RESPONSE";
+interface IUpdate { type: typeof UPDATE }
+interface IClear { type: typeof CLEAR }
+interface IResponse { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = IUpdate | IClear | IResponse;
 
 const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {
-    dispatch({ type: UPDATE_ARTICLE });
+    dispatch({ type: UPDATE });
 
     let result = await ApiCall(EnrichConfiguration(
     {
@@ -38,41 +41,41 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
     if (result.error !== null)
     {
-        dispatch({ type: RAISE_ERROR, errorObject: GetErrorMessage({ errorObject: result.error }) });
+        dispatch({ type: RAISE, errorObject: GetErrorMessage({ errorObject: result.error }) });
         return;
     }
 
     if (result.status === 200)
     {
-        dispatch({ type: UPDATE_ARTICLE_RESPONSE, payload: result.content });
-        dispatch({ type: UPDATE_ARTICLE_CLEAR });
+        dispatch({ type: RESPONSE, payload: result.content });
+        dispatch({ type: CLEAR });
         return;
     }
 
     const error = GetTextStatusCode({ statusCode: result.status as number });
-    dispatch({ type: RAISE_ERROR, errorObject: error });
+    dispatch({ type: RAISE, errorObject: error });
 }
 
 export const ArticleUpdateAction = 
 {
     clear: (): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: UPDATE_ARTICLE_CLEAR });
+        dispatch({ type: CLEAR });
     },
     updateContent: (payload: IUpdateArticleContentDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_CONTENT, payload);
+        DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload);
     },
     updateCount: (payload: IUpdateArticleCountDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_COUNT, payload);
+        DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload);
     },
     updateLikes: (payload: IUpdateArticleLikesDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_LIKES, payload);
+        DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload);
     },
     updateVisibility: (payload: IUpdateArticleVisibilityDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        DispatchCall(dispatch, API_COMMAND_UPDATE_ARTICLE_VISIBILITY, payload);
+        DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload);
     }
 }

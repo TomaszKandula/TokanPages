@@ -84,13 +84,15 @@ jobs:
       if: needs.versioning.outputs.outputs2 == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
+    # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
+    # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Production | Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       if: needs.versioning.outputs.outputs2 == 'true'
       with:
         app-name: tokanpages
         slot-name: production
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_FRONTEND_PROD }}
+        publish-profile: ${{ secrets.AZURE_PROFILE_FE_PROD }}
         images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
   backend-production:
@@ -104,45 +106,46 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
     
-    - name: Variable substitution appsettings file for Staging (NET Core)
+    - name: Variable substitution appsettings file for Production (.NET)
       uses: microsoft/variable-substitution@v1
       with:
-        files: ${{ github.workspace }}/TokanPages.WebApi/appsettings.Staging.json
+        files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:
-        ApplicationPaths.UpdateSubscriberPath: "${{ secrets.APPLICATIONPATHS__UPDATESUBSCRIBERPATH_STAGE }}"
-        ApplicationPaths.UnsubscribePath: "${{ secrets.APPLICATIONPATHS__UNSUBSCRIBEPATH_STAGE }}"
-        ApplicationPaths.UpdatePasswordPath: "${{ secrets.APPLICATIONPATHS__UPDATEPASSWORDPATH_STAGE }}"
-        ApplicationPaths.ActivationPath: "${{ secrets.APPLICATIONPATHS__ACTIVATIONPATH_STAGE }}"
-        ApplicationPaths.DevelopmentOrigin: "${{ secrets.APPLICATIONPATHS__DEVELOPMENTORIGIN_STAGE }}"
-        ApplicationPaths.DeploymentOrigin: "${{ secrets.APPLICATIONPATHS__DEPLOYMENTORIGIN_STAGE }}"
-        ApplicationPaths.Templates.Newsletter: "${{ secrets.APPLICATIONPATHS__TEMPLATES_NEWSLETTER }}"
-        ApplicationPaths.Templates.ContactForm: "${{ secrets.APPLICATIONPATHS__TEMPLATES_CONTACTFORM }}"
-        ApplicationPaths.Templates.ResetPassword: "${{ secrets.APPLICATIONPATHS__TEMPLATES_RESETPASSWORD }}"
-        ApplicationPaths.Templates.RegisterForm: "${{ secrets.APPLICATIONPATHS__TEMPLATES_REGISTERFORM }}"
-        AzureStorage.BaseUrl: "${{ secrets.AZURESTORAGE__BASEURL_STAGE }}"
-        AzureStorage.ContainerName: "${{ secrets.AZURESTORAGE__CONTAINERNAME_STAGE }}"
-        AzureStorage.ConnectionString: "${{ secrets.AZURESTORAGE__CONNECTIONSTRING_STAGE }}"
-        AzureStorage.MaxFileSizeUserMedia: "${{ secrets.AZURESTORAGE__MAXFILESIZE_USERMEDIA }}"
-        AzureStorage.MaxFileSizeSingleAsset: "${{ secrets.AZURESTORAGE__MAXFILESIZE_SINGLEASSET }}"
-        ConnectionStrings.DbConnect: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_STAGE }}"
-        ConnectionStrings.DbConnectTest: "${{ secrets.CONNECTIONSTRINGS__DBCONNECT_TEST }}"
-        EmailSender.PrivateKey: "${{ secrets.EMAILSENDER__PRIVATEKEY_STAGE }}"
-        EmailSender.BaseUrl: "${{ secrets.EMAILSENDER__BASEURL_STAGE }}"
-        EmailSender.Addresses.Admin: "${{ secrets.EMAILSENDER__ADDRESSES_ADMIN }}"
-        EmailSender.Addresses.Contact: "${{ secrets.EMAILSENDER__ADDRESSES_CONTACT }}"
-        EmailSender.Addresses.ItSupport: "${{ secrets.EMAILSENDER__ADDRESSES_ITSUPPORT }}"
-        IdentityServer.Issuer: "${{ secrets.IDENTITYSERVER__ISSUER_STAGE }}"
-        IdentityServer.Audience: "${{ secrets.IDENTITYSERVER__AUDIENCE_STAGE }}"
-        IdentityServer.WebSecret: "${{ secrets.IDENTITYSERVER__WEBSECRET_STAGE }}"
-        IdentityServer.RequireHttps: "${{ secrets.IDENTITYSERVER__REQUIREHTTPS_STAGE }}"
-        IdentityServer.WebTokenExpiresIn: "${{ secrets.IDENTITYSERVER__WEBTOKENEXPIRESIN_STAGE }}"
-        IdentityServer.RefreshTokenExpiresIn: "${{ secrets.IDENTITYSERVER__REFRESHTOKENEXPIRESIN_STAGE }}"
-        LimitSettings.ResetIdExpiresIn: "${{ secrets.LIMITSETTINGS__RESETIDEXPIRESIN }}"
-        LimitSettings.ActivationIdExpiresIn: "${{ secrets.LIMITSETTINGS__ACTIVATIONIDEXPIRESIN }}"
-        LimitSettings.Likes.ForAnonymous: "${{ secrets.LIMITSETTINGS__LIKES_FORANONYMOUS }}"
-        LimitSettings.Likes.ForUser: "${{ secrets.LIMITSETTINGS__LIKES_FORUSER }}"
-        SonarQube.Server: "${{ secrets.SONARQUBE_HOST }}"
-        SonarQube.Token: "${{ secrets.SONARQUBE_TOKEN_API }}"
+        Email_PrivateKey: "${{ secrets.PROD_EMAIL_PRIVATEKEY }}"
+        Email_BaseUrl: "${{ secrets.PROD_EMAIL_BASEURL }}"
+        Email_Address_Admin: "${{ secrets.PROD_EMAIL_ADDRESSES_ADMIN }}"
+        Email_Address_Contact: "${{ secrets.PROD_EMAIL_ADDRESSES_CONTACT }}"
+        Email_Address_Support: "${{ secrets.PROD_EMAIL_ADDRESSES_ITSUPPORT }}"
+        Db_DatabaseContext: "${{ secrets.PROD_DBCONNECT }}"
+        AZ_Storage_BaseUrl: "${{ secrets.PROD_AZSTORAGE_BASEURL }}"
+        AZ_Storage_ContainerName: "${{ secrets.PROD_AZSTORAGE_CONTAINERNAME }}"
+        AZ_Storage_ConnectionString: "${{ secrets.PROD_AZSTORAGE_CONNECTIONSTRING }}"
+        AZ_Storage_MaxFileSizeUserMedia: "${{ secrets.PROD_AZSTORAGE_MAXFILESIZEUSERMEDIA }}"
+        AZ_Storage_MaxFileSizeSingleAsset: "${{ secrets.PROD_AZSTORAGE_MAXFILESIZESINGLEASSET }}"
+        AZ_Redis_InstanceName: "${{ secrets.PROD_AZREDIS_INSTANCENAME }}"
+        AZ_Redis_ConnectionString: "${{ secrets.PROD_AZREDIS_CONNECTIONSTRING }}"
+        AZ_Redis_ExpirationMinute: "${{ secrets.PROD_AZREDIS_EXPIRATIONMINUTE }}"
+        AZ_Redis_ExpirationSecond: "${{ secrets.PROD_AZREDIS_EXPIRATIONSECOND }}"
+        Paths_UpdateSubscriber: "${{ secrets.PROD_PATHS_UPDATESUBSCRIBER }}"
+        Paths_Unsubscribe: "${{ secrets.PROD_PATHS_UNSUBSCRIBE }}"
+        Paths_UpdatePassword: "${{ secrets.PROD_PATHS_UPDATEPASSWORD }}"
+        Paths_Activation: "${{ secrets.PROD_PATHS_ACTIVATION }}"
+        Paths_DevelopmentOrigin: "${{ secrets.PROD_PATHS_DEVELOPMENTORIGIN }}"
+        Paths_DeploymentOrigin: "${{ secrets.PROD_PATHS_DEPLOYMENTORIGIN }}"
+        Paths_Templates_Newsletter: "${{ secrets.PROD_PATHS_NEWSLETTER }}"
+        Paths_Templates_ContactForm: "${{ secrets.PROD_PATHS_CONTACTFORM }}"
+        Paths_Templates_ResetPassword: "${{ secrets.PROD_PATHS_RESETPASSWORD }}"
+        Paths_Templates_RegisterForm: "${{ secrets.PROD_PATHS_REGISTERFORM }}"
+        Ids_Issuer: "${{ secrets.PROD_IDS_ISSUER }}"
+        Ids_Audience: "${{ secrets.PROD_IDS_AUDIENCE }}"
+        Ids_WebSecret: "${{ secrets.PROD_IDS_WEBSECRET }}"
+        Ids_RequireHttps: "${{ secrets.PROD_IDS_REQUIREHTTPS }}"
+        Ids_WebToken_Maturity: "${{ secrets.PROD_IDS_WEBTOKEN_MATURITY }}"
+        Ids_RefreshToken_Maturity: "${{ secrets.PROD_IDS_REFRESHTOKEN_MATURITY }}"
+        Limit_Reset_Maturity: "${{ secrets.PROD_LIMITS_RESET_MATURITY }}"
+        Limit_Activation_Maturity: "${{ secrets.PROD_LIMITS_ACTIVATION_MATURITY }}"
+        Limit_Likes_Anonymous: "${{ secrets.PROD_LIMITS_LIKES_ANONYMOUS }}"
+        Limit_Likes_User: "${{ secrets.PROD_LIMITS_LIKES_USER }}"
 
     - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v1
@@ -152,8 +155,9 @@ jobs:
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
     - name: Production | Build Docker (execute with tests)
-      run: | 
+      run: |
         docker build . \
+        --build-arg "ENV_VALUE=Production" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
 
     - name: Production | Push Docker image (prepare)
@@ -167,11 +171,13 @@ jobs:
       if: needs.versioning.outputs.outputs2 == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
 
+    # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
+    # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Production | Deploy to Azure Web App (for new release only)
       uses: azure/webapps-deploy@v2
       if: needs.versioning.outputs.outputs2 == 'true'
       with:
         app-name: tokanpages-backend
         slot-name: production
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE_BACKEND_PROD }}
+        publish-profile: ${{ secrets.AZURE_PROFILE_BE_PROD }}
         images: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}

@@ -7,9 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using TokanPages.Backend.Domain.Enums;
-using TokanPages.Backend.Shared.Services;
 using TokanPages.Backend.Shared.Constants;
-using TokanPages.Backend.Shared.Services.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
@@ -18,34 +16,41 @@ using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.EmailSenderService;
-using TokanPages.Services.WebTokenService.Validation;
-using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Initializer;
+using TokanPages.Services.AzureStorageService;
+using TokanPages.Services.CipheringService.Abstractions;
+using TokanPages.Services.EmailSenderService.Abstractions;
+using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
+using TokanPages.Services.UserService;
+using TokanPages.Services.WebSocketService;
+using TokanPages.Services.WebSocketService.Abstractions;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// Register application dependencies
+/// Register application dependencies.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Dependencies
 {
 	/// <summary>
-	/// Register all services
+	/// Register all services.
 	/// </summary>
-	/// <param name="services">Service collections</param>
-	/// <param name="configuration">Provided configuration</param>
-	/// <param name="environment">Application host environment</param>
+	/// <param name="services">Service collections.</param>
+	/// <param name="configuration">Provided configuration.</param>
+	/// <param name="environment">Application host environment.</param>
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
@@ -55,30 +60,17 @@ public static class Dependencies
 	}
 
 	/// <summary>
-	/// Register common services
+	/// Register common services.
 	/// </summary>
-	/// <param name="services">Service collections</param>
-	/// <param name="configuration">Provided configuration</param>
+	/// <param name="services">Service collections.</param>
+	/// <param name="configuration">Provided configuration.</param>
 	public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
 	{
-		SetupAppSettings(services, configuration);
 		SetupLogger(services);
-		SetupServices(services);
+		SetupServices(services, configuration);
 		SetupValidators(services);
 		SetupMediatR(services);
 		SetupWebToken(services, configuration);
-	}
-
-	private static void SetupAppSettings(IServiceCollection services, IConfiguration configuration) 
-	{
-		services.AddSingleton(configuration.GetSection(nameof(AzureStorage)).Get<AzureStorage>());
-		services.AddSingleton(configuration.GetSection(nameof(AzureRedis)).Get<AzureRedis>());
-		services.AddSingleton(configuration.GetSection(nameof(EmailSender)).Get<EmailSender>());
-		services.AddSingleton(configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>());
-		services.AddSingleton(configuration.GetSection(nameof(SonarQube)).Get<SonarQube>());
-		services.AddSingleton(configuration.GetSection(nameof(IdentityServer)).Get<IdentityServer>());
-		services.AddSingleton(configuration.GetSection(nameof(LimitSettings)).Get<LimitSettings>());
-		services.AddSingleton<IApplicationSettings, ApplicationSettings>();
 	}
 
 	private static void SetupLogger(IServiceCollection services) 
@@ -88,27 +80,26 @@ public static class Dependencies
 	{
 		const int maxRetryCount = 10;
 		var maxRetryDelay = TimeSpan.FromSeconds(5);
-            
+
 		services.AddDbContext<DatabaseContext>(options =>
 		{
-			options.UseSqlServer(configuration.GetConnectionString("DbConnect"), addOptions 
+			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"), addOptions 
 				=> addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
 		});
 	}
 
-	private static void SetupServices(IServiceCollection services) 
+	private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
-		services.AddScoped<HttpClient>();
+		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 
-		services.AddScoped<IDbInitializer, DbInitializer>();
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<ICipheringService, CipheringService>();
-		services.AddScoped<IHttpClientService, HttpClientService>();
 		services.AddScoped<IEmailSenderService, EmailSenderService>();
+		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
@@ -121,10 +112,11 @@ public static class Dependencies
 
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
-		services.AddSingleton<IAzureBlobStorageFactory>(provider =>
+		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
-			var azureStorageSettings = provider.GetRequiredService<AzureStorage>();
-			return new AzureBlobStorageFactory(azureStorageSettings.ConnectionString, azureStorageSettings.ContainerName);
+			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName");
+			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString");
+			return new AzureBlobStorageFactory(connectionString, containerName);
 		});
 	}
 
@@ -144,10 +136,10 @@ public static class Dependencies
 
 	private static void SetupWebToken(IServiceCollection services, IConfiguration configuration)
 	{ 
-		var issuer = configuration.GetValue<string>("IdentityServer:Issuer");
-		var audience = configuration.GetValue<string>("IdentityServer:Audience");
-		var webSecret = configuration.GetValue<string>("IdentityServer:WebSecret");
-		var requireHttps = configuration.GetValue<bool>("IdentityServer:RequireHttps");
+		var issuer = configuration.GetValue<string>("Ids_Issuer");
+		var audience = configuration.GetValue<string>("Ids_Audience");
+		var webSecret = configuration.GetValue<string>("Ids_WebSecret");
+		var requireHttps = configuration.GetValue<bool>("Ids_RequireHttps");
 
 		services.AddAuthentication(options =>
 		{
@@ -232,12 +224,14 @@ public static class Dependencies
 
 	private static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
 	{
-		var applicationPaths = configuration.GetSection(nameof(ApplicationPaths)).Get<ApplicationPaths>();
+		var developmentOrigin = configuration.GetValue<string>("Paths_DevelopmentOrigin");
+		var deploymentOrigin = configuration.GetValue<string>("Paths_DeploymentOrigin");
+
 		services.AddHttpClient("RetryHttpClient", options =>
 		{
 			options.BaseAddress = new Uri(environment.IsDevelopment() 
-				? applicationPaths.DevelopmentOrigin 
-				: applicationPaths.DeploymentOrigin);
+				? developmentOrigin 
+				: deploymentOrigin);
 			options.DefaultRequestHeaders.Add("Accept", ContentTypes.Json);
 			options.Timeout = TimeSpan.FromMinutes(5);
 			options.DefaultRequestHeaders.ConnectionClose = true;

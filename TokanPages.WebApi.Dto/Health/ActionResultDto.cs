@@ -3,28 +3,28 @@
 namespace TokanPages.WebApi.Dto.Health;
 
 /// <summary>
-/// Returns result object from heath check
+/// Returns result object from heath check.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class ActionResultDto
 {
     /// <summary>
-    /// IsSucceeded
+    /// Success flag.
     /// </summary>
     public bool IsSucceeded { get; set; }
 
     /// <summary>
-    /// ErrorCode
+    /// Error code.
     /// </summary>
     public string ErrorCode { get; set; } = "";
 
     /// <summary>
-    /// ErrorDesc
+    /// Error description.
     /// </summary>
     public string ErrorDesc { get; set; } = "";
 
     /// <summary>
-    /// InnerMessage
+    /// Error inner message.
     /// </summary>
     public string InnerMessage { get; set; } = "";
 }

@@ -4,8 +4,8 @@ import { IContentStory } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_STORY_CONTENT, 
-    REQUEST_STORY_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentStory";
 
 export const ContentStory: 
@@ -17,13 +17,13 @@ export const ContentStory:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_STORY_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_STORY_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

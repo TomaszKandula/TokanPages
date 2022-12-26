@@ -1,9 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
+using TokanPages.Services.RedisCacheService.Abstractions;
 
 namespace TokanPages.Services.RedisCacheService;
 
@@ -15,17 +16,17 @@ public class RedisDistributedCache : IRedisDistributedCache
 {
     private readonly IDistributedCache _distributedCache;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
 
     /// <summary>
     /// Redis distributed implementation
     /// </summary>
     /// <param name="distributedCache">DistributedCache instance</param>
-    /// <param name="applicationSettings">ApplicationSettings instance</param>
-    public RedisDistributedCache(IDistributedCache distributedCache, IApplicationSettings applicationSettings)
+    /// <param name="configuration">Configuration instance</param>
+    public RedisDistributedCache(IDistributedCache distributedCache, IConfiguration configuration)
     {
         _distributedCache = distributedCache;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
     }
 
     /// <inheritdoc />
@@ -92,11 +93,11 @@ public class RedisDistributedCache : IRedisDistributedCache
     private DistributedCacheEntryOptions SetDistributedCacheEntryOptions(int absoluteExpirationMinute, int slidingExpirationSecond)
     {
         var expirationMinute = absoluteExpirationMinute == 0
-            ? _applicationSettings.AzureRedis.ExpirationMinute
+            ? _configuration.GetValue<int>("AZ_Redis_ExpirationMinute")
             : absoluteExpirationMinute;
 
         var expirationSecond = slidingExpirationSecond == 0
-            ? _applicationSettings.AzureRedis.ExpirationSecond
+            ? _configuration.GetValue<int>("AZ_Redis_ExpirationSecond")
             : slidingExpirationSecond;
 
         return new DistributedCacheEntryOptions

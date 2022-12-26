@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { TERMS_URL } from "../../../Shared/constants";
+import { GET_TERMS_CONTENT } from "../../../Api/Request";
 import { IDocumentContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_TERMS_CONTENT = "REQUEST_TERMS_CONTENT";
-export const RECEIVE_TERMS_CONTENT = "RECEIVE_TERMS_CONTENT";
-export interface IRequestTermsContent { type: typeof REQUEST_TERMS_CONTENT }
-export interface IReceiveTermsContent { type: typeof RECEIVE_TERMS_CONTENT, payload: IDocumentContentDto }
-export type TKnownActions = IRequestTermsContent | IReceiveTermsContent;
+export const REQUEST = "REQUEST_TERMS_CONTENT";
+export const RECEIVE = "RECEIVE_TERMS_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IDocumentContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentTermsAction = 
 {
@@ -27,9 +27,9 @@ export const ContentTermsAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_TERMS_CONTENT, 
-            receive: RECEIVE_TERMS_CONTENT, 
-            url: TERMS_URL 
+            request: REQUEST, 
+            receive: RECEIVE, 
+            url: GET_TERMS_CONTENT 
         });
     }
 }

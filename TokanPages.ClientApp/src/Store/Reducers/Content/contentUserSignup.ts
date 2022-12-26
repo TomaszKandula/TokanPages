@@ -4,8 +4,8 @@ import { IContentUserSignup } from "../../States";
 
 import { 
     TKnownActions, 
-    REQUEST_USER_SIGNUP_CONTENT, 
-    RECEIVE_USER_SIGNUP_CONTENT 
+    REQUEST, 
+    RECEIVE 
 } from "../../Actions/Content/contentUserSignup";
 
 export const ContentUserSignup: 
@@ -17,13 +17,13 @@ export const ContentUserSignup:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_USER_SIGNUP_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_USER_SIGNUP_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

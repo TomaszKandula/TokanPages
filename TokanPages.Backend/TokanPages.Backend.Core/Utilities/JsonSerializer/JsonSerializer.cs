@@ -7,8 +7,8 @@ namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
 
 public class JsonSerializer : IJsonSerializer
 {
-    public virtual string Serialize(object model, JsonSerializerSettings? serializerSettings = default)
-        => JsonConvert.SerializeObject(model, serializerSettings);
+    public virtual string Serialize(object model, Formatting formatting = Formatting.None, JsonSerializerSettings? serializerSettings = default)
+        => JsonConvert.SerializeObject(model, formatting, serializerSettings);
 
     public virtual T Deserialize<T>(string json, JsonSerializerSettings? serializerSettings = default)
     {

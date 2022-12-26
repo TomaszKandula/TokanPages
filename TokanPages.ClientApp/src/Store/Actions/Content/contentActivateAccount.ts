@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Shared/constants";
+import { GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Api/Request";
 import { IActivateAccountContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_ACTIVATE_ACCOUNT_CONTENT = "REQUEST_ACTIVATE_ACCOUNT_CONTENT";
-export const RECEIVE_ACTIVATE_ACCOUNT_CONTENT = "RECEIVE_ACTIVATE_ACCOUNT_CONTENT";
-export interface IRequestActivateAccountContent { type: typeof REQUEST_ACTIVATE_ACCOUNT_CONTENT }
-export interface IReceiveActivateAccountContent { type: typeof RECEIVE_ACTIVATE_ACCOUNT_CONTENT, payload: IActivateAccountContentDto }
-export type TKnownActions = IRequestActivateAccountContent | IReceiveActivateAccountContent;
+export const REQUEST = "REQUEST_ACTIVATE_ACCOUNT_CONTENT";
+export const RECEIVE = "RECEIVE_ACTIVATE_ACCOUNT_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IActivateAccountContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentActivateAccountAction = 
 {
@@ -27,8 +27,8 @@ export const ContentActivateAccountAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_ACTIVATE_ACCOUNT_CONTENT, 
-            receive: RECEIVE_ACTIVATE_ACCOUNT_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_ACTIVATE_ACCOUNT_CONTENT 
         });
     }

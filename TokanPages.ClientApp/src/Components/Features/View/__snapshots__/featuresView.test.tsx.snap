@@ -95,7 +95,7 @@ exports[`Test articles group component: ArticleFeaturesView. Renders correctly '
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image1.jpg"
+                      image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/articles/image1.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>
@@ -110,7 +110,7 @@ exports[`Test articles group component: ArticleFeaturesView. Renders correctly '
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image2.jpg"
+                      image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/articles/image2.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>
@@ -125,7 +125,7 @@ exports[`Test articles group component: ArticleFeaturesView. Renders correctly '
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image3.jpg"
+                      image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/articles/image3.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>
@@ -140,7 +140,7 @@ exports[`Test articles group component: ArticleFeaturesView. Renders correctly '
                   >
                     <WithStyles(ForwardRef(CardMedia))
                       className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/assets/getAsset/?BlobName=images/sections/articles/image4.jpg"
+                      image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/articles/image4.jpg"
                     />
                   </WithStyles(ForwardRef(Card))>
                 </WithStyles(ForwardRef(Grid))>

@@ -3,9 +3,8 @@ using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
@@ -41,14 +40,14 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedApplicationSettings = MockApplicationSettings();
+        var mockedConfig = SetConfiguration();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
             .Returns(-120);
 
         mockedEmailSenderService
-            .Setup(sender => sender.SendNotification(It.IsAny<IConfiguration>(), It.IsAny<CancellationToken>()))
+            .Setup(sender => sender.SendNotification(It.IsAny<IEmailConfiguration>(), It.IsAny<CancellationToken>()))
             .Returns(Task.CompletedTask);
 
         var resetUserPasswordCommandHandler = new ResetUserPasswordCommandHandler(
@@ -56,7 +55,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
-            mockedApplicationSettings.Object, 
+            mockedConfig.Object, 
             mockedUserService.Object);
 
         // Act

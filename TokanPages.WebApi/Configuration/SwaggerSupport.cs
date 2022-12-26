@@ -4,14 +4,14 @@ using Microsoft.OpenApi.Models;
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// Swagger support
+/// Swagger support.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport
 {
-    private const string ApiVersion = "v1";
+    private const string ApiDocVersion = "v1";
 
-    private const string ApiName = "Tokan Pages API";
+    private const string ApiDocName = "Tokan Pages API";
 
     private const string XmlFileForWebApi = "TokanPages.WebApi.xml";
 
@@ -20,10 +20,10 @@ public static class SwaggerSupport
     private const string AuthorizationScheme = "Bearer";
 
     /// <summary>
-    /// Setup Swagger options (security and documentation)
+    /// Setup Swagger options (security and documentation).
     /// </summary>
-    /// <param name="services">Service collection</param>
-    /// <param name="environment">Host environment instance</param>
+    /// <param name="services">Service collection.</param>
+    /// <param name="environment">Host environment instance.</param>
     public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
     {
         if (environment.IsProduction())
@@ -34,10 +34,10 @@ public static class SwaggerSupport
 
         services.AddSwaggerGen(options =>
         {
-            options.SwaggerDoc(ApiVersion, new OpenApiInfo
+            options.SwaggerDoc(ApiDocVersion, new OpenApiInfo
             {
-                Title = ApiName, 
-                Version = ApiVersion
+                Title = ApiDocName, 
+                Version = ApiDocVersion
             });
 
             options.EnableAnnotations();
@@ -72,11 +72,11 @@ public static class SwaggerSupport
     }
 
     /// <summary>
-    /// Configure Swagger UI
+    /// Configure Swagger UI.
     /// </summary>
-    /// <param name="builder">ApplicationBuilder instance</param>
-    /// <param name="configuration">Provided configuration</param>
-    /// <param name="environment">Host environment instance</param>
+    /// <param name="builder">ApplicationBuilder instance.</param>
+    /// <param name="configuration">Provided configuration.</param>
+    /// <param name="environment">Host environment instance.</param>
     public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment)
     {
         if (environment.IsProduction())
@@ -85,9 +85,9 @@ public static class SwaggerSupport
         builder.UseSwagger();
         builder.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint($"/swagger/{ApiVersion}/swagger.json", ApiName);
-            options.OAuthAppName(ApiName);
-            options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
+            options.SwaggerEndpoint($"/swagger/{ApiDocVersion}/swagger.json", ApiDocName);
+            options.OAuthAppName(ApiDocName);
+            options.OAuthClientSecret(configuration.GetValue<string>("Ids_WebSecret"));
         });
     }
 }

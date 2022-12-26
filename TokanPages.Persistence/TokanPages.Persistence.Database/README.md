@@ -1,5 +1,4 @@
-﻿### Migration Manual
----
+﻿## Migration Manual
 
 Make sure you have local database setup and all the connection strings are in place. 
 When change has been introduced, invoke:

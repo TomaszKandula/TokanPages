@@ -1,9 +1,9 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.WebApi.Dto.Mailer;
 
 namespace TokanPages.Backend.Application.Mailer.Commands;
@@ -12,19 +12,23 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 {
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly IApplicationSettings _applicationSettings;
-        
+    private readonly IConfiguration _configuration;
+
     public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IApplicationSettings applicationSettings) : base(databaseContext, loggerService)
+        IEmailSenderService emailSenderService, IConfiguration configuration) : base(databaseContext, loggerService)
     {
         _emailSenderService = emailSenderService;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
     }
 
-    public override async Task<Unit> Handle(SendNewsletterCommand request, CancellationToken cancellationToken) 
+    public override async Task<Unit> Handle(SendNewsletterCommand request, CancellationToken cancellationToken)
     {
-        var updateSubscriberBaseLink = $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.UpdateSubscriberPath}";
-        var unsubscribeBaseLink = $"{_applicationSettings.ApplicationPaths.DeploymentOrigin}{_applicationSettings.ApplicationPaths.UnsubscribePath}";
+        var deploymentOrigin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var updateSubscriberPath = _configuration.GetValue<string>("Paths_UpdateSubscriber");
+        var unsubscribePath = _configuration.GetValue<string>("Paths_Unsubscribe");
+
+        var updateSubscriberBaseLink = $"{deploymentOrigin}{updateSubscriberPath}";
+        var unsubscribeBaseLink = $"{deploymentOrigin}{unsubscribePath}";
 
         LoggerService.LogInformation($"Update subscriber base URL: {updateSubscriberBaseLink}.");
         LoggerService.LogInformation($"Unsubscribe base URL: {unsubscribeBaseLink}.");
@@ -40,14 +44,14 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
                 { "{UNSUBSCRIBE_LINK}", unsubscribeLink }
             };
 
-            var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
-            var newsletter = _applicationSettings.ApplicationPaths.Templates.Newsletter;
+            var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
+            var newsletter = _configuration.GetValue<string>("Paths_Templates_Newsletter");
 
             var templateUrl = $"{baseUrl}{newsletter}";
             var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
             LoggerService.LogInformation($"Getting newsletter template from URL: {templateUrl}.");
 
-            var contact = _applicationSettings.EmailSender.Addresses.Contact;
+            var contact = _configuration.GetValue<string>("Email_Address_Contact");
             var payload = new SenderPayloadDto
             {
                 From = contact,

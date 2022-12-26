@@ -1,6 +1,6 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Assets.Commands;
 

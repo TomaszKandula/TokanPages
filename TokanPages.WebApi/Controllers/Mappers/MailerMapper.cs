@@ -5,16 +5,16 @@ using TokanPages.WebApi.Dto.Mailer;
 namespace TokanPages.WebApi.Controllers.Mappers;
 
 /// <summary>
-/// Mailer mapper
+/// Mailer mapper.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class MailerMapper
 {
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">SendMessageDto</param>
-    /// <returns>SendMessageCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static SendMessageCommand MapToSendMessageCommand(SendMessageDto model) => new()
     {
         UserEmail = model.UserEmail,
@@ -27,10 +27,10 @@ public static class MailerMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">SendNewsletterDto</param>
-    /// <returns>SendNewsletterCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto model) => new() 
     { 
         SubscriberInfo = model.SubscriberInfo,

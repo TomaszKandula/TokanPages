@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions,
-    REMOVE_ACCOUNT,
-    REMOVE_ACCOUNT_CLEAR,
-    REMOVE_ACCOUNT_RESPONSE
+    REMOVE,
+    CLEAR,
+    RESPONSE
 } from "../../Actions/Users/userRemove";
 
 export const UserRemove: 
@@ -19,18 +19,18 @@ export const UserRemove:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case REMOVE_ACCOUNT_CLEAR:
+        case CLEAR:
             return {
                 status: OperationStatus.notStarted,
                 response: { }
             };
-        case REMOVE_ACCOUNT:
+        case REMOVE:
             return { 
                 status: OperationStatus.inProgress,
                 response: state.response
             };
 
-        case REMOVE_ACCOUNT_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished,
                 response: action.payload

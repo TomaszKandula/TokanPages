@@ -6,5 +6,5 @@ export const RenderCardMedia = (basePath: string, imageSource: string | undefine
 {
     return validate.isEmpty(imageSource) || validate.isEmpty(basePath)
         ? <div></div>
-        : <CardMedia image={basePath + imageSource} className={className} />;
+        : <CardMedia image={`${basePath}/${imageSource}`} className={className} />;
 }

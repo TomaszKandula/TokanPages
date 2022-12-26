@@ -10,9 +10,9 @@ import {
 
 import { 
     TKnownActions,
-    SHOW_USERDATA,
-    CLEAR_USERDATA,
-    UPDATE_USERDATA
+    SHOW,
+    CLEAR,
+    UPDATE
 } from "../../Actions/Users/userDataStore";
 
 export const UserDataStore: 
@@ -24,17 +24,17 @@ export const UserDataStore:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case SHOW_USERDATA:
+        case SHOW:
             return {
                 isShown: action.payload,
                 userData: state.userData
             };
 
-        case CLEAR_USERDATA:
+        case CLEAR:
             DelDataFromStorage({ key: USER_DATA });
             return ApplicationDefault.userDataStore;
 
-        case UPDATE_USERDATA:
+        case UPDATE:
             SetDataInStorage({ key: USER_DATA, selection: action.payload }); 
             return { 
                 isShown: state.isShown,

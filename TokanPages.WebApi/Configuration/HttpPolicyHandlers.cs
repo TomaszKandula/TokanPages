@@ -6,15 +6,15 @@ using Polly.Extensions.Http;
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// HTTP Policy
+/// HTTP Policy.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class HttpPolicyHandlers
 {
     /// <summary>
-    /// Setup retry policy
+    /// Setup retry policy.
     /// </summary>
-    /// <returns>HttpResponseMessage</returns>
+    /// <returns>HttpResponseMessage.</returns>
     public static IAsyncPolicy<HttpResponseMessage> SetupRetry()
     {
         const int retryCount = 3;

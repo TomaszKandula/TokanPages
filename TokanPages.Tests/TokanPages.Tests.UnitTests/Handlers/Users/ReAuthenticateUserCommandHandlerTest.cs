@@ -1,5 +1,6 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -7,8 +8,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services.Models;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
 
@@ -129,23 +129,14 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
+        var mockedConfig = SetConfiguration();
 
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -249,23 +240,14 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
             .Returns(false);
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
-            
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
+        var mockedConfig = SetConfiguration();
+
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert
@@ -315,23 +297,14 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
             .Returns(false);
 
-        var identityServer = new IdentityServer
-        {
-            Issuer = DataUtilityService.GetRandomString(),
-            Audience = DataUtilityService.GetRandomString(),
-            WebSecret = DataUtilityService.GetRandomString(),
-            RequireHttps = false,
-            WebTokenExpiresIn = 90,
-            RefreshTokenExpiresIn = 120
-        };
+        var mockedConfig = SetConfiguration();
 
-        var mockedApplicationSettings = MockApplicationSettings(identityServer: identityServer);
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedApplicationSettings.Object);
+            mockedConfig.Object);
 
         // Act
         // Assert

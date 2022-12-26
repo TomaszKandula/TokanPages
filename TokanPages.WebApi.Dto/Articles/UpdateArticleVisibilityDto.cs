@@ -3,18 +3,18 @@
 namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to change visibility
+/// Use it when you want to change visibility.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UpdateArticleVisibilityDto
 {
     /// <summary>
-    /// Mandatory
+    /// Identification.
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Published flag.
     /// </summary>
     public bool IsPublished { get; set; }
 }

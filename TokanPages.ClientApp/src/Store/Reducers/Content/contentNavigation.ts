@@ -4,8 +4,8 @@ import { IContentNavigation } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_NAVIGATION_CONTENT, 
-    REQUEST_NAVIGATION_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentNavigation";
 
 export const ContentNavigation: 
@@ -17,13 +17,13 @@ export const ContentNavigation:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_NAVIGATION_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_NAVIGATION_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

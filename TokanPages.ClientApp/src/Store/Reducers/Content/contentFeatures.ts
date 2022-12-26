@@ -4,8 +4,8 @@ import { IContentFeatures } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_FEATURES_CONTENT, 
-    REQUEST_FEATURES_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentFeatures";
 
 export const ContentFeatures: 
@@ -17,13 +17,13 @@ export const ContentFeatures:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_FEATURES_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_FEATURES_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

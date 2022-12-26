@@ -1,21 +1,21 @@
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// Configure Redis
+/// Configure Redis cache.
 /// </summary>
 public static class RedisSupport
 {
     /// <summary>
-    /// Configure Redis
+    /// Configure Redis cache.
     /// </summary>
-    /// <param name="services">Service collection</param>
-    /// <param name="configuration">Provided configuration</param>
+    /// <param name="services">Service collection.</param>
+    /// <param name="configuration">Provided configuration.</param>
     public static void SetupRedisCache(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDistributedRedisCache(option =>
         {
-            option.Configuration = configuration.GetValue<string>("AzureRedis:ConnectionString");
-            option.InstanceName = "master";
+            option.Configuration = configuration.GetValue<string>("AZ_Redis_ConnectionString");
+            option.InstanceName = configuration.GetValue<string>("AZ_Redis_InstanceName");
         });
     }
 }

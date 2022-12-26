@@ -9,12 +9,12 @@ namespace TokanPages.WebApi.Dto.Users;
 public class AuthenticateUserDto
 {
     /// <summary>
-    /// Mandatory
+    /// User email address.
     /// </summary>
     public string? EmailAddress { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// User password.
     /// </summary>
     public string? Password { get; set; }
 }

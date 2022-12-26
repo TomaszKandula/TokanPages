@@ -1,14 +1,14 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -18,17 +18,17 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
 
     private readonly IUserService _userService;
 
     public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IApplicationSettings applicationSettings, 
+        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IConfiguration configuration, 
         IUserService userService) : base(databaseContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
-        _applicationSettings = applicationSettings;
+        _configuration = configuration;
         _userService = userService;
     }
 
@@ -43,7 +43,7 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
         if (currentUser is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        var expiresIn = _applicationSettings.LimitSettings.ResetIdExpiresIn;
+        var expiresIn = _configuration.GetValue<int>("Limit_Reset_Maturity");
         var resetId = Guid.NewGuid();
 
         currentUser.CryptedPassword = string.Empty;

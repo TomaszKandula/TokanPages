@@ -3,8 +3,8 @@ import { IApplicationLanguage } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
 
 import { 
-    SET_LANGUAGE, 
-    RESET_LANGUAGE, 
+    SET, 
+    RESET, 
     TKnownActions 
 } from "../../Actions/Application/applicationLanguage";
 
@@ -17,12 +17,12 @@ export const ApplicationLanguage:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case RESET_LANGUAGE:
+        case RESET:
             return {
                 id: state.id,
                 languages: state.languages
             }
-        case SET_LANGUAGE:
+        case SET:
             return { 
                 id: action.language.id,
                 languages: action.language.languages
