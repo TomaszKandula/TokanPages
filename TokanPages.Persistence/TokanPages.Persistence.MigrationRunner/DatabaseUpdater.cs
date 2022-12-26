@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Abstractions;
+using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext;
 using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;
@@ -28,31 +29,14 @@ public class DatabaseUpdater : IDatabaseUpdater
             return;
         }
 
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Creating source context...");
-
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
-        var sourceOptions = DatabaseOptions.GetOptions<T>(sourceConnection);
-        var sourceContext = (T)Activator.CreateInstance(typeof(T), sourceOptions)!;
-
-        if (!sourceContext.Database.CanConnect())
-            throw new Exception($"Cannot connect to the source database: '{sourceDatabase}'!");
-
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Creating target context...");
-
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
-        var targetOptions = DatabaseOptions.GetOptions<T>(targetConnection);
-        var targetContext = (T)Activator.CreateInstance(typeof(T), targetOptions)!;
-
-        if (!targetContext.Database.CanConnect())
-            throw new Exception($"Cannot connect to the target database '{targetDatabase}'!");
-
-        ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Everything is prepared!");
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Trying to move the data from '{sourceDatabase}' to '{targetDatabase}'...");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Moving the production data from '{sourceDatabase}' to '{targetDatabase}'...");
 
         switch (typeof(T).Name)
         {
             case "DatabaseContext":
-                //TODO: add update methods...
+                DatabaseContextUpdater.UpdateProduction(sourceConnection, targetConnection);
                 break;
             default:
                 throw new ArgumentException("Cannot update the production data between databases. Unsupported database context!");
