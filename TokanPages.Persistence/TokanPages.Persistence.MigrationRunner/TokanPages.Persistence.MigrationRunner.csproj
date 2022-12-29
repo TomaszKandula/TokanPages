@@ -20,6 +20,9 @@
             <Link>appsettings.Production.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Databases\DatabaseContext\Scripts\1_CopyOverDatabaseContext.sql">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
