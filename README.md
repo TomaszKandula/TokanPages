@@ -15,72 +15,72 @@ TokanPages is the repository that holds my web page to share my programming inte
 ### Client-App
 
 <p>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=ncloc&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=code_smells&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=sqale_index&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=sqale_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=security_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-frontend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
 ### WebApi / Backend
 
 <p>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=ncloc&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=code_smells&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
-  </a>
-</p>
-<p>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
-  </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=bugs&kill_cache=1">
   </a>
 </p>
 <p>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=sqale_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=security_rating&kill_cache=1">
   </a>
-  <a href="https://tokansonar-app.azurewebsites.net/about">
-    <img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=reliability_rating&kill_cache=1">
+  </a>
+</p>
+<p>
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=sqale_index&kill_cache=1">
+  </a>
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=duplicated_lines_density&kill_cache=1">
+  </a>
+  <a href="https://sonarqube.tomkandula.com">
+    <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/metrics?project=tokanpages-backend&metric=coverage&kill_cache=1">
   </a>
 </p>
 
@@ -105,7 +105,7 @@ The client app uses React Hooks. Tests are provided using JEST, but there is no 
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
 
-<img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
+<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
 
 ### Back-end
 
@@ -124,7 +124,7 @@ Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAsse
 
 Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
 
-<img alt="" src="https://tokansonar-proxy.azurewebsites.net/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
+<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
 
 ## Project structure
 
