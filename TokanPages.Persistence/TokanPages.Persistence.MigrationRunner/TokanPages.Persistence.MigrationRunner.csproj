@@ -20,8 +20,8 @@
             <Link>appsettings.Production.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Databases\DatabaseContext\Scripts\1_CopyOverDatabaseContext.sql">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <None Update="Resources\CreateDbUser.sql">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
