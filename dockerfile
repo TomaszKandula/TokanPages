@@ -6,10 +6,13 @@ WORKDIR /app
 COPY . ./
 RUN dotnet restore
 
-# Build and run all tests
+# Build and test or migrate
 ARG ENV_VALUE
 RUN dotnet build -c Release --no-restore
-RUN ASPNETCORE_ENVIRONMENT=${ENV_VALUE} dotnet test -c Release --no-build --no-restore
+RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ]; \
+then ASPNETCORE_ENVIRONMENT=${ENV_VALUE} dotnet test -c Release --no-build --no-restore; \
+else cd /app/TokanPages.Persistence/TokanPages.Persistence.MigrationRunner/bin/Release/net6.0 && \
+ASPNETCORE_ENVIRONMENT=${ENV_VALUE} dotnet TokanPages.Persistence.MigrationRunner.dll --next-prod; fi
 
 # Publish build
 RUN dotnet publish -c Release -o out
