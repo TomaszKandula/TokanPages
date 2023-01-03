@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
+using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext;
 
@@ -7,9 +9,22 @@ public static class DatabaseContextUpdater
 {
     private const string Caller = nameof(DatabaseContextUpdater);
 
-    public static void UpdateProduction(string sourceConnection, string targetConnection)
+    private const string Directory = "Resources";
+
+    public static async Task UpdateProduction(string sourceConnection, string targetConnection)
     {
-        //TODO: implement
+        ConsolePrints.PrintOnInfo($"[{Caller}]: Working on the target connection...");
+
+        var targetOptions = DatabaseOptions.GetOptions<Database.DatabaseContext>(targetConnection);
+        await using var targetDatabase = new Database.DatabaseContext(targetOptions);
+        await using var command = targetDatabase.Database.GetDbConnection().CreateCommand();
+        command.CommandText = GetSqlScript("CreateDbUser.sql");
+        await targetDatabase.Database.OpenConnectionAsync();
+        var result = await command.ExecuteNonQueryAsync();
+
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database user created. Returned: {result}.");
+
+        //TODO: implement coping from source to target
     }
 
     public static void PopulateTestData(Database.DatabaseContext databaseContext)
@@ -132,12 +147,11 @@ public static class DatabaseContextUpdater
     }
 
     private static void PrintInfo(int count, string entity)
-    {
-        ConsolePrints.PrintOnInfo($"[{Caller}]: Adding {count} entries to the '{entity}' table...");
-    }
+        => ConsolePrints.PrintOnInfo($"[{Caller}]: Adding {count} entries to the '{entity}' table...");
 
     private static void PrintWarning(string entity)
-    {
-        ConsolePrints.PrintOnWarning($"[{Caller}]: '{entity}' is marked for removal...");
-    }
+        => ConsolePrints.PrintOnWarning($"[{Caller}]: '{entity}' is marked for removal...");
+
+    private static string GetSqlScript(string scriptName)
+        => File.ReadAllText(Path.Combine(Directory, scriptName));
 }
