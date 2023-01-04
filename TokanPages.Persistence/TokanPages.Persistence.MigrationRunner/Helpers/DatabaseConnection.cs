@@ -37,19 +37,25 @@ public static class DatabaseConnection
             throw new Exception("Cannot perform on a non-production database context!");
 
         var targetConnection = new SqlConnectionStringBuilder(sourceConnection);
-        var currentName = targetConnection.InitialCatalog;
+        var oldName = targetConnection.InitialCatalog;
 
+        var (ver, name) = GetNextVersion(targetConnection);
+        var newName = $"{name[0]}-{name[1]}-{name[2]}-{ver}";
+        targetConnection.InitialCatalog = newName;
+
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Current production database name is '{oldName}'.");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: New production database name is '{newName}'.");
+        return targetConnection.ToString();
+    }
+
+    public static (int, string[]) GetNextVersion(SqlConnectionStringBuilder connection)
+    {
+        var currentName = connection.InitialCatalog;
         var elements = currentName.Split("-");
         if (elements.Length is 0 or < 4)
             throw new Exception("Invalid catalog name!");
 
-        var next = int.Parse(elements[3]) + 1;
-        var newName = $"{elements[0]}-{elements[1]}-{elements[2]}-{next}";
-        targetConnection.InitialCatalog = newName;
-
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Current production database name is '{currentName}'.");
-        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: New production database name is '{newName}'.");
-        return targetConnection.ToString();
+        return (int.Parse(elements[3]) + 1, elements);
     }
 
     public static void ValidateConnectionString<T>(string sourceConnection) where T : DbContext

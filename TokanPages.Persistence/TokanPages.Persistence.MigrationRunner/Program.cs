@@ -12,7 +12,7 @@ internal static class Program
     private const string Option4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
     private const string Option5 = "  --next-prod       It will copy the production databases to the next production database.";
 
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var arguments = InputArguments.Normalize(args);
         if (arguments is null || arguments.Count > 1)
@@ -63,7 +63,7 @@ internal static class Program
                     var copier = new DatabaseCopier();
                     var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
                     migrator.RunAndMigrate<DatabaseContext>(target);
-                    copier.RunAndCopy<DatabaseContext>(source, target);
+                    await copier.RunAndCopy<DatabaseContext>(source, target);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 

@@ -1,5 +1,8 @@
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
+using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext;
 
@@ -7,9 +10,41 @@ public static class DatabaseContextUpdater
 {
     private const string Caller = nameof(DatabaseContextUpdater);
 
-    public static void UpdateProduction(string sourceConnection, string targetConnection)
+    private const string Directory = "Resources";
+
+    private const string DefaultUserScript = "CreateDbUser.sql";
+
+    private const string CopyScriptName = "ToProd.sql";
+
+    public static async Task UpdateProduction(string sourceConnection, string targetConnection)
     {
-        //TODO: implement
+        ConsolePrints.PrintOnInfo($"[{Caller}]: Working on the target connection...");
+
+        var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
+        var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
+
+        var options = DatabaseOptions.GetOptions<Database.DatabaseContext>(targetConnection);
+        var context = new Database.DatabaseContext(options);
+        await context.Database.OpenConnectionAsync();
+        var command = context.Database.GetDbConnection().CreateCommand();
+
+        command.CommandText = GetSqlScript(DefaultUserScript);
+        command.CommandTimeout = 90;
+        var createResult = await command.ExecuteNonQueryAsync();
+
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database user created. Returned: {createResult}.");
+
+        var version = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(sourceConnection));
+        var script = GetSqlScript($"{version.Item1}_{nameof(Database.DatabaseContext)}_{CopyScriptName}");
+
+        script = script.Replace("{{SOURCE_TABLE}}", sourceDatabase);
+        script = script.Replace("{{TARGET_TABLE}}", targetDatabase);
+
+        command.CommandText = script;
+        command.CommandTimeout = 240;
+        var copyResult = await command.ExecuteNonQueryAsync();
+
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database copied. Returned: {copyResult}.");
     }
 
     public static void PopulateTestData(Database.DatabaseContext databaseContext)
@@ -132,12 +167,11 @@ public static class DatabaseContextUpdater
     }
 
     private static void PrintInfo(int count, string entity)
-    {
-        ConsolePrints.PrintOnInfo($"[{Caller}]: Adding {count} entries to the '{entity}' table...");
-    }
+        => ConsolePrints.PrintOnInfo($"[{Caller}]: Adding {count} entries to the '{entity}' table...");
 
     private static void PrintWarning(string entity)
-    {
-        ConsolePrints.PrintOnWarning($"[{Caller}]: '{entity}' is marked for removal...");
-    }
+        => ConsolePrints.PrintOnWarning($"[{Caller}]: '{entity}' is marked for removal...");
+
+    private static string GetSqlScript(string scriptName)
+        => File.ReadAllText(Path.Combine(Directory, scriptName));
 }
