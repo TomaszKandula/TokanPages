@@ -15,16 +15,26 @@ public static class DatabaseContextUpdater
     {
         ConsolePrints.PrintOnInfo($"[{Caller}]: Working on the target connection...");
 
-        var targetOptions = DatabaseOptions.GetOptions<Database.DatabaseContext>(targetConnection);
-        await using var targetDatabase = new Database.DatabaseContext(targetOptions);
-        await using var command = targetDatabase.Database.GetDbConnection().CreateCommand();
+        var options = DatabaseOptions.GetOptions<Database.DatabaseContext>(targetConnection);
+        var context = new Database.DatabaseContext(options);
+        await context.Database.OpenConnectionAsync();
+        var command = context.Database.GetDbConnection().CreateCommand();
+
         command.CommandText = GetSqlScript("CreateDbUser.sql");
-        await targetDatabase.Database.OpenConnectionAsync();
-        var result = await command.ExecuteNonQueryAsync();
+        command.CommandTimeout = 90;
+        var createResult = await command.ExecuteNonQueryAsync();
 
-        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database user created. Returned: {result}.");
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database user created. Returned: {createResult}.");
 
-        //TODO: implement coping from source to target
+        var script = GetSqlScript("87_CopyToProduction.sql");
+        script = script.Replace("{{SOURCE_TABLE}}", sourceDatabase);
+        script = script.Replace("{{TARGET_TABLE}}", targetDatabase);
+        
+        command.CommandText = script;
+        command.CommandTimeout = 240;
+        var copyResult = await command.ExecuteNonQueryAsync();
+        
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database copied. Returned: {copyResult}.");
     }
 
     public static void PopulateTestData(Database.DatabaseContext databaseContext)
