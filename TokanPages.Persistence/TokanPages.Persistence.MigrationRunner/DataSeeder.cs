@@ -18,32 +18,37 @@ public class DataSeeder : IDataSeeder
     /// It removes database content before seeding new one.
     /// </remarks>
     /// <param name="connectionString">Connection string to a database.</param>
-    /// <param name="contextName">Name of the database context.</param>
     /// <typeparam name="T">Type of the database context.</typeparam>
-    /// <exception cref="Exception">Throws when connection fail.</exception>
-    /// <exception cref="ArgumentException">Throws when unsupported context is passed.</exception>
-    public void Seed<T>(string connectionString, string contextName) where T : DbContext
+    /// <exception cref="Exception">Throws an exception when connection fail.</exception>
+    /// <exception cref="ArgumentException">Throws an exception when unsupported context is passed.</exception>
+    public void Seed<T>(string connectionString) where T : DbContext
     {
-        ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Creating context...");
+        if (!Environments.IsTestingOrStaging)
+        {
+            ConsolePrints.PrintOnWarning($"[{Caller} | {typeof(T).Name}]: Cannot seed the test data to a production... skipped.");
+            return;
+        }
+
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Creating context...");
 
         var options = DatabaseOptions.GetOptions<T>(connectionString, Environments.IsTestingOrStaging);
         var context = (T)Activator.CreateInstance(typeof(T), options)!;
 
-        ConsolePrints.PrintOnSuccess($"[{Caller} | {contextName}]: Context created successfully!");
+        ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Context created successfully!");
         
         if (!context.Database.CanConnect())
-            throw new Exception($"Cannot connect to the database for context '{contextName}'!");
+            throw new Exception($"Cannot connect to the database for context '{typeof(T).Name}'!");
 
-        ConsolePrints.PrintOnInfo($"[{Caller} | {contextName}]: Database update started...");
+        ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Database update started...");
 
         switch (context)
         {
             case DatabaseContext databaseContext:
-                DatabaseContextUpdater.Remove(databaseContext);
-                DatabaseContextUpdater.Populate(databaseContext);
+                DatabaseContextUpdater.RemoveTestData(databaseContext);
+                DatabaseContextUpdater.PopulateTestData(databaseContext);
                 break;
             default:
-                throw new ArgumentException("Cannot seed the test data. Unsupported database type!");
+                throw new ArgumentException("Cannot seed the test data. Unsupported database context!");
         }
     }
 }

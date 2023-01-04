@@ -26,11 +26,12 @@ public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
 
         var migrator = new DatabaseMigrator();
         var seeder = new DataSeeder();
-        var connection = DatabaseConnection.GetConnectionString<DatabaseContext>();
+        var configuration = DatabaseConnection.GetConfiguration<DatabaseContext>();
+        var connection = DatabaseConnection.GetConnectionString<DatabaseContext>(configuration);
         DatabaseConnection.ValidateConnectionString<DatabaseContext>(connection);
 
-        migrator.RunAndMigrate<DatabaseContext>(connection, nameof(DatabaseContext));
-        seeder.Seed<DatabaseContext>(connection, nameof(DatabaseContext));
+        migrator.RunAndMigrate<DatabaseContext>(connection);
+        seeder.Seed<DatabaseContext>(connection);
     }
 
     /// <summary>
