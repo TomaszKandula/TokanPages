@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
@@ -11,22 +12,31 @@ public static class DatabaseContextUpdater
 
     private const string Directory = "Resources";
 
-    public static async Task UpdateProduction(string sourceDatabase, string targetDatabase, string targetConnection)
+    private const string DefaultUserScript = "CreateDbUser.sql";
+
+    private const string CopyScriptName = "ToProd.sql";
+
+    public static async Task UpdateProduction(string sourceConnection, string targetConnection)
     {
         ConsolePrints.PrintOnInfo($"[{Caller}]: Working on the target connection...");
+
+        var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
+        var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
 
         var options = DatabaseOptions.GetOptions<Database.DatabaseContext>(targetConnection);
         var context = new Database.DatabaseContext(options);
         await context.Database.OpenConnectionAsync();
         var command = context.Database.GetDbConnection().CreateCommand();
 
-        command.CommandText = GetSqlScript("CreateDbUser.sql");
+        command.CommandText = GetSqlScript(DefaultUserScript);
         command.CommandTimeout = 90;
         var createResult = await command.ExecuteNonQueryAsync();
 
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Database user created. Returned: {createResult}.");
 
-        var script = GetSqlScript("87_CopyToProduction.sql");
+        var version = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(sourceConnection));
+        var script = GetSqlScript($"{version.Item1}_{nameof(Database.DatabaseContext)}_{CopyScriptName}");
+
         script = script.Replace("{{SOURCE_TABLE}}", sourceDatabase);
         script = script.Replace("{{TARGET_TABLE}}", targetDatabase);
 

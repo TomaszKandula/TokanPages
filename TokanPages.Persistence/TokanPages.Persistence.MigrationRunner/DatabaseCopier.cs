@@ -32,7 +32,7 @@ public class DatabaseCopier : IDatabaseCopier
         switch (typeof(T).Name)
         {
             case "DatabaseContext":
-                await DatabaseContextUpdater.UpdateProduction(sourceDatabase, targetDatabase, targetConnection);
+                await DatabaseContextUpdater.UpdateProduction(sourceConnection, targetConnection);
                 break;
             default:
                 throw new ArgumentException("Cannot copy the production data between databases. Unsupported database context!");
