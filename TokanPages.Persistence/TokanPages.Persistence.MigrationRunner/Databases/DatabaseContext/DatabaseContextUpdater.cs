@@ -29,11 +29,11 @@ public static class DatabaseContextUpdater
         var script = GetSqlScript("87_CopyToProduction.sql");
         script = script.Replace("{{SOURCE_TABLE}}", sourceDatabase);
         script = script.Replace("{{TARGET_TABLE}}", targetDatabase);
-        
+
         command.CommandText = script;
         command.CommandTimeout = 240;
         var copyResult = await command.ExecuteNonQueryAsync();
-        
+
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Database copied. Returned: {copyResult}.");
     }
 
