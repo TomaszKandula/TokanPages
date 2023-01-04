@@ -11,7 +11,7 @@ public static class DatabaseContextUpdater
 
     private const string Directory = "Resources";
 
-    public static async Task UpdateProduction(string sourceConnection, string targetConnection)
+    public static async Task UpdateProduction(string sourceDatabase, string targetDatabase, string targetConnection)
     {
         ConsolePrints.PrintOnInfo($"[{Caller}]: Working on the target connection...");
 
