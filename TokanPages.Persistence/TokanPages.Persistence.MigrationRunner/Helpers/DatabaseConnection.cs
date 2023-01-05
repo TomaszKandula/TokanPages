@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Services;
 
 namespace TokanPages.Persistence.MigrationRunner.Helpers;
@@ -36,7 +37,7 @@ public static class DatabaseConnection
     public static string GetNextProductionDatabase<T>(string sourceConnection) where T : DbContext
     {
         if (Environments.IsTestingOrStaging)
-            throw new Exception("Cannot perform on a non-production database context!");
+            throw new GeneralException("Cannot perform on a non-production database context!");
 
         var targetConnection = new SqlConnectionStringBuilder(sourceConnection);
         var oldName = targetConnection.InitialCatalog;
@@ -55,7 +56,7 @@ public static class DatabaseConnection
         var currentName = connection.InitialCatalog;
         var elements = currentName.Split("-");
         if (elements.Length is 0 or < 4)
-            throw new Exception("Invalid catalog name!");
+            throw new GeneralException("Invalid catalog name!");
 
         return (int.Parse(elements[3]) + 1, elements);
     }
@@ -82,7 +83,7 @@ public static class DatabaseConnection
         }
         catch (Exception exception)
         {
-            throw new Exception(exception.Message);
+            throw new GeneralException(exception.Message);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Abstractions;
@@ -39,7 +40,7 @@ public class DataSeeder : IDataSeeder
         ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Context created successfully!");
 
         if (!context.Database.CanConnect())
-            throw new Exception($"Cannot connect to the database for context '{typeof(T).Name}'!");
+            throw new GeneralException($"Cannot connect to the database for context '{typeof(T).Name}'!");
 
         ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Database update started...");
 

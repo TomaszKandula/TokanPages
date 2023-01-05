@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Abstractions;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext;
@@ -25,7 +26,7 @@ public class DatabaseCopier : IDatabaseCopier
     public async Task RunAndCopy<T>(string sourceConnection, string targetConnection) where T : DbContext
     {
         if (Environments.IsTestingOrStaging)
-            throw new Exception("Cannot perform on a non-production database context!");
+            throw new GeneralException("Cannot perform on a non-production database context!");
 
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
