@@ -1,3 +1,51 @@
+# [0.61.0](https://github.com/TomaszKandula/TokanPages/compare/v0.60.0...v0.61.0) (2023-01-05)
+
+
+### Bug Fixes
+
+* add missing dependency registration ([001ea00](https://github.com/TomaszKandula/TokanPages/commit/001ea007f9b3ea58812126c52c49f4d4e570a547))
+
+
+### Features
+
+* add controller ([d23afa4](https://github.com/TomaszKandula/TokanPages/commit/d23afa43be6b8304eb90a07f88fcc57f2d0fb90c))
+* add data seeder ([05cefae](https://github.com/TomaszKandula/TokanPages/commit/05cefaee356942bdd4e31f3a05507845032f334a))
+* add data seeders ([25edea3](https://github.com/TomaszKandula/TokanPages/commit/25edea3b50b8c63c2fe23273b9a771d77042eb76))
+* add database migrator ([ea9e992](https://github.com/TomaszKandula/TokanPages/commit/ea9e9920a45f00512212f6ed5239b3f21440ca68))
+* add database migrator connection string ([a41709b](https://github.com/TomaszKandula/TokanPages/commit/a41709ba9c93b73411e891c78c1fa563a3ecfd6b))
+* add database updater ([525bc02](https://github.com/TomaszKandula/TokanPages/commit/525bc02157cd68551f0ce8f923e737fcc5d05ba3))
+* add handler ([c23567b](https://github.com/TomaszKandula/TokanPages/commit/c23567bcab5d07047570747a52eeb6d681957118))
+* add helper ([09b74ee](https://github.com/TomaszKandula/TokanPages/commit/09b74ee701bef7d081692d07d6315d218950444f))
+* add helper method to get database name ([741c872](https://github.com/TomaszKandula/TokanPages/commit/741c872ff29b033d624af1542226e050a6cea29f))
+* add http client factory ([f37cd86](https://github.com/TomaszKandula/TokanPages/commit/f37cd86afeb5d9ef353b88b38b9810a939187373))
+* add info on finish ([8fbfd0c](https://github.com/TomaszKandula/TokanPages/commit/8fbfd0c0188689e792c33a075e4ffa2744d1d2bb))
+* add mapper ([9927d42](https://github.com/TomaszKandula/TokanPages/commit/9927d42b06aa7f363013b63b97ee93869b48f6ed))
+* add method, no implementation yet ([3929880](https://github.com/TomaszKandula/TokanPages/commit/392988028398eb04ab19007b9dc4f7f553039056))
+* add migration runner for database context ([f7ff2e3](https://github.com/TomaszKandula/TokanPages/commit/f7ff2e3e3a74d04101a33870e5dff5d23f225fbe))
+* add model ([4d1c7e5](https://github.com/TomaszKandula/TokanPages/commit/4d1c7e5e5209510e07b23125141e4c3dabcb3a94))
+* add models ([073fd6f](https://github.com/TomaszKandula/TokanPages/commit/073fd6f6d07500b36c4053349e27619a3c4cbd05))
+* add more method arguments ([77ac924](https://github.com/TomaszKandula/TokanPages/commit/77ac9248a315f6709e29a9404149cf4f67d3cd4a))
+* add new error code ([ae07589](https://github.com/TomaszKandula/TokanPages/commit/ae0758939e4f3b4cf658ad4b8cd3acba0cdd26e8))
+* add remove method ([63f7d38](https://github.com/TomaszKandula/TokanPages/commit/63f7d383f649fcf89a28322ff62603deea527499))
+* add sql script ([532082f](https://github.com/TomaszKandula/TokanPages/commit/532082fe4afbce01a9f43f6135690793fc758eca))
+* add sql script ([8df6ff3](https://github.com/TomaszKandula/TokanPages/commit/8df6ff3fd7d68f1ba2f1322872c320d5c55970d9))
+* add sql script to create default user ([6d9274e](https://github.com/TomaszKandula/TokanPages/commit/6d9274e1f82f4816f209ac8729e3cfc080d2e1c2))
+* add validation ([b283ebd](https://github.com/TomaszKandula/TokanPages/commit/b283ebd8dc77cccb882f9fc087a747ac4f328437))
+* add web socket service ([94a2e7d](https://github.com/TomaszKandula/TokanPages/commit/94a2e7d85981fdf94817389c5a9b455589ba78e9))
+* adding console wrapper ([aff442c](https://github.com/TomaszKandula/TokanPages/commit/aff442caeff239e0011ee868b0ef8c620c17ad0b))
+* allow redirect ([0337a2c](https://github.com/TomaszKandula/TokanPages/commit/0337a2cdb62ec40ed65d3bcaa3ddf2363acf10f1))
+* clean-up database before seeding new data ([cef013e](https://github.com/TomaszKandula/TokanPages/commit/cef013eb11fb90b53f8b1c884ef392c82d65aa8b))
+* database context seeders ([77f25e4](https://github.com/TomaszKandula/TokanPages/commit/77f25e49ff93fe5c828ed4d6ea8a33b4a62364ad))
+* do not seed if non-TEST/STAGE environment detected ([fc2712d](https://github.com/TomaszKandula/TokanPages/commit/fc2712d13d2c68a17789ae3ce16059e2495d912f))
+* extend json serializer wrapper ([b81e7aa](https://github.com/TomaszKandula/TokanPages/commit/b81e7aa69c390faba43fab83b2028defc830de79))
+* finish implementation, add copy script ([79c399f](https://github.com/TomaszKandula/TokanPages/commit/79c399fa8b03320a4c0648a323e5541013d240e3))
+* generate expected script name ([48fc2d2](https://github.com/TomaszKandula/TokanPages/commit/48fc2d2f18697b2b5140351ae77b619cfc55ea56))
+* implement data seeder ([21e4f15](https://github.com/TomaszKandula/TokanPages/commit/21e4f15bc84471d1d3ab34e040040bc7386fa4b5))
+* implement pre- and post- test setup ([d1c03cc](https://github.com/TomaszKandula/TokanPages/commit/d1c03cca299ba285c283f03a94d085cba289998c))
+* implement user creation for target db ([7f48281](https://github.com/TomaszKandula/TokanPages/commit/7f482815bfc0464e080dad483971d05f3d3f0725))
+* use azure key vault and its secrets ([7fd7e68](https://github.com/TomaszKandula/TokanPages/commit/7fd7e68260b38e30aedcc2bfac6b7065513a08c6))
+* use http client factory ([1f884e5](https://github.com/TomaszKandula/TokanPages/commit/1f884e5381d1cda8ab3211157eb41d5cec3a9b98))
+
 # [0.60.0](https://github.com/TomaszKandula/TokanPages/compare/v0.59.0...v0.60.0) (2022-10-23)
 
 
