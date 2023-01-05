@@ -52,10 +52,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
 
-    - name: Microsoft Azure
-      uses: Azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: Azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Get Azure Key Vault secrets
       uses: Azure/get-keyvault-secrets@v1
