@@ -37,7 +37,7 @@ public class DataSeeder : IDataSeeder
         var context = (T)Activator.CreateInstance(typeof(T), options)!;
 
         ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Context created successfully!");
-        
+
         if (!context.Database.CanConnect())
             throw new Exception($"Cannot connect to the database for context '{typeof(T).Name}'!");
 
