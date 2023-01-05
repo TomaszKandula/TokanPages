@@ -64,48 +64,55 @@ jobs:
 
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
-    
+
+    - task: AzureKeyVault@1
+      inputs:
+        azureSubscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
+        KeyVaultName: "${{ secrets.AZURE_KEY_VAULT }}"
+        SecretsFilter: "*"
+        RunAsPreJob: true
+
     - name: Variable substitution appsettings file for Staging (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Staging.json
       env:
-        Email_PrivateKey: "${{ secrets.STAGE_EMAIL_PRIVATEKEY }}"
-        Email_BaseUrl: "${{ secrets.STAGE_EMAIL_BASEURL }}"
-        Email_Address_Admin: "${{ secrets.STAGE_EMAIL_ADDRESSES_ADMIN }}"
-        Email_Address_Contact: "${{ secrets.STAGE_EMAIL_ADDRESSES_CONTACT }}"
-        Email_Address_Support: "${{ secrets.STAGE_EMAIL_ADDRESSES_ITSUPPORT }}"
-        Db_DatabaseContext: "${{ secrets.STAGE_DBCONNECT }}"
-        Db_DatabaseContext_Migrator: "${{ secrets.STAGE_DBMIGRATOR }}"
-        AZ_Storage_BaseUrl: "${{ secrets.STAGE_AZSTORAGE_BASEURL }}"
-        AZ_Storage_ContainerName: "${{ secrets.STAGE_AZSTORAGE_CONTAINERNAME }}"
-        AZ_Storage_ConnectionString: "${{ secrets.STAGE_AZSTORAGE_CONNECTIONSTRING }}"
-        AZ_Storage_MaxFileSizeUserMedia: "${{ secrets.STAGE_AZSTORAGE_MAXFILESIZEUSERMEDIA }}"
-        AZ_Storage_MaxFileSizeSingleAsset: "${{ secrets.STAGE_AZSTORAGE_MAXFILESIZESINGLEASSET }}"
-        AZ_Redis_InstanceName: "${{ secrets.STAGE_AZREDIS_INSTANCENAME }}"
-        AZ_Redis_ConnectionString: "${{ secrets.STAGE_AZREDIS_CONNECTIONSTRING }}"
-        AZ_Redis_ExpirationMinute: "${{ secrets.STAGE_AZREDIS_EXPIRATIONMINUTE }}"
-        AZ_Redis_ExpirationSecond: "${{ secrets.STAGE_AZREDIS_EXPIRATIONSECOND }}"
-        Paths_UpdateSubscriber: "${{ secrets.STAGE_PATHS_UPDATESUBSCRIBER }}"
-        Paths_Unsubscribe: "${{ secrets.STAGE_PATHS_UNSUBSCRIBE }}"
-        Paths_UpdatePassword: "${{ secrets.STAGE_PATHS_UPDATEPASSWORD }}"
-        Paths_Activation: "${{ secrets.STAGE_PATHS_ACTIVATION }}"
-        Paths_DevelopmentOrigin: "${{ secrets.STAGE_PATHS_DEVELOPMENTORIGIN }}"
-        Paths_DeploymentOrigin: "${{ secrets.STAGE_PATHS_DEPLOYMENTORIGIN }}"
-        Paths_Templates_Newsletter: "${{ secrets.STAGE_PATHS_NEWSLETTER }}"
-        Paths_Templates_ContactForm: "${{ secrets.STAGE_PATHS_CONTACTFORM }}"
-        Paths_Templates_ResetPassword: "${{ secrets.STAGE_PATHS_RESETPASSWORD }}"
-        Paths_Templates_RegisterForm: "${{ secrets.STAGE_PATHS_REGISTERFORM }}"
-        Ids_Issuer: "${{ secrets.STAGE_IDS_ISSUER }}"
-        Ids_Audience: "${{ secrets.STAGE_IDS_AUDIENCE }}"
-        Ids_WebSecret: "${{ secrets.STAGE_IDS_WEBSECRET }}"
-        Ids_RequireHttps: "${{ secrets.STAGE_IDS_REQUIREHTTPS }}"
-        Ids_WebToken_Maturity: "${{ secrets.STAGE_IDS_WEBTOKEN_MATURITY }}"
-        Ids_RefreshToken_Maturity: "${{ secrets.STAGE_IDS_REFRESHTOKEN_MATURITY }}"
-        Limit_Reset_Maturity: "${{ secrets.STAGE_LIMITS_RESET_MATURITY }}"
-        Limit_Activation_Maturity: "${{ secrets.STAGE_LIMITS_ACTIVATION_MATURITY }}"
-        Limit_Likes_Anonymous: "${{ secrets.STAGE_LIMITS_LIKES_ANONYMOUS }}"
-        Limit_Likes_User: "${{ secrets.STAGE_LIMITS_LIKES_USER }}"
+        Email_PrivateKey: "${{ StageEmailPrivateKey }}"
+        Email_BaseUrl: "${{ StageEmailBaseUrl }}"
+        Email_Address_Admin: "${{ StageEmailAddressesAdmin }}"
+        Email_Address_Contact: "${{ StageEmailAddressesContact }}"
+        Email_Address_Support: "${{ StageEmailAddressesItSupport }}"
+        Db_DatabaseContext: "${{ StageDbConnect }}"
+        Db_DatabaseContext_Migrator: "${{ StageDbMigrator }}"
+        AZ_Storage_BaseUrl: "${{ StageAzStorageBaseUrl }}"
+        AZ_Storage_ContainerName: "${{ StageAzStorageContainerName }}"
+        AZ_Storage_ConnectionString: "${{ StageAzStorageConnectionString }}"
+        AZ_Storage_MaxFileSizeUserMedia: "${{ StageAzStorageMaxFileSizeUserMedia }}"
+        AZ_Storage_MaxFileSizeSingleAsset: "${{ StageAzStorageMaxFileSizeSingleAsset }}"
+        AZ_Redis_InstanceName: "${{ StageAzRedisInstanceName }}"
+        AZ_Redis_ConnectionString: "${{ StageAzRedisConnectionString }}"
+        AZ_Redis_ExpirationMinute: "${{ StageAzRedisExpirationMinute }}"
+        AZ_Redis_ExpirationSecond: "${{ StageAzRedisExpirationSecond }}"
+        Paths_UpdateSubscriber: "${{ StagePathsUpdateSubscriber }}"
+        Paths_Unsubscribe: "${{ StagePathsUnsubscribe }}"
+        Paths_UpdatePassword: "${{ StagePathsUpdatePassword }}"
+        Paths_Activation: "${{ StagePathsActivation }}"
+        Paths_DevelopmentOrigin: "${{ StagePathsDevelopmentOrigin }}"
+        Paths_DeploymentOrigin: "${{ StagePathsDeploymentOrigin }}"
+        Paths_Templates_Newsletter: "${{ StagePathsNewsletter }}"
+        Paths_Templates_ContactForm: "${{ StagePathsContactForm }}"
+        Paths_Templates_ResetPassword: "${{ StagePathsResetPassword }}"
+        Paths_Templates_RegisterForm: "${{ StagePathsRegisterForm }}"
+        Ids_Issuer: "${{ StageIdsIssuer }}"
+        Ids_Audience: "${{ StageIdsAudience }}"
+        Ids_WebSecret: "${{ StageIdsWebSecret }}"
+        Ids_RequireHttps: "${{ StageIdsRequireHttps }}"
+        Ids_WebToken_Maturity: "${{ StageIdsWebTokenMaturity }}"
+        Ids_RefreshToken_Maturity: "${{ StageIdsRefreshTokenMaturity }}"
+        Limit_Reset_Maturity: "${{ StageLimitsResetMaturity }}"
+        Limit_Activation_Maturity: "${{ StageLimitsActivationMaturity }}"
+        Limit_Likes_Anonymous: "${{ StageLimitsLikesAnonymous }}"
+        Limit_Likes_User: "${{ StageLimitsLikesUser }}"
 
     - name: Staging | Build Docker (prepare)
       uses: azure/docker-login@v1

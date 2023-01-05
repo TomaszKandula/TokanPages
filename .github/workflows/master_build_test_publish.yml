@@ -105,48 +105,55 @@ jobs:
 
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
-    
+
+    - task: AzureKeyVault@1
+      inputs:
+        azureSubscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
+        KeyVaultName: "${{ secrets.AZURE_KEY_VAULT }}"
+        SecretsFilter: "*"
+        RunAsPreJob: true
+
     - name: Variable substitution appsettings file for Production (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:
-        Email_PrivateKey: "${{ secrets.PROD_EMAIL_PRIVATEKEY }}"
-        Email_BaseUrl: "${{ secrets.PROD_EMAIL_BASEURL }}"
-        Email_Address_Admin: "${{ secrets.PROD_EMAIL_ADDRESSES_ADMIN }}"
-        Email_Address_Contact: "${{ secrets.PROD_EMAIL_ADDRESSES_CONTACT }}"
-        Email_Address_Support: "${{ secrets.PROD_EMAIL_ADDRESSES_ITSUPPORT }}"
-        Db_DatabaseContext: "${{ secrets.PROD_DBCONNECT }}"
-        Db_DatabaseContext_Migrator: "${{ secrets.PROD_DBMIGRATOR }}"
-        AZ_Storage_BaseUrl: "${{ secrets.PROD_AZSTORAGE_BASEURL }}"
-        AZ_Storage_ContainerName: "${{ secrets.PROD_AZSTORAGE_CONTAINERNAME }}"
-        AZ_Storage_ConnectionString: "${{ secrets.PROD_AZSTORAGE_CONNECTIONSTRING }}"
-        AZ_Storage_MaxFileSizeUserMedia: "${{ secrets.PROD_AZSTORAGE_MAXFILESIZEUSERMEDIA }}"
-        AZ_Storage_MaxFileSizeSingleAsset: "${{ secrets.PROD_AZSTORAGE_MAXFILESIZESINGLEASSET }}"
-        AZ_Redis_InstanceName: "${{ secrets.PROD_AZREDIS_INSTANCENAME }}"
-        AZ_Redis_ConnectionString: "${{ secrets.PROD_AZREDIS_CONNECTIONSTRING }}"
-        AZ_Redis_ExpirationMinute: "${{ secrets.PROD_AZREDIS_EXPIRATIONMINUTE }}"
-        AZ_Redis_ExpirationSecond: "${{ secrets.PROD_AZREDIS_EXPIRATIONSECOND }}"
-        Paths_UpdateSubscriber: "${{ secrets.PROD_PATHS_UPDATESUBSCRIBER }}"
-        Paths_Unsubscribe: "${{ secrets.PROD_PATHS_UNSUBSCRIBE }}"
-        Paths_UpdatePassword: "${{ secrets.PROD_PATHS_UPDATEPASSWORD }}"
-        Paths_Activation: "${{ secrets.PROD_PATHS_ACTIVATION }}"
-        Paths_DevelopmentOrigin: "${{ secrets.PROD_PATHS_DEVELOPMENTORIGIN }}"
-        Paths_DeploymentOrigin: "${{ secrets.PROD_PATHS_DEPLOYMENTORIGIN }}"
-        Paths_Templates_Newsletter: "${{ secrets.PROD_PATHS_NEWSLETTER }}"
-        Paths_Templates_ContactForm: "${{ secrets.PROD_PATHS_CONTACTFORM }}"
-        Paths_Templates_ResetPassword: "${{ secrets.PROD_PATHS_RESETPASSWORD }}"
-        Paths_Templates_RegisterForm: "${{ secrets.PROD_PATHS_REGISTERFORM }}"
-        Ids_Issuer: "${{ secrets.PROD_IDS_ISSUER }}"
-        Ids_Audience: "${{ secrets.PROD_IDS_AUDIENCE }}"
-        Ids_WebSecret: "${{ secrets.PROD_IDS_WEBSECRET }}"
-        Ids_RequireHttps: "${{ secrets.PROD_IDS_REQUIREHTTPS }}"
-        Ids_WebToken_Maturity: "${{ secrets.PROD_IDS_WEBTOKEN_MATURITY }}"
-        Ids_RefreshToken_Maturity: "${{ secrets.PROD_IDS_REFRESHTOKEN_MATURITY }}"
-        Limit_Reset_Maturity: "${{ secrets.PROD_LIMITS_RESET_MATURITY }}"
-        Limit_Activation_Maturity: "${{ secrets.PROD_LIMITS_ACTIVATION_MATURITY }}"
-        Limit_Likes_Anonymous: "${{ secrets.PROD_LIMITS_LIKES_ANONYMOUS }}"
-        Limit_Likes_User: "${{ secrets.PROD_LIMITS_LIKES_USER }}"
+        Email_PrivateKey: "${{ ProdEmailPrivateKey }}"
+        Email_BaseUrl: "${{ ProdEmailBaseUrl }}"
+        Email_Address_Admin: "${{ ProdEmailAddressesAdmin }}"
+        Email_Address_Contact: "${{ ProdEmailAddressesContact }}"
+        Email_Address_Support: "${{ ProdEmailAddressesItSupport }}"
+        Db_DatabaseContext: "${{ ProdDbConnect }}"
+        Db_DatabaseContext_Migrator: "${{ ProdDbMigrator }}"
+        AZ_Storage_BaseUrl: "${{ ProdAzStorageBaseUrl }}"
+        AZ_Storage_ContainerName: "${{ ProdAzStorageContainerName }}"
+        AZ_Storage_ConnectionString: "${{ ProdAzStorageConnectionString }}"
+        AZ_Storage_MaxFileSizeUserMedia: "${{ ProdAzStorageMaxFileSizeUserMedia }}"
+        AZ_Storage_MaxFileSizeSingleAsset: "${{ ProdAzStorageMaxFileSizeSingleAsset }}"
+        AZ_Redis_InstanceName: "${{ ProdAzRedisInstanceName }}"
+        AZ_Redis_ConnectionString: "${{ ProdAzRedisConnectionString }}"
+        AZ_Redis_ExpirationMinute: "${{ ProdAzRedisExpirationMinute }}"
+        AZ_Redis_ExpirationSecond: "${{ ProdAzRedisExpirationSecond }}"
+        Paths_UpdateSubscriber: "${{ ProdPathsUpdateSubscriber }}"
+        Paths_Unsubscribe: "${{ ProdPathsUnsubscribe }}"
+        Paths_UpdatePassword: "${{ ProdPathsUpdatePassword }}"
+        Paths_Activation: "${{ ProdPathsActivation }}"
+        Paths_DevelopmentOrigin: "${{ ProdPathsDevelopmentOrigin }}"
+        Paths_DeploymentOrigin: "${{ ProdPathsDeploymentOrigin }}"
+        Paths_Templates_Newsletter: "${{ ProdPathsNewsletter }}"
+        Paths_Templates_ContactForm: "${{ ProdPathsContactForm }}"
+        Paths_Templates_ResetPassword: "${{ ProdPathsResetPassword }}"
+        Paths_Templates_RegisterForm: "${{ ProdPathsRegisterForm }}"
+        Ids_Issuer: "${{ ProdIdsIssuer }}"
+        Ids_Audience: "${{ ProdIdsAudience }}"
+        Ids_WebSecret: "${{ ProdIdsWebSecret }}"
+        Ids_RequireHttps: "${{ ProdIdsRequireHttps }}"
+        Ids_WebToken_Maturity: "${{ ProdIdsWebTokenMaturity }}"
+        Ids_RefreshToken_Maturity: "${{ ProdIdsRefreshTokenMaturity }}"
+        Limit_Reset_Maturity: "${{ ProdLimitsResetMaturity }}"
+        Limit_Activation_Maturity: "${{ ProdLimitsActivationMaturity }}"
+        Limit_Likes_Anonymous: "${{ ProdLimitsLikesAnonymous }}"
+        Limit_Likes_User: "${{ ProdLimitsLikesUser }}"
 
     - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v1
