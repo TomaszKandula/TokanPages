@@ -52,7 +52,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
 
-    - task: AzureKeyVault@1
+    - name: Get Azure Key Vault secrets
+      uses: AzureKeyVault@1
       inputs:
         azureSubscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
         KeyVaultName: "${{ secrets.AZURE_KEY_VAULT }}"
