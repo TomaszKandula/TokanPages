@@ -56,6 +56,12 @@ public class Exceptions
             var applicationError = new ApplicationError(authorizationException.ErrorCode, authorizationException.Message, innerMessage);
             await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.Forbidden).ConfigureAwait(false);
         }
+        catch (GeneralException generalException)
+        {
+            var innerMessage = generalException.InnerException?.Message ?? string.Empty;
+            var applicationError = new ApplicationError(generalException.ErrorCode, generalException.Message, innerMessage);
+            await WriteErrorResponse(httpContext, applicationError, HttpStatusCode.UnprocessableEntity).ConfigureAwait(false);
+        }
         catch (BusinessException businessException)
         {
             var innerMessage = businessException.InnerException?.Message ?? string.Empty;
