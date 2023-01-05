@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions,
-    SIGNIN_USER,
-    SIGNIN_USER_CLEAR,
-    SIGNIN_USER_RESPONSE
+    SIGNIN,
+    CLEAR,
+    RESPONSE
 } from "../../Actions/Users/userSignin";
 
 export const UserSignin: 
@@ -19,18 +19,19 @@ export const UserSignin:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case SIGNIN_USER_CLEAR:
+        case CLEAR:
             return {
                 status: OperationStatus.notStarted,
                 response: { }
             };
-        case SIGNIN_USER:
+
+        case SIGNIN:
             return { 
                 status: OperationStatus.inProgress,
                 response: state.response
             };
 
-        case SIGNIN_USER_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished,
                 response: action.payload

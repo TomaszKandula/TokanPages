@@ -3,13 +3,13 @@
 namespace TokanPages.WebApi.Dto.Subscribers;
 
 /// <summary>
-/// Use it when you want to remove existing subscriber
+/// Use it when you want to remove existing subscriber.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class RemoveSubscriberDto
 {
     /// <summary>
-    /// Mandatory
+    /// Identification.
     /// </summary>
     public Guid Id { get; set; }
 }

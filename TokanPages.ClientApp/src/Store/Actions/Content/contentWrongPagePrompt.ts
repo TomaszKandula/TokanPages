@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Shared/constants";
+import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Api/Request";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_WRONG_PAGE_CONTENT = "REQUEST_WRONG_PAGE_CONTENT";
-export const RECEIVE_WRONG_PAGE_CONTENT = "RECEIVE_WRONG_PAGE_CONTENT";
-export interface IRequestWrongPageContent { type: typeof REQUEST_WRONG_PAGE_CONTENT }
-export interface IReceiveWrongPageContent { type: typeof RECEIVE_WRONG_PAGE_CONTENT, payload: IWrongPagePromptContentDto }
-export type TKnownActions = IRequestWrongPageContent | IReceiveWrongPageContent;
+export const REQUEST = "REQUEST_WRONG_PAGE_CONTENT";
+export const RECEIVE = "RECEIVE_WRONG_PAGE_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: IWrongPagePromptContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentWrongPagePromptAction = 
 {
@@ -27,8 +27,8 @@ export const ContentWrongPagePromptAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_WRONG_PAGE_CONTENT, 
-            receive: RECEIVE_WRONG_PAGE_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_WRONG_PAGE_PROMPT_CONTENT 
         });
     }

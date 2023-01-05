@@ -6,18 +6,18 @@ using Microsoft.AspNetCore.HttpOverrides;
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
-/// Docker support
+/// Docker support.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class DockerSupport
 {
     /// <summary>
-    /// Adds host IP addresses to known proxies
+    /// Adds host IP addresses to known proxies.
     /// </summary>
     /// <remarks>
-    /// Setup forwarded headers
+    /// Setup forwarded headers.
     /// </remarks>
-    /// <param name="services">Service collection</param>
+    /// <param name="services">Service collection.</param>
     public static void SetupDockerInternalNetwork(this IServiceCollection services)
     {
         var hostName = Dns.GetHostName();

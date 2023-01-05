@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Subscribers.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
 
 namespace TokanPages.Persistence.Caching;
 
@@ -38,7 +38,7 @@ public class SubscribersCache : ISubscribersCache
         if (noCache)
             return await _mediator.Send(new GetAllSubscribersQuery());
 
-        var key = $"{_environment.EnvironmentName}:subscribers/";
+        var key = $"{_environment.EnvironmentName}:subscribers";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetAllSubscribersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
@@ -54,7 +54,7 @@ public class SubscribersCache : ISubscribersCache
         if (noCache)
             return await _mediator.Send(new GetSubscriberQuery { Id = id });
 
-        var key = $"{_environment.EnvironmentName}:subscriber/{id}";
+        var key = $"{_environment.EnvironmentName}:subscriber:{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetSubscriberQueryResult>(key);
         if (value is not null) return value;
 

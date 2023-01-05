@@ -1,12 +1,12 @@
 namespace TokanPages.WebApi.Dto.Users;
 
 /// <summary>
-/// Use it when you want to remove user asset (image/video)
+/// Use it when you want to remove user asset (image/video).
 /// </summary>
 public class RemoveUserMediaDto
 {
     /// <summary>
-    /// Mandatory
+    /// Unique blob name.
     /// </summary>
     public string UniqueBlobName { get; set; } = "";
 }

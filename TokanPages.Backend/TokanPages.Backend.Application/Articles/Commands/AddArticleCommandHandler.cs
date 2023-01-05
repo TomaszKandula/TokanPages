@@ -1,8 +1,8 @@
 ﻿using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.AzureStorageService.Factory;
-using TokanPages.Services.UserService;
+using TokanPages.Services.AzureStorageService.Abstractions;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Commands;
 

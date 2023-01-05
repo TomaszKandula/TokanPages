@@ -9,7 +9,7 @@ import { ILanguageItem } from "../../../../Api/Models/";
 import { IApplicationLanguage } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { AVATARS_PATH } from "../../../../Shared/constants";
+import { GET_AVATARS_URL } from "../../../../Api/Request";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import Validate from "validate.js";
@@ -80,7 +80,7 @@ export const NavigationView = (props: IBinding): JSX.Element =>
             return(<Avatar>{userLetter}</Avatar>);
         }
 
-        const avatarName = `${AVATARS_PATH}${props.bind?.avatarName}`;
+        const avatarName = `${GET_AVATARS_URL}/${props.bind?.avatarName}`;
         return(<Avatar alt="Avatar" src={avatarName} />);
     }
 

@@ -12,7 +12,7 @@ using TokanPages.WebApi.Middleware;
 namespace TokanPages.WebApi;
 
 /// <summary>
-/// Startup
+/// Startup.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class Startup
@@ -22,10 +22,10 @@ public class Startup
     private readonly IHostEnvironment _environment;
 
     /// <summary>
-    /// Startup
+    /// Startup.
     /// </summary>
-    /// <param name="configuration">Provided configuration</param>
-    /// <param name="environment">Application host environment</param>
+    /// <param name="configuration">Provided configuration.</param>
+    /// <param name="environment">Application host environment.</param>
     public Startup(IConfiguration configuration, IHostEnvironment environment)
     {
         _configuration = configuration;
@@ -33,9 +33,9 @@ public class Startup
     }
 
     /// <summary>
-    /// Services
+    /// Services.
     /// </summary>
-    /// <param name="services">Service collection</param>
+    /// <param name="services">Service collection.</param>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
@@ -68,9 +68,9 @@ public class Startup
     }
 
     /// <summary>
-    /// Configure
+    /// Configure.
     /// </summary>
-    /// <param name="builder">Application builder</param>
+    /// <param name="builder">Application builder.</param>
     public void Configure(IApplicationBuilder builder)
     {
         builder.UseSerilogRequestLogging();

@@ -4,8 +4,8 @@ import { IContentPolicy } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_POLICY_CONTENT, 
-    REQUEST_POLICY_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentPolicy";
 
 export const ContentPolicy: 
@@ -17,13 +17,13 @@ export const ContentPolicy:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_POLICY_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_POLICY_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

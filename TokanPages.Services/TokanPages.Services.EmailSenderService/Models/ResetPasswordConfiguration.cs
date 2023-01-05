@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Services.EmailSenderService.Abstractions;
 
 namespace TokanPages.Services.EmailSenderService.Models;
 
-public class ResetPasswordConfiguration : IConfiguration
+[ExcludeFromCodeCoverage]
+public class ResetPasswordConfiguration : IEmailConfiguration
 {
     public string EmailAddress { get; set; } = "";
     

@@ -1,14 +1,14 @@
 using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
 
 namespace TokanPages.Backend.Application.Assets.Commands;
 
 public class AddSingleAssetCommandValidator : AbstractValidator<AddSingleAssetCommand>
 {
-    public AddSingleAssetCommandValidator(IApplicationSettings applicationSettings)
+    public AddSingleAssetCommandValidator(IConfiguration configuration)
     {
-        var sizeLimit = applicationSettings.AzureStorage.MaxFileSizeSingleAsset;
+        var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeSingleAsset");
 
         RuleFor(command => command.MediaName)
             .NotEmpty()

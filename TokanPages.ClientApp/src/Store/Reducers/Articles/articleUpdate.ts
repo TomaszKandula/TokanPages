@@ -5,9 +5,9 @@ import { OperationStatus } from "../../../Shared/enums";
 
 import { 
     TKnownActions, 
-    UPDATE_ARTICLE, 
-    UPDATE_ARTICLE_CLEAR,
-    UPDATE_ARTICLE_RESPONSE, 
+    UPDATE, 
+    CLEAR,
+    RESPONSE, 
 } from "../../Actions/Articles/articleUpdate";
 
 export const ArticleUpdate: 
@@ -19,16 +19,16 @@ export const ArticleUpdate:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case UPDATE_ARTICLE_CLEAR:
+        case CLEAR:
             return ApplicationDefault.articleUpdate;
         
-        case UPDATE_ARTICLE:
+        case UPDATE:
             return { 
                 status: OperationStatus.inProgress, 
                 response: state.response
             };
 
-        case UPDATE_ARTICLE_RESPONSE:
+        case RESPONSE:
             return { 
                 status: OperationStatus.hasFinished, 
                 response: action.payload

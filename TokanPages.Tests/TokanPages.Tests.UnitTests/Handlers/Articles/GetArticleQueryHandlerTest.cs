@@ -8,10 +8,9 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.WebApi.Dto.Articles;
 using Xunit;
 

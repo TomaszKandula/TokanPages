@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
@@ -6,7 +7,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.HttpClientService.Abstractions;
-using TokanPages.Services.HttpClientService.Authentication;
 using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.HttpClientService;
@@ -37,7 +37,7 @@ public class HttpClientService : IHttpClientService
         var contentType = response.Content.Headers.ContentType;
         var content = await response.Content.ReadAsByteArrayAsync(cancellationToken);
 
-        if (response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.Redirect)
             return new ExecutionResult
             {
                 StatusCode = response.StatusCode,
@@ -58,8 +58,16 @@ public class HttpClientService : IHttpClientService
         var content = await response.Content.ReadAsByteArrayAsync(cancellationToken);
         var stringContent = Encoding.ASCII.GetString(content);
 
-        if (response.IsSuccessStatusCode) 
-            return JsonConvert.DeserializeObject<T>(stringContent, GetSettings())!;
+        try
+        {
+            if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.Redirect)
+                return JsonConvert.DeserializeObject<T>(stringContent, GetSettings())!;
+        }
+        catch (Exception exception)
+        {
+            _loggerService.LogError($"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), ErrorCodes.CANNOT_PARSE);
+        }
 
         _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);

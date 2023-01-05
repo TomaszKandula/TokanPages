@@ -2,7 +2,7 @@ import * as React from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Box, Container, Typography } from "@material-ui/core";
 import { IContentClients } from "../../../Store/States";
-import { ICONS_PATH } from "../../../Shared/constants";
+import { GET_ICONS_URL } from "../../../Api/Request";
 import { ClientsStyle } from "./clientsStyle";
 import Validate from "validate.js";
 
@@ -12,7 +12,7 @@ export const ClientsView = (props: IContentClients): JSX.Element =>
 
     const getImagePath = (value: string): string => 
     {
-        return `${ICONS_PATH}${value}`;
+        return `${GET_ICONS_URL}/${value}`;
     }
 
     const RenderCaption = (): JSX.Element | null => 

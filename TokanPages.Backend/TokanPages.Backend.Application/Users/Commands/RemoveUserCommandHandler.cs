@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 

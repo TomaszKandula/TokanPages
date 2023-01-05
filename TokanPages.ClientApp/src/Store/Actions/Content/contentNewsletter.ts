@@ -1,13 +1,13 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_NEWSLETTER_CONTENT } from "../../../Shared/constants";
+import { GET_NEWSLETTER_CONTENT } from "../../../Api/Request";
 import { INewsletterContentDto } from "../../../Api/Models";
 import { GetContentService } from "./Services/getContentService";
 
-export const REQUEST_NEWSLETTER_CONTENT = "REQUEST_NEWSLETTER_CONTENT";
-export const RECEIVE_NEWSLETTER_CONTENT = "RECEIVE_NEWSLETTER_CONTENT";
-export interface IRequestNewsletterContent { type: typeof REQUEST_NEWSLETTER_CONTENT }
-export interface IReceiveNewsletterContent { type: typeof RECEIVE_NEWSLETTER_CONTENT, payload: INewsletterContentDto }
-export type TKnownActions = IRequestNewsletterContent | IReceiveNewsletterContent;
+export const REQUEST = "REQUEST_NEWSLETTER_CONTENT";
+export const RECEIVE = "RECEIVE_NEWSLETTER_CONTENT";
+interface IRequest { type: typeof REQUEST }
+interface IReceive { type: typeof RECEIVE, payload: INewsletterContentDto }
+export type TKnownActions = IRequest | IReceive;
 
 export const ContentNewsletterAction = 
 {
@@ -27,8 +27,8 @@ export const ContentNewsletterAction =
         { 
             dispatch: dispatch, 
             state: getState, 
-            request: REQUEST_NEWSLETTER_CONTENT, 
-            receive: RECEIVE_NEWSLETTER_CONTENT, 
+            request: REQUEST, 
+            receive: RECEIVE, 
             url: GET_NEWSLETTER_CONTENT 
         });
     }

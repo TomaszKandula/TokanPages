@@ -1,27 +1,27 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
-import { API_QUERY_GET_ARTICLES, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { EnrichConfiguration, GET_ARTICLES } from "../../../Api/Request";
 
-export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
-export const RECEIVE_ARTICLES = "RECEIVE_ARTICLES";
-export interface IRequestArticlesAction { type: typeof REQUEST_ARTICLES; }
-export interface IReceiveArticlesAction { type: typeof RECEIVE_ARTICLES; payload: IArticleItem[]; }
-export type TKnownActions = IRequestArticlesAction | IReceiveArticlesAction;
+export const REQUEST = "REQUEST_ARTICLES";
+export const RECEIVE = "RECEIVE_ARTICLES";
+interface IRequest { type: typeof REQUEST; }
+interface IReceive { type: typeof RECEIVE; payload: IArticleItem[]; }
+export type TKnownActions = IRequest | IReceive;
 
 export const ArticleListingAction = 
 {
     get: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
-        dispatch({ type: REQUEST_ARTICLES });
+        dispatch({ type: REQUEST });
 
         axios(EnrichConfiguration( 
         {
             method: "GET", 
-            url: API_QUERY_GET_ARTICLES,
+            url: GET_ARTICLES,
             responseType: "json"
         }))
         .then(response =>
@@ -30,7 +30,7 @@ export const ArticleListingAction =
             {
                 return response.data === null 
                     ? RaiseError({ dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: RECEIVE_ARTICLES, payload: response.data });
+                    : dispatch({ type: RECEIVE, payload: response.data });
             }
 
             RaiseError({ dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });

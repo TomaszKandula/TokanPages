@@ -12,10 +12,10 @@ namespace TokanPages.WebApi.Controllers.Mappers;
 public static class UsersMapper
 {
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">AuthenticateUserDto</param>
-    /// <returns>AuthenticateUserCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static AuthenticateUserCommand MapToAuthenticateUserCommand(AuthenticateUserDto model) => new()
     {
         EmailAddress = model.EmailAddress,
@@ -23,50 +23,50 @@ public static class UsersMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">ReAuthenticateUserDto</param>
-    /// <returns>ReAuthenticateUserCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto model) => new()
     {
         RefreshToken = model.RefreshToken
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">RevokeUserRefreshTokenDto</param>
-    /// <returns>RevokeUserRefreshTokenCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static RevokeUserRefreshTokenCommand MapToRevokeUserRefreshTokenCommand(RevokeUserRefreshTokenDto model) => new()
     {
         RefreshToken = model.RefreshToken
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">ActivateUserDto</param>
-    /// <returns>ActivateUserCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static ActivateUserCommand MapToActivateUserCommand(ActivateUserDto model) => new()
     {
         ActivationId = model.ActivationId
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">ResetUserPasswordDto</param>
-    /// <returns>ResetUserPasswordCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto model) => new()
     {
         EmailAddress = model.EmailAddress
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UpdateUserPasswordDto</param>
-    /// <returns>UpdateUserPasswordCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UpdateUserPasswordCommand MapToUpdateUserPasswordCommand(UpdateUserPasswordDto model) => new()
     {
         Id = model.Id,
@@ -75,10 +75,10 @@ public static class UsersMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">AddUserDto</param>
-    /// <returns>AddUserCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static AddUserCommand MapToAddUserCommand(AddUserDto model) => new() 
     { 
         EmailAddress = model.EmailAddress,
@@ -88,10 +88,10 @@ public static class UsersMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UpdateUserDto</param>
-    /// <returns>UpdateUserCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UpdateUserCommand MapToUpdateUserCommand(UpdateUserDto model) => new()
     {
         Id = model.Id,
@@ -106,20 +106,20 @@ public static class UsersMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">RemoveUserDto</param>
-    /// <returns>RemoveUserCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto model) => new()
     {
         Id = model.Id
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">UploadUserMediaDto</param>
-    /// <returns>UploadUserMediaCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static UploadUserMediaCommand MapToUploadUserMediaCommand(UploadUserMediaDto model) => new()
     {
         UserId = model.UserId,
@@ -130,10 +130,10 @@ public static class UsersMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">RemoveUserMediaDto</param>
-    /// <returns>RemoveUserMediaCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static RemoveUserMediaCommand MapToRemoveUserMediaCommand(RemoveUserMediaDto model) => new()
     {
         UniqueBlobName = model.UniqueBlobName

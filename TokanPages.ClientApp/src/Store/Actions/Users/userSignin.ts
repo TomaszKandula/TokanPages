@@ -1,34 +1,34 @@
 import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IAuthenticateUserDto } from "../../../Api/Models";
-import { API_COMMAND_AUTHENTICATE, NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { UPDATE_USERDATA, TKnownActions as TUpdateActions } from "./userDataStore";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
+import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { EnrichConfiguration, AUTHENTICATE } from "../../../Api/Request";
 
-export const SIGNIN_USER = "SIGNIN_USER";
-export const SIGNIN_USER_CLEAR = "SIGNIN_USER_CLEAR";
-export const SIGNIN_USER_RESPONSE = "SIGNIN_USER_RESPONSE";
-export interface ISigninUser { type: typeof SIGNIN_USER }
-export interface ISigninUserClear { type: typeof SIGNIN_USER_CLEAR }
-export interface ISigninUserResponse { type: typeof SIGNIN_USER_RESPONSE; payload: any; }
-export type TKnownActions = ISigninUser | ISigninUserClear | ISigninUserResponse | TUpdateActions;
+export const SIGNIN = "SIGNIN_USER";
+export const CLEAR = "SIGNIN_USER_CLEAR";
+export const RESPONSE = "SIGNIN_USER_RESPONSE";
+interface ISignin { type: typeof SIGNIN }
+interface IClear { type: typeof CLEAR }
+interface IResponse { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = ISignin | IClear | IResponse | TUpdateActions;
 
 export const UserSigninAction = 
 {
     clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
     {
-        dispatch({ type: SIGNIN_USER_CLEAR });
+        dispatch({ type: CLEAR });
     },
     signin: (payload: IAuthenticateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
     {
-        dispatch({ type: SIGNIN_USER });
+        dispatch({ type: SIGNIN });
 
         axios(EnrichConfiguration(
         { 
             method: "POST", 
-            url: API_COMMAND_AUTHENTICATE, 
+            url: AUTHENTICATE, 
             data: payload
         }))
         .then(response => 
@@ -37,8 +37,8 @@ export const UserSigninAction =
             {
                 const pushData = () => 
                 {
-                    dispatch({ type: SIGNIN_USER_RESPONSE, payload: response.data });
-                    dispatch({ type: UPDATE_USERDATA, payload: response.data });
+                    dispatch({ type: RESPONSE, payload: response.data });
+                    dispatch({ type: UPDATE, payload: response.data });
                 }
 
                 return response.data === null 

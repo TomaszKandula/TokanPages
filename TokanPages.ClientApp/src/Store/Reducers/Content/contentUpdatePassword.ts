@@ -4,8 +4,8 @@ import { IContentUpdatePassword } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_UPDATE_PASSWORD_CONTENT, 
-    REQUEST_UPDATE_PASSWORD_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentUpdatePassword";
 
 export const ContentUpdatePassword: 
@@ -17,13 +17,13 @@ export const ContentUpdatePassword:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_UPDATE_PASSWORD_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_UPDATE_PASSWORD_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

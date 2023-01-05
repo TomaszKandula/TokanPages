@@ -4,9 +4,9 @@ import { IArticleSelection } from "../../States";
 
 import { 
     TKnownActions, 
-    REQUEST_ARTICLE, 
-    RECEIVE_ARTICLE, 
-    RESET_SELECTION, 
+    REQUEST, 
+    RECEIVE, 
+    RESET, 
 } from "../../Actions/Articles/articleSelection";
 
 export const ArticleSelection: 
@@ -18,16 +18,16 @@ export const ArticleSelection:
     const action = incomingAction as TKnownActions;
     switch (action.type) 
     {
-        case RESET_SELECTION:
+        case RESET:
             return ApplicationDefault.articleSelection;
 
-        case REQUEST_ARTICLE:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 article: state.article 
             };
 
-        case RECEIVE_ARTICLE:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 article: action.payload

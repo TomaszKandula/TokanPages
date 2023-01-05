@@ -4,8 +4,8 @@ import { IContentHeader } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_HEADER_CONTENT, 
-    REQUEST_HEADER_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentHeader";
 
 export const ContentHeader: 
@@ -17,13 +17,13 @@ export const ContentHeader:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_HEADER_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_HEADER_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

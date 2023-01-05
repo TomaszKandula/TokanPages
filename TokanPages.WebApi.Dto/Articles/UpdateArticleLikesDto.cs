@@ -3,18 +3,18 @@
 namespace TokanPages.WebApi.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to update likes
+/// Use it when you want to update likes.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UpdateArticleLikesDto
 {
     /// <summary>
-    /// Mandatory
+    /// Identification.
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Like number to be added.
     /// </summary>
     public int AddToLikes { get; set; }
 }

@@ -2,12 +2,11 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore;
 using Serilog;
 using Serilog.Events;
-using TokanPages.Persistence.Database.Initializer;
 
 namespace TokanPages.WebApi;
 
 /// <summary>
-/// Program
+/// Program.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
@@ -15,17 +14,14 @@ public static class Program
     private static readonly string? EnvironmentValue 
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-    private static readonly bool IsDevelopment 
-        = EnvironmentValue == Environments.Development;
-
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
     /// <summary>
-    /// Main entry point
+    /// Main entry point.
     /// </summary>
-    /// <param name="args">Argument array</param>
-    /// <returns>Integer</returns>
+    /// <param name="args">Argument array.</param>
+    /// <returns>Integer.</returns>
     public static int Main(string[] args)
     {
         try
@@ -49,7 +45,6 @@ public static class Program
 
             CreateWebHostBuilder(args)
                 .Build()
-                .MigrateDatabase()
                 .Run();
 
             return 0;
@@ -68,10 +63,7 @@ public static class Program
     private static string GetLogPathFile()
     {
         var pathFolder = $"{AppDomain.CurrentDomain.BaseDirectory}logs";
-
-        if (!Directory.Exists(pathFolder)) 
-            Directory.CreateDirectory(pathFolder);
-
+        if (!Directory.Exists(pathFolder)) Directory.CreateDirectory(pathFolder);
         return $"{pathFolder}{Path.DirectorySeparatorChar}log-.txt";
     }
 
@@ -80,23 +72,5 @@ public static class Program
         return WebHost.CreateDefaultBuilder(args)
             .UseStartup<Startup>()
             .UseSerilog();
-    }
-
-    private static IWebHost MigrateDatabase(this IWebHost webHost)
-    {
-        if (webHost.Services.GetService(typeof(IServiceScopeFactory)) is not IServiceScopeFactory serviceScopeFactory) 
-            return webHost;
-
-        using var scope = serviceScopeFactory.CreateScope();
-        var services = scope.ServiceProvider;
-        var dbInitializer = services.GetRequiredService<IDbInitializer>();
-
-        if (!IsDevelopment) 
-            return webHost;
-
-        dbInitializer.StartMigration();
-        dbInitializer.SeedData();
-
-        return webHost;
     }
 }

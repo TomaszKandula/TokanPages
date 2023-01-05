@@ -4,8 +4,8 @@ import { IContentUnsubscribe } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_UNSUBSCRIBE_CONTENT, 
-    REQUEST_UNSUBSCRIBE_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentUnsubscribe";
 
 export const ContentUnsubscribe: 
@@ -17,13 +17,13 @@ export const ContentUnsubscribe:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_UNSUBSCRIBE_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_UNSUBSCRIBE_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

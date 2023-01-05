@@ -3,23 +3,23 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.WebApi.Dto.Users;
 
 /// <summary>
-/// Use it when you want to update existing password
+/// Use it when you want to update existing password.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UpdateUserPasswordDto
 {
     /// <summary>
-    /// Optional
+    /// Identification.
     /// </summary>
     public Guid? Id { get; set; }
 
     /// <summary>
-    /// Optional
+    /// Reset ID.
     /// </summary>
     public Guid? ResetId { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// New password.
     /// </summary>
     public string? NewPassword { get; set; }
 }

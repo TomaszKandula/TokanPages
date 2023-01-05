@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
 
 public interface IJsonSerializer
 {
-    string Serialize(object model, JsonSerializerSettings? serializerSettings = default);
+    string Serialize(object model, Formatting formatting = Formatting.None, JsonSerializerSettings? serializerSettings = default);
 
     T Deserialize<T>(string json, JsonSerializerSettings? serializerSettings = default);
 

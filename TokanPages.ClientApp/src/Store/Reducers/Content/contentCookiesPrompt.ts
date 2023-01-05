@@ -4,8 +4,8 @@ import { IContentCookiesPrompt } from "../../States";
 
 import { 
     TKnownActions, 
-    REQUEST_COOKIES_PROMPT_CONTENT, 
-    RECEIVE_COOKIES_PROMPT_CONTENT 
+    REQUEST, 
+    RECEIVE 
 } from "../../Actions/Content/contentCookiesPrompt";
 
 export const ContentCookiesPrompt: 
@@ -17,13 +17,13 @@ export const ContentCookiesPrompt:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_COOKIES_PROMPT_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_COOKIES_PROMPT_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

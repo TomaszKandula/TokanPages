@@ -3,28 +3,28 @@
 namespace TokanPages.WebApi.Dto.Subscribers;
 
 /// <summary>
-/// Use it when you want to update existing subscriber
+/// Use it when you want to update existing subscriber.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public class UpdateSubscriberDto
 {
     /// <summary>
-    /// Mandatory
+    /// Identification.
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Mandatory
+    /// Email address.
     /// </summary>
     public string? Email { get; set; }
         
     /// <summary>
-    /// Optional
+    /// Activation flag.
     /// </summary>
     public bool? IsActivated { get; set; }
         
     /// <summary>
-    /// Optional
+    /// Count number.
     /// </summary>
     public int? Count { get; set; }
 }

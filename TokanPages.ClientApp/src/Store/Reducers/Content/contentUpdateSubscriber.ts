@@ -4,8 +4,8 @@ import { IContentUpdateSubscriber } from "../../States";
 
 import { 
     TKnownActions,
-    RECEIVE_UPDATE_SUBSCRIBER_CONTENT, 
-    REQUEST_UPDATE_SUBSCRIBER_CONTENT
+    RECEIVE, 
+    REQUEST
 } from "../../Actions/Content/contentUpdateSubscriber";
 
 export const ContentUpdateSubscriber: 
@@ -17,13 +17,13 @@ export const ContentUpdateSubscriber:
     const action = incomingAction as TKnownActions;
     switch(action.type)
     {
-        case REQUEST_UPDATE_SUBSCRIBER_CONTENT:
+        case REQUEST:
             return { 
                 isLoading: true, 
                 content: state.content
             };
 
-        case RECEIVE_UPDATE_SUBSCRIBER_CONTENT:
+        case RECEIVE:
             return { 
                 isLoading: false, 
                 content: action.payload.content

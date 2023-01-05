@@ -1,11 +1,12 @@
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
-using TokanPages.Services.HttpClientService;
+using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 using TokanPages.WebApi.Dto.Mailer;
 
@@ -13,26 +14,30 @@ namespace TokanPages.Services.EmailSenderService;
 
 public class EmailSenderService : IEmailSenderService
 {
-    private readonly IHttpClientService _httpClientService;
+    private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
-    private readonly IApplicationSettings _applicationSettings;
+    private readonly IConfiguration _configuration;
 
-    public EmailSenderService(IHttpClientService httpClientService, IApplicationSettings applicationSettings)
+    private readonly ILoggerService _loggerService;
+
+    public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IConfiguration configuration, 
+        ILoggerService loggerService)
     {
-        _httpClientService = httpClientService;
-        _applicationSettings = applicationSettings;
+        _httpClientServiceFactory = httpClientServiceFactory;
+        _configuration = configuration;
+        _loggerService = loggerService;
     }
 
-    public async Task SendNotification(IConfiguration configuration, CancellationToken cancellationToken = default)
+    public async Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var origin = _applicationSettings.ApplicationPaths.DeploymentOrigin;
-        var baseUrl = _applicationSettings.AzureStorage.BaseUrl;
+        var origin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
 
-        var registerFormTemplate = _applicationSettings.ApplicationPaths.Templates.RegisterForm;
-        var resetPasswordTemplate = _applicationSettings.ApplicationPaths.Templates.ResetPassword;
+        var registerFormTemplate = _configuration.GetValue<string>("Paths_Templates_RegisterForm");
+        var resetPasswordTemplate = _configuration.GetValue<string>("Paths_Templates_ResetPassword");
 
-        var activationPath = _applicationSettings.ApplicationPaths.ActivationPath;
-        var updatePasswordPath = _applicationSettings.ApplicationPaths.UpdatePasswordPath;
+        var activationPath = _configuration.GetValue<string>("Paths_Activation");
+        var updatePasswordPath = _configuration.GetValue<string>("Paths_UpdatePassword");
 
         var activationUrl = $"{origin}{activationPath}";
         var updatePasswordUrl = $"{origin}{updatePasswordPath}";
@@ -74,7 +79,7 @@ public class EmailSenderService : IEmailSenderService
         };
 
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
-        var sendFrom = _applicationSettings.EmailSender.Addresses.Contact;
+        var sendFrom = _configuration.GetValue<string>("Email_Address_Contact");
         var payload = new SenderPayloadDto
         {
             From = sendFrom,
@@ -89,7 +94,8 @@ public class EmailSenderService : IEmailSenderService
     public async Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default)
     {
         var httpConfiguration = new Configuration { Url = templateUrl, Method = "GET" };
-        var result = await _httpClientService.Execute(httpConfiguration, cancellationToken);
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute(httpConfiguration, cancellationToken);
 
         if (result.Content == null)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
@@ -101,18 +107,19 @@ public class EmailSenderService : IEmailSenderService
     {
         var headers = new Dictionary<string, string>
         {
-            ["X-Private-Key"] = _applicationSettings.EmailSender.PrivateKey
+            ["X-Private-Key"] = _configuration.GetValue<string>("Email_PrivateKey")
         };
 
         var payload = new ContentString { Payload = content };
         var configuration = new Configuration 
         { 
-            Url = _applicationSettings.EmailSender.BaseUrl, 
+            Url = _configuration.GetValue<string>("Email_BaseUrl"), 
             Method = "POST", 
             Headers = headers,
             PayloadContent = payload
         };
 
-        await _httpClientService.Execute(configuration, cancellationToken);
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        await client.Execute(configuration, cancellationToken);
     }
 }

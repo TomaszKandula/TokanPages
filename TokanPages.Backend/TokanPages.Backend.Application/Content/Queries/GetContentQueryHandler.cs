@@ -4,7 +4,7 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.AzureStorageService.Factory;
+using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Queries;
 
@@ -50,8 +50,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_EMPTY), ErrorCodes.COMPONENT_CONTENT_EMPTY);
 
         var parsed = _jsonSerializer.Parse(componentContent);
-        var selection = $"{request.Name}-{selectedLanguage}";
-        var content = parsed.SelectToken(selection);
+        var content = parsed.SelectToken(selectedLanguage);
 
         if (content == null)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN), ErrorCodes.COMPONENT_CONTENT_MISSING_TOKEN);

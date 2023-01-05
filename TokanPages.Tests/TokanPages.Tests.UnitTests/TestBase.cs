@@ -1,18 +1,16 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Shared.Services;
-using TokanPages.Backend.Shared.Services.Models;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Tests.UnitTests;
 
-public class TestBase
+public abstract class TestBase
 {
-    private readonly DatabaseContextFactory _databaseContextFactory;
-
     protected readonly IDataUtilityService DataUtilityService;
 
     protected readonly IWebTokenUtility WebTokenUtility;
@@ -22,7 +20,6 @@ public class TestBase
     protected TestBase()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<DatabaseContextFactory>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
         services.AddScoped<IDateTimeService, DateTimeService>();
@@ -30,54 +27,100 @@ public class TestBase
         using var scope = services.BuildServiceProvider(true).CreateScope();
         var serviceProvider = scope.ServiceProvider;
 
-        _databaseContextFactory = serviceProvider.GetRequiredService<DatabaseContextFactory>();
         DataUtilityService = serviceProvider.GetRequiredService<IDataUtilityService>();
         WebTokenUtility = serviceProvider.GetRequiredService<IWebTokenUtility>();
         DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    protected DatabaseContext GetTestDatabaseContext() => _databaseContextFactory.CreateDatabaseContext();
-
-    protected static Mock<IApplicationSettings> MockApplicationSettings(
-        ApplicationPaths? applicationPaths = default, 
-        IdentityServer? identityServer = default, 
-        LimitSettings? limitSettings = default, 
-        EmailSender? emailSender = default, 
-        AzureStorage? azureStorage = default, 
-        SonarQube? sonarQube = default)
+    protected static DatabaseContext GetTestDatabaseContext()
     {
-        var applicationSettings = new Mock<IApplicationSettings>();
+        var options = DatabaseContextProvider.GetTestDatabaseOptions();
+        return DatabaseContextProvider.CreateDatabaseContext(options);
+    }
+    
+    protected static IConfigurationSection SetReturnValue(string value)
+    {
+        var mockedSection = new Mock<IConfigurationSection>();
+        mockedSection
+            .Setup(section => section.Value)
+            .Returns(value);
 
-        var returnApplicationPaths = applicationPaths ?? new ApplicationPaths();
-        applicationSettings
-            .SetupGet(settings => settings.ApplicationPaths)
-            .Returns(returnApplicationPaths);
+        return mockedSection.Object;
+    }
 
-        var returnIdentityServer = identityServer ?? new IdentityServer();
-        applicationSettings
-            .SetupGet(settings => settings.IdentityServer)
-            .Returns(returnIdentityServer);
+    protected Mock<IConfiguration> SetConfiguration()
+    {
+        var mockedConfig = new Mock<IConfiguration>();
+        var mockedSection = SetReturnValue(DataUtilityService.GetRandomString());
 
-        var returnExpirationSettings = limitSettings ?? new LimitSettings();
-        applicationSettings
-            .SetupGet(settings => settings.LimitSettings)
-            .Returns(returnExpirationSettings);
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Ids_Issuer"))
+            .Returns(mockedSection);
 
-        var returnEmailSender = emailSender ?? new EmailSender();
-        applicationSettings
-            .SetupGet(settings => settings.EmailSender)
-            .Returns(returnEmailSender);
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Ids_Audience"))
+            .Returns(mockedSection);
 
-        var returnAzureStorage = azureStorage ?? new AzureStorage();
-        applicationSettings
-            .SetupGet(settings => settings.AzureStorage)
-            .Returns(returnAzureStorage);
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Ids_WebSecret"))
+            .Returns(mockedSection);
 
-        var returnSonarQube = sonarQube ?? new SonarQube();
-        applicationSettings
-            .SetupGet(settings => settings.SonarQube)
-            .Returns(returnSonarQube);
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Ids_RequireHttps"))
+            .Returns(SetReturnValue("false"));
 
-        return applicationSettings;
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Ids_WebToken_Maturity"))
+            .Returns(SetReturnValue("90"));
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Ids_RefreshToken_Maturity"))
+            .Returns(SetReturnValue("120"));
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Limit_Activation_Maturity"))
+            .Returns(SetReturnValue("30"));
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Limit_Reset_Maturity"))
+            .Returns(SetReturnValue("30"));
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("AZ_Storage_BaseUrl"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Paths_Templates_ContactForm"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Paths_Templates_Newsletter"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Email_Address_Contact"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Paths_DeploymentOrigin"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Paths_UpdateSubscriber"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Paths_Unsubscribe"))
+            .Returns(mockedSection);
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Limit_Likes_Anonymous"))
+            .Returns(SetReturnValue("25"));
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("Limit_Likes_User"))
+            .Returns(SetReturnValue("50"));
+
+        return mockedConfig;
     }
 }

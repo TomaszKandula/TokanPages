@@ -1,15 +1,15 @@
 using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Shared.Services;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UploadUserMediaCommandValidator : AbstractValidator<UploadUserMediaCommand>
 {
-    public UploadUserMediaCommandValidator(IApplicationSettings applicationSettings)
+    public UploadUserMediaCommandValidator(IConfiguration configuration)
     {
-        var sizeLimit = applicationSettings.AzureStorage.MaxFileSizeUserMedia;
+        var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeUserMedia");
 
         When(command => command.UserId != null, () =>
         {

@@ -6,16 +6,16 @@ using TokanPages.WebApi.Dto.Assets;
 namespace TokanPages.WebApi.Controllers.Mappers;
 
 /// <summary>
-/// Assets mapper
+/// Assets mapper.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class AssetsMapper
 {
     /// <summary>
-    /// Maps request DTO to given command
+    /// Maps request DTO to given command.
     /// </summary>
-    /// <param name="model">AddSingleAssetDto</param>
-    /// <returns>AddSingleAssetCommand</returns>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static AddSingleAssetCommand MapToAddSingleAssetCommand(AddSingleAssetDto model) => new()
     {
         MediaName = model.Data!.FileName,
