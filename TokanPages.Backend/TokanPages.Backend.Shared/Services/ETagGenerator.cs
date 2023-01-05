@@ -26,8 +26,8 @@ public static class ETagGenerator
 
     private static string GenerateETag(byte[] data)
     {
-        using var md5 = MD5.Create();
-        var hash = md5.ComputeHash(data);
+        using var sha256 = SHA256.Create();
+        var hash = sha256.ComputeHash(data);
         var hex = BitConverter.ToString(hash);
         return hex.Replace("-", "");
     }
