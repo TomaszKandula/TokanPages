@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -5,6 +6,7 @@ using TokanPages.Backend.Shared.Services;
 
 namespace TokanPages.Persistence.MigrationRunner.Helpers;
 
+[ExcludeFromCodeCoverage]
 public static class DatabaseConnection
 {
     private const string Caller = nameof(DatabaseConnection);

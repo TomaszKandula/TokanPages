@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Persistence.MigrationRunner.Helpers;
 
+[ExcludeFromCodeCoverage]
 public static class InputArguments
 {
     public static IList<string> Normalize(IReadOnlyCollection<string> arguments)
