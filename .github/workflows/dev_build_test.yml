@@ -52,47 +52,59 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
 
+    - name: Log to Azure Cloud
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get Azure Key Vault secrets
+      uses: Azure/get-keyvault-secrets@v1
+      with:
+        keyvault: ${{ secrets.AZURE_KEY_VAULT }}
+        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST }}
+      id: vault
+
     - name: Variable substitution appsettings file for Testing (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Testing.json
       env:
-        Email_PrivateKey: "${{ secrets.TEST_EMAIL_PRIVATEKEY }}"
-        Email_BaseUrl: "${{ secrets.TEST_EMAIL_BASEURL }}"
-        Email_Address_Admin: "${{ secrets.TEST_EMAIL_ADDRESSES_ADMIN }}"
-        Email_Address_Contact: "${{ secrets.TEST_EMAIL_ADDRESSES_CONTACT }}"
-        Email_Address_Support: "${{ secrets.TEST_EMAIL_ADDRESSES_ITSUPPORT }}"
-        Db_DatabaseContext: "${{ secrets.TEST_DBCONNECT }}"
-        Db_DatabaseContext_Migrator: "${{ secrets.TEST_DBMIGRATOR }}"
-        AZ_Storage_BaseUrl: "${{ secrets.TEST_AZSTORAGE_BASEURL }}"
-        AZ_Storage_ContainerName: "${{ secrets.TEST_AZSTORAGE_CONTAINERNAME }}"
-        AZ_Storage_ConnectionString: "${{ secrets.TEST_AZSTORAGE_CONNECTIONSTRING }}"
-        AZ_Storage_MaxFileSizeUserMedia: "${{ secrets.TEST_AZSTORAGE_MAXFILESIZEUSERMEDIA }}"
-        AZ_Storage_MaxFileSizeSingleAsset: "${{ secrets.TEST_AZSTORAGE_MAXFILESIZESINGLEASSET }}"
-        AZ_Redis_InstanceName: "${{ secrets.TEST_AZREDIS_INSTANCENAME }}"
-        AZ_Redis_ConnectionString: "${{ secrets.TEST_AZREDIS_CONNECTIONSTRING }}"
-        AZ_Redis_ExpirationMinute: "${{ secrets.TEST_AZREDIS_EXPIRATIONMINUTE }}"
-        AZ_Redis_ExpirationSecond: "${{ secrets.TEST_AZREDIS_EXPIRATIONSECOND }}"
-        Paths_UpdateSubscriber: "${{ secrets.TEST_PATHS_UPDATESUBSCRIBER }}"
-        Paths_Unsubscribe: "${{ secrets.TEST_PATHS_UNSUBSCRIBE }}"
-        Paths_UpdatePassword: "${{ secrets.TEST_PATHS_UPDATEPASSWORD }}"
-        Paths_Activation: "${{ secrets.TEST_PATHS_ACTIVATION }}"
-        Paths_DevelopmentOrigin: "${{ secrets.TEST_PATHS_DEVELOPMENTORIGIN }}"
-        Paths_DeploymentOrigin: "${{ secrets.TEST_PATHS_DEPLOYMENTORIGIN }}"
-        Paths_Templates_Newsletter: "${{ secrets.TEST_PATHS_NEWSLETTER }}"
-        Paths_Templates_ContactForm: "${{ secrets.TEST_PATHS_CONTACTFORM }}"
-        Paths_Templates_ResetPassword: "${{ secrets.TEST_PATHS_RESETPASSWORD }}"
-        Paths_Templates_RegisterForm: "${{ secrets.TEST_PATHS_REGISTERFORM }}"
-        Ids_Issuer: "${{ secrets.TEST_IDS_ISSUER }}"
-        Ids_Audience: "${{ secrets.TEST_IDS_AUDIENCE }}"
-        Ids_WebSecret: "${{ secrets.TEST_IDS_WEBSECRET }}"
-        Ids_RequireHttps: "${{ secrets.TEST_IDS_REQUIREHTTPS }}"
-        Ids_WebToken_Maturity: "${{ secrets.TEST_IDS_WEBTOKEN_MATURITY }}"
-        Ids_RefreshToken_Maturity: "${{ secrets.TEST_IDS_REFRESHTOKEN_MATURITY }}"
-        Limit_Reset_Maturity: "${{ secrets.TEST_LIMITS_RESET_MATURITY }}"
-        Limit_Activation_Maturity: "${{ secrets.TEST_LIMITS_ACTIVATION_MATURITY }}"
-        Limit_Likes_Anonymous: "${{ secrets.TEST_LIMITS_LIKES_ANONYMOUS }}"
-        Limit_Likes_User: "${{ secrets.TEST_LIMITS_LIKES_USER }}"
+        Email_PrivateKey: "${{ steps.vault.outputs.TestEmailPrivateKey }}"
+        Email_BaseUrl: "${{ steps.vault.outputs.TestEmailBaseUrl }}"
+        Email_Address_Admin: "${{ steps.vault.outputs.TestEmailAddressesAdmin }}"
+        Email_Address_Contact: "${{ steps.vault.outputs.TestEmailAddressesContact }}"
+        Email_Address_Support: "${{ steps.vault.outputs.TestEmailAddressesItSupport }}"
+        Db_DatabaseContext: "${{ steps.vault.outputs.TestDbConnect }}"
+        Db_DatabaseContext_Migrator: "${{ steps.vault.outputs.TestDbMigrator }}"
+        AZ_Storage_BaseUrl: "${{ steps.vault.outputs.TestAzStorageBaseUrl }}"
+        AZ_Storage_ContainerName: "${{ steps.vault.outputs.TestAzStorageContainerName }}"
+        AZ_Storage_ConnectionString: "${{ steps.vault.outputs.TestAzStorageConnectionString }}"
+        AZ_Storage_MaxFileSizeUserMedia: "${{ steps.vault.outputs.TestAzStorageMaxFileSizeUserMedia }}"
+        AZ_Storage_MaxFileSizeSingleAsset: "${{ steps.vault.outputs.TestAzStorageMaxFileSizeSingleAsset }}"
+        AZ_Redis_InstanceName: "${{ steps.vault.outputs.TestAzRedisInstanceName }}"
+        AZ_Redis_ConnectionString: "${{ steps.vault.outputs.TestAzRedisConnectionString }}"
+        AZ_Redis_ExpirationMinute: "${{ steps.vault.outputs.TestAzRedisExpirationMinute }}"
+        AZ_Redis_ExpirationSecond: "${{ steps.vault.outputs.TestAzRedisExpirationSecond }}"
+        Paths_UpdateSubscriber: "${{ steps.vault.outputs.TestPathsUpdateSubscriber }}"
+        Paths_Unsubscribe: "${{ steps.vault.outputs.TestPathsUnsubscribe }}"
+        Paths_UpdatePassword: "${{ steps.vault.outputs.TestPathsUpdatePassword }}"
+        Paths_Activation: "${{ steps.vault.outputs.TestPathsActivation }}"
+        Paths_DevelopmentOrigin: "${{ steps.vault.outputs.TestPathsDevelopmentOrigin }}"
+        Paths_DeploymentOrigin: "${{ steps.vault.outputs.TestPathsDeploymentOrigin }}"
+        Paths_Templates_Newsletter: "${{ steps.vault.outputs.TestPathsNewsletter }}"
+        Paths_Templates_ContactForm: "${{ steps.vault.outputs.TestPathsContactForm }}"
+        Paths_Templates_ResetPassword: "${{ steps.vault.outputs.TestPathsResetPassword }}"
+        Paths_Templates_RegisterForm: "${{ steps.vault.outputs.TestPathsRegisterForm }}"
+        Ids_Issuer: "${{ steps.vault.outputs.TestIdsIssuer }}"
+        Ids_Audience: "${{ steps.vault.outputs.TestIdsAudience }}"
+        Ids_WebSecret: "${{ steps.vault.outputs.TestIdsWebSecret }}"
+        Ids_RequireHttps: "${{ steps.vault.outputs.TestIdsRequireHttps }}"
+        Ids_WebToken_Maturity: "${{ steps.vault.outputs.TestIdsWebTokenMaturity }}"
+        Ids_RefreshToken_Maturity: "${{ steps.vault.outputs.TestIdsRefreshTokenMaturity }}"
+        Limit_Reset_Maturity: "${{ steps.vault.outputs.TestLimitsResetMaturity }}"
+        Limit_Activation_Maturity: "${{ steps.vault.outputs.TestLimitsActivationMaturity }}"
+        Limit_Likes_Anonymous: "${{ steps.vault.outputs.TestLimitsLikesAnonymous }}"
+        Limit_Likes_User: "${{ steps.vault.outputs.TestLimitsLikesUser }}"
 
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
