@@ -106,55 +106,59 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
 
+    - name: Microsoft Azure
+      uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - name: Get Azure Key Vault secrets
-      uses: AzureKeyVault@1
-      inputs:
-        azureSubscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
-        KeyVaultName: "${{ secrets.AZURE_KEY_VAULT }}"
-        SecretsFilter: "*"
-        RunAsPreJob: true
+      uses: Azure/get-keyvault-secrets@v1
+        id: vault
+        with:
+          keyvault: "${{ secrets.AZURE_KEY_VAULT }}"
+          secrets: "${{ secrets.AZURE_KEY_VAULT_LIST }}"
 
     - name: Variable substitution appsettings file for Production (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:
-        Email_PrivateKey: "${{ ProdEmailPrivateKey }}"
-        Email_BaseUrl: "${{ ProdEmailBaseUrl }}"
-        Email_Address_Admin: "${{ ProdEmailAddressesAdmin }}"
-        Email_Address_Contact: "${{ ProdEmailAddressesContact }}"
-        Email_Address_Support: "${{ ProdEmailAddressesItSupport }}"
-        Db_DatabaseContext: "${{ ProdDbConnect }}"
-        Db_DatabaseContext_Migrator: "${{ ProdDbMigrator }}"
-        AZ_Storage_BaseUrl: "${{ ProdAzStorageBaseUrl }}"
-        AZ_Storage_ContainerName: "${{ ProdAzStorageContainerName }}"
-        AZ_Storage_ConnectionString: "${{ ProdAzStorageConnectionString }}"
-        AZ_Storage_MaxFileSizeUserMedia: "${{ ProdAzStorageMaxFileSizeUserMedia }}"
-        AZ_Storage_MaxFileSizeSingleAsset: "${{ ProdAzStorageMaxFileSizeSingleAsset }}"
-        AZ_Redis_InstanceName: "${{ ProdAzRedisInstanceName }}"
-        AZ_Redis_ConnectionString: "${{ ProdAzRedisConnectionString }}"
-        AZ_Redis_ExpirationMinute: "${{ ProdAzRedisExpirationMinute }}"
-        AZ_Redis_ExpirationSecond: "${{ ProdAzRedisExpirationSecond }}"
-        Paths_UpdateSubscriber: "${{ ProdPathsUpdateSubscriber }}"
-        Paths_Unsubscribe: "${{ ProdPathsUnsubscribe }}"
-        Paths_UpdatePassword: "${{ ProdPathsUpdatePassword }}"
-        Paths_Activation: "${{ ProdPathsActivation }}"
-        Paths_DevelopmentOrigin: "${{ ProdPathsDevelopmentOrigin }}"
-        Paths_DeploymentOrigin: "${{ ProdPathsDeploymentOrigin }}"
-        Paths_Templates_Newsletter: "${{ ProdPathsNewsletter }}"
-        Paths_Templates_ContactForm: "${{ ProdPathsContactForm }}"
-        Paths_Templates_ResetPassword: "${{ ProdPathsResetPassword }}"
-        Paths_Templates_RegisterForm: "${{ ProdPathsRegisterForm }}"
-        Ids_Issuer: "${{ ProdIdsIssuer }}"
-        Ids_Audience: "${{ ProdIdsAudience }}"
-        Ids_WebSecret: "${{ ProdIdsWebSecret }}"
-        Ids_RequireHttps: "${{ ProdIdsRequireHttps }}"
-        Ids_WebToken_Maturity: "${{ ProdIdsWebTokenMaturity }}"
-        Ids_RefreshToken_Maturity: "${{ ProdIdsRefreshTokenMaturity }}"
-        Limit_Reset_Maturity: "${{ ProdLimitsResetMaturity }}"
-        Limit_Activation_Maturity: "${{ ProdLimitsActivationMaturity }}"
-        Limit_Likes_Anonymous: "${{ ProdLimitsLikesAnonymous }}"
-        Limit_Likes_User: "${{ ProdLimitsLikesUser }}"
+        Email_PrivateKey: "${{ steps.vault.outputs.ProdEmailPrivateKey }}"
+        Email_BaseUrl: "${{ steps.vault.outputs.ProdEmailBaseUrl }}"
+        Email_Address_Admin: "${{ steps.vault.outputs.ProdEmailAddressesAdmin }}"
+        Email_Address_Contact: "${{ steps.vault.outputs.ProdEmailAddressesContact }}"
+        Email_Address_Support: "${{ steps.vault.outputs.ProdEmailAddressesItSupport }}"
+        Db_DatabaseContext: "${{ steps.vault.outputs.ProdDbConnect }}"
+        Db_DatabaseContext_Migrator: "${{ steps.vault.outputs.ProdDbMigrator }}"
+        AZ_Storage_BaseUrl: "${{ steps.vault.outputs.ProdAzStorageBaseUrl }}"
+        AZ_Storage_ContainerName: "${{ steps.vault.outputs.ProdAzStorageContainerName }}"
+        AZ_Storage_ConnectionString: "${{ steps.vault.outputs.ProdAzStorageConnectionString }}"
+        AZ_Storage_MaxFileSizeUserMedia: "${{ steps.vault.outputs.ProdAzStorageMaxFileSizeUserMedia }}"
+        AZ_Storage_MaxFileSizeSingleAsset: "${{ steps.vault.outputs.ProdAzStorageMaxFileSizeSingleAsset }}"
+        AZ_Redis_InstanceName: "${{ steps.vault.outputs.ProdAzRedisInstanceName }}"
+        AZ_Redis_ConnectionString: "${{ steps.vault.outputs.ProdAzRedisConnectionString }}"
+        AZ_Redis_ExpirationMinute: "${{ steps.vault.outputs.ProdAzRedisExpirationMinute }}"
+        AZ_Redis_ExpirationSecond: "${{ steps.vault.outputs.ProdAzRedisExpirationSecond }}"
+        Paths_UpdateSubscriber: "${{ steps.vault.outputs.ProdPathsUpdateSubscriber }}"
+        Paths_Unsubscribe: "${{ steps.vault.outputs.ProdPathsUnsubscribe }}"
+        Paths_UpdatePassword: "${{ steps.vault.outputs.ProdPathsUpdatePassword }}"
+        Paths_Activation: "${{ steps.vault.outputs.ProdPathsActivation }}"
+        Paths_DevelopmentOrigin: "${{ steps.vault.outputs.ProdPathsDevelopmentOrigin }}"
+        Paths_DeploymentOrigin: "${{ steps.vault.outputs.ProdPathsDeploymentOrigin }}"
+        Paths_Templates_Newsletter: "${{ steps.vault.outputs.ProdPathsNewsletter }}"
+        Paths_Templates_ContactForm: "${{ steps.vault.outputs.ProdPathsContactForm }}"
+        Paths_Templates_ResetPassword: "${{ steps.vault.outputs.ProdPathsResetPassword }}"
+        Paths_Templates_RegisterForm: "${{ steps.vault.outputs.ProdPathsRegisterForm }}"
+        Ids_Issuer: "${{ steps.vault.outputs.ProdIdsIssuer }}"
+        Ids_Audience: "${{ steps.vault.outputs.ProdIdsAudience }}"
+        Ids_WebSecret: "${{ steps.vault.outputs.ProdIdsWebSecret }}"
+        Ids_RequireHttps: "${{ steps.vault.outputs.ProdIdsRequireHttps }}"
+        Ids_WebToken_Maturity: "${{ steps.vault.outputs.ProdIdsWebTokenMaturity }}"
+        Ids_RefreshToken_Maturity: "${{ steps.vault.outputs.ProdIdsRefreshTokenMaturity }}"
+        Limit_Reset_Maturity: "${{ steps.vault.outputs.ProdLimitsResetMaturity }}"
+        Limit_Activation_Maturity: "${{ steps.vault.outputs.ProdLimitsActivationMaturity }}"
+        Limit_Likes_Anonymous: "${{ steps.vault.outputs.ProdLimitsLikesAnonymous }}"
+        Limit_Likes_User: "${{ steps.vault.outputs.ProdLimitsLikesUser }}"
 
     - name: Production | Build Docker (prepare)
       uses: azure/docker-login@v1

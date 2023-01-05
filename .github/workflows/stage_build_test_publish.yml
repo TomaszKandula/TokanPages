@@ -65,55 +65,59 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
 
+    - name: Microsoft Azure
+      uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - name: Get Azure Key Vault secrets
-      uses: AzureKeyVault@1
-      inputs:
-        azureSubscription: "${{ secrets.AZURE_SUBSCRIPTION }}"
-        KeyVaultName: "${{ secrets.AZURE_KEY_VAULT }}"
-        SecretsFilter: "*"
-        RunAsPreJob: true
+      uses: Azure/get-keyvault-secrets@v1
+        id: vault
+        with:
+          keyvault: "${{ secrets.AZURE_KEY_VAULT }}"
+          secrets: "${{ secrets.AZURE_KEY_VAULT_LIST }}"
 
     - name: Variable substitution appsettings file for Staging (.NET)
       uses: microsoft/variable-substitution@v1
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Staging.json
       env:
-        Email_PrivateKey: "${{ StageEmailPrivateKey }}"
-        Email_BaseUrl: "${{ StageEmailBaseUrl }}"
-        Email_Address_Admin: "${{ StageEmailAddressesAdmin }}"
-        Email_Address_Contact: "${{ StageEmailAddressesContact }}"
-        Email_Address_Support: "${{ StageEmailAddressesItSupport }}"
-        Db_DatabaseContext: "${{ StageDbConnect }}"
-        Db_DatabaseContext_Migrator: "${{ StageDbMigrator }}"
-        AZ_Storage_BaseUrl: "${{ StageAzStorageBaseUrl }}"
-        AZ_Storage_ContainerName: "${{ StageAzStorageContainerName }}"
-        AZ_Storage_ConnectionString: "${{ StageAzStorageConnectionString }}"
-        AZ_Storage_MaxFileSizeUserMedia: "${{ StageAzStorageMaxFileSizeUserMedia }}"
-        AZ_Storage_MaxFileSizeSingleAsset: "${{ StageAzStorageMaxFileSizeSingleAsset }}"
-        AZ_Redis_InstanceName: "${{ StageAzRedisInstanceName }}"
-        AZ_Redis_ConnectionString: "${{ StageAzRedisConnectionString }}"
-        AZ_Redis_ExpirationMinute: "${{ StageAzRedisExpirationMinute }}"
-        AZ_Redis_ExpirationSecond: "${{ StageAzRedisExpirationSecond }}"
-        Paths_UpdateSubscriber: "${{ StagePathsUpdateSubscriber }}"
-        Paths_Unsubscribe: "${{ StagePathsUnsubscribe }}"
-        Paths_UpdatePassword: "${{ StagePathsUpdatePassword }}"
-        Paths_Activation: "${{ StagePathsActivation }}"
-        Paths_DevelopmentOrigin: "${{ StagePathsDevelopmentOrigin }}"
-        Paths_DeploymentOrigin: "${{ StagePathsDeploymentOrigin }}"
-        Paths_Templates_Newsletter: "${{ StagePathsNewsletter }}"
-        Paths_Templates_ContactForm: "${{ StagePathsContactForm }}"
-        Paths_Templates_ResetPassword: "${{ StagePathsResetPassword }}"
-        Paths_Templates_RegisterForm: "${{ StagePathsRegisterForm }}"
-        Ids_Issuer: "${{ StageIdsIssuer }}"
-        Ids_Audience: "${{ StageIdsAudience }}"
-        Ids_WebSecret: "${{ StageIdsWebSecret }}"
-        Ids_RequireHttps: "${{ StageIdsRequireHttps }}"
-        Ids_WebToken_Maturity: "${{ StageIdsWebTokenMaturity }}"
-        Ids_RefreshToken_Maturity: "${{ StageIdsRefreshTokenMaturity }}"
-        Limit_Reset_Maturity: "${{ StageLimitsResetMaturity }}"
-        Limit_Activation_Maturity: "${{ StageLimitsActivationMaturity }}"
-        Limit_Likes_Anonymous: "${{ StageLimitsLikesAnonymous }}"
-        Limit_Likes_User: "${{ StageLimitsLikesUser }}"
+        Email_PrivateKey: "${{ steps.vault.outputs.StageEmailPrivateKey }}"
+        Email_BaseUrl: "${{ steps.vault.outputs.StageEmailBaseUrl }}"
+        Email_Address_Admin: "${{ steps.vault.outputs.StageEmailAddressesAdmin }}"
+        Email_Address_Contact: "${{ steps.vault.outputs.StageEmailAddressesContact }}"
+        Email_Address_Support: "${{ steps.vault.outputs.StageEmailAddressesItSupport }}"
+        Db_DatabaseContext: "${{ steps.vault.outputs.StageDbConnect }}"
+        Db_DatabaseContext_Migrator: "${{ steps.vault.outputs.StageDbMigrator }}"
+        AZ_Storage_BaseUrl: "${{ steps.vault.outputs.StageAzStorageBaseUrl }}"
+        AZ_Storage_ContainerName: "${{ steps.vault.outputs.StageAzStorageContainerName }}"
+        AZ_Storage_ConnectionString: "${{ steps.vault.outputs.StageAzStorageConnectionString }}"
+        AZ_Storage_MaxFileSizeUserMedia: "${{ steps.vault.outputs.StageAzStorageMaxFileSizeUserMedia }}"
+        AZ_Storage_MaxFileSizeSingleAsset: "${{ steps.vault.outputs.StageAzStorageMaxFileSizeSingleAsset }}"
+        AZ_Redis_InstanceName: "${{ steps.vault.outputs.StageAzRedisInstanceName }}"
+        AZ_Redis_ConnectionString: "${{ steps.vault.outputs.StageAzRedisConnectionString }}"
+        AZ_Redis_ExpirationMinute: "${{ steps.vault.outputs.StageAzRedisExpirationMinute }}"
+        AZ_Redis_ExpirationSecond: "${{ steps.vault.outputs.StageAzRedisExpirationSecond }}"
+        Paths_UpdateSubscriber: "${{ steps.vault.outputs.StagePathsUpdateSubscriber }}"
+        Paths_Unsubscribe: "${{ steps.vault.outputs.StagePathsUnsubscribe }}"
+        Paths_UpdatePassword: "${{ steps.vault.outputs.StagePathsUpdatePassword }}"
+        Paths_Activation: "${{ steps.vault.outputs.StagePathsActivation }}"
+        Paths_DevelopmentOrigin: "${{ steps.vault.outputs.StagePathsDevelopmentOrigin }}"
+        Paths_DeploymentOrigin: "${{ steps.vault.outputs.StagePathsDeploymentOrigin }}"
+        Paths_Templates_Newsletter: "${{ steps.vault.outputs.StagePathsNewsletter }}"
+        Paths_Templates_ContactForm: "${{ steps.vault.outputs.StagePathsContactForm }}"
+        Paths_Templates_ResetPassword: "${{ steps.vault.outputs.StagePathsResetPassword }}"
+        Paths_Templates_RegisterForm: "${{ steps.vault.outputs.StagePathsRegisterForm }}"
+        Ids_Issuer: "${{ steps.vault.outputs.StageIdsIssuer }}"
+        Ids_Audience: "${{ steps.vault.outputs.StageIdsAudience }}"
+        Ids_WebSecret: "${{ steps.vault.outputs.StageIdsWebSecret }}"
+        Ids_RequireHttps: "${{ steps.vault.outputs.StageIdsRequireHttps }}"
+        Ids_WebToken_Maturity: "${{ steps.vault.outputs.StageIdsWebTokenMaturity }}"
+        Ids_RefreshToken_Maturity: "${{ steps.vault.outputs.StageIdsRefreshTokenMaturity }}"
+        Limit_Reset_Maturity: "${{ steps.vault.outputs.StageLimitsResetMaturity }}"
+        Limit_Activation_Maturity: "${{ steps.vault.outputs.StageLimitsActivationMaturity }}"
+        Limit_Likes_Anonymous: "${{ steps.vault.outputs.StageLimitsLikesAnonymous }}"
+        Limit_Likes_User: "${{ steps.vault.outputs.StageLimitsLikesUser }}"
 
     - name: Staging | Build Docker (prepare)
       uses: azure/docker-login@v1
