@@ -21,18 +21,7 @@ internal static class Program
         var arguments = InputArguments.Normalize(args);
         if (arguments.Count != 1)
         {
-            ConsolePrints.PrintOnInfo("");
-            ConsolePrints.PrintOnInfo("Migration Runner");
-            ConsolePrints.PrintOnInfo("----------------");
-            ConsolePrints.PrintOnInfo("");
-            ConsolePrints.PrintOnInfo("It accepts only one argument. Available options:");
-            ConsolePrints.PrintOnInfo("");
-            ConsolePrints.PrintOnInfo(Option1);
-            ConsolePrints.PrintOnInfo(Option2);
-            ConsolePrints.PrintOnInfo(Option3);
-            ConsolePrints.PrintOnInfo(Option4);
-            ConsolePrints.PrintOnInfo(Option5);
-            ConsolePrints.PrintOnInfo("");
+            WelcomeScreen();
             return;
         }
 
@@ -72,8 +61,27 @@ internal static class Program
                     break;
 
                 default:
-                    throw new ArgumentException("Unsupported option.");
+                    WelcomeScreen();
+                    break;
             }
         }
+    }
+
+    private static void WelcomeScreen()
+    {
+        ConsolePrints.PrintOnInfo("");
+        ConsolePrints.PrintOnInfo("Migration Runner");
+        ConsolePrints.PrintOnInfo("----------------");
+        ConsolePrints.PrintOnInfo("");
+        ConsolePrints.PrintOnInfo("It accepts only one argument. Available options:");
+        ConsolePrints.PrintOnInfo("");
+        ConsolePrints.PrintOnInfo(Line1);
+        ConsolePrints.PrintOnInfo(Line2);
+        ConsolePrints.PrintOnInfo(Line3);
+        ConsolePrints.PrintOnInfo(Line4);
+        ConsolePrints.PrintOnInfo(Line5);
+        ConsolePrints.PrintOnInfo(Line6);
+        ConsolePrints.PrintOnInfo(Line7);
+        ConsolePrints.PrintOnInfo("");
     }
 }
