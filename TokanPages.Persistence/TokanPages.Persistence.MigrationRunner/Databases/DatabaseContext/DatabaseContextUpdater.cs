@@ -28,7 +28,7 @@ public static class DatabaseContextUpdater
         command.CommandTimeout = 90;
         var createResult = await command.ExecuteNonQueryAsync();
 
-        ConsolePrints.PrintOnSuccess($"[{Caller}]: Database user created. Returned: {createResult}.");
+        ConsolePrints.PrintOnSuccess($"[{Caller}]: Default user created. Returned: {createResult}.");
 
         var version = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(sourceConnection));
         var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(Database.DatabaseContext));
