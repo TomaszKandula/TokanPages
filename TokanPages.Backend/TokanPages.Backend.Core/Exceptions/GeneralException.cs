@@ -5,11 +5,11 @@ namespace TokanPages.Backend.Core.Exceptions;
 
 [ExcludeFromCodeCoverage]
 [Serializable]
-public class AccessException : BusinessException
+public class GeneralException : BusinessException
 {
-    protected AccessException(SerializationInfo serializationInfo, StreamingContext streamingContext) 
+    protected GeneralException(SerializationInfo serializationInfo, StreamingContext streamingContext) 
         : base(serializationInfo, streamingContext) { }
 
-    public AccessException(string errorCode, string errorMessage = "") 
+    public GeneralException(string errorCode, string errorMessage = "") 
         : base(errorCode, errorMessage) { }
 }

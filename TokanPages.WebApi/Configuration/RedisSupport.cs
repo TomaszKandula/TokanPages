@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.WebApi.Configuration;
 
 /// <summary>
 /// Configure Redis cache.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public static class RedisSupport
 {
     /// <summary>

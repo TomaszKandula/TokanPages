@@ -1,9 +1,11 @@
-﻿using TokanPages.Backend.Shared.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;
 
+[ExcludeFromCodeCoverage]
 internal static class Program
 {
     private const string Option1 = "  --migrate         Applies any pending migrations for the context to the database.";
@@ -15,7 +17,7 @@ internal static class Program
     private static async Task Main(string[] args)
     {
         var arguments = InputArguments.Normalize(args);
-        if (arguments is null || arguments.Count > 1)
+        if (arguments.Count >= 0)
         {
             ConsolePrints.PrintOnInfo("");
             ConsolePrints.PrintOnInfo("Migration Runner");

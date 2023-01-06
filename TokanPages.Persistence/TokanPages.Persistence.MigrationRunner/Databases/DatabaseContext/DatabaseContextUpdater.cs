@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
@@ -6,6 +7,7 @@ using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext;
 
+[ExcludeFromCodeCoverage]
 public static class DatabaseContextUpdater
 {
     private const string Caller = nameof(DatabaseContextUpdater);

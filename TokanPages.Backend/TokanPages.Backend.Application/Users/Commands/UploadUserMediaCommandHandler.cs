@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
@@ -46,7 +47,7 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is null)
-            throw new Exception(nameof(ErrorCodes.ERROR_UNEXPECTED));
+            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         switch (mediaTarget)
         {

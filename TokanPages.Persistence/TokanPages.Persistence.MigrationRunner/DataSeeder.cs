@@ -1,4 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Abstractions;
@@ -7,6 +9,7 @@ using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;
 
+[ExcludeFromCodeCoverage]
 public class DataSeeder : IDataSeeder
 {
     private const string Caller = nameof(DataSeeder);
@@ -35,9 +38,9 @@ public class DataSeeder : IDataSeeder
         var context = (T)Activator.CreateInstance(typeof(T), options)!;
 
         ConsolePrints.PrintOnSuccess($"[{Caller} | {typeof(T).Name}]: Context created successfully!");
-        
+
         if (!context.Database.CanConnect())
-            throw new Exception($"Cannot connect to the database for context '{typeof(T).Name}'!");
+            throw new GeneralException($"Cannot connect to the database for context '{typeof(T).Name}'!");
 
         ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Database update started...");
 
