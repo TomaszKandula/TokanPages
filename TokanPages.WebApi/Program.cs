@@ -63,7 +63,10 @@ public static class Program
     private static string GetLogPathFile()
     {
         var pathFolder = $"{AppDomain.CurrentDomain.BaseDirectory}logs";
-        if (!Directory.Exists(pathFolder)) Directory.CreateDirectory(pathFolder);
+
+        if (!Directory.Exists(pathFolder))
+            Directory.CreateDirectory(pathFolder);
+
         return $"{pathFolder}{Path.DirectorySeparatorChar}log-.txt";
     }
 
