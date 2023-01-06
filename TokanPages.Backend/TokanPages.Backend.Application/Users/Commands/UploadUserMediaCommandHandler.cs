@@ -47,7 +47,7 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is null)
-            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED));
+            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         switch (mediaTarget)
         {
