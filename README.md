@@ -1,9 +1,11 @@
 ## TokanPages
 ### Microsoft technologies and more
 
-TokanPages is the repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. It is so called modular-monolith, split into services. There is only one underlying SQL database.
+TokanPages is a project repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. 
 
-The web-page itself aim to be more than just being a simple personal web page. 
+The backend architecture of the solution follows the modular-monolith concept. Everything is split into projects and services with only one underlying SQL database. The frontend solution is made with React w/Redux. Everything is dockerized and hosted on the Azure Cloud.
+
+Despite mainly focusing on software development and Microsoft technologies, this web page aims to be more than just a simple personal home site.
 
 ## CI/CD Pipelines
 
@@ -88,9 +90,9 @@ The web-page itself aim to be more than just being a simple personal web page.
 
 ## Tech-Stack
 
-### Front-end
+### Frontend
 
-1. React/Redux with TypeScript.
+1. React w/Redux (TypeScript).
 1. Material-UI.
 1. JEST.
 1. Axios.
@@ -103,13 +105,13 @@ The web-page itself aim to be more than just being a simple personal web page.
 1. Semantic-Release.
 1. NGINX.
 
-The client app uses React Hooks. Tests are provided using JEST, but there is no full coverage yet.
+The client app uses React Hooks. Tests are provided using JEST, but there has yet to be full coverage.
 
-Project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Container Registry. Web Server of choice is NGINX.
+The project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Azure Container Registry. The web server of choice is NGINX.
 
 <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
 
-### Back-end
+### Backend
 
 1. WebApi (NET 6, C#).
 1. Microsoft Windows Server 2022 w/SQL Database.
@@ -126,7 +128,7 @@ Project is dockerized and deployed via GitHub Actions to Azure App Service (main
 
 Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
-Project is dockerized and deployed via GitHub Actions to Azure App Service that uses Container Registry.
+The project is dockerized and deployed via GitHub Actions to Azure App Service that uses Azure Container Registry.
 
 <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
 
@@ -142,7 +144,7 @@ _TokanPages.ClientApp_
 
 React application runs on NGINX in Docker. It is deployed on the main domain.
 
-Unit tests for the frontend are provided; use command `yarn app-test` to run all tests.
+Unit tests for the front end are provided; the command `yarn app-test` is used to run all tests.
 
 _TokanPages.Backend_
 
@@ -196,7 +198,7 @@ _TokanPages.WebApi_
 
 _TokanPages.WebApi.Dto_
 
-Collection of all DTO models used by the mappers and controllers.
+The `WebApi.Dto` project is a collection of all DTO models used by the mappers and controllers.
 
 _TokanPages.Tests_
 
@@ -205,11 +207,11 @@ _TokanPages.Tests_
 | EndToEndTests | Http client tests             |
 | UnitTests     | Handlers and validators tests |
 
-Unit tests covers handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
+Unit tests cover handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
 
-End-to-End tests focuses on testing HTTP client responses, dependencies and theirs configuration.
+End-to-End tests focus on testing HTTP client responses, dependencies and their configuration.
 
-To run backend tests, use command `dotnet test`.
+To run backend tests, use the command `dotnet test`.
 
 ## Continuous Integration / Continuous Delivery
 
