@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
@@ -161,7 +162,8 @@ public class UploadUserMediaCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<Exception>(() => handler.Handle(command, CancellationToken.None));
-        result.Message.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+        var result = await Assert.ThrowsAsync<GeneralException>(() => handler.Handle(command, CancellationToken.None));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+        result.Message.Should().Be(ErrorCodes.ERROR_UNEXPECTED);
     }
 }
