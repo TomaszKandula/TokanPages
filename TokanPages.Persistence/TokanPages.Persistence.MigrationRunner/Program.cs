@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Data.SqlClient;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Helpers;
@@ -53,11 +54,23 @@ internal static class Program
                     break;
 
                 case "--next-prod":
-                    var copier = new DatabaseCopier();
-                    var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
-                    migrator.RunAndMigrate<DatabaseContext>(target);
-                    await copier.RunAndCopy<DatabaseContext>(source, target);
-                    ConsolePrints.PrintOnInfo("All done!");
+                    var nextVersion = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(source));
+                    var nextConnection = DatabaseConnection.GetNextDatabaseConnectionString<DatabaseContext>(source);
+                    var migrationScript = DatabaseUpdate.BuildMigrationScriptName(nextVersion.number, nameof(DatabaseContext));
+                    var hasMigrationScript = DatabaseUpdate.HasSqlScript(migrationScript);
+                    if (hasMigrationScript)
+                    {
+                        var copier = new DatabaseCopier();
+                        migrator.RunAndMigrate<DatabaseContext>(nextConnection);
+                        await copier.RunAndCopy<DatabaseContext>(source, nextConnection);
+                        ConsolePrints.PrintOnInfo("All done!");
+                    }
+                    else
+                    {
+                        ConsolePrints.PrintOnWarning("Migration script for the production database cannot be found!");
+                        ConsolePrints.PrintOnWarning("Please verify and migrate manually if necessary.");
+                        ConsolePrints.PrintOnInfo("Migration Runner has done for today.");
+                    }
                     break;
 
                 default:
