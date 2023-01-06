@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Persistence.MigrationRunner.Helpers;
 
+[ExcludeFromCodeCoverage]
 public static class DatabaseUpdate
 {
     private const string Directory = "Resources";
