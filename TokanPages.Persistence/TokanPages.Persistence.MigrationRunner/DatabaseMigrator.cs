@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.MigrationRunner.Abstractions;
@@ -5,6 +6,7 @@ using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;
 
+[ExcludeFromCodeCoverage]
 public class DatabaseMigrator : IDatabaseMigrator
 {
     private const string Caller = nameof(DatabaseMigrator);

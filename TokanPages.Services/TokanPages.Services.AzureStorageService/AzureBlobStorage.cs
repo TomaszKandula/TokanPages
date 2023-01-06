@@ -21,7 +21,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         _container = blobServiceClient.GetBlobContainerClient(containerName);
     }
 
-    public virtual async Task<StorageByteContent?> ReadAllBytes(string sourceFilePath, CancellationToken cancellationToken = default)
+    public async Task<StorageByteContent?> ReadAllBytes(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
@@ -52,7 +52,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public virtual async Task<StorageStreamContent?> OpenRead(string sourceFilePath, CancellationToken cancellationToken = default)
+    public async Task<StorageStreamContent?> OpenRead(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
@@ -121,7 +121,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public virtual async Task UploadFile(Stream sourceStream, string destinationPath, string contentType = ContentTypes.Stream, 
+    public async Task UploadFile(Stream sourceStream, string destinationPath, string contentType = ContentTypes.Stream, 
         CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(destinationPath))
@@ -140,7 +140,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public virtual async Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken = default)
+    public async Task UploadContent(string content, string destinationPath, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -161,7 +161,7 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public virtual async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
