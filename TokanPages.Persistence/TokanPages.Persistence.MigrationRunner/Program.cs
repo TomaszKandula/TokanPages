@@ -8,11 +8,13 @@ namespace TokanPages.Persistence.MigrationRunner;
 [ExcludeFromCodeCoverage]
 internal static class Program
 {
-    private const string Option1 = "  --migrate         Applies any pending migrations for the context to the database.";
-    private const string Option2 = "                    It will create the database if it does not already exist.";
-    private const string Option3 = "  --seed            Seeds the test data to the existing database.";
-    private const string Option4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
-    private const string Option5 = "  --next-prod       It will copy the production databases to the next production database.";
+    private const string Line1 = "  --migrate         It applies any pending migrations for the context to the database.";
+    private const string Line2 = "                    It will create the database if it does not already exist.";
+    private const string Line3 = "  --seed            It seeds the test data into the existing database.";
+    private const string Line4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
+    private const string Line5 = "  --next-prod       If the migration script is present, it will copy the current";
+    private const string Line6 = "                    production database to the following production database.";
+    private const string Line7 = "                    The following version number takes the last number and increases by one.";
 
     private static async Task Main(string[] args)
     {
