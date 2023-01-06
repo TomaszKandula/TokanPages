@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Data.SqlClient;
 using TokanPages.Backend.Shared.Services;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Helpers;
@@ -8,29 +9,20 @@ namespace TokanPages.Persistence.MigrationRunner;
 [ExcludeFromCodeCoverage]
 internal static class Program
 {
-    private const string Option1 = "  --migrate         Applies any pending migrations for the context to the database.";
-    private const string Option2 = "                    It will create the database if it does not already exist.";
-    private const string Option3 = "  --seed            Seeds the test data to the existing database.";
-    private const string Option4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
-    private const string Option5 = "  --next-prod       It will copy the production databases to the next production database.";
+    private const string Line1 = "  --migrate         It applies any pending migrations for the context to the database.";
+    private const string Line2 = "                    It will create the database if it does not already exist.";
+    private const string Line3 = "  --seed            It seeds the test data into the existing database.";
+    private const string Line4 = "  --migrate-seed    It will execute migration and seed the test data afterwards.";
+    private const string Line5 = "  --next-prod       If the migration script is present, it will copy the current";
+    private const string Line6 = "                    production database to the following production database.";
+    private const string Line7 = "                    The following version number takes the last number and increases by one.";
 
     private static async Task Main(string[] args)
     {
         var arguments = InputArguments.Normalize(args);
-        if (arguments.Count >= 0)
+        if (arguments.Count != 1)
         {
-            ConsolePrints.PrintOnInfo("");
-            ConsolePrints.PrintOnInfo("Migration Runner");
-            ConsolePrints.PrintOnInfo("----------------");
-            ConsolePrints.PrintOnInfo("");
-            ConsolePrints.PrintOnInfo("It accepts only one argument. Available options:");
-            ConsolePrints.PrintOnInfo("");
-            ConsolePrints.PrintOnInfo(Option1);
-            ConsolePrints.PrintOnInfo(Option2);
-            ConsolePrints.PrintOnInfo(Option3);
-            ConsolePrints.PrintOnInfo(Option4);
-            ConsolePrints.PrintOnInfo(Option5);
-            ConsolePrints.PrintOnInfo("");
+            WelcomeScreen();
             return;
         }
 
@@ -62,16 +54,47 @@ internal static class Program
                     break;
 
                 case "--next-prod":
-                    var copier = new DatabaseCopier();
-                    var target = DatabaseConnection.GetNextProductionDatabase<DatabaseContext>(source);
-                    migrator.RunAndMigrate<DatabaseContext>(target);
-                    await copier.RunAndCopy<DatabaseContext>(source, target);
-                    ConsolePrints.PrintOnInfo("All done!");
+                    var nextVersion = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(source));
+                    var nextConnection = DatabaseConnection.GetNextDatabaseConnectionString<DatabaseContext>(source);
+                    var migrationScript = DatabaseUpdate.BuildMigrationScriptName(nextVersion.number, nameof(DatabaseContext));
+                    var hasMigrationScript = DatabaseUpdate.HasSqlScript(migrationScript);
+                    if (hasMigrationScript)
+                    {
+                        var copier = new DatabaseCopier();
+                        migrator.RunAndMigrate<DatabaseContext>(nextConnection);
+                        await copier.RunAndCopy<DatabaseContext>(source, nextConnection);
+                        ConsolePrints.PrintOnInfo("All done!");
+                    }
+                    else
+                    {
+                        ConsolePrints.PrintOnWarning("Migration script for the production database cannot be found!");
+                        ConsolePrints.PrintOnWarning("Please verify and migrate manually if necessary.");
+                        ConsolePrints.PrintOnInfo("Migration Runner has done for today.");
+                    }
                     break;
 
                 default:
-                    throw new ArgumentException("Unsupported option.");
+                    WelcomeScreen();
+                    break;
             }
         }
+    }
+
+    private static void WelcomeScreen()
+    {
+        ConsolePrints.PrintOnInfo("");
+        ConsolePrints.PrintOnInfo("Migration Runner");
+        ConsolePrints.PrintOnInfo("----------------");
+        ConsolePrints.PrintOnInfo("");
+        ConsolePrints.PrintOnInfo("It accepts only one argument. Available options:");
+        ConsolePrints.PrintOnInfo("");
+        ConsolePrints.PrintOnInfo(Line1);
+        ConsolePrints.PrintOnInfo(Line2);
+        ConsolePrints.PrintOnInfo(Line3);
+        ConsolePrints.PrintOnInfo(Line4);
+        ConsolePrints.PrintOnInfo(Line5);
+        ConsolePrints.PrintOnInfo(Line6);
+        ConsolePrints.PrintOnInfo(Line7);
+        ConsolePrints.PrintOnInfo("");
     }
 }

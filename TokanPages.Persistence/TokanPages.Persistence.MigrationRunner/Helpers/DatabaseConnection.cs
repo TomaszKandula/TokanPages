@@ -34,7 +34,7 @@ public static class DatabaseConnection
         return configuration.GetValue<string>($"{databaseName}");
     }
 
-    public static string GetNextProductionDatabase<T>(string sourceConnection) where T : DbContext
+    public static string GetNextDatabaseConnectionString<T>(string sourceConnection) where T : DbContext
     {
         if (Environments.IsTestingOrStaging)
             throw new GeneralException("Cannot perform on a non-production database context!");
@@ -51,7 +51,7 @@ public static class DatabaseConnection
         return targetConnection.ToString();
     }
 
-    public static (int, string[]) GetNextVersion(SqlConnectionStringBuilder connection)
+    public static (int number, string[] name) GetNextVersion(SqlConnectionStringBuilder connection)
     {
         var currentName = connection.InitialCatalog;
         var elements = currentName.Split("-");
