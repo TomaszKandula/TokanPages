@@ -17,7 +17,7 @@ internal static class Program
     private static async Task Main(string[] args)
     {
         var arguments = InputArguments.Normalize(args);
-        if (arguments.Count >= 0)
+        if (arguments.Count != 1)
         {
             ConsolePrints.PrintOnInfo("");
             ConsolePrints.PrintOnInfo("Migration Runner");
