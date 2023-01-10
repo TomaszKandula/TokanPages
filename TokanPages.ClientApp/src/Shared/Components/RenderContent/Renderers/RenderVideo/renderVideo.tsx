@@ -8,11 +8,9 @@ export const RenderVideo = (props: ITextItem): JSX.Element =>
 {
     const classes = RenderVideoStyle();
     const data: string = props.value as string; 
-    const [ImageState, setImageState] = React.useState(true);
-    const imageClick = () => 
-    {
-        setImageState(false);
-    };
+    const [imageState, setImageState] = React.useState(true);
+    
+    const onClickEvent = React.useCallback(() => setImageState(false), [ ]);
 
     const renderDescription = () => 
     {
@@ -27,8 +25,8 @@ export const RenderVideo = (props: ITextItem): JSX.Element =>
 
     return(
         <Card elevation={3} classes={{ root: classes.card }}>
-            {ImageState 
-                ? <CardMedia component="img" image={props.prop} onClick={imageClick} className={classes.image} /> 
+            {imageState 
+                ? <CardMedia component="img" image={props.prop} onClick={onClickEvent} className={classes.image} /> 
                 : <CardMedia component="video" src={data} controls autoPlay />}
             {Validate.isEmpty(props.text) 
                 ? null 
