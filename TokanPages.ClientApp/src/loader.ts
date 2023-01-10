@@ -1,6 +1,5 @@
 import { IGetContentManifestDto } from "./Api/Models";
-import { ApiCall, EnrichConfiguration } from "./Api/Request";
-import { GET_CONTENT_MANIFEST } from "./Api/Request";
+import { ApiCall, EnrichConfiguration, GET_CONTENT_MANIFEST } from "./Api/Request";
 
 export const Initialize = async (callback: any): Promise<void> => 
 {
