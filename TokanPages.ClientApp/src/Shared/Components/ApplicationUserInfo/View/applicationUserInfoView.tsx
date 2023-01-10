@@ -12,9 +12,10 @@ import Box from "@material-ui/core/Box";
 import { green } from '@material-ui/core/colors';
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { IAuthenticateUserResultDto } from "../../../../Api/Models";
+import { IAuthenticateUserResultDto, IUserPermissionDto, IUserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
+import { v4 as uuidv4 } from "uuid";
 
 interface IBinding
 {
@@ -90,9 +91,9 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     </Typography>
                 </Box>
                 <List dense={true}>
-                {props.bind?.data.roles?.map((item, index) => 
+                {props.bind?.data.roles?.map((item: IUserRoleDto, _index: number) => 
                 (
-                    <Items item={item.name} key={index} className={classes.value} />
+                    <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
                 </List>
                 <Box pt={0}>
@@ -101,9 +102,9 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     </Typography>
                 </Box>                
                 <List dense={true}>
-                {props.bind?.data.permissions?.map((item, index) => 
+                {props.bind?.data.permissions?.map((item: IUserPermissionDto, _index: number) => 
                 (
-                    <Items item={item.name} key={index} className={classes.value} />
+                    <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
                 </List>
             </DialogContent>

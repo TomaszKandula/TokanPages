@@ -4,6 +4,7 @@ import { Box, Container, Typography } from "@material-ui/core";
 import { IContentClients } from "../../../Store/States";
 import { GET_ICONS_URL } from "../../../Api/Request";
 import { ClientsStyle } from "./clientsStyle";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 export const ClientsView = (props: IContentClients): JSX.Element => 
@@ -35,8 +36,8 @@ export const ClientsView = (props: IContentClients): JSX.Element =>
     {
         return(
             <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
-                {props.content?.images.map((item, index) => (
-                    <img key={index} src={getImagePath(item)} alt="" className={classes.logo} />
+                {props.content?.images.map((item: string, _index: number) => (
+                    <img key={uuidv4()} src={getImagePath(item)} alt="" className={classes.logo} />
                 ))}
             </Box>
         );
