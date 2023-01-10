@@ -12,6 +12,7 @@ import { IItem } from "../../../../Shared/Components/ListRender/Models";
 import { GET_AVATARS_URL } from "../../../../Api/Request";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface IBinding
@@ -47,8 +48,8 @@ export const NavigationView = (props: IBinding): JSX.Element =>
         return(
             <FormControl className={args.styleControl}>
                 <Select value={props.bind?.languageId} onChange={props.bind?.languageHandler} disableUnderline className={args.styleSelect}>
-                    {props.bind?.languages?.languages.map((item: ILanguageItem, index: number) => (
-                        <MenuItem value={item.id} key={index} className={args.styleMenu}>
+                    {props.bind?.languages?.languages.map((item: ILanguageItem, _index: number) => (
+                        <MenuItem value={item.id} key={uuidv4()} className={args.styleMenu}>
                             {item.name}
                         </MenuItem>
                     ))}

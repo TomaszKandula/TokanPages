@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
 import { IIcon, ILink } from "../../../../Api/Models";
 import { FooterStyle } from "./footerStyle";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface IBinding
@@ -58,12 +59,12 @@ export const FooterView = (props: IBinding): JSX.Element =>
     {
         const icons = 
         <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
-            {props.bind?.icons?.map((item: IIcon, index: number) => 
+            {props.bind?.icons?.map((item: IIcon, _index: number) => 
             (<IconButton 
                 className={classes.icon}
                 aria-label={item.name} 
                 href={item.href} 
-                key={index}
+                key={uuidv4()}
                 color="default" 
                 target="_blank">
                 <GetIcon iconName={item.name} />
