@@ -1,8 +1,7 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { IItem } from "./Models";
-import { RenderItem } from "./Renderers";
-import { RenderItemSpan } from "./Renderers";
+import { RenderItem, RenderItemSpan } from "./Renderers";
 import { Divider } from "@material-ui/core";
 
 interface IBinding

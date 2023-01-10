@@ -2,12 +2,15 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IApplicationState } from "../../Store/Configuration";
 import { IContentNewsletter } from "../../Store/States";
-import { SubscriberAddAction } from "../../Store/Actions";
-import { ApplicationDialogAction } from "../../Store/Actions";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
+
+import { 
+    SubscriberAddAction, 
+    ApplicationDialogAction 
+} from "../../Store/Actions";
 
 import { 
     GetTextWarning, 

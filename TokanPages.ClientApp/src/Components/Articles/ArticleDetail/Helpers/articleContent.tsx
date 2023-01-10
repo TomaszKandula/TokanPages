@@ -1,6 +1,5 @@
 import * as React from "react";
-import { ProgressBar } from "../../../../Shared/Components";
-import { RenderContent } from "../../../../Shared/Components";
+import { ProgressBar, RenderContent } from "../../../../Shared/Components";
 import { ITextItem } from "../../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
 
