@@ -93,7 +93,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                 <List dense={true}>
                 {props.bind?.data.roles?.map((item: IUserRoleDto, _index: number) => 
                 (
-                    <Items item={item.name} key={uuidv4()} className={classes.value} />
+                    <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
                 </List>
                 <Box pt={0}>
@@ -104,7 +104,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                 <List dense={true}>
                 {props.bind?.data.permissions?.map((item: IUserPermissionDto, _index: number) => 
                 (
-                    <Items item={item.name} key={uuidv4()} className={classes.value} />
+                    <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
                 </List>
             </DialogContent>
