@@ -8,7 +8,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import ErrorIcon from '@material-ui/icons/Error';
-import { ClassNameMap } from "@material-ui/core/styles/withStyles";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxStyle } from "./applicationDialogBoxStyle";
@@ -27,16 +26,15 @@ interface IProperties
     closeHandler: any;
 }
 
-type TStyles = ClassNameMap<"icon_holder" | "button" | "info_icon" | "warning_icon" | "error_icon" | "title" | "description">;
-
-const RenderIcon = (args: { icon: IconType, classes: TStyles }): JSX.Element => 
+const RenderIcon = (props: IBinding): JSX.Element => 
 {
-    switch (args.icon)
+    const classes = ApplicationDialogBoxStyle();
+    switch (props.bind.icon)
     {
-        case IconType.info: return(<InfoIcon className={args.classes.info_icon} />);
-        case IconType.warning: return(<WarningIcon className={args.classes.warning_icon} />);
-        case IconType.error: return(<ErrorIcon className={args.classes.error_icon} />);
-        default: return(<InfoIcon className={args.classes.info_icon} />);
+        case IconType.info: return(<InfoIcon className={classes.info_icon} />);
+        case IconType.warning: return(<WarningIcon className={classes.warning_icon} />);
+        case IconType.error: return(<ErrorIcon className={classes.error_icon} />);
+        default: return(<InfoIcon className={classes.info_icon} />);
     }        
 };   
 
@@ -48,7 +46,7 @@ export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
             aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
-                    <RenderIcon icon={props.bind?.icon} classes={classes} />
+                    <RenderIcon bind={props.bind} />
                     {ReactHtmlParser(props.bind?.title)}
                 </div>
             </DialogTitle>
