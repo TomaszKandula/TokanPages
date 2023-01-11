@@ -30,21 +30,21 @@ interface IProperties
     labelVerifyPassword: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UpdatePasswordStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            className={classes.button} disabled={props.bind?.progress || props.bind?.disableForm}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.button}
+        </Button>
+    );
+}
+
 export const UpdatePasswordView = (props: IBinding): JSX.Element =>
 {
     const classes = UpdatePasswordStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.progress || props.bind?.disableForm}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.button}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -73,7 +73,7 @@ export const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>   
