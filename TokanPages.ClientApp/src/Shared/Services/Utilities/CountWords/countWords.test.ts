@@ -18,4 +18,20 @@ describe("Verify CountWords.", () =>
         // Assert
         expect(result).toBe(expectation);        
     });
+
+    it("Given undefined input. When invoke CountWords. Should return zero.", () => 
+    {
+        // Arrange
+        const expectation: number = 0;
+        const input: ICountWords = 
+        {
+            inputText: undefined
+        }
+
+        // Act
+        const result = CountWords(input);
+
+        // Assert
+        expect(result).toBe(expectation);        
+    });
 });
