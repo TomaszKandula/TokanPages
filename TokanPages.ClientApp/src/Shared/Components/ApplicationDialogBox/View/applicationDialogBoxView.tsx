@@ -27,9 +27,9 @@ interface IProperties
     closeHandler: any;
 }
 
-type classType = ClassNameMap<"icon_holder" | "button" | "info_icon" | "warning_icon" | "error_icon" | "title" | "description">;
+type TStyles = ClassNameMap<"icon_holder" | "button" | "info_icon" | "warning_icon" | "error_icon" | "title" | "description">;
 
-const RenderIcon = (args: { icon: IconType, classes: classType }): JSX.Element => 
+const RenderIcon = (args: { icon: IconType, classes: TStyles }): JSX.Element => 
 {
     switch (args.icon)
     {
