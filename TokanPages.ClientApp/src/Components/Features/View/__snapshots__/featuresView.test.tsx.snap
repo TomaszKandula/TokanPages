@@ -69,7 +69,26 @@ exports[`Test articles group component: ArticleFeaturesView. Renders correctly '
                     <Styled(MuiBox)
                       textAlign="right"
                     >
-                      <ActiveButton />
+                      <ActiveButton
+                        content={
+                          Object {
+                            "action": Object {
+                              "href": "/action-link",
+                              "text": "View list of articles",
+                            },
+                            "description": "I write regularly...",
+                            "image1": "image1.jpg",
+                            "image2": "image2.jpg",
+                            "image3": "image3.jpg",
+                            "image4": "image4.jpg",
+                            "language": "eng",
+                            "text1": ".NET Core, Azure, databases and others.",
+                            "text2": "Let's dive into Microsoft technology...",
+                            "title": "Articles",
+                          }
+                        }
+                        isLoading={false}
+                      />
                     </Styled(MuiBox)>
                   </Styled(MuiBox)>
                 </WithStyles(ForwardRef(CardContent))>
