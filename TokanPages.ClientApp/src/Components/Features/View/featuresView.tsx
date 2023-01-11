@@ -15,30 +15,31 @@ import { GET_ARTICLE_IMAGE_URL } from "../../../Api/Request";
 import { FeaturesStyle } from "./featuresStyle";
 import Validate from "validate.js";
 
-export const FeaturesView = (props: IContentArticleFeatures): JSX.Element =>
+const ActiveButton = (props: IContentArticleFeatures): JSX.Element => 
 {
     const classes = FeaturesStyle();
 
-    const ActiveButton = (): JSX.Element => 
+    if (Validate.isEmpty(props.content?.action?.href))
     {
-        if (Validate.isEmpty(props.content?.action?.href))
-        {
-            return (
-                <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
-                </Button>
-            );
-        }
-
-        return(
-            <Link to={props.content?.action?.href} className={classes.link}>
-                <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                    {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
-                </Button>
-            </Link>
+        return (
+            <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+                {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
+            </Button>
         );
     }
 
+    return(
+        <Link to={props.content?.action?.href} className={classes.link}>
+            <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+                {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
+            </Button>
+        </Link>
+    );
+}
+
+export const FeaturesView = (props: IContentArticleFeatures): JSX.Element =>
+{
+    const classes = FeaturesStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -64,7 +65,7 @@ export const FeaturesView = (props: IContentArticleFeatures): JSX.Element =>
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
-                                                    {props.isLoading ? <Skeleton variant="rect" width="100%" height="25px" /> : <ActiveButton />}
+                                                    {props.isLoading ? <Skeleton variant="rect" width="100%" height="25px" /> : <ActiveButton {...props} />}
                                                 </Box>
                                             </Box>
                                         </CardContent>
