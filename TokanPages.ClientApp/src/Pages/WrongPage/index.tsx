@@ -7,47 +7,47 @@ import { IApplicationState } from "../../Store/Configuration";
 import { ContentWrongPagePromptAction } from "../../Store/Actions";
 import { Style } from "./style";
 
+const ActionButton = (args: { button: string }): JSX.Element => 
+{
+    const classes = Style();
+    return(
+        <Link to="/" className={classes.link}>
+            <Button variant="contained" className={classes.button}>
+                {args.button}
+            </Button>
+        </Link>
+    );
+}
+
 export const WrongPage = (): JSX.Element =>
 {
-    const classes = Style();   
+    const classes = Style();
     const dispatch = useDispatch();
-
-    const ActionButton = (): JSX.Element => 
-    {
-        return(
-            <Link to="/" className={classes.link}>
-                <Button variant="contained" className={classes.button}>
-                    {wrongPagePrompt?.content.button}
-                </Button>
-            </Link>
-        );
-    }
-
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-    const wrongPagePrompt = useSelector((state: IApplicationState) => state.contentWrongPagePrompt);
+    const prompt = useSelector((state: IApplicationState) => state.contentWrongPagePrompt);
+
     React.useEffect(() => { dispatch(ContentWrongPagePromptAction.get()) }, [ language?.id ]);
 
     return (
         <section>
             <Container maxWidth="md">
                 <Box pt={8} pb={10} textAlign="center">
-
-                    {wrongPagePrompt?.isLoading
+                    {prompt?.isLoading
                     ? <Skeleton variant="text" height="200px" width="250px" className={classes.skeleton} />
-                    : <Typography variant="h1">{wrongPagePrompt?.content.code}</Typography>}
+                    : <Typography variant="h1">{prompt?.content.code}</Typography>}
 
-                    {wrongPagePrompt?.isLoading
+                    {prompt?.isLoading
                     ? <Skeleton variant="text" height="45px" width="80%" className={classes.skeleton} />
-                    : <Typography variant="h4" component="h2" gutterBottom={true}>{wrongPagePrompt?.content.header}</Typography>}
+                    : <Typography variant="h4" component="h2" gutterBottom={true}>{prompt?.content.header}</Typography>}
 
-                    {wrongPagePrompt?.isLoading
+                    {prompt?.isLoading
                     ? <Skeleton variant="text" height="45px" className={classes.skeleton} />
-                    : <Typography variant="subtitle1" color="textSecondary">{wrongPagePrompt?.content.description}</Typography>}
+                    : <Typography variant="subtitle1" color="textSecondary">{prompt?.content.description}</Typography>}
 
                     <Box mt={4}>
-                        {wrongPagePrompt?.isLoading
+                        {prompt?.isLoading
                         ? <Skeleton variant="rect" height="60px" width="220px" className={classes.skeleton} />
-                        : <ActionButton />}
+                        : <ActionButton button={prompt?.content.button} />}
                     </Box>
                 </Box>
             </Container>

@@ -46,45 +46,52 @@ interface IProperties
     sectionAccountInformation: ISectionAccountInformation;
 }
 
+interface IRenderText extends IBinding
+{
+    value: string;
+}
+
+const UpdateAccountButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UserInfoStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.accountButtonHandler} type="submit" variant="contained" 
+            disabled={props.bind?.accountFormProgress} className={classes.button_update}>
+            {props.bind?.accountFormProgress &&  <CircularProgress size={20} />}
+            {!props.bind?.accountFormProgress && props.bind?.sectionAccountInformation?.updateButtonText}
+        </Button>
+    );
+}
+
+const UploadAvatarButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UserInfoStyle();
+    return(
+        <IconButton onClick={props.bind?.avatarButtonHandler} size="small"
+            disabled={props.bind?.avatarUploadProgress} className={classes.button_upload}>
+            <BackupIcon />
+        </IconButton>
+    );
+}
+
+const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.Element => 
+{
+    const classes = UserInfoStyle();
+    return(
+        <Box mt={args.marginTop} mb={args.marginBottom}>
+            <Divider className={classes.divider} />
+        </Box>
+    );
+}
+
+const RenderText = (props: IRenderText): JSX.Element => 
+{
+    return props.bind?.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
+}
+
 export const UserInfoView = (props: IBinding): JSX.Element => 
 {
     const classes = UserInfoStyle();
-
-    const UpdateAccountButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.accountButtonHandler} type="submit" variant="contained" 
-                disabled={props.bind?.accountFormProgress} className={classes.button_update}>
-                {props.bind?.accountFormProgress &&  <CircularProgress size={20} />}
-                {!props.bind?.accountFormProgress && props.bind?.sectionAccountInformation?.updateButtonText}
-            </Button>
-        );
-    }
-
-    const UploadAvatarButton = (): JSX.Element => 
-    {
-        return(
-            <IconButton onClick={props.bind?.avatarButtonHandler} size="small"
-                disabled={props.bind?.avatarUploadProgress} className={classes.button_upload}>
-                <BackupIcon />
-            </IconButton>
-        );
-    }
-
-    const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.Element => 
-    {
-        return(
-            <Box mt={args.marginTop} mb={args.marginBottom}>
-                <Divider className={classes.divider} />
-            </Box>
-        );
-    }
-
-    const RenderText = (args: { value: string }): JSX.Element => 
-    {
-        return props.bind?.isLoading ? <Skeleton variant="text" /> : <>{args.value}</>;
-    }
-
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
@@ -93,7 +100,10 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography className={classes.caption}>
-                                    <RenderText value={props.bind?.sectionAccountInformation?.caption} />
+                                    <RenderText 
+                                        {...props} 
+                                        value={props.bind?.sectionAccountInformation?.caption} 
+                                    />
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -101,40 +111,61 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelUserId} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelUserId} 
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Typography className={classes.user_id}>
-                                            <RenderText value={props.bind?.userStore?.userId} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.userStore?.userId} 
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelUserAlias} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelUserAlias}
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Typography className={classes.user_alias}>
-                                            <RenderText value={props.bind?.userStore?.aliasName} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.userStore?.aliasName} 
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelUserAvatar} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelUserAvatar}
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Box className={classes.user_avatar_box}>
                                             <Typography component="span" className={classes.user_avatar}>
-                                                <RenderText value={props.bind?.userStore?.avatarName} />
+                                                <RenderText 
+                                                    {...props} 
+                                                    value={props.bind?.userStore?.avatarName} 
+                                                />
                                             </Typography>
-                                            {props.bind?.isLoading ? null : <UploadAvatarButton />}
+                                            {props.bind?.isLoading ? null : <UploadAvatarButton {...props} />}
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelFirstName} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelFirstName}
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -146,7 +177,10 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelLastName} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelLastName} 
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -158,7 +192,10 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelEmail} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelEmail}
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -170,7 +207,10 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelShortBio} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelShortBio}
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -182,7 +222,10 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography className={classes.label}>
-                                            <RenderText value={props.bind?.sectionAccountInformation?.labelIsActivated} />
+                                            <RenderText 
+                                                {...props} 
+                                                value={props.bind?.sectionAccountInformation?.labelIsActivated} 
+                                            />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
@@ -199,7 +242,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     <Box my={2}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
-                                        : <UpdateAccountButton />}
+                                        : <UpdateAccountButton {...props} />}
                                     </Box>
                                 </Grid>
                             </Box>

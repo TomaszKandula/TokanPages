@@ -25,21 +25,21 @@ interface IProperties
     buttonText: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = ActivateAccountStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            className={classes.button} disabled={props.bind?.buttonDisabled}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.buttonText}
+        </Button>
+    );
+}
+
 export const ActivateAccountView = (props: IBinding): JSX.Element =>
 {
     const classes = ActivateAccountStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.buttonDisabled}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.buttonText}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -62,7 +62,7 @@ export const ActivateAccountView = (props: IBinding): JSX.Element =>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text2}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                            {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
                         </Box>
                         </CardContent>
                     </Card>

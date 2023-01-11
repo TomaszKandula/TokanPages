@@ -19,26 +19,25 @@ interface IProperties
     articles: IArticleItem[];
 }
 
+const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
+{
+    return(
+        <>
+            {args.articles.map((item: IArticleItem) => ( 
+                <ArticleCard 
+                    title={item.title}
+                    description={item.description}
+                    id={item.id}
+                    key={item.id}
+                />
+            ))}
+        </>
+    );
+}
+
 export const ArticleListView = (props: IBinding): JSX.Element => 
 {
     const classes = ArticleListStyle();
-
-    const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
-    {
-        return(
-            <>
-                {args.articles.map((item: IArticleItem) => ( 
-                    <ArticleCard 
-                        title={item.title}
-                        description={item.description}
-                        id={item.id}
-                        key={item.id}
-                    />
-                ))}
-            </>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container className={classes.container}>

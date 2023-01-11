@@ -25,19 +25,19 @@ interface IProperties
     buttonText: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = CookiesStyle();
+    return(
+        <Button onClick={props.bind?.onClickEvent} className={classes.button}>
+            {props.bind?.buttonText}
+        </Button>
+    );
+}
+
 export const CookiesView = (props: IBinding): JSX.Element => 
 {
     const classes = CookiesStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button onClick={props.bind?.onClickEvent} className={classes.button}>
-                {props.bind?.buttonText}
-            </Button>
-        );
-    }
-
     const renderConsent = (): JSX.Element => 
     {
         return (		
@@ -53,7 +53,7 @@ export const CookiesView = (props: IBinding): JSX.Element =>
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                         </CardActions>
                     </Card>
                 </Container>

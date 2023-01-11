@@ -160,7 +160,31 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
             data-aos="fade-up"
             my={2}
           >
-            <ActiveButton />
+            <ActiveButton
+              bind={
+                Object {
+                  "buttonHandler": [MockFunction],
+                  "buttonText": "Submit",
+                  "caption": "Contact me",
+                  "consent": "I agree!",
+                  "email": "ester.exposito@gmail.com",
+                  "firstName": "Ester",
+                  "formHandler": [MockFunction],
+                  "isLoading": false,
+                  "labelEmail": "Email address",
+                  "labelFirstName": "First name",
+                  "labelLastName": "Last name",
+                  "labelMessage": "Message",
+                  "labelSubject": "Subject",
+                  "lastName": "Exposito",
+                  "message": "Test message...",
+                  "progress": false,
+                  "subject": "Test subject",
+                  "terms": false,
+                  "text": "If you have any questions...",
+                }
+              }
+            />
           </Styled(MuiBox)>
         </Styled(MuiBox)>
       </Styled(MuiBox)>

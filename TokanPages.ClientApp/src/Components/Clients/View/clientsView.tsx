@@ -7,49 +7,46 @@ import { ClientsStyle } from "./clientsStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-export const ClientsView = (props: IContentClients): JSX.Element => 
+const RenderCaption = (props: IContentClients): JSX.Element | null => 
 {
     const classes = ClientsStyle();
-
-    const getImagePath = (value: string): string => 
-    {
-        return `${GET_ICONS_URL}/${value}`;
-    }
-
-    const RenderCaption = (): JSX.Element | null => 
-    {
-        if (!Validate.isEmpty(props.content?.caption))
-        {
-            return(
-                <Box mb={8}>
-                    <Typography className={classes.caption}>
-                        {props.content?.caption?.toUpperCase()}                    
-                    </Typography>
-                </Box>
-            );
-        }
-
-        return null;
-    }
-
-    const RenderImages = (): JSX.Element => 
+    if (!Validate.isEmpty(props.content?.caption))
     {
         return(
-            <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
-                {props.content?.images.map((item: string, _index: number) => (
-                    <img key={uuidv4()} src={getImagePath(item)} alt="" className={classes.logo} />
-                ))}
+            <Box mb={8}>
+                <Typography className={classes.caption}>
+                    {props.content?.caption?.toUpperCase()}                    
+                </Typography>
             </Box>
         );
     }
 
+    return null;
+}
+
+const RenderImages = (props: IContentClients): JSX.Element => 
+{
+    const classes = ClientsStyle();
+    const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
+    return(
+        <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
+            {props.content?.images.map((item: string, _index: number) => (
+                <img key={uuidv4()} src={getImagePath(item)} alt="" className={classes.logo} />
+            ))}
+        </Box>
+    );
+}
+
+export const ClientsView = (props: IContentClients): JSX.Element => 
+{
+    const classes = ClientsStyle();
     return(
         <>
             <div className={classes.divider}></div>
             <section className={classes.section}>
                 <Container maxWidth="lg">
-                    {props.isLoading ? <Skeleton variant="text" /> : <RenderCaption />}
-                    {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages />}
+                    {props.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...props} />}
+                    {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...props} />}
                 </Container>
             </section>
         </>

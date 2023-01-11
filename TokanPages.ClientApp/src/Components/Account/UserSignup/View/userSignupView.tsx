@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
@@ -39,26 +39,26 @@ interface IProperties
     labelPassword: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UserSignupStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            className={classes.button} disabled={props.bind?.progress}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.button}
+        </Button>
+    );
+}
+
+const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
+{
+    return(<Link to={args.path}>{args.name}</Link>);
+}
+
 export const UserSignupView = (props: IBinding): JSX.Element =>
 {
     const classes = UserSignupStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.progress}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.button}
-            </Button>
-        );
-    }
-
-    const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
-    {
-        return(<Link to={args.path}>{args.name}</Link>);
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -105,7 +105,7 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
                                 </Box>
                                 <Box textAlign="right">
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : <RedirectTo path="/signin" name={props.bind?.link} />}

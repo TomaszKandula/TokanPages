@@ -32,26 +32,26 @@ interface IProperties
     labelPassword: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UserSigninStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            className={classes.button} disabled={props.bind?.progress}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.button}
+        </Button>
+    );
+}
+
+const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
+{
+    return(<Link to={args.path}>{args.name}</Link>);
+}
+
 export const UserSigninView = (props: IBinding): JSX.Element =>
 {
     const classes = UserSigninStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.progress}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.button}
-            </Button>
-        );
-    }
-
-    const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
-    {
-        return(<Link to={args.path}>{args.name}</Link>);
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -80,7 +80,7 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>

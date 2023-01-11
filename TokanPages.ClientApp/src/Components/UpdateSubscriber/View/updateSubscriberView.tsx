@@ -30,21 +30,21 @@ interface IProperties
     labelEmail: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UpdateSubscriberStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} variant="contained" 
+            className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.buttonText}
+        </Button>
+    );
+}
+
 export const UpdateSubscriberView = (props: IBinding): JSX.Element =>
 {
     const classes = UpdateSubscriberStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} variant="contained" 
-                className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.buttonText}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -67,7 +67,7 @@ export const UpdateSubscriberView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>

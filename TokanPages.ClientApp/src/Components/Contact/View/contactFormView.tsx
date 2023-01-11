@@ -39,21 +39,21 @@ interface IProperties
     labelMessage: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = ContactFormStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            disabled={props.bind?.progress} className={classes.button}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.buttonText}
+        </Button>
+    );
+}
+
 export const ContactFormView = (props: IBinding): JSX.Element =>
 {
     const classes = ContactFormStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                disabled={props.bind?.progress} className={classes.button}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.buttonText}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -116,7 +116,7 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                 </Grid>
                             </Grid>
                             <Box my={2} data-aos="fade-up">
-                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
                             </Box>
                         </Box>
                     </Box>

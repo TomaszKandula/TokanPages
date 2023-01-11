@@ -34,30 +34,31 @@ interface IProperties
     sectionAccountRemoval: ISectionAccountRemoval;
 }
 
+const DeleteAccountButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UserRemovalStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.deleteButtonHandler} type="submit" variant="contained" 
+            disabled={props.bind?.deleteAccountProgress} className={classes.delete_update}>
+            {props.bind?.deleteAccountProgress &&  <CircularProgress size={20} />}
+            {!props.bind?.deleteAccountProgress && props.bind?.sectionAccountRemoval?.deleteButtonText}
+        </Button>
+    );
+}
+
+const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
+{
+    const classes = UserRemovalStyle();
+    return(
+        <Box mt={args.marginTop} mb={args.marginBottom}>
+            <Divider className={classes.divider} />
+        </Box>
+    );
+}
+
 export const UserRemovalView = (props: IBinding): JSX.Element => 
 {
     const classes = UserRemovalStyle();
-
-    const DeleteAccountButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.deleteButtonHandler} type="submit" variant="contained" 
-                disabled={props.bind?.deleteAccountProgress} className={classes.delete_update}>
-                {props.bind?.deleteAccountProgress &&  <CircularProgress size={20} />}
-                {!props.bind?.deleteAccountProgress && props.bind?.sectionAccountRemoval?.deleteButtonText}
-            </Button>
-        );
-    }
-
-    const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
-    {
-        return(
-            <Box mt={args.marginTop} mb={args.marginBottom}>
-                <Divider className={classes.divider} />
-            </Box>
-        );
-    }
-
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
@@ -87,7 +88,7 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                                     <Box my={2}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
-                                        : <DeleteAccountButton />}
+                                        : <DeleteAccountButton {...props} />}
                                     </Box>
                                 </Grid>
                             </Box>

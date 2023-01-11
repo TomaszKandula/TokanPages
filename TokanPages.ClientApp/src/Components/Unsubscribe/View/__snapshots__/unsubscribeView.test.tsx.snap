@@ -60,7 +60,31 @@ exports[`Test component: unsubscribeView. Renders correctly '<UnsubscribeView />
                 Please contact us should you have any questions
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
-            <ActiveButton />
+            <ActiveButton
+              bind={
+                Object {
+                  "buttonHandler": [MockFunction],
+                  "buttonState": false,
+                  "contentPost": Object {
+                    "button": "Unsubscribe",
+                    "caption": "Cancel your subscribtion",
+                    "text1": "We are sorry to see you go...",
+                    "text2": "...but we understand there are circumstances",
+                    "text3": "Please contact us should you have any questions",
+                  },
+                  "contentPre": Object {
+                    "button": "Unsubscribe",
+                    "caption": "Cancel your subscribtion",
+                    "text1": "We are sorry to see you go...",
+                    "text2": "...but we understand there are circumstances",
+                    "text3": "Please contact us should you have any questions",
+                  },
+                  "isLoading": false,
+                  "isRemoved": false,
+                  "progress": false,
+                }
+              }
+            />
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
       </WithStyles(ForwardRef(Card))>
