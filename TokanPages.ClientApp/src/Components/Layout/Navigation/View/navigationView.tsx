@@ -94,14 +94,14 @@ const RenderContent = (props: IBinding): JSX.Element =>
         <>
             <Box className={classes.languagesBox}>
                 <RenderLanguageSelection 
-                    bind={props.bind} 
+                    {...props} 
                     styleSelect={classes.languages_selection} 
                     styleMenu={classes.languages_menu}
                 />
             </Box>
             <div className={classes.user_avatar}>
                 <IconButton color="inherit" onClick={props.bind?.infoHandler} >
-                    <RenderAvatar bind={props.bind} /> 
+                    <RenderAvatar {...props} /> 
                 </IconButton>
             </div>
         </>
@@ -120,14 +120,14 @@ export const NavigationView = (props: IBinding): JSX.Element =>
 
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
-                            {props.bind?.isLoading ? null : <RenderMenuIcon bind={props.bind} />}
+                            {props.bind?.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>
                         <Grid item xs className={classes.app_link}>
                             <Typography className={classes.app_full_logo}>{fullName}</Typography>
                             <Typography className={classes.app_just_logo}>{justLogo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            {props.bind?.isLoading ? null : <RenderContent bind={props.bind} />}
+                            {props.bind?.isLoading ? null : <RenderContent {...props} />}
                         </Grid>
                     </Grid>
 
