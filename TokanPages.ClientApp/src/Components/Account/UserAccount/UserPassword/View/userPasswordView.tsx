@@ -38,30 +38,31 @@ interface IProperties
     sectionAccountPassword: ISectionAccountPassword;
 }
 
+const UpdatePasswordButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UserPasswordStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.passwordButtonHandler} type="submit" variant="contained" 
+            disabled={props.bind?.passwordFormProgress} className={classes.button_update}>
+            {props.bind?.passwordFormProgress &&  <CircularProgress size={20} />}
+            {!props.bind?.passwordFormProgress && props.bind?.sectionAccountPassword?.updateButtonText}
+        </Button>
+    );
+}
+
+const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
+{
+    const classes = UserPasswordStyle();
+    return(
+        <Box mt={args.marginTop} mb={args.marginBottom}>
+            <Divider className={classes.divider} />
+        </Box>
+    );
+}
+
 export const UserPasswordView = (props: IBinding): JSX.Element => 
 {
     const classes = UserPasswordStyle();
-
-    const UpdatePasswordButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.passwordButtonHandler} type="submit" variant="contained" 
-                disabled={props.bind?.passwordFormProgress} className={classes.button_update}>
-                {props.bind?.passwordFormProgress &&  <CircularProgress size={20} />}
-                {!props.bind?.passwordFormProgress && props.bind?.sectionAccountPassword?.updateButtonText}
-            </Button>
-        );
-    }
-
-    const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
-    {
-        return(
-            <Box mt={args.marginTop} mb={args.marginBottom}>
-                <Divider className={classes.divider} />
-            </Box>
-        );
-    }
-
     return(
         <section className={classes.section}>
             <Container maxWidth="md">                
@@ -126,7 +127,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                     <Box my={2}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
-                                        : <UpdatePasswordButton />}
+                                        : <UpdatePasswordButton {...props} />}
                                     </Box>
                                 </Grid>
                             </Box>
