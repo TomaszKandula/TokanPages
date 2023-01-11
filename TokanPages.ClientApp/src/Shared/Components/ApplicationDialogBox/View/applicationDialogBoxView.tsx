@@ -46,7 +46,7 @@ export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
             aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
-                    <RenderIcon bind={props.bind} />
+                    <RenderIcon {...props} />
                     {ReactHtmlParser(props.bind?.title)}
                 </div>
             </DialogTitle>

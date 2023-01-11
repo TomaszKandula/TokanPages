@@ -67,7 +67,7 @@ export const UpdateSubscriberView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton bind={props.bind} />}
+                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>

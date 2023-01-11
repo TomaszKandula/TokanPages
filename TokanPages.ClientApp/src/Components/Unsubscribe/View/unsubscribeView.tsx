@@ -69,7 +69,7 @@ export const UnsubscribeView = (props: IBinding): JSX.Element =>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text3}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton bind={props.bind} />}
+                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                         </Box>
                         </CardContent>
                     </Card>
