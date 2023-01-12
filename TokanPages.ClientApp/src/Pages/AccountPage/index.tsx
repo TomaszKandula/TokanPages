@@ -41,11 +41,11 @@ export const AccountPage = (): JSX.Element =>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
 
             {isAnonymous 
-            ? <AccessDenied content={account?.content} isLoading={navigation?.isLoading}  /> 
+            ? <AccessDenied content={account?.content} isLoading={account?.isLoading}  /> 
             : <>
-                <UserInfo content={account?.content} isLoading={navigation?.isLoading}  />
-                <UserPassword content={account?.content} isLoading={navigation?.isLoading} />
-                <UserRemoval content={account?.content} isLoading={navigation?.isLoading} />
+                <UserInfo content={account?.content} isLoading={account?.isLoading}  />
+                <UserPassword content={account?.content} isLoading={account?.isLoading} />
+                <UserRemoval content={account?.content} isLoading={account?.isLoading} />
             </>}
             
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
