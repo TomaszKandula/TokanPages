@@ -53,6 +53,11 @@ export const UpdateUserLanguage = (manifest: IGetContentManifestDto): void =>
     const dispatch = useDispatch();
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
 
+    if (language === undefined) 
+    {
+        return;
+    }
+
     if (language.id !== languageId)
     {
         dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
