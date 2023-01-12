@@ -27,21 +27,21 @@ interface IProperties
     labelEmail: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = NewsletterStyle();
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            className={classes.button} disabled={props.bind?.progress}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && props.bind?.buttonText}
+        </Button>
+    );
+}
+
 export const NewsletterView = (props: IBinding): JSX.Element =>
 {
     const classes = NewsletterStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.progress}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.buttonText}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -69,7 +69,7 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
                                                     variant="outlined" size="small" name="email" id="email_newletter" autoComplete="email" />}
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
                                             </Grid>
                                         </Grid>
                                     </Box>
