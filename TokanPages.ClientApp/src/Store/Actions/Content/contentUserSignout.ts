@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_SIGNOUT_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_SIGNOUT_CONTENT } from "../../../Api/Request";
 import { IUserSignoutContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_USER_SIGNOUT_CONTENT";
 export const RECEIVE = "RECEIVE_USER_SIGNOUT_CONTENT";
@@ -23,7 +22,7 @@ export const ContentUserSignoutAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

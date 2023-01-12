@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_HEADER_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_HEADER_CONTENT } from "../../../Api/Request";
 import { IHeaderContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_HEADER_CONTENT";
 export const RECEIVE = "RECEIVE_HEADER_CONTENT";
@@ -23,7 +22,7 @@ export const ContentHeaderAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

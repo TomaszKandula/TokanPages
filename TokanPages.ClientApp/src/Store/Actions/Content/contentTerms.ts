@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_TERMS_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_TERMS_CONTENT } from "../../../Api/Request";
 import { IDocumentContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_TERMS_CONTENT";
 export const RECEIVE = "RECEIVE_TERMS_CONTENT";
@@ -23,7 +22,7 @@ export const ContentTermsAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

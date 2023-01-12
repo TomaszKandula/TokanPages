@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_FOOTER_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_FOOTER_CONTENT } from "../../../Api/Request";
 import { IFooterContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_FOOTER_CONTENT";
 export const RECEIVE = "RECEIVE_FOOTER_CONTENT";
@@ -23,7 +22,7 @@ export const ContentFooterAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

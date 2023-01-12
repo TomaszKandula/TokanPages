@@ -6,7 +6,11 @@ import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
-import { EnrichConfiguration } from "../../../Api/Request";
+import { 
+    REAUTHENTICATE as REAUTHENTICATE_USER, 
+    IRequest,
+    GetConfiguration
+} from "../../../Api/Request";
 
 export const REAUTHENTICATE = "REAUTHENTICATE_USER";
 export const CLEAR = "REAUTHENTICATE_USER_CLEAR";
@@ -16,6 +20,7 @@ interface IClear { type: typeof CLEAR }
 interface IResponse { type: typeof RESPONSE; payload: any; }
 export type TKnownActions = IReAuthenticate | IClear | IResponse | TUpdateActions;
 
+//TODO: refactor, simplify
 export const UserReAuthenticateAction = 
 {
     clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
@@ -32,12 +37,15 @@ export const UserReAuthenticateAction =
             refreshToken: userData.refreshToken
         }
 
-        axios(EnrichConfiguration(
-        { 
-            method: "POST", 
-            url: REAUTHENTICATE, 
-            data: payload
-        }))
+        const request: IRequest = {
+            configuration: {
+                method: "POST", 
+                url: REAUTHENTICATE_USER, 
+                data: payload
+            }
+        }
+
+        axios(GetConfiguration(request))
         .then(response => 
         {
             if (response.status === 200)

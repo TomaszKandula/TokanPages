@@ -1,10 +1,12 @@
-import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { IUpdateUserDto } from "../../../Api/Models";
-import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
-import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration, UPDATE_USER } from "../../../Api/Request";
+import { 
+    Execute, 
+    GetConfiguration, 
+    IExecute, 
+    IRequest, 
+    UPDATE_USER
+} from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_USER";
 export const CLEAR = "UPDATE_USER_CLEAR";
@@ -24,26 +26,20 @@ export const UserUpdateAction =
     {
         dispatch({ type: UPDATE });
 
-        axios(EnrichConfiguration(
-        { 
-            method: "POST", 
-            url: UPDATE_USER, 
-            data: payload
-        }))
-        .then(response => 
-        {
-            if (response.status === 200)
-            {
-                return response.data === null 
-                    ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR}) 
-                    : dispatch({ type: RESPONSE, payload: response.data });
+        const request: IRequest = {
+            configuration: {
+                method: "POST", 
+                url: UPDATE_USER, 
+                data: payload
             }
-            
-            RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status })});
-        })
-        .catch(error => 
-        {
-            RaiseError({ dispatch: dispatch, errorObject: error });
-        });
+        }
+    
+        const input: IExecute = {
+            configuration: GetConfiguration(request),
+            dispatch: dispatch,
+            responseType: RESPONSE
+        }
+
+        Execute(input);
     }
 }

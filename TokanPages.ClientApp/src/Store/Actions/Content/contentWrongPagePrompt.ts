@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Api/Request";
 import { IWrongPagePromptContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_WRONG_PAGE_CONTENT";
 export const RECEIVE = "RECEIVE_WRONG_PAGE_CONTENT";
@@ -23,7 +22,7 @@ export const ContentWrongPagePromptAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

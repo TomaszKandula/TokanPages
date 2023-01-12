@@ -1,10 +1,12 @@
-import axios from "axios";
 import { IApplicationAction } from "../../Configuration";
 import { ISendMessageDto } from "../../../Api/Models";
-import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
-import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { EnrichConfiguration, SEND_MESSAGE } from "../../../Api/Request";
+import { 
+    Execute, 
+    GetConfiguration, 
+    IExecute, 
+    IRequest, 
+    SEND_MESSAGE 
+} from "../../../Api/Request";
 
 export const SEND = "SEND_MESSAGE";
 export const CLEAR = "SEND_MESSAGE_CLEAR";
@@ -24,26 +26,20 @@ export const ApplicationMessageAction =
     {
         dispatch({ type: SEND });
 
-        axios(EnrichConfiguration(
-        { 
-            method: "POST", 
-            url: SEND_MESSAGE, 
-            data: payload
-        }))
-        .then(response => 
-        {
-            if (response.status === 200)
-            {
-                return response.data === null 
-                    ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR }) 
-                    : dispatch({ type: RESPONSE, payload: response.data })
+        const request: IRequest = {
+            configuration: {
+                method: "POST", 
+                url: SEND_MESSAGE, 
+                data: payload
             }
-            
-            RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status })} );
-        })
-        .catch(error => 
-        {
-            RaiseError({ dispatch: dispatch, errorObject: error });
-        });     
+        }
+    
+        const input: IExecute = {
+            configuration: GetConfiguration(request),
+            dispatch: dispatch,
+            responseType: RESPONSE
+        }
+
+        Execute(input);  
     }
 }

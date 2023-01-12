@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_TESTIMONIALS_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_TESTIMONIALS_CONTENT } from "../../../Api/Request";
 import { ITestimonialsContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_TESTIMONIALS_CONTENT";
 export const RECEIVE = "RECEIVE_TESTIMONIALS_CONTENT";
@@ -23,7 +22,7 @@ export const ContentTestimonialsAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

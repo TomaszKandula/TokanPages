@@ -4,8 +4,7 @@ import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
 
 import { 
-    ApiCall, 
-    EnrichConfiguration, 
+    ExecuteAsync, 
     UPDATE_ARTICLE_CONTENT, 
     UPDATE_ARTICLE_COUNT, 
     UPDATE_ARTICLE_LIKES, 
@@ -31,13 +30,13 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {
     dispatch({ type: UPDATE });
 
-    let result = await ApiCall(EnrichConfiguration(
+    let result = await ExecuteAsync(
     {
         url: url,
         method: "POST",
         responseType: "json",
         data: data
-    }));
+    });
 
     if (result.error !== null)
     {
