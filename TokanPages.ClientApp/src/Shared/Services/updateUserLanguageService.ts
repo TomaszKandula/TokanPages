@@ -49,6 +49,6 @@ export const UpdateUserLanguage = (manifest: IGetContentManifestDto): void =>
     const preservedId = GetDataFromStorage({ key: SELECTED_LANGUAGE }) as string;
     const languageId = IsLanguageIdValid(preservedId, languages) ? preservedId : defaultId;
 
-    const dispatch = useDispatch();    
+    const dispatch = useDispatch();
     dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
 }
