@@ -47,7 +47,7 @@ export const AccessDeniedView = (props: IContentAccount): JSX.Element =>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
-                                <Typography className={classes.caption}>
+                                <Typography component="span" className={classes.caption}>
                                     {props.isLoading 
                                     ? <Skeleton variant="text" /> 
                                     : props.content?.sectionAccessDenied?.accessDeniedCaption}

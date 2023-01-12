@@ -99,7 +99,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
-                                <Typography className={classes.caption}>
+                                <Typography component="span" className={classes.caption}>
                                     <RenderText 
                                         {...props} 
                                         value={props.bind?.sectionAccountInformation?.caption} 
@@ -110,7 +110,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                             <Box pt={5} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span"  className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelUserId} 
@@ -118,7 +118,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        <Typography className={classes.user_id}>
+                                        <Typography component="span" className={classes.user_id}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.userStore?.userId} 
@@ -126,7 +126,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelUserAlias}
@@ -134,7 +134,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        <Typography className={classes.user_alias}>
+                                        <Typography component="span" className={classes.user_alias}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.userStore?.aliasName} 
@@ -142,7 +142,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelUserAvatar}
@@ -161,7 +161,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelFirstName}
@@ -176,7 +176,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             variant="outlined" name="firstName" id="firstName" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelLastName} 
@@ -191,7 +191,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             variant="outlined" name="lastName" id="lastName" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelEmail}
@@ -206,7 +206,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             variant="outlined" name="email" id="email" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelShortBio}
@@ -221,7 +221,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             minRows={6} variant="outlined" name="userAboutText" id="userAboutText" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelIsActivated} 
