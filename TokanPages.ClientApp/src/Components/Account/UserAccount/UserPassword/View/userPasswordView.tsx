@@ -70,7 +70,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
-                                <Typography className={classes.caption}>
+                                <Typography component="span" className={classes.caption}>
                                     {props.bind?.isLoading 
                                     ? <Skeleton variant="text" /> 
                                     : props.bind?.sectionAccountPassword?.caption}
@@ -80,7 +80,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                             <Box pt={5} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             {props.bind?.isLoading 
                                             ? <Skeleton variant="text" /> 
                                             : props.bind?.sectionAccountPassword?.labelOldPassword}
@@ -94,7 +94,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" name="oldPassword" id="oldPassword" type="password" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             {props.bind?.isLoading 
                                             ? <Skeleton variant="text" /> 
                                             : props.bind?.sectionAccountPassword?.labelNewPassword}
@@ -108,7 +108,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" name="newPassword" id="newPassword" type="password" />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             {props.bind?.isLoading 
                                             ? <Skeleton variant="text" /> 
                                             : props.bind?.sectionAccountPassword?.labelConfirmPassword}

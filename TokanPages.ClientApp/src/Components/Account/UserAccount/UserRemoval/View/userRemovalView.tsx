@@ -66,7 +66,7 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
-                                <Typography className={classes.caption}>
+                                <Typography component="span" className={classes.caption}>
                                     {props.bind?.isLoading 
                                     ? <Skeleton variant="text" /> 
                                     : props.bind?.sectionAccountRemoval?.caption}
@@ -76,9 +76,9 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                             <Box pt={1} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item>
-                                        <Typography className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             {props.bind?.isLoading 
-                                            ? <Skeleton variant="text" /> 
+                                            ? <Skeleton variant="text" width="200px" /> 
                                             : ReactHtmlParser(props.bind?.sectionAccountRemoval?.warningText)}
                                         </Typography>
                                     </Grid>
