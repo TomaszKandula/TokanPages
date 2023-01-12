@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_CLIENTS_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_CLIENTS_CONTENT } from "../../../Api/Request";
 import { IClientsContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_CLIENTS_CONTENT";
 export const RECEIVE = "RECEIVE_CLIENTS_CONTENT";
@@ -23,7 +22,7 @@ export const ContentClientsAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

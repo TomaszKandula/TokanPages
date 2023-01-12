@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_NAVIGATION_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_NAVIGATION_CONTENT } from "../../../Api/Request";
 import { INavigationContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_NAVIGATION_CONTENT";
 export const RECEIVE = "RECEIVE_NAVIGATION_CONTENT";
@@ -23,7 +22,7 @@ export const ContentNavigationAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Api/Request";
 import { IUpdateSubscriberContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_UPDATE_SUBSCRIBER_CONTENT";
 export const RECEIVE = "RECEIVE_UPDATE_SUBSCRIBER_CONTENT";
@@ -23,7 +22,7 @@ export const ContentUpdateSubscriberAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

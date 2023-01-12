@@ -1,4 +1,17 @@
-export { EnrichConfiguration, ApiCall } from "./services";
+export type { 
+    IExecute,
+    IGetContent,
+    IPromiseResult,
+    IRequest
+} from "./abstractions";
+
+export { 
+    GetConfiguration, 
+    GetContent,
+    Execute,
+    ExecuteAsync
+} from "./services";
+
 export {
     GET_ARTICLES,
     GET_ARTICLE,
