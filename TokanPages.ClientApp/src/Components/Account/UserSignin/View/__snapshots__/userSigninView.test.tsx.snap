@@ -47,7 +47,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                   label="Email address"
                   name="email"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="ester.exposito@gmail.com"
                   variant="outlined"
@@ -64,7 +64,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                   label="Password"
                   name="password"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   type="password"
                   value="madrilena123"

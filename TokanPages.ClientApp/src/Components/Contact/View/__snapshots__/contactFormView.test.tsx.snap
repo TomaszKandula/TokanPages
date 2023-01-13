@@ -46,7 +46,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="First name"
                   name="firstName"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Ester"
                   variant="outlined"
@@ -68,7 +68,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="Last name"
                   name="lastName"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Exposito"
                   variant="outlined"
@@ -89,7 +89,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="Email address"
                   name="email"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="ester.exposito@gmail.com"
                   variant="outlined"
@@ -110,7 +110,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="Subject"
                   name="subject"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Test subject"
                   variant="outlined"
@@ -133,7 +133,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   multiline={true}
                   name="message"
                   onChange={[MockFunction]}
-                  onKeyDown={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Test message..."
                   variant="outlined"

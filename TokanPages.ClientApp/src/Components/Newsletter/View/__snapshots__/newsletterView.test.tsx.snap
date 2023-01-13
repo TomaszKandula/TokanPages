@@ -68,7 +68,7 @@ exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' 
                       label="Email address"
                       name="email"
                       onChange={[MockFunction]}
-                      onKeyDown={[MockFunction]}
+                      onKeyUp={[MockFunction]}
                       required={true}
                       size="small"
                       value="ester.exposito@gmail.com"
