@@ -38,10 +38,16 @@ const DeleteAccountButton = (props: IBinding): JSX.Element =>
 {
     const classes = UserRemovalStyle();
     return(
-        <Button fullWidth onClick={props.bind?.deleteButtonHandler} type="submit" variant="contained" 
-            disabled={props.bind?.deleteAccountProgress} className={classes.delete_update}>
-            {props.bind?.deleteAccountProgress &&  <CircularProgress size={20} />}
-            {!props.bind?.deleteAccountProgress && props.bind?.sectionAccountRemoval?.deleteButtonText}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.deleteButtonHandler} 
+            disabled={props.bind?.deleteAccountProgress} 
+            className={classes.delete_update}>
+            {!props.bind?.deleteAccountProgress 
+            ? props.bind?.sectionAccountRemoval?.deleteButtonText 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }

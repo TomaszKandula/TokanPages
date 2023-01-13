@@ -55,10 +55,16 @@ const UpdateAccountButton = (props: IBinding): JSX.Element =>
 {
     const classes = UserInfoStyle();
     return(
-        <Button fullWidth onClick={props.bind?.accountButtonHandler} type="submit" variant="contained" 
-            disabled={props.bind?.accountFormProgress} className={classes.button_update}>
-            {props.bind?.accountFormProgress &&  <CircularProgress size={20} />}
-            {!props.bind?.accountFormProgress && props.bind?.sectionAccountInformation?.updateButtonText}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.accountButtonHandler} 
+            disabled={props.bind?.accountFormProgress} 
+            className={classes.button_update}>
+            {!props.bind?.accountFormProgress 
+            ? props.bind?.sectionAccountInformation?.updateButtonText 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -67,8 +73,11 @@ const UploadAvatarButton = (props: IBinding): JSX.Element =>
 {
     const classes = UserInfoStyle();
     return(
-        <IconButton onClick={props.bind?.avatarButtonHandler} size="small"
-            disabled={props.bind?.avatarUploadProgress} className={classes.button_upload}>
+        <IconButton 
+            size="small"
+            onClick={props.bind?.avatarButtonHandler} 
+            disabled={props.bind?.avatarUploadProgress} 
+            className={classes.button_upload}>
             <BackupIcon />
         </IconButton>
     );
@@ -110,7 +119,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                             <Box pt={5} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography component="span"  className={classes.label}>
+                                        <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
                                                 value={props.bind?.sectionAccountInformation?.labelUserId} 
@@ -171,9 +180,15 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                                        : <TextField required fullWidth value={props.bind?.accountForm?.firstName}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="firstName"
+                                            name="firstName" 
+                                            variant="outlined" 
+                                            value={props.bind?.accountForm?.firstName}
                                             onChange={props.bind?.accountFormHandler} 
-                                            variant="outlined" name="firstName" id="firstName" />}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
@@ -186,9 +201,15 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth value={props.bind?.accountForm?.lastName}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="lastName"
+                                            name="lastName" 
+                                            variant="outlined" 
+                                            value={props.bind?.accountForm?.lastName}
                                             onChange={props.bind?.accountFormHandler} 
-                                            variant="outlined" name="lastName" id="lastName" />}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
@@ -201,9 +222,15 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth value={props.bind?.accountForm?.email}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="email"
+                                            name="email" 
+                                            variant="outlined" 
+                                            value={props.bind?.accountForm?.email}
                                             onChange={props.bind?.accountFormHandler}
-                                            variant="outlined" name="email" id="email" />}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
@@ -216,9 +243,17 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth multiline value={props.bind?.accountForm?.userAboutText}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            multiline 
+                                            minRows={6} 
+                                            id="userAboutText"
+                                            name="userAboutText" 
+                                            variant="outlined" 
+                                            value={props.bind?.accountForm?.userAboutText}
                                             onChange={props.bind?.accountFormHandler} 
-                                            minRows={6} variant="outlined" name="userAboutText" id="userAboutText" />}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
@@ -232,9 +267,13 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <FormControlLabel
-                                            control={<CustomSwitchStyle checked={props.bind?.isUserActivated} 
-                                            onChange={props.bind?.accountSwitchHandler} name="checked" />}
-                                            label={props.bind?.sectionAccountInformation?.isActivatedText} />}
+                                            control={<CustomSwitchStyle 
+                                                name="checked" 
+                                                checked={props.bind?.isUserActivated} 
+                                                onChange={props.bind?.accountSwitchHandler} 
+                                            />}
+                                            label={props.bind?.sectionAccountInformation?.isActivatedText}
+                                        />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
