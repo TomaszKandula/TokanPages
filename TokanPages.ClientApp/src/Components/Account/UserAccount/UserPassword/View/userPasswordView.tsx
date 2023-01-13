@@ -32,6 +32,7 @@ interface IProperties
     newPassword: string;
     confirmPassword: string;
     passwordFormProgress: boolean;
+    passwordKeyHandler: any;
     passwordFormHandler: any;
     passwordButtonHandler: any;
     sectionAccessDenied: ISectionAccessDenied;
@@ -103,6 +104,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password"
                                             value={props.bind?.oldPassword}
+                                            onKeyDown={props.bind?.passwordKeyHandler}
                                             onChange={props.bind?.passwordFormHandler} 
                                         />}
                                     </Grid>
@@ -124,6 +126,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password"
                                             value={props.bind?.newPassword}
+                                            onKeyDown={props.bind?.passwordKeyHandler}
                                             onChange={props.bind?.passwordFormHandler} 
                                         />}
                                     </Grid>
@@ -145,6 +148,7 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password"
                                             value={props.bind?.confirmPassword}
+                                            onKeyDown={props.bind?.passwordKeyHandler}
                                             onChange={props.bind?.passwordFormHandler} 
                                         />}
                                     </Grid>
