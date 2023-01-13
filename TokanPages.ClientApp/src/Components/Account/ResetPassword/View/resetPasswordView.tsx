@@ -22,6 +22,7 @@ interface IProperties
     caption: string;
     button: string;
     email: string;
+    keyHandler: any;
     formHandler: any;
     buttonHandler: any;
     labelEmail: string;
@@ -31,10 +32,16 @@ const ActiveButton = (props: IBinding): JSX.Element =>
 {
     const classes = ResetPasswordStyle();
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-            className={classes.button} disabled={props.bind?.progress}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && props.bind?.button}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.buttonHandler} 
+            className={classes.button} 
+            disabled={props.bind?.progress}>
+            {!props.bind?.progress 
+            ? props.bind?.button 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -51,7 +58,9 @@ export const ResetPasswordView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -59,12 +68,24 @@ export const ResetPasswordView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                            variant="outlined" name="email" id="email" autoComplete="email" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth
+                                            id="email" 
+                                            name="email" 
+                                            variant="outlined" 
+                                            autoComplete="email" 
+                                            onKeyDown={props.bind?.keyHandler} 
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.email} 
+                                            label={props.bind?.labelEmail}
+                                        />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                                    : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>   

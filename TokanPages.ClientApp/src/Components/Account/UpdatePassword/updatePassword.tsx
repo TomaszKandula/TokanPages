@@ -101,6 +101,14 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            buttonHandler();
+        }
+    }
+
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
@@ -132,6 +140,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             button: props.content.button,
             newPassword: form.newPassword,
             verifyPassword: form.verifyPassword,
+            keyHandler: keyHandler,
             formHandler: formHandler,
             buttonHandler: buttonHandler,
             disableForm: disableForm,

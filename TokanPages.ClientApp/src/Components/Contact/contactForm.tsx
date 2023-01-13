@@ -96,6 +96,14 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            buttonHandler();
+        }
+    }
+
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         if (event.currentTarget.name !== "terms")
@@ -133,6 +141,7 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
         isLoading: props.isLoading,
         caption: props.content?.caption,
         text: props.content?.text,
+        keyHandler: keyHandler,
         formHandler: formHandler,
         firstName: form.firstName,
         lastName: form.lastName,

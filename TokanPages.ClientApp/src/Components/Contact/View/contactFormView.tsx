@@ -21,6 +21,7 @@ interface IProperties
     isLoading: boolean;
     caption: string;
     text: string;
+    keyHandler: any;
     formHandler: any;
     firstName: string;
     lastName: string;
@@ -43,10 +44,16 @@ const ActiveButton = (props: IBinding): JSX.Element =>
 {
     const classes = ContactFormStyle();
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-            disabled={props.bind?.progress} className={classes.button}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && props.bind?.buttonText}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.buttonHandler} 
+            disabled={props.bind?.progress} 
+            className={classes.button}>
+            {!props.bind?.progress 
+            ? props.bind?.buttonText 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -61,7 +68,9 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                     <Box pt={8} pb={10}>
                         <Box mb={6} textAlign="center" data-aos="fade-down">
                             <Typography gutterBottom={true} className={classes.caption}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption?.toUpperCase()}
+                                {props.bind?.isLoading 
+                                ? <Skeleton variant="text" /> 
+                                : props.bind?.caption?.toUpperCase()}
                             </Typography>
                         </Box>
                         <Box>
@@ -70,53 +79,114 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                     <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.firstName} label={props.bind?.labelFirstName} 
-                                            name="firstName" id="firstName" autoComplete="fname" variant="outlined" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="firstName" 
+                                            name="firstName" 
+                                            autoComplete="fname" 
+                                            variant="outlined"
+                                            onKeyDown={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.firstName} 
+                                            label={props.bind?.labelFirstName} 
+                                        />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.lastName} label={props.bind?.labelLastName} 
-                                            name="lastName" id="lastName" autoComplete="lname" variant="outlined" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="lastName" 
+                                            name="lastName" 
+                                            autoComplete="lname" 
+                                            variant="outlined"
+                                            onKeyDown={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.lastName} 
+                                            label={props.bind?.labelLastName} 
+                                        />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail} 
-                                            name="email" id="email" autoComplete="email" variant="outlined" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="email" 
+                                            name="email" 
+                                            autoComplete="email" 
+                                            variant="outlined"
+                                            onKeyDown={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.email} 
+                                            label={props.bind?.labelEmail} 
+                                        />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                 <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.subject} label={props.bind?.labelSubject} 
-                                            name="subject" id="subject" autoComplete="subject" variant="outlined" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="subject" 
+                                            name="subject" 
+                                            autoComplete="subject" 
+                                            variant="outlined"
+                                            onKeyDown={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.subject} 
+                                            label={props.bind?.labelSubject} 
+                                        />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                 <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required multiline onChange={props.bind?.formHandler} value={props.bind?.message} label={props.bind?.labelMessage} 
-                                            minRows={6} fullWidth autoComplete="message" name="message" id="message" variant="outlined" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            multiline 
+                                            minRows={6} 
+                                            id="message" 
+                                            name="message" 
+                                            autoComplete="message" 
+                                            variant="outlined"
+                                            onKeyDown={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.message} 
+                                            label={props.bind?.labelMessage} 
+                                        />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div data-aos="zoom-in">
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="30px" /> 
-                                        : <FormControlLabel control={<VioletCheckbox onChange={props.bind?.formHandler} checked={props.bind?.terms} name="terms" id="terms" />} 
-                                            label={props.bind?.consent} />}
+                                        : <FormControlLabel 
+                                            control={<VioletCheckbox 
+                                                onChange={props.bind?.formHandler} 
+                                                checked={props.bind?.terms} 
+                                                name="terms" 
+                                                id="terms" 
+                                            />} 
+                                            label={props.bind?.consent} 
+                                        />}
                                     </div>
                                 </Grid>
                             </Grid>
                             <Box my={2} data-aos="fade-up">
-                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
+                                {props.bind?.isLoading 
+                                ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                                : <ActiveButton {...props} />}
                             </Box>
                         </Box>
                     </Box>
