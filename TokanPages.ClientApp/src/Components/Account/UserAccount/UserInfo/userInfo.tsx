@@ -111,6 +111,14 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const accountKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            accountButtonHandler();
+        }
+    }
+
     const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         setAccountForm({ ...accountForm, [event.currentTarget.name]: event.currentTarget.value }); 
@@ -141,6 +149,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             accountForm: accountForm,
             isUserActivated: isUserActivated.checked,
             accountFormProgress: progress,           
+            accountKeyHandler: accountKeyHandler,
             accountFormHandler: accountFormHandler,
             accountSwitchHandler: accountSwitchHandler,
             accountButtonHandler: accountButtonHandler,

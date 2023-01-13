@@ -20,7 +20,11 @@ const HomeButton = (props: IContentAccount): JSX.Element =>
     const classes = AccessDeniedStyle();
     return(
         <Link to="/" className={classes.home_link}>
-            <Button fullWidth variant="contained" className={classes.home_button} disabled={props.isLoading}>
+            <Button 
+                fullWidth 
+                variant="contained" 
+                className={classes.home_button} 
+                disabled={props.isLoading}>
                 {props.content?.sectionAccessDenied?.homeButtonText}
             </Button>
         </Link>

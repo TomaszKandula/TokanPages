@@ -85,6 +85,14 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            buttonHandler();
+        }
+    }
+
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
@@ -111,6 +119,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
             caption: props.content.caption,
             button: props.content.button,
             email: form.email,
+            keyHandler: keyHandler,
             formHandler: formHandler,
             buttonHandler: buttonHandler,
             labelEmail: props.content.labelEmail

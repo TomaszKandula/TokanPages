@@ -19,6 +19,7 @@ interface IProperties
     isLoading: boolean;
     caption: string;
     text: string;
+    keyHandler: any;
     formHandler: any;
     email: string;
     buttonHandler: any;
@@ -31,10 +32,16 @@ const ActiveButton = (props: IBinding): JSX.Element =>
 {
     const classes = NewsletterStyle();
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-            className={classes.button} disabled={props.bind?.progress}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && props.bind?.buttonText}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.buttonHandler} 
+            className={classes.button} 
+            disabled={props.bind?.progress}>
+            {!props.bind?.progress 
+            ? props.bind?.buttonText 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -49,11 +56,15 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
                             <Typography className={classes.caption} data-aos="fade-down">
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                {props.bind?.isLoading 
+                                ? <Skeleton variant="text" /> 
+                                : props.bind?.caption}
                             </Typography>
                             <div data-aos="zoom-in">
                                 <Typography className={classes.text}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.text}
                                 </Typography>
                             </div>
                         </Grid>
@@ -65,11 +76,24 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
                                             <Grid item xs={12} sm={7}>
                                                 {props.bind?.isLoading 
                                                 ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                                : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                                    variant="outlined" size="small" name="email" id="email_newletter" autoComplete="email" />}
+                                                : <TextField 
+                                                    required 
+                                                    fullWidth 
+                                                    id="email_newletter" 
+                                                    name="email" 
+                                                    variant="outlined" 
+                                                    size="small" 
+                                                    autoComplete="email"
+                                                    onKeyUp={props.bind?.keyHandler}
+                                                    onChange={props.bind?.formHandler} 
+                                                    value={props.bind?.email} 
+                                                    label={props.bind?.labelEmail}
+                                                />}
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
+                                                {props.bind?.isLoading 
+                                                ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                                                : <ActiveButton {...props} />}
                                             </Grid>
                                         </Grid>
                                     </Box>
@@ -81,5 +105,4 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
             </Container>
         </section>
     );
-
 }

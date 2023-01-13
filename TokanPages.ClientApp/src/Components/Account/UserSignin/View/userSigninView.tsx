@@ -25,6 +25,7 @@ interface IProperties
     link2: string;
     buttonHandler: any;
     progress: boolean;
+    keyHandler: any;
     formHandler: any;
     email: string;
     password: string;
@@ -36,10 +37,16 @@ const ActiveButton = (props: IBinding): JSX.Element =>
 {
     const classes = UserSigninStyle();
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-            className={classes.button} disabled={props.bind?.progress}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && props.bind?.button}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.buttonHandler} 
+            className={classes.button} 
+            disabled={props.bind?.progress}>
+            {!props.bind?.progress 
+            ? props.bind?.button 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -61,7 +68,9 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption} >
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -69,25 +78,52 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                            variant="outlined" name="email" id="email" autoComplete="email" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="email" 
+                                            name="email" 
+                                            variant="outlined" 
+                                            autoComplete="email" 
+                                            onKeyUp={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.email} 
+                                            label={props.bind?.labelEmail}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.password} label={props.bind?.labelPassword}
-                                            variant="outlined" name="password" id="password" type="password" autoComplete="current-password" />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="password" 
+                                            name="password" 
+                                            variant="outlined" 
+                                            type="password" 
+                                            autoComplete="current-password" 
+                                            onKeyUp={props.bind?.keyHandler}
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.password} 
+                                            label={props.bind?.labelPassword}
+                                        />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                                    : <ActiveButton {...props} />}
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
-                                        {props.bind?.isLoading ? <Skeleton variant="text" /> : <RedirectTo path="/signup" name={props.bind?.link1} />}
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="text" /> 
+                                        : <RedirectTo path="/signup" name={props.bind?.link1} />}
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
-                                        {props.bind?.isLoading ? <Skeleton variant="text" /> : <RedirectTo path="/resetpassword" name={props.bind?.link2} />}
+                                        {props.bind?.isLoading 
+                                        ? <Skeleton variant="text" /> 
+                                        : <RedirectTo path="/resetpassword" name={props.bind?.link2} />}
                                     </Grid>
                                 </Grid>
                             </Box>

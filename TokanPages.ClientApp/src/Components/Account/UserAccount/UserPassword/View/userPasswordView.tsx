@@ -32,6 +32,7 @@ interface IProperties
     newPassword: string;
     confirmPassword: string;
     passwordFormProgress: boolean;
+    passwordKeyHandler: any;
     passwordFormHandler: any;
     passwordButtonHandler: any;
     sectionAccessDenied: ISectionAccessDenied;
@@ -42,10 +43,16 @@ const UpdatePasswordButton = (props: IBinding): JSX.Element =>
 {
     const classes = UserPasswordStyle();
     return(
-        <Button fullWidth onClick={props.bind?.passwordButtonHandler} type="submit" variant="contained" 
-            disabled={props.bind?.passwordFormProgress} className={classes.button_update}>
-            {props.bind?.passwordFormProgress &&  <CircularProgress size={20} />}
-            {!props.bind?.passwordFormProgress && props.bind?.sectionAccountPassword?.updateButtonText}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.passwordButtonHandler} 
+            disabled={props.bind?.passwordFormProgress} 
+            className={classes.button_update}>
+            {!props.bind?.passwordFormProgress 
+            ? props.bind?.sectionAccountPassword?.updateButtonText 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -89,9 +96,17 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth value={props.bind?.oldPassword}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="oldPassword" 
+                                            name="oldPassword" 
+                                            variant="outlined" 
+                                            type="password"
+                                            value={props.bind?.oldPassword}
+                                            onKeyUp={props.bind?.passwordKeyHandler}
                                             onChange={props.bind?.passwordFormHandler} 
-                                            variant="outlined" name="oldPassword" id="oldPassword" type="password" />}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
@@ -103,9 +118,17 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth value={props.bind?.newPassword}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="newPassword" 
+                                            name="newPassword" 
+                                            variant="outlined" 
+                                            type="password"
+                                            value={props.bind?.newPassword}
+                                            onKeyUp={props.bind?.passwordKeyHandler}
                                             onChange={props.bind?.passwordFormHandler} 
-                                            variant="outlined" name="newPassword" id="newPassword" type="password" />}
+                                        />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
@@ -117,9 +140,17 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField required fullWidth value={props.bind?.confirmPassword}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="confirmPassword" 
+                                            name="confirmPassword" 
+                                            variant="outlined" 
+                                            type="password"
+                                            value={props.bind?.confirmPassword}
+                                            onKeyUp={props.bind?.passwordKeyHandler}
                                             onChange={props.bind?.passwordFormHandler} 
-                                            variant="outlined" name="confirmPassword" id="confirmPassword" type="password" />}
+                                        />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />

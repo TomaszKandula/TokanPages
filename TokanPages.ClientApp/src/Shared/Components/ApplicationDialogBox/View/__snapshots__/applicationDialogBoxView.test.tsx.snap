@@ -32,6 +32,7 @@ exports[`Test view component for application diaog box. Renders correctly view c
   <WithStyles(ForwardRef(DialogContent))>
     <WithStyles(ForwardRef(Typography))
       className="makeStyles-description-6"
+      component="span"
       id="alert-dialog-description"
     >
       Test message

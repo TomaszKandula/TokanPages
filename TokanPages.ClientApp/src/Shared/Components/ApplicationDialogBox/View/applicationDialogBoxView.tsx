@@ -52,7 +52,7 @@ export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
             </DialogTitle>
             <Divider />
             <DialogContent>
-                <Typography className={classes.description} id="alert-dialog-description">
+                <Typography component="span" className={classes.description} id="alert-dialog-description">
                     {ReactHtmlParser(props.bind?.message)}
                 </Typography>
             </DialogContent>

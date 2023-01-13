@@ -12,6 +12,7 @@ describe("Test component: newsletterView.", () =>
             isLoading: false,
             caption: "Join the newsletter!",
             text: "We will never share your email address.",
+            keyHandler: jest.fn(),
             formHandler: jest.fn(),
             email: "ester.exposito@gmail.com",
             buttonHandler: jest.fn(),

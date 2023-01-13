@@ -72,6 +72,14 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            buttonHandler();
+        }
+    }
+
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
@@ -95,6 +103,7 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
         isLoading: props.isLoading,
         caption: props.content?.caption,
         text: props.content?.text,
+        keyHandler: keyHandler,
         formHandler: formHandler,
         email: form.email,
         buttonHandler: buttonHandler,

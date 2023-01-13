@@ -23,6 +23,7 @@ interface IProperties
     button: string;
     newPassword: string;
     verifyPassword: string;
+    keyHandler: any;
     formHandler: any;
     buttonHandler: any;
     disableForm: boolean;
@@ -34,10 +35,16 @@ const ActiveButton = (props: IBinding): JSX.Element =>
 {
     const classes = UpdatePasswordStyle();
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-            className={classes.button} disabled={props.bind?.progress || props.bind?.disableForm}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && props.bind?.button}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.buttonHandler} 
+            className={classes.button} 
+            disabled={props.bind?.progress || props.bind?.disableForm}>
+            {!props.bind?.progress 
+            ? props.bind?.button 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
@@ -54,7 +61,9 @@ export const UpdatePasswordView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.caption}
                                 </Typography>
                             </Box>
                             <Box>
@@ -62,18 +71,43 @@ export const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.newPassword} label={props.bind?.labelNewPassword}
-                                            variant="outlined" name="newPassword" id="newPassword" type="password" autoComplete="password" disabled={props.bind?.disableForm} />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth
+                                            id="newPassword" 
+                                            name="newPassword" 
+                                            variant="outlined" 
+                                            type="password" 
+                                            autoComplete="password" 
+                                            onKeyUp={props.bind?.keyHandler} 
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.newPassword} 
+                                            label={props.bind?.labelNewPassword}
+                                            disabled={props.bind?.disableForm} />}
                                     </Grid>
                                     <Grid item xs={12}>
                                        {props.bind?.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField required fullWidth onChange={props.bind?.formHandler} value={props.bind?.verifyPassword} label={props.bind?.labelVerifyPassword}
-                                            variant="outlined" name="verifyPassword" id="verifyPassword" type="password" autoComplete="password" disabled={props.bind?.disableForm} />}
+                                        : <TextField 
+                                            required 
+                                            fullWidth 
+                                            id="verifyPassword" 
+                                            name="verifyPassword" 
+                                            variant="outlined" 
+                                            type="password" 
+                                            autoComplete="password" 
+                                            onKeyUp={props.bind?.keyHandler} 
+                                            onChange={props.bind?.formHandler} 
+                                            value={props.bind?.verifyPassword} 
+                                            label={props.bind?.labelVerifyPassword}
+                                            disabled={props.bind?.disableForm}
+                                        />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton {...props} />}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                                    : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>   
