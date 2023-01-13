@@ -104,7 +104,7 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="lastName" 
                                             autoComplete="lname" 
                                             variant="outlined"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.lastName} 
                                             label={props.bind?.labelLastName} 
@@ -122,7 +122,7 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             autoComplete="email" 
                                             variant="outlined"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.email} 
                                             label={props.bind?.labelEmail} 
@@ -140,7 +140,7 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="subject" 
                                             autoComplete="subject" 
                                             variant="outlined"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.subject} 
                                             label={props.bind?.labelSubject} 
@@ -160,7 +160,7 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="message" 
                                             autoComplete="message" 
                                             variant="outlined"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.message} 
                                             label={props.bind?.labelMessage} 
