@@ -16,6 +16,7 @@ describe("Test account group component: updatePasswordView.", () =>
             button: "Submit",
             newPassword: "user1password",
             verifyPassword: "user1password",
+            keyHandler: jest.fn(),
             formHandler: jest.fn(),
             buttonHandler: jest.fn(),
             disableForm: false,
