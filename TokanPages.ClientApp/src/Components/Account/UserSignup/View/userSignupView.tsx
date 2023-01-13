@@ -92,7 +92,7 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             name="firstName" 
                                             variant="outlined" 
                                             autoComplete="fname" 
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.firstName} 
                                             label={props.bind?.labelFirstName}
@@ -108,7 +108,7 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             name="lastName" 
                                             variant="outlined" 
                                             autoComplete="lname"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.lastName} 
                                             label={props.bind?.labelLastName}
@@ -124,7 +124,7 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             autoComplete="email"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.email} 
                                             label={props.bind?.labelEmail}
@@ -141,7 +141,7 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password" 
                                             autoComplete="current-password"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.password} 
                                             label={props.bind?.labelPassword}

@@ -86,7 +86,7 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="firstName" 
                                             autoComplete="fname" 
                                             variant="outlined"
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.firstName} 
                                             label={props.bind?.labelFirstName} 

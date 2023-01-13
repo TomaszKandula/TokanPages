@@ -75,7 +75,7 @@ export const ResetPasswordView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             autoComplete="email" 
-                                            onKeyDown={props.bind?.keyHandler} 
+                                            onKeyUp={props.bind?.keyHandler} 
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.email} 
                                             label={props.bind?.labelEmail}

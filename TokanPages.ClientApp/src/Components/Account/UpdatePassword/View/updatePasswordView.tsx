@@ -79,7 +79,7 @@ export const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password" 
                                             autoComplete="password" 
-                                            onKeyDown={props.bind?.keyHandler} 
+                                            onKeyUp={props.bind?.keyHandler} 
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.newPassword} 
                                             label={props.bind?.labelNewPassword}
@@ -96,7 +96,7 @@ export const UpdatePasswordView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password" 
                                             autoComplete="password" 
-                                            onKeyDown={props.bind?.keyHandler} 
+                                            onKeyUp={props.bind?.keyHandler} 
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.verifyPassword} 
                                             label={props.bind?.labelVerifyPassword}

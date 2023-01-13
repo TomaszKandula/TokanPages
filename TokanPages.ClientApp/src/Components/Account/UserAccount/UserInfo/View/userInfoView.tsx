@@ -188,7 +188,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             name="firstName" 
                                             variant="outlined" 
                                             value={props.bind?.accountForm?.firstName}
-                                            onKeyDown={props.bind?.accountKeyHandler}
+                                            onKeyUp={props.bind?.accountKeyHandler}
                                             onChange={props.bind?.accountFormHandler} 
                                         />}
                                     </Grid>
@@ -210,7 +210,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             name="lastName" 
                                             variant="outlined" 
                                             value={props.bind?.accountForm?.lastName}
-                                            onKeyDown={props.bind?.accountKeyHandler}
+                                            onKeyUp={props.bind?.accountKeyHandler}
                                             onChange={props.bind?.accountFormHandler} 
                                         />}
                                     </Grid>
@@ -232,7 +232,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             value={props.bind?.accountForm?.email}
-                                            onKeyDown={props.bind?.accountKeyHandler}
+                                            onKeyUp={props.bind?.accountKeyHandler}
                                             onChange={props.bind?.accountFormHandler}
                                         />}
                                     </Grid>
@@ -256,7 +256,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             name="userAboutText" 
                                             variant="outlined" 
                                             value={props.bind?.accountForm?.userAboutText}
-                                            onKeyDown={props.bind?.accountKeyHandler}
+                                            onKeyUp={props.bind?.accountKeyHandler}
                                             onChange={props.bind?.accountFormHandler} 
                                         />}
                                     </Grid>

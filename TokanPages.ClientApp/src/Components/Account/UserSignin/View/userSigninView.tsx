@@ -85,7 +85,7 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             autoComplete="email" 
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.email} 
                                             label={props.bind?.labelEmail}
@@ -102,7 +102,7 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password" 
                                             autoComplete="current-password" 
-                                            onKeyDown={props.bind?.keyHandler}
+                                            onKeyUp={props.bind?.keyHandler}
                                             onChange={props.bind?.formHandler} 
                                             value={props.bind?.password} 
                                             label={props.bind?.labelPassword}
