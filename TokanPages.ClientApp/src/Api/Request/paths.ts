@@ -27,6 +27,7 @@ export const AUTHENTICATE = `${API_USERS_URI}/authenticateUser`;
 export const REAUTHENTICATE = `${API_USERS_URI}/reAuthenticateUser`;
 export const RESET_USER_PASSWORD = `${API_USERS_URI}/resetUserPassword`;
 export const UPDATE_USER_PASSWORD = `${API_USERS_URI}/updateUserPassword`;
+export const UPLOAD_USER_MEDIA = `${API_USERS_URI}/uploadUserMedia`;
 
 export const GET_SUBSCRIBERS = `${API_SUBSCRIBERS_URI}/getAllSubscribers`;
 export const GET_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/{id}/getSubscriber`;
