@@ -1,3 +1,27 @@
+# [0.62.0](https://github.com/TomaszKandula/TokanPages/compare/v0.61.0...v0.62.0) (2023-01-14)
+
+
+### Bug Fixes
+
+* change to KeyUp to prevent from collapsing a dialog box ([2583ea7](https://github.com/TomaszKandula/TokanPages/commit/2583ea7af3aafc37dfd827b6e26d4a0829789acf))
+* change to KeyUp to prevent from collapsing a dialog box ([ca3e202](https://github.com/TomaszKandula/TokanPages/commit/ca3e202024e4a18bc66370839ff9118447afe6c7))
+* check language ID before calling dispatch ([51f00a1](https://github.com/TomaszKandula/TokanPages/commit/51f00a1fe539cbbd4ea242a249c9fe730e25b890))
+* reduce imports ([b59441f](https://github.com/TomaszKandula/TokanPages/commit/b59441ffb6c8687682ee7a795d85ddc9c8d3ba39))
+* remove deprecated property ([0cff22a](https://github.com/TomaszKandula/TokanPages/commit/0cff22a6d4c2543802a63fc4d448beec3604e21b))
+* remove index, use uuid v4 for unique list key ([d45064b](https://github.com/TomaszKandula/TokanPages/commit/d45064be3b9242f978e2ff94d368bd93525f94ff))
+* resolve incorrect constant used ([da79b64](https://github.com/TomaszKandula/TokanPages/commit/da79b64e8b78797ee7ca233d6ee8bf4307fba2fd))
+* resolve issue 'JSX props should not use arrow functions' ([f526927](https://github.com/TomaszKandula/TokanPages/commit/f5269277de88668cdf78b6b0d7a83a28aa85dd6a))
+* use span component to avoid issue with paragraphs errors ([7febeff](https://github.com/TomaszKandula/TokanPages/commit/7febeff001662ff137b2e47d001bf76279041e83))
+* use span component when rendering HTML part ([fa4ed19](https://github.com/TomaszKandula/TokanPages/commit/fa4ed1995c5264d822066838aa8186a71429fd58))
+
+
+### Features
+
+* add expiration dates ([ddd14b5](https://github.com/TomaszKandula/TokanPages/commit/ddd14b5087d652b2ebd28796c9574da382c1d2a8))
+* add page pre-loader ([f0d6525](https://github.com/TomaszKandula/TokanPages/commit/f0d65258ceca6caf9851470f21feb7e80b9d3a1e))
+* implement ENTER key for input fields ([134ef37](https://github.com/TomaszKandula/TokanPages/commit/134ef3769ba76abece32da6596f0fa1c8aa4e44f))
+* implement ENTER key for input fields ([27c2a60](https://github.com/TomaszKandula/TokanPages/commit/27c2a60e22362e6cb6a31b20d62aea479e496b38))
+
 # [0.61.0](https://github.com/TomaszKandula/TokanPages/compare/v0.60.0...v0.61.0) (2023-01-05)
 
 
