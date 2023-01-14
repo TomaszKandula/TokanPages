@@ -1,6 +1,6 @@
 import { UserMedia } from "../../../Shared/enums";
 
-export interface IUploadUserMedia
+export interface IUploadUserMediaDto
 {
     userId?: string; 
     mediaTarget: UserMedia; 
