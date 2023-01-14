@@ -181,13 +181,17 @@ public class UsersController : ApiBaseController
     /// Allows to upload media file (image/video).
     /// </summary>
     /// <param name="payload">File data.</param>
+    /// <param name="skipDb">
+    /// Allow to skip database update.
+    /// No additional information will be logged.
+    /// </param>
     /// <returns>Object with media name.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(UploadUserMediaCommandResult), StatusCodes.Status200OK)]
-    public async Task<UploadUserMediaCommandResult> UploadUserMedia([FromForm] UploadUserMediaDto payload)
-        => await Mediator.Send(UsersMapper.MapToUploadUserMediaCommand(payload));
+    public async Task<UploadUserMediaCommandResult> UploadUserMedia([FromForm] UploadUserMediaDto payload, [FromQuery] bool skipDb = false)
+        => await Mediator.Send(UsersMapper.MapToUploadUserMediaCommand(payload, skipDb));
 
     /// <summary>
     /// Removes uploaded user media file (image/video).
