@@ -15,19 +15,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Staging | Build Docker (prepare)
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
-        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
-        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
-
-    - name: Staging | Build Docker (execute with tests)
+    - name: Docker build & test
       run: |
         cd $PWD/TokanPages.ClientApp
         APP_VERSION="0.0.1-staging"
         BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
         docker build . \
+        --build-arg "ENV_VALUE=Staging" \
         --build-arg "API_VERSION=${{ secrets.API_VERSION }}" \
         --build-arg "APP_VERSION=$APP_VERSION" \
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
@@ -36,19 +30,19 @@ jobs:
         --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_STAGING }}" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-staging-${{ github.sha }}
 
-    - name: Staging | Push Docker image (prepare)
+    - name: Docker login
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
-    - name: Staging | Push Docker image
+    - name: Docker push
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-staging-${{ github.sha }}
 
     # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
     # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
-    - name: Staging | Deploy to Azure Web App
+    - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: tokanpages-staging
@@ -119,32 +113,25 @@ jobs:
         Limit_Likes_Anonymous: "${{ steps.vault.outputs.StageLimitsLikesAnonymous }}"
         Limit_Likes_User: "${{ steps.vault.outputs.StageLimitsLikesUser }}"
 
-    - name: Staging | Build Docker (prepare)
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
-        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
-        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
-
-    - name: Staging | Build Docker (execute with tests)
+    - name: Docker build & test
       run: |
         docker build . \
         --build-arg "ENV_VALUE=Staging" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-staging-${{ github.sha }}
 
-    - name: Staging | Push Docker image (prepare)
+    - name: Docker login
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
-    - name: Staging | Push Docker image
+    - name: Docker push
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-staging-${{ github.sha }}
 
     # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
     # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
-    - name: Staging | Deploy to Azure Web App
+    - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
         app-name: tokanpages-backend-staging
