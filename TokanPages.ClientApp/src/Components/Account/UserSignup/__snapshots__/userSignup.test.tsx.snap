@@ -12,6 +12,7 @@ exports[`Test account group component: userSignup. Renders correctly '<UserSignu
       "firstName": "",
       "formHandler": [Function],
       "isLoading": false,
+      "keyHandler": [Function],
       "labelEmail": "",
       "labelFirstName": "",
       "labelLastName": "",

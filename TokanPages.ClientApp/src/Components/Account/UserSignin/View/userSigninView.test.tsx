@@ -16,6 +16,7 @@ describe("Test account group component: userSigninView.", () =>
             link2: "Forgot password?",
             buttonHandler: jest.fn(),
             progress: false,
+            keyHandler: jest.fn(),
             formHandler: jest.fn(),
             email: "ester.exposito@gmail.com",
             password: "madrilena123",

@@ -26,32 +26,33 @@ interface IProperties
     closeHandler: any;
 }
 
+const RenderIcon = (props: IBinding): JSX.Element => 
+{
+    const classes = ApplicationDialogBoxStyle();
+    switch (props.bind.icon)
+    {
+        case IconType.info: return(<InfoIcon className={classes.info_icon} />);
+        case IconType.warning: return(<WarningIcon className={classes.warning_icon} />);
+        case IconType.error: return(<ErrorIcon className={classes.error_icon} />);
+        default: return(<InfoIcon className={classes.info_icon} />);
+    }        
+};   
+
 export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
 {
     const classes = ApplicationDialogBoxStyle();
-    const RenderIcon = (): JSX.Element => 
-    {
-        switch (props.bind?.icon)
-        {
-            case IconType.info: return(<InfoIcon className={classes.info_icon} />);
-            case IconType.warning: return(<WarningIcon className={classes.warning_icon} />);
-            case IconType.error: return(<ErrorIcon className={classes.error_icon} />);
-            default: return(<InfoIcon className={classes.info_icon} />);
-        }        
-    };   
-
     return (
         <Dialog open={props.bind?.state} onClose={props.bind?.closeHandler} 
             aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
-                    <RenderIcon />
+                    <RenderIcon {...props} />
                     {ReactHtmlParser(props.bind?.title)}
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
-                <Typography className={classes.description} id="alert-dialog-description">
+                <Typography component="span" className={classes.description} id="alert-dialog-description">
                     {ReactHtmlParser(props.bind?.message)}
                 </Typography>
             </DialogContent>

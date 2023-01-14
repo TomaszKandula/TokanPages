@@ -12,24 +12,25 @@ import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
-export const HeaderView = (props: IContentHeader): JSX.Element => 
+const ActiveButton = (props: IContentHeader): JSX.Element => 
 {
     const classes = HeaderStyle();
 
-    const ActiveButton = (): JSX.Element => 
+    if (Validate.isEmpty(props.content?.action?.href))
     {
-        if (Validate.isEmpty(props.content?.action?.href))
-        {
-            return (<Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>);
-        }
-
-        return(
-            <Link to={props.content?.action?.href} className={classes.action_link}>
-                <Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>
-            </Link>
-        );
+        return (<Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>);
     }
 
+    return(
+        <Link to={props.content?.action?.href} className={classes.action_link}>
+            <Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>
+        </Link>
+    );
+}
+
+export const HeaderView = (props: IContentHeader): JSX.Element => 
+{
+    const classes = HeaderStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
@@ -50,7 +51,7 @@ export const HeaderView = (props: IContentHeader): JSX.Element =>
                                 {props.isLoading ? <Skeleton variant="text" /> : props.content?.description}
                             </Typography>
                             <Box mt={4}>
-                                {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <ActiveButton />}
+                                {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <ActiveButton {...props} />}
                             </Box>
                         </Box>
                     </Grid>

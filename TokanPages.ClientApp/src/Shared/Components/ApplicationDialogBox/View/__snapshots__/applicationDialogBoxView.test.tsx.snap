@@ -14,7 +14,17 @@ exports[`Test view component for application diaog box. Renders correctly view c
     <div
       className="makeStyles-icon_holder-1"
     >
-      <RenderIcon />
+      <RenderIcon
+        bind={
+          Object {
+            "closeHandler": [MockFunction],
+            "icon": 0,
+            "message": "Test message",
+            "state": true,
+            "title": "Test title",
+          }
+        }
+      />
       Test title
     </div>
   </WithStyles(ForwardRef(DialogTitle))>
@@ -22,6 +32,7 @@ exports[`Test view component for application diaog box. Renders correctly view c
   <WithStyles(ForwardRef(DialogContent))>
     <WithStyles(ForwardRef(Typography))
       className="makeStyles-description-6"
+      component="span"
       id="alert-dialog-description"
     >
       Test message

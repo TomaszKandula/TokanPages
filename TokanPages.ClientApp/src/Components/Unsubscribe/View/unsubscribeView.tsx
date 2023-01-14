@@ -25,23 +25,23 @@ interface IProperties
     isRemoved: boolean;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = UnsubscribeStyle();
+    const content: IContent = props.bind?.isRemoved ? props.bind?.contentPost : props.bind?.contentPre;
+    return(
+        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
+            className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
+            {props.bind?.progress &&  <CircularProgress size={20} />}
+            {!props.bind?.progress && content.button}
+        </Button>
+    );
+}
+
 export const UnsubscribeView = (props: IBinding): JSX.Element =>
 {
     const classes = UnsubscribeStyle();
-
     const content: IContent = props.bind?.isRemoved ? props.bind?.contentPost : props.bind?.contentPre;
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && content.button}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -69,7 +69,7 @@ export const UnsubscribeView = (props: IBinding): JSX.Element =>
                                     {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text3}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton />}
+                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                         </Box>
                         </CardContent>
                     </Card>

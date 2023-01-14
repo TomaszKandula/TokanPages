@@ -43,7 +43,21 @@ exports[`Test component: headerView. Renders correctly '<HeaderView />' when con
           <Styled(MuiBox)
             mt={4}
           >
-            <ActiveButton />
+            <ActiveButton
+              content={
+                Object {
+                  "action": Object {
+                    "href": "/action-link",
+                    "text": "Read the story",
+                  },
+                  "caption": "Welcome to my web page",
+                  "description": "I do programming for a living...",
+                  "language": "eng",
+                  "photo": "",
+                }
+              }
+              isLoading={false}
+            />
           </Styled(MuiBox)>
         </Styled(MuiBox)>
       </WithStyles(ForwardRef(Grid))>

@@ -8,6 +8,9 @@ export const RenderImage = (props: ITextItem): JSX.Element =>
 {
     const classes = RenderImageStyle();
     const data: string = props.value as string; 
+
+    const onClickEvent = React.useCallback(() => { window.open(props.prop, "_blank") }, [props.prop]);
+
     const renderDescription = () => 
     {
         return(
@@ -23,7 +26,7 @@ export const RenderImage = (props: ITextItem): JSX.Element =>
         <Card elevation={3} classes={{ root: classes.card }}>
             {Validate.isEmpty(props.prop) 
                 ? <CardMedia component="img" image={data} alt="image" /> 
-                : <CardMedia component="img" image={data} alt="image" className={classes.image} onClick={() => { window.open(props.prop, "_blank") }}/> }
+                : <CardMedia component="img" image={data} alt="image" className={classes.image} onClick={onClickEvent}/> }
             {Validate.isEmpty(props.text) 
                 ? null 
                 : renderDescription()}

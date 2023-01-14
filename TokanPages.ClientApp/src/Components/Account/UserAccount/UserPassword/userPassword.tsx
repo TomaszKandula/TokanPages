@@ -85,6 +85,14 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const passwordKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            passwordButtonHandler();
+        }
+    }
+
     const passwordFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         setPasswordForm({ ...passwordForm, [event.currentTarget.name]: event.currentTarget.value }); 
@@ -109,6 +117,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             oldPassword: passwordForm.oldPassword,
             newPassword: passwordForm.newPassword,
             confirmPassword: passwordForm.confirmPassword,
+            passwordKeyHandler: passwordKeyHandler,
             passwordFormProgress: progress,
             passwordFormHandler: passwordFormHandler,
             passwordButtonHandler: passwordButtonHandler,

@@ -15,6 +15,7 @@ describe("Test account group component: resetPasswordView.", () =>
             caption: RESET_FORM,
             button: "Reset",
             email: "tokan@dfds.com",
+            keyHandler: jest.fn(),
             formHandler: jest.fn(),
             buttonHandler: jest.fn(),
             labelEmail: "Email address"

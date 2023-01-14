@@ -15,30 +15,35 @@ import {
     Typography
 } from "@material-ui/core";
 
+const HomeButton = (props: IContentAccount): JSX.Element => 
+{
+    const classes = AccessDeniedStyle();
+    return(
+        <Link to="/" className={classes.home_link}>
+            <Button 
+                fullWidth 
+                variant="contained" 
+                className={classes.home_button} 
+                disabled={props.isLoading}>
+                {props.content?.sectionAccessDenied?.homeButtonText}
+            </Button>
+        </Link>
+    );
+}
+
+const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
+{
+    const classes = AccessDeniedStyle();
+    return(
+        <Box mt={args.marginTop} mb={args.marginBottom}>
+            <Divider className={classes.divider} />
+        </Box>
+    );
+}
+
 export const AccessDeniedView = (props: IContentAccount): JSX.Element => 
 {
     const classes = AccessDeniedStyle();
-
-    const HomeButton = (): JSX.Element => 
-    {
-        return(
-            <Link to="/" className={classes.home_link}>
-                <Button fullWidth variant="contained" className={classes.home_button} disabled={props.isLoading}>
-                    {props.content?.sectionAccessDenied?.homeButtonText}
-                </Button>
-            </Link>
-        );
-    }
-
-    const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
-    {
-        return(
-            <Box mt={args.marginTop} mb={args.marginBottom}>
-                <Divider className={classes.divider} />
-            </Box>
-        );
-    }
-
     return(
         <section className={classes.section}>
             <Container maxWidth="md">
@@ -46,7 +51,7 @@ export const AccessDeniedView = (props: IContentAccount): JSX.Element =>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
-                                <Typography className={classes.caption}>
+                                <Typography component="span" className={classes.caption}>
                                     {props.isLoading 
                                     ? <Skeleton variant="text" /> 
                                     : props.content?.sectionAccessDenied?.accessDeniedCaption}
@@ -62,7 +67,7 @@ export const AccessDeniedView = (props: IContentAccount): JSX.Element =>
                             </Box>
                             {props.isLoading 
                             ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                            : <HomeButton />}
+                            : <HomeButton {...props} />}
                         </CardContent>
                     </Card>
                 </Box>

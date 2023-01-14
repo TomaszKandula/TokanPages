@@ -46,6 +46,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="First name"
                   name="firstName"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Ester"
                   variant="outlined"
@@ -67,6 +68,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="Last name"
                   name="lastName"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Exposito"
                   variant="outlined"
@@ -87,6 +89,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="Email address"
                   name="email"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="ester.exposito@gmail.com"
                   variant="outlined"
@@ -107,6 +110,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   label="Subject"
                   name="subject"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Test subject"
                   variant="outlined"
@@ -129,6 +133,7 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
                   multiline={true}
                   name="message"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Test message..."
                   variant="outlined"
@@ -160,7 +165,32 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
             data-aos="fade-up"
             my={2}
           >
-            <ActiveButton />
+            <ActiveButton
+              bind={
+                Object {
+                  "buttonHandler": [MockFunction],
+                  "buttonText": "Submit",
+                  "caption": "Contact me",
+                  "consent": "I agree!",
+                  "email": "ester.exposito@gmail.com",
+                  "firstName": "Ester",
+                  "formHandler": [MockFunction],
+                  "isLoading": false,
+                  "keyHandler": [MockFunction],
+                  "labelEmail": "Email address",
+                  "labelFirstName": "First name",
+                  "labelLastName": "Last name",
+                  "labelMessage": "Message",
+                  "labelSubject": "Subject",
+                  "lastName": "Exposito",
+                  "message": "Test message...",
+                  "progress": false,
+                  "subject": "Test subject",
+                  "terms": false,
+                  "text": "If you have any questions...",
+                }
+              }
+            />
           </Styled(MuiBox)>
         </Styled(MuiBox)>
       </Styled(MuiBox)>

@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_RESET_PASSWORD_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_RESET_PASSWORD_CONTENT } from "../../../Api/Request";
 import { IResetPasswordContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_RESET_PASSWORD_CONTENT";
 export const RECEIVE = "RECEIVE_RESET_PASSWORD_CONTENT";
@@ -23,7 +22,7 @@ export const ContentResetPasswordAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

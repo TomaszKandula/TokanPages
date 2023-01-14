@@ -1,17 +1,24 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { USER_DATA } from "../../Shared/constants";
+import { NULL_RESPONSE_ERROR, USER_DATA } from "../../Shared/constants";
 import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
+import { RaiseError } from "../../Shared/Services/ErrorServices";
+import { GetTextStatusCode } from "../../Shared/Services/Utilities";
 import { IAuthenticateUserResultDto } from "../Models";
 import Validate from "validate.js";
 
-interface IPromiseResult 
+import { 
+    IExecute,
+    IGetContent, 
+    IPromiseResult, 
+    IRequest 
+} from "./abstractions";
+
+const IsSuccessStatusCode = (statusCode: number): boolean => 
 {
-    status: number | null;
-    content: any | null;
-    error: any | null;
+    return statusCode >= 200 && statusCode <= 299;
 }
 
-export const EnrichConfiguration = (configuration: AxiosRequestConfig): AxiosRequestConfig => 
+export const GetConfiguration = (props: IRequest): AxiosRequestConfig => 
 {
     const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
     const hasAuthorization = Validate.isObject(userData) && !Validate.isEmpty(userData.userToken);
@@ -28,35 +35,94 @@ export const EnrichConfiguration = (configuration: AxiosRequestConfig): AxiosReq
         UserTimezoneOffset: timezoneOffset
     }
 
-    const withAuthorizationConfig = {...configuration, withCredentials: true, headers: withAuthorization};
-    const withoutAuthorizationConfig = {...configuration, withCredentials: false, headers: withoutAuthorization};
+    const withAuthorizationConfig = {...props.configuration, withCredentials: true, headers: withAuthorization};
+    const withoutAuthorizationConfig = {...props.configuration, withCredentials: false, headers: withoutAuthorization};
 
-    return hasAuthorization ? withAuthorizationConfig : withoutAuthorizationConfig;
+    return hasAuthorization 
+    ? withAuthorizationConfig 
+    : withoutAuthorizationConfig;
 }
 
-export const ApiCall = async (configuration: AxiosRequestConfig): Promise<IPromiseResult> =>
+export const GetContent = (props: IGetContent) => 
 {
-    let result: IPromiseResult = 
+    let url = props.url;
+    if (props.state !== undefined)
     {
-        status: null,
-        content: null,
-        error: null
-    };
+        const id = props.state().applicationLanguage.id as string;
+        const queryParam = Validate.isEmpty(id) ? "" : `&language=${id}`;
+        url = `${props.url}${queryParam}`;
+    }
 
-    await axios(configuration)
-    .then(response =>
+    props.dispatch({ type: props.request });
+
+    const request: IRequest = {
+        configuration: {
+            method: "GET", 
+            url: url,
+            responseType: "json"    
+        }
+    }
+
+    const input: IExecute = {
+        configuration: GetConfiguration(request),
+        dispatch: props.dispatch,
+        responseType: props.receive
+    }
+
+    Execute(input);
+}
+
+export const Execute = (props: IExecute): void => 
+{
+    axios(props.configuration).then(response => 
     {
-        result = 
+        if (!IsSuccessStatusCode(response.status))
         {
+            RaiseError({ 
+                dispatch: props.dispatch, 
+                errorObject: GetTextStatusCode({ statusCode: response.status }) 
+            });
+
+            return;
+        }
+
+        if (response.data === null)
+        {
+            RaiseError({ dispatch: props.dispatch, errorObject: NULL_RESPONSE_ERROR });
+            return;
+        }
+        
+        if (props.responseType !== undefined)
+        {
+            if (props.onSuccessCallback === undefined)
+            {
+                props.dispatch({ type: props.responseType, payload: response.data });
+                return;
+            }
+
+            props.onSuccessCallback();
+            return;
+        }
+    }).catch(error => 
+    {
+        RaiseError({ dispatch: props.dispatch, errorObject: error });
+    });
+}
+
+export const ExecuteAsync = async (configuration: AxiosRequestConfig): Promise<IPromiseResult> =>
+{
+    let result: IPromiseResult = { status: null, content: null, error: null };
+
+    await axios(configuration).then(response =>
+    {
+        result = {
             status: response.status,
             content: response.data,
             error: null
         }
-    })
-    .catch(error =>
+    }).catch(error =>
     {
-        result = 
-        { 
+        result = { 
             status: null,
             content: null,
             error: error 

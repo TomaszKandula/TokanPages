@@ -17,6 +17,18 @@ const useQuery = () =>
     return new URLSearchParams(useLocation().search);
 }
 
+const ErrorMessage = () => 
+{
+    // TODO: improve UI for message
+    return (
+        <Box mt={10} mb={15}>
+            <Typography>
+                Uuuppss..., there is a missing ID...
+            </Typography>
+        </Box>
+    );
+}
+
 export const ActivationPage = (): JSX.Element => 
 {
     const queryParam = useQuery();
@@ -35,18 +47,6 @@ export const ActivationPage = (): JSX.Element =>
         dispatch(ContentFooterAction.get());
     }, 
     [ language?.id ]);
-
-    const ErrorMessage = () => 
-    {
-        // TODO: improve UI for message
-        return (
-            <Box mt={10} mb={15}>
-                <Typography>
-                    Uuuppss..., there is a missing ID...
-                </Typography>
-            </Box>
-        );
-    }
 
     return (
         <>

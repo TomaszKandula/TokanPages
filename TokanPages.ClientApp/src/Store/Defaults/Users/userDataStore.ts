@@ -13,6 +13,8 @@ export const UserDataStore: IUserDataStore =
         email: "",
         shortBio: "",
         registered: "",
+        tokenExpires: "",
+        refreshTokenExpires: "",
         userToken: "",
         refreshToken: "",
         roles: [],
