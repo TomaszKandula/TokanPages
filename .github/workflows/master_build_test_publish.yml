@@ -17,10 +17,10 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v3
 
-    - name: Semantic Release (install node.js)
-      uses: actions/setup-node@v1
+    - name: Install node.js
+      uses: actions/setup-node@v3
       with:
         node-version: 16
 
@@ -50,21 +50,15 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v3
 
-    - name: Production | Build Docker (prepare)
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
-        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
-        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
-
-    - name: Production | Build Docker (execute with tests)
+    - name: Docker build & test
       run: |
         cd $PWD/TokanPages.ClientApp
         APP_VERSION=${{ needs.versioning.outputs.outputs1 }}
         BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
         docker build . \
+        --build-arg "ENV_VALUE=Production" \
         --build-arg "API_VERSION=${{ secrets.API_VERSION }}" \
         --build-arg "APP_VERSION=$APP_VERSION" \
         --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
@@ -73,20 +67,20 @@ jobs:
         --build-arg "ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS_PRODUCTION }}" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
-    - name: Production | Push Docker image (prepare)
+    - name: Docker login
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
-    - name: Production | Push Docker image
+    - name: Docker push (for new release only)
       if: needs.versioning.outputs.outputs2 == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-production-${{ github.sha }}
 
     # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
     # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
-    - name: Production | Deploy to Azure Web App
+    - name: Deploy to Azure Web App (for new release only)
       uses: azure/webapps-deploy@v2
       if: needs.versioning.outputs.outputs2 == 'true'
       with:
@@ -104,7 +98,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v3
 
     - name: Log to Azure Cloud
       uses: Azure/login@v1
@@ -160,33 +154,26 @@ jobs:
         Limit_Likes_Anonymous: "${{ steps.vault.outputs.ProdLimitsLikesAnonymous }}"
         Limit_Likes_User: "${{ steps.vault.outputs.ProdLimitsLikesUser }}"
 
-    - name: Production | Build Docker (prepare)
-      uses: azure/docker-login@v1
-      with:
-        login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
-        username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
-        password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
-
-    - name: Production | Build Docker (execute with tests)
+    - name: Docker build & test
       run: |
         docker build . \
         --build-arg "ENV_VALUE=Production" \
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
 
-    - name: Production | Push Docker image (prepare)
+    - name: Docker login
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
         password: ${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
 
-    - name: Production | Push Docker image (execute for new release only)
+    - name: Docker push (for new release only)
       if: needs.versioning.outputs.outputs2 == 'true'
       run: docker push ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-production-${{ github.sha }}
 
     # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
     # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
-    - name: Production | Deploy to Azure Web App (for new release only)
+    - name: Deploy to Azure Web App (for new release only)
       uses: azure/webapps-deploy@v2
       if: needs.versioning.outputs.outputs2 == 'true'
       with:

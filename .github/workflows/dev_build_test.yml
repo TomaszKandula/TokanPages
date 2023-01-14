@@ -13,12 +13,12 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
     - name: Install node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: 16
 
@@ -50,7 +50,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v2.2.0
+      uses: actions/checkout@v3
 
     - name: Log to Azure Cloud
       uses: Azure/login@v1
@@ -107,7 +107,7 @@ jobs:
         Limit_Likes_User: "${{ steps.vault.outputs.TestLimitsLikesUser }}"
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.x'
 
