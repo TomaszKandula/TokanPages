@@ -30,7 +30,7 @@ jobs:
         yarn install
 
     - name: Semantic Release (process changes)
-      uses: cycjimmy/semantic-release-action@v2
+      uses: cycjimmy/semantic-release-action@v3
       id: semantic
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
