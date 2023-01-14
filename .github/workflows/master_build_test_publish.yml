@@ -38,8 +38,8 @@ jobs:
     - name: Move results to outputs
       id: versioning
       run: |
-        "version=${{ steps.semantic.outputs.new_release_version }}" >> $GITHUB_OUTPUT
-        "published=${{ steps.semantic.outputs.new_release_published }}" >> $GITHUB_OUTPUT
+        echo "version=${{ steps.semantic.outputs.new_release_version }}" >> $GITHUB_OUTPUT
+        echo "published=${{ steps.semantic.outputs.new_release_published }}" >> $GITHUB_OUTPUT
 
   frontend-production:
 
