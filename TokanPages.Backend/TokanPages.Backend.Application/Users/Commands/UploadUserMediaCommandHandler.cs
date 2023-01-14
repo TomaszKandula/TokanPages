@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -45,7 +46,10 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is null)
-            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+        {
+            userInfo = new UserInfo { UserId = userId };
+            await DatabaseContext.UserInfo.AddAsync(userInfo, cancellationToken);
+        }
 
         switch (mediaTarget)
         {
