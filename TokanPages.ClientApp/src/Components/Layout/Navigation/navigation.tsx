@@ -18,7 +18,7 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
     const dispatch = useDispatch();
     const store = useSelector((state: IApplicationState) => state.userDataStore);
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-    const avatarSource = GET_USER_MEDIA.replace("{id}", store.userData.userId).replace("{name}", store?.userData?.avatarName);
+    const avatarSource = GET_USER_MEDIA.replace("{id}", store?.userData?.userId).replace("{name}", store?.userData?.avatarName);
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
 
