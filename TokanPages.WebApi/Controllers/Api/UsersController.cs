@@ -170,7 +170,6 @@ public class UsersController : ApiBaseController
     /// <returns>File.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
     [ETagFilter]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "id", "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
