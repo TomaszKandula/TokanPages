@@ -34,6 +34,9 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
         await azureBlob.UploadFile(stream, destinationPath, cancellationToken: cancellationToken);
         LoggerService.LogInformation($"New user media file has been saved in storage. Path: {destinationPath}.");
 
+        if (request.SkipDb) 
+            return new UploadUserMediaCommandResult { BlobName = blobName };
+
         await DatabaseUpdate(blobName, request.MediaTarget, user.Id, cancellationToken);
         LoggerService.LogInformation($"User media name has been saved in database. Name: {blobName}.");
 
