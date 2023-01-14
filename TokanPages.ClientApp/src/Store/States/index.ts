@@ -45,3 +45,4 @@ export type { IUserSignup } from "./Users/userSignup";
 export type { IUserDataStore } from "./Users/userDataStore";
 export type { IUserPasswordUpdate } from "./Users/userPasswordUpdate";
 export type { IUserUpdate } from "./Users/userUpdate";
+export type { IUserMediaUpload } from "./Users/userMediaUpload";
