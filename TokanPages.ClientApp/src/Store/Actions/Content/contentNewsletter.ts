@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_NEWSLETTER_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_NEWSLETTER_CONTENT } from "../../../Api/Request";
 import { INewsletterContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_NEWSLETTER_CONTENT";
 export const RECEIVE = "RECEIVE_NEWSLETTER_CONTENT";
@@ -23,7 +22,7 @@ export const ContentNewsletterAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

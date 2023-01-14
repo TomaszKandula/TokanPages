@@ -48,6 +48,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                   label="First name"
                   name="firstName"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Ester"
                   variant="outlined"
@@ -65,6 +66,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                   label="Last name"
                   name="lastName"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Exposito"
                   variant="outlined"
@@ -81,6 +83,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                   label="Email address"
                   name="email"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="ester.exposito@gmail.com"
                   variant="outlined"
@@ -97,6 +100,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                   label="Password"
                   name="password"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   type="password"
                   value="madrilena123"
@@ -123,7 +127,30 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
             <Styled(MuiBox)
               my={2}
             >
-              <ActiveButton />
+              <ActiveButton
+                bind={
+                  Object {
+                    "button": "Sign up",
+                    "buttonHandler": [MockFunction],
+                    "caption": "Create a new account",
+                    "consent": "I agree to the terms of use and privacy policy.",
+                    "email": "ester.exposito@gmail.com",
+                    "firstName": "Ester",
+                    "formHandler": [MockFunction],
+                    "isLoading": false,
+                    "keyHandler": [MockFunction],
+                    "labelEmail": "Email address",
+                    "labelFirstName": "First name",
+                    "labelLastName": "Last name",
+                    "labelPassword": "Password",
+                    "lastName": "Exposito",
+                    "link": "Already have an account? Sign in",
+                    "password": "madrilena123",
+                    "progress": false,
+                    "terms": false,
+                  }
+                }
+              />
             </Styled(MuiBox)>
             <Styled(MuiBox)
               textAlign="right"

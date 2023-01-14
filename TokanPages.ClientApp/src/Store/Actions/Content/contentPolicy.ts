@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_POLICY_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_POLICY_CONTENT } from "../../../Api/Request";
 import { IDocumentContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_POLICY_CONTENT";
 export const RECEIVE = "RECEIVE_POLICY_CONTENT";
@@ -23,7 +22,7 @@ export const ContentPolicyAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

@@ -1,8 +1,6 @@
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { purple } from "@material-ui/core/colors";
 import Switch from "@material-ui/core/Switch";
-
-import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../../Theme";
 
 export const UserInfoStyle = makeStyles((theme) => (

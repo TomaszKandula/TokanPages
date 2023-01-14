@@ -89,6 +89,14 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    {
+        if (event.code === "Enter")
+        {
+            buttonHandler();
+        }
+    }
+
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
@@ -121,6 +129,7 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
             link2: props.content.link2,
             buttonHandler: buttonHandler,
             progress: progress,
+            keyHandler: keyHandler,
             formHandler: formHandler,
             email: form.email,
             password: form.password,

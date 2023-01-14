@@ -93,7 +93,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var userInfo = await DatabaseContext.UserInfo
             .Where(info => info.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
-        
+
         return new ReAuthenticateUserCommandResult
         {
             UserId = user.Id,
@@ -104,6 +104,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
+            TokenExpires = tokenExpires,
+            RefreshTokenExpires = newRefreshToken.Expires,
             UserToken = userToken,
             RefreshToken = newRefreshToken.Token,
             Roles = roles,

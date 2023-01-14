@@ -7,8 +7,56 @@ exports[`Test component: footerView. Renders correctly '<FooterView />' when con
   <WithStyles(ForwardRef(Container))
     maxWidth="lg"
   >
-    <RenderCopyrightBar />
-    <RenderVersionInfo />
+    <RenderCopyrightBar
+      bind={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "copyright": "© 2020 - 2021 Tomasz Kandula",
+          "hasVersionInfo": false,
+          "icons": Array [
+            Object {
+              "href": "https://www.linkedin.com/",
+              "name": "LinkedInIcon",
+            },
+          ],
+          "policy": Object {
+            "href": "/policy",
+            "text": "Privacy policy",
+          },
+          "reserved": "All rights reserved",
+          "terms": Object {
+            "href": "/terms",
+            "text": "Terms of use",
+          },
+          "versionInfo": "1.0",
+        }
+      }
+    />
+    <RenderVersionInfo
+      bind={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "copyright": "© 2020 - 2021 Tomasz Kandula",
+          "hasVersionInfo": false,
+          "icons": Array [
+            Object {
+              "href": "https://www.linkedin.com/",
+              "name": "LinkedInIcon",
+            },
+          ],
+          "policy": Object {
+            "href": "/policy",
+            "text": "Privacy policy",
+          },
+          "reserved": "All rights reserved",
+          "terms": Object {
+            "href": "/terms",
+            "text": "Terms of use",
+          },
+          "versionInfo": "1.0",
+        }
+      }
+    />
     <Styled(MuiBox)
       pb={15}
     />

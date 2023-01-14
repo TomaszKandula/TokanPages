@@ -15,6 +15,7 @@ describe("Test account group component: userSignupView.", () =>
             button: "Sign up",
             link: "Already have an account? Sign in",
             buttonHandler: jest.fn(),
+            keyHandler: jest.fn(),
             formHandler: jest.fn(),
             progress: false,
             firstName: "Ester",

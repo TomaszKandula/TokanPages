@@ -93,12 +93,12 @@ exports[`Test view component for application user info. Renders correctly view c
       <Items
         className="makeStyles-value-3"
         item="EverydayUser"
-        key="0"
+        key="f905ce01-c28f-4810-bb86-d29e8048f5b6"
       />
       <Items
         className="makeStyles-value-3"
         item="Tester"
-        key="1"
+        key="52a520f3-9f60-4c76-80e3-28b9dcfe9bfb"
       />
     </WithStyles(ForwardRef(List))>
     <Styled(MuiBox)
@@ -116,12 +116,12 @@ exports[`Test view component for application user info. Renders correctly view c
       <Items
         className="makeStyles-value-3"
         item="CanTestEverything"
-        key="0"
+        key="f34d2965-1caf-4c8b-8215-94d326d151d8"
       />
       <Items
         className="makeStyles-value-3"
         item="CanOrderPizza"
-        key="1"
+        key="198e0248-ade0-4868-b0f5-926dc5168a6e"
       />
     </WithStyles(ForwardRef(List))>
   </WithStyles(ForwardRef(DialogContent))>

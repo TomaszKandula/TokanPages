@@ -18,26 +18,32 @@ describe("Test view component for application user info.", () =>
             lastName: "Testerovny",
             shortBio: "Happy tester working remotely",
             registered: "2020-01-01 15:02:03",
+            tokenExpires: "2020-01-01 19:02:03",
+            refreshTokenExpires: "2020-01-01 22:02:03",
             userToken: "fbb220c9-7593-472d-bb95-7b41c436e332",
             refreshToken: "5f4d15e2-7593-4e20-b5f0-7b41c436e332",
             roles: 
             [
                 {
                     name: "EverydayUser",
-                    description: "Standard access"
+                    description: "Standard access",
+                    id: "f905ce01-c28f-4810-bb86-d29e8048f5b6"
                 },
                 {
                     name: "Tester",
-                    description: "Can access test environments"
+                    description: "Can access test environments",
+                    id: "52a520f3-9f60-4c76-80e3-28b9dcfe9bfb"
                 }
             ],
             permissions: 
             [
                 {
-                    name: "CanTestEverything"
+                    name: "CanTestEverything",
+                    id: "f34d2965-1caf-4c8b-8215-94d326d151d8"
                 },
                 {
-                    name: "CanOrderPizza"
+                    name: "CanOrderPizza",
+                    id: "198e0248-ade0-4868-b0f5-926dc5168a6e"
                 }
             ]
         };

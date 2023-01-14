@@ -47,6 +47,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                   label="Email address"
                   name="email"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   value="ester.exposito@gmail.com"
                   variant="outlined"
@@ -63,6 +64,7 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
                   label="Password"
                   name="password"
                   onChange={[MockFunction]}
+                  onKeyUp={[MockFunction]}
                   required={true}
                   type="password"
                   value="madrilena123"
@@ -73,7 +75,25 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
             <Styled(MuiBox)
               my={2}
             >
-              <ActiveButton />
+              <ActiveButton
+                bind={
+                  Object {
+                    "button": "Sign in",
+                    "buttonHandler": [MockFunction],
+                    "caption": "Sign in",
+                    "email": "ester.exposito@gmail.com",
+                    "formHandler": [MockFunction],
+                    "isLoading": false,
+                    "keyHandler": [MockFunction],
+                    "labelEmail": "Email address",
+                    "labelPassword": "Password",
+                    "link1": "Don't have an account?",
+                    "link2": "Forgot password?",
+                    "password": "madrilena123",
+                    "progress": false,
+                  }
+                }
+              />
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
               className="makeStyles-actions-3"

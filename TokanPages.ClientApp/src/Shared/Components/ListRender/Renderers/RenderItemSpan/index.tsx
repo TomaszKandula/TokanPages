@@ -13,7 +13,7 @@ import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 export const RenderItemSpan = (props: IItem): JSX.Element =>
 {
     const [state, setState] = React.useState(false);
-    const onClickEvent = () => setState(!state);
+    const onClickEvent = React.useCallback(() => setState(!state), [state]);
 
     return(EnsureDefined(
         {

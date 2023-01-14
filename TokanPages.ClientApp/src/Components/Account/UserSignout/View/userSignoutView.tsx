@@ -45,7 +45,13 @@ export const UserSignoutView = (props: IBinding): JSX.Element =>
                             </Box>
                             <Box mt={4}>
                                 <Link to="/" className={classes.link}>
-                                    <Button fullWidth variant="contained" className={classes.button} disabled={props.bind?.isLoading}>{props.bind?.buttonText}</Button>
+                                    <Button 
+                                        fullWidth 
+                                        variant="contained" 
+                                        className={classes.button} 
+                                        disabled={props.bind?.isLoading}>
+                                        {props.bind?.buttonText}
+                                    </Button>
                                 </Link>
                             </Box>
                         </CardContent>   

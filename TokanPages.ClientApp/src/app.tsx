@@ -54,6 +54,12 @@ const App = (props: IApp): JSX.Element =>
         return(() => clearInterval(intervalId));
     });
 
+    const redirect500px = React.useCallback(() => 
+    { 
+        window.location.href = "https://500px.com/p/tomaszkandula?view=galleries"; return null; 
+    }, 
+    [ ]);
+
     return (
         <>
             <Router>
@@ -73,8 +79,7 @@ const App = (props: IApp): JSX.Element =>
                   <Route exact path="/unsubscribe"><UnsubscribePage /></Route>
                   <Route exact path="/updatesubscriber"><UpdateSubscriberPage /></Route>
                   <Route exact path="/accountactivation"><ActivationPage /></Route>
-                  <Route exact path="/albums" component={() => //TODO: remove when Gallery is created
-                    { window.location.href = "https://500px.com/p/tomaszkandula?view=galleries"; return null; }} />
+                  <Route exact path="/albums" component={redirect500px} />
                   <Route component={WrongPage} />
                 </Switch>
             </Router>

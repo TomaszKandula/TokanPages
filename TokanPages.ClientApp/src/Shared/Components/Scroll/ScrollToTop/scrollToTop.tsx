@@ -23,7 +23,7 @@ export const ScrollToTop = (props: IScrollTop): JSX.Element =>
         const anchor = ownerDocument.querySelector("#back-to-top-anchor") as Element;
         const headerOffset: number = 85;
         const elementPosition = anchor.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
  
         window.scrollTo(
         {

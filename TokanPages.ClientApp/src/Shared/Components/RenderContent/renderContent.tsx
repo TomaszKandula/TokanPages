@@ -1,12 +1,15 @@
 import * as React from "react";
 import { ITextObject } from "./Models/TextModel";
-import { RenderText } from "./Renderers";
-import { RenderGist } from "./Renderers";
-import { RenderTable } from "./Renderers";
-import { RenderImage } from "./Renderers";
-import { RenderVideo } from "./Renderers";
-import { RenderSeparator } from "./Renderers";
 import { Languages } from "../../languages";
+
+import { 
+    RenderText,
+    RenderGist,
+    RenderTable,
+    RenderImage,
+    RenderVideo,
+    RenderSeparator
+} from "./Renderers";
 
 export const RenderContent = (textObject: ITextObject | undefined): JSX.Element => 
 {

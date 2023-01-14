@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_FEATURED_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_FEATURED_CONTENT } from "../../../Api/Request";
 import { IFeaturedContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_FEATURED_CONTENT";
 export const RECEIVE = "RECEIVE_FEATURED_CONTENT";
@@ -23,7 +22,7 @@ export const ContentFeaturedAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

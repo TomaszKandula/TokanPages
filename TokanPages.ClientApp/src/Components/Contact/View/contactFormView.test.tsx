@@ -12,6 +12,7 @@ describe("Test component: contactFormView.", () =>
             isLoading: false,
             caption: "Contact me",
             text: "If you have any questions...",
+            keyHandler: jest.fn(),
             formHandler: jest.fn(),
             firstName: "Ester",
             lastName: "Exposito",

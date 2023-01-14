@@ -1,7 +1,6 @@
 import { IApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Api/Request";
+import { GetContent, GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Api/Request";
 import { IActivateAccountContentDto } from "../../../Api/Models";
-import { GetContentService } from "./Services/getContentService";
 
 export const REQUEST = "REQUEST_ACTIVATE_ACCOUNT_CONTENT";
 export const RECEIVE = "RECEIVE_ACTIVATE_ACCOUNT_CONTENT";
@@ -23,7 +22,7 @@ export const ContentActivateAccountAction =
             return;
         }
 
-        GetContentService(
+        GetContent(
         { 
             dispatch: dispatch, 
             state: getState, 

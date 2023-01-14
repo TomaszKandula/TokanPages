@@ -18,20 +18,19 @@ const GetNonMaterialIcon = (name: string): JSX.Element | undefined =>
     }
 }
 
+const DisplayIcon = (args: { name: string }): JSX.Element => 
+{
+    const nonMaterialIcon = GetNonMaterialIcon(args.name);
+    if (nonMaterialIcon !== undefined)
+    {
+        return(nonMaterialIcon);
+    }
+
+    return(<Icon>{args.name}</Icon>);
+}
+
 export const GetIcon = (props: IProperty): JSX.Element =>
 {
     let iconName = props.iconName !== "" ? props.iconName.toLowerCase() : "X"
-    
-    const DisplayIcon = (args: { name: string }): JSX.Element => 
-    {
-        const nonMaterialIcon = GetNonMaterialIcon(args.name);
-        if (nonMaterialIcon !== undefined)
-        {
-            return(nonMaterialIcon);
-        }
-
-        return(<Icon>{args.name}</Icon>);
-    }
- 
     return(<DisplayIcon name={iconName} />);
 }

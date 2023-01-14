@@ -25,21 +25,27 @@ interface IProperties
     buttonText: string;
 }
 
+const ActiveButton = (props: IBinding): JSX.Element => 
+{
+    const classes = ActivateAccountStyle();
+    return(
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.bind?.buttonHandler} 
+            className={classes.button}
+            disabled={props.bind?.buttonDisabled}>
+            {!props.bind?.progress 
+            ? props.bind?.buttonText 
+            : <CircularProgress size={20} />}
+        </Button>
+    );
+}
+
 export const ActivateAccountView = (props: IBinding): JSX.Element =>
 {
     const classes = ActivateAccountStyle();
-
-    const ActiveButton = (): JSX.Element => 
-    {
-        return(
-            <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-                className={classes.button} disabled={props.bind?.buttonDisabled}>
-                {props.bind?.progress &&  <CircularProgress size={20} />}
-                {!props.bind?.progress && props.bind?.buttonText}
-            </Button>
-        );
-    }
-
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -49,20 +55,28 @@ export const ActivateAccountView = (props: IBinding): JSX.Element =>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography gutterBottom={true} className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography className={classes.text1}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text1}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.text1}
                                 </Typography>
                             </Box>
                             <Box mt={2} mb={5}>
                                 <Typography className={classes.text2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text2}
+                                    {props.bind?.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.bind?.text2}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" width="100%" height="40px" /> : <ActiveButton />}
+                            {props.bind?.isLoading 
+                            ? <Skeleton variant="rect" width="100%" height="40px" /> 
+                            : <ActiveButton {...props} />}
                         </Box>
                         </CardContent>
                     </Card>
