@@ -50,7 +50,12 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
 
         if (userInfo is null)
         {
-            userInfo = new UserInfo { UserId = userId };
+            userInfo = new UserInfo
+            {
+                UserId = userId,
+                FirstName = string.Empty,
+                LastName = string.Empty
+            };
             await DatabaseContext.UserInfo.AddAsync(userInfo, cancellationToken);
         }
 
