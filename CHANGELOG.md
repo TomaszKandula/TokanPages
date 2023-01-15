@@ -1,3 +1,10 @@
+## [0.63.1](https://github.com/TomaszKandula/TokanPages/compare/v0.63.0...v0.63.1) (2023-01-15)
+
+
+### Bug Fixes
+
+* keep tokens in store ([d9ead93](https://github.com/TomaszKandula/TokanPages/commit/d9ead931d4828d6dc8ffb3c3b83590054fc17634))
+
 # [0.63.0](https://github.com/TomaszKandula/TokanPages/compare/v0.62.0...v0.63.0) (2023-01-15)
 
 
