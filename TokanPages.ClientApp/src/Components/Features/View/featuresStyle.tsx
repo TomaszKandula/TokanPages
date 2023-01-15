@@ -10,18 +10,18 @@ export const FeaturesStyle = makeStyles((theme) => (
     card: 
     {
         height: "100%",
-        minHeight: "128px",
-        borderRadius: "15px",
+        minHeight: 128,
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     card_content:
     {
         height: "100%",
-        minHeight: "128px",
+        minHeight: 128,
     },
     card_image:
     {
-        borderRadius: "15px",
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     title:
@@ -42,7 +42,7 @@ export const FeaturesStyle = makeStyles((theme) => (
     },
     media: 
     {
-        height: "128px",
+        height: 128,
     },
     content: 
     {

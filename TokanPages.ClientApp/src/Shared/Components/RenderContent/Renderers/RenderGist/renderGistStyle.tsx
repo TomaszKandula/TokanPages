@@ -11,6 +11,6 @@ export const RenderGistStyle = makeStyles(() => (
         marginTop: "0!important" as "0",
         marginBottom: "0!important" as "0",
         backgroundColor: "white!important" as "white",
-        fontSize: "12px"
+        fontSize: 12
     }
-}));    
+}));

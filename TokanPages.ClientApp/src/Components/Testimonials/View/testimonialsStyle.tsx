@@ -15,19 +15,19 @@ export const TestimonialsStyle = makeStyles((theme) => (
     },
     card:
     {
-        minHeight: "340px",
-        borderRadius: "15px",
+        minHeight: 340,
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     card_space:
     {
         [theme.breakpoints.down("md")]:
         {
-            marginTop: "45px"
+            marginTop: 45
         },
         [theme.breakpoints.up("md")]:
         {
-            marginTop: "0px"
+            marginTop: 0
         }
     },
     card_image:
@@ -45,7 +45,7 @@ export const TestimonialsStyle = makeStyles((theme) => (
     },
     card_content:
     {
-        marginTop: "70px"
+        marginTop: 70
     },
     card_title:
     {
@@ -66,7 +66,7 @@ export const TestimonialsStyle = makeStyles((theme) => (
     {
         textAlign: "left",
         lineHeight: "1.8",
-        marginTop: "15px",
+        marginTop: 15,
         color: Colours.colours.gray1
     },
 }));

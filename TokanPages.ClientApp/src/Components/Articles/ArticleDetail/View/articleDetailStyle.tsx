@@ -9,44 +9,44 @@ export const ArticleDetailStyle = makeStyles(() => (
     },
     container:
     {
-        maxWidth: "700px"
+        maxWidth: 700
     },
     dividerTop:
     {
-        marginTop: "20px",
-        marginBottom: "20px"
+        marginTop: 20,
+        marginBottom: 20
     },
     dividerBottom:
     {
-        marginTop: "30px",
-        marginBottom: "30px"
+        marginTop: 30,
+        marginBottom: 30
     },
     readCount:
     {
-        paddingTop: "10px"
+        paddingTop: 10
     },
     aliasName:
     {
-        paddingTop: "10px"
+        paddingTop: 10
     },
     avatarSmall:
     {
         color: Colours.colours.white,
-        width: "48px", 
-        height: "48px"
+        width: 48, 
+        height: 48
     },
     avatarLarge:
     {
         color: Colours.colours.white,
-        width: "96px", 
-        height: "96px"
+        width: 96, 
+        height: 96
     },
     thumbsMedium:
     {
         color: Colours.colours.gray1,
         cursor: "pointer",
-        width: "24px", 
-        height: "24px"
+        width: 24, 
+        height: 24
     },
     likesTip:
     {

@@ -16,7 +16,7 @@ export const UserAvatar = (props: IUserAvatar): JSX.Element =>
     let baseUrl = "";
     let source = "";
     
-    if (!Validate.isEmpty(props.userId))
+    if (!Validate.isEmpty(props.userId) && !Validate.isEmpty(props.avatarName))
     {
         baseUrl = GET_USER_MEDIA.replace("{id}", props.userId);
         source = baseUrl.replace("{name}", props.avatarName);
