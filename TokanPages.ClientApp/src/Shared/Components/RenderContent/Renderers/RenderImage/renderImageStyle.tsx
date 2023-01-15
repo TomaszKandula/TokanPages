@@ -6,8 +6,8 @@ export const RenderImageStyle = makeStyles(() => (
     card:
     {
         borderRadius: 0,
-        marginTop: "40px",
-        marginBottom: "40px"
+        marginTop: 40,
+        marginBottom: 40
     },
     image:
     {
@@ -16,10 +16,10 @@ export const RenderImageStyle = makeStyles(() => (
     text:
     {
         color: Colours.colours.gray1,
-        paddingTop: "1px",
-        paddingBottom: "1px",
-        paddingLeft: "10px",
-        paddingRight: "10px",
+        paddingTop: 1,
+        paddingBottom: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
         lineHeight: 1.8
     }
 }));

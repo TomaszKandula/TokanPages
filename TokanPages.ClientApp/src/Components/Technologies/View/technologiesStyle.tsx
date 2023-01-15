@@ -9,15 +9,15 @@ export const TechnologiesStyle = makeStyles((theme) => (
     },
     icon: 
     {
-        width: "32px",
-        height: "32px",
+        width: 32,
+        height: 32,
         color: Colours.colours.violet,
         marginRight: theme.spacing(1),
     },
     skeleton_circle:
     {
-        width: "42px", 
-        height: "42px",
+        width: 42, 
+        height: 42,
         margin: "0px 15px 0px 0px"
     },
     caption_text:

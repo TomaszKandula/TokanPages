@@ -5,8 +5,8 @@ export const ClientsStyle = makeStyles((theme) => (
 {
     divider:
     {
-        marginTop: "42px",
-        height: "2px",
+        marginTop: 42,
+        height: 2,
         backgroundColor: Colours.colours.lightGray1
     },
     caption:
@@ -18,12 +18,12 @@ export const ClientsStyle = makeStyles((theme) => (
     section:
     {
         backgroundColor: Colours.colours.white,
-        marginTop: "42px",
-        marginBottom: "42px"
+        marginTop: 42,
+        marginBottom: 42
     },
     logo:
     {
-        height: "48px",
+        height: 48,
         paddingLeft: theme.spacing(4),
         paddingRight: theme.spacing(4),
         marginBottom: theme.spacing(4),

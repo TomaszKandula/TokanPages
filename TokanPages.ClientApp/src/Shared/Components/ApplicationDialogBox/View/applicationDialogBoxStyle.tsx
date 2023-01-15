@@ -11,17 +11,17 @@ export const ApplicationDialogBoxStyle = makeStyles(() => (
     info_icon:
     {
         color: "#2196F3",
-        marginRight: "15px"
+        marginRight: 15
     },
     warning_icon:
     {
         color: "#FFC107",
-        marginRight: "15px"
+        marginRight: 15
     },
     error_icon:
     {
         color: "#F50057",
-        marginRight: "15px"
+        marginRight: 15
     },
     title:
     {

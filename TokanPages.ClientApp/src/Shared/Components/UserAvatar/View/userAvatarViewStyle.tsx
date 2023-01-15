@@ -6,13 +6,13 @@ export const UserAvatarStyle = makeStyles(() => (
     avatarSmall:
     {
         color: Colours.colours.white,
-        width: "48px", 
-        height: "48px"
+        width: 48, 
+        height: 48
     },
     avatarLarge:
     {
         color: Colours.colours.white,
-        width: "96px", 
-        height: "96px"
+        width: 96, 
+        height: 96
     }
 }));

@@ -15,12 +15,12 @@ export const FeaturedStyle = makeStyles(() => (
     },
     card:
     {
-        borderRadius: "15px",
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     card_content:
     {
-        minHeight: "150px",
+        minHeight: 150,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -40,6 +40,6 @@ export const FeaturedStyle = makeStyles(() => (
     },
     card_media: 
     {
-        height: "256px"
+        height: 256
     },
 }));
