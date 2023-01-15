@@ -49,8 +49,8 @@ export const UserDataStore:
                     registered: action.payload.registered,
                     tokenExpires: action.payload.tokenExpires,
                     refreshTokenExpires: action.payload.refreshTokenExpires,
-                    userToken: state.userData.userToken,
-                    refreshToken: state.userData.refreshToken,
+                    userToken: action.payload.userToken,
+                    refreshToken: action.payload.refreshToken,
                     roles: action.payload.roles,
                     permissions: action.payload.permissions
                 }
