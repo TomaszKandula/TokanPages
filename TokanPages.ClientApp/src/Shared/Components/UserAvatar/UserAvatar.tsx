@@ -1,12 +1,11 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
-import { IApplicationState } from "../../../Store/Configuration";
 import { GET_USER_MEDIA } from "../../../Api/Request";
 import { UserAvatarView } from "./View/userAvatarView";
 import Validate from "validate.js";
 
 export interface IUserAvatar
 {
+    userId: string;
     isLarge: boolean;
     userLetter: string;
     avatarName: string; 
@@ -14,10 +13,14 @@ export interface IUserAvatar
 
 export const UserAvatar = (props: IUserAvatar): JSX.Element => 
 {
-    const store = useSelector((state: IApplicationState) => state.userDataStore.userData);
-    const source = !Validate.isEmpty(props.avatarName) 
-    ? GET_USER_MEDIA.replace("{id}", store.userId).replace("{name}", props.avatarName) 
-    : "";
+    let baseUrl = "";
+    let source = "";
+    
+    if (!Validate.isEmpty(props.userId))
+    {
+        baseUrl = GET_USER_MEDIA.replace("{id}", props.userId);
+        source = baseUrl.replace("{name}", props.avatarName);
+    }
 
     return (
         <UserAvatarView bind={{
