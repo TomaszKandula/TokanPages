@@ -14,4 +14,8 @@ public class UploadUserMediaCommand : IRequest<UploadUserMediaCommandResult>
     public string MediaType { get; set; } = "";
 
     public byte[] Data { get; set; } = Array.Empty<byte>();
+
+    public string DataType { get; set; } = "";
+
+    public bool SkipDb { get; set; }
 }

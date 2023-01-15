@@ -119,14 +119,20 @@ public static class UsersMapper
     /// Maps request DTO to given command.
     /// </summary>
     /// <param name="model">Payload object.</param>
+    /// <param name="skipDb">
+    /// Allow to skip database update.
+    /// No additional information will be logged.
+    /// </param>
     /// <returns>Command object.</returns>
-    public static UploadUserMediaCommand MapToUploadUserMediaCommand(UploadUserMediaDto model) => new()
+    public static UploadUserMediaCommand MapToUploadUserMediaCommand(UploadUserMediaDto model, bool skipDb = false) => new()
     {
         UserId = model.UserId,
         MediaTarget = model.MediaTarget,
         MediaName = model.Data!.FileName,
         MediaType = model.Data.ContentType.ToMediaType(),
-        Data = model.Data.GetByteArray()
+        Data = model.Data.GetByteArray(),
+        DataType = model.Data?.ContentType ?? string.Empty,
+        SkipDb = skipDb
     };
 
     /// <summary>

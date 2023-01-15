@@ -12,6 +12,7 @@ describe("Test articles group component: ArticleListView.", () =>
     {
         const author: IAuthor = 
         {
+            userId: "52a520f3-9f60-4c76-b0f5-926dc5168a6e",
             aliasName: "Ester",
             avatarName: "default.jpg",
             firstName: "Ester",

@@ -4,13 +4,13 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import BackupIcon from "@material-ui/icons/Backup";
+import { UserMedia } from "../../../../../Shared/enums";
+import { UploadUserMedia } from "../../../../../Shared/Components";
 import { IValidateAccountForm } from "../../../../../Shared/Services/FormValidation";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 
 import { 
     Button, 
-    IconButton, 
     CircularProgress, 
     Divider, 
     Grid, 
@@ -35,14 +35,13 @@ interface IProperties
     isLoading: boolean;
     userStore: IAuthenticateUserResultDto;
     accountForm: IValidateAccountForm;
+    userImageName: string;
     isUserActivated: boolean;
     accountFormProgress: boolean;
     accountKeyHandler: any;
     accountFormHandler: any;
     accountSwitchHandler: any;
     accountButtonHandler: any;
-    avatarUploadProgress: boolean;
-    avatarButtonHandler: any;
     sectionAccessDenied: ISectionAccessDenied;
     sectionAccountInformation: ISectionAccountInformation;
 }
@@ -70,20 +69,6 @@ const UpdateAccountButton = (props: IBinding): JSX.Element =>
     );
 }
 
-const UploadAvatarButton = (props: IBinding): JSX.Element => 
-{
-    const classes = UserInfoStyle();
-    return(
-        <IconButton 
-            size="small"
-            onClick={props.bind?.avatarButtonHandler} 
-            disabled={props.bind?.avatarUploadProgress} 
-            className={classes.button_upload}>
-            <BackupIcon />
-        </IconButton>
-    );
-}
-
 const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.Element => 
 {
     const classes = UserInfoStyle();
@@ -97,6 +82,16 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.E
 const RenderText = (props: IRenderText): JSX.Element => 
 {
     return props.bind?.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
+}
+
+const ReturnFileName = (value: string): string => 
+{
+    const maxFileNameLength: number = 8;
+    const fileNameLength = value.length;
+    const fileNameExtension = value.substring(fileNameLength - 3, fileNameLength);
+    const shortFileName = value.substring(0, maxFileNameLength);
+
+    return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
 }
 
 export const UserInfoView = (props: IBinding): JSX.Element => 
@@ -161,13 +156,15 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Box className={classes.user_avatar_box}>
-                                            <Typography component="span" className={classes.user_avatar}>
-                                                <RenderText 
-                                                    {...props} 
-                                                    value={props.bind?.userStore?.avatarName} 
-                                                />
-                                            </Typography>
-                                            {props.bind?.isLoading ? null : <UploadAvatarButton {...props} />}
+                                            {props.bind?.isLoading 
+                                            ? null 
+                                            : <UploadUserMedia mediaTarget={UserMedia.userImage} handle="userInfoSection_userImage" />}
+                                            {props.bind?.isLoading 
+                                            ? 
+                                            null 
+                                            : <Typography component="span" className={classes.user_avatar_text}>
+                                                {ReturnFileName(props.bind?.userImageName)}
+                                            </Typography>}
                                         </Box>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>

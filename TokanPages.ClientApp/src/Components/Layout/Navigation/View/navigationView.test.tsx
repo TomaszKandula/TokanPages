@@ -48,8 +48,8 @@ describe("Test component: featuresView.", () =>
             closeHandler: jest.fn(),
             infoHandler: jest.fn(),
             isAnonymous: false,
-            logo: "",
             avatarName: "",
+            avatarSource: "",
             userAliasText: "",
             menu: 
             { 

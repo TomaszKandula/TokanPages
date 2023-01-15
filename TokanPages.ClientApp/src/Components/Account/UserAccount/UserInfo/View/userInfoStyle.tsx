@@ -60,9 +60,9 @@ export const UserInfoStyle = makeStyles((theme) => (
         },
         marginBottom: "30px"
     },
-    user_avatar:
+    user_avatar_text:
     {
-        marginRight: "15px"
+        marginLeft: 15
     },
     button_update:
     {

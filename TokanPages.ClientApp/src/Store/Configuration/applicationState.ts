@@ -41,7 +41,8 @@ import {
     IApplicationLanguage,
     IContentPolicy,
     IContentTerms,
-    IContentStory
+    IContentStory,
+    IUserMediaUpload
 } from "../States";
 
 export interface IApplicationState 
@@ -82,6 +83,7 @@ export interface IApplicationState
     subscriberUpdate: ISubscriberUpdate;
     userActivate: IUserActivate;
     userDataStore: IUserDataStore;
+    userMediaUpload: IUserMediaUpload;
     userPasswordReset: IUserPasswordReset;
     userPasswordUpdate: IUserPasswordUpdate;
     userReAuthenticate: IUserReAuthenticate;
