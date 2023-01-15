@@ -16,16 +16,16 @@ export const CookiesStyle = makeStyles(() => (
     },
     container:
     {
-        borderRadius: "15px",
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
-        padding: "8px",
+        padding: 8,
         background: Colours.colours.white
     },
     caption:
     {
         fontSize: "1.5rem",
-        paddingTop: "5px",
-        paddingBottom: "15px",
+        paddingTop: 5,
+        paddingBottom: 15,
         color: Colours.colours.black
     },
     text:
@@ -46,6 +46,6 @@ export const CookiesStyle = makeStyles(() => (
         display: "block",
         marginLeft: "auto",
         marginRight: 0,
-        marginBottom: "10px"
+        marginBottom: 10
     }
 }));

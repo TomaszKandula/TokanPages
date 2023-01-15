@@ -14,7 +14,7 @@ export const UserPasswordStyle = makeStyles((theme) => (
     divider:
     {
         width: "100%",
-        height: "1px"
+        height: 1
     },
     caption:
     {
@@ -24,7 +24,7 @@ export const UserPasswordStyle = makeStyles((theme) => (
     },
     card:
     {
-        borderRadius: "15px",
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     card_content:
@@ -40,7 +40,7 @@ export const UserPasswordStyle = makeStyles((theme) => (
         {
             width: "100%",
         },
-        width: "150px",
+        width: 150,
         "&:hover": 
         {
             color: Colours.colours.white,
@@ -53,7 +53,7 @@ export const UserPasswordStyle = makeStyles((theme) => (
     {
         [theme.breakpoints.down("xs")]: 
         {
-            marginTop: "30px",
+            marginTop: 30,
             display: "block",
             justifyContent: "normal"
         },

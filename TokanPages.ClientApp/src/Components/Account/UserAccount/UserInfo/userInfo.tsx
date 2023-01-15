@@ -41,10 +41,12 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
 
     const store = useSelector((state: IApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: IApplicationState) => state.userUpdate);
+    const media = useSelector((state: IApplicationState) => state.userMediaUpload);
     const error = useSelector((state: IApplicationState) => state.applicationError);
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
+    const hasMediaUploadFinished = media?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const accountFormDefault: IValidateAccountForm = 
@@ -53,6 +55,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
         userAboutText: store.shortBio ?? ""
     }
 
+    const avatarName = Validate.isEmpty(store.avatarName) ? "N/A" : store.avatarName;
     const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
     const [accountForm, setAccountForm] = React.useState(accountFormDefault);
     const [progress, setProgress] = React.useState(false);
@@ -111,6 +114,19 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
     }, 
     [ progress, hasError, hasNotStarted, hasFinished ]);
 
+    React.useEffect(() => 
+    {
+        if (hasMediaUploadFinished)
+        {
+            if (media.handle === undefined) return;
+            if (media.payload?.blobName === undefined) return;
+
+            const blobName = media.payload?.blobName;
+            dispatch(UserDataStoreAction.update({ ...store, avatarName: blobName }));
+        }
+    }, 
+    [ hasMediaUploadFinished ]);
+
     const accountKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
     {
         if (event.code === "Enter")
@@ -147,14 +163,13 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             isLoading: props.isLoading,
             userStore: store,
             accountForm: accountForm,
+            userImageName: avatarName,
             isUserActivated: isUserActivated.checked,
             accountFormProgress: progress,           
             accountKeyHandler: accountKeyHandler,
             accountFormHandler: accountFormHandler,
             accountSwitchHandler: accountSwitchHandler,
             accountButtonHandler: accountButtonHandler,
-            avatarUploadProgress: false,
-            avatarButtonHandler: null,
             sectionAccessDenied: props.content?.sectionAccessDenied,
             sectionAccountInformation: props.content?.sectionAccountInformation,
         }} />

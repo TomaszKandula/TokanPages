@@ -19,6 +19,7 @@ export const REMOVE_ARTICLE = `${API_ARTICLES_URI}/removeArticle`;
 
 export const GET_USERS = `${API_USERS_URI}/getAllUsers`;
 export const GET_USER = `${API_USERS_URI}/{id}/getUser`;
+export const GET_USER_MEDIA = `${API_USERS_URI}/{id}/getUserMedia/?blobName={name}`;
 export const ADD_USER = `${API_USERS_URI}/addUser`;
 export const ACTIVATE_USER = `${API_USERS_URI}/activateUser`;
 export const UPDATE_USER = `${API_USERS_URI}/updateUser`;
@@ -27,6 +28,7 @@ export const AUTHENTICATE = `${API_USERS_URI}/authenticateUser`;
 export const REAUTHENTICATE = `${API_USERS_URI}/reAuthenticateUser`;
 export const RESET_USER_PASSWORD = `${API_USERS_URI}/resetUserPassword`;
 export const UPDATE_USER_PASSWORD = `${API_USERS_URI}/updateUserPassword`;
+export const UPLOAD_USER_MEDIA = `${API_USERS_URI}/uploadUserMedia`;
 
 export const GET_SUBSCRIBERS = `${API_SUBSCRIBERS_URI}/getAllSubscribers`;
 export const GET_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/{id}/getSubscriber`;
@@ -70,7 +72,6 @@ export const GET_ARTICLE_IMAGE_URL = `${API_ASSETS_URI}/getAsset/?blobName=image
 export const GET_FEATURED_IMAGE_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/sections/featured`;
 export const GET_TESTIMONIALS_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/sections/testimonials`;
 export const GET_ICONS_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/icons`;
-export const GET_AVATARS_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/avatars`;
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;

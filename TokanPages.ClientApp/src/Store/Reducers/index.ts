@@ -45,3 +45,4 @@ export { UserSignup } from "./Users/userSignup";
 export { UserDataStore } from "./Users/userDataStore";
 export { UserPasswordUpdate } from "./Users/userPasswordUpdate";
 export { UserUpdate } from "./Users/userUpdate";
+export { UserMediaUpload } from "./Users/userMediaUpload";

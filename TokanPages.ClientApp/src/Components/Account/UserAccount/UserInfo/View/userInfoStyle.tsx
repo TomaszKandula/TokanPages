@@ -26,7 +26,7 @@ export const UserInfoStyle = makeStyles((theme) => (
     },
     card:
     {
-        borderRadius: "15px",
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     card_content:
@@ -40,29 +40,29 @@ export const UserInfoStyle = makeStyles((theme) => (
     {
         [theme.breakpoints.down("xs")]: 
         {
-            marginBottom: "15px"
+            marginBottom: 15
         },
-        marginBottom: "30px"
+        marginBottom: 30
     },
     user_alias: 
     {
         [theme.breakpoints.down("xs")]: 
         {
-            marginBottom: "15px"
+            marginBottom: 15
         },
-        marginBottom: "30px"
+        marginBottom: 30
     },
     user_avatar_box:
     {
         [theme.breakpoints.down("xs")]: 
         {
-            marginBottom: "15px"
+            marginBottom: 15
         },
-        marginBottom: "30px"
+        marginBottom: 30
     },
-    user_avatar:
+    user_avatar_text:
     {
-        marginRight: "15px"
+        marginLeft: 15
     },
     button_update:
     {
@@ -70,7 +70,7 @@ export const UserInfoStyle = makeStyles((theme) => (
         {
             width: "100%",
         },
-        width: "150px",
+        width: 150,
         "&:hover": 
         {
             color: Colours.colours.white,
@@ -83,7 +83,7 @@ export const UserInfoStyle = makeStyles((theme) => (
     {
         [theme.breakpoints.down("xs")]: 
         {
-            marginTop: "30px",
+            marginTop: 30,
             display: "block",
             justifyContent: "normal"
         },

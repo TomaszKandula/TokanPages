@@ -102,7 +102,7 @@ public class UploadUserMediaCommandHandlerTest : TestBase
     }
 
     [Fact]
-    public async Task GivenMissingUserInfo_WhenAddUserMediaCommand_ShouldThrowError()
+    public async Task GivenMissingUserInfo_WhenAddUserMediaCommand_ShouldAddMissingUserInfo()
     {
         // Arrange
         var userId = Guid.NewGuid();
@@ -161,9 +161,10 @@ public class UploadUserMediaCommandHandlerTest : TestBase
             userService.Object);
 
         // Act
+        await handler.Handle(command, CancellationToken.None);
+
         // Assert
-        var result = await Assert.ThrowsAsync<GeneralException>(() => handler.Handle(command, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
-        result.Message.Should().Be(ErrorCodes.ERROR_UNEXPECTED);
+        var hasUserInfo = databaseContext.UserInfo.Where(x => x.UserId == userId);
+        hasUserInfo.Should().NotBeNull();
     }
 }

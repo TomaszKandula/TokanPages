@@ -51,9 +51,9 @@ export const NavigationStyle = makeStyles((theme) => (
     },
     nav_icon:
     {
-        height: "48px",
-        marginTop: "6px",
-        marginBottom: "6px"
+        height: 48,
+        marginTop: 6,
+        marginBottom: 6
     },
     app_link:
     {
@@ -68,9 +68,9 @@ export const NavigationStyle = makeStyles((theme) => (
     {
         [theme.breakpoints.down(700)]:
         {
-            marginRight: "0px",
+            marginRight: 0,
         },
-        marginRight: "30px",
+        marginRight: 30,
         alignSelf: "center"
     },
     languages_selection:

@@ -1,1 +1,1 @@
-export { UserAvatarView as UserAvatar } from "./View/userAvatarView";
+export { UserAvatar } from "./UserAvatar";

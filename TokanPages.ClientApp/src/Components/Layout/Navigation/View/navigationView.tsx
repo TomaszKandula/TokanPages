@@ -9,7 +9,6 @@ import { ILanguageItem } from "../../../../Api/Models/";
 import { IApplicationLanguage } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { GET_AVATARS_URL } from "../../../../Api/Request";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
@@ -28,8 +27,8 @@ interface IProperties
     closeHandler: any;
     infoHandler: any;
     isAnonymous: boolean;
-    logo: string;
     avatarName: string;
+    avatarSource: string;
     userAliasText: string;
     languages: IApplicationLanguage;
     languageId: string;
@@ -68,8 +67,7 @@ const RenderAvatar = (props: IBinding): JSX.Element =>
         return(<Avatar>{userLetter}</Avatar>);
     }
 
-    const avatarName = `${GET_AVATARS_URL}/${props.bind?.avatarName}`;
-    return(<Avatar alt="Avatar" src={avatarName} />);
+    return(<Avatar alt="Avatar" src={props.bind?.avatarSource} />);
 }
 
 const RenderLanguageSelection = (props: IRenderLanguageSelection): JSX.Element => 

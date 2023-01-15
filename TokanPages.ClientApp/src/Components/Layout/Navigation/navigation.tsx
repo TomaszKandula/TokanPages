@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { GET_USER_MEDIA } from "../../../Api/Request";
 import { IApplicationState } from "../../../Store/Configuration";
 import { IContentNavigation } from "../../../Store/States";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
@@ -17,7 +18,7 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
     const dispatch = useDispatch();
     const store = useSelector((state: IApplicationState) => state.userDataStore);
     const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-
+    const avatarSource = GET_USER_MEDIA.replace("{id}", store?.userData?.userId).replace("{name}", store?.userData?.avatarName);
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
 
@@ -49,8 +50,8 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
         infoHandler: onAvatarClick,
         isAnonymous: isAnonymous,
         userAliasText: store?.userData?.aliasName,
-        logo: props.content?.logo,
         avatarName: store?.userData?.avatarName,
+        avatarSource: avatarSource,
         languages: language,
         languageId: language?.id,
         languageHandler: languageHandler,
