@@ -1,3 +1,38 @@
+# [0.63.0](https://github.com/TomaszKandula/TokanPages/compare/v0.62.0...v0.63.0) (2023-01-15)
+
+
+### Bug Fixes
+
+* add missing condition ([d7c9499](https://github.com/TomaszKandula/TokanPages/commit/d7c9499f1ade56ade1143b84198be79d31a4486a))
+* add missing required fields ([cbd25de](https://github.com/TomaszKandula/TokanPages/commit/cbd25de9db3f7968b5345b6cce865fefd70c660f))
+* add missing user ID in the model ([cf8a86f](https://github.com/TomaszKandula/TokanPages/commit/cf8a86f4517b7a4b9630a2d0ee9381adc465ab78))
+* allow nullable ([0b6b97d](https://github.com/TomaszKandula/TokanPages/commit/0b6b97d2bf10e54d4d4f668fed5dafa8168754a6))
+
+
+### Features
+
+* add DTO models to index ([21fe75a](https://github.com/TomaszKandula/TokanPages/commit/21fe75a9f93e89386b00750188e2ab87d8b0a90d))
+* add new DTO models for API calls ([d1a0426](https://github.com/TomaszKandula/TokanPages/commit/d1a042690c31e3d005e967c6280e95b75d85eb6a))
+* add new endpoint path for getting user media ([446c892](https://github.com/TomaszKandula/TokanPages/commit/446c8928a1e22b0aff40399fcf5798aa65cbd369))
+* add new enum for user media files ([d19350a](https://github.com/TomaszKandula/TokanPages/commit/d19350a276a516caca3b855019c080bcd0586bcb))
+* add new properties, allow to skip DB ([2b15c77](https://github.com/TomaszKandula/TokanPages/commit/2b15c77619344b88c82d99e05c6226d3f7b5fe03))
+* add new state and default for uploading user media ([61adc32](https://github.com/TomaszKandula/TokanPages/commit/61adc32d1842a424b184c246a1af3636d65792d8))
+* add new user avatar source to navigation ([44a52d2](https://github.com/TomaszKandula/TokanPages/commit/44a52d2a456103680bebcc3b8d658145ca2e7c55))
+* add reducer for uploading user media ([806e3ea](https://github.com/TomaszKandula/TokanPages/commit/806e3ea2e0e5cc62326d97d137e7b60fcc2f2dcf))
+* add redux action for uploading user media ([108c184](https://github.com/TomaszKandula/TokanPages/commit/108c1840f9e8f9692b442a1d9794f52eb4b0796e))
+* add upload media component ([6ab3581](https://github.com/TomaszKandula/TokanPages/commit/6ab3581f44345775ef9bd94be485448b56d48c8f))
+* allow to get user media for everyone ([7b498af](https://github.com/TomaszKandula/TokanPages/commit/7b498af5edad27dca10781b7be2736251d17237b))
+* allow to pass user ID ([d21896c](https://github.com/TomaszKandula/TokanPages/commit/d21896c93d63ad96306e738ae2dae5cfab4d0ea5))
+* allow to skip DB update ([6621cf7](https://github.com/TomaszKandula/TokanPages/commit/6621cf7c8e812288261caba4a01c0e8dcc3be5de))
+* always get user ID from logged user ([b01777f](https://github.com/TomaszKandula/TokanPages/commit/b01777fa6eedcdee7a9b8c7bdb51637ca7a4cbb4))
+* create user info if does not exist ([5789e55](https://github.com/TomaszKandula/TokanPages/commit/5789e55d6c9e1066e6568f2fa07c52e94bd6f7c8))
+* register new endpoint ([7bd676e](https://github.com/TomaszKandula/TokanPages/commit/7bd676e66c923ca4d820e5daa0ad8f790bf69e16))
+* register state, default and reducer ([f3b45fe](https://github.com/TomaszKandula/TokanPages/commit/f3b45fe04975485449d93e9390c3b433979d53b9))
+* reimplement user avatar component, add controller ([e13336f](https://github.com/TomaszKandula/TokanPages/commit/e13336fd948818daac4466529987770b25302053))
+* remove unnecessary validation rules ([abc0b9f](https://github.com/TomaszKandula/TokanPages/commit/abc0b9fe8abc8419acf483636b4a0cffa7f9b4b4))
+* use upload user media component on user info page ([794ffec](https://github.com/TomaszKandula/TokanPages/commit/794ffece30c7032410624dbaef7efed2d6409806))
+* use user ID from an article author ([7bb498a](https://github.com/TomaszKandula/TokanPages/commit/7bb498aa8e9c713de8e6453c5e0d90c4f1de8a13))
+
 # [0.62.0](https://github.com/TomaszKandula/TokanPages/compare/v0.61.0...v0.62.0) (2023-01-14)
 
 
