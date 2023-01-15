@@ -25,9 +25,10 @@ exports[`Test view component for application user info. Renders correctly view c
         <Styled(MuiBox)
           mt={1}
         >
-          <UserAvatarView
+          <UserAvatar
             avatarName="tester-avatar-icon.png"
-            isLargeScale={true}
+            isLarge={true}
+            userId="5f4d15e2-0d32-4e20-b5f0-5a736152e993"
             userLetter="T"
           />
         </Styled(MuiBox)>

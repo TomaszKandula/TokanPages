@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -35,6 +34,9 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
         await azureBlob.UploadFile(stream, destinationPath, cancellationToken: cancellationToken);
         LoggerService.LogInformation($"New user media file has been saved in storage. Path: {destinationPath}.");
 
+        if (request.SkipDb) 
+            return new UploadUserMediaCommandResult { BlobName = blobName };
+
         await DatabaseUpdate(blobName, request.MediaTarget, user.Id, cancellationToken);
         LoggerService.LogInformation($"User media name has been saved in database. Name: {blobName}.");
 
@@ -47,7 +49,15 @@ public class UploadUserMediaCommandHandler : RequestHandler<UploadUserMediaComma
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is null)
-            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+        {
+            userInfo = new UserInfo
+            {
+                UserId = userId,
+                FirstName = string.Empty,
+                LastName = string.Empty
+            };
+            await DatabaseContext.UserInfo.AddAsync(userInfo, cancellationToken);
+        }
 
         switch (mediaTarget)
         {

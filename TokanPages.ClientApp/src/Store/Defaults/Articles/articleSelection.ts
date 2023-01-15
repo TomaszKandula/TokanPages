@@ -16,6 +16,7 @@ export const ArticleSelection: IArticleSelection =
         updatedAt: "",
         author: 
         { 
+            userId: "",
             aliasName: "", 
             avatarName: "",
             firstName: "",

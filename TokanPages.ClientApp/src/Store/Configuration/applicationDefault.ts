@@ -42,7 +42,8 @@ import {
     ApplicationLanguage,
     ContentPolicy,
     ContentTerms,
-    ContentStory
+    ContentStory,
+    UserMediaUpload
 } from "../Defaults";
 
 export const ApplicationDefault: IApplicationState = 
@@ -83,6 +84,7 @@ export const ApplicationDefault: IApplicationState =
     subscriberUpdate: SubscriberUpdate,
     userActivate: UserActivate,
     userDataStore: UserDataStore,
+    userMediaUpload: UserMediaUpload,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

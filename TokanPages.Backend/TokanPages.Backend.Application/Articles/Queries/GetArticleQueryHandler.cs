@@ -74,6 +74,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
                 UserLikes = userLikes,
                 Author = new GetUserDto
                 {
+                    UserId = users.Id,
                     AliasName = users.UserAlias,
                     AvatarName = userInfo.UserImageName,
                     FirstName = userInfo.FirstName,

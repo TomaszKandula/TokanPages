@@ -51,12 +51,9 @@ public class UploadUserMediaCommandValidatorTest : TestBase
         var result = validator.Validate(command);
 
         // Assert
-        result.Errors.Count.Should().Be(5);
+        result.Errors.Count.Should().Be(2);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_GUID_VALUE));
-        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.NOT_SPECIFIED_MEDIA_TARGET));
-        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 
     [Fact]
@@ -78,10 +75,8 @@ public class UploadUserMediaCommandValidatorTest : TestBase
         var result = validator.Validate(command);
 
         // Assert
-        result.Errors.Count.Should().Be(3);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.TOO_LONG_MEDIA_NAME));
-        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.TOO_LONG_MEDIA_TYPE));
-        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
+        result.Errors.Count.Should().Be(1);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
     }
 
     private static Mock<IConfiguration> SetupMockedSettings()

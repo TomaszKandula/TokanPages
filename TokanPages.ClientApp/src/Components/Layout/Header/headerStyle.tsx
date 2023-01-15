@@ -9,7 +9,7 @@ export const HeaderStyle = makeStyles((theme) => (
     },
     top_margin:
     {
-        marginTop: "85px"
+        marginTop: 85
     },
     action_button: 
     {
@@ -58,8 +58,8 @@ export const HeaderStyle = makeStyles((theme) => (
     },
     image_skeleton:
     {
-        height: "300px",
-        width: "300px"
+        height: 300,
+        width: 300
     },
     image_box:
     {

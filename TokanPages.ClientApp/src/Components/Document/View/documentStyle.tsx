@@ -9,11 +9,11 @@ export const DocumentStyle = makeStyles(() => (
     },
     container:
     {
-        maxWidth: "700px"
+        maxWidth: 700
     },
     divider:
     {
-        marginTop: "20px",
-        marginBottom: "10px"
+        marginTop: 20,
+        marginBottom: 10
     }
 }));

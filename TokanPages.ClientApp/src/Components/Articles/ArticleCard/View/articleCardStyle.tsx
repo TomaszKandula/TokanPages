@@ -5,8 +5,8 @@ export const ArticleCardStyle = makeStyles((theme) => (
 {
     card: 
     {
-        marginTop: "25px",
-        marginBottom: "25px",
+        marginTop: 25,
+        marginBottom: 25,
         [theme.breakpoints.down(700)]:
         {
             display: "block"
@@ -15,7 +15,7 @@ export const ArticleCardStyle = makeStyles((theme) => (
         {
             display: "flex"
         },
-        borderRadius: "15px",
+        borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
     },
     card_link:
@@ -26,13 +26,13 @@ export const ArticleCardStyle = makeStyles((theme) => (
     {
         [theme.breakpoints.down(700)]:
         {
-            height: "180px",
+            height: 180,
             width: "auto",
         },
         [theme.breakpoints.up(700)]:
         {
             height: "auto",
-            width: "180px",
+            width: 180,
         }
     },
     card_title:
@@ -47,7 +47,7 @@ export const ArticleCardStyle = makeStyles((theme) => (
     },
     card_action:
     {
-        marginTop: "25px"
+        marginTop: 25
     },
     button:
     {
@@ -57,7 +57,7 @@ export const ArticleCardStyle = makeStyles((theme) => (
         },
         [theme.breakpoints.up(700)]:
         {
-            marginLeft: "0px"
+            marginLeft: 0
         },
         "&:hover": 
         {

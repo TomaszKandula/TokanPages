@@ -1,30 +1,34 @@
 import * as React from "react";
 import { Avatar } from "@material-ui/core";
 import { UserAvatarStyle } from "./userAvatarViewStyle";
-import { GET_AVATARS_URL } from "../../../../Api/Request";
 import Validate from "validate.js";
 
-export interface IBinding
+interface IBinding
 {
-    isLargeScale: boolean;
-    avatarName: string; 
+    bind: IProperties;
+}
+
+interface IProperties
+{
+    isLarge: boolean;
     userLetter: string;
+    avatarSource: string;
 }
 
 export const UserAvatarView = (props: IBinding): JSX.Element =>
 {
     const classes = UserAvatarStyle();
-    const className = props.isLargeScale ? classes.avatarLarge : classes.avatarSmall;
+    const className = props.bind?.isLarge ? classes.avatarLarge : classes.avatarSmall;
 
-    if (Validate.isEmpty(props.avatarName))
+    if (Validate.isEmpty(props.bind?.avatarSource))
     {
-        return(<Avatar className={className}>{props.userLetter}</Avatar>);
+        return(<Avatar className={className}>{props.bind?.userLetter}</Avatar>);
     }
 
     return(
         <Avatar 
             className={className} 
-            src={`${GET_AVATARS_URL}/${props.avatarName}`}
+            src={props.bind?.avatarSource}
             alt="Avatar" >
         </Avatar>
     );

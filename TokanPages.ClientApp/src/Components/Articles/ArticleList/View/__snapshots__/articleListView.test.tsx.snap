@@ -45,6 +45,7 @@ exports[`Test articles group component: ArticleListView. Renders correctly '<Art
                     "lastName": "Exposito",
                     "registered": "2020-01-05 14:15:30",
                     "shortBio": "Happy developer",
+                    "userId": "52a520f3-9f60-4c76-b0f5-926dc5168a6e",
                   },
                   "createdAt": "2020-09-21",
                   "description": "Some article",

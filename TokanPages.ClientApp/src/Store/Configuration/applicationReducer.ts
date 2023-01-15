@@ -41,7 +41,8 @@ import {
     ApplicationLanguage,
     ContentPolicy,
     ContentTerms,
-    ContentStory
+    ContentStory,
+    UserMediaUpload
 } from "../Reducers";
 
 export const ApplicationReducer = 
@@ -82,6 +83,7 @@ export const ApplicationReducer =
     subscriberUpdate: SubscriberUpdate,
     userActivate: UserActivate,
     userDataStore: UserDataStore,
+    userMediaUpload: UserMediaUpload,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

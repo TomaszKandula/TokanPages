@@ -5,6 +5,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
   bind={
     Object {
       "avatarName": "",
+      "avatarSource": "",
       "closeHandler": [MockFunction],
       "drawerState": Object {
         "open": false,
@@ -29,7 +30,6 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           },
         ],
       },
-      "logo": "",
       "menu": Object {
         "image": "",
         "items": Array [
@@ -69,6 +69,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
             bind={
               Object {
                 "avatarName": "",
+                "avatarSource": "",
                 "closeHandler": [MockFunction],
                 "drawerState": Object {
                   "open": false,
@@ -93,7 +94,6 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
                     },
                   ],
                 },
-                "logo": "",
                 "menu": Object {
                   "image": "",
                   "items": Array [
@@ -138,6 +138,7 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
             bind={
               Object {
                 "avatarName": "",
+                "avatarSource": "",
                 "closeHandler": [MockFunction],
                 "drawerState": Object {
                   "open": false,
@@ -162,7 +163,6 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
                     },
                   ],
                 },
-                "logo": "",
                 "menu": Object {
                   "image": "",
                   "items": Array [
