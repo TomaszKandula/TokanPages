@@ -60,6 +60,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     <Grid item xs={12}>
                         <Box mt={1}>
                             <UserAvatar 
+                                userId={props.bind?.data.userId}
                                 isLarge={true} 
                                 avatarName={props.bind?.data.avatarName} 
                                 userLetter={props.bind?.data.aliasName?.charAt(0).toUpperCase()} 
