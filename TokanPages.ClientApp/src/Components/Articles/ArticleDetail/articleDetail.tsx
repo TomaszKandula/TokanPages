@@ -122,13 +122,13 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     };
 
     const smallAvatar = <UserAvatar 
-        isLargeScale={false} 
+        isLarge={false} 
         avatarName={selection.article.author.avatarName} 
         userLetter={userLetter} 
     />;
 
     const largeAvatar = <UserAvatar 
-        isLargeScale={true} 
+        isLarge={true} 
         avatarName={selection.article.author.avatarName} 
         userLetter={userLetter}
     />;
