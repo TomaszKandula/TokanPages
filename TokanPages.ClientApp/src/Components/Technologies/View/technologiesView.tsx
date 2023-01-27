@@ -8,7 +8,7 @@ import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import StorageIcon from "@material-ui/icons/Storage";
 import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
-import ReactHtmlParser from "react-html-parser";
+import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { IContentFeatures } from "../../../Store/States";
 import { TechnologiesStyle } from "./technologiesStyle";
 
@@ -36,8 +36,8 @@ export const TechnologiesView = (props: IContentFeatures): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title1}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text1)}
+                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser({ html: props.content?.text1})}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -49,8 +49,8 @@ export const TechnologiesView = (props: IContentFeatures): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title2}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text2)}
+                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser({ html: props.content?.text2 })}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -62,8 +62,8 @@ export const TechnologiesView = (props: IContentFeatures): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text3)}
+                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser({ html: props.content?.text3 })}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -75,8 +75,8 @@ export const TechnologiesView = (props: IContentFeatures): JSX.Element =>
                                     {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title4}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser(props.content?.text4)}
+                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                                {props.isLoading ? <Skeleton variant="text" /> : ReactHtmlParser({ html: props.content?.text4 })}
                             </Typography>
                         </Grid>
                     </Grid>
