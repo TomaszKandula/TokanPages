@@ -93,8 +93,8 @@
     "dom-test": "cross-env CI=true react-scripts test --env=jsdom --setupFiles dotenv/config --verbose",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
+    "lint-fix": "eslint --fix",
     "sonar": "sonar-scanner"
   },
   "jest": {
