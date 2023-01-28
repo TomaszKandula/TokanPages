@@ -17,16 +17,16 @@ describe("Test component: unsubscribeView.", () =>
             button: "Unsubscribe"
         }
 
-        const tree = shallow(<UnsubscribeView bind=
-        {{
-            isLoading: false,
-            buttonHandler: jest.fn(),
-            buttonState: false,
-            progress: false,
-            contentPre: content,
-            contentPost: content,
-            isRemoved: false
-        }}/>);
+        const tree = shallow(<UnsubscribeView
+            isLoading={false}
+            buttonHandler={jest.fn()}
+            buttonState={false}
+            progress={false}
+            contentPre={content}
+            contentPost={content}
+            isRemoved={false}
+        />);
+
         expect(tree).toMatchSnapshot();
     });
 });

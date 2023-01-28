@@ -18,20 +18,13 @@ describe("Test component: menuView.", () =>
             enabled: true
         };
 
-        const tree = shallow(<SideMenuView bind=
-        {{
-            drawerState: 
-            { 
-                open: false 
-            },
-            closeHandler: jest.fn(),
-            isAnonymous: true,
-            menu: 
-            { 
-                image: "",
-                items: [item]
-            }
-        }}/>);
+        const tree = shallow(<SideMenuView
+            drawerState={{ open: false }}
+            closeHandler={jest.fn()}
+            isAnonymous={true}
+            menu={{ image: "", items: [item] }}
+        />);
+
         expect(tree).toMatchSnapshot();
     });
 });

@@ -37,29 +37,22 @@ describe("Test component: featuresView.", () =>
             ]
         }
 
-        const tree = shallow(<NavigationView bind=
-        {{
-            isLoading: false,
-            drawerState: 
-            { 
-                open: false 
-            },
-            openHandler: jest.fn(),
-            closeHandler: jest.fn(),
-            infoHandler: jest.fn(),
-            isAnonymous: false,
-            avatarName: "",
-            avatarSource: "",
-            userAliasText: "",
-            menu: 
-            { 
-                image: "", 
-                items: [items] 
-            },
-            languages: languages,
-            languageId: "eng",
-            languageHandler: jest.fn(),
-        }}/>);
+        const tree = shallow(<NavigationView
+            isLoading={false}
+            drawerState={{ open: false }}
+            openHandler={jest.fn()}
+            closeHandler={jest.fn()}
+            infoHandler={jest.fn()}
+            isAnonymous={false}
+            avatarName=""
+            avatarSource=""
+            userAliasText=""
+            menu={{ image: "", items: [items] }}
+            languages={languages}
+            languageId="eng"
+            languageHandler={jest.fn()}
+        />);
+
         expect(tree).toMatchSnapshot();
     });
 });
