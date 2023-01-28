@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
 import Box from "@material-ui/core/Box";
-import { green } from '@material-ui/core/colors';
+import { green } from "@material-ui/core/colors";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { IAuthenticateUserResultDto, IUserPermissionDto, IUserRoleDto } from "../../../../Api/Models";

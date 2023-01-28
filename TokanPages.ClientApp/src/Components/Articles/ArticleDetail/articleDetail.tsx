@@ -86,7 +86,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         }, 
         3000);
         
-        return(() => { clearInterval(intervalId) });
+        return(() => clearInterval(intervalId));
     }, 
     [ userLikes, thumbClicked ]);
 

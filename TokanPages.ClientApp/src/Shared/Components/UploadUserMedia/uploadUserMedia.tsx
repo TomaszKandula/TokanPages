@@ -17,8 +17,15 @@ const GetAcceptedType = (media: UserMedia): string =>
 {   
     const target = media.toString();
 
-    if (target.includes("image")) { return "image/*"; }
-    if (target.includes("video")) { return "video/*"; }
+    if (target.includes("image")) 
+    { 
+        return "image/*"; 
+    }
+    
+    if (target.includes("video")) 
+    { 
+        return "video/*"; 
+    }
 
     return "";
 }
