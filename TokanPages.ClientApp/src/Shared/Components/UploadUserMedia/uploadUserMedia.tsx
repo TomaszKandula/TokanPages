@@ -83,7 +83,6 @@ export const UploadUserMedia = (props: IUploadUserMedia): JSX.Element =>
     };
 
     return(<UploadUserMediaView
-        isUploading={isUploading}
         buttonState={!isUploading}
         inputHandler={inputHandler}
         accepting={accepting}

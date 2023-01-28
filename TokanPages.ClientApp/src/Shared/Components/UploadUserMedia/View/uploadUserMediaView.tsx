@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 
 interface IProperties
 {
-    isUploading: boolean;
     buttonState: boolean;
     inputHandler: any;
     accepting: string;
