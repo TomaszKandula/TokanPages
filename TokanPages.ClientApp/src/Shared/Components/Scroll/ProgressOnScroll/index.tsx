@@ -20,7 +20,7 @@ const ProgressStyle = (props: IProgressStyle): React.CSSProperties =>
     width: `${props.width}%`,
     transitionProperty: "width",
     transitionDuration: `${props.duration}s`,
-    transitionTimingFunction: `ease-out`
+    transitionTimingFunction: "ease-out"
 });
 
 interface IProgressOnScroll 
@@ -53,7 +53,7 @@ export const ProgressOnScroll = (props: IProgressOnScroll) =>
     React.useEffect(() => 
     {
         window.addEventListener("scroll", Scrolling);
-        return () => { window.removeEventListener("scroll", Scrolling); }
+        return () => window.removeEventListener("scroll", Scrolling);
     }, []);
 
     return (

@@ -9,7 +9,10 @@ export const RenderImage = (props: ITextItem): JSX.Element =>
     const classes = RenderImageStyle();
     const data: string = props.value as string; 
 
-    const onClickEvent = React.useCallback(() => { window.open(props.prop, "_blank") }, [props.prop]);
+    const onClickEvent = React.useCallback(() => 
+    { 
+        window.open(props.prop, "_blank") 
+    }, [props.prop]);
 
     const renderDescription = () => 
     {

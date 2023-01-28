@@ -2,6 +2,16 @@ import { ICountWords } from "./interface";
 
 export const CountWords = (props: ICountWords): number => 
 {
-    if (props.inputText === undefined) return 0;
-    return props.inputText.split(" ").filter(function(n) { return n != '' }).length;
+    if (props.inputText === undefined) 
+    {
+        return 0;
+    }
+
+    const filtering = (value: string): boolean => 
+    {
+        return value != ""
+    }
+
+    const result = props.inputText.split(" ").filter(filtering).length;
+    return result;
 }

@@ -21,14 +21,13 @@ export const Cookies = (props: IContentCookiesPrompt): JSX.Element =>
         });
     };
 
-    return (<CookiesView bind=
-    {{
-        isLoading: props.isLoading,
-        modalClose: modalClose,
-        shouldShow: Validate.isEmpty(currentCookie),
-        caption: props.content?.caption,
-        text: props.content?.text,
-        onClickEvent: onClickEvent,
-        buttonText: props.content?.button
-    }}/>);
+    return (<CookiesView
+        isLoading={props.isLoading}
+        modalClose={modalClose}
+        shouldShow={Validate.isEmpty(currentCookie)}
+        caption={props.content?.caption}
+        text={props.content?.text}
+        onClickEvent={onClickEvent}
+        buttonText={props.content?.button}
+    />);
 }

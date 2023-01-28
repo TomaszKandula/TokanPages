@@ -28,12 +28,11 @@ export const ArticleCard = (props: IArticleCard): JSX.Element =>
         history.push(articleUrl);
     };
 
-    return (<ArticleCardView bind=
-    {{
-        imageUrl: imageUrl,
-        title: GetShortText({ value: props.title, limit: 6 }),
-        description: GetShortText({ value: props.description, limit: 12 }),
-        onClickEvent: onClickEvent,
-        buttonText: content.button
-    }}/>);
+    return (<ArticleCardView
+        imageUrl={imageUrl}
+        title={GetShortText({ value: props.title, limit: 6 })}
+        description={GetShortText({ value: props.description, limit: 12 })}
+        onClickEvent={onClickEvent}
+        buttonText={content.button}
+    />);
 }

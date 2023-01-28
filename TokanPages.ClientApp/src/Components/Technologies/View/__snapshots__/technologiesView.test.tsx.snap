@@ -52,12 +52,8 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
             component="span"
             data-aos="fade-up"
           >
-            <div
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "Today in my daily job, I use...",
-                }
-              }
+            <ReactHtmlParser
+              html="Today in my daily job, I use..."
             />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
@@ -86,12 +82,8 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
             component="span"
             data-aos="fade-up"
           >
-            <div
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "Back-End: NET Framework 4.5 (for one project)...",
-                }
-              }
+            <ReactHtmlParser
+              html="Back-End: NET Framework 4.5 (for one project)..."
             />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
@@ -120,12 +112,8 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
             component="span"
             data-aos="fade-up"
           >
-            <div
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "I have started with Entity Framework...",
-                }
-              }
+            <ReactHtmlParser
+              html="I have started with Entity Framework..."
             />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
@@ -155,12 +143,8 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
             component="span"
             data-aos="fade-up"
           >
-            <div
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "I have experience with...",
-                }
-              }
+            <ReactHtmlParser
+              html="I have experience with..."
             />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>

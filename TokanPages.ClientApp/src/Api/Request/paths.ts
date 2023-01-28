@@ -75,4 +75,4 @@ export const GET_ICONS_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/icons`
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;
-export const ARTICLE_PATH = `/articles/?id={id}`;
+export const ARTICLE_PATH = "/articles/?id={id}";

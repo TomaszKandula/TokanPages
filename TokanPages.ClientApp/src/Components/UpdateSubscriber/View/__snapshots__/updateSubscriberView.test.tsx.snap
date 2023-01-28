@@ -56,19 +56,15 @@ exports[`Test component: updateSubscriberView. Renders correctly '<UpdateSubscri
               my={2}
             >
               <ActiveButton
-                bind={
-                  Object {
-                    "buttonHandler": [MockFunction],
-                    "buttonState": false,
-                    "buttonText": "Update",
-                    "caption": "Update subscription email",
-                    "email": "ester.exposito@gmail.com",
-                    "formHandler": [MockFunction],
-                    "isLoading": false,
-                    "labelEmail": "Email address",
-                    "progress": false,
-                  }
-                }
+                buttonHandler={[MockFunction]}
+                buttonState={false}
+                buttonText="Update"
+                caption="Update subscription email"
+                email="ester.exposito@gmail.com"
+                formHandler={[MockFunction]}
+                isLoading={false}
+                labelEmail="Email address"
+                progress={false}
               />
             </Styled(MuiBox)>
           </Styled(MuiBox)>

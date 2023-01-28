@@ -132,20 +132,19 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
     };
 
     return (
-        <UpdatePasswordView bind=
-        {{
-            isLoading: props.isLoading,
-            progress: progress,
-            caption: props.content.caption,
-            button: props.content.button,
-            newPassword: form.newPassword,
-            verifyPassword: form.verifyPassword,
-            keyHandler: keyHandler,
-            formHandler: formHandler,
-            buttonHandler: buttonHandler,
-            disableForm: disableForm,
-            labelNewPassword: props.content.labelNewPassword,
-            labelVerifyPassword: props.content.labelVerifyPassword
-        }}/>
+        <UpdatePasswordView
+            isLoading={props.isLoading}
+            progress={progress}
+            caption={props.content.caption}
+            button={props.content.button}
+            newPassword={form.newPassword}
+            verifyPassword={form.verifyPassword}
+            keyHandler={keyHandler}
+            formHandler={formHandler}
+            buttonHandler={buttonHandler}
+            disableForm={disableForm}
+            labelNewPassword={props.content.labelNewPassword}
+            labelVerifyPassword={props.content.labelVerifyPassword}
+        />
     );
 }

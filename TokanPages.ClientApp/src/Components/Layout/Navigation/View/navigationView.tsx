@@ -9,19 +9,14 @@ import { ILanguageItem } from "../../../../Api/Models/";
 import { IApplicationLanguage } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface IBinding
+interface IProperties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     drawerState: { open: boolean };
     openHandler: any;
     closeHandler: any;
@@ -36,46 +31,46 @@ interface IProperties
     menu: { image: string, items: IItem[] };
 }
 
-interface IRenderLanguageSelection extends IBinding
+interface IRenderLanguageSelection extends IProperties
 {
     styleControl?: string; 
     styleSelect?: string; 
     styleMenu?: string;
 }
 
-const RenderMenuIcon = (props: IBinding): JSX.Element => 
+const RenderMenuIcon = (props: IProperties): JSX.Element => 
 {
     const classes = NavigationStyle();
     return(
         <IconButton color="inherit" aria-label="menu" 
-            onClick={props.bind?.openHandler} className={classes.nav_icon}>
+            onClick={props.openHandler} className={classes.nav_icon}>
             <MenuIcon />
         </IconButton>
     );
 }
 
-const RenderAvatar = (props: IBinding): JSX.Element => 
+const RenderAvatar = (props: IProperties): JSX.Element => 
 {
-    if (props.bind?.isAnonymous)
+    if (props.isAnonymous)
     {
         return(<Avatar>A</Avatar>);
     }
 
-    if (Validate.isEmpty(props.bind?.avatarName))
+    if (Validate.isEmpty(props.avatarName))
     {
-        const userLetter = props.bind?.userAliasText?.charAt(0).toUpperCase();
+        const userLetter = props.userAliasText?.charAt(0).toUpperCase();
         return(<Avatar>{userLetter}</Avatar>);
     }
 
-    return(<Avatar alt="Avatar" src={props.bind?.avatarSource} />);
+    return(<Avatar alt="Avatar" src={props.avatarSource} />);
 }
 
 const RenderLanguageSelection = (props: IRenderLanguageSelection): JSX.Element => 
 {
     return(
         <FormControl className={props.styleControl}>
-            <Select value={props.bind?.languageId} onChange={props.bind?.languageHandler} disableUnderline className={props.styleSelect}>
-                {props.bind?.languages?.languages.map((item: ILanguageItem, _index: number) => (
+            <Select value={props.languageId} onChange={props.languageHandler} disableUnderline className={props.styleSelect}>
+                {props.languages?.languages.map((item: ILanguageItem, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         {item.name}
                     </MenuItem>
@@ -85,7 +80,7 @@ const RenderLanguageSelection = (props: IRenderLanguageSelection): JSX.Element =
     );
 }
 
-const RenderContent = (props: IBinding): JSX.Element => 
+const RenderContent = (props: IProperties): JSX.Element => 
 {
     const classes = NavigationStyle();
     return(
@@ -98,7 +93,7 @@ const RenderContent = (props: IBinding): JSX.Element =>
                 />
             </Box>
             <div className={classes.user_avatar}>
-                <IconButton color="inherit" onClick={props.bind?.infoHandler} >
+                <IconButton color="inherit" onClick={props.infoHandler} >
                     <RenderAvatar {...props} /> 
                 </IconButton>
             </div>
@@ -106,7 +101,7 @@ const RenderContent = (props: IBinding): JSX.Element =>
     );
 }
 
-export const NavigationView = (props: IBinding): JSX.Element => 
+export const NavigationView = (props: IProperties): JSX.Element => 
 {
     const classes = NavigationStyle();
     const fullName = "</> tom kandula";
@@ -118,26 +113,25 @@ export const NavigationView = (props: IBinding): JSX.Element =>
 
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
-                            {props.bind?.isLoading ? null : <RenderMenuIcon {...props} />}
+                            {props.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>
                         <Grid item xs className={classes.app_link}>
                             <Typography className={classes.app_full_logo}>{fullName}</Typography>
                             <Typography className={classes.app_just_logo}>{justLogo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            {props.bind?.isLoading ? null : <RenderContent {...props} />}
+                            {props.isLoading ? null : <RenderContent {...props} />}
                         </Grid>
                     </Grid>
 
                 </Toolbar>
 
-                <SideMenuView bind=
-                {{
-                    drawerState: props.bind.drawerState,
-                    closeHandler: props.bind.closeHandler,
-                    isAnonymous: props.bind.isAnonymous,
-                    menu: props.bind.menu
-                }}/>
+                <SideMenuView
+                    drawerState={props.drawerState}
+                    closeHandler={props.closeHandler}
+                    isAnonymous={props.isAnonymous}
+                    menu={props.menu}
+                />
 
             </AppBar>
         </HideOnScroll>

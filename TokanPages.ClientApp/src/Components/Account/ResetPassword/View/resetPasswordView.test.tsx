@@ -8,18 +8,18 @@ describe("Test account group component: resetPasswordView.", () =>
 {
     it("Renders correctly '<ResetPasswordView />' when content is loaded.", () => 
     {
-        const tree = shallow(<ResetPasswordView bind=
-        {{
-            isLoading: false,
-            progress: false,
-            caption: RESET_FORM,
-            button: "Reset",
-            email: "tokan@dfds.com",
-            keyHandler: jest.fn(),
-            formHandler: jest.fn(),
-            buttonHandler: jest.fn(),
-            labelEmail: "Email address"
-        }}/>);
+        const tree = shallow(<ResetPasswordView
+            isLoading={false}
+            progress={false}
+            caption={RESET_FORM}
+            button="Reset"
+            email="tokan@dfds.com"
+            keyHandler={jest.fn()}
+            formHandler={jest.fn()}
+            buttonHandler={jest.fn()}
+            labelEmail="Email address"
+        />);
+
         expect(tree).toMatchSnapshot();
     });
 });

@@ -128,28 +128,24 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
               my={2}
             >
               <ActiveButton
-                bind={
-                  Object {
-                    "button": "Sign up",
-                    "buttonHandler": [MockFunction],
-                    "caption": "Create a new account",
-                    "consent": "I agree to the terms of use and privacy policy.",
-                    "email": "ester.exposito@gmail.com",
-                    "firstName": "Ester",
-                    "formHandler": [MockFunction],
-                    "isLoading": false,
-                    "keyHandler": [MockFunction],
-                    "labelEmail": "Email address",
-                    "labelFirstName": "First name",
-                    "labelLastName": "Last name",
-                    "labelPassword": "Password",
-                    "lastName": "Exposito",
-                    "link": "Already have an account? Sign in",
-                    "password": "madrilena123",
-                    "progress": false,
-                    "terms": false,
-                  }
-                }
+                button="Sign up"
+                buttonHandler={[MockFunction]}
+                caption="Create a new account"
+                consent="I agree to the terms of use and privacy policy."
+                email="ester.exposito@gmail.com"
+                firstName="Ester"
+                formHandler={[MockFunction]}
+                isLoading={false}
+                keyHandler={[MockFunction]}
+                labelEmail="Email address"
+                labelFirstName="First name"
+                labelLastName="Last name"
+                labelPassword="Password"
+                lastName="Exposito"
+                link="Already have an account? Sign in"
+                password="madrilena123"
+                progress={false}
+                terms={false}
               />
             </Styled(MuiBox)>
             <Styled(MuiBox)

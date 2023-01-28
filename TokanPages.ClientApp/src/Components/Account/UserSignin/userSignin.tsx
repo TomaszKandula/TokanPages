@@ -120,21 +120,20 @@ export const UserSignin = (props: IContentUserSignin): JSX.Element =>
     };
 
     return(
-        <UserSigninView bind=
-        {{
-            isLoading: props.isLoading, 
-            caption: props.content.caption,
-            button: props.content.button,
-            link1: props.content.link1,
-            link2: props.content.link2,
-            buttonHandler: buttonHandler,
-            progress: progress,
-            keyHandler: keyHandler,
-            formHandler: formHandler,
-            email: form.email,
-            password: form.password,
-            labelEmail: props.content.labelEmail,
-            labelPassword: props.content.labelPassword
-        }}/>
+        <UserSigninView
+            isLoading={props.isLoading}
+            caption={props.content.caption}
+            button={props.content.button}
+            link1={props.content.link1}
+            link2={props.content.link2}
+            buttonHandler={buttonHandler}
+            progress={progress}
+            keyHandler={keyHandler}
+            formHandler={formHandler}
+            email={form.email}
+            password={form.password}
+            labelEmail={props.content.labelEmail}
+            labelPassword={props.content.labelPassword}
+        />
     );
 }

@@ -45,11 +45,11 @@ describe("Test articles group component: ArticleListView.", () =>
             text: [text],
         };
 
-        const tree = shallow(<ArticleListView bind=
-        {{
-            isLoading: false,
-            articles: [articles]
-        }}/>);
+        const tree = shallow(<ArticleListView
+            isLoading={false}
+            articles={[articles]}
+        />);
+
         expect(tree).toMatchSnapshot();
     });
 });

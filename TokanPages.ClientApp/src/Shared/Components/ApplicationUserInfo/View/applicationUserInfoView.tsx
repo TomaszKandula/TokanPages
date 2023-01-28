@@ -9,18 +9,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
 import Box from "@material-ui/core/Box";
-import { green } from '@material-ui/core/colors';
+import { green } from "@material-ui/core/colors";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { IAuthenticateUserResultDto, IUserPermissionDto, IUserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
 import { v4 as uuidv4 } from "uuid";
-
-interface IBinding
-{
-    bind: IProperties;
-}
 
 interface IProperties
 {
@@ -43,33 +38,33 @@ const Items = (props: { item: string, className: string }): JSX.Element =>
     );
 }
 
-export const ApplicationUserInfoView = (props: IBinding): JSX.Element => 
+export const ApplicationUserInfoView = (props: IProperties): JSX.Element => 
 {
     const classes = ApplicationUserInfoStyle();
     const registered = GetDateTime(
     {
-        value: props.bind?.data.registered,
+        value: props.data.registered,
         hasTimeVisible: true
     });
 
     return (
-        <Dialog fullWidth maxWidth="xs" open={props.bind?.state} onClose={props.bind?.closeHandler} 
+        <Dialog fullWidth maxWidth="xs" open={props.state} onClose={props.closeHandler} 
             aria-labelledby="dialog-title" aria-describedby="dialog-description">
             <DialogTitle id="dialog-title">
                 <Grid container spacing={2} direction="column" alignItems="center">
                     <Grid item xs={12}>
                         <Box mt={1}>
                             <UserAvatar 
-                                userId={props.bind?.data.userId}
+                                userId={props.data.userId}
                                 isLarge={true} 
-                                avatarName={props.bind?.data.avatarName} 
-                                userLetter={props.bind?.data.aliasName?.charAt(0).toUpperCase()} 
+                                avatarName={props.data.avatarName} 
+                                userLetter={props.data.aliasName?.charAt(0).toUpperCase()} 
                             />
                         </Box>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography className={classes.fullname}>
-                            {props.bind?.data.firstName} {props.bind?.data.lastName}
+                            {props.data.firstName} {props.data.lastName}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -78,7 +73,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
             <DialogContent>
                 <Box pt={2}>
                     <Typography className={classes.item}>
-                        User alias: <Typography component="span" className={classes.value}>{props.bind?.data.aliasName}</Typography>
+                        User alias: <Typography component="span" className={classes.value}>{props.data.aliasName}</Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
@@ -92,7 +87,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     </Typography>
                 </Box>
                 <List dense={true}>
-                {props.bind?.data.roles?.map((item: IUserRoleDto, _index: number) => 
+                {props.data.roles?.map((item: IUserRoleDto, _index: number) => 
                 (
                     <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
@@ -103,7 +98,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
                     </Typography>
                 </Box>                
                 <List dense={true}>
-                {props.bind?.data.permissions?.map((item: IUserPermissionDto, _index: number) => 
+                {props.data.permissions?.map((item: IUserPermissionDto, _index: number) => 
                 (
                     <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
@@ -111,7 +106,7 @@ export const ApplicationUserInfoView = (props: IBinding): JSX.Element =>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.bind?.closeHandler} className={classes.button} autoFocus>OK</Button>
+                <Button onClick={props.closeHandler} className={classes.button} autoFocus>OK</Button>
             </DialogActions>
         </Dialog>
     );

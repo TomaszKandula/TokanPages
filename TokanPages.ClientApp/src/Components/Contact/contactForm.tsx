@@ -136,27 +136,26 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
         showWarning(GetTextWarning({ object: validationResult, template: MESSAGE_OUT_WARNING }));
     };
 
-    return (<ContactFormView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: props.content?.caption,
-        text: props.content?.text,
-        keyHandler: keyHandler,
-        formHandler: formHandler,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        email: form.email,
-        subject: form.subject,
-        message: form.message,
-        terms: form.terms,
-        buttonHandler: buttonHandler,
-        progress: progress,
-        buttonText: props.content?.button,
-        consent: props.content?.consent,
-        labelFirstName: props.content?.labelFirstName,
-        labelLastName: props.content?.labelLastName,
-        labelEmail: props.content?.labelEmail,
-        labelSubject: props.content?.labelSubject,
-        labelMessage: props.content?.labelMessage
-    }}/>);
+    return (<ContactFormView
+        isLoading={props.isLoading}
+        caption={props.content?.caption}
+        text={props.content?.text}
+        keyHandler={keyHandler}
+        formHandler={formHandler}
+        firstName={form.firstName}
+        lastName={form.lastName}
+        email={form.email}
+        subject={form.subject}
+        message={form.message}
+        terms={form.terms}
+        buttonHandler={buttonHandler}
+        progress={progress}
+        buttonText={props.content?.button}
+        consent={props.content?.consent}
+        labelFirstName={props.content?.labelFirstName}
+        labelLastName={props.content?.labelLastName}
+        labelEmail={props.content?.labelEmail}
+        labelSubject={props.content?.labelSubject}
+        labelMessage={props.content?.labelMessage}
+    />);
 }
