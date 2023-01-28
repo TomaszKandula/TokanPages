@@ -135,28 +135,27 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         userLetter={userLetter}
     />;
 
-    return (<ArticleDetailView bind={
-    {
-        backButtonHandler: backButtonHandler,
-        articleReadCount: selection.article.readCount,
-        openPopoverHandler: openPopoverHandler,
-        closePopoverHandler: closePopoverHandler,
-        renderSmallAvatar: smallAvatar,
-        renderLargeAvatar: largeAvatar,
-        authorAliasName: selection.article.author.aliasName,
-        popoverOpen: popoverOpen,
-        popoverElement: popoverElement,
-        authorFirstName: selection.article.author.firstName,
-        authorLastName: selection.article.author.lastName,
-        authorRegistered: GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false }),
-        articleReadTime: ReadTime(selection.article.text),
-        articleCreatedAt: GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true }),
-        articleUpdatedAt: GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true }),
-        articleContent: ArticleContent(selection.article.id, selection.isLoading, selection.article.text),
-        renderLikesLeft: LikesLeft(isAnonymous, likesLeft),
-        thumbsHandler: thumbsHandler,
-        totalLikes: totalLikes,
-        renderAuthorName: AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName),
-        authorShortBio: selection.article.author.shortBio
-    }}/>);
+    return (<ArticleDetailView
+        backButtonHandler={backButtonHandler}
+        articleReadCount={selection.article.readCount}
+        openPopoverHandler={openPopoverHandler}
+        closePopoverHandler={closePopoverHandler}
+        renderSmallAvatar={smallAvatar}
+        renderLargeAvatar={largeAvatar}
+        authorAliasName={selection.article.author.aliasName}
+        popoverOpen={popoverOpen}
+        popoverElement={popoverElement}
+        authorFirstName={selection.article.author.firstName}
+        authorLastName={selection.article.author.lastName}
+        authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
+        articleReadTime={ReadTime(selection.article.text)}
+        articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
+        articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
+        articleContent={ArticleContent(selection.article.id, selection.isLoading, selection.article.text)}
+        renderLikesLeft={LikesLeft(isAnonymous, likesLeft)}
+        thumbsHandler={thumbsHandler}
+        totalLikes={totalLikes}
+        renderAuthorName={AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName)}
+        authorShortBio={selection.article.author.shortBio}
+    />);
 }

@@ -12,11 +12,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UpdateSubscriberStyle } from "./updateSubscriberStyle";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     isLoading: boolean;
@@ -30,19 +25,24 @@ interface IProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: IProperties): JSX.Element => 
 {
     const classes = UpdateSubscriberStyle();
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} variant="contained" 
-            className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && props.bind?.buttonText}
+        <Button 
+            fullWidth 
+            variant="contained" 
+            onClick={props.buttonHandler} 
+            className={classes.button} 
+            disabled={props.progress || !props.buttonState}>
+            {!props.progress 
+            ? props.buttonText 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
 
-export const UpdateSubscriberView = (props: IBinding): JSX.Element =>
+export const UpdateSubscriberView = (props: IProperties): JSX.Element =>
 {
     const classes = UpdateSubscriberStyle();
     return (
@@ -54,20 +54,31 @@ export const UpdateSubscriberView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                    {props.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField 
-                                            required fullWidth onChange={props.bind?.formHandler} value={props.bind?.email} label={props.bind?.labelEmail}
-                                            variant="outlined" name="email" id="email" autoComplete="email" 
+                                            required 
+                                            fullWidth 
+                                            id="email" 
+                                            name="email" 
+                                            variant="outlined" 
+                                            autoComplete="email" 
+                                            onChange={props.formHandler} 
+                                            value={props.email} 
+                                            label={props.labelEmail}
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
+                                    {props.isLoading 
+                                    ? <Skeleton variant="rect" /> 
+                                    : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>

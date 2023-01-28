@@ -9,11 +9,6 @@ import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { NewsletterStyle } from "./newsletterStyle";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     isLoading: boolean;
@@ -28,7 +23,7 @@ interface IProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: IProperties): JSX.Element => 
 {
     const classes = NewsletterStyle();
     return(
@@ -36,17 +31,17 @@ const ActiveButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.buttonHandler} 
+            onClick={props.buttonHandler} 
             className={classes.button} 
-            disabled={props.bind?.progress}>
-            {!props.bind?.progress 
-            ? props.bind?.buttonText 
+            disabled={props.progress}>
+            {!props.progress 
+            ? props.buttonText 
             : <CircularProgress size={20} />}
         </Button>
     );
 }
 
-export const NewsletterView = (props: IBinding): JSX.Element =>
+export const NewsletterView = (props: IProperties): JSX.Element =>
 {
     const classes = NewsletterStyle();
     return (
@@ -56,15 +51,15 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
                             <Typography className={classes.caption} data-aos="fade-down">
-                                {props.bind?.isLoading 
+                                {props.isLoading 
                                 ? <Skeleton variant="text" /> 
-                                : props.bind?.caption}
+                                : props.caption}
                             </Typography>
                             <div data-aos="zoom-in">
                                 <Typography className={classes.text}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.text}
+                                    : props.text}
                                 </Typography>
                             </div>
                         </Grid>
@@ -74,7 +69,7 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
                                     <Box my="auto" width="100%">
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
-                                                {props.bind?.isLoading 
+                                                {props.isLoading 
                                                 ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                                 : <TextField 
                                                     required 
@@ -84,14 +79,14 @@ export const NewsletterView = (props: IBinding): JSX.Element =>
                                                     variant="outlined" 
                                                     size="small" 
                                                     autoComplete="email"
-                                                    onKeyUp={props.bind?.keyHandler}
-                                                    onChange={props.bind?.formHandler} 
-                                                    value={props.bind?.email} 
-                                                    label={props.bind?.labelEmail}
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler} 
+                                                    value={props.email} 
+                                                    label={props.labelEmail}
                                                 />}
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                {props.bind?.isLoading 
+                                                {props.isLoading 
                                                 ? <Skeleton variant="rect" width="100%" height="40px" /> 
                                                 : <ActiveButton {...props} />}
                                             </Grid>

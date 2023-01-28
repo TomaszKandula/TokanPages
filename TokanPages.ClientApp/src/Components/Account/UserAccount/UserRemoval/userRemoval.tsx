@@ -82,13 +82,12 @@ export const UserRemoval = (props: IContentAccount): JSX.Element =>
     };
 
     return(
-        <UserRemovalView bind=
-        {{
-            isLoading: props.isLoading,
-            deleteButtonHandler: deleteButtonHandler,
-            deleteAccountProgress: progress,
-            sectionAccessDenied: props.content?.sectionAccessDenied,
-            sectionAccountRemoval: props.content?.sectionAccountRemoval
-        }} />
+        <UserRemovalView
+            isLoading={props.isLoading}
+            deleteButtonHandler={deleteButtonHandler}
+            deleteAccountProgress={progress}
+            sectionAccessDenied={props.content?.sectionAccessDenied}
+            sectionAccountRemoval={props.content?.sectionAccountRemoval}
+        />
     );
 }

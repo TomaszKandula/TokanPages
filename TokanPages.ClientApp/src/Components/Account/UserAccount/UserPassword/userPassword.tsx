@@ -111,18 +111,17 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
     };
 
     return(
-        <UserPasswordView bind=
-        {{
-            isLoading: props.isLoading,
-            oldPassword: passwordForm.oldPassword,
-            newPassword: passwordForm.newPassword,
-            confirmPassword: passwordForm.confirmPassword,
-            passwordKeyHandler: passwordKeyHandler,
-            passwordFormProgress: progress,
-            passwordFormHandler: passwordFormHandler,
-            passwordButtonHandler: passwordButtonHandler,
-            sectionAccessDenied: props.content?.sectionAccessDenied,
-            sectionAccountPassword: props.content?.sectionAccountPassword,
-        }} />
+        <UserPasswordView
+            isLoading={props.isLoading}
+            oldPassword={passwordForm.oldPassword}
+            newPassword={passwordForm.newPassword}
+            confirmPassword={passwordForm.confirmPassword}
+            passwordKeyHandler={passwordKeyHandler}
+            passwordFormProgress={progress}
+            passwordFormHandler={passwordFormHandler}
+            passwordButtonHandler={passwordButtonHandler}
+            sectionAccessDenied={props.content?.sectionAccessDenied}
+            sectionAccountPassword={props.content?.sectionAccountPassword}
+        />
     );
 }

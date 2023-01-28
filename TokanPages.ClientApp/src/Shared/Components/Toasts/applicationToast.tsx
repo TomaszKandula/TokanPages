@@ -68,15 +68,14 @@ export const ApplicationToast = (): JSX.Element =>
         setToastState({ ...toastState, isOpen: false });
     }
 
-    return (<ApplicationToastView bind=
-    {{
-        anchorOrigin: { vertical, horizontal },
-        isOpen: toastState.isOpen,
-        autoHideDuration: autoHideDuration,
-        closeEventHandler: closeEventHandler,
-        TransitionComponent: TransitionLeft,
-        key: vertical + horizontal,
-        toastSeverity: toastSeverity,
-        toastMessage: toastState.errorMessage
-    }}/>);
+    return (<ApplicationToastView
+        anchorOrigin={{ vertical, horizontal }}
+        isOpen={toastState.isOpen}
+        autoHideDuration={autoHideDuration}
+        closeEventHandler={closeEventHandler}
+        TransitionComponent={TransitionLeft}
+        componentKey={vertical + horizontal}
+        toastSeverity={toastSeverity}
+        toastMessage={toastState.errorMessage}
+    />);
 }

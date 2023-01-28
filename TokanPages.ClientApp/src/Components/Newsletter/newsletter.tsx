@@ -98,17 +98,16 @@ export const Newsletter = (props: IContentNewsletter): JSX.Element =>
         showWarning(GetTextWarning({ object: results, template: NEWSLETTER_WARNING }));
     };
 
-    return (<NewsletterView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: props.content?.caption,
-        text: props.content?.text,
-        keyHandler: keyHandler,
-        formHandler: formHandler,
-        email: form.email,
-        buttonHandler: buttonHandler,
-        progress: progress,
-        buttonText: props.content?.button,
-        labelEmail: props.content?.labelEmail
-    }}/>);
+    return (<NewsletterView
+        isLoading={props.isLoading}
+        caption={props.content?.caption}
+        text={props.content?.text}
+        keyHandler={keyHandler}
+        formHandler={formHandler}
+        email={form.email}
+        buttonHandler={buttonHandler}
+        progress={progress}
+        buttonText={props.content?.button}
+        labelEmail={props.content?.labelEmail}
+    />);
 }

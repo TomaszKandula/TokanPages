@@ -158,20 +158,19 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
     };
 
     return(
-        <UserInfoView bind=
-        {{
-            isLoading: props.isLoading,
-            userStore: store,
-            accountForm: accountForm,
-            userImageName: avatarName,
-            isUserActivated: isUserActivated.checked,
-            accountFormProgress: progress,           
-            accountKeyHandler: accountKeyHandler,
-            accountFormHandler: accountFormHandler,
-            accountSwitchHandler: accountSwitchHandler,
-            accountButtonHandler: accountButtonHandler,
-            sectionAccessDenied: props.content?.sectionAccessDenied,
-            sectionAccountInformation: props.content?.sectionAccountInformation,
-        }} />
+        <UserInfoView
+            isLoading={props.isLoading}
+            userStore={store}
+            accountForm={accountForm}
+            userImageName={avatarName}
+            isUserActivated={isUserActivated.checked}
+            accountFormProgress={progress}
+            accountKeyHandler={accountKeyHandler}
+            accountFormHandler={accountFormHandler}
+            accountSwitchHandler={accountSwitchHandler}
+            accountButtonHandler={accountButtonHandler}
+            sectionAccessDenied={props.content?.sectionAccessDenied}
+            sectionAccountInformation={props.content?.sectionAccountInformation}
+        />
     );
 }

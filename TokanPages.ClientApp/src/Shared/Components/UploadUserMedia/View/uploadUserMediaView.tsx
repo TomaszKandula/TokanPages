@@ -4,11 +4,6 @@ import { IconButton } from "@material-ui/core";
 import { UploadUserMediaStyle } from "./uploadUserMediaStyle";
 import { v4 as uuidv4 } from "uuid";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     isUploading: boolean;
@@ -17,7 +12,7 @@ interface IProperties
     accepting: string;
 }
 
-export const UploadUserMediaView = (props: IBinding): JSX.Element => 
+export const UploadUserMediaView = (props: IProperties): JSX.Element => 
 {
     const classes = UploadUserMediaStyle();
     const uuid = uuidv4();
@@ -25,17 +20,17 @@ export const UploadUserMediaView = (props: IBinding): JSX.Element =>
         <label htmlFor={`userFile-${uuid}`}>
             <input
                 hidden
-                accept={props.bind?.accepting}
+                accept={props.accepting}
                 id={`userFile-${uuid}`}
                 name={`userFile-${uuid}`}
                 type="file"
                 multiple={false}
-                onChange={props.bind?.inputHandler}
+                onChange={props.inputHandler}
             />
             <IconButton 
                 component="span"
                 size="small"
-                disabled={!props.bind?.buttonState} 
+                disabled={!props.buttonState} 
                 className={classes.button_upload}
             >
                 <BackupIcon />

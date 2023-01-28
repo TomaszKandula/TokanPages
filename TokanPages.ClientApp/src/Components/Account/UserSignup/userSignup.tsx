@@ -133,25 +133,24 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
         showWarning(GetTextWarning({ object: validationResult, template: SIGNUP_WARNING }));
     };
 
-    return (<UserSignupView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: props.content.caption,
-        consent: props.content.consent,
-        button: props.content.button,
-        link: props.content.link,
-        buttonHandler: buttonHandler,
-        keyHandler: keyHandler,
-        formHandler: formHandler,
-        progress: progress,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        email: form.email,
-        password: form.password,
-        terms: form.terms,
-        labelFirstName: props.content.labelFirstName,
-        labelLastName: props.content.labelLastName,
-        labelEmail: props.content.labelEmail,
-        labelPassword: props.content.labelPassword
-    }}/>);
+    return (<UserSignupView
+        isLoading={props.isLoading}
+        caption={props.content.caption}
+        consent={props.content.consent}
+        button={props.content.button}
+        link={props.content.link}
+        buttonHandler={buttonHandler}
+        keyHandler={keyHandler}
+        formHandler={formHandler}
+        progress={progress}
+        firstName={form.firstName}
+        lastName={form.lastName}
+        email={form.email}
+        password={form.password}
+        terms={form.terms}
+        labelFirstName={props.content.labelFirstName}
+        labelLastName={props.content.labelLastName}
+        labelEmail={props.content.labelEmail}
+        labelPassword={props.content.labelPassword}
+    />);
 }

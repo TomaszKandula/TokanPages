@@ -82,11 +82,10 @@ export const UploadUserMedia = (props: IUploadUserMedia): JSX.Element =>
         setIsUploading(true);
     };
 
-    return(<UploadUserMediaView bind=
-    {{
-        isUploading: isUploading,
-        buttonState: !isUploading,
-        inputHandler: inputHandler,
-        accepting: accepting
-    }}/>);
+    return(<UploadUserMediaView
+        isUploading={isUploading}
+        buttonState={!isUploading}
+        inputHandler={inputHandler}
+        accepting={accepting}
+    />);
 }

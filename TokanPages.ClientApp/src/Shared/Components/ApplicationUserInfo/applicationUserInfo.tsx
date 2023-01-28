@@ -22,10 +22,9 @@ export const ApplicationUserInfo = (): JSX.Element =>
         avatarName: store?.userData.avatarName
     }
 
-    return (<ApplicationUserInfoView bind=
-    {{
-        state: store?.isShown ?? false,
-        data: data,
-        closeHandler: onClickHandler
-    }}/>);
+    return (<ApplicationUserInfoView
+        state={store?.isShown ?? false}
+        data={data}
+        closeHandler={onClickHandler}
+    />);
 }

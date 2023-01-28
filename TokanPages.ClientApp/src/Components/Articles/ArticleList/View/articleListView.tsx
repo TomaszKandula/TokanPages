@@ -8,11 +8,6 @@ import { ProgressBar } from "../../../../Shared/Components";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     isLoading: boolean;
@@ -35,7 +30,7 @@ const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
     );
 }
 
-export const ArticleListView = (props: IBinding): JSX.Element => 
+export const ArticleListView = (props: IProperties): JSX.Element => 
 {
     const classes = ArticleListStyle();
     return (
@@ -52,9 +47,9 @@ export const ArticleListView = (props: IBinding): JSX.Element =>
                     </div>
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
-                            {props.bind?.isLoading 
+                            {props.isLoading 
                                 ? <ProgressBar /> 
-                                : <RenderContent articles={props.bind?.articles} />}
+                                : <RenderContent articles={props.articles} />}
                         </Grid>
                     </Grid>
                 </Box>

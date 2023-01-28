@@ -12,11 +12,6 @@ import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxStyle } from "./applicationDialogBoxStyle";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     state: boolean;
@@ -26,10 +21,10 @@ interface IProperties
     closeHandler: any;
 }
 
-const RenderIcon = (props: IBinding): JSX.Element => 
+const RenderIcon = (props: IProperties): JSX.Element => 
 {
     const classes = ApplicationDialogBoxStyle();
-    switch (props.bind.icon)
+    switch (props.icon)
     {
         case IconType.info: return(<InfoIcon className={classes.info_icon} />);
         case IconType.warning: return(<WarningIcon className={classes.warning_icon} />);
@@ -38,27 +33,27 @@ const RenderIcon = (props: IBinding): JSX.Element =>
     }        
 };   
 
-export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
+export const ApplicationDialogBoxView = (props: IProperties): JSX.Element =>
 {
     const classes = ApplicationDialogBoxStyle();
     return (
-        <Dialog open={props.bind?.state} onClose={props.bind?.closeHandler} 
+        <Dialog open={props.state} onClose={props.closeHandler} 
             aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
                     <RenderIcon {...props} />
-                    <ReactHtmlParser html={props.bind?.title} />
+                    <ReactHtmlParser html={props.title} />
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
                 <Typography component="span" className={classes.description} id="alert-dialog-description">
-                    <ReactHtmlParser html={props.bind?.message} />
+                    <ReactHtmlParser html={props.message} />
                 </Typography>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.bind?.closeHandler} className={classes.button} autoFocus>OK</Button>
+                <Button onClick={props.closeHandler} className={classes.button} autoFocus>OK</Button>
             </DialogActions>
         </Dialog>
     );

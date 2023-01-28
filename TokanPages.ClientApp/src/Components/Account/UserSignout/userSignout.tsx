@@ -41,11 +41,10 @@ export const UserSignout = (props: IContentUserSignout): JSX.Element =>
     }, 
     [ progress, store.userData ]);
 
-    return (<UserSignoutView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: props.content.caption,
-        status: progress ? props.content.onProcessing : props.content.onFinish,
-        buttonText: props.content.buttonText
-    }}/>);
+    return (<UserSignoutView
+        isLoading={props.isLoading}
+        caption={props.content.caption}
+        status={progress ? props.content.onProcessing : props.content.onFinish}
+        buttonText={props.content.buttonText}
+    />);
 }
