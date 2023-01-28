@@ -9,11 +9,11 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../Theme";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { ContactFormStyle } from "./contactFormStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     caption: string;
     text: string;
     keyHandler: any;

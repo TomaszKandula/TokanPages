@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
 import { 
@@ -20,9 +21,8 @@ import {
     ISectionAccountRemoval 
 } from "../../../../../Api/Models";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {    
-    isLoading: boolean;
     deleteButtonHandler: any;
     deleteAccountProgress: boolean;
     sectionAccessDenied: ISectionAccessDenied;

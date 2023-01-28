@@ -8,11 +8,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { AccountCircle } from "@material-ui/icons";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { UserSignoutStyle } from "./userSignoutStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     caption: string;
     status: string;
     buttonText: string;

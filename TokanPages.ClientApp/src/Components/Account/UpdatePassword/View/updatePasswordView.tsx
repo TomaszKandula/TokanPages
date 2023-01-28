@@ -8,11 +8,11 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { UpdatePasswordStyle } from "./updatePasswordStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     progress: boolean;
     caption: string;
     button: string;

@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { CookiesStyle } from "./cookiesStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     modalClose: boolean;
     shouldShow: boolean;
     caption: string;

@@ -7,11 +7,11 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { NewsletterStyle } from "./newsletterStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     caption: string;
     text: string;
     keyHandler: any;

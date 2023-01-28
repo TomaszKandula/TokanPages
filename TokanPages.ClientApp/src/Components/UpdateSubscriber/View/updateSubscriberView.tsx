@@ -10,11 +10,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { UpdateSubscriberStyle } from "./updateSubscriberStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     caption: string;
     formHandler: any;
     email: string;

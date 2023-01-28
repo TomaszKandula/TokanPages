@@ -7,11 +7,11 @@ import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { IContent } from "../../../Api/Models";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { UnsubscribeStyle } from "./unsubscribeStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     contentPre: IContent;
     contentPost: IContent;
     buttonHandler: any;

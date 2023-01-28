@@ -11,11 +11,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { UserSignupStyle } from "./userSignupStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     caption: string;
     consent: string;
     button: string;

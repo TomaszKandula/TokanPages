@@ -7,6 +7,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
 import { IValidateAccountForm } from "../../../../../Shared/Services/FormValidation";
+import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 
 import { 
@@ -25,9 +26,8 @@ import {
     ISectionAccountInformation, 
 } from "../../../../../Api/Models";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {    
-    isLoading: boolean;
     userStore: IAuthenticateUserResultDto;
     accountForm: IValidateAccountForm;
     userImageName: string;

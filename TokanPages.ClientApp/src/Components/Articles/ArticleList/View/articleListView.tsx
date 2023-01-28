@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import { IArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ProgressBar } from "../../../../Shared/Components";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     articles: IArticleItem[];
 }
 

@@ -9,14 +9,14 @@ import { ILanguageItem } from "../../../../Api/Models/";
 import { IApplicationLanguage } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { IItem } from "../../../../Shared/Components/ListRender/Models";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {
-    isLoading: boolean;
     drawerState: { open: boolean };
     openHandler: any;
     closeHandler: any;

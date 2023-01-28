@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserPasswordStyle } from "./userPasswordStyle";
 
 import { 
@@ -20,9 +21,8 @@ import {
     ISectionAccountPassword
 } from "../../../../../Api/Models";
 
-interface IProperties
+interface IProperties extends ViewProperties
 {    
-    isLoading: boolean;
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
