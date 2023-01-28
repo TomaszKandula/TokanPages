@@ -53,18 +53,14 @@ exports[`Test account group component: activateAccountView. Renders correctly '<
               </WithStyles(ForwardRef(Typography))>
             </Styled(MuiBox)>
             <ActiveButton
-              bind={
-                Object {
-                  "buttonDisabled": false,
-                  "buttonHandler": [MockFunction],
-                  "buttonText": "Go to main",
-                  "caption": "Account Activation",
-                  "isLoading": false,
-                  "progress": false,
-                  "text1": "Your account has been successfully activated!",
-                  "text2": "You can now sign in.",
-                }
-              }
+              buttonDisabled={false}
+              buttonHandler={[MockFunction]}
+              buttonText="Go to main"
+              caption="Account Activation"
+              isLoading={false}
+              progress={false}
+              text1="Your account has been successfully activated!"
+              text2="You can now sign in."
             />
           </Styled(MuiBox)>
         </WithStyles(ForwardRef(CardContent))>
