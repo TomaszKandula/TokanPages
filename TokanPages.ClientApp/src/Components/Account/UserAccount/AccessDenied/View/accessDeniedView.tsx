@@ -62,7 +62,7 @@ export const AccessDeniedView = (props: IContentAccount): JSX.Element =>
                                 <Typography component="span" className={classes.access_denied_prompt}>
                                     {props.isLoading 
                                     ? <Skeleton variant="text" height="100px" /> 
-                                    : ReactHtmlParser({ html: props.content?.sectionAccessDenied?.accessDeniedPrompt })}
+                                    : <ReactHtmlParser html={props.content?.sectionAccessDenied?.accessDeniedPrompt} />}
                                 </Typography>
                             </Box>
                             {props.isLoading 

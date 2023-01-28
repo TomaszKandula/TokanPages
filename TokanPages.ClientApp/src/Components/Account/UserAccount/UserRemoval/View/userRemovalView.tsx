@@ -85,7 +85,7 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.label}>
                                             {props.bind?.isLoading 
                                             ? <Skeleton variant="text" width="200px" /> 
-                                            : ReactHtmlParser({ html: props.bind?.sectionAccountRemoval?.warningText })}
+                                            : <ReactHtmlParser html={props.bind?.sectionAccountRemoval?.warningText} />}
                                         </Typography>
                                     </Grid>
                                 </Grid>

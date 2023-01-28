@@ -47,13 +47,13 @@ export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
                     <RenderIcon {...props} />
-                    {ReactHtmlParser({ html: props.bind?.title })}
+                    <ReactHtmlParser html={props.bind?.title} />
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
                 <Typography component="span" className={classes.description} id="alert-dialog-description">
-                    {ReactHtmlParser({ html: props.bind?.message })}
+                    <ReactHtmlParser html={props.bind?.message} />
                 </Typography>
             </DialogContent>
             <Divider />

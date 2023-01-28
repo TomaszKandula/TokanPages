@@ -15,7 +15,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         return (
             <Box mt={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.title}`}>
-                    {ReactHtmlParser({ html: data })}
+                    <ReactHtmlParser html={data} />
                 </Typography>
             </Box>
         );
@@ -26,7 +26,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         return (
             <Box mt={-1} mb={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.subTitle}`}>
-                    {ReactHtmlParser({ html: data })}
+                    <ReactHtmlParser html={data} />
                 </Typography>
             </Box>      
         );
@@ -37,7 +37,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         return (
             <Box mt={7} mb={2}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.header}`}>
-                    {ReactHtmlParser({ html: data })}
+                    <ReactHtmlParser html={data} />
                 </Typography>
             </Box>
         );
@@ -47,7 +47,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
     {
         return (
             <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
-                {ReactHtmlParser({ html: data })}
+                <ReactHtmlParser html={data} />
             </Typography>
         );
     };
@@ -57,7 +57,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         const replaced = data.replace("<p>", "<p class='custom-drop-cap'>");
         return (
             <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
-                {ReactHtmlParser({ html: replaced })}
+                <ReactHtmlParser html={replaced} />
             </Typography>
         );
     };
