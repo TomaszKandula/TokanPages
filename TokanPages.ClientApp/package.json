@@ -70,6 +70,7 @@
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-react": "^7.28.0",
+        "gzipper": "^7.2.0",
         "identity-obj-proxy": "^3.0.0",
         "jest-react-hooks-shallow": "^1.5.1",
         "nan": "^2.15.0",
@@ -90,7 +91,7 @@
         "app-test": "jest --setupFiles dotenv/config --env=jsdom --verbose",
         "dom-test": "cross-env CI=true react-scripts test --env=jsdom --setupFiles dotenv/config --verbose",
         "start": "react-scripts start",
-        "build": "react-scripts build",
+        "build": "react-scripts build && gzipper compress --verbose ./build",
         "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
         "lint-fix": "eslint --fix",
         "sonar": "sonar-scanner"
