@@ -10,11 +10,6 @@ import { FooterStyle } from "./footerStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     terms: ILink;
@@ -27,42 +22,42 @@ interface IProperties
     icons: IIcon[];
 }
 
-const SetTermsLink = (props: IBinding): JSX.Element => 
+const SetTermsLink = (props: IProperties): JSX.Element => 
 { 
     const classes = FooterStyle();
 
-    if (Validate.isEmpty(props.bind?.terms?.href))
+    if (Validate.isEmpty(props.terms?.href))
     {
-        return(<>{props.bind?.terms?.text}</>);
+        return(<>{props.terms?.text}</>);
     }
 
     return(
-        <Link to={props.bind?.terms?.href} className={classes.links}>
-            {props.bind?.terms?.text}
+        <Link to={props.terms?.href} className={classes.links}>
+            {props.terms?.text}
         </Link>); 
 };
 
-const SetPolicyLink = (props: IBinding): JSX.Element => 
+const SetPolicyLink = (props: IProperties): JSX.Element => 
 { 
     const classes = FooterStyle();
 
-    if (Validate.isEmpty(props.bind?.policy?.href))
+    if (Validate.isEmpty(props.policy?.href))
     {
-        return(<>{props.bind?.policy?.text}</>);
+        return(<>{props.policy?.text}</>);
     }
 
     return (
-        <Link to={props.bind?.policy?.href} className={classes.links}>
-            {props.bind?.policy?.text}
+        <Link to={props.policy?.href} className={classes.links}>
+            {props.policy?.text}
         </Link>);
 };
 
-const RenderIconButtons = (props: IBinding): JSX.Element =>
+const RenderIconButtons = (props: IProperties): JSX.Element =>
 {
     const classes = FooterStyle();
     const icons = 
     <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
-        {props.bind?.icons?.map((item: IIcon, _index: number) => 
+        {props.icons?.map((item: IIcon, _index: number) => 
         (<IconButton 
             className={classes.icon}
             aria-label={item.name} 
@@ -77,31 +72,31 @@ const RenderIconButtons = (props: IBinding): JSX.Element =>
     return icons;
 }
 
-const RenderCopyrightBar = (props: IBinding): JSX.Element => 
+const RenderCopyrightBar = (props: IProperties): JSX.Element => 
 {
     const classes = FooterStyle();
     return (<Box pt={6} pb={1} className={classes.copyright_box}>
         <Typography className={classes.copyright} data-aos="zoom-in">
-            {props.bind?.copyright} | {props.bind?.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
+            {props.copyright} | {props.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
         </Typography>
         <RenderIconButtons {...props} />
     </Box>);
 }
 
-const RenderVersionInfo = (props: IBinding): JSX.Element | null =>
+const RenderVersionInfo = (props: IProperties): JSX.Element | null =>
 {
     const classes = FooterStyle();
     const applicationVersionInfo = 
         <Box display="flex"  justifyContent="center" alignItems="center" data-aos="zoom-in">
             <Typography className={classes.version}>
-                {props.bind?.versionInfo}
+                {props.versionInfo}
             </Typography>
         </Box>;
 
-    return props.bind?.hasVersionInfo ? null : applicationVersionInfo
+    return props.hasVersionInfo ? null : applicationVersionInfo
 };
 
-export const FooterView = (props: IBinding): JSX.Element => 
+export const FooterView = (props: IProperties): JSX.Element => 
 {
     const classes = FooterStyle();
     return (

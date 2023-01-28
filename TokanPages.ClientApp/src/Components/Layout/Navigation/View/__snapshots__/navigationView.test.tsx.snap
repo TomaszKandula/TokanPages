@@ -2,51 +2,53 @@
 
 exports[`Test component: featuresView. Renders correctly '<NavigationView />' when content is loaded. 1`] = `
 <HideOnScroll
-  bind={
+  avatarName=""
+  avatarSource=""
+  closeHandler={[MockFunction]}
+  drawerState={
     Object {
-      "avatarName": "",
-      "avatarSource": "",
-      "closeHandler": [MockFunction],
-      "drawerState": Object {
-        "open": false,
-      },
-      "infoHandler": [MockFunction],
-      "isAnonymous": false,
-      "isLoading": false,
-      "languageHandler": [MockFunction],
-      "languageId": "eng",
-      "languages": Object {
-        "id": "eng",
-        "languages": Array [
-          Object {
-            "id": "eng",
-            "isDefault": true,
-            "name": "English",
-          },
-          Object {
-            "id": "pol",
-            "isDefault": false,
-            "name": "Polski",
-          },
-        ],
-      },
-      "menu": Object {
-        "image": "",
-        "items": Array [
-          Object {
-            "enabled": true,
-            "icon": "Home",
-            "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-            "link": "/",
-            "type": "item",
-            "value": "Home",
-          },
-        ],
-      },
-      "openHandler": [MockFunction],
-      "userAliasText": "",
+      "open": false,
     }
   }
+  infoHandler={[MockFunction]}
+  isAnonymous={false}
+  isLoading={false}
+  languageHandler={[MockFunction]}
+  languageId="eng"
+  languages={
+    Object {
+      "id": "eng",
+      "languages": Array [
+        Object {
+          "id": "eng",
+          "isDefault": true,
+          "name": "English",
+        },
+        Object {
+          "id": "pol",
+          "isDefault": false,
+          "name": "Polski",
+        },
+      ],
+    }
+  }
+  menu={
+    Object {
+      "image": "",
+      "items": Array [
+        Object {
+          "enabled": true,
+          "icon": "Home",
+          "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
+          "link": "/",
+          "type": "item",
+          "value": "Home",
+        },
+      ],
+    }
+  }
+  openHandler={[MockFunction]}
+  userAliasText=""
 >
   <WithStyles(ForwardRef(AppBar))
     className="makeStyles-app_bar-1"
@@ -66,51 +68,53 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           xs={true}
         >
           <RenderMenuIcon
-            bind={
+            avatarName=""
+            avatarSource=""
+            closeHandler={[MockFunction]}
+            drawerState={
               Object {
-                "avatarName": "",
-                "avatarSource": "",
-                "closeHandler": [MockFunction],
-                "drawerState": Object {
-                  "open": false,
-                },
-                "infoHandler": [MockFunction],
-                "isAnonymous": false,
-                "isLoading": false,
-                "languageHandler": [MockFunction],
-                "languageId": "eng",
-                "languages": Object {
-                  "id": "eng",
-                  "languages": Array [
-                    Object {
-                      "id": "eng",
-                      "isDefault": true,
-                      "name": "English",
-                    },
-                    Object {
-                      "id": "pol",
-                      "isDefault": false,
-                      "name": "Polski",
-                    },
-                  ],
-                },
-                "menu": Object {
-                  "image": "",
-                  "items": Array [
-                    Object {
-                      "enabled": true,
-                      "icon": "Home",
-                      "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-                      "link": "/",
-                      "type": "item",
-                      "value": "Home",
-                    },
-                  ],
-                },
-                "openHandler": [MockFunction],
-                "userAliasText": "",
+                "open": false,
               }
             }
+            infoHandler={[MockFunction]}
+            isAnonymous={false}
+            isLoading={false}
+            languageHandler={[MockFunction]}
+            languageId="eng"
+            languages={
+              Object {
+                "id": "eng",
+                "languages": Array [
+                  Object {
+                    "id": "eng",
+                    "isDefault": true,
+                    "name": "English",
+                  },
+                  Object {
+                    "id": "pol",
+                    "isDefault": false,
+                    "name": "Polski",
+                  },
+                ],
+              }
+            }
+            menu={
+              Object {
+                "image": "",
+                "items": Array [
+                  Object {
+                    "enabled": true,
+                    "icon": "Home",
+                    "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
+                    "link": "/",
+                    "type": "item",
+                    "value": "Home",
+                  },
+                ],
+              }
+            }
+            openHandler={[MockFunction]}
+            userAliasText=""
           />
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
@@ -135,76 +139,78 @@ exports[`Test component: featuresView. Renders correctly '<NavigationView />' wh
           xs={true}
         >
           <RenderContent
-            bind={
+            avatarName=""
+            avatarSource=""
+            closeHandler={[MockFunction]}
+            drawerState={
               Object {
-                "avatarName": "",
-                "avatarSource": "",
-                "closeHandler": [MockFunction],
-                "drawerState": Object {
-                  "open": false,
-                },
-                "infoHandler": [MockFunction],
-                "isAnonymous": false,
-                "isLoading": false,
-                "languageHandler": [MockFunction],
-                "languageId": "eng",
-                "languages": Object {
-                  "id": "eng",
-                  "languages": Array [
-                    Object {
-                      "id": "eng",
-                      "isDefault": true,
-                      "name": "English",
-                    },
-                    Object {
-                      "id": "pol",
-                      "isDefault": false,
-                      "name": "Polski",
-                    },
-                  ],
-                },
-                "menu": Object {
-                  "image": "",
-                  "items": Array [
-                    Object {
-                      "enabled": true,
-                      "icon": "Home",
-                      "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-                      "link": "/",
-                      "type": "item",
-                      "value": "Home",
-                    },
-                  ],
-                },
-                "openHandler": [MockFunction],
-                "userAliasText": "",
+                "open": false,
               }
             }
+            infoHandler={[MockFunction]}
+            isAnonymous={false}
+            isLoading={false}
+            languageHandler={[MockFunction]}
+            languageId="eng"
+            languages={
+              Object {
+                "id": "eng",
+                "languages": Array [
+                  Object {
+                    "id": "eng",
+                    "isDefault": true,
+                    "name": "English",
+                  },
+                  Object {
+                    "id": "pol",
+                    "isDefault": false,
+                    "name": "Polski",
+                  },
+                ],
+              }
+            }
+            menu={
+              Object {
+                "image": "",
+                "items": Array [
+                  Object {
+                    "enabled": true,
+                    "icon": "Home",
+                    "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
+                    "link": "/",
+                    "type": "item",
+                    "value": "Home",
+                  },
+                ],
+              }
+            }
+            openHandler={[MockFunction]}
+            userAliasText=""
           />
         </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>
     </WithStyles(ForwardRef(Toolbar))>
     <SideMenuView
-      bind={
+      closeHandler={[MockFunction]}
+      drawerState={
         Object {
-          "closeHandler": [MockFunction],
-          "drawerState": Object {
-            "open": false,
-          },
-          "isAnonymous": false,
-          "menu": Object {
-            "image": "",
-            "items": Array [
-              Object {
-                "enabled": true,
-                "icon": "Home",
-                "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-                "link": "/",
-                "type": "item",
-                "value": "Home",
-              },
-            ],
-          },
+          "open": false,
+        }
+      }
+      isAnonymous={false}
+      menu={
+        Object {
+          "image": "",
+          "items": Array [
+            Object {
+              "enabled": true,
+              "icon": "Home",
+              "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
+              "link": "/",
+              "type": "item",
+              "value": "Home",
+            },
+          ],
         }
       }
     />

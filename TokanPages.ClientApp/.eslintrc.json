@@ -3,5 +3,10 @@
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module"
+    },
+    "rules": { 
+        //"interface-name" : [ true, "never-prefix" ],
+        "quotes": [ "error", "double" ],
+        "brace-style": [ "error", "allman", { "allowSingleLine": false }]
     }
 }

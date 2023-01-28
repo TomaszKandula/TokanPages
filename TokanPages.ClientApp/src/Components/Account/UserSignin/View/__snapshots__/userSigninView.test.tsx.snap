@@ -76,23 +76,19 @@ exports[`Test account group component: userSigninView. Renders correctly '<UserS
               my={2}
             >
               <ActiveButton
-                bind={
-                  Object {
-                    "button": "Sign in",
-                    "buttonHandler": [MockFunction],
-                    "caption": "Sign in",
-                    "email": "ester.exposito@gmail.com",
-                    "formHandler": [MockFunction],
-                    "isLoading": false,
-                    "keyHandler": [MockFunction],
-                    "labelEmail": "Email address",
-                    "labelPassword": "Password",
-                    "link1": "Don't have an account?",
-                    "link2": "Forgot password?",
-                    "password": "madrilena123",
-                    "progress": false,
-                  }
-                }
+                button="Sign in"
+                buttonHandler={[MockFunction]}
+                caption="Sign in"
+                email="ester.exposito@gmail.com"
+                formHandler={[MockFunction]}
+                isLoading={false}
+                keyHandler={[MockFunction]}
+                labelEmail="Email address"
+                labelPassword="Password"
+                link1="Don't have an account?"
+                link2="Forgot password?"
+                password="madrilena123"
+                progress={false}
               />
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))

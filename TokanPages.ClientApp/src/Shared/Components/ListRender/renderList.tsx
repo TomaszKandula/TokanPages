@@ -4,27 +4,22 @@ import { IItem } from "./Models";
 import { RenderItem, RenderItemSpan } from "./Renderers";
 import { Divider } from "@material-ui/core";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
 interface IProperties
 {
     isAnonymous: boolean;
     items: IItem[] | undefined;
 }
 
-export const RenderList = (props: IBinding): JSX.Element =>
+export const RenderList = (props: IProperties): JSX.Element =>
 {
-    if (props.bind.items === undefined) return(<div>Cannot render content.</div>);
-    if (props.bind.items.length === 0) return(<div>Cannot render content.</div>);
+    if (props.items === undefined) return(<div>Cannot render content.</div>);
+    if (props.items.length === 0) return(<div>Cannot render content.</div>);
 
     let renderBuffer: JSX.Element[] = [];
-    props.bind.items.forEach(item => 
+    props.items.forEach(item => 
     {
-        const isAnonymous = props.bind.isAnonymous && (item.link === "/account" || item.link === "/signout");
-        const isNotAnonymous = !props.bind.isAnonymous && (item.link === "/signin" || item.link === "/signup");
+        const isAnonymous = props.isAnonymous && (item.link === "/account" || item.link === "/signout");
+        const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
 
         switch(item.type)
         {

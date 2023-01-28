@@ -38,7 +38,10 @@ export const RenderGist = (props: ITextItem): JSX.Element =>
  
     }, [ dispatch, gistUrl ]);
 
-    React.useEffect(() => { updateContent(); }, [ updateContent ]);
+    React.useEffect(() => 
+    { 
+        updateContent();
+     }, [ updateContent ]);
 
     return(
         <Card elevation={3} classes={{ root: classes.card }}>

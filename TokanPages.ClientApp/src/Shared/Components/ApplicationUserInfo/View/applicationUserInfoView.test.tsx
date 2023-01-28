@@ -48,12 +48,12 @@ describe("Test view component for application user info.", () =>
             ]
         };
 
-        const tree = shallow(<ApplicationUserInfoView bind=
-        {{
-            state: true,
-            data: testData,
-            closeHandler: jest.fn()
-        }}/>);
+        const tree = shallow(<ApplicationUserInfoView
+            state={true}
+            data={testData}
+            closeHandler={jest.fn()}
+        />);
+        
         expect(tree).toMatchSnapshot();
     });
 });

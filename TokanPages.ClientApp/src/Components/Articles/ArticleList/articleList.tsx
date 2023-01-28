@@ -15,9 +15,8 @@ export const ArticleList = (): JSX.Element =>
     }, 
     [ ]);
 
-    return (<ArticleListView bind=
-    {{
-        isLoading: article.isLoading,
-        articles: article.articles
-    }}/>);
+    return (<ArticleListView
+        isLoading={article.isLoading}
+        articles={article.articles}
+    />);
 }

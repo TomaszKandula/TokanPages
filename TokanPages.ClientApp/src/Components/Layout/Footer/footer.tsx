@@ -18,18 +18,17 @@ export const Footer = (props: IGetFooterContentExtended): JSX.Element =>
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
 
     const backgroundColor: string = !props.backgroundColor 
-        ? Colours.colours.lightGray1 
-        : props.backgroundColor;
+    ? Colours.colours.lightGray1 
+    : props.backgroundColor;
 
-    return (<FooterView bind=
-    {{
-        terms: props.content?.terms,
-        policy: props.content?.policy,
-        versionInfo: versionInfo,
-        hasVersionInfo: hasVersionInfo,
-        backgroundColor: backgroundColor,
-        copyright: props.content?.copyright,
-        reserved: props.content?.reserved,
-        icons: props.content?.icons
-    }}/>);
+    return (<FooterView
+        terms={props.content?.terms}
+        policy={props.content?.policy}
+        versionInfo={versionInfo}
+        hasVersionInfo={hasVersionInfo}
+        backgroundColor={backgroundColor}
+        copyright={props.content?.copyright}
+        reserved={props.content?.reserved}
+        icons={props.content?.icons}
+    />);
 }

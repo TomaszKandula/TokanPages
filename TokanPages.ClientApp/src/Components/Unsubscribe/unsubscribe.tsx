@@ -68,14 +68,13 @@ export const Unsubscribe = (props: IGetUnsubscribeContentExtended): JSX.Element 
         setProgress(true);
     };
 
-    return (<UnsubscribeView bind=
-    {{
-        isLoading: props.isLoading,
-        contentPre: contentPre,
-        contentPost: contentPost,
-        buttonHandler: buttonHandler,
-        buttonState: buttonState,
-        progress: progress,
-        isRemoved: isRemoved
-    }}/>);
+    return (<UnsubscribeView
+        isLoading={props.isLoading}
+        contentPre={contentPre}
+        contentPost={contentPost}
+        buttonHandler={buttonHandler}
+        buttonState={buttonState}
+        progress={progress}
+        isRemoved={isRemoved}
+    />);
 }

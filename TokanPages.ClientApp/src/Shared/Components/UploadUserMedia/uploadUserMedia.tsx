@@ -17,8 +17,15 @@ const GetAcceptedType = (media: UserMedia): string =>
 {   
     const target = media.toString();
 
-    if (target.includes("image")) { return "image/*"; }
-    if (target.includes("video")) { return "video/*"; }
+    if (target.includes("image")) 
+    { 
+        return "image/*"; 
+    }
+    
+    if (target.includes("video")) 
+    { 
+        return "video/*"; 
+    }
 
     return "";
 }
@@ -82,11 +89,9 @@ export const UploadUserMedia = (props: IUploadUserMedia): JSX.Element =>
         setIsUploading(true);
     };
 
-    return(<UploadUserMediaView bind=
-    {{
-        isUploading: isUploading,
-        buttonState: !isUploading,
-        inputHandler: inputHandler,
-        accepting: accepting
-    }}/>);
+    return(<UploadUserMediaView
+        buttonState={!isUploading}
+        inputHandler={inputHandler}
+        accepting={accepting}
+    />);
 }

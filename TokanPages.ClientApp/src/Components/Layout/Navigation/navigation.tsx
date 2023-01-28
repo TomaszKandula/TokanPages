@@ -41,20 +41,19 @@ export const Navigation = (props: IContentNavigation): JSX.Element =>
         dispatch(UserDataStoreAction.show(true));
     }
 
-    return (<NavigationView bind=
-    {{  
-        isLoading: props.isLoading,
-        drawerState: drawer,
-        openHandler: toggleDrawer(true),
-        closeHandler: toggleDrawer(false),
-        infoHandler: onAvatarClick,
-        isAnonymous: isAnonymous,
-        userAliasText: store?.userData?.aliasName,
-        avatarName: store?.userData?.avatarName,
-        avatarSource: avatarSource,
-        languages: language,
-        languageId: language?.id,
-        languageHandler: languageHandler,
-        menu: props.content?.menu
-    }}/>);
+    return (<NavigationView
+        isLoading={props.isLoading}
+        drawerState={drawer}
+        openHandler={toggleDrawer(true)}
+        closeHandler={toggleDrawer(false)}
+        infoHandler={onAvatarClick}
+        isAnonymous={isAnonymous}
+        userAliasText={store?.userData?.aliasName}
+        avatarName={store?.userData?.avatarName}
+        avatarSource={avatarSource}
+        languages={language}
+        languageId={language?.id}
+        languageHandler={languageHandler}
+        menu={props.content?.menu}
+    />);
 }

@@ -9,16 +9,11 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../Theme";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { ContactFormStyle } from "./contactFormStyle";
 
-interface IBinding 
+interface IProperties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     caption: string;
     text: string;
     keyHandler: any;
@@ -40,7 +35,7 @@ interface IProperties
     labelMessage: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: IProperties): JSX.Element => 
 {
     const classes = ContactFormStyle();
     return(
@@ -48,17 +43,17 @@ const ActiveButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.buttonHandler} 
-            disabled={props.bind?.progress} 
+            onClick={props.buttonHandler} 
+            disabled={props.progress} 
             className={classes.button}>
-            {!props.bind?.progress 
-            ? props.bind?.buttonText 
+            {!props.progress 
+            ? props.buttonText 
             : <CircularProgress size={20} />}
         </Button>
     );
 }
 
-export const ContactFormView = (props: IBinding): JSX.Element =>
+export const ContactFormView = (props: IProperties): JSX.Element =>
 {
     const classes = ContactFormStyle();
     return (
@@ -68,16 +63,16 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                     <Box pt={8} pb={10}>
                         <Box mb={6} textAlign="center" data-aos="fade-down">
                             <Typography gutterBottom={true} className={classes.caption}>
-                                {props.bind?.isLoading 
+                                {props.isLoading 
                                 ? <Skeleton variant="text" /> 
-                                : props.bind?.caption?.toUpperCase()}
+                                : props.caption?.toUpperCase()}
                             </Typography>
                         </Box>
                         <Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -86,16 +81,16 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="firstName" 
                                             autoComplete="fname" 
                                             variant="outlined"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.firstName} 
-                                            label={props.bind?.labelFirstName} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.firstName} 
+                                            label={props.labelFirstName} 
                                         />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -104,16 +99,16 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="lastName" 
                                             autoComplete="lname" 
                                             variant="outlined"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.lastName} 
-                                            label={props.bind?.labelLastName} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.lastName} 
+                                            label={props.labelLastName} 
                                         />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div data-aos="zoom-in">
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -122,16 +117,16 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             autoComplete="email" 
                                             variant="outlined"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.email} 
-                                            label={props.bind?.labelEmail} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.email} 
+                                            label={props.labelEmail} 
                                         />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                 <div data-aos="zoom-in">
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -140,16 +135,16 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="subject" 
                                             autoComplete="subject" 
                                             variant="outlined"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.subject} 
-                                            label={props.bind?.labelSubject} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.subject} 
+                                            label={props.labelSubject} 
                                         />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                 <div data-aos="zoom-in">
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -160,31 +155,31 @@ export const ContactFormView = (props: IBinding): JSX.Element =>
                                             name="message" 
                                             autoComplete="message" 
                                             variant="outlined"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.message} 
-                                            label={props.bind?.labelMessage} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.message} 
+                                            label={props.labelMessage} 
                                         />}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div data-aos="zoom-in">
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="30px" /> 
                                         : <FormControlLabel 
                                             control={<VioletCheckbox 
-                                                onChange={props.bind?.formHandler} 
-                                                checked={props.bind?.terms} 
+                                                onChange={props.formHandler} 
+                                                checked={props.terms} 
                                                 name="terms" 
                                                 id="terms" 
                                             />} 
-                                            label={props.bind?.consent} 
+                                            label={props.consent} 
                                         />}
                                     </div>
                                 </Grid>
                             </Grid>
                             <Box my={2} data-aos="fade-up">
-                                {props.bind?.isLoading 
+                                {props.isLoading 
                                 ? <Skeleton variant="rect" width="100%" height="40px" /> 
                                 : <ActiveButton {...props} />}
                             </Box>

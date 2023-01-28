@@ -91,15 +91,14 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
         }
     };
 
-    return (<ActivateAccountView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: content.caption,
-        text1: content.text1,
-        text2: content.text2,
-        buttonHandler: buttonHandler,
-        buttonDisabled: buttonDisabled,
-        progress: progress,
-        buttonText: content.button
-    }}/>);
+    return (<ActivateAccountView 
+        isLoading={props.isLoading}
+        caption={content.caption}
+        text1={content.text1}
+        text2={content.text2}
+        buttonHandler={buttonHandler}
+        buttonDisabled={buttonDisabled}
+        progress={progress}
+        buttonText={content.button}
+    />);
 }

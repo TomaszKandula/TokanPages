@@ -25,7 +25,7 @@ export const ConfigureStore = (history: History, initialState?: IApplicationStat
     });
 
     const enhancers = [];
-    const windowIfDefined = typeof window === 'undefined' ? null : window as any;
+    const windowIfDefined = typeof window === "undefined" ? null : window as any;
     
     if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) 
     {

@@ -23,10 +23,10 @@ export const UserAvatar = (props: IUserAvatar): JSX.Element =>
     }
 
     return (
-        <UserAvatarView bind={{
-            isLarge: props.isLarge,
-            userLetter: props.userLetter,
-            avatarSource: source
-        }}/>
+        <UserAvatarView
+            isLarge={props.isLarge}
+            userLetter={props.userLetter}
+            avatarSource={source}
+        />
     );
 }

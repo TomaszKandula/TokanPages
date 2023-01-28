@@ -60,12 +60,11 @@ export const ApplicationDialogBox = (): JSX.Element =>
         setDialogState({ ...dialogState, state: false });
     };
 
-    return (<ApplicationDialogBoxView bind=
-    {{
-        state: dialogState.state,
-        icon: dialogState.icon,
-        title: dialogState.title,
-        message: dialogState.message,
-        closeHandler: onClickHandler
-    }}/>);
+    return (<ApplicationDialogBoxView
+        state={dialogState.state}
+        icon={dialogState.icon}
+        title={dialogState.title}
+        message={dialogState.message}
+        closeHandler={onClickHandler}
+    />);
 }

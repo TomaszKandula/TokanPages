@@ -108,16 +108,15 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
         showWarning(GetTextWarning({ object: validationResult, template: NEWSLETTER_WARNING }));
     };
 
-    return (<UpdateSubscriberView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: props.content?.caption,
-        formHandler: formHandler,
-        email: form.email,
-        buttonHandler: buttonHandler,
-        buttonState: buttonState,
-        progress: progress,
-        buttonText: props.content?.button,
-        labelEmail: props.content.labelEmail
-    }}/>);
+    return (<UpdateSubscriberView
+        isLoading={props.isLoading}
+        caption={props.content?.caption}
+        formHandler={formHandler}
+        email={form.email}
+        buttonHandler={buttonHandler}
+        buttonState={buttonState}
+        progress={progress}
+        buttonText={props.content?.button}
+        labelEmail={props.content.labelEmail}
+    />);
 }

@@ -112,17 +112,16 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
     };
 
     return (
-        <ResetPasswordView bind=
-        {{
-            isLoading: props.isLoading,
-            progress: progress,
-            caption: props.content.caption,
-            button: props.content.button,
-            email: form.email,
-            keyHandler: keyHandler,
-            formHandler: formHandler,
-            buttonHandler: buttonHandler,
-            labelEmail: props.content.labelEmail
-        }}/>
+        <ResetPasswordView
+            isLoading={props.isLoading}
+            progress={progress}
+            caption={props.content.caption}
+            button={props.content.button}
+            email={form.email}
+            keyHandler={keyHandler}
+            formHandler={formHandler}
+            buttonHandler={buttonHandler}
+            labelEmail={props.content.labelEmail}
+        />
     );
 }
