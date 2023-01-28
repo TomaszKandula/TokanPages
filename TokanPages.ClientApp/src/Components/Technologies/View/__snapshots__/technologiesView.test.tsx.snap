@@ -49,9 +49,16 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
+            component="span"
             data-aos="fade-up"
           >
-            Today in my daily job, I use...
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "Today in my daily job, I use...",
+                }
+              }
+            />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
@@ -76,9 +83,16 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
+            component="span"
             data-aos="fade-up"
           >
-            Back-End: NET Framework 4.5 (for one project)...
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "Back-End: NET Framework 4.5 (for one project)...",
+                }
+              }
+            />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
@@ -103,9 +117,16 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
+            component="span"
             data-aos="fade-up"
           >
-            I have started with Entity Framework...
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "I have started with Entity Framework...",
+                }
+              }
+            />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Grid))
@@ -131,9 +152,16 @@ exports[`Test component: featuresView. Renders correctly '<FeaturesView />' when
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             className="makeStyles-feature_text-6"
+            component="span"
             data-aos="fade-up"
           >
-            I have experience with...
+            <div
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "I have experience with...",
+                }
+              }
+            />
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
       </WithStyles(ForwardRef(Grid))>

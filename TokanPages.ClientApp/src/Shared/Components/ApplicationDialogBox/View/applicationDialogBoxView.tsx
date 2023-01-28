@@ -1,5 +1,4 @@
 import * as React from "react";
-import ReactHtmlParser from "react-html-parser";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -9,6 +8,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import ErrorIcon from '@material-ui/icons/Error';
 import { Divider, Typography } from "@material-ui/core";
+import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxStyle } from "./applicationDialogBoxStyle";
 
@@ -47,13 +47,13 @@ export const ApplicationDialogBoxView = (props: IBinding): JSX.Element =>
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
                     <RenderIcon {...props} />
-                    {ReactHtmlParser(props.bind?.title)}
+                    {ReactHtmlParser({ html: props.bind?.title })}
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
                 <Typography component="span" className={classes.description} id="alert-dialog-description">
-                    {ReactHtmlParser(props.bind?.message)}
+                    {ReactHtmlParser({ html: props.bind?.message })}
                 </Typography>
             </DialogContent>
             <Divider />

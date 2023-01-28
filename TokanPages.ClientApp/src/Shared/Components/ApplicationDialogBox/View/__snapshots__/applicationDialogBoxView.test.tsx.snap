@@ -25,7 +25,13 @@ exports[`Test view component for application diaog box. Renders correctly view c
           }
         }
       />
-      Test title
+      <div
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Test title",
+          }
+        }
+      />
     </div>
   </WithStyles(ForwardRef(DialogTitle))>
   <WithStyles(ForwardRef(Divider)) />
@@ -35,7 +41,13 @@ exports[`Test view component for application diaog box. Renders correctly view c
       component="span"
       id="alert-dialog-description"
     >
-      Test message
+      <div
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Test message",
+          }
+        }
+      />
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(DialogContent))>
   <WithStyles(ForwardRef(Divider)) />

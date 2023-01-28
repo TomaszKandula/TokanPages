@@ -1,10 +1,10 @@
 import * as React from "react";
-import ReactHtmlParser from "react-html-parser";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
 import { 
@@ -85,7 +85,7 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.label}>
                                             {props.bind?.isLoading 
                                             ? <Skeleton variant="text" width="200px" /> 
-                                            : ReactHtmlParser(props.bind?.sectionAccountRemoval?.warningText)}
+                                            : ReactHtmlParser({ html: props.bind?.sectionAccountRemoval?.warningText })}
                                         </Typography>
                                     </Grid>
                                 </Grid>
