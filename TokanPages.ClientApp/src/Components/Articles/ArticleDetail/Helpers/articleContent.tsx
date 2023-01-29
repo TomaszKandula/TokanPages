@@ -1,9 +1,9 @@
 import * as React from "react";
 import { ProgressBar, RenderContent } from "../../../../Shared/Components";
-import { ITextItem } from "../../../../Shared/Components/RenderContent/Models";
+import { TextItem } from "../../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
 
-export const ArticleContent = (guid: string, isLoading: boolean, text: ITextItem[]) =>
+export const ArticleContent = (guid: string, isLoading: boolean, text: TextItem[]) =>
 {
     if (Validate.isEmpty(guid) || isLoading)
     {

@@ -1,9 +1,9 @@
-import { ILanguageItem } from "./Items/languageItemDto";
+import { LanguageItemDto } from "./Items/languageItemDto";
 
-export interface IGetContentManifestDto
+export interface GetContentManifestDto
 {
     version: string;
     created: string;
     updated: string;
-    languages: ILanguageItem[];
+    languages: LanguageItemDto[];
 }

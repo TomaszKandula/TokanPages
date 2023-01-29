@@ -1,6 +1,6 @@
 import Validate from "validate.js";
 import { UNEXPECTED_ERROR, VALIDATION_ERRORS } from "../../../../Shared/constants";
-import { IErrorDto } from "../../../../Api/Models";
+import { ErrorDto } from "../../../../Api/Models";
 import { IGetErrorMessage } from "./interface";
 
 export const GetErrorMessage = (props: IGetErrorMessage): string =>
@@ -10,7 +10,7 @@ export const GetErrorMessage = (props: IGetErrorMessage): string =>
 
     if (props.errorObject?.response?.data)
     {
-        const parsedJson: IErrorDto = props.errorObject.response.data as IErrorDto;
+        const parsedJson: ErrorDto = props.errorObject.response.data as ErrorDto;
         result = Validate.isEmpty(parsedJson.errorMessage) ? UNEXPECTED_ERROR : parsedJson.errorMessage;
 
         if (parsedJson.validationErrors !== null) 

@@ -1,36 +1,36 @@
 import axios from "axios";
-import { IApplicationAction } from "../../Configuration";
-import { IAuthenticateUserDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { AuthenticateUserDto } from "../../../Api/Models";
 import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { 
     AUTHENTICATE as AUTHENTICATE_USER, 
-    IRequest, 
+    RequestContract, 
     GetConfiguration 
 } from "../../../Api/Request";
 
 export const SIGNIN = "SIGNIN_USER";
 export const CLEAR = "SIGNIN_USER_CLEAR";
 export const RESPONSE = "SIGNIN_USER_RESPONSE";
-interface ISignin { type: typeof SIGNIN }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = ISignin | IClear | IResponse | TUpdateActions;
+interface Signin { type: typeof SIGNIN }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Signin | Clear | Response | TUpdateActions;
 
 //TODO: refactor, simplify
 export const UserSigninAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    signin: (payload: IAuthenticateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    signin: (payload: AuthenticateUserDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SIGNIN });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: AUTHENTICATE_USER, 

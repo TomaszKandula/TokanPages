@@ -4,14 +4,14 @@ import { IconButton } from "@material-ui/core";
 import { UploadUserMediaStyle } from "./uploadUserMediaStyle";
 import { v4 as uuidv4 } from "uuid";
 
-interface IProperties
+interface Properties
 {
     buttonState: boolean;
     inputHandler: any;
     accepting: string;
 }
 
-export const UploadUserMediaView = (props: IProperties): JSX.Element => 
+export const UploadUserMediaView = (props: Properties): JSX.Element => 
 {
     const classes = UploadUserMediaStyle();
     const uuid = uuidv4();

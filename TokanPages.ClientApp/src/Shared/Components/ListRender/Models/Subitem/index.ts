@@ -1,3 +1,3 @@
-import { IFields } from "../Fields";
+import { Fields } from "../Fields";
 
-export interface ISubitem extends IFields { }
+export interface Subitem extends Fields { }

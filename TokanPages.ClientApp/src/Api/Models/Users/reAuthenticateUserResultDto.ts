@@ -1,3 +1,3 @@
-import { IAuthenticateUserResultDto } from "./authenticateUserResultDto";
+import { AuthenticateUserResultDto } from "./authenticateUserResultDto";
 
-export interface IReAuthenticateUserResultDto extends IAuthenticateUserResultDto { }
+export interface ReAuthenticateUserResultDto extends AuthenticateUserResultDto { }

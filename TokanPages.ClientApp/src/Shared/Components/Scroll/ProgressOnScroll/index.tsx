@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface IProgressStyle 
+interface ProgressStyle 
 {
     width: number;
     height: number;
@@ -8,7 +8,7 @@ interface IProgressStyle
     duration: number;
 }
 
-const ProgressStyle = (props: IProgressStyle): React.CSSProperties => 
+const ProgressStyle = (props: ProgressStyle): React.CSSProperties => 
 ({
     margin: 0,
     padding: 0,
@@ -23,14 +23,14 @@ const ProgressStyle = (props: IProgressStyle): React.CSSProperties =>
     transitionTimingFunction: "ease-out"
 });
 
-interface IProgressOnScroll 
+interface ProgressOnScroll 
 {
     height: number;
     bgcolor: string;
     duration: number;
 }
 
-export const ProgressOnScroll = (props: IProgressOnScroll) => 
+export const ProgressOnScroll = (props: ProgressOnScroll) => 
 {
     const [width, setWidth] = React.useState(0);
 

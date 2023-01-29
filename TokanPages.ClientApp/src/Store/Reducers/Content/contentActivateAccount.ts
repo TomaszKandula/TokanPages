@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IContentActivateAccount } from "../../States";
+import { ContentActivateAccountState } from "../../States";
 
 import { 
     TKnownActions,
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Content/contentActivateAccount";
 
 export const ContentActivateAccount: 
-    Reducer<IContentActivateAccount> = (state: IContentActivateAccount | undefined, incomingAction: Action): 
-    IContentActivateAccount => 
+    Reducer<ContentActivateAccountState> = (state: ContentActivateAccountState | undefined, incomingAction: Action): 
+    ContentActivateAccountState => 
 {
     if (state === undefined) return ApplicationDefault.contentActivateAccount;
 

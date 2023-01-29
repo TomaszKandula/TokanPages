@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserDataStore } from "../../States";
+import { UserDataStoreState } from "../../States";
 import { USER_DATA } from "../../../Shared/constants";
 
 import { 
@@ -16,8 +16,8 @@ import {
 } from "../../Actions/Users/userDataStore";
 
 export const UserDataStore: 
-    Reducer<IUserDataStore> = (state: IUserDataStore | undefined, incomingAction: Action): 
-    IUserDataStore => 
+    Reducer<UserDataStoreState> = (state: UserDataStoreState | undefined, incomingAction: Action): 
+    UserDataStoreState => 
 {
     if (state === undefined) return ApplicationDefault.userDataStore;
 

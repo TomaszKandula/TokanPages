@@ -1,4 +1,4 @@
-export interface IPromiseResult 
+export interface PromiseResultContract 
 {
     status: number | null;
     content: any | null;

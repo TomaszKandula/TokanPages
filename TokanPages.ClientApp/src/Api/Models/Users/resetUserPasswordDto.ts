@@ -1,4 +1,4 @@
-export interface IResetUserPasswordDto 
+export interface ResetUserPasswordDto 
 {
     emailAddress: string;
 }

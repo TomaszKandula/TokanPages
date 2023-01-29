@@ -1,4 +1,4 @@
-export interface IUpdateUserDto
+export interface UpdateUserDto
 {
     id?: string;
     isActivated: boolean;

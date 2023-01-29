@@ -1,4 +1,4 @@
-export interface IRemoveUserDto
+export interface RemoveUserDto
 {
     id?: string;
 }

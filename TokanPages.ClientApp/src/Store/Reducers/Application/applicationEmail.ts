@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IApplicationEmail } from "../../States";
+import { ApplicationEmailState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Application/applicationMessage";
 
 export const ApplicationEmail: 
-    Reducer<IApplicationEmail> = (state: IApplicationEmail | undefined, incomingAction: Action): 
-    IApplicationEmail => 
+    Reducer<ApplicationEmailState> = (state: ApplicationEmailState | undefined, incomingAction: Action): 
+    ApplicationEmailState => 
 {
     if (state === undefined) return ApplicationDefault.applicationEmail;
 

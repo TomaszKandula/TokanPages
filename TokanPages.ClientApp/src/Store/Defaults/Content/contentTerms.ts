@@ -1,6 +1,6 @@
-import { IContentTerms } from "../../States";
+import { ContentTermsState } from "../../States";
 
-export const ContentTerms: IContentTerms = 
+export const ContentTerms: ContentTermsState = 
 {
     isLoading: false,
     content: 

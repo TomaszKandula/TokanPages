@@ -1,4 +1,4 @@
-export interface IValidateContactForm
+export interface ContactFormInput
 {
     firstName: string;
     lastName: string;

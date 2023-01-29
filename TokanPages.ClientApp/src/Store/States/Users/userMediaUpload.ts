@@ -1,10 +1,10 @@
-import { IUploadUserMediaResultDto } from "../../../Api/Models";
+import { UploadUserMediaResultDto } from "../../../Api/Models";
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface IUserMediaUpload
+export interface UserMediaUploadState
 {
     handle?: string;
     status: OperationStatus;
     error: any;
-    payload: IUploadUserMediaResultDto | undefined;
+    payload: UploadUserMediaResultDto | undefined;
 }

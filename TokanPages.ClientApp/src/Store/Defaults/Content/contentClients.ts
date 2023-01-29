@@ -1,6 +1,6 @@
-import { IContentClients } from "../../States";
+import { ContentClientsState } from "../../States";
 
-export const ContentClients: IContentClients =
+export const ContentClients: ContentClientsState =
 {
     isLoading: false,
     content: 

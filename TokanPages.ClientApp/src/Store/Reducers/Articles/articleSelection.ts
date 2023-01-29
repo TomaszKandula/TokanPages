@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IArticleSelection } from "../../States";
+import { ArticleSelectionState } from "../../States";
 
 import { 
     TKnownActions, 
@@ -10,8 +10,8 @@ import {
 } from "../../Actions/Articles/articleSelection";
 
 export const ArticleSelection: 
-    Reducer<IArticleSelection> = (state: IArticleSelection | undefined, incomingAction: Action): 
-    IArticleSelection => 
+    Reducer<ArticleSelectionState> = (state: ArticleSelectionState | undefined, incomingAction: Action): 
+    ArticleSelectionState => 
 {
     if (state === undefined) return ApplicationDefault.articleSelection;
 

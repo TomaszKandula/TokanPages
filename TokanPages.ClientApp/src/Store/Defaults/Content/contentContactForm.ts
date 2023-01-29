@@ -1,6 +1,6 @@
-import { IContentContactForm } from "../../States";
+import { ContentContactFormState } from "../../States";
 
-export const ContentContactForm: IContentContactForm = 
+export const ContentContactForm: ContentContactFormState = 
 {
     isLoading: false,
     content: 

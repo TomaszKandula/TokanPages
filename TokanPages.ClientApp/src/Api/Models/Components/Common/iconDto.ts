@@ -1,4 +1,4 @@
-export interface IIcon
+export interface IconDto
 {
     name: string,
     href: string

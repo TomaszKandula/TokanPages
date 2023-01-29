@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_FEATURED_CONTENT } from "../../../Api/Request";
-import { IFeaturedContentDto } from "../../../Api/Models";
+import { FeaturedContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_FEATURED_CONTENT";
 export const RECEIVE = "RECEIVE_FEATURED_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IFeaturedContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: FeaturedContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentFeaturedAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentFeatured.content;
         const languageId = getState().applicationLanguage.id;

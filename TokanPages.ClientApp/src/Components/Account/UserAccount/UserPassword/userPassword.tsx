@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../../Store/Configuration";
-import { IContentAccount } from "../../../../Store/States";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
@@ -18,7 +18,7 @@ import {
 } from "../../../../Shared/Services/Utilities";
 
 import { 
-    IValidatePasswordForm, 
+    PasswordFormInput, 
     ValidatePasswordForm 
 } from "../../../../Shared/Services/FormValidation";
 
@@ -29,18 +29,18 @@ import {
     UPDATE_USER_WARNING 
 } from "../../../../Shared/constants";
 
-export const UserPassword = (props: IContentAccount): JSX.Element => 
+export const UserPassword = (props: ContentAccountState): JSX.Element => 
 {
     const dispatch = useDispatch();
     
-    const update = useSelector((state: IApplicationState) => state.userPasswordUpdate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const passwordFormDefault: IValidatePasswordForm = 
+    const passwordFormDefault: PasswordFormInput = 
     {
         oldPassword: "",
         newPassword: "",
@@ -48,20 +48,20 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
     }
 
     const [passwordForm, setPasswordForm] = React.useState(passwordFormDefault);
-    const [progress, setProgress] = React.useState(false);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
     const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
 
     const clear = React.useCallback(() => 
     {
-        if (!progress) return;
+        if (!hasProgress) return;
 
         dispatch(UserPasswordUpdateAction.clear());
         setPasswordForm(passwordFormDefault);
-        setProgress(false);
+        setHasProgress(false);
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -71,7 +71,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && progress)
+        if (hasNotStarted && hasProgress)
         {
             dispatch(UserPasswordUpdateAction.update(passwordForm));
             return;
@@ -83,7 +83,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             showSuccess(UPDATE_PASSWORD_SUCCESS);
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     const passwordKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
     {
@@ -103,7 +103,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
         let validationResult = ValidatePasswordForm(passwordForm);
         if (!Validate.isDefined(validationResult))
         {
-            setProgress(true);
+            setHasProgress(true);
             return;
         }
     
@@ -117,7 +117,7 @@ export const UserPassword = (props: IContentAccount): JSX.Element =>
             newPassword={passwordForm.newPassword}
             confirmPassword={passwordForm.confirmPassword}
             passwordKeyHandler={passwordKeyHandler}
-            passwordFormProgress={progress}
+            passwordFormProgress={hasProgress}
             passwordFormHandler={passwordFormHandler}
             passwordButtonHandler={passwordButtonHandler}
             sectionAccessDenied={props.content?.sectionAccessDenied}

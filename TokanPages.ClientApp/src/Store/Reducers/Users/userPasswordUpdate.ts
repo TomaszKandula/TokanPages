@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserPasswordUpdate } from "../../States";
+import { UserPasswordUpdateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userPasswordUpdate";
 
 export const UserPasswordUpdate: 
-    Reducer<IUserPasswordUpdate> = (state: IUserPasswordUpdate | undefined, incomingAction: Action): 
-    IUserPasswordUpdate => 
+    Reducer<UserPasswordUpdateState> = (state: UserPasswordUpdateState | undefined, incomingAction: Action): 
+    UserPasswordUpdateState => 
 {
     if (state === undefined) return ApplicationDefault.userPasswordUpdate;
 

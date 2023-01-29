@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_ACTIVATE_ACCOUNT_CONTENT } from "../../../Api/Request";
-import { IActivateAccountContentDto } from "../../../Api/Models";
+import { ActivateAccountContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_ACTIVATE_ACCOUNT_CONTENT";
 export const RECEIVE = "RECEIVE_ACTIVATE_ACCOUNT_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IActivateAccountContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: ActivateAccountContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentActivateAccountAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentActivateAccount.content;
         const languageId = getState().applicationLanguage.id;

@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IArticleListing } from "../../States";
+import { ArticleListingState } from "../../States";
 
 import { 
     TKnownActions, 
@@ -8,7 +8,9 @@ import {
     REQUEST, 
 } from "../../Actions/Articles/articleListing";
 
-export const ArticleListing: Reducer<IArticleListing> = (state: IArticleListing | undefined, incomingAction: Action): IArticleListing => 
+export const ArticleListing: 
+    Reducer<ArticleListingState> = (state: ArticleListingState | undefined, incomingAction: Action): 
+    ArticleListingState => 
 {
     if (state === undefined) return ApplicationDefault.articleListing;
 

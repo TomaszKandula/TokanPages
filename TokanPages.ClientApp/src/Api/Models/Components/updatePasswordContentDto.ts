@@ -1,4 +1,4 @@
-export interface IUpdatePasswordContentDto
+export interface UpdatePasswordContentDto
 {
     content: 
     {

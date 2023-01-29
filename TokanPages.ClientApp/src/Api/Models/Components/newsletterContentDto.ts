@@ -1,4 +1,4 @@
-export interface INewsletterContentDto
+export interface NewsletterContentDto
 {
     content: 
     {

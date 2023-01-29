@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { ArticleCardStyle } from "./articleCardStyle";
 
-interface IProperties
+interface Properties
 {
     imageUrl: string;
     title: string;
@@ -16,7 +16,7 @@ interface IProperties
     buttonText: string;
 }
 
-export const ArticleCardView = (props: IProperties): JSX.Element =>
+export const ArticleCardView = (props: Properties): JSX.Element =>
 {
     const classes = ArticleCardStyle();
     return(

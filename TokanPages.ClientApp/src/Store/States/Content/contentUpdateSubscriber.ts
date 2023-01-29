@@ -1,6 +1,6 @@
-import { IUpdateSubscriberContentDto } from "../../../Api/Models";
+import { UpdateSubscriberContentDto } from "../../../Api/Models";
 
-export interface IContentUpdateSubscriber extends IUpdateSubscriberContentDto
+export interface ContentUpdateSubscriberState extends UpdateSubscriberContentDto
 {
     isLoading: boolean;
 }

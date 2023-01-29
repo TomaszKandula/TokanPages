@@ -1,4 +1,4 @@
-export interface IAddUserDto
+export interface AddUserDto
 {
     userAlias: string;
     firstName: string;

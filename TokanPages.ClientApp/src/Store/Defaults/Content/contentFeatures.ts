@@ -1,6 +1,6 @@
-import { IContentFeatures } from "../../States";
+import { ContentFeaturesState } from "../../States";
 
-export const ContentFeatures: IContentFeatures = 
+export const ContentFeatures: ContentFeaturesState = 
 {
     isLoading: false,
     content: 

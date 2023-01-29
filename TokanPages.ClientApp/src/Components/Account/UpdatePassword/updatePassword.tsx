@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { IApplicationState } from "../../../Store/Configuration";
-import { IContentUpdatePassword } from "../../../Store/States";
+import { ApplicationState } from "../../../Store/Configuration";
+import { ContentUpdatePasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { UpdatePasswordView } from "./View/updatePasswordView";
 import Validate from "validate.js";
@@ -13,7 +13,7 @@ import {
 } from "../../../Store/Actions";
 
 import { 
-    IValidateUpdateForm, 
+    UpdateFormInput, 
     ValidateUpdateForm 
 } from "../../../Shared/Services/FormValidation";
 
@@ -35,20 +35,20 @@ const useQuery = () =>
     return new URLSearchParams(useLocation().search);
 }
 
-const formDefaultValues: IValidateUpdateForm =
+const formDefaultValues: UpdateFormInput =
 {
     newPassword: "",
     verifyPassword: ""
 };
 
-export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
+export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =>
 {
     const queryParam = useQuery();
     const dispatch = useDispatch();
 
-    const data = useSelector((state: IApplicationState) => state.userDataStore);
-    const update = useSelector((state: IApplicationState) => state.userPasswordUpdate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.userDataStore);
+    const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
@@ -56,21 +56,21 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
 
     const resetId = queryParam.get("id");
     const userId = data?.userData.userId;
-    const disableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
+    const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_FORM, text)));
     const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_FORM, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
-    const [progress, setProgress] = React.useState(false);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const clearForm = React.useCallback(() => 
     {
-        if (!progress) return;
-        setProgress(false);
+        if (!hasProgress) return;
+        setHasProgress(false);
         dispatch(UserPasswordUpdateAction.clear());
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -80,7 +80,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && progress) 
+        if (hasNotStarted && hasProgress) 
         {
             dispatch(UserPasswordUpdateAction.update(
             {
@@ -99,7 +99,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             showSuccess(UPDATE_PASSWORD_SUCCESS);
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
     {
@@ -124,7 +124,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
 
         if (!Validate.isDefined(results))
         {
-            setProgress(true);
+            setHasProgress(true);
             return;
         }
 
@@ -134,7 +134,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
     return (
         <UpdatePasswordView
             isLoading={props.isLoading}
-            progress={progress}
+            progress={hasProgress}
             caption={props.content.caption}
             button={props.content.button}
             newPassword={form.newPassword}
@@ -142,7 +142,7 @@ export const UpdatePassword = (props: IContentUpdatePassword): JSX.Element =>
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            disableForm={disableForm}
+            disableForm={canDisableForm}
             labelNewPassword={props.content.labelNewPassword}
             labelVerifyPassword={props.content.labelVerifyPassword}
         />

@@ -6,7 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { IContentAccount } from "../../../../../Store/States";
+import { ContentAccountState } from "../../../../../Store/States";
 import { AccessDeniedStyle } from "./accessDeniedStyle";
 
 import { 
@@ -15,7 +15,7 @@ import {
     Typography
 } from "@material-ui/core";
 
-const HomeButton = (props: IContentAccount): JSX.Element => 
+const HomeButton = (props: ContentAccountState): JSX.Element => 
 {
     const classes = AccessDeniedStyle();
     return(
@@ -41,7 +41,7 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }) =>
     );
 }
 
-export const AccessDeniedView = (props: IContentAccount): JSX.Element => 
+export const AccessDeniedView = (props: ContentAccountState): JSX.Element => 
 {
     const classes = AccessDeniedStyle();
     return(

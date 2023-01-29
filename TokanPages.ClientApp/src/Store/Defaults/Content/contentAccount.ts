@@ -1,6 +1,6 @@
-import { IContentAccount } from "../../States";
+import { ContentAccountState } from "../../States";
 
-export const ContentAccount: IContentAccount = 
+export const ContentAccount: ContentAccountState = 
 {
     isLoading: false,
     content: 

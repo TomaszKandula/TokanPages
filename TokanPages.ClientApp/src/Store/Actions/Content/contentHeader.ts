@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_HEADER_CONTENT } from "../../../Api/Request";
-import { IHeaderContentDto } from "../../../Api/Models";
+import { HeaderContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_HEADER_CONTENT";
 export const RECEIVE = "RECEIVE_HEADER_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IHeaderContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: HeaderContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentHeaderAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentHeader.content;
         const languageId = getState().applicationLanguage.id;

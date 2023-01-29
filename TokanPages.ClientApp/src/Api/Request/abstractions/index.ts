@@ -1,4 +1,4 @@
-export type { IExecute } from "./execute";
-export type { IGetContent } from "./getContent";
-export type { IPromiseResult } from "./promiseResult";
-export type { IRequest } from "./request";
+export type { ExecuteContract } from "./execute";
+export type { GetContentContract } from "./getContent";
+export type { PromiseResultContract } from "./promiseResult";
+export type { RequestContract } from "./request";

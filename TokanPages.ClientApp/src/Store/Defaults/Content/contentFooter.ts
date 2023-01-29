@@ -1,6 +1,6 @@
-import { IContentFooter } from "../../States";
+import { ContentFooterState } from "../../States";
 
-export const ContentFooter: IContentFooter = 
+export const ContentFooter: ContentFooterState = 
 {
     isLoading: false,
     content: 

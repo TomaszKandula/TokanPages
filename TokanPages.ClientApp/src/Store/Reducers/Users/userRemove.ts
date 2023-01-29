@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserRemove } from "../../States";
+import { UserRemoveState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userRemove";
 
 export const UserRemove: 
-    Reducer<IUserRemove> = (state: IUserRemove | undefined, incomingAction: Action): 
-    IUserRemove => 
+    Reducer<UserRemoveState> = (state: UserRemoveState | undefined, incomingAction: Action): 
+    UserRemoveState => 
 {
     if (state === undefined) return ApplicationDefault.userRemove;
 

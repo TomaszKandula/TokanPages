@@ -1,4 +1,4 @@
-export interface IValidateEmailForm 
+export interface EmailFormInput 
 {
     email: string;
 }

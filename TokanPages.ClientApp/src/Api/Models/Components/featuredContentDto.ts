@@ -1,4 +1,4 @@
-export interface IFeaturedContentDto
+export interface FeaturedContentDto
 {
     content: 
     {

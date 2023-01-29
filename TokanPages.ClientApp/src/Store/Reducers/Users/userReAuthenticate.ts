@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserReAuthenticate } from "../../States";
+import { UserReAuthenticateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userReAuthenticate";
 
 export const UserReAuthenticate: 
-    Reducer<IUserReAuthenticate> = (state: IUserReAuthenticate | undefined, incomingAction: Action): 
-    IUserReAuthenticate => 
+    Reducer<UserReAuthenticateState> = (state: UserReAuthenticateState | undefined, incomingAction: Action): 
+    UserReAuthenticateState => 
 {
     if (state === undefined) return ApplicationDefault.userReAuthenticate;
 

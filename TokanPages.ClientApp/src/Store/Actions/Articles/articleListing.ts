@@ -1,26 +1,26 @@
-import { IApplicationAction } from "../../Configuration";
-import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
+import { ApplicationAction } from "../../Configuration";
+import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest as IGetRequest, 
+    ExecuteContract, 
+    RequestContract,
     GET_ARTICLES
 } from "../../../Api/Request";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
-interface IRequest { type: typeof REQUEST; }
-interface IReceive { type: typeof RECEIVE; payload: IArticleItem[]; }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST; }
+interface Receive { type: typeof RECEIVE; payload: ArticleItem[]; }
+export type TKnownActions = Request | Receive;
 
 export const ArticleListingAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST });
 
-        const request: IGetRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "GET", 
                 url: GET_ARTICLES,
@@ -28,7 +28,7 @@ export const ArticleListingAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RECEIVE

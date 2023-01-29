@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/Configuration";
-import { IContentUpdateSubscriber } from "../../Store/States";
+import { ApplicationState } from "../../Store/Configuration";
+import { ContentUpdateSubscriberState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
@@ -25,36 +25,36 @@ import {
     UPDATE_SUBSCRIBER 
 } from "../../Shared/constants";
 
-interface IGetUpdateSubscriberContentExtended extends IContentUpdateSubscriber
+interface Properties extends ContentUpdateSubscriberState
 {
     id: string;
 }
 
-export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JSX.Element =>
+export const UpdateSubscriber = (props: Properties): JSX.Element =>
 {
-    const buttonDefaultState = props.id === null ? false : true;
+    const hasButtonVisible = props.id === null ? false : true;
     const dispatch = useDispatch();
-    const update = useSelector((state: IApplicationState) => state.subscriberUpdate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const update = useSelector((state: ApplicationState) => state.subscriberUpdate);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState({email: ""});
-    const [buttonState, setButtonState] = React.useState(buttonDefaultState);
-    const [progress, setProgress] = React.useState(false);
+    const [hasButton, setHasButton] = React.useState(hasButtonVisible);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text)));
     const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text)));
 
     const clearForm = React.useCallback(() => 
     { 
-        if (!progress) return;
-        setProgress(false);
-        setButtonState(true);
+        if (!hasProgress) return;
+        setHasProgress(false);
+        setHasButton(true);
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -64,7 +64,7 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
             return;
         }
 
-        if (hasNotStarted && progress)
+        if (hasNotStarted && hasProgress)
         {
             dispatch(SubscriberUpdateAction.update(
             {
@@ -84,7 +84,7 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
             showSuccess(NEWSLETTER_SUCCESS);        
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -100,8 +100,8 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
 
         if (!Validate.isDefined(validationResult))
         {
-            setButtonState(false);
-            setProgress(true);
+            setHasButton(false);
+            setHasProgress(true);
             return;
         }
 
@@ -114,8 +114,8 @@ export const UpdateSubscriber = (props: IGetUpdateSubscriberContentExtended): JS
         formHandler={formHandler}
         email={form.email}
         buttonHandler={buttonHandler}
-        buttonState={buttonState}
-        progress={progress}
+        buttonState={hasButton}
+        progress={hasProgress}
         buttonText={props.content?.button}
         labelEmail={props.content.labelEmail}
     />);

@@ -7,12 +7,12 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IContentTestimonials } from "../../../Store/States";
+import { ContentTestimonialsState } from "../../../Store/States";
 import { GET_TESTIMONIALS_URL } from "../../../Api/Request";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { TestimonialsStyle } from "./testimonialsStyle";
 
-export const TestimonialsView = (props: IContentTestimonials): JSX.Element =>
+export const TestimonialsView = (props: ContentTestimonialsState): JSX.Element =>
 {
     const classes = TestimonialsStyle();
     const limit = 29;

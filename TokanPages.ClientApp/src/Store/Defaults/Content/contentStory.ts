@@ -1,6 +1,6 @@
-import { IContentStory } from "../../States";
+import { ContentStoryState } from "../../States";
 
-export const ContentStory: IContentStory = 
+export const ContentStory: ContentStoryState = 
 {
     isLoading: false,
     content: 

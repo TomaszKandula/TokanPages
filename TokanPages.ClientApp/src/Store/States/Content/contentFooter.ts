@@ -1,6 +1,6 @@
-import { IFooterContentDto } from "../../../Api/Models";
+import { FooterContentDto } from "../../../Api/Models";
 
-export interface IContentFooter extends IFooterContentDto
+export interface ContentFooterState extends FooterContentDto
 {
     isLoading: boolean;
 }

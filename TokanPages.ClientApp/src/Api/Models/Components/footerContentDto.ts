@@ -1,15 +1,15 @@
-import { IIcon } from "./Common/icon";
-import { ILink } from "./Common/link";
+import { IconDto } from "./Common/iconDto";
+import { LinkDto } from "./Common/linkDto";
 
-export interface IFooterContentDto
+export interface FooterContentDto
 {
     content: 
     {
         language: string;
-        terms: ILink,
-        policy: ILink,
+        terms: LinkDto,
+        policy: LinkDto,
         copyright: string,
         reserved: string,
-        icons: IIcon[]
+        icons: IconDto[]
     };
 }

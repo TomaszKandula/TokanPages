@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserSignin } from "../../States";
+import { UserSigninState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userSignin";
 
 export const UserSignin: 
-    Reducer<IUserSignin> = (state: IUserSignin | undefined, incomingAction: Action): 
-    IUserSignin => 
+    Reducer<UserSigninState> = (state: UserSigninState | undefined, incomingAction: Action): 
+    UserSigninState => 
 {
     if (state === undefined) return ApplicationDefault.userSignin;
 

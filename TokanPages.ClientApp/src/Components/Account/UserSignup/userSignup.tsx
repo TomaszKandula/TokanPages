@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../Store/Configuration";
-import { IContentUserSignup } from "../../../Store/States";
+import { ApplicationState } from "../../../Store/Configuration";
+import { ContentUserSignupState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
@@ -18,7 +18,7 @@ import {
 } from "../../../Shared/Services/Utilities";
 
 import { 
-    IValidateSignupForm, 
+    SignupFormInput, 
     ValidateSignupForm 
 } from "../../../Shared/Services/FormValidation";
 
@@ -29,7 +29,7 @@ import {
     SIGNUP_WARNING 
 } from "../../../Shared/constants";
 
-const formDefaultValues: IValidateSignupForm =
+const formDefaultValues: SignupFormInput =
 {
     firstName: "",
     lastName: "",
@@ -38,29 +38,29 @@ const formDefaultValues: IValidateSignupForm =
     terms: false
 };
 
-export const UserSignup = (props: IContentUserSignup): JSX.Element => 
+export const UserSignup = (props: ContentUserSignupState): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const signup = useSelector((state: IApplicationState) => state.userSignup);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const signup = useSelector((state: ApplicationState) => state.userSignup);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = signup?.status === OperationStatus.notStarted;
     const hasFinished = signup?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefaultValues);   
-    const [progress, setProgress] = React.useState(false);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text)));
     const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text)));
 
     const clearForm = React.useCallback(() => 
     {
-        if (!progress) return;
-        setProgress(false);
+        if (!hasProgress) return;
+        setHasProgress(false);
         dispatch(UserSignupAction.clear());
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -70,7 +70,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && progress) 
+        if (hasNotStarted && hasProgress) 
         {
             const userAlias: string = `${form.firstName.substring(0, 2)}${form.lastName.substring(0, 3)}`;
             dispatch(UserSignupAction.signup(
@@ -92,7 +92,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
             showSuccess(SIGNUP_SUCCESS);
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
     {
@@ -126,7 +126,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
 
         if (!Validate.isDefined(validationResult))
         {
-            setProgress(true);
+            setHasProgress(true);
             return;
         }
 
@@ -142,7 +142,7 @@ export const UserSignup = (props: IContentUserSignup): JSX.Element =>
         buttonHandler={buttonHandler}
         keyHandler={keyHandler}
         formHandler={formHandler}
-        progress={progress}
+        progress={hasProgress}
         firstName={form.firstName}
         lastName={form.lastName}
         email={form.email}

@@ -1,4 +1,4 @@
-export interface ILanguageItem
+export interface LanguageItemDto
 {
     id: string;
     name: string;

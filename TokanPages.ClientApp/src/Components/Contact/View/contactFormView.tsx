@@ -12,7 +12,7 @@ import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/interfaces";
 import { ContactFormStyle } from "./contactFormStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     caption: string;
     text: string;
@@ -35,7 +35,7 @@ interface IProperties extends ViewProperties
     labelMessage: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = ContactFormStyle();
     return(
@@ -53,7 +53,7 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const ContactFormView = (props: IProperties): JSX.Element =>
+export const ContactFormView = (props: Properties): JSX.Element =>
 {
     const classes = ContactFormStyle();
     return (

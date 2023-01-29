@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IContentTerms } from "../../States";
+import { ContentTermsState } from "../../States";
 
 import { 
     TKnownActions,
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Content/contentTerms";
 
 export const ContentTerms: 
-    Reducer<IContentTerms> = (state: IContentTerms | undefined, incomingAction: Action): 
-    IContentTerms => 
+    Reducer<ContentTermsState> = (state: ContentTermsState | undefined, incomingAction: Action): 
+    ContentTermsState => 
 {
     if (state === undefined) return ApplicationDefault.contentTerms;
 

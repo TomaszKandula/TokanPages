@@ -5,7 +5,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { IGetContentManifestDto } from "./Api/Models";
+import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
 it("renders without crashing", () => 
@@ -28,7 +28,7 @@ it("renders without crashing", () =>
     });
     
     const store = storeFake({ }) as any;
-    const manifest: IGetContentManifestDto = 
+    const manifest: GetContentManifestDto = 
     {
         version: "0.1",
         created: "2022-09-09",

@@ -1,12 +1,12 @@
 import "../../../../setupTests";
-import { IValidateResetForm, ValidateResetForm } from "..";
+import { ResetFormInput, ValidateResetForm } from "..";
 
 describe("Verify validation methods.", () => 
 {
     it("When Reset Form filled correctly. Should return undefined.", () => 
     {
         // Arrange
-        const form: IValidateResetForm = 
+        const form: ResetFormInput = 
         {
             email: "ester.exposito@gmail.com"
         }
@@ -21,12 +21,12 @@ describe("Verify validation methods.", () =>
     it("When Reset Form filled incorrectly. Should return defined.", () => 
     {
         // Arrange
-        const form1: IValidateResetForm = 
+        const form1: ResetFormInput = 
         {
             email: "gmail.com"
         }
 
-        const form2: IValidateResetForm = 
+        const form2: ResetFormInput = 
         {
             email: "ester@"
         }

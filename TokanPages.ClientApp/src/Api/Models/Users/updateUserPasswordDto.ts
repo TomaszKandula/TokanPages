@@ -1,4 +1,4 @@
-export interface IUpdateUserPasswordDto
+export interface UpdateUserPasswordDto
 {
     id?: string;
     resetId?: string;

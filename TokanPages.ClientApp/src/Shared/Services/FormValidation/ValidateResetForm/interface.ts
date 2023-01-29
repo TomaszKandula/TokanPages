@@ -1,4 +1,4 @@
-export interface IValidateResetForm
+export interface ResetFormInput
 {
     email: string;
 }

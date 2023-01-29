@@ -4,7 +4,7 @@ import { SnackbarOrigin } from "@material-ui/core";
 import { Alert, Color } from "@material-ui/lab";
 import { ApplicationToastViewStyle } from "./applicationToastViewStyle";
 
-interface IProperties
+interface Properties
 {
     anchorOrigin: SnackbarOrigin;
     isOpen: boolean;
@@ -16,7 +16,7 @@ interface IProperties
     toastMessage: string;
 }
 
-export const ApplicationToastView = (props: IProperties): JSX.Element => 
+export const ApplicationToastView = (props: Properties): JSX.Element => 
 {
     const classes = ApplicationToastViewStyle();
     return (
