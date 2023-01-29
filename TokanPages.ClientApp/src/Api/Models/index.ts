@@ -1,73 +1,73 @@
-export type { IAddArticleDto } from "./Articles/addArticleDto";
-export type { IUpdateArticleContentDto } from "./Articles/updateArticleContentDto";
-export type { IUpdateArticleCountDto } from "./Articles/updateArticleCountDto";
-export type { IUpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
-export type { IUpdateArticleVisibilityDto } from "./Articles/updateArticleVisibilityDto";
-export type { IRemoveArticleDto } from "./Articles/removeArticleDto";
+export type { AddArticleDto } from "./Articles/addArticleDto";
+export type { UpdateArticleContentDto } from "./Articles/updateArticleContentDto";
+export type { UpdateArticleCountDto } from "./Articles/updateArticleCountDto";
+export type { UpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
+export type { UpdateArticleVisibilityDto } from "./Articles/updateArticleVisibilityDto";
+export type { RemoveArticleDto } from "./Articles/removeArticleDto";
 
-export type { ISendMessageDto } from "./Mailer/sendMessageDto";
-export type { ISendNewsletterDto } from "./Mailer/sendNewsletterDto";
-export type { ISubscriberInfoDto } from "./Mailer/subscriberInfoDto";
-export type { IVerifyEmailAddressDto } from "./Mailer/verifyEmailAddressDto";
+export type { SendMessageDto } from "./Mailer/sendMessageDto";
+export type { SendNewsletterDto } from "./Mailer/sendNewsletterDto";
+export type { SubscriberInfoDto } from "./Mailer/subscriberInfoDto";
+export type { VerifyEmailAddressDto } from "./Mailer/verifyEmailAddressDto";
 
-export type { IAddSubscriberDto } from "./Subscribers/addSubscriberDto";
-export type { IUpdateSubscriberDto } from "./Subscribers/updateSubscriberDto";
-export type { IRemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
+export type { AddSubscriberDto } from "./Subscribers/addSubscriberDto";
+export type { UpdateSubscriberDto } from "./Subscribers/updateSubscriberDto";
+export type { RemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
 
-export type { IUserDataDto } from "./Users/userDataDto";
-export type { IActivateUserDto } from "./Users/activateUserDto";
-export type { IAddUserDto } from "./Users/addUserDto";
-export type { IUpdateUserDto } from "./Users/updateUserDto";
-export type { IRemoveUserDto } from "./Users/removeUserDto";
-export type { IAuthenticateUserDto } from "./Users/authenticateUserDto";
-export type { IAuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
-export type { IReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
-export type { IReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
-export type { IResetUserPasswordDto } from "./Users/resetUserPasswordDto";
-export type { IUpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
-export type { IUserPermissionDto } from "./Users/userPermissionDto";
-export type { IUserRoleDto } from "./Users/userRoleDto";
-export type { IUploadUserMediaDto } from "./Users/uploadUserMediaDto";
-export type { IUploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto";
+export type { UserDataDto } from "./Users/userDataDto";
+export type { ActivateUserDto } from "./Users/activateUserDto";
+export type { AddUserDto } from "./Users/addUserDto";
+export type { UpdateUserDto } from "./Users/updateUserDto";
+export type { RemoveUserDto } from "./Users/removeUserDto";
+export type { AuthenticateUserDto } from "./Users/authenticateUserDto";
+export type { AuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
+export type { ReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
+export type { ReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
+export type { ResetUserPasswordDto } from "./Users/resetUserPasswordDto";
+export type { UpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
+export type { UserPermissionDto } from "./Users/userPermissionDto";
+export type { UserRoleDto } from "./Users/userRoleDto";
+export type { UploadUserMediaDto } from "./Users/uploadUserMediaDto";
+export type { UploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto";
 
-export type { IErrorDto } from "./Error/errorDto";
-export type { IValidationErrorsDto } from "./Error/validationErrorsDto";
+export type { ErrorDto } from "./Error/errorDto";
+export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
 
-export type { IDocumentContentDto } from "./Components/documentContentDto";
+export type { DocumentContentDto } from "./Components/documentContentDto";
 
-export type { INavigationContentDto} from "./Components/navigationContentDto";
-export type { IHeaderContentDto } from "./Components/headerContentDto";
-export type { IFooterContentDto } from "./Components/footerContentDto";
-export type { IClientsContentDto } from "./Components/clientsContentDto";
-export type { IArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
-export type { IContactFormContentDto } from "./Components/contactFormContentDto";
-export type { ICookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
-export type { IFeaturedContentDto } from "./Components/featuredContentDto";
-export type { IFeaturesContentDto } from "./Components/featuresContentDto";
-export type { INewsletterContentDto } from "./Components/newsletterContentDto";
-export type { IResetPasswordContentDto } from "./Components/resetPasswordContentDto";
-export type { IUpdatePasswordContentDto } from "./Components/updatePasswordContentDto";
-export type { IUserSigninContentDto } from "./Components/userSigninContentDto";
-export type { IUserSignoutContentDto } from "./Components/userSignoutContentDto";
-export type { IUserSignupContentDto } from "./Components/userSignupContentDto";
-export type { ITestimonialsContentDto } from "./Components/testimonialsContentDto";
-export type { IUnsubscribeContentDto } from "./Components/unsubscribeContentDto";
-export type { IActivateAccountContentDto } from "./Components/activateAccountContentDto";
-export type { IUpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";
-export type { IWrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";
+export type { NavigationContentDto } from "./Components/navigationContentDto";
+export type { HeaderContentDto } from "./Components/headerContentDto";
+export type { FooterContentDto } from "./Components/footerContentDto";
+export type { ClientsContentDto } from "./Components/clientsContentDto";
+export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
+export type { ContactFormContentDto } from "./Components/contactFormContentDto";
+export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
+export type { FeaturedContentDto } from "./Components/featuredContentDto";
+export type { FeaturesContentDto } from "./Components/featuresContentDto";
+export type { NewsletterContentDto } from "./Components/newsletterContentDto";
+export type { ResetPasswordContentDto } from "./Components/resetPasswordContentDto";
+export type { UpdatePasswordContentDto } from "./Components/updatePasswordContentDto";
+export type { UserSigninContentDto } from "./Components/userSigninContentDto";
+export type { UserSignoutContentDto } from "./Components/userSignoutContentDto";
+export type { UserSignupContentDto } from "./Components/userSignupContentDto";
+export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
+export type { UnsubscribeContentDto } from "./Components/unsubscribeContentDto";
+export type { ActivateAccountContentDto } from "./Components/activateAccountContentDto";
+export type { UpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";
+export type { WrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";
 export type { 
-    IAccountContentDto, 
-    ISectionAccessDenied, 
-    ISectionAccountInformation,
-    ISectionAccountPassword,
-    ISectionAccountRemoval
+    AccountContentDto, 
+    SectionAccessDenied,
+    SectionAccountInformation,
+    SectionAccountPassword,
+    SectionAccountRemoval
 } from "./Components/accountContentDto";
 
-export type { IIcon } from "./Components/Common/icon";
-export type { ILink } from "./Components/Common/link";
-export type { IRowItem } from "./Components/Common/rowItem";
-export type { ITextItem } from "./Components/Common/textItem";
-export type { IContent } from "./Components/Common/content";
+export type { IconDto } from "./Components/Common/iconDto";
+export type { LinkDto } from "./Components/Common/linkDto";
+export type { RowItemDto } from "./Components/Common/rowItemDto";
+export type { TextItemDto } from "./Components/Common/textItemDto";
+export type { ContentDto } from "./Components/Common/contentDto";
 
-export type { IGetContentManifestDto } from "./Content/getContentManifestDto";
-export type { ILanguageItem } from "./Content/Items/languageItemDto";
+export type { GetContentManifestDto } from "./Content/getContentManifestDto";
+export type { LanguageItemDto } from "./Content/Items/languageItemDto";

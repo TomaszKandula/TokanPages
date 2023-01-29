@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { IValidateContactForm } from "./interface";
+import { ContactFormInput } from "./interface";
 
-export const ValidateContactForm = (props: IValidateContactForm): any =>
+export const ValidateContactForm = (props: ContactFormInput): any =>
 {
     let constraints = 
     {

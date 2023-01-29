@@ -14,7 +14,7 @@ import { VioletCheckbox } from "../../../../Theme";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { UserSignupStyle } from "./userSignupStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     caption: string;
     consent: string;
@@ -35,7 +35,7 @@ interface IProperties extends ViewProperties
     labelPassword: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UserSignupStyle();
     return(
@@ -58,7 +58,7 @@ const RedirectTo = (args: { path: string, name: string }): JSX.Element =>
     return(<Link to={args.path}>{args.name}</Link>);
 }
 
-export const UserSignupView = (props: IProperties): JSX.Element =>
+export const UserSignupView = (props: Properties): JSX.Element =>
 {
     const classes = UserSignupStyle();
     return (

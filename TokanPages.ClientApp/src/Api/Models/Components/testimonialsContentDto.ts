@@ -1,4 +1,4 @@
-export interface ITestimonialsContentDto
+export interface TestimonialsContentDto
 {
     content: 
     {

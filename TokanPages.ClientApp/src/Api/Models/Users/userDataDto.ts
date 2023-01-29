@@ -1,4 +1,4 @@
-export interface IUserDataDto
+export interface UserDataDto
 {
     userId: string;
     aliasName: string

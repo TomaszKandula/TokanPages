@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-export interface IRequest
+export interface RequestContract
 {
     configuration: AxiosRequestConfig;
 }

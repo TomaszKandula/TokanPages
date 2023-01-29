@@ -1,6 +1,6 @@
-import { ITestimonialsContentDto } from "../../../Api/Models";
+import { TestimonialsContentDto } from "../../../Api/Models";
 
-export interface IContentTestimonials extends ITestimonialsContentDto
+export interface ContentTestimonialsState extends TestimonialsContentDto
 {
     isLoading: boolean;
 }

@@ -1,4 +1,4 @@
-export interface IRowItem
+export interface RowItemDto
 {
     column0: string;
     column1: string;

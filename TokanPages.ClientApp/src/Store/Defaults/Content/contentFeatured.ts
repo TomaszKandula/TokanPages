@@ -1,6 +1,6 @@
-import { IContentFeatured } from "../../States";
+import { ContentFeaturedState } from "../../States";
 
-export const ContentFeatured: IContentFeatured = 
+export const ContentFeatured: ContentFeaturedState = 
 {
     isLoading: false,
     content: 

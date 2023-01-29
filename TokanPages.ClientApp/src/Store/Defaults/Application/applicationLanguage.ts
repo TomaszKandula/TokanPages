@@ -1,6 +1,6 @@
-import { IApplicationLanguage } from "../../States";
+import { ApplicationLanguageState } from "../../States";
 
-export const ApplicationLanguage: IApplicationLanguage = 
+export const ApplicationLanguage: ApplicationLanguageState = 
 {
     id: "",
     languages: []

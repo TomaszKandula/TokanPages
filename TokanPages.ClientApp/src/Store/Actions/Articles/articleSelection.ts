@@ -1,41 +1,41 @@
-import { IApplicationAction } from "../../Configuration";
-import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
+import { ApplicationAction } from "../../Configuration";
+import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest as IGetRequest, 
+    ExecuteContract, 
+    RequestContract, 
     GET_ARTICLE
 } from "../../../Api/Request";
 
 export const RESET = "RESET_SELECTION";
 export const REQUEST = "REQUEST_ARTICLE";
 export const RECEIVE = "RECEIVE_ARTICLE";
-interface IReset { type: typeof RESET; }
-interface IRequest { type: typeof REQUEST; }
-interface IReceive { type: typeof RECEIVE; payload: IArticleItem; }
-export type TKnownActions = IReset | IRequest | IReceive;
+interface Reset { type: typeof RESET; }
+interface Request { type: typeof REQUEST; }
+interface Receive { type: typeof RECEIVE; payload: ArticleItem; }
+export type TKnownActions = Reset | Request | Receive;
 
 export const ArticleSelectionAction = 
 {
-    reset: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    reset: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: RESET });
     },
-    select: (id: string): IApplicationAction<TKnownActions> => (dispatch) =>
+    select: (id: string): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: REQUEST });
 
         const url = GET_ARTICLE.replace("{id}", id);
 
-        const request: IGetRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "GET", 
                 url: url
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RECEIVE

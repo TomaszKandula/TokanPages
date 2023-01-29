@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserUpdate } from "../../States";
+import { UserUpdateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userUpdate";
 
 export const UserUpdate: 
-    Reducer<IUserUpdate> = (state: IUserUpdate | undefined, incomingAction: Action): 
-    IUserUpdate => 
+    Reducer<UserUpdateState> = (state: UserUpdateState | undefined, incomingAction: Action): 
+    UserUpdateState => 
 {
     if (state === undefined) return ApplicationDefault.userUpdate;
 

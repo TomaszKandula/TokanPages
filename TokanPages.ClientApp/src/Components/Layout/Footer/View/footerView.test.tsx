@@ -2,13 +2,13 @@ import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { FooterView } from "../View/footerView";
-import { IIcon } from "../../../../Api/Models";
+import { IconDto } from "../../../../Api/Models";
 
 describe("Test component: footerView.", () => 
 {
     it("Renders correctly '<FooterView />' when content is loaded.", () => 
     {
-        const icons: IIcon = 
+        const icons: IconDto = 
         {
             name: "LinkedInIcon",
             href: "https://www.linkedin.com/"

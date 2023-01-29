@@ -1,11 +1,11 @@
-export type { IValidateContactForm } from "./ValidateContactForm/interface";
-export type { IValidateEmailForm } from "./ValidateEmailForm/interface";
-export type { IValidateResetForm } from "./ValidateResetForm/interface";
-export type { IValidateSigninForm } from "./ValidateSigninForm/interface";
-export type { IValidateSignupForm } from "./ValidateSignupForm/interface";
-export type { IValidateUpdateForm } from "./ValidateUpdateForm/interface";
-export type { IValidateAccountForm } from "./ValidateAccountForm/interface";
-export type { IValidatePasswordForm } from "./ValidatePasswordForm/interface";
+export type { ContactFormInput } from "./ValidateContactForm/interface";
+export type { EmailFormInput } from "./ValidateEmailForm/interface";
+export type { ResetFormInput } from "./ValidateResetForm/interface";
+export type { SigninFormInput } from "./ValidateSigninForm/interface";
+export type { SignupFormInput } from "./ValidateSignupForm/interface";
+export type { UpdateFormInput } from "./ValidateUpdateForm/interface";
+export type { AccountFormInput } from "./ValidateAccountForm/interface";
+export type { PasswordFormInput } from "./ValidatePasswordForm/interface";
 
 export { ValidateContactForm } from "./ValidateContactForm/validateContactForm";
 export { ValidateEmailForm } from "./ValidateEmailForm/validateEmailForm";

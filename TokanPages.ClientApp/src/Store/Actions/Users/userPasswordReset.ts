@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IResetUserPasswordDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { ResetUserPasswordDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     RESET_USER_PASSWORD
 } from "../../../Api/Request";
 
 export const RESET = "RESET_USER_PASSWORD";
 export const CLEAR = "RESET_USER_PASSWORD_CLEAR";
 export const RESPONSE = "RESET_USER_PASSWORD_RESPONSE";
-interface IReset { type: typeof RESET }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IReset | IClear | IResponse;
+interface Reset { type: typeof RESET }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Reset | Clear | Response;
 
 export const UserPasswordResetAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    reset: (payload: IResetUserPasswordDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    reset: (payload: ResetUserPasswordDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: RESET });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: RESET_USER_PASSWORD, 
@@ -34,7 +34,7 @@ export const UserPasswordResetAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

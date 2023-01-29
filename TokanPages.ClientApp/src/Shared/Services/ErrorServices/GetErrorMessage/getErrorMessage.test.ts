@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import { VALIDATION_ERRORS } from "../../../constants";
-import { IErrorDto } from "../../../../Api/Models";
+import { ErrorDto } from "../../../../Api/Models";
 import { IGetErrorMessage, GetErrorMessage } from "..";
 
 describe("Verify GetErrorMessage.", () => 
@@ -21,7 +21,7 @@ describe("Verify GetErrorMessage.", () =>
             }
         }`
 
-        const textObject: IErrorDto = JSON.parse(jsonObject) as IErrorDto;
+        const textObject: ErrorDto = JSON.parse(jsonObject) as ErrorDto;
         const input: IGetErrorMessage = 
         {
             errorObject: textObject
@@ -64,7 +64,7 @@ describe("Verify GetErrorMessage.", () =>
             }            
         }`
 
-        const textObject: IErrorDto = JSON.parse(jsonObject) as IErrorDto;
+        const textObject: ErrorDto = JSON.parse(jsonObject) as ErrorDto;
         const input: IGetErrorMessage = 
         {
             errorObject: textObject

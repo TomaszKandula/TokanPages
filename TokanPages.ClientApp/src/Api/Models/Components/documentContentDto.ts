@@ -1,10 +1,10 @@
-import { ITextItem } from "./Common/textItem";
+import { TextItemDto } from "./Common/textItemDto";
 
-export interface IDocumentContentDto
+export interface DocumentContentDto
 {
     content:
     {
         language: string;
-        items: ITextItem[];
+        items: TextItemDto[];
     }
 }

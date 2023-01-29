@@ -1,12 +1,12 @@
-import { IUserDataDto } from "./userDataDto";
-import { IUserRoleDto, IUserPermissionDto } from "..";
+import { UserDataDto } from "./userDataDto";
+import { UserRoleDto, UserPermissionDto } from "..";
 
-export interface IAuthenticateUserResultDto extends IUserDataDto
+export interface AuthenticateUserResultDto extends UserDataDto
 {
     tokenExpires: string;
     refreshTokenExpires: string;
     userToken: string;
     refreshToken: string;
-    roles: IUserRoleDto[];
-    permissions: IUserPermissionDto[];
+    roles: UserRoleDto[];
+    permissions: UserPermissionDto[];
 }

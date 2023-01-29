@@ -1,6 +1,6 @@
-import { IUserDataStore } from "../../States";
+import { UserDataStoreState } from "../../States";
 
-export const UserDataStore: IUserDataStore = 
+export const UserDataStore: UserDataStoreState = 
 {
     isShown: false,
     userData: 

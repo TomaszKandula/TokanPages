@@ -11,7 +11,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { ResetPasswordStyle } from "./resetPasswordStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     progress: boolean;
     caption: string;
@@ -23,7 +23,7 @@ interface IProperties extends ViewProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = ResetPasswordStyle();
     return(
@@ -41,7 +41,7 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const ResetPasswordView = (props: IProperties): JSX.Element =>
+export const ResetPasswordView = (props: Properties): JSX.Element =>
 {
     const classes = ResetPasswordStyle();
     return (

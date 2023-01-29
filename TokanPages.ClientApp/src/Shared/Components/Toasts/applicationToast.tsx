@@ -1,20 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, SlideProps } from "@material-ui/core";
-import { IApplicationState } from "../../../Store/Configuration";
+import { ApplicationState } from "../../../Store/Configuration";
 import { ApplicationErrorAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { DialogType } from "../../enums";
 import { ApplicationToastView } from "./View/applicationToastView";
 import Validate from "validate.js";
 
-interface IToastState 
+interface Properties 
 {
     isOpen: boolean;
     errorMessage: string;
 }
 
-const ToastState: IToastState = 
+const ToastState: Properties = 
 {
     isOpen: false, 
     errorMessage: ""    
@@ -32,7 +32,7 @@ export const ApplicationToast = (): JSX.Element =>
 
     const dispatch = useDispatch();
     const [toastState, setToastState] = React.useState(ToastState);   
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
     
     const clearError = React.useCallback(() => 
     { 

@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IRemoveUserDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { RemoveUserDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     REMOVE_USER
 } from "../../../Api/Request";
 
 export const REMOVE = "REMOVE_ACCOUNT";
 export const CLEAR = "REMOVE_ACCOUNT_CLEAR";
 export const RESPONSE = "REMOVE_ACCOUNT_RESPONSE";
-interface IRemove { type: typeof REMOVE }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IRemove | IClear | IResponse;
+interface Remove { type: typeof REMOVE }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Remove | Clear | Response;
 
 export const UserRemoveAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    remove: (payload: IRemoveUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    remove: (payload: RemoveUserDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: REMOVE_USER, 
@@ -34,7 +34,7 @@ export const UserRemoveAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

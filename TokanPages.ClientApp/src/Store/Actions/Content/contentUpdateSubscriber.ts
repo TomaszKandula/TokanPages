@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_UPDATE_SUBSCRIBER_CONTENT } from "../../../Api/Request";
-import { IUpdateSubscriberContentDto } from "../../../Api/Models";
+import { UpdateSubscriberContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_UPDATE_SUBSCRIBER_CONTENT";
 export const RECEIVE = "RECEIVE_UPDATE_SUBSCRIBER_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IUpdateSubscriberContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: UpdateSubscriberContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentUpdateSubscriberAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentUpdateSubscriber.content;
         const languageId = getState().applicationLanguage.id;

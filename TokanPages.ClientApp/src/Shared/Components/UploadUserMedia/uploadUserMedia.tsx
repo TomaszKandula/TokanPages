@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserMediaUploadAction } from "../../../Store/Actions";
-import { IApplicationState } from "../../../Store/Configuration";
+import { ApplicationState } from "../../../Store/Configuration";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
 import { OperationStatus, UserMedia } from "../../enums";
 import { UploadUserMediaView } from "./View/uploadUserMediaView";
 
-interface IUploadUserMedia 
+interface Properties 
 {
     handle?: string;
     skipDb?: boolean;
@@ -30,14 +30,14 @@ const GetAcceptedType = (media: UserMedia): string =>
     return "";
 }
 
-export const UploadUserMedia = (props: IUploadUserMedia): JSX.Element => 
+export const UploadUserMedia = (props: Properties): JSX.Element => 
 {
     const dispatch = useDispatch();
     const accepting = GetAcceptedType(props.mediaTarget);
 
-    const store = useSelector((state: IApplicationState) => state.userDataStore.userData);
-    const upload = useSelector((state: IApplicationState) => state.userMediaUpload);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
+    const upload = useSelector((state: ApplicationState) => state.userMediaUpload);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const [isUploading, setIsUploading] = React.useState(false);
     const [fileData, setFileData] = React.useState<File | undefined>();

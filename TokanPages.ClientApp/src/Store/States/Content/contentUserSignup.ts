@@ -1,6 +1,6 @@
-import { IUserSignupContentDto } from "../../../Api/Models";
+import { UserSignupContentDto } from "../../../Api/Models";
 
-export interface IContentUserSignup extends IUserSignupContentDto
+export interface ContentUserSignupState extends UserSignupContentDto
 {
     isLoading: boolean;
 }

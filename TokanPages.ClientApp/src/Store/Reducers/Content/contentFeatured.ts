@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IContentFeatured } from "../../States";
+import { ContentFeaturedState } from "../../States";
 
 import { 
     TKnownActions,
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Content/contentFeatured";
 
 export const ContentFeatured: 
-    Reducer<IContentFeatured> = (state: IContentFeatured | undefined, incomingAction: Action): 
-    IContentFeatured => 
+    Reducer<ContentFeaturedState> = (state: ContentFeaturedState | undefined, incomingAction: Action): 
+    ContentFeaturedState => 
 {
     if (state === undefined) return ApplicationDefault.contentFeatured;
 

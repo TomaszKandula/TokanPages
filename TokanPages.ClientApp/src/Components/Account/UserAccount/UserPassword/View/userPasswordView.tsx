@@ -17,11 +17,11 @@ import {
 } from "@material-ui/core";
 
 import { 
-    ISectionAccessDenied, 
-    ISectionAccountPassword
+    SectionAccessDenied, 
+    SectionAccountPassword
 } from "../../../../../Api/Models";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {    
     oldPassword: string;
     newPassword: string;
@@ -30,11 +30,11 @@ interface IProperties extends ViewProperties
     passwordKeyHandler: any;
     passwordFormHandler: any;
     passwordButtonHandler: any;
-    sectionAccessDenied: ISectionAccessDenied;
-    sectionAccountPassword: ISectionAccountPassword;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountPassword: SectionAccountPassword;
 }
 
-const UpdatePasswordButton = (props: IProperties): JSX.Element => 
+const UpdatePasswordButton = (props: Properties): JSX.Element => 
 {
     const classes = UserPasswordStyle();
     return(
@@ -62,7 +62,7 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }) =>
     );
 }
 
-export const UserPasswordView = (props: IProperties): JSX.Element => 
+export const UserPasswordView = (props: Properties): JSX.Element => 
 {
     const classes = UserPasswordStyle();
     return(

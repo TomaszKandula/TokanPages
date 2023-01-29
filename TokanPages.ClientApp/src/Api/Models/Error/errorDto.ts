@@ -1,8 +1,8 @@
-import { IValidationErrorsDto } from "./validationErrorsDto";
+import { ValidationErrorsDto } from "./validationErrorsDto";
 
-export interface IErrorDto 
+export interface ErrorDto 
 {
     errorCode: string;
     errorMessage: string;
-    validationErrors?: IValidationErrorsDto[];
+    validationErrors?: ValidationErrorsDto[];
 }

@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IContentUserSignout } from "../../States";
+import { ContentUserSignoutState } from "../../States";
 
 import { 
     TKnownActions, 
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Content/contentUserSignout";
 
 export const ContentUserSignout: 
-    Reducer<IContentUserSignout> = (state: IContentUserSignout | undefined, incomingAction: Action): 
-    IContentUserSignout => 
+    Reducer<ContentUserSignoutState> = (state: ContentUserSignoutState | undefined, incomingAction: Action): 
+    ContentUserSignoutState => 
 {
     if (state === undefined) return ApplicationDefault.contentUserSignout;
 

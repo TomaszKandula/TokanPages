@@ -1,7 +1,7 @@
-import { IApplicationEmail } from "../../States";
+import { ApplicationEmailState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const ApplicationEmail: IApplicationEmail = 
+export const ApplicationEmail: ApplicationEmailState = 
 {
     status: OperationStatus.notStarted,
     response: { }

@@ -1,7 +1,7 @@
-import { IUserSignin } from "../../States";
+import { UserSigninState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const UserSignin: IUserSignin = 
+export const UserSignin: UserSigninState = 
 {
     status: OperationStatus.notStarted,
     response: { }

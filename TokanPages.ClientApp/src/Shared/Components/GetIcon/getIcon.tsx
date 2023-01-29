@@ -3,7 +3,7 @@ import Icon from "@material-ui/core/Icon";
 import GitHub from "@material-ui/icons/GitHub";
 import LinkedIn from "@material-ui/icons/LinkedIn";
 
-interface IProperty
+interface Properties
 {
     iconName: string;
 }
@@ -29,7 +29,7 @@ const DisplayIcon = (args: { name: string }): JSX.Element =>
     return(<Icon>{args.name}</Icon>);
 }
 
-export const GetIcon = (props: IProperty): JSX.Element =>
+export const GetIcon = (props: Properties): JSX.Element =>
 {
     let iconName = props.iconName !== "" ? props.iconName.toLowerCase() : "X"
     return(<DisplayIcon name={iconName} />);

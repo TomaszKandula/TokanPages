@@ -11,7 +11,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { UpdatePasswordStyle } from "./updatePasswordStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     progress: boolean;
     caption: string;
@@ -26,7 +26,7 @@ interface IProperties extends ViewProperties
     labelVerifyPassword: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UpdatePasswordStyle();
     return(
@@ -44,7 +44,7 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const UpdatePasswordView = (props: IProperties): JSX.Element =>
+export const UpdatePasswordView = (props: Properties): JSX.Element =>
 {
     const classes = UpdatePasswordStyle();
     return (

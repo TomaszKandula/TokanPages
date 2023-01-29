@@ -12,7 +12,7 @@ import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxStyle } from "./applicationDialogBoxStyle";
 
-interface IProperties
+interface Properties
 {
     state: boolean;
     icon: IconType;
@@ -21,7 +21,7 @@ interface IProperties
     closeHandler: any;
 }
 
-const RenderIcon = (props: IProperties): JSX.Element => 
+const RenderIcon = (props: Properties): JSX.Element => 
 {
     const classes = ApplicationDialogBoxStyle();
     switch (props.icon)
@@ -33,7 +33,7 @@ const RenderIcon = (props: IProperties): JSX.Element =>
     }        
 };   
 
-export const ApplicationDialogBoxView = (props: IProperties): JSX.Element =>
+export const ApplicationDialogBoxView = (props: Properties): JSX.Element =>
 {
     const classes = ApplicationDialogBoxStyle();
     return (

@@ -1,6 +1,6 @@
-import { IDocumentContentDto } from "../../../Api/Models";
+import { DocumentContentDto } from "../../../Api/Models";
 
-export interface IContentPolicy extends IDocumentContentDto
+export interface ContentPolicyState extends DocumentContentDto
 {
     isLoading: boolean;
 }

@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_COOKIES_PROMPT_CONTENT } from "../../../Api/Request";
-import { ICookiesPromptContentDto } from "../../../Api/Models";
+import { CookiesPromptContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_COOKIES_PROMPT_CONTENT";
 export const RECEIVE = "RECEIVE_COOKIES_PROMPT_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: ICookiesPromptContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: CookiesPromptContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentCookiesPromptAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentCookiesPrompt.content
         const languageId = getState().applicationLanguage.id;

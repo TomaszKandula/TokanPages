@@ -1,7 +1,7 @@
-import { ITextItem } from "../TextModel";
-import { IAuthor } from "../AuthorModel";
+import { TextItem } from "../TextModel";
+import { Author } from "../AuthorModel";
 
-export interface IArticleItem
+export interface ArticleItem
 {
     id: string;
     title: string;
@@ -12,6 +12,6 @@ export interface IArticleItem
     readCount: number;
     createdAt: string;
     updatedAt: string;
-    author: IAuthor;
-    text: ITextItem[];
+    author: Author;
+    text: TextItem[];
 }

@@ -3,22 +3,22 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import { IArticleItem } from "../../../../Shared/Components/RenderContent/Models";
+import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
-    articles: IArticleItem[];
+    articles: ArticleItem[];
 }
 
-const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
+const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element =>
 {
     return(
         <>
-            {args.articles.map((item: IArticleItem) => ( 
+            {args.articles.map((item: ArticleItem) => ( 
                 <ArticleCard 
                     title={item.title}
                     description={item.description}
@@ -30,7 +30,7 @@ const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
     );
 }
 
-export const ArticleListView = (props: IProperties): JSX.Element => 
+export const ArticleListView = (props: Properties): JSX.Element => 
 {
     const classes = ArticleListStyle();
     return (

@@ -1,6 +1,6 @@
-import { IContentNewsletter } from "../../States";
+import { ContentNewsletterState } from "../../States";
 
-export const ContentNewsletter: IContentNewsletter = 
+export const ContentNewsletter: ContentNewsletterState = 
 {
     isLoading: false,
     content: 

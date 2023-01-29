@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ISubitem } from "../../Models";
+import { Subitem } from "../../Models";
 import { GetIcon } from "../../../../../Shared/Components";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitemsStyle } from "./renderSubitemsStyle";
 
-export const RenderSubitem = (props: ISubitem): JSX.Element =>
+export const RenderSubitem = (props: Subitem): JSX.Element =>
 {
     const classes = RenderSubitemsStyle();
 

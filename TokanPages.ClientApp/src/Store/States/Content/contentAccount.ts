@@ -1,6 +1,6 @@
-import { IAccountContentDto } from "../../../Api/Models";
+import { AccountContentDto } from "../../../Api/Models";
 
-export interface IContentAccount extends IAccountContentDto
+export interface ContentAccountState extends AccountContentDto
 {
     isLoading: boolean;
 }

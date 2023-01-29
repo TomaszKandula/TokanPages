@@ -1,7 +1,7 @@
-import { IUserPasswordUpdate } from "../../States";
+import { UserPasswordUpdateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const UserPasswordUpdate: IUserPasswordUpdate = 
+export const UserPasswordUpdate: UserPasswordUpdateState = 
 {
     status: OperationStatus.notStarted,
     response: { }

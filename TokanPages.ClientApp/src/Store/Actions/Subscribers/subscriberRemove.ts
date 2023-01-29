@@ -1,26 +1,26 @@
-import { IApplicationAction } from "../../Configuration";
-import { IRemoveSubscriberDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { RemoveSubscriberDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     REMOVE_SUBSCRIBER
 } from "../../../Api/Request";
 
 export const REMOVE = "REMOVE_SUBSCRIBER";
 export const RESPONSE = "REMOVE_SUBSCRIBER_RESPONSE";
-interface IRemove { type: typeof REMOVE }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IRemove | IResponse;
+interface Remove { type: typeof REMOVE }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Remove | Response;
 
 export const SubscriberRemoveAction = 
 {
-    remove: (payload: IRemoveSubscriberDto):  IApplicationAction<TKnownActions> => (dispatch) => 
+    remove: (payload: RemoveSubscriberDto):  ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REMOVE });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: REMOVE_SUBSCRIBER, 
@@ -28,7 +28,7 @@ export const SubscriberRemoveAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

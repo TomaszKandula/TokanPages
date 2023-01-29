@@ -2,7 +2,7 @@ import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"; 
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { IGetContentManifestDto } from "./Api/Models";
+import { GetContentManifestDto } from "./Api/Models";
 import { ScrollToTop } from "./Shared/Components/Scroll";
 import { UpdateUserData } from "./Shared/Services/updateUserDataService";
 import { UpdateUserLanguage } from "./Shared/Services/updateUserLanguageService";
@@ -35,12 +35,12 @@ import {
     ApplicationUserInfo 
 } from "./Shared/Components";
 
-interface IApp 
+interface Properties 
 {
-    manifest: IGetContentManifestDto;
+    manifest: GetContentManifestDto;
 }
 
-const App = (props: IApp): JSX.Element => 
+const App = (props: Properties): JSX.Element => 
 {
     const classes = AppStyle();
 

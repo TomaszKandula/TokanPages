@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { RenderList } from "./renderList";
-import { IItem } from "./Models";
+import { Item } from "./Models";
 
 describe("Test render function 'renderList'.", () => 
 {
@@ -20,7 +20,7 @@ describe("Test render function 'renderList'.", () =>
         expect(emptyItems).toMatchSnapshot();
     });
 
-    const items: IItem[] = 
+    const items: Item[] = 
     [
         {
             id: "5d762733-6724-4b4f-bc8c-7ede6baf77d5",

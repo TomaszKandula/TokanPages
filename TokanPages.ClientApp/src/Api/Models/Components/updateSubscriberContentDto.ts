@@ -1,4 +1,4 @@
-export interface IUpdateSubscriberContentDto
+export interface UpdateSubscriberContentDto
 {
     content: 
     {

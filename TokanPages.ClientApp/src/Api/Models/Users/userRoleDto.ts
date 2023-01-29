@@ -1,4 +1,4 @@
-export interface IUserRoleDto
+export interface UserRoleDto
 {
     name: string;
     description: string;

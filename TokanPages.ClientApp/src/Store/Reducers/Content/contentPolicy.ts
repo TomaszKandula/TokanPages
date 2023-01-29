@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IContentPolicy } from "../../States";
+import { ContentPolicyState } from "../../States";
 
 import { 
     TKnownActions,
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Content/contentPolicy";
 
 export const ContentPolicy: 
-    Reducer<IContentPolicy> = (state: IContentPolicy | undefined, incomingAction: Action): 
-    IContentPolicy => 
+    Reducer<ContentPolicyState> = (state: ContentPolicyState | undefined, incomingAction: Action): 
+    ContentPolicyState => 
 {
     if (state === undefined) return ApplicationDefault.contentPolicy;
 

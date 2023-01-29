@@ -1,4 +1,4 @@
-export interface IVerifyEmailAddressDto
+export interface VerifyEmailAddressDto
 {
     email: string;
 }

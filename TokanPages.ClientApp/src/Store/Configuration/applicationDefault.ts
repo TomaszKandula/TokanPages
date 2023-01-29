@@ -1,4 +1,4 @@
-import { IApplicationState } from "./applicationState";
+import { ApplicationState } from "./applicationState";
 import { 
     UserActivate,
     SubscriberAdd,
@@ -46,7 +46,7 @@ import {
     UserMediaUpload
 } from "../Defaults";
 
-export const ApplicationDefault: IApplicationState = 
+export const ApplicationDefault: ApplicationState = 
 {
     applicationError: ApplicationError,
     applicationEmail: ApplicationEmail,

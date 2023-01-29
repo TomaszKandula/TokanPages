@@ -1,6 +1,6 @@
-import { IResetPasswordContentDto } from "../../../Api/Models";
+import { ResetPasswordContentDto } from "../../../Api/Models";
 
-export interface IContentResetPassword extends IResetPasswordContentDto
+export interface ContentResetPasswordState extends ResetPasswordContentDto
 {
     isLoading: boolean;
 }

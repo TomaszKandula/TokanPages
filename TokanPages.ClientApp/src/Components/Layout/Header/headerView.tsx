@@ -6,13 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { IContentHeader } from "../../../Store/States";
+import { ContentHeaderState } from "../../../Store/States";
 import { GET_IMAGES_URL } from "../../../Api/Request";
 import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
-const ActiveButton = (props: IContentHeader): JSX.Element => 
+const ActiveButton = (props: ContentHeaderState): JSX.Element => 
 {
     const classes = HeaderStyle();
 
@@ -28,7 +28,7 @@ const ActiveButton = (props: IContentHeader): JSX.Element =>
     );
 }
 
-export const HeaderView = (props: IContentHeader): JSX.Element => 
+export const HeaderView = (props: ContentHeaderState): JSX.Element => 
 {
     const classes = HeaderStyle();
     return (

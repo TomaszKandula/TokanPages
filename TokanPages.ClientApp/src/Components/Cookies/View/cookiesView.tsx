@@ -10,7 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import { ViewProperties } from "../../../Shared/interfaces";
 import { CookiesStyle } from "./cookiesStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     modalClose: boolean;
     shouldShow: boolean;
@@ -20,7 +20,7 @@ interface IProperties extends ViewProperties
     buttonText: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = CookiesStyle();
     return(
@@ -30,7 +30,7 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const CookiesView = (props: IProperties): JSX.Element => 
+export const CookiesView = (props: Properties): JSX.Element => 
 {
     const classes = CookiesStyle();
     const renderConsent = (): JSX.Element => 

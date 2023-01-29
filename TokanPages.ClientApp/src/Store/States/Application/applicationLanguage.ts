@@ -1,7 +1,7 @@
-import { ILanguageItem } from "../../../Api/Models";
+import { LanguageItemDto } from "../../../Api/Models";
 
-export interface IApplicationLanguage
+export interface ApplicationLanguageState
 { 
     id: string,
-    languages: ILanguageItem[]
+    languages: LanguageItemDto[]
 }

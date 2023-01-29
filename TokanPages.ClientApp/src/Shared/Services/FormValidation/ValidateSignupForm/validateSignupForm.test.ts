@@ -1,12 +1,12 @@
 import "../../../../setupTests";
-import { IValidateSignupForm, ValidateSignupForm } from "..";
+import { SignupFormInput, ValidateSignupForm } from "..";
 
 describe("Verify validation methods.", () => 
 {
     it("When Sign-up Form filled correctly. Should return undefined.", () => 
     {
         // Arrange
-        const form: IValidateSignupForm = 
+        const form: SignupFormInput = 
         {
             firstName: "ester",
             lastName: "exposito",
@@ -25,7 +25,7 @@ describe("Verify validation methods.", () =>
     it("When Sign-up Form filled incorrectly. Should return defined.", () => 
     {
         // Arrange
-        const form: IValidateSignupForm = 
+        const form: SignupFormInput = 
         {
             firstName: "",
             lastName: "exposito",

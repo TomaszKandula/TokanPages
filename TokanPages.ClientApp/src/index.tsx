@@ -8,14 +8,14 @@ import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ConfigureStore } from "./Store/Configuration";
-import { IGetContentManifestDto } from "./Api/Models";
+import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
 const store = ConfigureStore(history);
 
-const ReactApp = (manifest: IGetContentManifestDto) => 
+const ReactApp = (manifest: GetContentManifestDto) => 
 {
     ReactDOM.render(
         <Provider store={store}>

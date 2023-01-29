@@ -1,6 +1,6 @@
-import { IContentResetPassword } from "../../States";
+import { ContentResetPasswordState } from "../../States";
 
-export const ContentResetPassword: IContentResetPassword = 
+export const ContentResetPassword: ContentResetPasswordState = 
 {
     isLoading: false,
     content: 

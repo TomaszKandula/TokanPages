@@ -1,15 +1,15 @@
 import * as React from "react";
-import { IContentFooter } from "../../../Store/States";
+import { ContentFooterState } from "../../../Store/States";
 import { Colours } from "../../../Theme";
 import validate from "validate.js";
 import { FooterView } from "./View/footerView";
 
-interface IGetFooterContentExtended extends IContentFooter
+interface Properties extends ContentFooterState
 {
     backgroundColor?: string;
 }
 
-export const Footer = (props: IGetFooterContentExtended): JSX.Element => 
+export const Footer = (props: Properties): JSX.Element => 
 {
     const versionDateTime: string = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
     const versionNumber: string = process.env.REACT_APP_VERSION_NUMBER ?? "";

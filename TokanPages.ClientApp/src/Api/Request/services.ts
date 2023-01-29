@@ -3,14 +3,14 @@ import { NULL_RESPONSE_ERROR, USER_DATA } from "../../Shared/constants";
 import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
 import { RaiseError } from "../../Shared/Services/ErrorServices";
 import { GetTextStatusCode } from "../../Shared/Services/Utilities";
-import { IAuthenticateUserResultDto } from "../Models";
+import { AuthenticateUserResultDto } from "../Models";
 import Validate from "validate.js";
 
 import { 
-    IExecute,
-    IGetContent, 
-    IPromiseResult, 
-    IRequest 
+    ExecuteContract,
+    GetContentContract, 
+    PromiseResultContract, 
+    RequestContract 
 } from "./abstractions";
 
 const IsSuccessStatusCode = (statusCode: number): boolean => 
@@ -18,9 +18,9 @@ const IsSuccessStatusCode = (statusCode: number): boolean =>
     return statusCode >= 200 && statusCode <= 299;
 }
 
-export const GetConfiguration = (props: IRequest): AxiosRequestConfig => 
+export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => 
 {
-    const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
+    const userData = GetDataFromStorage({ key: USER_DATA }) as AuthenticateUserResultDto;
     const hasAuthorization = Validate.isObject(userData) && !Validate.isEmpty(userData.userToken);
     const timezoneOffset = new Date().getTimezoneOffset();
 
@@ -43,7 +43,7 @@ export const GetConfiguration = (props: IRequest): AxiosRequestConfig =>
     : withoutAuthorizationConfig;
 }
 
-export const GetContent = (props: IGetContent) => 
+export const GetContent = (props: GetContentContract) => 
 {
     let url = props.url;
     if (props.state !== undefined)
@@ -55,7 +55,7 @@ export const GetContent = (props: IGetContent) =>
 
     props.dispatch({ type: props.request });
 
-    const request: IRequest = {
+    const request: RequestContract = {
         configuration: {
             method: "GET", 
             url: url,
@@ -63,7 +63,7 @@ export const GetContent = (props: IGetContent) =>
         }
     }
 
-    const input: IExecute = {
+    const input: ExecuteContract = {
         configuration: GetConfiguration(request),
         dispatch: props.dispatch,
         responseType: props.receive
@@ -72,7 +72,7 @@ export const GetContent = (props: IGetContent) =>
     Execute(input);
 }
 
-export const Execute = (props: IExecute): void => 
+export const Execute = (props: ExecuteContract): void => 
 {
     axios(props.configuration).then(response => 
     {
@@ -109,9 +109,9 @@ export const Execute = (props: IExecute): void =>
     });
 }
 
-export const ExecuteAsync = async (configuration: AxiosRequestConfig): Promise<IPromiseResult> =>
+export const ExecuteAsync = async (configuration: AxiosRequestConfig): Promise<PromiseResultContract> =>
 {
-    let result: IPromiseResult = { status: null, content: null, error: null };
+    let result: PromiseResultContract = { status: null, content: null, error: null };
 
     await axios(configuration).then(response =>
     {

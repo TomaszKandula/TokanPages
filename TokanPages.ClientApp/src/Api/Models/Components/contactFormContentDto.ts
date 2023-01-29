@@ -1,4 +1,4 @@
-export interface IContactFormContentDto
+export interface ContactFormContentDto
 {
     content: 
     {

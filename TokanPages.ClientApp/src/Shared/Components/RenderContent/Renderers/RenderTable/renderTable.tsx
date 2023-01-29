@@ -1,13 +1,13 @@
 import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import { Table, TableBody, TableContainer, TableHead, TableRow } from "@material-ui/core";
-import { IRowItem, ITextItem } from "../../Models/TextModel";
+import { RowItem, TextItem } from "../../Models/TextModel";
 import { CustomTableCell, CustomTableRow } from "../../CustomTable/customTable";
 import { RenderTableStyle } from "./renderTableStyle";
 
-export const RenderTable = (props: ITextItem): JSX.Element =>
+export const RenderTable = (props: TextItem): JSX.Element =>
 {
-    const tableData: IRowItem[] = props.value as IRowItem[];
+    const tableData: RowItem[] = props.value as RowItem[];
     const classes = RenderTableStyle();
 
     const renderHeader = () =>

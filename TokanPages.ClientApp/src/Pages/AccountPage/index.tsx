@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import Validate from "validate.js";
 
@@ -20,13 +20,13 @@ import {
 export const AccountPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-    const userStore = useSelector((state: IApplicationState) => state.userDataStore.userData);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const userStore = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
-    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
-    const account = useSelector((state: IApplicationState) => state.contentAccount);
-    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const account = useSelector((state: ApplicationState) => state.contentAccount);
+    const footer = useSelector((state: ApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {

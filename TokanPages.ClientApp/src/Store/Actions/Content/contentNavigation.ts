@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_NAVIGATION_CONTENT } from "../../../Api/Request";
-import { INavigationContentDto } from "../../../Api/Models";
+import { NavigationContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_NAVIGATION_CONTENT";
 export const RECEIVE = "RECEIVE_NAVIGATION_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: INavigationContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: NavigationContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentNavigationAction =
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentNavigation.content;
         const languageId = getState().applicationLanguage.id;

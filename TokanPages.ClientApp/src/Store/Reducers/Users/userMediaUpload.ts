@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserMediaUpload } from "../../States";
+import { UserMediaUploadState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userMediaUpload";
 
 export const UserMediaUpload: 
-    Reducer<IUserMediaUpload> = (state: IUserMediaUpload | undefined, incomingAction: Action): 
-    IUserMediaUpload => 
+    Reducer<UserMediaUploadState> = (state: UserMediaUploadState | undefined, incomingAction: Action): 
+    UserMediaUploadState => 
 {
     if (state === undefined) return ApplicationDefault.userMediaUpload;
 

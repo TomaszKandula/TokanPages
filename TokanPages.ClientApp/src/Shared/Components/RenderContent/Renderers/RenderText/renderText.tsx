@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Box, Typography } from "@material-ui/core";
-import { ITextItem } from "../../Models/TextModel";
+import { TextItem } from "../../Models/TextModel";
 import { RenderTextStyle } from "./renderTextStyle";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import "../../../../../Theme/Css/customDropCap.css";
 
-export const RenderText = (props: ITextItem): JSX.Element =>
+export const RenderText = (props: TextItem): JSX.Element =>
 {
     const classes = RenderTextStyle();
     const data: string = props.value as string; 
