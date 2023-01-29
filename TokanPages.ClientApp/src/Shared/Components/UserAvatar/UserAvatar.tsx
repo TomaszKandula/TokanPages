@@ -3,7 +3,7 @@ import { GET_USER_MEDIA } from "../../../Api/Request";
 import { UserAvatarView } from "./View/userAvatarView";
 import Validate from "validate.js";
 
-export interface IUserAvatar
+export interface Properties
 {
     userId: string;
     isLarge: boolean;
@@ -11,7 +11,7 @@ export interface IUserAvatar
     avatarName: string; 
 }
 
-export const UserAvatar = (props: IUserAvatar): JSX.Element => 
+export const UserAvatar = (props: Properties): JSX.Element => 
 {
     let baseUrl = "";
     let source = "";
@@ -23,10 +23,10 @@ export const UserAvatar = (props: IUserAvatar): JSX.Element =>
     }
 
     return (
-        <UserAvatarView bind={{
-            isLarge: props.isLarge,
-            userLetter: props.userLetter,
-            avatarSource: source
-        }}/>
+        <UserAvatarView
+            isLarge={props.isLarge}
+            userLetter={props.userLetter}
+            avatarSource={source}
+        />
     );
 }

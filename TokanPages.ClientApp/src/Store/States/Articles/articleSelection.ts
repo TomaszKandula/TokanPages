@@ -1,7 +1,7 @@
-import { IArticleItem } from "../../../Shared/Components/RenderContent/Models";
+import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 
-export interface IArticleSelection
+export interface ArticleSelectionState
 {
     isLoading: boolean;
-    article: IArticleItem;
+    article: ArticleItem;
 }

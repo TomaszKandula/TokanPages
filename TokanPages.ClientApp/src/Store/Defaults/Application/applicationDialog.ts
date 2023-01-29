@@ -1,7 +1,7 @@
-import { IApplicationDialog } from "../../States";
+import { ApplicationDialogState } from "../../States";
 import { IconType } from "../../../Shared/enums";
 
-export const ApplicationDialog: IApplicationDialog = 
+export const ApplicationDialog: ApplicationDialogState = 
 {
     title: "", 
     message: "",

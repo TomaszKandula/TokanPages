@@ -1,26 +1,26 @@
-import { IApplicationAction } from "../../Configuration";
-import { IUpdateSubscriberDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { UpdateSubscriberDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     UPDATE_SUBSCRIBER
 } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_SUBSCRIBER";
 export const RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
-interface IUpdate { type: typeof UPDATE }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IUpdate | IResponse;
+interface Update { type: typeof UPDATE }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Update | Response;
 
 export const SubscriberUpdateAction = 
 {
-    update: (payload: IUpdateSubscriberDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    update: (payload: UpdateSubscriberDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: UPDATE_SUBSCRIBER, 
@@ -28,7 +28,7 @@ export const SubscriberUpdateAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserPasswordStyle } from "./userPasswordStyle";
 
 import { 
@@ -16,18 +17,12 @@ import {
 } from "@material-ui/core";
 
 import { 
-    ISectionAccessDenied, 
-    ISectionAccountPassword
+    SectionAccessDenied, 
+    SectionAccountPassword
 } from "../../../../../Api/Models";
 
-interface IBinding 
-{
-    bind: IProperties;
-}
-
-interface IProperties
+interface Properties extends ViewProperties
 {    
-    isLoading: boolean;
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
@@ -35,11 +30,11 @@ interface IProperties
     passwordKeyHandler: any;
     passwordFormHandler: any;
     passwordButtonHandler: any;
-    sectionAccessDenied: ISectionAccessDenied;
-    sectionAccountPassword: ISectionAccountPassword;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountPassword: SectionAccountPassword;
 }
 
-const UpdatePasswordButton = (props: IBinding): JSX.Element => 
+const UpdatePasswordButton = (props: Properties): JSX.Element => 
 {
     const classes = UserPasswordStyle();
     return(
@@ -47,11 +42,11 @@ const UpdatePasswordButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.passwordButtonHandler} 
-            disabled={props.bind?.passwordFormProgress} 
+            onClick={props.passwordButtonHandler} 
+            disabled={props.passwordFormProgress} 
             className={classes.button_update}>
-            {!props.bind?.passwordFormProgress 
-            ? props.bind?.sectionAccountPassword?.updateButtonText 
+            {!props.passwordFormProgress 
+            ? props.sectionAccountPassword?.updateButtonText 
             : <CircularProgress size={20} />}
         </Button>
     );
@@ -67,7 +62,7 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }) =>
     );
 }
 
-export const UserPasswordView = (props: IBinding): JSX.Element => 
+export const UserPasswordView = (props: Properties): JSX.Element => 
 {
     const classes = UserPasswordStyle();
     return(
@@ -78,9 +73,9 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography component="span" className={classes.caption}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.sectionAccountPassword?.caption}
+                                    : props.sectionAccountPassword?.caption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -88,13 +83,13 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
-                                            {props.bind?.isLoading 
+                                            {props.isLoading 
                                             ? <Skeleton variant="text" /> 
-                                            : props.bind?.sectionAccountPassword?.labelOldPassword}
+                                            : props.sectionAccountPassword?.labelOldPassword}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -103,20 +98,20 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             name="oldPassword" 
                                             variant="outlined" 
                                             type="password"
-                                            value={props.bind?.oldPassword}
-                                            onKeyUp={props.bind?.passwordKeyHandler}
-                                            onChange={props.bind?.passwordFormHandler} 
+                                            value={props.oldPassword}
+                                            onKeyUp={props.passwordKeyHandler}
+                                            onChange={props.passwordFormHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
-                                            {props.bind?.isLoading 
+                                            {props.isLoading 
                                             ? <Skeleton variant="text" /> 
-                                            : props.bind?.sectionAccountPassword?.labelNewPassword}
+                                            : props.sectionAccountPassword?.labelNewPassword}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -125,20 +120,20 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             name="newPassword" 
                                             variant="outlined" 
                                             type="password"
-                                            value={props.bind?.newPassword}
-                                            onKeyUp={props.bind?.passwordKeyHandler}
-                                            onChange={props.bind?.passwordFormHandler} 
+                                            value={props.newPassword}
+                                            onKeyUp={props.passwordKeyHandler}
+                                            onChange={props.passwordFormHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
-                                            {props.bind?.isLoading 
+                                            {props.isLoading 
                                             ? <Skeleton variant="text" /> 
-                                            : props.bind?.sectionAccountPassword?.labelConfirmPassword}
+                                            : props.sectionAccountPassword?.labelConfirmPassword}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -147,16 +142,16 @@ export const UserPasswordView = (props: IBinding): JSX.Element =>
                                             name="confirmPassword" 
                                             variant="outlined" 
                                             type="password"
-                                            value={props.bind?.confirmPassword}
-                                            onKeyUp={props.bind?.passwordKeyHandler}
-                                            onChange={props.bind?.passwordFormHandler} 
+                                            value={props.confirmPassword}
+                                            onKeyUp={props.passwordKeyHandler}
+                                            onChange={props.passwordFormHandler} 
                                         />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
                                 <Grid className={classes.button_container_update}>
                                     <Box my={2}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
                                         : <UpdatePasswordButton {...props} />}
                                     </Box>

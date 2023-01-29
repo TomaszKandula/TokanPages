@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserActivate } from "../../States";
+import { UserActivateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userActivate";
 
 export const UserActivate: 
-    Reducer<IUserActivate> = (state: IUserActivate | undefined, incomingAction: Action): 
-    IUserActivate => 
+    Reducer<UserActivateState> = (state: UserActivateState | undefined, incomingAction: Action): 
+    UserActivateState => 
 {
     if (state === undefined) return ApplicationDefault.userActivate;
 

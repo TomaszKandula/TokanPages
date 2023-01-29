@@ -6,16 +6,11 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { ActivateAccountStyle } from "./activateAccountStyle";
 
-interface IBinding 
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     caption: string;
     text1: string;
     text2: string;
@@ -25,7 +20,7 @@ interface IProperties
     buttonText: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = ActivateAccountStyle();
     return(
@@ -33,17 +28,17 @@ const ActiveButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.buttonHandler} 
+            onClick={props.buttonHandler} 
             className={classes.button}
-            disabled={props.bind?.buttonDisabled}>
-            {!props.bind?.progress 
-            ? props.bind?.buttonText 
+            disabled={props.buttonDisabled}>
+            {!props.progress 
+            ? props.buttonText 
             : <CircularProgress size={20} />}
         </Button>
     );
 }
 
-export const ActivateAccountView = (props: IBinding): JSX.Element =>
+export const ActivateAccountView = (props: Properties): JSX.Element =>
 {
     const classes = ActivateAccountStyle();
     return (
@@ -55,26 +50,26 @@ export const ActivateAccountView = (props: IBinding): JSX.Element =>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography gutterBottom={true} className={classes.caption}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.caption}
+                                    : props.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography className={classes.text1}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.text1}
+                                    : props.text1}
                                 </Typography>
                             </Box>
                             <Box mt={2} mb={5}>
                                 <Typography className={classes.text2}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.text2}
+                                    : props.text2}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading 
+                            {props.isLoading 
                             ? <Skeleton variant="rect" width="100%" height="40px" /> 
                             : <ActiveButton {...props} />}
                         </Box>

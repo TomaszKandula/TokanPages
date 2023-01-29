@@ -26,7 +26,7 @@ export const CustomTableRow = withStyles(() => createStyles(
 {
     root: 
     {
-        '&:nth-of-type(odd)': 
+        "&:nth-of-type(odd)": 
         {
             backgroundColor: Colours.colours.lightGray2,
         },

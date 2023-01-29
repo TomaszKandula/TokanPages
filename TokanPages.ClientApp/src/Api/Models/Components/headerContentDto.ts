@@ -1,6 +1,6 @@
-import { ILink } from "./Common/link";
+import { LinkDto } from "./Common/linkDto";
 
-export interface IHeaderContentDto
+export interface HeaderContentDto
 {
     content: 
     {
@@ -8,6 +8,6 @@ export interface IHeaderContentDto
         photo: string;
         caption: string;
         description: string;
-        action: ILink;
+        action: LinkDto;
     };
 }

@@ -1,15 +1,15 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IContentPolicy, IContentTerms, IContentStory } from "../../../Store/States";
-import { ITextItem } from "../../../Api/Models";
+import { ContentPolicyState, ContentTermsState, ContentStoryState } from "../../../Store/States";
+import { TextItemDto } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
 describe("Test component: documentView.", () => 
 {
     it("Renders correctly '<DocumentView />' when policy content is loaded.", () => 
     {
-        const textItem: ITextItem = 
+        const textItem: TextItemDto = 
         {
             id: "5b30be71-0e68-4be4-bd29-7f40fe130414",
             type: "html",
@@ -18,7 +18,7 @@ describe("Test component: documentView.", () =>
             text: ""
         };
 
-        const policyContent: IContentPolicy = 
+        const policyContent: ContentPolicyState = 
         {
             isLoading: false,
             content: 
@@ -37,7 +37,7 @@ describe("Test component: documentView.", () =>
 
     it("Renders correctly '<DocumentView />' when terms content is loaded.", () => 
     {
-        const textItem: ITextItem = 
+        const textItem: TextItemDto = 
         {
             id: "5b30be71-0e68-4be4-bd29-7f40fe130414",
             type: "html",
@@ -46,7 +46,7 @@ describe("Test component: documentView.", () =>
             text: ""
         };
 
-        const termsContent: IContentTerms = 
+        const termsContent: ContentTermsState = 
         {
             isLoading: false,
             content: 
@@ -65,7 +65,7 @@ describe("Test component: documentView.", () =>
 
     it("Renders correctly '<DocumentView />' when story content is loaded.", () => 
     {
-        const textItem: ITextItem = 
+        const textItem: TextItemDto = 
         {
             id: "5b30be71-0e68-4be4-bd29-7f40fe130414",
             type: "html",
@@ -74,7 +74,7 @@ describe("Test component: documentView.", () =>
             text: ""
         };
 
-        const storyContent: IContentStory = 
+        const storyContent: ContentStoryState = 
         {
             isLoading: false,
             content: 

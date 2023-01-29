@@ -1,12 +1,12 @@
-import { IGetContentManifestDto } from "./Api/Models";
+import { GetContentManifestDto } from "./Api/Models";
 import { 
-    IRequest,
+    RequestContract,
     ExecuteAsync, 
     GetConfiguration, 
     GET_CONTENT_MANIFEST
 } from "./Api/Request";
 
-const requestManifest: IRequest = {
+const requestManifest: RequestContract = {
     configuration: {
         url: GET_CONTENT_MANIFEST,
         method: "GET",
@@ -23,7 +23,7 @@ const hidePreloader = () =>
 export const Initialize = async (callback: any): Promise<void> => 
 {
     const manifest = await ExecuteAsync(GetConfiguration(requestManifest));
-    const manifestDto: IGetContentManifestDto = manifest.content as IGetContentManifestDto;
+    const manifestDto: GetContentManifestDto = manifest.content as GetContentManifestDto;
 
     hidePreloader();
     callback(manifestDto);

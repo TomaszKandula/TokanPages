@@ -4,9 +4,9 @@ import { connectRouter, routerMiddleware } from "connected-react-router";
 import { History } from "history";
 import { ApplicationReducer } from "./applicationReducer";
 import { ApplicationDefault } from "./applicationDefault";
-import { IApplicationState } from "./applicationState";
+import { ApplicationState } from "./applicationState";
 
-export const ConfigureStore = (history: History, initialState?: IApplicationState): any =>
+export const ConfigureStore = (history: History, initialState?: ApplicationState): any =>
 {
     const initialAppState = initialState === undefined 
         ? ApplicationDefault 
@@ -25,7 +25,7 @@ export const ConfigureStore = (history: History, initialState?: IApplicationStat
     });
 
     const enhancers = [];
-    const windowIfDefined = typeof window === 'undefined' ? null : window as any;
+    const windowIfDefined = typeof window === "undefined" ? null : window as any;
     
     if (windowIfDefined && windowIfDefined.__REDUX_DEVTOOLS_EXTENSION__) 
     {

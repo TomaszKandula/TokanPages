@@ -1,4 +1,4 @@
-import { IApplicationAction } from "../../Configuration";
+import { ApplicationAction } from "../../Configuration";
 import { RAISE } from "../Application/applicationError";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
@@ -12,19 +12,19 @@ import {
 } from "../../../Api/Request";
 
 import { 
-    IUpdateArticleContentDto, 
-    IUpdateArticleCountDto, 
-    IUpdateArticleLikesDto, 
-    IUpdateArticleVisibilityDto 
+    UpdateArticleContentDto, 
+    UpdateArticleCountDto, 
+    UpdateArticleLikesDto, 
+    UpdateArticleVisibilityDto 
 } from "../../../Api/Models";
 
 export const UPDATE = "UPDATE_ARTICLE";
 export const CLEAR = "UPDATE_ARTICLE_CLEAR";
 export const RESPONSE = "UPDATE_ARTICLE_RESPONSE";
-interface IUpdate { type: typeof UPDATE }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IUpdate | IClear | IResponse;
+interface Update { type: typeof UPDATE }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Update | Clear | Response;
 
 const DispatchCall = async (dispatch: any, url: string, data: any) =>
 {
@@ -57,23 +57,23 @@ const DispatchCall = async (dispatch: any, url: string, data: any) =>
 
 export const ArticleUpdateAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) => 
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR });
     },
-    updateContent: (payload: IUpdateArticleContentDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    updateContent: (payload: UpdateArticleContentDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload);
     },
-    updateCount: (payload: IUpdateArticleCountDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    updateCount: (payload: UpdateArticleCountDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload);
     },
-    updateLikes: (payload: IUpdateArticleLikesDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    updateLikes: (payload: UpdateArticleLikesDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload);
     },
-    updateVisibility: (payload: IUpdateArticleVisibilityDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    updateVisibility: (payload: UpdateArticleVisibilityDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload);
     }

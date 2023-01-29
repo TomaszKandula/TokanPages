@@ -1,22 +1,22 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { ITextObject } from "./Models/TextModel";
+import { TextObject } from "./Models/TextModel";
 import { RenderContent } from "./renderContent";
 
 describe("Test render function 'renderContent'.", () => 
 {
-    interface IProperties
+    interface Properties
     {
-        textObject: ITextObject | undefined
+        textObject: TextObject | undefined
     }
     
-    const TestComponent = (props: IProperties): JSX.Element => 
+    const TestComponent = (props: Properties): JSX.Element => 
     {
         return RenderContent(props.textObject);
     }
 
-    const TestObject: ITextObject = 
+    const TestObject: TextObject = 
     {
         items: 
         [

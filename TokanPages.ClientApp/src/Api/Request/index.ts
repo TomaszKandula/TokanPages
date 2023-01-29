@@ -1,8 +1,8 @@
 export type { 
-    IExecute,
-    IGetContent,
-    IPromiseResult,
-    IRequest
+    ExecuteContract,
+    GetContentContract,
+    PromiseResultContract,
+    RequestContract
 } from "./abstractions";
 
 export { 

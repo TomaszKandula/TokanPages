@@ -1,6 +1,6 @@
-import { IUnsubscribeContentDto } from "../../../Api/Models";
+import { UnsubscribeContentDto } from "../../../Api/Models";
 
-export interface IContentUnsubscribe extends IUnsubscribeContentDto
+export interface ContentUnsubscribeState extends UnsubscribeContentDto
 {
     isLoading: boolean;
 }

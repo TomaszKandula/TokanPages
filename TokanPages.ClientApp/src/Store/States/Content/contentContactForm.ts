@@ -1,6 +1,6 @@
-import { IContactFormContentDto } from "../../../Api/Models";
+import { ContactFormContentDto } from "../../../Api/Models";
 
-export interface IContentContactForm extends IContactFormContentDto
+export interface ContentContactFormState extends ContactFormContentDto
 {
     isLoading: boolean;
 }

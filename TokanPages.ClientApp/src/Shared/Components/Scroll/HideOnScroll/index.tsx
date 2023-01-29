@@ -2,16 +2,16 @@ import * as React from "react";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
 
-export interface IHideOnScroll 
+interface Properties 
 {
     children: React.ReactElement;
 }
 
-export const HideOnScroll = (props: IHideOnScroll): JSX.Element =>
+export const HideOnScroll = (props: Properties): JSX.Element =>
 {
-    const trigger = useScrollTrigger();
+    const hasTrigger = useScrollTrigger();
     return (
-        <Slide appear={false} direction="down" in={!trigger}>
+        <Slide appear={false} direction="down" in={!hasTrigger}>
             {props.children}
         </Slide>
     );

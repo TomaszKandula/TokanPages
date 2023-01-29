@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IAddUserDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { AddUserDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     ADD_USER
 } from "../../../Api/Request";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
 export const RESPONSE = "SIGNUP_USER_RESPONSE";
-interface ISignup { type: typeof SIGNUP }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = ISignup | IClear | IResponse;
+interface Signup { type: typeof SIGNUP }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Signup | Clear | Response;
 
 export const UserSignupAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    signup: (payload: IAddUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    signup: (payload: AddUserDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SIGNUP });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: ADD_USER, 
@@ -34,7 +34,7 @@ export const UserSignupAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

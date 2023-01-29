@@ -1,5 +1,5 @@
-export type { IApplicationAction } from "./applicationAction";
-export type { IApplicationState } from "./applicationState";
+export type { ApplicationAction } from "./applicationAction";
+export type { ApplicationState } from "./applicationState";
 
 export { ApplicationDefault } from "./applicationDefault";
 export { ApplicationReducer } from "./applicationReducer";

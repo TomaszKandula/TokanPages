@@ -8,16 +8,11 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { ResetPasswordStyle } from "./resetPasswordStyle";
 
-interface IBinding 
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     progress: boolean;
     caption: string;
     button: string;
@@ -28,7 +23,7 @@ interface IProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = ResetPasswordStyle();
     return(
@@ -36,17 +31,17 @@ const ActiveButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.buttonHandler} 
+            onClick={props.buttonHandler} 
             className={classes.button} 
-            disabled={props.bind?.progress}>
-            {!props.bind?.progress 
-            ? props.bind?.button 
+            disabled={props.progress}>
+            {!props.progress 
+            ? props.button 
             : <CircularProgress size={20} />}
         </Button>
     );
 }
 
-export const ResetPasswordView = (props: IBinding): JSX.Element =>
+export const ResetPasswordView = (props: Properties): JSX.Element =>
 {
     const classes = ResetPasswordStyle();
     return (
@@ -58,15 +53,15 @@ export const ResetPasswordView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.caption}
+                                    : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -75,15 +70,15 @@ export const ResetPasswordView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             autoComplete="email" 
-                                            onKeyUp={props.bind?.keyHandler} 
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.email} 
-                                            label={props.bind?.labelEmail}
+                                            onKeyUp={props.keyHandler} 
+                                            onChange={props.formHandler} 
+                                            value={props.email} 
+                                            label={props.labelEmail}
                                         />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="rect" width="100%" height="40px" /> 
                                     : <ActiveButton {...props} />}
                                 </Box>

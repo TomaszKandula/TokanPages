@@ -6,14 +6,14 @@ import { GetShortText } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, GET_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
-export interface IArticleCard
+interface ArticleCard
 {
     title: string;
     description: string;
     id: string;
 }
 
-export const ArticleCard = (props: IArticleCard): JSX.Element =>
+export const ArticleCard = (props: ArticleCard): JSX.Element =>
 {
     const content = { button: "Read" };
     const articleUrl = ARTICLE_PATH.replace("{id}", props.id);
@@ -28,12 +28,11 @@ export const ArticleCard = (props: IArticleCard): JSX.Element =>
         history.push(articleUrl);
     };
 
-    return (<ArticleCardView bind=
-    {{
-        imageUrl: imageUrl,
-        title: GetShortText({ value: props.title, limit: 6 }),
-        description: GetShortText({ value: props.description, limit: 12 }),
-        onClickEvent: onClickEvent,
-        buttonText: content.button
-    }}/>);
+    return (<ArticleCardView
+        imageUrl={imageUrl}
+        title={GetShortText({ value: props.title, limit: 6 })}
+        description={GetShortText({ value: props.description, limit: 12 })}
+        onClickEvent={onClickEvent}
+        buttonText={content.button}
+    />);
 }

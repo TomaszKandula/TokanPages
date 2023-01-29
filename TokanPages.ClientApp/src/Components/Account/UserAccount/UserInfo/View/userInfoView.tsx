@@ -6,7 +6,8 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
-import { IValidateAccountForm } from "../../../../../Shared/Services/FormValidation";
+import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
+import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 
 import { 
@@ -20,21 +21,15 @@ import {
 } from "@material-ui/core";
 
 import { 
-    IAuthenticateUserResultDto,
-    ISectionAccessDenied, 
-    ISectionAccountInformation, 
+    AuthenticateUserResultDto,
+    SectionAccessDenied, 
+    SectionAccountInformation, 
 } from "../../../../../Api/Models";
 
-interface IBinding 
-{
-    bind: IProperties;
-}
-
-interface IProperties
+interface Properties extends ViewProperties
 {    
-    isLoading: boolean;
-    userStore: IAuthenticateUserResultDto;
-    accountForm: IValidateAccountForm;
+    userStore: AuthenticateUserResultDto;
+    accountForm: AccountFormInput;
     userImageName: string;
     isUserActivated: boolean;
     accountFormProgress: boolean;
@@ -42,16 +37,16 @@ interface IProperties
     accountFormHandler: any;
     accountSwitchHandler: any;
     accountButtonHandler: any;
-    sectionAccessDenied: ISectionAccessDenied;
-    sectionAccountInformation: ISectionAccountInformation;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountInformation: SectionAccountInformation;
 }
 
-interface IRenderText extends IBinding
+interface RenderText extends Properties
 {
     value: string;
 }
 
-const UpdateAccountButton = (props: IBinding): JSX.Element => 
+const UpdateAccountButton = (props: Properties): JSX.Element => 
 {
     const classes = UserInfoStyle();
     return(
@@ -59,11 +54,11 @@ const UpdateAccountButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.accountButtonHandler} 
-            disabled={props.bind?.accountFormProgress} 
+            onClick={props.accountButtonHandler} 
+            disabled={props.accountFormProgress} 
             className={classes.button_update}>
-            {!props.bind?.accountFormProgress 
-            ? props.bind?.sectionAccountInformation?.updateButtonText 
+            {!props.accountFormProgress 
+            ? props.sectionAccountInformation?.updateButtonText 
             : <CircularProgress size={20} />}
         </Button>
     );
@@ -79,9 +74,9 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.E
     );
 }
 
-const RenderText = (props: IRenderText): JSX.Element => 
+const RenderText = (props: RenderText): JSX.Element => 
 {
-    return props.bind?.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
+    return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
 }
 
 const ReturnFileName = (value: string): string => 
@@ -94,7 +89,7 @@ const ReturnFileName = (value: string): string =>
     return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
 }
 
-export const UserInfoView = (props: IBinding): JSX.Element => 
+export const UserInfoView = (props: Properties): JSX.Element => 
 {
     const classes = UserInfoStyle();
     return(
@@ -107,7 +102,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                 <Typography component="span" className={classes.caption}>
                                     <RenderText 
                                         {...props} 
-                                        value={props.bind?.sectionAccountInformation?.caption} 
+                                        value={props.sectionAccountInformation?.caption} 
                                     />
                                 </Typography>
                             </Box>
@@ -118,7 +113,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelUserId} 
+                                                value={props.sectionAccountInformation?.labelUserId} 
                                             />
                                         </Typography>
                                     </Grid>
@@ -126,7 +121,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.user_id}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.userStore?.userId} 
+                                                value={props.userStore?.userId} 
                                             />
                                         </Typography>
                                     </Grid>
@@ -134,7 +129,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelUserAlias}
+                                                value={props.sectionAccountInformation?.labelUserAlias}
                                             />
                                         </Typography>
                                     </Grid>
@@ -142,7 +137,7 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.user_alias}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.userStore?.aliasName} 
+                                                value={props.userStore?.aliasName} 
                                             />
                                         </Typography>
                                     </Grid>
@@ -150,20 +145,20 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelUserAvatar}
+                                                value={props.sectionAccountInformation?.labelUserAvatar}
                                             />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Box className={classes.user_avatar_box}>
-                                            {props.bind?.isLoading 
+                                            {props.isLoading 
                                             ? null 
                                             : <UploadUserMedia mediaTarget={UserMedia.userImage} handle="userInfoSection_userImage" />}
-                                            {props.bind?.isLoading 
+                                            {props.isLoading 
                                             ? 
                                             null 
                                             : <Typography component="span" className={classes.user_avatar_text}>
-                                                {ReturnFileName(props.bind?.userImageName)}
+                                                {ReturnFileName(props.userImageName)}
                                             </Typography>}
                                         </Box>
                                     </Grid>
@@ -171,12 +166,12 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelFirstName}
+                                                value={props.sectionAccountInformation?.labelFirstName}
                                             />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" /> 
                                         : <TextField 
                                             required 
@@ -184,21 +179,21 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             id="firstName"
                                             name="firstName" 
                                             variant="outlined" 
-                                            value={props.bind?.accountForm?.firstName}
-                                            onKeyUp={props.bind?.accountKeyHandler}
-                                            onChange={props.bind?.accountFormHandler} 
+                                            value={props.accountForm?.firstName}
+                                            onKeyUp={props.accountKeyHandler}
+                                            onChange={props.accountFormHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelLastName} 
+                                                value={props.sectionAccountInformation?.labelLastName} 
                                             />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -206,21 +201,21 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             id="lastName"
                                             name="lastName" 
                                             variant="outlined" 
-                                            value={props.bind?.accountForm?.lastName}
-                                            onKeyUp={props.bind?.accountKeyHandler}
-                                            onChange={props.bind?.accountFormHandler} 
+                                            value={props.accountForm?.lastName}
+                                            onKeyUp={props.accountKeyHandler}
+                                            onChange={props.accountFormHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelEmail}
+                                                value={props.sectionAccountInformation?.labelEmail}
                                             />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -228,21 +223,21 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             id="email"
                                             name="email" 
                                             variant="outlined" 
-                                            value={props.bind?.accountForm?.email}
-                                            onKeyUp={props.bind?.accountKeyHandler}
-                                            onChange={props.bind?.accountFormHandler}
+                                            value={props.accountForm?.email}
+                                            onKeyUp={props.accountKeyHandler}
+                                            onChange={props.accountFormHandler}
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelShortBio}
+                                                value={props.sectionAccountInformation?.labelShortBio}
                                             />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -252,36 +247,36 @@ export const UserInfoView = (props: IBinding): JSX.Element =>
                                             id="userAboutText"
                                             name="userAboutText" 
                                             variant="outlined" 
-                                            value={props.bind?.accountForm?.userAboutText}
-                                            onKeyUp={props.bind?.accountKeyHandler}
-                                            onChange={props.bind?.accountFormHandler} 
+                                            value={props.accountForm?.userAboutText}
+                                            onKeyUp={props.accountKeyHandler}
+                                            onChange={props.accountFormHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText 
                                                 {...props} 
-                                                value={props.bind?.sectionAccountInformation?.labelIsActivated} 
+                                                value={props.sectionAccountInformation?.labelIsActivated} 
                                             />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <FormControlLabel
                                             control={<CustomSwitchStyle 
                                                 name="checked" 
-                                                checked={props.bind?.isUserActivated} 
-                                                onChange={props.bind?.accountSwitchHandler} 
+                                                checked={props.isUserActivated} 
+                                                onChange={props.accountSwitchHandler} 
                                             />}
-                                            label={props.bind?.sectionAccountInformation?.isActivatedText}
+                                            label={props.sectionAccountInformation?.isActivatedText}
                                         />}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
                                 <Grid className={classes.button_container_update}>
                                     <Box my={2}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
                                         : <UpdateAccountButton {...props} />}
                                     </Box>

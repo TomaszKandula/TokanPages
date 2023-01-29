@@ -1,4 +1,4 @@
-export interface IFeaturesContentDto
+export interface FeaturesContentDto
 {
     content: 
     {

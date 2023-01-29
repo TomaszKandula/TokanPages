@@ -9,16 +9,11 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { UserSigninStyle } from "./userSigninStyle";
 
-interface IBinding 
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     caption: string;
     button: string;
     link1: string;
@@ -33,7 +28,7 @@ interface IProperties
     labelPassword: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UserSigninStyle();
     return(
@@ -41,11 +36,11 @@ const ActiveButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.buttonHandler} 
+            onClick={props.buttonHandler} 
             className={classes.button} 
-            disabled={props.bind?.progress}>
-            {!props.bind?.progress 
-            ? props.bind?.button 
+            disabled={props.progress}>
+            {!props.progress 
+            ? props.button 
             : <CircularProgress size={20} />}
         </Button>
     );
@@ -56,7 +51,7 @@ const RedirectTo = (args: { path: string, name: string }): JSX.Element =>
     return(<Link to={args.path}>{args.name}</Link>);
 }
 
-export const UserSigninView = (props: IBinding): JSX.Element =>
+export const UserSigninView = (props: Properties): JSX.Element =>
 {
     const classes = UserSigninStyle();
     return (
@@ -68,15 +63,15 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption} >
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.caption}
+                                    : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -85,14 +80,14 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             autoComplete="email" 
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.email} 
-                                            label={props.bind?.labelEmail}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.email} 
+                                            label={props.labelEmail}
                                         />}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -102,28 +97,28 @@ export const UserSigninView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password" 
                                             autoComplete="current-password" 
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.password} 
-                                            label={props.bind?.labelPassword}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.password} 
+                                            label={props.labelPassword}
                                         />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="rect" width="100%" height="40px" /> 
                                     : <ActiveButton {...props} />}
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="text" /> 
-                                        : <RedirectTo path="/signup" name={props.bind?.link1} />}
+                                        : <RedirectTo path="/signup" name={props.link1} />}
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="text" /> 
-                                        : <RedirectTo path="/resetpassword" name={props.bind?.link2} />}
+                                        : <RedirectTo path="/resetpassword" name={props.link2} />}
                                     </Grid>
                                 </Grid>
                             </Box>

@@ -3,32 +3,27 @@ import { Avatar } from "@material-ui/core";
 import { UserAvatarStyle } from "./userAvatarViewStyle";
 import Validate from "validate.js";
 
-interface IBinding
-{
-    bind: IProperties;
-}
-
-interface IProperties
+interface Properties
 {
     isLarge: boolean;
     userLetter: string;
     avatarSource: string;
 }
 
-export const UserAvatarView = (props: IBinding): JSX.Element =>
+export const UserAvatarView = (props: Properties): JSX.Element =>
 {
     const classes = UserAvatarStyle();
-    const className = props.bind?.isLarge ? classes.avatarLarge : classes.avatarSmall;
+    const className = props.isLarge ? classes.avatarLarge : classes.avatarSmall;
 
-    if (Validate.isEmpty(props.bind?.avatarSource))
+    if (Validate.isEmpty(props.avatarSource))
     {
-        return(<Avatar className={className}>{props.bind?.userLetter}</Avatar>);
+        return(<Avatar className={className}>{props.userLetter}</Avatar>);
     }
 
     return(
         <Avatar 
             className={className} 
-            src={props.bind?.avatarSource}
+            src={props.avatarSource}
             alt="Avatar" >
         </Avatar>
     );

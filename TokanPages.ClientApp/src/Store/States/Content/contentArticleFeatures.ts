@@ -1,6 +1,6 @@
-import { IArticleFeaturesContentDto } from "../../../Api/Models";
+import { ArticleFeaturesContentDto } from "../../../Api/Models";
 
-export interface IContentArticleFeatures extends IArticleFeaturesContentDto
+export interface ContentArticleFeaturesState extends ArticleFeaturesContentDto
 { 
     isLoading: boolean;
 }

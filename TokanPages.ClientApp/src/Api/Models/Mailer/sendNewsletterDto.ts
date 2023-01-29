@@ -1,8 +1,8 @@
-import { ISubscriberInfoDto } from "./subscriberInfoDto";
+import { SubscriberInfoDto } from "./subscriberInfoDto";
 
-export interface ISendNewsletterDto
+export interface SendNewsletterDto
 {
-    subscriberInfo: ISubscriberInfoDto[];
+    subscriberInfo: SubscriberInfoDto[];
     subject: string;
     message: string;
 }

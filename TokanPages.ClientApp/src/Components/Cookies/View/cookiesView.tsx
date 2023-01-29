@@ -7,16 +7,11 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { CookiesStyle } from "./cookiesStyle";
 
-interface IBinding
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     modalClose: boolean;
     shouldShow: boolean;
     caption: string;
@@ -25,35 +20,35 @@ interface IProperties
     buttonText: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = CookiesStyle();
     return(
-        <Button onClick={props.bind?.onClickEvent} className={classes.button}>
-            {props.bind?.buttonText}
+        <Button onClick={props.onClickEvent} className={classes.button}>
+            {props.buttonText}
         </Button>
     );
 }
 
-export const CookiesView = (props: IBinding): JSX.Element => 
+export const CookiesView = (props: Properties): JSX.Element => 
 {
     const classes = CookiesStyle();
     const renderConsent = (): JSX.Element => 
     {
         return (		
-            <Box position="fixed" width="100%" bottom={0} p={3} zIndex="modal" className={props.bind?.modalClose ? classes.close : classes.open}>
+            <Box position="fixed" width="100%" bottom={0} p={3} zIndex="modal" className={props.modalClose ? classes.close : classes.open}>
                 <Container maxWidth="md">
                     <Card elevation={0} className={classes.container}>
                         <CardContent>
                             <Typography className={classes.caption}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.caption}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                             </Typography>
                             <Typography className={classes.text}>
-                                {props.bind?.isLoading ? <Skeleton variant="text" /> : props.bind?.text}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.text}
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
+                            {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                         </CardActions>
                     </Card>
                 </Container>
@@ -61,5 +56,5 @@ export const CookiesView = (props: IBinding): JSX.Element =>
         );
     }
 
-    return (<>{props.bind?.shouldShow ? renderConsent() : null}</>);
+    return (<>{props.shouldShow ? renderConsent() : null}</>);
 }

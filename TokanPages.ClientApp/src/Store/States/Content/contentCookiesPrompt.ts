@@ -1,6 +1,6 @@
-import { ICookiesPromptContentDto } from "../../../Api/Models";
+import { CookiesPromptContentDto } from "../../../Api/Models";
 
-export interface IContentCookiesPrompt extends ICookiesPromptContentDto
+export interface ContentCookiesPromptState extends CookiesPromptContentDto
 {
     isLoading: boolean;
 }

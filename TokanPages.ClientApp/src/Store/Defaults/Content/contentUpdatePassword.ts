@@ -1,6 +1,6 @@
-import { IContentUpdatePassword } from "../../States";
+import { ContentUpdatePasswordState } from "../../States";
 
-export const ContentUpdatePassword: IContentUpdatePassword = 
+export const ContentUpdatePassword: ContentUpdatePasswordState = 
 {
     isLoading: false,
     content: 

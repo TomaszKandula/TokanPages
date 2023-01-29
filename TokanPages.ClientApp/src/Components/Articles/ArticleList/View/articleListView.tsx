@@ -3,27 +3,22 @@ import Container from "@material-ui/core/Container";
 import { Box, Divider, Grid, IconButton } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
-import { IArticleItem } from "../../../../Shared/Components/RenderContent/Models";
+import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ProgressBar } from "../../../../Shared/Components";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface IBinding
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
+    articles: ArticleItem[];
 }
 
-interface IProperties
-{
-    isLoading: boolean;
-    articles: IArticleItem[];
-}
-
-const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
+const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element =>
 {
     return(
         <>
-            {args.articles.map((item: IArticleItem) => ( 
+            {args.articles.map((item: ArticleItem) => ( 
                 <ArticleCard 
                     title={item.title}
                     description={item.description}
@@ -35,7 +30,7 @@ const RenderContent = (args: { articles: IArticleItem[] }): JSX.Element =>
     );
 }
 
-export const ArticleListView = (props: IBinding): JSX.Element => 
+export const ArticleListView = (props: Properties): JSX.Element => 
 {
     const classes = ArticleListStyle();
     return (
@@ -52,9 +47,9 @@ export const ArticleListView = (props: IBinding): JSX.Element =>
                     </div>
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
-                            {props.bind?.isLoading 
+                            {props.isLoading 
                                 ? <ProgressBar /> 
-                                : <RenderContent articles={props.bind?.articles} />}
+                                : <RenderContent articles={props.articles} />}
                         </Grid>
                     </Grid>
                 </Box>

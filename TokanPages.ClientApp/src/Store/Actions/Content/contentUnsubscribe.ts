@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_UNSUBSCRIBE_CONTENT } from "../../../Api/Request";
-import { IUnsubscribeContentDto } from "../../../Api/Models";
+import { UnsubscribeContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_UNSUBSCRIBE_CONTENT";
 export const RECEIVE = "RECEIVE_UNSUBSCRIBE_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IUnsubscribeContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: UnsubscribeContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentUnsubscribeAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentUnsubscribe.content;
         const languageId = getState().applicationLanguage.id;

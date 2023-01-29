@@ -11,16 +11,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
+import { ViewProperties } from "../../../../Shared/interfaces";
 import { UserSignupStyle } from "./userSignupStyle";
 
-interface IBinding 
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
     caption: string;
     consent: string;
     button: string;
@@ -40,7 +35,7 @@ interface IProperties
     labelPassword: string;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UserSignupStyle();
     return(
@@ -48,11 +43,11 @@ const ActiveButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.buttonHandler} 
+            onClick={props.buttonHandler} 
             className={classes.button} 
-            disabled={props.bind?.progress}>
-            {!props.bind?.progress 
-            ? props.bind?.button 
+            disabled={props.progress}>
+            {!props.progress 
+            ? props.button 
             : <CircularProgress size={20} />}
         </Button>
     );
@@ -63,7 +58,7 @@ const RedirectTo = (args: { path: string, name: string }): JSX.Element =>
     return(<Link to={args.path}>{args.name}</Link>);
 }
 
-export const UserSignupView = (props: IBinding): JSX.Element =>
+export const UserSignupView = (props: Properties): JSX.Element =>
 {
     const classes = UserSignupStyle();
     return (
@@ -75,15 +70,15 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                             <Box mb={3} textAlign="center">
                             <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.caption}
+                                    : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={6}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
                                         : <TextField 
                                             required 
@@ -92,14 +87,14 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             name="firstName" 
                                             variant="outlined" 
                                             autoComplete="fname" 
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.firstName} 
-                                            label={props.bind?.labelFirstName}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.firstName} 
+                                            label={props.labelFirstName}
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
                                         : <TextField 
                                             required 
@@ -108,14 +103,14 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             name="lastName" 
                                             variant="outlined" 
                                             autoComplete="lname"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.lastName} 
-                                            label={props.bind?.labelLastName}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.lastName} 
+                                            label={props.labelLastName}
                                         />}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" />
                                         : <TextField 
                                             required 
@@ -124,14 +119,14 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             autoComplete="email"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.email} 
-                                            label={props.bind?.labelEmail}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.email} 
+                                            label={props.labelEmail}
                                         />}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" />
                                         : <TextField 
                                             required 
@@ -141,35 +136,35 @@ export const UserSignupView = (props: IBinding): JSX.Element =>
                                             variant="outlined" 
                                             type="password" 
                                             autoComplete="current-password"
-                                            onKeyUp={props.bind?.keyHandler}
-                                            onChange={props.bind?.formHandler} 
-                                            value={props.bind?.password} 
-                                            label={props.bind?.labelPassword}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
+                                            value={props.password} 
+                                            label={props.labelPassword}
                                         />}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="30px" />
                                         : <FormControlLabel 
                                             control={<VioletCheckbox 
                                                 id="terms" 
                                                 name="terms" 
-                                                onChange={props.bind?.formHandler} 
-                                                checked={props.bind?.terms} 
+                                                onChange={props.formHandler} 
+                                                checked={props.terms} 
                                             />} 
-                                            label={props.bind?.consent}
+                                            label={props.consent}
                                         />}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="rect" width="100%" height="40px" /> 
                                     : <ActiveButton {...props} />}
                                 </Box>
                                 <Box textAlign="right">
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : <RedirectTo path="/signin" name={props.bind?.link} />}
+                                    : <RedirectTo path="/signin" name={props.link} />}
                                 </Box>
                             </Box>
                         </CardContent>

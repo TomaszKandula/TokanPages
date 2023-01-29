@@ -166,30 +166,26 @@ exports[`Test component: contactFormView. Renders correctly '<ContactFormView />
             my={2}
           >
             <ActiveButton
-              bind={
-                Object {
-                  "buttonHandler": [MockFunction],
-                  "buttonText": "Submit",
-                  "caption": "Contact me",
-                  "consent": "I agree!",
-                  "email": "ester.exposito@gmail.com",
-                  "firstName": "Ester",
-                  "formHandler": [MockFunction],
-                  "isLoading": false,
-                  "keyHandler": [MockFunction],
-                  "labelEmail": "Email address",
-                  "labelFirstName": "First name",
-                  "labelLastName": "Last name",
-                  "labelMessage": "Message",
-                  "labelSubject": "Subject",
-                  "lastName": "Exposito",
-                  "message": "Test message...",
-                  "progress": false,
-                  "subject": "Test subject",
-                  "terms": false,
-                  "text": "If you have any questions...",
-                }
-              }
+              buttonHandler={[MockFunction]}
+              buttonText="Submit"
+              caption="Contact me"
+              consent="I agree!"
+              email="ester.exposito@gmail.com"
+              firstName="Ester"
+              formHandler={[MockFunction]}
+              isLoading={false}
+              keyHandler={[MockFunction]}
+              labelEmail="Email address"
+              labelFirstName="First name"
+              labelLastName="Last name"
+              labelMessage="Message"
+              labelSubject="Subject"
+              lastName="Exposito"
+              message="Test message..."
+              progress={false}
+              subject="Test subject"
+              terms={false}
+              text="If you have any questions..."
             />
           </Styled(MuiBox)>
         </Styled(MuiBox)>

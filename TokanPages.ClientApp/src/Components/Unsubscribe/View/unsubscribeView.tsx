@@ -6,42 +6,43 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IContent } from "../../../Api/Models";
+import { ContentDto } from "../../../Api/Models";
+import { ViewProperties } from "../../../Shared/interfaces";
 import { UnsubscribeStyle } from "./unsubscribeStyle";
 
-interface IBinding 
+interface Properties extends ViewProperties
 {
-    bind: IProperties;
-}
-
-interface IProperties
-{
-    isLoading: boolean;
-    contentPre: IContent;
-    contentPost: IContent;
+    contentPre: ContentDto;
+    contentPost: ContentDto;
     buttonHandler: any;
     buttonState: boolean;
     progress: boolean;
     isRemoved: boolean;
 }
 
-const ActiveButton = (props: IBinding): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UnsubscribeStyle();
-    const content: IContent = props.bind?.isRemoved ? props.bind?.contentPost : props.bind?.contentPre;
+    const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return(
-        <Button fullWidth onClick={props.bind?.buttonHandler} type="submit" variant="contained" 
-            className={classes.button} disabled={props.bind?.progress || !props.bind?.buttonState}>
-            {props.bind?.progress &&  <CircularProgress size={20} />}
-            {!props.bind?.progress && content.button}
+        <Button 
+            fullWidth 
+            type="submit" 
+            variant="contained" 
+            onClick={props.buttonHandler} 
+            className={classes.button} 
+            disabled={props.progress || !props.buttonState}>
+            {!props.progress 
+            ? content.button 
+            : <CircularProgress size={20} />}
         </Button>
     );
 }
 
-export const UnsubscribeView = (props: IBinding): JSX.Element =>
+export const UnsubscribeView = (props: Properties): JSX.Element =>
 {
     const classes = UnsubscribeStyle();
-    const content: IContent = props.bind?.isRemoved ? props.bind?.contentPost : props.bind?.contentPre;
+    const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
@@ -51,25 +52,35 @@ export const UnsubscribeView = (props: IBinding): JSX.Element =>
                         <Box textAlign="center" mb={3}>
                             <Box mt={2} mb={2}>
                                 <Typography className={classes.caption}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : content.caption}
+                                    {props.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : content.caption}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography className={classes.text1}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text1}
+                                    {props.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : content.text1}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={2}>
                                 <Typography className={classes.text2}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text2}
+                                    {props.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : content.text2}
                                 </Typography>
                             </Box>
                             <Box mt={5} mb={7}>
                                 <Typography className={classes.text3}>
-                                    {props.bind?.isLoading ? <Skeleton variant="text" /> : content.text3}
+                                    {props.isLoading 
+                                    ? <Skeleton variant="text" /> 
+                                    : content.text3}
                                 </Typography>
                             </Box>
-                            {props.bind?.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
+                            {props.isLoading 
+                            ? <Skeleton variant="rect" /> 
+                            : <ActiveButton {...props} />}
                         </Box>
                         </CardContent>
                     </Card>

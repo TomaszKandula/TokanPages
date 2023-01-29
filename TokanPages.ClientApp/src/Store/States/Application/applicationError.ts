@@ -1,6 +1,6 @@
 import { DialogType } from "../../../Shared/enums";
 
-export interface IApplicationError 
+export interface ApplicationErrorState
 {
     errorMessage: string;
     errorDetails: any;

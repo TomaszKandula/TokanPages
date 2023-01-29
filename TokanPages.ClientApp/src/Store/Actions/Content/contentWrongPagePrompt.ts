@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_WRONG_PAGE_PROMPT_CONTENT } from "../../../Api/Request";
-import { IWrongPagePromptContentDto } from "../../../Api/Models";
+import { WrongPagePromptContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_WRONG_PAGE_CONTENT";
 export const RECEIVE = "RECEIVE_WRONG_PAGE_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IWrongPagePromptContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: WrongPagePromptContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentWrongPagePromptAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentWrongPagePrompt.content;
         const languageId = getState().applicationLanguage.id;

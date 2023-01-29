@@ -2,13 +2,13 @@ import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { UnsubscribeView } from "./unsubscribeView";
-import { IContent } from "../../../Api/Models";
+import { ContentDto } from "../../../Api/Models";
 
 describe("Test component: unsubscribeView.", () => 
 {
     it("Renders correctly '<UnsubscribeView />' when content is loaded.", () => 
     {
-        const content: IContent = 
+        const content: ContentDto = 
         {
             caption: "Cancel your subscribtion",
             text1: "We are sorry to see you go...",
@@ -17,16 +17,16 @@ describe("Test component: unsubscribeView.", () =>
             button: "Unsubscribe"
         }
 
-        const tree = shallow(<UnsubscribeView bind=
-        {{
-            isLoading: false,
-            buttonHandler: jest.fn(),
-            buttonState: false,
-            progress: false,
-            contentPre: content,
-            contentPost: content,
-            isRemoved: false
-        }}/>);
+        const tree = shallow(<UnsubscribeView
+            isLoading={false}
+            buttonHandler={jest.fn()}
+            buttonState={false}
+            progress={false}
+            contentPre={content}
+            contentPost={content}
+            isRemoved={false}
+        />);
+
         expect(tree).toMatchSnapshot();
     });
 });

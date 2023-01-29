@@ -1,6 +1,6 @@
-import { IContentUserSignup } from "../../States";
+import { ContentUserSignupState } from "../../States";
 
-export const ContentUserSignup: IContentUserSignup = 
+export const ContentUserSignup: ContentUserSignupState = 
 {
     isLoading: false,
     content: 

@@ -1,14 +1,14 @@
 import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { IAuthenticateUserResultDto } from "../../../../Api/Models";
+import { AuthenticateUserResultDto } from "../../../../Api/Models";
 import { ApplicationUserInfoView } from "../View/applicationUserInfoView";
 
 describe("Test view component for application user info.", () => 
 {
     it("Renders correctly view component with passed props.", () => 
     {
-        const testData: IAuthenticateUserResultDto = 
+        const testData: AuthenticateUserResultDto = 
         {
             userId: "5f4d15e2-0d32-4e20-b5f0-5a736152e993",
             email: "happy@tester.com",
@@ -48,12 +48,12 @@ describe("Test view component for application user info.", () =>
             ]
         };
 
-        const tree = shallow(<ApplicationUserInfoView bind=
-        {{
-            state: true,
-            data: testData,
-            closeHandler: jest.fn()
-        }}/>);
+        const tree = shallow(<ApplicationUserInfoView
+            state={true}
+            data={testData}
+            closeHandler={jest.fn()}
+        />);
+        
         expect(tree).toMatchSnapshot();
     });
 });

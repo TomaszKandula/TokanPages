@@ -1,6 +1,6 @@
-import { IClientsContentDto } from "../../../Api/Models";
+import { ClientsContentDto } from "../../../Api/Models";
 
-export interface IContentClients extends IClientsContentDto
+export interface ContentClientsState extends ClientsContentDto
 { 
     isLoading: boolean;
 }

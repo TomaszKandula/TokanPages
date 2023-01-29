@@ -1,6 +1,6 @@
-import { IUpdatePasswordContentDto } from "../../../Api/Models";
+import { UpdatePasswordContentDto } from "../../../Api/Models";
 
-export interface IContentUpdatePassword extends IUpdatePasswordContentDto
+export interface ContentUpdatePasswordState extends UpdatePasswordContentDto
 {
     isLoading: boolean;
 }

@@ -1,4 +1,4 @@
-export interface IValidateSignupForm
+export interface SignupFormInput
 {
     firstName: string;
     lastName: string;

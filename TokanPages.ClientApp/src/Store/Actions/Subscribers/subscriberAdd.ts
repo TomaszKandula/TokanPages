@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IAddSubscriberDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { AddSubscriberDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     ADD_SUBSCRIBER
 } from "../../../Api/Request";
 
 export const ADD = "ADD_SUBSCRIBER";
 export const CLEAR = "ADD_SUBSCRIBER_CLEAR";
 export const RESPONSE = "ADD_SUBSCRIBER_RESPONSE";
-interface IAdd { type: typeof ADD }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IAdd | IClear | IResponse;
+interface Add { type: typeof ADD }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Add | Clear | Response;
 
 export const SubscriberAddAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) => 
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR });
     },    
-    add: (payload: IAddSubscriberDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    add: (payload: AddSubscriberDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ADD });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: ADD_SUBSCRIBER, 
@@ -34,7 +34,7 @@ export const SubscriberAddAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { IApplicationError } from "../../States";
+import { ApplicationErrorState } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
 import { DialogType } from "../../../Shared/enums";
 
@@ -15,8 +15,8 @@ import {
 } from "../../../Shared/constants";
 
 export const ApplicationError: 
-    Reducer<IApplicationError> = (state: IApplicationError | undefined, incomingAction: Action): 
-    IApplicationError =>
+    Reducer<ApplicationErrorState> = (state: ApplicationErrorState | undefined, incomingAction: Action): 
+    ApplicationErrorState =>
 {
     if (state === undefined) return ApplicationDefault.applicationError;
 

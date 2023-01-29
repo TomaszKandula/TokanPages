@@ -1,4 +1,4 @@
-export interface IValidationErrorsDto
+export interface ValidationErrorsDto
 {
     propertyName: string;
     errorCode: string;

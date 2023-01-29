@@ -1,4 +1,4 @@
-export interface IValidateSigninForm
+export interface SigninFormInput
 {
     email: string;
     password: string;

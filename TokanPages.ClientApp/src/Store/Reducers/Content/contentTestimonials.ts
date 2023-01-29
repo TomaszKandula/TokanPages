@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IContentTestimonials } from "../../States";
+import { ContentTestimonialsState } from "../../States";
 
 import { 
     TKnownActions,
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Content/contentTestimonials";
 
 export const ContentTestimonials: 
-    Reducer<IContentTestimonials> = (state: IContentTestimonials | undefined, incomingAction: Action): 
-    IContentTestimonials => 
+    Reducer<ContentTestimonialsState> = (state: ContentTestimonialsState | undefined, incomingAction: Action): 
+    ContentTestimonialsState => 
 {
     if (state === undefined) return ApplicationDefault.contentTestimonials;
 

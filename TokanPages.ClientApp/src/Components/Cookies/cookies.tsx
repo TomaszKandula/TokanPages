@@ -1,16 +1,16 @@
 import * as React from "react";
-import { IContentCookiesPrompt } from "../../Store/States";
+import { ContentCookiesPromptState } from "../../Store/States";
 import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
 import { CookiesView } from "./View/cookiesView";
 import Validate from "validate.js";
 
-export const Cookies = (props: IContentCookiesPrompt): JSX.Element => 
+export const Cookies = (props: ContentCookiesPromptState): JSX.Element => 
 {
-    const [modalClose, setModalClose] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(false);
     const currentCookie = GetCookie({cookieName: "cookieConsent"});
     const onClickEvent = () => 
     { 
-        setModalClose(true); 
+        setIsOpen(true); 
         SetCookie(
         {
             cookieName: "cookieConsent", 
@@ -21,14 +21,13 @@ export const Cookies = (props: IContentCookiesPrompt): JSX.Element =>
         });
     };
 
-    return (<CookiesView bind=
-    {{
-        isLoading: props.isLoading,
-        modalClose: modalClose,
-        shouldShow: Validate.isEmpty(currentCookie),
-        caption: props.content?.caption,
-        text: props.content?.text,
-        onClickEvent: onClickEvent,
-        buttonText: props.content?.button
-    }}/>);
+    return (<CookiesView
+        isLoading={props.isLoading}
+        modalClose={isOpen}
+        shouldShow={Validate.isEmpty(currentCookie)}
+        caption={props.content?.caption}
+        text={props.content?.text}
+        onClickEvent={onClickEvent}
+        buttonText={props.content?.button}
+    />);
 }

@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IUpdateUserDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { UpdateUserDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     UPDATE_USER
 } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_USER";
 export const CLEAR = "UPDATE_USER_CLEAR";
 export const RESPONSE = "UPDATE_USER_RESPONSE";
-interface IUpdate { type: typeof UPDATE }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IUpdate | IClear | IResponse;
+interface Update { type: typeof UPDATE }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Update | Clear | Response;
 
 export const UserUpdateAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    update: (payload: IUpdateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    update: (payload: UpdateUserDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: UPDATE_USER, 
@@ -34,7 +34,7 @@ export const UserUpdateAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

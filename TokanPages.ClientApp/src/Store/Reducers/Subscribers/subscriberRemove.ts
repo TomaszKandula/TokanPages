@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { ISubscriberRemove } from "../../States";
+import { SubscriberRemoveState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -10,8 +10,8 @@ import {
 } from "../../Actions/Subscribers/subscriberRemove";
 
 export const SubscriberRemove: 
-    Reducer<ISubscriberRemove> = (state: ISubscriberRemove | undefined, incomingAction: Action): 
-    ISubscriberRemove => 
+    Reducer<SubscriberRemoveState> = (state: SubscriberRemoveState | undefined, incomingAction: Action): 
+    SubscriberRemoveState => 
 {
     if (state === undefined) return ApplicationDefault.subscriberRemove;
 

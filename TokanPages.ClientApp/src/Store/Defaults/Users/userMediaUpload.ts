@@ -1,7 +1,7 @@
 import { OperationStatus } from "../../../Shared/enums";
-import { IUserMediaUpload } from "../../States";
+import { UserMediaUploadState } from "../../States";
 
-export const UserMediaUpload: IUserMediaUpload = 
+export const UserMediaUpload: UserMediaUploadState = 
 {
     handle: undefined,
     status: OperationStatus.notStarted,

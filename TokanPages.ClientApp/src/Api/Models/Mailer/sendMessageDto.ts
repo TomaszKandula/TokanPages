@@ -1,4 +1,4 @@
-export interface ISendMessageDto
+export interface SendMessageDto
 {
     firstName: string;
     lastName: string;

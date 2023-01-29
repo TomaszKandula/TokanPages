@@ -1,12 +1,12 @@
 import "../../../../setupTests";
-import { IValidateEmailForm, ValidateEmailForm } from "..";
+import { EmailFormInput, ValidateEmailForm } from "..";
 
 describe("Verify validation methods.", () => 
 {
     it("When valid email address. Should return undefined.", () => 
     {
         // Arrange
-        const form: IValidateEmailForm = 
+        const form: EmailFormInput = 
         { 
             email: "freddie.mercury@queen.com"
         }
@@ -21,7 +21,7 @@ describe("Verify validation methods.", () =>
     it("When invalid email address. Should return defined.", () => 
     {
         // Arrange
-        const form: IValidateEmailForm = 
+        const form: EmailFormInput = 
         {
             email: "brian@queen"
         }

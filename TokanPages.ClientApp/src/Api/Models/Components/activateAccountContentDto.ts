@@ -1,4 +1,4 @@
-export interface IActivateAccountContentDto
+export interface ActivateAccountContentDto
 {
     content: 
     {

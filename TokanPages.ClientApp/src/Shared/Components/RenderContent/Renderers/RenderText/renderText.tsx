@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Box, Typography } from "@material-ui/core";
-import ReactHtmlParser from "react-html-parser";
-import { ITextItem } from "../../Models/TextModel";
+import { TextItem } from "../../Models/TextModel";
 import { RenderTextStyle } from "./renderTextStyle";
+import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import "../../../../../Theme/Css/customDropCap.css";
 
-export const RenderText = (props: ITextItem): JSX.Element =>
+export const RenderText = (props: TextItem): JSX.Element =>
 {
     const classes = RenderTextStyle();
     const data: string = props.value as string; 
@@ -15,7 +15,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         return (
             <Box mt={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.title}`}>
-                    {ReactHtmlParser(data)}
+                    <ReactHtmlParser html={data} />
                 </Typography>
             </Box>
         );
@@ -26,7 +26,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         return (
             <Box mt={-1} mb={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.subTitle}`}>
-                    {ReactHtmlParser(data)}
+                    <ReactHtmlParser html={data} />
                 </Typography>
             </Box>      
         );
@@ -37,7 +37,7 @@ export const RenderText = (props: ITextItem): JSX.Element =>
         return (
             <Box mt={7} mb={2}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.header}`}>
-                    {ReactHtmlParser(data)}
+                    <ReactHtmlParser html={data} />
                 </Typography>
             </Box>
         );
@@ -47,16 +47,17 @@ export const RenderText = (props: ITextItem): JSX.Element =>
     {
         return (
             <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
-                {ReactHtmlParser(data)}
+                <ReactHtmlParser html={data} />
             </Typography>
         );
     };
 
     const renderParagraphWithDropCap = (): JSX.Element => 
     {
+        const replaced = data.replace("<p>", "<p class='custom-drop-cap'>");
         return (
             <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
-                {ReactHtmlParser(data.replace("<p>", "<p class='custom-drop-cap'>"))}
+                <ReactHtmlParser html={replaced} />
             </Typography>
         );
     };

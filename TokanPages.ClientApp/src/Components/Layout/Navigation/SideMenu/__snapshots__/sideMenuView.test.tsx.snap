@@ -19,20 +19,18 @@ exports[`Test component: menuView. Renders correctly '<MenuView />' when content
       </div>
     </Styled(MuiBox)>
     <RenderList
-      bind={
-        Object {
-          "isAnonymous": true,
-          "items": Array [
-            Object {
-              "enabled": true,
-              "icon": "VpnKey",
-              "id": "8c678e9e-699e-41c7-a93a-587c6a4f41e7",
-              "link": "/signin",
-              "type": "item",
-              "value": "Sign in",
-            },
-          ],
-        }
+      isAnonymous={true}
+      items={
+        Array [
+          Object {
+            "enabled": true,
+            "icon": "VpnKey",
+            "id": "8c678e9e-699e-41c7-a93a-587c6a4f41e7",
+            "link": "/signin",
+            "type": "item",
+            "value": "Sign in",
+          },
+        ]
       }
     />
   </div>

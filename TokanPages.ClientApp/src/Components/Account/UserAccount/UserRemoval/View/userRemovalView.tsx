@@ -1,10 +1,11 @@
 import * as React from "react";
-import ReactHtmlParser from "react-html-parser";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
 import { 
@@ -16,25 +17,19 @@ import {
 } from "@material-ui/core";
 
 import { 
-    ISectionAccessDenied, 
-    ISectionAccountRemoval 
+    SectionAccessDenied, 
+    SectionAccountRemoval 
 } from "../../../../../Api/Models";
 
-interface IBinding 
-{
-    bind: IProperties;
-}
-
-interface IProperties
+interface Properties extends ViewProperties
 {    
-    isLoading: boolean;
     deleteButtonHandler: any;
     deleteAccountProgress: boolean;
-    sectionAccessDenied: ISectionAccessDenied;
-    sectionAccountRemoval: ISectionAccountRemoval;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountRemoval: SectionAccountRemoval;
 }
 
-const DeleteAccountButton = (props: IBinding): JSX.Element => 
+const DeleteAccountButton = (props: Properties): JSX.Element => 
 {
     const classes = UserRemovalStyle();
     return(
@@ -42,11 +37,11 @@ const DeleteAccountButton = (props: IBinding): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.bind?.deleteButtonHandler} 
-            disabled={props.bind?.deleteAccountProgress} 
+            onClick={props.deleteButtonHandler} 
+            disabled={props.deleteAccountProgress} 
             className={classes.delete_update}>
-            {!props.bind?.deleteAccountProgress 
-            ? props.bind?.sectionAccountRemoval?.deleteButtonText 
+            {!props.deleteAccountProgress 
+            ? props.sectionAccountRemoval?.deleteButtonText 
             : <CircularProgress size={20} />}
         </Button>
     );
@@ -62,7 +57,7 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }) =>
     );
 }
 
-export const UserRemovalView = (props: IBinding): JSX.Element => 
+export const UserRemovalView = (props: Properties): JSX.Element => 
 {
     const classes = UserRemovalStyle();
     return(
@@ -73,9 +68,9 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography component="span" className={classes.caption}>
-                                    {props.bind?.isLoading 
+                                    {props.isLoading 
                                     ? <Skeleton variant="text" /> 
-                                    : props.bind?.sectionAccountRemoval?.caption}
+                                    : props.sectionAccountRemoval?.caption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -83,16 +78,16 @@ export const UserRemovalView = (props: IBinding): JSX.Element =>
                                 <Grid container spacing={2}>
                                     <Grid item>
                                         <Typography component="span" className={classes.label}>
-                                            {props.bind?.isLoading 
+                                            {props.isLoading 
                                             ? <Skeleton variant="text" width="200px" /> 
-                                            : ReactHtmlParser(props.bind?.sectionAccountRemoval?.warningText)}
+                                            : <ReactHtmlParser html={props.sectionAccountRemoval?.warningText} />}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={2} marginBottom={2} />
                                 <Grid className={classes.button_container_update}>
                                     <Box my={2}>
-                                        {props.bind?.isLoading 
+                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="150px" height="40px" /> 
                                         : <DeleteAccountButton {...props} />}
                                     </Box>

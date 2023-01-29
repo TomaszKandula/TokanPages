@@ -1,19 +1,19 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IApplicationState } from "../../../Store/Configuration";
+import { ApplicationState } from "../../../Store/Configuration";
 import { UserActivateAction } from "../../../Store/Actions";
-import { IContentActivateAccount } from "../../../Store/States";
+import { ContentActivateAccountState } from "../../../Store/States";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-interface IGetActivateAccountContentExtended extends IContentActivateAccount
+interface Properties extends ContentActivateAccountState
 {
     id: string;
 }
 
-export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.Element => 
+export const ActivateAccount = (props: Properties): JSX.Element => 
 {
     const onProcessing = props.content?.onProcessing;
     const onSuccess = props.content?.onSuccess;
@@ -22,21 +22,21 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const activate = useSelector((state: IApplicationState) => state.userActivate);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const activate = useSelector((state: ApplicationState) => state.userActivate);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = activate?.status === OperationStatus.notStarted;
     const hasFinished = activate?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [content, setContent] = React.useState(onProcessing);
-    const [buttonDisabled, setButtonDisabled] = React.useState(true);
-    const [progress, setProgress] = React.useState(true);
-    const [requested, setRequested] = React.useState(false);
+    const [isButtonOff, setIsButtonOff] = React.useState(true);
+    const [hasProgress, setHasProgress] = React.useState(true);
+    const [isRequested, setIsRequested] = React.useState(false);
  
     React.useEffect(() => 
     {
-        if (!progress) return;
+        if (!hasProgress) return;
         
         if (content.type === "Unset") 
         {
@@ -47,14 +47,14 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
         if (hasError)
         {
             setContent(onError);
-            setProgress(false);
-            setButtonDisabled(false);
+            setHasProgress(false);
+            setIsButtonOff(false);
             return;
         }
 
-        if (hasNotStarted && progress && !requested) 
+        if (hasNotStarted && hasProgress && !isRequested) 
         {
-            setRequested(true);
+            setIsRequested(true);
             setTimeout(() => dispatch(UserActivateAction.activate(
             {
                 activationId: props.id 
@@ -67,11 +67,11 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
         if (hasFinished) 
         {
             setContent(onSuccess);
-            setProgress(false);
-            setButtonDisabled(false);
+            setHasProgress(false);
+            setIsButtonOff(false);
         }
     }, 
-    [ content.type, props.id, progress, requested, 
+    [ content.type, props.id, hasProgress, isRequested, 
     hasError, hasNotStarted, hasFinished ]);
  
     const buttonHandler = () =>
@@ -79,9 +79,9 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
         if (content.type === "Error")
         {
             setContent(onProcessing);
-            setRequested(false);
-            setProgress(true);
-            setButtonDisabled(true);
+            setIsRequested(false);
+            setHasProgress(true);
+            setIsButtonOff(true);
             dispatch(UserActivateAction.clear())
         }
         
@@ -91,15 +91,14 @@ export const ActivateAccount = (props: IGetActivateAccountContentExtended): JSX.
         }
     };
 
-    return (<ActivateAccountView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: content.caption,
-        text1: content.text1,
-        text2: content.text2,
-        buttonHandler: buttonHandler,
-        buttonDisabled: buttonDisabled,
-        progress: progress,
-        buttonText: content.button
-    }}/>);
+    return (<ActivateAccountView 
+        isLoading={props.isLoading}
+        caption={content.caption}
+        text1={content.text1}
+        text2={content.text2}
+        buttonHandler={buttonHandler}
+        buttonDisabled={isButtonOff}
+        progress={hasProgress}
+        buttonText={content.button}
+    />);
 }

@@ -4,11 +4,20 @@ import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
-import { IContentPolicy, IContentTerms, IContentStory } from "../../../Store/States";
-import { ProgressBar, RenderContent } from "../../../Shared/Components";
 import { DocumentStyle } from "./documentStyle";
 
-export const DocumentView = (props: IContentPolicy | IContentTerms | IContentStory): JSX.Element => 
+import { 
+    ContentPolicyState, 
+    ContentTermsState,
+    ContentStoryState 
+} from "../../../Store/States";
+
+import { 
+    ProgressBar, 
+    RenderContent 
+} from "../../../Shared/Components";
+
+export const DocumentView = (props: ContentPolicyState | ContentTermsState | ContentStoryState): JSX.Element => 
 {
     const classes = DocumentStyle();
     return (

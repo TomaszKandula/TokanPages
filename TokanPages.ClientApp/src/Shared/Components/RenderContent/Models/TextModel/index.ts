@@ -1,22 +1,22 @@
-interface ITextObject
+interface TextObject
 {
-    items: ITextItem[];
+    items: TextItem[];
 }
 
-interface ITextItem
+interface TextItem
 {
     id: string,
     type: string;
-    value: string | IRowItem[];
+    value: string | RowItem[];
     prop: string;
     text: string;
 }
 
-interface IRowItem
+interface RowItem
 {
     column0: string;
     column1: string;
     column2: string;
 }
 
-export type { ITextObject, ITextItem, IRowItem }
+export type { TextObject, TextItem, RowItem }

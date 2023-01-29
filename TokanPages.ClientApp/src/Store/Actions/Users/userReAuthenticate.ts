@@ -1,6 +1,6 @@
 import axios from "axios";
-import { IApplicationAction } from "../../Configuration";
-import { IAuthenticateUserResultDto, IReAuthenticateUserDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { AuthenticateUserResultDto, ReAuthenticateUserDto } from "../../../Api/Models";
 import { NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
@@ -8,36 +8,36 @@ import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { 
     REAUTHENTICATE as REAUTHENTICATE_USER, 
-    IRequest,
+    RequestContract,
     GetConfiguration
 } from "../../../Api/Request";
 
 export const REAUTHENTICATE = "REAUTHENTICATE_USER";
 export const CLEAR = "REAUTHENTICATE_USER_CLEAR";
 export const RESPONSE = "REAUTHENTICATE_USER_RESPONSE";
-interface IReAuthenticate { type: typeof REAUTHENTICATE }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IReAuthenticate | IClear | IResponse | TUpdateActions;
+interface ReAuthenticate { type: typeof REAUTHENTICATE }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = ReAuthenticate | Clear | Response | TUpdateActions;
 
 //TODO: refactor, simplify
 export const UserReAuthenticateAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    reAuthenticate: (): IApplicationAction<TKnownActions> => (dispatch) => 
+    reAuthenticate: (): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REAUTHENTICATE });
 
-        const userData = GetDataFromStorage({ key: USER_DATA }) as IAuthenticateUserResultDto;
-        const payload: IReAuthenticateUserDto = 
+        const userData = GetDataFromStorage({ key: USER_DATA }) as AuthenticateUserResultDto;
+        const payload: ReAuthenticateUserDto = 
         {
             refreshToken: userData.refreshToken
         }
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: REAUTHENTICATE_USER, 

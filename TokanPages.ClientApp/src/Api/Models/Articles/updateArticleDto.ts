@@ -1,4 +1,4 @@
-export interface IUpdateArticleDto 
+export interface UpdateArticleDto 
 {
     id: string;
     title?: string;

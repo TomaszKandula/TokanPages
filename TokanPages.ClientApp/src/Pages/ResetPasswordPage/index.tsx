@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
 
@@ -14,11 +14,11 @@ import {
 export const ResetPasswordPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: IApplicationState) => state.contentFooter);
-    const reset = useSelector((state: IApplicationState) => state.contentResetPassword);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: ApplicationState) => state.contentFooter);
+    const reset = useSelector((state: ApplicationState) => state.contentResetPassword);
 
     React.useEffect(() => 
     {

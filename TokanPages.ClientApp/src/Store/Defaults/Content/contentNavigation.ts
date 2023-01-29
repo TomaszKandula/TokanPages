@@ -1,6 +1,6 @@
-import { IContentNavigation } from "../../States";
+import { ContentNavigationState } from "../../States";
 
-export const ContentNavigation: IContentNavigation = 
+export const ContentNavigation: ContentNavigationState = 
 {
     isLoading: false,
     content: 

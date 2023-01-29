@@ -1,3 +1,3 @@
-export type { IFields } from "./Fields";
-export type { IItem } from "./Item";
-export type { ISubitem } from "./Subitem";
+export type { Fields } from "./Fields";
+export type { Item } from "./Item";
+export type { Subitem } from "./Subitem";

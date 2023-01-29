@@ -15,17 +15,17 @@ describe("Test view component for application toast.", () =>
 
         const TransitionLeft = (props: Omit<SlideProps, "direction">) => <Slide {...props} direction="left" />;
 
-        const tree = shallow(<ApplicationToastView bind=
-        {{
-            anchorOrigin: { vertical, horizontal },
-            isOpen: false,
-            autoHideDuration: autoHideDuration,
-            closeEventHandler: jest.fn(),
-            TransitionComponent: TransitionLeft,
-            key: vertical + horizontal,
-            toastSeverity: toastSeverity,
-            toastMessage: "Test error message"
-        }}/>);
+        const tree = shallow(<ApplicationToastView
+            anchorOrigin={{ vertical, horizontal }}
+            isOpen={false}
+            autoHideDuration={autoHideDuration}
+            closeEventHandler={jest.fn()}
+            TransitionComponent={TransitionLeft}
+            componentKey={vertical + horizontal}
+            toastSeverity={toastSeverity}
+            toastMessage={"Test error message"}
+        />);
+        
         expect(tree).toMatchSnapshot();
     });
 });

@@ -8,12 +8,7 @@ import Emoji from "react-emoji-render";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ArticleDetailStyle } from "./articleDetailStyle";
 
-interface IBinding 
-{
-    bind: IProperties;
-}
-
-interface IProperties
+interface Properties
 {
     backButtonHandler: any;
     articleReadCount: number;
@@ -38,7 +33,7 @@ interface IProperties
     authorShortBio: string;
 }
 
-export const ArticleDetailView = (props: IBinding): JSX.Element =>
+export const ArticleDetailView = (props: Properties): JSX.Element =>
 {
     const classes = ArticleDetailStyle();
     return (
@@ -48,48 +43,48 @@ export const ArticleDetailView = (props: IBinding): JSX.Element =>
                     <div data-aos="fade-down">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
-                                <IconButton onClick={props.bind?.backButtonHandler}>
+                                <IconButton onClick={props.backButtonHandler}>
                                     <ArrowBack  /> 
                                 </IconButton>
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
-                                    Read: {props.bind?.articleReadCount}
+                                    Read: {props.articleReadCount}
                                 </Typography>
                             </Grid>
                         </Grid>
                         <Divider className={classes.dividerTop} />
                         <Grid container spacing={2}>
                             <Grid item>
-                                <Box onMouseEnter={props.bind?.openPopoverHandler} onMouseLeave={props.bind?.closePopoverHandler}>
-                                    {props.bind?.renderSmallAvatar}
+                                <Box onMouseEnter={props.openPopoverHandler} onMouseLeave={props.closePopoverHandler}>
+                                    {props.renderSmallAvatar}
                                 </Box>
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography className={classes.aliasName} component="div" variant="subtitle1" align="left">
                                     <Box fontWeight="fontWeightBold">
-                                        {props.bind?.authorAliasName}
+                                        {props.authorAliasName}
                                     </Box>
                                 </Typography>
                                 <Popover
                                     id="mouse-over-popover"
                                     className={classes.popover}
-                                    open={props.bind?.popoverOpen}
-                                    anchorEl={props.bind?.popoverElement}
+                                    open={props.popoverOpen}
+                                    anchorEl={props.popoverElement}
                                     anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                                     transformOrigin={{ vertical: "top", horizontal: "left" }}
-                                    onClose={props.bind?.closePopoverHandler}
+                                    onClose={props.closePopoverHandler}
                                     disableRestoreFocus
                                 >
                                     <Box mt={2} mb={2} ml={3} mr={3} >
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            First name: {props.bind?.authorFirstName}
+                                            First name: {props.authorFirstName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Last name: {props.bind?.authorLastName}
+                                            Last name: {props.authorLastName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Registered at: {props.bind?.authorRegistered}
+                                            Registered at: {props.authorRegistered}
                                         </Typography>
                                     </Box>
                                 </Popover>
@@ -97,32 +92,32 @@ export const ArticleDetailView = (props: IBinding): JSX.Element =>
                         </Grid>
                         <Box mt={1} mb={5}>
                             <Typography component="p" variant="subtitle1">
-                                Read time: {props.bind?.articleReadTime} min.
+                                Read time: {props.articleReadTime} min.
                             </Typography>
                             <Typography component="p" variant="subtitle1">
-                                Published at: {GetDateTime({ value: props.bind?.articleCreatedAt, hasTimeVisible: true })}
+                                Published at: {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
                             </Typography>
                             <Typography component="p" variant="subtitle2" color="textSecondary">
-                                Updated at: {GetDateTime({ value: props.bind?.articleUpdatedAt, hasTimeVisible: true })}
+                                Updated at: {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
                             </Typography>
                         </Box>
                     </div>
                     <div data-aos="fade-up">
-                        {props.bind?.articleContent}
+                        {props.articleContent}
                     </div>
                     <Box mt={5}>
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Tooltip title=
                                     {<span className={classes.likesTip}>
-                                        {<Emoji text={props.bind?.renderLikesLeft}/>}
+                                        {<Emoji text={props.renderLikesLeft}/>}
                                     </span>} arrow>
-                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={props.bind?.thumbsHandler} />
+                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={props.thumbsHandler} />
                                 </Tooltip>
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography component="p" variant="subtitle1">
-                                    {props.bind?.totalLikes}
+                                    {props.totalLikes}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -130,7 +125,7 @@ export const ArticleDetailView = (props: IBinding): JSX.Element =>
                     <Divider className={classes.dividerBottom} />
                     <Grid container spacing={2}>
                         <Grid item>
-                            {props.bind?.renderLargeAvatar}
+                            {props.renderLargeAvatar}
                         </Grid>
                         <Grid item xs zeroMinWidth>
                             <Typography className={classes.aliasName} component="span" variant="h6" align="left" color="textSecondary">
@@ -138,11 +133,11 @@ export const ArticleDetailView = (props: IBinding): JSX.Element =>
                             </Typography>
                             <Box fontWeight="fontWeightBold">
                                 <Typography className={classes.aliasName} component="span" variant="h6" align="left">
-                                    {props.bind?.renderAuthorName}
+                                    {props.renderAuthorName}
                                 </Typography>
                             </Box>
                             <Typography className={classes.aliasName} component="span" variant="subtitle1" align="left" color="textSecondary">
-                                About the author: {props.bind?.authorShortBio}
+                                About the author: {props.authorShortBio}
                             </Typography>
                         </Grid>
                     </Grid>

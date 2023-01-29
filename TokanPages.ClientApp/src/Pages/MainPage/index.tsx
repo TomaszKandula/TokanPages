@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
@@ -34,19 +34,19 @@ import {
 export const MainPage = (): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: IApplicationState) => state.contentFooter);
-    const header = useSelector((state: IApplicationState) => state.contentHeader);
-    const clients = useSelector((state: IApplicationState) => state.contentClients);
-    const features = useSelector((state: IApplicationState) => state.contentFeatures);
-    const articles = useSelector((state: IApplicationState) => state.contentArticleFeatures);
-    const featured = useSelector((state: IApplicationState) => state.contentFeatured);
-    const testimonials = useSelector((state: IApplicationState) => state.contentTestimonials);
-    const newsletter = useSelector((state: IApplicationState) => state.contentNewsletter);
-    const contactForm = useSelector((state: IApplicationState) => state.contentContactForm);
-    const cookiesPrompt = useSelector((state: IApplicationState) => state.contentCookiesPrompt);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: ApplicationState) => state.contentFooter);
+    const header = useSelector((state: ApplicationState) => state.contentHeader);
+    const clients = useSelector((state: ApplicationState) => state.contentClients);
+    const features = useSelector((state: ApplicationState) => state.contentFeatures);
+    const articles = useSelector((state: ApplicationState) => state.contentArticleFeatures);
+    const featured = useSelector((state: ApplicationState) => state.contentFeatured);
+    const testimonials = useSelector((state: ApplicationState) => state.contentTestimonials);
+    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletter);
+    const contactForm = useSelector((state: ApplicationState) => state.contentContactForm);
+    const cookiesPrompt = useSelector((state: ApplicationState) => state.contentCookiesPrompt);
 
     React.useEffect(() => 
     { 

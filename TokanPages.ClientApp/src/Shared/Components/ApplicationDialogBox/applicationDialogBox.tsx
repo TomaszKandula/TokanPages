@@ -1,18 +1,18 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../Store/Configuration";
+import { ApplicationState } from "../../../Store/Configuration";
 import { ApplicationDialogAction } from "../../../Store/Actions";
-import { IApplicationDialog } from "../../../Store/States";
+import { ApplicationDialogState } from "../../../Store/States";
 import { IconType } from "../../enums";
 import { ApplicationDialogBoxView } from "./View/applicationDialogBoxView";
 import Validate from "validate.js";
 
-interface IDialogState extends IApplicationDialog
+interface Properties extends ApplicationDialogState
 {
     state: boolean;
 }
 
-const DialogState: IDialogState = 
+const DialogState: Properties = 
 {
     state: false, 
     title:  "", 
@@ -25,7 +25,7 @@ export const ApplicationDialogBox = (): JSX.Element =>
 {
     const dispatch = useDispatch();
     const [dialogState, setDialogState] = React.useState(DialogState);
-    const dialog = useSelector((state: IApplicationState) => state.applicationDialog);
+    const dialog = useSelector((state: ApplicationState) => state.applicationDialog);
     
     const clearDialog = React.useCallback(() => 
     { 
@@ -60,12 +60,11 @@ export const ApplicationDialogBox = (): JSX.Element =>
         setDialogState({ ...dialogState, state: false });
     };
 
-    return (<ApplicationDialogBoxView bind=
-    {{
-        state: dialogState.state,
-        icon: dialogState.icon,
-        title: dialogState.title,
-        message: dialogState.message,
-        closeHandler: onClickHandler
-    }}/>);
+    return (<ApplicationDialogBoxView
+        state={dialogState.state}
+        icon={dialogState.icon}
+        title={dialogState.title}
+        message={dialogState.message}
+        closeHandler={onClickHandler}
+    />);
 }

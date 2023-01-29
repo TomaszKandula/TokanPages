@@ -1,6 +1,6 @@
-import { IItem } from "../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../Shared/Components/ListRender/Models";
 
-export interface INavigationContentDto
+export interface NavigationContentDto
 {
     content: 
     {
@@ -9,7 +9,7 @@ export interface INavigationContentDto
         menu:
         {
             image: string,
-            items: IItem[]
+            items: Item[]
         }
     };
 }

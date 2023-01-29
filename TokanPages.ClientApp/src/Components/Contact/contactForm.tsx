@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../Store/Configuration";
-import { IContentContactForm } from "../../Store/States";
+import { ApplicationState } from "../../Store/Configuration";
+import { ContentContactFormState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ContactFormView } from "./View/contactFormView";
 import Validate from "validate.js";
@@ -12,7 +12,7 @@ import {
 } from "../../Store/Actions";
 
 import { 
-    IValidateContactForm, 
+    ContactFormInput, 
     ValidateContactForm 
 } from "../../Shared/Services/FormValidation";
 
@@ -29,7 +29,7 @@ import {
     RECEIVED_ERROR_MESSAGE 
 } from "../../Shared/constants";
 
-const formDefaultValues: IValidateContactForm =
+const formDefaultValues: ContactFormInput =
 {
     firstName: "", 
     lastName: "", 
@@ -39,29 +39,29 @@ const formDefaultValues: IValidateContactForm =
     terms: false
 };
 
-export const ContactForm = (props: IContentContactForm): JSX.Element =>
+export const ContactForm = (props: ContentContactFormState): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const email = useSelector((state: IApplicationState) => state.applicationEmail);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const email = useSelector((state: ApplicationState) => state.applicationEmail);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefaultValues);   
-    const [progress, setProgress] = React.useState(false);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(CONTACT_FORM, text)));
     const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(CONTACT_FORM, text)));
 
     const clearForm = React.useCallback(() => 
     {
-        if (!progress) return;
-        setProgress(false);
+        if (!hasProgress) return;
+        setHasProgress(false);
         dispatch(ApplicationMessageAction.clear());
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -71,7 +71,7 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && progress) 
+        if (hasNotStarted && hasProgress) 
         {
             dispatch(ApplicationMessageAction.send(
             {
@@ -94,7 +94,7 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
             showSuccess(MESSAGE_OUT_SUCCESS);        
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
     {
@@ -129,34 +129,33 @@ export const ContactForm = (props: IContentContactForm): JSX.Element =>
 
         if (!Validate.isDefined(validationResult))
         {
-            setProgress(true);
+            setHasProgress(true);
             return;
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: MESSAGE_OUT_WARNING }));
     };
 
-    return (<ContactFormView bind=
-    {{
-        isLoading: props.isLoading,
-        caption: props.content?.caption,
-        text: props.content?.text,
-        keyHandler: keyHandler,
-        formHandler: formHandler,
-        firstName: form.firstName,
-        lastName: form.lastName,
-        email: form.email,
-        subject: form.subject,
-        message: form.message,
-        terms: form.terms,
-        buttonHandler: buttonHandler,
-        progress: progress,
-        buttonText: props.content?.button,
-        consent: props.content?.consent,
-        labelFirstName: props.content?.labelFirstName,
-        labelLastName: props.content?.labelLastName,
-        labelEmail: props.content?.labelEmail,
-        labelSubject: props.content?.labelSubject,
-        labelMessage: props.content?.labelMessage
-    }}/>);
+    return (<ContactFormView
+        isLoading={props.isLoading}
+        caption={props.content?.caption}
+        text={props.content?.text}
+        keyHandler={keyHandler}
+        formHandler={formHandler}
+        firstName={form.firstName}
+        lastName={form.lastName}
+        email={form.email}
+        subject={form.subject}
+        message={form.message}
+        terms={form.terms}
+        buttonHandler={buttonHandler}
+        progress={hasProgress}
+        buttonText={props.content?.button}
+        consent={props.content?.consent}
+        labelFirstName={props.content?.labelFirstName}
+        labelLastName={props.content?.labelLastName}
+        labelEmail={props.content?.labelEmail}
+        labelSubject={props.content?.labelSubject}
+        labelMessage={props.content?.labelMessage}
+    />);
 }

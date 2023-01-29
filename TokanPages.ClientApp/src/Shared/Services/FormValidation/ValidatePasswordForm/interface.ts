@@ -1,4 +1,4 @@
-export interface IValidatePasswordForm
+export interface PasswordFormInput
 {
     oldPassword: string;
     newPassword: string;

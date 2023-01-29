@@ -1,7 +1,7 @@
 import { OperationStatus } from "../../../Shared/enums";
-import { IArticleUpdate } from "../../States";
+import { ArticleUpdateState } from "../../States";
 
-export const ArticleUpdate: IArticleUpdate = 
+export const ArticleUpdate: ArticleUpdateState = 
 {
     status: OperationStatus.notStarted,
     response: { }

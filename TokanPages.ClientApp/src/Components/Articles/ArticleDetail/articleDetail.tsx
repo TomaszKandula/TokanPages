@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IApplicationState } from "../../../Store/Configuration";
+import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { ArticleContent } from "./Helpers/articleContent";
@@ -17,16 +17,16 @@ import {
     LIKES_LIMIT_FOR_USER 
 } from "../../../Shared/constants";
 
-export interface IArticleDetail
+interface ArticleDetail
 {
     id: string;
 }
 
-export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
+export const ArticleDetail = (props: ArticleDetail): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const selection = useSelector((state: IApplicationState) => state.articleSelection);
-    const user = useSelector((state: IApplicationState) => state.userDataStore);
+    const selection = useSelector((state: ApplicationState) => state.articleSelection);
+    const user = useSelector((state: ApplicationState) => state.userDataStore);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
     {
@@ -37,11 +37,11 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     const [totalThumbs, setTotalThumbs] = React.useState(0);
     const [totalLikes, setTotalLikes] = React.useState(0);
     const [userLikes, setUserLikes] = React.useState(0);
-    const [thumbClicked, setThumbsClicked] = React.useState(false);
+    const [isThumbClicked, setIsThumbsClicked] = React.useState(false);
     const [likesLeft, setLikesLeft] = React.useState(0);
 
     const history = useHistory();
-    const popoverOpen = Boolean(popoverElement);
+    const isPopoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
@@ -73,7 +73,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
     {
         const intervalId = setInterval(() => 
         { 
-            if (userLikes === 0 || !thumbClicked) return;
+            if (userLikes === 0 || !isThumbClicked) return;
 
             dispatch(ArticleUpdateAction.updateLikes(
             { 
@@ -82,13 +82,13 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
             }));
 
             setUserLikes(0);
-            setThumbsClicked(false);
+            setIsThumbsClicked(false);
         }, 
         3000);
         
-        return(() => { clearInterval(intervalId) });
+        return(() => clearInterval(intervalId));
     }, 
-    [ userLikes, thumbClicked ]);
+    [ userLikes, isThumbClicked ]);
 
     const thumbsHandler = () =>
     {
@@ -101,7 +101,7 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
             setTotalLikes(totalLikes + 1);
             setUserLikes(userLikes + 1);
             setTotalThumbs(totalThumbs + 1);
-            setThumbsClicked(true);
+            setIsThumbsClicked(true);
         }
     };
 
@@ -135,28 +135,27 @@ export const ArticleDetail = (props: IArticleDetail): JSX.Element =>
         userLetter={userLetter}
     />;
 
-    return (<ArticleDetailView bind={
-    {
-        backButtonHandler: backButtonHandler,
-        articleReadCount: selection.article.readCount,
-        openPopoverHandler: openPopoverHandler,
-        closePopoverHandler: closePopoverHandler,
-        renderSmallAvatar: smallAvatar,
-        renderLargeAvatar: largeAvatar,
-        authorAliasName: selection.article.author.aliasName,
-        popoverOpen: popoverOpen,
-        popoverElement: popoverElement,
-        authorFirstName: selection.article.author.firstName,
-        authorLastName: selection.article.author.lastName,
-        authorRegistered: GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false }),
-        articleReadTime: ReadTime(selection.article.text),
-        articleCreatedAt: GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true }),
-        articleUpdatedAt: GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true }),
-        articleContent: ArticleContent(selection.article.id, selection.isLoading, selection.article.text),
-        renderLikesLeft: LikesLeft(isAnonymous, likesLeft),
-        thumbsHandler: thumbsHandler,
-        totalLikes: totalLikes,
-        renderAuthorName: AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName),
-        authorShortBio: selection.article.author.shortBio
-    }}/>);
+    return (<ArticleDetailView
+        backButtonHandler={backButtonHandler}
+        articleReadCount={selection.article.readCount}
+        openPopoverHandler={openPopoverHandler}
+        closePopoverHandler={closePopoverHandler}
+        renderSmallAvatar={smallAvatar}
+        renderLargeAvatar={largeAvatar}
+        authorAliasName={selection.article.author.aliasName}
+        popoverOpen={isPopoverOpen}
+        popoverElement={popoverElement}
+        authorFirstName={selection.article.author.firstName}
+        authorLastName={selection.article.author.lastName}
+        authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
+        articleReadTime={ReadTime(selection.article.text)}
+        articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
+        articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
+        articleContent={ArticleContent(selection.article.id, selection.isLoading, selection.article.text)}
+        renderLikesLeft={LikesLeft(isAnonymous, likesLeft)}
+        thumbsHandler={thumbsHandler}
+        totalLikes={totalLikes}
+        renderAuthorName={AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName)}
+        authorShortBio={selection.article.author.shortBio}
+    />);
 }

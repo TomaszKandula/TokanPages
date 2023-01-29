@@ -6,14 +6,14 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Collapse } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { GetIcon } from "../../..";
-import { IItem } from "../../Models";
+import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
-export const RenderItemSpan = (props: IItem): JSX.Element =>
+export const RenderItemSpan = (props: Item): JSX.Element =>
 {
-    const [state, setState] = React.useState(false);
-    const onClickEvent = React.useCallback(() => setState(!state), [state]);
+    const [isOpen, setIsOpen] = React.useState(false);
+    const onClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
     return(EnsureDefined(
         {
@@ -36,9 +36,9 @@ export const RenderItemSpan = (props: IItem): JSX.Element =>
             <ListItem button key={props.id} onClick={onClickEvent} disabled={!props.enabled} >
                 <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
-                {state ? <ExpandLess /> : <ExpandMore />}
+                {isOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={state} timeout="auto" unmountOnExit>
+            <Collapse in={isOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
                 {props.subitems?.map(item => (
                 <RenderSubitem 

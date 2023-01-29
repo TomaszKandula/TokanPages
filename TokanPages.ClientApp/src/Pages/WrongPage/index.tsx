@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Box, Button, Container, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { ContentWrongPagePromptAction } from "../../Store/Actions";
 import { Style } from "./style";
 
@@ -23,10 +23,13 @@ export const WrongPage = (): JSX.Element =>
 {
     const classes = Style();
     const dispatch = useDispatch();
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-    const prompt = useSelector((state: IApplicationState) => state.contentWrongPagePrompt);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const prompt = useSelector((state: ApplicationState) => state.contentWrongPagePrompt);
 
-    React.useEffect(() => { dispatch(ContentWrongPagePromptAction.get()) }, [ language?.id ]);
+    React.useEffect(() => 
+    { 
+        dispatch(ContentWrongPagePromptAction.get());
+    }, [ language?.id ]);
 
     return (
         <section>

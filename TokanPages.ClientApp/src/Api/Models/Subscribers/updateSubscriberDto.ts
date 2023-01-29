@@ -1,4 +1,4 @@
-export interface IUpdateSubscriberDto
+export interface UpdateSubscriberDto
 {
     id: string;
     email: string;
