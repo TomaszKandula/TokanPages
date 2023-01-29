@@ -1,3 +1,10 @@
+# [0.64.0](https://github.com/TomaszKandula/TokanPages/compare/v0.63.1...v0.64.0) (2023-01-29)
+
+
+### Features
+
+* add custom html react parser ([4f263a4](https://github.com/TomaszKandula/TokanPages/commit/4f263a4a736ac898639f702eb7706f5c8c3bd2d4))
+
 ## [0.63.1](https://github.com/TomaszKandula/TokanPages/compare/v0.63.0...v0.63.1) (2023-01-15)
 
 
