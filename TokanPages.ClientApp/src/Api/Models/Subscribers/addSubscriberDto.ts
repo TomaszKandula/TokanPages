@@ -1,4 +1,4 @@
-export interface IAddSubscriberDto
+export interface AddSubscriberDto
 {
     email: string;
 }

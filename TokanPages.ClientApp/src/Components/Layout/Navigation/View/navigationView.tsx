@@ -5,17 +5,17 @@ import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
-import { ILanguageItem } from "../../../../Api/Models/";
-import { IApplicationLanguage } from "../../../../Store/States/";
+import { LanguageItemDto } from "../../../../Api/Models/";
+import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
-import { IItem } from "../../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     drawerState: { open: boolean };
     openHandler: any;
@@ -25,20 +25,20 @@ interface IProperties extends ViewProperties
     avatarName: string;
     avatarSource: string;
     userAliasText: string;
-    languages: IApplicationLanguage;
+    languages: ApplicationLanguageState;
     languageId: string;
     languageHandler: any;
-    menu: { image: string, items: IItem[] };
+    menu: { image: string, items: Item[] };
 }
 
-interface IRenderLanguageSelection extends IProperties
+interface RenderLanguageSelection extends Properties
 {
     styleControl?: string; 
     styleSelect?: string; 
     styleMenu?: string;
 }
 
-const RenderMenuIcon = (props: IProperties): JSX.Element => 
+const RenderMenuIcon = (props: Properties): JSX.Element => 
 {
     const classes = NavigationStyle();
     return(
@@ -49,7 +49,7 @@ const RenderMenuIcon = (props: IProperties): JSX.Element =>
     );
 }
 
-const RenderAvatar = (props: IProperties): JSX.Element => 
+const RenderAvatar = (props: Properties): JSX.Element => 
 {
     if (props.isAnonymous)
     {
@@ -65,12 +65,12 @@ const RenderAvatar = (props: IProperties): JSX.Element =>
     return(<Avatar alt="Avatar" src={props.avatarSource} />);
 }
 
-const RenderLanguageSelection = (props: IRenderLanguageSelection): JSX.Element => 
+const RenderLanguageSelection = (props: RenderLanguageSelection): JSX.Element => 
 {
     return(
         <FormControl className={props.styleControl}>
             <Select value={props.languageId} onChange={props.languageHandler} disableUnderline className={props.styleSelect}>
-                {props.languages?.languages.map((item: ILanguageItem, _index: number) => (
+                {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         {item.name}
                     </MenuItem>
@@ -80,7 +80,7 @@ const RenderLanguageSelection = (props: IRenderLanguageSelection): JSX.Element =
     );
 }
 
-const RenderContent = (props: IProperties): JSX.Element => 
+const RenderContent = (props: Properties): JSX.Element => 
 {
     const classes = NavigationStyle();
     return(
@@ -101,7 +101,7 @@ const RenderContent = (props: IProperties): JSX.Element =>
     );
 }
 
-export const NavigationView = (props: IProperties): JSX.Element => 
+export const NavigationView = (props: Properties): JSX.Element => 
 {
     const classes = NavigationStyle();
     const fullName = "</> tom kandula";

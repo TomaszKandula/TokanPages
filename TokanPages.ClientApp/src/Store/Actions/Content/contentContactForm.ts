@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_CONTACT_FORM_CONTENT } from "../../../Api/Request";
-import { IContactFormContentDto } from "../../../Api/Models";
+import { ContactFormContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_CONTACT_FORM_CONTENT";
 export const RECEIVE = "RECEIVE_CONTACT_FORM_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IContactFormContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: ContactFormContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentContactFormAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentContactForm.content
         const languageId = getState().applicationLanguage.id;

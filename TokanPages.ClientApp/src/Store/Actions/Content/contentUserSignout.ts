@@ -1,16 +1,16 @@
-import { IApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_SIGNOUT_CONTENT } from "../../../Api/Request";
-import { IUserSignoutContentDto } from "../../../Api/Models";
+import { UserSignoutContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_USER_SIGNOUT_CONTENT";
 export const RECEIVE = "RECEIVE_USER_SIGNOUT_CONTENT";
-interface IRequest { type: typeof REQUEST }
-interface IReceive { type: typeof RECEIVE, payload: IUserSignoutContentDto }
-export type TKnownActions = IRequest | IReceive;
+interface Request { type: typeof REQUEST }
+interface Receive { type: typeof RECEIVE, payload: UserSignoutContentDto }
+export type TKnownActions = Request | Receive;
 
 export const ContentUserSignoutAction = 
 {
-    get: (): IApplicationAction<TKnownActions> => (dispatch, getState) =>
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) =>
     {
         const content = getState().contentUserSignout.content;
         const languageId = getState().applicationLanguage.id;

@@ -1,4 +1,4 @@
-export interface ISubscriberInfoDto
+export interface SubscriberInfoDto
 {
     email: string;
     id: string;

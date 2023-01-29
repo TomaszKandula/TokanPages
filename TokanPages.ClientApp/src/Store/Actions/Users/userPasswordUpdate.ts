@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IUpdateUserPasswordDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { UpdateUserPasswordDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     UPDATE_USER_PASSWORD
 } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_USER_PASSWORD";
 export const CLEAR = "UPDATE_USER_PASSWORD_CLEAR";
 export const RESPONSE = "UPDATE_USER_PASSWORD_RESPONSE";
-interface IUpdate { type: typeof UPDATE }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IUpdate | IClear | IResponse;
+interface Update { type: typeof UPDATE }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Update | Clear | Response;
 
 export const UserPasswordUpdateAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    update: (payload: IUpdateUserPasswordDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    update: (payload: UpdateUserPasswordDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: UPDATE_USER_PASSWORD, 
@@ -34,7 +34,7 @@ export const UserPasswordUpdateAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

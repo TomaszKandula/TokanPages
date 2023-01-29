@@ -5,14 +5,14 @@ import { RenderImage } from "./customImage";
 
 describe("Test rendering image component.", () => 
 {
-    interface IProperties 
+    interface Properties 
     {
         basePath: string; 
         imageSource: string; 
         className: string;
     }
 
-    const TestComponent = (props: IProperties): JSX.Element | null => 
+    const TestComponent = (props: Properties): JSX.Element | null => 
     {
         return RenderImage(props.basePath, props.imageSource, props.className);
     }

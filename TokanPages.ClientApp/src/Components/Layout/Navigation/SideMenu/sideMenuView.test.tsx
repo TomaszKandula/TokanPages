@@ -2,13 +2,13 @@ import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { SideMenuView } from "./sideMenuView";
-import { IItem } from "../../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../../Shared/Components/ListRender/Models";
 
 describe("Test component: menuView.", () => 
 {
     it("Renders correctly '<MenuView />' when content is loaded.", () => 
     {
-        const item: IItem = 
+        const item: Item = 
         {
             id: "8c678e9e-699e-41c7-a93a-587c6a4f41e7",
             type: "item",

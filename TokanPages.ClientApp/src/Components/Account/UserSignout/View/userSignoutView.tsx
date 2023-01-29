@@ -11,14 +11,14 @@ import { AccountCircle } from "@material-ui/icons";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { UserSignoutStyle } from "./userSignoutStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     caption: string;
     status: string;
     buttonText: string;
 }
 
-export const UserSignoutView = (props: IProperties): JSX.Element => 
+export const UserSignoutView = (props: Properties): JSX.Element => 
 {
     const classes = UserSignoutStyle();
     return (

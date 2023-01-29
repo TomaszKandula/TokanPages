@@ -1,12 +1,12 @@
 import "../../../../setupTests";
-import { IValidateUpdateForm, ValidateUpdateForm } from "..";
+import { UpdateFormInput, ValidateUpdateForm } from "..";
 
 describe("Verify validation methods.", () => 
 {
     it("When Update Password Form filled correctly. Should return undefined.", () => 
     {
         // Arrange
-        const form: IValidateUpdateForm = 
+        const form: UpdateFormInput = 
         {
             newPassword: "abcde123456",
             verifyPassword: "abcde123456"
@@ -22,25 +22,25 @@ describe("Verify validation methods.", () =>
     it("When Update Password Form filled incorrectly. Should return defined.", () => 
     {
         // Arrange
-        const form1: IValidateUpdateForm = 
+        const form1: UpdateFormInput = 
         {
             newPassword: "",
             verifyPassword: ""
         }
 
-        const form2: IValidateUpdateForm = 
+        const form2: UpdateFormInput = 
         {
             newPassword: "123",
             verifyPassword: "654"
         }
 
-        const form3: IValidateUpdateForm = 
+        const form3: UpdateFormInput = 
         {
             newPassword: "abcde123456",
             verifyPassword: ""
         }
 
-        const form4: IValidateUpdateForm = 
+        const form4: UpdateFormInput = 
         {
             newPassword: "",
             verifyPassword: "abcde123456"

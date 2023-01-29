@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ITextObject } from "./Models/TextModel";
+import { TextObject } from "./Models/TextModel";
 import { Languages } from "../../languages";
 
 import { 
@@ -11,7 +11,7 @@ import {
     RenderSeparator
 } from "./Renderers";
 
-export const RenderContent = (textObject: ITextObject | undefined): JSX.Element => 
+export const RenderContent = (textObject: TextObject | undefined): JSX.Element => 
 {
     if (textObject === undefined) return(<div>Cannot render content.</div>);
     if (textObject.items.length === 0) return(<div>Cannot render content.</div>);

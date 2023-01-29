@@ -1,6 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { IUserPasswordReset } from "../../States";
+import { UserPasswordResetState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
 import { 
@@ -11,8 +11,8 @@ import {
 } from "../../Actions/Users/userPasswordReset";
 
 export const UserPasswordReset: 
-    Reducer<IUserPasswordReset> = (state: IUserPasswordReset | undefined, incomingAction: Action): 
-    IUserPasswordReset => 
+    Reducer<UserPasswordResetState> = (state: UserPasswordResetState | undefined, incomingAction: Action): 
+    UserPasswordResetState => 
 {
     if (state === undefined) return ApplicationDefault.userPasswordReset;
 

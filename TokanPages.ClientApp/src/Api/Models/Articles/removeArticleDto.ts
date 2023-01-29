@@ -1,4 +1,4 @@
-export interface IRemoveArticleDto
+export interface RemoveArticleDto
 {
     id: string;
 }

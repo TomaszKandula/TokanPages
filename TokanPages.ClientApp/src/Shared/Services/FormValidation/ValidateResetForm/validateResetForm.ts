@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { IValidateResetForm } from "./interface";
+import { ResetFormInput } from "./interface";
 
-export const ValidateResetForm = (props: IValidateResetForm): any =>
+export const ValidateResetForm = (props: ResetFormInput): any =>
 {
     let constraints =  
     {

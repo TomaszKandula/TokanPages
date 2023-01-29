@@ -1,6 +1,6 @@
 import { IconType } from "../../../Shared/enums";
 
-export interface IApplicationDialog 
+export interface ApplicationDialogState
 {
     title: string; 
     message: string; 

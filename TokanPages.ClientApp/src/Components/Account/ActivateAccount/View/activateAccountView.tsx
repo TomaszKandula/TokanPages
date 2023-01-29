@@ -9,7 +9,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { ActivateAccountStyle } from "./activateAccountStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     caption: string;
     text1: string;
@@ -20,7 +20,7 @@ interface IProperties extends ViewProperties
     buttonText: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = ActivateAccountStyle();
     return(
@@ -38,7 +38,7 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const ActivateAccountView = (props: IProperties): JSX.Element =>
+export const ActivateAccountView = (props: Properties): JSX.Element =>
 {
     const classes = ActivateAccountStyle();
     return (

@@ -8,7 +8,7 @@ import Emoji from "react-emoji-render";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ArticleDetailStyle } from "./articleDetailStyle";
 
-interface IProperties
+interface Properties
 {
     backButtonHandler: any;
     articleReadCount: number;
@@ -33,7 +33,7 @@ interface IProperties
     authorShortBio: string;
 }
 
-export const ArticleDetailView = (props: IProperties): JSX.Element =>
+export const ArticleDetailView = (props: Properties): JSX.Element =>
 {
     const classes = ArticleDetailStyle();
     return (

@@ -13,7 +13,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/interfaces";
 import { UpdateSubscriberStyle } from "./updateSubscriberStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
     caption: string;
     formHandler: any;
@@ -25,7 +25,7 @@ interface IProperties extends ViewProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UpdateSubscriberStyle();
     return(
@@ -42,7 +42,7 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const UpdateSubscriberView = (props: IProperties): JSX.Element =>
+export const UpdateSubscriberView = (props: Properties): JSX.Element =>
 {
     const classes = UpdateSubscriberStyle();
     return (

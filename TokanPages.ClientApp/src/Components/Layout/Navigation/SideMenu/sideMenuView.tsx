@@ -1,18 +1,18 @@
 import * as React from "react";
 import { Box, Drawer } from "@material-ui/core";
 import { RenderList } from "../../../../Shared/Components";
-import { IItem } from "../../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { SideMenuStyle } from "./sideMenuStyle";
 
-interface IProperties
+interface Properties
 {
     drawerState: { open: boolean };
     closeHandler: any;
     isAnonymous: boolean;
-    menu: { image: string, items: IItem[] };
+    menu: { image: string, items: Item[] };
 }
 
-export const SideMenuView = (props: IProperties): JSX.Element =>
+export const SideMenuView = (props: Properties): JSX.Element =>
 {
     const classes = SideMenuStyle();
     const logo = "</>";

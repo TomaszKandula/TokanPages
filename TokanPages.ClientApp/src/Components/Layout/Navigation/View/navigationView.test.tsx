@@ -2,14 +2,14 @@ import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
-import { IItem } from "../../../../Shared/Components/ListRender/Models";
-import { IApplicationLanguage } from "../../../../Store/States";
+import { Item } from "../../../../Shared/Components/ListRender/Models";
+import { ApplicationLanguageState } from "../../../../Store/States";
 
 describe("Test component: featuresView.", () => 
 {
     it("Renders correctly '<NavigationView />' when content is loaded.", () => 
     {
-        const items: IItem = 
+        const items: Item = 
         {
             id: "79a6c65d-08b8-479b-9507-97feb05e30c2",
             type: "item",
@@ -19,7 +19,7 @@ describe("Test component: featuresView.", () =>
             enabled: true
         };
 
-        const languages: IApplicationLanguage = 
+        const languages: ApplicationLanguageState = 
         {
             id: "eng",
             languages: 

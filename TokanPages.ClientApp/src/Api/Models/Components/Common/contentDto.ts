@@ -1,4 +1,4 @@
-export interface IContent
+export interface ContentDto
 {
     caption: string;
     text1: string;

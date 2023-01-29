@@ -1,4 +1,4 @@
-export interface IActivateUserDto
+export interface ActivateUserDto
 {
     activationId: string;
 }

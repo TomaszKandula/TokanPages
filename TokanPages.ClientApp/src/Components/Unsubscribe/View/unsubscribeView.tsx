@@ -6,24 +6,24 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IContent } from "../../../Api/Models";
+import { ContentDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/interfaces";
 import { UnsubscribeStyle } from "./unsubscribeStyle";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {
-    contentPre: IContent;
-    contentPost: IContent;
+    contentPre: ContentDto;
+    contentPost: ContentDto;
     buttonHandler: any;
     buttonState: boolean;
     progress: boolean;
     isRemoved: boolean;
 }
 
-const ActiveButton = (props: IProperties): JSX.Element => 
+const ActiveButton = (props: Properties): JSX.Element => 
 {
     const classes = UnsubscribeStyle();
-    const content: IContent = props.isRemoved ? props.contentPost : props.contentPre;
+    const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return(
         <Button 
             fullWidth 
@@ -39,10 +39,10 @@ const ActiveButton = (props: IProperties): JSX.Element =>
     );
 }
 
-export const UnsubscribeView = (props: IProperties): JSX.Element =>
+export const UnsubscribeView = (props: Properties): JSX.Element =>
 {
     const classes = UnsubscribeStyle();
-    const content: IContent = props.isRemoved ? props.contentPost : props.contentPre;
+    const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">

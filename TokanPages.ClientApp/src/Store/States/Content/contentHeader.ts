@@ -1,6 +1,6 @@
-import { IHeaderContentDto } from "../../../Api/Models";
+import { HeaderContentDto } from "../../../Api/Models";
 
-export interface IContentHeader extends IHeaderContentDto
+export interface ContentHeaderState extends HeaderContentDto
 {
     isLoading: boolean;
 }

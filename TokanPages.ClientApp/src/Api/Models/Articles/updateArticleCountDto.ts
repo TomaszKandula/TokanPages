@@ -1,4 +1,4 @@
-export interface IUpdateArticleCountDto 
+export interface UpdateArticleCountDto 
 {
     id: string;
 }

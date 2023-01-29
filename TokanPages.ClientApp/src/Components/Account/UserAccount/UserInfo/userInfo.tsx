@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../../Store/Configuration";
-import { IContentAccount } from "../../../../Store/States";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
@@ -22,7 +22,7 @@ import {
 } from "../../../../Shared/Services/Utilities";
 
 import { 
-    IValidateAccountForm, 
+    AccountFormInput, 
     ValidateAccountForm, 
 } from "../../../../Shared/Services/FormValidation";
 
@@ -34,22 +34,22 @@ import {
     UPDATE_USER_WARNING 
 } from "../../../../Shared/constants";
 
-export const UserInfo = (props: IContentAccount): JSX.Element => 
+export const UserInfo = (props: ContentAccountState): JSX.Element => 
 {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const store = useSelector((state: IApplicationState) => state.userDataStore.userData);
-    const update = useSelector((state: IApplicationState) => state.userUpdate);
-    const media = useSelector((state: IApplicationState) => state.userMediaUpload);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
+    const update = useSelector((state: ApplicationState) => state.userUpdate);
+    const media = useSelector((state: ApplicationState) => state.userMediaUpload);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasMediaUploadFinished = media?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const accountFormDefault: IValidateAccountForm = 
+    const accountFormDefault: AccountFormInput = 
     {
         ...store,
         userAboutText: store.shortBio ?? ""
@@ -58,17 +58,17 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
     const avatarName = Validate.isEmpty(store.avatarName) ? "N/A" : store.avatarName;
     const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
     const [accountForm, setAccountForm] = React.useState(accountFormDefault);
-    const [progress, setProgress] = React.useState(false);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
     const showWarning = (text: string)=> dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
 
     const clear = React.useCallback(() => 
     {
-        if (!progress) return;
+        if (!hasProgress) return;
         
         dispatch(UserUpdateAction.clear());
-        setProgress(false);
+        setHasProgress(false);
 
         if (!isUserActivated.checked)
         {
@@ -81,7 +81,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             dispatch(UserReAuthenticateAction.reAuthenticate());
         }
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -91,7 +91,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && progress) 
+        if (hasNotStarted && hasProgress) 
         {
             dispatch(UserUpdateAction.update(
             {
@@ -112,7 +112,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     React.useEffect(() => 
     {
@@ -150,7 +150,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
         let validationResult = ValidateAccountForm(accountForm);
         if (!Validate.isDefined(validationResult))
         {
-            setProgress(true);
+            setHasProgress(true);
             return;
         }
 
@@ -164,7 +164,7 @@ export const UserInfo = (props: IContentAccount): JSX.Element =>
             accountForm={accountForm}
             userImageName={avatarName}
             isUserActivated={isUserActivated.checked}
-            accountFormProgress={progress}
+            accountFormProgress={hasProgress}
             accountKeyHandler={accountKeyHandler}
             accountFormHandler={accountFormHandler}
             accountSwitchHandler={accountSwitchHandler}

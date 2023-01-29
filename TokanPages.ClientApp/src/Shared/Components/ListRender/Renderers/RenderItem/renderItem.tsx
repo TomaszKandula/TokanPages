@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { IItem } from "../../Models";
+import { Item } from "../../Models";
 import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderItemStyle } from "./renderItemStyle";
 
-export const RenderItem = (props: IItem): JSX.Element =>
+export const RenderItem = (props: Item): JSX.Element =>
 {
     const classes = RenderItemStyle();
     const link: string = props.link as string;

@@ -1,31 +1,31 @@
 import axios from "axios";
-import { IApplicationAction } from "../../Configuration";
-import { IUploadUserMediaDto, IUploadUserMediaResultDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { UploadUserMediaDto, UploadUserMediaResultDto } from "../../../Api/Models";
 import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { 
     UPLOAD_USER_MEDIA,
-    IRequest, 
+    RequestContract, 
     GetConfiguration,
 } from "../../../Api/Request";
 
 export const UPLOAD = "UPLOAD_USER_MEDIA";
 export const CLEAR = "UPLOAD_USER_MEDIA_CLEAR";
 export const RESPONSE = "UPLOAD_USER_MEDIA_RESPONSE";
-interface IUpload { type: typeof UPLOAD }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: IUploadUserMediaResultDto; handle?: string; }
-export type TKnownActions = IUpload | IClear | IResponse;
+interface Upload { type: typeof UPLOAD }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: UploadUserMediaResultDto; handle?: string; }
+export type TKnownActions = Upload | Clear | Response;
 
 //TODO: refactor, simplify
 export const UserMediaUploadAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    upload: (payload: IUploadUserMediaDto, skipDb?: boolean, handle?: string): IApplicationAction<TKnownActions> => (dispatch) => 
+    upload: (payload: UploadUserMediaDto, skipDb?: boolean, handle?: string): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPLOAD });
 
@@ -36,7 +36,7 @@ export const UserMediaUploadAction =
 
         const url = skipDb ? `${UPLOAD_USER_MEDIA}?skipDb=${skipDb}` : UPLOAD_USER_MEDIA;
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: url, 

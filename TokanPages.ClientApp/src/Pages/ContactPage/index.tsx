@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container } from "@material-ui/core";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
@@ -14,11 +14,11 @@ import {
 export const ContactPage = () => 
 {
     const dispatch = useDispatch();
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
-    const form = useSelector((state: IApplicationState) => state.contentContactForm);
-    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const form = useSelector((state: ApplicationState) => state.contentContactForm);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: ApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {

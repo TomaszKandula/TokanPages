@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IApplicationState } from "../../../Store/Configuration";
-import { IContentResetPassword } from "../../../Store/States";
+import { ApplicationState } from "../../../Store/Configuration";
+import { ContentResetPasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";
@@ -12,7 +12,7 @@ import {
 } from "../../../Store/Actions";
 
 import { 
-    IValidateResetForm, 
+    ResetFormInput, 
     ValidateResetForm 
 } from "../../../Shared/Services/FormValidation";
 
@@ -29,16 +29,16 @@ import {
     RESET_PASSWORD_WARNING 
 } from "../../../Shared/constants";
 
-const formDefaultValues: IValidateResetForm =
+const formDefaultValues: ResetFormInput =
 {
     email: ""
 };
 
-export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
+export const ResetPassword = (props: ContentResetPasswordState): JSX.Element =>
 {
     const dispatch = useDispatch();
-    const reset = useSelector((state: IApplicationState) => state.userPasswordReset);
-    const error = useSelector((state: IApplicationState) => state.applicationError);
+    const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
+    const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = reset?.status === OperationStatus.notStarted;
     const hasFinished = reset?.status === OperationStatus.hasFinished;
@@ -48,15 +48,15 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
     const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(RESET_FORM, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
-    const [progress, setProgress] = React.useState(false);
+    const [hasProgress, setHasProgress] = React.useState(false);
 
     const clearForm = React.useCallback(() => 
     {
-        if (!progress) return;
-        setProgress(false);
+        if (!hasProgress) return;
+        setHasProgress(false);
         dispatch(UserPasswordResetAction.clear());
     }, 
-    [ progress ]);
+    [ hasProgress ]);
 
     React.useEffect(() => 
     {
@@ -66,7 +66,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && progress) 
+        if (hasNotStarted && hasProgress) 
         {
             dispatch(UserPasswordResetAction.reset(
             {
@@ -83,7 +83,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
             showSuccess(RESET_PASSWORD_SUCCESS);
         }
     }, 
-    [ progress, hasError, hasNotStarted, hasFinished ]);
+    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
     const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
     {
@@ -104,7 +104,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
 
         if (!Validate.isDefined(results))
         {
-            setProgress(true);
+            setHasProgress(true);
             return;
         }
 
@@ -114,7 +114,7 @@ export const ResetPassword = (props: IContentResetPassword): JSX.Element =>
     return (
         <ResetPasswordView
             isLoading={props.isLoading}
-            progress={progress}
+            progress={hasProgress}
             caption={props.content.caption}
             button={props.content.button}
             email={form.email}

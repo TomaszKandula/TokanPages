@@ -1,12 +1,12 @@
 import "../../../../setupTests";
-import { IValidateContactForm, ValidateContactForm } from "..";
+import { ContactFormInput, ValidateContactForm } from "..";
 
 describe("Verify validation methods.", () => 
 {
     it("When Contact Form filled correctly. Should return undefined.", () => 
     {
         // Arrange
-        const form: IValidateContactForm = 
+        const form: ContactFormInput = 
         {
             firstName: "Ester",
             lastName: "Exposito", 
@@ -26,7 +26,7 @@ describe("Verify validation methods.", () =>
     it("When Contact Form filled incorrectly. Should return defined.", () => 
     {
         // Arrange
-        const form: IValidateContactForm = 
+        const form: ContactFormInput = 
         {
             firstName: "",
             lastName: "Deacon", 

@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { ITextObject } from "Shared/Components/RenderContent/Models";
+import { TextObject } from "Shared/Components/RenderContent/Models";
 import { IObjectToText, ObjectToText } from "..";
 
 describe("Verify ObjectToText.", () => 
@@ -21,7 +21,7 @@ describe("Verify ObjectToText.", () =>
             ]
         }`
 
-        const textObject: ITextObject = JSON.parse(jsonObject) as ITextObject;
+        const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
         const input: IObjectToText = 
         {
             textObject: textObject
@@ -53,7 +53,7 @@ describe("Verify ObjectToText.", () =>
             ]
         }`
 
-        const textObject: ITextObject = JSON.parse(jsonObject) as ITextObject;
+        const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
         const input: IObjectToText = 
         {
             textObject: textObject
@@ -89,7 +89,7 @@ describe("Verify ObjectToText.", () =>
             "items": [ ]
         }`
 
-        const textObject: ITextObject = JSON.parse(jsonObject) as ITextObject;
+        const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
         const input: IObjectToText = 
         {
             textObject: textObject

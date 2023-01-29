@@ -1,16 +1,16 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
-import { IItem } from "./Models";
+import { Item } from "./Models";
 import { RenderItem, RenderItemSpan } from "./Renderers";
 import { Divider } from "@material-ui/core";
 
-interface IProperties
+interface Properties
 {
     isAnonymous: boolean;
-    items: IItem[] | undefined;
+    items: Item[] | undefined;
 }
 
-export const RenderList = (props: IProperties): JSX.Element =>
+export const RenderList = (props: Properties): JSX.Element =>
 {
     if (props.items === undefined) return(<div>Cannot render content.</div>);
     if (props.items.length === 0) return(<div>Cannot render content.</div>);

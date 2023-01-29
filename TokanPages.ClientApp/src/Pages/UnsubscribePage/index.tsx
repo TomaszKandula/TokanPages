@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { Unsubscribe } from "../../Components/Unsubscribe";
 
@@ -23,10 +23,10 @@ export const UnsubscribePage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
 
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: IApplicationState) => state.contentFooter);
-    const unsubscribe = useSelector((state: IApplicationState) => state.contentUnsubscribe);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: ApplicationState) => state.contentFooter);
+    const unsubscribe = useSelector((state: ApplicationState) => state.contentUnsubscribe);
 
     React.useEffect(() => 
     {

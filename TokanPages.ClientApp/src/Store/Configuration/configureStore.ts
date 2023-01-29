@@ -4,9 +4,9 @@ import { connectRouter, routerMiddleware } from "connected-react-router";
 import { History } from "history";
 import { ApplicationReducer } from "./applicationReducer";
 import { ApplicationDefault } from "./applicationDefault";
-import { IApplicationState } from "./applicationState";
+import { ApplicationState } from "./applicationState";
 
-export const ConfigureStore = (history: History, initialState?: IApplicationState): any =>
+export const ConfigureStore = (history: History, initialState?: ApplicationState): any =>
 {
     const initialAppState = initialState === undefined 
         ? ApplicationDefault 

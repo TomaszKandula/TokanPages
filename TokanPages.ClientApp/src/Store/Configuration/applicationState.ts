@@ -1,94 +1,94 @@
 import { 
-    IUserActivate,
-    ISubscriberAdd,
-    IArticleSelection,
-    IArticleListing,
-    IContentAccount,
-    IContentActivateAccount,
-    IContentArticleFeatures,
-    IContentClients,
-    IContentContactForm,
-    IContentCookiesPrompt,
-    IContentFeatured,
-    IContentFeatures,
-    IContentFooter,
-    IContentHeader,
-    IContentNavigation,
-    IContentNewsletter,
-    IContentResetPassword,
-    IContentTestimonials,
-    IContentUnsubscribe,
-    IContentUpdatePassword,
-    IContentUpdateSubscriber,
-    IContentUserSignin,
-    IContentUserSignout,
-    IContentUserSignup,
-    IContentWrongPagePrompt,
-    IApplicationDialog,
-    IApplicationError,
-    IUserReAuthenticate,
-    IUserRemove,
-    ISubscriberRemove,
-    IUserPasswordReset,
-    IApplicationEmail,
-    IUserSignin,
-    IUserSignup,
-    IUserDataStore,
-    IArticleUpdate,
-    ISubscriberUpdate,
-    IUserUpdate,
-    IUserPasswordUpdate,
-    IApplicationLanguage,
-    IContentPolicy,
-    IContentTerms,
-    IContentStory,
-    IUserMediaUpload
+    UserActivateState,
+    SubscriberAddState,
+    ArticleSelectionState,
+    ArticleListingState,
+    ContentAccountState,
+    ContentActivateAccountState,
+    ContentArticleFeaturesState,
+    ContentClientsState,
+    ContentContactFormState,
+    ContentCookiesPromptState,
+    ContentFeaturedState,
+    ContentFeaturesState,
+    ContentFooterState,
+    ContentHeaderState,
+    ContentNavigationState,
+    ContentNewsletterState,
+    ContentResetPasswordState,
+    ContentTestimonialsState,
+    ContentUnsubscribeState,
+    ContentUpdatePasswordState,
+    ContentUpdateSubscriberState,
+    ContentUserSigninState,
+    ContentUserSignoutState,
+    ContentUserSignupState,
+    ContentWrongPagePromptState,
+    ApplicationDialogState,
+    ApplicationErrorState,
+    UserReAuthenticateState,
+    UserRemoveState,
+    SubscriberRemoveState,
+    UserPasswordResetState,
+    ApplicationEmailState,
+    UserSigninState,
+    UserSignupState,
+    UserDataStoreState,
+    UserUpdateState,
+    SubscriberUpdateState,
+    ArticleUpdateState,
+    UserPasswordUpdateState,
+    ApplicationLanguageState,
+    ContentPolicyState,
+    ContentTermsState,
+    ContentStoryState,
+    UserMediaUploadState
 } from "../States";
 
-export interface IApplicationState 
+export interface ApplicationState 
 {
-    applicationError: IApplicationError;
-    applicationEmail: IApplicationEmail;
-    applicationDialog: IApplicationDialog;
-    applicationLanguage: IApplicationLanguage;
-    articleListing: IArticleListing;
-    articleSelection: IArticleSelection;
-    articleUpdate: IArticleUpdate;
-    contentAccount: IContentAccount;
-    contentActivateAccount: IContentActivateAccount;
-    contentArticleFeatures: IContentArticleFeatures;
-    contentClients: IContentClients;
-    contentContactForm: IContentContactForm;
-    contentCookiesPrompt: IContentCookiesPrompt;
-    contentFeatured: IContentFeatured;
-    contentFeatures: IContentFeatures;
-    contentFooter: IContentFooter;
-    contentHeader: IContentHeader;
-    contentNavigation: IContentNavigation;
-    contentNewsletter: IContentNewsletter;
-    contentPolicy: IContentPolicy;
-    contentResetPassword: IContentResetPassword;
-    contentStory: IContentStory;
-    contentTerms: IContentTerms;
-    contentTestimonials: IContentTestimonials;
-    contentUnsubscribe: IContentUnsubscribe;
-    contentUpdatePassword: IContentUpdatePassword;
-    contentUpdateSubscriber: IContentUpdateSubscriber;
-    contentUserSignin: IContentUserSignin;
-    contentUserSignout: IContentUserSignout;
-    contentUserSignup: IContentUserSignup;
-    contentWrongPagePrompt: IContentWrongPagePrompt;
-    subscriberAdd: ISubscriberAdd;
-    subscriberRemove: ISubscriberRemove;
-    subscriberUpdate: ISubscriberUpdate;
-    userActivate: IUserActivate;
-    userDataStore: IUserDataStore;
-    userMediaUpload: IUserMediaUpload;
-    userPasswordReset: IUserPasswordReset;
-    userPasswordUpdate: IUserPasswordUpdate;
-    userReAuthenticate: IUserReAuthenticate;
-    userRemove: IUserRemove;
-    userSignin: IUserSignin;
-    userSignup: IUserSignup;
-    userUpdate: IUserUpdate;
+    applicationError: ApplicationErrorState;
+    applicationEmail: ApplicationEmailState;
+    applicationDialog: ApplicationDialogState;
+    applicationLanguage: ApplicationLanguageState;
+    articleListing: ArticleListingState;
+    articleSelection: ArticleSelectionState;
+    articleUpdate: ArticleUpdateState;
+    contentAccount: ContentAccountState;
+    contentActivateAccount: ContentActivateAccountState;
+    contentArticleFeatures: ContentArticleFeaturesState;
+    contentClients: ContentClientsState;
+    contentContactForm: ContentContactFormState;
+    contentCookiesPrompt: ContentCookiesPromptState;
+    contentFeatured: ContentFeaturedState;
+    contentFeatures: ContentFeaturesState;
+    contentFooter: ContentFooterState;
+    contentHeader: ContentHeaderState;
+    contentNavigation: ContentNavigationState;
+    contentNewsletter: ContentNewsletterState;
+    contentPolicy: ContentPolicyState;
+    contentResetPassword: ContentResetPasswordState;
+    contentStory: ContentStoryState;
+    contentTerms: ContentTermsState;
+    contentTestimonials: ContentTestimonialsState;
+    contentUnsubscribe: ContentUnsubscribeState;
+    contentUpdatePassword: ContentUpdatePasswordState;
+    contentUpdateSubscriber: ContentUpdateSubscriberState;
+    contentUserSignin: ContentUserSigninState;
+    contentUserSignout: ContentUserSignoutState;
+    contentUserSignup: ContentUserSignupState;
+    contentWrongPagePrompt: ContentWrongPagePromptState;
+    subscriberAdd: SubscriberAddState;
+    subscriberRemove: SubscriberRemoveState;
+    subscriberUpdate: SubscriberUpdateState;
+    userActivate: UserActivateState;
+    userDataStore: UserDataStoreState;
+    userMediaUpload: UserMediaUploadState;
+    userPasswordReset: UserPasswordResetState;
+    userPasswordUpdate: UserPasswordUpdateState;
+    userReAuthenticate: UserReAuthenticateState;
+    userRemove: UserRemoveState;
+    userSignin: UserSigninState;
+    userSignup: UserSignupState;
+    userUpdate: UserUpdateState;
 }

@@ -2,11 +2,40 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 6,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": ["tsconfig.json"]
     },
+    "plugins": ["@typescript-eslint"],
     "rules": { 
-        //"interface-name" : [ true, "never-prefix" ],
         "quotes": [ "error", "double" ],
-        "brace-style": [ "error", "allman", { "allowSingleLine": false }]
+        "brace-style": [ 
+            "error", 
+            "allman", 
+            { 
+                "allowSingleLine": false 
+            }
+        ],
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "interface",
+                "format": ["PascalCase"],
+                "custom": {
+                    "regex": "^I[A-Z]",
+                    "match": false
+                }
+            },
+            {
+                "selector": "typeParameter",
+                "format": ["PascalCase"],
+                "prefix": ["T"]
+            },
+            {
+                "selector": "variable",
+                "types": ["boolean"],
+                "format": ["PascalCase"],
+                "prefix": ["is", "should", "has", "can", "did", "will"]
+            }
+        ]
     }
 }

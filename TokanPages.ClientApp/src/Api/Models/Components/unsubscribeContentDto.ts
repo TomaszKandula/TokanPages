@@ -1,11 +1,11 @@
-import { IContent } from "./Common/content";
+import { ContentDto } from "./Common/contentDto";
 
-export interface IUnsubscribeContentDto
+export interface UnsubscribeContentDto
 {
     content: 
     {
         language: string;
-        contentPre: IContent,
-        contentPost: IContent
+        contentPre: ContentDto,
+        contentPost: ContentDto
     };
 }

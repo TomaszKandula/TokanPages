@@ -1,5 +1,5 @@
 import { Action, Reducer } from "redux";
-import { IApplicationLanguage } from "../../States";
+import { ApplicationLanguageState } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
 
 import { 
@@ -9,8 +9,8 @@ import {
 } from "../../Actions/Application/applicationLanguage";
 
 export const ApplicationLanguage: 
-    Reducer<IApplicationLanguage> = (state: IApplicationLanguage | undefined, incomingAction: Action): 
-    IApplicationLanguage =>
+    Reducer<ApplicationLanguageState> = (state: ApplicationLanguageState | undefined, incomingAction: Action): 
+    ApplicationLanguageState =>
 {
     if (state === undefined) return ApplicationDefault.applicationLanguage;
 

@@ -5,24 +5,24 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
-import { IIcon, ILink } from "../../../../Api/Models";
+import { IconDto, LinkDto } from "../../../../Api/Models";
 import { FooterStyle } from "./footerStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface IProperties
+interface Properties
 {
-    terms: ILink;
-    policy: ILink;
+    terms: LinkDto;
+    policy: LinkDto;
     versionInfo: string;
     hasVersionInfo: boolean;
     backgroundColor: string;
     copyright: string;
     reserved: string;
-    icons: IIcon[];
+    icons: IconDto[];
 }
 
-const SetTermsLink = (props: IProperties): JSX.Element => 
+const SetTermsLink = (props: Properties): JSX.Element => 
 { 
     const classes = FooterStyle();
 
@@ -37,7 +37,7 @@ const SetTermsLink = (props: IProperties): JSX.Element =>
         </Link>); 
 };
 
-const SetPolicyLink = (props: IProperties): JSX.Element => 
+const SetPolicyLink = (props: Properties): JSX.Element => 
 { 
     const classes = FooterStyle();
 
@@ -52,12 +52,12 @@ const SetPolicyLink = (props: IProperties): JSX.Element =>
         </Link>);
 };
 
-const RenderIconButtons = (props: IProperties): JSX.Element =>
+const RenderIconButtons = (props: Properties): JSX.Element =>
 {
     const classes = FooterStyle();
     const icons = 
     <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
-        {props.icons?.map((item: IIcon, _index: number) => 
+        {props.icons?.map((item: IconDto, _index: number) => 
         (<IconButton 
             className={classes.icon}
             aria-label={item.name} 
@@ -72,7 +72,7 @@ const RenderIconButtons = (props: IProperties): JSX.Element =>
     return icons;
 }
 
-const RenderCopyrightBar = (props: IProperties): JSX.Element => 
+const RenderCopyrightBar = (props: Properties): JSX.Element => 
 {
     const classes = FooterStyle();
     return (<Box pt={6} pb={1} className={classes.copyright_box}>
@@ -83,7 +83,7 @@ const RenderCopyrightBar = (props: IProperties): JSX.Element =>
     </Box>);
 }
 
-const RenderVersionInfo = (props: IProperties): JSX.Element | null =>
+const RenderVersionInfo = (props: Properties): JSX.Element | null =>
 {
     const classes = FooterStyle();
     const applicationVersionInfo = 
@@ -96,7 +96,7 @@ const RenderVersionInfo = (props: IProperties): JSX.Element | null =>
     return props.hasVersionInfo ? null : applicationVersionInfo
 };
 
-export const FooterView = (props: IProperties): JSX.Element => 
+export const FooterView = (props: Properties): JSX.Element => 
 {
     const classes = FooterStyle();
     return (

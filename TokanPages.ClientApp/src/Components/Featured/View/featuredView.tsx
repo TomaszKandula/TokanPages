@@ -7,12 +7,12 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { IContentFeatured } from "../../../Store/States";
+import { ContentFeaturedState } from "../../../Store/States";
 import { RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
 import { FeaturedStyle } from "./featuredStyle";
 
-export const FeaturedView = (props: IContentFeatured): JSX.Element => 
+export const FeaturedView = (props: ContentFeaturedState): JSX.Element => 
 {
     const classes = FeaturedStyle();
     return (

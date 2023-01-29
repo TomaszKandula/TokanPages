@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { IValidateEmailForm } from "./interface";
+import { EmailFormInput } from "./interface";
 
-export const ValidateEmailForm = (props: IValidateEmailForm): any =>
+export const ValidateEmailForm = (props: EmailFormInput): any =>
 {
     const constraints = 
     {

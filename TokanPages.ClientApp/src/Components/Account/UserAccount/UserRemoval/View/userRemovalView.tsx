@@ -17,19 +17,19 @@ import {
 } from "@material-ui/core";
 
 import { 
-    ISectionAccessDenied, 
-    ISectionAccountRemoval 
+    SectionAccessDenied, 
+    SectionAccountRemoval 
 } from "../../../../../Api/Models";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {    
     deleteButtonHandler: any;
     deleteAccountProgress: boolean;
-    sectionAccessDenied: ISectionAccessDenied;
-    sectionAccountRemoval: ISectionAccountRemoval;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountRemoval: SectionAccountRemoval;
 }
 
-const DeleteAccountButton = (props: IProperties): JSX.Element => 
+const DeleteAccountButton = (props: Properties): JSX.Element => 
 {
     const classes = UserRemovalStyle();
     return(
@@ -57,7 +57,7 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }) =>
     );
 }
 
-export const UserRemovalView = (props: IProperties): JSX.Element => 
+export const UserRemovalView = (props: Properties): JSX.Element => 
 {
     const classes = UserRemovalStyle();
     return(

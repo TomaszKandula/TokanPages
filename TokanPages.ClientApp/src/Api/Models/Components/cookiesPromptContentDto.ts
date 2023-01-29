@@ -1,4 +1,4 @@
-export interface ICookiesPromptContentDto
+export interface CookiesPromptContentDto
 {
     content: 
     {

@@ -1,32 +1,32 @@
-import { IApplicationAction } from "../../Configuration";
-import { IActivateUserDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
+import { ActivateUserDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
-    IExecute, 
-    IRequest, 
+    ExecuteContract, 
+    RequestContract, 
     ACTIVATE_USER
 } from "../../../Api/Request";
 
 export const ACTIVATE = "ACTIVATE_ACCOUNT";
 export const CLEAR = "ACTIVATE_ACCOUNT_CLEAR";
 export const RESPONSE = "ACTIVATE_ACCOUNT_RESPONSE";
-interface IActivate { type: typeof ACTIVATE }
-interface IClear { type: typeof CLEAR }
-interface IResponse { type: typeof RESPONSE; payload: any; }
-export type TKnownActions = IActivate | IClear | IResponse;
+interface Activate { type: typeof ACTIVATE }
+interface Clear { type: typeof CLEAR }
+interface Response { type: typeof RESPONSE; payload: any; }
+export type TKnownActions = Activate | Clear | Response;
 
 export const UserActivateAction = 
 {
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) =>
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
     {
         dispatch({ type: CLEAR });
     },
-    activate: (payload: IActivateUserDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    activate: (payload: ActivateUserDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: ACTIVATE });
 
-        const request: IRequest = {
+        const request: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: ACTIVATE_USER, 
@@ -34,7 +34,7 @@ export const UserActivateAction =
             }
         }
     
-        const input: IExecute = {
+        const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
             responseType: RESPONSE

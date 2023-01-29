@@ -1,4 +1,4 @@
-export interface IUserSignupContentDto
+export interface UserSignupContentDto
 {
     content: 
     {

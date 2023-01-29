@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Container } from "@material-ui/core";
-import { IApplicationState } from "../../Store/Configuration";
+import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
 import { Navigation, Footer } from "../../Components/Layout";
 
@@ -35,10 +35,10 @@ export const ActivationPage = (): JSX.Element =>
     const dispatch = useDispatch();
     const id = queryParam.get("id");
 
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
-    const activation = useSelector((state: IApplicationState) => state.contentActivateAccount);
-    const navigation = useSelector((state: IApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: IApplicationState) => state.contentFooter);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const activation = useSelector((state: ApplicationState) => state.contentActivateAccount);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const footer = useSelector((state: ApplicationState) => state.contentFooter);
 
     React.useEffect(() => 
     {

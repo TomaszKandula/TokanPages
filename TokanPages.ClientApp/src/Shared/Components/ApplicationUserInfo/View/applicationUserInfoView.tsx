@@ -12,15 +12,15 @@ import Box from "@material-ui/core/Box";
 import { green } from "@material-ui/core/colors";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { IAuthenticateUserResultDto, IUserPermissionDto, IUserRoleDto } from "../../../../Api/Models";
+import { AuthenticateUserResultDto, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
 import { v4 as uuidv4 } from "uuid";
 
-interface IProperties
+interface Properties
 {
     state: boolean;
-    data: IAuthenticateUserResultDto;
+    data: AuthenticateUserResultDto;
     closeHandler: any;
 }
 
@@ -38,7 +38,7 @@ const Items = (props: { item: string, className: string }): JSX.Element =>
     );
 }
 
-export const ApplicationUserInfoView = (props: IProperties): JSX.Element => 
+export const ApplicationUserInfoView = (props: Properties): JSX.Element => 
 {
     const classes = ApplicationUserInfoStyle();
     const registered = GetDateTime(
@@ -87,7 +87,7 @@ export const ApplicationUserInfoView = (props: IProperties): JSX.Element =>
                     </Typography>
                 </Box>
                 <List dense={true}>
-                {props.data.roles?.map((item: IUserRoleDto, _index: number) => 
+                {props.data.roles?.map((item: UserRoleDto, _index: number) => 
                 (
                     <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}
@@ -98,7 +98,7 @@ export const ApplicationUserInfoView = (props: IProperties): JSX.Element =>
                     </Typography>
                 </Box>                
                 <List dense={true}>
-                {props.data.permissions?.map((item: IUserPermissionDto, _index: number) => 
+                {props.data.permissions?.map((item: UserPermissionDto, _index: number) => 
                 (
                     <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                 ))}

@@ -3,15 +3,15 @@ import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { ScrollToTopStyle } from "./scrollToTopStyle";
 
-export interface IScrollTop 
+export interface Properties 
 {
     children: React.ReactElement;
 }
 
-export const ScrollToTop = (props: IScrollTop): JSX.Element =>
+export const ScrollToTop = (props: Properties): JSX.Element =>
 {
     const classes = ScrollToTopStyle();
-    const trigger = useScrollTrigger(
+    const hasTrigger = useScrollTrigger(
     {
         disableHysteresis: true,
         threshold: 100
@@ -33,7 +33,7 @@ export const ScrollToTop = (props: IScrollTop): JSX.Element =>
     };
   
     return (
-        <Zoom in={trigger}>
+        <Zoom in={hasTrigger}>
             <div onClick={handleClick} role="presentation" className={classes.scrollToTop}>
                 {props.children}
             </div>

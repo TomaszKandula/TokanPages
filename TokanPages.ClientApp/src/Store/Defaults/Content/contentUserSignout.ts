@@ -1,6 +1,6 @@
-import { IContentUserSignout } from "../../States";
+import { ContentUserSignoutState } from "../../States";
 
-export const ContentUserSignout: IContentUserSignout = 
+export const ContentUserSignout: ContentUserSignoutState = 
 {
     isLoading: false,
     content: 

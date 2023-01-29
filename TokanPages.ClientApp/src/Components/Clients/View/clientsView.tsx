@@ -1,13 +1,13 @@
 import * as React from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Box, Container, Typography } from "@material-ui/core";
-import { IContentClients } from "../../../Store/States";
+import { ContentClientsState } from "../../../Store/States";
 import { GET_ICONS_URL } from "../../../Api/Request";
 import { ClientsStyle } from "./clientsStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-const RenderCaption = (props: IContentClients): JSX.Element | null => 
+const RenderCaption = (props: ContentClientsState): JSX.Element | null => 
 {
     const classes = ClientsStyle();
     if (!Validate.isEmpty(props.content?.caption))
@@ -24,7 +24,7 @@ const RenderCaption = (props: IContentClients): JSX.Element | null =>
     return null;
 }
 
-const RenderImages = (props: IContentClients): JSX.Element => 
+const RenderImages = (props: ContentClientsState): JSX.Element => 
 {
     const classes = ClientsStyle();
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
@@ -37,7 +37,7 @@ const RenderImages = (props: IContentClients): JSX.Element =>
     );
 }
 
-export const ClientsView = (props: IContentClients): JSX.Element => 
+export const ClientsView = (props: ContentClientsState): JSX.Element => 
 {
     const classes = ClientsStyle();
     return(

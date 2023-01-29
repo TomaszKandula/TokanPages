@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_MEDIA } from "../../../Api/Request";
-import { IApplicationState } from "../../../Store/Configuration";
-import { IContentNavigation } from "../../../Store/States";
+import { ApplicationState } from "../../../Store/Configuration";
+import { ContentNavigationState } from "../../../Store/States";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
@@ -13,11 +13,11 @@ import {
     ApplicationLanguageAction 
 } from "../../../Store/Actions";
 
-export const Navigation = (props: IContentNavigation): JSX.Element => 
+export const Navigation = (props: ContentNavigationState): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const store = useSelector((state: IApplicationState) => state.userDataStore);
-    const language = useSelector((state: IApplicationState) => state.applicationLanguage);
+    const store = useSelector((state: ApplicationState) => state.userDataStore);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const avatarSource = GET_USER_MEDIA.replace("{id}", store?.userData?.userId).replace("{name}", store?.userData?.avatarName);
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});

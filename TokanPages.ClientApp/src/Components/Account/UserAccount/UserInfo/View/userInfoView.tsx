@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
-import { IValidateAccountForm } from "../../../../../Shared/Services/FormValidation";
+import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/interfaces";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 
@@ -21,15 +21,15 @@ import {
 } from "@material-ui/core";
 
 import { 
-    IAuthenticateUserResultDto,
-    ISectionAccessDenied, 
-    ISectionAccountInformation, 
+    AuthenticateUserResultDto,
+    SectionAccessDenied, 
+    SectionAccountInformation, 
 } from "../../../../../Api/Models";
 
-interface IProperties extends ViewProperties
+interface Properties extends ViewProperties
 {    
-    userStore: IAuthenticateUserResultDto;
-    accountForm: IValidateAccountForm;
+    userStore: AuthenticateUserResultDto;
+    accountForm: AccountFormInput;
     userImageName: string;
     isUserActivated: boolean;
     accountFormProgress: boolean;
@@ -37,16 +37,16 @@ interface IProperties extends ViewProperties
     accountFormHandler: any;
     accountSwitchHandler: any;
     accountButtonHandler: any;
-    sectionAccessDenied: ISectionAccessDenied;
-    sectionAccountInformation: ISectionAccountInformation;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountInformation: SectionAccountInformation;
 }
 
-interface IRenderText extends IProperties
+interface RenderText extends Properties
 {
     value: string;
 }
 
-const UpdateAccountButton = (props: IProperties): JSX.Element => 
+const UpdateAccountButton = (props: Properties): JSX.Element => 
 {
     const classes = UserInfoStyle();
     return(
@@ -74,7 +74,7 @@ const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.E
     );
 }
 
-const RenderText = (props: IRenderText): JSX.Element => 
+const RenderText = (props: RenderText): JSX.Element => 
 {
     return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
 }
@@ -89,7 +89,7 @@ const ReturnFileName = (value: string): string =>
     return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
 }
 
-export const UserInfoView = (props: IProperties): JSX.Element => 
+export const UserInfoView = (props: Properties): JSX.Element => 
 {
     const classes = UserInfoStyle();
     return(

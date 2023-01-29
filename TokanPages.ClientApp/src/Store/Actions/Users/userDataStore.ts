@@ -1,25 +1,25 @@
-import { IAuthenticateUserResultDto } from "../../../Api/Models";
-import { IApplicationAction } from "../../Configuration";
+import { AuthenticateUserResultDto } from "../../../Api/Models";
+import { ApplicationAction } from "../../Configuration";
 
 export const SHOW = "SHOW_USERDATA";
 export const CLEAR = "CLEAR_USERDATA";
 export const UPDATE = "UPDATE_USERDATA";
-interface IShow { type: typeof SHOW, payload: boolean }
-interface IClear { type: typeof CLEAR }
-interface IUpdate { type: typeof UPDATE, payload: IAuthenticateUserResultDto }
-export type TKnownActions = IShow | IClear | IUpdate;
+interface Show { type: typeof SHOW, payload: boolean }
+interface Clear { type: typeof CLEAR }
+interface Update { type: typeof UPDATE, payload: AuthenticateUserResultDto }
+export type TKnownActions = Show | Clear | Update;
 
 export const UserDataStoreAction = 
 {
-    show: (isShown: boolean): IApplicationAction<TKnownActions> => (dispatch) => 
+    show: (isShown: boolean): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: SHOW, payload: isShown });
     },
-    clear: (): IApplicationAction<TKnownActions> => (dispatch) => 
+    clear: (): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: CLEAR });
     },
-    update: (userData: IAuthenticateUserResultDto): IApplicationAction<TKnownActions> => (dispatch) => 
+    update: (userData: AuthenticateUserResultDto): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: UPDATE, payload: userData });
     }

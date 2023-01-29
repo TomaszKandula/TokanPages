@@ -1,7 +1,7 @@
-import { IAuthenticateUserResultDto } from "../../../Api/Models";
+import { AuthenticateUserResultDto } from "../../../Api/Models";
 
-export interface IUserDataStore
+export interface UserDataStoreState
 {
     isShown: boolean;
-    userData: IAuthenticateUserResultDto;
+    userData: AuthenticateUserResultDto;
 }

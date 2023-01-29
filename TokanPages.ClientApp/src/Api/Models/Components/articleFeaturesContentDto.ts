@@ -1,6 +1,6 @@
-import { ILink } from "./Common/link";
+import { LinkDto } from "./Common/linkDto";
 
-export interface IArticleFeaturesContentDto
+export interface ArticleFeaturesContentDto
 {
     content: 
     {
@@ -9,7 +9,7 @@ export interface IArticleFeaturesContentDto
         description: string;
         text1: string;
         text2: string;
-        action: ILink;
+        action: LinkDto;
         image1: string;
         image2: string;
         image3: string;

@@ -1,7 +1,7 @@
-import { IFields } from "../Fields";
-import { ISubitem } from "../Subitem";
+import { Fields } from "../Fields";
+import { Subitem } from "../Subitem";
 
-export interface IItem extends IFields
+export interface Item extends Fields
 {
-    subitems?: ISubitem[];
+    subitems?: Subitem[];
 }

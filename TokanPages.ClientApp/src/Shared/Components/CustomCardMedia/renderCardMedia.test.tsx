@@ -5,14 +5,14 @@ import { RenderCardMedia } from "./customCardMedia";
 
 describe("Test rendering 'Custom Card Media' component.", () => 
 {
-    interface IProperties 
+    interface Properties 
     {
         basePath: string; 
         imageSource: string; 
         className: string;
     }
 
-    const TestComponent = (props: IProperties): JSX.Element => 
+    const TestComponent = (props: Properties): JSX.Element => 
     {
         return RenderCardMedia(props.basePath, props.imageSource, props.className);
     }
