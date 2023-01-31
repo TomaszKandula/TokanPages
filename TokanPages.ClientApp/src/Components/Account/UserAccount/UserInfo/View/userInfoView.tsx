@@ -8,6 +8,7 @@ import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/interfaces";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 
 import { 
@@ -33,10 +34,10 @@ interface Properties extends ViewProperties
     userImageName: string;
     isUserActivated: boolean;
     accountFormProgress: boolean;
-    accountKeyHandler: any;
-    accountFormHandler: any;
-    accountSwitchHandler: any;
-    accountButtonHandler: any;
+    accountKeyHandler: (event: ReactKeyboardEvent) => void;
+    accountFormHandler: (event: ReactChangeEvent) => void;
+    accountSwitchHandler: (event: ReactChangeEvent) => void;
+    accountButtonHandler: () => void;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
 }

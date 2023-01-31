@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentUserSigninState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UserSigninView } from "./View/userSigninView";
 import Validate from "validate.js";
 
@@ -89,7 +90,7 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const keyHandler = (event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
@@ -97,7 +98,7 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
         }
     }
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = (event: ReactChangeEvent) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
     }

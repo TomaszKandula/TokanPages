@@ -9,6 +9,7 @@ import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
 import { ReadTime } from "./Helpers/readTime";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
+import { ReactMouseEvent } from "../../../Shared/types";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
@@ -111,7 +112,7 @@ export const ArticleDetail = (props: ArticleDetail): JSX.Element =>
         history.push("/articles");
     };
 
-    const openPopoverHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
+    const openPopoverHandler = (event: ReactMouseEvent) => 
     { 
         setPopover(event.currentTarget); 
     };

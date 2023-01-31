@@ -12,6 +12,7 @@ import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
 import { ViewProperties } from "../../../../Shared/interfaces";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserSignupStyle } from "./userSignupStyle";
 
 interface Properties extends ViewProperties
@@ -20,9 +21,9 @@ interface Properties extends ViewProperties
     consent: string;
     button: string;
     link: string;
-    buttonHandler: any;
-    keyHandler: any;
-    formHandler: any;
+    buttonHandler: () => void;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
     progress: boolean;
     firstName: string;
     lastName: string;

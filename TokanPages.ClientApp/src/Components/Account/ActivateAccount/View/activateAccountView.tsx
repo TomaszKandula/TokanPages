@@ -14,7 +14,7 @@ interface Properties extends ViewProperties
     caption: string;
     text1: string;
     text2: string;
-    buttonHandler: any;
+    buttonHandler: () => void;
     buttonDisabled: boolean;
     progress: boolean;
     buttonText: string;

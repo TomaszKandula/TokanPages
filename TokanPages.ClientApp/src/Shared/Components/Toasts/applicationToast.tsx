@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Slide, SlideProps } from "@material-ui/core";
+import { ReactSyntheticEvent } from "../../../Shared/types";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ApplicationErrorAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
@@ -20,7 +21,10 @@ const ToastState: Properties =
     errorMessage: ""    
 }
 
-const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => <Slide {...props} direction="left" />;
+const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => 
+{
+    return <Slide {...props} direction="left" />;
+}
 
 // TODO: remove component state
 export const ApplicationToast = (): JSX.Element => 
@@ -61,7 +65,7 @@ export const ApplicationToast = (): JSX.Element =>
     React.useEffect(() => raiseError(), [ raiseError ]);
     React.useEffect(() => clearError(), [ clearError ]);
 
-    const closeEventHandler = (event?: React.SyntheticEvent, reason?: string) => 
+    const closeEventHandler = (event?: ReactSyntheticEvent, reason?: string) => 
     {
         if (event === undefined) return; 
         if (reason === "clickaway") return;

@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../../Shared/interfaces";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserPasswordStyle } from "./userPasswordStyle";
 
 import { 
@@ -27,9 +28,9 @@ interface Properties extends ViewProperties
     newPassword: string;
     confirmPassword: string;
     passwordFormProgress: boolean;
-    passwordKeyHandler: any;
-    passwordFormHandler: any;
-    passwordButtonHandler: any;
+    passwordKeyHandler: (event: ReactKeyboardEvent) => void;
+    passwordFormHandler: (event: ReactChangeEvent) => void;
+    passwordButtonHandler: () => void;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountPassword: SectionAccountPassword;
 }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentUserSignupState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
 
@@ -94,7 +95,7 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const keyHandler = (event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
@@ -102,7 +103,7 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
         }
     }
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = (event: ReactChangeEvent) => 
     {
         if (event.currentTarget.name !== "terms")
         {
