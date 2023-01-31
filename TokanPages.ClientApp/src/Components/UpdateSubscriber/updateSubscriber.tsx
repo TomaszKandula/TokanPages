@@ -87,12 +87,12 @@ export const UpdateSubscriber = (props: Properties): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const formHandler = (event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
-    };
+    }, [ form ]);
 
-    const buttonHandler = () =>
+    const buttonHandler = React.useCallback(() =>
     {
         if (props.id == null) 
             return;
@@ -107,7 +107,7 @@ export const UpdateSubscriber = (props: Properties): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: NEWSLETTER_WARNING }));
-    };
+    }, [ props.id, form ]);
 
     return (<UpdateSubscriberView
         isLoading={props.isLoading}

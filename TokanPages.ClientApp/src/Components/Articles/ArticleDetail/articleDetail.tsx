@@ -91,7 +91,7 @@ export const ArticleDetail = (props: Properties): JSX.Element =>
     }, 
     [ userLikes, isThumbClicked ]);
 
-    const thumbsHandler = () =>
+    const thumbsHandler = React.useCallback(() =>
     {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
         const likesLimitForUser = LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
@@ -104,23 +104,23 @@ export const ArticleDetail = (props: Properties): JSX.Element =>
             setTotalThumbs(totalThumbs + 1);
             setIsThumbsClicked(true);
         }
-    };
+    }, [ selection.article.userLikes, totalThumbs, userLikes, totalLikes, isAnonymous ]);
 
-    const backButtonHandler = () =>
+    const backButtonHandler = React.useCallback(() =>
     {
         dispatch(ArticleSelectionAction.reset());
         history.push("/articles");
-    };
+    }, []);
 
-    const openPopoverHandler = (event: ReactMouseEvent) => 
+    const openPopoverHandler = React.useCallback((event: ReactMouseEvent) => 
     { 
         setPopover(event.currentTarget); 
-    };
+    }, []);
     
-    const closePopoverHandler = () => 
+    const closePopoverHandler = React.useCallback(() => 
     {
         setPopover(null);
-    };
+    }, []);
 
     const smallAvatar = <UserAvatar 
         userId={selection.article.author.userId}

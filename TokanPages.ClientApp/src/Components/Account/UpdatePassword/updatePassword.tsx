@@ -102,20 +102,20 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: ReactKeyboardEvent) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }
+    }, []);
 
-    const formHandler = (event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
-    };
+    }, [ form ]);
 
-    const buttonHandler = () =>
+    const buttonHandler = React.useCallback(() =>
     {
         let results = ValidateUpdateForm(
         { 
@@ -130,7 +130,7 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
         }
 
         showWarning(GetTextWarning({ object: results, template: UPDATE_PASSWORD_WARNING }));
-    };
+    }, [ form ]);
 
     return (
         <UpdatePasswordView

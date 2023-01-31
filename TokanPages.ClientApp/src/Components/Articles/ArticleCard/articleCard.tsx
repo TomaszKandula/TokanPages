@@ -22,11 +22,11 @@ export const ArticleCard = (props: Properties): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onClickEvent = () => 
+    const onClickEvent = React.useCallback(() => 
     {
         dispatch(ArticleSelectionAction.select(props.id));
         history.push(articleUrl);
-    };
+    }, [ props.id, articleUrl ]);
 
     return (<ArticleCardView
         imageUrl={imageUrl}

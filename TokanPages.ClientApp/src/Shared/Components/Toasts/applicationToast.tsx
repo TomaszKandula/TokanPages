@@ -65,12 +65,12 @@ export const ApplicationToast = (): JSX.Element =>
     React.useEffect(() => raiseError(), [ raiseError ]);
     React.useEffect(() => clearError(), [ clearError ]);
 
-    const closeEventHandler = (event?: ReactSyntheticEvent, reason?: string) => 
+    const closeEventHandler = React.useCallback((event?: ReactSyntheticEvent, reason?: string) => 
     {
         if (event === undefined) return; 
         if (reason === "clickaway") return;
         setToastState({ ...toastState, isOpen: false });
-    }
+    }, [ toastState ]);
 
     return (<ApplicationToastView
         anchorOrigin={{ vertical, horizontal }}

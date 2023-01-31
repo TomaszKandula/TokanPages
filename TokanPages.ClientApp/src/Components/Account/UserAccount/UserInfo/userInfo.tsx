@@ -128,25 +128,25 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasMediaUploadFinished ]);
 
-    const accountKeyHandler = (event: ReactKeyboardEvent) => 
+    const accountKeyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             accountButtonHandler();
         }
-    }
+    }, []);
 
-    const accountFormHandler = (event: ReactChangeEvent) => 
+    const accountFormHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setAccountForm({ ...accountForm, [event.currentTarget.name]: event.currentTarget.value }); 
-    };
+    }, [ accountForm ]);
 
-    const accountSwitchHandler = (event: ReactChangeEvent) => 
+    const accountSwitchHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setIsUserActivated({ ...isUserActivated, [event.target.name]: event.target.checked });
-    };
+    }, [ isUserActivated ]);
 
-    const accountButtonHandler = () => 
+    const accountButtonHandler = React.useCallback(() => 
     {
         let validationResult = ValidateAccountForm(accountForm);
         if (!Validate.isDefined(validationResult))
@@ -156,7 +156,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: UPDATE_USER_WARNING }));
-    };
+    }, [ accountForm ]);
 
     return(
         <UserInfoView

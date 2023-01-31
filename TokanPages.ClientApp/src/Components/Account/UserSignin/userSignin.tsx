@@ -90,20 +90,20 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: ReactKeyboardEvent) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }
+    }, []);
 
-    const formHandler = (event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
-    }
+    }, [ form ]);
 
-    const buttonHandler = () => 
+    const buttonHandler = React.useCallback(() => 
     {
         let validationResult = ValidateSigninForm( 
         { 
@@ -118,7 +118,7 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: SIGNIN_WARNING }));
-    };
+    }, [ form ]);
 
     return(
         <UserSigninView

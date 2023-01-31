@@ -55,10 +55,10 @@ export const ApplicationDialogBox = (): JSX.Element =>
     React.useEffect(() => raiseDialog(), [ raiseDialog ]);
     React.useEffect(() => clearDialog(), [ clearDialog ]);
 
-    const onClickHandler = () => 
+    const onClickHandler = React.useCallback(() => 
     {
         setDialogState({ ...dialogState, state: false });
-    };
+    }, [ dialogState ]);
 
     return (<ApplicationDialogBoxView
         state={dialogState.state}

@@ -23,12 +23,12 @@ export const Navigation = (props: ContentNavigationState): JSX.Element =>
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
 
-    const languageHandler = (event: LanguageChangeEvent) => 
+    const languageHandler = React.useCallback((event: LanguageChangeEvent) => 
     {
         const value = event.target.value as string;
         SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
         dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
-    };
+    }, [ language.languages ]);
 
     const toggleDrawer = (open: boolean) => (event: any) => 
     {
@@ -36,11 +36,11 @@ export const Navigation = (props: ContentNavigationState): JSX.Element =>
         setDrawer({ ...drawer, open });
     };
 
-    const onAvatarClick = () => 
+    const onAvatarClick = React.useCallback(() => 
     {
         if (isAnonymous) return;
         dispatch(UserDataStoreAction.show(true));
-    }
+    }, [ isAnonymous ]);
 
     return (<NavigationView
         isLoading={props.isLoading}

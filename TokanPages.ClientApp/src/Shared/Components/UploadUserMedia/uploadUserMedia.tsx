@@ -84,11 +84,11 @@ export const UploadUserMedia = (props: Properties): JSX.Element =>
     }, 
     [ hasError, hasNotStarted, hasFile, hasFinished ]);
 
-    const inputHandler = (event: ReactChangeEvent) =>
+    const inputHandler = React.useCallback((event: ReactChangeEvent) =>
     {
         setFileData(event.target.files ? event.target.files[0] : undefined);
         setIsUploading(true);
-    };
+    }, []);
 
     return(<UploadUserMediaView
         buttonState={!isUploading}
