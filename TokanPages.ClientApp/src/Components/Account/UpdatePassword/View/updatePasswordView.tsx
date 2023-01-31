@@ -9,6 +9,7 @@ import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/interfaces";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UpdatePasswordStyle } from "./updatePasswordStyle";
 
 interface Properties extends ViewProperties
@@ -18,9 +19,9 @@ interface Properties extends ViewProperties
     button: string;
     newPassword: string;
     verifyPassword: string;
-    keyHandler: any;
-    formHandler: any;
-    buttonHandler: any;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
     disableForm: boolean;
     labelNewPassword: string;
     labelVerifyPassword: string;

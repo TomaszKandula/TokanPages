@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_MEDIA } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentNavigationState } from "../../../Store/States";
+import { LanguageChangeEvent } from "../../../Shared/types";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
@@ -22,7 +23,7 @@ export const Navigation = (props: ContentNavigationState): JSX.Element =>
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
 
-    const languageHandler = (event: React.ChangeEvent<{ value: unknown }>) => 
+    const languageHandler = (event: LanguageChangeEvent) => 
     {
         const value = event.target.value as string;
         SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });

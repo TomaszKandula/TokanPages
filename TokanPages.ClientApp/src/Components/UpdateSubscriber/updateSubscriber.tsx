@@ -4,6 +4,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentUpdateSubscriberState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
+import { ReactChangeEvent } from "../../Shared/types";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
 
@@ -86,7 +87,7 @@ export const UpdateSubscriber = (props: Properties): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = (event: ReactChangeEvent) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
     };

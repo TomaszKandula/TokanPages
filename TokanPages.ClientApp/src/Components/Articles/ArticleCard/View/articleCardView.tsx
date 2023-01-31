@@ -12,7 +12,7 @@ interface Properties
     imageUrl: string;
     title: string;
     description: string;
-    onClickEvent: any;
+    onClickEvent: () => void;
     buttonText: string;
 }
 

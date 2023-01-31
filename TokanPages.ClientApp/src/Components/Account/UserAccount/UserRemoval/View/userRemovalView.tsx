@@ -23,7 +23,7 @@ import {
 
 interface Properties extends ViewProperties
 {    
-    deleteButtonHandler: any;
+    deleteButtonHandler: () => void;
     deleteAccountProgress: boolean;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountRemoval: SectionAccountRemoval;

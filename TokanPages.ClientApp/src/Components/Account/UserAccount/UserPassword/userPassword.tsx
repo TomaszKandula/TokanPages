@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
 
@@ -85,7 +86,7 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const passwordKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const passwordKeyHandler = (event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
@@ -93,7 +94,7 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
         }
     }
 
-    const passwordFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const passwordFormHandler = (event: ReactChangeEvent) => 
     {
         setPasswordForm({ ...passwordForm, [event.currentTarget.name]: event.currentTarget.value }); 
     };

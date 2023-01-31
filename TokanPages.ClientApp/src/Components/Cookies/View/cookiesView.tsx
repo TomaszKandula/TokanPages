@@ -16,7 +16,7 @@ interface Properties extends ViewProperties
     shouldShow: boolean;
     caption: string;
     text: string;
-    onClickEvent: any;
+    onClickEvent: () => void;
     buttonText: string;
 }
 

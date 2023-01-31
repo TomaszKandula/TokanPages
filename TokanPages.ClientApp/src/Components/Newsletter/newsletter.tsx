@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ReactChangeEvent } from "../../Shared/types";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentNewsletterState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
@@ -80,7 +81,7 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element =>
         }
     }
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = (event: ReactChangeEvent) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
     };

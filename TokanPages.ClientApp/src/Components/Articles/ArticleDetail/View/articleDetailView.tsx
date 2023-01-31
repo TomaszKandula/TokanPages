@@ -6,14 +6,15 @@ import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
+import { ReactMouseEvent } from "../../../../Shared/types";
 import { ArticleDetailStyle } from "./articleDetailStyle";
 
 interface Properties
 {
-    backButtonHandler: any;
+    backButtonHandler: () => void;
     articleReadCount: number;
-    openPopoverHandler: any;
-    closePopoverHandler: any;
+    openPopoverHandler: (event: ReactMouseEvent) => void;
+    closePopoverHandler: () => void;
     renderSmallAvatar: JSX.Element;
     renderLargeAvatar: JSX.Element;
     authorAliasName: string;

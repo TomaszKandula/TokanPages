@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
 
@@ -127,7 +128,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasMediaUploadFinished ]);
 
-    const accountKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const accountKeyHandler = (event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
@@ -135,12 +136,12 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
         }
     }
 
-    const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const accountFormHandler = (event: ReactChangeEvent) => 
     {
         setAccountForm({ ...accountForm, [event.currentTarget.name]: event.currentTarget.value }); 
     };
 
-    const accountSwitchHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const accountSwitchHandler = (event: ReactChangeEvent) => 
     {
         setIsUserActivated({ ...isUserActivated, [event.target.name]: event.target.checked });
     };

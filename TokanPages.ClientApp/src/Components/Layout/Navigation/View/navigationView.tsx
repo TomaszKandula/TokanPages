@@ -10,6 +10,7 @@ import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { ViewProperties } from "../../../../Shared/interfaces";
+import { LanguageChangeEvent } from "../../../../Shared/types";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
@@ -18,16 +19,16 @@ import Validate from "validate.js";
 interface Properties extends ViewProperties
 {
     drawerState: { open: boolean };
-    openHandler: any;
-    closeHandler: any;
-    infoHandler: any;
+    openHandler: (event: any) => void;
+    closeHandler: (event: any) => void;
+    infoHandler: () => void;
     isAnonymous: boolean;
     avatarName: string;
     avatarSource: string;
     userAliasText: string;
     languages: ApplicationLanguageState;
     languageId: string;
-    languageHandler: any;
+    languageHandler: (event: LanguageChangeEvent) => void;
     menu: { image: string, items: Item[] };
 }
 

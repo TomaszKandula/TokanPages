@@ -8,16 +8,17 @@ import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/interfaces";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { NewsletterStyle } from "./newsletterStyle";
 
 interface Properties extends ViewProperties
 {
     caption: string;
     text: string;
-    keyHandler: any;
-    formHandler: any;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
     email: string;
-    buttonHandler: any;
+    buttonHandler: () => void;
     progress: boolean;
     buttonText: string;
     labelEmail: string;

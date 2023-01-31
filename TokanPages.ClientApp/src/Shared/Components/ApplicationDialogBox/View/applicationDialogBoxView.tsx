@@ -18,7 +18,7 @@ interface Properties
     icon: IconType;
     title: string;
     message: string;
-    closeHandler: any;
+    closeHandler: () => void;
 }
 
 const RenderIcon = (props: Properties): JSX.Element => 

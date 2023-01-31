@@ -10,6 +10,7 @@ import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/interfaces";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserSigninStyle } from "./userSigninStyle";
 
 interface Properties extends ViewProperties
@@ -18,10 +19,10 @@ interface Properties extends ViewProperties
     button: string;
     link1: string;
     link2: string;
-    buttonHandler: any;
+    buttonHandler: () => void;
     progress: boolean;
-    keyHandler: any;
-    formHandler: any;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
     email: string;
     password: string;
     labelEmail: string;

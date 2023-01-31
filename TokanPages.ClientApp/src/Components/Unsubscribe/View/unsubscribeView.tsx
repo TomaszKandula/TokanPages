@@ -14,7 +14,7 @@ interface Properties extends ViewProperties
 {
     contentPre: ContentDto;
     contentPost: ContentDto;
-    buttonHandler: any;
+    buttonHandler: () => void;
     buttonState: boolean;
     progress: boolean;
     isRemoved: boolean;
