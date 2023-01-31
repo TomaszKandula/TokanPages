@@ -27,7 +27,7 @@ import {
     SectionAccountInformation, 
 } from "../../../../../Api/Models";
 
-interface Properties extends ViewProperties
+interface BaseProperties extends ViewProperties
 {    
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
@@ -42,12 +42,37 @@ interface Properties extends ViewProperties
     sectionAccountInformation: SectionAccountInformation;
 }
 
-interface RenderText extends Properties
+interface Properties extends BaseProperties
 {
     value: string;
 }
 
-const UpdateAccountButton = (props: Properties): JSX.Element => 
+const ReturnFileName = (value: string): string => 
+{
+    const maxFileNameLength: number = 8;
+    const fileNameLength = value.length;
+    const fileNameExtension = value.substring(fileNameLength - 3, fileNameLength);
+    const shortFileName = value.substring(0, maxFileNameLength);
+
+    return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
+}
+
+const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.Element => 
+{
+    const classes = UserInfoStyle();
+    return(
+        <Box mt={args.marginTop} mb={args.marginBottom}>
+            <Divider className={classes.divider} />
+        </Box>
+    );
+}
+
+const RenderText = (props: Properties): JSX.Element => 
+{
+    return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
+}
+
+const UpdateAccountButton = (props: BaseProperties): JSX.Element => 
 {
     const classes = UserInfoStyle();
     return(
@@ -65,32 +90,7 @@ const UpdateAccountButton = (props: Properties): JSX.Element =>
     );
 }
 
-const CustomDivider = (args: { marginTop: number, marginBottom: number }): JSX.Element => 
-{
-    const classes = UserInfoStyle();
-    return(
-        <Box mt={args.marginTop} mb={args.marginBottom}>
-            <Divider className={classes.divider} />
-        </Box>
-    );
-}
-
-const RenderText = (props: RenderText): JSX.Element => 
-{
-    return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
-}
-
-const ReturnFileName = (value: string): string => 
-{
-    const maxFileNameLength: number = 8;
-    const fileNameLength = value.length;
-    const fileNameExtension = value.substring(fileNameLength - 3, fileNameLength);
-    const shortFileName = value.substring(0, maxFileNameLength);
-
-    return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
-}
-
-export const UserInfoView = (props: Properties): JSX.Element => 
+export const UserInfoView = (props: BaseProperties): JSX.Element => 
 {
     const classes = UserInfoStyle();
     return(
