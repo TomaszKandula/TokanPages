@@ -73,20 +73,20 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const keyHandler = React.useCallback((event: React.KeyboardEvent<HTMLInputElement>) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }
+    }, []);
 
-    const formHandler = (event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
-    };
-    
-    const buttonHandler = () =>
+    }, [ form ]);
+
+    const buttonHandler = React.useCallback(() =>
     {
         let results = ValidateEmailForm({ email: form.email });
 
@@ -97,7 +97,7 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: results, template: NEWSLETTER_WARNING }));
-    };
+    }, [ form ]);
 
     return (<NewsletterView
         isLoading={props.isLoading}

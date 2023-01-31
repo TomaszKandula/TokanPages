@@ -16,7 +16,7 @@ import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface Properties extends ViewProperties
+interface BaseProperties extends ViewProperties
 {
     drawerState: { open: boolean };
     openHandler: (event: any) => void;
@@ -32,25 +32,14 @@ interface Properties extends ViewProperties
     menu: { image: string, items: Item[] };
 }
 
-interface RenderLanguageSelection extends Properties
+interface Properties extends BaseProperties
 {
     styleControl?: string; 
     styleSelect?: string; 
     styleMenu?: string;
 }
 
-const RenderMenuIcon = (props: Properties): JSX.Element => 
-{
-    const classes = NavigationStyle();
-    return(
-        <IconButton color="inherit" aria-label="menu" 
-            onClick={props.openHandler} className={classes.nav_icon}>
-            <MenuIcon />
-        </IconButton>
-    );
-}
-
-const RenderAvatar = (props: Properties): JSX.Element => 
+const RenderAvatar = (props: BaseProperties): JSX.Element => 
 {
     if (props.isAnonymous)
     {
@@ -66,22 +55,7 @@ const RenderAvatar = (props: Properties): JSX.Element =>
     return(<Avatar alt="Avatar" src={props.avatarSource} />);
 }
 
-const RenderLanguageSelection = (props: RenderLanguageSelection): JSX.Element => 
-{
-    return(
-        <FormControl className={props.styleControl}>
-            <Select value={props.languageId} onChange={props.languageHandler} disableUnderline className={props.styleSelect}>
-                {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
-                    <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
-                        {item.name}
-                    </MenuItem>
-                ))}
-            </Select>
-        </FormControl>
-    );
-}
-
-const RenderContent = (props: Properties): JSX.Element => 
+const RenderContent = (props: BaseProperties): JSX.Element => 
 {
     const classes = NavigationStyle();
     return(
@@ -99,6 +73,32 @@ const RenderContent = (props: Properties): JSX.Element =>
                 </IconButton>
             </div>
         </>
+    );
+}
+
+const RenderMenuIcon = (props: Properties): JSX.Element => 
+{
+    const classes = NavigationStyle();
+    return(
+        <IconButton color="inherit" aria-label="menu" 
+            onClick={props.openHandler} className={classes.nav_icon}>
+            <MenuIcon />
+        </IconButton>
+    );
+}
+
+const RenderLanguageSelection = (props: Properties): JSX.Element => 
+{
+    return(
+        <FormControl className={props.styleControl}>
+            <Select value={props.languageId} onChange={props.languageHandler} disableUnderline className={props.styleSelect}>
+                {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
+                    <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
+                        {item.name}
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
     );
 }
 

@@ -73,13 +73,13 @@ export const UserRemoval = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const deleteButtonHandler = () => 
+    const deleteButtonHandler = React.useCallback(() => 
     {
         if (!hasProgress) 
         {
             setHasProgress(true);
         }
-    };
+    }, [ hasProgress ]);
 
     return(
         <UserRemovalView

@@ -86,20 +86,20 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const passwordKeyHandler = (event: ReactKeyboardEvent) => 
+    const passwordKeyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             passwordButtonHandler();
         }
-    }
+    }, []);
 
-    const passwordFormHandler = (event: ReactChangeEvent) => 
+    const passwordFormHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setPasswordForm({ ...passwordForm, [event.currentTarget.name]: event.currentTarget.value }); 
-    };
+    }, [ passwordForm ]);
 
-    const passwordButtonHandler = () => 
+    const passwordButtonHandler = React.useCallback(() => 
     {
         let validationResult = ValidatePasswordForm(passwordForm);
         if (!Validate.isDefined(validationResult))
@@ -109,7 +109,7 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
         }
     
         showWarning(GetTextWarning({ object: validationResult, template: UPDATE_USER_WARNING }));
-    };
+    }, [ passwordForm ]);
 
     return(
         <UserPasswordView

@@ -95,15 +95,15 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: ReactKeyboardEvent) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }
+    }, []);
 
-    const formHandler = (event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         if (event.currentTarget.name !== "terms")
         {
@@ -112,9 +112,9 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
         }
 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
-    };
+    }, [ form ]);
 
-    const buttonHandler = () => 
+    const buttonHandler = React.useCallback(() => 
     {
         let validationResult = ValidateSignupForm( 
         { 
@@ -132,7 +132,7 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: SIGNUP_WARNING }));
-    };
+    }, [ form ]);
 
     return (<UserSignupView
         isLoading={props.isLoading}

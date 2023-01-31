@@ -74,7 +74,7 @@ export const ActivateAccount = (props: Properties): JSX.Element =>
     [ content.type, props.id, hasProgress, isRequested, 
     hasError, hasNotStarted, hasFinished ]);
  
-    const buttonHandler = () =>
+    const buttonHandler = React.useCallback(() =>
     {
         if (content.type === "Error")
         {
@@ -89,7 +89,7 @@ export const ActivateAccount = (props: Properties): JSX.Element =>
         {
             history.push("/");
         }
-    };
+    }, [ content.type ]);
 
     return (<ActivateAccountView 
         isLoading={props.isLoading}
