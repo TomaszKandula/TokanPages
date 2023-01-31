@@ -18,12 +18,12 @@ import {
     LIKES_LIMIT_FOR_USER 
 } from "../../../Shared/constants";
 
-interface ArticleDetail
+interface Properties
 {
     id: string;
 }
 
-export const ArticleDetail = (props: ArticleDetail): JSX.Element =>
+export const ArticleDetail = (props: Properties): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
