@@ -13,6 +13,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSignupStyle } from "./userSignupStyle";
 
 interface Properties extends ViewProperties
@@ -129,18 +130,13 @@ export const UserSignupView = (props: Properties): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" />
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="password" 
-                                            name="password" 
-                                            variant="outlined" 
-                                            type="password" 
-                                            autoComplete="current-password"
-                                            onKeyUp={props.keyHandler}
-                                            onChange={props.formHandler} 
+                                        : <TextFiedWithPassword 
+                                            uuid="password" 
+                                            fullWidth={true}
                                             value={props.password} 
                                             label={props.labelPassword}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12}>

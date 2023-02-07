@@ -6,6 +6,7 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../../Shared/interfaces";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { TextFiedWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordStyle } from "./userPasswordStyle";
 
 import { 
@@ -13,7 +14,6 @@ import {
     CircularProgress, 
     Divider, 
     Grid, 
-    TextField, 
     Typography
 } from "@material-ui/core";
 
@@ -89,21 +89,19 @@ export const UserPasswordView = (props: Properties): JSX.Element =>
                                             : props.sectionAccountPassword?.labelOldPassword}
                                         </Typography>
                                     </Grid>
+
                                     <Grid item xs={12} sm={9}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="oldPassword" 
-                                            name="oldPassword" 
-                                            variant="outlined" 
-                                            type="password"
+                                        : <TextFiedWithPassword 
+                                            uuid="oldPassword"
+                                            fullWidth={true}
                                             value={props.oldPassword}
                                             onKeyUp={props.passwordKeyHandler}
-                                            onChange={props.passwordFormHandler} 
+                                            onChange={props.passwordFormHandler}
                                         />}
                                     </Grid>
+
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className={classes.label}>
                                             {props.isLoading 
@@ -114,13 +112,9 @@ export const UserPasswordView = (props: Properties): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="newPassword" 
-                                            name="newPassword" 
-                                            variant="outlined" 
-                                            type="password"
+                                        : <TextFiedWithPassword 
+                                            uuid="newPassword"
+                                            fullWidth={true}
                                             value={props.newPassword}
                                             onKeyUp={props.passwordKeyHandler}
                                             onChange={props.passwordFormHandler} 
@@ -136,13 +130,9 @@ export const UserPasswordView = (props: Properties): JSX.Element =>
                                     <Grid item xs={12} sm={9}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="40px" />
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="confirmPassword" 
-                                            name="confirmPassword" 
-                                            variant="outlined" 
-                                            type="password"
+                                        : <TextFiedWithPassword 
+                                            uuid="confirmPassword"
+                                            fullWidth={true}
                                             value={props.confirmPassword}
                                             onKeyUp={props.passwordKeyHandler}
                                             onChange={props.passwordFormHandler} 
