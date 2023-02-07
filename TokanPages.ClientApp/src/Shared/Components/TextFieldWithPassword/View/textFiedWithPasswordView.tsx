@@ -19,6 +19,7 @@ import {
 interface Properties {
     uuid: string;
     fullWidth?: boolean;
+    disabled?: boolean;
     inputValue: string;
     inputLabel: string;
     showPassword: boolean;
@@ -45,6 +46,7 @@ export const TextFiedWithPasswordView = (props: Properties): JSX.Element =>
                 value={props.inputValue}
                 onKeyUp={props.onKeyUpHandler}
                 onChange={props.onChangeHandler}
+                disabled={props.disabled}
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton
