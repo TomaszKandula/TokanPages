@@ -9,6 +9,7 @@ export const ContentUserSignup: ContentUserSignupState =
         caption: "",
         button: "",
         link: "",
+        warning: "",
         consent: "",
         labelFirstName: "",
         labelLastName: "",

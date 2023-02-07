@@ -137,6 +137,7 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
     return (<UserSignupView
         isLoading={props.isLoading}
         caption={props.content.caption}
+        warning={props.content.warning}
         consent={props.content.consent}
         button={props.content.button}
         link={props.content.link}
