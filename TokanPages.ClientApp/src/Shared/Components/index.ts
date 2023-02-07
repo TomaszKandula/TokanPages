@@ -10,3 +10,4 @@ export { ScrollToTop, HideOnScroll, ProgressOnScroll } from "./Scroll";
 export { ApplicationToast } from "./Toasts/applicationToast";
 export { UserAvatar } from "./UserAvatar";
 export { UploadUserMedia } from "./UploadUserMedia";
+export { TextFiedWithPassword } from "./TextFieldWithPassword";
