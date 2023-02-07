@@ -37,6 +37,7 @@ export const TextFiedWithPasswordView = (props: Properties): JSX.Element =>
             <FormControl 
                 fullWidth={props.fullWidth}
                 className={classes.textField}
+                variant="outlined"
             >
             <InputLabel htmlFor={props.uuid}>{props.inputLabel}</InputLabel>
             <OutlinedInput
@@ -47,12 +48,14 @@ export const TextFiedWithPasswordView = (props: Properties): JSX.Element =>
                 onKeyUp={props.onKeyUpHandler}
                 onChange={props.onChangeHandler}
                 disabled={props.disabled}
+                labelWidth={70}
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton
                             aria-label="toggle password visibility"
                             onClick={props.iconOnClickHandler}
-                            onMouseDown={props.iconOnMouseDownHandler}>
+                            onMouseDown={props.iconOnMouseDownHandler}
+                            edge="end">
                             {props.showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
