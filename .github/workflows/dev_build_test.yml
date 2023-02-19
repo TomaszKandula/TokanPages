@@ -52,6 +52,24 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: SonarQube begin scan dotnet
+      run: |
+        dotnet tool install --global dotnet-sonarscanner
+        dotnet tool update dotnet-reportgenerator-globaltool -g
+        dotnet sonarscanner begin \
+        /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
+        /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
+        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
+        /d:sonar.coverageReportPaths="${{ env.TARGET_DIRECTORY }}/${{ env.SONAR_REPORT }}"
+
     - name: Log to Azure Cloud
       uses: Azure/login@v1
       with:
@@ -105,24 +123,6 @@ jobs:
         Limit_Activation_Maturity: "${{ steps.vault.outputs.TestLimitsActivationMaturity }}"
         Limit_Likes_Anonymous: "${{ steps.vault.outputs.TestLimitsLikesAnonymous }}"
         Limit_Likes_User: "${{ steps.vault.outputs.TestLimitsLikesUser }}"
-
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '6.0.x'
-
-    - name: Install dependencies
-      run: dotnet restore
-
-    - name: SonarQube begin scan dotnet
-      run: |
-        dotnet tool install --global dotnet-sonarscanner
-        dotnet tool update dotnet-reportgenerator-globaltool -g
-        dotnet sonarscanner begin \
-        /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
-        /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
-        /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
-        /d:sonar.coverageReportPaths="${{ env.TARGET_DIRECTORY }}/${{ env.SONAR_REPORT }}"
 
     - name: Build .NET
       run: dotnet build
