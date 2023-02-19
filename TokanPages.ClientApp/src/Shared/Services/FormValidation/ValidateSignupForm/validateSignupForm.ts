@@ -70,54 +70,30 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
 
     if (!HaveSpecialCharacter(props.password))
     {
-        result = { 
-            ...result,
-            password: result === undefined || result["password"] === undefined ? [
-                PASSWORD_MISSING_CHAR
-            ] : [
-                ...result.password, 
-                PASSWORD_MISSING_CHAR
-            ]
-        }
+        const hasWarning = result !== undefined || result["password"] !== undefined;
+        const data = hasWarning ? [...result.password, PASSWORD_MISSING_CHAR] : [PASSWORD_MISSING_CHAR];
+        result = { ...result, password: data }
     }
 
     if (!ContainNumber(props.password))
     {
-        result = { 
-            ...result,
-            password: result === undefined || result["password"] === undefined ? [
-                PASSWORD_MISSING_NUMBER
-            ] : [
-                ...result.password, 
-                PASSWORD_MISSING_NUMBER
-            ]
-        }
+        const hasWarning = result !== undefined || result["password"] !== undefined;
+        const data = hasWarning ? [...result.password, PASSWORD_MISSING_NUMBER] : [PASSWORD_MISSING_NUMBER];
+        result = { ...result, password: data }
     }
 
     if (!HaveLargeLetter(props.password))
     {
-        result = { 
-            ...result,
-            password: result === undefined || result["password"] === undefined ? [
-                PASSWORD_MISSING_LARGE_LETTER
-            ] : [
-                ...result.password, 
-                PASSWORD_MISSING_LARGE_LETTER
-            ]
-        }
+        const hasWarning = result !== undefined || result["password"] !== undefined;
+        const data = hasWarning ? [...result.password, PASSWORD_MISSING_LARGE_LETTER] : [PASSWORD_MISSING_LARGE_LETTER];
+        result = { ...result, password: data }
     }
 
     if (!HaveSmallLetter(props.password))
     {
-        result = { 
-            ...result,
-            password: result === undefined || result["password"] === undefined ? [
-                PASSWORD_MISSING_SMALL_LETTER
-            ] : [
-                ...result.password, 
-                PASSWORD_MISSING_SMALL_LETTER
-            ]
-        }
+        const hasWarning = result !== undefined || result["password"] !== undefined;
+        const data = hasWarning ? [...result.password, PASSWORD_MISSING_SMALL_LETTER] : [PASSWORD_MISSING_SMALL_LETTER];
+        result = { ...result, password: data }
     }
 
     return result;
