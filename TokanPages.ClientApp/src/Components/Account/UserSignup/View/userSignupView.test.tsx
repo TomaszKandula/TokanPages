@@ -10,6 +10,7 @@ describe("Test account group component: userSignupView.", () =>
         const tree = shallow(<UserSignupView
             isLoading={false}
             caption="Create a new account"
+            warning="Please use..."
             consent="I agree to the terms of use and privacy policy."
             button="Sign up"
             link="Already have an account? Sign in"

@@ -106,6 +106,18 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                 item={true}
                 xs={12}
               >
+                <WithStyles(ForwardRef(Alert))
+                  severity="warning"
+                >
+                  <ReactHtmlParser
+                    html="Please use..."
+                  />
+                </WithStyles(ForwardRef(Alert))>
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
                 <WithStyles(ForwardRef(FormControlLabel))
                   control={
                     <WithStyles(Component)
@@ -141,6 +153,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                 password="madrilena123"
                 progress={false}
                 terms={false}
+                warning="Please use..."
               />
             </Styled(MuiBox)>
             <Styled(MuiBox)

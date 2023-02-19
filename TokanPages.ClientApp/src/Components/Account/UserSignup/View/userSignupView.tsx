@@ -9,16 +9,19 @@ import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
+import { Alert } from "@material-ui/lab";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
 import { ViewProperties } from "../../../../Shared/interfaces";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupStyle } from "./userSignupStyle";
 
 interface Properties extends ViewProperties
 {
     caption: string;
+    warning: string;
     consent: string;
     button: string;
     link: string;
@@ -138,6 +141,13 @@ export const UserSignupView = (props: Properties): JSX.Element =>
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler} 
                                         />}
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        {props.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" />
+                                        : <Alert severity="warning">
+                                            <ReactHtmlParser html={props.warning}/>
+                                        </Alert>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         {props.isLoading 

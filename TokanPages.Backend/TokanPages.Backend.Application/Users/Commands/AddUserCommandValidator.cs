@@ -35,8 +35,68 @@ public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED)
-            .MaximumLength(255)
+            .MinimumLength(8)
+            .WithErrorCode(nameof(ValidationCodes.PASSWORD_TOO_SHORT))
+            .WithMessage(ValidationCodes.PASSWORD_TOO_SHORT)
+            .MaximumLength(50)
             .WithErrorCode(nameof(ValidationCodes.PASSWORD_TOO_LONG))
-            .WithMessage(ValidationCodes.PASSWORD_TOO_LONG);
+            .WithMessage(ValidationCodes.PASSWORD_TOO_LONG)
+            .Must(HaveSpecialCharacter)
+            .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_CHAR))
+            .WithMessage(ValidationCodes.PASSWORD_MISSING_CHAR)
+            .Must(ContainNumber)
+            .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_NUMBER))
+            .WithMessage(ValidationCodes.PASSWORD_MISSING_NUMBER)
+            .Must(HaveLargeLetter)
+            .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER))
+            .WithMessage(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER)
+            .Must(HaveSmallLetter)
+            .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER))
+            .WithMessage(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER);
+    }
+
+    private static bool HaveSpecialCharacter(string value)
+    {
+        var characters = new [] { '!', '@', '#', '$', '%', '^', '&', '*' };
+        foreach (var character in value)
+        {
+            if (characters.Contains(character)) 
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool ContainNumber(string value)
+    {
+        foreach (var character in value)
+        {
+            if (character >= 48 && character <= 57)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool HaveLargeLetter(string value)
+    {
+        foreach (var character in value)
+        {
+            if (character >= 65 && character <= 90)
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool HaveSmallLetter(string value)
+    {
+        foreach (var character in value)
+        {
+            if (character >= 97 && character <= 122)
+                return true;
+        }
+
+        return false;
     }
 }

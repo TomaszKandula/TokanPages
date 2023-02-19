@@ -1,6 +1,11 @@
 import Validate from "validate.js";
 import { SignupFormInput } from "./interface";
 
+const PASSWORD_MISSING_CHAR = "The user password must contain at least one of the following characters: !, @, #, $, %, ^, &, *";
+const PASSWORD_MISSING_NUMBER = "The user password must contain at least one number";
+const PASSWORD_MISSING_LARGE_LETTER = "The user password must contain at least one large letter";
+const PASSWORD_MISSING_SMALL_LETTER = "The user password must contain at least one small letter";
+
 export const ValidateSignupForm = (props: SignupFormInput): any =>
 {
     let constraints =  
@@ -10,8 +15,9 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
             presence: true,
             length: 
             {
-                minimum: 2,
-                message: "must be at least 2 characters"
+                minimum: 1,
+                maximum: 255,
+                message: "must be between 1..255 characters"
             }
         },
         lastName:
@@ -19,8 +25,9 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
             presence: true,
             length: 
             {
-                minimum: 2,
-                message: "must be at least 2 characters"
+                minimum: 1,
+                maximum: 255,
+                message: "must be between 1..255 characters"
             }
         },
         email: 
@@ -36,7 +43,8 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
             length: 
             {
                 minimum: 8,
-                message: "must be at least 8 characters"
+                maximum: 50,
+                message: "must be between 8..50 characters"
             }
         },
         terms:
@@ -50,7 +58,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
         }
     }
 
-    return Validate(
+    let result = Validate(
     {
         firstName: props.firstName,
         lastName: props.lastName,
@@ -59,4 +67,114 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
         terms: props.terms
     }, 
     constraints);
+
+    if (!HaveSpecialCharacter(props.password))
+    {
+        result = { 
+            ...result,
+            password: result === undefined || result["password"] === undefined ? [
+                PASSWORD_MISSING_CHAR
+            ] : [
+                ...result.password, 
+                PASSWORD_MISSING_CHAR
+            ]
+        }
+    }
+
+    if (!ContainNumber(props.password))
+    {
+        result = { 
+            ...result,
+            password: result === undefined || result["password"] === undefined ? [
+                PASSWORD_MISSING_NUMBER
+            ] : [
+                ...result.password, 
+                PASSWORD_MISSING_NUMBER
+            ]
+        }
+    }
+
+    if (!HaveLargeLetter(props.password))
+    {
+        result = { 
+            ...result,
+            password: result === undefined || result["password"] === undefined ? [
+                PASSWORD_MISSING_LARGE_LETTER
+            ] : [
+                ...result.password, 
+                PASSWORD_MISSING_LARGE_LETTER
+            ]
+        }
+    }
+
+    if (!HaveSmallLetter(props.password))
+    {
+        result = { 
+            ...result,
+            password: result === undefined || result["password"] === undefined ? [
+                PASSWORD_MISSING_SMALL_LETTER
+            ] : [
+                ...result.password, 
+                PASSWORD_MISSING_SMALL_LETTER
+            ]
+        }
+    }
+
+    return result;
+}
+
+const HaveSpecialCharacter = (value: string): boolean => 
+{
+    const characters = [ "!", "@", "#", "$", "%", "^", "&", "*" ];
+    for (let index: number = 0; index < value.length; index++) 
+    {
+        if (characters.includes(value[index]))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+const ContainNumber = (value: string): boolean => 
+{
+    for (let index: number = 0; index < value.length; index++) 
+    {
+        let charCode = value.charCodeAt(index);
+        if (charCode >= 48 && charCode <= 57)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+const HaveLargeLetter = (value: string): boolean => 
+{
+    for (let index: number = 0; index < value.length; index++) 
+    {
+        let charCode = value.charCodeAt(index);
+        if (charCode >= 65 && charCode <= 90)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+const HaveSmallLetter = (value: string): boolean => 
+{
+    for (let index: number = 0; index < value.length; index++) 
+    {
+        let charCode = value.charCodeAt(index);
+        if (charCode >= 97 && charCode <= 122)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }

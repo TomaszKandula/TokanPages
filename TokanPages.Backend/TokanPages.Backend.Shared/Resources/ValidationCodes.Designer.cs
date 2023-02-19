@@ -164,5 +164,35 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("NOT_SPECIFIED_MEDIA_TARGET", resourceCulture);
             }
         }
+        
+        public static string PASSWORD_TOO_SHORT {
+            get {
+                return ResourceManager.GetString("PASSWORD_TOO_SHORT", resourceCulture);
+            }
+        }
+        
+        public static string PASSWORD_MISSING_CHAR {
+            get {
+                return ResourceManager.GetString("PASSWORD_MISSING_CHAR", resourceCulture);
+            }
+        }
+        
+        public static string PASSWORD_MISSING_NUMBER {
+            get {
+                return ResourceManager.GetString("PASSWORD_MISSING_NUMBER", resourceCulture);
+            }
+        }
+        
+        public static string PASSWORD_MISSING_SMALL_LETTER {
+            get {
+                return ResourceManager.GetString("PASSWORD_MISSING_SMALL_LETTER", resourceCulture);
+            }
+        }
+        
+        public static string PASSWORD_MISSING_LARGE_LETTER {
+            get {
+                return ResourceManager.GetString("PASSWORD_MISSING_LARGE_LETTER", resourceCulture);
+            }
+        }
     }
 }
