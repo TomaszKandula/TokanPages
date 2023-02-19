@@ -1,10 +1,11 @@
 import Validate from "validate.js";
 import { SignupFormInput } from "./interface";
-
-const PASSWORD_MISSING_CHAR = "The user password must contain at least one of the following characters: !, @, #, $, %, ^, &, *";
-const PASSWORD_MISSING_NUMBER = "The user password must contain at least one number";
-const PASSWORD_MISSING_LARGE_LETTER = "The user password must contain at least one large letter";
-const PASSWORD_MISSING_SMALL_LETTER = "The user password must contain at least one small letter";
+import { 
+    PASSWORD_MISSING_CHAR, 
+    PASSWORD_MISSING_LARGE_LETTER, 
+    PASSWORD_MISSING_NUMBER, 
+    PASSWORD_MISSING_SMALL_LETTER 
+} from "../../../../Shared/constants";
 
 export const ValidateSignupForm = (props: SignupFormInput): any =>
 {
