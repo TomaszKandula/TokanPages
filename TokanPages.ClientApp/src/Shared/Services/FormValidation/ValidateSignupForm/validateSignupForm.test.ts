@@ -11,7 +11,7 @@ describe("Verify validation methods.", () =>
             firstName: "ester",
             lastName: "exposito",
             email: "ester.exposito@gmail.com",
-            password: "ester1990spain",
+            password: "ester1990Spain%",
             terms: true
         }
 

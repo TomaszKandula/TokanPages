@@ -20,5 +20,6 @@ exports[`Test account group component: userSignup. Renders correctly '<UserSignu
   password=""
   progress={false}
   terms={false}
+  warning=""
 />
 `;
