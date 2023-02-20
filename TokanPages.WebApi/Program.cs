@@ -73,6 +73,17 @@ public static class Program
     private static IWebHostBuilder CreateWebHostBuilder(string[] args)
     {
         return WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(builder =>
+            {
+                var appSettingsEnv = $"appsettings.{EnvironmentValue}.json";
+                var configuration = new ConfigurationBuilder()
+                    .AddJsonFile(appSettingsEnv, true, true)
+                    .AddUserSecrets<Startup>(true)
+                    .AddEnvironmentVariables()
+                    .Build();
+
+                builder.AddConfiguration(configuration);
+            })
             .UseStartup<Startup>()
             .UseSerilog();
     }
