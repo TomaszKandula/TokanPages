@@ -1,8 +1,13 @@
 import Validate from "validate.js";
 import { RenderHtmlLine } from "../RenderHtmlLine/renderHtmlLine";
-import { RenderHtmlLinesInput } from "./interface";
 
-export const RenderHtmlLines = (props: RenderHtmlLinesInput): string =>
+interface Properties
+{
+    inputArray: any[];
+    tag: string;
+}
+
+export const RenderHtmlLines = (props: Properties): string =>
 {
     let result: string = "";
     let htmlLine: string = "";

@@ -1,6 +1,11 @@
-import { ObjectToTextInput } from "./interface";
+import { TextObject } from "Shared/Components/RenderContent/Models";
 
-export const ObjectToText = (props: ObjectToTextInput): string | undefined => 
+interface Properties
+{
+    textObject: TextObject | undefined;
+}
+
+export const ObjectToText = (props: Properties): string | undefined => 
 {
     if (props.textObject === undefined) return undefined;
     if (props.textObject.items.length === 0) return undefined;

@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { GetDataFromStorageInput, GetDataFromStorage } from "..";
+import { GetDataFromStorage } from "..";
 
 describe("verify GetDataFromStorage method", () => 
 { 
@@ -17,7 +17,7 @@ describe("verify GetDataFromStorage method", () =>
         });
 
         const expectedObject = { result: 0 }
-        const input: GetDataFromStorageInput = 
+        const input = 
         {
             key: "SomeKey"
         }
@@ -40,7 +40,7 @@ describe("verify GetDataFromStorage method", () =>
         });
 
         const expectedObject = { }
-        const input: GetDataFromStorageInput = 
+        const input = 
         {
             key: "AnotherKey"
         }
@@ -63,7 +63,7 @@ describe("verify GetDataFromStorage method", () =>
         });
 
         const expectedObject = { }
-        const input: GetDataFromStorageInput = 
+        const input = 
         {
             key: "SomeKey"
         }

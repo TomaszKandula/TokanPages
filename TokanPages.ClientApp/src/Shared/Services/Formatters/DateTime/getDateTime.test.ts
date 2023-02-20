@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { GetDateTimeInput, GetDateTime } from "..";
+import { GetDateTime } from "..";
 
 describe("verify GetDateTime method", () => 
 {
@@ -7,7 +7,7 @@ describe("verify GetDateTime method", () =>
     {
         // Arrange
         const expectation: string = "n/a";
-        const input: GetDateTimeInput = 
+        const input = 
         {
             value: "n/a",
             hasTimeVisible: true
@@ -24,7 +24,7 @@ describe("verify GetDateTime method", () =>
     {
         // Arrange
         const expectation: string = "n/a";
-        const input: GetDateTimeInput = 
+        const input = 
         {
             value: "",
             hasTimeVisible: true
@@ -41,7 +41,7 @@ describe("verify GetDateTime method", () =>
     {
         // Arrange
         const expectation: string = "n/a";
-        const input: GetDateTimeInput = 
+        const input = 
         {
             value: " ",
             hasTimeVisible: true
@@ -58,7 +58,7 @@ describe("verify GetDateTime method", () =>
     {
         // Arrange
         const expectation: string = "01/10/2020, 12:15 PM";
-        const input: GetDateTimeInput = 
+        const input = 
         {
             value: "2020-01-10T12:15:15",
             hasTimeVisible: true
@@ -75,7 +75,7 @@ describe("verify GetDateTime method", () =>
     {
         // Arrange
         const expectation: string = "01/10/2020";
-        const input: GetDateTimeInput = 
+        const input = 
         {
             value: "2020-01-10T12:15:15",
             hasTimeVisible: false

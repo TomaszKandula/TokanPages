@@ -1,9 +1,0 @@
-export interface SetCookieInput 
-{
-    cookieName: string, 
-    value: string, 
-    days: number, 
-    sameSite: string, 
-    secure: boolean,
-    exact?: string    
-}

@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import { TextObject } from "Shared/Components/RenderContent/Models";
-import { ObjectToTextInput, ObjectToText } from "..";
+import { ObjectToText } from "..";
 
 describe("verify ObjectToText method", () => 
 {
@@ -22,7 +22,7 @@ describe("verify ObjectToText method", () =>
         }`
 
         const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
-        const input: ObjectToTextInput = 
+        const input = 
         {
             textObject: textObject
         }
@@ -54,7 +54,7 @@ describe("verify ObjectToText method", () =>
         }`
 
         const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
-        const input: ObjectToTextInput = 
+        const input = 
         {
             textObject: textObject
         }
@@ -69,7 +69,7 @@ describe("verify ObjectToText method", () =>
     it("should return undefined, when undefined input provided.", () => 
     {
         // Arrange
-        const input: ObjectToTextInput = 
+        const input = 
         {
             textObject: undefined
         }
@@ -90,7 +90,7 @@ describe("verify ObjectToText method", () =>
         }`
 
         const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
-        const input: ObjectToTextInput = 
+        const input = 
         {
             textObject: textObject
         }

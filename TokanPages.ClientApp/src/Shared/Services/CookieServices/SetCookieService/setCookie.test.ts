@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { SetCookieInput, SetCookie } from "..";
+import { SetCookie } from "..";
 
 describe("verify cookies module functionality", () => 
 {
@@ -18,7 +18,7 @@ describe("verify cookies module functionality", () =>
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict;`;
         const expectedValueSecure = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict; Secure;`;
 
-        const unsecureInput: SetCookieInput = 
+        const unsecureInput = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -28,7 +28,7 @@ describe("verify cookies module functionality", () =>
             exact: newExpiry
         }
 
-        const secureInput: SetCookieInput = 
+        const secureInput = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -58,7 +58,7 @@ describe("verify cookies module functionality", () =>
  
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict;`;
 
-        const input: SetCookieInput = 
+        const input = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -86,7 +86,7 @@ describe("verify cookies module functionality", () =>
  
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=None; Secure;`;
 
-        const unsecureInput: SetCookieInput = 
+        const unsecureInput = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -96,7 +96,7 @@ describe("verify cookies module functionality", () =>
             exact: undefined
         } 
 
-        const secureInput: SetCookieInput =
+        const secureInput =
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -126,7 +126,7 @@ describe("verify cookies module functionality", () =>
         const newExpiry = date.toUTCString();
         const expectedValue = "";
 
-        const input: SetCookieInput = 
+        const input = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 

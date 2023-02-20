@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { RenderHtmlLineInput, RenderHtmlLine } from "..";
+import { RenderHtmlLine } from "..";
 
 describe("verify RenderHtmlLine method", () => 
 { 
@@ -7,7 +7,7 @@ describe("verify RenderHtmlLine method", () =>
     {
         // Arrange
         const expectation: string = "<li>This is test item</li>";
-        const input: RenderHtmlLineInput = 
+        const input = 
         {
             tag: "li",
             text: "This is test item"
@@ -24,7 +24,7 @@ describe("verify RenderHtmlLine method", () =>
     {
         // Arrange
         const expectation = " ";
-        const input: RenderHtmlLineInput = 
+        const input = 
         {
             tag: "li",
             text: undefined

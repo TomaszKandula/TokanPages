@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { PropsToFieldsInput, PropsToFields } from "..";
+import { PropsToFields } from "..";
 
 describe("verify PropsToFields method", () => 
 {
@@ -7,7 +7,7 @@ describe("verify PropsToFields method", () =>
     {
         // Arrange
         const expectation: string[] = ["ValueA", "ValueB"];
-        const input: PropsToFieldsInput  = 
+        const input  = 
         {
             object: 
             {

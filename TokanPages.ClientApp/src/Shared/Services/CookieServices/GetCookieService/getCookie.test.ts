@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { GetCookieInput, GetCookie } from "..";
+import { GetCookie } from "..";
 
 describe("verify cookies module functionality", () => 
  {
@@ -13,7 +13,7 @@ describe("verify cookies module functionality", () =>
     {
         // Arrange
         const expectation = "granted";
-        const cookieName: GetCookieInput = { cookieName: "cookieConsent" };
+        const cookieName = { cookieName: "cookieConsent" };
 
         Object.defineProperty(window.document, "cookie", 
         {

@@ -1,13 +1,12 @@
 import "../../../../setupTests";
-import { GetTextStatusCodeInput, GetTextStatusCode } from "..";
+import { GetTextStatusCode } from "..";
  
 describe("verify GetTextStatusCode method", () => 
 {
     it("should return HTML code, when warning object is provided.", () => 
     {
         // Arrange
-        const input: GetTextStatusCodeInput = 
-        {
+        const input = {
             statusCode: 404
         } 
  

@@ -1,6 +1,10 @@
-import { GetTextErrorInput } from "./interface";
+interface Properties
+{
+    error: string;
+    template: string;
+}
 
-export const GetTextError = (props: GetTextErrorInput): string =>
+export const GetTextError = (props: Properties): string =>
 {
     return props.template.replace("{ERROR}", props.error);
 }

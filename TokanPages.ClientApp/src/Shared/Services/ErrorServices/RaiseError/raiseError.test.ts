@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { RaiseErrorInput, RaiseError } from "..";
+import { RaiseError } from "..";
 
 describe("verify RaiseError method", () => 
 {
@@ -11,7 +11,7 @@ describe("verify RaiseError method", () =>
             console.debug(`Dispatch has been called with: ${args}`);
         }
 
-        const input: RaiseErrorInput = 
+        const input = 
         {
             dispatch: dispatch,
             errorObject: 

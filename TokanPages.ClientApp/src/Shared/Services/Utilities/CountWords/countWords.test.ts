@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { CountWordsInput, CountWords } from "..";
+import { CountWords } from "..";
 
 describe("verify CountWords method", () =>
 {
@@ -7,7 +7,7 @@ describe("verify CountWords method", () =>
     {
         // Arrange
         const expectation: number = 10;
-        const input: CountWordsInput = 
+        const input = 
         {
             inputText: "This is test object  We will use it for testing."
         }
@@ -23,7 +23,7 @@ describe("verify CountWords method", () =>
     {
         // Arrange
         const expectation: number = 0;
-        const input: CountWordsInput = 
+        const input = 
         {
             inputText: undefined
         }

@@ -1,18 +1,21 @@
-import { PropsToFieldsInput, PropsToFields } from "../../../../Shared/Services/Converters";
-import { RenderHtmlLinesInput, RenderHtmlLines } from "../../../../Shared/Services/Renderers";
-import { GetTextWarningInput } from "./interface";
+import { PropsToFields } from "../../../../Shared/Services/Converters";
+import { RenderHtmlLines } from "../../../../Shared/Services/Renderers";
 
-export const GetTextWarning = (props: GetTextWarningInput): string =>
+interface Properties
 {
-    const input: PropsToFieldsInput = 
-    {
+    object: any;
+    template: string;
+}
+
+export const GetTextWarning = (props: Properties): string =>
+{
+    const input = {
         object: props.object
     }
     
     const fields = PropsToFields(input);
 
-    const result: RenderHtmlLinesInput = 
-    {
+    const result = {
         inputArray: fields,
         tag: "li"
     }

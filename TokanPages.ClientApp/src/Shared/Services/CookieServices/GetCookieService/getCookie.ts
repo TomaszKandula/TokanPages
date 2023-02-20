@@ -1,6 +1,9 @@
-import { GetCookieInput } from "./interface";
+interface Properties
+{
+    cookieName: string
+}
 
-export const GetCookie = (props: GetCookieInput): string =>
+export const GetCookie = (props: Properties): string =>
 {
     let cookieName = `${props.cookieName}=`;
     let cookieArray = document.cookie.split(";");

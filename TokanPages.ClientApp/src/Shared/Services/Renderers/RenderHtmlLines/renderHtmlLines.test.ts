@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { RenderHtmlLinesInput, RenderHtmlLines } from "..";
+import { RenderHtmlLines } from "..";
 
 describe("verify RenderHtmlLines method", () => 
 {
@@ -7,7 +7,7 @@ describe("verify RenderHtmlLines method", () =>
     {    
         // Arrange
         const expectation: string = "<il>ValueA</il><il>ValueB</il>";
-        const input: RenderHtmlLinesInput = 
+        const input = 
         {
             inputArray: ["ValueA", "ValueB"],
             tag: "il"

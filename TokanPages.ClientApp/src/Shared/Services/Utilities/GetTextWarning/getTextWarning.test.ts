@@ -1,13 +1,12 @@
 import "../../../../setupTests";
-import { GetTextWarningInput, GetTextWarning } from "..";
+import { GetTextWarning } from "..";
 
 describe("verify GetTextWarning method", () => 
 {
     it("should return HTML code, when warning object is provided.", () => 
     {
         // Arrange
-        const input: GetTextWarningInput = 
-        {
+        const input = {
             object: ["ValueA", "ValueB"],
             template: "<span>Following warning(s) received:</span><ul>{LIST}</ul><span>Please contact IT support.</span>"
         }
