@@ -1,3 +1,28 @@
+# [0.65.0](https://github.com/TomaszKandula/TokanPages/compare/v0.64.0...v0.65.0) (2023-02-20)
+
+
+### Bug Fixes
+
+* add missing environment value ([476614e](https://github.com/TomaszKandula/TokanPages/commit/476614ef4334881470255754ffe79622014099a9))
+* add missing useCallback ([7c22a2d](https://github.com/TomaszKandula/TokanPages/commit/7c22a2d5fddf83d828caf52416ce405202f24152))
+* allow nullable ([140e519](https://github.com/TomaszKandula/TokanPages/commit/140e519567c2aee8c2ed25077dea3cc4b21f274d))
+* remove redundant 'undefined' ([af574af](https://github.com/TomaszKandula/TokanPages/commit/af574afa4048bab8e15edf7d2a72547b278853a8))
+* resolve issue with incorrect interface name ([5f99be6](https://github.com/TomaszKandula/TokanPages/commit/5f99be613db8f683ee712a7b109f8e47f5f1c6c6))
+* resolve issue with interfaces ([8c6d7bb](https://github.com/TomaszKandula/TokanPages/commit/8c6d7bb833fb62fc297be616125d1f81c6214678))
+
+
+### Features
+
+* add disable option ([20411b2](https://github.com/TomaszKandula/TokanPages/commit/20411b2b3f348a0893c4b838d375a7e511bbe617))
+* add text field component with password mask/unmask option ([54a8c86](https://github.com/TomaszKandula/TokanPages/commit/54a8c8660e82565e699d47e1313c27115d6dd41f))
+* add warning prompt for password requirements ([d1f1791](https://github.com/TomaszKandula/TokanPages/commit/d1f1791ef649cf77ebd6a651d7c22775aec0c04b))
+* extend password validation ([b83affa](https://github.com/TomaszKandula/TokanPages/commit/b83affa1ebe278c211c696cbb0570b5d687aac0d))
+* extend password validation ([ce09497](https://github.com/TomaszKandula/TokanPages/commit/ce0949754780232fb99fe78a84ee16c81a78f282))
+* extend password validation for password change form ([ddd2ff3](https://github.com/TomaszKandula/TokanPages/commit/ddd2ff3c6b5edb2e0f4ef5171f5d37e8bfc5fb84))
+* increase password requirements ([a14bb53](https://github.com/TomaszKandula/TokanPages/commit/a14bb5386032f00ef6efc8cfff86edc4f3064448))
+* update component style ([50091a1](https://github.com/TomaszKandula/TokanPages/commit/50091a1d28ab23a4078af5d19931968a357b032e))
+* use 'TextFiedWithPassword' component ([c635ffd](https://github.com/TomaszKandula/TokanPages/commit/c635ffd477b5ad532bb87006ceb973ad60f342ec))
+
 # [0.64.0](https://github.com/TomaszKandula/TokanPages/compare/v0.63.1...v0.64.0) (2023-01-29)
 
 
