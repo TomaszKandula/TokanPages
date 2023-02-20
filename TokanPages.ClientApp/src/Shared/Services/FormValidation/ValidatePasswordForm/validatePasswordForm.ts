@@ -2,7 +2,7 @@ import Validate from "validate.js";
 import { PasswordFormInput } from "./interface";
 import { 
     ContainNumber, 
-    HasWarning, 
+    HasProperty, 
     HaveLargeLetter, 
     HaveSmallLetter, 
     HaveSpecialCharacter 
@@ -61,25 +61,25 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any =>
 
     if (!HaveSpecialCharacter(props.newPassword))
     {
-        const data = HasWarning(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_CHAR] : [PASSWORD_MISSING_CHAR];
+        const data = HasProperty(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_CHAR] : [PASSWORD_MISSING_CHAR];
         result = { ...result, password: data }
     }
 
     if (!ContainNumber(props.newPassword))
     {
-        const data = HasWarning(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_NUMBER] : [PASSWORD_MISSING_NUMBER];
+        const data = HasProperty(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_NUMBER] : [PASSWORD_MISSING_NUMBER];
         result = { ...result, password: data }
     }
 
     if (!HaveLargeLetter(props.newPassword))
     {
-        const data = HasWarning(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_LARGE_LETTER] : [PASSWORD_MISSING_LARGE_LETTER];
+        const data = HasProperty(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_LARGE_LETTER] : [PASSWORD_MISSING_LARGE_LETTER];
         result = { ...result, password: data }
     }
 
     if (!HaveSmallLetter(props.newPassword))
     {
-        const data = HasWarning(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_SMALL_LETTER] : [PASSWORD_MISSING_SMALL_LETTER];
+        const data = HasProperty(result, "newPassword") ? [...result.newPassword, PASSWORD_MISSING_SMALL_LETTER] : [PASSWORD_MISSING_SMALL_LETTER];
         result = { ...result, password: data }
     }
 
