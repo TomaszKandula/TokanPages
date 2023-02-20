@@ -4,9 +4,9 @@
 import "../../../../setupTests";
 import { ISetCookie, SetCookie } from "..";
 
-describe("Verify cookies module functionality.", () => 
+describe("verify cookies module functionality", () => 
 {
-    it("When SetCookie. Should return cookie string when 'days' and 'exact' value are defined.", () => 
+    it("should return cookie string when 'days' and 'exact' value are defined.", () => 
     {
         // Arrange
         let date = new Date();
@@ -47,7 +47,7 @@ describe("Verify cookies module functionality.", () =>
         expect(secureResult).toBe(expectedValueSecure);
     });
 
-    it("When SetCookie. Should return cookie string when only 'days' value is defined.", () => 
+    it("should return cookie string when only 'days' value is defined.", () => 
     {
         // Arrange
         let date = new Date();
@@ -75,7 +75,7 @@ describe("Verify cookies module functionality.", () =>
         expect(result).toBe(expectedValue);
     });
 
-    it("When SetCookie. Should return cookie string as 'Secure' when SameSite is None regardless of secure property.", () => 
+    it("should return cookie string as 'Secure' when SameSite is None regardless of secure property.", () => 
     {
         // Arrange
         let date = new Date();
@@ -115,7 +115,7 @@ describe("Verify cookies module functionality.", () =>
         expect(resultSecure).toBe(expectedValue);
     });
 
-    it("When SetCookie. Should return empty string when cookie days are set to zero.", () => 
+    it("should return empty string when cookie days are set to zero.", () => 
     {
         // Arrange
         let date = new Date();

@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { SigninFormInput, ValidateSigninForm } from "..";
 
-describe("Verify validation methods.", () => 
+describe("verify signin form validation methods", () => 
 {
-    it("When Sign-in Form filled correctly. Should return undefined.", () => 
+    it("should return undefined, when signin form is filled correctly.", () => 
     {
         // Arrange
         const form: SigninFormInput = 
@@ -19,7 +19,7 @@ describe("Verify validation methods.", () =>
         expect(result).toBeUndefined();
     });
 
-    it("When Sign-in Form filled incorrectly. Should return defined.", () => 
+    it("should return defined, when signin form is filled incorrectly.", () => 
     {
         // Arrange
         const form: SigninFormInput = 

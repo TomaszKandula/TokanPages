@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { IRaiseError, RaiseError } from "..";
 
-describe("Verify RaiseError.", () => 
+describe("verify RaiseError method", () => 
 {
-    it("Given error object with validation error. When invoke RaiseError. Should execute dispatch and return error text.", () => 
+    it("should execute dispatch and return error text, when error object with validation error provided. ", () => 
     {
         // Arrange
         function dispatch(args: { type: string; errorObject: string; }) 

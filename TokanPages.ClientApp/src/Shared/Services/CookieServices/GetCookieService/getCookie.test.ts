@@ -4,12 +4,12 @@
 import "../../../../setupTests";
 import { IGetCookie, GetCookie } from "..";
 
-describe("Verify cookies module functionality.", () => 
+describe("verify cookies module functionality", () => 
  {
     let date = new Date();
     const present = date.toUTCString();
 
-    it("When GetCookie. Should return cookie value if such cookie exists.", () => 
+    it("should return cookie value if such cookie exists.", () => 
     {
         // Arrange
         const expectation = "granted";
@@ -28,7 +28,7 @@ describe("Verify cookies module functionality.", () =>
         expect(result).toBe(expectation);
     });
  
-    it("When GetCookie. Should return empty string if cookie does not exists.", () => 
+    it("should return empty string if cookie does not exists.", () => 
     {
         // Arrange
         const expectation = "";

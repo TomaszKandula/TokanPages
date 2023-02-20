@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { IGetDateTime, GetDateTime } from "..";
 
-describe("Verify GetDateTime.", () => 
+describe("verify GetDateTime method", () => 
 {
-    it("Given 'n/a' value. When invoke GetDateTime. Should return 'n/a'.", () =>
+    it("should return 'n/a', when 'n/a' value provided.", () =>
     {
         // Arrange
         const expectation: string = "n/a";
@@ -20,7 +20,7 @@ describe("Verify GetDateTime.", () =>
         expect(result).toBe(expectation);
     });
     
-    it("Given empty string. When invoke GetDateTime. Should return 'n/a'.", () =>
+    it("should return 'n/a', when empty string provided.", () =>
     {
         // Arrange
         const expectation: string = "n/a";
@@ -37,7 +37,7 @@ describe("Verify GetDateTime.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given whitespace. When invoke GetDateTime. Should return 'n/a'.", () =>
+    it("should return 'n/a', when whitespace provided.", () =>
     {
         // Arrange
         const expectation: string = "n/a";
@@ -54,7 +54,7 @@ describe("Verify GetDateTime.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given unformatted date and time. When invoke GetDateTime. Should return formatted date time.", () =>
+    it("should return formatted date time, when unformatted date and time.", () =>
     {
         // Arrange
         const expectation: string = "01/10/2020, 12:15 PM";
@@ -71,7 +71,7 @@ describe("Verify GetDateTime.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given unformatted date and time. When invoke GetDateTime wihtout time. Should return formatted date only.", () =>
+    it("should return formatted date only, when unformatted date and time provided.", () =>
     {
         // Arrange
         const expectation: string = "01/10/2020";

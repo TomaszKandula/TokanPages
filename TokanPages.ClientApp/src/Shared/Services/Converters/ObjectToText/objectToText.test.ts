@@ -2,9 +2,9 @@ import "../../../../setupTests";
 import { TextObject } from "Shared/Components/RenderContent/Models";
 import { IObjectToText, ObjectToText } from "..";
 
-describe("Verify ObjectToText.", () => 
+describe("verify ObjectToText method", () => 
 {
-    it("Given valid JSON object with HTML type. When invoke ObjectToText. Should return string.", () => 
+    it("should return string, when valid JSON object with HTML type provided.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -36,7 +36,7 @@ describe("Verify ObjectToText.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given valid JSON object without HTML type. When invoke ObjectToText. Should return empty string.", () => 
+    it("should return empty string, when valid JSON object without HTML type provided.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -66,7 +66,7 @@ describe("Verify ObjectToText.", () =>
         expect(result).toBe("");
     });
 
-    it("Given undefined input. When invoke ObjectToText. Should return undefined.", () => 
+    it("should return undefined, when undefined input provided.", () => 
     {
         // Arrange
         const input: IObjectToText = 
@@ -81,7 +81,7 @@ describe("Verify ObjectToText.", () =>
         expect(result).toBe(undefined);
     });
 
-    it("Given empty JSON object. When invoke ObjectToText. Should return undefined.", () => 
+    it("should return undefined, when empty JSON object provided.", () => 
     {
         // Arrange
         const jsonObject: string = `

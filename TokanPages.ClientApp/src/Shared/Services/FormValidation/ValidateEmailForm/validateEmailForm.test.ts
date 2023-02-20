@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { EmailFormInput, ValidateEmailForm } from "..";
 
-describe("Verify validation methods.", () => 
+describe("verify email address validation methods", () => 
 {
-    it("When valid email address. Should return undefined.", () => 
+    it("should return undefined, when valid email address.", () => 
     {
         // Arrange
         const form: EmailFormInput = 
@@ -18,7 +18,7 @@ describe("Verify validation methods.", () =>
         expect(result).toBeUndefined();
     });
 
-    it("When invalid email address. Should return defined.", () => 
+    it("should return defined, when invalid email address.", () => 
     {
         // Arrange
         const form: EmailFormInput = 

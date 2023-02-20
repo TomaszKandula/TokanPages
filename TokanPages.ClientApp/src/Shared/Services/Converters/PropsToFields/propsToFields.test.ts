@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { IPropsToFields, PropsToFields } from "..";
 
-describe("Verify PropsToFields.", () => 
+describe("verify PropsToFields method", () => 
 {
-    it("Given object with properties. When invoke PropsToFields. Should return an array of fields values.", () => 
+    it("should return an array of fields values, when object with properties provided.", () => 
     {
         // Arrange
         const expectation: string[] = ["ValueA", "ValueB"];
