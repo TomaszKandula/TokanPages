@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import { SignupFormInput, ValidateSignupForm } from "..";
 
-describe("Verify signup form validation methods.", () => 
+describe("verify signup form validation methods", () => 
 {
     it("should return defined, when missing first name.", () => 
     {
