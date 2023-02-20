@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../Theme";
-import { ViewProperties } from "../../../Shared/interfaces";
+import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormStyle } from "./contactFormStyle";
 

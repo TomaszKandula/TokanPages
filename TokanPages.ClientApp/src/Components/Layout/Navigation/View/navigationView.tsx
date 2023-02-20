@@ -9,7 +9,7 @@ import { LanguageItemDto } from "../../../../Api/Models/";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
-import { ViewProperties } from "../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";

@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ViewProperties } from "../../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordStyle } from "./userPasswordStyle";
