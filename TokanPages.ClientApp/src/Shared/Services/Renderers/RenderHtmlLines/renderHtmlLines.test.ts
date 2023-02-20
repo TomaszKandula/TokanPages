@@ -1,13 +1,13 @@
 import "../../../../setupTests";
-import { IRenderHtmlLines, RenderHtmlLines } from "..";
+import { RenderHtmlLines } from "..";
 
-describe("Verify RenderHtmlLines.", () => 
+describe("verify RenderHtmlLines method", () => 
 {
-    it("Given HTML tag and array of strings. When invoke RenderHtmlLines. Should return multiple lines of HTML code.", () => 
+    it("should return multiple lines of HTML code, when HTML tag and array of strings provided.", () => 
     {    
         // Arrange
         const expectation: string = "<il>ValueA</il><il>ValueB</il>";
-        const input: IRenderHtmlLines = 
+        const input = 
         {
             inputArray: ["ValueA", "ValueB"],
             tag: "il"

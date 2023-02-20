@@ -1,14 +1,18 @@
 import * as React from "react";
 
-interface ProgressStyle 
+interface BaseProperties
 {
-    width: number;
     height: number;
     bgcolor: string;
     duration: number;
 }
 
-const ProgressStyle = (props: ProgressStyle): React.CSSProperties => 
+interface Properties extends BaseProperties
+{
+    width: number;
+}
+
+const ProgressStyle = (props: Properties): React.CSSProperties => 
 ({
     margin: 0,
     padding: 0,
@@ -23,14 +27,7 @@ const ProgressStyle = (props: ProgressStyle): React.CSSProperties =>
     transitionTimingFunction: "ease-out"
 });
 
-interface ProgressOnScroll 
-{
-    height: number;
-    bgcolor: string;
-    duration: number;
-}
-
-export const ProgressOnScroll = (props: ProgressOnScroll) => 
+export const ProgressOnScroll = (props: BaseProperties) => 
 {
     const [width, setWidth] = React.useState(0);
 

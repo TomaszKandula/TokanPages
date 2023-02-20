@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { GetIcon } from "./getIcon";
 
-describe("Test render function 'getIcon'.", () => 
+describe("test render function 'getIcon'", () => 
 {
     const NameList: string[] = 
     [
@@ -35,7 +35,7 @@ describe("Test render function 'getIcon'.", () =>
         ))}
     </div>);
 
-    it("Render SVG icon based on input string.", () => 
+    it("should render SVG icon based on input string.", () => 
     {
         expect(wrapper).toMatchSnapshot();
     });

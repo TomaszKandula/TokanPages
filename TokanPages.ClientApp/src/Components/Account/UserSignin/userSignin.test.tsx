@@ -12,7 +12,7 @@ jest.mock("react-router", () =>
     useHistory: () => (jest.fn())
 }));
 
-describe("Test account group component: userSignin.", () => 
+describe("test account group component: userSignin", () => 
 {
     const testContent = 
     {
@@ -36,7 +36,7 @@ describe("Test account group component: userSignin.", () =>
         wrapper.find("UserSignin").dive();
     });
     
-    it("Renders correctly '<UserSignin />' when content is loaded.", () => 
+    it("should render correctly '<UserSignin />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
         useSelectorMock.mockReturnValue(ApplicationDefault);

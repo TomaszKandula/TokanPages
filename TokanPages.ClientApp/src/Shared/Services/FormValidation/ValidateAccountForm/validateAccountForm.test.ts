@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { AccountFormInput, ValidateAccountForm } from "..";
 
-describe("Verify validation methods.", () => 
+describe("verify account form validation methods", () => 
 {
-    it("When Account Form filled correctly. Should return undefined.", () => 
+    it("should return undefined, when account form is filled correctly.", () => 
     {
         // Arrange
         const form: AccountFormInput = 
@@ -21,7 +21,7 @@ describe("Verify validation methods.", () =>
         expect(result).toBeUndefined();
     });
 
-    it("When Contact Form filled incorrectly. Should return defined.", () => 
+    it("should return defined, when contact form filled incorrectly.", () => 
     {
         // Arrange
         const form: AccountFormInput = 

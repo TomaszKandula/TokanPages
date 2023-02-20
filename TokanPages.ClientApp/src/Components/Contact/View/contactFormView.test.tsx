@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { ContactFormView } from "./contactFormView";
 
-describe("Test component: contactFormView.", () => 
+describe("test component: contactFormView", () => 
 {
-    it("Renders correctly '<ContactFormView />' when content is loaded.", () => 
+    it("should render correctly '<ContactFormView />' when content is loaded.", () => 
     {
         const tree = shallow(<ContactFormView
             isLoading={false}

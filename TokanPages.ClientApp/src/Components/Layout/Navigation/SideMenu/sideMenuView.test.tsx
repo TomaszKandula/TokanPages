@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { SideMenuView } from "./sideMenuView";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 
-describe("Test component: menuView.", () => 
+describe("test component: menuView", () => 
 {
-    it("Renders correctly '<MenuView />' when content is loaded.", () => 
+    it("should render correctly '<MenuView />' when content is loaded.", () => 
     {
         const item: Item = 
         {

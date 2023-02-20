@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: featuredView. Renders correctly '<FeaturedView />' when content is loaded. 1`] = `
+exports[`test component: featuredView should render correctly '<FeaturedView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

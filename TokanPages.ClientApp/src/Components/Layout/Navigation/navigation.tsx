@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_MEDIA } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentNavigationState } from "../../../Store/States";
+import { LanguageChangeEvent } from "../../../Shared/types";
 import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
 import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
@@ -22,24 +23,24 @@ export const Navigation = (props: ContentNavigationState): JSX.Element =>
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
     const [drawer, setDrawer] = React.useState({ open: false});
 
-    const languageHandler = (event: React.ChangeEvent<{ value: unknown }>) => 
-    {
-        const value = event.target.value as string;
-        SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
-        dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
-    };
-
     const toggleDrawer = (open: boolean) => (event: any) => 
     {
         if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) return;
         setDrawer({ ...drawer, open });
     };
 
-    const onAvatarClick = () => 
+    const languageHandler = React.useCallback((event: LanguageChangeEvent) => 
+    {
+        const value = event.target.value as string;
+        SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
+        dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
+    }, [ language?.languages ]);
+
+    const onAvatarClick = React.useCallback(() => 
     {
         if (isAnonymous) return;
         dispatch(UserDataStoreAction.show(true));
-    }
+    }, [ isAnonymous ]);
 
     return (<NavigationView
         isLoading={props.isLoading}

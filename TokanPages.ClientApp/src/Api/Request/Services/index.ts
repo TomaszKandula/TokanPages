@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { NULL_RESPONSE_ERROR, USER_DATA } from "../../Shared/constants";
-import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
-import { RaiseError } from "../../Shared/Services/ErrorServices";
-import { GetTextStatusCode } from "../../Shared/Services/Utilities";
-import { AuthenticateUserResultDto } from "../Models";
+import { NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
+import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
+import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
+import { AuthenticateUserResultDto } from "../../Models";
 import Validate from "validate.js";
 
 import { 
@@ -11,7 +11,7 @@ import {
     GetContentContract, 
     PromiseResultContract, 
     RequestContract 
-} from "./abstractions";
+} from "../Abstractions";
 
 const IsSuccessStatusCode = (statusCode: number): boolean => 
 {

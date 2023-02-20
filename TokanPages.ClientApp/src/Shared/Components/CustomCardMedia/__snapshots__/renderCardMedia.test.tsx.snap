@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test rendering 'Custom Card Media' component. Should not render 'Custom Card Media' component. 1`] = `<div />`;
+exports[`test rendering 'Custom Card Media' component should not render 'Custom Card Media' component. 1`] = `<div />`;
 
-exports[`Test rendering 'Custom Card Media' component. Should render 'Custom Card Media' component. 1`] = `
+exports[`test rendering 'Custom Card Media' component should render 'Custom Card Media' component. 1`] = `
 <WithStyles(ForwardRef(CardMedia))
   className="style"
   image="http://domain.com//test-image.jpg"

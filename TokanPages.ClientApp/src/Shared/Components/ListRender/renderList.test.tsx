@@ -4,18 +4,18 @@ import { shallow } from "enzyme";
 import { RenderList } from "./renderList";
 import { Item } from "./Models";
 
-describe("Test render function 'renderList'.", () => 
+describe("test render function 'renderList'", () => 
 {
     const noItems = shallow(<RenderList isAnonymous={true} items={undefined}></RenderList>);
 
-    it("Should return 'Cannot render content.' when called with items undefined.", () => 
+    it("should return 'Cannot render content.' when called with items undefined.", () => 
     {
         expect(noItems).toMatchSnapshot();
     });
 
     const emptyItems = shallow(<RenderList isAnonymous={true} items={[]}></RenderList>);
 
-    it("Should return 'Cannot render content.' when called with empty array of items.", () => 
+    it("should return 'Cannot render content.' when called with empty array of items.", () => 
     {
         expect(emptyItems).toMatchSnapshot();
     });
@@ -145,7 +145,7 @@ describe("Test render function 'renderList'.", () =>
 
     const menuItems = shallow(<RenderList isAnonymous={false} items={items}></RenderList>);
 
-    it("Should return rendered list when items are provided.", () => 
+    it("should return rendered list when items are provided.", () => 
     {
         expect(menuItems).toMatchSnapshot();
     });

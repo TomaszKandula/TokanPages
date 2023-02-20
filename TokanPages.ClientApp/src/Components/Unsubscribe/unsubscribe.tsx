@@ -62,11 +62,11 @@ export const Unsubscribe = (props: Properties): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const buttonHandler = () =>
+    const buttonHandler = React.useCallback(() =>
     {
         if (props.id == null) return;
         setHasProgress(true);
-    };
+    }, [ props.id ]);
 
     return (<UnsubscribeView
         isLoading={props.isLoading}

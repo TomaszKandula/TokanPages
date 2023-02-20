@@ -1,11 +1,11 @@
 import "../../../../setupTests";
 import { VALIDATION_ERRORS } from "../../../constants";
 import { ErrorDto } from "../../../../Api/Models";
-import { IGetErrorMessage, GetErrorMessage } from "..";
+import { GetErrorMessage } from "..";
 
-describe("Verify GetErrorMessage.", () => 
+describe("verify GetErrorMessage method", () => 
 {
-    it("Given valid JSON object. When invoke GetErrorMessage. Should return translated error message.", () => 
+    it("should return translated error message, when valid JSON object provided.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -22,7 +22,7 @@ describe("Verify GetErrorMessage.", () =>
         }`
 
         const textObject: ErrorDto = JSON.parse(jsonObject) as ErrorDto;
-        const input: IGetErrorMessage = 
+        const input = 
         {
             errorObject: textObject
         }
@@ -36,7 +36,7 @@ describe("Verify GetErrorMessage.", () =>
         expect(result).toBe(expectation);
     });
 
-    it("Given valid JSON object with validation errors. When invoke GetErrorMessage. Should return translated error message.", () => 
+    it("should return translated error message, when valid JSON object with validation errors provided.", () => 
     {
         // Arrange
         const jsonObject: string = `
@@ -65,7 +65,7 @@ describe("Verify GetErrorMessage.", () =>
         }`
 
         const textObject: ErrorDto = JSON.parse(jsonObject) as ErrorDto;
-        const input: IGetErrorMessage = 
+        const input = 
         {
             errorObject: textObject
         }

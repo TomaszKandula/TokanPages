@@ -4,12 +4,12 @@
 import "../../../../setupTests";
 import { GetCookie, EraseCookie } from "..";
 
- describe("Verify cookies module functionality.", () => 
+ describe("verify cookies module functionality", () => 
  {
     let date = new Date();
     const present = date.toUTCString();
  
-    it("When EraseCookie. Should return empty string on given cookie value.", () => 
+    it("should return empty string on a given cookie value.", () => 
     {
         // Arrange
         Object.defineProperty(window.document, "cookie", 

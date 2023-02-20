@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { UpdateSubscriberView } from "./updateSubscriberView";
 
-describe("Test component: updateSubscriberView.", () => 
+describe("test component: updateSubscriberView", () => 
 {
-    it("Renders correctly '<UpdateSubscriberView />' when content is loaded.", () => 
+    it("should render correctly '<UpdateSubscriberView />' when content is loaded.", () => 
     {
         const tree = shallow(<UpdateSubscriberView
             isLoading={false}

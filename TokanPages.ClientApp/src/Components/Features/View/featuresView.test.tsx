@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { FeaturesView } from "./featuresView";
 
-describe("Test articles group component: ArticleFeaturesView.", () => 
+describe("test articles group component: ArticleFeaturesView", () => 
 {
-    it("Renders correctly '<ArticleFeaturesView />' when content is loaded.", () => 
+    it("should render correctly '<ArticleFeaturesView />' when content is loaded.", () => 
     {
         const tree = shallow(<FeaturesView isLoading={false} content=
         {{            

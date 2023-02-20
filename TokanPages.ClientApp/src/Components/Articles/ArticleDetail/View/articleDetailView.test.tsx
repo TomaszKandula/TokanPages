@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { ArticleDetailView } from "./articleDetailView";
 
-describe("Test articles group component: ArticleDetailView.", () => 
+describe("test articles group component: ArticleDetailView", () => 
 {
-    it("Renders correctly '<ArticleDetailView />' when content is loaded.", () => 
+    it("should render correctly '<ArticleDetailView />' when content is loaded.", () => 
     {
         const tree = shallow(<ArticleDetailView
             backButtonHandler={jest.fn()}

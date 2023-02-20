@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
 
@@ -127,25 +128,25 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasMediaUploadFinished ]);
 
-    const accountKeyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const accountKeyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             accountButtonHandler();
         }
-    }
+    }, []);
 
-    const accountFormHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const accountFormHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setAccountForm({ ...accountForm, [event.currentTarget.name]: event.currentTarget.value }); 
-    };
+    }, [ accountForm ]);
 
-    const accountSwitchHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const accountSwitchHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setIsUserActivated({ ...isUserActivated, [event.target.name]: event.target.checked });
-    };
+    }, [ isUserActivated ]);
 
-    const accountButtonHandler = () => 
+    const accountButtonHandler = React.useCallback(() => 
     {
         let validationResult = ValidateAccountForm(accountForm);
         if (!Validate.isDefined(validationResult))
@@ -155,7 +156,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: UPDATE_USER_WARNING }));
-    };
+    }, [ accountForm ]);
 
     return(
         <UserInfoView

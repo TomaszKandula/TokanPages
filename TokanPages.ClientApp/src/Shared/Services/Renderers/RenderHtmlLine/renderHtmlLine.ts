@@ -1,7 +1,12 @@
 import Validate from "validate.js";
-import { IRenderHtmlLine } from "./interface";
 
-export const RenderHtmlLine = (props: IRenderHtmlLine): string => 
+interface Properties
+{
+    tag: string; 
+    text: string | undefined;
+}
+
+export const RenderHtmlLine = (props: Properties): string => 
 {
     return Validate.isDefined(props.text) ? `<${props.tag}>${props.text}</${props.tag}>` : " ";
 }

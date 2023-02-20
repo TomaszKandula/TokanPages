@@ -1,17 +1,18 @@
 import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
-import { SnackbarOrigin } from "@material-ui/core";
+import { SlideProps, SnackbarOrigin } from "@material-ui/core";
 import { Alert, Color } from "@material-ui/lab";
 import { ApplicationToastViewStyle } from "./applicationToastViewStyle";
+import { ReactSyntheticEvent } from "../../../../Shared/types";
 
 interface Properties
 {
     anchorOrigin: SnackbarOrigin;
     isOpen: boolean;
     autoHideDuration: number;
-    closeEventHandler: any;
-    TransitionComponent: any;
-    componentKey: any;
+    closeEventHandler: (event?: ReactSyntheticEvent, reason?: string) => void;
+    TransitionComponent: (props: Omit<SlideProps, "direction">) => JSX.Element;
+    componentKey: string;
     toastSeverity: Color;
     toastMessage: string;
 }

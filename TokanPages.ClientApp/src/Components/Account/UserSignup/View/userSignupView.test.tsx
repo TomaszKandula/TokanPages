@@ -3,13 +3,14 @@ import React from "react";
 import { shallow } from "enzyme";
 import { UserSignupView } from "./userSignupView";
 
-describe("Test account group component: userSignupView.", () => 
+describe("test account group component: userSignupView", () => 
 {
-    it("Renders correctly '<UserSignupView />' when content is loaded.", () => 
+    it("should render correctly '<UserSignupView />' when content is loaded.", () => 
     {
         const tree = shallow(<UserSignupView
             isLoading={false}
             caption="Create a new account"
+            warning="Please use..."
             consent="I agree to the terms of use and privacy policy."
             button="Sign up"
             link="Already have an account? Sign in"

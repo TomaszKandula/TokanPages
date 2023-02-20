@@ -6,6 +6,7 @@ export interface UserSignupContentDto
         caption: string;
         button: string;
         link: string;
+        warning: string;
         consent: string;
         labelFirstName: string;
         labelLastName: string;

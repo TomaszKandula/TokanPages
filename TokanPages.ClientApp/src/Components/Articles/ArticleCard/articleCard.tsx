@@ -6,14 +6,14 @@ import { GetShortText } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, GET_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
-interface ArticleCard
+interface Properties
 {
     title: string;
     description: string;
     id: string;
 }
 
-export const ArticleCard = (props: ArticleCard): JSX.Element =>
+export const ArticleCard = (props: Properties): JSX.Element =>
 {
     const content = { button: "Read" };
     const articleUrl = ARTICLE_PATH.replace("{id}", props.id);
@@ -22,11 +22,11 @@ export const ArticleCard = (props: ArticleCard): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onClickEvent = () => 
+    const onClickEvent = React.useCallback(() => 
     {
         dispatch(ArticleSelectionAction.select(props.id));
         history.push(articleUrl);
-    };
+    }, [ props.id, articleUrl ]);
 
     return (<ArticleCardView
         imageUrl={imageUrl}

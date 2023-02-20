@@ -28,7 +28,10 @@
             {
                 "selector": "typeParameter",
                 "format": ["PascalCase"],
-                "prefix": ["T"]
+                "custom": {
+                    "regex": "^T[A-Z]",
+                    "match": false
+                }
             },
             {
                 "selector": "variable",

@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxView } from "../View/applicationDialogBoxView";
 
-describe("Test view component for application diaog box.", () => 
+describe("test view component for application diaog box", () => 
 {
-    it("Renders correctly view component with passed props.", () => 
+    it("should render correctly view component with passed props.", () => 
     {
         const tree = shallow(<ApplicationDialogBoxView
             state={true}

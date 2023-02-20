@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { UserSignup } from "./userSignup";
 import { ApplicationDefault } from "../../../Store/Configuration";
 
-describe("Test account group component: userSignup.", () => 
+describe("test account group component: userSignup", () => 
 {
-    it("Renders correctly '<UserSignup />' when content is loaded.", () => 
+    it("should render correctly '<UserSignup />' when content is loaded.", () => 
     {
         const tree = shallow(<UserSignup content={ApplicationDefault.contentUserSignup.content} isLoading={false} />);
         expect(tree).toMatchSnapshot();

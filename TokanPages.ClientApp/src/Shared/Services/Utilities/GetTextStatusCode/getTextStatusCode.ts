@@ -1,7 +1,11 @@
 import { UNEXPECTED_STATUS } from "../../../../Shared/constants";
-import { IGetTextStatusCode } from "./interface";
 
-export const GetTextStatusCode = (props: IGetTextStatusCode): string =>
+interface Properties
+{
+    statusCode: number;
+}
+
+export const GetTextStatusCode = (props: Properties): string =>
 {
     return UNEXPECTED_STATUS.replace("{STATUS_CODE}", props.statusCode.toString());
 }

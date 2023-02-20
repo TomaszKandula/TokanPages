@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { UpdatePasswordView } from "./updatePasswordView";
 import { UPDATE_FORM } from "../../../../Shared/constants";
 
-describe("Test account group component: updatePasswordView.", () => 
+describe("test account group component: updatePasswordView", () => 
 {
-    it("Renders correctly '<UpdatePasswordView />' when content is loaded.", () => 
+    it("should render correctly '<UpdatePasswordView />' when content is loaded.", () => 
     {
         const tree = shallow(<UpdatePasswordView
             isLoading={false}

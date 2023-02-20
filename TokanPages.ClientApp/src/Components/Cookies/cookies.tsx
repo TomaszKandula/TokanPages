@@ -8,7 +8,7 @@ export const Cookies = (props: ContentCookiesPromptState): JSX.Element =>
 {
     const [isOpen, setIsOpen] = React.useState(false);
     const currentCookie = GetCookie({cookieName: "cookieConsent"});
-    const onClickEvent = () => 
+    const onClickEvent = React.useCallback(() => 
     { 
         setIsOpen(true); 
         SetCookie(
@@ -19,7 +19,7 @@ export const Cookies = (props: ContentCookiesPromptState): JSX.Element =>
             sameSite: "Strict",
             secure: false
         });
-    };
+    }, [ props.content?.days ]);
 
     return (<CookiesView
         isLoading={props.isLoading}

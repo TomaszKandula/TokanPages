@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { FooterView } from "../View/footerView";
 import { IconDto } from "../../../../Api/Models";
 
-describe("Test component: footerView.", () => 
+describe("test component: footerView", () => 
 {
-    it("Renders correctly '<FooterView />' when content is loaded.", () => 
+    it("should render correctly '<FooterView />' when content is loaded.", () => 
     {
         const icons: IconDto = 
         {

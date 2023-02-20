@@ -1,5 +1,6 @@
 # Use script file "__testrun.dev.sh" for local development. 
 # You can provide SonarQube keys to perform static analysis during development. 
+ENV_VALUE="Testing"
 API_VERSION="1.0"
 APP_VERSION="0.0.1-local-dev"
 BUILD_TIMESTAMP=$(date +"%Y-%m-%d at %T")
@@ -11,6 +12,7 @@ SONAR_KEY=""
 SONAR_HOST=""
 
 docker build . \
+  --build-arg "ENV_VALUE=$ENV_VALUE" \
   --build-arg "API_VERSION=$API_VERSION" \
   --build-arg "APP_VERSION=$APP_VERSION" \
   --build-arg "APP_DATE_TIME=$BUILD_TIMESTAMP" \
