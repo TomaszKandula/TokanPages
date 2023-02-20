@@ -1,4 +1,4 @@
-export interface IEraseCookie
+export interface EraseCookieInput
 {
     cookieName: string
 }

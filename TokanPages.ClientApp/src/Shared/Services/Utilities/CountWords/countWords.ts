@@ -1,6 +1,6 @@
-import { ICountWords } from "./interface";
+import { CountWordsInput } from "./interface";
 
-export const CountWords = (props: ICountWords): number => 
+export const CountWords = (props: CountWordsInput): number => 
 {
     if (props.inputText === undefined) 
     {

@@ -1,4 +1,4 @@
-export interface ISetDataInStorage
+export interface SetDataInStorageInput
 {
     selection: {} | any[]; 
     key: string;

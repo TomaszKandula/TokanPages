@@ -1,6 +1,6 @@
 import { TextObject } from "../../../Components/RenderContent/Models";
 
-export interface IObjectToText
+export interface ObjectToTextInput
 {
     textObject: TextObject | undefined;
 }

@@ -1,8 +1,8 @@
 import * as React from "react";
 import DOMPurify from "dompurify";
-import { IReactHtmlParser } from "./interface";
+import { ReactHtmlParserInput } from "./interface";
 
-export const ReactHtmlParser = (props: IReactHtmlParser): JSX.Element => 
+export const ReactHtmlParser = (props: ReactHtmlParserInput): JSX.Element => 
 {
     const safeHTML = DOMPurify.sanitize(props.html, { 
         ALLOWED_TAGS: ["p", "b", "ul", "li", "a", "u", "i"],

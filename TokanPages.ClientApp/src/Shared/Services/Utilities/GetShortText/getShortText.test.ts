@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetShortText, GetShortText } from "..";
+import { GetShortTextInput, GetShortText } from "..";
 
 describe("verify GetShortText method", () => 
 {
@@ -7,7 +7,7 @@ describe("verify GetShortText method", () =>
     {
         // Arrange
         const expectation = "This is long text. It will be used to test...";
-        const input: IGetShortText = 
+        const input: GetShortTextInput = 
         {
             value: "This is long text. It will be used to test the method that should make it shorter.",
             limit: 10
@@ -24,7 +24,7 @@ describe("verify GetShortText method", () =>
     {
         // Arrange
         const expectation = "";
-        const input: IGetShortText = 
+        const input: GetShortTextInput = 
         {
             value: "",
             limit: 10

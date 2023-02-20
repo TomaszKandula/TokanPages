@@ -1,6 +1,6 @@
-export type { IDelDataFromStorage } from "./DelDataFromStorage/interface";
-export type { IGetDataFromStorage } from "./GetDataFromStorage/interface";
-export type { ISetDataInStorage } from "./SetDataInStorage/interface";
+export type { DelDataFromStorageInput } from "./DelDataFromStorage/interface";
+export type { GetDataFromStorageInput } from "./GetDataFromStorage/interface";
+export type { SetDataInStorageInput } from "./SetDataInStorage/interface";
 
 export { DelDataFromStorage } from "./DelDataFromStorage/delDataFromStorage";
 export { GetDataFromStorage } from "./GetDataFromStorage/getDataFromStorage";

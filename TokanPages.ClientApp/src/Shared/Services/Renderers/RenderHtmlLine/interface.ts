@@ -1,4 +1,4 @@
-export interface IRenderHtmlLine
+export interface RenderHtmlLineInput
 {
     tag: string; 
     text: string | undefined;

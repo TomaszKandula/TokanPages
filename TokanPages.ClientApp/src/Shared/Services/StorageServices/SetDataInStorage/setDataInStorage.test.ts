@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { ISetDataInStorage, SetDataInStorage } from "..";
+import { SetDataInStorageInput, SetDataInStorage } from "..";
 
 describe("verify SetDataInStorage method", () => 
 {
@@ -21,7 +21,7 @@ describe("verify SetDataInStorage method", () =>
             text: "test message"
         };
 
-        const input: ISetDataInStorage = 
+        const input: SetDataInStorageInput = 
         {
             selection: testObject,
             key: "SomeKey"
@@ -43,7 +43,7 @@ describe("verify SetDataInStorage method", () =>
             text: "test message"
         };
 
-        const input: ISetDataInStorage = 
+        const input: SetDataInStorageInput = 
         {
             selection: testObject,
             key: ""
@@ -73,7 +73,7 @@ describe("verify SetDataInStorage method", () =>
             }
         ];
 
-        const input: ISetDataInStorage = 
+        const input: SetDataInStorageInput = 
         {
             selection: testArray,
             key: "SomeKey"

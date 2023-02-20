@@ -1,5 +1,5 @@
 import "../../../../setupTests";
-import { IGetReadTime, GetReadTime } from "..";
+import { GetReadTimeInput, GetReadTime } from "..";
 
 describe("verify GetReadTime method", () => 
 {
@@ -7,7 +7,7 @@ describe("verify GetReadTime method", () =>
     {
         // Arrange
         const expectation: string = "5.38";
-         const input: IGetReadTime = 
+         const input: GetReadTimeInput = 
         {
             countWords: 700,
             wordsPerMinute: 130

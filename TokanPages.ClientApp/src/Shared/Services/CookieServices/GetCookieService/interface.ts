@@ -1,4 +1,4 @@
-export interface IGetCookie
+export interface GetCookieInput
 {
     cookieName: string
 }

@@ -1,4 +1,4 @@
-export interface IPropsToFields
+export interface PropsToFieldsInput
 {
     object: any
 }

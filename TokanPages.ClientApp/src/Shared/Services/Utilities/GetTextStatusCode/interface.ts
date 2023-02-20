@@ -1,4 +1,4 @@
-export interface IGetTextStatusCode
+export interface GetTextStatusCodeInput
 {
     statusCode: number;
 }

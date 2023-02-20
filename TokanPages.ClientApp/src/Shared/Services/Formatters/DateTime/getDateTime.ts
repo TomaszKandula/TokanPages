@@ -1,6 +1,6 @@
-import { IGetDateTime } from "./interface";
+import { GetDateTimeInput } from "./interface";
 
-export const GetDateTime = (props: IGetDateTime): string =>
+export const GetDateTime = (props: GetDateTimeInput): string =>
 {
     if (props.value === "n/a" || props.value === "" || props.value === " ") return "n/a";
     

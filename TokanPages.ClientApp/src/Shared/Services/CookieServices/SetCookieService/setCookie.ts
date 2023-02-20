@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { ISetCookie } from "./interface";
+import { SetCookieInput } from "./interface";
 
-export const SetCookie = (props: ISetCookie): string =>
+export const SetCookie = (props: SetCookieInput): string =>
 {
     let newCookie = "";
     let date = new Date();

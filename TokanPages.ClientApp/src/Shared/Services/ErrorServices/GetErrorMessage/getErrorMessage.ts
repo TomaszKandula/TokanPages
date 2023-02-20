@@ -1,9 +1,9 @@
 import Validate from "validate.js";
 import { UNEXPECTED_ERROR, VALIDATION_ERRORS } from "../../../../Shared/constants";
 import { ErrorDto } from "../../../../Api/Models";
-import { IGetErrorMessage } from "./interface";
+import { GetErrorMessageInput } from "./interface";
 
-export const GetErrorMessage = (props: IGetErrorMessage): string =>
+export const GetErrorMessage = (props: GetErrorMessageInput): string =>
 {
     console.error(props.errorObject);
     let result: string = UNEXPECTED_ERROR;

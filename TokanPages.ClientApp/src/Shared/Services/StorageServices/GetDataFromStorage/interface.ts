@@ -1,4 +1,4 @@
-export interface IGetDataFromStorage
+export interface GetDataFromStorageInput
 {
     key: string;
 }

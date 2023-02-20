@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { ISetDataInStorage } from "./interface";
+import { SetDataInStorageInput } from "./interface";
 
-export const SetDataInStorage = (props: ISetDataInStorage): boolean => 
+export const SetDataInStorage = (props: SetDataInStorageInput): boolean => 
 {
     if (Validate.isEmpty(props.key)) return false;
 

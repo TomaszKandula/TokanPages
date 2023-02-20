@@ -1,4 +1,4 @@
-export interface IRaiseError
+export interface RaiseErrorInput
 {
     dispatch: any; 
     errorObject: any;

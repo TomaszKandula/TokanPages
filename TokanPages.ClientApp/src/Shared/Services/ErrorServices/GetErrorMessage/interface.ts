@@ -1,4 +1,4 @@
-export interface IGetErrorMessage
+export interface GetErrorMessageInput
 {
     errorObject: any
 }

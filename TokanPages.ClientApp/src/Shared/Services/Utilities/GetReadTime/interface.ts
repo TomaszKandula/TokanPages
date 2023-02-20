@@ -1,4 +1,4 @@
-export interface IGetReadTime
+export interface GetReadTimeInput
 {
     countWords: number; 
     wordsPerMinute: number;

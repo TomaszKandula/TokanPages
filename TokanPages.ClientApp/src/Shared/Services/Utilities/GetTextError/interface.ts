@@ -1,4 +1,4 @@
-export interface IGetTextError
+export interface GetTextErrorInput
 {
     error: string;
     template: string;

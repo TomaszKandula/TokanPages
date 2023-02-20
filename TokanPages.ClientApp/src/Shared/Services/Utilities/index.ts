@@ -1,9 +1,9 @@
-export type { ICountWords } from "./CountWords/interface";
-export type { IGetReadTime } from "./GetReadTime/interface";
-export type { IGetShortText } from "./GetShortText/interface";
-export type { IGetTextError } from "./GetTextError/interface";
-export type { IGetTextStatusCode } from "./GetTextStatusCode/interface";
-export type { IGetTextWarning } from "./GetTextWarning/interface";
+export type { CountWordsInput } from "./CountWords/interface";
+export type { GetReadTimeInput } from "./GetReadTime/interface";
+export type { GetShortTextInput } from "./GetShortText/interface";
+export type { GetTextErrorInput } from "./GetTextError/interface";
+export type { GetTextStatusCodeInput } from "./GetTextStatusCode/interface";
+export type { GetTextWarningInput } from "./GetTextWarning/interface";
 
 export { CountWords } from "./CountWords/countWords";
 export { GetReadTime } from "./GetReadTime/getReadTime";

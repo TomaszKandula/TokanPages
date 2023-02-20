@@ -1,6 +1,6 @@
-import { IGetShortText } from "./interface";
+import { GetShortTextInput } from "./interface";
 
-export const GetShortText = (props: IGetShortText): string => 
+export const GetShortText = (props: GetShortTextInput): string => 
 {
     if (props.value === undefined || props.value === "") return "";
     

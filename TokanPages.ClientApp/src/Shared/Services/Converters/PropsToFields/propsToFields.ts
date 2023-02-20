@@ -1,6 +1,6 @@
-import { IPropsToFields } from "./interface";
+import { PropsToFieldsInput } from "./interface";
 
-export const PropsToFields = (props: IPropsToFields): any[] =>
+export const PropsToFields = (props: PropsToFieldsInput): any[] =>
 {
     let resultArray: any[] = [];
     for (let Property in props.object) resultArray = resultArray.concat(props.object[Property]); 

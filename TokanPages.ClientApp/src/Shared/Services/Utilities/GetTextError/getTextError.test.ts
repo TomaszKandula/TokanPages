@@ -1,12 +1,12 @@
 import "../../../../setupTests";
-import { IGetTextError, GetTextError } from "..";
+import { GetTextErrorInput, GetTextError } from "..";
 
 describe("verify GetTextError method", () => 
 {
     it("should return HTML code, when warning object provided.", () => 
     {
         // Arrange
-        const input: IGetTextError = 
+        const input: GetTextErrorInput = 
         {
             error: "SMTP connection failed",
             template: "<p>Ouch!</p><p>The email could not be sent.</p><p>{ERROR}.</p>"

@@ -1,4 +1,4 @@
-export interface IReactHtmlParser
+export interface ReactHtmlParserInput
 {
     html: string;
 }

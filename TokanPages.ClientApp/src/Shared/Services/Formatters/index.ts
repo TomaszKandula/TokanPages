@@ -1,2 +1,2 @@
-export type { IGetDateTime } from "./DateTime/interface";
+export type { GetDateTimeInput } from "./DateTime/interface";
 export { GetDateTime } from "./DateTime/getDateTime";

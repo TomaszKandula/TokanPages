@@ -2,7 +2,7 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { IDelDataFromStorage, DelDataFromStorage } from "..";
+import { DelDataFromStorageInput, DelDataFromStorage } from "..";
 
 describe("verify DelDataFromStorage method", () => 
 {
@@ -15,7 +15,7 @@ describe("verify DelDataFromStorage method", () =>
     it("should return true, when key is provided.", () => 
     {  
         // Arrange
-        const input: IDelDataFromStorage = 
+        const input: DelDataFromStorageInput = 
         {
             key: "SomeKey"
         }
@@ -30,7 +30,7 @@ describe("verify DelDataFromStorage method", () =>
     it("should return false, when no key is provided.", () => 
     {  
         // Arrange
-        const input: IDelDataFromStorage = 
+        const input: DelDataFromStorageInput = 
         {
             key: ""
         }

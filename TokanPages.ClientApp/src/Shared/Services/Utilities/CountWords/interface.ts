@@ -1,4 +1,4 @@
-export interface ICountWords
+export interface CountWordsInput
 {
     inputText: string | undefined;
 }

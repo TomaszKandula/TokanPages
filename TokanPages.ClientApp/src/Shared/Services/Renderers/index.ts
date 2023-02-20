@@ -1,6 +1,6 @@
-export type { IReactHtmlParser } from "./ReactHtmlParser/interface";
-export type { IRenderHtmlLine } from "./RenderHtmlLine/interface";
-export type { IRenderHtmlLines } from "./RenderHtmlLines/interface";
+export type { ReactHtmlParserInput } from "./ReactHtmlParser/interface";
+export type { RenderHtmlLineInput } from "./RenderHtmlLine/interface";
+export type { RenderHtmlLinesInput } from "./RenderHtmlLines/interface";
 
 export { ReactHtmlParser } from "./ReactHtmlParser/reactHtmlParser";
 export { RenderHtmlLine } from "./RenderHtmlLine/renderHtmlLine";

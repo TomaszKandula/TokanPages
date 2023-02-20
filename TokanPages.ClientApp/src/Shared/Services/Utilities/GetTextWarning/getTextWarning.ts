@@ -1,17 +1,17 @@
-import { IPropsToFields, PropsToFields } from "../../../../Shared/Services/Converters";
-import { IRenderHtmlLines, RenderHtmlLines } from "../../../../Shared/Services/Renderers";
-import { IGetTextWarning } from "./interface";
+import { PropsToFieldsInput, PropsToFields } from "../../../../Shared/Services/Converters";
+import { RenderHtmlLinesInput, RenderHtmlLines } from "../../../../Shared/Services/Renderers";
+import { GetTextWarningInput } from "./interface";
 
-export const GetTextWarning = (props: IGetTextWarning): string =>
+export const GetTextWarning = (props: GetTextWarningInput): string =>
 {
-    const input: IPropsToFields = 
+    const input: PropsToFieldsInput = 
     {
         object: props.object
     }
     
     const fields = PropsToFields(input);
 
-    const result: IRenderHtmlLines = 
+    const result: RenderHtmlLinesInput = 
     {
         inputArray: fields,
         tag: "li"

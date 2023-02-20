@@ -1,4 +1,4 @@
-export interface IDelDataFromStorage
+export interface DelDataFromStorageInput
 {
     key: string;
 }

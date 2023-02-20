@@ -1,6 +1,6 @@
-import { IObjectToText } from "./interface";
+import { ObjectToTextInput } from "./interface";
 
-export const ObjectToText = (props: IObjectToText): string | undefined => 
+export const ObjectToText = (props: ObjectToTextInput): string | undefined => 
 {
     if (props.textObject === undefined) return undefined;
     if (props.textObject.items.length === 0) return undefined;

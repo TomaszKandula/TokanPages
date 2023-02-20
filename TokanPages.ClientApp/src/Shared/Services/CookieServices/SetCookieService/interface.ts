@@ -1,4 +1,4 @@
-export interface ISetCookie 
+export interface SetCookieInput 
 {
     cookieName: string, 
     value: string, 
