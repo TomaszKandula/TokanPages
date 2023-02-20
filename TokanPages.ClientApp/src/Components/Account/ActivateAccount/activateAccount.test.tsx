@@ -22,7 +22,7 @@ jest.mock("react-router-dom", () =>
     })
 }));
 
-describe("Test account group component: activateAccount.", () => 
+describe("Test account group component: activateAccount", () => 
 {
     const testId = "dba4043c-7428-4f72-ba13-fe782c7a88fa";
     const testContent = 
@@ -65,7 +65,7 @@ describe("Test account group component: activateAccount.", () =>
         wrapper.find("ActivateAccount").dive();
     });
 
-    it("Renders correctly '<ActivateAccount />' when content is loaded.", () => 
+    it("should render correctly '<ActivateAccount />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
         useSelectorMock.mockReturnValue(ApplicationDefault);

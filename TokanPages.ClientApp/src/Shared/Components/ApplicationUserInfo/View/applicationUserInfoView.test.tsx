@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { AuthenticateUserResultDto } from "../../../../Api/Models";
 import { ApplicationUserInfoView } from "../View/applicationUserInfoView";
 
-describe("Test view component for application user info.", () => 
+describe("test view component for application user info", () => 
 {
-    it("Renders correctly view component with passed props.", () => 
+    it("should render correctly view component with passed props.", () => 
     {
         const testData: AuthenticateUserResultDto = 
         {

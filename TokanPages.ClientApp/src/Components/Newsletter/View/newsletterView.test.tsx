@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { NewsletterView } from "./newsletterView";
 
-describe("Test component: newsletterView.", () => 
+describe("test component: newsletterView", () => 
 {
-    it("Renders correctly '<NewsletterView />' when content is loaded.", () => 
+    it("should render correctly '<NewsletterView />' when content is loaded.", () => 
     {
         const tree = shallow(<NewsletterView
             isLoading={false}

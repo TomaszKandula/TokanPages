@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { FeaturedView } from "./featuredView";
 
-describe("Test component: featuredView.", () => 
+describe("test component: featuredView", () => 
 {
-    it("Renders correctly '<FeaturedView />' when content is loaded.", () => 
+    it("should render correctly '<FeaturedView />' when content is loaded.", () => 
     {
         const tree = shallow(<FeaturedView isLoading={false} content=
         {{

@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { UserSigninView } from "./userSigninView";
 
-describe("Test account group component: userSigninView.", () => 
+describe("test account group component: userSigninView", () => 
 {
-    it("Renders correctly '<UserSigninView />' when content is loaded.", () => 
+    it("should render correctly '<UserSigninView />' when content is loaded.", () => 
     {
         const tree = shallow(<UserSigninView
             isLoading={false}

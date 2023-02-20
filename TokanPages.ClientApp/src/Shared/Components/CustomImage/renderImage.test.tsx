@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { RenderImage } from "./customImage"; 
 
-describe("Test rendering image component.", () => 
+describe("test rendering image component", () => 
 {
     interface Properties 
     {
@@ -17,7 +17,7 @@ describe("Test rendering image component.", () =>
         return RenderImage(props.basePath, props.imageSource, props.className);
     }
 
-    it("Should not render an image component.", () => 
+    it("should not render an image component.", () => 
     {
         const tree = shallow(<TestComponent 
             basePath=""
@@ -27,7 +27,7 @@ describe("Test rendering image component.", () =>
         expect(tree).toMatchSnapshot();
     });
 
-    it("Should render an image component.", () => 
+    it("should render an image component.", () => 
     {
         const tree = shallow(<TestComponent 
             basePath="http://localhost:5000/"
