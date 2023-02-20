@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { IGetReadTime, GetReadTime } from "..";
 
-describe("Verify GetReadTime.", () => 
+describe("verify GetReadTime method", () => 
 {
-    it("Given number of words and words per minute. When invoke GetReadTime. Should return read time.", () => 
+    it("should return read time, when number of words and words per minute.", () => 
     {
         // Arrange
         const expectation: string = "5.38";

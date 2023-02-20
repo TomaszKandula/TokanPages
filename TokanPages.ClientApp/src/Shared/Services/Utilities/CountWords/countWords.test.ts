@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { ICountWords, CountWords } from "..";
 
-describe("Verify CountWords.", () =>
+describe("verify CountWords method", () =>
 {
-    it("Given text. When invoke CountWords. Should return proper number of words in text.", () => 
+    it("should return proper number of words in text, when text is provided.", () => 
     {
         // Arrange
         const expectation: number = 10;
@@ -19,7 +19,7 @@ describe("Verify CountWords.", () =>
         expect(result).toBe(expectation);        
     });
 
-    it("Given undefined input. When invoke CountWords. Should return zero.", () => 
+    it("should return zero, when undefined input is provided.", () => 
     {
         // Arrange
         const expectation: number = 0;

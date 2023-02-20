@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { IGetTextError, GetTextError } from "..";
 
-describe("Verify GetTextError.", () => 
+describe("verify GetTextError method", () => 
 {
-    it("Given warning object. When invoke GetTextError. Should return HTML code.", () => 
+    it("should return HTML code, when warning object provided.", () => 
     {
         // Arrange
         const input: IGetTextError = 

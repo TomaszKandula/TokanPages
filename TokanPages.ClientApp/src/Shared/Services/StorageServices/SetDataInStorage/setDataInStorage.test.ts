@@ -4,7 +4,7 @@
 import "../../../../setupTests";
 import { ISetDataInStorage, SetDataInStorage } from "..";
 
-describe("Verify SetDataInStorage.", () => 
+describe("verify SetDataInStorage method", () => 
 {
     // Prerequisities
     Storage.prototype.setItem = jest.fn((key: string, value: any) => 
@@ -12,7 +12,7 @@ describe("Verify SetDataInStorage.", () =>
         console.debug(`Called 'localStorage.setItem' with 'key' = ${key} and 'value' = ${value}.`);
     });
 
-    it("Given input Object. When invoke SetDataInStorage. Should return true.", () => 
+    it("should return true, when input Object provided.", () => 
     {  
         // Arrange
         const testObject = 
@@ -34,7 +34,7 @@ describe("Verify SetDataInStorage.", () =>
         expect(saveObject).toBe(true);
     });
 
-    it("Given input Object and empty Key. When invoke SetDataInStorage. Should return false.", () => 
+    it("should return false, when input Object and empty Key provided.", () => 
     {  
         // Arrange
         const testObject = 
@@ -56,7 +56,7 @@ describe("Verify SetDataInStorage.", () =>
         expect(saveObject).toBe(false);
     });
 
-    it("Given input Array. When invoke SetDataInStorage. Should return true.", () => 
+    it("should return true, when input Array provided.", () => 
     {  
         // Arrange
         const testArray = 

@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { IGetShortText, GetShortText } from "..";
 
-describe("Verify GetShortText.", () => 
+describe("verify GetShortText method", () => 
 {
-    it("Given long text and limit of 10 words. When invoke GetShortText. Should return text with 10 words.", () => 
+    it("should return text with 10 words, when long text and limit of 10 words provided.", () => 
     {
         // Arrange
         const expectation = "This is long text. It will be used to test...";
@@ -20,7 +20,7 @@ describe("Verify GetShortText.", () =>
         expect(output).toBe(expectation);
      });
  
-    it("Given empty input value. When invoke GetShortText. Should return empty string.", () => 
+    it("should return empty string, when empty input value provided.", () => 
     {
         // Arrange
         const expectation = "";

@@ -4,7 +4,7 @@
 import "../../../../setupTests";
 import { IDelDataFromStorage, DelDataFromStorage } from "..";
 
-describe("Verify DelDataFromStorage.", () => 
+describe("verify DelDataFromStorage method", () => 
 {
     // Prerequisities
     Storage.prototype.removeItem = jest.fn((key: string) => 
@@ -12,7 +12,7 @@ describe("Verify DelDataFromStorage.", () =>
         console.debug(`Called 'localStorage.removeItem' with 'key' argument: ${key}.`);
     });
 
-    it("Given key. When invoke DelDataFromStorage. Should return true.", () => 
+    it("should return true, when key is provided.", () => 
     {  
         // Arrange
         const input: IDelDataFromStorage = 
@@ -27,7 +27,7 @@ describe("Verify DelDataFromStorage.", () =>
         expect(result).toBe(true);
     });
 
-    it("Given no key. When invoke DelDataFromStorage. Should return false.", () => 
+    it("should return false, when no key is provided.", () => 
     {  
         // Arrange
         const input: IDelDataFromStorage = 
