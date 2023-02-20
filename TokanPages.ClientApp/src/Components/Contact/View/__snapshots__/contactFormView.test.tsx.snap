@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: contactFormView. Renders correctly '<ContactFormView />' when content is loaded. 1`] = `
+exports[`test component: contactFormView should render correctly '<ContactFormView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

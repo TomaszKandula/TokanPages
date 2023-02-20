@@ -1,4 +1,4 @@
-export interface IGetTextWarning
+export interface GetTextWarningInput
 {
     object: any;
     template: string;

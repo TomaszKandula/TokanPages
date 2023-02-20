@@ -3,14 +3,14 @@ export type {
     GetContentContract,
     PromiseResultContract,
     RequestContract
-} from "./abstractions";
+} from "./Abstractions";
 
 export { 
     GetConfiguration, 
     GetContent,
     Execute,
     ExecuteAsync
-} from "./services";
+} from "./Services";
 
 export {
     GET_ARTICLES,
@@ -75,4 +75,4 @@ export {
     MAIN_ICON,
     MEDIUM_ICON,
     ARTICLE_PATH,
-} from "./paths";
+} from "./Paths";

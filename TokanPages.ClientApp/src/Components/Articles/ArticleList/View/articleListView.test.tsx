@@ -6,9 +6,9 @@ import { TextItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleListView } from "../View/articleListView";
 
-describe("Test articles group component: ArticleListView.", () => 
+describe("test articles group component: ArticleListView", () => 
 {
-    it("Renders correctly '<ArticleListView />' when content is loaded.", () => 
+    it("should render correctly '<ArticleListView />' when content is loaded.", () => 
     {
         const author: Author = 
         {

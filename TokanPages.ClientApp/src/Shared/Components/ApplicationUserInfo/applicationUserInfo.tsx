@@ -11,10 +11,10 @@ export const ApplicationUserInfo = (): JSX.Element =>
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
 
-    const onClickHandler = () => 
+    const onClickHandler = React.useCallback(() => 
     {
         dispatch(UserDataStoreAction.show(false));
-    }
+    }, []);
 
     const data: AuthenticateUserResultDto = 
     {

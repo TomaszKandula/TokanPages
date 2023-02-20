@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test user avatar component. Should correctly render large user avatar as user letter. 1`] = `
+exports[`test user avatar component should correctly render large user avatar as user letter. 1`] = `
 <WithStyles(ForwardRef(Avatar))
   className="makeStyles-avatarLarge-2"
 >
@@ -8,7 +8,7 @@ exports[`Test user avatar component. Should correctly render large user avatar a
 </WithStyles(ForwardRef(Avatar))>
 `;
 
-exports[`Test user avatar component. Should correctly render large user avatar image. 1`] = `
+exports[`test user avatar component should correctly render large user avatar image. 1`] = `
 <WithStyles(ForwardRef(Avatar))
   alt="Avatar"
   className="makeStyles-avatarLarge-2"
@@ -16,7 +16,7 @@ exports[`Test user avatar component. Should correctly render large user avatar i
 />
 `;
 
-exports[`Test user avatar component. Should correctly render small user avatar as user letter. 1`] = `
+exports[`test user avatar component should correctly render small user avatar as user letter. 1`] = `
 <WithStyles(ForwardRef(Avatar))
   className="makeStyles-avatarSmall-1"
 >
@@ -24,7 +24,7 @@ exports[`Test user avatar component. Should correctly render small user avatar a
 </WithStyles(ForwardRef(Avatar))>
 `;
 
-exports[`Test user avatar component. Should correctly render small user avatar image. 1`] = `
+exports[`test user avatar component should correctly render small user avatar image. 1`] = `
 <WithStyles(ForwardRef(Avatar))
   alt="Avatar"
   className="makeStyles-avatarSmall-1"

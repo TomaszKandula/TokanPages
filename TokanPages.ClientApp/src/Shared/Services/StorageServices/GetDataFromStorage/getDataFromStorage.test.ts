@@ -2,11 +2,11 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { IGetDataFromStorage, GetDataFromStorage } from "..";
+import { GetDataFromStorage } from "..";
 
-describe("Verify GetDataFromStorage.", () => 
+describe("verify GetDataFromStorage method", () => 
 { 
-    it("Given item under known key. When invoke GetDataFromStorage. Should read data from local storage.", () => 
+    it("should read data from local storage, when item under known key is provided.", () => 
     {
         // Arrange
         Storage.prototype.getItem = jest.fn((key: string) => 
@@ -17,7 +17,7 @@ describe("Verify GetDataFromStorage.", () =>
         });
 
         const expectedObject = { result: 0 }
-        const input: IGetDataFromStorage = 
+        const input = 
         {
             key: "SomeKey"
         }
@@ -29,7 +29,7 @@ describe("Verify GetDataFromStorage.", () =>
         expect(result).toStrictEqual(expectedObject);
     });
 
-    it("Given item under unknown key. When invoke GetDataFromStorage. Should return empty object.", () => 
+    it("should return empty object, when item under unknown key is provided.", () => 
     {
         // Arrange
         Storage.prototype.getItem = jest.fn((key: string) => 
@@ -40,7 +40,7 @@ describe("Verify GetDataFromStorage.", () =>
         });
 
         const expectedObject = { }
-        const input: IGetDataFromStorage = 
+        const input = 
         {
             key: "AnotherKey"
         }
@@ -52,7 +52,7 @@ describe("Verify GetDataFromStorage.", () =>
         expect(result).toStrictEqual(expectedObject);
     });
 
-    it("Given invalid item under known key. When invoke GetDataFromStorage. Should return empty object.", () => 
+    it("should return empty object, when invalid item under known key is provided.", () => 
     {
         // Arrange
         Storage.prototype.getItem = jest.fn((key: string) => 
@@ -63,7 +63,7 @@ describe("Verify GetDataFromStorage.", () =>
         });
 
         const expectedObject = { }
-        const input: IGetDataFromStorage = 
+        const input = 
         {
             key: "SomeKey"
         }

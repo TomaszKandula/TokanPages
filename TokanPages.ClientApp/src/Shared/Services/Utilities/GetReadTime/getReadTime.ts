@@ -1,6 +1,10 @@
-import { IGetReadTime } from "./interface";
+interface Properties
+{
+    countWords: number; 
+    wordsPerMinute: number;
+}
 
-export const GetReadTime = (props: IGetReadTime): string =>
+export const GetReadTime = (props: Properties): string =>
 {
     if (props.countWords === 0) return "0";
     let result: number = 0;

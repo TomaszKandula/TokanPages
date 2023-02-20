@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { ProgressBarView } from "./progressBarView";
 
-describe("Test progress bar component.", () => 
+describe("test progress bar component", () => 
 {
-    it("Should correctly render 'CenteredCircularLoader' component.", () => 
+    it("should correctly render 'CenteredCircularLoader' component.", () => 
     {
         const tree = shallow(<ProgressBarView />);
         expect(tree).toMatchSnapshot();

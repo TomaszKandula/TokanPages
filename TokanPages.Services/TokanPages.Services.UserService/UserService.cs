@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,8 @@ using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Services.UserService;
 
+[SuppressMessage("Sonar Code Smell", "S3267:Loop should be simplified with LINQ expression", 
+    Justification = "LINQ would actually just make things harder to understand")]
 public sealed class UserService : IUserService
 {
     private const string Localhost = "127.0.0.1";

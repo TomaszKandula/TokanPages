@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentContactFormState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ContactFormView } from "./View/contactFormView";
 import Validate from "validate.js";
 
@@ -96,15 +97,15 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }
+    }, []);
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         if (event.currentTarget.name !== "terms")
         {
@@ -113,9 +114,9 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
         }
 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
-    };
+    }, [ form ]);
 
-    const buttonHandler = async () => 
+    const buttonHandler = React.useCallback(() => 
     {
         let validationResult = ValidateContactForm( 
         { 
@@ -134,7 +135,7 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
         }
 
         showWarning(GetTextWarning({ object: validationResult, template: MESSAGE_OUT_WARNING }));
-    };
+    }, [ form ]);
 
     return (<ContactFormView
         isLoading={props.isLoading}

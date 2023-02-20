@@ -1,6 +1,10 @@
-import { IGetShortText } from "./interface";
+interface Properties
+{
+    value: string;
+    limit: number;
+}
 
-export const GetShortText = (props: IGetShortText): string => 
+export const GetShortText = (props: Properties): string => 
 {
     if (props.value === undefined || props.value === "") return "";
     

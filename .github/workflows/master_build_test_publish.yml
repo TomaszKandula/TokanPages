@@ -106,14 +106,14 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Get Azure Key Vault secrets
-      uses: Azure/get-keyvault-secrets@v1
+      uses: TomaszKandula/get-keyvault-secrets@v1.0.2
       with:
         keyvault: ${{ secrets.AZURE_KEY_VAULT }}
         secrets: ${{ secrets.AZURE_KEY_VAULT_LIST }}
       id: vault
 
     - name: Variable substitution appsettings file for Production (.NET)
-      uses: microsoft/variable-substitution@v1
+      uses: TomaszKandula/variable-substitution@v1.0.1
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:

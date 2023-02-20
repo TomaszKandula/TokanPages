@@ -9,6 +9,7 @@ import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
 import { ReadTime } from "./Helpers/readTime";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
+import { ReactMouseEvent } from "../../../Shared/types";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
@@ -17,12 +18,12 @@ import {
     LIKES_LIMIT_FOR_USER 
 } from "../../../Shared/constants";
 
-interface ArticleDetail
+interface Properties
 {
     id: string;
 }
 
-export const ArticleDetail = (props: ArticleDetail): JSX.Element =>
+export const ArticleDetail = (props: Properties): JSX.Element =>
 {
     const dispatch = useDispatch();
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
@@ -90,7 +91,7 @@ export const ArticleDetail = (props: ArticleDetail): JSX.Element =>
     }, 
     [ userLikes, isThumbClicked ]);
 
-    const thumbsHandler = () =>
+    const thumbsHandler = React.useCallback(() =>
     {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
         const likesLimitForUser = LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
@@ -103,23 +104,23 @@ export const ArticleDetail = (props: ArticleDetail): JSX.Element =>
             setTotalThumbs(totalThumbs + 1);
             setIsThumbsClicked(true);
         }
-    };
+    }, [ selection.article.userLikes, totalThumbs, userLikes, totalLikes, isAnonymous ]);
 
-    const backButtonHandler = () =>
+    const backButtonHandler = React.useCallback(() =>
     {
         dispatch(ArticleSelectionAction.reset());
         history.push("/articles");
-    };
+    }, []);
 
-    const openPopoverHandler = (event: React.MouseEvent<HTMLElement, MouseEvent>) => 
+    const openPopoverHandler = React.useCallback((event: ReactMouseEvent) => 
     { 
         setPopover(event.currentTarget); 
-    };
+    }, []);
     
-    const closePopoverHandler = () => 
+    const closePopoverHandler = React.useCallback(() => 
     {
         setPopover(null);
-    };
+    }, []);
 
     const smallAvatar = <UserAvatar 
         userId={selection.article.author.userId}

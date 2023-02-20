@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: userSignup. Renders correctly '<UserSignup />' when content is loaded. 1`] = `
+exports[`test account group component: userSignup should render correctly '<UserSignup />' when content is loaded. 1`] = `
 <UserSignupView
   button=""
   buttonHandler={[Function]}
@@ -20,5 +20,6 @@ exports[`Test account group component: userSignup. Renders correctly '<UserSignu
   password=""
   progress={false}
   terms={false}
+  warning=""
 />
 `;

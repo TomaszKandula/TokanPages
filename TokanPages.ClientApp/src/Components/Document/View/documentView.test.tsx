@@ -5,9 +5,9 @@ import { ContentPolicyState, ContentTermsState, ContentStoryState } from "../../
 import { TextItemDto } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
-describe("Test component: documentView.", () => 
+describe("test component: documentView", () => 
 {
-    it("Renders correctly '<DocumentView />' when policy content is loaded.", () => 
+    it("should render correctly '<DocumentView />' when policy content is loaded.", () => 
     {
         const textItem: TextItemDto = 
         {
@@ -35,7 +35,7 @@ describe("Test component: documentView.", () =>
         expect(tree).toMatchSnapshot();
     });
 
-    it("Renders correctly '<DocumentView />' when terms content is loaded.", () => 
+    it("should render correctly '<DocumentView />' when terms content is loaded.", () => 
     {
         const textItem: TextItemDto = 
         {
@@ -63,7 +63,7 @@ describe("Test component: documentView.", () =>
         expect(tree).toMatchSnapshot();
     });
 
-    it("Renders correctly '<DocumentView />' when story content is loaded.", () => 
+    it("should render correctly '<DocumentView />' when story content is loaded.", () => 
     {
         const textItem: TextItemDto = 
         {

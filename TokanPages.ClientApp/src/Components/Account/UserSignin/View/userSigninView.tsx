@@ -9,7 +9,9 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ViewProperties } from "../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninStyle } from "./userSigninStyle";
 
 interface Properties extends ViewProperties
@@ -18,10 +20,10 @@ interface Properties extends ViewProperties
     button: string;
     link1: string;
     link2: string;
-    buttonHandler: any;
+    buttonHandler: () => void;
     progress: boolean;
-    keyHandler: any;
-    formHandler: any;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
     email: string;
     password: string;
     labelEmail: string;
@@ -89,18 +91,13 @@ export const UserSigninView = (props: Properties): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="password" 
-                                            name="password" 
-                                            variant="outlined" 
-                                            type="password" 
-                                            autoComplete="current-password" 
-                                            onKeyUp={props.keyHandler}
-                                            onChange={props.formHandler} 
+                                        : <TextFiedWithPassword 
+                                            uuid="password" 
+                                            fullWidth={true}
                                             value={props.password} 
                                             label={props.labelPassword}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                 </Grid>

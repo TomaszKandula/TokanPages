@@ -9,20 +9,25 @@ import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
+import { Alert } from "@material-ui/lab";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
-import { ViewProperties } from "../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupStyle } from "./userSignupStyle";
 
 interface Properties extends ViewProperties
 {
     caption: string;
+    warning: string;
     consent: string;
     button: string;
     link: string;
-    buttonHandler: any;
-    keyHandler: any;
-    formHandler: any;
+    buttonHandler: () => void;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
     progress: boolean;
     firstName: string;
     lastName: string;
@@ -128,19 +133,21 @@ export const UserSignupView = (props: Properties): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" />
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="password" 
-                                            name="password" 
-                                            variant="outlined" 
-                                            type="password" 
-                                            autoComplete="current-password"
-                                            onKeyUp={props.keyHandler}
-                                            onChange={props.formHandler} 
+                                        : <TextFiedWithPassword 
+                                            uuid="password" 
+                                            fullWidth={true}
                                             value={props.password} 
                                             label={props.labelPassword}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        {props.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" />
+                                        : <Alert severity="warning">
+                                            <ReactHtmlParser html={props.warning}/>
+                                        </Alert>}
                                     </Grid>
                                     <Grid item xs={12}>
                                         {props.isLoading 

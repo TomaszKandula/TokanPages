@@ -1,7 +1,11 @@
 import Validate from "validate.js";
-import { IGetDataFromStorage } from "./interface";
 
-export const GetDataFromStorage = (props: IGetDataFromStorage): {} | any[] => 
+interface Properties
+{
+    key: string;
+}
+
+export const GetDataFromStorage = (props: Properties): {} | any[] => 
 {
     let serialized = localStorage.getItem(props.key) as string;
     if (Validate.isEmpty(serialized)) return { };

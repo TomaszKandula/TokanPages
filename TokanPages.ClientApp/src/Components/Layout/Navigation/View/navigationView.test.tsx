@@ -5,9 +5,9 @@ import { NavigationView } from "../../Navigation/View/navigationView";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
-describe("Test component: featuresView.", () => 
+describe("test component: featuresView", () => 
 {
-    it("Renders correctly '<NavigationView />' when content is loaded.", () => 
+    it("should render correctly '<NavigationView />' when content is loaded.", () => 
     {
         const items: Item = 
         {

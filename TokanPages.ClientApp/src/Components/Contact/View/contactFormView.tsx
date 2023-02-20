@@ -9,22 +9,23 @@ import Button from "@material-ui/core/Button";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../Theme";
-import { ViewProperties } from "../../../Shared/interfaces";
+import { ViewProperties } from "../../../Shared/Abstractions";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormStyle } from "./contactFormStyle";
 
 interface Properties extends ViewProperties
 {
     caption: string;
     text: string;
-    keyHandler: any;
-    formHandler: any;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
     firstName: string;
     lastName: string;
     email: string;
     subject: string;
     message: string;
     terms?: boolean;
-    buttonHandler: any;
+    buttonHandler: () => void;
     progress: boolean;
     buttonText: string;
     consent: string;

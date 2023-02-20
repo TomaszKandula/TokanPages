@@ -1,5 +1,5 @@
 import Validate from "validate.js";
-import { EmailFormInput } from "./interface";
+import { EmailFormInput } from "..";
 
 export const ValidateEmailForm = (props: EmailFormInput): any =>
 {

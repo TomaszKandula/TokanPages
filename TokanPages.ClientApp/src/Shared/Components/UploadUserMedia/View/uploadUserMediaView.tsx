@@ -2,12 +2,13 @@ import * as React from "react";
 import BackupIcon from "@material-ui/icons/Backup";
 import { IconButton } from "@material-ui/core";
 import { UploadUserMediaStyle } from "./uploadUserMediaStyle";
+import { ReactChangeEvent } from "../../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 
 interface Properties
 {
     buttonState: boolean;
-    inputHandler: any;
+    inputHandler: (event: ReactChangeEvent) => void;
     accepting: string;
 }
 

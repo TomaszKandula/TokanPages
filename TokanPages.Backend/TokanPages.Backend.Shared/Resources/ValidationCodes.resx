@@ -148,7 +148,7 @@
     <value>The user alias cannot be longer than 255 characters</value>
   </data>
   <data name="PASSWORD_TOO_LONG" xml:space="preserve">
-    <value>The user password cannot be longer than 100 characters</value>
+    <value>The user password cannot be longer than 50 characters</value>
   </data>
   <data name="NAME_TOO_LONG" xml:space="preserve">
     <value>The given name is too long</value>
@@ -176,5 +176,20 @@
   </data>
   <data name="NOT_SPECIFIED_MEDIA_TARGET" xml:space="preserve">
     <value>The media target is not speciafied</value>
+  </data>
+  <data name="PASSWORD_TOO_SHORT" xml:space="preserve">
+    <value>The user password cannot be shorter than 8 characters</value>
+  </data>
+  <data name="PASSWORD_MISSING_CHAR" xml:space="preserve">
+    <value>The user password must contain at least one of the following characters: !, @, #, $, %, ^, &amp;, *</value>
+  </data>
+  <data name="PASSWORD_MISSING_NUMBER" xml:space="preserve">
+    <value>The user password must contain at least one number</value>
+  </data>
+  <data name="PASSWORD_MISSING_SMALL_LETTER" xml:space="preserve">
+    <value>The user password must contain at least one small letter</value>
+  </data>
+  <data name="PASSWORD_MISSING_LARGE_LETTER" xml:space="preserve">
+    <value>The user password must contain at least one large letter</value>
   </data>
 </root>

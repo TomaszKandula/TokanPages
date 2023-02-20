@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { UnsubscribeView } from "./unsubscribeView";
 import { ContentDto } from "../../../Api/Models";
 
-describe("Test component: unsubscribeView.", () => 
+describe("test component: unsubscribeView", () => 
 {
-    it("Renders correctly '<UnsubscribeView />' when content is loaded.", () => 
+    it("should render correctly '<UnsubscribeView />' when content is loaded.", () => 
     {
         const content: ContentDto = 
         {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: footerView. Renders correctly '<FooterView />' when content is loaded. 1`] = `
+exports[`test component: footerView should render correctly '<FooterView />' when content is loaded. 1`] = `
 <footer
   className="makeStyles-page_footer-1"
 >

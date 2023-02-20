@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ProgressBar } from "../../../../Shared/Components";
-import { ViewProperties } from "../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 

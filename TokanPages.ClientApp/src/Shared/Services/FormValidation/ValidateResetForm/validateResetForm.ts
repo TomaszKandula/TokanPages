@@ -1,5 +1,5 @@
 import Validate from "validate.js";
-import { ResetFormInput } from "./interface";
+import { ResetFormInput } from "..";
 
 export const ValidateResetForm = (props: ResetFormInput): any =>
 {

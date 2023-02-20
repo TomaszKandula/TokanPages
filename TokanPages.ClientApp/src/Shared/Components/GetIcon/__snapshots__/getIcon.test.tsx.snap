@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test render function 'getIcon'. Render SVG icon based on input string. 1`] = `
+exports[`test render function 'getIcon' should render SVG icon based on input string. 1`] = `
 <div>
   <GetIcon
     iconName="Person"

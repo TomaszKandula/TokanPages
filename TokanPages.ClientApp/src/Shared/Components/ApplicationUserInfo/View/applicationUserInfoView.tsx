@@ -21,7 +21,7 @@ interface Properties
 {
     state: boolean;
     data: AuthenticateUserResultDto;
-    closeHandler: any;
+    closeHandler: () => void;
 }
 
 const Items = (props: { item: string, className: string }): JSX.Element => 

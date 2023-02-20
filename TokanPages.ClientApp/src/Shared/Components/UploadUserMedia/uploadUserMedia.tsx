@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ReactChangeEvent } from "../../../Shared/types";
 import { UserMediaUploadAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
@@ -83,11 +84,11 @@ export const UploadUserMedia = (props: Properties): JSX.Element =>
     }, 
     [ hasError, hasNotStarted, hasFile, hasFinished ]);
 
-    const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
+    const inputHandler = React.useCallback((event: ReactChangeEvent) =>
     {
         setFileData(event.target.files ? event.target.files[0] : undefined);
         setIsUploading(true);
-    };
+    }, []);
 
     return(<UploadUserMediaView
         buttonState={!isUploading}

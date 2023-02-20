@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test progress bar component. Should correctly render 'CenteredCircularLoader' component. 1`] = `
+exports[`test progress bar component should correctly render 'CenteredCircularLoader' component. 1`] = `
 <Styled(MuiBox)
   alignItems="center"
   display="flex"

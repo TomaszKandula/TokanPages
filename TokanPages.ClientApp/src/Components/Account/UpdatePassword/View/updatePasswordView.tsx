@@ -4,11 +4,12 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ViewProperties } from "../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UpdatePasswordStyle } from "./updatePasswordStyle";
 
 interface Properties extends ViewProperties
@@ -18,9 +19,9 @@ interface Properties extends ViewProperties
     button: string;
     newPassword: string;
     verifyPassword: string;
-    keyHandler: any;
-    formHandler: any;
-    buttonHandler: any;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
     disableForm: boolean;
     labelNewPassword: string;
     labelVerifyPassword: string;
@@ -66,36 +67,27 @@ export const UpdatePasswordView = (props: Properties): JSX.Element =>
                                     <Grid item xs={12}>
                                         {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField 
-                                            required 
-                                            fullWidth
-                                            id="newPassword" 
-                                            name="newPassword" 
-                                            variant="outlined" 
-                                            type="password" 
-                                            autoComplete="password" 
-                                            onKeyUp={props.keyHandler} 
-                                            onChange={props.formHandler} 
+                                        : <TextFiedWithPassword 
+                                            uuid="newPassword" 
+                                            fullWidth={true}
                                             value={props.newPassword} 
                                             label={props.labelNewPassword}
-                                            disabled={props.disableForm} />}
+                                            onKeyUp={props.keyHandler} 
+                                            onChange={props.formHandler}
+                                            isDisabled={props.disableForm} 
+                                        />}
                                     </Grid>
                                     <Grid item xs={12}>
                                        {props.isLoading 
                                         ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="verifyPassword" 
-                                            name="verifyPassword" 
-                                            variant="outlined" 
-                                            type="password" 
-                                            autoComplete="password" 
-                                            onKeyUp={props.keyHandler} 
-                                            onChange={props.formHandler} 
+                                        : <TextFiedWithPassword 
+                                            uuid="verifyPassword" 
+                                            fullWidth={true}
                                             value={props.verifyPassword} 
                                             label={props.labelVerifyPassword}
-                                            disabled={props.disableForm}
+                                            onKeyUp={props.keyHandler} 
+                                            onChange={props.formHandler} 
+                                            isDisabled={props.disableForm}
                                         />}
                                     </Grid>
                                 </Grid>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: headerView. Renders correctly '<HeaderView />' when content is loaded. 1`] = `
+exports[`test component: headerView should render correctly '<HeaderView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

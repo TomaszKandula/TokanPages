@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ViewProperties } from "../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ActivateAccountStyle } from "./activateAccountStyle";
 
 interface Properties extends ViewProperties
@@ -14,7 +14,7 @@ interface Properties extends ViewProperties
     caption: string;
     text1: string;
     text2: string;
-    buttonHandler: any;
+    buttonHandler: () => void;
     buttonDisabled: boolean;
     progress: boolean;
     buttonText: string;

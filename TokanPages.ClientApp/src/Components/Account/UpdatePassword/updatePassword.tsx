@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentUpdatePasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UpdatePasswordView } from "./View/updatePasswordView";
 import Validate from "validate.js";
 
@@ -101,20 +102,20 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = (event: React.KeyboardEvent<HTMLInputElement>) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }
+    }, []);
 
-    const formHandler = (event: React.ChangeEvent<HTMLInputElement>) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
-    };
+    }, [ form ]);
 
-    const buttonHandler = () =>
+    const buttonHandler = React.useCallback(() =>
     {
         let results = ValidateUpdateForm(
         { 
@@ -129,7 +130,7 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
         }
 
         showWarning(GetTextWarning({ object: results, template: UPDATE_PASSWORD_WARNING }));
-    };
+    }, [ form ]);
 
     return (
         <UpdatePasswordView

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: userSignupView. Renders correctly '<UserSignupView />' when content is loaded. 1`] = `
+exports[`test account group component: userSignupView should render correctly '<UserSignupView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >
@@ -93,19 +93,26 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                 item={true}
                 xs={12}
               >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="current-password"
+                <TextFiedWithPassword
                   fullWidth={true}
-                  id="password"
                   label="Password"
-                  name="password"
                   onChange={[MockFunction]}
                   onKeyUp={[MockFunction]}
-                  required={true}
-                  type="password"
+                  uuid="password"
                   value="madrilena123"
-                  variant="outlined"
                 />
+              </WithStyles(ForwardRef(Grid))>
+              <WithStyles(ForwardRef(Grid))
+                item={true}
+                xs={12}
+              >
+                <WithStyles(ForwardRef(Alert))
+                  severity="warning"
+                >
+                  <ReactHtmlParser
+                    html="Please use..."
+                  />
+                </WithStyles(ForwardRef(Alert))>
               </WithStyles(ForwardRef(Grid))>
               <WithStyles(ForwardRef(Grid))
                 item={true}
@@ -146,6 +153,7 @@ exports[`Test account group component: userSignupView. Renders correctly '<UserS
                 password="madrilena123"
                 progress={false}
                 terms={false}
+                warning="Please use..."
               />
             </Styled(MuiBox)>
             <Styled(MuiBox)
