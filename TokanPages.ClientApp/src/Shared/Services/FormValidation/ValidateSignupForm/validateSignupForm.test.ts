@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import { SignupFormInput, ValidateSignupForm } from "..";
 
-describe("Verify validation methods.", () => 
+describe("Verify signup form validation methods.", () => 
 {
     it("should return defined, when missing first name.", () => 
     {
@@ -140,7 +140,7 @@ describe("Verify validation methods.", () =>
         expect(result).toBeDefined();
     });
 
-    it("should return undefined, when password does not contain all required characters.", () => 
+    it("should return undefined, when password contains all the required characters.", () => 
     {
         // Arrange
         const form: SignupFormInput = 
@@ -157,6 +157,6 @@ describe("Verify validation methods.", () =>
 
         // Assert
         console.debug(result);
-        expect(result).toBeDefined();
+        expect(result).toBeUndefined();
     });
 });
