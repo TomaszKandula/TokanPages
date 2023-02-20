@@ -10,7 +10,7 @@ export {
     GetContent,
     Execute,
     ExecuteAsync
-} from "./services";
+} from "./Services";
 
 export {
     GET_ARTICLES,
@@ -75,4 +75,4 @@ export {
     MAIN_ICON,
     MEDIUM_ICON,
     ARTICLE_PATH,
-} from "./paths";
+} from "./Paths";
