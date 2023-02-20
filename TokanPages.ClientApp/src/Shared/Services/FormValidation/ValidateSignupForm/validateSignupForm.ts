@@ -9,6 +9,7 @@ import {
 
 import { 
     ContainNumber, 
+    HasWarning,
     HaveLargeLetter, 
     HaveSmallLetter, 
     HaveSpecialCharacter 
@@ -78,29 +79,25 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
 
     if (!HaveSpecialCharacter(props.password))
     {
-        const hasWarning = result !== undefined || result["password"] !== undefined;
-        const data = hasWarning ? [...result.password, PASSWORD_MISSING_CHAR] : [PASSWORD_MISSING_CHAR];
+        const data = HasWarning(result) ? [...result.password, PASSWORD_MISSING_CHAR] : [PASSWORD_MISSING_CHAR];
         result = { ...result, password: data }
     }
 
     if (!ContainNumber(props.password))
     {
-        const hasWarning = result !== undefined || result["password"] !== undefined;
-        const data = hasWarning ? [...result.password, PASSWORD_MISSING_NUMBER] : [PASSWORD_MISSING_NUMBER];
+        const data = HasWarning(result) ? [...result.password, PASSWORD_MISSING_NUMBER] : [PASSWORD_MISSING_NUMBER];
         result = { ...result, password: data }
     }
 
     if (!HaveLargeLetter(props.password))
     {
-        const hasWarning = result !== undefined || result["password"] !== undefined;
-        const data = hasWarning ? [...result.password, PASSWORD_MISSING_LARGE_LETTER] : [PASSWORD_MISSING_LARGE_LETTER];
+        const data = HasWarning(result) ? [...result.password, PASSWORD_MISSING_LARGE_LETTER] : [PASSWORD_MISSING_LARGE_LETTER];
         result = { ...result, password: data }
     }
 
     if (!HaveSmallLetter(props.password))
     {
-        const hasWarning = result !== undefined || result["password"] !== undefined;
-        const data = hasWarning ? [...result.password, PASSWORD_MISSING_SMALL_LETTER] : [PASSWORD_MISSING_SMALL_LETTER];
+        const data = HasWarning(result) ? [...result.password, PASSWORD_MISSING_SMALL_LETTER] : [PASSWORD_MISSING_SMALL_LETTER];
         result = { ...result, password: data }
     }
 
