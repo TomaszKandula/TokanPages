@@ -1,5 +1,5 @@
 import Validate from "validate.js";
-import { UpdateFormInput } from "./interface";
+import { UpdateFormInput } from "..";
 import { 
     ContainNumber, 
     HasProperty, 

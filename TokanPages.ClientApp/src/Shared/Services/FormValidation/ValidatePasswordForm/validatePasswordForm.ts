@@ -1,5 +1,5 @@
 import Validate from "validate.js";
-import { PasswordFormInput } from "./interface";
+import { PasswordFormInput } from "..";
 import { 
     ContainNumber, 
     HasProperty, 

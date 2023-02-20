@@ -1,5 +1,5 @@
 import Validate from "validate.js";
-import { SignupFormInput } from "./interface";
+import { SignupFormInput } from "..";
 import { 
     PASSWORD_MISSING_CHAR, 
     PASSWORD_MISSING_LARGE_LETTER, 
