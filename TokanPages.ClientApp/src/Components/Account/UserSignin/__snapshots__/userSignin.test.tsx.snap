@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: userSignin. Renders correctly '<UserSignin />' when content is loaded. 1`] = `
+exports[`test account group component: userSignin should render correctly '<UserSignin />' when content is loaded. 1`] = `
 <div>
   <UserSignin
     content={

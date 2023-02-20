@@ -1,13 +1,13 @@
 import "../../../../setupTests";
-import { IRenderHtmlLine, RenderHtmlLine } from "..";
+import { RenderHtmlLine } from "..";
 
-describe("Verify RenderHtmlLine.", () => 
+describe("verify RenderHtmlLine method", () => 
 { 
-    it("Given HTML tag. When invoke RenderHtmlLine. Should render HTML line.", () => 
+    it("should render HTML line, when HTML tag provided.", () => 
     {
         // Arrange
         const expectation: string = "<li>This is test item</li>";
-        const input: IRenderHtmlLine = 
+        const input = 
         {
             tag: "li",
             text: "This is test item"
@@ -20,11 +20,11 @@ describe("Verify RenderHtmlLine.", () =>
         expect(result).toBe(expectation);
     });
  
-    it("Given HTML tag and undefined text. When invoke RenderHtmlLine. Should return whitespace.", () => 
+    it("should return whitespace, when HTML tag have undefined text.", () => 
     {
         // Arrange
         const expectation = " ";
-        const input: IRenderHtmlLine = 
+        const input = 
         {
             tag: "li",
             text: undefined

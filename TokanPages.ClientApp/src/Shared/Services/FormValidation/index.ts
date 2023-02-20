@@ -1,11 +1,11 @@
-export type { ContactFormInput } from "./ValidateContactForm/interface";
-export type { EmailFormInput } from "./ValidateEmailForm/interface";
-export type { ResetFormInput } from "./ValidateResetForm/interface";
-export type { SigninFormInput } from "./ValidateSigninForm/interface";
-export type { SignupFormInput } from "./ValidateSignupForm/interface";
-export type { UpdateFormInput } from "./ValidateUpdateForm/interface";
-export type { AccountFormInput } from "./ValidateAccountForm/interface";
-export type { PasswordFormInput } from "./ValidatePasswordForm/interface";
+export type { ContactFormInput } from "./Abstractions/ContactFormInput";
+export type { EmailFormInput } from "./Abstractions/EmailFormInput";
+export type { ResetFormInput } from "./Abstractions/ResetFormInput";
+export type { SigninFormInput } from "./Abstractions/SigninFormInput";
+export type { SignupFormInput } from "./Abstractions/SignupFormInput";
+export type { UpdateFormInput } from "./Abstractions/UpdateFormInput";
+export type { AccountFormInput } from "./Abstractions/AccountFormInput";
+export type { PasswordFormInput } from "./Abstractions/PasswordFormInput";
 
 export { ValidateContactForm } from "./ValidateContactForm/validateContactForm";
 export { ValidateEmailForm } from "./ValidateEmailForm/validateEmailForm";

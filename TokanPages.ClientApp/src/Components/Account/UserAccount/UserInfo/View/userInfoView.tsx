@@ -7,7 +7,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
-import { ViewProperties } from "../../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 

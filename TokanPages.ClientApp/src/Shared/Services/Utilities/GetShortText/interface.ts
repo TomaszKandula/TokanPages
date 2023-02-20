@@ -1,4 +1,4 @@
-export interface IGetShortText
+export interface GetShortTextInput
 {
     value: string;
     limit: number;

@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import { TextObject } from "./Models/TextModel";
 import { RenderContent } from "./renderContent";
 
-describe("Test render function 'renderContent'.", () => 
+describe("test render function 'renderContent'", () => 
 {
     interface Properties
     {
@@ -117,17 +117,17 @@ describe("Test render function 'renderContent'.", () =>
     const emptyItems = shallow(<TestComponent textObject={{ items: [] }}></TestComponent>);
     const withItems = shallow(<TestComponent textObject={TestObject}></TestComponent>);
 
-    it("Should return 'Cannot render content.' when called with items undefined.", () => 
+    it("should return 'Cannot render content.' when called with items undefined.", () => 
     {
         expect(noItems).toMatchSnapshot();
     });
 
-    it("Should return 'Cannot render content.' when called with empty array of items.", () => 
+    it("should return 'Cannot render content.' when called with empty array of items.", () => 
     {
         expect(emptyItems).toMatchSnapshot();
     });
 
-    it("Should correctly render passed items.", () => 
+    it("should correctly render passed items.", () => 
     {
         expect(withItems).toMatchSnapshot();
     });

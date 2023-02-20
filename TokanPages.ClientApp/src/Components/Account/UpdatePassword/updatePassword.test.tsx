@@ -21,7 +21,7 @@ jest.mock("react-router-dom", () =>
     })
 }));
 
-describe("Test account group component: updatePassword.", () => 
+describe("test account group component: updatePassword", () => 
 {
     const testContent = 
     {
@@ -43,7 +43,7 @@ describe("Test account group component: updatePassword.", () =>
         wrapper.find("UpdatePassword").dive();
     });
 
-    it("Renders correctly '<UpdatePassword />' when content is loaded.", () => 
+    it("should render correctly '<UpdatePassword />' when content is loaded.", () => 
     {
         useDispatchMock.mockReturnValue(jest.fn());
         useSelectorMock.mockReturnValue(ApplicationDefault);

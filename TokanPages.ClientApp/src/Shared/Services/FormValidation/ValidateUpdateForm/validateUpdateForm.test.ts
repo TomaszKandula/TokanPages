@@ -1,15 +1,15 @@
 import "../../../../setupTests";
 import { UpdateFormInput, ValidateUpdateForm } from "..";
 
-describe("Verify validation methods.", () => 
+describe("verify update password form validation methods", () => 
 {
-    it("When Update Password Form filled correctly. Should return undefined.", () => 
+    it("should return undefined, when update password form is filled correctly.", () => 
     {
         // Arrange
         const form: UpdateFormInput = 
         {
-            newPassword: "abcde123456",
-            verifyPassword: "abcde123456"
+            newPassword: "Abcde#123456",
+            verifyPassword: "Abcde#123456"
         }
 
         // Act
@@ -19,7 +19,7 @@ describe("Verify validation methods.", () =>
         expect(result).toBeUndefined();
     });
 
-    it("When Update Password Form filled incorrectly. Should return defined.", () => 
+    it("should return defined, when update password form is filled incorrectly.", () => 
     {
         // Arrange
         const form1: UpdateFormInput = 

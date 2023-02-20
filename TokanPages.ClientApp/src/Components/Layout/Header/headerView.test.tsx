@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { HeaderView } from "./headerView";
 
-describe("Test component: headerView.", () => 
+describe("test component: headerView", () => 
 {
-    it("Renders correctly '<HeaderView />' when content is loaded.", () => 
+    it("should render correctly '<HeaderView />' when content is loaded.", () => 
     {
         const tree = shallow(<HeaderView isLoading={false} content=
         {{

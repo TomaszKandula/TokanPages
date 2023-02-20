@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { CookiesView } from "./cookiesView";
 
-describe("Test component: cookiesView.", () => 
+describe("test component: cookiesView", () => 
 {
-    it("Renders correctly '<CookiesView />' when content is loaded.", () => 
+    it("should render correctly '<CookiesView />' when content is loaded.", () => 
     {
         const tree = shallow(<CookiesView
             isLoading={false}

@@ -1,7 +1,12 @@
 import Validate from "validate.js";
-import { ISetDataInStorage } from "./interface";
 
-export const SetDataInStorage = (props: ISetDataInStorage): boolean => 
+interface Properties
+{
+    selection: {} | any[]; 
+    key: string;
+}
+
+export const SetDataInStorage = (props: Properties): boolean => 
 {
     if (Validate.isEmpty(props.key)) return false;
 

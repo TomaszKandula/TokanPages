@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: userSigninView. Renders correctly '<UserSigninView />' when content is loaded. 1`] = `
+exports[`test account group component: userSigninView should render correctly '<UserSigninView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

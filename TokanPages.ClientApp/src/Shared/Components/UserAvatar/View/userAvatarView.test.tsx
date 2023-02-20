@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { UserAvatarView } from "./userAvatarView";
 
-describe("Test user avatar component.", () => 
+describe("test user avatar component", () => 
 {
-    it("Should correctly render large user avatar as user letter.", () => 
+    it("should correctly render large user avatar as user letter.", () => 
     {
         const tree = shallow(<UserAvatarView
             isLarge={true}
@@ -16,7 +16,7 @@ describe("Test user avatar component.", () =>
         expect(tree).toMatchSnapshot();
     });
 
-    it("Should correctly render small user avatar as user letter.", () => 
+    it("should correctly render small user avatar as user letter.", () => 
     {
         const tree = shallow(<UserAvatarView
             isLarge={false}
@@ -27,7 +27,7 @@ describe("Test user avatar component.", () =>
         expect(tree).toMatchSnapshot();
     });
 
-    it("Should correctly render large user avatar image.", () => 
+    it("should correctly render large user avatar image.", () => 
     {
         const tree = shallow(<UserAvatarView
             isLarge={true}
@@ -38,7 +38,7 @@ describe("Test user avatar component.", () =>
         expect(tree).toMatchSnapshot();
     });
 
-    it("Should correctly render small user avatar image.", () => 
+    it("should correctly render small user avatar image.", () => 
     {
         const tree = shallow(<UserAvatarView
             isLarge={false}

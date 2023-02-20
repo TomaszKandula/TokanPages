@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { ViewProperties } from "../../../../../Shared/interfaces";
+import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
 import { 

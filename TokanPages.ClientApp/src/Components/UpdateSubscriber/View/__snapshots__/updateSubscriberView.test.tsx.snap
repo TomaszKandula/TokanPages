@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: updateSubscriberView. Renders correctly '<UpdateSubscriberView />' when content is loaded. 1`] = `
+exports[`test component: updateSubscriberView should render correctly '<UpdateSubscriberView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

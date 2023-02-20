@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { ResetPasswordView } from "./resetPasswordView";
 import { RESET_FORM } from "../../../../Shared/constants";
 
-describe("Test account group component: resetPasswordView.", () => 
+describe("test account group component: resetPasswordView", () => 
 {
-    it("Renders correctly '<ResetPasswordView />' when content is loaded.", () => 
+    it("should render correctly '<ResetPasswordView />' when content is loaded.", () => 
     {
         const tree = shallow(<ResetPasswordView
             isLoading={false}

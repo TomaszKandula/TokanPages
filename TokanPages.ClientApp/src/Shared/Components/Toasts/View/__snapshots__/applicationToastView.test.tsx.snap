@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test view component for application toast. Renders correctly view component with passed props. 1`] = `
+exports[`test view component for application toast should render correctly view component with passed props. 1`] = `
 <div
   className="makeStyles-root-1"
 >

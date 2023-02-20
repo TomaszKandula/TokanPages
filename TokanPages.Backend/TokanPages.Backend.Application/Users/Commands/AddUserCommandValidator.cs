@@ -1,8 +1,11 @@
-﻿using FluentValidation;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
+[SuppressMessage("Sonar Code Smell", "S3267:Loop should be simplified with LINQ expression", 
+    Justification = "LINQ would actually just make things harder to understand")]
 public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
 {
     public AddUserCommandValidator() 

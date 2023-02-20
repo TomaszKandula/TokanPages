@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: menuView. Renders correctly '<MenuView />' when content is loaded. 1`] = `
+exports[`test component: menuView should render correctly '<MenuView />' when content is loaded. 1`] = `
 <WithStyles(ForwardRef(Drawer))
   anchor="left"
   onClose={[MockFunction]}

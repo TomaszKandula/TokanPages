@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { TestimonialsView } from "./testimonialsView";
 
-describe("Test component: testimonialsView.", () => 
+describe("test component: testimonialsView", () => 
 {
-    it("Renders correctly '<TestimonialsView />' when content is loaded.", () => 
+    it("should render correctly '<TestimonialsView />' when content is loaded.", () => 
     {
         const tree = shallow(<TestimonialsView isLoading={false} content=
         {{

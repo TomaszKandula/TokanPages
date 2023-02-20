@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: documentView. Renders correctly '<DocumentView />' when policy content is loaded. 1`] = `
+exports[`test component: documentView should render correctly '<DocumentView />' when policy content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >
@@ -46,7 +46,7 @@ exports[`Test component: documentView. Renders correctly '<DocumentView />' when
 </section>
 `;
 
-exports[`Test component: documentView. Renders correctly '<DocumentView />' when story content is loaded. 1`] = `
+exports[`test component: documentView should render correctly '<DocumentView />' when story content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >
@@ -92,7 +92,7 @@ exports[`Test component: documentView. Renders correctly '<DocumentView />' when
 </section>
 `;
 
-exports[`Test component: documentView. Renders correctly '<DocumentView />' when terms content is loaded. 1`] = `
+exports[`test component: documentView should render correctly '<DocumentView />' when terms content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

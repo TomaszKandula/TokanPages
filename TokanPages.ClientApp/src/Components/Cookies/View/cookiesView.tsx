@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import { ViewProperties } from "../../../Shared/interfaces";
+import { ViewProperties } from "../../../Shared/Abstractions";
 import { CookiesStyle } from "./cookiesStyle";
 
 interface Properties extends ViewProperties

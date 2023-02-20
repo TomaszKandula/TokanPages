@@ -1,9 +1,9 @@
 import "../../../../setupTests";
 import { ResetFormInput, ValidateResetForm } from "..";
 
-describe("Verify validation methods.", () => 
+describe("verify reset form validation methods", () => 
 {
-    it("When Reset Form filled correctly. Should return undefined.", () => 
+    it("should return undefined, when reset form filled correctly.", () => 
     {
         // Arrange
         const form: ResetFormInput = 
@@ -18,7 +18,7 @@ describe("Verify validation methods.", () =>
         expect(result).toBeUndefined();
     });
 
-    it("When Reset Form filled incorrectly. Should return defined.", () => 
+    it("should return defined, when reset form filled incorrectly.", () => 
     {
         // Arrange
         const form1: ResetFormInput = 

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: newsletterView. Renders correctly '<NewsletterView />' when content is loaded. 1`] = `
+exports[`test component: newsletterView should render correctly '<NewsletterView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test articles group component: ArticleFeaturesView. Renders correctly '<ArticleFeaturesView />' when content is loaded. 1`] = `
+exports[`test articles group component: ArticleFeaturesView should render correctly '<ArticleFeaturesView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

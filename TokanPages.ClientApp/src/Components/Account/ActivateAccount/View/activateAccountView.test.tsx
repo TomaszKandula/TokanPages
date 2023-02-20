@@ -3,9 +3,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import { ActivateAccountView } from "./activateAccountView";
 
-describe("Test account group component: activateAccountView.", () => 
+describe("test account group component: activateAccountView", () => 
 {
-    it("Renders correctly '<ActivateAccountView />' when content is loaded.", () => 
+    it("should render correctly '<ActivateAccountView />' when content is loaded.", () => 
     {
         const tree = shallow(<ActivateAccountView
             isLoading={false}

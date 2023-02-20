@@ -2,11 +2,11 @@
 * @jest-environment jsdom
 */
 import "../../../../setupTests";
-import { ISetCookie, SetCookie } from "..";
+import { SetCookie } from "..";
 
-describe("Verify cookies module functionality.", () => 
+describe("verify cookies module functionality", () => 
 {
-    it("When SetCookie. Should return cookie string when 'days' and 'exact' value are defined.", () => 
+    it("should return cookie string when 'days' and 'exact' value are defined.", () => 
     {
         // Arrange
         let date = new Date();
@@ -18,7 +18,7 @@ describe("Verify cookies module functionality.", () =>
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict;`;
         const expectedValueSecure = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict; Secure;`;
 
-        const unsecureInput: ISetCookie = 
+        const unsecureInput = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -28,7 +28,7 @@ describe("Verify cookies module functionality.", () =>
             exact: newExpiry
         }
 
-        const secureInput: ISetCookie = 
+        const secureInput = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -47,7 +47,7 @@ describe("Verify cookies module functionality.", () =>
         expect(secureResult).toBe(expectedValueSecure);
     });
 
-    it("When SetCookie. Should return cookie string when only 'days' value is defined.", () => 
+    it("should return cookie string when only 'days' value is defined.", () => 
     {
         // Arrange
         let date = new Date();
@@ -58,7 +58,7 @@ describe("Verify cookies module functionality.", () =>
  
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict;`;
 
-        const input: ISetCookie = 
+        const input = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -75,7 +75,7 @@ describe("Verify cookies module functionality.", () =>
         expect(result).toBe(expectedValue);
     });
 
-    it("When SetCookie. Should return cookie string as 'Secure' when SameSite is None regardless of secure property.", () => 
+    it("should return cookie string as 'Secure' when SameSite is None regardless of secure property.", () => 
     {
         // Arrange
         let date = new Date();
@@ -86,7 +86,7 @@ describe("Verify cookies module functionality.", () =>
  
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=None; Secure;`;
 
-        const unsecureInput: ISetCookie = 
+        const unsecureInput = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -96,7 +96,7 @@ describe("Verify cookies module functionality.", () =>
             exact: undefined
         } 
 
-        const secureInput: ISetCookie =
+        const secureInput =
         {
             cookieName: "cookieConsent", 
             value: "granted", 
@@ -115,7 +115,7 @@ describe("Verify cookies module functionality.", () =>
         expect(resultSecure).toBe(expectedValue);
     });
 
-    it("When SetCookie. Should return empty string when cookie days are set to zero.", () => 
+    it("should return empty string when cookie days are set to zero.", () => 
     {
         // Arrange
         let date = new Date();
@@ -126,7 +126,7 @@ describe("Verify cookies module functionality.", () =>
         const newExpiry = date.toUTCString();
         const expectedValue = "";
 
-        const input: ISetCookie = 
+        const input = 
         {
             cookieName: "cookieConsent", 
             value: "granted", 

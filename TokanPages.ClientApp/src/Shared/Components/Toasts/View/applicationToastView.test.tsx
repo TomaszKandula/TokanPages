@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { ApplicationToastView } from "./applicationToastView";
 import { Slide, SlideProps } from "@material-ui/core";
 
-describe("Test view component for application toast.", () => 
+describe("test view component for application toast", () => 
 {
-    it("Renders correctly view component with passed props.", () => 
+    it("should render correctly view component with passed props.", () => 
     {
         const vertical = "top";
         const horizontal = "right";
