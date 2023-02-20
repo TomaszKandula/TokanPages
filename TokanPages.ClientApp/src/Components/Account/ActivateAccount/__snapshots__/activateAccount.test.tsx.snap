@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test account group component: activateAccount. Renders correctly '<ActivateAccount />' when content is loaded. 1`] = `
+exports[`Test account group component: activateAccount should render correctly '<ActivateAccount />' when content is loaded. 1`] = `
 <div>
   <ActivateAccount
     content={

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test articles group component: ArticleListView. Renders correctly '<ArticleListView />' when content is loaded. 1`] = `
+exports[`test articles group component: ArticleListView should render correctly '<ArticleListView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

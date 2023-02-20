@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test render function 'renderContent'. Should correctly render passed items. 1`] = `
+exports[`test render function 'renderContent' should correctly render passed items. 1`] = `
 <Fragment>
   <RenderText
     id="e7f4a895-b18c-4378-98b6-e85ef7c27e42"
@@ -97,13 +97,13 @@ exports[`Test render function 'renderContent'. Should correctly render passed it
 </Fragment>
 `;
 
-exports[`Test render function 'renderContent'. Should return 'Cannot render content.' when called with empty array of items. 1`] = `
+exports[`test render function 'renderContent' should return 'Cannot render content.' when called with empty array of items. 1`] = `
 <div>
   Cannot render content.
 </div>
 `;
 
-exports[`Test render function 'renderContent'. Should return 'Cannot render content.' when called with items undefined. 1`] = `
+exports[`test render function 'renderContent' should return 'Cannot render content.' when called with items undefined. 1`] = `
 <div>
   Cannot render content.
 </div>

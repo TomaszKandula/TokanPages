@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test view component for application diaog box. Renders correctly view component with passed props. 1`] = `
+exports[`test view component for application diaog box should render correctly view component with passed props. 1`] = `
 <WithStyles(ForwardRef(Dialog))
   aria-describedby="alert-dialog-description"
   aria-labelledby="alert-dialog-title"

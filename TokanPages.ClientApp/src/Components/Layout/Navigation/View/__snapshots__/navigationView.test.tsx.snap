@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test component: featuresView. Renders correctly '<NavigationView />' when content is loaded. 1`] = `
+exports[`test component: featuresView should render correctly '<NavigationView />' when content is loaded. 1`] = `
 <HideOnScroll
   avatarName=""
   avatarSource=""
