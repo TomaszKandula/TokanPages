@@ -3,7 +3,7 @@ export type {
     GetContentContract,
     PromiseResultContract,
     RequestContract
-} from "./abstractions";
+} from "./Abstractions";
 
 export { 
     GetConfiguration, 

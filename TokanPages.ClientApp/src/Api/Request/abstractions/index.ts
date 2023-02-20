@@ -1,4 +1,4 @@
-export type { ExecuteContract } from "./execute";
-export type { GetContentContract } from "./getContent";
-export type { PromiseResultContract } from "./promiseResult";
-export type { RequestContract } from "./request";
+export type { ExecuteContract } from "./ExecuteContract";
+export type { GetContentContract } from "./GetContentContract";
+export type { PromiseResultContract } from "./PromiseResultContract";
+export type { RequestContract } from "./RequestContract";

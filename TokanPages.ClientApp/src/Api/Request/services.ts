@@ -11,7 +11,7 @@ import {
     GetContentContract, 
     PromiseResultContract, 
     RequestContract 
-} from "./abstractions";
+} from "./Abstractions";
 
 const IsSuccessStatusCode = (statusCode: number): boolean => 
 {
