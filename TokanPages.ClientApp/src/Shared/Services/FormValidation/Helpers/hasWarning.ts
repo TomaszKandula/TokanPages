@@ -1,4 +1,4 @@
-export const HasWarning = (result: any): boolean => 
+export const HasWarning = (result: any, property: string): boolean => 
 {
-    return result !== undefined && result["password"] !== undefined;
+    return result && result[property];
 }
