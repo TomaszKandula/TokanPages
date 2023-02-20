@@ -7,6 +7,13 @@ import {
     PASSWORD_MISSING_SMALL_LETTER 
 } from "../../../../Shared/constants";
 
+import { 
+    ContainNumber, 
+    HaveLargeLetter, 
+    HaveSmallLetter, 
+    HaveSpecialCharacter 
+} from "../Helpers";
+
 export const ValidateSignupForm = (props: SignupFormInput): any =>
 {
     let constraints =  
@@ -98,60 +105,4 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
     }
 
     return result;
-}
-
-const HaveSpecialCharacter = (value: string): boolean => 
-{
-    const characters = [ "!", "@", "#", "$", "%", "^", "&", "*" ];
-    for (let index: number = 0; index < value.length; index++) 
-    {
-        if (characters.includes(value[index]))
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-const ContainNumber = (value: string): boolean => 
-{
-    for (let index: number = 0; index < value.length; index++) 
-    {
-        let charCode = value.charCodeAt(index);
-        if (charCode >= 48 && charCode <= 57)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-const HaveLargeLetter = (value: string): boolean => 
-{
-    for (let index: number = 0; index < value.length; index++) 
-    {
-        let charCode = value.charCodeAt(index);
-        if (charCode >= 65 && charCode <= 90)
-        {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-const HaveSmallLetter = (value: string): boolean => 
-{
-    for (let index: number = 0; index < value.length; index++) 
-    {
-        let charCode = value.charCodeAt(index);
-        if (charCode >= 97 && charCode <= 122)
-        {
-            return true;
-        }
-    }
-
-    return false;
 }
