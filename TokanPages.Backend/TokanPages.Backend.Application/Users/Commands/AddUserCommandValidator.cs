@@ -1,11 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using FluentValidation;
+﻿using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Shared.Services;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
-[SuppressMessage("Sonar Code Smell", "S3267:Loop should be simplified with LINQ expression", 
-    Justification = "LINQ would actually just make things harder to understand")]
 public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
 {
     public AddUserCommandValidator() 
@@ -44,62 +42,18 @@ public class AddUserCommandValidator : AbstractValidator<AddUserCommand>
             .MaximumLength(50)
             .WithErrorCode(nameof(ValidationCodes.PASSWORD_TOO_LONG))
             .WithMessage(ValidationCodes.PASSWORD_TOO_LONG)
-            .Must(HaveSpecialCharacter)
+            .Must(PasswordHelpers.HaveSpecialCharacter)
             .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_CHAR))
             .WithMessage(ValidationCodes.PASSWORD_MISSING_CHAR)
-            .Must(ContainNumber)
+            .Must(PasswordHelpers.ContainNumber)
             .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_NUMBER))
             .WithMessage(ValidationCodes.PASSWORD_MISSING_NUMBER)
-            .Must(HaveLargeLetter)
+            .Must(PasswordHelpers.HaveLargeLetter)
             .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER))
             .WithMessage(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER)
-            .Must(HaveSmallLetter)
+            .Must(PasswordHelpers.HaveSmallLetter)
             .WithErrorCode(nameof(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER))
             .WithMessage(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER);
     }
 
-    private static bool HaveSpecialCharacter(string value)
-    {
-        var characters = new [] { '!', '@', '#', '$', '%', '^', '&', '*' };
-        foreach (var character in value)
-        {
-            if (characters.Contains(character)) 
-                return true;
-        }
-
-        return false;
-    }
-
-    private static bool ContainNumber(string value)
-    {
-        foreach (var character in value)
-        {
-            if (character >= 48 && character <= 57)
-                return true;
-        }
-
-        return false;
-    }
-
-    private static bool HaveLargeLetter(string value)
-    {
-        foreach (var character in value)
-        {
-            if (character >= 65 && character <= 90)
-                return true;
-        }
-
-        return false;
-    }
-
-    private static bool HaveSmallLetter(string value)
-    {
-        foreach (var character in value)
-        {
-            if (character >= 97 && character <= 122)
-                return true;
-        }
-
-        return false;
-    }
 }
