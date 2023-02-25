@@ -133,7 +133,6 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                   multiline={true}
                   name="message"
                   onChange={[MockFunction]}
-                  onKeyUp={[MockFunction]}
                   required={true}
                   value="Test message..."
                   variant="outlined"
