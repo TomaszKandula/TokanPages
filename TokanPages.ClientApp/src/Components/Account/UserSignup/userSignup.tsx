@@ -30,7 +30,7 @@ import {
     SIGNUP_WARNING 
 } from "../../../Shared/constants";
 
-const formDefaultValues: SignupFormInput =
+const formDefault: SignupFormInput =
 {
     firstName: "",
     lastName: "",
@@ -49,7 +49,7 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
     const hasFinished = signup?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [form, setForm] = React.useState(formDefaultValues);   
+    const [form, setForm] = React.useState(formDefault);   
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text)));
@@ -89,7 +89,7 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
         if (hasFinished) 
         {
             clearForm();
-            setForm(formDefaultValues);
+            setForm(formDefault);
             showSuccess(SIGNUP_SUCCESS);
         }
     }, 
@@ -112,11 +112,12 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
         }
 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
-    }, [ form ]);
+    }, 
+    [ form ]);
 
     const buttonHandler = React.useCallback(() => 
     {
-        let validationResult = ValidateSignupForm( 
+        const result = ValidateSignupForm( 
         { 
             firstName: form.firstName,
             lastName: form.lastName,
@@ -125,14 +126,15 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
             terms: form.terms
         });
 
-        if (!Validate.isDefined(validationResult))
+        if (!Validate.isDefined(result))
         {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: validationResult, template: SIGNUP_WARNING }));
-    }, [ form ]);
+        showWarning(GetTextWarning({ object: result, template: SIGNUP_WARNING }));
+    }, 
+    [ form ]);
 
     return (<UserSignupView
         isLoading={props.isLoading}

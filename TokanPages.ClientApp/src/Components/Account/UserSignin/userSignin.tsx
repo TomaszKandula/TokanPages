@@ -29,7 +29,7 @@ import {
     SIGNIN_WARNING 
 } from "../../../Shared/constants";
 
-const formDefaultValues: SigninFormInput =
+const formDefault: SigninFormInput =
 {
     email: "",
     password: ""
@@ -47,7 +47,7 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
     const hasFinished = signin?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [form, setForm] = React.useState(formDefaultValues);
+    const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showWarning = (text: string) => 
@@ -101,24 +101,26 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
-    }, [ form ]);
+    }, 
+    [ form ]);
 
     const buttonHandler = React.useCallback(() => 
     {
-        let validationResult = ValidateSigninForm( 
+        const result = ValidateSigninForm( 
         { 
             email: form.email, 
             password: form.password
         });
 
-        if (!Validate.isDefined(validationResult))
+        if (!Validate.isDefined(result))
         {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: validationResult, template: SIGNIN_WARNING }));
-    }, [ form ]);
+        showWarning(GetTextWarning({ object: result, template: SIGNIN_WARNING }));
+    }, 
+    [ form ]);
 
     return(
         <UserSigninView

@@ -156,7 +156,6 @@ export const ContactFormView = (props: Properties): JSX.Element =>
                                             name="message" 
                                             autoComplete="message" 
                                             variant="outlined"
-                                            onKeyUp={props.keyHandler}
                                             onChange={props.formHandler} 
                                             value={props.message} 
                                             label={props.labelMessage} 

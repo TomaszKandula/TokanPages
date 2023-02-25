@@ -33,11 +33,11 @@ interface BaseProperties extends ViewProperties
     accountForm: AccountFormInput;
     userImageName: string;
     isUserActivated: boolean;
-    accountFormProgress: boolean;
-    accountKeyHandler: (event: ReactKeyboardEvent) => void;
-    accountFormHandler: (event: ReactChangeEvent) => void;
-    accountSwitchHandler: (event: ReactChangeEvent) => void;
-    accountButtonHandler: () => void;
+    formProgress: boolean;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    switchHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
 }
@@ -80,10 +80,10 @@ const UpdateAccountButton = (props: BaseProperties): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.accountButtonHandler} 
-            disabled={props.accountFormProgress} 
+            onClick={props.buttonHandler} 
+            disabled={props.formProgress} 
             className={classes.button_update}>
-            {!props.accountFormProgress 
+            {!props.formProgress 
             ? props.sectionAccountInformation?.updateButtonText 
             : <CircularProgress size={20} />}
         </Button>
@@ -181,8 +181,8 @@ export const UserInfoView = (props: BaseProperties): JSX.Element =>
                                             name="firstName" 
                                             variant="outlined" 
                                             value={props.accountForm?.firstName}
-                                            onKeyUp={props.accountKeyHandler}
-                                            onChange={props.accountFormHandler} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -203,8 +203,8 @@ export const UserInfoView = (props: BaseProperties): JSX.Element =>
                                             name="lastName" 
                                             variant="outlined" 
                                             value={props.accountForm?.lastName}
-                                            onKeyUp={props.accountKeyHandler}
-                                            onChange={props.accountFormHandler} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -225,8 +225,8 @@ export const UserInfoView = (props: BaseProperties): JSX.Element =>
                                             name="email" 
                                             variant="outlined" 
                                             value={props.accountForm?.email}
-                                            onKeyUp={props.accountKeyHandler}
-                                            onChange={props.accountFormHandler}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -249,8 +249,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element =>
                                             name="userAboutText" 
                                             variant="outlined" 
                                             value={props.accountForm?.userAboutText}
-                                            onKeyUp={props.accountKeyHandler}
-                                            onChange={props.accountFormHandler} 
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -268,7 +267,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element =>
                                             control={<CustomSwitchStyle 
                                                 name="checked" 
                                                 checked={props.isUserActivated} 
-                                                onChange={props.accountSwitchHandler} 
+                                                onChange={props.switchHandler} 
                                             />}
                                             label={props.sectionAccountInformation?.isActivatedText}
                                         />}

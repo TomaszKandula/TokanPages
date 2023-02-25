@@ -30,7 +30,7 @@ import {
     RECEIVED_ERROR_MESSAGE 
 } from "../../Shared/constants";
 
-const formDefaultValues: ContactFormInput =
+const formDefault: ContactFormInput =
 {
     firstName: "", 
     lastName: "", 
@@ -50,7 +50,7 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
     const hasFinished = email?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [form, setForm] = React.useState(formDefaultValues);   
+    const [form, setForm] = React.useState(formDefault);   
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(CONTACT_FORM, text)));
@@ -91,7 +91,7 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
         if (hasFinished) 
         {
             clearForm();
-            setForm(formDefaultValues);
+            setForm(formDefault);
             showSuccess(MESSAGE_OUT_SUCCESS);        
         }
     }, 
@@ -114,11 +114,12 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
         }
 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked});
-    }, [ form ]);
+    }, 
+    [ form ]);
 
     const buttonHandler = React.useCallback(() => 
     {
-        let validationResult = ValidateContactForm( 
+        const result = ValidateContactForm( 
         { 
             firstName: form.firstName,
             lastName: form.lastName, 
@@ -128,14 +129,15 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
             terms: form.terms 
         });
 
-        if (!Validate.isDefined(validationResult))
+        if (!Validate.isDefined(result))
         {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: validationResult, template: MESSAGE_OUT_WARNING }));
-    }, [ form ]);
+        showWarning(GetTextWarning({ object: result, template: MESSAGE_OUT_WARNING }));
+    }, 
+    [ form ]);
 
     return (<ContactFormView
         isLoading={props.isLoading}

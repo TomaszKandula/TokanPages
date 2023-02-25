@@ -27,10 +27,10 @@ interface Properties extends ViewProperties
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
-    passwordFormProgress: boolean;
-    passwordKeyHandler: (event: ReactKeyboardEvent) => void;
-    passwordFormHandler: (event: ReactChangeEvent) => void;
-    passwordButtonHandler: () => void;
+    formProgress: boolean;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountPassword: SectionAccountPassword;
 }
@@ -43,10 +43,10 @@ const UpdatePasswordButton = (props: Properties): JSX.Element =>
             fullWidth 
             type="submit" 
             variant="contained" 
-            onClick={props.passwordButtonHandler} 
-            disabled={props.passwordFormProgress} 
+            onClick={props.buttonHandler} 
+            disabled={props.formProgress} 
             className={classes.button_update}>
-            {!props.passwordFormProgress 
+            {!props.formProgress 
             ? props.sectionAccountPassword?.updateButtonText 
             : <CircularProgress size={20} />}
         </Button>
@@ -97,8 +97,8 @@ export const UserPasswordView = (props: Properties): JSX.Element =>
                                             uuid="oldPassword"
                                             fullWidth={true}
                                             value={props.oldPassword}
-                                            onKeyUp={props.passwordKeyHandler}
-                                            onChange={props.passwordFormHandler}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
                                         />}
                                     </Grid>
 
@@ -116,8 +116,8 @@ export const UserPasswordView = (props: Properties): JSX.Element =>
                                             uuid="newPassword"
                                             fullWidth={true}
                                             value={props.newPassword}
-                                            onKeyUp={props.passwordKeyHandler}
-                                            onChange={props.passwordFormHandler} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
@@ -134,8 +134,8 @@ export const UserPasswordView = (props: Properties): JSX.Element =>
                                             uuid="confirmPassword"
                                             fullWidth={true}
                                             value={props.confirmPassword}
-                                            onKeyUp={props.passwordKeyHandler}
-                                            onChange={props.passwordFormHandler} 
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler} 
                                         />}
                                     </Grid>
                                 </Grid>
