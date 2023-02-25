@@ -1,3 +1,12 @@
+## [0.65.1](https://github.com/TomaszKandula/TokanPages/compare/v0.65.0...v0.65.1) (2023-02-25)
+
+
+### Bug Fixes
+
+* add missing dependency array ([28869d6](https://github.com/TomaszKandula/TokanPages/commit/28869d6486995a1e29540f4783b431f9d5646c76))
+* add missing password validation rules ([ee6dcdd](https://github.com/TomaszKandula/TokanPages/commit/ee6dcdd34c9bb68de252764744a101d59e7bde52))
+* resolve incorrect property name, reformat for clarity ([434e3b4](https://github.com/TomaszKandula/TokanPages/commit/434e3b4bced2b1828900228a48bbb0d642246a41))
+
 # [0.65.0](https://github.com/TomaszKandula/TokanPages/compare/v0.64.0...v0.65.0) (2023-02-20)
 
 
