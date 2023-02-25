@@ -101,7 +101,12 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element =>
         {
             buttonHandler();
         }
-    }, []);
+    }, [
+        form.email,
+        form.firstName,
+        form.lastName,
+        form.password
+    ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {

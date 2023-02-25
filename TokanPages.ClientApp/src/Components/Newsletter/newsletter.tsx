@@ -79,7 +79,8 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element =>
         {
             buttonHandler();
         }
-    }, []);
+    }, 
+    [ form.email ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     { 

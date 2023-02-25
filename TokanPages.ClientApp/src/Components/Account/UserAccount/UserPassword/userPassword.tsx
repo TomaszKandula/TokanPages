@@ -92,7 +92,11 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
         {
             buttonHandler();
         }
-    }, []);
+    }, [
+        form.confirmPassword, 
+        form.newPassword, 
+        form.oldPassword 
+    ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {

@@ -134,7 +134,11 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
         {
             buttonHandler();
         }
-    }, []);
+    }, [
+        form.email, 
+        form.firstName, 
+        form.lastName
+    ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {

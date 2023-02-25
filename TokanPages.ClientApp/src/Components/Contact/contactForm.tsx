@@ -103,7 +103,12 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element =>
         {
             buttonHandler();
         }
-    }, []);
+    }, [
+        form.email,
+        form.firstName,
+        form.lastName,
+        form.subject
+    ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
