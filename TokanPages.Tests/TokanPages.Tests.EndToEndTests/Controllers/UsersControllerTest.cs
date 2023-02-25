@@ -480,7 +480,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         {
             Id = User2.Id,
             ResetId = null,
-            NewPassword = DataUtilityService.GetRandomString()
+            NewPassword = "QwertyQwerty#2020*"
         };
 
         var httpClient = _factory
@@ -518,7 +518,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         {
             Id = User2.Id,
             ResetId = null,
-            NewPassword = DataUtilityService.GetRandomString()
+            NewPassword = "QwertyQwerty#2020*"
         };
 
         var httpClient = _factory
@@ -557,7 +557,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         {
             Id = Guid.NewGuid(),
             ResetId = null,
-            NewPassword = DataUtilityService.GetRandomString()
+            NewPassword = "QwertyQwerty#2020*"
         };
 
         var httpClient = _factory
@@ -596,7 +596,7 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
         {
             Id = User2.Id,
             ResetId = Guid.NewGuid(),
-            NewPassword = DataUtilityService.GetRandomString()
+            NewPassword = "QwertyQwerty#2020*"
         };
 
         var httpClient = _factory
