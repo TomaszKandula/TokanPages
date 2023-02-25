@@ -79,25 +79,33 @@ export const ValidateSignupForm = (props: SignupFormInput): any =>
 
     if (!HaveSpecialCharacter(props.password))
     {
-        const data = HasProperty(result, "password") ? [...result.password, PASSWORD_MISSING_CHAR] : [PASSWORD_MISSING_CHAR];
+        const data = HasProperty(result, "password") 
+        ? [...result.password, "Password " + PASSWORD_MISSING_CHAR] 
+        : [PASSWORD_MISSING_CHAR];
         result = { ...result, password: data }
     }
 
     if (!ContainNumber(props.password))
     {
-        const data = HasProperty(result, "password") ? [...result.password, PASSWORD_MISSING_NUMBER] : [PASSWORD_MISSING_NUMBER];
+        const data = HasProperty(result, "password") 
+        ? [...result.password, "Password " + PASSWORD_MISSING_NUMBER] 
+        : [PASSWORD_MISSING_NUMBER];
         result = { ...result, password: data }
     }
 
     if (!HaveLargeLetter(props.password))
     {
-        const data = HasProperty(result, "password") ? [...result.password, PASSWORD_MISSING_LARGE_LETTER] : [PASSWORD_MISSING_LARGE_LETTER];
+        const data = HasProperty(result, "password") 
+        ? [...result.password, "Password " + PASSWORD_MISSING_LARGE_LETTER] 
+        : [PASSWORD_MISSING_LARGE_LETTER];
         result = { ...result, password: data }
     }
 
     if (!HaveSmallLetter(props.password))
     {
-        const data = HasProperty(result, "password") ? [...result.password, PASSWORD_MISSING_SMALL_LETTER] : [PASSWORD_MISSING_SMALL_LETTER];
+        const data = HasProperty(result, "password") 
+        ? [...result.password, "Password " + PASSWORD_MISSING_SMALL_LETTER] 
+        : [PASSWORD_MISSING_SMALL_LETTER];
         result = { ...result, password: data }
     }
 
