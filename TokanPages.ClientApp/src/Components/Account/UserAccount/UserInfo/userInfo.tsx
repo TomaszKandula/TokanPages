@@ -50,7 +50,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
     const hasMediaUploadFinished = media?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const accountFormDefault: AccountFormInput = 
+    const formDefault: AccountFormInput = 
     {
         ...store,
         userAboutText: store.shortBio ?? ""
@@ -58,7 +58,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
 
     const avatarName = Validate.isEmpty(store.avatarName) ? "N/A" : store.avatarName;
     const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
-    const [accountForm, setAccountForm] = React.useState(accountFormDefault);
+    const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
@@ -98,10 +98,10 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
             {
                 id: store.userId,
                 isActivated: isUserActivated.checked,
-                firstName: accountForm.firstName,
-                lastName: accountForm.lastName,
-                emailAddress: accountForm.email,
-                userAboutText: accountForm.userAboutText
+                firstName: form.firstName,
+                lastName: form.lastName,
+                emailAddress: form.email,
+                userAboutText: form.userAboutText
             }));
 
             return;
@@ -132,44 +132,51 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
     {
         if (event.code === "Enter")
         {
-            accountButtonHandler();
+            buttonHandler();
         }
-    }, []);
+    }, [
+        form.email, 
+        form.firstName, 
+        form.lastName
+    ]);
 
-    const accountFormHandler = React.useCallback((event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
-        setAccountForm({ ...accountForm, [event.currentTarget.name]: event.currentTarget.value }); 
-    }, [ accountForm ]);
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
+    }, 
+    [ form ]);
 
-    const accountSwitchHandler = React.useCallback((event: ReactChangeEvent) => 
+    const switchHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setIsUserActivated({ ...isUserActivated, [event.target.name]: event.target.checked });
-    }, [ isUserActivated ]);
+    }, 
+    [ isUserActivated ]);
 
-    const accountButtonHandler = React.useCallback(() => 
+    const buttonHandler = React.useCallback(() => 
     {
-        let validationResult = ValidateAccountForm(accountForm);
-        if (!Validate.isDefined(validationResult))
+        const result = ValidateAccountForm(form);
+        if (!Validate.isDefined(result))
         {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: validationResult, template: UPDATE_USER_WARNING }));
-    }, [ accountForm ]);
+        showWarning(GetTextWarning({ object: result, template: UPDATE_USER_WARNING }));
+    }, 
+    [ form ]);
 
     return(
         <UserInfoView
             isLoading={props.isLoading}
             userStore={store}
-            accountForm={accountForm}
+            accountForm={form}
             userImageName={avatarName}
             isUserActivated={isUserActivated.checked}
-            accountFormProgress={hasProgress}
-            accountKeyHandler={accountKeyHandler}
-            accountFormHandler={accountFormHandler}
-            accountSwitchHandler={accountSwitchHandler}
-            accountButtonHandler={accountButtonHandler}
+            formProgress={hasProgress}
+            keyHandler={accountKeyHandler}
+            formHandler={formHandler}
+            switchHandler={switchHandler}
+            buttonHandler={buttonHandler}
             sectionAccessDenied={props.content?.sectionAccessDenied}
             sectionAccountInformation={props.content?.sectionAccountInformation}
         />
