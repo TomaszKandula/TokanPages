@@ -8,10 +8,10 @@ export const NO_ERRORS: string = "NO_ERRORS";
 export const USER_DATA: string = "USER_DATA";
 
 // --------------------------- TODO: move out below code from constants --------------------------- //
-export const PASSWORD_MISSING_CHAR: string = "The user password must contain at least one of the following characters: !, @, #, $, %, ^, &, *";
-export const PASSWORD_MISSING_NUMBER: string = "The user password must contain at least one number";
-export const PASSWORD_MISSING_LARGE_LETTER: string = "The user password must contain at least one large letter";
-export const PASSWORD_MISSING_SMALL_LETTER: string = "The user password must contain at least one small letter";
+export const PASSWORD_MISSING_CHAR: string = "must contain at least one of the following characters: !, @, #, $, %, ^, &, *";
+export const PASSWORD_MISSING_NUMBER: string = "must contain at least one number";
+export const PASSWORD_MISSING_LARGE_LETTER: string = "must contain at least one large letter";
+export const PASSWORD_MISSING_SMALL_LETTER: string = "must contain at least one small letter";
 export const MESSAGE_OUT_SUCCESS: string = "<p>Congratulations!</p><p>The message has been sent successfully, we will try to respond as soon as possible.</p>";
 export const MESSAGE_OUT_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
 export const MESSAGE_OUT_ERROR: string = "<p>Ouch!</p><p>The message could not be sent.</p><p>{ERROR}.</p>";
