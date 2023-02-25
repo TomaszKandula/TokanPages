@@ -108,7 +108,8 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
         {
             buttonHandler();
         }
-    }, []);
+    }, 
+    [ form.newPassword, form.verifyPassword ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     { 

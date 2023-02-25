@@ -33,7 +33,7 @@ interface Properties extends ContentUpdateSubscriberState
 
 export const UpdateSubscriber = (props: Properties): JSX.Element =>
 {
-    const hasButtonVisible = props.id === null ? false : true;
+    const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
     const update = useSelector((state: ApplicationState) => state.subscriberUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -43,7 +43,7 @@ export const UpdateSubscriber = (props: Properties): JSX.Element =>
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState({email: ""});
-    const [hasButton, setHasButton] = React.useState(hasButtonVisible);
+    const [hasButton, setHasButton] = React.useState(hasId);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text)));
@@ -90,24 +90,27 @@ export const UpdateSubscriber = (props: Properties): JSX.Element =>
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
-    }, [ form ]);
+    }, 
+    [ form ]);
 
     const buttonHandler = React.useCallback(() =>
     {
         if (props.id == null) 
+        {
             return;
+        }
 
-        let validationResult = ValidateEmailForm({ email: form.email });
-
-        if (!Validate.isDefined(validationResult))
+        const result = ValidateEmailForm({ email: form.email });
+        if (!Validate.isDefined(result))
         {
             setHasButton(false);
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: validationResult, template: NEWSLETTER_WARNING }));
-    }, [ props.id, form ]);
+        showWarning(GetTextWarning({ object: result, template: NEWSLETTER_WARNING }));
+    }, 
+    [ props.id, form ]);
 
     return (<UpdateSubscriberView
         isLoading={props.isLoading}

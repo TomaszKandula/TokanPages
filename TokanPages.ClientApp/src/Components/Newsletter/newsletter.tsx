@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactChangeEvent } from "../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentNewsletterState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
@@ -73,31 +73,34 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const keyHandler = React.useCallback((event: React.KeyboardEvent<HTMLInputElement>) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
             buttonHandler();
         }
-    }, []);
+    }, 
+    [ form.email ]);
 
     const formHandler = React.useCallback((event: ReactChangeEvent) => 
     { 
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
-    }, [ form ]);
+    }, 
+    [ form ]);
 
     const buttonHandler = React.useCallback(() =>
     {
-        let results = ValidateEmailForm({ email: form.email });
+        const result = ValidateEmailForm({ email: form.email });
 
-        if (!Validate.isDefined(results))
+        if (!Validate.isDefined(result))
         {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: results, template: NEWSLETTER_WARNING }));
-    }, [ form ]);
+        showWarning(GetTextWarning({ object: result, template: NEWSLETTER_WARNING }));
+    }, 
+    [ form ]);
 
     return (<NewsletterView
         isLoading={props.isLoading}

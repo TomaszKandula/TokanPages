@@ -41,14 +41,14 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const passwordFormDefault: PasswordFormInput = 
+    const formDefault: PasswordFormInput = 
     {
         oldPassword: "",
         newPassword: "",
         confirmPassword: ""
     }
 
-    const [passwordForm, setPasswordForm] = React.useState(passwordFormDefault);
+    const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
@@ -59,7 +59,7 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
         if (!hasProgress) return;
 
         dispatch(UserPasswordUpdateAction.clear());
-        setPasswordForm(passwordFormDefault);
+        setForm(formDefault);
         setHasProgress(false);
     }, 
     [ hasProgress ]);
@@ -74,7 +74,7 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
 
         if (hasNotStarted && hasProgress)
         {
-            dispatch(UserPasswordUpdateAction.update(passwordForm));
+            dispatch(UserPasswordUpdateAction.update(form));
             return;
         }
 
@@ -86,41 +86,47 @@ export const UserPassword = (props: ContentAccountState): JSX.Element =>
     }, 
     [ hasProgress, hasError, hasNotStarted, hasFinished ]);
 
-    const passwordKeyHandler = React.useCallback((event: ReactKeyboardEvent) => 
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
     {
         if (event.code === "Enter")
         {
-            passwordButtonHandler();
+            buttonHandler();
         }
-    }, []);
+    }, [
+        form.confirmPassword, 
+        form.newPassword, 
+        form.oldPassword 
+    ]);
 
-    const passwordFormHandler = React.useCallback((event: ReactChangeEvent) => 
+    const formHandler = React.useCallback((event: ReactChangeEvent) => 
     {
-        setPasswordForm({ ...passwordForm, [event.currentTarget.name]: event.currentTarget.value }); 
-    }, [ passwordForm ]);
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
+    }, 
+    [ form ]);
 
-    const passwordButtonHandler = React.useCallback(() => 
+    const buttonHandler = React.useCallback(() => 
     {
-        let validationResult = ValidatePasswordForm(passwordForm);
-        if (!Validate.isDefined(validationResult))
+        const result = ValidatePasswordForm(form);
+        if (!Validate.isDefined(result))
         {
             setHasProgress(true);
             return;
         }
     
-        showWarning(GetTextWarning({ object: validationResult, template: UPDATE_USER_WARNING }));
-    }, [ passwordForm ]);
+        showWarning(GetTextWarning({ object: result, template: UPDATE_USER_WARNING }));
+    }, 
+    [ form ]);
 
     return(
         <UserPasswordView
             isLoading={props.isLoading}
-            oldPassword={passwordForm.oldPassword}
-            newPassword={passwordForm.newPassword}
-            confirmPassword={passwordForm.confirmPassword}
-            passwordKeyHandler={passwordKeyHandler}
-            passwordFormProgress={hasProgress}
-            passwordFormHandler={passwordFormHandler}
-            passwordButtonHandler={passwordButtonHandler}
+            oldPassword={form.oldPassword}
+            newPassword={form.newPassword}
+            confirmPassword={form.confirmPassword}
+            keyHandler={keyHandler}
+            formProgress={hasProgress}
+            formHandler={formHandler}
+            buttonHandler={buttonHandler}
             sectionAccessDenied={props.content?.sectionAccessDenied}
             sectionAccountPassword={props.content?.sectionAccountPassword}
         />
