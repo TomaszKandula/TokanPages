@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -10,7 +9,7 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
-public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
+public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, UpdateUserCommandResult>
 {
     private readonly IUserService _userService;
 
@@ -23,7 +22,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
         _userService = userService;
     }
 
-    public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public override async Task<UpdateUserCommandResult> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
 
@@ -36,22 +35,40 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
         if (emails.Any())
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        await UpdateUser(user, request, cancellationToken);
-        await UpdateUserInfo(user.Id, request, cancellationToken);
-        return Unit.Value;
+        var updateUserResult = await UpdateUser(user, request, cancellationToken);
+        var updateUserInfoResult = await UpdateUserInfo(user.Id, request, cancellationToken);
+
+        return new UpdateUserCommandResult
+        {
+            IsActivated = updateUserResult.IsActivated,
+            UserAlias = updateUserResult.UserAlias,
+            EmailAddress = updateUserResult.EmailAddress,
+            FirstName = updateUserInfoResult.FirstName,
+            LastName = updateUserInfoResult.LastName,
+            UserAboutText = updateUserInfoResult.UserAboutText,
+            UserImageName = updateUserInfoResult.UserImageName,
+            UserVideoName = updateUserInfoResult.UserVideoName
+        };
     }
 
-    private async Task UpdateUser(Domain.Entities.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task<UpdateUserCommandResult> UpdateUser(Domain.Entities.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
-        user.IsActivated = request.IsActivated;
+        user.IsActivated = request.IsActivated ?? user.IsActivated;
         user.UserAlias = request.UserAlias ?? user.UserAlias;
         user.EmailAddress = request.EmailAddress ?? user.EmailAddress;
         user.ModifiedAt = _dateTimeService.Now;
         user.ModifiedBy = user.Id;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+        return new UpdateUserCommandResult
+        {   
+            IsActivated = request.IsActivated,
+            UserAlias = request.UserAlias,
+            EmailAddress = request.EmailAddress
+        };
     }
 
-    private async Task UpdateUserInfo(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task<UpdateUserCommandResult> UpdateUserInfo(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
         var userInfo = await DatabaseContext.UserInfo
             .Where(info => info.UserId == userId)
@@ -72,18 +89,34 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
             };
 
             await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
-        }
-        else
-        {
-            userInfo.FirstName = request.FirstName ?? userInfo.FirstName;
-            userInfo.LastName = request.LastName ?? userInfo.LastName;
-            userInfo.UserAboutText = request.UserAboutText ?? userInfo.UserAboutText;
-            userInfo.UserImageName = request.UserImageName ?? userInfo.UserImageName;
-            userInfo.UserVideoName = request.UserVideoName ?? userInfo.UserVideoName;
-            userInfo.ModifiedBy = userId;
-            userInfo.ModifiedAt = _dateTimeService.Now;
+            await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+            return new UpdateUserCommandResult
+            {
+                FirstName = newUserInfo.FirstName,
+                LastName = newUserInfo.LastName,
+                UserAboutText = newUserInfo.UserAboutText,
+                UserImageName = newUserInfo.UserImageName,
+                UserVideoName = newUserInfo.UserVideoName
+            };
         }
 
+        userInfo.FirstName = request.FirstName ?? userInfo.FirstName;
+        userInfo.LastName = request.LastName ?? userInfo.LastName;
+        userInfo.UserAboutText = request.UserAboutText ?? userInfo.UserAboutText;
+        userInfo.UserImageName = request.UserImageName ?? userInfo.UserImageName;
+        userInfo.UserVideoName = request.UserVideoName ?? userInfo.UserVideoName;
+        userInfo.ModifiedBy = userId;
+        userInfo.ModifiedAt = _dateTimeService.Now;
         await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+        return new UpdateUserCommandResult
+        {
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            UserAboutText = request.UserAboutText,
+            UserImageName = request.UserImageName,
+            UserVideoName = request.UserVideoName
+        };
     }
 }
