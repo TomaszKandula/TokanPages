@@ -1,5 +1,5 @@
 import { ApplicationAction } from "../../Configuration";
-import { UpdateUserDto } from "../../../Api/Models";
+import { UpdateUserDto, UpdateUserResultDto } from "../../../Api/Models";
 import { 
     Execute, 
     GetConfiguration, 
@@ -13,7 +13,7 @@ export const CLEAR = "UPDATE_USER_CLEAR";
 export const RESPONSE = "UPDATE_USER_RESPONSE";
 interface Update { type: typeof UPDATE }
 interface Clear { type: typeof CLEAR }
-interface Response { type: typeof RESPONSE; payload: any; }
+interface Response { type: typeof RESPONSE; payload: UpdateUserResultDto; }
 export type TKnownActions = Update | Clear | Response;
 
 export const UserUpdateAction = 
