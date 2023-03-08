@@ -29,7 +29,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
+        var user = await _userService.GetActiveUser(request.UserId, false, cancellationToken);
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
             .AsNoTracking()
             .Where(tokens => tokens.Token == request.RefreshToken)
