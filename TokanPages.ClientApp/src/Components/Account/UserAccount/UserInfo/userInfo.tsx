@@ -12,8 +12,7 @@ import {
     ApplicationDialogAction, 
     UserUpdateAction, 
     UserDataStoreAction, 
-    UserSigninAction, 
-    UserReAuthenticateAction 
+    UserSigninAction
 } from "../../../../Store/Actions";
 
 import { 
@@ -45,8 +44,8 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
     const media = useSelector((state: ApplicationState) => state.userMediaUpload);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
-    const hasNotStarted = update?.status === OperationStatus.notStarted;
-    const hasFinished = update?.status === OperationStatus.hasFinished;
+    const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
+    const hasUpdateFinished = update?.status === OperationStatus.hasFinished;
     const hasMediaUploadFinished = media?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
@@ -77,10 +76,6 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
             dispatch(UserDataStoreAction.clear());
             history.push("/");
         }
-        else
-        {
-            dispatch(UserReAuthenticateAction.reAuthenticate());
-        }
     }, 
     [ hasProgress ]);
 
@@ -92,7 +87,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
             return;
         }
 
-        if (hasNotStarted && hasProgress) 
+        if (hasUpdateNotStarted && hasProgress) 
         {
             dispatch(UserUpdateAction.update(
             {
@@ -107,13 +102,26 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
             return;
         }
 
-        if (hasFinished)
+        if (hasUpdateFinished)
         {
-            clear();
+            dispatch(UserDataStoreAction.update({ 
+                ...store,  
+                firstName: update.response?.firstName ?? "",
+                lastName: update.response?.lastName ?? "",
+                email: update.response?.emailAddress ?? "",
+                shortBio: update.response?.userAboutText ?? ""
+            }));
+
             showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
+            clear();
         }
     }, 
-    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
+    [ 
+        hasProgress, 
+        hasError, 
+        hasUpdateNotStarted, 
+        hasUpdateFinished 
+    ]);
 
     React.useEffect(() => 
     {

@@ -1,11 +1,7 @@
-﻿using MediatR;
-
 namespace TokanPages.Backend.Application.Users.Commands;
 
-public class UpdateUserCommand : IRequest<UpdateUserCommandResult>
+public class UpdateUserCommandResult
 {
-    public Guid? Id { get; set; }
-
     public bool? IsActivated { get; set; }
 
     public string? UserAlias { get; set; }

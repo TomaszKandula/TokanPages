@@ -18,6 +18,7 @@ export type { UserDataDto } from "./Users/userDataDto";
 export type { ActivateUserDto } from "./Users/activateUserDto";
 export type { AddUserDto } from "./Users/addUserDto";
 export type { UpdateUserDto } from "./Users/updateUserDto";
+export type { UpdateUserResultDto } from "./Users/updateUserResultDto";
 export type { RemoveUserDto } from "./Users/removeUserDto";
 export type { AuthenticateUserDto } from "./Users/authenticateUserDto";
 export type { AuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
@@ -71,3 +72,4 @@ export type { ContentDto } from "./Components/Common/contentDto";
 
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
+export type { JWT } from "./Jwt";
