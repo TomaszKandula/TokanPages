@@ -71,3 +71,4 @@ export type { ContentDto } from "./Components/Common/contentDto";
 
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
+export type { JWT } from "./Jwt";
