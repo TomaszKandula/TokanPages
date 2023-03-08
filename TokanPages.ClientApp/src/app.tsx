@@ -32,7 +32,8 @@ import {
 import { 
     ApplicationToast, 
     ApplicationDialogBox, 
-    ApplicationUserInfo 
+    ApplicationUserInfo,
+    ApplicationSession
 } from "./Shared/Components";
 
 interface Properties 
@@ -61,7 +62,7 @@ const App = (props: Properties): JSX.Element =>
     [ ]);
 
     return (
-        <>
+        <ApplicationSession>
             <Router>
                 <Switch>
                   <Route exact path="/"><MainPage /></Route>
@@ -91,7 +92,7 @@ const App = (props: Properties): JSX.Element =>
                     <KeyboardArrowUpIcon/>
                 </Fab>
             </ScrollToTop>
-        </>
+        </ApplicationSession>
     );
 }
 

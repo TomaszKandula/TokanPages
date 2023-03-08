@@ -79,7 +79,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
         }
         else
         {
-            dispatch(UserReAuthenticateAction.reAuthenticate());
+            dispatch(UserReAuthenticateAction.reAuthenticate("", ""));//TODO: remove this action
         }
     }, 
     [ hasProgress ]);

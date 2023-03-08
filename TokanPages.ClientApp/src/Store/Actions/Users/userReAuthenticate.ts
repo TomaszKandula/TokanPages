@@ -1,11 +1,10 @@
 import axios from "axios";
 import { ApplicationAction } from "../../Configuration";
-import { AuthenticateUserResultDto, ReAuthenticateUserDto } from "../../../Api/Models";
-import { NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
+import { ReAuthenticateUserDto } from "../../../Api/Models";
+import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { 
     REAUTHENTICATE as REAUTHENTICATE_USER, 
     RequestContract,
@@ -27,14 +26,14 @@ export const UserReAuthenticateAction =
     {
         dispatch({ type: CLEAR });
     },
-    reAuthenticate: (): ApplicationAction<TKnownActions> => (dispatch) => 
+    reAuthenticate: (refreshToken: string, userId: string): ApplicationAction<TKnownActions> => (dispatch) => 
     {
         dispatch({ type: REAUTHENTICATE });
 
-        const userData = GetDataFromStorage({ key: USER_DATA }) as AuthenticateUserResultDto;
         const payload: ReAuthenticateUserDto = 
         {
-            refreshToken: userData.refreshToken
+            userId: userId,
+            refreshToken: refreshToken
         }
 
         const request: RequestContract = {

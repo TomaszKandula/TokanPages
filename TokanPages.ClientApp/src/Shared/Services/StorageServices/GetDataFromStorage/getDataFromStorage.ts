@@ -5,9 +5,9 @@ interface Properties
     key: string;
 }
 
-export const GetDataFromStorage = (props: Properties): {} | any[] => 
+export const GetDataFromStorage = (props: Properties): string | {} | any[] => 
 {
-    let serialized = localStorage.getItem(props.key) as string;
+    const serialized = localStorage.getItem(props.key) as string;
     if (Validate.isEmpty(serialized)) return { };
 
     let deserialized: string | {} | any[] = "";
