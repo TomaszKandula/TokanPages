@@ -35,7 +35,8 @@ export const UserDataStore:
             return ApplicationDefault.userDataStore;
 
         case UPDATE:
-            SetDataInStorage({ key: USER_DATA, selection: action.payload }); 
+            const encodedNew = window.btoa(JSON.stringify(action.payload));
+            SetDataInStorage({ selection: encodedNew, key: USER_DATA });
             return { 
                 isShown: state.isShown,
                 userData: {

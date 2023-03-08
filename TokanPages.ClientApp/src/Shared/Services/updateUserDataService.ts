@@ -8,9 +8,15 @@ import Validate from "validate.js";
 
 export const UpdateUserData = (): void => 
 {
-    const dispatch = useDispatch();    
+    const dispatch = useDispatch();
+    const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
+    if (Validate.isEmpty(encoded))
+    {
+        return;
+    }
+
     const selector = useSelector((state: ApplicationState) => state.userDataStore);
-    const data = GetDataFromStorage({ key: USER_DATA }) as AuthenticateUserResultDto;
+    const data = JSON.parse(window.atob(encoded)) as AuthenticateUserResultDto;
 
     if (Object.entries(data).length !== 0 && Validate.isEmpty(selector?.userData?.userId))
     {
