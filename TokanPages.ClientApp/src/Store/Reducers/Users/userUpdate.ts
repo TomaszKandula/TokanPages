@@ -22,7 +22,7 @@ export const UserUpdate:
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: undefined
             };
         case UPDATE:
             return { 

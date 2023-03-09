@@ -4,5 +4,5 @@ import { UserUpdateState } from "../../States";
 export const UserUpdate: UserUpdateState = 
 {
     status: OperationStatus.notStarted,
-    response: { }
+    response: undefined
 }

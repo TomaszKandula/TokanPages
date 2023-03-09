@@ -20,13 +20,26 @@ const IsSuccessStatusCode = (statusCode: number): boolean =>
 
 export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => 
 {
-    const userData = GetDataFromStorage({ key: USER_DATA }) as AuthenticateUserResultDto;
-    const hasAuthorization = Validate.isObject(userData) && !Validate.isEmpty(userData.userToken);
     const timezoneOffset = new Date().getTimezoneOffset();
+    const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
+
+    if (Validate.isEmpty(encoded))
+    {
+        return {
+            ...props.configuration, 
+            withCredentials: false, 
+            headers: { 
+                UserTimezoneOffset: timezoneOffset 
+            }
+        };
+    }
+
+    const data = JSON.parse(window.atob(encoded)) as AuthenticateUserResultDto;
+    const hasAuthorization = Validate.isObject(data) && !Validate.isEmpty(data.userToken);
 
     const withAuthorization: any = 
     {
-        Authorization: `Bearer ${userData.userToken}`,
+        Authorization: `Bearer ${data.userToken}`,
         UserTimezoneOffset: timezoneOffset
     }
 
