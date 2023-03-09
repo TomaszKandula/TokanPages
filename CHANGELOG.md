@@ -1,3 +1,23 @@
+# [0.66.0](https://github.com/TomaszKandula/TokanPages/compare/v0.65.1...v0.66.0) (2023-03-09)
+
+
+### Bug Fixes
+
+* add missing refresh token and user id ([3f2cd78](https://github.com/TomaszKandula/TokanPages/commit/3f2cd78a0abf7881faa06be6c49de6b6cc392c51))
+* add missing user ID ([7924e83](https://github.com/TomaszKandula/TokanPages/commit/7924e83110a13e8f7486b38274fccd0a20b6d080))
+* add return object ([b048448](https://github.com/TomaszKandula/TokanPages/commit/b04844810ec58e455ac01cbee40d6810e9d023fa))
+* add return object ([868b57d](https://github.com/TomaszKandula/TokanPages/commit/868b57d309de28ab5106779947d7af52be8615f4))
+* correct path ([67b97a2](https://github.com/TomaszKandula/TokanPages/commit/67b97a21c0e64c6f8a576c444aa439ac22971881))
+* return confirmation object ([ee2b7d7](https://github.com/TomaszKandula/TokanPages/commit/ee2b7d7f941ad07cc1f650629be7bf2fb62cefb7))
+* update user data store upon received confirmation object ([5f2eafc](https://github.com/TomaszKandula/TokanPages/commit/5f2eafc756757578f5a108d846c88c2f29b8009e))
+
+
+### Features
+
+* add application session ([4ff0eaf](https://github.com/TomaszKandula/TokanPages/commit/4ff0eaf4167f6f7e23d4e86313357647fd1b7e37))
+* add JWT model ([d73707a](https://github.com/TomaszKandula/TokanPages/commit/d73707ad41ae49bd8a2cd79ebdaf71a1a1d14f38))
+* incorporate encoding user data in local storage ([d0007ff](https://github.com/TomaszKandula/TokanPages/commit/d0007ff7602146fdfcc411680be54292425def59))
+
 ## [0.65.1](https://github.com/TomaszKandula/TokanPages/compare/v0.65.0...v0.65.1) (2023-02-25)
 
 
