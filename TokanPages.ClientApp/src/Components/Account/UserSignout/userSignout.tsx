@@ -11,7 +11,8 @@ import {
 
 import { 
     UserDataStoreAction, 
-    UserSigninAction 
+    UserSigninAction,
+    UserSignoutAction
 } from "../../../Store/Actions";
 
 export const UserSignout = (props: ContentUserSignoutState): JSX.Element => 
@@ -24,6 +25,7 @@ export const UserSignout = (props: ContentUserSignoutState): JSX.Element =>
     {
         if (!hasProgress) return;
 
+        dispatch(UserSignoutAction.signout());
         dispatch(UserSigninAction.clear());
         dispatch(UserDataStoreAction.clear());
     }, 
@@ -31,10 +33,10 @@ export const UserSignout = (props: ContentUserSignoutState): JSX.Element =>
 
     React.useEffect(() => 
     {
-        const isUserTokenRemoved = (): boolean => localStorage.getItem(USER_DATA) === null; 
-        const isUserDataEmpty = (): boolean => store.userData === ApplicationDefault.userDataStore.userData;
+        const isUserTokenRemoved = localStorage.getItem(USER_DATA) === null; 
+        const isUserDataEmpty = store.userData === ApplicationDefault.userDataStore.userData;
 
-        if (isUserTokenRemoved() && isUserDataEmpty() && hasProgress) 
+        if (isUserTokenRemoved && isUserDataEmpty && hasProgress) 
         {
             setHasProgress(false);
         }
