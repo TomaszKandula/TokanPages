@@ -1,3 +1,19 @@
+# [0.67.0](https://github.com/TomaszKandula/TokanPages/compare/v0.66.0...v0.67.0) (2023-03-26)
+
+
+### Bug Fixes
+
+* correct typo ([eb4143a](https://github.com/TomaszKandula/TokanPages/commit/eb4143ae33fc35ec67fe2eafee3518d45245ab1a))
+
+
+### Features
+
+* add new API path ([f11b09a](https://github.com/TomaszKandula/TokanPages/commit/f11b09abca4d10b5bc3a4667ee61e28d13341a4f))
+* add revoke user token action ([bdd7b88](https://github.com/TomaszKandula/TokanPages/commit/bdd7b8861619445cee241d97c1df1de6e22a7020))
+* add signout action ([f8b8763](https://github.com/TomaszKandula/TokanPages/commit/f8b8763e0a50c5fd831917b6c1c6e9cc4236f42d))
+* add user signout action ([37a9582](https://github.com/TomaszKandula/TokanPages/commit/37a958208380c88edfcb971410c0805eceb45271))
+* add XSS self warning ([4d1b354](https://github.com/TomaszKandula/TokanPages/commit/4d1b354be30bf93c9572820ac813d618a8f2443a))
+
 # [0.66.0](https://github.com/TomaszKandula/TokanPages/compare/v0.65.1...v0.66.0) (2023-03-09)
 
 
