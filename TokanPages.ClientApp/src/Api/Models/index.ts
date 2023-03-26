@@ -24,6 +24,7 @@ export type { AuthenticateUserDto } from "./Users/authenticateUserDto";
 export type { AuthenticateUserResultDto } from "./Users/authenticateUserResultDto";
 export type { ReAuthenticateUserDto } from "./Users/reAuthenticateUserDto";
 export type { ReAuthenticateUserResultDto } from "./Users/reAuthenticateUserResultDto";
+export type { RevokeUserRefreshTokenDto } from "./Users/revokeUserRefreshTokenDto";
 export type { ResetUserPasswordDto } from "./Users/resetUserPasswordDto";
 export type { UpdateUserPasswordDto } from "./Users/updateUserPasswordDto";
 export type { UserPermissionDto } from "./Users/userPermissionDto";
