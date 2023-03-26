@@ -43,7 +43,8 @@ import {
     ContentPolicy,
     ContentTerms,
     ContentStory,
-    UserMediaUpload
+    UserMediaUpload,
+    UserSignout
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = 
@@ -90,6 +91,7 @@ export const ApplicationDefault: ApplicationState =
     userReAuthenticate: UserReAuthenticate,
     userRemove: UserRemove,
     userSignin: UserSignin,
+    userSignout: UserSignout,
     userSignup: UserSignup,
     userUpdate: UserUpdate
 };

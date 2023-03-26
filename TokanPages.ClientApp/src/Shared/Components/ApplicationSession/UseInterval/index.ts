@@ -1,5 +1,6 @@
 import * as React from "react";
-import { useIsomorphicLayoutEffect } from "usehooks-ts";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
 export const useInterval = (callback: () => void, delay: number | null) =>
 {
