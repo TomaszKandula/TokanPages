@@ -58,13 +58,25 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
 
     /// <summary>
+    /// Revokes existing user token.
+    /// </summary>
+    /// <remarks>
+    /// Requires: Roles.OrdinaryUser.
+    /// </remarks>
+    /// <returns>MediatR unit value.</returns>
+    [HttpPost]
+    [Route("[action]")]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> RevokeUserToken()
+        => await Mediator.Send(new RevokeUserTokenCommand());
+
+    /// <summary>
     /// Revokes existing user refresh token.
     /// </summary>
     /// <param name="payLoad">Refresh Token.</param>
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payLoad)
         => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));

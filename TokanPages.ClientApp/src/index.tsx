@@ -8,6 +8,7 @@ import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ConfigureStore } from "./Store/Configuration";
+import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
@@ -31,4 +32,5 @@ const ReactApp = (manifest: GetContentManifestDto) =>
 }
 
 Loader.Initialize(ReactApp);
+printSelfXssWarning();
 export { }

@@ -42,7 +42,8 @@ import {
     ContentPolicy,
     ContentTerms,
     ContentStory,
-    UserMediaUpload
+    UserMediaUpload,
+    UserSignout
 } from "../Reducers";
 
 export const ApplicationReducer = 
@@ -89,6 +90,7 @@ export const ApplicationReducer =
     userReAuthenticate: UserReAuthenticate,
     userRemove: UserRemove,
     userSignin: UserSignin,
+    userSignout: UserSignout,
     userSignup: UserSignup,
     userUpdate: UserUpdate
 };
