@@ -48,8 +48,6 @@ export const UserDataStore:
                     email: action.payload.email,
                     shortBio: action.payload.shortBio,
                     registered: action.payload.registered,
-                    tokenExpires: action.payload.tokenExpires,
-                    refreshTokenExpires: action.payload.refreshTokenExpires,
                     userToken: action.payload.userToken,
                     refreshToken: action.payload.refreshToken,
                     roles: action.payload.roles,

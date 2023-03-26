@@ -1,10 +1,12 @@
 import { ApplicationAction } from "../../Configuration";
+import { RevokeUserRefreshTokenDto } from "../../../Api/Models";
 import { 
     RequestContract, 
     GetConfiguration, 
     REVOKE_USER_TOKEN,
     ExecuteContract,
-    Execute
+    Execute,
+    REVOKE_REFRESH_TOKEN
 } from "../../../Api/Request";
 
 export const SIGNOUT = "SIGNOUT_USER";
@@ -21,11 +23,29 @@ export const UserSignoutAction =
     {
         dispatch({ type: CLEAR });
     },
-    signout: (): ApplicationAction<TKnownActions> => (dispatch) => 
+    signout: (): ApplicationAction<TKnownActions> => (dispatch, getState) => 
     {
         dispatch({ type: SIGNOUT });
 
-        const request: RequestContract = {
+        const payload: RevokeUserRefreshTokenDto = {
+            refreshToken: getState().userDataStore.userData.refreshToken
+        }
+
+        const requestRevokeRefreshToken: RequestContract = {
+            configuration: {
+                method: "POST", 
+                url: REVOKE_REFRESH_TOKEN, 
+                data: payload
+            }
+        }
+
+        const revokeRefreshToken: ExecuteContract = {
+            configuration: GetConfiguration(requestRevokeRefreshToken),
+            dispatch: dispatch,
+            responseType: RESPONSE
+        }
+
+        const requestRevokeToken: RequestContract = {
             configuration: {
                 method: "POST", 
                 url: REVOKE_USER_TOKEN, 
@@ -33,12 +53,13 @@ export const UserSignoutAction =
             }
         }
 
-        const input: ExecuteContract = {
-            configuration: GetConfiguration(request),
+        const revokeUserToken: ExecuteContract = {
+            configuration: GetConfiguration(requestRevokeToken),
             dispatch: dispatch,
             responseType: RESPONSE
         }
 
-        Execute(input);
+        Execute(revokeRefreshToken);
+        Execute(revokeUserToken);
     }
 }

@@ -104,8 +104,6 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
-            TokenExpires = tokenExpires,
-            RefreshTokenExpires = newRefreshToken.Expires,
             UserToken = userToken,
             RefreshToken = newRefreshToken.Token,
             Roles = roles,

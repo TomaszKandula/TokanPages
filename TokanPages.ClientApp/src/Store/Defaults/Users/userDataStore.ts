@@ -13,8 +13,6 @@ export const UserDataStore: UserDataStoreState =
         email: "",
         shortBio: "",
         registered: "",
-        tokenExpires: "",
-        refreshTokenExpires: "",
         userToken: "",
         refreshToken: "",
         roles: [],
