@@ -90,7 +90,7 @@ export const ApplicationReducer =
     userReAuthenticate: UserReAuthenticate,
     userRemove: UserRemove,
     userSignin: UserSignin,
-    UserSignout: UserSignout,
+    userSignout: UserSignout,
     userSignup: UserSignup,
     userUpdate: UserUpdate
 };
