@@ -1,3 +1,12 @@
+# [0.68.0](https://github.com/TomaszKandula/TokanPages/compare/v0.67.0...v0.68.0) (2023-03-26)
+
+
+### Features
+
+* add model ([d39fda8](https://github.com/TomaszKandula/TokanPages/commit/d39fda8a7c900dbc3be3ada812518f55c17fc3cb))
+* execute API call to revoke refresh token ([ffff580](https://github.com/TomaszKandula/TokanPages/commit/ffff5805a9587e2cac20288734e5d3ddb3090f3f))
+* register new endpoint ([c0d2bf5](https://github.com/TomaszKandula/TokanPages/commit/c0d2bf54a7e8e89e627bf4d8c824fe335fa98149))
+
 # [0.67.0](https://github.com/TomaszKandula/TokanPages/compare/v0.66.0...v0.67.0) (2023-03-26)
 
 
