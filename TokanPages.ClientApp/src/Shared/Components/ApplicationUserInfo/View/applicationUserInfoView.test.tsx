@@ -18,8 +18,6 @@ describe("test view component for application user info", () =>
             lastName: "Testerovny",
             shortBio: "Happy tester working remotely",
             registered: "2020-01-01 15:02:03",
-            tokenExpires: "2020-01-01 19:02:03",
-            refreshTokenExpires: "2020-01-01 22:02:03",
             userToken: "fbb220c9-7593-472d-bb95-7b41c436e332",
             refreshToken: "5f4d15e2-7593-4e20-b5f0-7b41c436e332",
             roles: 

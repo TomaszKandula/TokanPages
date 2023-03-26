@@ -20,10 +20,6 @@ public class AuthenticateUserCommandResult
 
     public DateTime Registered { get; set; }
 
-    public DateTime TokenExpires { get; set; }
-
-    public DateTime RefreshTokenExpires { get; set; }
-
     public string UserToken { get; set; } = "";
 
     public string RefreshToken { get; set; } = "";
