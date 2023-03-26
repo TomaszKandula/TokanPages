@@ -42,7 +42,8 @@ import {
     ContentPolicyState,
     ContentTermsState,
     ContentStoryState,
-    UserMediaUploadState
+    UserMediaUploadState,
+    UserSignoutState
 } from "../States";
 
 export interface ApplicationState 
@@ -89,6 +90,7 @@ export interface ApplicationState
     userReAuthenticate: UserReAuthenticateState;
     userRemove: UserRemoveState;
     userSignin: UserSigninState;
+    userSignout: UserSignoutState;
     userSignup: UserSignupState;
     userUpdate: UserUpdateState;
 }

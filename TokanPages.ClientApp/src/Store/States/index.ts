@@ -46,3 +46,4 @@ export type { UserDataStoreState } from "./Users/userDataStore";
 export type { UserPasswordUpdateState } from "./Users/userPasswordUpdate";
 export type { UserUpdateState } from "./Users/userUpdate";
 export type { UserMediaUploadState } from "./Users/userMediaUpload";
+export type { UserSignoutState } from "./Users/userSignout";
