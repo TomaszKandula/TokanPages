@@ -1,5 +1,4 @@
 import { ApplicationAction } from "../../Configuration";
-import { TKnownActions as TUpdateActions } from "./userDataStore";
 import { 
     RequestContract, 
     GetConfiguration, 
@@ -14,7 +13,7 @@ export const RESPONSE = "SIGNOUT_USER_RESPONSE";
 interface Signout { type: typeof SIGNOUT }
 interface Clear { type: typeof CLEAR }
 interface Response { type: typeof RESPONSE; }
-export type TKnownActions = Signout | Clear | Response | TUpdateActions;
+export type TKnownActions = Signout | Clear | Response;
 
 export const UserSignoutAction = 
 {
