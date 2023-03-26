@@ -106,10 +106,10 @@ export const UserInfo = (props: ContentAccountState): JSX.Element =>
         {
             dispatch(UserDataStoreAction.update({ 
                 ...store,  
-                firstName: update.response?.firstName ?? "",
-                lastName: update.response?.lastName ?? "",
-                email: update.response?.emailAddress ?? "",
-                shortBio: update.response?.userAboutText ?? ""
+                firstName: form.firstName,
+                lastName: form.lastName,
+                email: form.email,
+                shortBio: form.userAboutText
             }));
 
             showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);

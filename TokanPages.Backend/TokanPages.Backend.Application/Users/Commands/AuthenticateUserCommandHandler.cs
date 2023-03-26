@@ -108,8 +108,6 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
-            TokenExpires = tokenExpires,
-            RefreshTokenExpires = refreshToken.Expires,
             UserToken = userToken,
             RefreshToken = refreshToken.Token,
             Roles = roles,
