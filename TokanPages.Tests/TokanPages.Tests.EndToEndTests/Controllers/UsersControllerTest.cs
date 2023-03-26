@@ -226,27 +226,43 @@ public class UsersControllerTest : TestBase, IClassFixture<CustomWebApplicationF
     }
 
     [Fact]
-    public async Task GivenAnyRefreshToken_WhenRevokeUserRefreshTokenAsNotAdmin_ShouldReturnUnauthorized()
+    public async Task GivenAnyRefreshToken_WhenRevokeUserRefreshTokenAsNotAdmin_ShouldSucceed()
     {
         // Arrange
-        const string uri = $"{BaseUriUsers}/RevokeUserRefreshToken/";
-        var request = new HttpRequestMessage(HttpMethod.Post, uri);
-        var dto = new RevokeUserRefreshTokenDto { RefreshToken = DataUtilityService.GetRandomString(100) };
-
         var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
 
-        var payload = JsonConvert.SerializeObject(dto);
-        request.Content = new StringContent(payload, Encoding.Default, "application/json");
+        const string signInUri = $"{BaseUriUsers}/AuthenticateUser/";
+        var signInRequest = new HttpRequestMessage(HttpMethod.Post, signInUri);
+        var signinDto = new AuthenticateUserDto
+        {
+            EmailAddress = User1.EmailAddress,
+            Password = "user1password"
+        };
+
+        var signInPayload = JsonConvert.SerializeObject(signinDto);
+        signInRequest.Content = new StringContent(signInPayload, Encoding.Default, "application/json");
+
+        var signInResponse = await httpClient.SendAsync(signInRequest);
+        var signInContent = await signInResponse.Content.ReadAsStringAsync();
+        var authenticatedUser = JsonConvert.DeserializeObject<AuthenticateUserCommandResult>(signInContent);
+
+        const string revokeUri = $"{BaseUriUsers}/RevokeUserRefreshToken/";
+        var revokeRequest = new HttpRequestMessage(HttpMethod.Post, revokeUri);
+        var revokeDto = new RevokeUserRefreshTokenDto { RefreshToken = authenticatedUser?.RefreshToken };
+
+        var payload = JsonConvert.SerializeObject(revokeDto);
+        revokeRequest.Content = new StringContent(payload, Encoding.Default, "application/json");
+        revokeRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", authenticatedUser?.UserToken);
 
         // Act
-        var response = await httpClient.SendAsync(request);
+        var revokeResponse = await httpClient.SendAsync(revokeRequest);
 
         // Assert
-        await EnsureStatusCode(response, HttpStatusCode.Unauthorized);
-        var content = await response.Content.ReadAsStringAsync();
-        content.Should().Contain(nameof(ErrorCodes.INVALID_USER_TOKEN));
+        await EnsureStatusCode(revokeResponse, HttpStatusCode.OK);
+        var content = await revokeResponse.Content.ReadAsStringAsync();
+        content.Should().Contain("{}");
     }
 
     [Fact]
