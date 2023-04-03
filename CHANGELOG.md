@@ -1,3 +1,10 @@
+# [0.69.0](https://github.com/TomaszKandula/TokanPages/compare/v0.68.0...v0.69.0) (2023-04-03)
+
+
+### Features
+
+* improve signout action ([3cf8247](https://github.com/TomaszKandula/TokanPages/commit/3cf8247927cdef45c7537a8cc04f16ac5dc48f34))
+
 # [0.68.0](https://github.com/TomaszKandula/TokanPages/compare/v0.67.0...v0.68.0) (2023-03-26)
 
 
