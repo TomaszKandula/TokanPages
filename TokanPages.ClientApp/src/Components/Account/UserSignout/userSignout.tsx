@@ -1,52 +1,52 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ApplicationState } from "../../../Store/Configuration";
 import { ContentUserSignoutState } from "../../../Store/States";
-import { USER_DATA } from "../../../Shared/constants";
+import { OperationStatus } from "../../../Shared/enums";
 import { UserSignoutView } from "./View/userSignoutView";
 
 import { 
-    ApplicationState, 
-    ApplicationDefault 
-} from "../../../Store/Configuration";
-
-import { 
     UserDataStoreAction, 
-    UserSigninAction,
     UserSignoutAction
 } from "../../../Store/Actions";
 
 export const UserSignout = (props: ContentUserSignoutState): JSX.Element => 
 {
     const dispatch = useDispatch();
-    const store = useSelector((state: ApplicationState) => state.userDataStore);
     const [hasProgress, setHasProgress] = React.useState(true);
+    const signout = useSelector((state: ApplicationState) => state.userSignout);
+
+    const isUserTokenRevoked = signout.userTokenStatus === OperationStatus.hasFinished;
+    const isRefreshTokenRevoked = signout.refreshTokenStatus === OperationStatus.hasFinished;
+
+    const status = hasProgress ? props.content.onProcessing : props.content.onFinish;
+    const hasContent = !props.isLoading && props.content.buttonText !== "";
 
     React.useEffect(() => 
     {
-        if (!hasProgress) return;
+        if (!isUserTokenRevoked || !isRefreshTokenRevoked) return;
 
-        dispatch(UserSignoutAction.signout());
-        dispatch(UserSigninAction.clear());
+        dispatch(UserSignoutAction.clearRefreshToken());
+        dispatch(UserSignoutAction.clearUserToken());
         dispatch(UserDataStoreAction.clear());
     }, 
-    [ hasProgress ]);
+    [ isUserTokenRevoked, isRefreshTokenRevoked ]);
 
     React.useEffect(() => 
     {
-        const isUserTokenRemoved = localStorage.getItem(USER_DATA) === null; 
-        const isUserDataEmpty = store.userData === ApplicationDefault.userDataStore.userData;
+        if (!hasContent) return;
+        if (!hasProgress) return;
 
-        if (isUserTokenRemoved && isUserDataEmpty && hasProgress) 
-        {
-            setHasProgress(false);
-        }
+        dispatch(UserSignoutAction.revokeRefreshToken());
+        dispatch(UserSignoutAction.revokeUserToken());
+        setHasProgress(false);
     }, 
-    [ hasProgress, store.userData ]);
+    [ hasProgress, hasContent ]);
 
     return (<UserSignoutView
         isLoading={props.isLoading}
         caption={props.content.caption}
-        status={hasProgress ? props.content.onProcessing : props.content.onFinish}
+        status={status}
         buttonText={props.content.buttonText}
     />);
 }
