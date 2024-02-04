@@ -1,3 +1,21 @@
+# [0.70.0](https://github.com/TomaszKandula/TokanPages/compare/v0.69.0...v0.70.0) (2024-02-04)
+
+
+### Bug Fixes
+
+* resolve issue with latest axios in JEST tests ([318b427](https://github.com/TomaszKandula/TokanPages/commit/318b427aa48dcb18238d930c450bcde2ba916310))
+* user secret ID ([43bcef0](https://github.com/TomaszKandula/TokanPages/commit/43bcef0bbf7722e29f18e8548ce978ef5bafb3df))
+
+
+### Features
+
+* downgrade MediatR, newest version have unresolved issues ([30606cd](https://github.com/TomaszKandula/TokanPages/commit/30606cd7507e919b84f3a957e96aee0326645c34))
+* relocate configuration to separate service ([83713ed](https://github.com/TomaszKandula/TokanPages/commit/83713ed209d4b4339853da700f4ea798322572cb))
+* remove unnecessary packages ([4bf5676](https://github.com/TomaszKandula/TokanPages/commit/4bf567669eb781a0433f9756dd8aa2e41e16986f))
+* save logs into azure storage ([2bbfa37](https://github.com/TomaszKandula/TokanPages/commit/2bbfa375f068f1f568550b576c3576dae8ae7eb2))
+* upgrade docker file ([c9c8e2c](https://github.com/TomaszKandula/TokanPages/commit/c9c8e2c2e9c375cdd670ec6dbfb211b47688b791))
+* upgrade packages ([b08ae69](https://github.com/TomaszKandula/TokanPages/commit/b08ae697f85701b219da96f381cbd245686c3678))
+
 # [0.69.0](https://github.com/TomaszKandula/TokanPages/compare/v0.68.0...v0.69.0) (2023-04-03)
 
 
