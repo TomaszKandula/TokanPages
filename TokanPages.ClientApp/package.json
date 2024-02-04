@@ -8,7 +8,7 @@
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.60",
         "aos": "^2.3.4",
-        "axios": "0.21.2",
+        "axios": "1.6.0",
         "dompurify": "^2.4.3",
         "jwt-decode": "^3.1.2",
         "react": "^17.0.2",
@@ -101,6 +101,7 @@
             "[/\\\\]node_modules[/\\\\](?!lodash-es|react-syntax-highlighter/).+\\.js$"
         ],
         "moduleNameMapper": {
+            "^axios$": "axios/dist/node/axios.cjs",
             "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./__mocks__/fileMock.ts",
             "^.+\\.(min.css|css|less|scss|sass)$": "identity-obj-proxy"
         }

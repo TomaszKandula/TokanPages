@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore;
 using Serilog;
-using Serilog.Events;
+using Logger = TokanPages.Backend.Configuration.Logger;
 
 namespace TokanPages.WebApi;
 
@@ -14,36 +13,22 @@ public static class Program
     private static readonly string? EnvironmentValue 
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-    private const string LogTemplate 
-        = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
-
     /// <summary>
     /// Main entry point.
     /// </summary>
-    /// <param name="args">Argument array.</param>
     /// <returns>Integer.</returns>
-    public static int Main(string[] args)
+    public static int Main()
     {
         try
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .WriteTo.File(
-                    GetLogPathFile(),
-                    outputTemplate: LogTemplate,
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true,
-                    retainedFileCountLimit: null,
-                    shared: false
-                ).CreateLogger();
-
-            Log.Information("Starting WebHost...");
-            Log.Information("Environment: {Environment}", EnvironmentValue);
-
-            CreateWebHostBuilder(args)
+            var configuration = GetConfiguration();
+            const string fileName = @"logs/TokanPages.WebApi/{yyyy}{MM}{dd}.txt";
+            Log.Logger = Logger.Configuration.GetLogger(configuration, fileName);
+            Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
+            CreateHostBuilder(configuration)
+                .ConfigureWebHostDefaults(builder => builder
+                    .ConfigureKestrel(options => options.AddServerHeader = false)
+                    .UseStartup<Startup>())
                 .Build()
                 .Run();
 
@@ -60,31 +45,20 @@ public static class Program
         }
     }
 
-    private static string GetLogPathFile()
+    private static IConfigurationRoot GetConfiguration()
     {
-        var pathFolder = $"{AppDomain.CurrentDomain.BaseDirectory}logs";
-
-        if (!Directory.Exists(pathFolder))
-            Directory.CreateDirectory(pathFolder);
-
-        return $"{pathFolder}{Path.DirectorySeparatorChar}log-.txt";
+        var appSettingsEnv = $"appsettings.{EnvironmentValue}.json";
+        return new ConfigurationBuilder()
+            .AddJsonFile(appSettingsEnv, true, true)
+            .AddUserSecrets<Startup>(true)
+            .AddEnvironmentVariables()
+            .Build();
     }
 
-    private static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    private static IHostBuilder CreateHostBuilder(IConfigurationRoot configurationRoot)
     {
-        return WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(builder =>
-            {
-                var appSettingsEnv = $"appsettings.{EnvironmentValue}.json";
-                var configuration = new ConfigurationBuilder()
-                    .AddJsonFile(appSettingsEnv, true, true)
-                    .AddUserSecrets<Startup>(true)
-                    .AddEnvironmentVariables()
-                    .Build();
-
-                builder.AddConfiguration(configuration);
-            })
-            .UseStartup<Startup>()
+        return Host.CreateDefaultBuilder()
+            .ConfigureAppConfiguration(builder => builder.AddConfiguration(configurationRoot))
             .UseSerilog();
     }
 }

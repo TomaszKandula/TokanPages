@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace TokanPages.WebApi.Configuration;
+namespace TokanPages.Backend.Configuration;
 
 /// <summary>
 /// Configure Redis cache.
