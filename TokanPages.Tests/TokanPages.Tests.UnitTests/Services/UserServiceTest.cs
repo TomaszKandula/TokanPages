@@ -266,8 +266,10 @@ public class UserServiceTest : TestBase
         // Assert
         result.Should().NotBeNull();
         result.Should().HaveCount(2);
-        result?[0].Name.Should().Be(permissions[0].Name);
-        result?[1].Name.Should().Be(permissions[1].Name);
+        var hasName1 = result?.Select(output => output.Name).Contains(permissions[0].Name);
+        var hasName2 = result?.Select(output => output.Name).Contains(permissions[1].Name);
+        hasName1.Should().BeTrue();
+        hasName2.Should().BeTrue();
     }
 
     [Fact]
@@ -1188,8 +1190,8 @@ public class UserServiceTest : TestBase
         await userServiceProvider.RevokeDescendantRefreshTokens(input, CancellationToken.None);
 
         // Assert
-        var getRefreshTokens = databaseContext.UserRefreshTokens.ToList();
-        getRefreshTokens[1].ReasonRevoked.Should().Be(reasonRevoked);
+        var getRefreshTokens = databaseContext.UserRefreshTokens.FirstOrDefault(x => x.Token == token);
+        getRefreshTokens!.ReasonRevoked.Should().Be(reasonRevoked);
     }
 
     [Fact]
