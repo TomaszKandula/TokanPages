@@ -35,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Configuration\TokanPages.Backend.Configuration.csproj" />
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
     <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.MigrationRunner\TokanPages.Persistence.MigrationRunner.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.WebApi.csproj" />

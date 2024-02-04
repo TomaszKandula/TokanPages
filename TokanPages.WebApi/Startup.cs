@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
+using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.WebApi.Configuration;
 using TokanPages.WebApi.Middleware;
 
 namespace TokanPages.WebApi;

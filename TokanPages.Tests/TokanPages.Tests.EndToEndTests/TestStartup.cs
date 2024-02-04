@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Persistence.Database;
 using TokanPages.WebApi;
-using TokanPages.WebApi.Configuration;
 using TokanPages.WebApi.Middleware;
 
 namespace TokanPages.Tests.EndToEndTests;
