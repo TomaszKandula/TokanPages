@@ -13,7 +13,7 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Docker build & test
       run: |
@@ -31,7 +31,7 @@ jobs:
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:frontend-staging-${{ github.sha }}
 
     - name: Docker login
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v1.0.1
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
@@ -43,7 +43,7 @@ jobs:
     # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
     # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: tokanpages-staging
         slot-name: production
@@ -57,10 +57,10 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Log to Azure Cloud
-      uses: Azure/login@v1
+      uses: Azure/login@v1.6.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -120,7 +120,7 @@ jobs:
         -t ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}/${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}:backend-staging-${{ github.sha }}
 
     - name: Docker login
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v1.0.1
       with:
         login-server: ${{ secrets.DOCKER_REGISTRY_SERVER_URL }}
         username: ${{ secrets.DOCKER_REGISTRY_SERVER_USERNAME }}
@@ -132,7 +132,7 @@ jobs:
     # NOTE: due to a budget constraints, we use separate Azure App Service for staging slots. 
     # Microsoft Azure pricing tiers B1, B2 and B3 do not allow separate slots.
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: tokanpages-backend-staging
         slot-name: production

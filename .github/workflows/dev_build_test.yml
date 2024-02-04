@@ -3,7 +3,7 @@ name: Build & run tests (dev)
 on:
   pull_request:
     branches: [ dev ]
-    
+
 jobs:
 
   frontend-develop:
@@ -13,14 +13,14 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Install node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 18
 
     - name: Install dependencies
       run: |
@@ -50,10 +50,10 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Log to Azure Cloud
-      uses: Azure/login@v1
+      uses: Azure/login@v1.6.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -107,7 +107,7 @@ jobs:
         Limit_Likes_User: "${{ steps.vault.outputs.TestLimitsLikesUser }}"
 
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0.x'
 
@@ -116,7 +116,7 @@ jobs:
 
     - name: SonarQube begin scan dotnet
       run: |
-        dotnet tool install --global dotnet-sonarscanner
+        dotnet tool install --global dotnet-sonarscanner --version 5.15.0
         dotnet tool update dotnet-reportgenerator-globaltool -g
         dotnet sonarscanner begin \
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
