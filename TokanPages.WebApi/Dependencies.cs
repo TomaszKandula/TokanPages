@@ -14,6 +14,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
+using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
@@ -37,7 +38,7 @@ using TokanPages.Services.WebSocketService;
 using TokanPages.Services.WebSocketService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 
-namespace TokanPages.WebApi.Configuration;
+namespace TokanPages.WebApi;
 
 /// <summary>
 /// Register application dependencies.
