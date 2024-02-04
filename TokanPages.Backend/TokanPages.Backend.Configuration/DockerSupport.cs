@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Sockets;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace TokanPages.WebApi.Configuration;
+namespace TokanPages.Backend.Configuration;
 
 /// <summary>
 /// Docker support.

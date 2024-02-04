@@ -3,7 +3,7 @@ using System.Net;
 using Polly;
 using Polly.Extensions.Http;
 
-namespace TokanPages.WebApi.Configuration;
+namespace TokanPages.Backend.Configuration;
 
 /// <summary>
 /// HTTP Policy.

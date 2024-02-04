@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 
-namespace TokanPages.WebApi.Configuration;
+namespace TokanPages.Backend.Configuration;
 
 /// <summary>
 /// Token security handler.
