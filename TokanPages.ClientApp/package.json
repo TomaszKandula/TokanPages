@@ -8,7 +8,7 @@
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.60",
         "aos": "^2.3.4",
-        "axios": "0.21.2",
+        "axios": "1.6.0",
         "dompurify": "^2.4.3",
         "jwt-decode": "^3.1.2",
         "react": "^17.0.2",
