@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
@@ -46,11 +47,16 @@ public class Startup
             // file size from an Azure application setting.
             // However, file size cannot be larger than 2GB.
             options.Limits.MaxRequestBodySize = int.MaxValue;
+            // Default values:
+            // 240 bytes / sec. and 5 second of a grace period.
+            // We increase values in case of slow network.
+            options.Limits.MinResponseDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(30));
         });
         services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
             options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
         });
         services.AddResponseCaching();
         services.AddApiVersioning(options =>
@@ -74,17 +80,13 @@ public class Startup
     public void Configure(IApplicationBuilder builder)
     {
         builder.UseSerilogRequestLogging();
-
         builder.UseForwardedHeaders();
         builder.UseHttpsRedirection();
         builder.UseResponseCaching();
-
         builder.ApplyCorsPolicy(_configuration);
         builder.UseMiddleware<Exceptions>();
-
         builder.UseResponseCompression();
         builder.UseRouting();
-
         builder.UseAuthentication();
         builder.UseAuthorization();
         builder.UseEndpoints(endpoints =>
