@@ -1,7 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
@@ -46,11 +49,16 @@ public class Startup
             // file size from an Azure application setting.
             // However, file size cannot be larger than 2GB.
             options.Limits.MaxRequestBodySize = int.MaxValue;
+            // Default values:
+            // 240 bytes / sec. and 5 second of a grace period.
+            // We increase values in case of slow network.
+            options.Limits.MinResponseDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(30));
         });
         services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
             options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
         });
         services.AddResponseCaching();
         services.AddApiVersioning(options =>
@@ -65,6 +73,12 @@ public class Startup
         services.SetupRedisCache(_configuration);
         services.SetupSwaggerOptions(_environment);
         services.SetupDockerInternalNetwork();
+        services
+            .AddHealthChecks()
+            .AddUrlGroup(new Uri(_configuration.GetValue<string>("Email_HealthUrl")), "EmailService")
+            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString"), "AzureRedisCache")
+            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), "SQLServer")
+            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), "AzureStorage");
     }
 
     /// <summary>
@@ -74,25 +88,39 @@ public class Startup
     public void Configure(IApplicationBuilder builder)
     {
         builder.UseSerilogRequestLogging();
-
         builder.UseForwardedHeaders();
         builder.UseHttpsRedirection();
         builder.UseResponseCaching();
-
         builder.ApplyCorsPolicy(_configuration);
         builder.UseMiddleware<Exceptions>();
-
         builder.UseResponseCompression();
         builder.UseRouting();
-
         builder.UseAuthentication();
         builder.UseAuthorization();
+        builder.SetupSwaggerUi(_configuration, _environment);
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapGet("/", context => context.Response.WriteAsync("Tokan Pages API"));
+            endpoints.MapGet("/", context 
+                => context.Response.WriteAsync("Tokan Pages API"));
         });
-
-        builder.SetupSwaggerUi(_configuration, _environment);
+        builder.UseHealthChecks("/hc", new HealthCheckOptions
+        {
+            ResponseWriter = async (context, report) =>
+            {
+                var result = new
+                {
+                    status = report.Status.ToString(),
+                    errors = report.Entries.Select(pair 
+                        => new
+                        {
+                            key = pair.Key, 
+                            value = Enum.GetName(typeof(HealthStatus), pair.Value.Status)
+                        })
+                };
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
+            }
+        });
     }
 }

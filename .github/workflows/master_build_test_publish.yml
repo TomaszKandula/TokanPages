@@ -106,18 +106,19 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Get Azure Key Vault secrets
-      uses: TomaszKandula/get-keyvault-secrets@v1.0.2
+      uses: TomaszKandula/get-keyvault-secrets@v1.0.3
       with:
         keyvault: ${{ secrets.AZURE_KEY_VAULT }}
-        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST }}
+        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST_PROD }}
       id: vault
 
     - name: Variable substitution appsettings file for Production (.NET)
-      uses: TomaszKandula/variable-substitution@v1.0.1
+      uses: TomaszKandula/variable-substitution@v1.0.2
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:
         Email_PrivateKey: "${{ steps.vault.outputs.ProdEmailPrivateKey }}"
+        Email_HealthUrl: "${{ steps.vault.outputs.ProdEmailHealthUrl }}"
         Email_BaseUrl: "${{ steps.vault.outputs.ProdEmailBaseUrl }}"
         Email_Address_Admin: "${{ steps.vault.outputs.ProdEmailAddressesAdmin }}"
         Email_Address_Contact: "${{ steps.vault.outputs.ProdEmailAddressesContact }}"

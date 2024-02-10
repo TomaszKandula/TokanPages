@@ -58,18 +58,19 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Get Azure Key Vault secrets
-      uses: TomaszKandula/get-keyvault-secrets@v1.0.2
+      uses: TomaszKandula/get-keyvault-secrets@v1.0.3
       with:
         keyvault: ${{ secrets.AZURE_KEY_VAULT }}
-        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST }}
+        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST_TEST }}
       id: vault
 
     - name: Variable substitution appsettings file for Testing (.NET)
-      uses: TomaszKandula/variable-substitution@v1.0.1
+      uses: TomaszKandula/variable-substitution@v1.0.2
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Testing.json
       env:
         Email_PrivateKey: "${{ steps.vault.outputs.TestEmailPrivateKey }}"
+        Email_HealthUrl: "${{ steps.vault.outputs.TestEmailHealthUrl }}"
         Email_BaseUrl: "${{ steps.vault.outputs.TestEmailBaseUrl }}"
         Email_Address_Admin: "${{ steps.vault.outputs.TestEmailAddressesAdmin }}"
         Email_Address_Contact: "${{ steps.vault.outputs.TestEmailAddressesContact }}"
