@@ -37,5 +37,12 @@
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.RedisCacheService\TokanPages.Services.RedisCacheService.csproj" />
     <ProjectReference Include="..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="7.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.0" />
+  </ItemGroup>
 
 </Project>

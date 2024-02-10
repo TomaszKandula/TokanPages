@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -71,6 +73,12 @@ public class Startup
         services.SetupRedisCache(_configuration);
         services.SetupSwaggerOptions(_environment);
         services.SetupDockerInternalNetwork();
+        services
+            .AddHealthChecks()
+            .AddUrlGroup(new Uri(_configuration.GetValue<string>("Email_HealthUrl")), "EmailService")
+            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString"), "AzureRedisCache")
+            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), "SQLServer")
+            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), "AzureStorage");
     }
 
     /// <summary>
@@ -89,15 +97,30 @@ public class Startup
         builder.UseRouting();
         builder.UseAuthentication();
         builder.UseAuthorization();
+        builder.SetupSwaggerUi(_configuration, _environment);
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
             endpoints.MapGet("/", context 
                 => context.Response.WriteAsync("Tokan Pages API"));
-            endpoints.MapGet("/hc/ready", context 
-                => context.Response.WriteAsync("{\"status\": \"live\"}"));
         });
-
-        builder.SetupSwaggerUi(_configuration, _environment);
+        builder.UseHealthChecks("/hc", new HealthCheckOptions
+        {
+            ResponseWriter = async (context, report) =>
+            {
+                var result = new
+                {
+                    status = report.Status.ToString(),
+                    errors = report.Entries.Select(pair 
+                        => new
+                        {
+                            key = pair.Key, 
+                            value = Enum.GetName(typeof(HealthStatus), pair.Value.Status)
+                        })
+                };
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
+            }
+        });
     }
 }
