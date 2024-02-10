@@ -70,6 +70,7 @@ jobs:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Testing.json
       env:
         Email_PrivateKey: "${{ steps.vault.outputs.TestEmailPrivateKey }}"
+        Email_HealthUrl: "${{ steps.vault.outputs.TestEmailHealthUrl }}"
         Email_BaseUrl: "${{ steps.vault.outputs.TestEmailBaseUrl }}"
         Email_Address_Admin: "${{ steps.vault.outputs.TestEmailAddressesAdmin }}"
         Email_Address_Contact: "${{ steps.vault.outputs.TestEmailAddressesContact }}"

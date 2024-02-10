@@ -118,6 +118,7 @@ jobs:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Production.json
       env:
         Email_PrivateKey: "${{ steps.vault.outputs.ProdEmailPrivateKey }}"
+        Email_HealthUrl: "${{ steps.vault.outputs.ProdEmailHealthUrl }}"
         Email_BaseUrl: "${{ steps.vault.outputs.ProdEmailBaseUrl }}"
         Email_Address_Admin: "${{ steps.vault.outputs.ProdEmailAddressesAdmin }}"
         Email_Address_Contact: "${{ steps.vault.outputs.ProdEmailAddressesContact }}"
