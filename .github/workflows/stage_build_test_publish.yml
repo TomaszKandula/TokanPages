@@ -65,18 +65,19 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Get Azure Key Vault secrets
-      uses: TomaszKandula/get-keyvault-secrets@v1.0.2
+      uses: TomaszKandula/get-keyvault-secrets@v1.0.3
       with:
         keyvault: ${{ secrets.AZURE_KEY_VAULT }}
-        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST }}
+        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST_STAGE }}
       id: vault
 
     - name: Variable substitution appsettings file for Staging (.NET)
-      uses: TomaszKandula/variable-substitution@v1.0.1
+      uses: TomaszKandula/variable-substitution@v1.0.2
       with:
         files: ${{ github.workspace }}/TokanPages.Configuration/appsettings.Staging.json
       env:
         Email_PrivateKey: "${{ steps.vault.outputs.StageEmailPrivateKey }}"
+        Email_HealthUrl: "${{ steps.vault.outputs.StageEmailHealthUrl }}"
         Email_BaseUrl: "${{ steps.vault.outputs.StageEmailBaseUrl }}"
         Email_Address_Admin: "${{ steps.vault.outputs.StageEmailAddressesAdmin }}"
         Email_Address_Contact: "${{ steps.vault.outputs.StageEmailAddressesContact }}"
