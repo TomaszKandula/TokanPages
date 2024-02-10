@@ -68,7 +68,7 @@ jobs:
       uses: TomaszKandula/get-keyvault-secrets@v1.0.3
       with:
         keyvault: ${{ secrets.AZURE_KEY_VAULT }}
-        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST }}
+        secrets: ${{ secrets.AZURE_KEY_VAULT_LIST_STAGE }}
       id: vault
 
     - name: Variable substitution appsettings file for Staging (.NET)
