@@ -1,3 +1,15 @@
+# [0.71.0](https://github.com/TomaszKandula/TokanPages/compare/v0.70.0...v0.71.0) (2024-02-10)
+
+
+### Features
+
+* add HC ready ([9d4b9e1](https://github.com/TomaszKandula/TokanPages/commit/9d4b9e1f43cc3bd5c3d4702b2524169312d66323))
+* add health checks ([d37f51f](https://github.com/TomaszKandula/TokanPages/commit/d37f51fc47ba99f7dc908af1f45c349b54c4a39e))
+* add new config property ([5b11cd4](https://github.com/TomaszKandula/TokanPages/commit/5b11cd45552a862713a53de8626daeaff9f1ec99))
+* configure Kestrel response data rate ([9fc145c](https://github.com/TomaszKandula/TokanPages/commit/9fc145cb52426cd3088bca838e9e4220faf458b3))
+* remove unused code ([a6321e3](https://github.com/TomaszKandula/TokanPages/commit/a6321e39410d6c90c1d1230c6ab7f6fa8555eda4))
+* use new secrets ([b5d68ad](https://github.com/TomaszKandula/TokanPages/commit/b5d68ad43ae845a6147914679f85d9f120b29e55))
+
 # [0.70.0](https://github.com/TomaszKandula/TokanPages/compare/v0.69.0...v0.70.0) (2024-02-04)
 
 
