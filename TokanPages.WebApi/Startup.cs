@@ -92,7 +92,10 @@ public class Startup
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
-            endpoints.MapGet("/", context => context.Response.WriteAsync("Tokan Pages API"));
+            endpoints.MapGet("/", context 
+                => context.Response.WriteAsync("Tokan Pages API"));
+            endpoints.MapGet("/hc/ready", context 
+                => context.Response.WriteAsync("{\"status\": \"live\"}"));
         });
 
         builder.SetupSwaggerUi(_configuration, _environment);
