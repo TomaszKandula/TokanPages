@@ -1,3 +1,10 @@
+## [0.71.1](https://github.com/TomaszKandula/TokanPages/compare/v0.71.0...v0.71.1) (2024-02-10)
+
+
+### Bug Fixes
+
+* add name prop ([c259ea9](https://github.com/TomaszKandula/TokanPages/commit/c259ea992b6c34fd67f03d86dd3c803d7df4e851))
+
 # [0.71.0](https://github.com/TomaszKandula/TokanPages/compare/v0.70.0...v0.71.0) (2024-02-10)
 
 
