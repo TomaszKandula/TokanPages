@@ -22,7 +22,7 @@
                 "selector": "interface",
                 "format": ["PascalCase"],
                 "custom": {
-                    "regex": "^I[A-Z]",
+                    "regex": "^[A-Z]",
                     "match": true
                 }
             },
@@ -30,8 +30,8 @@
                 "selector": "typeParameter",
                 "format": ["PascalCase"],
                 "custom": {
-                    "regex": "^T[A-Z]",
-                    "match": false
+                    "regex": "^[A-Z]",
+                    "match": true
                 }
             },
             {
