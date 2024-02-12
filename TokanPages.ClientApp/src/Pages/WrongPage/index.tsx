@@ -7,53 +7,62 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentWrongPagePromptAction } from "../../Store/Actions";
 import { Style } from "./style";
 
-const ActionButton = (args: { button: string }): JSX.Element => 
-{
+const ActionButton = (args: { button: string }): JSX.Element => {
     const classes = Style();
-    return(
+    return (
         <Link to="/" className={classes.link}>
             <Button variant="contained" className={classes.button}>
                 {args.button}
             </Button>
         </Link>
     );
-}
+};
 
-export const WrongPage = (): JSX.Element =>
-{
+export const WrongPage = (): JSX.Element => {
     const classes = Style();
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const prompt = useSelector((state: ApplicationState) => state.contentWrongPagePrompt);
 
-    React.useEffect(() => 
-    { 
+    React.useEffect(() => {
         dispatch(ContentWrongPagePromptAction.get());
-    }, [ language?.id ]);
+    }, [language?.id]);
 
     return (
         <section>
             <Container maxWidth="md">
                 <Box pt={8} pb={10} textAlign="center">
-                    {prompt?.isLoading
-                    ? <Skeleton variant="text" height="200px" width="250px" className={classes.skeleton} />
-                    : <Typography variant="h1">{prompt?.content.code}</Typography>}
+                    {prompt?.isLoading ? (
+                        <Skeleton variant="text" height="200px" width="250px" className={classes.skeleton} />
+                    ) : (
+                        <Typography variant="h1">{prompt?.content.code}</Typography>
+                    )}
 
-                    {prompt?.isLoading
-                    ? <Skeleton variant="text" height="45px" width="80%" className={classes.skeleton} />
-                    : <Typography variant="h4" component="h2" gutterBottom={true}>{prompt?.content.header}</Typography>}
+                    {prompt?.isLoading ? (
+                        <Skeleton variant="text" height="45px" width="80%" className={classes.skeleton} />
+                    ) : (
+                        <Typography variant="h4" component="h2" gutterBottom={true}>
+                            {prompt?.content.header}
+                        </Typography>
+                    )}
 
-                    {prompt?.isLoading
-                    ? <Skeleton variant="text" height="45px" className={classes.skeleton} />
-                    : <Typography variant="subtitle1" color="textSecondary">{prompt?.content.description}</Typography>}
+                    {prompt?.isLoading ? (
+                        <Skeleton variant="text" height="45px" className={classes.skeleton} />
+                    ) : (
+                        <Typography variant="subtitle1" color="textSecondary">
+                            {prompt?.content.description}
+                        </Typography>
+                    )}
 
                     <Box mt={4}>
-                        {prompt?.isLoading
-                        ? <Skeleton variant="rect" height="60px" width="220px" className={classes.skeleton} />
-                        : <ActionButton button={prompt?.content.button} />}
+                        {prompt?.isLoading ? (
+                            <Skeleton variant="rect" height="60px" width="220px" className={classes.skeleton} />
+                        ) : (
+                            <ActionButton button={prompt?.content.button} />
+                        )}
                     </Box>
                 </Box>
             </Container>
-      </section> 
+        </section>
     );
-}
+};

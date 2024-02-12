@@ -1,42 +1,38 @@
 /**
-* @jest-environment jsdom
-*/
+ * @jest-environment jsdom
+ */
 import "../../../../setupTests";
 import { SetCookie } from "..";
 
-describe("verify cookies module functionality", () => 
-{
-    it("should return cookie string when 'days' and 'exact' value are defined.", () => 
-    {
+describe("verify cookies module functionality", () => {
+    it("should return cookie string when 'days' and 'exact' value are defined.", () => {
         // Arrange
         let date = new Date();
         const days = 3;
 
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         const newExpiry = date.toUTCString();
- 
+
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict;`;
         const expectedValueSecure = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict; Secure;`;
 
-        const unsecureInput = 
-        {
-            cookieName: "cookieConsent", 
-            value: "granted", 
+        const unsecureInput = {
+            cookieName: "cookieConsent",
+            value: "granted",
             days: days,
             sameSite: "Strict",
             secure: false,
-            exact: newExpiry
-        }
+            exact: newExpiry,
+        };
 
-        const secureInput = 
-        {
-            cookieName: "cookieConsent", 
-            value: "granted", 
+        const secureInput = {
+            cookieName: "cookieConsent",
+            value: "granted",
             days: days,
             sameSite: "Strict",
             secure: true,
-            exact: newExpiry
-        }
+            exact: newExpiry,
+        };
 
         // Act
         const unsecureResult = SetCookie(unsecureInput);
@@ -47,26 +43,24 @@ describe("verify cookies module functionality", () =>
         expect(secureResult).toBe(expectedValueSecure);
     });
 
-    it("should return cookie string when only 'days' value is defined.", () => 
-    {
+    it("should return cookie string when only 'days' value is defined.", () => {
         // Arrange
         let date = new Date();
         const days = 3;
- 
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         const newExpiry = date.toUTCString();
- 
+
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=Strict;`;
 
-        const input = 
-        {
-            cookieName: "cookieConsent", 
-            value: "granted", 
+        const input = {
+            cookieName: "cookieConsent",
+            value: "granted",
             days: days,
             sameSite: "Strict",
             secure: false,
-            exact: undefined
-        } 
+            exact: undefined,
+        };
 
         // Act
         const result = SetCookie(input);
@@ -75,36 +69,33 @@ describe("verify cookies module functionality", () =>
         expect(result).toBe(expectedValue);
     });
 
-    it("should return cookie string as 'Secure' when SameSite is None regardless of secure property.", () => 
-    {
+    it("should return cookie string as 'Secure' when SameSite is None regardless of secure property.", () => {
         // Arrange
         let date = new Date();
         const days = 3;
 
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
         const newExpiry = date.toUTCString();
- 
+
         const expectedValue = `cookieConsent=granted; expires=${newExpiry}; path=/; SameSite=None; Secure;`;
 
-        const unsecureInput = 
-        {
-            cookieName: "cookieConsent", 
-            value: "granted", 
+        const unsecureInput = {
+            cookieName: "cookieConsent",
+            value: "granted",
             days: days,
             sameSite: "None",
             secure: false,
-            exact: undefined
-        } 
+            exact: undefined,
+        };
 
-        const secureInput =
-        {
-            cookieName: "cookieConsent", 
-            value: "granted", 
+        const secureInput = {
+            cookieName: "cookieConsent",
+            value: "granted",
             days: days,
             sameSite: "None",
             secure: true,
-            exact: undefined
-        } 
+            exact: undefined,
+        };
 
         // Act
         const resultUnsecure = SetCookie(unsecureInput);
@@ -115,26 +106,24 @@ describe("verify cookies module functionality", () =>
         expect(resultSecure).toBe(expectedValue);
     });
 
-    it("should return empty string when cookie days are set to zero.", () => 
-    {
+    it("should return empty string when cookie days are set to zero.", () => {
         // Arrange
         let date = new Date();
         const days = 0;
 
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
 
         const newExpiry = date.toUTCString();
         const expectedValue = "";
 
-        const input = 
-        {
-            cookieName: "cookieConsent", 
-            value: "granted", 
+        const input = {
+            cookieName: "cookieConsent",
+            value: "granted",
             days: days,
             sameSite: "Strict",
             secure: false,
-            exact: newExpiry
-        } 
+            exact: newExpiry,
+        };
 
         // Act
         const result = SetCookie(input);
@@ -143,4 +132,3 @@ describe("verify cookies module functionality", () =>
         expect(result).toBe(expectedValue);
     });
 });
- 

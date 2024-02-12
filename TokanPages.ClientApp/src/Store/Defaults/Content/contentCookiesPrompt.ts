@@ -1,14 +1,12 @@
 import { ContentCookiesPromptState } from "../../States";
 
-export const ContentCookiesPrompt: ContentCookiesPromptState = 
-{
+export const ContentCookiesPrompt: ContentCookiesPromptState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         text: "",
         button: "",
-        days: 0
-    }
-}
+        days: 0,
+    },
+};

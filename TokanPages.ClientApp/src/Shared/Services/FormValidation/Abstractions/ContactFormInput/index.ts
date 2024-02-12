@@ -1,5 +1,4 @@
-export interface ContactFormInput
-{
+export interface ContactFormInput {
     firstName: string;
     lastName: string;
     email: string;

@@ -3,33 +3,29 @@ import { ApplicationDialogState } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
 import { IconType } from "../../../Shared/enums";
 
-import { 
-    CLEAR, 
-    RAISE, 
-    TDialogActions 
-} from "../../Actions/Application/applicationDialog";
+import { CLEAR, RAISE, TDialogActions } from "../../Actions/Application/applicationDialog";
 
-export const ApplicationDialog: 
-    Reducer<ApplicationDialogState> = (state: ApplicationDialogState | undefined, incomingAction: Action): 
-    ApplicationDialogState =>
-{
+export const ApplicationDialog: Reducer<ApplicationDialogState> = (
+    state: ApplicationDialogState | undefined,
+    incomingAction: Action
+): ApplicationDialogState => {
     if (state === undefined) return ApplicationDefault.applicationDialog;
 
     const action = incomingAction as TDialogActions;
-    switch(action.type)
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 title: "",
                 message: "",
-                icon: IconType.info 
-            }
+                icon: IconType.info,
+            };
         case RAISE:
-            return { 
+            return {
                 title: action.dialog.title,
                 message: action.dialog.message,
-                icon: action.dialog.icon
-            }
-        default: return state;
+                icon: action.dialog.icon,
+            };
+        default:
+            return state;
     }
-}
+};

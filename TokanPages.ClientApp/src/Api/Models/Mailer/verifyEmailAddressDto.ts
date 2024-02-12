@@ -1,4 +1,3 @@
-export interface VerifyEmailAddressDto
-{
+export interface VerifyEmailAddressDto {
     email: string;
 }

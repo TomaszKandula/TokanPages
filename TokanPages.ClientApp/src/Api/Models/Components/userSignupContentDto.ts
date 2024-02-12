@@ -1,7 +1,5 @@
-export interface UserSignupContentDto
-{
-    content: 
-    {
+export interface UserSignupContentDto {
+    content: {
         language: string;
         caption: string;
         button: string;

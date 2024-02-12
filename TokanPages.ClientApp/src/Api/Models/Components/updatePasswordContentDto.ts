@@ -1,7 +1,5 @@
-export interface UpdatePasswordContentDto
-{
-    content: 
-    {
+export interface UpdatePasswordContentDto {
+    content: {
         language: string;
         caption: string;
         button: string;

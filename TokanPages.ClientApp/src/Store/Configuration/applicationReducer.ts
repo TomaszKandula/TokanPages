@@ -1,4 +1,4 @@
-import { 
+import {
     UserActivate,
     SubscriberAdd,
     ContentAccount,
@@ -43,11 +43,10 @@ import {
     ContentTerms,
     ContentStory,
     UserMediaUpload,
-    UserSignout
+    UserSignout,
 } from "../Reducers";
 
-export const ApplicationReducer = 
-{
+export const ApplicationReducer = {
     applicationError: ApplicationError,
     applicationEmail: ApplicationEmail,
     applicationDialog: ApplicationDialog,
@@ -92,5 +91,5 @@ export const ApplicationReducer =
     userSignin: UserSignin,
     userSignout: UserSignout,
     userSignup: UserSignup,
-    userUpdate: UserUpdate
+    userUpdate: UserUpdate,
 };

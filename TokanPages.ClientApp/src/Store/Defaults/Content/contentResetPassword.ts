@@ -1,13 +1,11 @@
 import { ContentResetPasswordState } from "../../States";
 
-export const ContentResetPassword: ContentResetPasswordState = 
-{
+export const ContentResetPassword: ContentResetPasswordState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         button: "",
-        labelEmail: ""
-    }    
-}
+        labelEmail: "",
+    },
+};

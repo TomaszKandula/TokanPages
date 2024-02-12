@@ -1,17 +1,14 @@
 import "../../../../setupTests";
 import { GetReadTime } from "..";
 
-describe("verify GetReadTime method", () => 
-{
-    it("should return read time, when number of words and words per minute.", () => 
-    {
+describe("verify GetReadTime method", () => {
+    it("should return read time, when number of words and words per minute.", () => {
         // Arrange
         const expectation: string = "5.38";
-         const input = 
-        {
+        const input = {
             countWords: 700,
-            wordsPerMinute: 130
-        }
+            wordsPerMinute: 130,
+        };
 
         // Act
         const result = GetReadTime(input);

@@ -1,10 +1,8 @@
 import { ContentContactFormState } from "../../States";
 
-export const ContentContactForm: ContentContactFormState = 
-{
+export const ContentContactForm: ContentContactFormState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         text: "",
@@ -14,6 +12,6 @@ export const ContentContactForm: ContentContactFormState =
         labelLastName: "",
         labelEmail: "",
         labelSubject: "",
-        labelMessage: ""
-    }
-}
+        labelMessage: "",
+    },
+};

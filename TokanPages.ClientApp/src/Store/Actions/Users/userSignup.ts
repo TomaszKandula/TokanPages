@@ -1,45 +1,45 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
-import { 
-    Execute, 
-    GetConfiguration, 
-    ExecuteContract, 
-    RequestContract, 
-    ADD_USER
-} from "../../../Api/Request";
+import { Execute, GetConfiguration, ExecuteContract, RequestContract, ADD_USER } from "../../../Api/Request";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
 export const RESPONSE = "SIGNUP_USER_RESPONSE";
-interface Signup { type: typeof SIGNUP }
-interface Clear { type: typeof CLEAR }
-interface Response { type: typeof RESPONSE; payload: any; }
+interface Signup {
+    type: typeof SIGNUP;
+}
+interface Clear {
+    type: typeof CLEAR;
+}
+interface Response {
+    type: typeof RESPONSE;
+    payload: any;
+}
 export type TKnownActions = Signup | Clear | Response;
 
-export const UserSignupAction = 
-{
-    clear: (): ApplicationAction<TKnownActions> => (dispatch) =>
-    {
+export const UserSignupAction = {
+    clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
     },
-    signup: (payload: AddUserDto): ApplicationAction<TKnownActions> => (dispatch) => 
-    {
-        dispatch({ type: SIGNUP });
+    signup:
+        (payload: AddUserDto): ApplicationAction<TKnownActions> =>
+        dispatch => {
+            dispatch({ type: SIGNUP });
 
-        const request: RequestContract = {
-            configuration: {
-                method: "POST", 
-                url: ADD_USER, 
-                data: payload
-            }
-        }
-    
-        const input: ExecuteContract = {
-            configuration: GetConfiguration(request),
-            dispatch: dispatch,
-            responseType: RESPONSE
-        }
+            const request: RequestContract = {
+                configuration: {
+                    method: "POST",
+                    url: ADD_USER,
+                    data: payload,
+                },
+            };
 
-        Execute(input);
-    }
-}
+            const input: ExecuteContract = {
+                configuration: GetConfiguration(request),
+                dispatch: dispatch,
+                responseType: RESPONSE,
+            };
+
+            Execute(input);
+        },
+};

@@ -1,8 +1,7 @@
 import { OperationStatus } from "../../../Shared/enums";
 import { UserUpdateState } from "../../States";
 
-export const UserUpdate: UserUpdateState = 
-{
+export const UserUpdate: UserUpdateState = {
     status: OperationStatus.notStarted,
-    response: undefined
-}
+    response: undefined,
+};

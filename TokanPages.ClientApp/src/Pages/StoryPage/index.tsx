@@ -5,14 +5,9 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
-import { 
-    ContentNavigationAction, 
-    ContentFooterAction, 
-    ContentStoryAction 
-} from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentStoryAction } from "../../Store/Actions";
 
-export const StoryPage = (): JSX.Element => 
-{ 
+export const StoryPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -20,13 +15,11 @@ export const StoryPage = (): JSX.Element =>
     const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const story = useSelector((state: ApplicationState) => state.contentStory);
 
-    React.useEffect(() => 
-    {
+    React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentStoryAction.get());
-    }, 
-    [ language?.id ]);
+    }, [language?.id]);
 
     return (
         <>
@@ -37,4 +30,4 @@ export const StoryPage = (): JSX.Element =>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
-}
+};

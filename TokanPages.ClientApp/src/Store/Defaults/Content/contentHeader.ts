@@ -1,18 +1,15 @@
 import { ContentHeaderState } from "../../States";
 
-export const ContentHeader: ContentHeaderState = 
-{
+export const ContentHeader: ContentHeaderState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         photo: "",
         caption: "",
         description: "",
-        action: 
-        {
+        action: {
             text: "",
-            href: ""
-        }
-   }    
-}
+            href: "",
+        },
+    },
+};

@@ -1,7 +1,5 @@
-export interface ContactFormContentDto
-{
-    content: 
-    {
+export interface ContactFormContentDto {
+    content: {
         language: string;
         caption: string;
         text: string;

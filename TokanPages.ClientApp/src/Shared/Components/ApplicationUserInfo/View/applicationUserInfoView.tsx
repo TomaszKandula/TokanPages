@@ -17,15 +17,13 @@ import { UserAvatar } from "../../UserAvatar";
 import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
 import { v4 as uuidv4 } from "uuid";
 
-interface Properties
-{
+interface Properties {
     state: boolean;
     data: AuthenticateUserResultDto;
     closeHandler: () => void;
 }
 
-const Items = (props: { item: string, className: string }): JSX.Element => 
-{
+const Items = (props: { item: string; className: string }): JSX.Element => {
     return (
         <ListItem>
             <ListItemIcon style={{ color: green[500] }}>
@@ -36,29 +34,33 @@ const Items = (props: { item: string, className: string }): JSX.Element =>
             </ListItemText>
         </ListItem>
     );
-}
+};
 
-export const ApplicationUserInfoView = (props: Properties): JSX.Element => 
-{
+export const ApplicationUserInfoView = (props: Properties): JSX.Element => {
     const classes = ApplicationUserInfoStyle();
-    const registered = GetDateTime(
-    {
+    const registered = GetDateTime({
         value: props.data.registered,
-        hasTimeVisible: true
+        hasTimeVisible: true,
     });
 
     return (
-        <Dialog fullWidth maxWidth="xs" open={props.state} onClose={props.closeHandler} 
-            aria-labelledby="dialog-title" aria-describedby="dialog-description">
+        <Dialog
+            fullWidth
+            maxWidth="xs"
+            open={props.state}
+            onClose={props.closeHandler}
+            aria-labelledby="dialog-title"
+            aria-describedby="dialog-description"
+        >
             <DialogTitle id="dialog-title">
                 <Grid container spacing={2} direction="column" alignItems="center">
                     <Grid item xs={12}>
                         <Box mt={1}>
-                            <UserAvatar 
+                            <UserAvatar
                                 userId={props.data.userId}
-                                isLarge={true} 
-                                avatarName={props.data.avatarName} 
-                                userLetter={props.data.aliasName?.charAt(0).toUpperCase()} 
+                                isLarge={true}
+                                avatarName={props.data.avatarName}
+                                userLetter={props.data.aliasName?.charAt(0).toUpperCase()}
                             />
                         </Box>
                     </Grid>
@@ -73,41 +75,43 @@ export const ApplicationUserInfoView = (props: Properties): JSX.Element =>
             <DialogContent>
                 <Box pt={2}>
                     <Typography className={classes.item}>
-                        User alias: <Typography component="span" className={classes.value}>{props.data.aliasName}</Typography>
+                        User alias:{" "}
+                        <Typography component="span" className={classes.value}>
+                            {props.data.aliasName}
+                        </Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
                     <Typography className={classes.item}>
-                        Registered: <Typography component="span" className={classes.value}>{registered}</Typography>
+                        Registered:{" "}
+                        <Typography component="span" className={classes.value}>
+                            {registered}
+                        </Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
-                    <Typography className={classes.item}>
-                        Roles assigned:
-                    </Typography>
+                    <Typography className={classes.item}>Roles assigned:</Typography>
                 </Box>
                 <List dense={true}>
-                {props.data.roles?.map((item: UserRoleDto, _index: number) => 
-                (
-                    <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
-                ))}
+                    {props.data.roles?.map((item: UserRoleDto, _index: number) => (
+                        <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
+                    ))}
                 </List>
                 <Box pt={0}>
-                    <Typography className={classes.item}>
-                        Permissions assigned:
-                    </Typography>
-                </Box>                
+                    <Typography className={classes.item}>Permissions assigned:</Typography>
+                </Box>
                 <List dense={true}>
-                {props.data.permissions?.map((item: UserPermissionDto, _index: number) => 
-                (
-                    <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
-                ))}
+                    {props.data.permissions?.map((item: UserPermissionDto, _index: number) => (
+                        <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
+                    ))}
                 </List>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.closeHandler} className={classes.button} autoFocus>OK</Button>
+                <Button onClick={props.closeHandler} className={classes.button} autoFocus>
+                    OK
+                </Button>
             </DialogActions>
         </Dialog>
     );
-}
+};

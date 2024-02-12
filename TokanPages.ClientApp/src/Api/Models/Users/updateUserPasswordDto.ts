@@ -1,5 +1,4 @@
-export interface UpdateUserPasswordDto
-{
+export interface UpdateUserPasswordDto {
     id?: string;
     resetId?: string;
     oldPassword?: string;

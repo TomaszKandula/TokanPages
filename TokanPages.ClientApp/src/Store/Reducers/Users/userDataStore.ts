@@ -3,31 +3,22 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserDataStoreState } from "../../States";
 import { USER_DATA } from "../../../Shared/constants";
 
-import { 
-    DelDataFromStorage, 
-    SetDataInStorage 
-} from "../../../Shared/Services/StorageServices";
+import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
-import { 
-    TKnownActions,
-    SHOW,
-    CLEAR,
-    UPDATE
-} from "../../Actions/Users/userDataStore";
+import { TKnownActions, SHOW, CLEAR, UPDATE } from "../../Actions/Users/userDataStore";
 
-export const UserDataStore: 
-    Reducer<UserDataStoreState> = (state: UserDataStoreState | undefined, incomingAction: Action): 
-    UserDataStoreState => 
-{
+export const UserDataStore: Reducer<UserDataStoreState> = (
+    state: UserDataStoreState | undefined,
+    incomingAction: Action
+): UserDataStoreState => {
     if (state === undefined) return ApplicationDefault.userDataStore;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case SHOW:
             return {
                 isShown: action.payload,
-                userData: state.userData
+                userData: state.userData,
             };
 
         case CLEAR:
@@ -37,7 +28,7 @@ export const UserDataStore:
         case UPDATE:
             const encodedNew = window.btoa(JSON.stringify(action.payload));
             SetDataInStorage({ selection: encodedNew, key: USER_DATA });
-            return { 
+            return {
                 isShown: state.isShown,
                 userData: {
                     userId: action.payload.userId,
@@ -51,10 +42,11 @@ export const UserDataStore:
                     userToken: action.payload.userToken,
                     refreshToken: action.payload.refreshToken,
                     roles: action.payload.roles,
-                    permissions: action.payload.permissions
-                }
+                    permissions: action.payload.permissions,
+                },
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

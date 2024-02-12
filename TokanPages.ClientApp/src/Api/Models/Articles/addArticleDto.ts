@@ -1,7 +1,6 @@
-export interface AddArticleDto
-{
-    title: string;  
+export interface AddArticleDto {
+    title: string;
     description: string;
     textToUpload: string;
-    imageToUpload: string;    
+    imageToUpload: string;
 }

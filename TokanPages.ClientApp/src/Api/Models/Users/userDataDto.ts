@@ -1,11 +1,10 @@
-export interface UserDataDto
-{
+export interface UserDataDto {
     userId: string;
-    aliasName: string
+    aliasName: string;
     avatarName: string;
     firstName: string;
     lastName: string;
-    email: string; 
+    email: string;
     shortBio: string;
     registered: string;
 }

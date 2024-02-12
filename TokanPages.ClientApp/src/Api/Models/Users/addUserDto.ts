@@ -1,8 +1,7 @@
-export interface AddUserDto
-{
+export interface AddUserDto {
     userAlias: string;
     firstName: string;
-    lastName: string; 
+    lastName: string;
     emailAddress: string;
     password: string;
 }

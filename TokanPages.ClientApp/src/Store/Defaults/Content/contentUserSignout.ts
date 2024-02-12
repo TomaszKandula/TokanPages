@@ -1,14 +1,12 @@
 import { ContentUserSignoutState } from "../../States";
 
-export const ContentUserSignout: ContentUserSignoutState = 
-{
+export const ContentUserSignout: ContentUserSignoutState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         onProcessing: "",
         onFinish: "",
-        buttonText: ""
-    }    
-}
+        buttonText: "",
+    },
+};

@@ -1,11 +1,9 @@
 import { ContentDto } from "./Common/contentDto";
 
-export interface UnsubscribeContentDto
-{
-    content: 
-    {
+export interface UnsubscribeContentDto {
+    content: {
         language: string;
-        contentPre: ContentDto,
-        contentPost: ContentDto
+        contentPre: ContentDto;
+        contentPost: ContentDto;
     };
 }

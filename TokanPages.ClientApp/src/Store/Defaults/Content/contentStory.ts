@@ -1,11 +1,9 @@
 import { ContentStoryState } from "../../States";
 
-export const ContentStory: ContentStoryState = 
-{
+export const ContentStory: ContentStoryState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
-        items: []
-    }
-}
+        items: [],
+    },
+};

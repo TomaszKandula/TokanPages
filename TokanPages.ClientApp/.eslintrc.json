@@ -6,13 +6,14 @@
         "project": ["./tsconfig.json"]
     },
     "plugins": ["@typescript-eslint"],
-    "rules": { 
-        "quotes": [ "error", "double" ],
-        "brace-style": [ 
-            "error", 
-            "allman", 
-            { 
-                "allowSingleLine": false 
+    "extends": ["prettier"],
+    "rules": {
+        "quotes": ["error", "double"],
+        "brace-style": [
+            "error",
+            "1tbs",
+            {
+                "allowSingleLine": true
             }
         ],
         "@typescript-eslint/naming-convention": [
@@ -21,16 +22,16 @@
                 "selector": "interface",
                 "format": ["PascalCase"],
                 "custom": {
-                    "regex": "^I[A-Z]",
-                    "match": false
+                    "regex": "^[A-Z]",
+                    "match": true
                 }
             },
             {
                 "selector": "typeParameter",
                 "format": ["PascalCase"],
                 "custom": {
-                    "regex": "^T[A-Z]",
-                    "match": false
+                    "regex": "^[A-Z]",
+                    "match": true
                 }
             },
             {

@@ -1,4 +1,3 @@
-export interface UploadUserMediaResultDto 
-{
+export interface UploadUserMediaResultDto {
     blobName: string;
 }

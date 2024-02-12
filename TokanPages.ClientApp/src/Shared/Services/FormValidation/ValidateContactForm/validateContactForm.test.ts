@@ -1,20 +1,17 @@
 import "../../../../setupTests";
 import { ContactFormInput, ValidateContactForm } from "..";
 
-describe("verify contact form validation methods", () => 
-{
-    it("should return undefined, when contact form is filled correctly.", () => 
-    {
+describe("verify contact form validation methods", () => {
+    it("should return undefined, when contact form is filled correctly.", () => {
         // Arrange
-        const form: ContactFormInput = 
-        {
+        const form: ContactFormInput = {
             firstName: "Ester",
-            lastName: "Exposito", 
-            email: "ester.exposito@gmail.com", 
-            subject: "Vaccation in Spain", 
-            message: "Let's got to Barcelona...", 
-            terms: true 
-        }
+            lastName: "Exposito",
+            email: "ester.exposito@gmail.com",
+            subject: "Vaccation in Spain",
+            message: "Let's got to Barcelona...",
+            terms: true,
+        };
 
         // Act
         const result = ValidateContactForm(form);
@@ -23,18 +20,16 @@ describe("verify contact form validation methods", () =>
         expect(result).toBeUndefined();
     });
 
-    it("should return defined, when contact form is filled incorrectly.", () => 
-    {
+    it("should return defined, when contact form is filled incorrectly.", () => {
         // Arrange
-        const form: ContactFormInput = 
-        {
+        const form: ContactFormInput = {
             firstName: "",
-            lastName: "Deacon", 
-            email: "john@gmail", 
-            subject: "Bass guitar lessons", 
-            message: "", 
-            terms: false 
-        }
+            lastName: "Deacon",
+            email: "john@gmail",
+            subject: "Bass guitar lessons",
+            message: "",
+            terms: false,
+        };
 
         // Act
         const result = ValidateContactForm(form);

@@ -1,7 +1,5 @@
-export interface TestimonialsContentDto
-{
-    content: 
-    {
+export interface TestimonialsContentDto {
+    content: {
         language: string;
         caption: string;
         subtitle: string;

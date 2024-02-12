@@ -1,4 +1,3 @@
-export interface RemoveSubscriberDto 
-{
+export interface RemoveSubscriberDto {
     id: string;
 }

@@ -3,10 +3,8 @@ import { VALIDATION_ERRORS } from "../../../constants";
 import { ErrorDto } from "../../../../Api/Models";
 import { GetErrorMessage } from "..";
 
-describe("verify GetErrorMessage method", () => 
-{
-    it("should return translated error message, when valid JSON object provided.", () => 
-    {
+describe("verify GetErrorMessage method", () => {
+    it("should return translated error message, when valid JSON object provided.", () => {
         // Arrange
         const jsonObject: string = `
         {
@@ -19,14 +17,13 @@ describe("verify GetErrorMessage method", () =>
                     "validationErrors": null
                 }
             }
-        }`
+        }`;
 
         const textObject: ErrorDto = JSON.parse(jsonObject) as ErrorDto;
-        const input = 
-        {
-            errorObject: textObject
-        }
-        
+        const input = {
+            errorObject: textObject,
+        };
+
         const expectation: string = "This user name already exists";
 
         // Act
@@ -36,8 +33,7 @@ describe("verify GetErrorMessage method", () =>
         expect(result).toBe(expectation);
     });
 
-    it("should return translated error message, when valid JSON object with validation errors provided.", () => 
-    {
+    it("should return translated error message, when valid JSON object with validation errors provided.", () => {
         // Arrange
         const jsonObject: string = `
         {
@@ -62,13 +58,12 @@ describe("verify GetErrorMessage method", () =>
                     ]
                 }
             }            
-        }`
+        }`;
 
         const textObject: ErrorDto = JSON.parse(jsonObject) as ErrorDto;
-        const input = 
-        {
-            errorObject: textObject
-        }
+        const input = {
+            errorObject: textObject,
+        };
 
         const expectation: string = "Cannot add invalid data. " + VALIDATION_ERRORS + ".";
 

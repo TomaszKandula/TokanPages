@@ -1,23 +1,19 @@
 import { ContentFooterState } from "../../States";
 
-export const ContentFooter: ContentFooterState = 
-{
+export const ContentFooter: ContentFooterState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
-        terms: 
-        {
+        terms: {
             text: "",
-            href: ""
+            href: "",
         },
-        policy:
-        {
+        policy: {
             text: "",
-            href: ""
+            href: "",
         },
         copyright: "",
         reserved: "",
-        icons: []
-   }    
-}
+        icons: [],
+    },
+};

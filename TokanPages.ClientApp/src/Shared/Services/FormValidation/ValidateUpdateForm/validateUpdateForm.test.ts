@@ -1,16 +1,13 @@
 import "../../../../setupTests";
 import { UpdateFormInput, ValidateUpdateForm } from "..";
 
-describe("verify update password form validation methods", () => 
-{
-    it("should return undefined, when update password form is filled correctly.", () => 
-    {
+describe("verify update password form validation methods", () => {
+    it("should return undefined, when update password form is filled correctly.", () => {
         // Arrange
-        const form: UpdateFormInput = 
-        {
+        const form: UpdateFormInput = {
             newPassword: "Abcde#123456",
-            verifyPassword: "Abcde#123456"
-        }
+            verifyPassword: "Abcde#123456",
+        };
 
         // Act
         const result = ValidateUpdateForm(form);
@@ -19,32 +16,27 @@ describe("verify update password form validation methods", () =>
         expect(result).toBeUndefined();
     });
 
-    it("should return defined, when update password form is filled incorrectly.", () => 
-    {
+    it("should return defined, when update password form is filled incorrectly.", () => {
         // Arrange
-        const form1: UpdateFormInput = 
-        {
+        const form1: UpdateFormInput = {
             newPassword: "",
-            verifyPassword: ""
-        }
+            verifyPassword: "",
+        };
 
-        const form2: UpdateFormInput = 
-        {
+        const form2: UpdateFormInput = {
             newPassword: "123",
-            verifyPassword: "654"
-        }
+            verifyPassword: "654",
+        };
 
-        const form3: UpdateFormInput = 
-        {
+        const form3: UpdateFormInput = {
             newPassword: "abcde123456",
-            verifyPassword: ""
-        }
+            verifyPassword: "",
+        };
 
-        const form4: UpdateFormInput = 
-        {
+        const form4: UpdateFormInput = {
             newPassword: "",
-            verifyPassword: "abcde123456"
-        }
+            verifyPassword: "abcde123456",
+        };
 
         // Act
         const result1 = ValidateUpdateForm(form1);

@@ -12,8 +12,7 @@ import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ContentFeaturesState } from "../../../Store/States";
 import { TechnologiesStyle } from "./technologiesStyle";
 
-export const TechnologiesView = (props: ContentFeaturesState): JSX.Element =>
-{
+export const TechnologiesView = (props: ContentFeaturesState): JSX.Element => {
     const classes = TechnologiesStyle();
     return (
         <section className={classes.section}>
@@ -22,77 +21,101 @@ export const TechnologiesView = (props: ContentFeaturesState): JSX.Element =>
                     <Box mb={8}>
                         <div data-aos="fade-down">
                             <Typography className={classes.caption_text}>
-                                {props.isLoading 
-                                ? <Skeleton variant="text" /> 
-                                : props.content?.caption?.toUpperCase()}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
                             </Typography>
                         </div>
                     </Box>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
-                                {props.isLoading 
-                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
-                                    : <CodeIcon className={classes.icon} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                ) : (
+                                    <CodeIcon className={classes.icon} />
+                                )}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" width="250px" /> 
-                                    : props.content?.title1}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" width="250px" />
+                                    ) : (
+                                        props.content?.title1
+                                    )}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading 
-                                ? <Skeleton variant="text" /> 
-                                : <ReactHtmlParser html={props.content?.text1} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser html={props.content?.text1} />
+                                )}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
-                                {props.isLoading 
-                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
-                                    : <LibraryBooksIcon className={classes.icon} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                ) : (
+                                    <LibraryBooksIcon className={classes.icon} />
+                                )}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" width="250px" /> 
-                                    : props.content?.title2}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" width="250px" />
+                                    ) : (
+                                        props.content?.title2
+                                    )}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading 
-                                ? <Skeleton variant="text" /> 
-                                : <ReactHtmlParser html={props.content?.text2} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser html={props.content?.text2} />
+                                )}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
-                                {props.isLoading 
-                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
-                                    : <StorageIcon className={classes.icon} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                ) : (
+                                    <StorageIcon className={classes.icon} />
+                                )}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" width="250px" />
+                                    ) : (
+                                        props.content?.title3
+                                    )}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading 
-                                ? <Skeleton variant="text" /> 
-                                : <ReactHtmlParser html={props.content?.text3} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser html={props.content?.text3} />
+                                )}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
-                                {props.isLoading 
-                                    ? <Skeleton variant="circle" className={classes.skeleton_circle} /> 
-                                    : <CloudIcon color="primary" className={classes.icon} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                ) : (
+                                    <CloudIcon color="primary" className={classes.icon} />
+                                )}
                                 <Typography className={classes.feature_title}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" width="250px" /> 
-                                    : props.content?.title4}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" width="250px" />
+                                    ) : (
+                                        props.content?.title4
+                                    )}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
-                                {props.isLoading 
-                                ? <Skeleton variant="text" /> 
-                                : <ReactHtmlParser html={props.content?.text4} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser html={props.content?.text4} />
+                                )}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -100,4 +123,4 @@ export const TechnologiesView = (props: ContentFeaturesState): JSX.Element =>
             </Container>
         </section>
     );
-}
+};

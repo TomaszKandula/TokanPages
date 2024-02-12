@@ -16,8 +16,7 @@ const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as
 const history = createBrowserHistory({ basename: baseUrl });
 const store = ConfigureStore(history);
 
-const ReactApp = (manifest: GetContentManifestDto) => 
-{
+const ReactApp = (manifest: GetContentManifestDto) => {
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter history={history}>
@@ -28,9 +27,9 @@ const ReactApp = (manifest: GetContentManifestDto) =>
             </ConnectedRouter>
         </Provider>,
         document.getElementById("root")
-    );    
-}
+    );
+};
 
 Loader.Initialize(ReactApp);
 printSelfXssWarning();
-export { }
+export {};

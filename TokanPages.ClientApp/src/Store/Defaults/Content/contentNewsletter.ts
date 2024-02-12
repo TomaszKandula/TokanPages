@@ -1,14 +1,12 @@
 import { ContentNewsletterState } from "../../States";
 
-export const ContentNewsletter: ContentNewsletterState = 
-{
+export const ContentNewsletter: ContentNewsletterState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         text: "",
         button: "",
-        labelEmail: ""
-    }    
-}
+        labelEmail: "",
+    },
+};

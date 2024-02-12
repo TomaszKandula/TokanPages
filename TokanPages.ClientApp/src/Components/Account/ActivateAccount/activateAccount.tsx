@@ -8,13 +8,11 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-interface Properties extends ContentActivateAccountState
-{
+interface Properties extends ContentActivateAccountState {
     id: string;
 }
 
-export const ActivateAccount = (props: Properties): JSX.Element => 
-{
+export const ActivateAccount = (props: Properties): JSX.Element => {
     const onProcessing = props.content?.onProcessing;
     const onSuccess = props.content?.onSuccess;
     const onError = props.content?.onError;
@@ -33,72 +31,68 @@ export const ActivateAccount = (props: Properties): JSX.Element =>
     const [isButtonOff, setIsButtonOff] = React.useState(true);
     const [hasProgress, setHasProgress] = React.useState(true);
     const [isRequested, setIsRequested] = React.useState(false);
- 
-    React.useEffect(() => 
-    {
+
+    React.useEffect(() => {
         if (!hasProgress) return;
-        
-        if (content.type === "Unset") 
-        {
+
+        if (content.type === "Unset") {
             setContent(onProcessing);
             return;
         }
 
-        if (hasError)
-        {
+        if (hasError) {
             setContent(onError);
             setHasProgress(false);
             setIsButtonOff(false);
             return;
         }
 
-        if (hasNotStarted && hasProgress && !isRequested) 
-        {
+        if (hasNotStarted && hasProgress && !isRequested) {
             setIsRequested(true);
-            setTimeout(() => dispatch(UserActivateAction.activate(
-            {
-                activationId: props.id 
-            })),
-            1500);
+            setTimeout(
+                () =>
+                    dispatch(
+                        UserActivateAction.activate({
+                            activationId: props.id,
+                        })
+                    ),
+                1500
+            );
 
             return;
         }
 
-        if (hasFinished) 
-        {
+        if (hasFinished) {
             setContent(onSuccess);
             setHasProgress(false);
             setIsButtonOff(false);
         }
-    }, 
-    [ content.type, props.id, hasProgress, isRequested, 
-    hasError, hasNotStarted, hasFinished ]);
- 
-    const buttonHandler = React.useCallback(() =>
-    {
-        if (content.type === "Error")
-        {
+    }, [content.type, props.id, hasProgress, isRequested, hasError, hasNotStarted, hasFinished]);
+
+    const buttonHandler = React.useCallback(() => {
+        if (content.type === "Error") {
             setContent(onProcessing);
             setIsRequested(false);
             setHasProgress(true);
             setIsButtonOff(true);
-            dispatch(UserActivateAction.clear())
+            dispatch(UserActivateAction.clear());
         }
-        
-        if (content.type === "Success")
-        {
+
+        if (content.type === "Success") {
             history.push("/");
         }
-    }, [ content.type ]);
+    }, [content.type]);
 
-    return (<ActivateAccountView 
-        isLoading={props.isLoading}
-        caption={content.caption}
-        text1={content.text1}
-        text2={content.text2}
-        buttonHandler={buttonHandler}
-        buttonDisabled={isButtonOff}
-        progress={hasProgress}
-        buttonText={content.button}
-    />);
-}
+    return (
+        <ActivateAccountView
+            isLoading={props.isLoading}
+            caption={content.caption}
+            text1={content.text1}
+            text2={content.text2}
+            buttonHandler={buttonHandler}
+            buttonDisabled={isButtonOff}
+            progress={hasProgress}
+            buttonText={content.button}
+        />
+    );
+};

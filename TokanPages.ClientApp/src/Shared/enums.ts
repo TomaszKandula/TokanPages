@@ -1,27 +1,23 @@
-export enum OperationStatus 
-{
+export enum OperationStatus {
     notStarted,
     inProgress,
     hasFinished,
-    hasFailed
+    hasFailed,
 }
 
-export enum IconType
-{
+export enum IconType {
     info,
     warning,
     error,
 }
 
-export enum DialogType
-{
+export enum DialogType {
     toast,
-    box
+    box,
 }
 
-export enum UserMedia
-{
+export enum UserMedia {
     notSpecified,
     userImage,
-    userVideo
+    userVideo,
 }

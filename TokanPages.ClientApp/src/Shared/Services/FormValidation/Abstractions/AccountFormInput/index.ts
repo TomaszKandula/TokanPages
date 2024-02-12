@@ -1,5 +1,4 @@
-export interface AccountFormInput
-{
+export interface AccountFormInput {
     firstName: string;
     lastName: string;
     email: string;

@@ -1,7 +1,5 @@
-export interface WrongPagePromptContentDto
-{
-    content: 
-    {
+export interface WrongPagePromptContentDto {
+    content: {
         language: string;
         code: string;
         header: string;

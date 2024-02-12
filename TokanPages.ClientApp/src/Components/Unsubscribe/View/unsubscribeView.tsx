@@ -10,8 +10,7 @@ import { ContentDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { UnsubscribeStyle } from "./unsubscribeStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     contentPre: ContentDto;
     contentPost: ContentDto;
     buttonHandler: () => void;
@@ -20,27 +19,24 @@ interface Properties extends ViewProperties
     isRemoved: boolean;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = UnsubscribeStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
-    return(
-        <Button 
-            fullWidth 
-            type="submit" 
-            variant="contained" 
-            onClick={props.buttonHandler} 
-            className={classes.button} 
-            disabled={props.progress || !props.buttonState}>
-            {!props.progress 
-            ? content.button 
-            : <CircularProgress size={20} />}
+    return (
+        <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            onClick={props.buttonHandler}
+            className={classes.button}
+            disabled={props.progress || !props.buttonState}
+        >
+            {!props.progress ? content.button : <CircularProgress size={20} />}
         </Button>
     );
-}
+};
 
-export const UnsubscribeView = (props: Properties): JSX.Element =>
-{
+export const UnsubscribeView = (props: Properties): JSX.Element => {
     const classes = UnsubscribeStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
@@ -49,43 +45,33 @@ export const UnsubscribeView = (props: Properties): JSX.Element =>
                 <Box py={15}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
-                        <Box textAlign="center" mb={3}>
-                            <Box mt={2} mb={2}>
-                                <Typography className={classes.caption}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : content.caption}
-                                </Typography>
+                            <Box textAlign="center" mb={3}>
+                                <Box mt={2} mb={2}>
+                                    <Typography className={classes.caption}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : content.caption}
+                                    </Typography>
+                                </Box>
+                                <Box mt={5} mb={2}>
+                                    <Typography className={classes.text1}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : content.text1}
+                                    </Typography>
+                                </Box>
+                                <Box mt={5} mb={2}>
+                                    <Typography className={classes.text2}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : content.text2}
+                                    </Typography>
+                                </Box>
+                                <Box mt={5} mb={7}>
+                                    <Typography className={classes.text3}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : content.text3}
+                                    </Typography>
+                                </Box>
+                                {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                             </Box>
-                            <Box mt={5} mb={2}>
-                                <Typography className={classes.text1}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : content.text1}
-                                </Typography>
-                            </Box>
-                            <Box mt={5} mb={2}>
-                                <Typography className={classes.text2}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : content.text2}
-                                </Typography>
-                            </Box>
-                            <Box mt={5} mb={7}>
-                                <Typography className={classes.text3}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : content.text3}
-                                </Typography>
-                            </Box>
-                            {props.isLoading 
-                            ? <Skeleton variant="rect" /> 
-                            : <ActiveButton {...props} />}
-                        </Box>
                         </CardContent>
                     </Card>
                 </Box>
             </Container>
         </section>
     );
-}
+};

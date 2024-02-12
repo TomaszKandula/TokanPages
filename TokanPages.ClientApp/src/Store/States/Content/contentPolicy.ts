@@ -1,6 +1,5 @@
 import { DocumentContentDto } from "../../../Api/Models";
 
-export interface ContentPolicyState extends DocumentContentDto
-{
+export interface ContentPolicyState extends DocumentContentDto {
     isLoading: boolean;
 }

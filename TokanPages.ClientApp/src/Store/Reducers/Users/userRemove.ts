@@ -3,39 +3,34 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserRemoveState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions,
-    REMOVE,
-    CLEAR,
-    RESPONSE
-} from "../../Actions/Users/userRemove";
+import { TKnownActions, REMOVE, CLEAR, RESPONSE } from "../../Actions/Users/userRemove";
 
-export const UserRemove: 
-    Reducer<UserRemoveState> = (state: UserRemoveState | undefined, incomingAction: Action): 
-    UserRemoveState => 
-{
+export const UserRemove: Reducer<UserRemoveState> = (
+    state: UserRemoveState | undefined,
+    incomingAction: Action
+): UserRemoveState => {
     if (state === undefined) return ApplicationDefault.userRemove;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: {},
             };
         case REMOVE:
-            return { 
+            return {
                 status: OperationStatus.inProgress,
-                response: state.response
+                response: state.response,
             };
 
         case RESPONSE:
-            return { 
+            return {
                 status: OperationStatus.hasFinished,
-                response: action.payload
+                response: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

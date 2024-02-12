@@ -1,10 +1,8 @@
 import { ContentTestimonialsState } from "../../States";
 
-export const ContentTestimonials: ContentTestimonialsState = 
-{
+export const ContentTestimonials: ContentTestimonialsState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         subtitle: "",
@@ -19,6 +17,6 @@ export const ContentTestimonials: ContentTestimonialsState =
         photo3: "",
         name3: "",
         occupation3: "",
-        text3: ""
-    }    
-}
+        text3: "",
+    },
+};

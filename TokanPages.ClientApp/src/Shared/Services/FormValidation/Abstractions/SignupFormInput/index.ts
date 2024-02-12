@@ -1,5 +1,4 @@
-export interface SignupFormInput
-{
+export interface SignupFormInput {
     firstName: string;
     lastName: string;
     email: string;

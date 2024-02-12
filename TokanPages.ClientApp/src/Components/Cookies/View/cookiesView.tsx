@@ -10,8 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { CookiesStyle } from "./cookiesStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     modalClose: boolean;
     shouldShow: boolean;
     caption: string;
@@ -20,23 +19,27 @@ interface Properties extends ViewProperties
     buttonText: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = CookiesStyle();
-    return(
+    return (
         <Button onClick={props.onClickEvent} className={classes.button}>
             {props.buttonText}
         </Button>
     );
-}
+};
 
-export const CookiesView = (props: Properties): JSX.Element => 
-{
+export const CookiesView = (props: Properties): JSX.Element => {
     const classes = CookiesStyle();
-    const renderConsent = (): JSX.Element => 
-    {
-        return (		
-            <Box position="fixed" width="100%" bottom={0} p={3} zIndex="modal" className={props.modalClose ? classes.close : classes.open}>
+    const renderConsent = (): JSX.Element => {
+        return (
+            <Box
+                position="fixed"
+                width="100%"
+                bottom={0}
+                p={3}
+                zIndex="modal"
+                className={props.modalClose ? classes.close : classes.open}
+            >
                 <Container maxWidth="md">
                     <Card elevation={0} className={classes.container}>
                         <CardContent>
@@ -54,7 +57,7 @@ export const CookiesView = (props: Properties): JSX.Element =>
                 </Container>
             </Box>
         );
-    }
+    };
 
-    return (<>{props.shouldShow ? renderConsent() : null}</>);
-}
+    return <>{props.shouldShow ? renderConsent() : null}</>;
+};

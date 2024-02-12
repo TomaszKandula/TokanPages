@@ -1,9 +1,7 @@
 import { LinkDto } from "./Common/linkDto";
 
-export interface ArticleFeaturesContentDto
-{
-    content: 
-    {
+export interface ArticleFeaturesContentDto {
+    content: {
         language: string;
         title: string;
         description: string;

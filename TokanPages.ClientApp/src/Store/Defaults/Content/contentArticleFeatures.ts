@@ -1,23 +1,20 @@
 import { ContentArticleFeaturesState } from "../../States";
 
-export const ContentArticleFeatures: ContentArticleFeaturesState = 
-{
+export const ContentArticleFeatures: ContentArticleFeaturesState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         title: "",
         description: "",
         text1: "",
         text2: "",
-        action: 
-        {
+        action: {
             text: "",
-            href: ""
+            href: "",
         },
         image1: "",
         image2: "",
         image3: "",
-        image4: ""
-    }
-}
+        image4: "",
+    },
+};
