@@ -11,8 +11,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { NewsletterStyle } from "./newsletterStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -24,26 +23,23 @@ interface Properties extends ViewProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = NewsletterStyle();
-    return(
-        <Button 
-            fullWidth 
-            type="submit" 
-            variant="contained" 
-            onClick={props.buttonHandler} 
-            className={classes.button} 
-            disabled={props.progress}>
-            {!props.progress 
-            ? props.buttonText 
-            : <CircularProgress size={20} />}
+    return (
+        <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            onClick={props.buttonHandler}
+            className={classes.button}
+            disabled={props.progress}
+        >
+            {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
     );
-}
+};
 
-export const NewsletterView = (props: Properties): JSX.Element =>
-{
+export const NewsletterView = (props: Properties): JSX.Element => {
     const classes = NewsletterStyle();
     return (
         <section className={classes.section}>
@@ -52,15 +48,11 @@ export const NewsletterView = (props: Properties): JSX.Element =>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
                             <Typography className={classes.caption} data-aos="fade-down">
-                                {props.isLoading 
-                                ? <Skeleton variant="text" /> 
-                                : props.caption}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                             </Typography>
                             <div data-aos="zoom-in">
                                 <Typography className={classes.text}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.text}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.text}
                                 </Typography>
                             </div>
                         </Grid>
@@ -70,26 +62,30 @@ export const NewsletterView = (props: Properties): JSX.Element =>
                                     <Box my="auto" width="100%">
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
-                                                {props.isLoading 
-                                                ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                                : <TextField 
-                                                    required 
-                                                    fullWidth 
-                                                    id="email_newletter" 
-                                                    name="email" 
-                                                    variant="outlined" 
-                                                    size="small" 
-                                                    autoComplete="email"
-                                                    onKeyUp={props.keyHandler}
-                                                    onChange={props.formHandler} 
-                                                    value={props.email} 
-                                                    label={props.labelEmail}
-                                                />}
+                                                {props.isLoading ? (
+                                                    <Skeleton variant="rect" width="100%" height="45px" />
+                                                ) : (
+                                                    <TextField
+                                                        required
+                                                        fullWidth
+                                                        id="email_newletter"
+                                                        name="email"
+                                                        variant="outlined"
+                                                        size="small"
+                                                        autoComplete="email"
+                                                        onKeyUp={props.keyHandler}
+                                                        onChange={props.formHandler}
+                                                        value={props.email}
+                                                        label={props.labelEmail}
+                                                    />
+                                                )}
                                             </Grid>
                                             <Grid item xs={12} sm={5}>
-                                                {props.isLoading 
-                                                ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                                                : <ActiveButton {...props} />}
+                                                {props.isLoading ? (
+                                                    <Skeleton variant="rect" width="100%" height="40px" />
+                                                ) : (
+                                                    <ActiveButton {...props} />
+                                                )}
                                             </Grid>
                                         </Grid>
                                     </Box>
@@ -101,4 +97,4 @@ export const NewsletterView = (props: Properties): JSX.Element =>
             </Container>
         </section>
     );
-}
+};

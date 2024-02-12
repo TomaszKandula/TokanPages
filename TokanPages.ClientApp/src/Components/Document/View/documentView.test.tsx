@@ -5,89 +5,67 @@ import { ContentPolicyState, ContentTermsState, ContentStoryState } from "../../
 import { TextItemDto } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
-describe("test component: documentView", () => 
-{
-    it("should render correctly '<DocumentView />' when policy content is loaded.", () => 
-    {
-        const textItem: TextItemDto = 
-        {
+describe("test component: documentView", () => {
+    it("should render correctly '<DocumentView />' when policy content is loaded.", () => {
+        const textItem: TextItemDto = {
             id: "5b30be71-0e68-4be4-bd29-7f40fe130414",
             type: "html",
             value: "<p>Policy text</p>",
             prop: "",
-            text: ""
+            text: "",
         };
 
-        const policyContent: ContentPolicyState = 
-        {
+        const policyContent: ContentPolicyState = {
             isLoading: false,
-            content: 
-            {
+            content: {
                 language: "eng",
-                items: [textItem]
-            }
+                items: [textItem],
+            },
         };
 
-        const tree = shallow(<DocumentView 
-            content={policyContent.content} 
-            isLoading={policyContent.isLoading} 
-        />);
+        const tree = shallow(<DocumentView content={policyContent.content} isLoading={policyContent.isLoading} />);
         expect(tree).toMatchSnapshot();
     });
 
-    it("should render correctly '<DocumentView />' when terms content is loaded.", () => 
-    {
-        const textItem: TextItemDto = 
-        {
+    it("should render correctly '<DocumentView />' when terms content is loaded.", () => {
+        const textItem: TextItemDto = {
             id: "5b30be71-0e68-4be4-bd29-7f40fe130414",
             type: "html",
             value: "<p>Terms text</p>",
             prop: "",
-            text: ""
+            text: "",
         };
 
-        const termsContent: ContentTermsState = 
-        {
+        const termsContent: ContentTermsState = {
             isLoading: false,
-            content: 
-            {
+            content: {
                 language: "eng",
-                items: [textItem]
-            }
+                items: [textItem],
+            },
         };
 
-        const tree = shallow(<DocumentView 
-            content={termsContent.content} 
-            isLoading={termsContent.isLoading} 
-        />);
+        const tree = shallow(<DocumentView content={termsContent.content} isLoading={termsContent.isLoading} />);
         expect(tree).toMatchSnapshot();
     });
 
-    it("should render correctly '<DocumentView />' when story content is loaded.", () => 
-    {
-        const textItem: TextItemDto = 
-        {
+    it("should render correctly '<DocumentView />' when story content is loaded.", () => {
+        const textItem: TextItemDto = {
             id: "5b30be71-0e68-4be4-bd29-7f40fe130414",
             type: "html",
             value: "<p>Story text</p>",
             prop: "",
-            text: ""
+            text: "",
         };
 
-        const storyContent: ContentStoryState = 
-        {
+        const storyContent: ContentStoryState = {
             isLoading: false,
-            content: 
-            {
+            content: {
                 language: "eng",
-                items: [textItem]
-            }
+                items: [textItem],
+            },
         };
 
-        const tree = shallow(<DocumentView 
-            content={storyContent.content} 
-            isLoading={storyContent.isLoading} 
-        />);
+        const tree = shallow(<DocumentView content={storyContent.content} isLoading={storyContent.isLoading} />);
         expect(tree).toMatchSnapshot();
     });
 });

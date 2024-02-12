@@ -9,29 +9,21 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     articles: ArticleItem[];
 }
 
-const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element =>
-{
-    return(
+const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
+    return (
         <>
-            {args.articles.map((item: ArticleItem) => ( 
-                <ArticleCard 
-                    title={item.title}
-                    description={item.description}
-                    id={item.id}
-                    key={item.id}
-                />
+            {args.articles.map((item: ArticleItem) => (
+                <ArticleCard title={item.title} description={item.description} id={item.id} key={item.id} />
             ))}
         </>
     );
-}
+};
 
-export const ArticleListView = (props: Properties): JSX.Element => 
-{
+export const ArticleListView = (props: Properties): JSX.Element => {
     const classes = ArticleListStyle();
     return (
         <section className={classes.section}>
@@ -40,20 +32,18 @@ export const ArticleListView = (props: Properties): JSX.Element =>
                     <div data-aos="fade-down">
                         <Link to="/">
                             <IconButton>
-                                <ArrowBack/>
+                                <ArrowBack />
                             </IconButton>
-                        </Link> 
+                        </Link>
                         <Divider className={classes.divider} />
                     </div>
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
-                            {props.isLoading 
-                                ? <ProgressBar /> 
-                                : <RenderContent articles={props.articles} />}
+                            {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
                         </Grid>
                     </Grid>
                 </Box>
             </Container>
         </section>
     );
-}
+};

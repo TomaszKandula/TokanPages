@@ -3,4 +3,4 @@ export type { ApplicationState } from "./applicationState";
 
 export { ApplicationDefault } from "./applicationDefault";
 export { ApplicationReducer } from "./applicationReducer";
-export { ConfigureStore } from "./configureStore"; 
+export { ConfigureStore } from "./configureStore";

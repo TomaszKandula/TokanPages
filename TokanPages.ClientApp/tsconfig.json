@@ -9,7 +9,7 @@
         "isolatedModules": true,
         "noEmit": true,
         "skipLibCheck": false,
-        "lib": [ "dom", "ESNext" ],
+        "lib": ["dom", "ESNext"],
         "outDir": "public",
         "jsx": "react",
         "module": "esnext",
@@ -30,9 +30,6 @@
         "moduleResolution": "node",
         "resolveJsonModule": true
     },
-    "include": [ "src" ],
-    "exclude": [ 
-        "node_modules", 
-        "./src/setupTests.ts" 
-    ]
+    "include": ["src"],
+    "exclude": ["node_modules", "./src/setupTests.ts"]
 }

@@ -1,4 +1,3 @@
-export interface GetErrorMessageInput
-{
-    errorObject: any
+export interface GetErrorMessageInput {
+    errorObject: any;
 }

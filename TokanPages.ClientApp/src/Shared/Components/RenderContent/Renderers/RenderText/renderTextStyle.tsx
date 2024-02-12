@@ -1,32 +1,26 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../../../Theme";
 
-export const RenderTextStyle = makeStyles(() => (
-{
-    common:
-    {
+export const RenderTextStyle = makeStyles(() => ({
+    common: {
         fontSize: 19,
         textAlign: "left",
-        color: Colours.colours.gray3
+        color: Colours.colours.gray3,
     },
-    title:
-    {
+    title: {
         fontSize: 28,
         fontWeight: "bold",
-        lineHeight: 1.0
+        lineHeight: 1.0,
     },
-    subTitle:
-    {
-        lineHeight: 1.0
+    subTitle: {
+        lineHeight: 1.0,
     },
-    header:
-    {
+    header: {
         fontSize: 25,
         fontWeight: "bold",
-        lineHeight: 1.0
+        lineHeight: 1.0,
     },
-    paragraph:
-    {
-        lineHeight: 2.2
-    }
-}));    
+    paragraph: {
+        lineHeight: 2.2,
+    },
+}));

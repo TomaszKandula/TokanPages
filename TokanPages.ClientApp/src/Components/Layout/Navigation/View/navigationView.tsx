@@ -16,8 +16,7 @@ import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface BaseProperties extends ViewProperties
-{
+interface BaseProperties extends ViewProperties {
     drawerState: { open: boolean };
     openHandler: (event: any) => void;
     closeHandler: (event: any) => void;
@@ -29,69 +28,66 @@ interface BaseProperties extends ViewProperties
     languages: ApplicationLanguageState;
     languageId: string;
     languageHandler: (event: LanguageChangeEvent) => void;
-    menu: { image: string, items: Item[] };
+    menu: { image: string; items: Item[] };
 }
 
-interface Properties extends BaseProperties
-{
-    styleControl?: string; 
-    styleSelect?: string; 
+interface Properties extends BaseProperties {
+    styleControl?: string;
+    styleSelect?: string;
     styleMenu?: string;
 }
 
-const RenderAvatar = (props: BaseProperties): JSX.Element => 
-{
-    if (props.isAnonymous)
-    {
-        return(<Avatar>A</Avatar>);
+const RenderAvatar = (props: BaseProperties): JSX.Element => {
+    if (props.isAnonymous) {
+        return <Avatar>A</Avatar>;
     }
 
-    if (Validate.isEmpty(props.avatarName))
-    {
+    if (Validate.isEmpty(props.avatarName)) {
         const userLetter = props.userAliasText?.charAt(0).toUpperCase();
-        return(<Avatar>{userLetter}</Avatar>);
+        return <Avatar>{userLetter}</Avatar>;
     }
 
-    return(<Avatar alt="Avatar" src={props.avatarSource} />);
-}
+    return <Avatar alt="Avatar" src={props.avatarSource} />;
+};
 
-const RenderContent = (props: BaseProperties): JSX.Element => 
-{
+const RenderContent = (props: BaseProperties): JSX.Element => {
     const classes = NavigationStyle();
-    return(
+    return (
         <>
             <Box className={classes.languagesBox}>
-                <RenderLanguageSelection 
-                    {...props} 
-                    styleSelect={classes.languages_selection} 
+                <RenderLanguageSelection
+                    {...props}
+                    styleSelect={classes.languages_selection}
                     styleMenu={classes.languages_menu}
                 />
             </Box>
             <div className={classes.user_avatar}>
-                <IconButton color="inherit" onClick={props.infoHandler} >
-                    <RenderAvatar {...props} /> 
+                <IconButton color="inherit" onClick={props.infoHandler}>
+                    <RenderAvatar {...props} />
                 </IconButton>
             </div>
         </>
     );
-}
+};
 
-const RenderMenuIcon = (props: Properties): JSX.Element => 
-{
+const RenderMenuIcon = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
-    return(
-        <IconButton color="inherit" aria-label="menu" 
-            onClick={props.openHandler} className={classes.nav_icon}>
+    return (
+        <IconButton color="inherit" aria-label="menu" onClick={props.openHandler} className={classes.nav_icon}>
             <MenuIcon />
         </IconButton>
     );
-}
+};
 
-const RenderLanguageSelection = (props: Properties): JSX.Element => 
-{
-    return(
+const RenderLanguageSelection = (props: Properties): JSX.Element => {
+    return (
         <FormControl className={props.styleControl}>
-            <Select value={props.languageId} onChange={props.languageHandler} disableUnderline className={props.styleSelect}>
+            <Select
+                value={props.languageId}
+                onChange={props.languageHandler}
+                disableUnderline
+                className={props.styleSelect}
+            >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         {item.name}
@@ -100,10 +96,9 @@ const RenderLanguageSelection = (props: Properties): JSX.Element =>
             </Select>
         </FormControl>
     );
-}
+};
 
-export const NavigationView = (props: Properties): JSX.Element => 
-{
+export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
     const fullName = "</> tom kandula";
     const justLogo = "</>";
@@ -111,7 +106,6 @@ export const NavigationView = (props: Properties): JSX.Element =>
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar}>
                 <Toolbar className={classes.tool_bar}>
-
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
@@ -124,7 +118,6 @@ export const NavigationView = (props: Properties): JSX.Element =>
                             {props.isLoading ? null : <RenderContent {...props} />}
                         </Grid>
                     </Grid>
-
                 </Toolbar>
 
                 <SideMenuView
@@ -133,8 +126,7 @@ export const NavigationView = (props: Properties): JSX.Element =>
                     isAnonymous={props.isAnonymous}
                     menu={props.menu}
                 />
-
             </AppBar>
         </HideOnScroll>
     );
-}
+};

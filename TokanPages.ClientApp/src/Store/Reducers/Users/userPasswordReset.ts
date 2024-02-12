@@ -3,39 +3,34 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserPasswordResetState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions,
-    RESET,
-    CLEAR,
-    RESPONSE
-} from "../../Actions/Users/userPasswordReset";
+import { TKnownActions, RESET, CLEAR, RESPONSE } from "../../Actions/Users/userPasswordReset";
 
-export const UserPasswordReset: 
-    Reducer<UserPasswordResetState> = (state: UserPasswordResetState | undefined, incomingAction: Action): 
-    UserPasswordResetState => 
-{
+export const UserPasswordReset: Reducer<UserPasswordResetState> = (
+    state: UserPasswordResetState | undefined,
+    incomingAction: Action
+): UserPasswordResetState => {
     if (state === undefined) return ApplicationDefault.userPasswordReset;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: {},
             };
         case RESET:
-            return { 
+            return {
                 status: OperationStatus.inProgress,
-                response: state.response
+                response: state.response,
             };
 
         case RESPONSE:
-            return { 
+            return {
                 status: OperationStatus.hasFinished,
-                response: action.payload
+                response: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

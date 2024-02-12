@@ -1,4 +1,3 @@
-export interface RemoveArticleDto
-{
+export interface RemoveArticleDto {
     id: string;
 }

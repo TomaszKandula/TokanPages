@@ -12,8 +12,7 @@ import { RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
 import { FeaturedStyle } from "./featuredStyle";
 
-export const FeaturedView = (props: ContentFeaturedState): JSX.Element => 
-{
+export const FeaturedView = (props: ContentFeaturedState): JSX.Element => {
     const classes = FeaturedStyle();
     return (
         <section className={classes.section}>
@@ -28,15 +27,29 @@ export const FeaturedView = (props: ContentFeaturedState): JSX.Element =>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className={classes.card}>
                                 <CardActionArea href={props.content?.link1} target="_blank">
-                                    {props.isLoading 
-                                        ? <Skeleton variant="rect" height="256px" /> 
-                                        : RenderCardMedia(GET_FEATURED_IMAGE_URL, props.content?.image1, classes.card_media)}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" height="256px" />
+                                    ) : (
+                                        RenderCardMedia(
+                                            GET_FEATURED_IMAGE_URL,
+                                            props.content?.image1,
+                                            classes.card_media
+                                        )
+                                    )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
-                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title1}
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" width="250px" />
+                                            ) : (
+                                                props.content?.title1
+                                            )}
                                         </Typography>
                                         <Typography className={classes.card_subtitle}>
-                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.subtitle1} 
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" width="250px" />
+                                            ) : (
+                                                props.content?.subtitle1
+                                            )}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
@@ -45,15 +58,29 @@ export const FeaturedView = (props: ContentFeaturedState): JSX.Element =>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="150">
                             <Card elevation={0} className={classes.card}>
                                 <CardActionArea href={props.content?.link2} target="_blank">
-                                    {props.isLoading 
-                                        ? <Skeleton variant="rect" height="256px" /> 
-                                        : RenderCardMedia(GET_FEATURED_IMAGE_URL, props.content?.image2, classes.card_media)}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" height="256px" />
+                                    ) : (
+                                        RenderCardMedia(
+                                            GET_FEATURED_IMAGE_URL,
+                                            props.content?.image2,
+                                            classes.card_media
+                                        )
+                                    )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
-                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title2}
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" width="250px" />
+                                            ) : (
+                                                props.content?.title2
+                                            )}
                                         </Typography>
                                         <Typography className={classes.card_subtitle}>
-                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.subtitle2} 
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" width="250px" />
+                                            ) : (
+                                                props.content?.subtitle2
+                                            )}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
@@ -62,15 +89,29 @@ export const FeaturedView = (props: ContentFeaturedState): JSX.Element =>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="550">
                             <Card elevation={0} className={classes.card}>
                                 <CardActionArea href={props.content?.link3} target="_blank">
-                                    {props.isLoading 
-                                        ? <Skeleton variant="rect" height="256px" /> 
-                                        : RenderCardMedia(GET_FEATURED_IMAGE_URL, props.content?.image3, classes.card_media)}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" height="256px" />
+                                    ) : (
+                                        RenderCardMedia(
+                                            GET_FEATURED_IMAGE_URL,
+                                            props.content?.image3,
+                                            classes.card_media
+                                        )
+                                    )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
-                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.title3}
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" width="250px" />
+                                            ) : (
+                                                props.content?.title3
+                                            )}
                                         </Typography>
                                         <Typography className={classes.card_subtitle}>
-                                            {props.isLoading ? <Skeleton variant="text" width="250px" /> : props.content?.subtitle3} 
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" width="250px" />
+                                            ) : (
+                                                props.content?.subtitle3
+                                            )}
                                         </Typography>
                                     </CardContent>
                                 </CardActionArea>
@@ -81,4 +122,4 @@ export const FeaturedView = (props: ContentFeaturedState): JSX.Element =>
             </Container>
         </section>
     );
-}
+};

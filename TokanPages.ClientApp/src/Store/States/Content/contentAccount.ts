@@ -1,6 +1,5 @@
 import { AccountContentDto } from "../../../Api/Models";
 
-export interface ContentAccountState extends AccountContentDto
-{
+export interface ContentAccountState extends AccountContentDto {
     isLoading: boolean;
 }

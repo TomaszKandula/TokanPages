@@ -1,7 +1,5 @@
-export interface UserSignoutContentDto
-{
-    content: 
-    {
+export interface UserSignoutContentDto {
+    content: {
         language: string;
         caption: string;
         onProcessing: string;

@@ -6,19 +6,13 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { Unsubscribe } from "../../Components/Unsubscribe";
 
-import { 
-    ContentNavigationAction, 
-    ContentFooterAction, 
-    ContentUnsubscribeAction
-} from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentUnsubscribeAction } from "../../Store/Actions";
 
-const useQuery = () => 
-{
+const useQuery = () => {
     return new URLSearchParams(useLocation().search);
-}
+};
 
-export const UnsubscribePage = (): JSX.Element =>
-{
+export const UnsubscribePage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
@@ -28,15 +22,13 @@ export const UnsubscribePage = (): JSX.Element =>
     const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const unsubscribe = useSelector((state: ApplicationState) => state.contentUnsubscribe);
 
-    React.useEffect(() => 
-    {
+    React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentUnsubscribeAction.get());
-    }, 
-    [ language?.id ]);
+    }, [language?.id]);
 
-    return(
+    return (
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
@@ -45,4 +37,4 @@ export const UnsubscribePage = (): JSX.Element =>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
-}
+};

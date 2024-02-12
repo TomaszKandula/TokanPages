@@ -3,39 +3,34 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserPasswordUpdateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions,
-    UPDATE,
-    CLEAR,
-    RESPONSE
-} from "../../Actions/Users/userPasswordUpdate";
+import { TKnownActions, UPDATE, CLEAR, RESPONSE } from "../../Actions/Users/userPasswordUpdate";
 
-export const UserPasswordUpdate: 
-    Reducer<UserPasswordUpdateState> = (state: UserPasswordUpdateState | undefined, incomingAction: Action): 
-    UserPasswordUpdateState => 
-{
+export const UserPasswordUpdate: Reducer<UserPasswordUpdateState> = (
+    state: UserPasswordUpdateState | undefined,
+    incomingAction: Action
+): UserPasswordUpdateState => {
     if (state === undefined) return ApplicationDefault.userPasswordUpdate;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: {},
             };
         case UPDATE:
-            return { 
+            return {
                 status: OperationStatus.inProgress,
-                response: state.response
+                response: state.response,
             };
 
         case RESPONSE:
-            return { 
+            return {
                 status: OperationStatus.hasFinished,
-                response: action.payload
+                response: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

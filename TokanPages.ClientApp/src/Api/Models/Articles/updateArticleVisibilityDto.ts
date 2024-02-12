@@ -1,5 +1,4 @@
-export interface UpdateArticleVisibilityDto 
-{
+export interface UpdateArticleVisibilityDto {
     id: string;
     IsPublished: boolean;
 }

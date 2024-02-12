@@ -6,44 +6,35 @@ import { SELECTED_LANGUAGE } from "../../Shared/constants";
 import { GetDataFromStorage } from "./StorageServices";
 import Validate from "validate.js";
 
-const GetDefaultId = (items: LanguageItemDto[]): string | undefined => 
-{
-    for(let index in items) 
-    {
-        if (items[index].isDefault)
-        {
-            return items[index].id
+const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
+    for (let index in items) {
+        if (items[index].isDefault) {
+            return items[index].id;
         }
-    };
+    }
 
     return undefined;
-}
+};
 
-const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => 
-{
-    if (Validate.isEmpty(id)) 
-    {
+const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
+    if (Validate.isEmpty(id)) {
         return false;
     }
 
-    for(let index in items)
-    {
-        if (items[index].id === id)
-        {
+    for (let index in items) {
+        if (items[index].id === id) {
             return true;
         }
     }
 
     return false;
-}
+};
 
-export const UpdateUserLanguage = (manifest: GetContentManifestDto): void => 
-{
+export const UpdateUserLanguage = (manifest: GetContentManifestDto): void => {
     const languages = manifest.languages;
     const defaultId = GetDefaultId(languages);
 
-    if (defaultId === undefined)
-    {
+    if (defaultId === undefined) {
         throw new Error("Cannot find the default language ID.");
     }
 
@@ -53,13 +44,11 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto): void =>
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
-    if (language === undefined) 
-    {
+    if (language === undefined) {
         return;
     }
 
-    if (language.id !== languageId)
-    {
+    if (language.id !== languageId) {
         dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
     }
-}
+};

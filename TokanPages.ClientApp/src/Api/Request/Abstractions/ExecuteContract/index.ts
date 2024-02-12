@@ -1,7 +1,6 @@
 import { AxiosRequestConfig } from "axios";
 
-export interface ExecuteContract
-{
+export interface ExecuteContract {
     configuration: AxiosRequestConfig;
     dispatch: any;
     responseType?: any;

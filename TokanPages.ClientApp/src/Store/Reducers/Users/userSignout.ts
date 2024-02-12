@@ -3,61 +3,61 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserSignoutState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
+import {
     TKnownActions,
     REVOKE_USER_TOKEN_CLEAR,
     REVOKE_REFRESH_TOKEN_CLEAR,
     REVOKE_USER_TOKEN,
     REVOKE_REFRESH_TOKEN,
     USER_TOKEN_RESPONSE,
-    REFRESH_TOKEN_RESPONSE
+    REFRESH_TOKEN_RESPONSE,
 } from "../../Actions/Users/userSignout";
 
-export const UserSignout: 
-    Reducer<UserSignoutState> = (state: UserSignoutState | undefined, incomingAction: Action): 
-    UserSignoutState => 
-{
+export const UserSignout: Reducer<UserSignoutState> = (
+    state: UserSignoutState | undefined,
+    incomingAction: Action
+): UserSignoutState => {
     if (state === undefined) return ApplicationDefault.userSignout;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case REVOKE_USER_TOKEN_CLEAR:
             return {
                 userTokenStatus: OperationStatus.notStarted,
-                refreshTokenStatus: state.refreshTokenStatus
+                refreshTokenStatus: state.refreshTokenStatus,
             };
 
         case REVOKE_REFRESH_TOKEN_CLEAR:
             return {
                 userTokenStatus: state.userTokenStatus,
-                refreshTokenStatus: OperationStatus.notStarted
+                refreshTokenStatus: OperationStatus.notStarted,
             };
 
         case REVOKE_USER_TOKEN:
-            return { 
+            return {
                 userTokenStatus: OperationStatus.inProgress,
-                refreshTokenStatus: state.refreshTokenStatus
+                refreshTokenStatus: state.refreshTokenStatus,
             };
 
         case REVOKE_REFRESH_TOKEN:
-            return { 
+            return {
                 userTokenStatus: state.userTokenStatus,
-                refreshTokenStatus: OperationStatus.inProgress
+                refreshTokenStatus: OperationStatus.inProgress,
             };
 
         case USER_TOKEN_RESPONSE:
-            return { 
+            return {
                 userTokenStatus: OperationStatus.hasFinished,
-                refreshTokenStatus: state.refreshTokenStatus
-            };
-        
-        case REFRESH_TOKEN_RESPONSE:
-            return { 
-                userTokenStatus: state.userTokenStatus,
-                refreshTokenStatus: OperationStatus.hasFinished
+                refreshTokenStatus: state.refreshTokenStatus,
             };
 
-        default: return state;
+        case REFRESH_TOKEN_RESPONSE:
+            return {
+                userTokenStatus: state.userTokenStatus,
+                refreshTokenStatus: OperationStatus.hasFinished,
+            };
+
+        default:
+            return state;
     }
 };

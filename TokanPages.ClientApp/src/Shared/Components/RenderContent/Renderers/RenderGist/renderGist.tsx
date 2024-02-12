@@ -10,49 +10,42 @@ import { ExecuteAsync } from "../../../../../Api/Request";
 import { RenderGistStyle } from "./renderGistStyle";
 import validate from "validate.js";
 
-export const RenderGist = (props: TextItem): JSX.Element =>
-{
+export const RenderGist = (props: TextItem): JSX.Element => {
     const classes = RenderGistStyle();
     const dispatch = useDispatch();
-    
-    const gistUrl: string = props.value as string; 
+
+    const gistUrl: string = props.value as string;
     const [gistContent, setGistContent] = React.useState("");
 
-    const updateContent = React.useCallback(async () => 
-    {
-        let result = await ExecuteAsync(
-        {
+    const updateContent = React.useCallback(async () => {
+        let result = await ExecuteAsync({
             url: gistUrl,
-            method: "GET"
+            method: "GET",
         });
-        
-        if (result.status === 200 && validate.isString(result.content)) 
-        {
+
+        if (result.status === 200 && validate.isString(result.content)) {
             setGistContent(result.content);
         }
-           
-        if (result.error !== null)
-        {
+
+        if (result.error !== null) {
             dispatch({ type: RAISE, errorObject: GetErrorMessage({ errorObject: result.error }) });
         }
- 
-    }, [ dispatch, gistUrl ]);
+    }, [dispatch, gistUrl]);
 
-    React.useEffect(() => 
-    { 
+    React.useEffect(() => {
         updateContent();
-     }, [ updateContent ]);
+    }, [updateContent]);
 
-    return(
+    return (
         <Card elevation={3} classes={{ root: classes.card }}>
-            <SyntaxHighlighter 
-                className={classes.syntaxHighlighter} 
-                style={github} 
-                language={props.type} 
-                showLineNumbers={true} 
+            <SyntaxHighlighter
+                className={classes.syntaxHighlighter}
+                style={github}
+                language={props.type}
+                showLineNumbers={true}
             >
                 {gistContent}
             </SyntaxHighlighter>
         </Card>
     );
-}
+};

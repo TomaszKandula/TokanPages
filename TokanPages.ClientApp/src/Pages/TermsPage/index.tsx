@@ -5,14 +5,9 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
-import { 
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentTermsAction
-} from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentTermsAction } from "../../Store/Actions";
 
-export const TermsPage = (): JSX.Element => 
-{
+export const TermsPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -20,13 +15,11 @@ export const TermsPage = (): JSX.Element =>
     const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const terms = useSelector((state: ApplicationState) => state.contentTerms);
 
-    React.useEffect(() => 
-    {
+    React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentTermsAction.get());
-    }, 
-    [ language?.id ]);
+    }, [language?.id]);
 
     return (
         <>
@@ -37,4 +30,4 @@ export const TermsPage = (): JSX.Element =>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
-}
+};

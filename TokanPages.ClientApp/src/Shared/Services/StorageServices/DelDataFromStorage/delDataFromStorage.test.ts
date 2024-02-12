@@ -1,24 +1,20 @@
 /**
-* @jest-environment jsdom
-*/
+ * @jest-environment jsdom
+ */
 import "../../../../setupTests";
 import { DelDataFromStorage } from "..";
 
-describe("verify DelDataFromStorage method", () => 
-{
+describe("verify DelDataFromStorage method", () => {
     // Prerequisities
-    Storage.prototype.removeItem = jest.fn((key: string) => 
-    { 
+    Storage.prototype.removeItem = jest.fn((key: string) => {
         console.debug(`Called 'localStorage.removeItem' with 'key' argument: ${key}.`);
     });
 
-    it("should return true, when key is provided.", () => 
-    {  
+    it("should return true, when key is provided.", () => {
         // Arrange
-        const input = 
-        {
-            key: "SomeKey"
-        }
+        const input = {
+            key: "SomeKey",
+        };
 
         // Act
         const result = DelDataFromStorage(input);
@@ -27,13 +23,11 @@ describe("verify DelDataFromStorage method", () =>
         expect(result).toBe(true);
     });
 
-    it("should return false, when no key is provided.", () => 
-    {  
+    it("should return false, when no key is provided.", () => {
         // Arrange
-        const input = 
-        {
-            key: ""
-        }
+        const input = {
+            key: "",
+        };
 
         // Act
         const result = DelDataFromStorage(input);

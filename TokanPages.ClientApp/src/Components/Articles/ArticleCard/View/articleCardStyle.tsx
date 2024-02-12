@@ -1,70 +1,55 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
-export const ArticleCardStyle = makeStyles((theme) => (
-{
-    card: 
-    {
+export const ArticleCardStyle = makeStyles(theme => ({
+    card: {
         marginTop: 25,
         marginBottom: 25,
-        [theme.breakpoints.down(700)]:
-        {
-            display: "block"
+        [theme.breakpoints.down(700)]: {
+            display: "block",
         },
-        [theme.breakpoints.up(700)]:
-        {
-            display: "flex"
+        [theme.breakpoints.up(700)]: {
+            display: "flex",
         },
         borderRadius: 15,
-        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)"
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
     },
-    card_link:
-    {
-        textDecoration: "none"
+    card_link: {
+        textDecoration: "none",
     },
-    card_image:
-    {
-        [theme.breakpoints.down(700)]:
-        {
+    card_image: {
+        [theme.breakpoints.down(700)]: {
             height: 180,
             width: "auto",
         },
-        [theme.breakpoints.up(700)]:
-        {
+        [theme.breakpoints.up(700)]: {
             height: "auto",
             width: 180,
-        }
+        },
     },
-    card_title:
-    {
+    card_title: {
         fontSize: "1.5rem",
-        color: Colours.colours.black
+        color: Colours.colours.black,
     },
-    card_description:
-    {
+    card_description: {
         fontSize: "1.0rem",
-        color: Colours.colours.gray1
+        color: Colours.colours.gray1,
     },
-    card_action:
-    {
-        marginTop: 25
+    card_action: {
+        marginTop: 25,
     },
-    button:
-    {
-        [theme.breakpoints.down(700)]:
-        {
-            marginLeft: "auto"
+    button: {
+        [theme.breakpoints.down(700)]: {
+            marginLeft: "auto",
         },
-        [theme.breakpoints.up(700)]:
-        {
-            marginLeft: 0
+        [theme.breakpoints.up(700)]: {
+            marginLeft: 0,
         },
-        "&:hover": 
-        {
+        "&:hover": {
             color: Colours.colours.white,
             background: Colours.colours.darkViolet1,
         },
         color: Colours.colours.white,
         background: Colours.colours.violet,
-    }
+    },
 }));

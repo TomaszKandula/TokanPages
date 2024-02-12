@@ -8,54 +8,44 @@ import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderItemStyle } from "./renderItemStyle";
 
-export const RenderItem = (props: Item): JSX.Element =>
-{
+export const RenderItem = (props: Item): JSX.Element => {
     const classes = RenderItemStyle();
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
-    const RenderItemWithHref = (): JSX.Element => 
-    {
-        return(
+    const RenderItemWithHref = (): JSX.Element => {
+        return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
                     <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
-                    <ListItemText primary={props.value}/>
+                    <ListItemText primary={props.value} />
                 </ListItem>
             </Href>
         );
-    }
+    };
 
-    const RenderItemWithLink = (): JSX.Element => 
-    {
-        return(
+    const RenderItemWithLink = (): JSX.Element => {
+        return (
             <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
                 <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
-                <ListItemText primary={props.value}/>
+                <ListItemText primary={props.value} />
             </ListItem>
         );
-    }
+    };
 
-    const RenderListItem = (): JSX.Element => 
-    {
+    const RenderListItem = (): JSX.Element => {
         return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
-    }
+    };
 
-    return(EnsureDefined(
+    return EnsureDefined(
         {
-            values: 
-            [
-                props.link,
-                props.icon,
-                props.enabled
-            ],
-            messages: 
-            [
+            values: [props.link, props.icon, props.enabled],
+            messages: [
                 "Cannot render. Missing 'link' property.",
                 "Cannot render. Missing 'icon' property.",
-                "Cannot render. Missing 'enabled' property."
-            ]
-        }, 
+                "Cannot render. Missing 'enabled' property.",
+            ],
+        },
         <RenderListItem />
-    ));
-}
+    );
+};

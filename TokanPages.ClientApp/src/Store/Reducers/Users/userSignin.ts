@@ -3,40 +3,35 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserSigninState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions,
-    SIGNIN,
-    CLEAR,
-    RESPONSE
-} from "../../Actions/Users/userSignin";
+import { TKnownActions, SIGNIN, CLEAR, RESPONSE } from "../../Actions/Users/userSignin";
 
-export const UserSignin: 
-    Reducer<UserSigninState> = (state: UserSigninState | undefined, incomingAction: Action): 
-    UserSigninState => 
-{
+export const UserSignin: Reducer<UserSigninState> = (
+    state: UserSigninState | undefined,
+    incomingAction: Action
+): UserSigninState => {
     if (state === undefined) return ApplicationDefault.userSignin;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: {},
             };
 
         case SIGNIN:
-            return { 
+            return {
                 status: OperationStatus.inProgress,
-                response: state.response
+                response: state.response,
             };
 
         case RESPONSE:
-            return { 
+            return {
                 status: OperationStatus.hasFinished,
-                response: action.payload
+                response: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

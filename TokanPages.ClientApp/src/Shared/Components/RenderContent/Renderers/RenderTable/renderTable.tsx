@@ -5,18 +5,14 @@ import { RowItem, TextItem } from "../../Models/TextModel";
 import { CustomTableCell, CustomTableRow } from "../../CustomTable/customTable";
 import { RenderTableStyle } from "./renderTableStyle";
 
-export const RenderTable = (props: TextItem): JSX.Element =>
-{
+export const RenderTable = (props: TextItem): JSX.Element => {
     const tableData: RowItem[] = props.value as RowItem[];
     const classes = RenderTableStyle();
 
-    const renderHeader = () =>
-    {
+    const renderHeader = () => {
         let renderBuffer: JSX.Element[] = [];
-        tableData.forEach(item =>
-        {
-            if (item.column0 === "") 
-            {
+        tableData.forEach(item => {
+            if (item.column0 === "") {
                 renderBuffer.push(
                     <TableRow key={item.column0}>
                         <CustomTableCell>{item.column0}</CustomTableCell>
@@ -27,39 +23,38 @@ export const RenderTable = (props: TextItem): JSX.Element =>
             }
         });
 
-        return(<>{renderBuffer}</>);
+        return <>{renderBuffer}</>;
     };
 
-    const renderRows = () => 
-    {
+    const renderRows = () => {
         let renderBuffer: JSX.Element[] = [];
-        tableData.forEach(item =>
-        {
-            if (item.column0 !== "") 
-            {
+        tableData.forEach(item => {
+            if (item.column0 !== "") {
                 renderBuffer.push(
                     <CustomTableRow key={item.column0}>
-                        <CustomTableCell component="th" scope="row" className={classes.header}>{item.column0}</CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className={classes.row}>{item.column1}</CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className={classes.row}>{item.column2}</CustomTableCell>
+                        <CustomTableCell component="th" scope="row" className={classes.header}>
+                            {item.column0}
+                        </CustomTableCell>
+                        <CustomTableCell component="td" scope="row" className={classes.row}>
+                            {item.column1}
+                        </CustomTableCell>
+                        <CustomTableCell component="td" scope="row" className={classes.row}>
+                            {item.column2}
+                        </CustomTableCell>
                     </CustomTableRow>
                 );
-            }    
+            }
         });
-    
-        return(<>{renderBuffer}</>);
+
+        return <>{renderBuffer}</>;
     };
 
-    return(
+    return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="table">
-                <TableHead>
-                    {renderHeader()}
-                </TableHead>
-                <TableBody>
-                    {renderRows()}
-                </TableBody>
+                <TableHead>{renderHeader()}</TableHead>
+                <TableBody>{renderRows()}</TableBody>
             </Table>
-        </TableContainer>    
+        </TableContainer>
     );
-}
+};

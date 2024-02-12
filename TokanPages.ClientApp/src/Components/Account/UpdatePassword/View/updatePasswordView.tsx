@@ -12,8 +12,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UpdatePasswordStyle } from "./updatePasswordStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     progress: boolean;
     caption: string;
     button: string;
@@ -27,80 +26,81 @@ interface Properties extends ViewProperties
     labelVerifyPassword: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = UpdatePasswordStyle();
-    return(
-        <Button 
-            fullWidth 
-            type="submit" 
-            variant="contained" 
-            onClick={props.buttonHandler} 
-            className={classes.button} 
-            disabled={props.progress || props.disableForm}>
-            {!props.progress 
-            ? props.button 
-            : <CircularProgress size={20} />}
+    return (
+        <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            onClick={props.buttonHandler}
+            className={classes.button}
+            disabled={props.progress || props.disableForm}
+        >
+            {!props.progress ? props.button : <CircularProgress size={20} />}
         </Button>
     );
-}
+};
 
-export const UpdatePasswordView = (props: Properties): JSX.Element =>
-{
+export const UpdatePasswordView = (props: Properties): JSX.Element => {
     const classes = UpdatePasswordStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
-                <Box pt={18} pb={10}>             
+                <Box pt={18} pb={10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextFiedWithPassword 
-                                            uuid="newPassword" 
-                                            fullWidth={true}
-                                            value={props.newPassword} 
-                                            label={props.labelNewPassword}
-                                            onKeyUp={props.keyHandler} 
-                                            onChange={props.formHandler}
-                                            isDisabled={props.disableForm} 
-                                        />}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextFiedWithPassword
+                                                uuid="newPassword"
+                                                fullWidth={true}
+                                                value={props.newPassword}
+                                                label={props.labelNewPassword}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                isDisabled={props.disableForm}
+                                            />
+                                        )}
                                     </Grid>
                                     <Grid item xs={12}>
-                                       {props.isLoading 
-                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextFiedWithPassword 
-                                            uuid="verifyPassword" 
-                                            fullWidth={true}
-                                            value={props.verifyPassword} 
-                                            label={props.labelVerifyPassword}
-                                            onKeyUp={props.keyHandler} 
-                                            onChange={props.formHandler} 
-                                            isDisabled={props.disableForm}
-                                        />}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextFiedWithPassword
+                                                uuid="verifyPassword"
+                                                fullWidth={true}
+                                                value={props.verifyPassword}
+                                                label={props.labelVerifyPassword}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                isDisabled={props.disableForm}
+                                            />
+                                        )}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                                    : <ActiveButton {...props} />}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" width="100%" height="40px" />
+                                    ) : (
+                                        <ActiveButton {...props} />
+                                    )}
                                 </Box>
                             </Box>
-                        </CardContent>   
-                    </Card>                    
+                        </CardContent>
+                    </Card>
                 </Box>
             </Container>
         </section>
     );
-}
+};

@@ -3,37 +3,32 @@ import { ApplicationDefault } from "../../Configuration";
 import { ApplicationEmailState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions, 
-    SEND, 
-    RESPONSE, 
-    CLEAR
-} from "../../Actions/Application/applicationMessage";
+import { TKnownActions, SEND, RESPONSE, CLEAR } from "../../Actions/Application/applicationMessage";
 
-export const ApplicationEmail: 
-    Reducer<ApplicationEmailState> = (state: ApplicationEmailState | undefined, incomingAction: Action): 
-    ApplicationEmailState => 
-{
+export const ApplicationEmail: Reducer<ApplicationEmailState> = (
+    state: ApplicationEmailState | undefined,
+    incomingAction: Action
+): ApplicationEmailState => {
     if (state === undefined) return ApplicationDefault.applicationEmail;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return ApplicationDefault.applicationEmail;
-            
+
         case SEND:
-            return { 
-                status: OperationStatus.inProgress, 
-                response: state.response 
+            return {
+                status: OperationStatus.inProgress,
+                response: state.response,
             };
 
         case RESPONSE:
-            return { 
-                status: OperationStatus.hasFinished, 
-                response: action.payload
+            return {
+                status: OperationStatus.hasFinished,
+                response: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

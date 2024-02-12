@@ -1,5 +1,5 @@
 import { ApplicationState } from "./applicationState";
-import { 
+import {
     UserActivate,
     SubscriberAdd,
     ContentAccount,
@@ -44,11 +44,10 @@ import {
     ContentTerms,
     ContentStory,
     UserMediaUpload,
-    UserSignout
+    UserSignout,
 } from "../Defaults";
 
-export const ApplicationDefault: ApplicationState = 
-{
+export const ApplicationDefault: ApplicationState = {
     applicationError: ApplicationError,
     applicationEmail: ApplicationEmail,
     applicationDialog: ApplicationDialog,
@@ -93,5 +92,5 @@ export const ApplicationDefault: ApplicationState =
     userSignin: UserSignin,
     userSignout: UserSignout,
     userSignup: UserSignup,
-    userUpdate: UserUpdate
+    userUpdate: UserUpdate,
 };

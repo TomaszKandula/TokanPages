@@ -56,12 +56,12 @@ export type { UnsubscribeContentDto } from "./Components/unsubscribeContentDto";
 export type { ActivateAccountContentDto } from "./Components/activateAccountContentDto";
 export type { UpdateSubscriberContentDto } from "./Components/updateSubscriberContentDto";
 export type { WrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";
-export type { 
-    AccountContentDto, 
+export type {
+    AccountContentDto,
     SectionAccessDenied,
     SectionAccountInformation,
     SectionAccountPassword,
-    SectionAccountRemoval
+    SectionAccountRemoval,
 } from "./Components/accountContentDto";
 
 export type { IconDto } from "./Components/Common/iconDto";

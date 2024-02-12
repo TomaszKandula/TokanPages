@@ -9,8 +9,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ActivateAccountStyle } from "./activateAccountStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     caption: string;
     text1: string;
     text2: string;
@@ -20,26 +19,23 @@ interface Properties extends ViewProperties
     buttonText: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = ActivateAccountStyle();
-    return(
-        <Button 
-            fullWidth 
-            type="submit" 
-            variant="contained" 
-            onClick={props.buttonHandler} 
+    return (
+        <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            onClick={props.buttonHandler}
             className={classes.button}
-            disabled={props.buttonDisabled}>
-            {!props.progress 
-            ? props.buttonText 
-            : <CircularProgress size={20} />}
+            disabled={props.buttonDisabled}
+        >
+            {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
     );
-}
+};
 
-export const ActivateAccountView = (props: Properties): JSX.Element =>
-{
+export const ActivateAccountView = (props: Properties): JSX.Element => {
     const classes = ActivateAccountStyle();
     return (
         <section className={classes.section}>
@@ -47,36 +43,32 @@ export const ActivateAccountView = (props: Properties): JSX.Element =>
                 <Box py={15}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
-                        <Box textAlign="center" mb={3}>
-                            <Box mt={2} mb={2}>
-                                <Typography gutterBottom={true} className={classes.caption}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.caption}
-                                </Typography>
+                            <Box textAlign="center" mb={3}>
+                                <Box mt={2} mb={2}>
+                                    <Typography gutterBottom={true} className={classes.caption}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.caption}
+                                    </Typography>
+                                </Box>
+                                <Box mt={5} mb={2}>
+                                    <Typography className={classes.text1}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.text1}
+                                    </Typography>
+                                </Box>
+                                <Box mt={2} mb={5}>
+                                    <Typography className={classes.text2}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.text2}
+                                    </Typography>
+                                </Box>
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" width="100%" height="40px" />
+                                ) : (
+                                    <ActiveButton {...props} />
+                                )}
                             </Box>
-                            <Box mt={5} mb={2}>
-                                <Typography className={classes.text1}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.text1}
-                                </Typography>
-                            </Box>
-                            <Box mt={2} mb={5}>
-                                <Typography className={classes.text2}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.text2}
-                                </Typography>
-                            </Box>
-                            {props.isLoading 
-                            ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                            : <ActiveButton {...props} />}
-                        </Box>
                         </CardContent>
                     </Card>
                 </Box>
             </Container>
         </section>
     );
-}
+};

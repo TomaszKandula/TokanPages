@@ -3,13 +3,10 @@ import { Checkbox, CheckboxProps } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Colours } from "../Colours";
 
-export const VioletCheckbox = withStyles(
-{
-    root: 
-    {
+export const VioletCheckbox = withStyles({
+    root: {
         color: Colours.colours.violet,
-        "&$checked":
-        {
+        "&$checked": {
             color: Colours.colours.violet,
         },
     },

@@ -1,7 +1,5 @@
-export interface UpdateSubscriberContentDto
-{
-    content: 
-    {
+export interface UpdateSubscriberContentDto {
+    content: {
         language: string;
         caption: string;
         button: string;

@@ -8,35 +8,20 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UserSigninView } from "./View/userSigninView";
 import Validate from "validate.js";
 
-import { 
-    ApplicationDialogAction, 
-    UserSigninAction 
-} from "../../../Store/Actions";
+import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 
-import { 
-    GetTextWarning, 
-    WarningMessage 
-} from "../../../Shared/Services/Utilities";
+import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utilities";
 
-import { 
-    SigninFormInput, 
-    ValidateSigninForm 
-} from "../../../Shared/Services/FormValidation";
+import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 
-import { 
-    RECEIVED_ERROR_MESSAGE, 
-    SIGNIN_FORM, 
-    SIGNIN_WARNING 
-} from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../../Shared/constants";
 
-const formDefault: SigninFormInput =
-{
+const formDefault: SigninFormInput = {
     email: "",
-    password: ""
+    password: "",
 };
 
-export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
-{
+export const UserSignin = (props: ContentUserSigninState): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -50,82 +35,70 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showWarning = (text: string) => 
-    {
+    const showWarning = (text: string) => {
         dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text)));
-    }
+    };
 
-    const clearForm = React.useCallback(() => 
-    {
+    const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setHasProgress(false);
         dispatch(UserSigninAction.clear());
-    }, 
-    [ hasProgress ]);
+    }, [hasProgress]);
 
-    React.useEffect(() => 
-    {
-        if (hasError)
-        {
+    React.useEffect(() => {
+        if (hasError) {
             clearForm();
             return;
         }
 
-        if (hasNotStarted && hasProgress)
-        {
-            dispatch(UserSigninAction.signin(
-            {
-                emailAddress: form.email,
-                password: form.password
-            }));
+        if (hasNotStarted && hasProgress) {
+            dispatch(
+                UserSigninAction.signin({
+                    emailAddress: form.email,
+                    password: form.password,
+                })
+            );
 
             return;
         }
 
-        if (hasFinished)
-        {
+        if (hasFinished) {
             clearForm();
             history.push("/");
         }
-    }, 
-    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
 
-    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
-    {
-        if (event.code === "Enter")
-        {
-            buttonHandler();
-        }
-    }, [
-        form.email,
-        form.password
-    ]);
+    const keyHandler = React.useCallback(
+        (event: ReactKeyboardEvent) => {
+            if (event.code === "Enter") {
+                buttonHandler();
+            }
+        },
+        [form.email, form.password]
+    );
 
-    const formHandler = React.useCallback((event: ReactChangeEvent) => 
-    {
-        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value});
-    }, 
-    [ form ]);
+    const formHandler = React.useCallback(
+        (event: ReactChangeEvent) => {
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [form]
+    );
 
-    const buttonHandler = React.useCallback(() => 
-    {
-        const result = ValidateSigninForm( 
-        { 
-            email: form.email, 
-            password: form.password
+    const buttonHandler = React.useCallback(() => {
+        const result = ValidateSigninForm({
+            email: form.email,
+            password: form.password,
         });
 
-        if (!Validate.isDefined(result))
-        {
+        if (!Validate.isDefined(result)) {
             setHasProgress(true);
             return;
         }
 
         showWarning(GetTextWarning({ object: result, template: SIGNIN_WARNING }));
-    }, 
-    [ form ]);
+    }, [form]);
 
-    return(
+    return (
         <UserSigninView
             isLoading={props.isLoading}
             caption={props.content.caption}
@@ -142,4 +115,4 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element =>
             labelPassword={props.content.labelPassword}
         />
     );
-}
+};

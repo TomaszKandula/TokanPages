@@ -1,4 +1,4 @@
-import { 
+import {
     UserActivateState,
     SubscriberAddState,
     ArticleSelectionState,
@@ -43,11 +43,10 @@ import {
     ContentTermsState,
     ContentStoryState,
     UserMediaUploadState,
-    UserSignoutState
+    UserSignoutState,
 } from "../States";
 
-export interface ApplicationState 
-{
+export interface ApplicationState {
     applicationError: ApplicationErrorState;
     applicationEmail: ApplicationEmailState;
     applicationDialog: ApplicationDialogState;

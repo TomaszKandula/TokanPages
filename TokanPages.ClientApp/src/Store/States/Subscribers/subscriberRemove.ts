@@ -1,7 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface SubscriberRemoveState
-{
+export interface SubscriberRemoveState {
     status: OperationStatus;
     response?: any;
 }

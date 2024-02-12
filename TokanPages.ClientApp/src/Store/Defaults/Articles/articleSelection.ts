@@ -1,29 +1,26 @@
 import { ArticleSelectionState } from "../../States";
 
-export const ArticleSelection: ArticleSelectionState = 
-{
+export const ArticleSelection: ArticleSelectionState = {
     isLoading: false,
-    article:
-    {
+    article: {
         id: "",
         title: "",
         description: "",
         isPublished: false,
-        likeCount:  0,
+        likeCount: 0,
         userLikes: 0,
         readCount: 0,
         createdAt: "",
         updatedAt: "",
-        author: 
-        { 
+        author: {
             userId: "",
-            aliasName: "", 
+            aliasName: "",
             avatarName: "",
             firstName: "",
             lastName: "",
             shortBio: "",
-            registered: ""
+            registered: "",
         },
-        text: []
-    }
+        text: [],
+    },
 };
