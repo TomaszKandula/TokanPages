@@ -55,7 +55,8 @@ exports[`test view component for application user info should render correctly v
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-item-2"
       >
-        User alias: 
+        User alias:
+         
         <WithStyles(ForwardRef(Typography))
           className="makeStyles-value-3"
           component="span"
@@ -70,7 +71,8 @@ exports[`test view component for application user info should render correctly v
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-item-2"
       >
-        Registered: 
+        Registered:
+         
         <WithStyles(ForwardRef(Typography))
           className="makeStyles-value-3"
           component="span"
