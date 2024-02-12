@@ -1,14 +1,12 @@
 import { ContentWrongPagePromptState } from "../../States";
 
-export const ContentWrongPagePrompt: ContentWrongPagePromptState = 
-{
+export const ContentWrongPagePrompt: ContentWrongPagePromptState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         code: "",
         header: "",
         description: "",
-        button: ""
-   }    
-}
+        button: "",
+    },
+};

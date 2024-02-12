@@ -14,8 +14,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent } from "../../../Shared/types";
 import { UpdateSubscriberStyle } from "./updateSubscriberStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     caption: string;
     formHandler: (event: ReactChangeEvent) => void;
     email: string;
@@ -26,25 +25,22 @@ interface Properties extends ViewProperties
     labelEmail: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = UpdateSubscriberStyle();
-    return(
-        <Button 
-            fullWidth 
-            variant="contained" 
-            onClick={props.buttonHandler} 
-            className={classes.button} 
-            disabled={props.progress || !props.buttonState}>
-            {!props.progress 
-            ? props.buttonText 
-            : <CircularProgress size={20} />}
+    return (
+        <Button
+            fullWidth
+            variant="contained"
+            onClick={props.buttonHandler}
+            className={classes.button}
+            disabled={props.progress || !props.buttonState}
+        >
+            {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
     );
-}
+};
 
-export const UpdateSubscriberView = (props: Properties): JSX.Element =>
-{
+export const UpdateSubscriberView = (props: Properties): JSX.Element => {
     const classes = UpdateSubscriberStyle();
     return (
         <section className={classes.section}>
@@ -55,31 +51,27 @@ export const UpdateSubscriberView = (props: Properties): JSX.Element =>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.caption}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="email" 
-                                            name="email" 
-                                            variant="outlined" 
-                                            autoComplete="email" 
-                                            onChange={props.formHandler} 
-                                            value={props.email} 
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="email"
+                                            name="email"
+                                            variant="outlined"
+                                            autoComplete="email"
+                                            onChange={props.formHandler}
+                                            value={props.email}
                                             label={props.labelEmail}
                                         />
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="rect" /> 
-                                    : <ActiveButton {...props} />}
+                                    {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                                 </Box>
                             </Box>
                         </CardContent>
@@ -88,4 +80,4 @@ export const UpdateSubscriberView = (props: Properties): JSX.Element =>
             </Container>
         </section>
     );
-}
+};

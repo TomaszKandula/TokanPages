@@ -1,10 +1,8 @@
 import { UserDataStoreState } from "../../States";
 
-export const UserDataStore: UserDataStoreState = 
-{
+export const UserDataStore: UserDataStoreState = {
     isShown: false,
-    userData: 
-    {
+    userData: {
         userId: "",
         aliasName: "",
         avatarName: "",
@@ -16,6 +14,6 @@ export const UserDataStore: UserDataStoreState =
         userToken: "",
         refreshToken: "",
         roles: [],
-        permissions: []
-    }
-}
+        permissions: [],
+    },
+};

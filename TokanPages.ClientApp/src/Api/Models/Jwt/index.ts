@@ -1,11 +1,10 @@
-export interface JWT
-{
+export interface JWT {
     unique_name: string;
     nameid: string;
     given_name: string;
     family_name: string;
     email: string;
-    role: [ ],
+    role: [];
     nbf: number;
     exp: number;
     iat: number;

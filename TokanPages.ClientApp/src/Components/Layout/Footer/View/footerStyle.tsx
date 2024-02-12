@@ -1,51 +1,40 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
-export const FooterStyle = makeStyles((theme) => (
-{
-    page_footer: 
-    {
-        [theme.breakpoints.down("md")]: 
-        {
-            textAlign: "center"
+export const FooterStyle = makeStyles(theme => ({
+    page_footer: {
+        [theme.breakpoints.down("md")]: {
+            textAlign: "center",
         },
-        background: Colours.colours.violet
+        background: Colours.colours.violet,
     },
-    icon_box: 
-    {
-        [theme.breakpoints.down("md")]: 
-        {
+    icon_box: {
+        [theme.breakpoints.down("md")]: {
             width: "100%",
             marginBottom: theme.spacing(0),
-        }
+        },
     },
-    icon:
-    {
-        color: Colours.colours.white
+    icon: {
+        color: Colours.colours.white,
     },
-    copyright_box:
-    {
-        display: "flex", 
-        flexWrap: "wrap", 
-        alignItems: "center"
+    copyright_box: {
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "center",
     },
-    copyright: 
-    {
+    copyright: {
         fontSize: "1.2rem",
         color: Colours.colours.white,
-        [theme.breakpoints.down("md")]: 
-        {
+        [theme.breakpoints.down("md")]: {
             width: "100%",
             order: 12,
-        }
+        },
     },
-    links:
-    {
+    links: {
         color: Colours.colours.white,
-        textDecoration: "none"
+        textDecoration: "none",
     },
-    version:
-    {
-        color: Colours.colours.white
-    }
+    version: {
+        color: Colours.colours.white,
+    },
 }));

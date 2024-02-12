@@ -1,16 +1,6 @@
-export type { 
-    ExecuteContract,
-    GetContentContract,
-    PromiseResultContract,
-    RequestContract
-} from "./Abstractions";
+export type { ExecuteContract, GetContentContract, PromiseResultContract, RequestContract } from "./Abstractions";
 
-export { 
-    GetConfiguration, 
-    GetContent,
-    Execute,
-    ExecuteAsync
-} from "./Services";
+export { GetConfiguration, GetContent, Execute, ExecuteAsync } from "./Services";
 
 export {
     GET_ARTICLES,

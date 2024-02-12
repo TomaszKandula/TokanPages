@@ -1,22 +1,19 @@
-interface TextObject
-{
+interface TextObject {
     items: TextItem[];
 }
 
-interface TextItem
-{
-    id: string,
+interface TextItem {
+    id: string;
     type: string;
     value: string | RowItem[];
     prop: string;
     text: string;
 }
 
-interface RowItem
-{
+interface RowItem {
     column0: string;
     column1: string;
     column2: string;
 }
 
-export type { TextObject, TextItem, RowItem }
+export type { TextObject, TextItem, RowItem };

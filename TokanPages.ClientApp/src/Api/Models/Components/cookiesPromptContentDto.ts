@@ -1,7 +1,5 @@
-export interface CookiesPromptContentDto
-{
-    content: 
-    {
+export interface CookiesPromptContentDto {
+    content: {
         language: string;
         caption: string;
         text: string;

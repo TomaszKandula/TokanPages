@@ -1,5 +1,4 @@
-export interface UserPermissionDto
-{
+export interface UserPermissionDto {
     name: string;
     id?: string;
 }

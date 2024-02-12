@@ -1,43 +1,35 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../Theme";
 
-export const CookiesStyle = makeStyles(() => (
-{
-    open:
-    {
+export const CookiesStyle = makeStyles(() => ({
+    open: {
         opacity: 1,
         visibility: "visible",
     },
-    close:
-    {
+    close: {
         opacity: 0,
         transition: "0.3s all ease",
-        visibility: "hidden"
+        visibility: "hidden",
     },
-    container:
-    {
+    container: {
         borderRadius: 15,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
         padding: 8,
-        background: Colours.colours.white
+        background: Colours.colours.white,
     },
-    caption:
-    {
+    caption: {
         fontSize: "1.5rem",
         paddingTop: 5,
         paddingBottom: 15,
-        color: Colours.colours.black
+        color: Colours.colours.black,
     },
-    text:
-    {
+    text: {
         fontSize: "1.2rem",
         fontWeight: 400,
-        color: Colours.colours.gray2
+        color: Colours.colours.gray2,
     },
-    button:
-    {
-        "&:hover": 
-        {
+    button: {
+        "&:hover": {
             color: Colours.colours.white,
             background: Colours.colours.darkViolet1,
         },
@@ -46,6 +38,6 @@ export const CookiesStyle = makeStyles(() => (
         display: "block",
         marginLeft: "auto",
         marginRight: 0,
-        marginBottom: 10
-    }
+        marginBottom: 10,
+    },
 }));

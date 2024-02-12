@@ -12,8 +12,7 @@ import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxStyle } from "./applicationDialogBoxStyle";
 
-interface Properties
-{
+interface Properties {
     state: boolean;
     icon: IconType;
     title: string;
@@ -21,24 +20,29 @@ interface Properties
     closeHandler: () => void;
 }
 
-const RenderIcon = (props: Properties): JSX.Element => 
-{
+const RenderIcon = (props: Properties): JSX.Element => {
     const classes = ApplicationDialogBoxStyle();
-    switch (props.icon)
-    {
-        case IconType.info: return(<InfoIcon className={classes.info_icon} />);
-        case IconType.warning: return(<WarningIcon className={classes.warning_icon} />);
-        case IconType.error: return(<ErrorIcon className={classes.error_icon} />);
-        default: return(<InfoIcon className={classes.info_icon} />);
-    }        
-};   
+    switch (props.icon) {
+        case IconType.info:
+            return <InfoIcon className={classes.info_icon} />;
+        case IconType.warning:
+            return <WarningIcon className={classes.warning_icon} />;
+        case IconType.error:
+            return <ErrorIcon className={classes.error_icon} />;
+        default:
+            return <InfoIcon className={classes.info_icon} />;
+    }
+};
 
-export const ApplicationDialogBoxView = (props: Properties): JSX.Element =>
-{
+export const ApplicationDialogBoxView = (props: Properties): JSX.Element => {
     const classes = ApplicationDialogBoxStyle();
     return (
-        <Dialog open={props.state} onClose={props.closeHandler} 
-            aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+        <Dialog
+            open={props.state}
+            onClose={props.closeHandler}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
                     <RenderIcon {...props} />
@@ -53,8 +57,10 @@ export const ApplicationDialogBoxView = (props: Properties): JSX.Element =>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.closeHandler} className={classes.button} autoFocus>OK</Button>
+                <Button onClick={props.closeHandler} className={classes.button} autoFocus>
+                    OK
+                </Button>
             </DialogActions>
         </Dialog>
     );
-}
+};

@@ -1,7 +1,5 @@
-export interface ResetPasswordContentDto
-{
-    content: 
-    {
+export interface ResetPasswordContentDto {
+    content: {
         language: string;
         caption: string;
         button: string;

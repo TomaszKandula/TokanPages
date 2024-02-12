@@ -1,59 +1,47 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../../Theme";
 
-export const ArticleDetailStyle = makeStyles(() => (
-{
-    section:
-    {
-        backgroundColor: Colours.colours.white
+export const ArticleDetailStyle = makeStyles(() => ({
+    section: {
+        backgroundColor: Colours.colours.white,
     },
-    container:
-    {
-        maxWidth: 700
+    container: {
+        maxWidth: 700,
     },
-    dividerTop:
-    {
+    dividerTop: {
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
     },
-    dividerBottom:
-    {
+    dividerBottom: {
         marginTop: 30,
-        marginBottom: 30
+        marginBottom: 30,
     },
-    readCount:
-    {
-        paddingTop: 10
+    readCount: {
+        paddingTop: 10,
     },
-    aliasName:
-    {
-        paddingTop: 10
+    aliasName: {
+        paddingTop: 10,
     },
-    avatarSmall:
-    {
+    avatarSmall: {
         color: Colours.colours.white,
-        width: 48, 
-        height: 48
+        width: 48,
+        height: 48,
     },
-    avatarLarge:
-    {
+    avatarLarge: {
         color: Colours.colours.white,
-        width: 96, 
-        height: 96
+        width: 96,
+        height: 96,
     },
-    thumbsMedium:
-    {
+    thumbsMedium: {
         color: Colours.colours.gray1,
         cursor: "pointer",
-        width: 24, 
-        height: 24
+        width: 24,
+        height: 24,
     },
-    likesTip:
-    {
-        fontSize: "1.5em"
+    likesTip: {
+        fontSize: "1.5em",
     },
-    popover:
-    {
-        pointerEvents: "none"
-    }
+    popover: {
+        pointerEvents: "none",
+    },
 }));

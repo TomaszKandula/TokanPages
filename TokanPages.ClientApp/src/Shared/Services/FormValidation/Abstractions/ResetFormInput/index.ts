@@ -1,4 +1,3 @@
-export interface ResetFormInput
-{
+export interface ResetFormInput {
     email: string;
 }

@@ -1,11 +1,9 @@
 import { ContentPolicyState } from "../../States";
 
-export const ContentPolicy: ContentPolicyState = 
-{
+export const ContentPolicy: ContentPolicyState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
-        items: []
-    }
-}
+        items: [],
+    },
+};

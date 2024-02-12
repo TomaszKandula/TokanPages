@@ -1,44 +1,35 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../Theme";
 
-export const HeaderStyle = makeStyles((theme) => (
-{
-    section:
-    {
-        backgroundColor: Colours.colours.white
+export const HeaderStyle = makeStyles(theme => ({
+    section: {
+        backgroundColor: Colours.colours.white,
     },
-    top_margin:
-    {
-        marginTop: 85
+    top_margin: {
+        marginTop: 85,
     },
-    action_button: 
-    {
-        "&:hover": 
-        {
+    action_button: {
+        "&:hover": {
             color: Colours.colours.lightViolet,
             background: Colours.colours.darkViolet1,
         },
         color: Colours.colours.darkViolet1,
         background: Colours.colours.lightViolet,
-        [theme.breakpoints.down("xs")]: 
-        {
+        [theme.breakpoints.down("xs")]: {
             width: "100%",
-        }
+        },
     },
-    action_link:
-    {
-        textDecoration: "none"
+    action_link: {
+        textDecoration: "none",
     },
-    content_box: 
-    {
+    content_box: {
         maxWidth: theme.breakpoints.values["md"],
         paddingTop: theme.spacing(12),
         paddingBottom: theme.spacing(8),
         marginLeft: "auto",
         marginRight: "auto",
         textAlign: "left",
-        [theme.breakpoints.up("lg")]: 
-        {
+        [theme.breakpoints.up("lg")]: {
             maxWidth: theme.breakpoints.values["lg"] / 2,
             maxHeight: 400,
             paddingTop: theme.spacing(12),
@@ -46,35 +37,30 @@ export const HeaderStyle = makeStyles((theme) => (
             paddingRight: theme.spacing(24),
             textAlign: "left",
         },
-        [theme.breakpoints.down("xs")]: 
-        {
+        [theme.breakpoints.down("xs")]: {
             paddingTop: theme.spacing(3),
-        }
+        },
     },
-    content_description:
-    {
+    content_description: {
         color: Colours.colours.gray2,
-        fontWeight: 400
+        fontWeight: 400,
     },
-    image_skeleton:
-    {
+    image_skeleton: {
         height: 300,
-        width: 300
+        width: 300,
     },
-    image_box:
-    {
+    image_box: {
         position: "relative",
-        height: 400, 
-        display: "flex", 
-        justifyContent: "center", 
-        alignItems: "center"
+        height: 400,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
     },
-    image: 
-    {
+    image: {
         borderRadius: "50%",
         border: "25px solid white",
         objectFit: "cover",
         height: 400,
-        maxWidth: "100%"
-    }
+        maxWidth: "100%",
+    },
 }));

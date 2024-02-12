@@ -1,7 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface UserSignoutState 
-{
+export interface UserSignoutState {
     userTokenStatus: OperationStatus;
     refreshTokenStatus: OperationStatus;
 }

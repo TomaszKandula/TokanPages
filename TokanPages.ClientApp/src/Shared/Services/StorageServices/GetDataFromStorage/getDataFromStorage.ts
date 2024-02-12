@@ -1,25 +1,20 @@
 import Validate from "validate.js";
 
-interface Properties
-{
+interface Properties {
     key: string;
 }
 
-export const GetDataFromStorage = (props: Properties): string | {} | any[] => 
-{
+export const GetDataFromStorage = (props: Properties): string | {} | any[] => {
     const serialized = localStorage.getItem(props.key) as string;
-    if (Validate.isEmpty(serialized)) return { };
+    if (Validate.isEmpty(serialized)) return {};
 
     let deserialized: string | {} | any[] = "";
-    try 
-    {
+    try {
         deserialized = JSON.parse(serialized);
-    }
-    catch
-    {
+    } catch {
         console.error(`Cannot parse JSON string: ${serialized}.`);
-        return { };
+        return {};
     }
 
     return deserialized;
-}
+};

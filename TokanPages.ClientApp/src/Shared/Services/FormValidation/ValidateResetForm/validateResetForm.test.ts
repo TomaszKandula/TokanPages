@@ -1,15 +1,12 @@
 import "../../../../setupTests";
 import { ResetFormInput, ValidateResetForm } from "..";
 
-describe("verify reset form validation methods", () => 
-{
-    it("should return undefined, when reset form filled correctly.", () => 
-    {
+describe("verify reset form validation methods", () => {
+    it("should return undefined, when reset form filled correctly.", () => {
         // Arrange
-        const form: ResetFormInput = 
-        {
-            email: "ester.exposito@gmail.com"
-        }
+        const form: ResetFormInput = {
+            email: "ester.exposito@gmail.com",
+        };
 
         // Act
         const result = ValidateResetForm(form);
@@ -18,18 +15,15 @@ describe("verify reset form validation methods", () =>
         expect(result).toBeUndefined();
     });
 
-    it("should return defined, when reset form filled incorrectly.", () => 
-    {
+    it("should return defined, when reset form filled incorrectly.", () => {
         // Arrange
-        const form1: ResetFormInput = 
-        {
-            email: "gmail.com"
-        }
+        const form1: ResetFormInput = {
+            email: "gmail.com",
+        };
 
-        const form2: ResetFormInput = 
-        {
-            email: "ester@"
-        }
+        const form2: ResetFormInput = {
+            email: "ester@",
+        };
 
         // Act
         const result1 = ValidateResetForm(form1);

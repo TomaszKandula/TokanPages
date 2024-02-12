@@ -1,5 +1,4 @@
-export interface UpdateArticleDto 
-{
+export interface UpdateArticleDto {
     id: string;
     title?: string;
     description?: string;

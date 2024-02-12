@@ -1,17 +1,14 @@
 import "../../../../setupTests";
 import { PasswordFormInput, ValidatePasswordForm } from "..";
 
-describe("verify new password validation methods", () => 
-{
-    it("should return undefined, when passwords are correct.", () => 
-    {
+describe("verify new password validation methods", () => {
+    it("should return undefined, when passwords are correct.", () => {
         // Arrange
-        const form: PasswordFormInput = 
-        {
+        const form: PasswordFormInput = {
             oldPassword: "123456789abcde",
             newPassword: "Abcde#123456",
-            confirmPassword: "Abcde#123456"
-        }
+            confirmPassword: "Abcde#123456",
+        };
 
         // Act
         const result = ValidatePasswordForm(form);
@@ -20,36 +17,31 @@ describe("verify new password validation methods", () =>
         expect(result).toBeUndefined();
     });
 
-    it("should return defined, when passwords are incorrect.", () => 
-    {
+    it("should return defined, when passwords are incorrect.", () => {
         // Arrange
-        const form1: PasswordFormInput = 
-        {
+        const form1: PasswordFormInput = {
             oldPassword: "",
             newPassword: "",
-            confirmPassword: ""
-        }
+            confirmPassword: "",
+        };
 
-        const form2: PasswordFormInput = 
-        {
+        const form2: PasswordFormInput = {
             oldPassword: "456",
             newPassword: "123",
-            confirmPassword: "654"
-        }
+            confirmPassword: "654",
+        };
 
-        const form3: PasswordFormInput = 
-        {
+        const form3: PasswordFormInput = {
             oldPassword: "",
             newPassword: "abcde123456",
-            confirmPassword: ""
-        }
+            confirmPassword: "",
+        };
 
-        const form4: PasswordFormInput = 
-        {
+        const form4: PasswordFormInput = {
             oldPassword: "951",
             newPassword: "",
-            confirmPassword: "abcde123456"
-        }
+            confirmPassword: "abcde123456",
+        };
 
         // Act
         const result1 = ValidatePasswordForm(form1);

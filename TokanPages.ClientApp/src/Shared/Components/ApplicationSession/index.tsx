@@ -7,24 +7,20 @@ import { JWT } from "../../../Api/Models";
 import Validate from "validate.js";
 import jwtDecode from "jwt-decode";
 
-interface Properties 
-{
+interface Properties {
     children: React.ReactNode;
 }
 
-export const ApplicationSession = (props: Properties): JSX.Element => 
-{
+export const ApplicationSession = (props: Properties): JSX.Element => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const [expiration, setExpiration] = React.useState<number | undefined>(undefined);
 
-    const sessionTimer = () => 
-    {
+    const sessionTimer = () => {
         if (!expiration) return;
 
         const currentDateTime = new Date().getTime() / 1000;
-        if (currentDateTime >= expiration)
-        {
+        if (currentDateTime >= expiration) {
             const refreshToken = store?.userData?.refreshToken;
             const userId = store?.userData?.userId;
 
@@ -35,31 +31,23 @@ export const ApplicationSession = (props: Properties): JSX.Element =>
         }
     };
 
-    React.useEffect(() => 
-    {
+    React.useEffect(() => {
         const userToken = store?.userData?.userToken;
-        if (Validate.isEmpty(userToken))
-        {
-            if (expiration) 
-            {
+        if (Validate.isEmpty(userToken)) {
+            if (expiration) {
                 setExpiration(undefined);
             }
 
             return;
         }
 
-        if (!expiration)
-        {
+        if (!expiration) {
             const decoded = jwtDecode<JWT>(userToken);
             setExpiration(decoded.exp);
         }
-    }, 
-    [ 
-        store?.userData?.userToken,
-        expiration
-    ]);
+    }, [store?.userData?.userToken, expiration]);
 
     useInterval(() => sessionTimer(), 5000);
 
-    return (<>{props.children}</>)
-}
+    return <>{props.children}</>;
+};

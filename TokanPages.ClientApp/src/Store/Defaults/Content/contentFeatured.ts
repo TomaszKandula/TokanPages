@@ -1,10 +1,8 @@
 import { ContentFeaturedState } from "../../States";
 
-export const ContentFeatured: ContentFeaturedState = 
-{
+export const ContentFeatured: ContentFeaturedState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         text: "",
@@ -19,6 +17,6 @@ export const ContentFeatured: ContentFeaturedState =
         title3: "",
         subtitle3: "",
         link3: "",
-        image3: ""    
-    }    
-}
+        image3: "",
+    },
+};

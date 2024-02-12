@@ -1,5 +1,4 @@
-export interface UpdateFormInput
-{
+export interface UpdateFormInput {
     newPassword: string;
     verifyPassword: string;
 }

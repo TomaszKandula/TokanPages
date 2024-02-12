@@ -9,8 +9,7 @@ import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ArticleDetailStyle } from "./articleDetailStyle";
 
-interface Properties
-{
+interface Properties {
     backButtonHandler: () => void;
     articleReadCount: number;
     openPopoverHandler: (event: ReactMouseEvent) => void;
@@ -34,8 +33,7 @@ interface Properties
     authorShortBio: string;
 }
 
-export const ArticleDetailView = (props: Properties): JSX.Element =>
-{
+export const ArticleDetailView = (props: Properties): JSX.Element => {
     const classes = ArticleDetailStyle();
     return (
         <section className={classes.section}>
@@ -45,11 +43,16 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
                                 <IconButton onClick={props.backButtonHandler}>
-                                    <ArrowBack  /> 
+                                    <ArrowBack />
                                 </IconButton>
                             </Grid>
                             <Grid item xs={6}>
-                                <Typography className={classes.readCount} component="p" variant="subtitle1" align="right">
+                                <Typography
+                                    className={classes.readCount}
+                                    component="p"
+                                    variant="subtitle1"
+                                    align="right"
+                                >
                                     Read: {props.articleReadCount}
                                 </Typography>
                             </Grid>
@@ -62,10 +65,13 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
                                 </Box>
                             </Grid>
                             <Grid item xs zeroMinWidth>
-                                <Typography className={classes.aliasName} component="div" variant="subtitle1" align="left">
-                                    <Box fontWeight="fontWeightBold">
-                                        {props.authorAliasName}
-                                    </Box>
+                                <Typography
+                                    className={classes.aliasName}
+                                    component="div"
+                                    variant="subtitle1"
+                                    align="left"
+                                >
+                                    <Box fontWeight="fontWeightBold">{props.authorAliasName}</Box>
                                 </Typography>
                                 <Popover
                                     id="mouse-over-popover"
@@ -77,7 +83,7 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
                                     onClose={props.closePopoverHandler}
                                     disableRestoreFocus
                                 >
-                                    <Box mt={2} mb={2} ml={3} mr={3} >
+                                    <Box mt={2} mb={2} ml={3} mr={3}>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
                                             First name: {props.authorFirstName}
                                         </Typography>
@@ -103,16 +109,18 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
                             </Typography>
                         </Box>
                     </div>
-                    <div data-aos="fade-up">
-                        {props.articleContent}
-                    </div>
+                    <div data-aos="fade-up">{props.articleContent}</div>
                     <Box mt={5}>
                         <Grid container spacing={2}>
                             <Grid item>
-                                <Tooltip title=
-                                    {<span className={classes.likesTip}>
-                                        {<Emoji text={props.renderLikesLeft}/>}
-                                    </span>} arrow>
+                                <Tooltip
+                                    title={
+                                        <span className={classes.likesTip}>
+                                            {<Emoji text={props.renderLikesLeft} />}
+                                        </span>
+                                    }
+                                    arrow
+                                >
                                     <ThumbUpIcon className={classes.thumbsMedium} onClick={props.thumbsHandler} />
                                 </Tooltip>
                             </Grid>
@@ -125,11 +133,15 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
                     </Box>
                     <Divider className={classes.dividerBottom} />
                     <Grid container spacing={2}>
-                        <Grid item>
-                            {props.renderLargeAvatar}
-                        </Grid>
+                        <Grid item>{props.renderLargeAvatar}</Grid>
                         <Grid item xs zeroMinWidth>
-                            <Typography className={classes.aliasName} component="span" variant="h6" align="left" color="textSecondary">
+                            <Typography
+                                className={classes.aliasName}
+                                component="span"
+                                variant="h6"
+                                align="left"
+                                color="textSecondary"
+                            >
                                 Written by
                             </Typography>
                             <Box fontWeight="fontWeightBold">
@@ -137,7 +149,13 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
                                     {props.renderAuthorName}
                                 </Typography>
                             </Box>
-                            <Typography className={classes.aliasName} component="span" variant="subtitle1" align="left" color="textSecondary">
+                            <Typography
+                                className={classes.aliasName}
+                                component="span"
+                                variant="subtitle1"
+                                align="left"
+                                color="textSecondary"
+                            >
                                 About the author: {props.authorShortBio}
                             </Typography>
                         </Grid>
@@ -146,4 +164,4 @@ export const ArticleDetailView = (props: Properties): JSX.Element =>
             </Container>
         </section>
     );
-}
+};

@@ -1,10 +1,8 @@
 import { ContentFeaturesState } from "../../States";
 
-export const ContentFeatures: ContentFeaturesState = 
-{
+export const ContentFeatures: ContentFeaturesState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         header: "",
@@ -15,6 +13,6 @@ export const ContentFeatures: ContentFeaturesState =
         title3: "",
         text3: "",
         title4: "",
-        text4: ""
-    }    
-}
+        text4: "",
+    },
+};

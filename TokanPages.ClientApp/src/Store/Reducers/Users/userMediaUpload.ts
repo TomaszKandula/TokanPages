@@ -3,46 +3,41 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserMediaUploadState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions,
-    UPLOAD,
-    CLEAR,
-    RESPONSE
-} from "../../Actions/Users/userMediaUpload";
+import { TKnownActions, UPLOAD, CLEAR, RESPONSE } from "../../Actions/Users/userMediaUpload";
 
-export const UserMediaUpload: 
-    Reducer<UserMediaUploadState> = (state: UserMediaUploadState | undefined, incomingAction: Action): 
-    UserMediaUploadState => 
-{
+export const UserMediaUpload: Reducer<UserMediaUploadState> = (
+    state: UserMediaUploadState | undefined,
+    incomingAction: Action
+): UserMediaUploadState => {
     if (state === undefined) return ApplicationDefault.userMediaUpload;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 handle: undefined,
                 status: OperationStatus.notStarted,
-                error: { },
-                payload: undefined
+                error: {},
+                payload: undefined,
             };
 
         case UPLOAD:
-            return { 
+            return {
                 handle: state.handle,
                 status: OperationStatus.inProgress,
                 error: state.error,
-                payload: state.payload
+                payload: state.payload,
             };
 
         case RESPONSE:
-            return { 
+            return {
                 handle: action.handle,
                 status: OperationStatus.hasFinished,
-                error: { },
-                payload: action.payload
+                error: {},
+                payload: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

@@ -1,5 +1,4 @@
-export interface LanguageItemDto
-{
+export interface LanguageItemDto {
     id: string;
     name: string;
     isDefault: boolean;

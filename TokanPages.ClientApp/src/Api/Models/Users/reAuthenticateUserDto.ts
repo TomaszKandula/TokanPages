@@ -1,5 +1,4 @@
-export interface ReAuthenticateUserDto
-{
+export interface ReAuthenticateUserDto {
     userId: string;
     refreshToken: string;
 }

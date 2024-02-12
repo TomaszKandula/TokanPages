@@ -5,14 +5,9 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignout } from "../../Components/Account";
 
-import { 
-    ContentNavigationAction, 
-    ContentFooterAction, 
-    ContentUserSignoutAction 
-} from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentUserSignoutAction } from "../../Store/Actions";
 
-export const SignoutPage = (): JSX.Element => 
-{
+export const SignoutPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -20,13 +15,11 @@ export const SignoutPage = (): JSX.Element =>
     const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const signout = useSelector((state: ApplicationState) => state.contentUserSignout);
 
-    React.useEffect(() => 
-    {
+    React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentUserSignoutAction.get());
-    }, 
-    [ language?.id ]);
+    }, [language?.id]);
 
     return (
         <>
@@ -37,4 +30,4 @@ export const SignoutPage = (): JSX.Element =>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
-}
+};

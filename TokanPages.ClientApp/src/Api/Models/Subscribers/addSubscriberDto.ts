@@ -1,4 +1,3 @@
-export interface AddSubscriberDto
-{
+export interface AddSubscriberDto {
     email: string;
 }

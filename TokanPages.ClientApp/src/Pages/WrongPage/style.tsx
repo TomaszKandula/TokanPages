@@ -1,25 +1,20 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../Theme";
 
-export const Style = makeStyles(() => 
-({
-    link:
-    {
-        textDecoration: "none"
+export const Style = makeStyles(() => ({
+    link: {
+        textDecoration: "none",
     },
-    skeleton:
-    {
+    skeleton: {
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
     },
-    button:
-    {
-        "&:hover": 
-        {
+    button: {
+        "&:hover": {
             color: Colours.colours.white,
             background: Colours.colours.darkViolet1,
         },
         color: Colours.colours.white,
-        background: Colours.colours.violet
-    }
+        background: Colours.colours.violet,
+    },
 }));

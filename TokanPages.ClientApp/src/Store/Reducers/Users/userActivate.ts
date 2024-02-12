@@ -3,39 +3,34 @@ import { ApplicationDefault } from "../../Configuration";
 import { UserActivateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { 
-    TKnownActions,
-    ACTIVATE,
-    CLEAR,
-    RESPONSE
-} from "../../Actions/Users/userActivate";
+import { TKnownActions, ACTIVATE, CLEAR, RESPONSE } from "../../Actions/Users/userActivate";
 
-export const UserActivate: 
-    Reducer<UserActivateState> = (state: UserActivateState | undefined, incomingAction: Action): 
-    UserActivateState => 
-{
+export const UserActivate: Reducer<UserActivateState> = (
+    state: UserActivateState | undefined,
+    incomingAction: Action
+): UserActivateState => {
     if (state === undefined) return ApplicationDefault.userActivate;
 
     const action = incomingAction as TKnownActions;
-    switch (action.type) 
-    {
+    switch (action.type) {
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: {},
             };
         case ACTIVATE:
-            return { 
+            return {
                 status: OperationStatus.inProgress,
-                response: state.response
+                response: state.response,
             };
 
         case RESPONSE:
-            return { 
+            return {
                 status: OperationStatus.hasFinished,
-                response: action.payload
+                response: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
 };

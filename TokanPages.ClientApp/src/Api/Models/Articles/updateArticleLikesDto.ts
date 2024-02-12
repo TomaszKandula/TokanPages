@@ -1,5 +1,4 @@
-export interface UpdateArticleLikesDto 
-{
+export interface UpdateArticleLikesDto {
     id: string;
     addToLikes: number;
 }

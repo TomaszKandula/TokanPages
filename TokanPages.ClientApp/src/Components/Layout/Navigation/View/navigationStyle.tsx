@@ -1,21 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
-export const NavigationStyle = makeStyles((theme) => (
-{
-    app_bar:
-    {
-        background: Colours.colours.white
+export const NavigationStyle = makeStyles(theme => ({
+    app_bar: {
+        background: Colours.colours.white,
     },
-    tool_bar: 
-    { 
-        justifyContent: "center"
+    tool_bar: {
+        justifyContent: "center",
     },
-    app_full_logo:
-    {
-        [theme.breakpoints.down(700)]:
-        {
-            display: "none"
+    app_full_logo: {
+        [theme.breakpoints.down(700)]: {
+            display: "none",
         },
         marginLeft: "auto",
         marginRight: "auto",
@@ -23,17 +18,14 @@ export const NavigationStyle = makeStyles((theme) => (
         fontWeight: 500,
         color: Colours.colours.violet,
         cursor: "default",
-        alignSelf: "center"
+        alignSelf: "center",
     },
-    app_just_logo:
-    {
-        [theme.breakpoints.down(700)]:
-        {
-            display: "block"
+    app_just_logo: {
+        [theme.breakpoints.down(700)]: {
+            display: "block",
         },
-        [theme.breakpoints.up(700)]:
-        {
-            display: "none"
+        [theme.breakpoints.up(700)]: {
+            display: "none",
         },
         marginLeft: "auto",
         marginRight: "auto",
@@ -41,57 +33,46 @@ export const NavigationStyle = makeStyles((theme) => (
         fontWeight: 500,
         color: Colours.colours.violet,
         cursor: "default",
-        alignSelf: "center"
+        alignSelf: "center",
     },
-    nav_menu: 
-    {
+    nav_menu: {
         color: Colours.colours.gray1,
         display: "flex",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
     },
-    nav_icon:
-    {
+    nav_icon: {
         height: 48,
         marginTop: 6,
-        marginBottom: 6
+        marginBottom: 6,
     },
-    app_link:
-    {
-        [theme.breakpoints.down(700)]:
-        {
-            justifyContent: "right"
+    app_link: {
+        [theme.breakpoints.down(700)]: {
+            justifyContent: "right",
         },
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
     },
-    languagesBox:
-    {
-        [theme.breakpoints.down(700)]:
-        {
+    languagesBox: {
+        [theme.breakpoints.down(700)]: {
             marginRight: 0,
         },
         marginRight: 30,
-        alignSelf: "center"
+        alignSelf: "center",
     },
-    languages_selection:
-    {
-        color: Colours.colours.gray1
+    languages_selection: {
+        color: Colours.colours.gray1,
     },
-    languages_menu:
-    {
-        color: Colours.colours.violet
+    languages_menu: {
+        color: Colours.colours.violet,
     },
-    content_right_side:
-    {
+    content_right_side: {
         display: "flex",
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
     },
-    user_avatar:
-    {
-        [theme.breakpoints.down(700)]:
-        {
-            display: "none"
+    user_avatar: {
+        [theme.breakpoints.down(700)]: {
+            display: "none",
         },
-        display: "flex"
-    }
+        display: "flex",
+    },
 }));

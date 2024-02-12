@@ -6,15 +6,13 @@ import { GetShortText } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, GET_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
-interface Properties
-{
+interface Properties {
     title: string;
     description: string;
     id: string;
 }
 
-export const ArticleCard = (props: Properties): JSX.Element =>
-{
+export const ArticleCard = (props: Properties): JSX.Element => {
     const content = { button: "Read" };
     const articleUrl = ARTICLE_PATH.replace("{id}", props.id);
     const imageUrl = GET_IMAGE_URL.replace("{id}", props.id);
@@ -22,17 +20,18 @@ export const ArticleCard = (props: Properties): JSX.Element =>
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const onClickEvent = React.useCallback(() => 
-    {
+    const onClickEvent = React.useCallback(() => {
         dispatch(ArticleSelectionAction.select(props.id));
         history.push(articleUrl);
-    }, [ props.id, articleUrl ]);
+    }, [props.id, articleUrl]);
 
-    return (<ArticleCardView
-        imageUrl={imageUrl}
-        title={GetShortText({ value: props.title, limit: 6 })}
-        description={GetShortText({ value: props.description, limit: 12 })}
-        onClickEvent={onClickEvent}
-        buttonText={content.button}
-    />);
-}
+    return (
+        <ArticleCardView
+            imageUrl={imageUrl}
+            title={GetShortText({ value: props.title, limit: 6 })}
+            description={GetShortText({ value: props.description, limit: 12 })}
+            onClickEvent={onClickEvent}
+            buttonText={content.button}
+        />
+    );
+};

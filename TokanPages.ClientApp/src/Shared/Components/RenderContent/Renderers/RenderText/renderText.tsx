@@ -5,13 +5,11 @@ import { RenderTextStyle } from "./renderTextStyle";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import "../../../../../Theme/Css/customDropCap.css";
 
-export const RenderText = (props: TextItem): JSX.Element =>
-{
+export const RenderText = (props: TextItem): JSX.Element => {
     const classes = RenderTextStyle();
-    const data: string = props.value as string; 
+    const data: string = props.value as string;
 
-    const renderTitle = (): JSX.Element => 
-    {
+    const renderTitle = (): JSX.Element => {
         return (
             <Box mt={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.title}`}>
@@ -21,19 +19,17 @@ export const RenderText = (props: TextItem): JSX.Element =>
         );
     };
 
-    const renderSubtitle = (): JSX.Element => 
-    {
+    const renderSubtitle = (): JSX.Element => {
         return (
             <Box mt={-1} mb={7}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.subTitle}`}>
                     <ReactHtmlParser html={data} />
                 </Typography>
-            </Box>      
+            </Box>
         );
     };
 
-    const renderHeader = (): JSX.Element => 
-    {
+    const renderHeader = (): JSX.Element => {
         return (
             <Box mt={7} mb={2}>
                 <Typography variant="body1" component="span" className={`${classes.common} ${classes.header}`}>
@@ -43,8 +39,7 @@ export const RenderText = (props: TextItem): JSX.Element =>
         );
     };
 
-    const renderParagraph = (): JSX.Element => 
-    {
+    const renderParagraph = (): JSX.Element => {
         return (
             <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
                 <ReactHtmlParser html={data} />
@@ -52,8 +47,7 @@ export const RenderText = (props: TextItem): JSX.Element =>
         );
     };
 
-    const renderParagraphWithDropCap = (): JSX.Element => 
-    {
+    const renderParagraphWithDropCap = (): JSX.Element => {
         const replaced = data.replace("<p>", "<p class='custom-drop-cap'>");
         return (
             <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
@@ -62,12 +56,16 @@ export const RenderText = (props: TextItem): JSX.Element =>
         );
     };
 
-    switch(props.prop)
-    {
-        case "title": return renderTitle();
-        case "subtitle": return renderSubtitle();
-        case "header": return renderHeader();
-        case "dropcap": return renderParagraphWithDropCap();
-        default: return renderParagraph();
+    switch (props.prop) {
+        case "title":
+            return renderTitle();
+        case "subtitle":
+            return renderSubtitle();
+        case "header":
+            return renderHeader();
+        case "dropcap":
+            return renderParagraphWithDropCap();
+        default:
+            return renderParagraph();
     }
-}
+};

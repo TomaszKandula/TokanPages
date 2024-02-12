@@ -1,13 +1,11 @@
 import { ContentUpdateSubscriberState } from "../../States";
 
-export const ContentUpdateSubscriber: ContentUpdateSubscriberState = 
-{
+export const ContentUpdateSubscriber: ContentUpdateSubscriberState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         button: "",
-        labelEmail: ""
-    }    
-}
+        labelEmail: "",
+    },
+};

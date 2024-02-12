@@ -4,16 +4,14 @@ import { RenderList } from "../../../../Shared/Components";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { SideMenuStyle } from "./sideMenuStyle";
 
-interface Properties
-{
+interface Properties {
     drawerState: { open: boolean };
     closeHandler: any;
     isAnonymous: boolean;
-    menu: { image: string, items: Item[] };
+    menu: { image: string; items: Item[] };
 }
 
-export const SideMenuView = (props: Properties): JSX.Element =>
-{
+export const SideMenuView = (props: Properties): JSX.Element => {
     const classes = SideMenuStyle();
     const logo = "</>";
 
@@ -23,11 +21,8 @@ export const SideMenuView = (props: Properties): JSX.Element =>
                 <Box className={classes.drawer_hero}>
                     <div className={classes.drawer_logo}>{logo}</div>
                 </Box>
-                <RenderList 
-                    isAnonymous={props.isAnonymous} 
-                    items={props.menu?.items} 
-                />
+                <RenderList isAnonymous={props.isAnonymous} items={props.menu?.items} />
             </div>
         </Drawer>
     );
-}
+};

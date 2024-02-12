@@ -1,37 +1,32 @@
 import "../../../../setupTests";
 import { CountWords } from "..";
 
-describe("verify CountWords method", () =>
-{
-    it("should return proper number of words in text, when text is provided.", () => 
-    {
+describe("verify CountWords method", () => {
+    it("should return proper number of words in text, when text is provided.", () => {
         // Arrange
         const expectation: number = 10;
-        const input = 
-        {
-            inputText: "This is test object  We will use it for testing."
-        }
+        const input = {
+            inputText: "This is test object  We will use it for testing.",
+        };
 
         // Act
         const result = CountWords(input);
 
         // Assert
-        expect(result).toBe(expectation);        
+        expect(result).toBe(expectation);
     });
 
-    it("should return zero, when undefined input is provided.", () => 
-    {
+    it("should return zero, when undefined input is provided.", () => {
         // Arrange
         const expectation: number = 0;
-        const input = 
-        {
-            inputText: undefined
-        }
+        const input = {
+            inputText: undefined,
+        };
 
         // Act
         const result = CountWords(input);
 
         // Assert
-        expect(result).toBe(expectation);        
+        expect(result).toBe(expectation);
     });
 });

@@ -1,5 +1,4 @@
-export const Languages = 
-[
+export const Languages = [
     "1c",
     "abnf",
     "accesslog",

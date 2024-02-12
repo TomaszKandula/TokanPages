@@ -12,19 +12,17 @@ import { GET_TESTIMONIALS_URL } from "../../../Api/Request";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { TestimonialsStyle } from "./testimonialsStyle";
 
-export const TestimonialsView = (props: ContentTestimonialsState): JSX.Element =>
-{
+export const TestimonialsView = (props: ContentTestimonialsState): JSX.Element => {
     const classes = TestimonialsStyle();
     const limit = 29;
-    const imageUrl = (name: string) => 
-    {
+    const imageUrl = (name: string) => {
         if (name === "") return " ";
         return `${GET_TESTIMONIALS_URL}/${name}`;
-    }
+    };
 
-    return(
+    return (
         <section className={classes.section}>
-            <Container maxWidth="lg"> 
+            <Container maxWidth="lg">
                 <Box pt={8} pb={10} textAlign="center" mb={5}>
                     <Typography className={classes.caption_text} data-aos="fade-down">
                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.caption?.toUpperCase()}
@@ -34,9 +32,15 @@ export const TestimonialsView = (props: ContentTestimonialsState): JSX.Element =
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className={classes.card}>
-                                {props.isLoading 
-                                ? <Skeleton variant="rect" className={classes.card_image} /> 
-                                : <CardMedia image={imageUrl(props.content?.photo1)} component="img" className={classes.card_image} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" className={classes.card_image} />
+                                ) : (
+                                    <CardMedia
+                                        image={imageUrl(props.content?.photo1)}
+                                        component="img"
+                                        className={classes.card_image}
+                                    />
+                                )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.name1}
@@ -45,43 +49,81 @@ export const TestimonialsView = (props: ContentTestimonialsState): JSX.Element =
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation1}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText({ value: props.content?.text1, limit: limit })}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            GetShortText({ value: props.content?.text1, limit: limit })
+                                        )}
                                     </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} className={classes.card_space} data-aos="fade-up" data-aos-delay="150">
+                        <Grid
+                            item
+                            xs={12}
+                            md={4}
+                            className={classes.card_space}
+                            data-aos="fade-up"
+                            data-aos-delay="150"
+                        >
                             <Card elevation={3} className={classes.card}>
-                                {props.isLoading 
-                                ? <Skeleton variant="rect" className={classes.card_image} /> 
-                                : <CardMedia image={imageUrl(props.content?.photo2)} component="img" className={classes.card_image} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" className={classes.card_image} />
+                                ) : (
+                                    <CardMedia
+                                        image={imageUrl(props.content?.photo2)}
+                                        component="img"
+                                        className={classes.card_image}
+                                    />
+                                )}
                                 <CardContent className={classes.card_content}>
-                                <Typography className={classes.card_title}>
+                                    <Typography className={classes.card_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.name2}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation2}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText({ value: props.content?.text2, limit: limit })}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            GetShortText({ value: props.content?.text2, limit: limit })
+                                        )}
                                     </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>
-                        <Grid item xs={12} md={4} className={classes.card_space} data-aos="fade-up" data-aos-delay="550">
+                        <Grid
+                            item
+                            xs={12}
+                            md={4}
+                            className={classes.card_space}
+                            data-aos="fade-up"
+                            data-aos-delay="550"
+                        >
                             <Card elevation={3} className={classes.card}>
-                                {props.isLoading 
-                                ? <Skeleton variant="rect" className={classes.card_image} /> 
-                                : <CardMedia image={imageUrl(props.content?.photo3)} component="img" className={classes.card_image} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" className={classes.card_image} />
+                                ) : (
+                                    <CardMedia
+                                        image={imageUrl(props.content?.photo3)}
+                                        component="img"
+                                        className={classes.card_image}
+                                    />
+                                )}
                                 <CardContent className={classes.card_content}>
-                                <Typography className={classes.card_title}>
+                                    <Typography className={classes.card_title}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.name3}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
                                         {props.isLoading ? <Skeleton variant="text" /> : props.content?.occupation3}
                                     </Typography>
                                     <Typography className={classes.card_text}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : GetShortText({ value: props.content?.text3, limit: limit })}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            GetShortText({ value: props.content?.text3, limit: limit })
+                                        )}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -91,4 +133,4 @@ export const TestimonialsView = (props: ContentTestimonialsState): JSX.Element =
             </Container>
         </section>
     );
-}
+};

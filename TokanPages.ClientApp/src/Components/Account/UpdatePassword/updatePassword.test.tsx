@@ -7,47 +7,44 @@ import { shallow } from "enzyme";
 import { UpdatePassword } from "./updatePassword";
 import { ApplicationDefault } from "../../../Store/Configuration";
 
-jest.mock("react-router", () => 
-({
-    ...jest.requireActual("react-router") as typeof Router,
+jest.mock("react-router", () => ({
+    ...(jest.requireActual("react-router") as typeof Router),
 }));
 
-jest.mock("react-router-dom", () => 
-({
-    ...jest.requireActual("react-router-dom") as typeof Dom,
-    useLocation: () => 
-    ({
-      search: "localhost:3000/updatepassword/?id=dba4043c-7428-4f72-ba13-fe782c7a88fa"
-    })
+jest.mock("react-router-dom", () => ({
+    ...(jest.requireActual("react-router-dom") as typeof Dom),
+    useLocation: () => ({
+        search: "localhost:3000/updatepassword/?id=dba4043c-7428-4f72-ba13-fe782c7a88fa",
+    }),
 }));
 
-describe("test account group component: updatePassword", () => 
-{
-    const testContent = 
-    {
+describe("test account group component: updatePassword", () => {
+    const testContent = {
         language: "eng",
         caption: "Update Password",
         button: "Submit",
         labelNewPassword: "New password",
-        labelVerifyPassword: "Verify new password"
+        labelVerifyPassword: "Verify new password",
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(<div><UpdatePassword content={testContent} isLoading={false} /></div>);
+    const wrapper = shallow(
+        <div>
+            <UpdatePassword content={testContent} isLoading={false} />
+        </div>
+    );
 
-    beforeEach(() => 
-    {
+    beforeEach(() => {
         useSelectorMock.mockClear();
         useDispatchMock.mockClear();
         wrapper.find("UpdatePassword").dive();
     });
 
-    it("should render correctly '<UpdatePassword />' when content is loaded.", () => 
-    {
+    it("should render correctly '<UpdatePassword />' when content is loaded.", () => {
         useDispatchMock.mockReturnValue(jest.fn());
         useSelectorMock.mockReturnValue(ApplicationDefault);
-    
+
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();
     });

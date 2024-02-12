@@ -1,35 +1,30 @@
-.custom-drop-cap:first-letter 
-{
+.custom-drop-cap:first-letter {
     float: left;
     font-size: 5.2rem;
     line-height: 0.65;
     margin: 0.1em 0.1em 0.2em 0;
 }
-  
-.dropcap 
-{
+
+.dropcap {
     background: #303030;
-    color: #FDF9F2;
+    color: #fdf9f2;
     float: left;
     font-size: 5.2rem;
     line-height: 1;
     margin: 0.1em 0.1em 0.2em 0;
     padding: 0.1em;
 }
-  
+
 .dropcap:before,
-.dropcap:after 
-{
+.dropcap:after {
     content: "";
     display: block;
 }
-  
-.dropcap:before 
-{
+
+.dropcap:before {
     margin-top: -0.2em;
 }
-  
-.dropcap:after 
-{
+
+.dropcap:after {
     margin-bottom: -0.15em;
 }

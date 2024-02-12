@@ -13,24 +13,18 @@ import { ReactMouseEvent } from "../../../Shared/types";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
-import {
-    LIKES_LIMIT_FOR_ANONYM, 
-    LIKES_LIMIT_FOR_USER 
-} from "../../../Shared/constants";
+import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 
-interface Properties
-{
+interface Properties {
     id: string;
 }
 
-export const ArticleDetail = (props: Properties): JSX.Element =>
-{
+export const ArticleDetail = (props: Properties): JSX.Element => {
     const dispatch = useDispatch();
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
 
-    if (Validate.isEmpty(selection.article.id) && !selection.isLoading)
-    {
+    if (Validate.isEmpty(selection.article.id) && !selection.isLoading) {
         dispatch(ArticleSelectionAction.select(props.id));
     }
 
@@ -46,117 +40,114 @@ export const ArticleDetail = (props: Properties): JSX.Element =>
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    React.useEffect(() =>
-    {
+    React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
         const likesLimitForUser = LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
         setLikesLeft(isAnonymous ? likesLimitForAnonym : likesLimitForUser);
-    }, 
-    [ selection.article.userLikes, isAnonymous, totalThumbs ]);
+    }, [selection.article.userLikes, isAnonymous, totalThumbs]);
 
-    React.useEffect(() => 
-    {
-        setTotalLikes(selection.article.likeCount)
-    }, 
-    [ selection.article.likeCount ]);
+    React.useEffect(() => {
+        setTotalLikes(selection.article.likeCount);
+    }, [selection.article.likeCount]);
 
-    React.useEffect(() => 
-    {
-        if (selection.isLoading) return; 
-        dispatch(ArticleUpdateAction.updateCount(
-        {
-            id: props.id
-        }));
-    }, 
-    [ props.id, selection.isLoading ]);
+    React.useEffect(() => {
+        if (selection.isLoading) return;
+        dispatch(
+            ArticleUpdateAction.updateCount({
+                id: props.id,
+            })
+        );
+    }, [props.id, selection.isLoading]);
 
-    React.useEffect(() =>
-    {
-        const intervalId = setInterval(() => 
-        { 
+    React.useEffect(() => {
+        const intervalId = setInterval(() => {
             if (userLikes === 0 || !isThumbClicked) return;
 
-            dispatch(ArticleUpdateAction.updateLikes(
-            { 
-                id: props.id, 
-                addToLikes: userLikes, 
-            }));
+            dispatch(
+                ArticleUpdateAction.updateLikes({
+                    id: props.id,
+                    addToLikes: userLikes,
+                })
+            );
 
             setUserLikes(0);
             setIsThumbsClicked(false);
-        }, 
-        3000);
-        
-        return(() => clearInterval(intervalId));
-    }, 
-    [ userLikes, isThumbClicked ]);
+        }, 3000);
 
-    const thumbsHandler = React.useCallback(() =>
-    {
+        return () => clearInterval(intervalId);
+    }, [userLikes, isThumbClicked]);
+
+    const thumbsHandler = React.useCallback(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
         const likesLimitForUser = LIKES_LIMIT_FOR_USER - selection.article.userLikes - totalThumbs;
         const likesToAdd = isAnonymous ? likesLimitForAnonym : likesLimitForUser;
 
-        if (likesToAdd > 0) 
-        {
+        if (likesToAdd > 0) {
             setTotalLikes(totalLikes + 1);
             setUserLikes(userLikes + 1);
             setTotalThumbs(totalThumbs + 1);
             setIsThumbsClicked(true);
         }
-    }, [ selection.article.userLikes, totalThumbs, userLikes, totalLikes, isAnonymous ]);
+    }, [selection.article.userLikes, totalThumbs, userLikes, totalLikes, isAnonymous]);
 
-    const backButtonHandler = React.useCallback(() =>
-    {
+    const backButtonHandler = React.useCallback(() => {
         dispatch(ArticleSelectionAction.reset());
         history.push("/articles");
     }, []);
 
-    const openPopoverHandler = React.useCallback((event: ReactMouseEvent) => 
-    { 
-        setPopover(event.currentTarget); 
+    const openPopoverHandler = React.useCallback((event: ReactMouseEvent) => {
+        setPopover(event.currentTarget);
     }, []);
-    
-    const closePopoverHandler = React.useCallback(() => 
-    {
+
+    const closePopoverHandler = React.useCallback(() => {
         setPopover(null);
     }, []);
 
-    const smallAvatar = <UserAvatar 
-        userId={selection.article.author.userId}
-        isLarge={false}
-        avatarName={selection.article.author.avatarName}
-        userLetter={userLetter}
-    />;
+    const smallAvatar = (
+        <UserAvatar
+            userId={selection.article.author.userId}
+            isLarge={false}
+            avatarName={selection.article.author.avatarName}
+            userLetter={userLetter}
+        />
+    );
 
-    const largeAvatar = <UserAvatar 
-        userId={selection.article.author.userId}
-        isLarge={true}
-        avatarName={selection.article.author.avatarName}
-        userLetter={userLetter}
-    />;
+    const largeAvatar = (
+        <UserAvatar
+            userId={selection.article.author.userId}
+            isLarge={true}
+            avatarName={selection.article.author.avatarName}
+            userLetter={userLetter}
+        />
+    );
 
-    return (<ArticleDetailView
-        backButtonHandler={backButtonHandler}
-        articleReadCount={selection.article.readCount}
-        openPopoverHandler={openPopoverHandler}
-        closePopoverHandler={closePopoverHandler}
-        renderSmallAvatar={smallAvatar}
-        renderLargeAvatar={largeAvatar}
-        authorAliasName={selection.article.author.aliasName}
-        popoverOpen={isPopoverOpen}
-        popoverElement={popoverElement}
-        authorFirstName={selection.article.author.firstName}
-        authorLastName={selection.article.author.lastName}
-        authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
-        articleReadTime={ReadTime(selection.article.text)}
-        articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
-        articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
-        articleContent={ArticleContent(selection.article.id, selection.isLoading, selection.article.text)}
-        renderLikesLeft={LikesLeft(isAnonymous, likesLeft)}
-        thumbsHandler={thumbsHandler}
-        totalLikes={totalLikes}
-        renderAuthorName={AuthorName(selection.article.author.firstName, selection.article.author.lastName, selection.article.author.aliasName)}
-        authorShortBio={selection.article.author.shortBio}
-    />);
-}
+    return (
+        <ArticleDetailView
+            backButtonHandler={backButtonHandler}
+            articleReadCount={selection.article.readCount}
+            openPopoverHandler={openPopoverHandler}
+            closePopoverHandler={closePopoverHandler}
+            renderSmallAvatar={smallAvatar}
+            renderLargeAvatar={largeAvatar}
+            authorAliasName={selection.article.author.aliasName}
+            popoverOpen={isPopoverOpen}
+            popoverElement={popoverElement}
+            authorFirstName={selection.article.author.firstName}
+            authorLastName={selection.article.author.lastName}
+            authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
+            articleReadTime={ReadTime(selection.article.text)}
+            articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
+            articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
+            articleContent={ArticleContent(selection.article.id, selection.isLoading, selection.article.text)}
+            renderLikesLeft={LikesLeft(isAnonymous, likesLeft)}
+            thumbsHandler={thumbsHandler}
+            totalLikes={totalLikes}
+            renderAuthorName={AuthorName(
+                selection.article.author.firstName,
+                selection.article.author.lastName,
+                selection.article.author.aliasName
+            )}
+            authorShortBio={selection.article.author.shortBio}
+        />
+    );
+};

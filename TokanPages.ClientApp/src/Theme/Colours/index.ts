@@ -1,11 +1,8 @@
-export const Colours =
-{
-    application:
-    {
-        navigation: "#6367EF"
+export const Colours = {
+    application: {
+        navigation: "#6367EF",
     },
-    colours:
-    {
+    colours: {
         white: "#FFFFFF",
         ghostWhite: "#F8F8FF",
         violet: "#6367EF",
@@ -21,6 +18,6 @@ export const Colours =
         gray4: "#212121",
         black: "#000000",
         red: "#f44336",
-        redDark: "#e53935"
-    }
-}
+        redDark: "#e53935",
+    },
+};

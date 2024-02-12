@@ -10,13 +10,9 @@ import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
 import { Features } from "../../Components/Features";
 
-import { 
-    Navigation, 
-    Header, 
-    Footer 
-} from "../../Components/Layout";
+import { Navigation, Header, Footer } from "../../Components/Layout";
 
-import { 
+import {
     ContentNavigationAction,
     ContentHeaderAction,
     ContentActivateAccountAction,
@@ -28,11 +24,10 @@ import {
     ContentNewsletterAction,
     ContentContactFormAction,
     ContentCookiesPromptAction,
-    ContentTestimonialsAction    
+    ContentTestimonialsAction,
 } from "../../Store/Actions";
 
-export const MainPage = (): JSX.Element => 
-{
+export const MainPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -48,8 +43,7 @@ export const MainPage = (): JSX.Element =>
     const contactForm = useSelector((state: ApplicationState) => state.contentContactForm);
     const cookiesPrompt = useSelector((state: ApplicationState) => state.contentCookiesPrompt);
 
-    React.useEffect(() => 
-    { 
+    React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentHeaderAction.get());
         dispatch(ContentActivateAccountAction.get());
@@ -60,10 +54,9 @@ export const MainPage = (): JSX.Element =>
         dispatch(ContentFeaturesAction.get());
         dispatch(ContentNewsletterAction.get());
         dispatch(ContentContactFormAction.get());
-        dispatch(ContentCookiesPromptAction.get());    
+        dispatch(ContentCookiesPromptAction.get());
         dispatch(ContentTestimonialsAction.get());
-    }, 
-    [ language?.id ]);
+    }, [language?.id]);
 
     return (
         <>
@@ -80,4 +73,4 @@ export const MainPage = (): JSX.Element =>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
-}
+};

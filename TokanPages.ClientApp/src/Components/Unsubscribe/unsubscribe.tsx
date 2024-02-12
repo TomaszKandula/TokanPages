@@ -8,13 +8,11 @@ import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ContentDto } from "../../Api/Models";
 import { UnsubscribeView } from "./View/unsubscribeView";
 
-interface Properties extends ContentUnsubscribeState
-{
+interface Properties extends ContentUnsubscribeState {
     id: string;
 }
 
-export const Unsubscribe = (props: Properties): JSX.Element =>
-{
+export const Unsubscribe = (props: Properties): JSX.Element => {
     const contentPre: ContentDto = props.content?.contentPre;
     const contentPost: ContentDto = props.content?.contentPost;
 
@@ -30,51 +28,45 @@ export const Unsubscribe = (props: Properties): JSX.Element =>
     const [hasButton, setHasButton] = React.useState(true);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const clearForm = React.useCallback(() => 
-    {
+    const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setIsRemoved(false);
         setHasButton(true);
         setHasProgress(false);
-    }, 
-    [ hasProgress, contentPost ]);
+    }, [hasProgress, contentPost]);
 
-    React.useEffect(() => 
-    {
-        if (hasError)
-        {
+    React.useEffect(() => {
+        if (hasError) {
             clearForm();
             return;
         }
 
-        if (hasNotStarted && hasProgress)
-        {
+        if (hasNotStarted && hasProgress) {
             dispatch(SubscriberRemoveAction.remove({ id: props.id }));
             return;
         }
 
-        if (hasFinished)
-        {
+        if (hasFinished) {
             setIsRemoved(true);
             setHasButton(false);
-            setHasProgress(false);                        
+            setHasProgress(false);
         }
-    }, 
-    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
 
-    const buttonHandler = React.useCallback(() =>
-    {
+    const buttonHandler = React.useCallback(() => {
         if (props.id == null) return;
         setHasProgress(true);
-    }, [ props.id ]);
+    }, [props.id]);
 
-    return (<UnsubscribeView
-        isLoading={props.isLoading}
-        contentPre={contentPre}
-        contentPost={contentPost}
-        buttonHandler={buttonHandler}
-        buttonState={hasButton}
-        progress={hasProgress}
-        isRemoved={isRemoved}
-    />);
-}
+    return (
+        <UnsubscribeView
+            isLoading={props.isLoading}
+            contentPre={contentPre}
+            contentPost={contentPost}
+            buttonHandler={buttonHandler}
+            buttonState={hasButton}
+            progress={hasProgress}
+            isRemoved={isRemoved}
+        />
+    );
+};

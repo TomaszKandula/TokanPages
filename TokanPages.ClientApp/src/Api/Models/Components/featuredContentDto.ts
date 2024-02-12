@@ -1,7 +1,5 @@
-export interface FeaturedContentDto
-{
-    content: 
-    {
+export interface FeaturedContentDto {
+    content: {
         language: string;
         caption: string;
         text: string;
