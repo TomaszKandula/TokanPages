@@ -21,7 +21,7 @@ const selfXssWarningContent = {
         secondLineText:
             "Jeśli ktoś polecił Ci edytować stronę w ten sposób, jest to próba ataku i wyłudzenia danych.\nNic tutaj nie wklejaj ani nie wpisuj.",
         thirdLineText:
-            'Zamknij okno tego narzędzia (kliknij "X" w prawym, górnym rogu).\nPoinformuj nas o próbie ataku.',
+            "Zamknij okno tego narzędzia (kliknij \"X\" w prawym, górnym rogu).\nPoinformuj nas o próbie ataku.",
     },
     eng: {
         bannerText: "WARNING!",
@@ -29,7 +29,7 @@ const selfXssWarningContent = {
         secondLineText:
             "If someone told you edit a page in this way, it is an attempt of attack and phishing.\nDo not paste or type anything here.",
         thirdLineText:
-            'Close the tool window (click the "X" in the top right corner).\nInform us about an attempted attack.',
+            "Close the tool window (click the \"X\" in the top right corner).\nInform us about an attempted attack.",
     },
 };
 
