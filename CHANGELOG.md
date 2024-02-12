@@ -1,3 +1,14 @@
+# [0.72.0](https://github.com/TomaszKandula/TokanPages/compare/v0.71.1...v0.72.0) (2024-02-12)
+
+
+### Features
+
+* add prettier and signalr, use 1tbs instead of allman ([7d43178](https://github.com/TomaszKandula/TokanPages/commit/7d43178fc4ad60f22b54a6a794d89c33029f5ce6))
+* add prettier config ([efd8f83](https://github.com/TomaszKandula/TokanPages/commit/efd8f834c0cbeb9672c602affbf8358d149a3057))
+* apply prettier rules ([7626cfd](https://github.com/TomaszKandula/TokanPages/commit/7626cfd589f006594044b1e30eb7fd311ae0f9ec))
+* change naming convention to standard ([4868e62](https://github.com/TomaszKandula/TokanPages/commit/4868e627014fbfaec67ade8b0a20311b661c3ea0))
+* change preloader ([10eb358](https://github.com/TomaszKandula/TokanPages/commit/10eb35861c8eacdf791b935b12f90965a6f90415))
+
 ## [0.71.1](https://github.com/TomaszKandula/TokanPages/compare/v0.71.0...v0.71.1) (2024-02-10)
 
 
