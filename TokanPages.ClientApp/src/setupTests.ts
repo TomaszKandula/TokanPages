@@ -9,20 +9,18 @@ import enableHooks from "jest-react-hooks-shallow";
 
 enableHooks(jest);
 
-jest.mock("react-redux", () => (
-{
+jest.mock("react-redux", () => ({
     useSelector: jest.fn(),
-    useDispatch: jest.fn()
+    useDispatch: jest.fn(),
 }));
 
-jest.mock("connected-react-router", () => (
-{
+jest.mock("connected-react-router", () => ({
     connectRouter: jest.fn(),
-    routerMiddleware: jest.fn()
+    routerMiddleware: jest.fn(),
 }));
 
 Enzyme.configure({ adapter: new Adapter(), disableLifecycleMethods: false });
 
 // environmental variables used during all tests
-process.env.REACT_APP_API_VER="1";
-process.env.REACT_APP_BACKEND="http://localhost:5000";
+process.env.REACT_APP_API_VER = "1";
+process.env.REACT_APP_BACKEND = "http://localhost:5000";

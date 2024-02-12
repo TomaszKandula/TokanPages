@@ -1,6 +1,5 @@
 import { TestimonialsContentDto } from "../../../Api/Models";
 
-export interface ContentTestimonialsState extends TestimonialsContentDto
-{
+export interface ContentTestimonialsState extends TestimonialsContentDto {
     isLoading: boolean;
 }

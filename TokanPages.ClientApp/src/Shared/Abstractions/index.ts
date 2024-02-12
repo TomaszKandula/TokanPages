@@ -1,4 +1,3 @@
-export interface ViewProperties 
-{
+export interface ViewProperties {
     isLoading: boolean;
 }

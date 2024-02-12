@@ -2,33 +2,29 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ArticleListingState } from "../../States";
 
-import { 
-    TKnownActions, 
-    RECEIVE, 
-    REQUEST, 
-} from "../../Actions/Articles/articleListing";
+import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Articles/articleListing";
 
-export const ArticleListing: 
-    Reducer<ArticleListingState> = (state: ArticleListingState | undefined, incomingAction: Action): 
-    ArticleListingState => 
-{
+export const ArticleListing: Reducer<ArticleListingState> = (
+    state: ArticleListingState | undefined,
+    incomingAction: Action
+): ArticleListingState => {
     if (state === undefined) return ApplicationDefault.articleListing;
 
     const action = incomingAction as TKnownActions;
-    switch(action.type)
-    {
+    switch (action.type) {
         case REQUEST:
-            return { 
-                isLoading: true, 
-                articles: state.articles
+            return {
+                isLoading: true,
+                articles: state.articles,
             };
 
         case RECEIVE:
-            return { 
-                isLoading: false, 
-                articles: action.payload
+            return {
+                isLoading: false,
+                articles: action.payload,
             };
 
-        default: return state;
+        default:
+            return state;
     }
-}
+};

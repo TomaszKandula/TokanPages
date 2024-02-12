@@ -1,26 +1,22 @@
 import { ContentUnsubscribeState } from "../../States";
 
-export const ContentUnsubscribe: ContentUnsubscribeState = 
-{
+export const ContentUnsubscribe: ContentUnsubscribeState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
-        contentPre:
-        {
+        contentPre: {
             caption: "",
             text1: "",
             text2: "",
             text3: "",
-            button: ""
+            button: "",
         },
-        contentPost:
-        {
+        contentPost: {
             caption: "",
             text1: "",
             text2: "",
             text3: "",
-            button: ""
-        }
-    }    
-}
+            button: "",
+        },
+    },
+};

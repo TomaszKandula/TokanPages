@@ -1,19 +1,15 @@
 import { ContentAccountState } from "../../States";
 
-export const ContentAccount: ContentAccountState = 
-{
+export const ContentAccount: ContentAccountState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
-        sectionAccessDenied: 
-        {
+        sectionAccessDenied: {
             accessDeniedCaption: "",
             accessDeniedPrompt: "",
-            homeButtonText: ""        
+            homeButtonText: "",
         },
-        sectionAccountInformation: 
-        {
+        sectionAccountInformation: {
             caption: "",
             labelUserId: "",
             labelUserAlias: "",
@@ -25,21 +21,19 @@ export const ContentAccount: ContentAccountState =
             labelIsActivated: "",
             isActivatedText: "",
             updateButtonText: "",
-            uploadAvatarButtonText: ""
+            uploadAvatarButtonText: "",
         },
-        sectionAccountPassword:
-        {
+        sectionAccountPassword: {
             caption: "",
             labelOldPassword: "",
             labelNewPassword: "",
             labelConfirmPassword: "",
-            updateButtonText: ""
+            updateButtonText: "",
         },
-        sectionAccountRemoval:
-        {
+        sectionAccountRemoval: {
             caption: "",
             warningText: "",
-            deleteButtonText: ""
-        }
-    }
-}
+            deleteButtonText: "",
+        },
+    },
+};

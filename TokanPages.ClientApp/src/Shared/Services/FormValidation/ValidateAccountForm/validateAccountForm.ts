@@ -1,52 +1,43 @@
 import Validate from "validate.js";
 import { AccountFormInput } from "..";
 
-export const ValidateAccountForm = (props: AccountFormInput): any =>
-{
-    let constraints = 
-    {
-        firstName:
-        {
+export const ValidateAccountForm = (props: AccountFormInput): any => {
+    let constraints = {
+        firstName: {
             presence: true,
-            length: 
-            {
+            length: {
                 minimum: 2,
-                message: "must be at least 2 characters"
-            }
+                message: "must be at least 2 characters",
+            },
         },
-        lastName:
-        {
+        lastName: {
             presence: true,
-            length: 
-            {
+            length: {
                 minimum: 2,
-                message: "must be at least 2 characters"
-            }
+                message: "must be at least 2 characters",
+            },
         },
-        email: 
-        {
-            email: 
-            {
-                message: "does not look like a valid email"
-            }
+        email: {
+            email: {
+                message: "does not look like a valid email",
+            },
         },
-        userAboutText:
-        {
+        userAboutText: {
             presence: true,
-            length: 
-            {
+            length: {
                 minimum: 2,
-                message: "must be at least 2 characters"
-            }
-        }
+                message: "must be at least 2 characters",
+            },
+        },
     };
 
     return Validate(
-    {
-        firstName: props.firstName,
-        lastName: props.lastName,
-        email: props.email,
-        userAboutText: props.userAboutText
-    }, 
-    constraints);
-}
+        {
+            firstName: props.firstName,
+            lastName: props.lastName,
+            email: props.email,
+            userAboutText: props.userAboutText,
+        },
+        constraints
+    );
+};

@@ -1,14 +1,12 @@
 import { ContentUpdatePasswordState } from "../../States";
 
-export const ContentUpdatePassword: ContentUpdatePasswordState = 
-{
+export const ContentUpdatePassword: ContentUpdatePasswordState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         button: "",
         labelNewPassword: "",
-        labelVerifyPassword: ""
-    }    
-}
+        labelVerifyPassword: "",
+    },
+};

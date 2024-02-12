@@ -2,8 +2,7 @@ import * as React from "react";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { TextFiedWithPasswordView } from "./View/textFiedWithPasswordView";
 
-interface Properties 
-{
+interface Properties {
     uuid: string;
     fullWidth?: boolean;
     value: string;
@@ -13,22 +12,19 @@ interface Properties
     isDisabled?: boolean;
 }
 
-export const TextFiedWithPassword = (props: Properties): JSX.Element => 
-{
+export const TextFiedWithPassword = (props: Properties): JSX.Element => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
-    const iconOnClickHandler = React.useCallback(() => 
-    {
+    const iconOnClickHandler = React.useCallback(() => {
         setIsPasswordVisible(!isPasswordVisible);
-    }, [ isPasswordVisible ]);
+    }, [isPasswordVisible]);
 
-    const iconOnMouseDownHandler = React.useCallback((event: ReactMouseEvent) => 
-    {
+    const iconOnMouseDownHandler = React.useCallback((event: ReactMouseEvent) => {
         event.preventDefault();
-    }, [ ]);
+    }, []);
 
     return (
-        <TextFiedWithPasswordView 
+        <TextFiedWithPasswordView
             uuid={props.uuid}
             fullWidth={props.fullWidth}
             disabled={props.isDisabled}
@@ -41,4 +37,4 @@ export const TextFiedWithPassword = (props: Properties): JSX.Element =>
             iconOnMouseDownHandler={iconOnMouseDownHandler}
         />
     );
-}
+};

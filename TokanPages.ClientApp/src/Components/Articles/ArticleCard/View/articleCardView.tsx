@@ -7,8 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { ArticleCardStyle } from "./articleCardStyle";
 
-interface Properties
-{
+interface Properties {
     imageUrl: string;
     title: string;
     description: string;
@@ -16,20 +15,17 @@ interface Properties
     buttonText: string;
 }
 
-export const ArticleCardView = (props: Properties): JSX.Element =>
-{
+export const ArticleCardView = (props: Properties): JSX.Element => {
     const classes = ArticleCardStyle();
-    return(
+    return (
         <div data-aos="fade-up">
-            <Card elevation={0} className={classes.card} >
+            <Card elevation={0} className={classes.card}>
                 <CardMedia image={props.imageUrl} className={classes.card_image} />
                 <CardContent>
                     <Typography gutterBottom={true} className={classes.card_title}>
                         {props.title}
                     </Typography>
-                    <Typography className={classes.card_description}>
-                        {props.description}
-                    </Typography>
+                    <Typography className={classes.card_description}>{props.description}</Typography>
                     <CardActions className={classes.card_action}>
                         <Button onClick={props.onClickEvent} size="small" className={classes.button}>
                             {props.buttonText}
@@ -39,4 +35,4 @@ export const ArticleCardView = (props: Properties): JSX.Element =>
             </Card>
         </div>
     );
-}
+};

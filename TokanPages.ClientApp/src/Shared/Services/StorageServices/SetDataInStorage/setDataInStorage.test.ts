@@ -1,31 +1,26 @@
 /**
-* @jest-environment jsdom
-*/
+ * @jest-environment jsdom
+ */
 import "../../../../setupTests";
 import { SetDataInStorage } from "..";
 
-describe("verify SetDataInStorage method", () => 
-{
+describe("verify SetDataInStorage method", () => {
     // Prerequisities
-    Storage.prototype.setItem = jest.fn((key: string, value: any) => 
-    {
+    Storage.prototype.setItem = jest.fn((key: string, value: any) => {
         console.debug(`Called 'localStorage.setItem' with 'key' = ${key} and 'value' = ${value}.`);
     });
 
-    it("should return true, when input Object provided.", () => 
-    {  
+    it("should return true, when input Object provided.", () => {
         // Arrange
-        const testObject = 
-        {  
+        const testObject = {
             result: 0,
-            text: "test message"
+            text: "test message",
         };
 
-        const input = 
-        {
+        const input = {
             selection: testObject,
-            key: "SomeKey"
-        }
+            key: "SomeKey",
+        };
 
         // Act
         const saveObject = SetDataInStorage(input);
@@ -34,20 +29,17 @@ describe("verify SetDataInStorage method", () =>
         expect(saveObject).toBe(true);
     });
 
-    it("should return false, when input Object and empty Key provided.", () => 
-    {  
+    it("should return false, when input Object and empty Key provided.", () => {
         // Arrange
-        const testObject = 
-        {  
+        const testObject = {
             result: 0,
-            text: "test message"
+            text: "test message",
         };
 
-        const input = 
-        {
+        const input = {
             selection: testObject,
-            key: ""
-        }
+            key: "",
+        };
 
         // Act
         const saveObject = SetDataInStorage(input);
@@ -56,28 +48,25 @@ describe("verify SetDataInStorage method", () =>
         expect(saveObject).toBe(false);
     });
 
-    it("should return true, when input Array provided.", () => 
-    {  
+    it("should return true, when input Array provided.", () => {
         // Arrange
-        const testArray = 
-        [
+        const testArray = [
             {
                 id: 100,
                 flag: 0,
-                text: "message 1"
+                text: "message 1",
             },
             {
                 id: 200,
                 flag: 1,
-                text: "message 2"
-            }
+                text: "message 2",
+            },
         ];
 
-        const input = 
-        {
+        const input = {
             selection: testArray,
-            key: "SomeKey"
-        }
+            key: "SomeKey",
+        };
 
         // Act
         const saveArray = SetDataInStorage(input);

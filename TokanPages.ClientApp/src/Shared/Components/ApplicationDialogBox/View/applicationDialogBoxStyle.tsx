@@ -1,46 +1,37 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
-export const ApplicationDialogBoxStyle = makeStyles(() => (
-{
-    icon_holder:
-    {
-        display: "flex", 
-        alignItems: "center"
+export const ApplicationDialogBoxStyle = makeStyles(() => ({
+    icon_holder: {
+        display: "flex",
+        alignItems: "center",
     },
-    info_icon:
-    {
+    info_icon: {
         color: "#2196F3",
-        marginRight: 15
+        marginRight: 15,
     },
-    warning_icon:
-    {
+    warning_icon: {
         color: "#FFC107",
-        marginRight: 15
+        marginRight: 15,
     },
-    error_icon:
-    {
+    error_icon: {
         color: "#F50057",
-        marginRight: 15
+        marginRight: 15,
     },
-    title:
-    {
+    title: {
         fontSize: "1.5rem",
-        color: Colours.colours.black
+        color: Colours.colours.black,
     },
-    description:
-    {
+    description: {
         fontSize: "1.0rem",
-        color: Colours.colours.gray1
+        color: Colours.colours.gray1,
     },
-    button:
-    {
-        "&:hover": 
-        {
+    button: {
+        "&:hover": {
             color: Colours.colours.white,
             background: Colours.colours.darkViolet1,
         },
         color: Colours.colours.white,
         background: Colours.colours.violet,
-    }
+    },
 }));

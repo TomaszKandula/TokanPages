@@ -1,26 +1,21 @@
-interface Properties
-{
-    cookieName: string
+interface Properties {
+    cookieName: string;
 }
 
-export const GetCookie = (props: Properties): string =>
-{
+export const GetCookie = (props: Properties): string => {
     let cookieName = `${props.cookieName}=`;
     let cookieArray = document.cookie.split(";");
 
-    for (let item of cookieArray)
-    {
+    for (let item of cookieArray) {
         let cookie = item;
-        while (cookie.charAt(0) === " ")
-        {
+        while (cookie.charAt(0) === " ") {
             cookie = cookie.substring(1, cookie.length);
         }
 
-        if (cookie.indexOf(cookieName) === 0)
-        {
+        if (cookie.indexOf(cookieName) === 0) {
             return cookie.substring(cookieName.length, cookie.length);
         }
     }
 
     return "";
-}
+};

@@ -1,7 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface UserReAuthenticateState
-{
+export interface UserReAuthenticateState {
     status: OperationStatus;
     response?: any;
 }

@@ -11,20 +11,18 @@ import { AccountCircle } from "@material-ui/icons";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UserSignoutStyle } from "./userSignoutStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     caption: string;
     status: string;
     buttonText: string;
 }
 
-export const UserSignoutView = (props: Properties): JSX.Element => 
-{
+export const UserSignoutView = (props: Properties): JSX.Element => {
     const classes = UserSignoutStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
-                <Box pt={18} pb={10}>             
+                <Box pt={18} pb={10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
@@ -40,19 +38,20 @@ export const UserSignoutView = (props: Properties): JSX.Element =>
                             </Box>
                             <Box mt={4}>
                                 <Link to="/" className={classes.link}>
-                                    <Button 
-                                        fullWidth 
-                                        variant="contained" 
-                                        className={classes.button} 
-                                        disabled={props.isLoading}>
+                                    <Button
+                                        fullWidth
+                                        variant="contained"
+                                        className={classes.button}
+                                        disabled={props.isLoading}
+                                    >
                                         {props.buttonText}
                                     </Button>
                                 </Link>
                             </Box>
-                        </CardContent>   
-                    </Card>                    
+                        </CardContent>
+                    </Card>
                 </Box>
             </Container>
         </section>
     );
-}
+};

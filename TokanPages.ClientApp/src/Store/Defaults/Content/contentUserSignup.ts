@@ -1,10 +1,8 @@
 import { ContentUserSignupState } from "../../States";
 
-export const ContentUserSignup: ContentUserSignupState = 
-{
+export const ContentUserSignup: ContentUserSignupState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
         button: "",
@@ -14,6 +12,6 @@ export const ContentUserSignup: ContentUserSignupState =
         labelFirstName: "",
         labelLastName: "",
         labelEmail: "",
-        labelPassword: ""
-    }    
-}
+        labelPassword: "",
+    },
+};

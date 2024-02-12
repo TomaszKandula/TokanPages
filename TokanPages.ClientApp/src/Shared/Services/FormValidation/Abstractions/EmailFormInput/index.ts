@@ -1,4 +1,3 @@
-export interface EmailFormInput 
-{
+export interface EmailFormInput {
     email: string;
 }

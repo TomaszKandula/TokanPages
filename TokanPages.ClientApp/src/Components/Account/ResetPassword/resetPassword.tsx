@@ -7,36 +7,24 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";
 
-import { 
-    ApplicationDialogAction, 
-    UserPasswordResetAction 
-} from "../../../Store/Actions";
+import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
 
-import { 
-    ResetFormInput, 
-    ValidateResetForm 
-} from "../../../Shared/Services/FormValidation";
+import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
 
-import { 
-    GetTextWarning, 
-    SuccessMessage, 
-    WarningMessage 
-} from "../../../Shared/Services/Utilities";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 
-import { 
-    RECEIVED_ERROR_MESSAGE, 
-    RESET_FORM, 
-    RESET_PASSWORD_SUCCESS, 
-    RESET_PASSWORD_WARNING 
+import {
+    RECEIVED_ERROR_MESSAGE,
+    RESET_FORM,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_WARNING,
 } from "../../../Shared/constants";
 
-const formDefaultValues: ResetFormInput =
-{
-    email: ""
+const formDefaultValues: ResetFormInput = {
+    email: "",
 };
 
-export const ResetPassword = (props: ContentResetPasswordState): JSX.Element =>
-{
+export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => {
     const dispatch = useDispatch();
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -51,66 +39,58 @@ export const ResetPassword = (props: ContentResetPasswordState): JSX.Element =>
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const clearForm = React.useCallback(() => 
-    {
+    const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setHasProgress(false);
         dispatch(UserPasswordResetAction.clear());
-    }, 
-    [ hasProgress ]);
+    }, [hasProgress]);
 
-    React.useEffect(() => 
-    {
-        if (hasError)
-        {
+    React.useEffect(() => {
+        if (hasError) {
             clearForm();
             return;
         }
 
-        if (hasNotStarted && hasProgress) 
-        {
-            dispatch(UserPasswordResetAction.reset(
-            {
-                emailAddress: form.email
-            }));
+        if (hasNotStarted && hasProgress) {
+            dispatch(
+                UserPasswordResetAction.reset({
+                    emailAddress: form.email,
+                })
+            );
 
             return;
         }
 
-        if (hasFinished)
-        {
+        if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
             showSuccess(RESET_PASSWORD_SUCCESS);
         }
-    }, 
-    [ hasProgress, hasError, hasNotStarted, hasFinished ]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
 
-    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => 
-    {
-        if (event.code === "Enter")
-        {
+    const keyHandler = React.useCallback((event: ReactKeyboardEvent) => {
+        if (event.code === "Enter") {
             buttonHandler();
         }
     }, []);
 
-    const formHandler = React.useCallback((event: ReactChangeEvent) => 
-    { 
-        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value }); 
-    }, [ form ]);
+    const formHandler = React.useCallback(
+        (event: ReactChangeEvent) => {
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [form]
+    );
 
-    const buttonHandler = React.useCallback(() =>
-    {
+    const buttonHandler = React.useCallback(() => {
         let results = ValidateResetForm({ email: form.email });
 
-        if (!Validate.isDefined(results))
-        {
+        if (!Validate.isDefined(results)) {
             setHasProgress(true);
             return;
         }
 
         showWarning(GetTextWarning({ object: results, template: RESET_PASSWORD_WARNING }));
-    }, [ form ]);
+    }, [form]);
 
     return (
         <ResetPasswordView
@@ -125,4 +105,4 @@ export const ResetPassword = (props: ContentResetPasswordState): JSX.Element =>
             labelEmail={props.content.labelEmail}
         />
     );
-}
+};

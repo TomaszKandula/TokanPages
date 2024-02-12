@@ -1,5 +1,4 @@
-export interface Author
-{
+export interface Author {
     userId: string;
     aliasName: string;
     avatarName: string;

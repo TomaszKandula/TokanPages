@@ -2,8 +2,8 @@
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
-    border: 10px solid #F3F3F3;
-    border-top: 10px solid #6367EF;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #6367ef;
     border-radius: 50%;
     width: 64px;
     height: 64px;
@@ -11,6 +11,10 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

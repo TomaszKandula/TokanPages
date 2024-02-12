@@ -12,24 +12,27 @@ import { RenderImage } from "../../../Shared/Components";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
-const ActiveButton = (props: ContentHeaderState): JSX.Element => 
-{
+const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();
 
-    if (Validate.isEmpty(props.content?.action?.href))
-    {
-        return (<Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>);
+    if (Validate.isEmpty(props.content?.action?.href)) {
+        return (
+            <Button variant="contained" className={classes.action_button}>
+                {props.content?.action?.text}
+            </Button>
+        );
     }
 
-    return(
+    return (
         <Link to={props.content?.action?.href} className={classes.action_link}>
-            <Button variant="contained" className={classes.action_button}>{props.content?.action?.text}</Button>
+            <Button variant="contained" className={classes.action_button}>
+                {props.content?.action?.text}
+            </Button>
         </Link>
     );
-}
+};
 
-export const HeaderView = (props: ContentHeaderState): JSX.Element => 
-{
+export const HeaderView = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();
     return (
         <section className={classes.section}>
@@ -37,9 +40,11 @@ export const HeaderView = (props: ContentHeaderState): JSX.Element =>
                 <Grid container className={classes.top_margin}>
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.image_box}>
-                            {props.isLoading 
-                            ? <Skeleton variant="circle" className={classes.image_skeleton} /> 
-                            : RenderImage(GET_IMAGES_URL, props.content?.photo, classes.image)}
+                            {props.isLoading ? (
+                                <Skeleton variant="circle" className={classes.image_skeleton} />
+                            ) : (
+                                RenderImage(GET_IMAGES_URL, props.content?.photo, classes.image)
+                            )}
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -51,12 +56,16 @@ export const HeaderView = (props: ContentHeaderState): JSX.Element =>
                                 {props.isLoading ? <Skeleton variant="text" /> : props.content?.description}
                             </Typography>
                             <Box mt={4}>
-                                {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <ActiveButton {...props} />}
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" height="48px" />
+                                ) : (
+                                    <ActiveButton {...props} />
+                                )}
                             </Box>
                         </Box>
                     </Grid>
                 </Grid>
             </Container>
         </section>
-	);
-}
+    );
+};

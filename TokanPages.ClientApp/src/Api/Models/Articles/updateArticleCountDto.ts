@@ -1,4 +1,3 @@
-export interface UpdateArticleCountDto 
-{
+export interface UpdateArticleCountDto {
     id: string;
 }

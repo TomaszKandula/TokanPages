@@ -1,24 +1,20 @@
-export interface AccountContentDto
-{
-    content:
-    {
+export interface AccountContentDto {
+    content: {
         language: string;
-        sectionAccessDenied: SectionAccessDenied,
-        sectionAccountInformation: SectionAccountInformation,
-        sectionAccountPassword: SectionAccountPassword,
-        sectionAccountRemoval: SectionAccountRemoval
-    }
+        sectionAccessDenied: SectionAccessDenied;
+        sectionAccountInformation: SectionAccountInformation;
+        sectionAccountPassword: SectionAccountPassword;
+        sectionAccountRemoval: SectionAccountRemoval;
+    };
 }
 
-export interface SectionAccessDenied
-{
+export interface SectionAccessDenied {
     accessDeniedCaption: string;
     accessDeniedPrompt: string;
     homeButtonText: string;
 }
 
-export interface SectionAccountInformation
-{
+export interface SectionAccountInformation {
     caption: string;
     labelUserId: string;
     labelUserAlias: string;
@@ -33,8 +29,7 @@ export interface SectionAccountInformation
     uploadAvatarButtonText: string;
 }
 
-export interface SectionAccountPassword
-{
+export interface SectionAccountPassword {
     caption: string;
     labelOldPassword: string;
     labelNewPassword: string;
@@ -42,8 +37,7 @@ export interface SectionAccountPassword
     updateButtonText: string;
 }
 
-export interface SectionAccountRemoval
-{
+export interface SectionAccountRemoval {
     caption: string;
     warningText: string;
     deleteButtonText: string;

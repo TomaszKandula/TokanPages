@@ -6,19 +6,11 @@ import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { DocumentStyle } from "./documentStyle";
 
-import { 
-    ContentPolicyState, 
-    ContentTermsState,
-    ContentStoryState 
-} from "../../../Store/States";
+import { ContentPolicyState, ContentTermsState, ContentStoryState } from "../../../Store/States";
 
-import { 
-    ProgressBar, 
-    RenderContent 
-} from "../../../Shared/Components";
+import { ProgressBar, RenderContent } from "../../../Shared/Components";
 
-export const DocumentView = (props: ContentPolicyState | ContentTermsState | ContentStoryState): JSX.Element => 
-{
+export const DocumentView = (props: ContentPolicyState | ContentTermsState | ContentStoryState): JSX.Element => {
     const classes = DocumentStyle();
     return (
         <section className={classes.section}>
@@ -27,18 +19,16 @@ export const DocumentView = (props: ContentPolicyState | ContentTermsState | Con
                     <div data-aos="fade-down">
                         <Link to="/">
                             <IconButton>
-                                <ArrowBack/>
+                                <ArrowBack />
                             </IconButton>
-                        </Link> 
+                        </Link>
                         <Divider className={classes.divider} />
-                    </div>                    
+                    </div>
                     <div data-aos="fade-up">
-                        {props.isLoading 
-                            ? <ProgressBar /> 
-                            : <RenderContent items={props.content?.items}/>}
+                        {props.isLoading ? <ProgressBar /> : <RenderContent items={props.content?.items} />}
                     </div>
                 </Box>
             </Container>
         </section>
     );
-}
+};

@@ -14,8 +14,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninStyle } from "./userSigninStyle";
 
-interface Properties extends ViewProperties
-{
+interface Properties extends ViewProperties {
     caption: string;
     button: string;
     link1: string;
@@ -30,99 +29,103 @@ interface Properties extends ViewProperties
     labelPassword: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => 
-{
+const ActiveButton = (props: Properties): JSX.Element => {
     const classes = UserSigninStyle();
-    return(
-        <Button 
-            fullWidth 
-            type="submit" 
-            variant="contained" 
-            onClick={props.buttonHandler} 
-            className={classes.button} 
-            disabled={props.progress}>
-            {!props.progress 
-            ? props.button 
-            : <CircularProgress size={20} />}
+    return (
+        <Button
+            fullWidth
+            type="submit"
+            variant="contained"
+            onClick={props.buttonHandler}
+            className={classes.button}
+            disabled={props.progress}
+        >
+            {!props.progress ? props.button : <CircularProgress size={20} />}
         </Button>
     );
-}
+};
 
-const RedirectTo = (args: { path: string, name: string }): JSX.Element => 
-{
-    return(<Link to={args.path}>{args.name}</Link>);
-}
+const RedirectTo = (args: { path: string; name: string }): JSX.Element => {
+    return <Link to={args.path}>{args.name}</Link>;
+};
 
-export const UserSigninView = (props: Properties): JSX.Element =>
-{
+export const UserSigninView = (props: Properties): JSX.Element => {
     const classes = UserSigninStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">
-                <Box pt={18} pb={10}>             
+                <Box pt={18} pb={10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption} >
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.caption}
+                                <Typography className={classes.caption}>
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextField 
-                                            required 
-                                            fullWidth 
-                                            id="email" 
-                                            name="email" 
-                                            variant="outlined" 
-                                            autoComplete="email" 
-                                            onKeyUp={props.keyHandler}
-                                            onChange={props.formHandler} 
-                                            value={props.email} 
-                                            label={props.labelEmail}
-                                        />}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="email"
+                                                name="email"
+                                                variant="outlined"
+                                                autoComplete="email"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.email}
+                                                label={props.labelEmail}
+                                            />
+                                        )}
                                     </Grid>
                                     <Grid item xs={12}>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <TextFiedWithPassword 
-                                            uuid="password" 
-                                            fullWidth={true}
-                                            value={props.password} 
-                                            label={props.labelPassword}
-                                            onKeyUp={props.keyHandler}
-                                            onChange={props.formHandler} 
-                                        />}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextFiedWithPassword
+                                                uuid="password"
+                                                fullWidth={true}
+                                                value={props.password}
+                                                label={props.labelPassword}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                            />
+                                        )}
                                     </Grid>
                                 </Grid>
                                 <Box my={2}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                                    : <ActiveButton {...props} />}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" width="100%" height="40px" />
+                                    ) : (
+                                        <ActiveButton {...props} />
+                                    )}
                                 </Box>
                                 <Grid container spacing={2} className={classes.actions}>
                                     <Grid item xs={12} sm={6}>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="text" /> 
-                                        : <RedirectTo path="/signup" name={props.link1} />}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            <RedirectTo path="/signup" name={props.link1} />
+                                        )}
                                     </Grid>
                                     <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="text" /> 
-                                        : <RedirectTo path="/resetpassword" name={props.link2} />}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            <RedirectTo path="/resetpassword" name={props.link2} />
+                                        )}
                                     </Grid>
                                 </Grid>
                             </Box>
-                        </CardContent>   
-                    </Card>                    
+                        </CardContent>
+                    </Card>
                 </Box>
             </Container>
         </section>
     );
-}
+};

@@ -2,10 +2,8 @@ import "../../../../setupTests";
 import { TextObject } from "Shared/Components/RenderContent/Models";
 import { ObjectToText } from "..";
 
-describe("verify ObjectToText method", () => 
-{
-    it("should return string, when valid JSON object with HTML type provided.", () => 
-    {
+describe("verify ObjectToText method", () => {
+    it("should return string, when valid JSON object with HTML type provided.", () => {
         // Arrange
         const jsonObject: string = `
         {
@@ -19,13 +17,12 @@ describe("verify ObjectToText method", () =>
                     "text": "" 
                 }
             ]
-        }`
+        }`;
 
         const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
-        const input = 
-        {
-            textObject: textObject
-        }
+        const input = {
+            textObject: textObject,
+        };
 
         const expectation: string = "This is test object  We will use it for testing.";
 
@@ -36,8 +33,7 @@ describe("verify ObjectToText method", () =>
         expect(result).toBe(expectation);
     });
 
-    it("should return empty string, when valid JSON object without HTML type provided.", () => 
-    {
+    it("should return empty string, when valid JSON object without HTML type provided.", () => {
         // Arrange
         const jsonObject: string = `
         {
@@ -51,13 +47,12 @@ describe("verify ObjectToText method", () =>
                     "text": "" 
                 }
             ]
-        }`
+        }`;
 
         const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
-        const input = 
-        {
-            textObject: textObject
-        }
+        const input = {
+            textObject: textObject,
+        };
 
         // Act
         const result = ObjectToText(input);
@@ -66,34 +61,30 @@ describe("verify ObjectToText method", () =>
         expect(result).toBe("");
     });
 
-    it("should return undefined, when undefined input provided.", () => 
-    {
+    it("should return undefined, when undefined input provided.", () => {
         // Arrange
-        const input = 
-        {
-            textObject: undefined
-        }
+        const input = {
+            textObject: undefined,
+        };
 
         // Act
         const result = ObjectToText(input);
-        
+
         // Assert
         expect(result).toBe(undefined);
     });
 
-    it("should return undefined, when empty JSON object provided.", () => 
-    {
+    it("should return undefined, when empty JSON object provided.", () => {
         // Arrange
         const jsonObject: string = `
         {
             "items": [ ]
-        }`
+        }`;
 
         const textObject: TextObject = JSON.parse(jsonObject) as TextObject;
-        const input = 
-        {
-            textObject: textObject
-        }
+        const input = {
+            textObject: textObject,
+        };
 
         // Act
         const result = ObjectToText(input);
@@ -102,4 +93,3 @@ describe("verify ObjectToText method", () =>
         expect(result).toBe(undefined);
     });
 });
- 

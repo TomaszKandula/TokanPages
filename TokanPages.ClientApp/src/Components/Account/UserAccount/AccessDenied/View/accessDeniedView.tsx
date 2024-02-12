@@ -9,42 +9,31 @@ import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ContentAccountState } from "../../../../../Store/States";
 import { AccessDeniedStyle } from "./accessDeniedStyle";
 
-import { 
-    Button, 
-    Divider, 
-    Typography
-} from "@material-ui/core";
+import { Button, Divider, Typography } from "@material-ui/core";
 
-const HomeButton = (props: ContentAccountState): JSX.Element => 
-{
+const HomeButton = (props: ContentAccountState): JSX.Element => {
     const classes = AccessDeniedStyle();
-    return(
+    return (
         <Link to="/" className={classes.home_link}>
-            <Button 
-                fullWidth 
-                variant="contained" 
-                className={classes.home_button} 
-                disabled={props.isLoading}>
+            <Button fullWidth variant="contained" className={classes.home_button} disabled={props.isLoading}>
                 {props.content?.sectionAccessDenied?.homeButtonText}
             </Button>
         </Link>
     );
-}
+};
 
-const CustomDivider = (args: { marginTop: number, marginBottom: number }) => 
-{
+const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     const classes = AccessDeniedStyle();
-    return(
+    return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
             <Divider className={classes.divider} />
         </Box>
     );
-}
+};
 
-export const AccessDeniedView = (props: ContentAccountState): JSX.Element => 
-{
+export const AccessDeniedView = (props: ContentAccountState): JSX.Element => {
     const classes = AccessDeniedStyle();
-    return(
+    return (
         <section className={classes.section}>
             <Container maxWidth="md">
                 <Box pt={15} pb={8}>
@@ -52,26 +41,34 @@ export const AccessDeniedView = (props: ContentAccountState): JSX.Element =>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography component="span" className={classes.caption}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" /> 
-                                    : props.content?.sectionAccessDenied?.accessDeniedCaption}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        props.content?.sectionAccessDenied?.accessDeniedCaption
+                                    )}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
                             <Box pt={3} pb={3}>
                                 <Typography component="span" className={classes.access_denied_prompt}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="text" height="100px" /> 
-                                    : <ReactHtmlParser html={props.content?.sectionAccessDenied?.accessDeniedPrompt} />}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" height="100px" />
+                                    ) : (
+                                        <ReactHtmlParser
+                                            html={props.content?.sectionAccessDenied?.accessDeniedPrompt}
+                                        />
+                                    )}
                                 </Typography>
                             </Box>
-                            {props.isLoading 
-                            ? <Skeleton variant="rect" width="100%" height="40px" /> 
-                            : <HomeButton {...props} />}
+                            {props.isLoading ? (
+                                <Skeleton variant="rect" width="100%" height="40px" />
+                            ) : (
+                                <HomeButton {...props} />
+                            )}
                         </CardContent>
                     </Card>
                 </Box>
             </Container>
         </section>
     );
-}
+};

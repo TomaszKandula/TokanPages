@@ -1,12 +1,10 @@
 import { ContentClientsState } from "../../States";
 
-export const ContentClients: ContentClientsState =
-{
+export const ContentClients: ContentClientsState = {
     isLoading: false,
-    content: 
-    {
+    content: {
         language: "",
         caption: "",
-        images: []
-    }
-}
+        images: [],
+    },
+};

@@ -1,7 +1,5 @@
-export interface FeaturesContentDto
-{
-    content: 
-    {
+export interface FeaturesContentDto {
+    content: {
         language: string;
         caption: string;
         header: string;

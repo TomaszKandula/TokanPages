@@ -5,14 +5,9 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
 
-import { 
-    ContentNavigationAction, 
-    ContentFooterAction, 
-    ContentResetPasswordAction 
-} from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentResetPasswordAction } from "../../Store/Actions";
 
-export const ResetPasswordPage = (): JSX.Element => 
-{
+export const ResetPasswordPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -20,16 +15,14 @@ export const ResetPasswordPage = (): JSX.Element =>
     const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const reset = useSelector((state: ApplicationState) => state.contentResetPassword);
 
-    React.useEffect(() => 
-    {
+    React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentResetPasswordAction.get());
-    }, 
-    [ language?.id ]);
+    }, [language?.id]);
 
     return (
-        <>     
+        <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
                 <ResetPassword content={reset?.content} isLoading={reset?.isLoading} />
@@ -37,4 +30,4 @@ export const ResetPasswordPage = (): JSX.Element =>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>
     );
-}
+};
