@@ -49,4 +49,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\Assets\" />
+    <Folder Include="Validators\Assets\" />
+  </ItemGroup>
+
 </Project>
