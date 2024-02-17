@@ -1,11 +1,11 @@
-using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
+using FluentValidation;
 
 namespace TokanPages.Backend.Application.Assets.Queries;
 
-public class GetSingleAssetQueryValidator : AbstractValidator<GetSingleAssetQuery>
+public class GetImageAssetQueryValidator : AbstractValidator<GetImageAssetQuery>
 {
-    public GetSingleAssetQueryValidator()
+    public GetImageAssetQueryValidator()
     {
         RuleFor(query => query.BlobName)
             .NotEmpty()
