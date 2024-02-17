@@ -69,11 +69,11 @@ export const GET_TERMS_CONTENT = `${API_CONTENT_URI}/getContent/?name=terms&type
 export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent/?name=policy&type=document`;
 
 export const GET_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset/?id={id}&assetName=image.jpg`;
-export const GET_IMAGES_URL = `${API_ASSETS_URI}/getAsset/?blobName=images`;
-export const GET_ARTICLE_IMAGE_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/sections/articles`;
-export const GET_FEATURED_IMAGE_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/sections/featured`;
-export const GET_TESTIMONIALS_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/sections/testimonials`;
-export const GET_ICONS_URL = `${API_ASSETS_URI}/getAsset/?blobName=images/icons`;
+export const GET_IMAGES_URL = `${API_ASSETS_URI}/getImageAsset/?blobName=images`;
+export const GET_ARTICLE_IMAGE_URL = `${API_ASSETS_URI}/getImageAsset/?blobName=images/sections/articles`;
+export const GET_FEATURED_IMAGE_URL = `${API_ASSETS_URI}/getImageAsset/?blobName=images/sections/featured`;
+export const GET_TESTIMONIALS_URL = `${API_ASSETS_URI}/getImageAsset/?blobName=images/sections/testimonials`;
+export const GET_ICONS_URL = `${API_ASSETS_URI}/getImageAsset/?blobName=images/icons`;
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;
