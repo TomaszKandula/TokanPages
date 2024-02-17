@@ -51,6 +51,20 @@ public class AssetsController : ApiBaseController
         await Mediator.Send(new GetImageAssetQuery { BlobName = blobName });
 
     /// <summary>
+    /// Returns video file from storage by its full name.
+    /// </summary>
+    /// <remarks>
+    /// This endpoint serves as a proxy to an Azure Blob Storage.
+    /// </remarks>
+    /// <param name="blobName">Full blob name (case sensitive).</param>
+    /// <returns>Video file.</returns>
+    [HttpGet]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+    [ProducesResponseType(StatusCodes.Status206PartialContent)]
+    public async Task GetVideoAsset([FromQuery] string blobName)
+        => await Mediator.Send(new GetVideoAssetQuery { BlobName = blobName });
+
+    /// <summary>
     /// Allow to upload a single asset to an Azure Storage.
     /// </summary>
     /// <remarks>
