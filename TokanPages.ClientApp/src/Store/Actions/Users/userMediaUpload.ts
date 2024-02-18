@@ -4,7 +4,8 @@ import { UploadUserMediaDto, UploadUserMediaResultDto } from "../../../Api/Model
 import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { UPLOAD_USER_MEDIA, RequestContract, GetConfiguration } from "../../../Api/Request";
+import { UPLOAD_USER_IMAGE, RequestContract, GetConfiguration } from "../../../Api/Request";
+import Validate from "validate.js";
 
 export const UPLOAD = "UPLOAD_USER_MEDIA";
 export const CLEAR = "UPLOAD_USER_MEDIA_CLEAR";
@@ -32,18 +33,20 @@ export const UserMediaUploadAction = {
         dispatch => {
             dispatch({ type: UPLOAD });
 
+            const hasBase64Data = !Validate.isEmpty(payload.base64Data);
+            const hasBinaryData = !Validate.isEmpty(payload.binaryData);
+
             let formData = new FormData();
-            formData.append("userId", payload.userId as string);
-            formData.append("mediaTarget", payload.mediaTarget.toString());
-            formData.append("data", payload.data);
+            if (hasBase64Data) formData.append("binaryData", payload.base64Data as string);
+            if (hasBinaryData) formData.append("binaryData", payload.binaryData as File);
 
-            const url = skipDb ? `${UPLOAD_USER_MEDIA}?skipDb=${skipDb}` : UPLOAD_USER_MEDIA;
-
+            const url = skipDb ? `${UPLOAD_USER_IMAGE}?skipDb=${skipDb}` : UPLOAD_USER_IMAGE;
+            const headers = { "Content-Type": "multipart/form-data" };
             const request: RequestContract = {
                 configuration: {
                     method: "POST",
                     url: url,
-                    headers: { "Content-Type": "multipart/form-data" },
+                    headers: headers,
                     data: formData,
                 },
             };

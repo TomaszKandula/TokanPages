@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_USER_MEDIA } from "../../../Api/Request";
+import { GET_USER_IMAGE } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentNavigationState } from "../../../Store/States";
 import { LanguageChangeEvent } from "../../../Shared/types";
@@ -15,7 +15,7 @@ export const Navigation = (props: ContentNavigationState): JSX.Element => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const avatarSource = GET_USER_MEDIA.replace("{id}", store?.userData?.userId).replace(
+    const avatarSource = GET_USER_IMAGE.replace("{id}", store?.userData?.userId).replace(
         "{name}",
         store?.userData?.avatarName
     );
