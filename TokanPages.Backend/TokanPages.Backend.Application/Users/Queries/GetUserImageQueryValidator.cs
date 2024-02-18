@@ -3,9 +3,9 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetUserMediaQueryValidator : AbstractValidator<GetUserMediaQuery>
+public class GetUserImageQueryValidator : AbstractValidator<GetUserImageQuery>
 {
-    public GetUserMediaQueryValidator()
+    public GetUserImageQueryValidator()
     {
         RuleFor(query => query.Id)
             .NotEmpty()
@@ -22,5 +22,5 @@ public class GetUserMediaQueryValidator : AbstractValidator<GetUserMediaQuery>
             .MaximumLength(255)
             .WithErrorCode(nameof(ValidationCodes.NAME_TOO_LONG))
             .WithMessage(ValidationCodes.NAME_TOO_LONG);
-    }    
+    }
 }

@@ -1,9 +1,8 @@
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetUserMediaQuery : IRequest<FileContentResult>
+public class GetUserVideoQuery : IRequest<Unit>
 {
     public Guid Id { get; set; }
 
