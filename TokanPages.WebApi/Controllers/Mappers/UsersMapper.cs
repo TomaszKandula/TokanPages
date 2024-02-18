@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Users.Commands;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.WebApi.Controllers.Mappers;
@@ -117,23 +116,19 @@ public static class UsersMapper
     };
 
     /// <summary>
-    /// Maps request DTO to given command.
+    /// Maps request DTO to a given command.
     /// </summary>
-    /// <param name="model">Payload object.</param>
+    /// <param name="model">Users object.</param>
     /// <param name="skipDb">
     /// Allow to skip database update.
     /// No additional information will be logged.
     /// </param>
     /// <returns>Command object.</returns>
-    public static UploadUserMediaCommand MapToUploadUserMediaCommand(UploadUserMediaDto model, bool skipDb = false) => new()
+    public static UploadImageCommand MapToUploadImageCommand(UploadImageDto model, bool skipDb = false) => new()
     {
-        UserId = model.UserId,
-        MediaTarget = model.MediaTarget,
-        MediaName = model.Data!.FileName,
-        MediaType = model.Data.ContentType.ToMediaType(),
-        Data = model.Data.GetByteArray(),
-        DataType = model.Data?.ContentType ?? string.Empty,
-        SkipDb = skipDb
+        SkipDb = skipDb,
+        Base64Data = model.Base64Data,
+        BinaryData = model.BinaryData
     };
 
     /// <summary>
