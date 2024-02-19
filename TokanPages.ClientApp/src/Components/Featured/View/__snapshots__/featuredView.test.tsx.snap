@@ -44,7 +44,7 @@ exports[`test component: featuredView should render correctly '<FeaturedView />'
             >
               <WithStyles(ForwardRef(CardMedia))
                 className="makeStyles-card_media-7"
-                image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/featured/article0.jpg"
+                image="http://localhost:5000/api/v1/assets/getImageAsset/?blobName=images/sections/featured/article0.jpg"
               />
               <WithStyles(ForwardRef(CardContent))
                 className="makeStyles-card_content-4"
@@ -80,7 +80,7 @@ exports[`test component: featuredView should render correctly '<FeaturedView />'
             >
               <WithStyles(ForwardRef(CardMedia))
                 className="makeStyles-card_media-7"
-                image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/featured/article1.jpg"
+                image="http://localhost:5000/api/v1/assets/getImageAsset/?blobName=images/sections/featured/article1.jpg"
               />
               <WithStyles(ForwardRef(CardContent))
                 className="makeStyles-card_content-4"
@@ -116,7 +116,7 @@ exports[`test component: featuredView should render correctly '<FeaturedView />'
             >
               <WithStyles(ForwardRef(CardMedia))
                 className="makeStyles-card_media-7"
-                image="http://localhost:5000/api/v1/assets/getAsset/?blobName=images/sections/featured/article2.jpg"
+                image="http://localhost:5000/api/v1/assets/getImageAsset/?blobName=images/sections/featured/article2.jpg"
               />
               <WithStyles(ForwardRef(CardContent))
                 className="makeStyles-card_content-4"
