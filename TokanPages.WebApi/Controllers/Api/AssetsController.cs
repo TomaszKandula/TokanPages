@@ -54,7 +54,7 @@ public class AssetsController : ApiBaseController
     /// Allow to upload a single image asset to an Azure Storage.
     /// </summary>
     /// <remarks>
-    /// Requires: Roles.OrdinaryUser, Roles.FitnessTrainer.
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
     /// </remarks>
     /// <param name="payLoad">Binary data to be uploaded.</param>
     /// <returns>Full blob name of uploaded asset.</returns>

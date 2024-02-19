@@ -60,9 +60,6 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Revokes existing user token.
     /// </summary>
-    /// <remarks>
-    /// Requires: Roles.OrdinaryUser.
-    /// </remarks>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
@@ -117,6 +114,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Returns all registered users.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard.
+    /// </remarks>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpGet]
@@ -129,6 +129,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Returns registered user.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
+    /// </remarks>
     /// <param name="id">User ID.</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
@@ -153,6 +156,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Updates existing user account.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payLoad">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
@@ -165,6 +171,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Removes existing user account.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payLoad">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
@@ -207,6 +216,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Allows to upload image file.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payload">File data.</param>
     /// <param name="skipDb">
     /// Allow to skip database update.
@@ -223,6 +235,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Removes uploaded user media file (image/video).
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payload">Unique full blob name.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
