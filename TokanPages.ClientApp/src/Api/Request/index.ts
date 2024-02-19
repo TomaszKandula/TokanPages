@@ -3,6 +3,7 @@ export type { ExecuteContract, GetContentContract, PromiseResultContract, Reques
 export { GetConfiguration, GetContent, Execute, ExecuteAsync } from "./Services";
 
 export {
+    API_BASE_URI,
     GET_ARTICLES,
     GET_ARTICLE,
     ADD_ARTICLE,

@@ -1,6 +1,6 @@
 const API_VER = process.env.REACT_APP_API_VER;
 const APP_BACKEND = process.env.REACT_APP_BACKEND;
-const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
+export const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
 const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
 const API_SUBSCRIBERS_URI = `${API_BASE_URI}/subscribers`;
