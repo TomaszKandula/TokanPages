@@ -36,6 +36,7 @@ COPY --from=PROJECTS "/app/TokanPages.Persistence/TokanPages.Persistence.Databas
 COPY --from=PROJECTS "/app/TokanPages.Persistence/TokanPages.Persistence.MigrationRunner/bin/Release/net6.0" .
 
 # SERVICES
+COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.AzureBusService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.AzureStorageService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.BehaviourService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.CipheringService/bin/Release/net6.0" .
