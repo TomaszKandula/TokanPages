@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Assets.Commands;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.WebApi.Dto.Assets;
 
 namespace TokanPages.WebApi.Controllers.Mappers;
@@ -12,14 +11,13 @@ namespace TokanPages.WebApi.Controllers.Mappers;
 public static class AssetsMapper
 {
     /// <summary>
-    /// Maps request DTO to given command.
+    /// Map request DTO to a given command.
     /// </summary>
-    /// <param name="model">Payload object.</param>
+    /// <param name="model">Assets object.</param>
     /// <returns>Command object.</returns>
-    public static AddSingleAssetCommand MapToAddSingleAssetCommand(AddSingleAssetDto model) => new()
+    public static AddImageAssetCommand MapToAddImageAssetCommand(AddImageAssetDto model) => new()
     {
-        MediaName = model.Data!.FileName,
-        MediaType = model.Data.ContentType.ToMediaType(),
-        Data = model.Data.GetByteArray()
+        Base64Data = model.Base64Data,
+        BinaryData = model.BinaryData
     };
 }

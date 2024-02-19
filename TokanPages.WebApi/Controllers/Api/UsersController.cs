@@ -60,9 +60,6 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Revokes existing user token.
     /// </summary>
-    /// <remarks>
-    /// Requires: Roles.OrdinaryUser.
-    /// </remarks>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
@@ -117,6 +114,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Returns all registered users.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard.
+    /// </remarks>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpGet]
@@ -129,6 +129,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Returns registered user.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
+    /// </remarks>
     /// <param name="id">User ID.</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
@@ -153,6 +156,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Updates existing user account.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payLoad">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
@@ -165,6 +171,9 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Removes existing user account.
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payLoad">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
@@ -175,22 +184,41 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
 
     /// <summary>
-    /// Returns user media file by its name.
+    /// Returns user image file by its name.
     /// </summary>
     /// <param name="id">User ID.</param>
     /// <param name="blobName">Full blob name (case sensitive).</param>
     /// <returns>File.</returns>
     [HttpGet]
-    [Route("{id:guid}/[action]")]
     [ETagFilter]
+    [Route("{id:guid}/[action]")]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "id", "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetUserMedia([FromRoute] Guid id, [FromQuery] string blobName)
-        => await Mediator.Send(new GetUserMediaQuery { Id = id, BlobName = blobName });
+    public async Task<IActionResult> GetUserImage([FromRoute] Guid id, [FromQuery] string blobName)
+        => await Mediator.Send(new GetUserImageQuery { Id = id, BlobName = blobName });
 
     /// <summary>
-    /// Allows to upload media file (image/video).
+    /// Returns user video file from storage by its full name.
     /// </summary>
+    /// <remarks>
+    /// This endpoint serves as a proxy to an Azure Blob Storage.
+    /// </remarks>
+    /// <param name="id">User ID.</param>
+    /// <param name="blobName">Full blob name (case sensitive).</param>
+    /// <returns>Video file.</returns>
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+    [ProducesResponseType(StatusCodes.Status206PartialContent)]
+    public async Task GetUserVideo([FromRoute] Guid id,[FromQuery] string blobName)
+        => await Mediator.Send(new GetUserVideoQuery { Id  = id, BlobName = blobName });
+
+    /// <summary>
+    /// Allows to upload image file.
+    /// </summary>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payload">File data.</param>
     /// <param name="skipDb">
     /// Allow to skip database update.
@@ -200,13 +228,16 @@ public class UsersController : ApiBaseController
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
-    [ProducesResponseType(typeof(UploadUserMediaCommandResult), StatusCodes.Status200OK)]
-    public async Task<UploadUserMediaCommandResult> UploadUserMedia([FromForm] UploadUserMediaDto payload, [FromQuery] bool skipDb = false)
-        => await Mediator.Send(UsersMapper.MapToUploadUserMediaCommand(payload, skipDb));
+    [ProducesResponseType(typeof(UploadImageCommandResult), StatusCodes.Status200OK)]
+    public async Task<UploadImageCommandResult> UploadImage([FromForm] UploadImageDto payload, [FromQuery] bool skipDb = false)
+        => await Mediator.Send(UsersMapper.MapToUploadImageCommand(payload, skipDb));
 
     /// <summary>
     /// Removes uploaded user media file (image/video).
     /// </summary>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
     /// <param name="payload">Unique full blob name.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]

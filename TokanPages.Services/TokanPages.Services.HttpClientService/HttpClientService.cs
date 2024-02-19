@@ -1,5 +1,7 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -27,6 +29,12 @@ public class HttpClientService : IHttpClientService
     {
         _httpClient = httpClient;
         _loggerService = loggerService;
+    }
+
+    public async Task ProxyRequest(Configuration configuration, HttpResponse response, CancellationToken cancellationToken = default)
+    {
+        var preparedRequest = PrepareProxyRequest(configuration);
+        await ExecuteRangeRequest(response, preparedRequest, cancellationToken);
     }
 
     public async Task<ExecutionResult> Execute(Configuration configuration, CancellationToken cancellationToken = default)
@@ -93,7 +101,7 @@ public class HttpClientService : IHttpClientService
     {
         var requestUri = configuration.Url;
         if (configuration.QueryParameters is not null && configuration.QueryParameters.Any())
-            requestUri = QueryHelpers.AddQueryString(configuration.Url, configuration.QueryParameters!);
+            requestUri = QueryHelpers.AddQueryString(configuration.Url, configuration.QueryParameters);
 
         using var request = new HttpRequestMessage(new HttpMethod(configuration.Method), requestUri);
 
@@ -121,7 +129,8 @@ public class HttpClientService : IHttpClientService
             ContractResolver = new DefaultContractResolver
             {
                 NamingStrategy = new CamelCaseNamingStrategy()
-            }
+            },
+            NullValueHandling = NullValueHandling.Ignore
         };
     }
 
@@ -175,5 +184,47 @@ public class HttpClientService : IHttpClientService
 
         message = $"Argument '{nameof(configuration.Url)}' cannot be null or empty.";
         throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
+    }
+
+    private static HttpRequestMessage PrepareProxyRequest(Configuration configuration)
+    {
+        var url = configuration.Url;
+        if (configuration.QueryParameters is not null && configuration.QueryParameters.Any())
+            url = QueryHelpers.AddQueryString(url, configuration.QueryParameters);
+
+        var request = new HttpRequestMessage
+        {
+            Method = new HttpMethod(configuration.Method),
+            RequestUri = new Uri(url, UriKind.RelativeOrAbsolute),
+        };
+
+        if (configuration.Range is not null && configuration.Range.Value.Count != 0)
+            request.Headers.Range = RangeHeaderValue.Parse(configuration.Range);
+
+        if (configuration.Authentication != null)
+            ApplyAuthentication(request, configuration.Authentication);
+
+        return request;
+    }
+
+    private async Task ExecuteRangeRequest(HttpResponse response, HttpRequestMessage request, CancellationToken cancellationToken = default)
+    {
+        var origin = await _httpClient.SendAsync(request, cancellationToken);
+        response.StatusCode = (int)origin.StatusCode;
+
+        foreach (var header in origin.Headers)
+        {
+            response.Headers[header.Key] = header.Value.ToArray();
+        }
+
+        foreach (var header in origin.Content.Headers)
+        {
+            response.Headers[header.Key] = header.Value.ToArray();
+        }
+
+        response.Headers.Remove("server");
+        response.Headers.Remove("transfer-encoding");
+
+        await origin.Content.CopyToAsync(response.Body, cancellationToken);
     }
 }

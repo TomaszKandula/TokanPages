@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Application.Assets.Commands;
 
-public class AddSingleAssetCommandResult
+public class AddImageAssetCommandResult
 {
     public string BlobName { get; set; } = "";
 }

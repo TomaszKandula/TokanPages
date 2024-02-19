@@ -20,7 +20,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenValidBlobName_WhenRequestingAsset_ShouldSucceed(string blobName)
     {
         // Arrange
-        var uri = $"{BaseUriAssets}/getAsset/?BlobName={blobName}";
+        var uri = $"{BaseUriAssets}/getImageAsset/?BlobName={blobName}";
         var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();
@@ -38,7 +38,7 @@ public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplication
     public async Task GivenInvalidBlobName_WhenRequestingAsset_ShouldThrowError()
     {
         // Arrange
-        var uri = $"{BaseUriAssets}/getAsset/?BlobName={DataUtilityService.GetRandomString(useAlphabetOnly: true)}";
+        var uri = $"{BaseUriAssets}/getImageAsset/?BlobName={DataUtilityService.GetRandomString(useAlphabetOnly: true)}";
         var httpClient = _factory
             .WithWebHostBuilder(builder => builder.UseSolutionRelativeContentRoot(TestRootPath))
             .CreateClient();

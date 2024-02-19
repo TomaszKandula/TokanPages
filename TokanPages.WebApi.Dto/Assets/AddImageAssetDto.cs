@@ -5,14 +5,19 @@ using Microsoft.AspNetCore.Http;
 namespace TokanPages.WebApi.Dto.Assets;
 
 /// <summary>
-/// Use it when you want to add an asset (image/video).
+/// Use it when you want to add an image asset.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class AddSingleAssetDto
+public class AddImageAssetDto
 {
     /// <summary>
-    /// File data.
+    /// Optional.
+    /// </summary>
+    public string? Base64Data { get; set; }
+
+    /// <summary>
+    /// Optional.
     /// </summary>
     [DataType(DataType.Upload)]
-    public IFormFile? Data { get; set; }
+    public IFormFile? BinaryData { get; set; }
 }

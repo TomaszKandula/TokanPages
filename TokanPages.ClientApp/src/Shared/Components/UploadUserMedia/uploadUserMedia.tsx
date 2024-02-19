@@ -31,7 +31,6 @@ export const UploadUserMedia = (props: Properties): JSX.Element => {
     const dispatch = useDispatch();
     const accepting = GetAcceptedType(props.mediaTarget);
 
-    const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const upload = useSelector((state: ApplicationState) => state.userMediaUpload);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -61,9 +60,7 @@ export const UploadUserMedia = (props: Properties): JSX.Element => {
             dispatch(
                 UserMediaUploadAction.upload(
                     {
-                        userId: store.userId,
-                        mediaTarget: props.mediaTarget,
-                        data: fileData,
+                        binaryData: fileData,
                     },
                     props.skipDb,
                     props.handle
