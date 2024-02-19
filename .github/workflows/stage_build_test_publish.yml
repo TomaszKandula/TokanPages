@@ -84,6 +84,7 @@ jobs:
         Email_Address_Support: "${{ steps.vault.outputs.StageEmailAddressesItSupport }}"
         Db_DatabaseContext: "${{ steps.vault.outputs.StageDbConnect }}"
         Db_DatabaseContext_Migrator: "${{ steps.vault.outputs.StageDbMigrator }}"
+        AZ_Bus_ConnectionString: "${{ steps.vault.outputs.StageAzBusConnectionString }}"
         AZ_Storage_BaseUrl: "${{ steps.vault.outputs.StageAzStorageBaseUrl }}"
         AZ_Storage_ContainerName: "${{ steps.vault.outputs.StageAzStorageContainerName }}"
         AZ_Storage_ConnectionString: "${{ steps.vault.outputs.StageAzStorageConnectionString }}"
