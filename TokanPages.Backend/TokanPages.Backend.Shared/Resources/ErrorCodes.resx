@@ -213,4 +213,7 @@
   <data name="CANNOT_PARSE" xml:space="preserve">
     <value>Cannot parse given content</value>
   </data>
+  <data name="BUS_MESSAGE_TOO_LARGE" xml:space="preserve">
+    <value>Message is too long</value>
+  </data>
 </root>
