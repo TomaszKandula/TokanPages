@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.Database\TokanPages.Persistence.Database.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureBusService\TokanPages.Services.AzureBusService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj" />
