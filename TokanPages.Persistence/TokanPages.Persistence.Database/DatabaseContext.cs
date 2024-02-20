@@ -46,6 +46,10 @@ public class DatabaseContext : DbContext
 
     public virtual DbSet<HttpRequests> HttpRequests { get; set; }
 
+    public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }
+
+    public virtual DbSet<ServiceBusMessage> ServiceBusMessages { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

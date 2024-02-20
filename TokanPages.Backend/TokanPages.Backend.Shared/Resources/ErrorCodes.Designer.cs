@@ -236,5 +236,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("CANNOT_PARSE", resourceCulture);
             }
         }
+        
+        public static string BUS_MESSAGE_TOO_LARGE {
+            get {
+                return ResourceManager.GetString("BUS_MESSAGE_TOO_LARGE", resourceCulture);
+            }
+        }
     }
 }

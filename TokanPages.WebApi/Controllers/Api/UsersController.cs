@@ -198,22 +198,6 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(new GetUserImageQuery { Id = id, BlobName = blobName });
 
     /// <summary>
-    /// Returns user video file from storage by its full name.
-    /// </summary>
-    /// <remarks>
-    /// This endpoint serves as a proxy to an Azure Blob Storage.
-    /// </remarks>
-    /// <param name="id">User ID.</param>
-    /// <param name="blobName">Full blob name (case sensitive).</param>
-    /// <returns>Video file.</returns>
-    [HttpGet]
-    [Route("{id:guid}/[action]")]
-    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    [ProducesResponseType(StatusCodes.Status206PartialContent)]
-    public async Task GetUserVideo([FromRoute] Guid id,[FromQuery] string blobName)
-        => await Mediator.Send(new GetUserVideoQuery { Id  = id, BlobName = blobName });
-
-    /// <summary>
     /// Allows to upload image file.
     /// </summary>
     /// <remarks>

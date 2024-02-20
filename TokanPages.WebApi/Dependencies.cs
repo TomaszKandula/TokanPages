@@ -27,6 +27,8 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureBusService;
+using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -112,6 +114,12 @@ public static class Dependencies
 		services.AddScoped<IUsersCache, UsersCache>();
 
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
+
+		services.AddSingleton<IAzureBusFactory>(_ =>
+		{
+			var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString");
+			return new AzureBusFactory(connectionString);
+		});
 
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{

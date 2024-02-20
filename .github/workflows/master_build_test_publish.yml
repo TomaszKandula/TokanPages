@@ -125,6 +125,7 @@ jobs:
         Email_Address_Support: "${{ steps.vault.outputs.ProdEmailAddressesItSupport }}"
         Db_DatabaseContext: "${{ steps.vault.outputs.ProdDbConnect }}"
         Db_DatabaseContext_Migrator: "${{ steps.vault.outputs.ProdDbMigrator }}"
+        AZ_Bus_ConnectionString: "${{ steps.vault.outputs.ProdAzBusConnectionString }}"
         AZ_Storage_BaseUrl: "${{ steps.vault.outputs.ProdAzStorageBaseUrl }}"
         AZ_Storage_ContainerName: "${{ steps.vault.outputs.ProdAzStorageContainerName }}"
         AZ_Storage_ConnectionString: "${{ steps.vault.outputs.ProdAzStorageConnectionString }}"

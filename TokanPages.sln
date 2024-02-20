@@ -82,6 +82,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.Migr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Configuration", "TokanPages.Backend\TokanPages.Backend.Configuration\TokanPages.Backend.Configuration.csproj", "{D452CBD5-7967-4A3B-ADD9-77BD37622337}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.AzureBusService", "TokanPages.Services\TokanPages.Services.AzureBusService\TokanPages.Services.AzureBusService.csproj", "{436A9AFE-8F2B-4239-935B-72F550137E25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.VideoConverterService", "TokanPages.Services\TokanPages.Services.VideoConverterService\TokanPages.Services.VideoConverterService.csproj", "{3782C56D-060E-4D7B-80E7-33A1A4FA1314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.VideoProcessingService", "TokanPages.Services\TokanPages.Services.VideoProcessingService\TokanPages.Services.VideoProcessingService.csproj", "{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -172,6 +178,18 @@ Global
 		{D452CBD5-7967-4A3B-ADD9-77BD37622337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D452CBD5-7967-4A3B-ADD9-77BD37622337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D452CBD5-7967-4A3B-ADD9-77BD37622337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{436A9AFE-8F2B-4239-935B-72F550137E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{436A9AFE-8F2B-4239-935B-72F550137E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{436A9AFE-8F2B-4239-935B-72F550137E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{436A9AFE-8F2B-4239-935B-72F550137E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3782C56D-060E-4D7B-80E7-33A1A4FA1314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3782C56D-060E-4D7B-80E7-33A1A4FA1314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3782C56D-060E-4D7B-80E7-33A1A4FA1314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3782C56D-060E-4D7B-80E7-33A1A4FA1314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -198,6 +216,9 @@ Global
 		{E304E012-54C3-464A-ABEB-87830DF2C592} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{6FD4A6FE-9A38-45A5-8CD6-DD770D872BE7} = {49EAB969-487E-44FD-85B1-041D4836A8DC}
 		{D452CBD5-7967-4A3B-ADD9-77BD37622337} = {B6059425-BCF6-468D-BAF2-450E3E6D6C43}
+		{436A9AFE-8F2B-4239-935B-72F550137E25} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{3782C56D-060E-4D7B-80E7-33A1A4FA1314} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

@@ -8,6 +8,10 @@ public interface IUserService
 {
     string GetRequestIpAddress();
 
+    Guid? GetGuidFromHeader(string key);
+
+    bool GetCompactVideoFromHeader();
+
     public int GetRequestUserTimezoneOffset();
 
     Task LogHttpRequest(string handlerName);
