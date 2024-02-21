@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -10,8 +11,6 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.WebApi.Dto.Articles;
-using TokanPages.WebApi.Dto.Users;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 

@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
+using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -11,7 +12,6 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.WebApi.Dto.Articles;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;

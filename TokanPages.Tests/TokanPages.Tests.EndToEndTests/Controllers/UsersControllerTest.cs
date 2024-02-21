@@ -9,11 +9,11 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Gateway.Dto.Users;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.UserInfo;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 using TokanPages.Tests.EndToEndTests.Helpers;
-using TokanPages.WebApi.Dto.Users;
 using Xunit;
 
 namespace TokanPages.Tests.EndToEndTests.Controllers;

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokanPages.WebApi", "TokanPages.WebApi\TokanPages.WebApi.csproj", "{2C048600-41A0-40FC-B19C-80FF36236EA3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Core", "TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj", "{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Application", "TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj", "{6D45524F-F1FA-4A6C-B935-DA94F3B4776A}"
@@ -40,8 +38,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.UserService", "TokanPages.Services\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj", "{4E6E66DD-C624-466E-9DF1-64CD7E8A65C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.EmailSenderService", "TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj", "{2537C6F4-8115-4ECF-816B-0D00207163E5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.WebApi.Dto", "TokanPages.WebApi.Dto\TokanPages.WebApi.Dto.csproj", "{831ECC1F-EC05-42E7-89BE-B7494A453C63}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Persistence", "6. Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
 EndProject
@@ -88,16 +84,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.VideoCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.VideoProcessingService", "TokanPages.Services\TokanPages.Services.VideoProcessingService\TokanPages.Services.VideoProcessingService.csproj", "{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Gateway", "TokanPages.WebApi\TokanPages.Gateway\TokanPages.Gateway.csproj", "{7DA81A66-1513-40F0-B894-32D092EC3DB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Gateway.Dto", "TokanPages.WebApi\TokanPages.Gateway.Dto\TokanPages.Gateway.Dto.csproj", "{A7B2C667-D0C8-4161-A665-1801D672B508}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C048600-41A0-40FC-B19C-80FF36236EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -154,10 +150,6 @@ Global
 		{2537C6F4-8115-4ECF-816B-0D00207163E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2537C6F4-8115-4ECF-816B-0D00207163E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2537C6F4-8115-4ECF-816B-0D00207163E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{831ECC1F-EC05-42E7-89BE-B7494A453C63}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C3954CF-EB27-45CA-8A22-5A44497BEC36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2C3954CF-EB27-45CA-8A22-5A44497BEC36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C3954CF-EB27-45CA-8A22-5A44497BEC36}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -190,12 +182,19 @@ Global
 		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA81A66-1513-40F0-B894-32D092EC3DB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA81A66-1513-40F0-B894-32D092EC3DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA81A66-1513-40F0-B894-32D092EC3DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA81A66-1513-40F0-B894-32D092EC3DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B2C667-D0C8-4161-A665-1801D672B508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B2C667-D0C8-4161-A665-1801D672B508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B2C667-D0C8-4161-A665-1801D672B508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B2C667-D0C8-4161-A665-1801D672B508}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2C048600-41A0-40FC-B19C-80FF36236EA3} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{D966F02F-CDCB-4D3E-A2DC-98097D5AEAB3} = {B6059425-BCF6-468D-BAF2-450E3E6D6C43}
 		{6D45524F-F1FA-4A6C-B935-DA94F3B4776A} = {B6059425-BCF6-468D-BAF2-450E3E6D6C43}
 		{F3846CBF-736F-44AC-B8AC-5638C3B02F7C} = {B6059425-BCF6-468D-BAF2-450E3E6D6C43}
@@ -212,13 +211,14 @@ Global
 		{BCDCAD31-2BB6-4BE4-8875-FCE69A30D87D} = {49EAB969-487E-44FD-85B1-041D4836A8DC}
 		{2C3954CF-EB27-45CA-8A22-5A44497BEC36} = {49EAB969-487E-44FD-85B1-041D4836A8DC}
 		{5252D6C7-6BAF-4FE0-A557-47600A853666} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
-		{831ECC1F-EC05-42E7-89BE-B7494A453C63} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{E304E012-54C3-464A-ABEB-87830DF2C592} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{6FD4A6FE-9A38-45A5-8CD6-DD770D872BE7} = {49EAB969-487E-44FD-85B1-041D4836A8DC}
 		{D452CBD5-7967-4A3B-ADD9-77BD37622337} = {B6059425-BCF6-468D-BAF2-450E3E6D6C43}
 		{436A9AFE-8F2B-4239-935B-72F550137E25} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{3782C56D-060E-4D7B-80E7-33A1A4FA1314} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{DDF1E6CB-AF6A-4745-B914-E6A39C4A2666} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{7DA81A66-1513-40F0-B894-32D092EC3DB0} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
+		{A7B2C667-D0C8-4161-A665-1801D672B508} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

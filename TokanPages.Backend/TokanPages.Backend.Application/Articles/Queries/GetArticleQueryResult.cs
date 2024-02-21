@@ -1,5 +1,4 @@
-﻿using TokanPages.WebApi.Dto.Articles;
-using TokanPages.WebApi.Dto.Users;
+﻿using TokanPages.Backend.Application.Articles.Models;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 

@@ -1,4 +1,4 @@
-using TokanPages.WebApi.Dto.Content;
+using TokanPages.Backend.Application.Content.Models;
 
 namespace TokanPages.Backend.Application.Content.Queries;
 

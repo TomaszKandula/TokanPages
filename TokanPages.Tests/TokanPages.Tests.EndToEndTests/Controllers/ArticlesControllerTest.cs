@@ -8,10 +8,10 @@ using Newtonsoft.Json;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Gateway.Dto.Articles;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
 using TokanPages.Tests.EndToEndTests.Helpers;
-using TokanPages.WebApi.Dto.Articles;
 using Xunit;
 
 namespace TokanPages.Tests.EndToEndTests.Controllers;
