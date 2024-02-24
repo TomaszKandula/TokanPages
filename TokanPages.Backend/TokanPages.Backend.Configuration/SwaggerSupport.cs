@@ -13,47 +13,43 @@ namespace TokanPages.Backend.Configuration;
 [ExcludeFromCodeCoverage]
 public static class SwaggerSupport
 {
-    private const string ApiDocVersion = "v1";
-
-    private const string ApiDocName = "Tokan Pages API";
-
-    private const string XmlFileForWebApi = "TokanPages.Gateway.xml";
-
-    private const string XmlFileForDtoModels = "TokanPages.Gateway.Dto.xml";
-
-    private const string AuthorizationScheme = "Bearer";
-
     /// <summary>
     /// Setup Swagger options (security and documentation).
     /// </summary>
-    /// <param name="services">Service collection.</param>
+    /// <param name="services">Service collections.</param>
     /// <param name="environment">Host environment instance.</param>
-    public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment)
+    /// <param name="apiName">API name to be displayed in Swagger UI.</param>
+    /// <param name="docVersion">Document version to be displayed in Swagger UI.</param>
+    /// <param name="xmls">List of projects that should have XML documentation.</param>
+    public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment, string apiName, string docVersion, string[]? xmls)
     {
         if (environment.IsProduction())
             return;
 
-        var xmlFileForWebApi = Path.Combine(AppContext.BaseDirectory, XmlFileForWebApi);
-        var xmlFileForDtoModels = Path.Combine(AppContext.BaseDirectory, XmlFileForDtoModels);
-
         services.AddSwaggerGen(options =>
         {
-            options.SwaggerDoc(ApiDocVersion, new OpenApiInfo
+            options.EnableAnnotations();
+            options.SwaggerDoc(docVersion, new OpenApiInfo
             {
-                Title = ApiDocName, 
-                Version = ApiDocVersion
+                Title = apiName, 
+                Version = docVersion
             });
 
-            options.EnableAnnotations();
-            options.IncludeXmlComments(xmlFileForWebApi);
-            options.IncludeXmlComments(xmlFileForDtoModels);
+            if (xmls is not null)
+            {
+                foreach (var item in xmls)
+                {
+                    var xmlDoc = Path.Combine(AppContext.BaseDirectory, item);
+                    options.IncludeXmlComments(xmlDoc);
+                }
+            }
 
-            options.AddSecurityDefinition(AuthorizationScheme, new OpenApiSecurityScheme
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 Name = "Authorization",
                 Description = "Please provide JWT",
                 BearerFormat = "JWT",
-                Scheme = AuthorizationScheme.ToLower(),
+                Scheme = "bearer",
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.ApiKey
             });
@@ -65,7 +61,7 @@ public static class SwaggerSupport
                     {
                         Reference = new OpenApiReference 
                         {
-                            Id = AuthorizationScheme,
+                            Id = "Bearer",
                             Type = ReferenceType.SecurityScheme
                         }
                     },
@@ -78,10 +74,12 @@ public static class SwaggerSupport
     /// <summary>
     /// Configure Swagger UI.
     /// </summary>
-    /// <param name="builder">ApplicationBuilder instance.</param>
-    /// <param name="configuration">Provided configuration.</param>
+    /// <param name="builder">Application builder instance.</param>
+    /// <param name="configuration">Application configuration instance.</param>
     /// <param name="environment">Host environment instance.</param>
-    public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment)
+    /// <param name="apiName">API name to be displayed in Swagger UI.</param>
+    /// <param name="docVersion">Document version to be displayed in Swagger UI.</param>
+    public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment, string apiName, string docVersion)
     {
         if (environment.IsProduction())
             return;
@@ -89,9 +87,9 @@ public static class SwaggerSupport
         builder.UseSwagger();
         builder.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint($"/swagger/{ApiDocVersion}/swagger.json", ApiDocName);
-            options.OAuthAppName(ApiDocName);
-            options.OAuthClientSecret(configuration.GetValue<string>("Ids_WebSecret"));
+            options.SwaggerEndpoint($"/swagger/{docVersion}/swagger.json", apiName);
+            options.OAuthAppName(apiName);
+            options.OAuthClientSecret(configuration.GetSection("IdentityServer")["WebSecret"]);
         });
     }
 }

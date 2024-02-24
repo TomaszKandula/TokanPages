@@ -20,6 +20,12 @@ namespace TokanPages.Gateway;
 [ExcludeFromCodeCoverage]
 public class Startup
 {
+    private const string ApiName = "TokanPages API";
+
+    private const string DocVersion = "v1";
+
+    private static readonly string[] XmlDocs = { "TokanPages.xml", "TokanPages.Dto.xml" };
+
     private readonly IConfiguration _configuration;
 
     private readonly IHostEnvironment _environment;
@@ -71,7 +77,7 @@ public class Startup
         services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         services.RegisterDependencies(_configuration, _environment);
         services.SetupRedisCache(_configuration);
-        services.SetupSwaggerOptions(_environment);
+        services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
         services
             .AddHealthChecks()
@@ -97,7 +103,7 @@ public class Startup
         builder.UseRouting();
         builder.UseAuthentication();
         builder.UseAuthorization();
-        builder.SetupSwaggerUi(_configuration, _environment);
+        builder.SetupSwaggerUi(_configuration, _environment, ApiName, DocVersion);
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
