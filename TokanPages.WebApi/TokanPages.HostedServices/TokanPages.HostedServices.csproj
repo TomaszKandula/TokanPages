@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
+        <LangVersion>10</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Publish>true</Publish>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>true</IsPublishable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
+            <Link>appsettings.Testing.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\..\TokanPages.Configuration\appsettings.Staging.json">
+            <Link>appsettings.Staging.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\..\TokanPages.Configuration\appsettings.Production.json">
+            <Link>appsettings.Production.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Configuration\TokanPages.Backend.Configuration.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureBusService\TokanPages.Services.AzureBusService.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VideoConverterService\TokanPages.Services.VideoConverterService.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VideoProcessingService\TokanPages.Services.VideoProcessingService.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cronos" Version="0.7.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.26" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="Serilog.Sinks.AzureBlobStorage" Version="3.2.0" />
+    </ItemGroup>
+
+</Project>
