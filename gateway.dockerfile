@@ -2,25 +2,20 @@
 # 1 - BUILD PROJECTS AND RUN TESTS
 # ======================================================================================================================
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS PROJECTS
+FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18 AS PROJECTS
 
 WORKDIR /app
 COPY . ./
-ARG ENV_VALUE
 
 # RESTORE & BUILD & TEST
-RUN dotnet restore --disable-parallel
-RUN dotnet build -c Release --no-restore
-RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ]; \
-then ASPNETCORE_ENVIRONMENT=${ENV_VALUE} dotnet test -c Release --no-build --no-restore; \
-else cd /app/TokanPages.Persistence/TokanPages.Persistence.MigrationRunner/bin/Release/net6.0 && \
-ASPNETCORE_ENVIRONMENT=${ENV_VALUE} dotnet TokanPages.Persistence.MigrationRunner.dll --next-prod; fi
+RUN dotnet restore #--disable-parallel
+RUN dotnet build -c Release --force
 
 # ======================================================================================================================
 # 2 - BUILD DOCKER IMAGE
 # ======================================================================================================================
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18
 WORKDIR /app
 
 # BACKEND
@@ -54,5 +49,6 @@ COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Gateway.Dto/bin/Release/
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 ENV ASPNETCORE_URLS=http://+:80  
+
 EXPOSE 80
 ENTRYPOINT ["dotnet", "TokanPages.Gateway.dll"]
