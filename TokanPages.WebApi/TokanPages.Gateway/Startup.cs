@@ -24,7 +24,7 @@ public class Startup
 
     private const string DocVersion = "v1";
 
-    private static readonly string[] XmlDocs = { "TokanPages.xml", "TokanPages.Dto.xml" };
+    private static readonly string[] XmlDocs = { "TokanPages.Gateway.xml", "TokanPages.Gateway.Dto.xml" };
 
     private readonly IConfiguration _configuration;
 
