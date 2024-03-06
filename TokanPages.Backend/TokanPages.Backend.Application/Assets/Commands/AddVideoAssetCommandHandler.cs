@@ -18,14 +18,6 @@ namespace TokanPages.Backend.Application.Assets.Commands;
 
 public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, AddVideoAssetCommandResult>
 {
-    private const string ContainerPresentations = "presentations";
-
-    private const string ContainerLearnings = "learnings";
-
-    private const string IdPresentations = "presentations-id";
-
-    private const string IdLearnings = "learnings-id";
-
     private const string QueueName = "video_queue";
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
@@ -62,33 +54,19 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         throw new GeneralException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
     }
 
-    private static string GetContainer(bool hasPresentationId, bool hasLearningId)
-    {
-        if (hasPresentationId)
-            return ContainerPresentations;
-
-        return hasLearningId ? ContainerLearnings : string.Empty;
-    }
-
     private async Task<AddVideoAssetCommandResult> ProcessBinaryData(AddVideoAssetCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var azureBlob = _azureBlobStorageFactory.Create();
         var binaryData = request.BinaryData;
 
-        var presentationId = _userService.GetGuidFromHeader(IdPresentations);
-        var learningId = _userService.GetGuidFromHeader(IdLearnings);
-
-        var hasPresentationId = presentationId != null;
-        var hasLearningId = learningId != null;
         var hasCompactVideo = _userService.GetCompactVideoFromHeader();
 
         var videoName = binaryData!.FileName;
         var contentType = request.BinaryData!.ContentType;
-        var container = GetContainer(hasPresentationId, hasLearningId);
 
         var tempPathFile = $"content/assets/temp/{videoName}";
-        var targetBasePath = $"videos/{container}";
+        var targetBasePath = $"videos/{request.Target}";
 
         var fileGuid = $"{Guid.NewGuid():N}".ToLower();
         var targetVideoUri = $"{targetBasePath}/{fileGuid}.mp4";
@@ -115,21 +93,10 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation($"New video has been uploaded for processing. Ticket ID: {ticketId}.");
 
-        var details = container switch
+        var details = new TargetDetails
         {
-            ContainerPresentations => new TargetDetails
-            {
-                Target = ProcessingTarget.PresentationVideo,
-                EntityId = presentationId,
-                ShouldCompactVideo = hasCompactVideo
-            },
-            ContainerLearnings => new TargetDetails 
-            {
-                Target = ProcessingTarget.LearningVideo,
-                EntityId = learningId, 
-                ShouldCompactVideo = hasCompactVideo
-            },
-            _ => new TargetDetails()
+            Target = request.Target,
+            ShouldCompactVideo = hasCompactVideo
         };
 
         await RequestVideoProcessing(ticketId, user.Id, details, cancellationToken);
