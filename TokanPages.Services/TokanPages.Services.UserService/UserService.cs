@@ -62,17 +62,6 @@ public sealed class UserService : IUserService
             : remoteIpAddress.Split(':')[0];
     }
 
-    public Guid? GetGuidFromHeader(string key)
-    {
-        var id = _httpContextAccessor
-            .HttpContext?
-            .Request
-            .Headers[key].ToString();
-
-        var hasGuid = Guid.TryParse(id, out var guid);
-        return hasGuid ? guid : null;
-    }
-
     public bool GetCompactVideoFromHeader()
     {
         var value = _httpContextAccessor
@@ -80,7 +69,7 @@ public sealed class UserService : IUserService
             .Request
             .Headers["compact-video"].ToString();
 
-        return Convert.ToBoolean(value);
+        return value is not null && Convert.ToBoolean(value);
     }
 
     public int GetRequestUserTimezoneOffset()
