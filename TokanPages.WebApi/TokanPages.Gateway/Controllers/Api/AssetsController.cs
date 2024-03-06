@@ -77,4 +77,14 @@ public class AssetsController : ApiBaseController
     [ProducesResponseType(StatusCodes.Status206PartialContent)]
     public async Task GetVideoAsset([FromQuery] string blobName)
         => await Mediator.Send(new GetVideoAssetQuery { BlobName = blobName });
+
+    /// <summary>
+    /// Allow to upload a single video asset to an Azure Storage.
+    /// </summary>
+    /// <param name="payLoad">Binary data to be uploaded.</param>
+    /// <returns>Ticket ID.</returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(AddVideoAssetCommandResult), StatusCodes.Status200OK)]
+    public async Task<AddVideoAssetCommandResult> AddVideoAsset([FromForm] AddVideoAssetDto payLoad)
+        => await Mediator.Send(AssetsMapper.MapToAddVideoAssetCommand(payLoad));
 }
