@@ -69,7 +69,10 @@ public sealed class UserService : IUserService
             .Request
             .Headers["compact-video"].ToString();
 
-        return value is not null && Convert.ToBoolean(value);
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
+
+        return Convert.ToBoolean(value);
     }
 
     public int GetRequestUserTimezoneOffset()
