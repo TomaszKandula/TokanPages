@@ -10,22 +10,14 @@ public class AddVideoAssetCommandValidator : AbstractValidator<AddVideoAssetComm
     {
         var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeSingleAsset");
 
-        When(command => command.Target != null, () =>
-        {
-            RuleFor(command => command.Target)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
+        RuleFor(command => command.BinaryData)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
 
-            RuleFor(command => command.BinaryData)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-
-            RuleFor(command => command.BinaryData)
-                .Must(bytes => bytes!.Length <= sizeLimit)
-                .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
-                .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
-        });
+        RuleFor(command => command.BinaryData)
+            .Must(bytes => bytes!.Length <= sizeLimit)
+            .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
+            .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
     }
 }
