@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using TokanPages.Backend.Application.Mailer.Commands;
+using TokanPages.Backend.Application.Mailer.Models;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.WebApi.Dto.Mailer.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Validators.Mailer;

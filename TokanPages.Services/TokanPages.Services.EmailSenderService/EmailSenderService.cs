@@ -8,7 +8,6 @@ using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
-using TokanPages.WebApi.Dto.Mailer;
 
 namespace TokanPages.Services.EmailSenderService;
 

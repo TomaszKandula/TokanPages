@@ -62,23 +62,15 @@ public sealed class UserService : IUserService
             : remoteIpAddress.Split(':')[0];
     }
 
-    public Guid? GetGuidFromHeader(string key)
-    {
-        var id = _httpContextAccessor
-            .HttpContext?
-            .Request
-            .Headers[key].ToString();
-
-        var hasGuid = Guid.TryParse(id, out var guid);
-        return hasGuid ? guid : null;
-    }
-
     public bool GetCompactVideoFromHeader()
     {
         var value = _httpContextAccessor
             .HttpContext?
             .Request
             .Headers["compact-video"].ToString();
+
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
 
         return Convert.ToBoolean(value);
     }

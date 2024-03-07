@@ -4,7 +4,7 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.EmailSenderService.Abstractions;
-using TokanPages.WebApi.Dto.Mailer;
+using TokanPages.Services.EmailSenderService.Models;
 
 namespace TokanPages.Backend.Application.Mailer.Commands;
 

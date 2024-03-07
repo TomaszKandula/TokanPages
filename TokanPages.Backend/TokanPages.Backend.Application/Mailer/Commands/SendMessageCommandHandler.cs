@@ -6,8 +6,8 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.EmailSenderService.Abstractions;
+using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.WebApi.Dto.Mailer;
 
 namespace TokanPages.Backend.Application.Mailer.Commands;
 

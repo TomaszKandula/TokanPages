@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  gateway-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: gateway.dockerfile
+    hostname: gateway
+    networks:
+      - intranet-tokan
+    ports:
+      - "6001:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  hosted-services-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: hosted.dockerfile
+    hostname: hosted-services
+    networks:
+      - intranet-tokan
+    ports:
+      - "6002:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+networks:
+  intranet-tokan:
+    external: true

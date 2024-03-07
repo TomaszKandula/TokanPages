@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Gateway.Dto.Mailer;
+using TokanPages.Gateway.Dto.Mailer.Models;
 using TokanPages.Persistence.Database;
 using TokanPages.Tests.EndToEndTests.Helpers;
-using TokanPages.WebApi.Dto.Mailer;
-using TokanPages.WebApi.Dto.Mailer.Models;
 using Xunit;
 
 namespace TokanPages.Tests.EndToEndTests.Controllers;
