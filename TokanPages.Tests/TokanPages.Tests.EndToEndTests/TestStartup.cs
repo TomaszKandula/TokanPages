@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Exceptions.Middleware;
 using TokanPages.Gateway;
 using TokanPages.Gateway.Middleware;
 using TokanPages.Persistence.Database;

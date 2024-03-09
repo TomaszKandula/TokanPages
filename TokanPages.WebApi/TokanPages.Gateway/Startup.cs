@@ -10,7 +10,7 @@ using Newtonsoft.Json.Serialization;
 using Serilog;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Gateway.Middleware;
+using TokanPages.Backend.Core.Exceptions.Middleware;
 
 namespace TokanPages.Gateway;
 

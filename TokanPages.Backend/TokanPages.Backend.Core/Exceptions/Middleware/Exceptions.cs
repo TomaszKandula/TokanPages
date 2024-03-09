@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Errors;
 using TokanPages.Backend.Shared.Resources;
 
-namespace TokanPages.Gateway.Middleware;
+namespace TokanPages.Backend.Core.Exceptions.Middleware;
 
 /// <summary>
 /// Exceptions middleware.
