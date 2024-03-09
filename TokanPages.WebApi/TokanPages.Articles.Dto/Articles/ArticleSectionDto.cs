@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Articles;
+namespace TokanPages.Articles.Dto.Articles;
 
 /// <summary>
 /// Section definition.

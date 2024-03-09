@@ -4,11 +4,11 @@ using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
 using TokanPages.Backend.Application.Articles.Queries;
-using TokanPages.Gateway.Controllers.Mappers;
+using TokanPages.Articles.Controllers.Mappers;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Gateway.Dto.Articles;
+using TokanPages.Articles.Dto.Articles;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Articles.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for articles.

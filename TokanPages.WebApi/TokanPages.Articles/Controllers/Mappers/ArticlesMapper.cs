@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Articles.Commands;
-using TokanPages.Gateway.Dto.Articles;
+using TokanPages.Articles.Dto.Articles;
 
-namespace TokanPages.Gateway.Controllers.Mappers;
+namespace TokanPages.Articles.Controllers.Mappers;
 
 /// <summary>
 /// Articles mapper.

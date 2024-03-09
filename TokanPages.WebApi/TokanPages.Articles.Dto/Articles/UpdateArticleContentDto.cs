@@ -1,13 +1,18 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Articles;
+namespace TokanPages.Articles.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to add new article.
+/// Use it when you want to update existing content.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class AddArticleDto
+public class UpdateArticleContentDto
 {
+    /// <summary>
+    /// Identification.
+    /// </summary>
+    public Guid Id { get; set; }
+
     /// <summary>
     /// Title.
     /// </summary>

@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Articles;
+namespace TokanPages.Articles.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to change visibility.
+/// Use it when you want to update likes.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class UpdateArticleVisibilityDto
+public class UpdateArticleLikesDto
 {
     /// <summary>
     /// Identification.
@@ -14,7 +14,7 @@ public class UpdateArticleVisibilityDto
     public Guid Id { get; set; }
 
     /// <summary>
-    /// Published flag.
+    /// Like number to be added.
     /// </summary>
-    public bool IsPublished { get; set; }
+    public int AddToLikes { get; set; }
 }

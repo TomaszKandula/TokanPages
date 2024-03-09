@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Articles;
+namespace TokanPages.Articles.Dto.Articles;
 
 /// <summary>
-/// Use it when you want to update count.
+/// Use it when you want to remove existing article.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class UpdateArticleCountDto
+public class RemoveArticleDto
 {
     /// <summary>
     /// Identification.
