@@ -6,11 +6,11 @@ using Xunit.Abstractions;
 using Xunit.Sdk;
 
 [assembly: Xunit.TestFramework(
-    "TokanPages.Tests.EndToEndTests.Helpers.TestFrameworkBootstrap", 
-    "TokanPages.Tests.EndToEndTests")
+    "TokanPages.Tests.E2ETests.Helpers.TestFrameworkBootstrap", 
+    "TokanPages.Tests.E2ETests")
 ]
 
-namespace TokanPages.Tests.EndToEndTests.Helpers;
+namespace TokanPages.Tests.E2ETests.Helpers;
 
 public class TestFrameworkBootstrap : XunitTestFramework, IDisposable
 {

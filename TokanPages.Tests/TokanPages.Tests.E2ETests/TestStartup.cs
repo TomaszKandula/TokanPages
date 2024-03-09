@@ -9,7 +9,7 @@ using TokanPages.Backend.Core.Exceptions.Middleware;
 using TokanPages.Gateway;
 using TokanPages.Persistence.Database;
 
-namespace TokanPages.Tests.EndToEndTests;
+namespace TokanPages.Tests.E2ETests;
 
 public class TestStartup
 {

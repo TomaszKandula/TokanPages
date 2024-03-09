@@ -9,10 +9,10 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Gateway.Dto.Subscribers;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Subscribers;
-using TokanPages.Tests.EndToEndTests.Helpers;
+using TokanPages.Tests.E2ETests.Helpers;
 using Xunit;
 
-namespace TokanPages.Tests.EndToEndTests.Controllers;
+namespace TokanPages.Tests.E2ETests.Controllers;
 
 public class SubscribersControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

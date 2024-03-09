@@ -11,10 +11,10 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Articles.Dto.Articles;
 using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
-using TokanPages.Tests.EndToEndTests.Helpers;
+using TokanPages.Tests.E2ETests.Helpers;
 using Xunit;
 
-namespace TokanPages.Tests.EndToEndTests.Controllers;
+namespace TokanPages.Tests.E2ETests.Controllers;
 
 public class ArticlesControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {

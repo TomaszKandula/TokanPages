@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 
-namespace TokanPages.Tests.EndToEndTests.Helpers;
+namespace TokanPages.Tests.E2ETests.Helpers;
 
 [UsedImplicitly]
 public class CustomWebApplicationFactory<T> : WebApplicationFactory<T> where T : class

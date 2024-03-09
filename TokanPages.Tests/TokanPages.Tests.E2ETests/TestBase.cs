@@ -12,13 +12,13 @@ using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.User
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
-using TokanPages.Tests.EndToEndTests.Helpers;
+using TokanPages.Tests.E2ETests.Helpers;
 
-namespace TokanPages.Tests.EndToEndTests;
+namespace TokanPages.Tests.E2ETests;
 
 public abstract class TestBase
 {
-    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.EndToEndTests";
+    protected const string TestRootPath = "TokanPages.Tests/TokanPages.Tests.E2ETests";
 
     protected const string BaseUriArticles = "/api/v1.0/articles";
 

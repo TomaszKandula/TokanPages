@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Backend.Shared",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.AzureStorageService", "TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj", "{EC20EE58-ED90-419E-84E7-8D298B59CE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.EndToEndTests", "TokanPages.Tests\TokanPages.Tests.EndToEndTests\TokanPages.Tests.EndToEndTests.csproj", "{A32A854C-3D91-4643-8B44-D6E4B92CCBF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.E2ETests", "TokanPages.Tests\TokanPages.Tests.E2ETests\TokanPages.Tests.E2ETests.csproj", "{A32A854C-3D91-4643-8B44-D6E4B92CCBF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.UnitTests", "TokanPages.Tests\TokanPages.Tests.UnitTests\TokanPages.Tests.UnitTests.csproj", "{3A138774-9DA3-40E3-8DA3-50620F0FD310}"
 EndProject

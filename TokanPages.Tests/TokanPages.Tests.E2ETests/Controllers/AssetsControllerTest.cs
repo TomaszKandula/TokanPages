@@ -3,10 +3,10 @@ using FluentAssertions;
 using Microsoft.AspNetCore.TestHost;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
-using TokanPages.Tests.EndToEndTests.Helpers;
+using TokanPages.Tests.E2ETests.Helpers;
 using Xunit;
 
-namespace TokanPages.Tests.EndToEndTests.Controllers;
+namespace TokanPages.Tests.E2ETests.Controllers;
 
 public class AssetsControllerTest : TestBase, IClassFixture<CustomWebApplicationFactory<TestStartup>>
 {
