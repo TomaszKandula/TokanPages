@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 namespace TokanPages.Tests.EndToEndTests.Helpers;
 
 [UsedImplicitly]
-public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<TTestStartup> where TTestStartup : class
+public class CustomWebApplicationFactory<T> : WebApplicationFactory<T> where T : class
 {
     public IConfiguration? Configuration { get; private set; }
 
@@ -20,14 +20,14 @@ public class CustomWebApplicationFactory<TTestStartup> : WebApplicationFactory<T
                 var environment = Persistence.MigrationRunner.Helpers.Environments.CurrentValue;
                 var configuration = new ConfigurationBuilder()
                     .AddJsonFile($"appsettings.{environment}.json", true, true)
-                    .AddUserSecrets<TTestStartup>(true)
+                    .AddUserSecrets<T>(true)
                     .AddEnvironmentVariables()
                     .Build();
 
                 configurationBuilder.AddConfiguration(configuration);
                 Configuration = configurationBuilder.Build();
             })
-            .UseStartup<TTestStartup>()
+            .UseStartup<T>()
             .UseTestServer();
 
         return builder;
