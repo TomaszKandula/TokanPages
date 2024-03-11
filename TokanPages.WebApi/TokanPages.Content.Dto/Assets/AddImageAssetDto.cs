@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 
-namespace TokanPages.Gateway.Dto.Assets;
+namespace TokanPages.Content.Dto.Assets;
 
 /// <summary>
 /// Use it when you want to add an image asset.

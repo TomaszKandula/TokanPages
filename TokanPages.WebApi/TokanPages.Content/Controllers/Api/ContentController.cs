@@ -3,7 +3,7 @@ using MediatR;
 using TokanPages.Backend.Application.Content.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Content.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for content.

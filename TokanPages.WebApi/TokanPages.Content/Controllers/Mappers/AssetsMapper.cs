@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Assets.Commands;
-using TokanPages.Gateway.Dto.Assets;
+using TokanPages.Content.Dto.Assets;
 
-namespace TokanPages.Gateway.Controllers.Mappers;
+namespace TokanPages.Content.Controllers.Mappers;
 
 /// <summary>
 /// Assets mapper.

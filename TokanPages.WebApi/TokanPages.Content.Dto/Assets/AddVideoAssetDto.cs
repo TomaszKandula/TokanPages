@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Domain.Enums;
 
-namespace TokanPages.Gateway.Dto.Assets;
+namespace TokanPages.Content.Dto.Assets;
 
 /// <summary>
 /// Use it when you want to add video asset.

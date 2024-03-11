@@ -4,10 +4,10 @@ using TokanPages.Backend.Application.Assets.Commands;
 using TokanPages.Backend.Application.Assets.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
-using TokanPages.Gateway.Controllers.Mappers;
-using TokanPages.Gateway.Dto.Assets;
+using TokanPages.Content.Controllers.Mappers;
+using TokanPages.Content.Dto.Assets;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Content.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for assets.
