@@ -1,7 +1,6 @@
-﻿#nullable enable
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Users;
+namespace TokanPages.Users.Dto.Users;
 
 /// <summary>
 /// Use to get current user.

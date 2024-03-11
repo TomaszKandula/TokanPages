@@ -5,11 +5,11 @@ using TokanPages.Backend.Shared.Attributes;
 using MediatR;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Application.Users.Queries;
-using TokanPages.Gateway.Controllers.Mappers;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Gateway.Dto.Users;
+using TokanPages.Users.Controllers.Mappers;
+using TokanPages.Users.Dto.Users;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Users.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for users.

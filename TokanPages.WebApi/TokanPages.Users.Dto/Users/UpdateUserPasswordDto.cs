@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Users;
+namespace TokanPages.Users.Dto.Users;
 
 /// <summary>
 /// Use it when you want to update existing password.

@@ -40,6 +40,8 @@
     <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.MigrationRunner\TokanPages.Persistence.MigrationRunner.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Articles.Dto\TokanPages.Articles.Dto.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Gateway\TokanPages.Gateway.csproj" />
+    <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Sender.Dto\TokanPages.Sender.Dto.csproj" />
+    <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Users.Dto\TokanPages.Users.Dto.csproj" />
   </ItemGroup>
 
 </Project>

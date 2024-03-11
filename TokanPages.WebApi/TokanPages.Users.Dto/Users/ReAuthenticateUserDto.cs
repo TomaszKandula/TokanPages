@@ -1,13 +1,18 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Users;
+namespace TokanPages.Users.Dto.Users;
 
 /// <summary>
-/// Use it when you want to revoke existing refresh token.
+/// Re-authenticate logged user.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class RevokeUserRefreshTokenDto
+public class ReAuthenticateUserDto
 {
+    /// <summary>
+    /// User ID.
+    /// </summary>
+    public Guid UserId { get; set; }
+
     /// <summary>
     /// Refresh token value.
     /// </summary>

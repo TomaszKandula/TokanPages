@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Gateway.Dto.Mailer;
-using TokanPages.Gateway.Dto.Mailer.Models;
 using TokanPages.Persistence.Database;
+using TokanPages.Sender.Dto.Mailer;
+using TokanPages.Sender.Dto.Mailer.Models;
 using TokanPages.Tests.E2ETests.Helpers;
 using Xunit;
 

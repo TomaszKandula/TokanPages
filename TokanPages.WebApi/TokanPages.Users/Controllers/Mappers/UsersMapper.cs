@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Users.Commands;
-using TokanPages.Gateway.Dto.Users;
+using TokanPages.Users.Dto.Users;
 
-namespace TokanPages.Gateway.Controllers.Mappers;
+namespace TokanPages.Users.Controllers.Mappers;
 
 /// <summary>
 /// Users mapper

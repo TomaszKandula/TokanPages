@@ -1,18 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
-namespace TokanPages.Gateway.Dto.Users;
+namespace TokanPages.Users.Dto.Users;
 
 /// <summary>
-/// Use it when you want to upload user image.
+/// Use it when you want to upload presentation video.
 /// </summary>
-public class UploadImageDto
+public class UploadVideoDto
 {
-    /// <summary>
-    /// File encoded in Base64.
-    /// </summary>
-    public string? Base64Data { get; set; }
-
     /// <summary>
     /// Binary data.
     /// </summary>
