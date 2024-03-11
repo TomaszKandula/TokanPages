@@ -37,7 +37,6 @@
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.RedisCacheService\TokanPages.Services.RedisCacheService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
-    <ProjectReference Include="..\TokanPages.Gateway.Dto\TokanPages.Gateway.Dto.csproj" />
   </ItemGroup>
   
   <ItemGroup>

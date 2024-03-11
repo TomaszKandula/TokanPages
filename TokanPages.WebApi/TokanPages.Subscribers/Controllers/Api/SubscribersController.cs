@@ -4,11 +4,11 @@ using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
 using TokanPages.Backend.Application.Subscribers.Queries;
-using TokanPages.Gateway.Controllers.Mappers;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Gateway.Dto.Subscribers;
+using TokanPages.Subscribers.Controllers.Mappers;
+using TokanPages.Subscribers.Dto.Subscribers;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Subscribers.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for subscribers.

@@ -9,7 +9,6 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
-
     <ItemGroup>
         <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
             <Link>appsettings.Testing.json</Link>
@@ -38,8 +37,7 @@
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.RedisCacheService\TokanPages.Services.RedisCacheService.csproj" />
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
-        <ProjectReference Include="..\TokanPages.Articles.Dto\TokanPages.Articles.Dto.csproj" />
-        <ProjectReference Include="..\TokanPages.Content.Dto\TokanPages.Content.Dto.csproj" />
+        <ProjectReference Include="..\..\TokanPages.Subscribers.Dto\TokanPages.Subscribers.Dto.csproj" />
     </ItemGroup>
 
     <ItemGroup>

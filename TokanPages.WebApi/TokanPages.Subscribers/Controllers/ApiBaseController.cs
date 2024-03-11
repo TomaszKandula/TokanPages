@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Core.Errors;
 
-namespace TokanPages.Gateway.Controllers;
+namespace TokanPages.Subscribers.Controllers;
 
 /// <summary>
 /// Base controller with MediatR.

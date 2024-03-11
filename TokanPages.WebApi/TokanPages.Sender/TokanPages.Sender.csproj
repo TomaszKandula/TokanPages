@@ -40,7 +40,6 @@
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
         <ProjectReference Include="..\TokanPages.Articles.Dto\TokanPages.Articles.Dto.csproj" />
         <ProjectReference Include="..\TokanPages.Content.Dto\TokanPages.Content.Dto.csproj" />
-        <ProjectReference Include="..\TokanPages.Gateway.Dto\TokanPages.Gateway.Dto.csproj" />
         <ProjectReference Include="..\TokanPages.Sender.Dto\TokanPages.Sender.Dto.csproj" />
     </ItemGroup>
 

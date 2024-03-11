@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Subscribers.Commands;
-using TokanPages.Gateway.Dto.Subscribers;
+using TokanPages.Subscribers.Dto.Subscribers;
 
-namespace TokanPages.Gateway.Controllers.Mappers;
+namespace TokanPages.Subscribers.Controllers.Mappers;
 
 /// <summary>
 /// Subscribers mapper.

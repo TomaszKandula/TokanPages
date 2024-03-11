@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Gateway.Dto.Subscribers;
+namespace TokanPages.Subscribers.Dto.Subscribers;
 
 /// <summary>
 /// Use it when you want to add newsletter subscriber.
