@@ -1,0 +1,16 @@
+﻿{
+  "profiles": 
+  {
+    "TokanPages": 
+    {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:6005",
+      "launchUrl": "swagger",
+      "environmentVariables": 
+      {
+        "ASPNETCORE_ENVIRONMENT": "Testing"
+      }
+    }
+  }
+}
