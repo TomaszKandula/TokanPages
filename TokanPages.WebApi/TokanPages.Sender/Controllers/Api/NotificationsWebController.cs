@@ -1,10 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.Gateway.Controllers.Mappers;
-using TokanPages.Gateway.Dto.NotificationsWeb;
+using TokanPages.Sender.Controllers.Mappers;
+using TokanPages.Sender.Dto.NotificationsWeb;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Sender.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for websocket notifications.

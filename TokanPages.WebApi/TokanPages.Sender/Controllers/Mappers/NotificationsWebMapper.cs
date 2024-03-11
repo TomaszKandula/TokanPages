@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.NotificationsWeb.Command;
-using TokanPages.Gateway.Dto.NotificationsWeb;
+using TokanPages.Sender.Dto.NotificationsWeb;
 
-namespace TokanPages.Gateway.Controllers.Mappers;
+namespace TokanPages.Sender.Controllers.Mappers;
 
 /// <summary>
 /// Notifications mapper.

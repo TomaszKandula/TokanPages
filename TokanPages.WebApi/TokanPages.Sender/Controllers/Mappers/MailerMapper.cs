@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Mailer.Commands;
-using TokanPages.Gateway.Dto.Mailer;
+using TokanPages.Sender.Dto.Mailer;
 
-namespace TokanPages.Gateway.Controllers.Mappers;
+namespace TokanPages.Sender.Controllers.Mappers;
 
 /// <summary>
 /// Mailer mapper.

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
-using TokanPages.Gateway.Controllers.Mappers;
-using TokanPages.Gateway.Dto.Mailer;
+using TokanPages.Sender.Controllers.Mappers;
+using TokanPages.Sender.Dto.Mailer;
 
-namespace TokanPages.Gateway.Controllers.Api;
+namespace TokanPages.Sender.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for mailer.
