@@ -42,6 +42,7 @@
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Articles.Dto\TokanPages.Articles.Dto.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Gateway\TokanPages.Gateway.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Sender.Dto\TokanPages.Sender.Dto.csproj" />
+    <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Subscribers.Dto\TokanPages.Subscribers.Dto.csproj" />
     <ProjectReference Include="..\..\TokanPages.WebApi\TokanPages.Users.Dto\TokanPages.Users.Dto.csproj" />
   </ItemGroup>
 

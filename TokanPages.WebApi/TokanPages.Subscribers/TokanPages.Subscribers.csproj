@@ -38,6 +38,7 @@
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.RedisCacheService\TokanPages.Services.RedisCacheService.csproj" />
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebTokenService\TokanPages.Services.WebTokenService.csproj" />
         <ProjectReference Include="..\..\TokanPages.Subscribers.Dto\TokanPages.Subscribers.Dto.csproj" />
+        <ProjectReference Include="..\TokanPages.Subscribers.Dto\TokanPages.Subscribers.Dto.csproj" />
     </ItemGroup>
 
     <ItemGroup>
