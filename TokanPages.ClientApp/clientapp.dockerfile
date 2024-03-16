@@ -9,6 +9,7 @@ COPY ./src ./src
 ARG ENV_VALUE
 ARG API_VERSION
 ARG APP_VERSION
+ARG APP_BUILD_TEST
 ARG APP_DATE_TIME
 ARG APP_FRONTEND
 ARG APP_BACKEND
@@ -23,9 +24,12 @@ ENV REACT_APP_FRONTEND=${APP_FRONTEND}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
 
 RUN yarn install
-#RUN if [ $ENV_VALUE = Testing ]; then yarn global add sonarqube-scanner; fi
-#RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ]; then yarn app-test --ci --coverage; fi
-#RUN if [ $ENV_VALUE = Testing ]; then yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
+RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
+    yarn global add sonarqube-scanner; fi
+RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ] && [ APP_BUILD_TEST = true ]; then  \
+    yarn app-test --ci --coverage; fi
+RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
+    yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
 RUN yarn build
 
 # 2 - Build NGINX 
