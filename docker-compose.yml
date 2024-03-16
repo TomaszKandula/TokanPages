@@ -61,13 +61,13 @@ services:
       # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
-  user-api:
+  users-api:
     build:
       context: .
       args:
         - ENV_VALUE=Testing
-      dockerfile: user.dockerfile
-    hostname: user
+      dockerfile: users.dockerfile
+    hostname: users
     networks:
       - intranet-tokanpages
     ports:
