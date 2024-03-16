@@ -32,7 +32,7 @@ public class TestStartup
         });
 
         SetupTestDatabase(services);
-        services.CommonServices(_configuration);
+        //services.CommonServices(_configuration);
     }
 
     public void Configure(IApplicationBuilder builder)
