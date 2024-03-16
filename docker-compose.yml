@@ -1,6 +1,81 @@
 version: "3.8"
 
 services:
+  articles-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: articles.dockerfile
+    hostname: articles
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6001:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  content-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: content.dockerfile
+    hostname: content
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6002:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  sender-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: sender.dockerfile
+    hostname: sender
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6003:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  subscribers-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: subscribers.dockerfile
+    hostname: subscribers
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6004:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  user-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: user.dockerfile
+    hostname: user
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6005:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
   gateway-api:
     build:
       context: .
@@ -9,12 +84,12 @@ services:
       dockerfile: gateway.dockerfile
     hostname: gateway
     networks:
-      - intranet-tokan
+      - intranet-tokanpages
     ports:
-      - "6001:80"
+      - "6100:80"
     volumes:
       # Map settings for testing
-      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets.json:/app/appsettings.Testing.json:ro
 
   hosted-services-api:
     build:
@@ -24,13 +99,13 @@ services:
       dockerfile: hosted.dockerfile
     hostname: hosted-services
     networks:
-      - intranet-tokan
+      - intranet-tokanpages
     ports:
-      - "6002:80"
+      - "8000:80"
     volumes:
       # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
 networks:
-  intranet-tokan:
+  intranet-tokanpages:
     external: true
