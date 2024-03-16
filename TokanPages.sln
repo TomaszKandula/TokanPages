@@ -76,7 +76,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{
 		content.dockerfile = content.dockerfile
 		sender.dockerfile = sender.dockerfile
 		subscribers.dockerfile = subscribers.dockerfile
-		user.dockerfile = user.dockerfile
+		users.dockerfile = users.dockerfile
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
