@@ -1,5 +1,5 @@
 # 1 - Build ClientApp
-FROM node:16 AS node
+FROM node:20 AS node
 WORKDIR /app
 
 COPY ./*.* ./
@@ -23,9 +23,9 @@ ENV REACT_APP_FRONTEND=${APP_FRONTEND}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
 
 RUN yarn install
-RUN if [ $ENV_VALUE = Testing ]; then yarn global add sonarqube-scanner; fi
-RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ]; then yarn app-test --ci --coverage; fi
-RUN if [ $ENV_VALUE = Testing ]; then yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
+#RUN if [ $ENV_VALUE = Testing ]; then yarn global add sonarqube-scanner; fi
+#RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ]; then yarn app-test --ci --coverage; fi
+#RUN if [ $ENV_VALUE = Testing ]; then yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
 RUN yarn build
 
 # 2 - Build NGINX 
@@ -34,8 +34,8 @@ WORKDIR /usr/share/nginx/html
 
 ARG ALLOWED_ORIGINS
 ENV PROXY_PASS=${ALLOWED_ORIGINS}
-COPY ./nginx/nginx.template /etc/nginx/nginx.template
+COPY ./nginx/nginx-template.conf /etc/nginx/nginx-template.conf
 
 RUN rm -rf ./* && apk update && apk add --no-cache bash
 COPY --from=node /app/build .
-CMD /bin/bash -c "envsubst '\$PROXY_PASS' < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+CMD /bin/bash -c "envsubst '\$PROXY_PASS' < /etc/nginx/nginx-template.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

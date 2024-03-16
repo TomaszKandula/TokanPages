@@ -19,13 +19,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.E2ETests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.UnitTests", "TokanPages.Tests\TokanPages.Tests.UnitTests\TokanPages.Tests.UnitTests.csproj", "{3A138774-9DA3-40E3-8DA3-50620F0FD310}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. WebApi", "8. WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. WebApi", "9. WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Backend", "5. Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Backend", "6. Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. Tests", "9. Tests", "{B30AF865-7C21-4323-B7E5-14762C5B1DC0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10. Tests", "10. Tests", "{B30AF865-7C21-4323-B7E5-14762C5B1DC0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Services", "7. Services", "{7B457C82-AEA6-49F3-8F9F-A7F0798166FF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. Services", "8. Services", "{7B457C82-AEA6-49F3-8F9F-A7F0798166FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.BehaviourService", "TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj", "{0E68D499-C546-42A7-BFF7-9585002DA3A7}"
 EndProject
@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.UserSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.EmailSenderService", "TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj", "{2537C6F4-8115-4ECF-816B-0D00207163E5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Persistence", "6. Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Persistence", "7. Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.Caching", "TokanPages.Persistence\TokanPages.Persistence.Caching\TokanPages.Persistence.Caching.csproj", "{2C3954CF-EB27-45CA-8A22-5A44497BEC36}"
 EndProject
@@ -70,14 +70,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Docu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
 	ProjectSection(SolutionItems) = preProject
-		hosted.dockerfile = hosted.dockerfile
-		gateway.dockerfile = gateway.dockerfile
+		docker-compose.yml = docker-compose.yml
 		articles.dockerfile = articles.dockerfile
 		content.dockerfile = content.dockerfile
 		sender.dockerfile = sender.dockerfile
 		subscribers.dockerfile = subscribers.dockerfile
 		users.dockerfile = users.dockerfile
-		docker-compose.yml = docker-compose.yml
+		gateway.dockerfile = gateway.dockerfile
+		hosted.dockerfile = hosted.dockerfile
+		TokanPages.ClientApp\clientapp.dockerfile = TokanPages.ClientApp\clientapp.dockerfile
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.MigrationRunner", "TokanPages.Persistence\TokanPages.Persistence.MigrationRunner\TokanPages.Persistence.MigrationRunner.csproj", "{6FD4A6FE-9A38-45A5-8CD6-DD770D872BE7}"
@@ -113,6 +114,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Subscribers", "TokanPages.WebApi\TokanPages.Subscribers\TokanPages.Subscribers.csproj", "{1DACB981-6A16-4AAA-ABE3-E72408C59CD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Subscribers.Dto", "TokanPages.WebApi\TokanPages.Subscribers.Dto\TokanPages.Subscribers.Dto.csproj", "{CFBE90FC-90C2-4A6D-B12F-6D44C843CB14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Nginx", "5. Nginx", "{81559082-2D02-493B-98BA-12AA28B99871}"
+	ProjectSection(SolutionItems) = preProject
+		TokanPages.ClientApp\nginx\nginx-template.conf = TokanPages.ClientApp\nginx\nginx-template.conf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
