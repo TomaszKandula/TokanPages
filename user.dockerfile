@@ -43,8 +43,8 @@ COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebSocketServ
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebTokenService/bin/Release/net6.0" .
 
 # WEBAPI
-COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.User/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.User.Dto/bin/Release/net6.0" .
+COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Users/bin/Release/net6.0" .
+COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Users.Dto/bin/Release/net6.0" .
 
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
