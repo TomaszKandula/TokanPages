@@ -43,11 +43,12 @@ COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebSocketServ
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebTokenService/bin/Release/net6.0" .
 
 # WEBAPI
-COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Gateway/bin/Release/net6.0" .
+COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Sender/bin/Release/net6.0" .
+COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Sender.Dto/bin/Release/net6.0" .
 
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 ENV ASPNETCORE_URLS=http://+:80  
 
 EXPOSE 80
-ENTRYPOINT ["dotnet", "TokanPages.Gateway.dll"]
+ENTRYPOINT ["dotnet", "TokanPages.Sender.dll"]

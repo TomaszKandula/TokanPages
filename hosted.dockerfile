@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . ./
 
 # RESTORE & BUILD & TEST
-RUN dotnet restore #--disable-parallel
+RUN dotnet restore --disable-parallel
 RUN dotnet build -c Release --force
 
 # ======================================================================================================================

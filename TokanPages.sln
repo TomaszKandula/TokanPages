@@ -70,8 +70,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Docu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
 	ProjectSection(SolutionItems) = preProject
-		gateway.dockerfile = gateway.dockerfile
 		hosted.dockerfile = hosted.dockerfile
+		gateway.dockerfile = gateway.dockerfile
+		articles.dockerfile = articles.dockerfile
+		content.dockerfile = content.dockerfile
+		sender.dockerfile = sender.dockerfile
+		subscribers.dockerfile = subscribers.dockerfile
+		user.dockerfile = user.dockerfile
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
