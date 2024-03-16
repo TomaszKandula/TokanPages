@@ -51,4 +51,4 @@ ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 ENV ASPNETCORE_URLS=http://+:80  
 
 EXPOSE 80
-ENTRYPOINT ["dotnet", "TokanPages.User.dll"]
+ENTRYPOINT ["dotnet", "TokanPages.Users.dll"]
