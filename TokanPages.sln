@@ -50,7 +50,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Configuration", "2. Configuration", "{B1EAD444-3ADC-407F-AC1F-41032E3FADF6}"
 	ProjectSection(SolutionItems) = preProject
 		TokanPages.Configuration\appsettings.Production.json = TokanPages.Configuration\appsettings.Production.json
-		TokanPages.Configuration\appsettings.Staging.json = TokanPages.Configuration\appsettings.Staging.json
 		TokanPages.Configuration\appsettings.Testing.json = TokanPages.Configuration\appsettings.Testing.json
 	EndProjectSection
 EndProject
