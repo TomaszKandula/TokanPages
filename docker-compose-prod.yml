@@ -1,0 +1,112 @@
+version: "3.8"
+
+services:
+  articles-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: articles.dockerfile
+    hostname: articles
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6001:80"
+
+  content-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: content.dockerfile
+    hostname: content
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6002:80"
+
+  sender-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: sender.dockerfile
+    hostname: sender
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6003:80"
+
+  subscribers-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: subscribers.dockerfile
+    hostname: subscribers
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6004:80"
+
+  users-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: users.dockerfile
+    hostname: users
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6005:80"
+
+  gateway-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: gateway.dockerfile
+    hostname: gateway
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "6100:80"
+
+  hosted-services-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: hosted.dockerfile
+    hostname: hosted-services
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "8000:80"
+
+  frontend-app:
+    build:
+      context: TokanPages.ClientApp
+      args:
+        - ENV_VALUE=Production
+        - API_VERSION=${API_VERSION}
+        - APP_VERSION=${APP_VERSION}
+        - APP_BUILD_TEST=${APP_BUILD_TEST}
+        - APP_DATE_TIME=${APP_DATE_TIME}
+        - APP_FRONTEND=http://localhost:3000
+        - APP_BACKEND=http://localhost:6100
+        - ALLOWED_ORIGINS=http://localhost:6100
+        - SONAR_TOKEN=${SONAR_TOKEN}
+        - SONAR_KEY=${SONAR_KEY}
+        - SONAR_HOST=${SONAR_HOST}
+      dockerfile: clientapp.dockerfile
+    hostname: frontend
+    networks:
+      - intranet-tokanpages
+    ports:
+      - "3000:80"
+
+networks:
+  intranet-tokanpages:
+    external: true

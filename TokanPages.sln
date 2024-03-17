@@ -70,7 +70,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Docu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
+		docker-compose-test.yml = docker-compose-test.yml
+		docker-compose-prod.yml = docker-compose-prod.yml
 		articles.dockerfile = articles.dockerfile
 		content.dockerfile = content.dockerfile
 		sender.dockerfile = sender.dockerfile
@@ -79,6 +80,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{
 		gateway.dockerfile = gateway.dockerfile
 		hosted.dockerfile = hosted.dockerfile
 		TokanPages.ClientApp\clientapp.dockerfile = TokanPages.ClientApp\clientapp.dockerfile
+		docker-compose-up-test.sh = docker-compose-up-test.sh
+		docker-compose-up-prod.sh = docker-compose-up-prod.sh
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.MigrationRunner", "TokanPages.Persistence\TokanPages.Persistence.MigrationRunner\TokanPages.Persistence.MigrationRunner.csproj", "{6FD4A6FE-9A38-45A5-8CD6-DD770D872BE7}"

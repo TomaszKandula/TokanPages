@@ -111,13 +111,16 @@ services:
       context: TokanPages.ClientApp
       args:
         - ENV_VALUE=Testing
-        - API_VERSION=1.0
-        - APP_VERSION=0.0.1-local-dev
-        - APP_BUILD_TEST=false
-        - APP_DATE_TIME=2024-01-01 at 15:00
+        - API_VERSION=${API_VERSION}
+        - APP_VERSION=${APP_VERSION}
+        - APP_BUILD_TEST=${APP_BUILD_TEST}
+        - APP_DATE_TIME=${APP_DATE_TIME}
         - APP_FRONTEND=http://localhost:3000
         - APP_BACKEND=http://localhost:6100
         - ALLOWED_ORIGINS=http://localhost:6100
+        - SONAR_TOKEN=${SONAR_TOKEN}
+        - SONAR_KEY=${SONAR_KEY}
+        - SONAR_HOST=${SONAR_HOST}
       dockerfile: clientapp.dockerfile
     hostname: frontend
     networks:
