@@ -11,8 +11,8 @@ ARG API_VERSION
 ARG APP_VERSION
 ARG APP_BUILD_TEST
 ARG APP_DATE_TIME
-ARG APP_FRONTEND
 ARG APP_BACKEND
+ARG SERVER_NAME
 ARG SONAR_TOKEN
 ARG SONAR_KEY
 ARG SONAR_HOST
@@ -36,10 +36,10 @@ RUN yarn build
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
-ARG ALLOWED_ORIGINS
-ENV PROXY_PASS=${ALLOWED_ORIGINS}
+ENV SERVER=${SERVER_NAME}
+ENV API=${APP_BACKEND}
 COPY ./nginx/nginx-template.conf /etc/nginx/nginx-template.conf
 
 RUN rm -rf ./* && apk update && apk add --no-cache bash
 COPY --from=node /app/build .
-CMD /bin/bash -c "envsubst '\$PROXY_PASS' < /etc/nginx/nginx-template.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+CMD /bin/bash -c "envsubst '\$API' '\$SERVER' < /etc/nginx/nginx-template.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"

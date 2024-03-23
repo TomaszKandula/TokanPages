@@ -7,11 +7,12 @@ API_VERSION="1.0"
 APP_VERSION=${GIT_APP_VERSION} # THIS IS SET BY SEMANTIC RELEASE
 APP_BUILD_TEST="false"
 APP_DATE_TIME=$(date +"%Y-%m-%d at %T")
+SERVER_NAME="vmi1726567.contaboserver.net"
 SONAR_TOKEN=""
 SONAR_KEY=""
 SONAR_HOST=""
 
-# APPLY ENVIRONMENT VARIABLES (CHECK DEBIAN OR MACOS)
+# APPLY ENVIRONMENT VARIABLES (DEBIAN OR MACOS)
 # MACOS REQUIRES EMPTY STRING FOR 'I' PARAMETER
 if [ -f "/etc/debian_version" ]; then
   sed -i \
@@ -19,6 +20,7 @@ if [ -f "/etc/debian_version" ]; then
   -e "s/\${APP_VERSION}/${APP_VERSION}/" \
   -e "s/\${APP_BUILD_TEST}/${APP_BUILD_TEST}/" \
   -e "s/\${APP_DATE_TIME}/${APP_DATE_TIME}/" \
+  -e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
   -e "s/\${SONAR_TOKEN}/${SONAR_TOKEN}/" \
   -e "s/\${SONAR_KEY}/${SONAR_KEY}/" \
   -e "s/\${SONAR_HOST}/${SONAR_HOST}/" \
@@ -29,6 +31,7 @@ else
   -e "s/\${APP_VERSION}/${APP_VERSION}/" \
   -e "s/\${APP_BUILD_TEST}/${APP_BUILD_TEST}/" \
   -e "s/\${APP_DATE_TIME}/${APP_DATE_TIME}/" \
+  -e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
   -e "s/\${SONAR_TOKEN}/${SONAR_TOKEN}/" \
   -e "s/\${SONAR_KEY}/${SONAR_KEY}/" \
   -e "s/\${SONAR_HOST}/${SONAR_HOST}/" \

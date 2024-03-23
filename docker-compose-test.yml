@@ -115,9 +115,8 @@ services:
         - APP_VERSION=${APP_VERSION}
         - APP_BUILD_TEST=${APP_BUILD_TEST}
         - APP_DATE_TIME=${APP_DATE_TIME}
-        - APP_FRONTEND=http://localhost:3000
         - APP_BACKEND=http://localhost:6100
-        - ALLOWED_ORIGINS=http://localhost:6100
+        - SERVER_NAME=${SERVER_NAME}
         - SONAR_TOKEN=${SONAR_TOKEN}
         - SONAR_KEY=${SONAR_KEY}
         - SONAR_HOST=${SONAR_HOST}
