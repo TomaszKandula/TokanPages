@@ -115,7 +115,7 @@ services:
         - APP_VERSION=${APP_VERSION}
         - APP_BUILD_TEST=${APP_BUILD_TEST}
         - APP_DATE_TIME=${APP_DATE_TIME}
-        - APP_BACKEND=${APP_BACKEND}
+        - APP_BACKEND=http://${APP_BACKEND}
         - SONAR_TOKEN=${SONAR_TOKEN}
         - SONAR_KEY=${SONAR_KEY}
         - SONAR_HOST=${SONAR_HOST}

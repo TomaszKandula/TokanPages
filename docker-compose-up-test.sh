@@ -1,7 +1,7 @@
 #!/bin/bash
 # PREPARE CONFIGURATION FILES
 cp docker-compose-test.yml docker-compose-run.yml
-cp TokanPages.ClientApp/nginx/nginx-template.conf TokanPages.ClientApp/nginx/nginx.conf
+cp TokanPages.ClientApp/nginx/nginx-http.conf TokanPages.ClientApp/nginx/nginx.conf
 
 # SET ENVIRONMENT VARIABLES
 API_VERSION="1.0"

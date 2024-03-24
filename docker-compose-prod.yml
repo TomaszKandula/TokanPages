@@ -94,7 +94,7 @@ services:
         - APP_VERSION=${APP_VERSION}
         - APP_BUILD_TEST=${APP_BUILD_TEST}
         - APP_DATE_TIME=${APP_DATE_TIME}
-        - APP_BACKEND=${APP_BACKEND}
+        - APP_BACKEND=https://${APP_BACKEND}
         - SONAR_TOKEN=${SONAR_TOKEN}
         - SONAR_KEY=${SONAR_KEY}
         - SONAR_HOST=${SONAR_HOST}
@@ -103,7 +103,6 @@ services:
     networks:
       - intranet-tokanpages
     ports:
-      - "80:80"
       - "443:443"
     volumes:
       - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
