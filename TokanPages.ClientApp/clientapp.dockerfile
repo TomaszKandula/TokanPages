@@ -12,7 +12,6 @@ ARG APP_VERSION
 ARG APP_BUILD_TEST
 ARG APP_DATE_TIME
 ARG APP_BACKEND
-ARG SERVER_NAME
 ARG SONAR_TOKEN
 ARG SONAR_KEY
 ARG SONAR_HOST
@@ -20,8 +19,7 @@ ARG SONAR_HOST
 ENV REACT_APP_API_VER=${API_VERSION}
 ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
-ENV REACT_APP_FRONTEND=${APP_FRONTEND}
-ENV REACT_APP_BACKEND=${APP_BACKEND}
+ENV REACT_APP_BACKEND="http://${APP_BACKEND}"
 
 RUN yarn install
 RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
@@ -36,10 +34,6 @@ RUN yarn build
 FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
-ENV SERVER=${SERVER_NAME}
-ENV API=${APP_BACKEND}
-COPY ./nginx/nginx-template.conf /etc/nginx/nginx-template.conf
-
 RUN rm -rf ./* && apk update && apk add --no-cache bash
 COPY --from=node /app/build .
-CMD /bin/bash -c "envsubst '\$API' '\$SERVER' < /etc/nginx/nginx-template.conf > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
+CMD /bin/bash -c "nginx -g 'daemon off;'"
