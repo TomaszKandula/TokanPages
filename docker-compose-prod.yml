@@ -9,7 +9,7 @@ services:
       dockerfile: articles.dockerfile
     hostname: articles
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6001:80"
 
@@ -21,7 +21,7 @@ services:
       dockerfile: content.dockerfile
     hostname: content
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6002:80"
 
@@ -33,7 +33,7 @@ services:
       dockerfile: sender.dockerfile
     hostname: sender
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6003:80"
 
@@ -45,7 +45,7 @@ services:
       dockerfile: subscribers.dockerfile
     hostname: subscribers
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6004:80"
 
@@ -57,7 +57,7 @@ services:
       dockerfile: users.dockerfile
     hostname: users
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6005:80"
 
@@ -69,7 +69,7 @@ services:
       dockerfile: gateway.dockerfile
     hostname: gateway
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6100:80"
 
@@ -81,7 +81,7 @@ services:
       dockerfile: hosted.dockerfile
     hostname: hosted-services
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "8000:80"
 
@@ -101,7 +101,7 @@ services:
       dockerfile: clientapp.dockerfile
     hostname: frontend
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "443:443"
     volumes:
@@ -110,5 +110,5 @@ services:
       - /opt/certs/wildcard-tomkandula.com.key:/etc/nginx/wildcard-tomkandula.com.key:ro
 
 networks:
-  intranet-tokanpages:
-    external: true
+  xnet:
+    driver: bridge

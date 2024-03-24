@@ -9,7 +9,7 @@ services:
       dockerfile: articles.dockerfile
     hostname: articles
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6001:80"
     volumes:
@@ -24,7 +24,7 @@ services:
       dockerfile: content.dockerfile
     hostname: content
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6002:80"
     volumes:
@@ -39,7 +39,7 @@ services:
       dockerfile: sender.dockerfile
     hostname: sender
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6003:80"
     volumes:
@@ -54,7 +54,7 @@ services:
       dockerfile: subscribers.dockerfile
     hostname: subscribers
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6004:80"
     volumes:
@@ -69,7 +69,7 @@ services:
       dockerfile: users.dockerfile
     hostname: users
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6005:80"
     volumes:
@@ -84,7 +84,7 @@ services:
       dockerfile: gateway.dockerfile
     hostname: gateway
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "6100:80"
     volumes:
@@ -99,7 +99,7 @@ services:
       dockerfile: hosted.dockerfile
     hostname: hosted-services
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "8000:80"
     volumes:
@@ -122,12 +122,12 @@ services:
       dockerfile: clientapp.dockerfile
     hostname: frontend
     networks:
-      - intranet-tokanpages
+      - xnet
     ports:
       - "3000:80"
     volumes:
       - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
 
 networks:
-  intranet-tokanpages:
-    external: true
+  xnet:
+    driver: bridge
