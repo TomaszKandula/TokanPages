@@ -107,6 +107,8 @@ services:
       - "443:443"
     volumes:
       - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /opt/certs/wildcard-tomkandula.com.crt:/etc/nginx/wildcard-tomkandula.com.crt:ro
+      - /opt/certs/wildcard-tomkandula.com.key:/etc/nginx/wildcard-tomkandula.com.key:ro
 
 networks:
   intranet-tokanpages:
