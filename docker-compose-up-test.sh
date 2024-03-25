@@ -48,4 +48,4 @@ else
 fi
 
 # RUN DOCKER COMPOSE
-docker compose -f docker-compose-run.yml up
+docker compose -f docker-compose-run.yml up -d

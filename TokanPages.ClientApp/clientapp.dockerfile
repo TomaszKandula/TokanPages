@@ -30,10 +30,21 @@ RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
     yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
 RUN yarn build
 
-# 2 - Build NGINX 
-FROM nginx:alpine
+# 2 - Build Debian w/NGINX 
+FROM debian:latest
 WORKDIR /usr/share/nginx/html
 
-RUN rm -rf ./* && apk update && apk add --no-cache bash
+RUN rm -rf ./*
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get -y install bash
+RUN apt-get -y install nginx
+RUN apt-get -y install nginx-full
+RUN apt-get -y install nginx-extras
+RUN adduser --system --no-create-home --shell /bin/false --group --disabled-login nginx
+RUN chown -R nginx:nginx /var/www/html
+
 COPY --from=node /app/build .
+
+CMD /bin/bash -c "nginx -t"
 CMD /bin/bash -c "nginx -g 'daemon off;'"
