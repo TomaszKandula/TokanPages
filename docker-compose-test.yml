@@ -1,0 +1,133 @@
+version: "3.8"
+
+services:
+  articles-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: articles.dockerfile
+    hostname: articles
+    networks:
+      - xnet
+    ports:
+      - "6001:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  content-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: content.dockerfile
+    hostname: content
+    networks:
+      - xnet
+    ports:
+      - "6002:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  sender-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: sender.dockerfile
+    hostname: sender
+    networks:
+      - xnet
+    ports:
+      - "6003:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  subscribers-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: subscribers.dockerfile
+    hostname: subscribers
+    networks:
+      - xnet
+    ports:
+      - "6004:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  users-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: users.dockerfile
+    hostname: users
+    networks:
+      - xnet
+    ports:
+      - "6005:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  gateway-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: gateway.dockerfile
+    hostname: gateway
+    networks:
+      - xnet
+    ports:
+      - "6100:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets.json:/app/appsettings.Testing.json:ro
+
+  hosted-services-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: hosted.dockerfile
+    hostname: hosted-services
+    networks:
+      - xnet
+    ports:
+      - "8000:80"
+    volumes:
+      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  frontend-app:
+    build:
+      context: TokanPages.ClientApp
+      args:
+        - ENV_VALUE=Testing
+        - API_VERSION=${API_VERSION}
+        - APP_VERSION=${APP_VERSION}
+        - APP_BUILD_TEST=${APP_BUILD_TEST}
+        - APP_DATE_TIME=${APP_DATE_TIME}
+        - APP_BACKEND=http://${APP_BACKEND}
+        - SONAR_TOKEN=${SONAR_TOKEN}
+        - SONAR_KEY=${SONAR_KEY}
+        - SONAR_HOST=${SONAR_HOST}
+      dockerfile: clientapp.dockerfile
+    hostname: frontend
+    networks:
+      - xnet
+    ports:
+      - "3000:80"
+    volumes:
+      - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+networks:
+  xnet:
+    driver: bridge

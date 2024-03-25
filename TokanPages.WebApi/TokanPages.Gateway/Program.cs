@@ -1,11 +1,12 @@
-using System.Diagnostics.CodeAnalysis;
-using Serilog;
 using Logger = TokanPages.Backend.Configuration.Logger;
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore;
+using Serilog;
 
 namespace TokanPages.Gateway;
 
 /// <summary>
-/// Program.
+/// .NET6 program.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
@@ -14,9 +15,9 @@ public static class Program
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
     /// <summary>
-    /// Main entry point.
+    /// Main entry point
     /// </summary>
-    /// <returns>Integer.</returns>
+    /// <returns>Returns '1' on exception</returns>
     public static int Main()
     {
         try
@@ -25,10 +26,7 @@ public static class Program
             const string fileName = @"logs/TokanPages.Gateway/{yyyy}{MM}{dd}.txt";
             Log.Logger = Logger.Configuration.GetLogger(configuration, fileName);
             Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
-            CreateHostBuilder(configuration)
-                .ConfigureWebHostDefaults(builder => builder
-                    .ConfigureKestrel(options => options.AddServerHeader = false)
-                    .UseStartup<Startup>())
+            CreateWebHostBuilder(configuration)
                 .Build()
                 .Run();
 
@@ -55,10 +53,12 @@ public static class Program
             .Build();
     }
 
-    private static IHostBuilder CreateHostBuilder(IConfigurationRoot configurationRoot)
+    private static IWebHostBuilder CreateWebHostBuilder(IConfigurationRoot configurationRoot)
     {
-        return Host.CreateDefaultBuilder()
+        return WebHost.CreateDefaultBuilder()
             .ConfigureAppConfiguration(builder => builder.AddConfiguration(configurationRoot))
+            .ConfigureKestrel(options => options.AddServerHeader = false)
+            .UseStartup<Startup>()
             .UseSerilog();
     }
 }

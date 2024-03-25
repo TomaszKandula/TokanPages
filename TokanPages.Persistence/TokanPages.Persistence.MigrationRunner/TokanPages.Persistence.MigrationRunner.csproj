@@ -12,10 +12,6 @@
             <Link>appsettings.Testing.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Include="..\..\TokanPages.Configuration\appsettings.Staging.json">
-            <Link>appsettings.Staging.json</Link>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
         <None Include="..\..\TokanPages.Configuration\appsettings.Production.json">
             <Link>appsettings.Production.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>

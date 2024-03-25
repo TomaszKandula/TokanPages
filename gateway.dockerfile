@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . ./
 
 # RESTORE & BUILD & TEST
-RUN dotnet restore #--disable-parallel
+RUN dotnet restore --disable-parallel
 RUN dotnet build -c Release --force
 
 # ======================================================================================================================
@@ -44,7 +44,6 @@ COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebTokenServi
 
 # WEBAPI
 COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Gateway/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Gateway.Dto/bin/Release/net6.0" .
 
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}

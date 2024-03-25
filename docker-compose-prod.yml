@@ -1,0 +1,116 @@
+version: "3.8"
+
+services:
+  articles-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: articles.dockerfile
+    hostname: articles
+    networks:
+      - xnet
+    ports:
+      - "6001:80"
+
+  content-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: content.dockerfile
+    hostname: content
+    networks:
+      - xnet
+    ports:
+      - "6002:80"
+
+  sender-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: sender.dockerfile
+    hostname: sender
+    networks:
+      - xnet
+    ports:
+      - "6003:80"
+
+  subscribers-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: subscribers.dockerfile
+    hostname: subscribers
+    networks:
+      - xnet
+    ports:
+      - "6004:80"
+
+  users-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: users.dockerfile
+    hostname: users
+    networks:
+      - xnet
+    ports:
+      - "6005:80"
+
+  gateway-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: gateway.dockerfile
+    hostname: gateway
+    networks:
+      - xnet
+    ports:
+      - "6100:80"
+
+  hosted-services-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: hosted.dockerfile
+    hostname: hosted-services
+    networks:
+      - xnet
+    ports:
+      - "8000:80"
+
+  frontend-app:
+    build:
+      context: TokanPages.ClientApp
+      args:
+        - ENV_VALUE=Production
+        - API_VERSION=${API_VERSION}
+        - APP_VERSION=${APP_VERSION}
+        - APP_BUILD_TEST=${APP_BUILD_TEST}
+        - APP_DATE_TIME=${APP_DATE_TIME}
+        - APP_BACKEND=https://${APP_BACKEND}
+        - SONAR_TOKEN=${SONAR_TOKEN}
+        - SONAR_KEY=${SONAR_KEY}
+        - SONAR_HOST=${SONAR_HOST}
+      dockerfile: clientapp.dockerfile
+    hostname: frontend
+    networks:
+      - xnet
+    ports:
+      - "443:443"
+    volumes:
+      - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /opt/certs/wildcard-tomkandula.com.chain:/etc/nginx/wildcard-tomkandula.com.chain:ro
+      - /opt/certs/wildcard-tomkandula.com.key:/etc/nginx/wildcard-tomkandula.com.key:ro
+      - /opt/certs/wildcard-tomkandula.com.ca:/etc/nginx/wildcard-tomkandula.com.ca:ro
+      - /opt/certs/ffdhe2048.txt:/etc/nginx/ffdhe2048.txt:ro
+
+networks:
+  xnet:
+    driver: bridge
