@@ -12,6 +12,8 @@ services:
       - xnet
     ports:
       - "6001:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/opt/TokanPages/TokanPages.Configuration/appsettings.Production.json:ro
 
   content-api:
     build:
@@ -24,6 +26,8 @@ services:
       - xnet
     ports:
       - "6002:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/opt/TokanPages/TokanPages.Configuration/appsettings.Production.json:ro
 
   sender-api:
     build:
@@ -36,6 +40,8 @@ services:
       - xnet
     ports:
       - "6003:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/opt/TokanPages/TokanPages.Configuration/appsettings.Production.json:ro
 
   subscribers-api:
     build:
@@ -48,6 +54,8 @@ services:
       - xnet
     ports:
       - "6004:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/opt/TokanPages/TokanPages.Configuration/appsettings.Production.json:ro
 
   users-api:
     build:
@@ -60,6 +68,8 @@ services:
       - xnet
     ports:
       - "6005:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/opt/TokanPages/TokanPages.Configuration/appsettings.Production.json:ro
 
   gateway-api:
     build:
@@ -72,6 +82,8 @@ services:
       - xnet
     ports:
       - "6100:80"
+    volumes:
+      - /opt/configs/tokanpages-gw-prod.json:/opt/TokanPages/TokanPages.WebApi/TokanPages.Gateway/appsettings.Production.json:ro
 
   hosted-services-api:
     build:
@@ -84,6 +96,8 @@ services:
       - xnet
     ports:
       - "8000:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/opt/TokanPages/TokanPages.Configuration/appsettings.Production.json:ro
 
   frontend-app:
     build:
