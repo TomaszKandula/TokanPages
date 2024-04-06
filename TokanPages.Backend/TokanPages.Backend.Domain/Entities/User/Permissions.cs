@@ -9,16 +9,12 @@ public class Permissions : Entity<Guid>, IAuditable
 {
     [MaxLength(100)]
     public string Name { get; set; }
-
     public Guid CreatedBy { get; set; }
-
     public DateTime CreatedAt { get; set; }
-
     public Guid? ModifiedBy { get; set; }
-
     public DateTime? ModifiedAt { get; set; }
 
+    /* Navigation properties */
     public ICollection<DefaultPermissions> DefaultPermissionsNavigation { get; set; } = new HashSet<DefaultPermissions>();
-
     public ICollection<UserPermissions> UserPermissionsNavigation { get; set; } = new HashSet<UserPermissions>();
 }

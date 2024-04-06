@@ -17,46 +17,32 @@ public enum CurrencyCodes
 {
     [EnumMember(Value = "unknown")]
     Unknown = 0,
-
     [EnumMember(Value = "bgn")]
     Bgn = 975,
-
     [EnumMember(Value = "chf")]
     Chf = 756,
-
     [EnumMember(Value = "czk")]
     Czk = 203,
-
     [EnumMember(Value = "dkk")]
     Dkk = 208,
-
     [EnumMember(Value = "eur")]
     Eur = 978,
-
     [EnumMember(Value = "gdp")]
     Gbp = 826,
-
     [EnumMember(Value = "hrk")]
     Hrk = 191,
-
     [EnumMember(Value = "huf")]
     Huf = 348,
-
     [EnumMember(Value = "nok")]
     Nok = 578,
-
     [EnumMember(Value = "pln")]
     Pln = 985,
-
     [EnumMember(Value = "ron")]
     Ron = 946,
-
     [EnumMember(Value = "sek")]
     Sek = 752,
-
     [EnumMember(Value = "try")]
     Try = 949,
-
     [EnumMember(Value = "usd")]
     Usd = 840
 }
