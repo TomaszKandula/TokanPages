@@ -2,16 +2,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
-namespace TokanPages.Backend.Domain.Entities;
+namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class Roles : Entity<Guid>, IAuditable
+public class Permissions : Entity<Guid>, IAuditable
 {
-    [MaxLength(60)]
+    [MaxLength(100)]
     public string Name { get; set; }
-
-    [MaxLength(60)]
-    public string Description { get; set; }
 
     public Guid CreatedBy { get; set; }
 
@@ -23,5 +20,5 @@ public class Roles : Entity<Guid>, IAuditable
 
     public ICollection<DefaultPermissions> DefaultPermissionsNavigation { get; set; } = new HashSet<DefaultPermissions>();
 
-    public ICollection<UserRoles> UserRolesNavigation { get; set; } = new HashSet<UserRoles>();
+    public ICollection<UserPermissions> UserPermissionsNavigation { get; set; } = new HashSet<UserPermissions>();
 }

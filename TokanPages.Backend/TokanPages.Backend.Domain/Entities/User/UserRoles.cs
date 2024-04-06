@@ -1,14 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
-namespace TokanPages.Backend.Domain.Entities;
+namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class UserPermissions : Entity<Guid>, IAuditable
+public class UserRoles : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }
 
-    public Guid PermissionId { get; set; }
+    public Guid RoleId { get; set; }
 
     public Guid CreatedBy { get; set; }
 
@@ -20,5 +20,5 @@ public class UserPermissions : Entity<Guid>, IAuditable
 
     public Users UserNavigation { get; set; }
 
-    public Permissions PermissionNavigation { get; set; }
+    public Roles RoleNavigation { get; set; }
 }

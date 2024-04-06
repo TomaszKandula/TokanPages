@@ -1,14 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
-namespace TokanPages.Backend.Domain.Entities;
+namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class UserRoles : Entity<Guid>, IAuditable
+public class DefaultPermissions : Entity<Guid>, IAuditable
 {
-    public Guid UserId { get; set; }
-
     public Guid RoleId { get; set; }
+
+    public Guid PermissionId { get; set; }
 
     public Guid CreatedBy { get; set; }
 
@@ -18,7 +18,7 @@ public class UserRoles : Entity<Guid>, IAuditable
 
     public DateTime? ModifiedAt { get; set; }
 
-    public Users UserNavigation { get; set; }
+    public Roles RoleNavigation { get; set; } 
 
-    public Roles RoleNavigation { get; set; }
+    public Permissions PermissionNavigation { get; set; }
 }
