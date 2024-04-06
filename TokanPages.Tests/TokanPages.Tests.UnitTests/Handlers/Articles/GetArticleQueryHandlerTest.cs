@@ -8,6 +8,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
@@ -52,7 +53,7 @@ public class GetArticleQueryHandlerTest : TestBase
             ModifiedAt = null
         };
         
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),
@@ -147,7 +148,7 @@ public class GetArticleQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

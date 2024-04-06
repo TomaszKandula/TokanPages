@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Invoicing;
 
 namespace TokanPages.Persistence.Database;

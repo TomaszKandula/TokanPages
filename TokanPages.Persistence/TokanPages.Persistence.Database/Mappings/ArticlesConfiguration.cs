@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 
 namespace TokanPages.Persistence.Database.Mappings;
 

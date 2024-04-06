@@ -4,6 +4,7 @@ using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -134,7 +135,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString()
         };
 
-        var article = new Backend.Domain.Entities.Articles
+        var article = new Backend.Domain.Entities.Articles.Articles
         {
             Id = Guid.NewGuid(),
             UserId = userId,

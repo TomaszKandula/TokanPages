@@ -4,7 +4,7 @@ using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -28,7 +28,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -106,7 +106,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

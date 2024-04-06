@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -30,7 +31,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -106,7 +107,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var article = new Backend.Domain.Entities.Articles
+        var article = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -168,18 +169,18 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
-        entity.ReadCount.Should().Be(expectedTotalReadCount);
+        entity?.ReadCount.Should().Be(expectedTotalReadCount);
 
         var counts = await databaseContext.ArticleCounts.SingleOrDefaultAsync(x => x.ArticleId == articleId);
         counts.Should().NotBeNull();
-        counts.ArticleId.Should().Be(articleId);
-        counts.UserId.Should().Be(userId);
-        counts.IpAddress.Should().Be(mockedIpAddress);
-        counts.ReadCount.Should().Be(expectedReadCount);
-        counts.CreatedBy.Should().Be(articleCount.CreatedBy);
-        counts.CreatedAt.Should().Be(articleCount.CreatedAt);
-        counts.ModifiedBy.Should().BeNull();
-        counts.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        counts?.ArticleId.Should().Be(articleId);
+        counts?.UserId.Should().Be(userId);
+        counts?.IpAddress.Should().Be(mockedIpAddress);
+        counts?.ReadCount.Should().Be(expectedReadCount);
+        counts?.CreatedBy.Should().Be(articleCount.CreatedBy);
+        counts?.CreatedAt.Should().Be(articleCount.CreatedAt);
+        counts?.ModifiedBy.Should().BeNull();
+        counts?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -197,7 +198,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var article = new Backend.Domain.Entities.Articles
+        var article = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -266,18 +267,18 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
-        entity.ReadCount.Should().Be(expectedTotalReadCount);
+        entity?.ReadCount.Should().Be(expectedTotalReadCount);
 
         var count = await databaseContext.ArticleCounts.SingleOrDefaultAsync(counts => counts.ArticleId == article.Id);
         count.Should().NotBeNull();
-        count.ArticleId.Should().Be(articleId);
-        count.UserId.Should().Be(userId);
-        count.IpAddress.Should().Be(mockedIpAddress);
-        count.ReadCount.Should().Be(expectedUserReadCount);
-        count.CreatedBy.Should().Be(articleCount.CreatedBy);
-        count.CreatedAt.Should().Be(articleCount.CreatedAt);
-        count.ModifiedBy.Should().Be(articleCount.UserId);
-        count.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        count?.ArticleId.Should().Be(articleId);
+        count?.UserId.Should().Be(userId);
+        count?.IpAddress.Should().Be(mockedIpAddress);
+        count?.ReadCount.Should().Be(expectedUserReadCount);
+        count?.CreatedBy.Should().Be(articleCount.CreatedBy);
+        count?.CreatedAt.Should().Be(articleCount.CreatedAt);
+        count?.ModifiedBy.Should().Be(articleCount.UserId);
+        count?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -293,7 +294,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

@@ -38,7 +38,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -122,7 +122,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

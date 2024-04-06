@@ -50,7 +50,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articlesId,
             UserId = userId,
@@ -97,7 +97,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var articlesEntity = await databaseContext.Articles.FindAsync(articles.Id);
 
         articlesEntity.Should().NotBeNull();
-        articlesEntity.IsPublished.Should().Be(shouldBeVisible);
+        articlesEntity?.IsPublished.Should().Be(shouldBeVisible);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articlesId,
             UserId = userId,
@@ -212,7 +212,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Articles.Articles
         {
             Id = articlesId,
             UserId = userId,
