@@ -7,4 +7,10 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Articles\" />
+    <Folder Include="Entities\Photography\" />
+    <Folder Include="Entities\Users\" />
+  </ItemGroup>
+
 </Project>
