@@ -14,12 +14,12 @@ public class DatabaseContext : DbContext
 {
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-    /* ARTICLES */
+    /* Category: Article */
     public virtual DbSet<Articles> Articles { get; set; }
     public virtual DbSet<ArticleLikes> ArticleLikes { get; set; }
     public virtual DbSet<ArticleCounts> ArticleCounts { get; set; }
 
-    /* INVOICING */
+    /* Category: Invoicing */
     public virtual DbSet<BatchInvoiceItems> BatchInvoiceItems { get; set; }
     public virtual DbSet<BatchInvoices> BatchInvoices { get; set; }
     public virtual DbSet<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; }
@@ -29,13 +29,13 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserCompanies> UserCompanies { get; set; }
     public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
 
-    /* PHOTOGRAPHY */
+    /* Category: Photography */
     public virtual DbSet<Albums> Albums { get; set; }
     public virtual DbSet<UserPhotos> UserPhotos { get; set; }
     public virtual DbSet<PhotoGears> PhotoGears { get; set; }
     public virtual DbSet<PhotoCategories> PhotoCategories { get; set; }
 
-    /* USERS */
+    /* Category: User */
     public virtual DbSet<Users> Users { get; set; }
     public virtual DbSet<Roles> Roles { get; set; }
     public virtual DbSet<Permissions> Permissions { get; set; }
@@ -46,7 +46,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
     public virtual DbSet<UserInfo> UserInfo { get; set; }
 
-    /* OTHER */
+    /* Category: Other */
     public virtual DbSet<Subscribers> Subscribers { get; set; }
     public virtual DbSet<HttpRequests> HttpRequests { get; set; }
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }
