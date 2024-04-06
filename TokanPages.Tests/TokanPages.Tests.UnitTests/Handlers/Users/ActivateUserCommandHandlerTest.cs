@@ -17,7 +17,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var activationId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -54,7 +54,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     public async Task GivenInvalidActivationId_WhenActivateUser_ShouldThrowError()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -92,7 +92,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var activationId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),

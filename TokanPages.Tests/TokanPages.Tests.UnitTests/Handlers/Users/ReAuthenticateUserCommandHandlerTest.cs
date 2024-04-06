@@ -1,12 +1,11 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -29,7 +28,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var refreshToken = DataUtilityService.GetRandomString(255);
 
         var command = new ReAuthenticateUserCommand { RefreshToken = refreshToken };
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -124,7 +123,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var newUserToken = DataUtilityService.GetRandomString();
         mockedUserService
             .Setup(service => service.GenerateUserToken(
-                It.IsAny<Backend.Domain.Entities.Users>(), 
+                It.IsAny<Backend.Domain.Entities.User.Users>(), 
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
@@ -190,7 +189,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
             
         var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -260,7 +259,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),

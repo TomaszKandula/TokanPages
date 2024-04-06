@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Article;
 
-namespace TokanPages.Persistence.Database.Mappings.Articles;
+namespace TokanPages.Persistence.Database.Mappings.Article;
 
 [ExcludeFromCodeCoverage]
 public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLikes>

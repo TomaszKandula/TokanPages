@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -85,7 +85,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             await azureBlob.UploadFile(defaultAvatar.Content!, destinationAvatarPath, cancellationToken: cancellationToken);
 
         var userAlias = $"{request.FirstName![..2]}{request.LastName![..3]}".ToLower();
-        var newUser = new Domain.Entities.Users
+        var newUser = new Domain.Entities.User.Users
         {
             Id = newUserId,
             EmailAddress = request.EmailAddress,

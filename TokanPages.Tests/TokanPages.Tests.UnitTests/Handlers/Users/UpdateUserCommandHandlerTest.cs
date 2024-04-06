@@ -15,7 +15,7 @@ public class UpdateUserCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
     {
         // Arrange
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -71,7 +71,7 @@ public class UpdateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var user = new List<Backend.Domain.Entities.Users>
+        var user = new List<Backend.Domain.Entities.User.Users>
         {
             new()
             {

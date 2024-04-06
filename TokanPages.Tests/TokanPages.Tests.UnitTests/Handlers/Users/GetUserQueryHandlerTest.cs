@@ -3,7 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
@@ -14,7 +14,7 @@ public class GetUserQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
     {
         // Arrange
-        var users = new Backend.Domain.Entities.Users 
+        var users = new Backend.Domain.Entities.User.Users 
         { 
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),

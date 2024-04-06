@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Entities.User;
 
-namespace TokanPages.Backend.Domain.Entities.Articles;
+namespace TokanPages.Backend.Domain.Entities.Article;
 
 [ExcludeFromCodeCoverage]
 public class Articles : Entity<Guid>

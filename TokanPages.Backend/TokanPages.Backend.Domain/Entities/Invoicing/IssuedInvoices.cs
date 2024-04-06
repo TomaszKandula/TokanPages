@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Entities.User;
 
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 

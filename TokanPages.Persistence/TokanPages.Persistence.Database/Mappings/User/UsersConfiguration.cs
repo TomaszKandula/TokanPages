@@ -1,12 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TokanPages.Backend.Domain.Entities.User;
 
-namespace TokanPages.Persistence.Database.Mappings.Users;
+namespace TokanPages.Persistence.Database.Mappings.User;
 
 [ExcludeFromCodeCoverage]
-public class UsersConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Users>
+public class UsersConfiguration : IEntityTypeConfiguration<Users>
 {
-    public void Configure(EntityTypeBuilder<Backend.Domain.Entities.Users> builder) 
+    public void Configure(EntityTypeBuilder<Users> builder) 
         => builder.Property(users => users.Id).ValueGeneratedOnAdd();
 }

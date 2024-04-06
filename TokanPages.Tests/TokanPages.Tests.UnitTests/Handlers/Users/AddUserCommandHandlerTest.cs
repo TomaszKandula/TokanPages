@@ -5,7 +5,7 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
@@ -144,7 +144,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         { 
             EmailAddress = testEmail,
             UserAlias = userAlias,
@@ -223,7 +223,7 @@ public class AddUserCommandHandlerTest : TestBase
             LastName = DataUtilityService.GetRandomString(),
         };
 
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
