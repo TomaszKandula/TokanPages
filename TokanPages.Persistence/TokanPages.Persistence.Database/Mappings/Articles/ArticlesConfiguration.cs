@@ -1,14 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TokanPages.Backend.Domain.Entities.Articles;
 
-namespace TokanPages.Persistence.Database.Mappings;
+namespace TokanPages.Persistence.Database.Mappings.Articles;
 
 [ExcludeFromCodeCoverage]
-public class ArticlesConfiguration : IEntityTypeConfiguration<Articles>
+public class ArticlesConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Articles.Articles>
 {
-    public void Configure(EntityTypeBuilder<Articles> builder)
+    public void Configure(EntityTypeBuilder<Backend.Domain.Entities.Articles.Articles> builder)
     {
         builder.Property(articles => articles.Id).ValueGeneratedOnAdd();
             

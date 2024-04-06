@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TokanPages.Backend.Domain.Entities.Articles;
 
-namespace TokanPages.Persistence.Database.Mappings;
+namespace TokanPages.Persistence.Database.Mappings.Articles;
 
 [ExcludeFromCodeCoverage]
 public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLikes>

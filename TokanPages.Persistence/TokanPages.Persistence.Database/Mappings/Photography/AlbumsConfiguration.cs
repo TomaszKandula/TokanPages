@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace TokanPages.Persistence.Database.Mappings;
+namespace TokanPages.Persistence.Database.Mappings.Photography;
 
 [ExcludeFromCodeCoverage]
 public class AlbumsConfiguration : IEntityTypeConfiguration<Albums>
