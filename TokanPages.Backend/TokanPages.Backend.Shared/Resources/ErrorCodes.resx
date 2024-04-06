@@ -216,4 +216,25 @@
   <data name="BUS_MESSAGE_TOO_LARGE" xml:space="preserve">
     <value>Message is too long</value>
   </data>
+  <data name="VAT_NUM_INCORRECT_LENGTH" xml:space="preserve">
+        <value>VAT number have incorrect length</value>
+    </data>
+  <data name="VAT_NUM_ALL_DIGITS_ARE_SAME" xml:space="preserve">
+        <value>VAT number carry the same digits</value>
+    </data>
+  <data name="VAT_NUM_INCORRECT_SIGN" xml:space="preserve">
+        <value>VAT number have incorrect sign</value>
+    </data>
+  <data name="VAT_NUM_INCORRECT_FORMAT" xml:space="preserve">
+        <value>VAT number have incorrect format</value>
+    </data>
+  <data name="VAT_NUM_ZERO_AT_FIRST_OR_THIRD_POSSITION" xml:space="preserve">
+        <value>VAT number have zero at first position and zero at third position</value>
+    </data>
+  <data name="VAT_NUM_INCORRECT_CHECK_SUM" xml:space="preserve">
+        <value>VAT number have incorrect check sum</value>
+    </data>
+  <data name="VAT_NUM_LENGTH_NINE" xml:space="preserve">
+        <value>VAT number have incorrect length of nine digits</value>
+    </data>
 </root>

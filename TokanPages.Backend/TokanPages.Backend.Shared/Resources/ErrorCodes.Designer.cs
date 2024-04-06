@@ -242,5 +242,47 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("BUS_MESSAGE_TOO_LARGE", resourceCulture);
             }
         }
+        
+        public static string VAT_NUM_INCORRECT_LENGTH {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_LENGTH", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_ALL_DIGITS_ARE_SAME {
+            get {
+                return ResourceManager.GetString("VAT_NUM_ALL_DIGITS_ARE_SAME", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_SIGN {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_SIGN", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_FORMAT {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_FORMAT", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_ZERO_AT_FIRST_OR_THIRD_POSSITION {
+            get {
+                return ResourceManager.GetString("VAT_NUM_ZERO_AT_FIRST_OR_THIRD_POSSITION", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_CHECK_SUM {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_CHECK_SUM", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_LENGTH_NINE {
+            get {
+                return ResourceManager.GetString("VAT_NUM_LENGTH_NINE", resourceCulture);
+            }
+        }
     }
 }
