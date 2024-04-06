@@ -1,4 +1,4 @@
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Photography;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
