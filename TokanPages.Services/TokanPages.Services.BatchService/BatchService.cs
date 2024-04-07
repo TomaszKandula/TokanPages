@@ -139,7 +139,7 @@ public class BatchService : IBatchService
                 .SingleOrDefaultAsync(cancellationToken);
 
             if (processing is null)
-                throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+                throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
 
             await LogProcessingStarted(invoice, processing, timer, cancellationToken);
             try
@@ -150,7 +150,7 @@ public class BatchService : IBatchService
                     .SingleOrDefault();
 
                 if (templateData is null)
-                    throw new InvoiceProcessingException(nameof(ErrorCodes.MISSING_INVOICE_TEMPLATE), ErrorCodes.MISSING_INVOICE_TEMPLATE);
+                    throw new BusinessException(nameof(ErrorCodes.MISSING_INVOICE_TEMPLATE), ErrorCodes.MISSING_INVOICE_TEMPLATE);
 
                 var userCompanies = userCompaniesList
                     .SingleOrDefault(details => details.Id == invoice.UserCompanyId);
@@ -159,7 +159,7 @@ public class BatchService : IBatchService
                     .SingleOrDefault(bankData => bankData.Id == invoice.UserBankAccountId);
 
                 if (userCompanies is null || userBankAccounts is null)
-                    throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+                    throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
 
                 const string dateFormat = "yyyy-MM-dd";
                 const string currencyFormat = "#,#.00";
@@ -196,7 +196,7 @@ public class BatchService : IBatchService
                     .ToList();
 
                 if (!batchInvoiceItems.Any())
-                    throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+                    throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
 
                 var invoiceItems = new StringBuilder();
                 foreach (var item in batchInvoiceItems)
@@ -230,7 +230,7 @@ public class BatchService : IBatchService
 
                 await LogIssuedInvoice(issuedInvoiceData, cancellationToken);
             }
-            catch (InvoiceProcessingException exception)
+            catch (BusinessException exception)
             {
                 var error = new ProcessingError
                 {
