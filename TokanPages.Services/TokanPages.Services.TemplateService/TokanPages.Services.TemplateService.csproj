@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.Database\TokanPages.Persistence.Database.csproj" />
+    </ItemGroup>
+
 </Project>
