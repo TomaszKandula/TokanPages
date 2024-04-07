@@ -105,12 +105,6 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_RESET_ID {
-            get {
-                return ResourceManager.GetString("INVALID_RESET_ID", resourceCulture);
-            }
-        }
-        
         public static string EXPIRED_RESET_ID {
             get {
                 return ResourceManager.GetString("EXPIRED_RESET_ID", resourceCulture);
@@ -225,6 +219,12 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
+        public static string DATE_TYPE_MISMATCH {
+            get {
+                return ResourceManager.GetString("DATE_TYPE_MISMATCH", resourceCulture);
+            }
+        }
+        
         public static string VAT_NUM_INCORRECT_LENGTH {
             get {
                 return ResourceManager.GetString("VAT_NUM_INCORRECT_LENGTH", resourceCulture);
@@ -264,6 +264,12 @@ namespace TokanPages.Backend.Shared.Resources {
         public static string VAT_NUM_LENGTH_NINE {
             get {
                 return ResourceManager.GetString("VAT_NUM_LENGTH_NINE", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_RESET_ID {
+            get {
+                return ResourceManager.GetString("INVALID_RESET_ID", resourceCulture);
             }
         }
         

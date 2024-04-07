@@ -159,6 +159,9 @@
   <data name="INVALID_FILE_SIZE" xml:space="preserve">
     <value>File size is too large</value>
   </data>
+  <data name="INVALID_VAT" xml:space="preserve">
+        <value>VAT number validation failed</value>
+    </data>
   <data name="TOO_LONG_USER_IMAGE_NAME" xml:space="preserve">
     <value>The user image name is too long</value>
   </data>
