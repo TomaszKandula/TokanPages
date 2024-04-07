@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
+using TokanPages.Backend.Application.Batches.Commands.Models;
 
 namespace TokanPages.Backend.Application.Batches.Commands;
 
@@ -12,5 +13,5 @@ public class OrderInvoiceBatchCommand : IRequest<OrderInvoiceBatchCommandResult>
 
     public Guid UserBankAccountId { get; set; }
 
-    public IEnumerable<OrderDetailBase<InvoiceItemBase>> OrderDetails { get; set; }
+    public IEnumerable<OrderDetailBase<InvoiceItemBase>> OrderDetails { get; set; } = new List<OrderDetailBase<InvoiceItemBase>>();
 }
