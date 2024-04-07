@@ -138,6 +138,9 @@ public class BatchService : IBatchService
                 .Where(processing => processing.Id == invoice.ProcessBatchKey)
                 .SingleOrDefaultAsync(cancellationToken);
 
+            if (processing is null)
+                throw new InvoiceProcessingException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+
             await LogProcessingStarted(invoice, processing, timer, cancellationToken);
             try
             {
@@ -232,7 +235,7 @@ public class BatchService : IBatchService
                 var error = new ProcessingError
                 {
                     Error = exception.Message,
-                    InnerError = exception.InnerException?.Message,
+                    InnerError = exception.InnerException?.Message ?? string.Empty,
                     InvoiceNumber = invoice.InvoiceNumber,
                     Timer = timer,
                     ProcessingObject = processing
@@ -272,7 +275,7 @@ public class BatchService : IBatchService
         {
             Status = processing.Status,
             CreatedAt = processing.CreatedAt,
-            BatchProcessingTime = processing.BatchProcessingTime
+            BatchProcessingTime = processing.BatchProcessingTime ?? TimeSpan.Zero
         };
     }
 
