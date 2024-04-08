@@ -68,6 +68,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{
 		docker-compose-test.yml = docker-compose-test.yml
 		docker-compose-prod.yml = docker-compose-prod.yml
 		articles.dockerfile = articles.dockerfile
+		invoicing.dockerfile = invoicing.dockerfile
 		content.dockerfile = content.dockerfile
 		sender.dockerfile = sender.dockerfile
 		subscribers.dockerfile = subscribers.dockerfile
