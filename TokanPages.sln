@@ -125,6 +125,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.Templat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.BatchService", "TokanPages.Services\TokanPages.Services.BatchService\TokanPages.Services.BatchService.csproj", "{09900784-2502-4C11-B4DC-08F9F4017685}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Invoicing.Dto", "TokanPages.WebApi\TokanPages.Invoicing.Dto\TokanPages.Invoicing.Dto.csproj", "{8DEED952-7FD4-4289-B3B6-DD5D06775465}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Invoicing", "TokanPages.WebApi\TokanPages.Invoicing\TokanPages.Invoicing.csproj", "{492F55F6-7F26-44A3-A0B1-DFE2263FF924}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -275,6 +279,14 @@ Global
 		{09900784-2502-4C11-B4DC-08F9F4017685}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09900784-2502-4C11-B4DC-08F9F4017685}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09900784-2502-4C11-B4DC-08F9F4017685}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DEED952-7FD4-4289-B3B6-DD5D06775465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DEED952-7FD4-4289-B3B6-DD5D06775465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DEED952-7FD4-4289-B3B6-DD5D06775465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DEED952-7FD4-4289-B3B6-DD5D06775465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -316,6 +328,8 @@ Global
 		{5705EEB3-C8EB-4FF6-B7F9-146C42C5AE4D} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{A407D403-7CCC-41B4-BAC7-31F692EB5E75} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{09900784-2502-4C11-B4DC-08F9F4017685} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{8DEED952-7FD4-4289-B3B6-DD5D06775465} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
+		{492F55F6-7F26-44A3-A0B1-DFE2263FF924} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}
