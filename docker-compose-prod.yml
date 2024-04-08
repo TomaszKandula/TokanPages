@@ -71,6 +71,20 @@ services:
     volumes:
       - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
 
+  invoicing-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: invoicing.dockerfile
+    hostname: invoicing
+    networks:
+      - xnet
+    ports:
+      - "6006:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+
   gateway-api:
     build:
       context: .
