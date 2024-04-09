@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.DefaultPermission;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Permissions;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Roles;

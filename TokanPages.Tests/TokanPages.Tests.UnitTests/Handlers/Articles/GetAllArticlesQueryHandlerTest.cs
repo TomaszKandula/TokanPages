@@ -12,7 +12,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
             UserAlias  = DataUtilityService.GetRandomString(),
@@ -21,7 +21,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new List<Backend.Domain.Entities.Articles>
+        var articles = new List<Backend.Domain.Entities.Article.Articles>
         {
             new()
             {

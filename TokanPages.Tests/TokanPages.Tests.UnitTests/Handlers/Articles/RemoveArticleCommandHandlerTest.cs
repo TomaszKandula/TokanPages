@@ -4,7 +4,7 @@ using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Article;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -19,7 +19,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
             IsActivated = true,
@@ -28,7 +28,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -97,7 +97,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
             IsActivated = true,
@@ -106,7 +106,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

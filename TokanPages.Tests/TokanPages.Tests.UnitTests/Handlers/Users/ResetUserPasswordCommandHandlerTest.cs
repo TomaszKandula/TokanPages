@@ -15,7 +15,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
     public async Task GivenValidEmailAddress_WhenResetUserPassword_ShouldFinishSuccessful()
     {
         // Arrange
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),

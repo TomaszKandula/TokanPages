@@ -25,7 +25,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(null, false, cancellationToken);
-        var newArticle = new Domain.Entities.Articles
+        var newArticle = new Domain.Entities.Article.Articles
         {
             Title = request.Title,
             Description = request.Description,

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Article;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.ArticleLikes;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;

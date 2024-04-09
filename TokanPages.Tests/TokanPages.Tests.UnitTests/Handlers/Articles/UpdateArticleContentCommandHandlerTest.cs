@@ -29,7 +29,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
             IsActivated = true,
@@ -38,7 +38,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -113,7 +113,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
             IsActivated = true,
@@ -122,7 +122,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Articles
+        var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

@@ -99,39 +99,15 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_CREDENTIALS {
-            get {
-                return ResourceManager.GetString("INVALID_CREDENTIALS", resourceCulture);
-            }
-        }
-        
-        public static string INVALID_REFRESH_TOKEN {
-            get {
-                return ResourceManager.GetString("INVALID_REFRESH_TOKEN", resourceCulture);
-            }
-        }
-        
         public static string USER_ACCOUNT_INACTIVE {
             get {
                 return ResourceManager.GetString("USER_ACCOUNT_INACTIVE", resourceCulture);
             }
         }
         
-        public static string INVALID_RESET_ID {
-            get {
-                return ResourceManager.GetString("INVALID_RESET_ID", resourceCulture);
-            }
-        }
-        
         public static string EXPIRED_RESET_ID {
             get {
                 return ResourceManager.GetString("EXPIRED_RESET_ID", resourceCulture);
-            }
-        }
-        
-        public static string INVALID_ACTIVATION_ID {
-            get {
-                return ResourceManager.GetString("INVALID_ACTIVATION_ID", resourceCulture);
             }
         }
         
@@ -177,12 +153,6 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_USER_TOKEN {
-            get {
-                return ResourceManager.GetString("INVALID_USER_TOKEN", resourceCulture);
-            }
-        }
-        
         public static string REVOKED_USER_TOKEN {
             get {
                 return ResourceManager.GetString("REVOKED_USER_TOKEN", resourceCulture);
@@ -219,12 +189,6 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
-        public static string INVALID_TOKEN_CLAIMS {
-            get {
-                return ResourceManager.GetString("INVALID_TOKEN_CLAIMS", resourceCulture);
-            }
-        }
-        
         public static string HTTP_REQUEST_FAILED {
             get {
                 return ResourceManager.GetString("HTTP_REQUEST_FAILED", resourceCulture);
@@ -240,6 +204,150 @@ namespace TokanPages.Backend.Shared.Resources {
         public static string BUS_MESSAGE_TOO_LARGE {
             get {
                 return ResourceManager.GetString("BUS_MESSAGE_TOO_LARGE", resourceCulture);
+            }
+        }
+        
+        public static string PROCESSING_EXCEPTION {
+            get {
+                return ResourceManager.GetString("PROCESSING_EXCEPTION", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_INVOICE_TEMPLATE {
+            get {
+                return ResourceManager.GetString("MISSING_INVOICE_TEMPLATE", resourceCulture);
+            }
+        }
+        
+        public static string DATE_TYPE_MISMATCH {
+            get {
+                return ResourceManager.GetString("DATE_TYPE_MISMATCH", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_LENGTH {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_LENGTH", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_ALL_DIGITS_ARE_SAME {
+            get {
+                return ResourceManager.GetString("VAT_NUM_ALL_DIGITS_ARE_SAME", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_SIGN {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_SIGN", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_FORMAT {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_FORMAT", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_ZERO_AT_FIRST_OR_THIRD_POSSITION {
+            get {
+                return ResourceManager.GetString("VAT_NUM_ZERO_AT_FIRST_OR_THIRD_POSSITION", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_INCORRECT_CHECK_SUM {
+            get {
+                return ResourceManager.GetString("VAT_NUM_INCORRECT_CHECK_SUM", resourceCulture);
+            }
+        }
+        
+        public static string VAT_NUM_LENGTH_NINE {
+            get {
+                return ResourceManager.GetString("VAT_NUM_LENGTH_NINE", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_RESET_ID {
+            get {
+                return ResourceManager.GetString("INVALID_RESET_ID", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_CREDENTIALS {
+            get {
+                return ResourceManager.GetString("INVALID_CREDENTIALS", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_REFRESH_TOKEN {
+            get {
+                return ResourceManager.GetString("INVALID_REFRESH_TOKEN", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_ACTIVATION_ID {
+            get {
+                return ResourceManager.GetString("INVALID_ACTIVATION_ID", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_USER_TOKEN {
+            get {
+                return ResourceManager.GetString("INVALID_USER_TOKEN", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_TOKEN_CLAIMS {
+            get {
+                return ResourceManager.GetString("INVALID_TOKEN_CLAIMS", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_PROCESSING_BATCH_KEY {
+            get {
+                return ResourceManager.GetString("INVALID_PROCESSING_BATCH_KEY", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_TEMPLATE_ID {
+            get {
+                return ResourceManager.GetString("INVALID_TEMPLATE_ID", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_TEMPLATE_NAME {
+            get {
+                return ResourceManager.GetString("INVALID_TEMPLATE_NAME", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_CONTENT_TYPE {
+            get {
+                return ResourceManager.GetString("INVALID_CONTENT_TYPE", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_INVOICE_NUMBER {
+            get {
+                return ResourceManager.GetString("INVALID_INVOICE_NUMBER", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_PRIVATE_KEY {
+            get {
+                return ResourceManager.GetString("INVALID_PRIVATE_KEY", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_ASSOCIATED_USER {
+            get {
+                return ResourceManager.GetString("INVALID_ASSOCIATED_USER", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_API_VERSION {
+            get {
+                return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
             }
         }
     }

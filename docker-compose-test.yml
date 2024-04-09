@@ -13,7 +13,6 @@ services:
     ports:
       - "6001:80"
     volumes:
-      # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   content-api:
@@ -28,7 +27,6 @@ services:
     ports:
       - "6002:80"
     volumes:
-      # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   sender-api:
@@ -43,7 +41,6 @@ services:
     ports:
       - "6003:80"
     volumes:
-      # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   subscribers-api:
@@ -58,7 +55,6 @@ services:
     ports:
       - "6004:80"
     volumes:
-      # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   users-api:
@@ -73,7 +69,20 @@ services:
     ports:
       - "6005:80"
     volumes:
-      # Map settings for testing
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
+  invoicing-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: invoicing.dockerfile
+    hostname: invoicing
+    networks:
+      - xnet
+    ports:
+      - "6006:80"
+    volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   gateway-api:
@@ -88,7 +97,6 @@ services:
     ports:
       - "6100:80"
     volumes:
-      # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets.json:/app/appsettings.Testing.json:ro
 
   hosted-services-api:
@@ -103,7 +111,6 @@ services:
     ports:
       - "8000:80"
     volumes:
-      # Map settings for testing
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   frontend-app:

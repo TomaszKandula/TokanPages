@@ -12,7 +12,7 @@ public class GetAllUsersQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection()
     {
         // Arrange
-        var users = new List<Backend.Domain.Entities.Users>
+        var users = new List<Backend.Domain.Entities.User.Users>
         {
             new()
             {
