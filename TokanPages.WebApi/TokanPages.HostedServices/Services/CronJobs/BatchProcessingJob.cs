@@ -22,7 +22,7 @@ public class BatchProcessingJob : CronJob
     /// <param name="config"></param>
     /// <param name="batchService"></param>
     /// <param name="loggerService"></param>
-    protected BatchProcessingJob(IBatchProcessingConfig config, 
+    public BatchProcessingJob(IBatchProcessingConfig config, 
         IBatchService batchService, ILoggerService loggerService)
         : base(config.CronExpression, config.TimeZoneInfo)
     {
