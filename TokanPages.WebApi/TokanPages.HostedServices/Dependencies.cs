@@ -15,8 +15,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using TokanPages.Services.BatchService;
 
 namespace TokanPages.HostedServices;
 
@@ -73,6 +72,7 @@ public static class Dependencies
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IVideoConverter, VideoConverter>();
 		services.AddScoped<IVideoProcessor, VideoProcessor>();
+        services.AddScoped<IBatchService, BatchService>();
 
         services.AddScoped<VideoProcessing>();
         services.AddHostedService<VideoProcessingWorker>();
