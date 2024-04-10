@@ -5,7 +5,7 @@ using TokanPages.Backend.Application.Currencies.Queries;
 namespace TokanPages.Invoicing.Controllers.Api;
 
 /// <summary>
-/// API endpoints definitions for .
+/// API endpoints definitions for currencies data.
 /// </summary>
 ///<remarks>
 /// It uses Microsoft 'ResponseCache' for caching.
@@ -15,7 +15,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 public class CurrenciesController : ApiBaseController
 {
     /// <summary>
-    /// 
+    /// Currencies Controller.
     /// </summary>
     /// <param name="mediator"></param>
     public CurrenciesController(IMediator mediator) : base(mediator) { }

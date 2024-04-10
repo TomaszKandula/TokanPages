@@ -5,7 +5,7 @@ using TokanPages.Backend.Application.Payments.Queries;
 namespace TokanPages.Invoicing.Controllers.Api;
 
 /// <summary>
-/// API endpoints definitions for .
+/// API endpoints definitions for invoice payments.
 /// </summary>
 ///<remarks>
 /// It uses Microsoft 'ResponseCache' for caching.
@@ -15,7 +15,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 public class PaymentsController : ApiBaseController
 {
     /// <summary>
-    /// 
+    /// Payments Controller.
     /// </summary>
     /// <param name="mediator"></param>
     public PaymentsController(IMediator mediator) : base(mediator) { }

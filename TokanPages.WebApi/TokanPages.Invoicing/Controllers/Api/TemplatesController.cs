@@ -21,7 +21,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 public class TemplatesController : ApiBaseController
 {
     /// <summary>
-    /// 
+    /// Templates Controller.
     /// </summary>
     /// <param name="mediator"></param>
     public TemplatesController(IMediator mediator) : base(mediator) { }
