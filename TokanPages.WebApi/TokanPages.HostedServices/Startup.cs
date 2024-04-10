@@ -57,7 +57,7 @@ public class Startup
          var batchProcessingConfig = new BatchProcessingConfig
          {
              TimeZoneInfo = TimeZoneInfo.Local,
-             CronExpression = @"0 */15 * * * *"
+             CronExpression = @"*/15 * * * *"
          };
 
         services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
