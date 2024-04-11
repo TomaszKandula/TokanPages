@@ -1,6 +1,5 @@
 using Logger = TokanPages.Backend.Configuration.Logger;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore;
 using Serilog;
 
 namespace TokanPages.Gateway;
@@ -26,7 +25,10 @@ public static class Program
             const string fileName = @"logs/TokanPages.Gateway/{yyyy}{MM}{dd}.txt";
             Log.Logger = Logger.Configuration.GetLogger(configuration, fileName);
             Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
-            CreateWebHostBuilder(configuration)
+            CreateHostBuilder(configuration)
+                .ConfigureWebHostDefaults(builder => builder
+                    .ConfigureKestrel(options => options.AddServerHeader = false)
+                    .UseStartup<Startup>())
                 .Build()
                 .Run();
 
@@ -53,12 +55,10 @@ public static class Program
             .Build();
     }
 
-    private static IWebHostBuilder CreateWebHostBuilder(IConfigurationRoot configurationRoot)
+    private static IHostBuilder CreateHostBuilder(IConfigurationRoot configurationRoot)
     {
-        return WebHost.CreateDefaultBuilder()
+        return Host.CreateDefaultBuilder()
             .ConfigureAppConfiguration(builder => builder.AddConfiguration(configurationRoot))
-            .ConfigureKestrel(options => options.AddServerHeader = false)
-            .UseStartup<Startup>()
             .UseSerilog();
     }
 }
