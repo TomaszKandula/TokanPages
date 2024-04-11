@@ -30,7 +30,7 @@ public class CountriesController : ApiBaseController
         => await Mediator.Send(new GetCountryCodesQuery { FilterBy = string.Empty });
 
     /// <summary>
-    /// Return country code for given country.
+    /// Returns country code for given country.
     /// </summary>
     /// <param name="country">Country name, i.e: Austria.</param>
     /// <returns>Country code, i.e: 40.</returns>

@@ -47,7 +47,7 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(new OrderBatchProcessingCommand());
 
     /// <summary>
-    /// Allows to get processing status. 
+    /// Returns processing status. 
     /// </summary>
     /// <param name="processBatchKey">Unique key.</param>
     /// <returns></returns>
@@ -57,7 +57,7 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(new GetBatchProcessingStatusQuery { ProcessBatchKey = processBatchKey });
 
     /// <summary>
-    /// Allows to get issued invoice.
+    /// Returns issued invoice.
     /// </summary>
     /// <param name="invoiceNumber">Invoice number.</param>
     /// <returns>File.</returns>
@@ -68,7 +68,7 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(new GetIssuedBatchInvoiceQuery { InvoiceNumber = invoiceNumber });
 
     /// <summary>
-    /// Gets all current batch processing statuses.
+    /// Returns current batch processing statuses.
     /// </summary>
     /// <returns>List of processes.</returns>
     [HttpGet]
