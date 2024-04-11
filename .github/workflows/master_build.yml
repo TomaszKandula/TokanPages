@@ -1,0 +1,43 @@
+name: Build and publish (master)
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  versioning:
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      outputs1: ${{ steps.versioning.outputs.version }}
+      outputs2: ${{ steps.versioning.outputs.published }}
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Semantic Release (install dependencies)
+        run: |
+          npm install --global yarn
+          yarn install
+
+      - name: Semantic Release (process changes)
+        uses: cycjimmy/semantic-release-action@v4.0.0
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+
+      - name: Move results to outputs
+        id: versioning
+        run: |
+          echo "version=${{ steps.semantic.outputs.new_release_version }}" >> $GITHUB_OUTPUT
+          echo "published=${{ steps.semantic.outputs.new_release_published }}" >> $GITHUB_OUTPUT
+      #TODO: trigger installation with version number
