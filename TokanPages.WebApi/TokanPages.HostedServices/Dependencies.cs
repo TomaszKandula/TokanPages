@@ -75,7 +75,9 @@ public static class Dependencies
         services.AddScoped<IBatchService, BatchService>();
 
         services.AddScoped<VideoProcessing>();
+        services.AddScoped<EmailProcessing>();
         services.AddHostedService<VideoProcessingWorker>();
+        services.AddHostedService<EmailProcessingWorker>();
 
         services.AddSingleton<IAzureBusFactory>(_ =>
         {
