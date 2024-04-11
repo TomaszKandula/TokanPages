@@ -24,6 +24,7 @@ COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Configuration/b
 # SERVICES
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.AzureBusService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.BatchService/bin/Release/net6.0" .
+COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.EmailSenderService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.HttpClientService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.VideoProcessingService/bin/Release/net6.0" .
 
