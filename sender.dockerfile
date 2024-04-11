@@ -19,28 +19,13 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18
 WORKDIR /app
 
 # BACKEND
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Application/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Core/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Domain/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Shared/bin/Release/net6.0" .
 
 # PERSISTENCE
 COPY --from=PROJECTS "/app/TokanPages.Persistence/TokanPages.Persistence.Caching/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Persistence/TokanPages.Persistence.Database/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Persistence/TokanPages.Persistence.MigrationRunner/bin/Release/net6.0" .
 
 # SERVICES
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.AzureBusService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.AzureStorageService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.BehaviourService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.CipheringService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.EmailSenderService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.HttpClientService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.RedisCacheService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.UserService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebSocketService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.WebTokenService/bin/Release/net6.0" .
 
 # WEBAPI
 COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Sender/bin/Release/net6.0" .

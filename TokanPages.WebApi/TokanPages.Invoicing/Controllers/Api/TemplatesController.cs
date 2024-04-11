@@ -21,7 +21,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 public class TemplatesController : ApiBaseController
 {
     /// <summary>
-    /// 
+    /// Templates Controller.
     /// </summary>
     /// <param name="mediator"></param>
     public TemplatesController(IMediator mediator) : base(mediator) { }
@@ -37,10 +37,10 @@ public class TemplatesController : ApiBaseController
         => await Mediator.Send(new GetInvoiceTemplatesQuery());
 
     /// <summary>
-    /// 
+    /// Returns invoice template by its ID.
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">Template ID.</param>
+    /// <returns>File.</returns>
     [HttpGet("{id:guid}")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
@@ -48,10 +48,10 @@ public class TemplatesController : ApiBaseController
         => await Mediator.Send(new GetInvoiceTemplateQuery { Id = id});
 
     /// <summary>
-    /// 
+    /// Allows to add new invoice template.
     /// </summary>
-    /// <param name="payload"></param>
-    /// <returns></returns>
+    /// <param name="payload">Invoice template.</param>
+    /// <returns>Assigned template ID.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(AddInvoiceTemplateCommandResult), StatusCodes.Status200OK)]
@@ -59,10 +59,10 @@ public class TemplatesController : ApiBaseController
         => await Mediator.Send(TemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
 
     /// <summary>
-    /// 
+    /// Allows to update existing invoice template.  
     /// </summary>
-    /// <param name="payload"></param>
-    /// <returns></returns>
+    /// <param name="payload">Invoice template.</param>
+    /// <returns>Empty object.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
@@ -70,10 +70,10 @@ public class TemplatesController : ApiBaseController
         => await Mediator.Send(TemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
 
     /// <summary>
-    /// 
+    /// Allows to remove exising invoice template.
     /// </summary>
-    /// <param name="payload"></param>
-    /// <returns></returns>
+    /// <param name="payload">Template ID.</param>
+    /// <returns>Empty object.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]

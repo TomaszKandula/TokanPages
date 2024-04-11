@@ -26,10 +26,10 @@ public class BatchesController : ApiBaseController
     public BatchesController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
-    /// 
+    /// Allows to post new invoices to be processed and issued.
     /// </summary>
-    /// <param name="payload"></param>
-    /// <returns></returns>
+    /// <param name="payload">Invoice details.</param>
+    /// <returns>Process batch key.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(OrderInvoiceBatchCommandResult), StatusCodes.Status200OK)]
@@ -37,9 +37,9 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(BatchMapper.MapToOrderInvoiceBatchCommandRequest(payload));
 
     /// <summary>
-    /// 
+    /// Allows to start batch processing of ordered invoices.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Empty object.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
@@ -47,9 +47,9 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(new OrderBatchProcessingCommand());
 
     /// <summary>
-    /// 
+    /// Returns processing status. 
     /// </summary>
-    /// <param name="processBatchKey"></param>
+    /// <param name="processBatchKey">Unique key.</param>
     /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(typeof(GetBatchProcessingStatusQueryResult), StatusCodes.Status200OK)]
@@ -57,10 +57,10 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(new GetBatchProcessingStatusQuery { ProcessBatchKey = processBatchKey });
 
     /// <summary>
-    /// 
+    /// Returns issued invoice.
     /// </summary>
-    /// <param name="invoiceNumber"></param>
-    /// <returns></returns>
+    /// <param name="invoiceNumber">Invoice number.</param>
+    /// <returns>File.</returns>
     [HttpGet]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
@@ -68,19 +68,19 @@ public class BatchesController : ApiBaseController
         => await Mediator.Send(new GetIssuedBatchInvoiceQuery { InvoiceNumber = invoiceNumber });
 
     /// <summary>
-    /// 
+    /// Returns current batch processing statuses.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>List of processes.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
     public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusList() 
         => await Mediator.Send(new GetBatchProcessingStatusListQuery { FilterBy = string.Empty });
 
     /// <summary>
-    /// 
+    /// Returns data for given batch processing status.
     /// </summary>
-    /// <param name="status"></param>
-    /// <returns></returns>
+    /// <param name="status">New, started, finished, failed.</param>
+    /// <returns>List of processes.</returns>
     [HttpGet("{status}")]
     [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
     public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusCode([FromRoute] string status) 

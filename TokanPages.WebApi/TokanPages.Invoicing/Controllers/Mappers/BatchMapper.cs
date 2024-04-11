@@ -6,16 +6,16 @@ using Models = TokanPages.Backend.Application.Batches.Commands.Models;
 namespace TokanPages.Invoicing.Controllers.Mappers;
 
 /// <summary>
-/// 
+/// Batch mapper.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class BatchMapper
 {
     /// <summary>
-    /// 
+    /// Map request DTO to a given command.
     /// </summary>
-    /// <param name="model"></param>
-    /// <returns></returns>
+    /// <param name="model">Batch object.</param>
+    /// <returns>Command object.</returns>
     public static OrderInvoiceBatchCommand MapToOrderInvoiceBatchCommandRequest(OrderInvoiceBatchDto model) => new()
     {
         UserId = model.UserId,
