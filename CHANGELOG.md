@@ -1,3 +1,11 @@
+## [0.73.1](https://github.com/TomaszKandula/TokanPages/compare/v0.73.0...v0.73.1) (2024-04-11)
+
+
+### Bug Fixes
+
+* gw configuration ([0145eb5](https://github.com/TomaszKandula/TokanPages/commit/0145eb5bccdc04358e93b237138fac756bfe13bd))
+* register missing dependency ([a63c19c](https://github.com/TomaszKandula/TokanPages/commit/a63c19c2958cc7657ce7806a2df2edf735c11af9))
+
 # [0.73.0](https://github.com/TomaszKandula/TokanPages/compare/v0.72.0...v0.73.0) (2024-04-11)
 
 
