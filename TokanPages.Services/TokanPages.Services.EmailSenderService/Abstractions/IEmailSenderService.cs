@@ -7,4 +7,6 @@ public interface IEmailSenderService
     Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default);
 
     Task SendEmail(object content, CancellationToken cancellationToken = default);
+
+    Task SendToServiceBus(IEmailConfiguration configuration, CancellationToken cancellationToken = default);
 }

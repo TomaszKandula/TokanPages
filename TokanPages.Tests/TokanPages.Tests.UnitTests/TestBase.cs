@@ -102,6 +102,10 @@ public abstract class TestBase
             .Returns(mockedSection);
 
         mockedConfig
+            .Setup(configuration => configuration.GetSection("Paths_DevelopmentOrigin"))
+            .Returns(mockedSection);
+
+        mockedConfig
             .Setup(configuration => configuration.GetSection("Paths_DeploymentOrigin"))
             .Returns(mockedSection);
 

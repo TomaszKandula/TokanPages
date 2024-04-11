@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
@@ -11,6 +12,7 @@ using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
+using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -52,7 +54,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
         var getNewSalt = _cipheringService.GenerateSalt(12);
-        var getHashedPassword = _cipheringService.GetHashedPassword(request.Password!, getNewSalt);
+        var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
         var expiresIn = _configuration.GetValue<int>("Limit_Activation_Maturity");
@@ -66,13 +68,41 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             users.ActivationIdEnds = activationIdEnds;
 
             await DatabaseContext.SaveChangesAsync(cancellationToken);
-            await SendNotification(request.EmailAddress!, activationId, activationIdEnds, cancellationToken);
+            await SendNotificationUncommitted(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
             LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
             return users.Id;
         }
 
         var newUserId = Guid.NewGuid();
+        var defaultAvatarName = await UploadDefaultAvatar(newUserId, cancellationToken);
+
+        var userAlias = newUserId.ToString()[..8];
+        if (request is not { FirstName: "", LastName: "" })
+            userAlias = $"{request.FirstName[..2]}{request.LastName[..3]}".ToLower();
+
+        var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
+        var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
+        var expirationDate = baseDateTime.AddMinutes(expiresIn);
+
+        await CreateUserUncommitted(request, newUserId, adminUser, userAlias, getHashedPassword, activationId, activationIdEnds, cancellationToken);
+        await CreateUserInfoUncommitted(request, newUserId, defaultAvatarName, adminUser, cancellationToken);
+        await SetupDefaultPermissionsUncommitted(newUserId, adminUser?.UserId, cancellationToken);
+        await SendNotificationUncommitted(request.EmailAddress, activationId, expirationDate, cancellationToken);
+        await CommitAllChanges(cancellationToken);
+
+        var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
+        LoggerService.LogInformation($"Registering new user account, user id: {newUserId}.");
+        LoggerService.LogInformation($"Registered by the {info}");
+
+        return newUserId;
+    }
+
+    private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
+        => await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+    private async Task<string?> UploadDefaultAvatar(Guid newUserId, CancellationToken cancellationToken = default)
+    {
         const string defaultAvatarPath = "content/assets/images/avatars/";
         const string defaultAvatarName = "avatar-default-288.jpeg";
         const string sourceAvatarPath = $"{defaultAvatarPath}{defaultAvatarName}";
@@ -84,50 +114,59 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         if (defaultAvatar is not null)
             await azureBlob.UploadFile(defaultAvatar.Content!, destinationAvatarPath, cancellationToken: cancellationToken);
 
-        var userAlias = $"{request.FirstName![..2]}{request.LastName![..3]}".ToLower();
+        return defaultAvatar != null ? defaultAvatarName : null;
+    }
+
+    private async Task CreateUserUncommitted(
+        AddUserCommand request, 
+        Guid userId, 
+        GetUserOutput? admin,
+        string alias,
+        string password,
+        Guid? activationId,
+        DateTime? activationIdEnds,
+        CancellationToken cancellationToken = default)
+    {
         var newUser = new Domain.Entities.User.Users
         {
-            Id = newUserId,
+            Id = userId,
             EmailAddress = request.EmailAddress,
-            UserAlias = userAlias,
-            CryptedPassword = getHashedPassword,
+            UserAlias = alias,
+            CryptedPassword = password,
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds,
             CreatedAt = _dateTimeService.Now,
-            CreatedBy = adminUser?.UserId ?? Guid.Empty,
+            CreatedBy = admin?.UserId ?? Guid.Empty,
             ModifiedAt = null,
             ModifiedBy = null
         };
-
-        var newUserInfo = new UserInfo
-        {
-            UserId = newUserId,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            UserImageName = defaultAvatar != null ? defaultAvatarName : null,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = adminUser?.UserId ?? Guid.Empty,
-            ModifiedAt = null,
-            ModifiedBy = null
-        };
-
-        var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
-        var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
-        var expirationDate = baseDateTime.AddMinutes(expiresIn);
 
         await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
-        await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
-        await SetupDefaultPermissions(newUser.Id, adminUser?.UserId, cancellationToken);
-        await SendNotification(request.EmailAddress!, activationId, expirationDate, cancellationToken);
-
-        var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
-        LoggerService.LogInformation($"Registering new user account, user id: {newUser.Id}.");
-        LoggerService.LogInformation($"Registered by the {info}");
-        return newUser.Id;
     }
 
-    private async Task SetupDefaultPermissions(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
+    private async Task CreateUserInfoUncommitted(
+        AddUserCommand request,
+        Guid userId,
+        string? avatar,
+        GetUserOutput? admin,
+        CancellationToken cancellationToken = default)
+    {
+        var newUserInfo = new UserInfo
+        {
+            UserId = userId,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            UserImageName = avatar,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = admin?.UserId ?? Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
+
+        await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
+    }
+
+    private async Task SetupDefaultPermissionsUncommitted(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
     {
         var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
@@ -175,18 +214,26 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
         await DatabaseContext.UserRoles.AddAsync(newRole, cancellationToken);
         await DatabaseContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    private async Task SendNotification(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    private async Task SendNotificationUncommitted(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
     {
+        var messageId = Guid.NewGuid();
+        var serviceBusMessage = new ServiceBusMessage
+        {
+            Id = messageId,
+            IsConsumed = false
+        };
+
         var configuration = new CreateUserConfiguration
         {
+            MessageId = messageId,
             EmailAddress = emailAddress,
             ActivationId = activationId,
             ActivationIdEnds = activationIdEnds
         };
 
-        await _emailSenderService.SendNotification(configuration, cancellationToken);
+        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await _emailSenderService.SendToServiceBus(configuration, cancellationToken);
     }
 }
