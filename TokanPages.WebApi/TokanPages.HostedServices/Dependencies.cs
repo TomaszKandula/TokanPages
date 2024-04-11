@@ -16,6 +16,8 @@ using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Services.BatchService;
+using TokanPages.Services.EmailSenderService;
+using TokanPages.Services.EmailSenderService.Abstractions;
 
 namespace TokanPages.HostedServices;
 
@@ -57,7 +59,7 @@ public static class Dependencies
 
         services.AddDbContext<DatabaseContext>(options =>
         {
-            var connectionString = configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}");
+            var connectionString = configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? string.Empty;
             options.UseSqlServer(connectionString, addOptions 
                 => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
         });
@@ -73,6 +75,7 @@ public static class Dependencies
 		services.AddScoped<IVideoConverter, VideoConverter>();
 		services.AddScoped<IVideoProcessor, VideoProcessor>();
         services.AddScoped<IBatchService, BatchService>();
+        services.AddScoped<IEmailSenderService, EmailSenderService>();
 
         services.AddScoped<VideoProcessing>();
         services.AddScoped<EmailProcessing>();
@@ -81,14 +84,14 @@ public static class Dependencies
 
         services.AddSingleton<IAzureBusFactory>(_ =>
         {
-            var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString");
+            var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? string.Empty;
             return new AzureBusFactory(connectionString);
         });
 
         services.AddSingleton<IAzureBlobStorageFactory>(_ =>
         {
-            var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName");
-            var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString");
+            var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? string.Empty;
+            var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? string.Empty;
             return new AzureBlobStorageFactory(connectionString, containerName);
         });
 	}
