@@ -11,10 +11,6 @@ Despite mainly focusing on software development and Microsoft technologies, this
 
 [![Build & run tests (dev)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml)
 
-[![Build, test and publish (stage)](https://github.com/TomaszKandula/TokanPages/actions/workflows/stage_build_test_publish.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/stage_build_test_publish.yml)
-
-[![Build, test and publish (master)](https://github.com/TomaszKandula/TokanPages/actions/workflows/master_build_test_publish.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/master_build_test_publish.yml)
-
 ## Project metrics
 ### Client-App
 
@@ -132,94 +128,11 @@ The project is dockerized and deployed via GitHub Actions to Azure App Service t
 
 <img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
 
-## Project structure
-
-_TokanPages.ClientApp_
-
-| Folder | Description             |
-|--------|-------------------------|
-| nginx  | WebServer configuration |
-| public | WebApp entrypoint       |
-| src    | Frontend in React       |
-
-React application runs on NGINX in Docker. It is deployed on the main domain.
-
-Unit tests for the front end are provided; the command `yarn app-test` is used to run all tests.
-
-_TokanPages.Backend_
-
-| Folder              | Description                          |
-|---------------------|--------------------------------------|
-| Backend.Application | Handlers                             |
-| Backend.Core        | Reusable core elements               |
-| Backend.Domain      | Domain entities, contracts and enums |
-| Backend.Shared      | Shared models and resources          |
-
-_TokanPages.Configuration_
-
-| File                        | Description              |
-|-----------------------------|--------------------------|
-| appsettings.Production.json | Production configuration |
-| appsettings.Staging.json    | Staging configuration    |
-| appsettings.Testing.json    | Testing configuration    |
-
-.NET configuration files shared across the projects.
-
-_TokanPages.Persistence_
-
-| Folder                                 | Description        |
-|----------------------------------------|--------------------|
-| TokanPages.Persistence.Caching         | Caching service    |
-| TokanPages.Persistence.Database        | Database context   |
-| TokanPages.Persistence.MigrationRunner | Database migration |
-
-_TokanPages.Services_
-
-| Folder                       | Description                |
-|------------------------------|----------------------------|
-| Services.AzureStorageService | Application remote storage |
-| Services.BehaviourService    | MediatR pipelines          |
-| Services.CipheringService    | Password hashing           |
-| Services.EmailSenderService  | Email handling             |
-| Services.HttpClientService   | Custom HTTP client         |
-| Services.RedisCacheService   | REDIS cache implementation |
-| Services.UserService         | User provider              |
-| Services.WebTokenService     | JWT handling               |
- | Services.WebSocketService    | WSS handling               |
-
-_TokanPages.WebApi_
-
-| Folder        | Description              |
-|---------------|--------------------------|
-| Properties    | Lunch settings           |
-| Configuration | Application dependencies |
-| Controllers   | WebApi                   |
-| Middleware    | Custom middleware        |
-
-_TokanPages.WebApi.Dto_
-
-The `WebApi.Dto` project is a collection of all DTO models used by the mappers and controllers.
-
-_TokanPages.Tests_
-
-| Folder        | Description                   |
-|---------------|-------------------------------|
-| EndToEndTests | Http client tests             |
-| UnitTests     | Handlers and validators tests |
-
-Unit tests cover handlers and validators. All dependencies are mocked. For mocking [Moq](https://github.com/moq/moq4) has been used.
-
-End-to-End tests focus on testing HTTP client responses, dependencies and their configuration.
-
-To run backend tests, use the command `dotnet test`.
-
 ## Continuous Integration / Continuous Delivery
 
 CI/CD is done via GitHub actions. There are three scripts:
 
 1. [dev_build_test.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build_test.yml) - it builds .NET Core application and React application, then runs all the available tests; finally, it scans the code with SonarQube.
-1. [stage_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/stage_build_test_publish.yml) - it builds, tests and publishes Docker image to the staging Azure WebApp.
-1. [master_build_test_publish.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/master_build_test_publish.yml) - it builds, tests and publishes Docker image to the production Azure WebApp.
 
 ## End Note
 

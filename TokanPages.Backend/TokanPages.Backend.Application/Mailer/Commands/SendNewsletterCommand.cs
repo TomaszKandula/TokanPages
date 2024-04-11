@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using TokanPages.WebApi.Dto.Mailer.Models;
+using TokanPages.Backend.Application.Mailer.Models;
 
 namespace TokanPages.Backend.Application.Mailer.Commands;
 
 public class SendNewsletterCommand : IRequest<Unit>
 {
-    public List<SubscriberInfo> SubscriberInfo { get; set; } = new();
+    public IEnumerable<SubscriberInfo>? SubscriberInfo { get; set; }
         
     public string Subject { get; set; } = "";
         

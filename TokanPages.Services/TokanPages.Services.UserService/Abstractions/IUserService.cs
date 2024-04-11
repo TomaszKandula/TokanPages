@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Services.UserService.Abstractions;
@@ -7,6 +7,8 @@ namespace TokanPages.Services.UserService.Abstractions;
 public interface IUserService
 {
     string GetRequestIpAddress();
+
+    bool GetCompactVideoFromHeader();
 
     public int GetRequestUserTimezoneOffset();
 

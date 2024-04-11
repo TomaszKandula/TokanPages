@@ -12,6 +12,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+docker-compose-run.yml
+nginx.conf
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

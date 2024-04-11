@@ -9,7 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
-      <ProjectReference Include="..\..\TokanPages.WebApi.Dto\TokanPages.WebApi.Dto.csproj" />
+      <ProjectReference Include="..\TokanPages.Services.AzureBusService\TokanPages.Services.AzureBusService.csproj" />
       <ProjectReference Include="..\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
     </ItemGroup>
 

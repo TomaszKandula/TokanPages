@@ -6,7 +6,7 @@ using Microsoft.Extensions.Primitives;
 using Moq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
@@ -1287,9 +1287,9 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static IEnumerable<Backend.Domain.Entities.Roles> GetRole()
+    private static IEnumerable<Backend.Domain.Entities.User.Roles> GetRole()
     {
-        return new List<Backend.Domain.Entities.Roles> 
+        return new List<Backend.Domain.Entities.User.Roles> 
         {
             new()
             {
@@ -1300,9 +1300,9 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static IEnumerable<Backend.Domain.Entities.Permissions> GetPermissions()
+    private static IEnumerable<Backend.Domain.Entities.User.Permissions> GetPermissions()
     {
-        return new List<Backend.Domain.Entities.Permissions>
+        return new List<Backend.Domain.Entities.User.Permissions>
         {
             new()
             {

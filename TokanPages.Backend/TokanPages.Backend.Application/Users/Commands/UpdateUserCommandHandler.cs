@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
@@ -41,7 +41,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
         return Unit.Value;
     }
 
-    private async Task UpdateUser(Domain.Entities.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task UpdateUser(Domain.Entities.User.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
         user.IsActivated = request.IsActivated ?? user.IsActivated;
         user.UserAlias = request.UserAlias ?? user.UserAlias;

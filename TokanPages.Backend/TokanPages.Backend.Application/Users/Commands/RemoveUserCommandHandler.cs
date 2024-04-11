@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 

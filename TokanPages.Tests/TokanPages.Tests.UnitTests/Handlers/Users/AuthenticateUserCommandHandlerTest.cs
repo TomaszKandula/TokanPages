@@ -6,7 +6,7 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -28,7 +28,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var generatedUserToken = DataUtilityService.GetRandomString(255);
         var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
 
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
             EmailAddress = emailAddress,
@@ -98,7 +98,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
-                It.IsAny<Backend.Domain.Entities.Users>(), 
+                It.IsAny<Backend.Domain.Entities.User.Users>(), 
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(generatedUserToken);
@@ -173,7 +173,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var plainTextPassword = DataUtilityService.GetRandomString(10);
         var cryptedPassword = DataUtilityService.GetRandomString(60);
 
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -221,7 +221,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var plainTextPassword = DataUtilityService.GetRandomString(10);
         var cryptedPassword = DataUtilityService.GetRandomString(60);
 
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
             EmailAddress = emailAddress,
@@ -276,7 +276,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var generatedUserToken = DataUtilityService.GetRandomString(255);
         var ipAddress = DataUtilityService.GetRandomIpAddress().ToString();
             
-        var user = new Backend.Domain.Entities.Users
+        var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
             EmailAddress = emailAddress,
@@ -331,7 +331,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedUserServiceProvider = new Mock<IUserService>();
         mockedUserServiceProvider
             .Setup(service => service.GenerateUserToken(
-                It.IsAny<Backend.Domain.Entities.Users>(), 
+                It.IsAny<Backend.Domain.Entities.User.Users>(), 
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(generatedUserToken);

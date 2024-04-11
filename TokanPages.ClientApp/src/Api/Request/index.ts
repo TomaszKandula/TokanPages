@@ -3,6 +3,7 @@ export type { ExecuteContract, GetContentContract, PromiseResultContract, Reques
 export { GetConfiguration, GetContent, Execute, ExecuteAsync } from "./Services";
 
 export {
+    API_BASE_URI,
     GET_ARTICLES,
     GET_ARTICLE,
     ADD_ARTICLE,
@@ -13,7 +14,7 @@ export {
     REMOVE_ARTICLE,
     GET_USERS,
     GET_USER,
-    GET_USER_MEDIA,
+    GET_USER_IMAGE,
     ADD_USER,
     ACTIVATE_USER,
     UPDATE_USER,
@@ -24,7 +25,7 @@ export {
     REVOKE_USER_TOKEN,
     RESET_USER_PASSWORD,
     UPDATE_USER_PASSWORD,
-    UPLOAD_USER_MEDIA,
+    UPLOAD_USER_IMAGE,
     GET_SUBSCRIBERS,
     GET_SUBSCRIBER,
     ADD_SUBSCRIBER,
@@ -58,7 +59,7 @@ export {
     GET_STORY_CONTENT,
     GET_TERMS_CONTENT,
     GET_POLICY_CONTENT,
-    GET_IMAGE_URL,
+    GET_ARTICLE_MAIN_IMAGE_URL,
     GET_IMAGES_URL,
     GET_ARTICLE_IMAGE_URL,
     GET_FEATURED_IMAGE_URL,

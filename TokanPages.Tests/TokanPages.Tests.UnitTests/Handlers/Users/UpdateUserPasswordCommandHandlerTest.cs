@@ -17,7 +17,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenValidUserDataAndNewPasswordAsLoggedUser_WhenUpdateUserPassword_ShouldFinishSuccessful()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -85,7 +85,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenInvalidResetId_WhenUpdateUserPassword_ShouldThrowError()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -142,7 +142,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenInvalidUserId_WhenUpdateUserPassword_ShouldThrowError()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -198,7 +198,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
     public async Task GivenNoResetIdAsNotLoggedUser_WhenUpdateUserPassword_ShouldThrowError()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.Users
+        var users = new Backend.Domain.Entities.User.Users
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),

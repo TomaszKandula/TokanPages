@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -16,7 +18,7 @@ public class RemoveUserCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.Users 
+        var user = new Backend.Domain.Entities.User.Users 
         { 
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -134,7 +136,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString()
         };
 
-        var article = new Backend.Domain.Entities.Articles
+        var article = new Backend.Domain.Entities.Article.Articles
         {
             Id = Guid.NewGuid(),
             UserId = userId,

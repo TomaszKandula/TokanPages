@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -34,27 +35,27 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var currentUser = await DatabaseContext.Users
+        var user = await DatabaseContext.Users
             .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (currentUser is null)
+        if (user is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        var expiresIn = _configuration.GetValue<int>("Limit_Reset_Maturity");
         var resetId = Guid.NewGuid();
+        var resetMaturity = _configuration.GetValue<int>("Limit_Reset_Maturity");
 
-        currentUser.CryptedPassword = string.Empty;
-        currentUser.ResetId = resetId;
-        currentUser.ResetIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
-        currentUser.ModifiedAt = _dateTimeService.Now;
-        currentUser.ModifiedBy = currentUser.Id;
-        
+        user.CryptedPassword = string.Empty;
+        user.ResetId = resetId;
+        user.ResetIdEnds = _dateTimeService.Now.AddMinutes(resetMaturity);
+        user.ModifiedAt = _dateTimeService.Now;
+        user.ModifiedBy = user.Id;
+
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
-        var expirationDate = baseDateTime.AddMinutes(expiresIn);
+        var expirationDate = baseDateTime.AddMinutes(resetMaturity);
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SendNotification(request.EmailAddress!, resetId, expirationDate, cancellationToken);
@@ -64,13 +65,22 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     private async Task SendNotification(string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
     {
+        var messageId = Guid.NewGuid();
+        var serviceBusMessage = new ServiceBusMessage
+        {
+            Id = messageId,
+            IsConsumed = false
+        };
+
         var configuration = new ResetPasswordConfiguration
         {
+            MessageId = messageId,
             EmailAddress = emailAddress,
             ResetId = resetId,
             ExpirationDate = expirationDate
         };
 
-        await _emailSenderService.SendNotification(configuration, cancellationToken);
+        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await _emailSenderService.SendToServiceBus(configuration, cancellationToken);
     }
 }

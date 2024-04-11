@@ -129,6 +129,12 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
+        public static string INVALID_VAT {
+            get {
+                return ResourceManager.GetString("INVALID_VAT", resourceCulture);
+            }
+        }
+        
         public static string TOO_LONG_USER_IMAGE_NAME {
             get {
                 return ResourceManager.GetString("TOO_LONG_USER_IMAGE_NAME", resourceCulture);

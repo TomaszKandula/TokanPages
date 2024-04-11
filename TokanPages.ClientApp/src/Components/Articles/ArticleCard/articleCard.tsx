@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText } from "../../../Shared/Services/Utilities";
-import { ARTICLE_PATH, GET_IMAGE_URL } from "../../../Api/Request";
+import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
 interface Properties {
@@ -15,7 +15,7 @@ interface Properties {
 export const ArticleCard = (props: Properties): JSX.Element => {
     const content = { button: "Read" };
     const articleUrl = ARTICLE_PATH.replace("{id}", props.id);
-    const imageUrl = GET_IMAGE_URL.replace("{id}", props.id);
+    const imageUrl = GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id);
 
     const dispatch = useDispatch();
     const history = useHistory();

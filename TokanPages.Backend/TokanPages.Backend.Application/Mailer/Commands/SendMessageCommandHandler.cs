@@ -4,10 +4,11 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.EmailSenderService.Abstractions;
+using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.WebApi.Dto.Mailer;
 
 namespace TokanPages.Backend.Application.Mailer.Commands;
 
@@ -53,16 +54,28 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
         var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
         LoggerService.LogInformation($"Getting email template from URL: {templateUrl}.");
 
-        var contact = _configuration.GetValue<string>("Email_Address_Contact");
-        var payload = new SenderPayloadDto
+        var contactAddress = _configuration.GetValue<string>("Email_Address_Contact");
+        var messageId = Guid.NewGuid();
+
+        var serviceBusMessage = new ServiceBusMessage
         {
-            From = contact,
-            To = new List<string> { contact },
+            Id = messageId,
+            IsConsumed = false
+        };
+
+        var payload = new SendMessageConfiguration
+        {
+            MessageId = messageId,
+            From = contactAddress,
+            To = new List<string> { contactAddress },
             Subject = $"New user message from {request.FirstName}",
             Body = template.MakeBody(templateValues)
         };
 
-        await _emailSenderService.SendEmail(payload, cancellationToken);
+        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await _emailSenderService.SendToServiceBus(payload, cancellationToken);
+
         return Unit.Value;
     }
 }

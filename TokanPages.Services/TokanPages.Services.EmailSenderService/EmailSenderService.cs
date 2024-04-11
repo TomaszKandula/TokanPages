@@ -1,36 +1,55 @@
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
-using TokanPages.WebApi.Dto.Mailer;
 
 namespace TokanPages.Services.EmailSenderService;
 
 public class EmailSenderService : IEmailSenderService
 {
+    private const string QueueName = "email_queue";
+
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
+
+    private readonly IAzureBusFactory _azureBusFactory;
 
     private readonly IConfiguration _configuration;
 
     private readonly ILoggerService _loggerService;
 
+    private readonly IJsonSerializer _jsonSerializer;
+
+    private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
+
+    private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
+
     public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IConfiguration configuration, 
-        ILoggerService loggerService)
+        ILoggerService loggerService, IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer)
     {
         _httpClientServiceFactory = httpClientServiceFactory;
         _configuration = configuration;
         _loggerService = loggerService;
+        _azureBusFactory = azureBusFactory;
+        _jsonSerializer = jsonSerializer;
     }
 
     public async Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        var origin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production";
+        var deploymentOrigin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var developmentOrigin = _configuration.GetValue<string>("Paths_DevelopmentOrigin");
+
+        var origin = isProduction ? deploymentOrigin : developmentOrigin;
         var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
 
         var registerFormTemplate = _configuration.GetValue<string>("Paths_Templates_RegisterForm");
@@ -80,7 +99,7 @@ public class EmailSenderService : IEmailSenderService
 
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
         var sendFrom = _configuration.GetValue<string>("Email_Address_Contact");
-        var payload = new SenderPayloadDto
+        var payload = new SendMessageConfiguration
         {
             From = sendFrom,
             To = new List<string> { emailAddress },
@@ -89,18 +108,6 @@ public class EmailSenderService : IEmailSenderService
         };
 
         await SendEmail(payload, cancellationToken);
-    }
-
-    public async Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default)
-    {
-        var httpConfiguration = new Configuration { Url = templateUrl, Method = "GET" };
-        var client = _httpClientServiceFactory.Create(true, _loggerService);
-        var result = await client.Execute(httpConfiguration, cancellationToken);
-
-        if (result.Content == null)
-            throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
-
-        return Encoding.Default.GetString(result.Content);
     }
 
     public async Task SendEmail(object content, CancellationToken cancellationToken = default)
@@ -121,5 +128,36 @@ public class EmailSenderService : IEmailSenderService
 
         var client = _httpClientServiceFactory.Create(true, _loggerService);
         await client.Execute(configuration, cancellationToken);
+    }
+
+    public async Task SendToServiceBus(IEmailConfiguration configuration, CancellationToken cancellationToken)
+    {
+        var data = configuration switch
+        {
+            CreateUserConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, CreateUserConfiguration = item },
+            ResetPasswordConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, ResetPasswordConfiguration = item },
+            SendMessageConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, SendMessageConfiguration = item },
+            _ => throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED)
+        };
+
+        var serialized = _jsonSerializer.Serialize(data, Formatting.None, Settings);
+        var messages = new List<string> { serialized };
+
+        _loggerService.LogInformation($"[{QueueName} | {CurrentEnv}]: Send message to service bus, size: '{serialized.Length}' bytes.");
+
+        var busService = _azureBusFactory.Create();
+        await busService.SendMessages(QueueName, messages, cancellationToken);
+    }
+    
+    public async Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default)
+    {
+        var httpConfiguration = new Configuration { Url = templateUrl, Method = "GET" };
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute(httpConfiguration, cancellationToken);
+
+        if (result.Content == null)
+            throw new BusinessException(nameof(ErrorCodes.EMAIL_TEMPLATE_EMPTY), ErrorCodes.EMAIL_TEMPLATE_EMPTY);
+
+        return Encoding.Default.GetString(result.Content);
     }
 }
