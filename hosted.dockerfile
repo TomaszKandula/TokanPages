@@ -19,15 +19,12 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18
 WORKDIR /app
 
 # BACKEND
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Core/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Shared/bin/Release/net6.0" .
 
 # SERVICES
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.AzureBusService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.BatchService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.HttpClientService/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.VideoConverterService/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Services/TokanPages.Services.VideoProcessingService/bin/Release/net6.0" .
 
 # HOSTED-SERVICES API

@@ -25,12 +25,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Configuration\TokanPages.Backend.Configuration.csproj" />
-      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
-      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureBusService\TokanPages.Services.AzureBusService.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BatchService\TokanPages.Services.BatchService.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
-      <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VideoConverterService\TokanPages.Services.VideoConverterService.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VideoProcessingService\TokanPages.Services.VideoProcessingService.csproj" />
     </ItemGroup>
 
