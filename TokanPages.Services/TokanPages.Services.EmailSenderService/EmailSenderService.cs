@@ -99,7 +99,7 @@ public class EmailSenderService : IEmailSenderService
 
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
         var sendFrom = _configuration.GetValue<string>("Email_Address_Contact");
-        var payload = new SenderPayloadDto
+        var payload = new SendMessageConfiguration
         {
             From = sendFrom,
             To = new List<string> { emailAddress },
