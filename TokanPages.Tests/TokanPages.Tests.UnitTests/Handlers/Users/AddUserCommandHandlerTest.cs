@@ -70,6 +70,7 @@ public class AddUserCommandHandlerTest : TestBase
         await databaseContext.Roles.AddAsync(roles);
         await databaseContext.Permissions.AddRangeAsync(permissions);
         await databaseContext.DefaultPermissions.AddRangeAsync(defaultPermissions);
+        await databaseContext.SaveChangesAsync();
 
         const string mockedPassword = "MockedPassword";
         var mockedDateTime = new Mock<DateTimeService>();
