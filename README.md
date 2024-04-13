@@ -9,7 +9,7 @@ Despite mainly focusing on software development and Microsoft technologies, this
 
 ## CI/CD Pipelines
 
-[![Build & run tests (dev)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml)
+[![Build and run tests (dev)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml)
 
 ## Project metrics
 ### Client-App

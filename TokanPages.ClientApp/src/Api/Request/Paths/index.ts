@@ -70,7 +70,7 @@ export const GET_ACTIVATE_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name
 export const GET_UPDATE_SUBSCRIBER_CONTENT = `${API_CONTENT_URI}/getContent/?name=updateSubscriber&type=component`;
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent/?name=wrongPagePrompt&type=component`;
 export const GET_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=account&type=component`;
-export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=myStory&type=document`;
+export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=story&type=document`;
 export const GET_TERMS_CONTENT = `${API_CONTENT_URI}/getContent/?name=terms&type=document`;
 export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent/?name=policy&type=document`;
 

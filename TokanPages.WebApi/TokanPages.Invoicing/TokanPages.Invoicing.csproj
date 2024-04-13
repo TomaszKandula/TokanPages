@@ -6,6 +6,10 @@
         <LangVersion>10</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Publish>true</Publish>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>true</IsPublishable>
+        <InvariantGlobalization>false</InvariantGlobalization>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
@@ -28,10 +32,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="7.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.0" />
     </ItemGroup>
     
 </Project>

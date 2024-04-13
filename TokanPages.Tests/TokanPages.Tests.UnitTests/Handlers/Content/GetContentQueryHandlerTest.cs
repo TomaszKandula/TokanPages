@@ -42,7 +42,7 @@ public class GetContentQueryHandlerTest : TestBase
             .ReturnsAsync(streamContent);
         
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
     
         var testObject = GetActivateAccountContent();
@@ -123,7 +123,7 @@ public class GetContentQueryHandlerTest : TestBase
             .ReturnsAsync(streamContent);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
 
         var testObject = GetActivateAccountContent();
@@ -177,7 +177,7 @@ public class GetContentQueryHandlerTest : TestBase
             .ReturnsAsync(streamContent);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
 
         var testObject = GetActivateAccountContent();
@@ -225,7 +225,7 @@ public class GetContentQueryHandlerTest : TestBase
             .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
 
         var testObject = GetActivateAccountContent();
@@ -279,7 +279,7 @@ public class GetContentQueryHandlerTest : TestBase
             .ReturnsAsync(streamContent);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
 
         var testObject = GetActivateAccountContent();

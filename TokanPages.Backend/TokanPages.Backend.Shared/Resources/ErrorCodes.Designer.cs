@@ -225,6 +225,18 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
+        public static string UNSUPPORTED_PLATFORM {
+            get {
+                return ResourceManager.GetString("UNSUPPORTED_PLATFORM", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_TAGS {
+            get {
+                return ResourceManager.GetString("MISSING_TAGS", resourceCulture);
+            }
+        }
+        
         public static string VAT_NUM_INCORRECT_LENGTH {
             get {
                 return ResourceManager.GetString("VAT_NUM_INCORRECT_LENGTH", resourceCulture);
@@ -348,6 +360,12 @@ namespace TokanPages.Backend.Shared.Resources {
         public static string INVALID_API_VERSION {
             get {
                 return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
+            }
+        }
+        
+        public static string BUSINESS_LOCK_ENABLED {
+            get {
+                return ResourceManager.GetString("BUSINESS_LOCK_ENABLED", resourceCulture);
             }
         }
     }

@@ -17,20 +17,24 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Un
 
     public override async Task<Unit> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
     {
-        var users = await DatabaseContext.Users
+        var user = await DatabaseContext.Users
             .SingleOrDefaultAsync(users => users.ActivationId == request.ActivationId, cancellationToken);
 
-        if (users == null)
+        if (user == null)
             throw new BusinessException(nameof(ErrorCodes.INVALID_ACTIVATION_ID), ErrorCodes.INVALID_ACTIVATION_ID);
 
-        if (users.ActivationIdEnds < _dateTimeService.Now)
+        if (user.ActivationIdEnds < _dateTimeService.Now)
             throw new BusinessException(nameof(ErrorCodes.EXPIRED_ACTIVATION_ID), ErrorCodes.EXPIRED_ACTIVATION_ID);
-            
-        users.IsActivated = true;
-        users.ActivationId = null;
-        users.ActivationIdEnds = null;
 
-        LoggerService.LogInformation($"User account has been activated, user ID: {users.Id}");
+        user.IsActivated = true;
+        user.IsVerified = true;
+        user.ActivationId = null;
+        user.ActivationIdEnds = null;
+
+        if (user.HasBusinessLock)
+            LoggerService.LogWarning("The user is activated but has the business lock and thus will require administrator action.");
+
+        LoggerService.LogInformation($"User account has been activated, user ID: {user.Id}");
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         return Unit.Value;

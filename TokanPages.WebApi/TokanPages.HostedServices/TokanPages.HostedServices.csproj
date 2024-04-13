@@ -9,6 +9,7 @@
         <Publish>true</Publish>
         <IsPackable>true</IsPackable>
         <IsPublishable>true</IsPublishable>
+        <InvariantGlobalization>false</InvariantGlobalization>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 

@@ -195,4 +195,13 @@
   <data name="PASSWORD_MISSING_LARGE_LETTER" xml:space="preserve">
     <value>The user password must contain at least one large letter</value>
   </data>
+  <data name="LENGTH_TOO_LONG_225" xml:space="preserve">
+    <value>The length cannot be larger than 225 characters</value>
+  </data>
+  <data name="LENGTH_TOO_LONG_500" xml:space="preserve">
+    <value>The length cannot be larger than 500 characters</value>
+  </data>
+  <data name="TOO_MANY_TAGS" xml:space="preserve">
+    <value>Number of tags per installation is limited to 60</value>
+  </data>
 </root>

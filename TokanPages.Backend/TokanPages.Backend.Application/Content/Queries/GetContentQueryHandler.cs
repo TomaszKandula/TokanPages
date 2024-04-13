@@ -33,7 +33,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED), ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
         
         var componentRequestUrl = $"content/{request.Type}s/{request.Name}.json";
-        var azureBob = _azureBlobStorageFactory.Create();
+        var azureBob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBob.OpenRead(componentRequestUrl, cancellationToken);
 
         if (contentStream is null)

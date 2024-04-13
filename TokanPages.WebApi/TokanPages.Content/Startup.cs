@@ -81,7 +81,6 @@ public class Startup
         services.SetupDockerInternalNetwork();
         services
             .AddHealthChecks()
-            .AddUrlGroup(new Uri(_configuration.GetValue<string>("Email_HealthUrl")), name: "EmailService")
             .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString"), name: "AzureRedisCache")
             .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), name: "SQLServer")
             .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), name: "AzureStorage");
@@ -110,23 +109,6 @@ public class Startup
             endpoints.MapGet("/", context 
                 => context.Response.WriteAsync("Content API"));
         });
-        builder.UseHealthChecks("/hc", new HealthCheckOptions
-        {
-            ResponseWriter = async (context, report) =>
-            {
-                var result = new
-                {
-                    status = report.Status.ToString(),
-                    errors = report.Entries.Select(pair 
-                        => new
-                        {
-                            key = pair.Key, 
-                            value = Enum.GetName(typeof(HealthStatus), pair.Value.Status)
-                        })
-                };
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
-            }
-        });
+        builder.UseHealthChecks("/hc", HealthCheckSupport.WriteResponse());
     }
 }

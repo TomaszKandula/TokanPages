@@ -10,7 +10,7 @@ export const RenderImage = (props: TextItem): JSX.Element => {
 
     let url = props.value as string;
     if (!url.includes("https://")) {
-        url = API_BASE_URI + url;
+        url = `${API_BASE_URI}${url}`;
     }
 
     const onClickEvent = React.useCallback(() => {

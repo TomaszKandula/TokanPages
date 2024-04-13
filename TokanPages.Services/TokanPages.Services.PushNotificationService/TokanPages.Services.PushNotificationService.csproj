@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Publish>true</Publish>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>true</IsPublishable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Azure.NotificationHubs" Version="4.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+        <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Domain\TokanPages.Backend.Domain.csproj" />
+        <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
+        <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.Database\TokanPages.Persistence.Database.csproj" />
+    </ItemGroup>
+
+</Project>

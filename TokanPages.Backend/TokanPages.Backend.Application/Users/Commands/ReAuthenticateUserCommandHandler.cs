@@ -36,7 +36,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             .ToListAsync(cancellationToken);
 
         var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == request.RefreshToken);
-        if (savedRefreshToken == null) throw InvalidTokenException;
+        if (savedRefreshToken == null) 
+            throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
         var requesterIpAddress = _userService.GetRequestIpAddress();
         if (_userService.IsRefreshTokenRevoked(savedRefreshToken))
@@ -56,7 +57,9 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
 
-        if (!_userService.IsRefreshTokenActive(savedRefreshToken)) throw InvalidTokenException;
+        if (!_userService.IsRefreshTokenActive(savedRefreshToken)) 
+            throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
+
         var tokenInput = new ReplaceRefreshTokenInput
         {
             UserId = user.Id, 
@@ -90,17 +93,19 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var userInfo = await DatabaseContext.UserInfo
-            .Where(info => info.UserId == user.Id)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
         return new ReAuthenticateUserCommandResult
         {
             UserId = user.Id,
+            IsVerified = user.IsVerified,
             AliasName = user.UserAlias,
             AvatarName = userInfo.UserImageName,
-            FirstName = userInfo.FirstName,
-            LastName = userInfo.LastName,
+            FirstName = !string.IsNullOrWhiteSpace(userInfo.FirstName) 
+                ? userInfo.FirstName 
+                : user.UserAlias,
+            LastName = !string.IsNullOrWhiteSpace(userInfo.LastName) 
+                ? userInfo.LastName 
+                : user.UserAlias[..3],
             Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
@@ -111,6 +116,16 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         };
     }
 
-    private static AccessException InvalidTokenException 
-        => new (nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
+    private async Task<UserInfo> TryGetUserInfo(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var userInfo = await DatabaseContext.UserInfo
+            .AsNoTracking()
+            .Where(info => info.UserId == userId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (userInfo is null) 
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+
+        return userInfo;
+    }
 }

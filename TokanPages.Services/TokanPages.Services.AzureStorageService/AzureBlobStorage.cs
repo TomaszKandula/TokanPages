@@ -2,6 +2,7 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Constants;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -13,10 +14,17 @@ public class AzureBlobStorage : IAzureBlobStorage
 {
     private readonly BlobContainerClient _container;
 
-    public AzureBlobStorage(BlobContainerClient container) => _container = container;
+    private readonly ILoggerService _loggerService;
 
-    public AzureBlobStorage(string connectionString, string containerName)
+    public AzureBlobStorage(BlobContainerClient container, ILoggerService loggerService)
     {
+        _container = container;
+        _loggerService = loggerService;
+    }
+
+    public AzureBlobStorage(string connectionString, string containerName, ILoggerService loggerService)
+    {
+        _loggerService = loggerService;
         var blobServiceClient = new BlobServiceClient(connectionString);
         _container = blobServiceClient.GetBlobContainerClient(containerName);
     }
@@ -48,7 +56,9 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
         catch (Exception exception)
         {
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), exception.Message);
+            var innerMessage = exception.InnerException?.Message ?? string.Empty;
+            _loggerService.LogError($"{exception.Message} {innerMessage}");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE);
         }
     }
 
@@ -72,7 +82,9 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
         catch (Exception exception)
         {
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), exception.Message);
+            var innerMessage = exception.InnerException?.Message ?? string.Empty;
+            _loggerService.LogError($"{exception.Message} {innerMessage}");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE);
         }
     }
 
@@ -98,15 +110,19 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
         catch (Exception exception)
         {
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), exception.Message);
+            var innerMessage = exception.InnerException?.Message ?? string.Empty;
+            _loggerService.LogError($"{exception.Message} {innerMessage}");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE);
         }
     }
 
     public async Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
-                $"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
+        {
+            const string message = $"Argument '{nameof(sourceFilePath)}' cannot be null or empty.";
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
+        }
 
         try
         {
@@ -117,7 +133,9 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
         catch (Exception exception)
         {
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), exception.Message);
+            var innerMessage = exception.InnerException?.Message ?? string.Empty;
+            _loggerService.LogError($"{exception.Message} {innerMessage}");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE), ErrorCodes.CANNOT_READ_FROM_AZURE_STORAGE);
         }
     }
 
@@ -125,8 +143,10 @@ public class AzureBlobStorage : IAzureBlobStorage
         CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(destinationPath))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
-                $"Argument '{nameof(destinationPath)}' cannot be null or empty.");
+        {
+            const string message = $"Argument '{nameof(destinationPath)}' cannot be null or empty.";
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
+        }
 
         try
         {
@@ -136,7 +156,9 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
         catch (Exception exception)
         {
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), exception.Message);
+            var innerMessage = exception.InnerException?.Message ?? string.Empty;
+            _loggerService.LogError($"{exception.Message} {innerMessage}");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE);
         }
     }
 
@@ -157,16 +179,20 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
         catch (Exception exception)
         {
-            throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), exception.Message);
+            var innerMessage = exception.InnerException?.Message ?? string.Empty;
+            _loggerService.LogError($"{exception.Message} {innerMessage}");
+            throw new BusinessException(nameof(ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE), ErrorCodes.CANNOT_SAVE_TO_AZURE_STORAGE);
         }
     }
 
     public async Task<bool> DeleteFile(string sourceFilePath, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(sourceFilePath))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
-                $"Argument '{nameof(sourceFilePath)}' cannot be null or empty.");
-            
+        {
+            const string message = $"Argument '{nameof(sourceFilePath)}' cannot be null or empty.";
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
+        }
+
         return await _container
             .GetBlobClient(sourceFilePath)
             .DeleteIfExistsAsync(cancellationToken: cancellationToken);
@@ -175,11 +201,15 @@ public class AzureBlobStorage : IAzureBlobStorage
     private static void VerifyUploadContentArguments(string content, string destinationPath)
     {
         if (string.IsNullOrEmpty(content))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
-                $"Argument '{nameof(content)}' cannot be null or empty.");
-            
+        {
+            const string message = $"Argument '{nameof(content)}' cannot be null or empty.";
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
+        }
+
         if (string.IsNullOrEmpty(destinationPath))
-            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL),
-                $"Argument '{nameof(destinationPath)}' cannot be null or empty.");
+        {
+            const string message = $"Argument '{nameof(destinationPath)}' cannot be null or empty.";
+            throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
+        }
     }
 }

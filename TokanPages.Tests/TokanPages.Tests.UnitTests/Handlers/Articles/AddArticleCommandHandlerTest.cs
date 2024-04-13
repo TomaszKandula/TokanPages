@@ -26,9 +26,9 @@ public class AddArticleCommandHandlerTest : TestBase
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
-            
+
         _mockedAzureBlobStorageFactory
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(It.IsAny<ILoggerService>()))
             .Returns(mockedAzureBlobStorage.Object);
     }
 
@@ -66,7 +66,7 @@ public class AddArticleCommandHandlerTest : TestBase
                 It.IsAny<bool>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
-            
+
         var handler = new AddArticleCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -76,7 +76,7 @@ public class AddArticleCommandHandlerTest : TestBase
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
-            
+
         // Assert
         result.ToString().IsGuid().Should().Be(true);
     }

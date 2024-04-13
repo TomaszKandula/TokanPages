@@ -70,6 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{
 		docker-compose-prod.yml = docker-compose-prod.yml
 		articles.dockerfile = articles.dockerfile
 		invoicing.dockerfile = invoicing.dockerfile
+		notifications.dockerfile = notifications.dockerfile
 		content.dockerfile = content.dockerfile
 		sender.dockerfile = sender.dockerfile
 		subscribers.dockerfile = subscribers.dockerfile
@@ -130,6 +131,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Invoicing.Dto", "TokanPages.WebApi\TokanPages.Invoicing.Dto\TokanPages.Invoicing.Dto.csproj", "{8DEED952-7FD4-4289-B3B6-DD5D06775465}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Invoicing", "TokanPages.WebApi\TokanPages.Invoicing\TokanPages.Invoicing.csproj", "{492F55F6-7F26-44A3-A0B1-DFE2263FF924}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.PushNotificationService", "TokanPages.Services\TokanPages.Services.PushNotificationService\TokanPages.Services.PushNotificationService.csproj", "{EB18382D-51FC-435F-B7D8-70FE38D1CD74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Notifications", "TokanPages.WebApi\TokanPages.Notifications\TokanPages.Notifications.csproj", "{18FF919A-A0DD-4E3E-9BDA-2EDFDBFD0012}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Notifications.Dto", "TokanPages.WebApi\TokanPages.Notifications.Dto\TokanPages.Notifications.Dto.csproj", "{31133D85-E449-48AE-9E8F-5450B5B15E6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -289,6 +296,18 @@ Global
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FF919A-A0DD-4E3E-9BDA-2EDFDBFD0012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FF919A-A0DD-4E3E-9BDA-2EDFDBFD0012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FF919A-A0DD-4E3E-9BDA-2EDFDBFD0012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FF919A-A0DD-4E3E-9BDA-2EDFDBFD0012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31133D85-E449-48AE-9E8F-5450B5B15E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31133D85-E449-48AE-9E8F-5450B5B15E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31133D85-E449-48AE-9E8F-5450B5B15E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31133D85-E449-48AE-9E8F-5450B5B15E6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -332,6 +351,9 @@ Global
 		{09900784-2502-4C11-B4DC-08F9F4017685} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{8DEED952-7FD4-4289-B3B6-DD5D06775465} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{18FF919A-A0DD-4E3E-9BDA-2EDFDBFD0012} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
+		{31133D85-E449-48AE-9E8F-5450B5B15E6D} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

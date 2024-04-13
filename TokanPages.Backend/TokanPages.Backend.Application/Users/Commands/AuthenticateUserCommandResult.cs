@@ -6,6 +6,8 @@ public class AuthenticateUserCommandResult
 {
     public Guid UserId { get; set; }
 
+    public bool IsVerified { get; set; }
+
     public string? AliasName { get; set; }
 
     public string? AvatarName { get; set; }

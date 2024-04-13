@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 namespace TokanPages.Gateway.Services;
 
 /// <summary>
-/// 
+/// Proxy middleware implementation.
 /// </summary>
 public class ProxyMiddleware
 {
@@ -20,11 +20,11 @@ public class ProxyMiddleware
     private IOptionsSnapshot<GatewaySettings> _settingsAccessor = null!;
 
     /// <summary>
-    /// 
+    /// Proxy middleware.
     /// </summary>
-    /// <param name="requestDelegate"></param>
-    /// <param name="loggerService"></param>
-    /// <param name="proxyHttpClient"></param>
+    /// <param name="requestDelegate">Request delegate instance.</param>
+    /// <param name="loggerService">Logger service instance.</param>
+    /// <param name="proxyHttpClient">Proxy HTTP client instance.</param>
     public ProxyMiddleware(RequestDelegate requestDelegate, ILoggerService loggerService, IProxyHttpClient proxyHttpClient)
     {
         _requestDelegate = requestDelegate;
@@ -32,13 +32,14 @@ public class ProxyMiddleware
         _proxyHttpClient = proxyHttpClient;
     }
 
-    private IEnumerable<string> ResponseHeadersExclude => _settingsAccessor.Value?.ResponseHeaders?.Exclude ?? Array.Empty<string>();
+    private IEnumerable<string> ResponseHeadersExclude 
+        => _settingsAccessor.Value.ResponseHeaders?.Exclude ?? Array.Empty<string>();
 
     /// <summary>
-    /// 
+    /// Invoke middleware implementation.
     /// </summary>
-    /// <param name="context"></param>
-    /// <param name="settingsAccessor"></param>
+    /// <param name="context">HTTP context.</param>
+    /// <param name="settingsAccessor">Gateways settings.</param>
     public async Task Invoke(HttpContext context, IOptionsSnapshot<GatewaySettings> settingsAccessor)
     {
         _settingsAccessor = settingsAccessor;
@@ -64,7 +65,7 @@ public class ProxyMiddleware
     private RouteDefinition? GetRouteForPath(string path)
     {
         RouteDefinition? route = null;
-        foreach (var item in _settingsAccessor.Value?.Routes!)
+        foreach (var item in _settingsAccessor.Value.Routes!)
         {
             var serviceName = item.ServiceName.ToLower();
             if (!path.Contains(serviceName))

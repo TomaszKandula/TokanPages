@@ -43,7 +43,7 @@ public class AddImageAssetCommandHandler : RequestHandler<AddImageAssetCommand, 
         var blobName = $"images/{fileName}";
         var destinationPath = $"content/assets/{blobName}";
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
 
         await azureBlob.UploadFile(stream, destinationPath, contentType, cancellationToken);
@@ -67,7 +67,7 @@ public class AddImageAssetCommandHandler : RequestHandler<AddImageAssetCommand, 
         var blobName = $"images/{mediaName}";
         var destinationPath = $"content/assets/{blobName}";
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
 
         await azureBlob.UploadFile(stream, destinationPath, contentType, cancellationToken);

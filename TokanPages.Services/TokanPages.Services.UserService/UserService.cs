@@ -111,15 +111,20 @@ public sealed class UserService : IUserService
         var id = userId ?? UserIdFromClaim();
         var entity = isTracking ? _databaseContext.Users : _databaseContext.Users.AsNoTracking();
         var user = await entity
+            .Where(users => !users.HasBusinessLock)
+            .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
             .Where(users => users.Id == id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (user == null)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.ACCESS_DENIED);
+            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         if (!user.IsActivated)
             throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
+
+        if (user.IsDeleted)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         return user;
     }

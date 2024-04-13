@@ -52,6 +52,9 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         if (!user.IsActivated)
             throw new AccessException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
+        if (user.HasBusinessLock)
+            throw new AuthorizationException(nameof(ErrorCodes.BUSINESS_LOCK_ENABLED), ErrorCodes.BUSINESS_LOCK_ENABLED);
+
         var isPasswordValid = _cipheringService.VerifyPassword(request.Password!, user.CryptedPassword);
         if (!isPasswordValid)
         {
@@ -94,17 +97,19 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
         var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
 
-        var userInfo = await DatabaseContext.UserInfo
-            .Where(info => info.UserId == user.Id)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
         return new AuthenticateUserCommandResult
         {
             UserId = user.Id,
+            IsVerified = user.IsVerified,
             AliasName = user.UserAlias,
             AvatarName = userInfo.UserImageName,
-            FirstName = userInfo.FirstName,
-            LastName = userInfo.LastName,
+            FirstName = !string.IsNullOrWhiteSpace(userInfo.FirstName) 
+                ? userInfo.FirstName 
+                : user.UserAlias,
+            LastName = !string.IsNullOrWhiteSpace(userInfo.LastName) 
+                ? userInfo.LastName 
+                : user.UserAlias[..3],
             Email = user.EmailAddress,
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
@@ -113,5 +118,18 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             Roles = roles,
             Permissions = permissions
         };
+    }
+
+    private async Task<UserInfo> TryGetUserInfo(Guid userId, CancellationToken cancellationToken = default)
+    {
+        var userInfo = await DatabaseContext.UserInfo
+            .AsNoTracking()
+            .Where(info => info.UserId == userId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (userInfo is null) 
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+
+        return userInfo;
     }
 }

@@ -15,6 +15,9 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.HostedServices.Services.Abstractions;
+using TokanPages.HostedServices.Services.CronJobs;
+using TokanPages.HostedServices.Services.Models;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -69,18 +72,26 @@ public static class Dependencies
 	{
 		services.AddHttpContextAccessor();
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
-
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IVideoConverter, VideoConverter>();
 		services.AddScoped<IVideoProcessor, VideoProcessor>();
         services.AddScoped<IBatchService, BatchService>();
         services.AddScoped<IEmailSenderService, EmailSenderService>();
-
         services.AddScoped<VideoProcessing>();
         services.AddScoped<EmailProcessing>();
         services.AddHostedService<VideoProcessingWorker>();
         services.AddHostedService<EmailProcessingWorker>();
+
+        var cron = configuration.GetValue<string>("BatchInvoicing_Cron");
+        var batchProcessingConfig = new BatchProcessingConfig
+        {
+            TimeZoneInfo = TimeZoneInfo.Local,
+            CronExpression = cron ?? string.Empty
+        };
+
+        services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
+        services.AddHostedService<BatchProcessingJob>();
 
         services.AddSingleton<IAzureBusFactory>(_ =>
         {

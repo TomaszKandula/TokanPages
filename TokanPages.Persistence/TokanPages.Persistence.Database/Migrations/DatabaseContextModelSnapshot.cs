@@ -513,6 +513,140 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("VatNumberPatterns");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Handle")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Platform")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<string>("RegistrationId")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PushNotifications");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotificationLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Handle")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Payload")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("Platform")
+                        .IsRequired()
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<string>("RegistrationId")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PushNotificationLogs");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotificationTag", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PushNotificationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Tag")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PushNotificationId");
+
+                    b.ToTable("PushNotificationTags");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.WebNotification", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WebNotifications");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.Albums", b =>
                 {
                     b.Property<Guid>("Id")
@@ -932,6 +1066,60 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("UserInfo");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ChatData")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChatKey")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserMessages");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserMessageCache", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ChatKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserMessagesCache");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPermissions", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1073,10 +1261,16 @@ namespace TokanPages.Persistence.Database.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("HasBusinessLock")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsActivated")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVerified")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedAt")
@@ -1273,6 +1467,17 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotificationTag", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Notification.PushNotification", "PushNotification")
+                        .WithMany("PushNotificationTags")
+                        .HasForeignKey("PushNotificationId")
+                        .IsRequired()
+                        .HasConstraintName("FK_PushNotificationTags_PushNotifications");
+
+                    b.Navigation("PushNotification");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.Albums", b =>
                 {
                     b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "UserNavigation")
@@ -1432,6 +1637,11 @@ namespace TokanPages.Persistence.Database.Migrations
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserCompanies", b =>
                 {
                     b.Navigation("BatchInvoices");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotification", b =>
+                {
+                    b.Navigation("PushNotificationTags");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoCategories", b =>
