@@ -77,7 +77,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Returns(Task.FromResult(string.Empty));
             
         mockedAzureBlobStorageFactory
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlobStorage.Object);
 
         var handler = new UpdateArticleContentCommandHandler(
@@ -93,9 +93,9 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         // Assert
         var articlesEntity = await databaseContext.Articles.FindAsync(command.Id);
         articlesEntity.Should().NotBeNull();
-        articlesEntity.Title.Should().Be(command.Title);
-        articlesEntity.Description.Should().Be(command.Description); 
-        articlesEntity.IsPublished.Should().BeFalse();
+        articlesEntity?.Title.Should().Be(command.Title);
+        articlesEntity?.Description.Should().Be(command.Description); 
+        articlesEntity?.IsPublished.Should().BeFalse();
     }
 
     [Fact]
@@ -161,7 +161,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Returns(Task.FromResult(string.Empty));
 
         mockedAzureBlobStorageFactory
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlobStorage.Object);
 
         var handler = new UpdateArticleContentCommandHandler(

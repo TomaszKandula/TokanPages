@@ -91,7 +91,7 @@ public class AddUserCommandHandlerTest : TestBase
             .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedBlobStorage.Object);
 
         mockedCipher
