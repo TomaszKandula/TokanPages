@@ -2,8 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>10</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Publish>true</Publish>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>true</IsPublishable>
     </PropertyGroup>
 
     <ItemGroup>
