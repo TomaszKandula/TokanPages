@@ -60,7 +60,9 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
                 {
                     UserId = user.Id,
                     Handler = request.Handler,
-                    Payload = _jsonSerializer.Deserialize<PaymentStatusData>(request.ExternalPayload)
+                    Payload = request.ExternalPayload is not null 
+                        ? _jsonSerializer.Deserialize<PaymentStatusData>(request.ExternalPayload) 
+                        : null
                 };
                 break;
             case "video_started":
@@ -69,7 +71,9 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
                 {
                     UserId = user.Id,
                     Handler = request.Handler,
-                    Payload = _jsonSerializer.Deserialize<ExternalData>(request.ExternalPayload)
+                    Payload = request.ExternalPayload is not null 
+                        ? _jsonSerializer.Deserialize<ExternalData>(request.ExternalPayload) 
+                        : null
                 };
                 break;
             case "chat_post_message": 
@@ -77,7 +81,9 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
                 {
                     UserId = user.Id,
                     Handler = request.Handler,
-                    Payload = _jsonSerializer.Deserialize<ChatData>(request.ExternalPayload)
+                    Payload = request.ExternalPayload is not null 
+                        ? _jsonSerializer.Deserialize<ChatData>(request.ExternalPayload) 
+                        : null
                 };
                 break;
         }
@@ -89,7 +95,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
         if (!request.CanSkipPreservation)
             await SaveNotification(user.Id, data, cancellationToken);
 
-        if (request.Handler == "chat_post_message")
+        if (request is { Handler: "chat_post_message", ExternalPayload: not null })
         {
             var chatData = _jsonSerializer.Deserialize<ChatData>(request.ExternalPayload);
             var cache = new UserMessageCache
