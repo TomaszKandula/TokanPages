@@ -65,7 +65,7 @@ public class ProxyMiddleware
     private RouteDefinition? GetRouteForPath(string path)
     {
         RouteDefinition? route = null;
-        foreach (var item in _settingsAccessor.Value?.Routes!)
+        foreach (var item in _settingsAccessor.Value.Routes!)
         {
             var serviceName = item.ServiceName.ToLower();
             if (!path.Contains(serviceName))
