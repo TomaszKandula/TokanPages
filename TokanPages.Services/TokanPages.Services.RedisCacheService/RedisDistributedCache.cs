@@ -84,7 +84,7 @@ public class RedisDistributedCache : IRedisDistributedCache
     {
         foreach (var argument in arguments)
         {
-            if (!string.IsNullOrEmpty(argument)) continue;
+            if (!string.IsNullOrWhiteSpace(argument)) continue;
             const string message = $"The argument '{nameof(argument)}' cannot be null or empty";
             throw new BusinessException(ErrorCodes.ARGUMENT_EMPTY_OR_NULL, message);
         }
