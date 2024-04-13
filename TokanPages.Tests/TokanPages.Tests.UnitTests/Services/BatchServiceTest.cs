@@ -119,7 +119,8 @@ public class BatchServiceTest : TestBase
         var result = await Assert.ThrowsAsync<BusinessException>(() 
             => service.GetIssuedInvoice(DataUtilityService.GetRandomString()));
 
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_INVOICE_NUMBER));
+        result.Message.Should().Be(ErrorCodes.INVALID_INVOICE_NUMBER);
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.PROCESSING_EXCEPTION));
     }
 
     [Fact]
@@ -439,7 +440,7 @@ public class BatchServiceTest : TestBase
 
         // Assert
         result.Status.Should().Be(ProcessingStatuses.New);
-        //result.BatchProcessingTime.Should().BeNull();
+        result.BatchProcessingTime.Should().Be(new TimeSpan(0));
     }
 
     [Fact]
@@ -595,6 +596,8 @@ public class BatchServiceTest : TestBase
         // Assert
         var result = await Assert.ThrowsAsync<BusinessException>(() 
             => service.GetBatchInvoiceProcessingStatus(Guid.NewGuid()));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.INVALID_PROCESSING_BATCH_KEY));
+
+        result.Message.Should().Be(ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.PROCESSING_EXCEPTION));
     }
 }
