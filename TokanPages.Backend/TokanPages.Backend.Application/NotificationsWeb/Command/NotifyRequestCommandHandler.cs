@@ -50,9 +50,8 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
                     Payload = new UserActivationData
                     {
                         IsActivated = user.IsActivated,
-                        //TODO: add columns to user table
-                        //IsVerified = user.IsVerified,
-                        //HasBusinessLock = user.BusinessLock
+                        IsVerified = user.IsVerified,
+                        HasBusinessLock = user.HasBusinessLock
                     }
                 };
                 break;
