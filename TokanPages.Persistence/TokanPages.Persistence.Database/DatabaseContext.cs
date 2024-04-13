@@ -6,6 +6,7 @@ using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Domain.Entities.Article;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Entities.Notification;
 
 namespace TokanPages.Persistence.Database;
 
@@ -28,6 +29,11 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserBankAccounts> UserBankAccounts { get; set; }
     public virtual DbSet<UserCompanies> UserCompanies { get; set; }
     public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
+
+    /* Category: Notification */
+    public virtual DbSet<PushNotification> PushNotifications { get; set; }
+    public virtual DbSet<PushNotificationTag> PushNotificationTags { get; set; }
+    public virtual DbSet<PushNotificationLog> PushNotificationLogs { get; set; }
 
     /* Category: Photography */
     public virtual DbSet<Albums> Albums { get; set; }
