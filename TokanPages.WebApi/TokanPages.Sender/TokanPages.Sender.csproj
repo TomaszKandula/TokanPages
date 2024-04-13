@@ -6,9 +6,12 @@
         <LangVersion>10</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Publish>true</Publish>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>true</IsPublishable>
+        <InvariantGlobalization>false</InvariantGlobalization>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
-
 
     <ItemGroup>
         <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
