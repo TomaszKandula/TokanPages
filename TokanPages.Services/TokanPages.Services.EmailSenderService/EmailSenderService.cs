@@ -54,6 +54,7 @@ public class EmailSenderService : IEmailSenderService
 
         var registerFormTemplate = _configuration.GetValue<string>("Paths_Templates_RegisterForm");
         var resetPasswordTemplate = _configuration.GetValue<string>("Paths_Templates_ResetPassword");
+        var verifyEmailTemplate = _configuration.GetValue<string>("Paths_Template_VerifyEmail");
 
         var activationPath = _configuration.GetValue<string>("Paths_Activation");
         var updatePasswordPath = _configuration.GetValue<string>("Paths_UpdatePassword");
@@ -65,6 +66,7 @@ public class EmailSenderService : IEmailSenderService
         {
             CreateUserConfiguration => "New user registration",
             ResetPasswordConfiguration => "Reset user password",
+            VerifyEmailConfiguration => "Verify email address",
             _ => ""
         };
 
@@ -72,6 +74,7 @@ public class EmailSenderService : IEmailSenderService
         {
             CreateUserConfiguration createConfiguration => createConfiguration.EmailAddress,
             ResetPasswordConfiguration resetConfiguration => resetConfiguration.EmailAddress,
+            VerifyEmailConfiguration model => model.EmailAddress,
             _ => ""
         };
 
@@ -79,6 +82,7 @@ public class EmailSenderService : IEmailSenderService
         {
             CreateUserConfiguration =>  $"{baseUrl}{registerFormTemplate}",
             ResetPasswordConfiguration => $"{baseUrl}{resetPasswordTemplate}",
+            VerifyEmailConfiguration => $"{baseUrl}{verifyEmailTemplate}",
             _ => ""
         };
 
@@ -93,6 +97,11 @@ public class EmailSenderService : IEmailSenderService
             {
                 { "{RESET_LINK}", $"{updatePasswordUrl}{model.ResetId}" },
                 { "{EXPIRATION}", $"{model.ExpirationDate}" }
+            },
+            VerifyEmailConfiguration model => new Dictionary<string, string>
+            {
+                { "{VERIFICATION_LINK}", $"{activationUrl}{model.VerificationId}" },
+                { "{EXPIRATION}", $"{model.VerificationIdEnds}" }
             },
             _ => new Dictionary<string, string>()
         };
@@ -136,6 +145,7 @@ public class EmailSenderService : IEmailSenderService
         {
             CreateUserConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, CreateUserConfiguration = item },
             ResetPasswordConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, ResetPasswordConfiguration = item },
+            VerifyEmailConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, VerifyEmailConfiguration = item },
             SendMessageConfiguration item => new RequestEmailProcessing { TargetEnv = CurrentEnv, SendMessageConfiguration = item },
             _ => throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED)
         };

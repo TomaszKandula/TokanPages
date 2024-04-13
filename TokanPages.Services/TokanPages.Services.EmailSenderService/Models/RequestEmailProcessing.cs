@@ -8,5 +8,7 @@ public class RequestEmailProcessing
 
     public ResetPasswordConfiguration? ResetPasswordConfiguration { get; set; }
 
+    public VerifyEmailConfiguration? VerifyEmailConfiguration { get; set; }
+
     public SendMessageConfiguration? SendMessageConfiguration { get; set; }
 }
