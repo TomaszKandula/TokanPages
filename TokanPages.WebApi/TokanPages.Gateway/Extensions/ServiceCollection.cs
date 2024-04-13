@@ -6,14 +6,14 @@ using TokanPages.Gateway.Services.Abstractions;
 namespace TokanPages.Gateway.Extensions;
 
 /// <summary>
-/// 
+/// Service collection.
 /// </summary>
 public static class ServiceCollection
 {
     /// <summary>
-    /// 
+    /// Adds proxy HTTP client(s) to a service collection.
     /// </summary>
-    /// <param name="services"></param>
+    /// <param name="services">Service collection to be extended.</param>
     public static void AddProxyHttpClient(this IServiceCollection services)
     {
         services.AddHttpClient<IProxyHttpClient, ProxyHttpClient>(client =>
@@ -35,10 +35,10 @@ public static class ServiceCollection
     }
 
     /// <summary>
-    /// 
+    /// Adds named HTTP client(s) to a service.
     /// </summary>
-    /// <param name="services"></param>
-    /// <param name="configuration"></param>
+    /// <param name="services">Service collection to be extended.</param>
+    /// <param name="configuration">Passed configuration.</param>
     public static void AddNamedHttpClients(this IServiceCollection services, IConfiguration configuration)
     {
         var settings = new GatewaySettings();
