@@ -34,6 +34,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<PushNotification> PushNotifications { get; set; }
     public virtual DbSet<PushNotificationTag> PushNotificationTags { get; set; }
     public virtual DbSet<PushNotificationLog> PushNotificationLogs { get; set; }
+    public virtual DbSet<WebNotification> WebNotifications { get; set; }
 
     /* Category: Photography */
     public virtual DbSet<Albums> Albums { get; set; }
@@ -51,6 +52,8 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserTokens> UserTokens { get; set; }
     public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
     public virtual DbSet<UserInfo> UserInfo { get; set; }
+    public virtual DbSet<UserMessage> UserMessages { get; set; }
+    public virtual DbSet<UserMessageCache> UserMessagesCache { get; set; }
 
     /* Category: Other */
     public virtual DbSet<Subscribers> Subscribers { get; set; }
