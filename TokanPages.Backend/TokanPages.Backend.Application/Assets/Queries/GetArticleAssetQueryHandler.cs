@@ -17,7 +17,7 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
     public override async Task<FileContentResult> Handle(GetArticleAssetQuery request, CancellationToken cancellationToken)
     {
         var requestUrl = $"content/articles/{request.Id}/{request.AssetName}";
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
 
         var streamContent = await azureBlob.OpenRead(requestUrl, cancellationToken);
         if (streamContent is null)

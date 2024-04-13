@@ -24,7 +24,7 @@ public class GetUserImageQueryHandler : RequestHandler<GetUserImageQuery, FileCo
         if (user == null)
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var sourcePath = $"content/users/{request.Id}/{request.BlobName}";
 
         var streamContent = await azureBlob.OpenRead(sourcePath, cancellationToken);

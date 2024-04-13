@@ -19,7 +19,7 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class GetArticleQueryHandlerTest : TestBase
 {
-    private const string UserAlias = "Ester";
+    private const string UserAlias = "Victoria";
 
     private const string IpAddressFirst = "255.255.255.255";
         
@@ -102,7 +102,7 @@ public class GetArticleQueryHandlerTest : TestBase
             .ReturnsAsync(mockedArticleText);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
 
         mockedUserProvider
@@ -176,7 +176,7 @@ public class GetArticleQueryHandlerTest : TestBase
             .ReturnsAsync((StorageStreamContent)null!);
 
         mockedAzureStorage
-            .Setup(factory => factory.Create())
+            .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlob.Object);
         
         mockedUserProvider

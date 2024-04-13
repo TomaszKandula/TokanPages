@@ -52,7 +52,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         var blobName = $"images/{fileName}";
         var destinationPath = $"content/users/{user.Id}/{blobName}";
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
 
         await azureBlob.UploadFile(stream, destinationPath, contentType, cancellationToken);
@@ -84,7 +84,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         var blobName = $"images/{imageName}";
         var destinationPath = $"content/users/{user.Id}/{blobName}";
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
 
         await azureBlob.UploadFile(stream, destinationPath, contentType, cancellationToken);

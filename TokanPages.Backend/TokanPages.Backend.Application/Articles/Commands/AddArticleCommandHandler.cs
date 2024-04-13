@@ -39,7 +39,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
         await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";
         var imageDestinationPath = $"content\\articles\\{newArticle.Id}\\image.jpg";
 

@@ -46,22 +46,22 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
         await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
-        var loggerService = new Mock<ILoggerService>();
-        var storageFactory = new Mock<IAzureBlobStorageFactory>();
-        var blobStorage = new Mock<IAzureBlobStorage>();
-        var userService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+        var mockedStorageFactory = new Mock<IAzureBlobStorageFactory>();
+        var mockedBlobStorage = new Mock<IAzureBlobStorage>();
+        var mockedUserService = new Mock<IUserService>();
 
-        blobStorage
+        mockedBlobStorage
             .Setup(storage => storage.DeleteFile(
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
-        storageFactory
-            .Setup(factory => factory.Create())
-            .Returns(blobStorage.Object);
+        mockedStorageFactory
+            .Setup(factory => factory.Create(mockedLogger.Object))
+            .Returns(mockedBlobStorage.Object);
 
-        userService
+        mockedUserService
             .Setup(service => service.GetActiveUser(
                 It.IsAny<Guid?>(), 
                 It.IsAny<bool>(), 
@@ -70,15 +70,15 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
 
         var handler = new RemoveUserMediaCommandHandler(
             databaseContext,
-            loggerService.Object, 
-            userService.Object,
-            storageFactory.Object);
+            mockedLogger.Object, 
+            mockedUserService.Object,
+            mockedStorageFactory.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        blobStorage
+        mockedBlobStorage
             .Verify(storage => storage.DeleteFile(
                 It.IsAny<string>(), 
                 It.IsAny<CancellationToken>()), 

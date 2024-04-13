@@ -1,8 +1,5 @@
 using Logger = TokanPages.Backend.Configuration.Logger;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 
 namespace TokanPages.HostedServices;

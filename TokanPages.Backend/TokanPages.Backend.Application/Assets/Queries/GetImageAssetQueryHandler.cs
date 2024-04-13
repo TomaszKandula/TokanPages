@@ -17,7 +17,7 @@ public class GetImageAssetQueryHandler : RequestHandler<GetImageAssetQuery, File
     public override async Task<FileContentResult> Handle(GetImageAssetQuery request, CancellationToken cancellationToken)
     {
         var requestUrl = $"content/assets/{request.BlobName}";
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
 
         var streamContent = await azureBlob.OpenRead(requestUrl, cancellationToken);
         if (streamContent is null)

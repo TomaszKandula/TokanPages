@@ -38,7 +38,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
         if (article is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         if (!string.IsNullOrEmpty(request.TextToUpload))
         {
             var textDestinationPath = $"content\\articles\\{request.Id}\\text.json";
