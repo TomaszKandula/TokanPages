@@ -200,5 +200,23 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("PASSWORD_MISSING_LARGE_LETTER", resourceCulture);
             }
         }
+        
+        public static string LENGTH_TOO_LONG_225 {
+            get {
+                return ResourceManager.GetString("LENGTH_TOO_LONG_225", resourceCulture);
+            }
+        }
+        
+        public static string LENGTH_TOO_LONG_500 {
+            get {
+                return ResourceManager.GetString("LENGTH_TOO_LONG_500", resourceCulture);
+            }
+        }
+        
+        public static string TOO_MANY_TAGS {
+            get {
+                return ResourceManager.GetString("TOO_MANY_TAGS", resourceCulture);
+            }
+        }
     }
 }
