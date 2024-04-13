@@ -131,6 +131,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Invoicing.Dto", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Invoicing", "TokanPages.WebApi\TokanPages.Invoicing\TokanPages.Invoicing.csproj", "{492F55F6-7F26-44A3-A0B1-DFE2263FF924}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.PushNotificationService", "TokanPages.Services\TokanPages.Services.PushNotificationService\TokanPages.Services.PushNotificationService.csproj", "{EB18382D-51FC-435F-B7D8-70FE38D1CD74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +291,10 @@ Global
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -332,6 +338,7 @@ Global
 		{09900784-2502-4C11-B4DC-08F9F4017685} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 		{8DEED952-7FD4-4289-B3B6-DD5D06775465} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{492F55F6-7F26-44A3-A0B1-DFE2263FF924} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
+		{EB18382D-51FC-435F-B7D8-70FE38D1CD74} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}

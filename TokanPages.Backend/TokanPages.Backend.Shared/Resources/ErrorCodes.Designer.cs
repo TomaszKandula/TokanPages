@@ -225,6 +225,18 @@ namespace TokanPages.Backend.Shared.Resources {
             }
         }
         
+        public static string UNSUPPORTED_PLATFORM {
+            get {
+                return ResourceManager.GetString("UNSUPPORTED_PLATFORM", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_TAGS {
+            get {
+                return ResourceManager.GetString("MISSING_TAGS", resourceCulture);
+            }
+        }
+        
         public static string VAT_NUM_INCORRECT_LENGTH {
             get {
                 return ResourceManager.GetString("VAT_NUM_INCORRECT_LENGTH", resourceCulture);
