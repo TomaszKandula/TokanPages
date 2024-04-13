@@ -138,10 +138,9 @@ public class BatchService : IBatchService
                 .Where(processing => processing.Id == invoice.ProcessBatchKey)
                 .SingleOrDefaultAsync(cancellationToken);
 
-            if (processing is null)
-                throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+            ThrowIfNull(processing);
 
-            await LogProcessingStarted(invoice, processing, timer, cancellationToken);
+            await LogProcessingStarted(invoice, processing!, timer, cancellationToken);
             try
             {
                 var templateData = invoiceTemplates
@@ -149,23 +148,23 @@ public class BatchService : IBatchService
                     .Select(templates => templates.Data)
                     .SingleOrDefault();
 
-                if (templateData is null)
-                    throw new BusinessException(nameof(ErrorCodes.MISSING_INVOICE_TEMPLATE), ErrorCodes.MISSING_INVOICE_TEMPLATE);
+                ThrowIfNull(templateData, ErrorCodes.MISSING_INVOICE_TEMPLATE);
 
                 var userCompanies = userCompaniesList
                     .SingleOrDefault(details => details.Id == invoice.UserCompanyId);
 
+                ThrowIfNull(userCompanies);
+
                 var userBankAccounts = userBankAccountsList
                     .SingleOrDefault(bankData => bankData.Id == invoice.UserBankAccountId);
 
-                if (userCompanies is null || userBankAccounts is null)
-                    throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+                ThrowIfNull(userBankAccounts);
 
                 const string dateFormat = "yyyy-MM-dd";
                 const string currencyFormat = "#,#.00";
 
-                var template = Encoding.Default.GetString(templateData);
-                var userFullAddress = $"{userCompanies.StreetAddress}, {userCompanies.PostalCode} {userCompanies.City}";
+                var template = Encoding.Default.GetString(templateData!);
+                var userFullAddress = $"{userCompanies!.StreetAddress}, {userCompanies.PostalCode} {userCompanies.City}";
                 var customerAddress = $"{invoice.StreetAddress}, {invoice.PostalCode} {invoice.City}";
 
                 var newInvoice = template
@@ -182,7 +181,7 @@ public class BatchService : IBatchService
                     .Replace("{{F10}}", invoice.CustomerName)
                     .Replace("{{F11}}", invoice.CustomerVatNumber)
                     .Replace("{{F12}}", customerAddress)
-                    .Replace("{{F23}}", userBankAccounts.BankName)
+                    .Replace("{{F23}}", userBankAccounts!.BankName)
                     .Replace("{{F24}}", userBankAccounts.SwiftNumber)
                     .Replace("{{F25}}", userBankAccounts.AccountNumber)
                     .Replace("{{F26}}", invoice.PaymentStatus.ToString())
@@ -195,8 +194,7 @@ public class BatchService : IBatchService
                     .Where(items => items.BatchInvoiceId == invoice.Id)
                     .ToList();
 
-                if (!batchInvoiceItems.Any())
-                    throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), ErrorCodes.PROCESSING_EXCEPTION);
+                ThrowIfEmpty(batchInvoiceItems);
 
                 var invoiceItems = new StringBuilder();
                 foreach (var item in batchInvoiceItems)
@@ -224,7 +222,7 @@ public class BatchService : IBatchService
                     InvoiceContent = newInvoice,
                     CurrentInvoice = invoice,
                     InvoiceCollection = issuedInvoices,
-                    BatchInvoicesProcessing = processing,
+                    BatchInvoicesProcessing = processing!,
                     ProcessingTimer = timer
                 };
 
@@ -238,7 +236,7 @@ public class BatchService : IBatchService
                     InnerError = exception.InnerException?.Message ?? string.Empty,
                     InvoiceNumber = invoice.InvoiceNumber,
                     Timer = timer,
-                    ProcessingObject = processing
+                    ProcessingObject = processing!
                 };
 
                 await LogProcessingFailed(error, cancellationToken);
@@ -268,12 +266,11 @@ public class BatchService : IBatchService
             .Where(processing => processing.Id == processBatchKey)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (processing == null)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_PROCESSING_BATCH_KEY), ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
+        ThrowIfNull(processing, ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
 
         return new ProcessingStatus
         {
-            Status = processing.Status,
+            Status = processing!.Status,
             CreatedAt = processing.CreatedAt,
             BatchProcessingTime = processing.BatchProcessingTime ?? TimeSpan.Zero
         };
@@ -293,16 +290,29 @@ public class BatchService : IBatchService
             .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (invoice == null)
-            throw new BusinessException(nameof(ErrorCodes.INVALID_INVOICE_NUMBER), ErrorCodes.INVALID_INVOICE_NUMBER);
+        ThrowIfNull(invoice, ErrorCodes.INVALID_INVOICE_NUMBER);
 
         return new InvoiceData
         {
-            Number = invoice.InvoiceNumber,
+            Number = invoice!.InvoiceNumber,
             ContentData = invoice.InvoiceData,
             ContentType = invoice.ContentType,
             GeneratedAt = invoice.GeneratedAt
         };
+    }
+
+    private static void ThrowIfNull(object? @object, string? errorMessage = default)
+    {
+        var message = errorMessage ?? ErrorCodes.PROCESSING_EXCEPTION;
+        if (@object is null)
+            throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), message);
+    }
+
+    private static void ThrowIfEmpty(IEnumerable<object> list, string? errorMessage = default)
+    {
+        var message = errorMessage ?? ErrorCodes.PROCESSING_EXCEPTION;
+        if (!list.Any())
+            throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), message);
     }
 
     private async Task<(List<BatchInvoices> invoices, List<BatchInvoiceItems> invoiceItemsList, List<InvoiceTemplates> invoiceTemplates)> GetInvoiceData
