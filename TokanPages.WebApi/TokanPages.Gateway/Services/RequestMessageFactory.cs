@@ -4,7 +4,7 @@ using Microsoft.Extensions.Primitives;
 namespace TokanPages.Gateway.Services;
 
 /// <summary>
-/// 
+/// Request message factory implementation.
 /// </summary>
 public static class RequestMessageFactory
 {
@@ -13,12 +13,12 @@ public static class RequestMessageFactory
     private const string HostHeaderName = "host";
 
     /// <summary>
-    /// 
+    /// Creates HTTP request message.
     /// </summary>
-    /// <param name="request"></param>
-    /// <param name="route"></param>
-    /// <param name="messageHeaders"></param>
-    /// <returns></returns>
+    /// <param name="request">HTTP request.</param>
+    /// <param name="route">Given route.</param>
+    /// <param name="messageHeaders">Request message.</param>
+    /// <returns>Prepared HTTP request message.</returns>
     public static HttpRequestMessage Create(HttpRequest request, RouteDefinition route, RequestMessageHeaders? messageHeaders)
     {
         var requestMessage = new HttpRequestMessage();

@@ -3,14 +3,14 @@ using TokanPages.Gateway.Services.Abstractions;
 namespace TokanPages.Gateway.Services;
 
 /// <summary>
-/// 
+/// Proxy HTTP client implementation.
 /// </summary>
 public class ProxyHttpClient : IProxyHttpClient
 {
     private readonly HttpClient _httpClient;
 
     /// <summary>
-    /// 
+    /// Base constructor.
     /// </summary>
     public ProxyHttpClient(HttpClient httpClient) => _httpClient = httpClient;
 
