@@ -46,12 +46,12 @@ public static class ServiceCollection
 
         var ports = settings.Routes?
             .Select(routeDefinition => routeDefinition.Port)
-            .Distinct();
+            .Distinct() ?? new List<string>();
 
-        foreach (var port in ports!)
+        foreach (var port in ports)
         {
             var url = $"{settings.Defaults?.Schema}://{settings.Defaults?.Host}:{port}";
-            services.AddHttpClient(port, client => client.BaseAddress = new Uri(url));
+            services.AddHttpClient(port ?? "80", client => client.BaseAddress = new Uri(url));
         }
     }
 }
