@@ -75,6 +75,10 @@ public class EmailProcessing : Processing
         {
             await NotificationForConfiguration(request.ResetPasswordConfiguration);
         }
+        else if (request.VerifyEmailConfiguration is not null)
+        {
+            await NotificationForConfiguration(request.VerifyEmailConfiguration);
+        }
         else if (request.SendMessageConfiguration is not null)
         {
             await EmailForConfiguration(request.SendMessageConfiguration);
