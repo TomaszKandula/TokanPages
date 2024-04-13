@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
-using TokanPages.HostedServices.Services.Abstractions;
-using TokanPages.HostedServices.Services.CronJobs;
-using TokanPages.HostedServices.Services.Models;
 
 namespace TokanPages.HostedServices;
 
@@ -53,15 +50,6 @@ public class Startup
         services.AddResponseCompression(options => options.Providers.Add<GzipCompressionProvider>());
         services.RegisterDependencies(_configuration);
         services.SetupDockerInternalNetwork();
-        
-         var batchProcessingConfig = new BatchProcessingConfig
-         {
-             TimeZoneInfo = TimeZoneInfo.Local,
-             CronExpression = @"*/15 * * * *"
-         };
-
-        services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
-        services.AddHostedService<BatchProcessingJob>();
     }
 
     /// <summary>
