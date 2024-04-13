@@ -85,6 +85,20 @@ services:
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
+  notifications-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: notifications.dockerfile
+    hostname: notifications
+    networks:
+      - xnet
+    ports:
+      - "6007:80"
+    volumes:
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+
   gateway-api:
     build:
       context: .
