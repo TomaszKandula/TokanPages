@@ -39,9 +39,7 @@ public static class RequestMessageFactory
         }
 
         if (!request.Headers.ContainsKey(XForwardedHostHeaderName) && request.Headers.TryGetValue(HostHeaderName, out var hostValue))
-        {
             TryAddHeaderWithoutValidation(requestMessage, CreateHeaderKeyValuePair(XForwardedHostHeaderName, hostValue));
-        }
 
         var uri = $"{route.Schema}://{route.Host}:{route.Port}{request.PathBase}{route.Path}{request.QueryString}";
         requestMessage.RequestUri = new Uri(uri);
@@ -51,9 +49,7 @@ public static class RequestMessageFactory
     }
 
     private static KeyValuePair<string, StringValues> CreateHeaderKeyValuePair(string headerKey, StringValues headerValue)
-    {
-        return new KeyValuePair<string, StringValues>(headerKey, headerValue);
-    }
+        => new (headerKey, headerValue);
 
     private static void TryAddHeaderWithoutValidation(HttpRequestMessage requestMessage, KeyValuePair<string, StringValues> header)
     {
