@@ -16,9 +16,7 @@ public class AzureBusClient : IAzureBusClient
     }
 
     public ServiceBusProcessor GetProcessor(string queueName, ServiceBusProcessorOptions options)
-    {
-        return _client.CreateProcessor(queueName, options);
-    }
+        => _client.CreateProcessor(queueName, options);
 
     /// <summary>
     /// Sends given message to the Azure Service Bus for processing. 

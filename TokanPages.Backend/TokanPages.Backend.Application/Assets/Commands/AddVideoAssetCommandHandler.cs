@@ -57,7 +57,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
     private async Task<AddVideoAssetCommandResult> ProcessBinaryData(AddVideoAssetCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(null, false, cancellationToken);
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var binaryData = request.BinaryData;
 
         var hasCompactVideo = _userService.GetCompactVideoFromHeader();

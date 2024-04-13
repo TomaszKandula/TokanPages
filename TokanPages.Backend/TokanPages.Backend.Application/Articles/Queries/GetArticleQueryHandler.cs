@@ -94,7 +94,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
     {
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
 
         if (contentStream is null)

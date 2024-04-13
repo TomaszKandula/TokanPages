@@ -46,7 +46,7 @@ public class VideoProcessor : IVideoProcessor
         await _databaseContext.SaveChangesAsync();
 
         _loggerService.LogInformation("Getting video file from Azure Storage...");
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
         var tempVideoFile = await azureBlob.OpenRead(uploadedVideo.SourceBlobUri);
 
         _loggerService.LogInformation("Moving video file into memory stream...");

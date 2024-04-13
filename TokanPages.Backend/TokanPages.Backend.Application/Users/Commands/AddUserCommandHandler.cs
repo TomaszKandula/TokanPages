@@ -107,7 +107,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         const string defaultAvatarName = "avatar-default-288.jpeg";
         const string sourceAvatarPath = $"{defaultAvatarPath}{defaultAvatarName}";
 
-        var azureBlob = _azureBlobStorageFactory.Create();
+        var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var destinationAvatarPath = $"content/users/{newUserId}/{defaultAvatarName}";
 
         var defaultAvatar = await azureBlob.OpenRead(sourceAvatarPath, cancellationToken);

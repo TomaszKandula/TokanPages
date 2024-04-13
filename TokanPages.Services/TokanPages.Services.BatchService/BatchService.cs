@@ -18,7 +18,7 @@ public class BatchService : IBatchService
     private readonly DatabaseContext _databaseContext;
 
     private readonly IDateTimeService _dateTimeService;
-        
+
     private readonly ILoggerService _loggerService;
 
     public BatchService(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILoggerService loggerService)
