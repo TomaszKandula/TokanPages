@@ -276,4 +276,7 @@
   <data name="INVALID_API_VERSION" xml:space="preserve">
       <value>Provided API version seems to be invalid</value>
   </data>
+  <data name="BUSINESS_LOCK_ENABLED" xml:space="preserve">
+    <value>Your account has been only partially activated. Please wait for our decision. You will hear from us soon.</value>
+  </data>
 </root>

@@ -26,6 +26,18 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
     public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
+
+        await UpdateUserUncommitted(user, request, cancellationToken);
+        await UpdateUserInfoUncommitted(user.Id, request, cancellationToken);
+        await CommitAllChanges(cancellationToken);
+
+        return Unit.Value;
+    }
+
+    private async Task CommitAllChanges(CancellationToken cancellationToken) => await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+    private async Task UpdateUserUncommitted(Domain.Entities.User.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    {
         var emails = await DatabaseContext.Users
             .AsNoTracking()
             .Where(users => users.Id != user.Id)
@@ -35,23 +47,15 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
         if (emails.Any())
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        await UpdateUser(user, request, cancellationToken);
-        await UpdateUserInfo(user.Id, request, cancellationToken);
-
-        return Unit.Value;
-    }
-
-    private async Task UpdateUser(Domain.Entities.User.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
-    {
         user.IsActivated = request.IsActivated ?? user.IsActivated;
         user.UserAlias = request.UserAlias ?? user.UserAlias;
         user.EmailAddress = request.EmailAddress ?? user.EmailAddress;
         user.ModifiedAt = _dateTimeService.Now;
         user.ModifiedBy = user.Id;
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        user.IsVerified = !string.Equals(request.EmailAddress, user.EmailAddress, StringComparison.CurrentCultureIgnoreCase);
     }
 
-    private async Task UpdateUserInfo(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
         var userInfo = await DatabaseContext.UserInfo
             .Where(info => info.UserId == userId)
@@ -72,7 +76,6 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
             };
 
             await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
         else
         {
@@ -83,7 +86,6 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
             userInfo.UserVideoName = request.UserVideoName ?? userInfo.UserVideoName;
             userInfo.ModifiedBy = userId;
             userInfo.ModifiedAt = _dateTimeService.Now;
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

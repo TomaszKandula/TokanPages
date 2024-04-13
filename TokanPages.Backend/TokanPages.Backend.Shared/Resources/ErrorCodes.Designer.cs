@@ -362,5 +362,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_API_VERSION", resourceCulture);
             }
         }
+        
+        public static string BUSINESS_LOCK_ENABLED {
+            get {
+                return ResourceManager.GetString("BUSINESS_LOCK_ENABLED", resourceCulture);
+            }
+        }
     }
 }

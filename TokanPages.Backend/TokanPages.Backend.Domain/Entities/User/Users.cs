@@ -28,7 +28,9 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public Guid? ModifiedBy { get; set; }
     public DateTime? ModifiedAt { get; set; }
     public bool IsActivated { get; set; }
+    public bool IsVerified { get; set; }
     public bool IsDeleted { get; set; }
+    public bool HasBusinessLock { get; set; }
 
     /* Navigation properties */
     public ICollection<UserCompanies> UserCompanies { get; set; } = new HashSet<UserCompanies>();
