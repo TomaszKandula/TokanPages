@@ -1,3 +1,45 @@
+# [0.74.0](https://github.com/TomaszKandula/TokanPages/compare/v0.73.1...v0.74.0) (2024-04-13)
+
+
+### Bug Fixes
+
+* remove wrong version package ([1f518bc](https://github.com/TomaszKandula/TokanPages/commit/1f518bc9d2a58e1a550f2dff5b9fb57d87e22cb1))
+* resolve config issues ([ea3ddd7](https://github.com/TomaszKandula/TokanPages/commit/ea3ddd73afce6064147a8e76e865620f26220f57))
+* use API base URL ([b373a69](https://github.com/TomaszKandula/TokanPages/commit/b373a6977e2c14fe7a278aa1386cfcbc5780b002))
+
+
+### Features
+
+* add API and DTO for web notification capability ([9e312db](https://github.com/TomaszKandula/TokanPages/commit/9e312db48bbcf7e02ec5dcfc2aa3823ce1a8cf9a))
+* add controller for video processing ([a437bd0](https://github.com/TomaszKandula/TokanPages/commit/a437bd00f52b2965704c60053441d014689411e2))
+* add cqrs for email validation ([3619d63](https://github.com/TomaszKandula/TokanPages/commit/3619d63fad82b70ef8f44bc0328ea0d9405e82c0))
+* add cqrs for notifications web ([522d7eb](https://github.com/TomaszKandula/TokanPages/commit/522d7ebe021f2eb60dbed03361cc73ce3e3fd4c1))
+* add CQRS for push notification capabilities ([3057eed](https://github.com/TomaszKandula/TokanPages/commit/3057eed7a0872eb2201f5274ab333386a9b844d7))
+* add database tables ([effffb5](https://github.com/TomaszKandula/TokanPages/commit/effffb55004ef3fdab33763cfc6985fa4333482e))
+* add endpoints to gw ([1ef1231](https://github.com/TomaszKandula/TokanPages/commit/1ef12313ced438810023b3c55fb1b2983b17dc80))
+* add new columns for user table ([220c51a](https://github.com/TomaszKandula/TokanPages/commit/220c51a24f2ca75dab9f09cac0acf2ace0756032))
+* add new database tables ([cff14b6](https://github.com/TomaszKandula/TokanPages/commit/cff14b6f5d7c01d466a269ef0818f9fd43d3a4dc))
+* add push notification service ([87c568a](https://github.com/TomaszKandula/TokanPages/commit/87c568aaed715de98bb582b65bdd06f6a64229d9))
+* add validation error codes ([1f7eebd](https://github.com/TomaszKandula/TokanPages/commit/1f7eebdd2cf420aaf4a31065848bcfa9b6957b79))
+* add verification config to email processor ([f9a91f3](https://github.com/TomaszKandula/TokanPages/commit/f9a91f31541a8d0cada58d0d7cd49358e37c3bfb))
+* add verification email configuration ([2419656](https://github.com/TomaszKandula/TokanPages/commit/241965639887e5e4fa314bfac0739199c23296b8))
+* add video processing status ([97c3ffc](https://github.com/TomaszKandula/TokanPages/commit/97c3ffc2dfebc50bb70844d205cfed11ab7518b7))
+* check for business lock ([03dfb14](https://github.com/TomaszKandula/TokanPages/commit/03dfb14aa8b3597fd5989aa8134e46a458499939))
+* config launch settings for local development ([f51fbe3](https://github.com/TomaszKandula/TokanPages/commit/f51fbe382810ffc67a334995ea17e9d7d5a73d7f))
+* disallow whitespace too ([d5703bb](https://github.com/TomaszKandula/TokanPages/commit/d5703bb03f59a272feb34c3e26a2c37fbe2debec))
+* docker configuration ([6959585](https://github.com/TomaszKandula/TokanPages/commit/69595853d3c60da97551a16cbd80b1d243ebda6e))
+* fallback to default values ([5455cb2](https://github.com/TomaszKandula/TokanPages/commit/5455cb2f6ac7abafb34a95653a1b2f7a49f8aab4))
+* implement Business Lock and email verification ([0e4efc8](https://github.com/TomaszKandula/TokanPages/commit/0e4efc8fa3059f8ac001abfe3fd28b63778812cc))
+* inject logger for azure storage factory for logging ([5a8f5d3](https://github.com/TomaszKandula/TokanPages/commit/5a8f5d3390d5d9382eb20b7477ca1bbaabb0efa8))
+* migrate new tables ([79df087](https://github.com/TomaszKandula/TokanPages/commit/79df08787a7ce5c19f01bce31e7ae12a58fbb527))
+* relocate CRON registration, get CRON expression from config ([4533bb2](https://github.com/TomaszKandula/TokanPages/commit/4533bb289e777baecdf5a7074b44e0e11d30c344))
+* remove TODO ([fcec0c0](https://github.com/TomaszKandula/TokanPages/commit/fcec0c0bc09bdb41a791f0000d83fe156d242d14))
+* remove unused/moved code ([96dddbb](https://github.com/TomaszKandula/TokanPages/commit/96dddbbd2718d9b8acec355fd7d7eba06d3ba9e6))
+* replace sdk with dotnet runtime, install ICU ([1008e79](https://github.com/TomaszKandula/TokanPages/commit/1008e79dd150e903fbf7c2246be9a551dd10fe01))
+* resolve null warnings ([ad7360b](https://github.com/TomaszKandula/TokanPages/commit/ad7360b60c901400f1f6e1fa5e4e3c74314876f1))
+* update configuration ([fc9899c](https://github.com/TomaszKandula/TokanPages/commit/fc9899cd3edca9f235af3ccf3fd25658398c720b))
+* use shared configuration, clean up dependencies ([032b3db](https://github.com/TomaszKandula/TokanPages/commit/032b3db41ee3e5de4a7b6c642ec672f1c303d8a7))
+
 ## [0.73.1](https://github.com/TomaszKandula/TokanPages/compare/v0.73.0...v0.73.1) (2024-04-11)
 
 
