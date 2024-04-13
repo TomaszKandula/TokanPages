@@ -11,6 +11,7 @@
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.26" />
         <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.26" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
@@ -28,6 +29,11 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+      <ProjectReference Include="..\TokanPages.Backend.Shared\TokanPages.Backend.Shared.csproj" />
     </ItemGroup>
     
 </Project>

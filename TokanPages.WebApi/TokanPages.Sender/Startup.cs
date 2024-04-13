@@ -1,9 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -48,18 +45,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors();
-        services.Configure<KestrelServerOptions>(options =>
-        {
-            // File size limit is controlled by the appropriate
-            // handler validator that takes maximum available
-            // file size from an Azure application setting.
-            // However, file size cannot be larger than 2GB.
-            options.Limits.MaxRequestBodySize = int.MaxValue;
-            // Default values:
-            // 240 bytes / sec. and 5 second of a grace period.
-            // We increase values in case of slow network.
-            options.Limits.MinResponseDataRate = new MinDataRate(bytesPerSecond: 100, gracePeriod: TimeSpan.FromSeconds(30));
-        });
         services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.Converters.Add(new StringEnumConverter());
@@ -82,7 +67,6 @@ public class Startup
         services
             .AddHealthChecks()
             .AddUrlGroup(new Uri(_configuration.GetValue<string>("Email_HealthUrl")), name: "EmailService")
-            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString"), name: "AzureRedisCache")
             .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), name: "SQLServer")
             .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), name: "AzureStorage");
     }
@@ -110,23 +94,6 @@ public class Startup
             endpoints.MapGet("/", context 
                 => context.Response.WriteAsync("Sender API"));
         });
-        builder.UseHealthChecks("/hc", new HealthCheckOptions
-        {
-            ResponseWriter = async (context, report) =>
-            {
-                var result = new
-                {
-                    status = report.Status.ToString(),
-                    errors = report.Entries.Select(pair 
-                        => new
-                        {
-                            key = pair.Key, 
-                            value = Enum.GetName(typeof(HealthStatus), pair.Value.Status)
-                        })
-                };
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
-            }
-        });
+        builder.UseHealthChecks("/hc", HealthCheckSupport.WriteResponse());
     }
 }

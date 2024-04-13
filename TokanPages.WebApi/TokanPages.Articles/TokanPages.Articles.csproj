@@ -31,7 +31,6 @@
         <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="7.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
-        <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.0" />
     </ItemGroup>
 
 </Project>

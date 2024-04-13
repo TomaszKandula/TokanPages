@@ -4,7 +4,7 @@ using Microsoft.Extensions.Primitives;
 namespace TokanPages.Gateway.Services;
 
 /// <summary>
-/// 
+/// Request message factory implementation.
 /// </summary>
 public static class RequestMessageFactory
 {
@@ -13,12 +13,12 @@ public static class RequestMessageFactory
     private const string HostHeaderName = "host";
 
     /// <summary>
-    /// 
+    /// Creates HTTP request message.
     /// </summary>
-    /// <param name="request"></param>
-    /// <param name="route"></param>
-    /// <param name="messageHeaders"></param>
-    /// <returns></returns>
+    /// <param name="request">HTTP request.</param>
+    /// <param name="route">Given route.</param>
+    /// <param name="messageHeaders">Request message.</param>
+    /// <returns>Prepared HTTP request message.</returns>
     public static HttpRequestMessage Create(HttpRequest request, RouteDefinition route, RequestMessageHeaders? messageHeaders)
     {
         var requestMessage = new HttpRequestMessage();
@@ -39,9 +39,7 @@ public static class RequestMessageFactory
         }
 
         if (!request.Headers.ContainsKey(XForwardedHostHeaderName) && request.Headers.TryGetValue(HostHeaderName, out var hostValue))
-        {
             TryAddHeaderWithoutValidation(requestMessage, CreateHeaderKeyValuePair(XForwardedHostHeaderName, hostValue));
-        }
 
         var uri = $"{route.Schema}://{route.Host}:{route.Port}{request.PathBase}{route.Path}{request.QueryString}";
         requestMessage.RequestUri = new Uri(uri);
@@ -51,9 +49,7 @@ public static class RequestMessageFactory
     }
 
     private static KeyValuePair<string, StringValues> CreateHeaderKeyValuePair(string headerKey, StringValues headerValue)
-    {
-        return new KeyValuePair<string, StringValues>(headerKey, headerValue);
-    }
+        => new (headerKey, headerValue);
 
     private static void TryAddHeaderWithoutValidation(HttpRequestMessage requestMessage, KeyValuePair<string, StringValues> header)
     {
