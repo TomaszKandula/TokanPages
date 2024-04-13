@@ -6,7 +6,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { RAISE } from "../../../../../Store/Actions/Application/applicationError";
 import { GetErrorMessage } from "../../../../Services/ErrorServices";
-import { ExecuteAsync } from "../../../../../Api/Request";
+import { API_BASE_URI, ExecuteAsync } from "../../../../../Api/Request";
 import { RenderGistStyle } from "./renderGistStyle";
 import validate from "validate.js";
 
@@ -14,7 +14,11 @@ export const RenderGist = (props: TextItem): JSX.Element => {
     const classes = RenderGistStyle();
     const dispatch = useDispatch();
 
-    const gistUrl: string = props.value as string;
+    let gistUrl: string = props.value as string;
+    if (!gistUrl.includes("https://")) {
+        gistUrl = `${API_BASE_URI}${gistUrl}`;
+    }
+
     const [gistContent, setGistContent] = React.useState("");
 
     const updateContent = React.useCallback(async () => {
