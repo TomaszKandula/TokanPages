@@ -207,6 +207,12 @@
   <data name="DATE_TYPE_MISMATCH" xml:space="preserve">
         <value>Voucher Date and Value Date must be similar types</value>
     </data>
+  <data name="UNSUPPORTED_PLATFORM" xml:space="preserve">
+    <value>Unsupported platform</value>
+  </data>
+  <data name="MISSING_TAGS" xml:space="preserve">
+    <value>Tags are mandatory</value>
+  </data>
   <data name="VAT_NUM_INCORRECT_LENGTH" xml:space="preserve">
         <value>VAT number have incorrect length</value>
     </data>

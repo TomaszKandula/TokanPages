@@ -85,6 +85,20 @@ services:
     volumes:
       - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
 
+  notifications-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: notifications.dockerfile
+    hostname: notifications
+    networks:
+      - xnet
+    ports:
+      - "6007:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+
   gateway-api:
     build:
       context: .
