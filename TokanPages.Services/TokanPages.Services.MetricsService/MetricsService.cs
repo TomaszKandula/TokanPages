@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
@@ -31,12 +30,6 @@ public class MetricsService : IMetricsService
 
     public async Task<IActionResult> GetMetrics(string project, string metric)
     {
-        ValidateArguments(new Dictionary<string, string>
-        {
-            [nameof(project)] = project, 
-            [nameof(metric)] = metric
-        });
-
         var server = _configuration.GetValue<string>("SonarQube_Server");
         var token = await GetProjectToken(project);
         var requestUrl = $"{server}/api/project_badges/measure?project={project}&metric={metric}&token={token}";
@@ -46,36 +39,11 @@ public class MetricsService : IMetricsService
 
     public async Task<IActionResult> GetQualityGate(string project)
     {
-        ValidateArguments(new Dictionary<string, string>
-        {
-            [nameof(project)] = project
-        });
-
         var server = _configuration.GetValue<string>("SonarQube_Server");
         var token = await GetProjectToken(project);
         var requestUrl = $"{server}/api/project_badges/quality_gate?project={project}&token={token}";
 
         return await GetProjectBadge(requestUrl);
-    }
-
-    private static void ValidateArguments(IDictionary<string, string> properties)
-    {
-        var result = new ValidationResult(new List<ValidationFailure>());
-        foreach (var (key, value) in properties)
-        {
-            if (!string.IsNullOrEmpty(value)) 
-                continue;
-
-            var failure = new ValidationFailure(key, ErrorCodes.INVALID_ARGUMENT)
-            {
-                ErrorCode = nameof(ErrorCodes.INVALID_ARGUMENT)
-            };
-
-            result.Errors.Add(failure);
-        }
-
-        if (result.Errors.Any())
-            throw new ValidationException(result, ErrorCodes.INVALID_ARGUMENT);
     }
 
     private async Task<string> GetProjectToken(string projectName)
