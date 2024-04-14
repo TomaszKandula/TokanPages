@@ -28,8 +28,8 @@ public class CurrenciesController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Currency code list.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCodeList([FromQuery] bool noCache = false) 
+    [ProducesResponseType(typeof(IList<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IList<GetCurrencyCodesQueryResult>> GetCurrencyCodeList([FromQuery] bool noCache = false) 
         => await _currenciesCache.GetCurrencyCodes(string.Empty, noCache);
 
     /// <summary>
@@ -39,7 +39,7 @@ public class CurrenciesController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Currency code, i.e: 756.</returns>
     [HttpGet("{currency}")]
-    [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency, [FromQuery] bool noCache = false) 
+    [ProducesResponseType(typeof(IList<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IList<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency, [FromQuery] bool noCache = false) 
         => await _currenciesCache.GetCurrencyCodes(currency, noCache);
 }

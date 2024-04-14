@@ -28,8 +28,8 @@ public class CountriesController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>List of country codes.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCodeList([FromQuery] bool noCache = false)
+    [ProducesResponseType(typeof(IList<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IList<GetCountryCodesQueryResult>> GetCountryCodeList([FromQuery] bool noCache = false)
         => await _countriesCache.GetCountryCodes(string.Empty, noCache);
 
     /// <summary>
@@ -39,7 +39,7 @@ public class CountriesController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Country code, i.e: 40.</returns>
     [HttpGet("{country}")]
-    [ProducesResponseType(typeof(IEnumerable<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCountryCodesQueryResult>> GetCountryCode([FromRoute] string country, [FromQuery] bool noCache = false)
+    [ProducesResponseType(typeof(IList<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IList<GetCountryCodesQueryResult>> GetCountryCode([FromRoute] string country, [FromQuery] bool noCache = false)
         => await _countriesCache.GetCountryCodes(country, noCache);
 }
