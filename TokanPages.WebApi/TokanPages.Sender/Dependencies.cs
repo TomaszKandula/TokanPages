@@ -8,6 +8,8 @@ using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
+using TokanPages.Persistence.Caching;
+using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
@@ -20,6 +22,8 @@ using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
+using TokanPages.Services.RedisCacheService;
+using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService.Abstractions;
 
@@ -86,6 +90,9 @@ public static class Dependencies
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
+
+		services.AddScoped<INewslettersCache, NewslettersCache>();
+		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
 		services.AddSingleton<IAzureBusFactory>(_ =>
 		{
