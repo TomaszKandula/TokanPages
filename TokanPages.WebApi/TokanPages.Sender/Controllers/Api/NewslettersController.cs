@@ -36,8 +36,8 @@ public class NewslettersController : ApiBaseController
     [HttpGet]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
-    [ProducesResponseType(typeof(IEnumerable<GetAllSubscribersQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetAllSubscribersQueryResult>> GetAllSubscribers([FromQuery] bool noCache = false)
+    [ProducesResponseType(typeof(IEnumerable<GetAllNewslettersQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetAllNewslettersQueryResult>> GetAllSubscribers([FromQuery] bool noCache = false)
         => await _subscribersCache.GetSubscribers(noCache);
 
     /// <summary>
@@ -48,8 +48,8 @@ public class NewslettersController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
-    [ProducesResponseType(typeof(GetSubscriberQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetSubscriberQueryResult> GetSubscriber([FromRoute] Guid id, [FromQuery] bool noCache = false)
+    [ProducesResponseType(typeof(GetNewsletterQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetNewsletterQueryResult> GetSubscriber([FromRoute] Guid id, [FromQuery] bool noCache = false)
         => await _subscribersCache.GetSubscriber(id, noCache);
 
     /// <summary>

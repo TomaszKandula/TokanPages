@@ -12,7 +12,7 @@ public interface ISubscribersCache
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object list</returns>
-    Task<List<GetAllSubscribersQueryResult>> GetSubscribers(bool noCache = false);
+    Task<List<GetAllNewslettersQueryResult>> GetSubscribers(bool noCache = false);
 
     /// <summary>
     /// Returns single newsletter subscriber
@@ -20,5 +20,5 @@ public interface ISubscribersCache
     /// <param name="id">Subscriber ID</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    Task<GetSubscriberQueryResult> GetSubscriber(Guid id, bool noCache = false);
+    Task<GetNewsletterQueryResult> GetSubscriber(Guid id, bool noCache = false);
 }

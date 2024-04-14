@@ -6,16 +6,16 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Subscribers.Queries;
 
-public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetSubscriberQueryResult>
+public class GetNewsletterQueryHandler : RequestHandler<GetNewsletterQuery, GetNewsletterQueryResult>
 {
-    public GetSubscriberQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetNewsletterQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery request, CancellationToken cancellationToken) 
+    public override async Task<GetNewsletterQueryResult> Handle(GetNewsletterQuery request, CancellationToken cancellationToken) 
     {
         var subscriber = await DatabaseContext.Newsletters
             .AsNoTracking()
             .Where(subscribers => subscribers.Id == request.Id)
-            .Select(subscribers => new GetSubscriberQueryResult 
+            .Select(subscribers => new GetNewsletterQueryResult 
             { 
                 Id = subscribers.Id,
                 Email = subscribers.Email,

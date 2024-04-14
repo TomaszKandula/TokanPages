@@ -3,9 +3,9 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class UpdateSubscriberCommandValidator : AbstractValidator<UpdateSubscriberCommand>
+public class UpdateNewsletterCommandValidator : AbstractValidator<UpdateNewsletterCommand>
 {
-    public UpdateSubscriberCommandValidator() 
+    public UpdateNewsletterCommandValidator() 
     {
         RuleFor(command => command.Id)
             .NotEmpty()

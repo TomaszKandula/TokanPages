@@ -11,10 +11,10 @@ public class RemoveSubscriberCommandValidatorTest : TestBase
     public void GivenValidId_WhenRemoveSubscriber_ShouldSucceed() 
     {
         // Arrange
-        var command = new RemoveSubscriberCommand { Id = Guid.NewGuid() };
+        var command = new RemoveNewsletterCommand { Id = Guid.NewGuid() };
 
         // Act
-        var validator = new RemoveSubscriberCommandValidator();
+        var validator = new RemoveNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert
@@ -25,10 +25,10 @@ public class RemoveSubscriberCommandValidatorTest : TestBase
     public void GivenEmptyId_WhenRemoveSubscriber_ShouldThrowError()
     {
         // Arrange
-        var command = new RemoveSubscriberCommand { Id = Guid.Empty };
+        var command = new RemoveNewsletterCommand { Id = Guid.Empty };
 
         // Act
-        var validator = new RemoveSubscriberCommandValidator();
+        var validator = new RemoveNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert

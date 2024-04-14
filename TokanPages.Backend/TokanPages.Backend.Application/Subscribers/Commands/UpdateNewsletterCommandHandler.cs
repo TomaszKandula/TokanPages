@@ -9,20 +9,20 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class UpdateSubscriberCommandHandler : RequestHandler<UpdateSubscriberCommand, Unit>
+public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCommand, Unit>
 {
     private readonly IDateTimeService _dateTimeService;
 
     private readonly IUserService _userService;
 
-    public UpdateSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public UpdateNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IDateTimeService dateTimeService, IUserService userService) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
     }
 
-    public override async Task<Unit> Handle(UpdateSubscriberCommand request, CancellationToken cancellationToken) 
+    public override async Task<Unit> Handle(UpdateNewsletterCommand request, CancellationToken cancellationToken) 
     {
         var subscriber = await DatabaseContext.Newsletters
             .Where(subscribers => subscribers.Id == request.Id)

@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class RemoveSubscriberCommand : IRequest<Unit>
+public class RemoveNewsletterCommand : IRequest<Unit>
 {
     public Guid Id { get; set; }
 }

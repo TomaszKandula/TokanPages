@@ -4,15 +4,15 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Subscribers.Queries;
 
-public class GetAllSubscribersQueryHandler : RequestHandler<GetAllSubscribersQuery, List<GetAllSubscribersQueryResult>>
+public class GetAllNewslettersQueryHandler : RequestHandler<GetAllNewslettersQuery, List<GetAllNewslettersQueryResult>>
 {
-    public GetAllSubscribersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetAllNewslettersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public override async Task<List<GetAllSubscribersQueryResult>> Handle(GetAllSubscribersQuery request, CancellationToken cancellationToken) 
+    public override async Task<List<GetAllNewslettersQueryResult>> Handle(GetAllNewslettersQuery request, CancellationToken cancellationToken) 
     {
         return await DatabaseContext.Newsletters
             .AsNoTracking()
-            .Select(subscribers => new GetAllSubscribersQueryResult 
+            .Select(subscribers => new GetAllNewslettersQueryResult 
             { 
                 Id = subscribers.Id,
                 Email = subscribers.Email,

@@ -15,7 +15,7 @@ public static class NewslettersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static AddSubscriberCommand MapToAddSubscriberCommand(AddNewsletterDto model) => new()
+    public static AddNewsletterCommand MapToAddSubscriberCommand(AddNewsletterDto model) => new()
     {
         Email = model.Email
     };
@@ -25,7 +25,7 @@ public static class NewslettersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateNewsletterDto model) => new() 
+    public static UpdateNewsletterCommand MapToUpdateSubscriberCommand(UpdateNewsletterDto model) => new() 
     { 
         Id = model.Id,
         Email = model.Email,
@@ -38,7 +38,7 @@ public static class NewslettersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveNewsletterDto model) => new() 
+    public static RemoveNewsletterCommand MapToRemoveSubscriberCommand(RemoveNewsletterDto model) => new() 
     { 
         Id = model.Id
     };

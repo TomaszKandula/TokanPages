@@ -28,8 +28,8 @@ public class GetSubscriberQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var query = new GetSubscriberQuery { Id = subscribers.Id };
-        var handler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetNewsletterQuery { Id = subscribers.Id };
+        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
@@ -61,8 +61,8 @@ public class GetSubscriberQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var handler = new GetSubscriberQueryHandler(databaseContext, mockedLogger.Object);
-        var query = new GetSubscriberQuery { Id = Guid.NewGuid() };
+        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
 
         // Act
         // Assert

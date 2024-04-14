@@ -37,7 +37,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync((GetUserOutput)null!);
         
-        var command = new UpdateSubscriberCommand
+        var command = new UpdateNewsletterCommand
         {
             Id = subscribers.Id,
             Email = DataUtilityService.GetRandomEmail(),
@@ -45,7 +45,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var handler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
             dateTimeService, 
@@ -86,7 +86,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var command = new UpdateSubscriberCommand
+        var command = new UpdateNewsletterCommand
         {
             Id = subscribers.Id,
             Email = DataUtilityService.GetRandomEmail(),
@@ -94,7 +94,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = null
         };
 
-        var handler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
             dateTimeService, 
@@ -118,7 +118,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenUpdateSubscriber_ShouldThrowError()
     {
         // Arrange
-        var command = new UpdateSubscriberCommand
+        var command = new UpdateNewsletterCommand
         {
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
@@ -144,7 +144,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var handler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             dateTimeService, 
@@ -177,7 +177,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var command = new UpdateSubscriberCommand
+        var command = new UpdateNewsletterCommand
         {
             Id = subscribers.Id,
             Email = testEmail,
@@ -185,7 +185,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var handler = new UpdateSubscriberCommandHandler(
+        var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             dateTimeService, 

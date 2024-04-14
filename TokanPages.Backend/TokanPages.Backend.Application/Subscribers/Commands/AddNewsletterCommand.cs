@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class AddSubscriberCommand : IRequest<Guid>
+public class AddNewsletterCommand : IRequest<Guid>
 {
     public string? Email { get; set; }
 }

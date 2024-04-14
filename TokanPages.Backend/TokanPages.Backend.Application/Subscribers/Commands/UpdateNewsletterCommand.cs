@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class UpdateSubscriberCommand : IRequest<Unit>
+public class UpdateNewsletterCommand : IRequest<Unit>
 {
     public Guid Id { get; set; }
         

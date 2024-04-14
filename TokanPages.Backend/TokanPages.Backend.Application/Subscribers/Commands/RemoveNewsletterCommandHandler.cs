@@ -7,12 +7,12 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class RemoveSubscriberCommandHandler : RequestHandler<RemoveSubscriberCommand, Unit>
+public class RemoveNewsletterCommandHandler : RequestHandler<RemoveNewsletterCommand, Unit>
 {
-    public RemoveSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
+    public RemoveNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
         : base(databaseContext, loggerService) { }
 
-    public override async Task<Unit> Handle(RemoveSubscriberCommand request, CancellationToken cancellationToken) 
+    public override async Task<Unit> Handle(RemoveNewsletterCommand request, CancellationToken cancellationToken) 
     {
         var subscriber = await DatabaseContext.Newsletters
             .Where(subscribers => subscribers.Id == request.Id)

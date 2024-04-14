@@ -7,14 +7,14 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, Guid>
+public class AddNewsletterCommandHandler : RequestHandler<AddNewsletterCommand, Guid>
 {
     private readonly IDateTimeService _dateTimeService;
 
-    public AddSubscriberCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public AddNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
 
-    public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
+    public override async Task<Guid> Handle(AddNewsletterCommand request, CancellationToken cancellationToken) 
     {
         var emailCollection = await DatabaseContext.Newsletters
             .AsNoTracking()

@@ -33,32 +33,32 @@ public class SubscribersCache : ISubscribersCache
     }
 
     /// <inheritdoc />
-    public async Task<List<GetAllSubscribersQueryResult>> GetSubscribers(bool noCache = false)
+    public async Task<List<GetAllNewslettersQueryResult>> GetSubscribers(bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetAllSubscribersQuery());
+            return await _mediator.Send(new GetAllNewslettersQuery());
 
         var key = $"{_environment.EnvironmentName}:subscribers";
-        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllSubscribersQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllNewslettersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
-        value = await _mediator.Send(new GetAllSubscribersQuery());
+        value = await _mediator.Send(new GetAllNewslettersQuery());
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;
     }
 
     /// <inheritdoc />
-    public async Task<GetSubscriberQueryResult> GetSubscriber(Guid id, bool noCache = false)
+    public async Task<GetNewsletterQueryResult> GetSubscriber(Guid id, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetSubscriberQuery { Id = id });
+            return await _mediator.Send(new GetNewsletterQuery { Id = id });
 
         var key = $"{_environment.EnvironmentName}:subscriber:{id}";
-        var value = await _redisDistributedCache.GetObjectAsync<GetSubscriberQueryResult>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<GetNewsletterQueryResult>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetSubscriberQuery { Id = id });
+        value = await _mediator.Send(new GetNewsletterQuery { Id = id });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

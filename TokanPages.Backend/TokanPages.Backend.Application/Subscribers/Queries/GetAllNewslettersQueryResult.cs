@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Application.Subscribers.Queries;
 
-public class GetAllSubscribersQueryResult
+public class GetAllNewslettersQueryResult
 {
     public Guid Id { get; set; }
 

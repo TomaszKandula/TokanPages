@@ -27,8 +27,8 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var command = new RemoveSubscriberCommand { Id = subscribers.Id };
-        var handler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
+        var command = new RemoveNewsletterCommand { Id = subscribers.Id };
+        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -43,10 +43,10 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenRemoveSubscriber_ShouldThrowError()
     {
         // Arrange
-        var command = new RemoveSubscriberCommand { Id = Guid.NewGuid() };
+        var command = new RemoveNewsletterCommand { Id = Guid.NewGuid() };
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var handler = new RemoveSubscriberCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object);
 
         // Act
         // Assert

@@ -11,10 +11,10 @@ public class AddSubscriberCommandValidatorTest : TestBase
     public void GivenEmail_WhenAddSubscriber_ShouldSucceed() 
     {
         // Arrange
-        var command = new AddSubscriberCommand { Email = DataUtilityService.GetRandomEmail() };
+        var command = new AddNewsletterCommand { Email = DataUtilityService.GetRandomEmail() };
 
         // Act
-        var validator = new AddSubscriberCommandValidator();
+        var validator = new AddNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert
@@ -25,10 +25,10 @@ public class AddSubscriberCommandValidatorTest : TestBase
     public void GivenEmptyEmail_WhenAddSubscriber_ShouldThrowError()
     {
         // Arrange
-        var command = new AddSubscriberCommand { Email = string.Empty };
+        var command = new AddNewsletterCommand { Email = string.Empty };
 
         // Act
-        var validator = new AddSubscriberCommandValidator();
+        var validator = new AddNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert

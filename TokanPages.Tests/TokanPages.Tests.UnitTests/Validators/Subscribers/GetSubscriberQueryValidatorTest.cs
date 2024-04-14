@@ -11,10 +11,10 @@ public class GetSubscriberQueryValidatorTest : TestBase
     public void GivenValidId_WhenGetSubscriber_ShouldSucceed() 
     {
         // Arrange
-        var query = new GetSubscriberQuery { Id = Guid.NewGuid() };
+        var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
 
         // Act
-        var validator = new GetSubscriberQueryValidator();
+        var validator = new GetNewsletterQueryValidator();
         var result = validator.Validate(query);
 
         // Assert
@@ -25,10 +25,10 @@ public class GetSubscriberQueryValidatorTest : TestBase
     public void GivenEmptyId_WhenGetSubscriber_ShouldThrowError()
     {
         // Arrange
-        var query = new GetSubscriberQuery { Id = Guid.Empty };
+        var query = new GetNewsletterQuery { Id = Guid.Empty };
 
         // Act
-        var validator = new GetSubscriberQueryValidator();
+        var validator = new GetNewsletterQueryValidator();
         var result = validator.Validate(query);
 
         // Assert

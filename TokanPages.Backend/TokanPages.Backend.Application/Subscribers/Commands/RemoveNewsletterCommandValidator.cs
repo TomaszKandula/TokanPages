@@ -3,9 +3,9 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Subscribers.Commands;
 
-public class RemoveSubscriberCommandValidator : AbstractValidator<RemoveSubscriberCommand>
+public class RemoveNewsletterCommandValidator : AbstractValidator<RemoveNewsletterCommand>
 {
-    public RemoveSubscriberCommandValidator() 
+    public RemoveNewsletterCommandValidator() 
     {
         RuleFor(command => command.Id)
             .NotEmpty()

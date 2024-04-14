@@ -13,7 +13,7 @@ public class UpdateSubscriberCommandValidatorTest : TestBase
     public void GivenValidInputs_WhenUpdateSubscriber_ShouldSucceed(int? count) 
     {
         // Arrange
-        var command = new UpdateSubscriberCommand 
+        var command = new UpdateNewsletterCommand 
         { 
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
@@ -22,7 +22,7 @@ public class UpdateSubscriberCommandValidatorTest : TestBase
         };
 
         // Act
-        var validator = new UpdateSubscriberCommandValidator();
+        var validator = new UpdateNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert
@@ -33,14 +33,14 @@ public class UpdateSubscriberCommandValidatorTest : TestBase
     public void GivenEmptyInputs_WhenUpdateSubscriber_ShouldThrowError() 
     {
         // Arrange
-        var command = new UpdateSubscriberCommand 
+        var command = new UpdateNewsletterCommand 
         { 
             Id = Guid.Empty,
             Email = string.Empty,
         };
 
         // Act
-        var validator = new UpdateSubscriberCommandValidator();
+        var validator = new UpdateNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert
@@ -53,14 +53,14 @@ public class UpdateSubscriberCommandValidatorTest : TestBase
     public void GivenTooLongStrings_WhenUpdateSubscriber_ShouldThrowError() 
     {
         // Arrange
-        var command = new UpdateSubscriberCommand 
+        var command = new UpdateNewsletterCommand 
         { 
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomString(500),
         };
 
         // Act
-        var validator = new UpdateSubscriberCommandValidator();
+        var validator = new UpdateNewsletterCommandValidator();
         var result = validator.Validate(command);
 
         // Assert

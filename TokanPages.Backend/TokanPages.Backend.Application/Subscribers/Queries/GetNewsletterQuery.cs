@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Subscribers.Queries;
 
-public class GetSubscriberQuery : IRequest<GetSubscriberQueryResult>
+public class GetNewsletterQuery : IRequest<GetNewsletterQueryResult>
 {
     public Guid Id { get; set; }
 }

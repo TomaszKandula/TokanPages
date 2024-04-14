@@ -18,8 +18,8 @@ public class AddSubscriberCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var dateTimeService = new DateTimeService();
 
-        var command = new AddSubscriberCommand { Email = DataUtilityService.GetRandomEmail() };
-        var handler = new AddSubscriberCommandHandler(
+        var command = new AddNewsletterCommand { Email = DataUtilityService.GetRandomEmail() };
+        var handler = new AddNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             dateTimeService);
@@ -59,8 +59,8 @@ public class AddSubscriberCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedDateTime = new Mock<IDateTimeService>();
 
-        var command = new AddSubscriberCommand { Email = testEmail };
-        var handler = new AddSubscriberCommandHandler(
+        var command = new AddNewsletterCommand { Email = testEmail };
+        var handler = new AddNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTime.Object);
