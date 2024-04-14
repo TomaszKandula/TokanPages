@@ -36,6 +36,6 @@ public class MetricsController : ApiBaseController
     /// <returns>SonarQube badge.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetContentManifest([FromQuery] string project) 
+    public async Task<IActionResult> GetQualityGate([FromQuery] string project) 
         => await Mediator.Send(new GetQualityGateQuery { Project = project });
 }
