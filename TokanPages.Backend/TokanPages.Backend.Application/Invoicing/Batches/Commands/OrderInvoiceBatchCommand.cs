@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
-using TokanPages.Backend.Application.Invoicing.Batches.Commands.Models;
+using TokanPages.Backend.Application.Invoicing.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Commands;
 

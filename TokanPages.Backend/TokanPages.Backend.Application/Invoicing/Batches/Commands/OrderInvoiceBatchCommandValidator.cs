@@ -9,17 +9,17 @@ public class OrderInvoiceBatchCommandValidator : AbstractValidator<OrderInvoiceB
 {
     public OrderInvoiceBatchCommandValidator()
     {
-        RuleFor(request => request.UserId)
+        RuleFor(command => command.UserId)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);
 
-        RuleFor(request => request.UserCompanyId)
+        RuleFor(command => command.UserCompanyId)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);
 
-        RuleFor(request => request.UserBankAccountId)
+        RuleFor(command => command.UserBankAccountId)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);

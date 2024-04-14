@@ -7,7 +7,7 @@ public class GetInvoiceTemplateQueryValidator : AbstractValidator<GetInvoiceTemp
 {
     public GetInvoiceTemplateQueryValidator()
     {
-        RuleFor(request => request.Id)
+        RuleFor(query => query.Id)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);

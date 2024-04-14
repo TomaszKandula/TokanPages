@@ -77,8 +77,8 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var userEntity = await databaseContext.Users.FindAsync(users.Id);
 
         userEntity.Should().NotBeNull();
-        userEntity.CryptedPassword.Should().NotBeEmpty();
-        userEntity.ResetId.Should().BeNull();
+        userEntity?.CryptedPassword.Should().NotBeEmpty();
+        userEntity?.ResetId.Should().BeNull();
     }
 
     [Fact]

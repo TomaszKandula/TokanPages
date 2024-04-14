@@ -7,7 +7,7 @@ public class GetBatchProcessingStatusQueryValidator : AbstractValidator<GetBatch
 {
     public GetBatchProcessingStatusQueryValidator()
     {
-        RuleFor(request => request.ProcessBatchKey)
+        RuleFor(query => query.ProcessBatchKey)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);

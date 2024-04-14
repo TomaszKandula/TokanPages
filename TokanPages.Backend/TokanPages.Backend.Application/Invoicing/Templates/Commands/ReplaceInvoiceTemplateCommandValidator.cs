@@ -18,7 +18,7 @@ public class ReplaceInvoiceTemplateCommandValidator : AbstractValidator<ReplaceI
             .WithMessage(ValidationCodes.REQUIRED);
 
         RuleFor(command => command.Data)
-            .Must(bytes => bytes.Length <= 4 * 1024 * 1024)
+            .Must(bytes => bytes!.Length <= 4 * 1024 * 1024)
             .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
             .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
 

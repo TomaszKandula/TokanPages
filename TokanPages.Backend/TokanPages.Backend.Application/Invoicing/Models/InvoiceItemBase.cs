@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Enums;
 
-namespace TokanPages.Backend.Application.Invoicing.Batches.Commands.Models;
+namespace TokanPages.Backend.Application.Invoicing.Models;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceItemBase

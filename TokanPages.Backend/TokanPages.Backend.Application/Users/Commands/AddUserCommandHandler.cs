@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Application.Users.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -84,9 +85,10 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
+        var input = new UserDataInput { UserId = newUserId, Command = request };
 
-        await CreateUserUncommitted(request, newUserId, adminUser, userAlias, getHashedPassword, activationId, activationIdEnds, cancellationToken);
-        await CreateUserInfoUncommitted(request, newUserId, defaultAvatarName, adminUser, cancellationToken);
+        await CreateUserUncommitted(input, adminUser, userAlias, getHashedPassword, activationId, activationIdEnds, cancellationToken);
+        await CreateUserInfoUncommitted(input, defaultAvatarName, adminUser, cancellationToken);
         await SetupDefaultPermissionsUncommitted(newUserId, adminUser?.UserId, cancellationToken);
         await SendNotificationUncommitted(request.EmailAddress, activationId, expirationDate, cancellationToken);
         await CommitAllChanges(cancellationToken);
@@ -118,8 +120,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     }
 
     private async Task CreateUserUncommitted(
-        AddUserCommand request, 
-        Guid userId, 
+        UserDataInput input, 
         GetUserOutput? admin,
         string alias,
         string password,
@@ -129,8 +130,8 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     {
         var newUser = new Domain.Entities.User.Users
         {
-            Id = userId,
-            EmailAddress = request.EmailAddress,
+            Id = input.UserId,
+            EmailAddress = input.Command.EmailAddress,
             UserAlias = alias,
             CryptedPassword = password,
             ActivationId = activationId,
@@ -145,17 +146,16 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     }
 
     private async Task CreateUserInfoUncommitted(
-        AddUserCommand request,
-        Guid userId,
+        UserDataInput input, 
         string? avatar,
         GetUserOutput? admin,
         CancellationToken cancellationToken = default)
     {
         var newUserInfo = new UserInfo
         {
-            UserId = userId,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
+            UserId = input.UserId,
+            FirstName = input.Command.FirstName,
+            LastName = input.Command.LastName,
             UserImageName = avatar,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = admin?.UserId ?? Guid.Empty,

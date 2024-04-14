@@ -58,11 +58,11 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var entity = await databaseContext.Subscribers.FindAsync(command.Id);
 
         entity.Should().NotBeNull();
-        entity.IsActivated.Should().BeTrue();
-        entity.Email.Should().Be(command.Email);
-        entity.Count.Should().Be(command.Count);
-        entity.ModifiedAt.Should().NotBeNull();
-        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity?.IsActivated.Should().BeTrue();
+        entity?.Email.Should().Be(command.Email);
+        entity?.Count.Should().Be(command.Count);
+        entity?.ModifiedAt.Should().NotBeNull();
+        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -107,11 +107,11 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var entity = await databaseContext.Subscribers.FindAsync(command.Id);
 
         entity.Should().NotBeNull();
-        entity.IsActivated.Should().BeTrue();
-        entity.Email.Should().Be(command.Email);
-        entity.Count.Should().Be(subscribers.Count);
-        entity.ModifiedAt.Should().NotBeNull();
-        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity?.IsActivated.Should().BeTrue();
+        entity?.Email.Should().Be(command.Email);
+        entity?.Count.Should().Be(subscribers.Count);
+        entity?.ModifiedAt.Should().NotBeNull();
+        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
