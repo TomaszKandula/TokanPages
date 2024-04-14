@@ -8,7 +8,7 @@ import { ReactChangeEvent } from "../../Shared/types";
 import { UpdateSubscriberView } from "./View/updateSubscriberView";
 import Validate from "validate.js";
 
-import { ApplicationDialogAction, SubscriberUpdateAction } from "../../Store/Actions";
+import { ApplicationDialogAction, NewsletterUpdateAction } from "../../Store/Actions";
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 
@@ -26,7 +26,7 @@ interface Properties extends ContentUpdateSubscriberState {
 export const UpdateSubscriber = (props: Properties): JSX.Element => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
-    const update = useSelector((state: ApplicationState) => state.subscriberUpdate);
+    const update = useSelector((state: ApplicationState) => state.newsletterUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
@@ -56,7 +56,7 @@ export const UpdateSubscriber = (props: Properties): JSX.Element => {
 
         if (hasNotStarted && hasProgress) {
             dispatch(
-                SubscriberUpdateAction.update({
+                NewsletterUpdateAction.update({
                     id: props.id,
                     email: form.email,
                     isActivated: true,

@@ -32,9 +32,9 @@ export type { ContentUserSignoutState } from "./Content/contentUserSignout";
 export type { ContentUserSignupState } from "./Content/contentUserSignup";
 export type { ContentWrongPagePromptState } from "./Content/contentWrongPagePrompt";
 
-export type { SubscriberAddState } from "./Subscribers/subscriberAdd";
-export type { SubscriberRemoveState } from "./Subscribers/subscriberRemove";
-export type { SubscriberUpdateState } from "./Subscribers/subscriberUpdate";
+export type { NewsletterAddState } from "./Newsletters/newsletterAdd";
+export type { NewsletterRemoveState } from "./Newsletters/newsletterRemove";
+export type { NewsletterUpdateState } from "./Newsletters/newsletterUpdate";
 
 export type { UserActivateState } from "./Users/userActivate";
 export type { UserReAuthenticateState } from "./Users/userReAuthenticate";

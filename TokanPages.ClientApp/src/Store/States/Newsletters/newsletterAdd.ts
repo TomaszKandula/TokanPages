@@ -1,6 +1,6 @@
 import { OperationStatus } from "../../../Shared/enums";
 
-export interface SubscriberAddState {
+export interface NewsletterAddState {
     status: OperationStatus;
     response?: any;
 }

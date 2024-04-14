@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
-import { UpdateSubscriberDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, UPDATE_SUBSCRIBER } from "../../../Api/Request";
+import { UpdateNewsletterDto } from "../../../Api/Models";
+import { Execute, GetConfiguration, ExecuteContract, RequestContract, UPDATE_NEWSLETTER } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_SUBSCRIBER";
 export const RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
@@ -13,16 +13,16 @@ interface Response {
 }
 export type TKnownActions = Update | Response;
 
-export const SubscriberUpdateAction = {
+export const NewsletterUpdateAction = {
     update:
-        (payload: UpdateSubscriberDto): ApplicationAction<TKnownActions> =>
+        (payload: UpdateNewsletterDto): ApplicationAction<TKnownActions> =>
         dispatch => {
             dispatch({ type: UPDATE });
 
             const request: RequestContract = {
                 configuration: {
                     method: "POST",
-                    url: UPDATE_SUBSCRIBER,
+                    url: UPDATE_NEWSLETTER,
                     data: payload,
                 },
             };

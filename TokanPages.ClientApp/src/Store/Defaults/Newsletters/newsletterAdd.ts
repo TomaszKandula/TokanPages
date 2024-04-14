@@ -1,7 +1,7 @@
-import { SubscriberAddState } from "../../States";
+import { NewsletterAddState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-export const SubscriberAdd: SubscriberAddState = {
+export const NewsletterAdd: NewsletterAddState = {
     status: OperationStatus.notStarted,
     response: {},
 };

@@ -1,7 +1,7 @@
 import { OperationStatus } from "../../../Shared/enums";
-import { SubscriberUpdateState } from "../../States";
+import { NewsletterRemoveState } from "../../States";
 
-export const SubscriberUpdate: SubscriberUpdateState = {
+export const NewsletterRemove: NewsletterRemoveState = {
     status: OperationStatus.notStarted,
     response: {},
 };

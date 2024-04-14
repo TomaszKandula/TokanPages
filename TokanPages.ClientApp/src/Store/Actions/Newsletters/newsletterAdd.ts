@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
-import { AddSubscriberDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, ADD_SUBSCRIBER } from "../../../Api/Request";
+import { AddNewsletterDto } from "../../../Api/Models";
+import { Execute, GetConfiguration, ExecuteContract, RequestContract, ADD_NEWSLETTER } from "../../../Api/Request";
 
 export const ADD = "ADD_SUBSCRIBER";
 export const CLEAR = "ADD_SUBSCRIBER_CLEAR";
@@ -17,19 +17,19 @@ interface Response {
 }
 export type TKnownActions = Add | Clear | Response;
 
-export const SubscriberAddAction = {
+export const NewsletterAddAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
     },
     add:
-        (payload: AddSubscriberDto): ApplicationAction<TKnownActions> =>
+        (payload: AddNewsletterDto): ApplicationAction<TKnownActions> =>
         dispatch => {
             dispatch({ type: ADD });
 
             const request: RequestContract = {
                 configuration: {
                     method: "POST",
-                    url: ADD_SUBSCRIBER,
+                    url: ADD_NEWSLETTER,
                     data: payload,
                 },
             };

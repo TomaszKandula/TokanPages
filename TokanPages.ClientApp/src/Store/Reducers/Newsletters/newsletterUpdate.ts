@@ -1,24 +1,21 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { SubscriberAddState } from "../../States";
+import { NewsletterUpdateState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { TKnownActions, ADD, RESPONSE, CLEAR } from "../../Actions/Subscribers/subscriberAdd";
+import { TKnownActions, UPDATE, RESPONSE } from "../../Actions/Newsletters/newsletterUpdate";
 
-export const SubscriberAdd: Reducer<SubscriberAddState> = (
-    state: SubscriberAddState | undefined,
+export const NewsletterUpdate: Reducer<NewsletterUpdateState> = (
+    state: NewsletterUpdateState | undefined,
     incomingAction: Action
-): SubscriberAddState => {
-    if (state === undefined) return ApplicationDefault.subscriberAdd;
+): NewsletterUpdateState => {
+    if (state === undefined) return ApplicationDefault.newsletterUpdate;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {
-        case CLEAR:
-            return ApplicationDefault.subscriberAdd;
-
-        case ADD:
+        case UPDATE:
             return {
-                status: OperationStatus.inProgress,
+                status: OperationStatus.notStarted,
                 response: state.response,
             };
 

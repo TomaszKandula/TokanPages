@@ -1,15 +1,15 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { SubscriberRemoveState } from "../../States";
+import { NewsletterRemoveState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { TKnownActions, REMOVE, RESPONSE } from "../../Actions/Subscribers/subscriberRemove";
+import { TKnownActions, REMOVE, RESPONSE } from "../../Actions/Newsletters/newsletterRemove";
 
-export const SubscriberRemove: Reducer<SubscriberRemoveState> = (
-    state: SubscriberRemoveState | undefined,
+export const NewsletterRemove: Reducer<NewsletterRemoveState> = (
+    state: NewsletterRemoveState | undefined,
     incomingAction: Action
-): SubscriberRemoveState => {
-    if (state === undefined) return ApplicationDefault.subscriberRemove;
+): NewsletterRemoveState => {
+    if (state === undefined) return ApplicationDefault.newsletterRemove;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {

@@ -8,7 +8,7 @@ import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
 
-import { SubscriberAddAction, ApplicationDialogAction } from "../../Store/Actions";
+import { NewsletterAddAction, ApplicationDialogAction } from "../../Store/Actions";
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 
@@ -16,7 +16,7 @@ import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESS
 
 export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
     const dispatch = useDispatch();
-    const add = useSelector((state: ApplicationState) => state.subscriberAdd);
+    const add = useSelector((state: ApplicationState) => state.newsletterAdd);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = add?.status === OperationStatus.notStarted;
@@ -32,7 +32,7 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setHasProgress(false);
-        dispatch(SubscriberAddAction.clear());
+        dispatch(NewsletterAddAction.clear());
     }, [hasProgress]);
 
     React.useEffect(() => {
@@ -42,7 +42,7 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
         }
 
         if (hasNotStarted && hasProgress) {
-            dispatch(SubscriberAddAction.add({ email: form.email }));
+            dispatch(NewsletterAddAction.add({ email: form.email }));
             return;
         }
 

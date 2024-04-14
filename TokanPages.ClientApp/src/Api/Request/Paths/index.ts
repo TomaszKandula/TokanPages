@@ -35,11 +35,11 @@ export const UPDATE_USER_PASSWORD = `${API_USERS_URI}/updateUserPassword`;
 export const UPLOAD_USER_IMAGE = `${API_USERS_URI}/uploadImage`;
 export const UPLOAD_USER_VIDEO = `${API_USERS_URI}/uploadVideo`;
 
-export const GET_SUBSCRIBERS = `${API_NEWSLETTERS_URI}/getNewsletters`;
-export const GET_SUBSCRIBER = `${API_NEWSLETTERS_URI}/{id}/getNewsletter`;
-export const ADD_SUBSCRIBER = `${API_NEWSLETTERS_URI}/addNewsletter`;
-export const UPDATE_SUBSCRIBER = `${API_NEWSLETTERS_URI}/updateNewsletter`;
-export const REMOVE_SUBSCRIBER = `${API_NEWSLETTERS_URI}/removeNewsletter`;
+export const GET_NEWSLETTERS = `${API_NEWSLETTERS_URI}/getNewsletters`;
+export const GET_NEWSLETTER = `${API_NEWSLETTERS_URI}/{id}/getNewsletter`;
+export const ADD_NEWSLETTER = `${API_NEWSLETTERS_URI}/addNewsletter`;
+export const UPDATE_NEWSLETTER = `${API_NEWSLETTERS_URI}/updateNewsletter`;
+export const REMOVE_NEWSLETTER = `${API_NEWSLETTERS_URI}/removeNewsletter`;
 
 export const SEND_MESSAGE = `${API_MAILER_URI}/sendMessage`;
 export const SEND_NEWSLETTER = `${API_MAILER_URI}/sendNewsletter`;

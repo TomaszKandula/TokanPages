@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { SubscriberRemoveAction } from "../../Store/Actions";
+import { NewsletterRemoveAction } from "../../Store/Actions";
 import { ContentUnsubscribeState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
@@ -17,7 +17,7 @@ export const Unsubscribe = (props: Properties): JSX.Element => {
     const contentPost: ContentDto = props.content?.contentPost;
 
     const dispatch = useDispatch();
-    const remove = useSelector((state: ApplicationState) => state.subscriberRemove);
+    const remove = useSelector((state: ApplicationState) => state.newsletterRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
     const hasNotStarted = remove?.status === OperationStatus.notStarted;
@@ -42,7 +42,7 @@ export const Unsubscribe = (props: Properties): JSX.Element => {
         }
 
         if (hasNotStarted && hasProgress) {
-            dispatch(SubscriberRemoveAction.remove({ id: props.id }));
+            dispatch(NewsletterRemoveAction.remove({ id: props.id }));
             return;
         }
 

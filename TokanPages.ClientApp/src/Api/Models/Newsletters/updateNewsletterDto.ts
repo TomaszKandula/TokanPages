@@ -1,4 +1,4 @@
-export interface UpdateSubscriberDto {
+export interface UpdateNewsletterDto {
     id: string;
     email: string;
     isActivated: boolean;
