@@ -8,7 +8,6 @@ public class UserMessageCache : Entity<Guid>
 {
     [Required]
     public string ChatKey { get; set; }
-
     [Required]
     public string Notification { get; set; }
 }
