@@ -1,0 +1,1 @@
+export { NewsletterUpdate } from "./newsletterUpdate";

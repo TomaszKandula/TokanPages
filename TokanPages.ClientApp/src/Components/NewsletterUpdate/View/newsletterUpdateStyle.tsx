@@ -1,28 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../Theme";
 
-export const UnsubscribeStyle = makeStyles(() => ({
+export const NewsletterUpdateStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    account: {
+        fontSize: 72,
+        color: Colours.colours.violet,
+    },
     caption: {
-        fontSize: "2.0rem",
-        fontWeight: 400,
-        color: Colours.colours.black,
-    },
-    text1: {
-        fontSize: "1.2rem",
-        fontWeight: 500,
-        color: Colours.colours.gray1,
-    },
-    text2: {
-        fontSize: "1.2rem",
-        fontWeight: 400,
-        color: Colours.colours.gray1,
-    },
-    text3: {
-        fontSize: "1.2rem",
-        fontWeight: 400,
+        fontSize: "1.8rem",
         color: Colours.colours.gray1,
     },
     card: {

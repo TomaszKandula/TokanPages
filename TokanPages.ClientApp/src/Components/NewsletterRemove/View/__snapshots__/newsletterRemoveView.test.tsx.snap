@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test component: unsubscribeView should render correctly '<UnsubscribeView />' when content is loaded. 1`] = `
+exports[`test component: newsletterRemoveView should render correctly '<NewsletterRemoveView />' when content is loaded. 1`] = `
 <section
   className="makeStyles-section-1"
 >

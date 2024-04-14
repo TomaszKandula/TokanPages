@@ -1,11 +1,11 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { UnsubscribeView } from "./unsubscribeView";
+import { NewsletterRemoveView } from "./newsletterRemoveView";
 import { ContentDto } from "../../../Api/Models";
 
-describe("test component: unsubscribeView", () => {
-    it("should render correctly '<UnsubscribeView />' when content is loaded.", () => {
+describe("test component: newsletterRemoveView", () => {
+    it("should render correctly '<NewsletterRemoveView />' when content is loaded.", () => {
         const content: ContentDto = {
             caption: "Cancel your subscribtion",
             text1: "We are sorry to see you go...",
@@ -15,7 +15,7 @@ describe("test component: unsubscribeView", () => {
         };
 
         const tree = shallow(
-            <UnsubscribeView
+            <NewsletterRemoveView
                 isLoading={false}
                 buttonHandler={jest.fn()}
                 buttonState={false}

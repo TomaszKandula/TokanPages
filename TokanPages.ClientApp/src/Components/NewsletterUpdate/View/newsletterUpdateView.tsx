@@ -12,7 +12,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent } from "../../../Shared/types";
-import { UpdateSubscriberStyle } from "./updateSubscriberStyle";
+import { NewsletterUpdateStyle } from "./newsletterUpdateStyle";
 
 interface Properties extends ViewProperties {
     caption: string;
@@ -26,7 +26,7 @@ interface Properties extends ViewProperties {
 }
 
 const ActiveButton = (props: Properties): JSX.Element => {
-    const classes = UpdateSubscriberStyle();
+    const classes = NewsletterUpdateStyle();
     return (
         <Button
             fullWidth
@@ -40,8 +40,8 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const UpdateSubscriberView = (props: Properties): JSX.Element => {
-    const classes = UpdateSubscriberStyle();
+export const NewsletterUpdateView = (props: Properties): JSX.Element => {
+    const classes = NewsletterUpdateStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="sm">

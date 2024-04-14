@@ -8,7 +8,7 @@ import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ContentDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { UnsubscribeStyle } from "./unsubscribeStyle";
+import { NewsletterRemoveStyle } from "./newsletterRemoveStyle";
 
 interface Properties extends ViewProperties {
     contentPre: ContentDto;
@@ -20,7 +20,7 @@ interface Properties extends ViewProperties {
 }
 
 const ActiveButton = (props: Properties): JSX.Element => {
-    const classes = UnsubscribeStyle();
+    const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <Button
@@ -36,8 +36,8 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const UnsubscribeView = (props: Properties): JSX.Element => {
-    const classes = UnsubscribeStyle();
+export const NewsletterRemoveView = (props: Properties): JSX.Element => {
+    const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <section className={classes.section}>

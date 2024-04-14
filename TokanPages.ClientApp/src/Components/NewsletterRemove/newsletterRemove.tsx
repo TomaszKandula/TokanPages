@@ -6,13 +6,13 @@ import { ContentUnsubscribeState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ContentDto } from "../../Api/Models";
-import { UnsubscribeView } from "./View/unsubscribeView";
+import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 
 interface Properties extends ContentUnsubscribeState {
     id: string;
 }
 
-export const Unsubscribe = (props: Properties): JSX.Element => {
+export const NewsletterRemove = (props: Properties): JSX.Element => {
     const contentPre: ContentDto = props.content?.contentPre;
     const contentPost: ContentDto = props.content?.contentPost;
 
@@ -59,7 +59,7 @@ export const Unsubscribe = (props: Properties): JSX.Element => {
     }, [props.id]);
 
     return (
-        <UnsubscribeView
+        <NewsletterRemoveView
             isLoading={props.isLoading}
             contentPre={contentPre}
             contentPost={contentPost}

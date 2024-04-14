@@ -1,12 +1,12 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { UpdateSubscriberView } from "./updateSubscriberView";
+import { NewsletterUpdateView } from "./newsletterUpdateView";
 
-describe("test component: updateSubscriberView", () => {
-    it("should render correctly '<UpdateSubscriberView />' when content is loaded.", () => {
+describe("test component: newsletterUpdateView", () => {
+    it("should render correctly '<NewsletterUpdateView />' when content is loaded.", () => {
         const tree = shallow(
-            <UpdateSubscriberView
+            <NewsletterUpdateView
                 isLoading={false}
                 caption={"Update subscription email"}
                 formHandler={jest.fn()}

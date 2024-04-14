@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
-import { Unsubscribe } from "../../Components/Unsubscribe";
+import { NewsletterRemove } from "../../Components/NewsletterRemove";
 
 import { ContentNavigationAction, ContentFooterAction, ContentUnsubscribeAction } from "../../Store/Actions";
 
@@ -12,7 +12,7 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
-export const UnsubscribePage = (): JSX.Element => {
+export const NewsletterRemovePage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
@@ -32,7 +32,7 @@ export const UnsubscribePage = (): JSX.Element => {
         <>
             <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
             <Container>
-                <Unsubscribe id={id} content={unsubscribe?.content} isLoading={unsubscribe?.isLoading} />
+                <NewsletterRemove id={id} content={unsubscribe?.content} isLoading={unsubscribe?.isLoading} />
             </Container>
             <Footer content={footer?.content} isLoading={footer?.isLoading} />
         </>

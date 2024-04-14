@@ -5,7 +5,7 @@ import { ContentUpdateSubscriberState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../Shared/types";
-import { UpdateSubscriberView } from "./View/updateSubscriberView";
+import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";
 
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../Store/Actions";
@@ -23,7 +23,7 @@ interface Properties extends ContentUpdateSubscriberState {
     id: string;
 }
 
-export const UpdateSubscriber = (props: Properties): JSX.Element => {
+export const NewsletterUpdate = (props: Properties): JSX.Element => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
     const update = useSelector((state: ApplicationState) => state.newsletterUpdate);
@@ -97,7 +97,7 @@ export const UpdateSubscriber = (props: Properties): JSX.Element => {
     }, [props.id, form]);
 
     return (
-        <UpdateSubscriberView
+        <NewsletterUpdateView
             isLoading={props.isLoading}
             caption={props.content?.caption}
             formHandler={formHandler}
