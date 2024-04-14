@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Subscribers.Commands;
+using TokanPages.Backend.Application.Newsletters.Commands;
 using TokanPages.Sender.Dto.Newsletters;
 
 namespace TokanPages.Sender.Controllers.Mappers;
@@ -15,7 +15,7 @@ public static class NewslettersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static AddNewsletterCommand MapToAddSubscriberCommand(AddNewsletterDto model) => new()
+    public static AddNewsletterCommand MapToAddNewsletterCommand(AddNewsletterDto model) => new()
     {
         Email = model.Email
     };
@@ -25,7 +25,7 @@ public static class NewslettersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static UpdateNewsletterCommand MapToUpdateSubscriberCommand(UpdateNewsletterDto model) => new() 
+    public static UpdateNewsletterCommand MapToUpdateNewsletterCommand(UpdateNewsletterDto model) => new() 
     { 
         Id = model.Id,
         Email = model.Email,
@@ -38,7 +38,7 @@ public static class NewslettersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static RemoveNewsletterCommand MapToRemoveSubscriberCommand(RemoveNewsletterDto model) => new() 
+    public static RemoveNewsletterCommand MapToRemoveNewsletterCommand(RemoveNewsletterDto model) => new() 
     { 
         Id = model.Id
     };

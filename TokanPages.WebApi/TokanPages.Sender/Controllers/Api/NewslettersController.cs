@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
-using TokanPages.Backend.Application.Subscribers.Queries;
+using TokanPages.Backend.Application.Newsletters.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Sender.Controllers.Mappers;
 using TokanPages.Sender.Dto.Newsletters;
@@ -18,15 +18,15 @@ namespace TokanPages.Sender.Controllers.Api;
 [Route("api/v{version:apiVersion}/[controller]")]
 public class NewslettersController : ApiBaseController
 {
-    private readonly ISubscribersCache _subscribersCache;
+    private readonly INewslettersCache _newslettersCache;
 
     /// <summary>
     /// Subscribers controller.
     /// </summary>
     /// <param name="mediator">Mediator instance.</param>
-    /// <param name="subscribersCache">REDIS cache instance.</param>
-    public NewslettersController(IMediator mediator, ISubscribersCache subscribersCache) 
-        : base(mediator) => _subscribersCache = subscribersCache;
+    /// <param name="newslettersCache">REDIS cache instance.</param>
+    public NewslettersController(IMediator mediator, INewslettersCache newslettersCache) 
+        : base(mediator) => _newslettersCache = newslettersCache;
 
     /// <summary>
     /// Returns all registered subscribers.
@@ -37,51 +37,51 @@ public class NewslettersController : ApiBaseController
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(IEnumerable<GetAllNewslettersQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetAllNewslettersQueryResult>> GetAllSubscribers([FromQuery] bool noCache = false)
-        => await _subscribersCache.GetSubscribers(noCache);
+    public async Task<IEnumerable<GetAllNewslettersQueryResult>> GetAllNewsletters([FromQuery] bool noCache = false)
+        => await _newslettersCache.GetNewsletters(noCache);
 
     /// <summary>
-    /// Returns registered subscriber.
+    /// Returns registered newsletters.
     /// </summary>
-    /// <param name="id">Subscriber ID.</param>
+    /// <param name="id">Newsletters ID.</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
     [ProducesResponseType(typeof(GetNewsletterQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetNewsletterQueryResult> GetSubscriber([FromRoute] Guid id, [FromQuery] bool noCache = false)
-        => await _subscribersCache.GetSubscriber(id, noCache);
+    public async Task<GetNewsletterQueryResult> GetNewsletter([FromRoute] Guid id, [FromQuery] bool noCache = false)
+        => await _newslettersCache.GetNewsletter(id, noCache);
 
     /// <summary>
     /// Adds new subscriber of the newsletter.
     /// </summary>
-    /// <param name="payLoad">Subscriber data.</param>
+    /// <param name="payLoad">Newsletters data.</param>
     /// <returns>Guid.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-    public async Task<Guid> AddSubscriber([FromBody] AddNewsletterDto payLoad) 
-        => await Mediator.Send(NewslettersMapper.MapToAddSubscriberCommand(payLoad));
+    public async Task<Guid> AddNewsletter([FromBody] AddNewsletterDto payLoad) 
+        => await Mediator.Send(NewslettersMapper.MapToAddNewsletterCommand(payLoad));
 
     /// <summary>
-    /// Updates existing subscriber.
+    /// Updates existing newsletter subscriber.
     /// </summary>
-    /// <param name="payLoad">Subscriber data.</param>
+    /// <param name="payLoad">Newsletters data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateSubscriber([FromBody] UpdateNewsletterDto payLoad)
-        => await Mediator.Send(NewslettersMapper.MapToUpdateSubscriberCommand(payLoad));
+    public async Task<Unit> UpdateNewsletter([FromBody] UpdateNewsletterDto payLoad)
+        => await Mediator.Send(NewslettersMapper.MapToUpdateNewsletterCommand(payLoad));
 
     /// <summary>
-    /// Removes existing subscriber.
+    /// Removes existing newsletter subscriber.
     /// </summary>
-    /// <param name="payLoad">Subscriber data.</param>
+    /// <param name="payLoad">Newsletter data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> RemoveSubscriber([FromBody] RemoveNewsletterDto payLoad)
-        => await Mediator.Send(NewslettersMapper.MapToRemoveSubscriberCommand(payLoad));
+    public async Task<Unit> RemoveNewsletter([FromBody] RemoveNewsletterDto payLoad)
+        => await Mediator.Send(NewslettersMapper.MapToRemoveNewsletterCommand(payLoad));
 }
