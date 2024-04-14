@@ -37,7 +37,7 @@ public class NewslettersController : ApiBaseController
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(IEnumerable<GetNewslettersQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetNewslettersQueryResult>> GetAllNewsletters([FromQuery] bool noCache = false)
+    public async Task<IEnumerable<GetNewslettersQueryResult>> GetNewsletters([FromQuery] bool noCache = false)
         => await _newslettersCache.GetNewsletters(noCache);
 
     /// <summary>
