@@ -1,0 +1,1 @@
+export { NewsletterRemove } from "./newsletterRemove";

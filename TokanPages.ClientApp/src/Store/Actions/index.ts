@@ -32,9 +32,9 @@ export { ContentUserSignoutAction } from "./Content/contentUserSignout";
 export { ContentUserSignupAction } from "./Content/contentUserSignup";
 export { ContentWrongPagePromptAction } from "./Content/contentWrongPagePrompt";
 
-export { SubscriberAddAction } from "./Subscribers/subscriberAdd";
-export { SubscriberRemoveAction } from "./Subscribers/subscriberRemove";
-export { SubscriberUpdateAction } from "./Subscribers/subscriberUpdate";
+export { NewsletterAddAction } from "./Newsletters/newsletterAdd";
+export { NewsletterRemoveAction } from "./Newsletters/newsletterRemove";
+export { NewsletterUpdateAction } from "./Newsletters/newsletterUpdate";
 
 export { UserActivateAction } from "./Users/userActivate";
 export { UserReAuthenticateAction } from "./Users/userReAuthenticate";

@@ -21,7 +21,7 @@ public class Articles : Entity<Guid>
     public Users UserNavigation { get; set; }
 
     /* Navigation properties */
-    public ICollection<ArticleLikes> ArticleLikesNavigation { get; set; } = new HashSet<ArticleLikes>();
+    public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
 
-    public ICollection<ArticleCounts> ArticleCountsNavigation { get; set; } = new HashSet<ArticleCounts>();
+    public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
 }

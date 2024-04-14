@@ -147,8 +147,8 @@ public sealed class UserService : IUserService
 
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.RoleNavigation)
-            .Where(roles => roles.UserId == userId && roles.RoleNavigation.Name == userRoleName)
+            .Include(roles => roles.Roles)
+            .Where(roles => roles.UserId == userId && roles.Roles.Name == userRoleName)
             .ToListAsync(cancellationToken);
 
         return givenRoles.Any();
@@ -160,8 +160,8 @@ public sealed class UserService : IUserService
             
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(userRoles => userRoles.RoleNavigation)
-            .Where(userRoles => userRoles.UserId == userId && userRoles.RoleNavigation.Id == roleId)
+            .Include(userRoles => userRoles.Roles)
+            .Where(userRoles => userRoles.UserId == userId && userRoles.Roles.Id == roleId)
             .ToListAsync(cancellationToken);
 
         return givenRoles.Any();
@@ -173,8 +173,8 @@ public sealed class UserService : IUserService
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.PermissionNavigation)
-            .Where(permissions => permissions.UserId == userId && permissions.PermissionNavigation.Name == userPermissionName)
+            .Include(permissions => permissions.Permissions)
+            .Where(permissions => permissions.UserId == userId && permissions.Permissions.Name == userPermissionName)
             .ToListAsync(cancellationToken);
 
         return givenPermissions.Any();
@@ -186,8 +186,8 @@ public sealed class UserService : IUserService
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(userPermissions => userPermissions.PermissionNavigation)
-            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.PermissionNavigation.Id == permissionId)
+            .Include(userPermissions => userPermissions.Permissions)
+            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permissions.Id == permissionId)
             .ToListAsync(cancellationToken);
 
         return givenPermissions.Any();
@@ -197,8 +197,8 @@ public sealed class UserService : IUserService
     {
         var userRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.UserNavigation)
-            .Include(roles => roles.RoleNavigation)
+            .Include(roles => roles.Users)
+            .Include(roles => roles.Roles)
             .Where(roles => roles.UserId == users.Id)
             .ToListAsync(cancellationToken);
 
@@ -217,7 +217,7 @@ public sealed class UserService : IUserService
         });
 
         claimsIdentity.AddClaims(userRoles
-            .Select(roles => new Claim(ClaimTypes.Role, roles.RoleNavigation.Name)));
+            .Select(roles => new Claim(ClaimTypes.Role, roles.Roles.Name)));
 
         return claimsIdentity;
     }
@@ -374,7 +374,7 @@ public sealed class UserService : IUserService
         var getUserId = userId ?? UserIdFromClaim();
         var userRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.RoleNavigation)
+            .Include(roles => roles.Roles)
             .Where(roles => roles.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
@@ -386,8 +386,8 @@ public sealed class UserService : IUserService
         {
             _userRoles.Add(new GetUserRolesOutput
             {
-                Name = userRole.RoleNavigation.Name,
-                Description = userRole.RoleNavigation.Description
+                Name = userRole.Roles.Name,
+                Description = userRole.Roles.Description
             });
         }
     }
@@ -400,7 +400,7 @@ public sealed class UserService : IUserService
         var getUserId = userId ?? UserIdFromClaim();
         var userPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.PermissionNavigation)
+            .Include(permissions => permissions.Permissions)
             .Where(permissions => permissions.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
@@ -412,7 +412,7 @@ public sealed class UserService : IUserService
         {
             _userPermissions.Add(new GetUserPermissionsOutput
             {
-                Name = userPermission.PermissionNavigation.Name
+                Name = userPermission.Permissions.Name
             });
         }
     }

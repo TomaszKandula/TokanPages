@@ -32,6 +32,6 @@ public class UserCompanies : Entity<Guid>
     public CountryCodes CountryCode { get; set; }
 
     /* Navigation properties */
-    public Users User { get; set; }
+    public Users Users { get; set; }
     public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
 }

@@ -9,5 +9,14 @@ namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 public class IssuedInvoicesConfiguration : IEntityTypeConfiguration<IssuedInvoices>
 {
     public void Configure(EntityTypeBuilder<IssuedInvoices> builder)
-        => builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
+    { 
+        builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
+
+        builder
+            .HasOne(invoices => invoices.Users)
+            .WithMany(users => users.IssuedInvoices)
+            .HasForeignKey(invoices => invoices.UserId)
+            .OnDelete(DeleteBehavior.ClientSetNull)
+            .HasConstraintName("FK_IssuedInvoices_Users");
+    }
 }

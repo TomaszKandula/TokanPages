@@ -69,9 +69,9 @@ public class BatchesController : ApiBaseController
     /// </summary>
     /// <returns>List of processes.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusList() 
-        => await Mediator.Send(new GetBatchProcessingStatusListQuery { FilterBy = string.Empty });
+    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> GetBatchProcessingStatuses() 
+        => await Mediator.Send(new GetBatchProcessingStatusesQuery { FilterBy = string.Empty });
 
     /// <summary>
     /// Returns data for given batch processing status.
@@ -79,7 +79,7 @@ public class BatchesController : ApiBaseController
     /// <param name="status">New, started, finished, failed.</param>
     /// <returns>List of processes.</returns>
     [HttpGet("{status}")]
-    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusCode([FromRoute] string status) 
-        => await Mediator.Send(new GetBatchProcessingStatusListQuery { FilterBy = status });
+    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> GetBatchProcessingStatusCode([FromRoute] string status) 
+        => await Mediator.Send(new GetBatchProcessingStatusesQuery { FilterBy = status });
 }

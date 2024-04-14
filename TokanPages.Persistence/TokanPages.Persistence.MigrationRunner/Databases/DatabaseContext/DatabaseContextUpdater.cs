@@ -64,10 +64,10 @@ public static class DatabaseContextUpdater
             PrintInfo(ArticlesSeeder.SeedArticles().Count(), nameof(databaseContext.Articles));
         }
 
-        if (!databaseContext.Subscribers.Any())
+        if (!databaseContext.Newsletters.Any())
         {
-            databaseContext.Subscribers.AddRange(SubscribersSeeder.SeedSubscribers());
-            PrintInfo(SubscribersSeeder.SeedSubscribers().Count(), nameof(databaseContext.Subscribers));
+            databaseContext.Newsletters.AddRange(SubscribersSeeder.SeedSubscribers());
+            PrintInfo(SubscribersSeeder.SeedSubscribers().Count(), nameof(databaseContext.Newsletters));
         }
 
         if (!databaseContext.ArticleLikes.Any())
@@ -122,8 +122,8 @@ public static class DatabaseContextUpdater
         PrintWarning(nameof(databaseContext.Albums));
         databaseContext.RemoveRange(databaseContext.HttpRequests);
         PrintWarning(nameof(databaseContext.HttpRequests));
-        databaseContext.RemoveRange(databaseContext.Subscribers);
-        PrintWarning(nameof(databaseContext.Subscribers));
+        databaseContext.RemoveRange(databaseContext.Newsletters);
+        PrintWarning(nameof(databaseContext.Newsletters));
         databaseContext.RemoveRange(databaseContext.DefaultPermissions);
         PrintWarning(nameof(databaseContext.DefaultPermissions));
 

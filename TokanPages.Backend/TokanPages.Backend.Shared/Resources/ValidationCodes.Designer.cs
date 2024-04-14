@@ -218,5 +218,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("TOO_MANY_TAGS", resourceCulture);
             }
         }
+        
+        public static string ISO_VALUE_TOO_LONG {
+            get {
+                return ResourceManager.GetString("ISO_VALUE_TOO_LONG", resourceCulture);
+            }
+        }
     }
 }

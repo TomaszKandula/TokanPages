@@ -29,7 +29,7 @@ public class CountriesController : ApiBaseController
     /// <returns>List of country codes.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IList<GetCountryCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IList<GetCountryCodesQueryResult>> GetCountryCodeList([FromQuery] bool noCache = false)
+    public async Task<IList<GetCountryCodesQueryResult>> GetCountryCodes([FromQuery] bool noCache = false)
         => await _countriesCache.GetCountryCodes(string.Empty, noCache);
 
     /// <summary>

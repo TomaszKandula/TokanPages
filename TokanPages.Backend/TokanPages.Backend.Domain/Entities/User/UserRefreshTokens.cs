@@ -24,5 +24,5 @@ public class UserRefreshTokens : Entity<Guid>
     public string ReasonRevoked { get; set; }
 
     /* Navigation properties */
-    public Users UserNavigation { get; set; }
+    public Users Users { get; set; }
 }

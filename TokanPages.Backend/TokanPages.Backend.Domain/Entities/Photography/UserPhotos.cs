@@ -27,8 +27,8 @@ public class UserPhotos : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Users UserNavigation { get; set; }
-    public PhotoGears PhotoGearNavigation { get; set; }
-    public PhotoCategories PhotoCategoryNavigation { get; set; }
-    public ICollection<Albums> AlbumsNavigation { get; set; } = new HashSet<Albums>();
+    public Users Users { get; set; }
+    public PhotoGears PhotoGears { get; set; }
+    public PhotoCategories PhotoCategories { get; set; }
+    public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
 }

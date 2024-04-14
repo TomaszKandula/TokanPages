@@ -29,7 +29,7 @@ public class PaymentsController : ApiBaseController
     /// <returns>Payment types.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IList<GetPaymentTypeQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IList<GetPaymentTypeQueryResult>> GetPaymentTypeList([FromQuery] bool noCache = false) 
+    public async Task<IList<GetPaymentTypeQueryResult>> GetPaymentTypes([FromQuery] bool noCache = false) 
         => await _paymentsCache.GetPaymentType(string.Empty, noCache);
 
     /// <summary>
@@ -50,7 +50,7 @@ public class PaymentsController : ApiBaseController
     /// <returns>Payment status.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetPaymentStatusQueryResult>> GetPaymentStatusList([FromQuery] bool noCache = false)
+    public async Task<IEnumerable<GetPaymentStatusQueryResult>> GetPaymentStatusCodes([FromQuery] bool noCache = false)
         => await _paymentsCache.GetPaymentStatus(string.Empty, noCache);
 
     /// <summary>

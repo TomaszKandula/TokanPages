@@ -43,13 +43,13 @@ services:
     volumes:
       - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
 
-  subscribers-api:
+  revenue-api:
     build:
       context: .
       args:
         - ENV_VALUE=Production
-      dockerfile: subscribers.dockerfile
-    hostname: subscribers
+      dockerfile: revenue.dockerfile
+    hostname: revenue
     networks:
       - xnet
     ports:

@@ -32,9 +32,9 @@ export { ContentUserSignout } from "./Content/contentUserSignout";
 export { ContentUserSignup } from "./Content/contentUserSignup";
 export { ContentWrongPagePrompt } from "./Content/contentWrongPagePrompt";
 
-export { SubscriberAdd } from "./Subscribers/subscriberAdd";
-export { SubscriberRemove } from "./Subscribers/subscriberRemove";
-export { SubscriberUpdate } from "./Subscribers/subscriberUpdate";
+export { NewsletterAdd } from "./Newsletters/newsletterAdd";
+export { NewsletterRemove } from "./Newsletters/newsletterRemove";
+export { NewsletterUpdate } from "./Newsletters/newsletterUpdate";
 
 export { UserActivate } from "./Users/userActivate";
 export { UserReAuthenticate } from "./Users/userReAuthenticate";

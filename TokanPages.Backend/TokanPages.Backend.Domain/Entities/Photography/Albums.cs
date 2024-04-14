@@ -19,6 +19,6 @@ public class Albums : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Users UserNavigation { get; set; }
-    public UserPhotos UserPhotoNavigation { get; set; }
+    public Users Users { get; set; }
+    public UserPhotos UserPhotos { get; set; }
 }

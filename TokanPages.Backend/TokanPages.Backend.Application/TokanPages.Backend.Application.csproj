@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.CipheringService\TokanPages.Services.CipheringService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.PayUService\TokanPages.Services.PayUService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.PushNotificationService\TokanPages.Services.PushNotificationService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.TemplateService\TokanPages.Services.TemplateService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj" />

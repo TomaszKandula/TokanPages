@@ -38,24 +38,24 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Authenticates user.
     /// </summary>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
-    public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payLoad));
+    public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payload)
+        => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payload));
 
     /// <summary>
     /// Re-authenticates user.
     /// </summary>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(ReAuthenticateUserCommandResult), StatusCodes.Status200OK)]
-    public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payLoad));
+    public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payload)
+        => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payload));
 
     /// <summary>
     /// Revokes existing user token.
@@ -70,46 +70,46 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Revokes existing user refresh token.
     /// </summary>
-    /// <param name="payLoad">Refresh Token.</param>
+    /// <param name="payload">Refresh Token.</param>
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payLoad));
+    public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payload)
+        => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payload));
 
     /// <summary>
     /// Activates existing user account.
     /// </summary>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payLoad));
+    public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payload)
+        => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payload));
 
     /// <summary>
     /// Resets existing user password.
     /// </summary>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto payLoad) 
-        => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payLoad));
+    public async Task<Unit> ResetUserPassword([FromBody] ResetUserPasswordDto payload) 
+        => await Mediator.Send(UsersMapper.MapToResetUserPasswordCommand(payload));
 
     /// <summary>
     /// Updates existing user password.
     /// </summary>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto payLoad) 
-        => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payLoad));
+    public async Task<Unit> UpdateUserPassword([FromBody] UpdateUserPasswordDto payload) 
+        => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payload));
 
     /// <summary>
     /// Returns all registered users.
@@ -122,8 +122,8 @@ public class UsersController : ApiBaseController
     [HttpGet]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
-    [ProducesResponseType(typeof(IEnumerable<GetAllUsersQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
+    [ProducesResponseType(typeof(IEnumerable<GetUsersQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
         => await _usersCache.GetUsers(noCache);
 
     /// <summary>
@@ -145,13 +145,13 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Adds new user account.
     /// </summary>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>Guid.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-    public async Task<Guid> AddUser([FromBody] AddUserDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToAddUserCommand(payLoad));
+    public async Task<Guid> AddUser([FromBody] AddUserDto payload)
+        => await Mediator.Send(UsersMapper.MapToAddUserCommand(payload));
 
     /// <summary>
     /// Updates existing user account.
@@ -159,14 +159,14 @@ public class UsersController : ApiBaseController
     /// <remarks>
     /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
     /// </remarks>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payLoad));
+    public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payload)
+        => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payload));
 
     /// <summary>
     /// Removes existing user account.
@@ -174,14 +174,14 @@ public class UsersController : ApiBaseController
     /// <remarks>
     /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
     /// </remarks>
-    /// <param name="payLoad">User data.</param>
+    /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payLoad)
-        => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payLoad));
+    public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payload)
+        => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payload));
 
     /// <summary>
     /// Returns user image file by its name.

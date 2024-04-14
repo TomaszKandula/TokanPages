@@ -29,7 +29,7 @@ public class CurrenciesController : ApiBaseController
     /// <returns>Currency code list.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IList<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IList<GetCurrencyCodesQueryResult>> GetCurrencyCodeList([FromQuery] bool noCache = false) 
+    public async Task<IList<GetCurrencyCodesQueryResult>> GetCurrencyCodes([FromQuery] bool noCache = false) 
         => await _currenciesCache.GetCurrencyCodes(string.Empty, noCache);
 
     /// <summary>
