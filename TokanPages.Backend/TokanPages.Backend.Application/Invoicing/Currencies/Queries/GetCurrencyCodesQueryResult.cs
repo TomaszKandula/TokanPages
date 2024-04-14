@@ -1,7 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Invoicing.Currencies.Queries.Models;
+using TokanPages.Backend.Application.Invoicing.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Currencies.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetCurrencyCodesQueryResult : CurrencyCode { }
+public class GetCurrencyCodesQueryResult : BaseResponse
+{
+    public string Currency { get; set; } = "";    
+}
