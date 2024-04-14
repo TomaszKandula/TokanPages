@@ -139,7 +139,7 @@ public class EmailSenderService : IEmailSenderService
         await client.Execute(configuration, cancellationToken);
     }
 
-    public async Task SendToServiceBus(IEmailConfiguration configuration, CancellationToken cancellationToken)
+    public async Task SendToServiceBus(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var data = configuration switch
         {
