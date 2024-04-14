@@ -7,7 +7,7 @@ public class RemoveInvoiceTemplateCommandValidator : AbstractValidator<RemoveInv
 {
     public RemoveInvoiceTemplateCommandValidator()
     {
-        RuleFor(request => request.Id)
+        RuleFor(command => command.Id)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);
