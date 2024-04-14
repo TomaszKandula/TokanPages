@@ -73,7 +73,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{
 		notifications.dockerfile = notifications.dockerfile
 		content.dockerfile = content.dockerfile
 		sender.dockerfile = sender.dockerfile
-		subscribers.dockerfile = subscribers.dockerfile
 		users.dockerfile = users.dockerfile
 		gateway.dockerfile = gateway.dockerfile
 		hosted.dockerfile = hosted.dockerfile

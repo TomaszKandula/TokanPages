@@ -43,20 +43,6 @@ services:
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
-  subscribers-api:
-    build:
-      context: .
-      args:
-        - ENV_VALUE=Testing
-      dockerfile: subscribers.dockerfile
-    hostname: subscribers
-    networks:
-      - xnet
-    ports:
-      - "6004:80"
-    volumes:
-      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
-
   users-api:
     build:
       context: .

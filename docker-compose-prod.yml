@@ -43,20 +43,6 @@ services:
     volumes:
       - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
 
-  subscribers-api:
-    build:
-      context: .
-      args:
-        - ENV_VALUE=Production
-      dockerfile: subscribers.dockerfile
-    hostname: subscribers
-    networks:
-      - xnet
-    ports:
-      - "6004:80"
-    volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
-
   users-api:
     build:
       context: .
