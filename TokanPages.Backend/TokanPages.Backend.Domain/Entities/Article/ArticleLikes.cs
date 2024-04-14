@@ -21,6 +21,6 @@ public class ArticleLikes : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Articles ArticleNavigation { get; set; }
-    public Users UserNavigation { get; set; }
+    public Articles Articles { get; set; }
+    public Users Users { get; set; }
 }

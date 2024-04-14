@@ -13,22 +13,22 @@ public class PhotosConfiguration : IEntityTypeConfiguration<UserPhotos>
         builder.Property(photos => photos.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(photos => photos.UserNavigation)
-            .WithMany(users => users.UserPhotosNavigation)
+            .HasOne(photos => photos.Users)
+            .WithMany(users => users.UserPhotos)
             .HasForeignKey(photos => photos.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPhotos_Users");
             
         builder
-            .HasOne(photos => photos.PhotoGearNavigation)
-            .WithMany(photoGears => photoGears.UserPhotosNavigation)
+            .HasOne(photos => photos.PhotoGears)
+            .WithMany(photoGears => photoGears.UserPhotos)
             .HasForeignKey(photos => photos.PhotoGearId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPhotos_PhotoGears");
             
         builder
-            .HasOne(photos => photos.PhotoCategoryNavigation)
-            .WithMany(photoCategories => photoCategories.UserPhotosNavigation)
+            .HasOne(photos => photos.PhotoCategories)
+            .WithMany(photoCategories => photoCategories.UserPhotos)
             .HasForeignKey(photos => photos.PhotoCategoryId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPhotos_PhotoCategories");

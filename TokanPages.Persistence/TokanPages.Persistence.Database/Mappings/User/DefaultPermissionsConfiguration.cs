@@ -13,15 +13,15 @@ public class DefaultPermissionsConfiguration : IEntityTypeConfiguration<DefaultP
         builder.Property(defaultPermissions => defaultPermissions.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(defaultPermissions => defaultPermissions.PermissionNavigation)
-            .WithMany(permissions => permissions.DefaultPermissionsNavigation)
+            .HasOne(defaultPermissions => defaultPermissions.Permissions)
+            .WithMany(permissions => permissions.DefaultPermissions)
             .HasForeignKey(defaultPermissions => defaultPermissions.PermissionId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_DefaultPermissions_Permissions");
 
         builder
-            .HasOne(defaultPermissions => defaultPermissions.RoleNavigation)
-            .WithMany(roles => roles.DefaultPermissionsNavigation)
+            .HasOne(defaultPermissions => defaultPermissions.Roles)
+            .WithMany(roles => roles.DefaultPermissions)
             .HasForeignKey(defaultPermissions => defaultPermissions.RoleId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_DefaultPermissions_Roles");

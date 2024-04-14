@@ -20,5 +20,5 @@ public class UserPaymentHistory : Entity<Guid>
     public DateTime CreatedAt { get; set; }
 
     /* Navigation properties */
-    public Users User { get; set; }
+    public Users Users { get; set; }
 }

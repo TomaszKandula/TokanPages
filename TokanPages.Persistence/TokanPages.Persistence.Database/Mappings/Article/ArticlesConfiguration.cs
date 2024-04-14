@@ -13,7 +13,7 @@ public class ArticlesConfiguration : IEntityTypeConfiguration<Backend.Domain.Ent
             
         builder
             .HasOne(articles => articles.UserNavigation)
-            .WithMany(users => users.ArticlesNavigation)
+            .WithMany(users => users.Articles)
             .HasForeignKey(articles => articles.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_Articles_Users");

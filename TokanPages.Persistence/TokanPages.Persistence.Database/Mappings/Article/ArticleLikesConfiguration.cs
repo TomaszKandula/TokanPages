@@ -13,15 +13,15 @@ public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLikes>
         builder.Property(articleLikes => articleLikes.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(articleLikes => articleLikes.ArticleNavigation)
-            .WithMany(articles => articles.ArticleLikesNavigation)
+            .HasOne(articleLikes => articleLikes.Articles)
+            .WithMany(articles => articles.ArticleLikes)
             .HasForeignKey(articleLikes => articleLikes.ArticleId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_ArticleLikes_Articles");
 
         builder
-            .HasOne(articleLikes => articleLikes.UserNavigation)
-            .WithMany(users => users.ArticleLikesNavigation)
+            .HasOne(articleLikes => articleLikes.Users)
+            .WithMany(users => users.ArticleLikes)
             .HasForeignKey(articleLikes => articleLikes.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_ArticleLikes_Users");

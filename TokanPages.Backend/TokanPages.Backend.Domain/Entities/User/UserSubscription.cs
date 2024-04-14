@@ -31,5 +31,5 @@ public class UserSubscription : Entity<Guid>, IAuditable
     public DateTime? ExpiresAt { get; set; }
 
     /* Navigation properties */
-    public Users User { get; set; }
+    public Users Users { get; set; }
 }
