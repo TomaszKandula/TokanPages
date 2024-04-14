@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Subscribers.Dto.Subscribers;
+namespace TokanPages.Sender.Dto.Newsletters;
 
 /// <summary>
 /// Use it when you want to update existing subscriber.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class UpdateSubscriberDto
+public class UpdateNewsletterDto
 {
     /// <summary>
     /// Identification.

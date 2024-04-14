@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Subscribers.Dto.Subscribers;
+namespace TokanPages.Sender.Dto.Newsletters;
 
 /// <summary>
 /// Use it when you want to remove existing subscriber.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class RemoveSubscriberDto
+public class RemoveNewsletterDto
 {
     /// <summary>
     /// Identification.

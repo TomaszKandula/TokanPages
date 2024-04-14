@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Subscribers.Dto.Subscribers;
+namespace TokanPages.Sender.Dto.Newsletters;
 
 /// <summary>
 /// Use it when you want to add newsletter subscriber.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class AddSubscriberDto
+public class AddNewsletterDto
 {
     /// <summary>
     /// Email address.

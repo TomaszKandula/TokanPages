@@ -1,21 +1,21 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Subscribers.Commands;
-using TokanPages.Subscribers.Dto.Subscribers;
+using TokanPages.Sender.Dto.Newsletters;
 
-namespace TokanPages.Subscribers.Controllers.Mappers;
+namespace TokanPages.Sender.Controllers.Mappers;
 
 /// <summary>
 /// Subscribers mapper.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public static class SubscribersMapper
+public static class NewslettersMapper
 {
     /// <summary>
     /// Maps request DTO to given command
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static AddSubscriberCommand MapToAddSubscriberCommand(AddSubscriberDto model) => new()
+    public static AddSubscriberCommand MapToAddSubscriberCommand(AddNewsletterDto model) => new()
     {
         Email = model.Email
     };
@@ -25,7 +25,7 @@ public static class SubscribersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateSubscriberDto model) => new() 
+    public static UpdateSubscriberCommand MapToUpdateSubscriberCommand(UpdateNewsletterDto model) => new() 
     { 
         Id = model.Id,
         Email = model.Email,
@@ -38,7 +38,7 @@ public static class SubscribersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
-    public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveSubscriberDto model) => new() 
+    public static RemoveSubscriberCommand MapToRemoveSubscriberCommand(RemoveNewsletterDto model) => new() 
     { 
         Id = model.Id
     };

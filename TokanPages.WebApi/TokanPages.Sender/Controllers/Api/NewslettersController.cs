@@ -5,10 +5,10 @@ using TokanPages.Backend.Shared.Attributes;
 using MediatR;
 using TokanPages.Backend.Application.Subscribers.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
-using TokanPages.Subscribers.Controllers.Mappers;
-using TokanPages.Subscribers.Dto.Subscribers;
+using TokanPages.Sender.Controllers.Mappers;
+using TokanPages.Sender.Dto.Newsletters;
 
-namespace TokanPages.Subscribers.Controllers.Api;
+namespace TokanPages.Sender.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for subscribers.
@@ -16,7 +16,7 @@ namespace TokanPages.Subscribers.Controllers.Api;
 [Authorize]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class SubscribersController : ApiBaseController
+public class NewslettersController : ApiBaseController
 {
     private readonly ISubscribersCache _subscribersCache;
 
@@ -25,7 +25,7 @@ public class SubscribersController : ApiBaseController
     /// </summary>
     /// <param name="mediator">Mediator instance.</param>
     /// <param name="subscribersCache">REDIS cache instance.</param>
-    public SubscribersController(IMediator mediator, ISubscribersCache subscribersCache) 
+    public NewslettersController(IMediator mediator, ISubscribersCache subscribersCache) 
         : base(mediator) => _subscribersCache = subscribersCache;
 
     /// <summary>
@@ -60,8 +60,8 @@ public class SubscribersController : ApiBaseController
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-    public async Task<Guid> AddSubscriber([FromBody] AddSubscriberDto payLoad) 
-        => await Mediator.Send(SubscribersMapper.MapToAddSubscriberCommand(payLoad));
+    public async Task<Guid> AddSubscriber([FromBody] AddNewsletterDto payLoad) 
+        => await Mediator.Send(NewslettersMapper.MapToAddSubscriberCommand(payLoad));
 
     /// <summary>
     /// Updates existing subscriber.
@@ -71,8 +71,8 @@ public class SubscribersController : ApiBaseController
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateSubscriber([FromBody] UpdateSubscriberDto payLoad)
-        => await Mediator.Send(SubscribersMapper.MapToUpdateSubscriberCommand(payLoad));
+    public async Task<Unit> UpdateSubscriber([FromBody] UpdateNewsletterDto payLoad)
+        => await Mediator.Send(NewslettersMapper.MapToUpdateSubscriberCommand(payLoad));
 
     /// <summary>
     /// Removes existing subscriber.
@@ -82,6 +82,6 @@ public class SubscribersController : ApiBaseController
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> RemoveSubscriber([FromBody] RemoveSubscriberDto payLoad)
-        => await Mediator.Send(SubscribersMapper.MapToRemoveSubscriberCommand(payLoad));
+    public async Task<Unit> RemoveSubscriber([FromBody] RemoveNewsletterDto payLoad)
+        => await Mediator.Send(NewslettersMapper.MapToRemoveSubscriberCommand(payLoad));
 }
