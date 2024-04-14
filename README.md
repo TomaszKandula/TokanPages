@@ -3,7 +3,7 @@
 
 TokanPages is a project repository that holds my web page to share my programming interests (among others), primarily Microsoft technologies. 
 
-The backend architecture of the solution follows the modular-monolith concept. Everything is split into projects and services with only one underlying SQL database. The frontend solution is made with React w/Redux. Everything is dockerized and hosted on the Azure Cloud.
+The backend architecture of the solution follows the modular-monolith concept. Everything is split into projects and services with only one underlying SQL database. The frontend solution is made with React w/Redux. Everything is dockerized and hosted on the VPS.
 
 Despite mainly focusing on software development and Microsoft technologies, this web page aims to be more than just a simple personal home site.
 
@@ -103,9 +103,9 @@ Despite mainly focusing on software development and Microsoft technologies, this
 
 The client app uses React Hooks. Tests are provided using JEST, but there has yet to be full coverage.
 
-The project is dockerized and deployed via GitHub Actions to Azure App Service (main domain) that uses Azure Container Registry. The web server of choice is NGINX.
+The project is dockerized and deployed via GitHub Actions to VPS. The web server of choice is NGINX.
 
-<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">
+[//]: # (<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-frontend&kill_cache=1">)
 
 ### Backend
 
@@ -114,8 +114,10 @@ The project is dockerized and deployed via GitHub Actions to Azure App Service (
 1. Entity Framework Core.
 1. Azure Blob Storage.
 1. Azure Redis Cache.
+1. Azure Key Vault. 
+1. Azure Service Bus.
 1. MediatR library.
-1. CQRS pattern with no event sourcing.
+1. CQRS pattern (with no event sourcing).
 1. FluentValidation.
 1. SeriLog.
 1. Swagger-UI.
@@ -126,13 +128,14 @@ Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAsse
 
 The project is dockerized and deployed via GitHub Actions to Azure App Service that uses Azure Container Registry.
 
-<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">
+[//]: # (<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">)
 
 ## Continuous Integration / Continuous Delivery
 
 CI/CD is done via GitHub actions. There are three scripts:
 
-1. [dev_build_test.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build_test.yml) - it builds .NET Core application and React application, then runs all the available tests; finally, it scans the code with SonarQube.
+1. [dev_build.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/dev_build.yml) - it builds .NET Core application and React application, then runs all the available tests; finally, it scans the code with SonarQube.
+1. [master_build.yml](https://github.com/TomaszKandula/TokanPages/blob/dev/.github/workflows/master_build.yml) - it scans the repository, generate release number and pushes the code to the server for installation.
 
 ## End Note
 
