@@ -11,20 +11,20 @@ public class AddUserDto
     /// <summary>
     /// First name.
     /// </summary>
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = "";
 
     /// <summary>
     /// Last name.
     /// </summary>
-    public string? LastName { get; set; }
+    public string LastName { get; set; } = "";
 
     /// <summary>
     /// User email address.
     /// </summary>
-    public string? EmailAddress { get; set; }
+    public string EmailAddress { get; set; } = "";
 
     /// <summary>
     /// User account password.
     /// </summary>
-    public string? Password { get; set; }
+    public string Password { get; set; } = "";
 }
