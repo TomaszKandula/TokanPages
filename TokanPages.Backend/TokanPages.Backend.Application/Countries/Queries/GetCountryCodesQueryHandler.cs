@@ -5,12 +5,12 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Countries.Queries;
 
-public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, IEnumerable<GetCountryCodesQueryResult>>
+public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, IList<GetCountryCodesQueryResult>>
 {
     public GetCountryCodesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService)
         : base(databaseContext, loggerService) { }
 
-    public override async Task<IEnumerable<GetCountryCodesQueryResult>> Handle(GetCountryCodesQuery request, CancellationToken cancellationToken)
+    public override async Task<IList<GetCountryCodesQueryResult>> Handle(GetCountryCodesQuery request, CancellationToken cancellationToken)
     {
         var codes = Enum.GetValues<CountryCodes>();
         var result = codes
@@ -21,7 +21,7 @@ public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, 
             })
             .Where(response => response.SystemCode != 0)
             .WhereIf(
-                !string.IsNullOrEmpty(request.FilterBy), 
+                !string.IsNullOrWhiteSpace(request.FilterBy), 
                 response => response.Country == request.FilterBy.ToUpper())
             .ToList();
 

@@ -4,7 +4,7 @@ using MediatR;
 namespace TokanPages.Backend.Application.Currencies.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetCurrencyCodesQuery : IRequest<IEnumerable<GetCurrencyCodesQueryResult>>
+public class GetCurrencyCodesQuery : IRequest<IList<GetCurrencyCodesQueryResult>>
 {
-    public string FilterBy { get; set; }
+    public string FilterBy { get; set; } = "";
 }

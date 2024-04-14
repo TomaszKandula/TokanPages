@@ -5,12 +5,12 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Currencies.Queries;
 
-public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IEnumerable<GetCurrencyCodesQueryResult>>
+public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IList<GetCurrencyCodesQueryResult>>
 {
     public GetCurrencyCodesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
         : base(databaseContext, loggerService) { }
 
-    public override async Task<IEnumerable<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
+    public override async Task<IList<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
     {
         var codes = Enum.GetValues<CurrencyCodes>();
         var result = codes
@@ -21,7 +21,7 @@ public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery
             })
             .Where(response => response.SystemCode != 0)
             .WhereIf(
-                !string.IsNullOrEmpty(request.FilterBy), 
+                !string.IsNullOrWhiteSpace(request.FilterBy), 
                 response => response.Currency == request.FilterBy.ToUpper())
             .ToList();
 

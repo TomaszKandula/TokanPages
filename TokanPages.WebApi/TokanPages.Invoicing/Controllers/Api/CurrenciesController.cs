@@ -1,41 +1,45 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using TokanPages.Backend.Application.Currencies.Queries;
+using TokanPages.Persistence.Caching.Abstractions;
 
 namespace TokanPages.Invoicing.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for currencies data.
 /// </summary>
-///<remarks>
-/// It uses Microsoft 'ResponseCache' for caching.
-/// </remarks>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]/[action]")]
 public class CurrenciesController : ApiBaseController
 {
+    private readonly ICurrenciesCache _currenciesCache;
+
     /// <summary>
     /// Currencies Controller.
     /// </summary>
-    /// <param name="mediator"></param>
-    public CurrenciesController(IMediator mediator) : base(mediator) { }
+    /// <param name="mediator">Mediator instance.</param>
+    /// <param name="currenciesCache">REDIS cache instance.</param>
+    public CurrenciesController(IMediator mediator, ICurrenciesCache currenciesCache) 
+        : base(mediator) => _currenciesCache = currenciesCache;
 
     /// <summary>
     /// Returns list of currency codes.
     /// </summary>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Currency code list.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCodeList() 
-        => await Mediator.Send(new GetCurrencyCodesQuery { FilterBy = string.Empty });
+    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCodeList([FromQuery] bool noCache = false) 
+        => await _currenciesCache.GetCurrencyCodes(string.Empty, noCache);
 
     /// <summary>
-    /// Returns currency code for given currency name. 
+    /// Returns currency code for given currency name.
     /// </summary>
     /// <param name="currency">Currency name, i.e: CHF</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Currency code, i.e: 756.</returns>
     [HttpGet("{currency}")]
     [ProducesResponseType(typeof(IEnumerable<GetCurrencyCodesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency) 
-        => await Mediator.Send(new GetCurrencyCodesQuery { FilterBy = currency });
+    public async Task<IEnumerable<GetCurrencyCodesQueryResult>> GetCurrencyCode([FromRoute] string currency, [FromQuery] bool noCache = false) 
+        => await _currenciesCache.GetCurrencyCodes(currency, noCache);
 }
