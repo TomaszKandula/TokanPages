@@ -5,12 +5,12 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Payments.Queries;
 
-public class GetPaymentTypeListQueryHandler : RequestHandler<GetPaymentTypeListQuery, IEnumerable<GetPaymentTypeListQueryResult>>
+public class GetPaymentTypeListQueryHandler : RequestHandler<GetPaymentTypeListQuery, IList<GetPaymentTypeListQueryResult>>
 {
     public GetPaymentTypeListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
         : base(databaseContext, loggerService) { }
 
-    public override async Task<IEnumerable<GetPaymentTypeListQueryResult>> Handle(GetPaymentTypeListQuery request, CancellationToken cancellationToken)
+    public override async Task<IList<GetPaymentTypeListQueryResult>> Handle(GetPaymentTypeListQuery request, CancellationToken cancellationToken)
     {
         var types = Enum.GetValues<PaymentTypes>();
         var result = types
@@ -20,7 +20,7 @@ public class GetPaymentTypeListQueryHandler : RequestHandler<GetPaymentTypeListQ
                 PaymentType = paymentTypes.ToString().ToUpper()
             })
             .WhereIf(
-                !string.IsNullOrEmpty(request.FilterBy), 
+                !string.IsNullOrWhiteSpace(request.FilterBy), 
                 response => response.PaymentType == request.FilterBy.ToUpper())
             .ToList();
 
