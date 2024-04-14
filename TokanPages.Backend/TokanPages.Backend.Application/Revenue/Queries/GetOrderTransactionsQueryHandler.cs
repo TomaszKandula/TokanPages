@@ -10,19 +10,19 @@ public class GetOrderTransactionsQueryHandler : RequestHandler<GetOrderTransacti
 {
     private readonly IUserService _userService;
 
-    private readonly IPaymentService _paymentService;
+    private readonly IPayUService _payUService;
 
     public GetOrderTransactionsQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IPaymentService paymentService) : base(databaseContext, loggerService)
+        IUserService userService, IPayUService payUService) : base(databaseContext, loggerService)
     {
         _userService = userService;
-        _paymentService = paymentService;
+        _payUService = payUService;
     }
 
     public override async Task<GetOrderTransactionsQueryResult> Handle(GetOrderTransactionsQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
-        var output = await _paymentService.GetOrderTransactions(request.OrderId, cancellationToken);
+        var output = await _payUService.GetOrderTransactions(request.OrderId, cancellationToken);
 
         const string info = "Order transactions have been returned from payment provider. Active user ID:";
         LoggerService.LogInformation($"{info} {user.Id}.");

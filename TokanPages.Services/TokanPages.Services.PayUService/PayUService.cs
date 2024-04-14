@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace TokanPages.Services.PayUService;
 
-public class PaymentService : IPaymentService
+public class PayUService : IPayUService
 {
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
@@ -19,7 +19,7 @@ public class PaymentService : IPaymentService
 
     private readonly IConfiguration _configuration;
 
-    public PaymentService(IHttpClientServiceFactory httpClientServiceFactory, 
+    public PayUService(IHttpClientServiceFactory httpClientServiceFactory, 
         ILoggerService loggerService, IConfiguration configuration)
     {
         _httpClientServiceFactory = httpClientServiceFactory;

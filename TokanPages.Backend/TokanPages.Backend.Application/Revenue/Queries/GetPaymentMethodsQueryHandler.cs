@@ -10,19 +10,19 @@ public class GetPaymentMethodsQueryHandler : RequestHandler<GetPaymentMethodsQue
 {
     private readonly IUserService _userService;
     
-    private readonly IPaymentService _paymentService;
+    private readonly IPayUService _payUService;
 
     public GetPaymentMethodsQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IPaymentService paymentService) : base(databaseContext, loggerService)
+        IUserService userService, IPayUService payUService) : base(databaseContext, loggerService)
     {
         _userService = userService;
-        _paymentService = paymentService;
+        _payUService = payUService;
     }
 
     public override async Task<GetPaymentMethodsQueryResults> Handle(GetPaymentMethodsQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
-        var output = await _paymentService.GetPaymentMethods(cancellationToken);
+        var output = await _payUService.GetPaymentMethods(cancellationToken);
 
         const string info = "Available payment methods has been returned from payment provider. Active user ID:";
         LoggerService.LogInformation($"{info} {user.Id}.");

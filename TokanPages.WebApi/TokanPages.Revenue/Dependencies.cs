@@ -88,7 +88,7 @@ public static class Dependencies
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
 		services.AddScoped<IUserService, UserService>();
-		services.AddScoped<IPaymentService, PaymentService>();
+		services.AddScoped<IPayUService, PayUService>();
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 
 		services.AddScoped<ISubscriptionsCache, SubscriptionsCache>();

@@ -9,19 +9,19 @@ public class GetAuthorizationQueryHandler : RequestHandler<GetAuthorizationQuery
 {
     private readonly IUserService _userService;
     
-    private readonly IPaymentService _paymentService;
+    private readonly IPayUService _payUService;
     
     public GetAuthorizationQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IPaymentService paymentService, IUserService userService) : base(databaseContext, loggerService)
+        IPayUService payUService, IUserService userService) : base(databaseContext, loggerService)
     {
-        _paymentService = paymentService;
+        _payUService = payUService;
         _userService = userService;
     }
 
     public override async Task<GetAuthorizationQueryResult> Handle(GetAuthorizationQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
-        var output = await _paymentService.GetAuthorization(cancellationToken);
+        var output = await _payUService.GetAuthorization(cancellationToken);
         
         const string info = "New authorization bearer token has been returned from payment provider. Active user ID:";
         LoggerService.LogInformation($"{info} {user.Id}.");

@@ -1,9 +1,8 @@
 using TokanPages.Services.PayUService.Models;
-using TokanPages.Services.PayUService.Models.Sections;
 
 namespace TokanPages.Services.PayUService.Abstractions;
 
-public interface IPaymentService
+public interface IPayUService
 {
     /// <summary>
     /// Returns bearer token for given client ID and client secret values.

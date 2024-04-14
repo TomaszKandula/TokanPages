@@ -30,17 +30,17 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IPaymentService _paymentService;
+    private readonly IPayUService _payUService;
 
     private readonly IConfiguration _configuration;
 
     public CreatePaymentDefaultCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IPaymentService paymentService, 
+        IUserService userService, IDateTimeService dateTimeService, IPayUService payUService, 
         IConfiguration configuration) : base(databaseContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
-        _paymentService = paymentService;
+        _payUService = payUService;
         _configuration = configuration;
     }
 
@@ -51,7 +51,7 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
         var merchantPosId = _configuration.GetValue<string>("Pmt_MerchantPosId");
         var order = request.Request;
 
-        var cardTokenResponse = await _paymentService.GenerateCardToken(new GenerateCardTokenInput
+        var cardTokenResponse = await _payUService.GenerateCardToken(new GenerateCardTokenInput
         {
             PosId = merchantPosId,
             Type = "MULTI",
@@ -99,7 +99,7 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
             }
         };
 
-        var response = await _paymentService.PostOrderDefault(input, cancellationToken);
+        var response = await _payUService.PostOrderDefault(input, cancellationToken);
         var userPayments = await DatabaseContext.UserPayments
             .Where(payments => payments.UserId == request.UserId)
             .SingleOrDefaultAsync(cancellationToken);
