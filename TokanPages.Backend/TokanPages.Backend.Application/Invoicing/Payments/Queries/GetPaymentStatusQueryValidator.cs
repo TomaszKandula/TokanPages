@@ -4,9 +4,9 @@ using FluentValidation;
 namespace TokanPages.Backend.Application.Invoicing.Payments.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetPaymentTypeListQueryValidator : AbstractValidator<GetPaymentTypeListQuery>
+public class GetPaymentStatusQueryValidator : AbstractValidator<GetPaymentStatusQuery>
 {
-    public GetPaymentTypeListQueryValidator()
+    public GetPaymentStatusQueryValidator()
     {
         // RuleFor(request => request.PrivateKey)
         //     .NotEmpty()

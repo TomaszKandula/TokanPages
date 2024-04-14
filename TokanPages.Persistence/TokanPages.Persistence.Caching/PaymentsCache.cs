@@ -31,32 +31,32 @@ public class PaymentsCache : IPaymentsCache
     }
 
     /// <inheritdoc />
-    public async Task<IList<GetPaymentStatusListQueryResult>> GetPaymentStatusList(string filterBy, bool noCache = false)
+    public async Task<IList<GetPaymentStatusQueryResult>> GetPaymentStatus(string filterBy, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetPaymentStatusListQuery { FilterBy = filterBy });
+            return await _mediator.Send(new GetPaymentStatusQuery { FilterBy = filterBy });
 
         var key = $"{_environment.EnvironmentName}:payment:codes";
-        var value = await _redisDistributedCache.GetObjectAsync<IList<GetPaymentStatusListQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<IList<GetPaymentStatusQueryResult>>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetPaymentStatusListQuery { FilterBy = filterBy });
+        value = await _mediator.Send(new GetPaymentStatusQuery { FilterBy = filterBy });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;
     }
 
     /// <inheritdoc />
-    public async Task<IList<GetPaymentTypeListQueryResult>> GetPaymentTypeList(string filterBy, bool noCache = false)
+    public async Task<IList<GetPaymentTypeQueryResult>> GetPaymentType(string filterBy, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetPaymentTypeListQuery { FilterBy = filterBy });
+            return await _mediator.Send(new GetPaymentTypeQuery { FilterBy = filterBy });
 
         var key = $"{_environment.EnvironmentName}:payment:codes";
-        var value = await _redisDistributedCache.GetObjectAsync<IList<GetPaymentTypeListQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<IList<GetPaymentTypeQueryResult>>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetPaymentTypeListQuery { FilterBy = filterBy });
+        value = await _mediator.Send(new GetPaymentTypeQuery { FilterBy = filterBy });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

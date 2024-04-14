@@ -28,9 +28,9 @@ public class PaymentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Payment types.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IList<GetPaymentTypeListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IList<GetPaymentTypeListQueryResult>> GetPaymentTypeList([FromQuery] bool noCache = false) 
-        => await _paymentsCache.GetPaymentTypeList(string.Empty, noCache);
+    [ProducesResponseType(typeof(IList<GetPaymentTypeQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IList<GetPaymentTypeQueryResult>> GetPaymentTypeList([FromQuery] bool noCache = false) 
+        => await _paymentsCache.GetPaymentType(string.Empty, noCache);
 
     /// <summary>
     /// Returns given payment type.
@@ -39,9 +39,9 @@ public class PaymentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Payment type code, i.e: 1</returns>
     [HttpGet("{type}")]
-    [ProducesResponseType(typeof(IList<GetPaymentTypeListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IList<GetPaymentTypeListQueryResult>> GetPaymentType([FromRoute] string type, [FromQuery] bool noCache = false) 
-        => await _paymentsCache.GetPaymentTypeList(type, noCache);
+    [ProducesResponseType(typeof(IList<GetPaymentTypeQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IList<GetPaymentTypeQueryResult>> GetPaymentType([FromRoute] string type, [FromQuery] bool noCache = false) 
+        => await _paymentsCache.GetPaymentType(type, noCache);
 
     /// <summary>
     /// Returns payment statuses, i.e: unpaid.
@@ -49,9 +49,9 @@ public class PaymentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Payment status.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetPaymentStatusListQueryResult>> GetPaymentStatusList([FromQuery] bool noCache = false)
-        => await _paymentsCache.GetPaymentStatusList(string.Empty, noCache);
+    [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetPaymentStatusQueryResult>> GetPaymentStatusList([FromQuery] bool noCache = false)
+        => await _paymentsCache.GetPaymentStatus(string.Empty, noCache);
 
     /// <summary>
     /// Returns payment status code for given status.
@@ -60,7 +60,7 @@ public class PaymentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Payment status code, i.e: 1.</returns>
     [HttpGet("{status}")]
-    [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetPaymentStatusListQueryResult>> GetPaymentStatusCode([FromRoute] string status, [FromQuery] bool noCache = false)
-        => await _paymentsCache.GetPaymentStatusList(status, noCache);
+    [ProducesResponseType(typeof(IEnumerable<GetPaymentStatusQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetPaymentStatusQueryResult>> GetPaymentStatusCode([FromRoute] string status, [FromQuery] bool noCache = false)
+        => await _paymentsCache.GetPaymentStatus(status, noCache);
 }

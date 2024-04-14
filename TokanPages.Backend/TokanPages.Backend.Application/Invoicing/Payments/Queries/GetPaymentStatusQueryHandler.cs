@@ -5,16 +5,16 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Invoicing.Payments.Queries;
 
-public class GetPaymentStatusListQueryHandler : RequestHandler<GetPaymentStatusListQuery, IList<GetPaymentStatusListQueryResult>>
+public class GetPaymentStatusQueryHandler : RequestHandler<GetPaymentStatusQuery, IList<GetPaymentStatusQueryResult>>
 {
-    public GetPaymentStatusListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
+    public GetPaymentStatusQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
         : base(databaseContext, loggerService) { }
 
-    public override async Task<IList<GetPaymentStatusListQueryResult>> Handle(GetPaymentStatusListQuery request, CancellationToken cancellationToken)
+    public override async Task<IList<GetPaymentStatusQueryResult>> Handle(GetPaymentStatusQuery request, CancellationToken cancellationToken)
     {
         var statuses = Enum.GetValues<PaymentStatuses>();
         var result = statuses
-            .Select((paymentStatuses, index) => new GetPaymentStatusListQueryResult
+            .Select((paymentStatuses, index) => new GetPaymentStatusQueryResult
             {
                 SystemCode = index,
                 PaymentStatus = paymentStatuses.ToString().ToUpper()

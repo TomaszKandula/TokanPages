@@ -4,7 +4,7 @@ using MediatR;
 namespace TokanPages.Backend.Application.Invoicing.Payments.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetPaymentTypeListQuery : IRequest<IList<GetPaymentTypeListQueryResult>>
+public class GetPaymentTypeQuery : IRequest<IList<GetPaymentTypeQueryResult>>
 {
     public string FilterBy { get; set; } = "";
 }
