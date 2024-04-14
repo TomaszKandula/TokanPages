@@ -33,9 +33,9 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public bool HasBusinessLock { get; set; }
 
     /* Navigation properties */
-    public ICollection<UserCompanies> UserCompanies { get; set; } = new HashSet<UserCompanies>();
-    public ICollection<UserBankAccounts> UserBankAccounts { get; set; } = new HashSet<UserBankAccounts>();
-    public ICollection<IssuedInvoices> IssuedInvoices { get; set; } = new HashSet<IssuedInvoices>();
+    public ICollection<UserCompanies> UserCompaniesNavigation { get; set; } = new HashSet<UserCompanies>();
+    public ICollection<UserBankAccounts> UserBankAccountsNavigation { get; set; } = new HashSet<UserBankAccounts>();
+    public ICollection<IssuedInvoices> IssuedInvoicesNavigation { get; set; } = new HashSet<IssuedInvoices>();
     public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
     public ICollection<Articles> ArticlesNavigation { get; set; } = new HashSet<Articles>();
     public ICollection<ArticleLikes> ArticleLikesNavigation { get; set; } = new HashSet<ArticleLikes>();
@@ -47,4 +47,7 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<UserTokens> UserTokensNavigation { get; set; } = new HashSet<UserTokens>();
     public ICollection<UserRefreshTokens> UserRefreshTokensNavigation { get; set; } = new HashSet<UserRefreshTokens>();
     public ICollection<UserInfo> UserInfoNavigation { get; set; } = new HashSet<UserInfo>();
+    public ICollection<UserPayment> UserPaymentNavigation { get; set; } = new HashSet<UserPayment>();
+    public ICollection<UserPaymentHistory> UserPaymentHistoryNavigation { get; set; } = new HashSet<UserPaymentHistory>();
+    public ICollection<UserSubscription> UserSubscriptionNavigation { get; set; } = new HashSet<UserSubscription>();
 }

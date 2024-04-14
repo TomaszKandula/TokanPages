@@ -1,6 +1,6 @@
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;

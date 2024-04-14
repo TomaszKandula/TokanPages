@@ -1,13 +1,15 @@
 using TokanPages.Backend.Application.NotificationsWeb.Command;
-using TokanPages.Backend.Application.Users.Models.Subscription;
+using TokanPages.Backend.Application.Revenue.Models;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.WebSocketService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
@@ -37,6 +39,9 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
         var userPayment = await DatabaseContext.UserPayments
             .Where(payments => payments.ExtOrderId == extOrderId)
             .SingleOrDefaultAsync(cancellationToken);
+
+        if (userPayment is null)
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         userPayment.PmtOrderId = orderId;
         userPayment.PmtStatus = status;
@@ -75,7 +80,7 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
 
                 await DatabaseContext.UserPaymentsHistory.AddAsync(history, cancellationToken);
                 await DatabaseContext.SaveChangesAsync(cancellationToken);
-                
+
                 var payload = new SubscriptionNotification
                 {
                     PaymentStatus = getStatus,

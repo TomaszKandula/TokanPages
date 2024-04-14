@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Revenue.Models.Sections;
 
 namespace TokanPages.Backend.Application.Revenue.Models;
 
+[ExcludeFromCodeCoverage]
 public class PaymentRequest
 {
     public string? NotifyUrl { get; set; }
