@@ -1,11 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Application.Invoicing.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Payments.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetPaymentTypeQueryResult
+public class GetPaymentTypeQueryResult : BaseResponse
 {
-    public int SystemCode { get; set; }
-
     public string PaymentType { get; set; } = "";
 }
