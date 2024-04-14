@@ -43,6 +43,18 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
 
         var extCustomerId = Guid.NewGuid().ToString("N");
         var extOrderId = Guid.NewGuid().ToString("N");
+        var userInfo = await DatabaseContext.UserInfo
+            .AsNoTracking()
+            .Where(info => info.UserId == user.Id)
+            .Select(info => new
+            {
+                info.FirstName,
+                info.LastName
+            })
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (userInfo is null)
+            throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         AddSubscriptionCommandResult result;
         if (userSubscription is not null)
@@ -62,9 +74,8 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 SubscriptionId = userSubscription.Id,
                 ExtOrderId = extOrderId,
                 Email = user.EmailAddress,
-                //TODO: get it from UserInfo
-                //FirstName = user.FirstName,
-                //LastName = user.LastName
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName
             };
         }
         else
@@ -89,9 +100,8 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 SubscriptionId = subscription.Id,
                 ExtOrderId = subscription.ExtOrderId,
                 Email = user.EmailAddress,
-                //TODO: get it from UserInfo
-                //FirstName = user.FirstName,
-                //LastName = user.LastName
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName
             };
 
             await DatabaseContext.UserSubscriptions.AddAsync(subscription, cancellationToken);

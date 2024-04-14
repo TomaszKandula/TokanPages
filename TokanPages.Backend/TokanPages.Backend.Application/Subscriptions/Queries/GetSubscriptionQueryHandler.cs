@@ -35,6 +35,6 @@ public class GetSubscriptionQueryHandler : RequestHandler<GetSubscriptionQuery, 
             })
             .SingleOrDefaultAsync(cancellationToken);
 
-        return query;
+        return query ?? new GetSubscriptionQueryResult();
     }
 }
