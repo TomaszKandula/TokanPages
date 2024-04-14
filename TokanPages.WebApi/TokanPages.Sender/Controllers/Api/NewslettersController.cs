@@ -55,33 +55,33 @@ public class NewslettersController : ApiBaseController
     /// <summary>
     /// Adds new subscriber of the newsletter.
     /// </summary>
-    /// <param name="payLoad">Newsletters data.</param>
+    /// <param name="payload">Newsletters data.</param>
     /// <returns>Guid.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-    public async Task<Guid> AddNewsletter([FromBody] AddNewsletterDto payLoad) 
-        => await Mediator.Send(NewslettersMapper.MapToAddNewsletterCommand(payLoad));
+    public async Task<Guid> AddNewsletter([FromBody] AddNewsletterDto payload) 
+        => await Mediator.Send(NewslettersMapper.MapToAddNewsletterCommand(payload));
 
     /// <summary>
     /// Updates existing newsletter subscriber.
     /// </summary>
-    /// <param name="payLoad">Newsletters data.</param>
+    /// <param name="payload">Newsletters data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateNewsletter([FromBody] UpdateNewsletterDto payLoad)
-        => await Mediator.Send(NewslettersMapper.MapToUpdateNewsletterCommand(payLoad));
+    public async Task<Unit> UpdateNewsletter([FromBody] UpdateNewsletterDto payload)
+        => await Mediator.Send(NewslettersMapper.MapToUpdateNewsletterCommand(payload));
 
     /// <summary>
     /// Removes existing newsletter subscriber.
     /// </summary>
-    /// <param name="payLoad">Newsletter data.</param>
+    /// <param name="payload">Newsletter data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> RemoveNewsletter([FromBody] RemoveNewsletterDto payLoad)
-        => await Mediator.Send(NewslettersMapper.MapToRemoveNewsletterCommand(payLoad));
+    public async Task<Unit> RemoveNewsletter([FromBody] RemoveNewsletterDto payload)
+        => await Mediator.Send(NewslettersMapper.MapToRemoveNewsletterCommand(payload));
 }

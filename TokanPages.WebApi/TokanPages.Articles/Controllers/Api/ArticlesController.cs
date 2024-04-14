@@ -55,70 +55,70 @@ public class ArticlesController : ApiBaseController
     /// <summary>
     /// Adds new article to the database.
     /// </summary>
-    /// <param name="payLoad">Article data.</param>
+    /// <param name="payload">Article data.</param>
     /// <returns>Guid.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-    public async Task<Guid> AddArticle([FromBody] AddArticleDto payLoad) 
-        => await Mediator.Send(ArticlesMapper.MapToAddArticleCommand(payLoad));
+    public async Task<Guid> AddArticle([FromBody] AddArticleDto payload) 
+        => await Mediator.Send(ArticlesMapper.MapToAddArticleCommand(payload));
 
     /// <summary>
     /// Updates existing article content.
     /// </summary>
-    /// <param name="payLoad">Article data.</param>
+    /// <param name="payload">Article data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto payLoad)
-        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+    public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto payload)
+        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
 
     /// <summary>
     /// Updates existing article count value.
     /// </summary>
-    /// <param name="payLoad">Article data.</param>
+    /// <param name="payload">Article data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateArticleCount([FromBody] UpdateArticleCountDto payLoad)
-        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+    public async Task<Unit> UpdateArticleCount([FromBody] UpdateArticleCountDto payload)
+        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
 
     /// <summary>
     /// Updates existing article likes.
     /// </summary>
-    /// <param name="payLoad">Article data.</param>
+    /// <param name="payload">Article data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateArticleLikes([FromBody] UpdateArticleLikesDto payLoad)
-        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+    public async Task<Unit> UpdateArticleLikes([FromBody] UpdateArticleLikesDto payload)
+        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
 
     /// <summary>
     /// Update existing article visibility.
     /// </summary>
-    /// <param name="payLoad">Article data.</param>
+    /// <param name="payload">Article data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payLoad)
-        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payLoad));
+    public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payload)
+        => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
 
     /// <summary>
     /// Removes existing article.
     /// </summary>
-    /// <param name="payLoad">Article data.</param>
+    /// <param name="payload">Article data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto payLoad)
-        => await Mediator.Send(ArticlesMapper.MapToRemoveArticleCommand(payLoad));
+    public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto payload)
+        => await Mediator.Send(ArticlesMapper.MapToRemoveArticleCommand(payload));
 }

@@ -41,30 +41,30 @@ public class NotificationsMobileController : ApiBaseController
     /// <summary>
     /// Registers PNS handle for Azure Notification Hub.
     /// </summary>
-    /// <param name="payLoad">Contains mandatory PNS handle, target platform and tags.</param>
+    /// <param name="payload">Contains mandatory PNS handle, target platform and tags.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(AddInstallationCommandResult),StatusCodes.Status200OK)]
-    public async Task<AddInstallationCommandResult> AddInstallation([FromBody] AddInstallationDto payLoad) 
-        => await Mediator.Send(NotificationsMapper.MapToAddInstallationCommand(payLoad));
+    public async Task<AddInstallationCommandResult> AddInstallation([FromBody] AddInstallationDto payload) 
+        => await Mediator.Send(NotificationsMapper.MapToAddInstallationCommand(payload));
 
     /// <summary>
     /// Removes PNS handle from Azure Notification Hub.
     /// </summary>
-    /// <param name="payLoad">Contains mandatory installation ID.</param>
+    /// <param name="payload">Contains mandatory installation ID.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpDelete]
     [ProducesResponseType(typeof(Unit),StatusCodes.Status200OK)]
-    public async Task<Unit> RemoveInstallation([FromBody] DeleteInstallationDto payLoad) 
-        => await Mediator.Send(NotificationsMapper.MapToDeleteInstallationCommand(payLoad));
+    public async Task<Unit> RemoveInstallation([FromBody] DeleteInstallationDto payload) 
+        => await Mediator.Send(NotificationsMapper.MapToDeleteInstallationCommand(payload));
 
     /// <summary>
     /// Allows to send APS/FCM push notification.
     /// </summary>
-    /// <param name="payLoad">Contains platform, message and optional tags.</param>
+    /// <param name="payload">Contains platform, message and optional tags.</param>
     /// <returns>Result object.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(SendNotificationCommandResult),StatusCodes.Status200OK)]
-    public async Task<SendNotificationCommandResult> SendNotification([FromBody] SendNotificationDto payLoad) 
-        => await Mediator.Send(NotificationsMapper.MapToSendNotificationCommand(payLoad));
+    public async Task<SendNotificationCommandResult> SendNotification([FromBody] SendNotificationDto payload) 
+        => await Mediator.Send(NotificationsMapper.MapToSendNotificationCommand(payload));
 }
