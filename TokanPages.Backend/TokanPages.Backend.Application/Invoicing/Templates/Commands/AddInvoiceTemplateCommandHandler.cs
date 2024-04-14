@@ -1,3 +1,4 @@
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.TemplateService;
@@ -14,19 +15,23 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
 
     public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {
+        var fileName = request.Data!.FileName;
+        var contentType = request.Data!.ContentType;
+        var binary = request.Data.GetByteArray();
+
         var newInvoiceTemplate = new InvoiceTemplate
         {
-            TemplateName = request.Name,
+            TemplateName = fileName,
             InvoiceTemplateData = new InvoiceTemplateData
             {
-                ContentData = request.Data,
-                ContentType = request.DataType
+                ContentData = binary,
+                ContentType = contentType
             },
             InvoiceTemplateDescription = request.Description
         };
 
         var result = await _templateService.AddInvoiceTemplate(newInvoiceTemplate, cancellationToken);
-        LoggerService.LogInformation($"New invoice template has been added. Invoice template name: {request.Name}");
+        LoggerService.LogInformation($"New invoice template has been added. Invoice template name: {fileName}");
 
         return new AddInvoiceTemplateCommandResult { TemplateId = result };
     }

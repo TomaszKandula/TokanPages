@@ -1,4 +1,5 @@
 using MediatR;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.TemplateService;
@@ -15,10 +16,13 @@ public class ReplaceInvoiceTemplateCommandHandler : RequestHandler<ReplaceInvoic
 
     public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {
+        var contentType = request.Data!.ContentType;
+        var binary = request.Data.GetByteArray();
+
         var newTemplate = new InvoiceTemplateData
         {
-            ContentData = request.Data,
-            ContentType = request.DataType,
+            ContentData = binary,
+            ContentType = contentType,
             Description = request.Description
         };
 

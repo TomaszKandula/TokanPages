@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Commands;
 
@@ -6,9 +8,8 @@ public class ReplaceInvoiceTemplateCommand : IRequest<Unit>
 {
     public Guid Id { get; set; }
 
-    public byte[] Data { get; set; } = Array.Empty<byte>();
-
-    public string DataType { get; set; } = "";
-
     public string Description { get; set; } = "";
+
+    [DataType(DataType.Upload)]
+    public IFormFile? Data { get; set; }
 }
