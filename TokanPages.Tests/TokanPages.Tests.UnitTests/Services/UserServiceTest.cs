@@ -1333,7 +1333,7 @@ public class UserServiceTest : TestBase
             claims.Add(new Claim(ClaimTypes.NameIdentifier, userId.ToString()!));
 
         response
-            .Setup(httpResponse => httpResponse.Cookies.Append(It.IsAny<string>(), values));
+            .Setup(httpResponse => httpResponse.Cookies.Append(It.IsAny<string>(), values!));
 
         mockedHttpContext
             .SetupGet(context => context.HttpContext!.User.Claims)
