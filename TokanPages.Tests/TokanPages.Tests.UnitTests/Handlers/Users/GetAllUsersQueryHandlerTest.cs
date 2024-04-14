@@ -38,8 +38,8 @@ public class GetAllUsersQueryHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
 
-        var query = new GetAllUsersQuery();
-        var handler = new GetAllUsersQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetUsersQuery();
+        var handler = new GetUsersQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);

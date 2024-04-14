@@ -25,21 +25,21 @@ public class MailerController : ApiBaseController
     /// <summary>
     /// Sends message via email.
     /// </summary>
-    /// <param name="payLoad">Message data.</param>
+    /// <param name="payload">Message data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> SendMessage([FromBody] SendMessageDto payLoad)
-        => await Mediator.Send(MailerMapper.MapToSendMessageCommand(payLoad));
+    public async Task<Unit> SendMessage([FromBody] SendMessageDto payload)
+        => await Mediator.Send(MailerMapper.MapToSendMessageCommand(payload));
 
     /// <summary>
     /// Sends newsletter message via email.
     /// </summary>
-    /// <param name="payLoad">Message data.</param>
+    /// <param name="payload">Message data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto payLoad)
-        => await Mediator.Send(MailerMapper.MapToSendNewsletterCommand(payLoad));
+    public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto payload)
+        => await Mediator.Send(MailerMapper.MapToSendNewsletterCommand(payload));
 }

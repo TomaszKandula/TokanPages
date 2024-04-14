@@ -37,14 +37,17 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<UserBankAccounts> UserBankAccounts { get; set; } = new HashSet<UserBankAccounts>();
     public ICollection<IssuedInvoices> IssuedInvoices { get; set; } = new HashSet<IssuedInvoices>();
     public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
-    public ICollection<Articles> ArticlesNavigation { get; set; } = new HashSet<Articles>();
-    public ICollection<ArticleLikes> ArticleLikesNavigation { get; set; } = new HashSet<ArticleLikes>();
-    public ICollection<ArticleCounts> ArticleCountsNavigation { get; set; } = new HashSet<ArticleCounts>();
-    public ICollection<Albums> AlbumsNavigation { get; set; } = new HashSet<Albums>();
-    public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
-    public ICollection<UserPermissions> UserPermissionsNavigation { get; set; } = new HashSet<UserPermissions>();
-    public ICollection<UserRoles> UserRolesNavigation { get; set; } = new HashSet<UserRoles>();
-    public ICollection<UserTokens> UserTokensNavigation { get; set; } = new HashSet<UserTokens>();
-    public ICollection<UserRefreshTokens> UserRefreshTokensNavigation { get; set; } = new HashSet<UserRefreshTokens>();
-    public ICollection<UserInfo> UserInfoNavigation { get; set; } = new HashSet<UserInfo>();
+    public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
+    public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
+    public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
+    public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
+    public ICollection<UserPhotos> UserPhotos { get; set; } = new HashSet<UserPhotos>();
+    public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
+    public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
+    public ICollection<UserTokens> UserTokens { get; set; } = new HashSet<UserTokens>();
+    public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();
+    public ICollection<UserInfo> UserInfo { get; set; } = new HashSet<UserInfo>();
+    public ICollection<UserPayment> UserPayment { get; set; } = new HashSet<UserPayment>();
+    public ICollection<UserPaymentHistory> UserPaymentHistory { get; set; } = new HashSet<UserPaymentHistory>();
+    public ICollection<UserSubscription> UserSubscription { get; set; } = new HashSet<UserSubscription>();
 }

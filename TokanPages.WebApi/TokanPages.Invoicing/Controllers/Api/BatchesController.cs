@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using TokanPages.Backend.Application.Batches.Commands;
-using TokanPages.Backend.Application.Batches.Queries;
+using TokanPages.Backend.Application.Invoicing.Batches.Commands;
+using TokanPages.Backend.Application.Invoicing.Batches.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Invoicing.Controllers.Mappers;
@@ -12,9 +12,6 @@ namespace TokanPages.Invoicing.Controllers.Api;
 /// <summary>
 /// API endpoints definitions for batch invoicing.
 /// </summary>
-///<remarks>
-/// It uses Microsoft 'ResponseCache' for caching.
-/// </remarks>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]/[action]")]
 public class BatchesController : ApiBaseController
@@ -72,9 +69,9 @@ public class BatchesController : ApiBaseController
     /// </summary>
     /// <returns>List of processes.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusList() 
-        => await Mediator.Send(new GetBatchProcessingStatusListQuery { FilterBy = string.Empty });
+    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> GetBatchProcessingStatuses() 
+        => await Mediator.Send(new GetBatchProcessingStatusesQuery { FilterBy = string.Empty });
 
     /// <summary>
     /// Returns data for given batch processing status.
@@ -82,7 +79,7 @@ public class BatchesController : ApiBaseController
     /// <param name="status">New, started, finished, failed.</param>
     /// <returns>List of processes.</returns>
     [HttpGet("{status}")]
-    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusListQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> GetBatchProcessingStatusCode([FromRoute] string status) 
-        => await Mediator.Send(new GetBatchProcessingStatusListQuery { FilterBy = status });
+    [ProducesResponseType(typeof(IEnumerable<GetBatchProcessingStatusesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> GetBatchProcessingStatusCode([FromRoute] string status) 
+        => await Mediator.Send(new GetBatchProcessingStatusesQuery { FilterBy = status });
 }

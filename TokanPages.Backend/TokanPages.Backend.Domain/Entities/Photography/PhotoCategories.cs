@@ -16,5 +16,5 @@ public class PhotoCategories : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public ICollection<UserPhotos> UserPhotosNavigation { get; set; } = new HashSet<UserPhotos>();
+    public ICollection<UserPhotos> UserPhotos { get; set; } = new HashSet<UserPhotos>();
 }

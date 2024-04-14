@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetUserQueryResult : GetAllUsersQueryResult
+public class GetUserQueryResult : GetUsersQueryResult
 {
     public string FirstName { get; set; } = "";
 

@@ -5,7 +5,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;
-
+//TODO: upgrade migration runner
 [ExcludeFromCodeCoverage]
 internal static class Program
 {

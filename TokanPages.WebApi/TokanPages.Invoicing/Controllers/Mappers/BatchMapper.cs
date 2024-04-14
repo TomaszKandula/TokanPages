@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Batches.Commands;
+using TokanPages.Backend.Application.Invoicing.Batches.Commands;
 using TokanPages.Invoicing.Dto.Batches;
-using Models = TokanPages.Backend.Application.Batches.Commands.Models;
+using Models = TokanPages.Backend.Application.Invoicing.Models;
 
 namespace TokanPages.Invoicing.Controllers.Mappers;
 

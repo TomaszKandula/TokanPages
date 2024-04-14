@@ -56,13 +56,13 @@ public class AssetsController : ApiBaseController
     /// <remarks>
     /// Requires: Roles.GodOfAsgard, Roles.EverydayUser.
     /// </remarks>
-    /// <param name="payLoad">Binary data to be uploaded.</param>
+    /// <param name="payload">Binary data to be uploaded.</param>
     /// <returns>Full blob name of uploaded asset.</returns>
     [HttpPost]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(AddImageAssetCommandResult), StatusCodes.Status200OK)]
-    public async Task<AddImageAssetCommandResult> AddImageAsset([FromForm] AddImageAssetDto payLoad)
-        => await Mediator.Send(AssetsMapper.MapToAddImageAssetCommand(payLoad));
+    public async Task<AddImageAssetCommandResult> AddImageAsset([FromForm] AddImageAssetDto payload)
+        => await Mediator.Send(AssetsMapper.MapToAddImageAssetCommand(payload));
 
     /// <summary>
     /// Returns video file from storage by its full name.
@@ -81,10 +81,10 @@ public class AssetsController : ApiBaseController
     /// <summary>
     /// Allow to upload a single video asset to an Azure Storage.
     /// </summary>
-    /// <param name="payLoad">Binary data to be uploaded.</param>
+    /// <param name="payload">Binary data to be uploaded.</param>
     /// <returns>Ticket ID.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(AddVideoAssetCommandResult), StatusCodes.Status200OK)]
-    public async Task<AddVideoAssetCommandResult> AddVideoAsset([FromForm] AddVideoAssetDto payLoad)
-        => await Mediator.Send(AssetsMapper.MapToAddVideoAssetCommand(payLoad));
+    public async Task<AddVideoAssetCommandResult> AddVideoAsset([FromForm] AddVideoAssetDto payload)
+        => await Mediator.Send(AssetsMapper.MapToAddVideoAssetCommand(payload));
 }

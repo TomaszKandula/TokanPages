@@ -12,7 +12,7 @@ public interface IUsersCache
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object list</returns>
-    Task<List<GetAllUsersQueryResult>> GetUsers(bool noCache = false);
+    Task<List<GetUsersQueryResult>> GetUsers(bool noCache = false);
 
     /// <summary>
     /// Returns single user data

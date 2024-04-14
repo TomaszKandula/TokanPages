@@ -1,40 +1,43 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using TokanPages.Backend.Application.Templates.Commands;
-using TokanPages.Backend.Application.Templates.Queries;
-using TokanPages.Backend.Application.Templates.Queries.Models;
+using TokanPages.Backend.Application.Invoicing.Templates.Commands;
+using TokanPages.Backend.Application.Invoicing.Templates.Queries;
+using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Invoicing.Controllers.Mappers;
 using TokanPages.Invoicing.Dto.Templates;
+using TokanPages.Persistence.Caching.Abstractions;
 
 namespace TokanPages.Invoicing.Controllers.Api;
 
 /// <summary>
 /// API endpoints definitions for invoice templates.
 /// </summary>
-///<remarks>
-/// It uses Microsoft 'ResponseCache' for caching.
-/// </remarks>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]/[action]")]
 public class TemplatesController : ApiBaseController
 {
+    private readonly ITemplatesCache _templatesCache;
+
     /// <summary>
     /// Templates Controller.
     /// </summary>
-    /// <param name="mediator"></param>
-    public TemplatesController(IMediator mediator) : base(mediator) { }
+    /// <param name="mediator">Mediator instance.</param>
+    /// <param name="templatesCache">REDIS cache instance.</param>
+    public TemplatesController(IMediator mediator, ITemplatesCache templatesCache) 
+        : base(mediator) => _templatesCache = templatesCache;
 
     /// <summary>
-    /// 
+    /// Returns information of existing invoice templates.
     /// </summary>
-    /// <returns></returns>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>List of templates.</returns>
     [HttpGet]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
-    [ProducesResponseType(typeof(IEnumerable<InvoiceTemplateInfo>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates() 
-        => await Mediator.Send(new GetInvoiceTemplatesQuery());
+    [ProducesResponseType(typeof(IList<InvoiceTemplateInfo>), StatusCodes.Status200OK)]
+    public async Task<IList<InvoiceTemplateInfo>> GetInvoiceTemplates([FromQuery] bool noCache = false) 
+        => await _templatesCache.GetInvoiceTemplates(noCache);
 
     /// <summary>
     /// Returns invoice template by its ID.

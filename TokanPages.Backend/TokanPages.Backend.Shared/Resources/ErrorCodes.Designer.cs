@@ -368,5 +368,23 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("BUSINESS_LOCK_ENABLED", resourceCulture);
             }
         }
+        
+        public static string PRICE_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("PRICE_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        public static string SUBSCRIPTION_DOES_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("SUBSCRIPTION_DOES_NOT_EXISTS", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_ARGUMENT {
+            get {
+                return ResourceManager.GetString("INVALID_ARGUMENT", resourceCulture);
+            }
+        }
     }
 }

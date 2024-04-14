@@ -33,16 +33,16 @@ public class ArticlesCache : IArticlesCache
     }
 
     /// <inheritdoc />
-    public async Task<List<GetAllArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false)
+    public async Task<List<GetArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
+            return await _mediator.Send(new GetArticlesQuery { IsPublished = isPublished });
 
         var key = $"{_environment.EnvironmentName}:articles";
-        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllArticlesQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<List<GetArticlesQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
-        value = await _mediator.Send(new GetAllArticlesQuery { IsPublished = isPublished });
+        value = await _mediator.Send(new GetArticlesQuery { IsPublished = isPublished });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

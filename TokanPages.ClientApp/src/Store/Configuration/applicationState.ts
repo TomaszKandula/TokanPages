@@ -1,6 +1,6 @@
 import {
     UserActivateState,
-    SubscriberAddState,
+    NewsletterAddState,
     ArticleSelectionState,
     ArticleListingState,
     ContentAccountState,
@@ -28,14 +28,14 @@ import {
     ApplicationErrorState,
     UserReAuthenticateState,
     UserRemoveState,
-    SubscriberRemoveState,
+    NewsletterRemoveState,
     UserPasswordResetState,
     ApplicationEmailState,
     UserSigninState,
     UserSignupState,
     UserDataStoreState,
     UserUpdateState,
-    SubscriberUpdateState,
+    NewsletterUpdateState,
     ArticleUpdateState,
     UserPasswordUpdateState,
     ApplicationLanguageState,
@@ -78,9 +78,9 @@ export interface ApplicationState {
     contentUserSignout: ContentUserSignoutState;
     contentUserSignup: ContentUserSignupState;
     contentWrongPagePrompt: ContentWrongPagePromptState;
-    subscriberAdd: SubscriberAddState;
-    subscriberRemove: SubscriberRemoveState;
-    subscriberUpdate: SubscriberUpdateState;
+    newsletterAdd: NewsletterAddState;
+    newsletterRemove: NewsletterRemoveState;
+    newsletterUpdate: NewsletterUpdateState;
     userActivate: UserActivateState;
     userDataStore: UserDataStoreState;
     userMediaUpload: UserMediaUploadState;

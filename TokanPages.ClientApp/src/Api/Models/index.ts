@@ -10,9 +10,9 @@ export type { SendNewsletterDto } from "./Mailer/sendNewsletterDto";
 export type { SubscriberInfoDto } from "./Mailer/subscriberInfoDto";
 export type { VerifyEmailAddressDto } from "./Mailer/verifyEmailAddressDto";
 
-export type { AddSubscriberDto } from "./Subscribers/addSubscriberDto";
-export type { UpdateSubscriberDto } from "./Subscribers/updateSubscriberDto";
-export type { RemoveSubscriberDto } from "./Subscribers/removeSubscriberDto";
+export type { AddNewsletterDto } from "./Newsletters/addNewsletterDto";
+export type { UpdateNewsletterDto } from "./Newsletters/updateNewsletterDto";
+export type { RemoveNewsletterDto } from "./Newsletters/removeNewsletterDto";
 
 export type { UserDataDto } from "./Users/userDataDto";
 export type { ActivateUserDto } from "./Users/activateUserDto";

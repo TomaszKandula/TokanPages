@@ -11,11 +11,6 @@ namespace TokanPages.Invoicing.Dto.Templates;
 public class AddInvoiceTemplateDto
 {
     /// <summary>
-    /// Template name.
-    /// </summary>
-    public string Name { get; set; } = "";
-
-    /// <summary>
     /// Description.
     /// </summary>
     public string Description { get; set; } = "";

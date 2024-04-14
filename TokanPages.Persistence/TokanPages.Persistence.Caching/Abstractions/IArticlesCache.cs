@@ -13,7 +13,7 @@ public interface IArticlesCache
     /// <param name="isPublished">If true, returns only published</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    Task<List<GetAllArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false);
+    Task<List<GetArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false);
 
     /// <summary>
     /// Returns single article

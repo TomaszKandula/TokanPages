@@ -26,5 +26,5 @@ public class UserInfo : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Users UserNavigation { get; set; }
+    public Users Users { get; set; }
 }

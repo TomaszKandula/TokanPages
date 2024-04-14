@@ -20,6 +20,7 @@ using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.HttpClientService.Abstractions;
+using TokanPages.Services.MetricsService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
@@ -83,6 +84,7 @@ public static class Dependencies
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 		services.AddScoped<IUserService, UserService>();
+		services.AddScoped<IMetricsService, MetricsService>();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();

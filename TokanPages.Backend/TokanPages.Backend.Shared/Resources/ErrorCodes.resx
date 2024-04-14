@@ -279,4 +279,13 @@
   <data name="BUSINESS_LOCK_ENABLED" xml:space="preserve">
     <value>Your account has been only partially activated. Please wait for our decision. You will hear from us soon.</value>
   </data>
+  <data name="PRICE_NOT_FOUND" xml:space="preserve">
+    <value>Cannot find the prices</value>
+  </data>
+  <data name="SUBSCRIPTION_DOES_NOT_EXISTS" xml:space="preserve">
+    <value>Requested subscription does not exists</value>
+  </data>
+  <data name="INVALID_ARGUMENT" xml:space="preserve">
+    <value>Cannot accept given argument</value>
+  </data>
 </root>

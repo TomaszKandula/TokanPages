@@ -77,18 +77,18 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
-        entity.ReadCount.Should().Be(expectedTotalReadCount);
+        entity?.ReadCount.Should().Be(expectedTotalReadCount);
 
         var counts = await databaseContext.ArticleCounts.SingleOrDefaultAsync(x => x.ArticleId == articleId);
         counts.Should().NotBeNull();
-        counts.ArticleId.Should().Be(articleId);
-        counts.UserId.Should().Be(userId);
-        counts.IpAddress.Should().Be(mockedIpAddress);
-        counts.ReadCount.Should().Be(1);
-        counts.CreatedBy.Should().Be(Guid.Empty);
-        counts.CreatedAt.Should().BeBefore(DateTime.UtcNow);
-        counts.ModifiedBy.Should().BeNull();
-        counts.ModifiedAt.Should().BeNull();
+        counts?.ArticleId.Should().Be(articleId);
+        counts?.UserId.Should().Be(userId);
+        counts?.IpAddress.Should().Be(mockedIpAddress);
+        counts?.ReadCount.Should().Be(1);
+        counts?.CreatedBy.Should().Be(Guid.Empty);
+        counts?.CreatedAt.Should().BeBefore(DateTime.UtcNow);
+        counts?.ModifiedBy.Should().BeNull();
+        counts?.ModifiedAt.Should().BeNull();
     }
 
     [Fact]

@@ -8,6 +8,8 @@ using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
+using TokanPages.Persistence.Caching;
+using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
@@ -93,6 +95,10 @@ public static class Dependencies
 		services.AddScoped<IBatchService, BatchService>();
 		services.AddScoped<ITemplateService, TemplateService>();
 
+		services.AddScoped<ICountriesCache, CountriesCache>();
+		services.AddScoped<ICurrenciesCache, CurrenciesCache>();
+		services.AddScoped<IPaymentsCache, PaymentsCache>();
+		services.AddScoped<ITemplatesCache, TemplatesCache>();
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
 		services.AddSingleton<IAzureBusFactory>(_ =>

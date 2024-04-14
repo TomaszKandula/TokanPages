@@ -12,7 +12,7 @@ public class VatValidationRequest
 
     public PolishVatNumberOptions Options { get; set; }
 
-    public VatValidationRequest(string vatNumber, IEnumerable<VatNumberPatterns> vatNumberPatterns, PolishVatNumberOptions options = default)
+    public VatValidationRequest(string vatNumber, IEnumerable<VatNumberPatterns> vatNumberPatterns, PolishVatNumberOptions options)
     {
         VatNumber = vatNumber;
         VatNumberPatterns = vatNumberPatterns;

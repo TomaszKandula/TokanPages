@@ -6,7 +6,7 @@ using TokanPages.Services.BatchService;
 namespace TokanPages.HostedServices.Services.CronJobs;
 
 /// <summary>
-/// 
+/// CRON job implementation.
 /// </summary>
 public class BatchProcessingJob : CronJob
 {
@@ -17,7 +17,7 @@ public class BatchProcessingJob : CronJob
     private readonly string _cronExpression;
 
     /// <summary>
-    /// 
+    /// CRON job implementation.
     /// </summary>
     /// <param name="config"></param>
     /// <param name="batchService"></param>

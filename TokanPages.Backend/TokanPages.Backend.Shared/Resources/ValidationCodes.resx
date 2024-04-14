@@ -204,4 +204,7 @@
   <data name="TOO_MANY_TAGS" xml:space="preserve">
     <value>Number of tags per installation is limited to 60</value>
   </data>
+  <data name="ISO_VALUE_TOO_LONG" xml:space="preserve">
+    <value>ISO value cannot be longer than 3 chars</value>
+  </data>
 </root>
