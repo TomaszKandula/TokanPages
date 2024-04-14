@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities;
 namespace TokanPages.Persistence.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
-public class SubscribersConfiguration : IEntityTypeConfiguration<Subscribers>
+public class NewslettersConfiguration : IEntityTypeConfiguration<Newsletters>
 {
-    public void Configure(EntityTypeBuilder<Subscribers> builder)
+    public void Configure(EntityTypeBuilder<Newsletters> builder)
         => builder.Property(subscribers => subscribers.Id).ValueGeneratedOnAdd();
 }

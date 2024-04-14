@@ -14,7 +14,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
     {
         // Arrange
         var testDate = DateTime.Now;
-        var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletters
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -24,7 +24,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
@@ -47,7 +47,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
     {
         // Arrange
-        var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers
+        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletters
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -57,7 +57,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();

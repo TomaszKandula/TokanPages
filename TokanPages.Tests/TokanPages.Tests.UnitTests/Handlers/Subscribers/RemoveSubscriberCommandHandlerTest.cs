@@ -13,7 +13,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Subscribers 
+        var subscribers = new Backend.Domain.Entities.Newsletters 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -23,7 +23,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
@@ -35,7 +35,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
 
         // Assert
         var assertDbContext = GetTestDatabaseContext();
-        var subscribersEntity = await assertDbContext.Subscribers.FindAsync(command.Id);
+        var subscribersEntity = await assertDbContext.Newsletters.FindAsync(command.Id);
         subscribersEntity.Should().BeNull();
     }
 

@@ -28,7 +28,7 @@ public class AddSubscriberCommandHandlerTest : TestBase
         await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var entity = databaseContext.Subscribers.ToList();
+        var entity = databaseContext.Newsletters.ToList();
 
         entity.Should().HaveCount(1);
         entity[0].Email.Should().Be(command.Email);
@@ -43,7 +43,7 @@ public class AddSubscriberCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new TokanPages.Backend.Domain.Entities.Subscribers 
+        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletters 
         { 
             Email = testEmail,
             IsActivated = true,
@@ -53,7 +53,7 @@ public class AddSubscriberCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();

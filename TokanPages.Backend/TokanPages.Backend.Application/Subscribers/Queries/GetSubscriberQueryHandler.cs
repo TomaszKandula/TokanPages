@@ -12,7 +12,7 @@ public class GetSubscriberQueryHandler : RequestHandler<GetSubscriberQuery, GetS
 
     public override async Task<GetSubscriberQueryResult> Handle(GetSubscriberQuery request, CancellationToken cancellationToken) 
     {
-        var subscriber = await DatabaseContext.Subscribers
+        var subscriber = await DatabaseContext.Newsletters
             .AsNoTracking()
             .Where(subscribers => subscribers.Id == request.Id)
             .Select(subscribers => new GetSubscriberQueryResult 

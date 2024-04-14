@@ -16,7 +16,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Subscribers 
+        var subscribers = new Backend.Domain.Entities.Newsletters 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -26,7 +26,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var dateTimeService = new DateTimeService();
@@ -55,7 +55,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var entity = await databaseContext.Subscribers.FindAsync(command.Id);
+        var entity = await databaseContext.Newsletters.FindAsync(command.Id);
 
         entity.Should().NotBeNull();
         entity?.IsActivated.Should().BeTrue();
@@ -69,7 +69,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Subscribers
+        var subscribers = new Backend.Domain.Entities.Newsletters
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -79,7 +79,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var dateTimeService = new DateTimeService();
@@ -104,7 +104,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var entity = await databaseContext.Subscribers.FindAsync(command.Id);
+        var entity = await databaseContext.Newsletters.FindAsync(command.Id);
 
         entity.Should().NotBeNull();
         entity?.IsActivated.Should().BeTrue();
@@ -126,7 +126,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var subscribers = new Backend.Domain.Entities.Subscribers
+        var subscribers = new Backend.Domain.Entities.Newsletters
         {
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
@@ -137,7 +137,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var dateTimeService = new DateTimeService();
@@ -160,7 +160,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new Backend.Domain.Entities.Subscribers
+        var subscribers = new Backend.Domain.Entities.Newsletters
         {
             Email = testEmail,
             IsActivated = true,
@@ -170,7 +170,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Subscribers.AddAsync(subscribers);
+        await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         var dateTimeService = new DateTimeService();

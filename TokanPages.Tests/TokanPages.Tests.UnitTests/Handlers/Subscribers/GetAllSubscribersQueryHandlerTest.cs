@@ -18,7 +18,7 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
         var query = new GetAllSubscribersQuery();
         var handler = new GetAllSubscribersQueryHandler(databaseContext, mockedLogger.Object);
 
-        var subscribers = new List<TokanPages.Backend.Domain.Entities.Subscribers>
+        var subscribers = new List<TokanPages.Backend.Domain.Entities.Newsletters>
         {
             new()
             {
@@ -38,7 +38,7 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
             }
         };
 
-        await databaseContext.Subscribers.AddRangeAsync(subscribers);
+        await databaseContext.Newsletters.AddRangeAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
         // Act

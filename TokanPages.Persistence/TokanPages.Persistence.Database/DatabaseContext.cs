@@ -57,9 +57,9 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserPayment> UserPayments { get; set; }
     public virtual DbSet<UserPaymentHistory> UserPaymentsHistory { get; set; }
     public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
-    
+
     /* Category: Other */
-    public virtual DbSet<Subscribers> Subscribers { get; set; }
+    public virtual DbSet<Newsletters> Newsletters { get; set; }
     public virtual DbSet<HttpRequests> HttpRequests { get; set; }
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }
     public virtual DbSet<ServiceBusMessage> ServiceBusMessages { get; set; }

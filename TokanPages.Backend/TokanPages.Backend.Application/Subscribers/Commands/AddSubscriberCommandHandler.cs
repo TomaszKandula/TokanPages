@@ -16,7 +16,7 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
 
     public override async Task<Guid> Handle(AddSubscriberCommand request, CancellationToken cancellationToken) 
     {
-        var emailCollection = await DatabaseContext.Subscribers
+        var emailCollection = await DatabaseContext.Newsletters
             .AsNoTracking()
             .Where(subscribers => subscribers.Email == request.Email)
             .ToListAsync(cancellationToken);
@@ -24,7 +24,7 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
         if (emailCollection.Count == 1)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var newSubscriber = new Domain.Entities.Subscribers
+        var newSubscriber = new Domain.Entities.Newsletters
         {
             Email = request.Email,
             Count = 0,
@@ -35,7 +35,7 @@ public class AddSubscriberCommandHandler : RequestHandler<AddSubscriberCommand, 
             ModifiedBy = null
         };
 
-        await DatabaseContext.Subscribers.AddAsync(newSubscriber, cancellationToken);
+        await DatabaseContext.Newsletters.AddAsync(newSubscriber, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return newSubscriber.Id;
     }
