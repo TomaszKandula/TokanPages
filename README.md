@@ -12,7 +12,7 @@ Despite mainly focusing on software development and Microsoft technologies, this
 [![Build and run tests (dev)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build.yml/badge.svg)](https://github.com/TomaszKandula/TokanPages/actions/workflows/dev_build_test.yml)
 
 ## Project metrics
-### Client-App
+### Frontend
 
 <p>
   <a href="https://sonarqube.tomkandula.com">
@@ -48,7 +48,7 @@ Despite mainly focusing on software development and Microsoft technologies, this
   </a>
 </p>
 
-### WebApi / Backend
+### Backend
 
 <p>
   <a href="https://sonarqube.tomkandula.com">
@@ -126,7 +126,7 @@ The project is dockerized and deployed via GitHub Actions to VPS. The web server
 
 Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 
-The project is dockerized and deployed via GitHub Actions to Azure App Service that uses Azure Container Registry.
+The project is dockerized and deployed to the VPS.
 
 [//]: # (<img alt="" src="https://sonarproxy.tomkandula.com/api/v1/Metrics/Quality?Project=tokanpages-backend&kill_cache=1">)
 
