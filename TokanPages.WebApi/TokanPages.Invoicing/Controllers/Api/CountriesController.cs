@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using TokanPages.Backend.Application.Countries.Queries;
+using TokanPages.Backend.Application.Invoicing.Countries.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 
 namespace TokanPages.Invoicing.Controllers.Api;

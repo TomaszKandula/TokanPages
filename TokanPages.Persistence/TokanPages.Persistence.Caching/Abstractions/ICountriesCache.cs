@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Countries.Queries;
+using TokanPages.Backend.Application.Invoicing.Countries.Queries;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 

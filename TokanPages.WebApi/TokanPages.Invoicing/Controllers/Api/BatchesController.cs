@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using TokanPages.Backend.Application.Batches.Commands;
-using TokanPages.Backend.Application.Batches.Queries;
+using TokanPages.Backend.Application.Invoicing.Batches.Commands;
+using TokanPages.Backend.Application.Invoicing.Batches.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Invoicing.Controllers.Mappers;

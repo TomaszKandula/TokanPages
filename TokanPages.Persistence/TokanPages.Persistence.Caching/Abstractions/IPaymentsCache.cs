@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Payments.Queries;
+using TokanPages.Backend.Application.Invoicing.Payments.Queries;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 

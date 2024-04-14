@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Templates.Commands;
+using TokanPages.Backend.Application.Invoicing.Templates.Commands;
 using TokanPages.Invoicing.Dto.Templates;
 
 namespace TokanPages.Invoicing.Controllers.Mappers;

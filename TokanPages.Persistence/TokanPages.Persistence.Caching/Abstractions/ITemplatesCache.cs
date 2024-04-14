@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Templates.Queries.Models;
+using TokanPages.Backend.Application.Invoicing.Templates.Queries.Models;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 
