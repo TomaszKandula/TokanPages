@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -30,6 +32,9 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
         var userInfo = await DatabaseContext.UserInfo
             .Where(userInfo => userInfo.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
+
+        if (userInfo is null)
+            throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         userInfo.UserImageName = userInfo.UserImageName == request.UniqueBlobName ? null : userInfo.UserImageName;
         userInfo.UserVideoName = userInfo.UserVideoName == request.UniqueBlobName ? null : userInfo.UserVideoName;
