@@ -1,3 +1,50 @@
+# [0.75.0](https://github.com/TomaszKandula/TokanPages/compare/v0.74.0...v0.75.0) (2024-04-14)
+
+
+### Bug Fixes
+
+* add default value ([f39d65c](https://github.com/TomaszKandula/TokanPages/commit/f39d65c444d3b643203ce7f2d5e4fd54d7bd099e))
+* add default values ([a78ad8f](https://github.com/TomaszKandula/TokanPages/commit/a78ad8ffbcdea0096dfac600995b483d2db4f989))
+* add missing comment ([759d4b4](https://github.com/TomaszKandula/TokanPages/commit/759d4b443baf38f94b5ba311b02ac9fe25d52571))
+* add missing default ([0ab7b36](https://github.com/TomaszKandula/TokanPages/commit/0ab7b36f547e7ebb021c89fc5d16356a08a001c6))
+* allow nulls, it is prevented anyway ([45f13db](https://github.com/TomaszKandula/TokanPages/commit/45f13dbc150e8a681aba3e56b33a2b14fc382e87))
+* can be suppressed ([fe122c8](https://github.com/TomaszKandula/TokanPages/commit/fe122c82b58a651cd24d426d3586ea13fcdaae30))
+* change endpoint name ([73097a1](https://github.com/TomaszKandula/TokanPages/commit/73097a1ce0d7003e1751c6ad94c7bd9939a64c55))
+* check for null ([eee7ba5](https://github.com/TomaszKandula/TokanPages/commit/eee7ba56da9f5e85e5c288778326b578589696ec))
+* register missing cache ([d6eed74](https://github.com/TomaszKandula/TokanPages/commit/d6eed7474e016f5c55b62d79f353c066676018e9))
+* remove empty folders ([774f518](https://github.com/TomaszKandula/TokanPages/commit/774f518999fbdbdc9950fa87c71f2282bb779b90))
+* remove unnecessary default ([297ad1a](https://github.com/TomaszKandula/TokanPages/commit/297ad1afbe3677e739e3de9d4be29abf75304f5f))
+* resolve argument number limit ([ef8069c](https://github.com/TomaszKandula/TokanPages/commit/ef8069c1bee328ef2ff0e90333f5459535694d78))
+* resolve possible null reference assignment ([4456114](https://github.com/TomaszKandula/TokanPages/commit/4456114298f1eccdc252c98a0b2fba683b8753f6))
+* suppress null warning ([ddd0ff9](https://github.com/TomaszKandula/TokanPages/commit/ddd0ff9d51b00dde9bafdfd6f4ec7bb32b773a90))
+
+
+### Features
+
+* add API and DTO for revenue capabilities ([a5fa493](https://github.com/TomaszKandula/TokanPages/commit/a5fa4934d47b4e61ec75d188ca4044c1e4166ece))
+* add cqrs for metrics capabilities ([e00e247](https://github.com/TomaszKandula/TokanPages/commit/e00e247894f390404e134ac155bcee183abb8fbc))
+* add cqrs for PayU service ([66d8afb](https://github.com/TomaszKandula/TokanPages/commit/66d8afbaf32757396b4e5a26fce14cfbd60640fe))
+* add domain entities, mappings and models ([441587a](https://github.com/TomaszKandula/TokanPages/commit/441587ac8ed6565ae756970197fb5c3a6d55d0af))
+* add DTO for revenue ([660cc1f](https://github.com/TomaszKandula/TokanPages/commit/660cc1fad03ad32f3c38133124e1fdb7cdd666ce))
+* add error codes ([43a2f57](https://github.com/TomaszKandula/TokanPages/commit/43a2f57e817e887855ee454af3051cdb243da053))
+* add error codes ([c88dd8c](https://github.com/TomaszKandula/TokanPages/commit/c88dd8c95d07239998d8f6c5e5a3ed135d4615fa))
+* add metrics service ([736494c](https://github.com/TomaszKandula/TokanPages/commit/736494c1b721696f94219b7ea19767f7243163d9))
+* cache service for subscriptions ([7ca7f16](https://github.com/TomaszKandula/TokanPages/commit/7ca7f16f51987f39965e006716e49c95697183db))
+* configure DTO project ([fa2e1ea](https://github.com/TomaszKandula/TokanPages/commit/fa2e1eaa68c25d7b709769baae2eb07b2f53e371))
+* cqrs for revenue functionality ([54d8875](https://github.com/TomaszKandula/TokanPages/commit/54d8875e2a99bbf46bf223a07a783e48abbc06c6))
+* docker for revenue ([d97ff4d](https://github.com/TomaszKandula/TokanPages/commit/d97ff4d16a2447ea3f94229b7568b8ca130f33e8))
+* implement PayU payment service ([076e628](https://github.com/TomaszKandula/TokanPages/commit/076e628b0d6a872f9731c3db7ab29df63ecff95c))
+* implement REDIS cache for countries and currencies controllers ([004804b](https://github.com/TomaszKandula/TokanPages/commit/004804be8a5902bcacc19ff9f106fdab7aa256ec))
+* implement REDIS cache for payments controller ([6f5ce26](https://github.com/TomaszKandula/TokanPages/commit/6f5ce26f8a35fb7392c44e37b57234ca862ff060))
+* implement REDIS cache for templates controller ([738ece0](https://github.com/TomaszKandula/TokanPages/commit/738ece092ef11fd2e74746db43baaef5c98c5d57))
+* migrate database tables ([062cdba](https://github.com/TomaszKandula/TokanPages/commit/062cdba5c0e7435881ee82dddafa2030a46c20d4))
+* register dependency ([7798d5a](https://github.com/TomaszKandula/TokanPages/commit/7798d5aa75e77ad520f1f0b51776a520bbd221f2))
+* register dependency ([0922323](https://github.com/TomaszKandula/TokanPages/commit/09223231119384353ee35a25dc5d0a6a3082383b))
+* remove TODO, add data from user info table ([b2a6321](https://github.com/TomaszKandula/TokanPages/commit/b2a6321bef5e1931cc687d63d7f463827344d9e9))
+* simplify upload implementation ([7381619](https://github.com/TomaszKandula/TokanPages/commit/73816191d051313de834cfffe051b427cc4b22fc))
+* update configuration ([d333715](https://github.com/TomaszKandula/TokanPages/commit/d33371544645e8561c70e5f127a0b067d03b14e2))
+* update navigation props, add missing configuration ([220d391](https://github.com/TomaszKandula/TokanPages/commit/220d3912471727b1ae180584267d5d0129fb216a))
+
 # [0.74.0](https://github.com/TomaszKandula/TokanPages/compare/v0.73.1...v0.74.0) (2024-04-13)
 
 
