@@ -380,5 +380,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("SUBSCRIPTION_DOES_NOT_EXISTS", resourceCulture);
             }
         }
+        
+        public static string INVALID_ARGUMENT {
+            get {
+                return ResourceManager.GetString("INVALID_ARGUMENT", resourceCulture);
+            }
+        }
     }
 }

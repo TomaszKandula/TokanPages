@@ -285,4 +285,7 @@
   <data name="SUBSCRIPTION_DOES_NOT_EXISTS" xml:space="preserve">
     <value>Requested subscription does not exists</value>
   </data>
+  <data name="INVALID_ARGUMENT" xml:space="preserve">
+    <value>Cannot accept given argument</value>
+  </data>
 </root>
