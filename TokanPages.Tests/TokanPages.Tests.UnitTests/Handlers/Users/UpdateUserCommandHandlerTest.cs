@@ -61,9 +61,9 @@ public class UpdateUserCommandHandlerTest : TestBase
         var userEntity = await databaseContext.Users.FindAsync(command.Id);
 
         userEntity.Should().NotBeNull();
-        userEntity.EmailAddress.Should().Be(command.EmailAddress);
-        userEntity.UserAlias.Should().Be(command.UserAlias);
-        userEntity.IsActivated.Should().BeTrue();
+        userEntity?.EmailAddress.Should().Be(command.EmailAddress);
+        userEntity?.UserAlias.Should().Be(command.UserAlias);
+        userEntity?.IsActivated.Should().BeTrue();
     }
 
     [Fact]

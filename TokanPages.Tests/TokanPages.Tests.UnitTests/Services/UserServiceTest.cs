@@ -1087,10 +1087,10 @@ public class UserServiceTest : TestBase
         result.ReasonRevoked.Should().BeNull();
 
         var savedUserRefreshToken = await databaseContext.UserRefreshTokens.FindAsync(userRefreshTokens[0].Id);
-        savedUserRefreshToken.Revoked.Should().NotBeNull();
-        savedUserRefreshToken.RevokedByIp.Should().NotBeNull();
-        savedUserRefreshToken.ReplacedByToken.Should().NotBeNull();
-        savedUserRefreshToken.ReasonRevoked.Should().NotBeNull();
+        savedUserRefreshToken?.Revoked.Should().NotBeNull();
+        savedUserRefreshToken?.RevokedByIp.Should().NotBeNull();
+        savedUserRefreshToken?.ReplacedByToken.Should().NotBeNull();
+        savedUserRefreshToken?.ReasonRevoked.Should().NotBeNull();
     }
 
     [Fact]
