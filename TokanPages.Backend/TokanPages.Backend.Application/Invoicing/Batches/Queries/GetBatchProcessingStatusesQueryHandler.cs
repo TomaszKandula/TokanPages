@@ -2,22 +2,19 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Database;
-using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
 
-public class GetBatchProcessingStatusListQueryHandler : RequestHandler<GetBatchProcessingStatusListQuery, IEnumerable<GetBatchProcessingStatusListQueryResult>>
+public class GetBatchProcessingStatusesQueryHandler : RequestHandler<GetBatchProcessingStatusesQuery, IEnumerable<GetBatchProcessingStatusesQueryResult>>
 {
-    private readonly IUserService _userService;
+    public GetBatchProcessingStatusesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService)
+        : base(databaseContext, loggerService) { }
 
-    public GetBatchProcessingStatusListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
-        : base(databaseContext, loggerService) => _userService = userService;
-
-    public override async Task<IEnumerable<GetBatchProcessingStatusListQueryResult>> Handle(GetBatchProcessingStatusListQuery request, CancellationToken cancellationToken)
+    public override async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> Handle(GetBatchProcessingStatusesQuery request, CancellationToken cancellationToken)
     {
         var statuses = Enum.GetValues<ProcessingStatuses>();
         var result = statuses
-            .Select((processingStatuses, index) => new GetBatchProcessingStatusListQueryResult
+            .Select((processingStatuses, index) => new GetBatchProcessingStatusesQueryResult
             {
                 SystemCode = index,
                 ProcessingStatus = processingStatuses.ToString().ToUpper()

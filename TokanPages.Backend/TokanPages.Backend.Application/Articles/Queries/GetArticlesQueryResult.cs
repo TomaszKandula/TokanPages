@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetAllArticlesQueryResult
+public class GetArticlesQueryResult
 {
     public Guid Id { get; set; }
 

@@ -36,8 +36,8 @@ public class ArticlesController : ApiBaseController
     /// <returns>Object list.</returns>
     [HttpGet]
     [Route("[action]")]
-    [ProducesResponseType(typeof(IEnumerable<GetAllArticlesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetAllArticlesQueryResult>> GetAllArticles([FromQuery] bool isPublished = true, bool noCache = false)
+    [ProducesResponseType(typeof(IEnumerable<GetArticlesQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetArticlesQueryResult>> GetArticles([FromQuery] bool isPublished = true, bool noCache = false)
         => await _articlesCache.GetArticles(isPublished, noCache);
 
     /// <summary>

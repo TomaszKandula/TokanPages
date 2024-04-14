@@ -4,15 +4,15 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetAllUsersQueryHandler : RequestHandler<GetAllUsersQuery, List<GetAllUsersQueryResult>>
+public class GetUsersQueryHandler : RequestHandler<GetUsersQuery, List<GetUsersQueryResult>>
 {
-    public GetAllUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public override async Task<List<GetAllUsersQueryResult>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
+    public override async Task<List<GetUsersQueryResult>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
         return await DatabaseContext.Users
             .AsNoTracking()
-            .Select(users => new GetAllUsersQueryResult 
+            .Select(users => new GetUsersQueryResult 
             { 
                 Id = users.Id,
                 AliasName = users.UserAlias,

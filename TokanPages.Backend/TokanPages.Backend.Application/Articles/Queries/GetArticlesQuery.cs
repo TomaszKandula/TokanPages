@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetAllArticlesQuery : IRequest<List<GetAllArticlesQueryResult>>
+public class GetArticlesQuery : IRequest<List<GetArticlesQueryResult>>
 {
     public bool IsPublished { get; set; }
 }

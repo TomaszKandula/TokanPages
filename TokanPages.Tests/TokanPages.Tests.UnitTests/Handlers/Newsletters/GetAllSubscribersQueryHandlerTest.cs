@@ -15,8 +15,8 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var query = new GetAllNewslettersQuery();
-        var handler = new GetAllNewslettersQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetNewslettersQuery();
+        var handler = new GetNewslettersQueryHandler(databaseContext, mockedLogger.Object);
 
         var subscribers = new List<TokanPages.Backend.Domain.Entities.Newsletters>
         {

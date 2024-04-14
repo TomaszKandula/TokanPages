@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetAllUsersQueryResult
+public class GetUsersQueryResult
 {
     public Guid Id { get; set; }
 

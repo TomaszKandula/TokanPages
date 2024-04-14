@@ -2,4 +2,4 @@
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetAllUsersQuery : IRequest<List<GetAllUsersQueryResult>> { }
+public class GetUsersQuery : IRequest<List<GetUsersQueryResult>> { }

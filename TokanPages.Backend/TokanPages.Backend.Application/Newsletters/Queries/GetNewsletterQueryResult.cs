@@ -1,6 +1,6 @@
 ﻿namespace TokanPages.Backend.Application.Newsletters.Queries;
 
-public class GetNewsletterQueryResult : GetAllNewslettersQueryResult
+public class GetNewsletterQueryResult : GetNewslettersQueryResult
 {
     public DateTime CreatedAt { get; set; }
 

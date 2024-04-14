@@ -33,16 +33,16 @@ public class UsersCache : IUsersCache
     }
 
     /// <inheritdoc />
-    public async Task<List<GetAllUsersQueryResult>> GetUsers(bool noCache = false)
+    public async Task<List<GetUsersQueryResult>> GetUsers(bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetAllUsersQuery());
+            return await _mediator.Send(new GetUsersQuery());
 
         var key = $"{_environment.EnvironmentName}:users";
-        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllUsersQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<List<GetUsersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
-        value = await _mediator.Send(new GetAllUsersQuery());
+        value = await _mediator.Send(new GetUsersQuery());
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

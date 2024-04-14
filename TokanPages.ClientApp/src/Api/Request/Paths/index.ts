@@ -3,13 +3,13 @@ const APP_BACKEND = process.env.REACT_APP_BACKEND;
 export const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
 const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
-const API_SUBSCRIBERS_URI = `${API_BASE_URI}/subscribers`;
+const API_NEWSLETTERS_URI = `${API_BASE_URI}/newsletters`;
 const API_MAILER_URI = `${API_BASE_URI}/mailer`;
 const API_CONTENT_URI = `${API_BASE_URI}/content`;
 const API_ASSETS_URI = `${API_BASE_URI}/assets`;
 const API_IMAGE_ASSETS_URI = `${API_ASSETS_URI}/getImageAsset`;
 
-export const GET_ARTICLES = `${API_ARTICLES_URI}/getAllArticles`;
+export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;
 export const GET_ARTICLE = `${API_ARTICLES_URI}/{id}/getArticle`;
 export const ADD_ARTICLE = `${API_ARTICLES_URI}/addArticle`;
 export const UPDATE_ARTICLE_CONTENT = `${API_ARTICLES_URI}/updateArticleContent`;
@@ -24,7 +24,7 @@ export const REAUTHENTICATE = `${API_USERS_URI}/reAuthenticateUser`;
 export const REVOKE_USER_TOKEN = `${API_USERS_URI}/revokeUserToken`;
 export const REVOKE_REFRESH_TOKEN = `${API_USERS_URI}/revokeUserRefreshToken`;
 export const GET_USER = `${API_USERS_URI}/{id}/getUser`;
-export const GET_USERS = `${API_USERS_URI}/getAllUsers`;
+export const GET_USERS = `${API_USERS_URI}/getUsers`;
 export const GET_USER_IMAGE = `${API_USERS_URI}/{id}/getUserImage/?blobName={name}`;
 export const GET_USER_VIDEO = `${API_USERS_URI}/{id}/getUserVideo/?blobName={name}`;
 export const ADD_USER = `${API_USERS_URI}/addUser`;
@@ -35,15 +35,15 @@ export const UPDATE_USER_PASSWORD = `${API_USERS_URI}/updateUserPassword`;
 export const UPLOAD_USER_IMAGE = `${API_USERS_URI}/uploadImage`;
 export const UPLOAD_USER_VIDEO = `${API_USERS_URI}/uploadVideo`;
 
-export const GET_SUBSCRIBERS = `${API_SUBSCRIBERS_URI}/getAllSubscribers`;
-export const GET_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/{id}/getSubscriber`;
-export const ADD_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/addSubscriber`;
-export const UPDATE_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/updateSubscriber`;
-export const REMOVE_SUBSCRIBER = `${API_SUBSCRIBERS_URI}/removeSubscriber`;
+export const GET_SUBSCRIBERS = `${API_NEWSLETTERS_URI}/getNewsletters`;
+export const GET_SUBSCRIBER = `${API_NEWSLETTERS_URI}/{id}/getNewsletter`;
+export const ADD_SUBSCRIBER = `${API_NEWSLETTERS_URI}/addNewsletter`;
+export const UPDATE_SUBSCRIBER = `${API_NEWSLETTERS_URI}/updateNewsletter`;
+export const REMOVE_SUBSCRIBER = `${API_NEWSLETTERS_URI}/removeNewsletter`;
 
-export const VERIFY_EMAIL = `${API_MAILER_URI}/verifyEmailAddress`;
 export const SEND_MESSAGE = `${API_MAILER_URI}/sendMessage`;
 export const SEND_NEWSLETTER = `${API_MAILER_URI}/sendNewsletter`;
+export const VERIFY_EMAIL = `${API_MAILER_URI}/verifyEmailAddress`;
 
 export const GET_IMAGE_ASSET = `${API_ASSETS_URI}/getImageAsset/?blobName={name}`;
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset/?blobName={name}`;

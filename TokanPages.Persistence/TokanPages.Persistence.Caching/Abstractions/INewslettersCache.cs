@@ -12,7 +12,7 @@ public interface INewslettersCache
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object list</returns>
-    Task<List<GetAllNewslettersQueryResult>> GetNewsletters(bool noCache = false);
+    Task<List<GetNewslettersQueryResult>> GetNewsletters(bool noCache = false);
 
     /// <summary>
     /// Returns single newsletter subscriber

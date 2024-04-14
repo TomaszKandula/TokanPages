@@ -52,8 +52,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
 
-        var query = new GetAllArticlesQuery { IsPublished = false };
-        var handler = new GetAllArticlesQueryHandler(databaseContext, mockedLogger.Object);
+        var query = new GetArticlesQuery { IsPublished = false };
+        var handler = new GetArticlesQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);

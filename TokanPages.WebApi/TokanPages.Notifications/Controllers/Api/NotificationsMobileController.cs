@@ -24,9 +24,9 @@ public class NotificationsMobileController : ApiBaseController
     /// </summary>
     /// <returns>List of all installations.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(GetAllInstallationsQueryResult),StatusCodes.Status200OK)]
-    public async Task<GetAllInstallationsQueryResult> GetAllInstallations() 
-        => await Mediator.Send(new GetAllInstallationsQuery());
+    [ProducesResponseType(typeof(GetInstallationsQueryResult),StatusCodes.Status200OK)]
+    public async Task<GetInstallationsQueryResult> GetInstallations() 
+        => await Mediator.Send(new GetInstallationsQuery());
 
     /// <summary>
     /// Returns registered installation by ID.

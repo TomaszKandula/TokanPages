@@ -4,16 +4,16 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetAllArticlesQueryHandler : RequestHandler<GetAllArticlesQuery, List<GetAllArticlesQueryResult>>
+public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, List<GetArticlesQueryResult>>
 {
-    public GetAllArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public override async Task<List<GetAllArticlesQueryResult>> Handle(GetAllArticlesQuery request, CancellationToken cancellationToken) 
+    public override async Task<List<GetArticlesQueryResult>> Handle(GetArticlesQuery request, CancellationToken cancellationToken) 
     {
         return await DatabaseContext.Articles
             .AsNoTracking()
             .Where(articles => articles.IsPublished == request.IsPublished)
-            .Select(articles => new GetAllArticlesQueryResult 
+            .Select(articles => new GetArticlesQueryResult 
             { 
                 Id = articles.Id,
                 Title = articles.Title,

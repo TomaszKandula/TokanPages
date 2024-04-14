@@ -33,16 +33,16 @@ public class NewslettersCache : INewslettersCache
     }
 
     /// <inheritdoc />
-    public async Task<List<GetAllNewslettersQueryResult>> GetNewsletters(bool noCache = false)
+    public async Task<List<GetNewslettersQueryResult>> GetNewsletters(bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetAllNewslettersQuery());
+            return await _mediator.Send(new GetNewslettersQuery());
 
         var key = $"{_environment.EnvironmentName}:newsletters";
-        var value = await _redisDistributedCache.GetObjectAsync<List<GetAllNewslettersQueryResult>>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<List<GetNewslettersQueryResult>>(key);
         if (value is not null && value.Any()) return value;
 
-        value = await _mediator.Send(new GetAllNewslettersQuery());
+        value = await _mediator.Send(new GetNewslettersQuery());
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

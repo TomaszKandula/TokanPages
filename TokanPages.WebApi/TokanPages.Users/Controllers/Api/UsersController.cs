@@ -122,8 +122,8 @@ public class UsersController : ApiBaseController
     [HttpGet]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard)]
-    [ProducesResponseType(typeof(IEnumerable<GetAllUsersQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetAllUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
+    [ProducesResponseType(typeof(IEnumerable<GetUsersQueryResult>), StatusCodes.Status200OK)]
+    public async Task<IEnumerable<GetUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
         => await _usersCache.GetUsers(noCache);
 
     /// <summary>

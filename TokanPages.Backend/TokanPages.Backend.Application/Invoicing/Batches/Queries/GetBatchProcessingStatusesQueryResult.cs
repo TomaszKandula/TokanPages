@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetBatchProcessingStatusListQueryResult
+public class GetBatchProcessingStatusesQueryResult
 {
     public int SystemCode { get; set; }
 
