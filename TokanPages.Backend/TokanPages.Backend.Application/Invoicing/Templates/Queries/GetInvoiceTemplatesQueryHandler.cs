@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Invoicing.Templates.Queries.Models;
+using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.TemplateService;

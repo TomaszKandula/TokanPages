@@ -1,5 +1,5 @@
 using MediatR;
-using TokanPages.Backend.Application.Invoicing.Templates.Queries.Models;
+using TokanPages.Backend.Application.Invoicing.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
 

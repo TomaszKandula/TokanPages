@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Application.Invoicing.Templates.Queries.Models;
+namespace TokanPages.Backend.Application.Invoicing.Models;
 
 [ExcludeFromCodeCoverage]
 public class InvoiceTemplateInfo

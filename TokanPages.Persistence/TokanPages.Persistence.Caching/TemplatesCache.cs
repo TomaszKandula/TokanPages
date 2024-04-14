@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Invoicing.Templates.Queries;
-using TokanPages.Backend.Application.Invoicing.Templates.Queries.Models;
+using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 
