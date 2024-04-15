@@ -3,7 +3,7 @@ using TokanPages.Backend.Application.NotificationsWeb.Command;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService.Abstractions;
@@ -87,7 +87,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             await DatabaseContext.UserMessages.AddAsync(newChat, cancellationToken);
         }
 
-        var initials = GetInitials(user);
+        var initials = await GetUserInitials(user.Id, cancellationToken);
         var avatarName = await GetUserAvatarName(user.Id, cancellationToken);
         var chatData = new NotifyChatItem
         {
@@ -124,11 +124,24 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
         await handler.Handle(notify, cancellationToken);
     }
 
-    private static string GetInitials(User userData)
+    private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
     {
         var initials = "A";
-        if (userData is not { FirstName: "", LastName: "" })
-            initials = (userData.FirstName[..1] + userData.LastName[..1]).ToUpper();
+        var userInfo = await DatabaseContext.UserInfo
+            .AsNoTracking()
+            .Where(users => users.Id == userId)
+            .Select(users => new
+            {
+                users.FirstName,
+                users.LastName
+            })
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (userInfo is null)
+            return initials;
+
+        if (userInfo is not { FirstName: "", LastName: "" })
+            initials = (userInfo.FirstName[..1] + userInfo.LastName[..1]).ToUpper();
 
         return initials;
     }
@@ -138,9 +151,9 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
         var blobName = await DatabaseContext.UserInfo
             .AsNoTracking()
             .Where(users => users.UserId == userId)
-            .Select(users => users.UserImage)
+            .Select(users => users.UserImageName)
             .SingleOrDefaultAsync(cancellationToken);
 
-        return blobName;
+        return blobName ?? string.Empty;
     }
 }

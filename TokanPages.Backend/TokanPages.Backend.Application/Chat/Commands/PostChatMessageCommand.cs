@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace ForSportApp.Backend.Application.Chat.Commands;
+namespace TokanPages.Backend.Application.Chat.Commands;
 
 public class PostChatMessageCommand : IRequest<PostChatMessageCommandResult>
 {

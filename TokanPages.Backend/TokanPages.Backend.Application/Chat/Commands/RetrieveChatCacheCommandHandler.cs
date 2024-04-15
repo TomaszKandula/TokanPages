@@ -12,7 +12,7 @@ public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheC
     public override async Task<RetrieveChatCacheCommandResult> Handle(RetrieveChatCacheCommand request, CancellationToken cancellationToken)
     {
         var keys = new HashSet<string>(request.ChatKey);
-        var notifications = await DatabaseContext.UserMessageCache
+        var notifications = await DatabaseContext.UserMessagesCache
             .AsNoTracking()
             .Where(cache => keys.Contains(cache.ChatKey))
             .Select(cache => cache.Notification)
@@ -20,7 +20,7 @@ public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheC
 
         return new RetrieveChatCacheCommandResult
         {
-            Notifications = notifications ?? Array.Empty<string>()
+            Notifications = notifications
         };
     }
 }

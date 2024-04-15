@@ -28,7 +28,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
             .SingleOrDefaultAsync(cancellationToken);
 
         if (string.IsNullOrWhiteSpace(chatData))
-            return new GetChatDataQueryResult { ChatData = chatData };
+            return new GetChatDataQueryResult { ChatData = string.Empty };
 
         var decodedKey = request.ChatKey.ToBase64Decode();
         var arrayKey = decodedKey.Split(':');
@@ -63,7 +63,8 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
     {
-        var userData = await DatabaseContext.Users
+        var initials = "A";
+        var userInfo = await DatabaseContext.UserInfo
             .AsNoTracking()
             .Where(users => users.Id == userId)
             .Select(users => new
@@ -73,9 +74,11 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
             })
             .SingleOrDefaultAsync(cancellationToken);
 
-        var initials = "A";
-        if (userData is not { FirstName: "", LastName: "" })
-            initials = (userData.FirstName[..1] + userData.LastName[..1]).ToUpper();
+        if (userInfo is null)
+            return initials;
+
+        if (userInfo is not { FirstName: "", LastName: "" })
+            initials = (userInfo.FirstName[..1] + userInfo.LastName[..1]).ToUpper();
 
         return initials;
     }
@@ -85,9 +88,9 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
         var blobName = await DatabaseContext.UserInfo
             .AsNoTracking()
             .Where(users => users.UserId == userId)
-            .Select(users => users.UserImage)
+            .Select(users => users.UserImageName)
             .SingleOrDefaultAsync(cancellationToken);
 
-        return blobName;
+        return blobName ?? string.Empty;
     }
 }
