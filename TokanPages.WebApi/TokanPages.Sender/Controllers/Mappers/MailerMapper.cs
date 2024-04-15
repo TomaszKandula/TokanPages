@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Mailer.Commands;
+using TokanPages.Backend.Application.Sender.Mailer.Commands;
 using TokanPages.Sender.Dto.Mailer;
 
 namespace TokanPages.Sender.Controllers.Mappers;
@@ -33,7 +33,7 @@ public static class MailerMapper
     /// <returns>Command object.</returns>
     public static SendNewsletterCommand MapToSendNewsletterCommand(SendNewsletterDto model) => new() 
     { 
-        SubscriberInfo = model.SubscriberInfo?.Select(dto => new Backend.Application.Mailer.Models.SubscriberInfo
+        SubscriberInfo = model.SubscriberInfo?.Select(dto => new Backend.Application.Sender.Mailer.Models.SubscriberInfo
         {
             Email = dto.Email,
             Id = dto.Id

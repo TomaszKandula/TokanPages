@@ -10,7 +10,7 @@ using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
 
-namespace TokanPages.Backend.Application.Mailer.Commands;
+namespace TokanPages.Backend.Application.Sender.Mailer.Commands;
 
 public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit>
 {

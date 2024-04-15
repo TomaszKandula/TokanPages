@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Application.Mailer.Models;
+namespace TokanPages.Backend.Application.Sender.Mailer.Models;
 
 /// <summary>
 /// Subscriber basic data.

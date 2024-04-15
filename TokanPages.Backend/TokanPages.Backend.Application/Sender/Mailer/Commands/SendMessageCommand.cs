@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace TokanPages.Backend.Application.Mailer.Commands;
+namespace TokanPages.Backend.Application.Sender.Mailer.Commands;
 
 public class SendMessageCommand : IRequest<Unit>
 {

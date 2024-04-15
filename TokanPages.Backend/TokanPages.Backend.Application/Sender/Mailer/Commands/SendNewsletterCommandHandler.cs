@@ -7,7 +7,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 
-namespace TokanPages.Backend.Application.Mailer.Commands;
+namespace TokanPages.Backend.Application.Sender.Mailer.Commands;
 
 public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand, Unit>
 {

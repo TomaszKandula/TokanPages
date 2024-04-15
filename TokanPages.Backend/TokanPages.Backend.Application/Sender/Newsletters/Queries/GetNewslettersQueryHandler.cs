@@ -2,7 +2,7 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 
-namespace TokanPages.Backend.Application.Newsletters.Queries;
+namespace TokanPages.Backend.Application.Sender.Newsletters.Queries;
 
 public class GetNewslettersQueryHandler : RequestHandler<GetNewslettersQuery, List<GetNewslettersQueryResult>>
 {

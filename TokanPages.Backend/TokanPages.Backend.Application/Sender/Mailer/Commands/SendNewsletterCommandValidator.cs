@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
 
-namespace TokanPages.Backend.Application.Mailer.Commands;
+namespace TokanPages.Backend.Application.Sender.Mailer.Commands;
 
 public class SendNewsletterCommandValidator : AbstractValidator<SendNewsletterCommand>
 {

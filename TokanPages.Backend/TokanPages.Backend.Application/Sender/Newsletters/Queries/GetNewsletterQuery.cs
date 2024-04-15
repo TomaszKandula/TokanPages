@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace TokanPages.Backend.Application.Newsletters.Queries;
+namespace TokanPages.Backend.Application.Sender.Newsletters.Queries;
 
 public class GetNewsletterQuery : IRequest<GetNewsletterQueryResult>
 {

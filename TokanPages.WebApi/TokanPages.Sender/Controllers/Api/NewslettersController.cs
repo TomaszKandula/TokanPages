@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
-using TokanPages.Backend.Application.Newsletters.Queries;
+using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Sender.Controllers.Mappers;
 using TokanPages.Sender.Dto.Newsletters;

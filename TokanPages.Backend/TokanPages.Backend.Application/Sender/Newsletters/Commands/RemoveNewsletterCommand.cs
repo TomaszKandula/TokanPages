@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace TokanPages.Backend.Application.Newsletters.Commands;
+namespace TokanPages.Backend.Application.Sender.Newsletters.Commands;
 
 public class RemoveNewsletterCommand : IRequest<Unit>
 {

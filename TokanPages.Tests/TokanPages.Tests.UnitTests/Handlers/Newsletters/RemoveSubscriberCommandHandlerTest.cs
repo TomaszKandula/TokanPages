@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
-using TokanPages.Backend.Application.Newsletters.Commands;
+using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;

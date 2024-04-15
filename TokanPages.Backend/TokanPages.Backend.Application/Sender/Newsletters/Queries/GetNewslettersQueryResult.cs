@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Application.Newsletters.Queries;
+﻿namespace TokanPages.Backend.Application.Sender.Newsletters.Queries;
 
 public class GetNewslettersQueryResult
 {

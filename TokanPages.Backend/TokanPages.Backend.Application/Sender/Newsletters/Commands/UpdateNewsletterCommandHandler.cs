@@ -7,7 +7,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 
-namespace TokanPages.Backend.Application.Newsletters.Commands;
+namespace TokanPages.Backend.Application.Sender.Newsletters.Commands;
 
 public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCommand, Unit>
 {
