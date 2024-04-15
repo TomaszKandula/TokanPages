@@ -1,13 +1,6 @@
 import Validate from "validate.js";
 import { PasswordFormInput } from "..";
-import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter, HaveSpecialCharacter } from "../Helpers";
-
-import {
-    PASSWORD_MISSING_CHAR,
-    PASSWORD_MISSING_LARGE_LETTER,
-    PASSWORD_MISSING_NUMBER,
-    PASSWORD_MISSING_SMALL_LETTER,
-} from "../../../../Shared/constants";
+import { containNumber, haveLargeLetter, haveSmallLetter, haveSpecialCharacter } from "../Helpers";
 
 export const ValidatePasswordForm = (props: PasswordFormInput): any => {
     const constraints = {
@@ -75,39 +68,3 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
 
     return result;
 };
-
-const haveSpecialCharacter = (newPassword: string, result: any): void => {
-    if (!HaveSpecialCharacter(newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, "New password " + PASSWORD_MISSING_CHAR]
-            : [PASSWORD_MISSING_CHAR];
-        result = { ...result, newPassword: data };
-    }
-}
-
-const containNumber = (newPassword: string, result: any): void => {
-    if (!ContainNumber(newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, "New password " + PASSWORD_MISSING_NUMBER]
-            : [PASSWORD_MISSING_NUMBER];
-        result = { ...result, newPassword: data };
-    }
-}
-
-const haveLargeLetter = (newPassword: string, result: any): void => {
-    if (!HaveLargeLetter(newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, "New password " + PASSWORD_MISSING_LARGE_LETTER]
-            : [PASSWORD_MISSING_LARGE_LETTER];
-        result = { ...result, newPassword: data };
-    }
-}
-
-const haveSmallLetter = (newPassword: string, result: any): void => {
-    if (!HaveSmallLetter(newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, "New password " + PASSWORD_MISSING_SMALL_LETTER]
-            : [PASSWORD_MISSING_SMALL_LETTER];
-        result = { ...result, newPassword: data };
-    }
-}
