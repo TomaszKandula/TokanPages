@@ -1,5 +1,6 @@
 import Validate from "validate.js";
 import { SignupFormInput } from "..";
+//import { containNumber, haveLargeLetter, haveSmallLetter, haveSpecialCharacter } from "../Helpers";
 import {
     PASSWORD_MISSING_CHAR,
     PASSWORD_MISSING_LARGE_LETTER,
@@ -59,6 +60,12 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
         },
         constraints
     );
+
+    //TODO: use below methods after issues are resolved
+    // containNumber(props.password, result);
+    // haveSpecialCharacter(props.password, result);
+    // haveLargeLetter(props.password, result);
+    // haveSmallLetter(props.password, result);
 
     if (!HaveSpecialCharacter(props.password)) {
         const data = HasProperty(result, "password")

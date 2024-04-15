@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Hosting;
-using TokanPages.Backend.Application.Subscriptions.Queries;
+using TokanPages.Backend.Application.Revenue.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 

@@ -1,8 +1,8 @@
 using FluentAssertions;
 using MediatR;
 using Moq;
-using TokanPages.Backend.Application.Mailer.Commands;
-using TokanPages.Backend.Application.Mailer.Models;
+using TokanPages.Backend.Application.Sender.Mailer.Commands;
+using TokanPages.Backend.Application.Sender.Mailer.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;

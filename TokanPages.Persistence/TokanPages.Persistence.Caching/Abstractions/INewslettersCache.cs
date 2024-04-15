@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Newsletters.Queries;
+using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 

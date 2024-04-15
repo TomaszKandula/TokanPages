@@ -1,0 +1,12 @@
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using TokanPages.Backend.Domain.Enums;
+
+namespace TokanPages.Backend.Application.Content.Assets.Commands;
+
+public class AddVideoAssetCommand : IRequest<AddVideoAssetCommandResult>
+{
+    public ProcessingTarget Target { get; set; }
+
+    public IFormFile? BinaryData { get; set; }
+}

@@ -22,7 +22,7 @@ public static class Program
         try
         {
             var configuration = GetConfiguration();
-            const string fileName = @"logs/TokanPages.Notifications/{yyyy}{MM}{dd}.txt";
+            const string fileName = @"logs/TokanPages.Revenue/{yyyy}{MM}{dd}.txt";
             Log.Logger = Logger.Configuration.GetLogger(configuration, fileName);
             Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
             CreateHostBuilder(configuration)

@@ -1,5 +1,5 @@
 using FluentAssertions;
-using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 

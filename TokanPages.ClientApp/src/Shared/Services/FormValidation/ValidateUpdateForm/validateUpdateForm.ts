@@ -1,17 +1,10 @@
 import Validate from "validate.js";
 import { UpdateFormInput } from "..";
-import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter, HaveSpecialCharacter } from "../Helpers";
-
-import {
-    PASSWORD_MISSING_CHAR,
-    PASSWORD_MISSING_LARGE_LETTER,
-    PASSWORD_MISSING_NUMBER,
-    PASSWORD_MISSING_SMALL_LETTER,
-} from "../../../../Shared/constants";
+import { containNumber, haveLargeLetter, haveSmallLetter, haveSpecialCharacter } from "../Helpers";
 
 export const ValidateUpdateForm = (props: UpdateFormInput): any => {
     let constraints = {
-        newPassword: {
+        password: {
             presence: true,
             length: {
                 minimum: 8,
@@ -31,39 +24,16 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
 
     let result = Validate(
         {
-            newPassword: props.newPassword,
+            password: props.newPassword,
             verifyPassword: props.verifyPassword,
         },
         constraints
     );
 
-    if (!HaveSpecialCharacter(props.newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, PASSWORD_MISSING_CHAR]
-            : [PASSWORD_MISSING_CHAR];
-        result = { ...result, password: data };
-    }
-
-    if (!ContainNumber(props.newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, PASSWORD_MISSING_NUMBER]
-            : [PASSWORD_MISSING_NUMBER];
-        result = { ...result, password: data };
-    }
-
-    if (!HaveLargeLetter(props.newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, PASSWORD_MISSING_LARGE_LETTER]
-            : [PASSWORD_MISSING_LARGE_LETTER];
-        result = { ...result, password: data };
-    }
-
-    if (!HaveSmallLetter(props.newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, PASSWORD_MISSING_SMALL_LETTER]
-            : [PASSWORD_MISSING_SMALL_LETTER];
-        result = { ...result, password: data };
-    }
+    containNumber(props.newPassword, result);
+    haveSpecialCharacter(props.newPassword, result);
+    haveLargeLetter(props.newPassword, result);
+    haveSmallLetter(props.newPassword, result);
 
     if (props.newPassword !== props.verifyPassword) {
         const errorText = "Password do not match";
@@ -71,11 +41,11 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
             return { message: errorText };
         }
 
-        let isNewPasswordUndefined = result["newPassword"] === undefined;
+        let isNewPasswordUndefined = result["password"] === undefined;
         let isVerifyPasswordUndefined = result["verifyPassword"] === undefined;
 
         if (!isNewPasswordUndefined && !isVerifyPasswordUndefined) {
-            return { newPassword: [...result.newPassword], verifyPassword: [...result.verifyPassword, errorText] };
+            return { password: [...result.password], verifyPassword: [...result.verifyPassword, errorText] };
         }
 
         if (isNewPasswordUndefined && !isVerifyPasswordUndefined) {
@@ -83,7 +53,7 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
         }
 
         if (!isNewPasswordUndefined && isVerifyPasswordUndefined) {
-            return { newPassword: [...result.newPassword] };
+            return { password: [...result.password] };
         }
     }
 

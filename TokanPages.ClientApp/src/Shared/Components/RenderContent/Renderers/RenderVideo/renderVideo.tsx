@@ -13,7 +13,7 @@ export const RenderVideo = (props: TextItem): JSX.Element => {
         valueUrl = `${API_BASE_URI}${valueUrl}`;
     }
 
-    let propUrl = props.prop as string;
+    let propUrl = props.prop;
     if (!propUrl.includes("https://")) {
         propUrl = `${API_BASE_URI}${propUrl}`;
     }

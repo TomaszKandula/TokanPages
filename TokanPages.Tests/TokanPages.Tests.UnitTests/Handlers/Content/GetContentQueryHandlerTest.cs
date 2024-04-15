@@ -2,7 +2,7 @@ using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;

@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.Backend.Application.Assets.Commands;
-using TokanPages.Backend.Application.Assets.Queries;
+using TokanPages.Backend.Application.Content.Assets.Commands;
+using TokanPages.Backend.Application.Content.Assets.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Content.Controllers.Mappers;
@@ -16,7 +16,7 @@ namespace TokanPages.Content.Controllers.Api;
 /// It uses Microsoft 'ResponseCache' for caching images/videos.
 /// </remarks>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class AssetsController : ApiBaseController
 {
     /// <summary>
@@ -87,4 +87,17 @@ public class AssetsController : ApiBaseController
     [ProducesResponseType(typeof(AddVideoAssetCommandResult), StatusCodes.Status200OK)]
     public async Task<AddVideoAssetCommandResult> AddVideoAsset([FromForm] AddVideoAssetDto payload)
         => await Mediator.Send(AssetsMapper.MapToAddVideoAssetCommand(payload));
+    
+    /// <summary>
+    /// Returns video processing status by given ticket ID.
+    /// </summary>
+    /// <param name="id">Ticket ID.</param>
+    /// <returns>Processing details.</returns>
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GetVideoStatusQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetVideoStatusQueryResult> GetProcessingStatus([FromRoute] Guid id)
+        => await Mediator.Send(new GetVideoStatusQuery { TicketId = id });
 }
