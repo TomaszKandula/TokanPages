@@ -1,5 +1,5 @@
 using TokanPages.Backend.Application.Chat.Models;
-using TokanPages.Backend.Application.NotificationsWeb.Command;
+using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;

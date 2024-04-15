@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
-using TokanPages.Backend.Application.Newsletters.Queries;
+using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Sender.Controllers.Mappers;
 using TokanPages.Sender.Dto.Newsletters;
@@ -15,7 +15,7 @@ namespace TokanPages.Sender.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]")]
+[Route("api/v{version:apiVersion}/sender/[controller]")]
 public class NewslettersController : ApiBaseController
 {
     private readonly INewslettersCache _newslettersCache;

@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Subscriptions.Commands;
+using TokanPages.Backend.Application.Revenue.Commands;
 using TokanPages.Revenue.Dto.Subscriptions;
 
 namespace TokanPages.Revenue.Controllers.Mappers;

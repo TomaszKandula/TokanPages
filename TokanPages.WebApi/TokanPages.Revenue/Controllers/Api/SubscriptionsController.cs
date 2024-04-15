@@ -1,5 +1,5 @@
-using TokanPages.Backend.Application.Subscriptions.Commands;
-using TokanPages.Backend.Application.Subscriptions.Queries;
+using TokanPages.Backend.Application.Revenue.Commands;
+using TokanPages.Backend.Application.Revenue.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Revenue.Controllers.Mappers;
@@ -16,7 +16,7 @@ namespace TokanPages.Revenue.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/revenue/[controller]/[action]")]
 public class SubscriptionsController : ApiBaseController
 {
     private readonly ISubscriptionsCache _subscriptionsCache;

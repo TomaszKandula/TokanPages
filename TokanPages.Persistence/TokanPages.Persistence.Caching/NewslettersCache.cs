@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
-using TokanPages.Backend.Application.Newsletters.Queries;
+using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 

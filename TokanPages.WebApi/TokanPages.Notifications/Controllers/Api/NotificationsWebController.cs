@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.NotificationsWeb.Command;
+using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Notifications.Controllers.Mappers;
 using TokanPages.Notifications.Dto.NotificationsWeb;
 using MediatR;
@@ -12,11 +12,11 @@ namespace TokanPages.Notifications.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
-public class NotificationsWebController : ApiBaseController
+[Route("api/v{version:apiVersion}/notifications/[controller]/[action]")]
+public class WebController : ApiBaseController
 {
     /// <inheritdoc />
-    public NotificationsWebController(IMediator mediator) : base(mediator) { }
+    public WebController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
     /// Notifies front-end via web socket connection.

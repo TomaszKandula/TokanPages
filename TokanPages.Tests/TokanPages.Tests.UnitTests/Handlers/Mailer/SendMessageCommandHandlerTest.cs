@@ -1,8 +1,7 @@
 using FluentAssertions;
 using MediatR;
-using Microsoft.Extensions.Configuration;
 using Moq;
-using TokanPages.Backend.Application.Mailer.Commands;
+using TokanPages.Backend.Application.Sender.Mailer.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;

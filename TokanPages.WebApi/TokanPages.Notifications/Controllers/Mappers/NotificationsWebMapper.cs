@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.NotificationsWeb.Command;
+using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Notifications.Dto.NotificationsWeb;
 
 namespace TokanPages.Notifications.Controllers.Mappers;

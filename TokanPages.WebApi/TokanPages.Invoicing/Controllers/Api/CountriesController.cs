@@ -9,7 +9,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 /// API endpoints definitions for countries data.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/invoicing/[controller]/[action]")]
 public class CountriesController : ApiBaseController
 {
     private readonly ICountriesCache _countriesCache;

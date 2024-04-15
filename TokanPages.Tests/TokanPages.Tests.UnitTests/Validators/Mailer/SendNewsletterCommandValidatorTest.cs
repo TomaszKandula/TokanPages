@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using TokanPages.Backend.Application.Mailer.Commands;
-using TokanPages.Backend.Application.Mailer.Models;
+using TokanPages.Backend.Application.Sender.Mailer.Commands;
+using TokanPages.Backend.Application.Sender.Mailer.Models;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 

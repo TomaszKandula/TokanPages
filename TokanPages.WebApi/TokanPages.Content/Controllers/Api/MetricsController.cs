@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.Backend.Application.Metrics.Queries;
+using TokanPages.Backend.Application.Content.Metrics.Queries;
 
 namespace TokanPages.Content.Controllers.Api;
 
@@ -8,7 +8,7 @@ namespace TokanPages.Content.Controllers.Api;
 /// API endpoints definitions for sonar qube metrics.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class MetricsController : ApiBaseController
 {
     /// <summary>

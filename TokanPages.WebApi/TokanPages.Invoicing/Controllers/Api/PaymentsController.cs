@@ -9,7 +9,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 /// API endpoints definitions for invoice payments.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/invoicing/[controller]/[action]")]
 public class PaymentsController : ApiBaseController
 {
     private readonly IPaymentsCache _paymentsCache;

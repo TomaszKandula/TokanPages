@@ -3,10 +3,10 @@ const APP_BACKEND = process.env.REACT_APP_BACKEND;
 export const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
 const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
-const API_NEWSLETTERS_URI = `${API_BASE_URI}/newsletters`;
-const API_MAILER_URI = `${API_BASE_URI}/mailer`;
-const API_CONTENT_URI = `${API_BASE_URI}/content`;
-const API_ASSETS_URI = `${API_BASE_URI}/assets`;
+const API_NEWSLETTERS_URI = `${API_BASE_URI}/sender/newsletters`;
+const API_MAILER_URI = `${API_BASE_URI}/sender/mailer`;
+const API_CONTENT_URI = `${API_BASE_URI}/content/components`;
+const API_ASSETS_URI = `${API_BASE_URI}/content/assets`;
 const API_IMAGE_ASSETS_URI = `${API_ASSETS_URI}/getImageAsset`;
 
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;
@@ -43,12 +43,11 @@ export const REMOVE_NEWSLETTER = `${API_NEWSLETTERS_URI}/removeNewsletter`;
 
 export const SEND_MESSAGE = `${API_MAILER_URI}/sendMessage`;
 export const SEND_NEWSLETTER = `${API_MAILER_URI}/sendNewsletter`;
-export const VERIFY_EMAIL = `${API_MAILER_URI}/verifyEmailAddress`;
 
 export const GET_IMAGE_ASSET = `${API_ASSETS_URI}/getImageAsset/?blobName={name}`;
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset/?blobName={name}`;
 
-export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getContentManifest`;
+export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getManifest`;
 export const GET_NAVIGATION_CONTENT = `${API_CONTENT_URI}/getContent/?name=navigation&type=component`;
 export const GET_HEADER_CONTENT = `${API_CONTENT_URI}/getContent/?name=header&type=component`;
 export const GET_FOOTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=footer&type=component`;

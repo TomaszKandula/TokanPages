@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Newsletters.Commands;
+using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Sender.Dto.Newsletters;
 
 namespace TokanPages.Sender.Controllers.Mappers;

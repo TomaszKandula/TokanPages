@@ -13,7 +13,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 /// API endpoints definitions for batch invoicing.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/invoicing/[controller]/[action]")]
 public class BatchesController : ApiBaseController
 {
     /// <summary>

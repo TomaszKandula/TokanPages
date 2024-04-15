@@ -1,5 +1,5 @@
-using TokanPages.Backend.Application.NotificationsMobile.Commands;
-using TokanPages.Backend.Application.NotificationsMobile.Query;
+using TokanPages.Backend.Application.Notifications.Mobile.Commands;
+using TokanPages.Backend.Application.Notifications.Mobile.Query;
 using TokanPages.Notifications.Controllers.Mappers;
 using TokanPages.Notifications.Dto.NotificationsMobile;
 using MediatR;
@@ -13,11 +13,11 @@ namespace TokanPages.Notifications.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
-public class NotificationsMobileController : ApiBaseController
+[Route("api/v{version:apiVersion}/notifications/[controller]/[action]")]
+public class MobileController : ApiBaseController
 {
     /// <inheritdoc />
-    public NotificationsMobileController(IMediator mediator) : base(mediator) { }
+    public MobileController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
     /// Returns registered installations.

@@ -15,7 +15,7 @@ namespace TokanPages.Invoicing.Controllers.Api;
 /// API endpoints definitions for invoice templates.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/invoicing/[controller]/[action]")]
 public class TemplatesController : ApiBaseController
 {
     private readonly ITemplatesCache _templatesCache;
