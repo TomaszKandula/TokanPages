@@ -29,6 +29,7 @@
         <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.Caching\TokanPages.Persistence.Caching.csproj" />
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj" />
         <ProjectReference Include="..\TokanPages.Articles.Dto\TokanPages.Articles.Dto.csproj" />
+        <ProjectReference Include="..\TokanPages.Chat.Dto\TokanPages.Chat.Dto.csproj" />
     </ItemGroup>
 
     <ItemGroup>
