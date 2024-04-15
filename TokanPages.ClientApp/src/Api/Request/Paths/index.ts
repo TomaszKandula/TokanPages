@@ -5,7 +5,7 @@ const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
 const API_NEWSLETTERS_URI = `${API_BASE_URI}/newsletters`;
 const API_MAILER_URI = `${API_BASE_URI}/mailer`;
-const API_CONTENT_URI = `${API_BASE_URI}/content`;
+const API_CONTENT_URI = `${API_BASE_URI}/components`;
 const API_ASSETS_URI = `${API_BASE_URI}/assets`;
 const API_IMAGE_ASSETS_URI = `${API_ASSETS_URI}/getImageAsset`;
 
@@ -48,7 +48,7 @@ export const VERIFY_EMAIL = `${API_MAILER_URI}/verifyEmailAddress`;
 export const GET_IMAGE_ASSET = `${API_ASSETS_URI}/getImageAsset/?blobName={name}`;
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset/?blobName={name}`;
 
-export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getContentManifest`;
+export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getManifest`;
 export const GET_NAVIGATION_CONTENT = `${API_CONTENT_URI}/getContent/?name=navigation&type=component`;
 export const GET_HEADER_CONTENT = `${API_CONTENT_URI}/getContent/?name=header&type=component`;
 export const GET_FOOTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=footer&type=component`;

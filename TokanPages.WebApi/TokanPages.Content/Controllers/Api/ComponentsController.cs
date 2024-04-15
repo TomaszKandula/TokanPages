@@ -10,7 +10,7 @@ namespace TokanPages.Content.Controllers.Api;
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]/[action]")]
-public class ContentController : ApiBaseController
+public class ComponentsController : ApiBaseController
 {
     private readonly IContentCache _contentCache;
 
@@ -19,7 +19,7 @@ public class ContentController : ApiBaseController
     /// </summary>
     /// <param name="mediator">Mediator instance.</param>
     /// <param name="contentCache">REDIS cache instance.</param>
-    public ContentController(IMediator mediator, IContentCache contentCache) 
+    public ComponentsController(IMediator mediator, IContentCache contentCache) 
         : base(mediator) => _contentCache = contentCache;
 
     /// <summary>
@@ -29,7 +29,7 @@ public class ContentController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(GetContentManifestQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetContentManifestQueryResult> GetContentManifest([FromQuery] bool noCache = false) 
+    public async Task<GetContentManifestQueryResult> GetManifest([FromQuery] bool noCache = false) 
         => await _contentCache.GetContentManifest(noCache);
 
     /// <summary>
