@@ -1,3 +1,25 @@
+# [0.76.0](https://github.com/TomaszKandula/TokanPages/compare/v0.75.0...v0.76.0) (2024-04-15)
+
+
+### Bug Fixes
+
+* provide fixes ([f49629c](https://github.com/TomaszKandula/TokanPages/commit/f49629cfb824f4d1c354f57d8457aaf7cde0f41b))
+* reduce cognitive complexity ([71e0aa4](https://github.com/TomaszKandula/TokanPages/commit/71e0aa49d606613c781074b7c4f11e460c182fc9))
+* reduce cognitive complexity ([8dbf98c](https://github.com/TomaszKandula/TokanPages/commit/8dbf98c90d768d82b187bc7465c3c67336eb9d65))
+* remove unnecessary casting ([dd0b04e](https://github.com/TomaszKandula/TokanPages/commit/dd0b04ef4e49666c4cac6f09ae51e0c58880a69e))
+* resolve wrong log folder ([6a64bab](https://github.com/TomaszKandula/TokanPages/commit/6a64babc17f59d03f7c9bce7df90979651331f3f))
+* use loop-of ([ebbdab3](https://github.com/TomaszKandula/TokanPages/commit/ebbdab37f45fbb313e1d1ec0c3086c06c4388f94))
+
+
+### Features
+
+* add API and DTO ([900019a](https://github.com/TomaszKandula/TokanPages/commit/900019a19e63371d8947b630aeabb58394872fcb))
+* add controller and mapper ([1543163](https://github.com/TomaszKandula/TokanPages/commit/154316354072e8ea84d9a8897f6ef8c3f046b86d))
+* add cqrs for chat capabilities ([2aeb39a](https://github.com/TomaszKandula/TokanPages/commit/2aeb39a2f5313e3f36fb35675fde675b13f81025))
+* add docker for chat ([012f6b8](https://github.com/TomaszKandula/TokanPages/commit/012f6b8fd7f0d16c612dd0f0345bf6ad2820ff70))
+* add GW routes ([797c269](https://github.com/TomaszKandula/TokanPages/commit/797c2698438a5c73d4afecd5bd8f048bd5296ef4))
+* add table request ([3d03226](https://github.com/TomaszKandula/TokanPages/commit/3d03226a21538cdc5e6d59391813ad5e1467217d))
+
 # [0.75.0](https://github.com/TomaszKandula/TokanPages/compare/v0.74.0...v0.75.0) (2024-04-14)
 
 
