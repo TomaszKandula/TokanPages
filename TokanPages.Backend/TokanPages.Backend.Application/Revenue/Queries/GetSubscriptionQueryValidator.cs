@@ -1,7 +1,7 @@
 using TokanPages.Backend.Shared.Resources;
 using FluentValidation;
 
-namespace TokanPages.Backend.Application.Subscriptions.Queries;
+namespace TokanPages.Backend.Application.Revenue.Queries;
 
 public class GetSubscriptionQueryValidator : AbstractValidator<GetSubscriptionQuery>
 {

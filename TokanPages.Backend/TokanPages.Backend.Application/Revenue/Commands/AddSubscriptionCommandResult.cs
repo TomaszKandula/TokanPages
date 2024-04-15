@@ -1,4 +1,4 @@
-namespace TokanPages.Backend.Application.Subscriptions.Commands;
+namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class AddSubscriptionCommandResult
 {

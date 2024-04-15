@@ -1,5 +1,5 @@
-using TokanPages.Backend.Application.Subscriptions.Commands;
-using TokanPages.Backend.Application.Subscriptions.Queries;
+using TokanPages.Backend.Application.Revenue.Commands;
+using TokanPages.Backend.Application.Revenue.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Revenue.Controllers.Mappers;

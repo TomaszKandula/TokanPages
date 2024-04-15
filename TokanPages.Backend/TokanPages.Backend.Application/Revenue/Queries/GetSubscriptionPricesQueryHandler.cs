@@ -3,7 +3,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace TokanPages.Backend.Application.Subscriptions.Queries;
+namespace TokanPages.Backend.Application.Revenue.Queries;
 
 public class GetSubscriptionPricesQueryHandler : RequestHandler<GetSubscriptionPricesQuery, GetSubscriptionPricesQueryResult>
 {

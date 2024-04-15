@@ -1,7 +1,7 @@
 using TokanPages.Backend.Domain.Enums;
 using MediatR;
 
-namespace TokanPages.Backend.Application.Subscriptions.Commands;
+namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class UpdateSubscriptionCommand : IRequest<Unit>
 {

@@ -6,7 +6,7 @@ using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace TokanPages.Backend.Application.Subscriptions.Commands;
+namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class RemoveSubscriptionCommandHandler : RequestHandler<RemoveSubscriptionCommand, Unit>
 {

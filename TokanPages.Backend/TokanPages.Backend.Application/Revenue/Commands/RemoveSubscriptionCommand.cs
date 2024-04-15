@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace TokanPages.Backend.Application.Subscriptions.Commands;
+namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class RemoveSubscriptionCommand : IRequest<Unit>
 {

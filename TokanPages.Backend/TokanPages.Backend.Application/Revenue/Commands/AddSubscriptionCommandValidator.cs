@@ -1,7 +1,7 @@
 using TokanPages.Backend.Shared.Resources;
 using FluentValidation;
 
-namespace TokanPages.Backend.Application.Subscriptions.Commands;
+namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class AddSubscriptionCommandValidator : AbstractValidator<AddSubscriptionCommand>
 {

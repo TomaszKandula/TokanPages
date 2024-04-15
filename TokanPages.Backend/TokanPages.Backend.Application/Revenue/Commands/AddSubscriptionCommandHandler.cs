@@ -7,7 +7,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace TokanPages.Backend.Application.Subscriptions.Commands;
+namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionCommand, AddSubscriptionCommandResult>
 {

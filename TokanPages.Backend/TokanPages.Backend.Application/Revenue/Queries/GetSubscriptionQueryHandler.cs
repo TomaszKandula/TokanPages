@@ -3,7 +3,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace TokanPages.Backend.Application.Subscriptions.Queries;
+namespace TokanPages.Backend.Application.Revenue.Queries;
 
 public class GetSubscriptionQueryHandler : RequestHandler<GetSubscriptionQuery, GetSubscriptionQueryResult>
 {
