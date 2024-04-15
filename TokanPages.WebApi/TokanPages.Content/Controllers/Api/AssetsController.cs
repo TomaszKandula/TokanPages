@@ -87,4 +87,17 @@ public class AssetsController : ApiBaseController
     [ProducesResponseType(typeof(AddVideoAssetCommandResult), StatusCodes.Status200OK)]
     public async Task<AddVideoAssetCommandResult> AddVideoAsset([FromForm] AddVideoAssetDto payload)
         => await Mediator.Send(AssetsMapper.MapToAddVideoAssetCommand(payload));
+    
+    /// <summary>
+    /// Returns video processing status by given ticket ID.
+    /// </summary>
+    /// <param name="id">Ticket ID.</param>
+    /// <returns>Processing details.</returns>
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(GetVideoStatusQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetVideoStatusQueryResult> GetProcessingStatus([FromRoute] Guid id)
+        => await Mediator.Send(new GetVideoStatusQuery { TicketId = id });
 }

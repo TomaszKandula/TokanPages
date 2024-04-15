@@ -1,11 +1,11 @@
 using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
 
-namespace TokanPages.Backend.Application.VideoProcessing;
+namespace TokanPages.Backend.Application.Assets.Queries;
 
-public class VideoProcessingStatusQueryValidator : AbstractValidator<VideoProcessingStatusQuery>
+public class GetVideoStatusQueryValidator : AbstractValidator<GetVideoStatusQuery>
 {
-    public VideoProcessingStatusQueryValidator()
+    public GetVideoStatusQueryValidator()
     {
         RuleFor(query => query.TicketId)
             .NotEmpty()

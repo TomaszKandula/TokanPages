@@ -1,8 +1,8 @@
 using TokanPages.Backend.Domain.Enums;
 
-namespace TokanPages.Backend.Application.VideoProcessing;
+namespace TokanPages.Backend.Application.Assets.Queries;
 
-public class VideoProcessingStatusQueryResult
+public class GetVideoStatusQueryResult
 {
     public VideoStatus? Status { get; set; }
 
