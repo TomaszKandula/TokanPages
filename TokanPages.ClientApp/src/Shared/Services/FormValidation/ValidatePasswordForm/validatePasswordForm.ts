@@ -12,7 +12,7 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
                 message: "must be between 8..50 characters",
             },
         },
-        newPassword: {
+        password: {
             presence: true,
             length: {
                 minimum: 8,
@@ -33,14 +33,14 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
     let result = Validate(
         {
             oldPassword: props.oldPassword,
-            newPassword: props.newPassword,
+            password: props.newPassword,
             confirmPassword: props.confirmPassword,
         },
         constraints
     );
 
-    haveSpecialCharacter(props.newPassword, result);
     containNumber(props.newPassword, result);
+    haveSpecialCharacter(props.newPassword, result);
     haveLargeLetter(props.newPassword, result);
     haveSmallLetter(props.newPassword, result);
 
@@ -50,11 +50,11 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
             return { message: errorText };
         }
 
-        const isNewPasswordUndefined = result["newPassword"] === undefined;
+        const isNewPasswordUndefined = result["password"] === undefined;
         const isConfirmPasswordUndefined = result["confirmPassword"] === undefined;
 
         if (!isNewPasswordUndefined && !isConfirmPasswordUndefined) {
-            return { newPassword: [...result.newPassword], confirmPassword: [...result.confirmPassword, errorText] };
+            return { password: [...result.password], confirmPassword: [...result.confirmPassword, errorText] };
         }
 
         if (isNewPasswordUndefined && !isConfirmPasswordUndefined) {
@@ -62,7 +62,7 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
         }
 
         if (!isNewPasswordUndefined && isConfirmPasswordUndefined) {
-            return { newPassword: [...result.newPassword] };
+            return { password: [...result.password] };
         }
     }
 

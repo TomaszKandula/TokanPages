@@ -4,7 +4,7 @@ import { containNumber, haveLargeLetter, haveSmallLetter, haveSpecialCharacter }
 
 export const ValidateUpdateForm = (props: UpdateFormInput): any => {
     let constraints = {
-        newPassword: {
+        password: {
             presence: true,
             length: {
                 minimum: 8,
@@ -24,14 +24,14 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
 
     let result = Validate(
         {
-            newPassword: props.newPassword,
+            password: props.newPassword,
             verifyPassword: props.verifyPassword,
         },
         constraints
     );
 
-    haveSpecialCharacter(props.newPassword, result);
     containNumber(props.newPassword, result);
+    haveSpecialCharacter(props.newPassword, result);
     haveLargeLetter(props.newPassword, result);
     haveSmallLetter(props.newPassword, result);
 
@@ -41,11 +41,11 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
             return { message: errorText };
         }
 
-        let isNewPasswordUndefined = result["newPassword"] === undefined;
+        let isNewPasswordUndefined = result["password"] === undefined;
         let isVerifyPasswordUndefined = result["verifyPassword"] === undefined;
 
         if (!isNewPasswordUndefined && !isVerifyPasswordUndefined) {
-            return { newPassword: [...result.newPassword], verifyPassword: [...result.verifyPassword, errorText] };
+            return { password: [...result.password], verifyPassword: [...result.verifyPassword, errorText] };
         }
 
         if (isNewPasswordUndefined && !isVerifyPasswordUndefined) {
@@ -53,7 +53,7 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
         }
 
         if (!isNewPasswordUndefined && isVerifyPasswordUndefined) {
-            return { newPassword: [...result.newPassword] };
+            return { password: [...result.password] };
         }
     }
 
