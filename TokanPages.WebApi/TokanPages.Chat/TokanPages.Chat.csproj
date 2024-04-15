@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <UserSecretsId>8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40</UserSecretsId>
+        <LangVersion>10</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Publish>true</Publish>
+        <IsPackable>true</IsPackable>
+        <IsPublishable>true</IsPublishable>
+        <InvariantGlobalization>false</InvariantGlobalization>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
+            <Link>appsettings.Testing.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="..\..\TokanPages.Configuration\appsettings.Production.json">
+            <Link>appsettings.Production.json</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Configuration\TokanPages.Backend.Configuration.csproj" />
+        <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.Caching\TokanPages.Persistence.Caching.csproj" />
+        <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj" />
+        <ProjectReference Include="..\TokanPages.Articles.Dto\TokanPages.Articles.Dto.csproj" />
+        <ProjectReference Include="..\TokanPages.Chat.Dto\TokanPages.Chat.Dto.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="8.0.0" />
+        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" Version="6.0.24" />
+    </ItemGroup>
+
+</Project>
