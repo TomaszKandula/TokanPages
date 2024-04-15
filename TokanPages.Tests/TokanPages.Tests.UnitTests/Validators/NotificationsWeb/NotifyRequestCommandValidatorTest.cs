@@ -1,5 +1,5 @@
 using FluentAssertions;
-using TokanPages.Backend.Application.NotificationsWeb.Command;
+using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 

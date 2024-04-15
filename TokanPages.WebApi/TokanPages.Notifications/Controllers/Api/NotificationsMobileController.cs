@@ -1,5 +1,5 @@
-using TokanPages.Backend.Application.NotificationsMobile.Commands;
-using TokanPages.Backend.Application.NotificationsMobile.Query;
+using TokanPages.Backend.Application.Notifications.Mobile.Commands;
+using TokanPages.Backend.Application.Notifications.Mobile.Query;
 using TokanPages.Notifications.Controllers.Mappers;
 using TokanPages.Notifications.Dto.NotificationsMobile;
 using MediatR;

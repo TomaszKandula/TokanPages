@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.NotificationsWeb.Command;
+using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Notifications.Controllers.Mappers;
 using TokanPages.Notifications.Dto.NotificationsWeb;
 using MediatR;
