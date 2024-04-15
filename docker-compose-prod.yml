@@ -99,6 +99,20 @@ services:
     volumes:
       - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
 
+  chat-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Production
+      dockerfile: chat.dockerfile
+    hostname: chat
+    networks:
+      - xnet
+    ports:
+      - "6008:80"
+    volumes:
+      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+
   gateway-api:
     build:
       context: .
