@@ -16,7 +16,7 @@ namespace TokanPages.Revenue.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/revenue/[controller]/[action]")]
 public class SubscriptionsController : ApiBaseController
 {
     private readonly ISubscriptionsCache _subscriptionsCache;

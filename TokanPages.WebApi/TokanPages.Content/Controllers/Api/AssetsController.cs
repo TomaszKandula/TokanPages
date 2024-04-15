@@ -16,7 +16,7 @@ namespace TokanPages.Content.Controllers.Api;
 /// It uses Microsoft 'ResponseCache' for caching images/videos.
 /// </remarks>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class AssetsController : ApiBaseController
 {
     /// <summary>

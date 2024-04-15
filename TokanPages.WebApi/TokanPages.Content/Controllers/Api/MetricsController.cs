@@ -8,7 +8,7 @@ namespace TokanPages.Content.Controllers.Api;
 /// API endpoints definitions for sonar qube metrics.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class MetricsController : ApiBaseController
 {
     /// <summary>

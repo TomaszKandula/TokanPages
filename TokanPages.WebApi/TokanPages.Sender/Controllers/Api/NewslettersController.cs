@@ -15,7 +15,7 @@ namespace TokanPages.Sender.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]")]
+[Route("api/v{version:apiVersion}/sender/[controller]")]
 public class NewslettersController : ApiBaseController
 {
     private readonly INewslettersCache _newslettersCache;

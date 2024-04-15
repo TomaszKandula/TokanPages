@@ -13,11 +13,11 @@ namespace TokanPages.Notifications.Controllers.Api;
 /// </summary>
 [Authorize]
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
-public class NotificationsMobileController : ApiBaseController
+[Route("api/v{version:apiVersion}/notifications/[controller]/[action]")]
+public class MobileController : ApiBaseController
 {
     /// <inheritdoc />
-    public NotificationsMobileController(IMediator mediator) : base(mediator) { }
+    public MobileController(IMediator mediator) : base(mediator) { }
 
     /// <summary>
     /// Returns registered installations.

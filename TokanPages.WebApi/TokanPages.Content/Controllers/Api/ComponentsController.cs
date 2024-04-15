@@ -9,7 +9,7 @@ namespace TokanPages.Content.Controllers.Api;
 /// API endpoints definitions for content.
 /// </summary>
 [ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]/[action]")]
+[Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class ComponentsController : ApiBaseController
 {
     private readonly IContentCache _contentCache;
