@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 
 namespace TokanPages.Content.Controllers.Api;

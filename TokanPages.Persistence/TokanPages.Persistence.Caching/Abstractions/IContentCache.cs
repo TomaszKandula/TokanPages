@@ -1,4 +1,4 @@
-using TokanPages.Backend.Application.Content.Queries;
+using TokanPages.Backend.Application.Content.Components.Queries;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 

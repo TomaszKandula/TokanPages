@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Assets.Commands;
+using TokanPages.Backend.Application.Content.Assets.Commands;
 using TokanPages.Content.Dto.Assets;
 
 namespace TokanPages.Content.Controllers.Mappers;

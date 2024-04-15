@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.Backend.Application.Metrics.Queries;
+using TokanPages.Backend.Application.Content.Metrics.Queries;
 
 namespace TokanPages.Content.Controllers.Api;
 

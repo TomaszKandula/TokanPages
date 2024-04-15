@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TokanPages.Backend.Application.Assets.Commands;
-using TokanPages.Backend.Application.Assets.Queries;
+using TokanPages.Backend.Application.Content.Assets.Commands;
+using TokanPages.Backend.Application.Content.Assets.Queries;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Content.Controllers.Mappers;
