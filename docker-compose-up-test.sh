@@ -15,37 +15,20 @@ SONAR_KEY=""
 SONAR_HOST=""
 
 # APPLY ENVIRONMENT VARIABLES
-if [ -f "/etc/debian_version" ]; then
-  sed -i \
-  -e "s/\${API_VERSION}/${API_VERSION}/" \
-  -e "s/\${APP_VERSION}/${APP_VERSION}/" \
-  -e "s/\${APP_BUILD_TEST}/${APP_BUILD_TEST}/" \
-  -e "s/\${APP_DATE_TIME}/${APP_DATE_TIME}/" \
-  -e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
-  -e "s/\${SONAR_TOKEN}/${SONAR_TOKEN}/" \
-  -e "s/\${SONAR_KEY}/${SONAR_KEY}/" \
-  -e "s/\${SONAR_HOST}/${SONAR_HOST}/" \
-  docker-compose-run.yml 
-  sed -i \
-  -e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
-  -e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
-  TokanPages.ClientApp/nginx/nginx.conf 
-else
-  sed -i "" \
-  -e "s/\${API_VERSION}/${API_VERSION}/" \
-  -e "s/\${APP_VERSION}/${APP_VERSION}/" \
-  -e "s/\${APP_BUILD_TEST}/${APP_BUILD_TEST}/" \
-  -e "s/\${APP_DATE_TIME}/${APP_DATE_TIME}/" \
-  -e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
-  -e "s/\${SONAR_TOKEN}/${SONAR_TOKEN}/" \
-  -e "s/\${SONAR_KEY}/${SONAR_KEY}/" \
-  -e "s/\${SONAR_HOST}/${SONAR_HOST}/" \
-  docker-compose-run.yml 
-  sed -i "" \
-  -e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
-  -e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
-  TokanPages.ClientApp/nginx/nginx.conf 
-fi
+sed -i "" \
+-e "s/\${API_VERSION}/${API_VERSION}/" \
+-e "s/\${APP_VERSION}/${APP_VERSION}/" \
+-e "s/\${APP_BUILD_TEST}/${APP_BUILD_TEST}/" \
+-e "s/\${APP_DATE_TIME}/${APP_DATE_TIME}/" \
+-e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
+-e "s/\${SONAR_TOKEN}/${SONAR_TOKEN}/" \
+-e "s/\${SONAR_KEY}/${SONAR_KEY}/" \
+-e "s/\${SONAR_HOST}/${SONAR_HOST}/" \
+docker-compose-run.yml 
+sed -i "" \
+-e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
+-e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
+TokanPages.ClientApp/nginx/nginx.conf 
 
 # RUN DOCKER COMPOSE
 docker compose -f docker-compose-run.yml up -d
