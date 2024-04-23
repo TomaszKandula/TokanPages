@@ -27,7 +27,6 @@ sed -i "" \
 docker-compose-run.yml 
 sed -i "" \
 -e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
--e "s/\${APP_BACKEND}/${APP_BACKEND}/" \
 TokanPages.ClientApp/nginx/nginx.conf 
 
 # RUN DOCKER COMPOSE
