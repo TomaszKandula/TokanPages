@@ -27,11 +27,14 @@ describe("test account group component: updatePassword", () => {
         labelVerifyPassword: "Verify new password",
     };
 
+    let data = ApplicationDefault;
+    data.contentUpdatePassword.content = testContent;
+
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const wrapper = shallow(
         <div>
-            <UpdatePassword content={testContent} isLoading={false} />
+            <UpdatePassword />
         </div>
     );
 
@@ -43,7 +46,7 @@ describe("test account group component: updatePassword", () => {
 
     it("should render correctly '<UpdatePassword />' when content is loaded.", () => {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefault);
+        useSelectorMock.mockReturnValue(data);
 
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();
