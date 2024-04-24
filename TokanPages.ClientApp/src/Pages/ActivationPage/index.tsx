@@ -28,8 +28,6 @@ export const ActivationPage = (): JSX.Element => {
 
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const activation = useSelector((state: ApplicationState) => state.contentActivateAccount);
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
 
     React.useEffect(() => {
         dispatch(ContentActivateAccountAction.get());
@@ -39,7 +37,7 @@ export const ActivationPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
                 {id ? (
                     <ActivateAccount id={id} content={activation?.content} isLoading={activation?.isLoading} />
@@ -47,7 +45,7 @@ export const ActivationPage = (): JSX.Element => {
                     <ErrorMessage />
                 )}
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

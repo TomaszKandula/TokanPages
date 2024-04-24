@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentResetPasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ResetPasswordView } from "./View/resetPasswordView";
@@ -24,8 +23,9 @@ const formDefaultValues: ResetFormInput = {
     email: "",
 };
 
-export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => {
+export const ResetPassword = (): JSX.Element => {
     const dispatch = useDispatch();
+    const content = useSelector((state: ApplicationState) => state.contentResetPassword);
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -94,15 +94,15 @@ export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => 
 
     return (
         <ResetPasswordView
-            isLoading={props.isLoading}
+            isLoading={content.isLoading}
             progress={hasProgress}
-            caption={props.content.caption}
-            button={props.content.button}
+            caption={content.content.caption}
+            button={content.content.button}
             email={form.email}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            labelEmail={props.content.labelEmail}
+            labelEmail={content.content.labelEmail}
         />
     );
 };

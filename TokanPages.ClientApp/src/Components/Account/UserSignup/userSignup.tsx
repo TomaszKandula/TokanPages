@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentUserSignupState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UserSignupView } from "./View/userSignupView";
@@ -23,8 +22,10 @@ const formDefault: SignupFormInput = {
     terms: false,
 };
 
-export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
+export const UserSignup = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const content = useSelector((state: ApplicationState) => state.contentUserSignup);
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -112,12 +113,12 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
 
     return (
         <UserSignupView
-            isLoading={props.isLoading}
-            caption={props.content.caption}
-            warning={props.content.warning}
-            consent={props.content.consent}
-            button={props.content.button}
-            link={props.content.link}
+            isLoading={content.isLoading}
+            caption={content.content.caption}
+            warning={content.content.warning}
+            consent={content.content.consent}
+            button={content.content.button}
+            link={content.content.link}
             buttonHandler={buttonHandler}
             keyHandler={keyHandler}
             formHandler={formHandler}
@@ -127,10 +128,10 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
             email={form.email}
             password={form.password}
             terms={form.terms}
-            labelFirstName={props.content.labelFirstName}
-            labelLastName={props.content.labelLastName}
-            labelEmail={props.content.labelEmail}
-            labelPassword={props.content.labelPassword}
+            labelFirstName={content.content.labelFirstName}
+            labelLastName={content.content.labelLastName}
+            labelEmail={content.content.labelEmail}
+            labelPassword={content.content.labelPassword}
         />
     );
 };

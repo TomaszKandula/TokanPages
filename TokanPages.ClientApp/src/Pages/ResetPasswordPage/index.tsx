@@ -11,10 +11,6 @@ export const ResetPasswordPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
-    const reset = useSelector((state: ApplicationState) => state.contentResetPassword);
-
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
@@ -23,11 +19,11 @@ export const ResetPasswordPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
-                <ResetPassword content={reset?.content} isLoading={reset?.isLoading} />
+                <ResetPassword />
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

@@ -16,11 +16,7 @@ export const NewsletterRemovePage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
-
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
-    const unsubscribe = useSelector((state: ApplicationState) => state.contentUnsubscribe);
 
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
@@ -30,11 +26,11 @@ export const NewsletterRemovePage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
-                <NewsletterRemove id={id} content={unsubscribe?.content} isLoading={unsubscribe?.isLoading} />
+                <NewsletterRemove id={id} />
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

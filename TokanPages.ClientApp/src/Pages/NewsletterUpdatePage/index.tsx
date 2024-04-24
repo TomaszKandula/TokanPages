@@ -16,11 +16,7 @@ export const NewsletterUpdatePage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;
-
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
-    const subscriber = useSelector((state: ApplicationState) => state.contentUpdateSubscriber);
 
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
@@ -30,11 +26,11 @@ export const NewsletterUpdatePage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
-                <NewsletterUpdate id={id} content={subscriber?.content} isLoading={subscriber?.isLoading} />
+                <NewsletterUpdate id={id} />
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

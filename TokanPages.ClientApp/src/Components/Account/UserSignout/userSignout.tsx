@@ -1,22 +1,23 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentUserSignoutState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSignoutView } from "./View/userSignoutView";
 
 import { UserDataStoreAction, UserSignoutAction } from "../../../Store/Actions";
 
-export const UserSignout = (props: ContentUserSignoutState): JSX.Element => {
+export const UserSignout = (): JSX.Element => {
     const dispatch = useDispatch();
     const [hasProgress, setHasProgress] = React.useState(true);
+
+    const content = useSelector((state: ApplicationState) => state.contentUserSignout);
     const signout = useSelector((state: ApplicationState) => state.userSignout);
 
     const isUserTokenRevoked = signout.userTokenStatus === OperationStatus.hasFinished;
     const isRefreshTokenRevoked = signout.refreshTokenStatus === OperationStatus.hasFinished;
 
-    const status = hasProgress ? props.content.onProcessing : props.content.onFinish;
-    const hasContent = !props.isLoading && props.content.buttonText !== "";
+    const status = hasProgress ? content.content.onProcessing : content.content.onFinish;
+    const hasContent = !content.isLoading && content.content.buttonText !== "";
 
     React.useEffect(() => {
         if (!isUserTokenRevoked || !isRefreshTokenRevoked) return;
@@ -37,10 +38,10 @@ export const UserSignout = (props: ContentUserSignoutState): JSX.Element => {
 
     return (
         <UserSignoutView
-            isLoading={props.isLoading}
-            caption={props.content.caption}
+            isLoading={content.isLoading}
+            caption={content.content.caption}
             status={status}
-            buttonText={props.content.buttonText}
+            buttonText={content.content.buttonText}
         />
     );
 };

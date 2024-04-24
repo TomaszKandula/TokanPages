@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { ContentUpdateSubscriberState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../Shared/types";
@@ -19,13 +18,15 @@ import {
     UPDATE_SUBSCRIBER,
 } from "../../Shared/constants";
 
-interface Properties extends ContentUpdateSubscriberState {
+interface Properties {
     id: string;
 }
 
 export const NewsletterUpdate = (props: Properties): JSX.Element => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
+
+    const subscriber = useSelector((state: ApplicationState) => state.contentUpdateSubscriber);
     const update = useSelector((state: ApplicationState) => state.newsletterUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -98,15 +99,15 @@ export const NewsletterUpdate = (props: Properties): JSX.Element => {
 
     return (
         <NewsletterUpdateView
-            isLoading={props.isLoading}
-            caption={props.content?.caption}
+            isLoading={subscriber.isLoading}
+            caption={subscriber.content?.caption}
             formHandler={formHandler}
             email={form.email}
             buttonHandler={buttonHandler}
             buttonState={hasButton}
             progress={hasProgress}
-            buttonText={props.content?.button}
-            labelEmail={props.content.labelEmail}
+            buttonText={subscriber.content?.button}
+            labelEmail={subscriber.content.labelEmail}
         />
     );
 };
