@@ -10,9 +10,6 @@ import { ContentNavigationAction, ContentFooterAction, ContentPolicyAction } fro
 export const PolicyPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const policy = useSelector((state: ApplicationState) => state.contentPolicy);
 
     React.useEffect(() => {
@@ -23,11 +20,11 @@ export const PolicyPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
                 <DocumentContent content={policy?.content} isLoading={policy?.isLoading} />
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

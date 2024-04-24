@@ -1,1 +1,1 @@
-export { AccessDeniedView as AccessDenied } from "./View/accessDeniedView";
+export { AccessDenied } from "./accessDenied";

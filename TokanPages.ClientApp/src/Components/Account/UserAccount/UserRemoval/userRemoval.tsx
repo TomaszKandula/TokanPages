@@ -2,7 +2,6 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { UserRemovalView } from "./View/userRemovalView";
 
@@ -17,10 +16,11 @@ import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 
 import { ACCOUNT_FORM, RECEIVED_ERROR_MESSAGE, REMOVE_USER } from "../../../../Shared/constants";
 
-export const UserRemoval = (props: ContentAccountState): JSX.Element => {
+export const UserRemoval = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -67,11 +67,11 @@ export const UserRemoval = (props: ContentAccountState): JSX.Element => {
 
     return (
         <UserRemovalView
-            isLoading={props.isLoading}
+            isLoading={account.isLoading}
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
-            sectionAccessDenied={props.content?.sectionAccessDenied}
-            sectionAccountRemoval={props.content?.sectionAccountRemoval}
+            sectionAccessDenied={account.content?.sectionAccessDenied}
+            sectionAccountRemoval={account.content?.sectionAccountRemoval}
         />
     );
 };

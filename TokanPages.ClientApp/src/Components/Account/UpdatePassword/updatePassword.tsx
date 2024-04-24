@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentUpdatePasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UpdatePasswordView } from "./View/updatePasswordView";
@@ -30,10 +29,11 @@ const formDefaultValues: UpdateFormInput = {
     verifyPassword: "",
 };
 
-export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element => {
+export const UpdatePassword = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
 
+    const password = useSelector((state: ApplicationState) => state.contentUpdatePassword);
     const data = useSelector((state: ApplicationState) => state.userDataStore);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -115,18 +115,18 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
 
     return (
         <UpdatePasswordView
-            isLoading={props.isLoading}
+            isLoading={password.isLoading}
             progress={hasProgress}
-            caption={props.content.caption}
-            button={props.content.button}
+            caption={password.content.caption}
+            button={password.content.button}
             newPassword={form.newPassword}
             verifyPassword={form.verifyPassword}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             disableForm={canDisableForm}
-            labelNewPassword={props.content.labelNewPassword}
-            labelVerifyPassword={props.content.labelVerifyPassword}
+            labelNewPassword={password.content.labelNewPassword}
+            labelVerifyPassword={password.content.labelVerifyPassword}
         />
     );
 };

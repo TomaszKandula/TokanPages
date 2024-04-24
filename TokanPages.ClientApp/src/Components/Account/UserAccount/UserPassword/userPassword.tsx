@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserPasswordView } from "./View/userPasswordView";
@@ -20,9 +19,10 @@ import {
     UPDATE_USER_WARNING,
 } from "../../../../Shared/constants";
 
-export const UserPassword = (props: ContentAccountState): JSX.Element => {
+export const UserPassword = (): JSX.Element => {
     const dispatch = useDispatch();
 
+    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -95,7 +95,7 @@ export const UserPassword = (props: ContentAccountState): JSX.Element => {
 
     return (
         <UserPasswordView
-            isLoading={props.isLoading}
+            isLoading={account.isLoading}
             oldPassword={form.oldPassword}
             newPassword={form.newPassword}
             confirmPassword={form.confirmPassword}
@@ -103,8 +103,8 @@ export const UserPassword = (props: ContentAccountState): JSX.Element => {
             formProgress={hasProgress}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            sectionAccessDenied={props.content?.sectionAccessDenied}
-            sectionAccountPassword={props.content?.sectionAccountPassword}
+            sectionAccessDenied={account.content?.sectionAccessDenied}
+            sectionAccountPassword={account.content?.sectionAccountPassword}
         />
     );
 };

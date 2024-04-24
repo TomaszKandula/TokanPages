@@ -10,9 +10,6 @@ import { ContentNavigationAction, ContentFooterAction, ContentTermsAction } from
 export const TermsPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const terms = useSelector((state: ApplicationState) => state.contentTerms);
 
     React.useEffect(() => {
@@ -23,11 +20,11 @@ export const TermsPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
                 <DocumentContent content={terms?.content} isLoading={terms?.isLoading} />
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

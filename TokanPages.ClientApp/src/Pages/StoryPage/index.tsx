@@ -10,9 +10,6 @@ import { ContentNavigationAction, ContentFooterAction, ContentStoryAction } from
 export const StoryPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
     const story = useSelector((state: ApplicationState) => state.contentStory);
 
     React.useEffect(() => {
@@ -23,11 +20,11 @@ export const StoryPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
+            <Navigation />
             <Container>
                 <DocumentContent content={story?.content} isLoading={story?.isLoading} />
             </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Footer />
         </>
     );
 };

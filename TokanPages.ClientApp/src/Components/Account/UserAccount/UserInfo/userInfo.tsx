@@ -2,7 +2,6 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
@@ -27,10 +26,11 @@ import {
     UPDATE_USER_WARNING,
 } from "../../../../Shared/constants";
 
-export const UserInfo = (props: ContentAccountState): JSX.Element => {
+export const UserInfo = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const media = useSelector((state: ApplicationState) => state.userMediaUpload);
@@ -149,7 +149,7 @@ export const UserInfo = (props: ContentAccountState): JSX.Element => {
 
     return (
         <UserInfoView
-            isLoading={props.isLoading}
+            isLoading={account.isLoading}
             userStore={store}
             accountForm={form}
             userImageName={avatarName}
@@ -159,8 +159,8 @@ export const UserInfo = (props: ContentAccountState): JSX.Element => {
             formHandler={formHandler}
             switchHandler={switchHandler}
             buttonHandler={buttonHandler}
-            sectionAccessDenied={props.content?.sectionAccessDenied}
-            sectionAccountInformation={props.content?.sectionAccountInformation}
+            sectionAccessDenied={account.content?.sectionAccessDenied}
+            sectionAccountInformation={account.content?.sectionAccountInformation}
         />
     );
 };
