@@ -6,10 +6,7 @@ using TokanPages.Gateway.Models;
 using TokanPages.Gateway.Services;
 using TokanPages.Services.WebSocketService;
 using TokanPages.Services.WebSocketService.Abstractions;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Newtonsoft.Json;
 
 namespace TokanPages.Gateway;
 
@@ -75,7 +72,6 @@ public class Startup
             .AddAzureBlobStorage(azureStorage, name: "AzureStorage")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceEmail", queueName: "email_queue")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServicePayment", queueName: "payment_queue")
-            .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServicePayout", queueName: "payout_queue")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceVideo", queueName: "video_queue");
     }
 
@@ -94,23 +90,6 @@ public class Startup
             endpoints.MapGet("/", context 
                 => context.Response.WriteAsync("Gateway API"));
         });
-        builder.UseHealthChecks("/hc", new HealthCheckOptions
-        {
-            ResponseWriter = async (context, report) =>
-            {
-                var result = new
-                {
-                    status = report.Status.ToString(),
-                    errors = report.Entries.Select(pair 
-                        => new
-                        {
-                            key = pair.Key, 
-                            value = Enum.GetName(typeof(HealthStatus), pair.Value.Status)
-                        })
-                };
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(result));
-            }
-        });
+        builder.UseHealthChecks("/hc", HealthCheckSupport.WriteResponse());
     }
 }

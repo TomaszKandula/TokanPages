@@ -79,7 +79,6 @@ public class Startup
     {
         builder.UseSerilogRequestLogging();
         builder.UseForwardedHeaders();
-        builder.UseHttpsRedirection();
         builder.UseResponseCaching();
         builder.ApplyCorsPolicy(_configuration);
         builder.UseMiddleware<Exceptions>();
