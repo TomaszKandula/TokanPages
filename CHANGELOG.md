@@ -1,3 +1,19 @@
+# [0.77.0](https://github.com/TomaszKandula/TokanPages/compare/v0.76.0...v0.77.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* update links ([c927fd9](https://github.com/TomaszKandula/TokanPages/commit/c927fd9090da2707370429a0fecb48a56a418d4a))
+
+
+### Features
+
+* change port for local development ([e351bf1](https://github.com/TomaszKandula/TokanPages/commit/e351bf11493a4d540cc2575f5fbae245889f1313))
+* hide service APIs ([ef24998](https://github.com/TomaszKandula/TokanPages/commit/ef24998c20980e15d9328a138a69bcafa74658a4))
+* remove forcing https, services are behind GW on HTTPS ([729face](https://github.com/TomaszKandula/TokanPages/commit/729faceee0abe1f3409a3a9d7b028dc8437aaef3))
+* remove unnecessary code ([b34e7b8](https://github.com/TomaszKandula/TokanPages/commit/b34e7b860019041cab1020a0622dbca609bf3b80))
+* update nginx configuration ([b91d9b1](https://github.com/TomaszKandula/TokanPages/commit/b91d9b14e46965ee7b77eba3b1f05b247ec3b360))
+
 # [0.76.0](https://github.com/TomaszKandula/TokanPages/compare/v0.75.0...v0.76.0) (2024-04-15)
 
 
