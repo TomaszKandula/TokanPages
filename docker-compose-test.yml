@@ -10,8 +10,8 @@ services:
     hostname: articles
     networks:
       - xnet
-    ports:
-      - "6001:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -24,8 +24,8 @@ services:
     hostname: content
     networks:
       - xnet
-    ports:
-      - "6002:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -38,8 +38,8 @@ services:
     hostname: sender
     networks:
       - xnet
-    ports:
-      - "6003:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -52,8 +52,8 @@ services:
     hostname: revenue
     networks:
       - xnet
-    ports:
-      - "6004:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -66,8 +66,8 @@ services:
     hostname: users
     networks:
       - xnet
-    ports:
-      - "6005:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -80,8 +80,8 @@ services:
     hostname: invoicing
     networks:
       - xnet
-    ports:
-      - "6006:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -94,8 +94,8 @@ services:
     hostname: notifications
     networks:
       - xnet
-    ports:
-      - "6007:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -108,8 +108,8 @@ services:
     hostname: chat
     networks:
       - xnet
-    ports:
-      - "6008:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -122,8 +122,8 @@ services:
     hostname: gateway
     networks:
       - xnet
-    ports:
-      - "6100:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets.json:/app/appsettings.Testing.json:ro
 
@@ -136,8 +136,8 @@ services:
     hostname: hosted-services
     networks:
       - xnet
-    ports:
-      - "8000:80"
+    expose:
+      - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
