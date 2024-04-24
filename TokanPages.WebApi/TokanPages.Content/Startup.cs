@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -94,7 +92,6 @@ public class Startup
     {
         builder.UseSerilogRequestLogging();
         builder.UseForwardedHeaders();
-        builder.UseHttpsRedirection();
         builder.UseResponseCaching();
         builder.ApplyCorsPolicy(_configuration);
         builder.UseMiddleware<Exceptions>();

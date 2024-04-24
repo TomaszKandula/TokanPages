@@ -75,7 +75,6 @@ public class Startup
             .AddAzureBlobStorage(azureStorage, name: "AzureStorage")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceEmail", queueName: "email_queue")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServicePayment", queueName: "payment_queue")
-            .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServicePayout", queueName: "payout_queue")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceVideo", queueName: "video_queue");
     }
 
