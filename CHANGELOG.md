@@ -1,3 +1,10 @@
+## [0.77.1](https://github.com/TomaszKandula/TokanPages/compare/v0.77.0...v0.77.1) (2024-04-24)
+
+
+### Bug Fixes
+
+* resolve issues with invariant culture (SQL/hc) ([3d1e36c](https://github.com/TomaszKandula/TokanPages/commit/3d1e36ccb0f7809fdd0398cbbe5d3bfbba752e40))
+
 # [0.77.0](https://github.com/TomaszKandula/TokanPages/compare/v0.76.0...v0.77.0) (2024-04-24)
 
 
