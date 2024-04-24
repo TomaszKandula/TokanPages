@@ -18,11 +18,15 @@ describe("test account group component: resetPassword", () => {
         labelEmail: "Email address",
     };
 
+    let data = ApplicationDefault;
+    data.contentResetPassword.isLoading = false;
+    data.contentResetPassword.content = testContent;
+
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const wrapper = shallow(
         <div>
-            <ResetPassword content={testContent} isLoading={false} />
+            <ResetPassword />
         </div>
     );
 
@@ -34,7 +38,7 @@ describe("test account group component: resetPassword", () => {
 
     it("should renders correctly '<ResetPassword />' when content is loaded.", () => {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefault);
+        useSelectorMock.mockReturnValue(data);
 
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();

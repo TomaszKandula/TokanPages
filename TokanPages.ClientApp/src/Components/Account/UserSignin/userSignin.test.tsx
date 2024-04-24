@@ -22,11 +22,14 @@ describe("test account group component: userSignin", () => {
         labelPassword: "Password",
     };
 
+    let data = ApplicationDefault;
+    data.contentUserSignin.content = testContent;
+
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const wrapper = shallow(
         <div>
-            <UserSignin content={testContent} isLoading={false} />
+            <UserSignin />
         </div>
     );
 
@@ -38,7 +41,7 @@ describe("test account group component: userSignin", () => {
 
     it("should render correctly '<UserSignin />' when content is loaded.", () => {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefault);
+        useSelectorMock.mockReturnValue(data);
 
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();
