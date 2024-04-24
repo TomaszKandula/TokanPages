@@ -6,10 +6,7 @@ using TokanPages.Gateway.Models;
 using TokanPages.Gateway.Services;
 using TokanPages.Services.WebSocketService;
 using TokanPages.Services.WebSocketService.Abstractions;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Newtonsoft.Json;
 
 namespace TokanPages.Gateway;
 
