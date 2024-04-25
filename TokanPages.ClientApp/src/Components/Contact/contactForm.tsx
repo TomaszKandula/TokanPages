@@ -136,6 +136,8 @@ export const ContactForm = (): JSX.Element => {
             labelEmail={contactForm?.content?.labelEmail}
             labelSubject={contactForm?.content?.labelSubject}
             labelMessage={contactForm?.content?.labelMessage}
+            multiline={true}
+            minRows={6}
         />
     );
 };
