@@ -1,41 +1,63 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { UserActivateAction } from "../../../Store/Actions";
+import { UserActivateAction, UserNotificationAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-interface Properties {
+export interface ActivateAccountProps {
     id: string;
+    type: string;
 }
 
-export const ActivateAccount = (props: Properties): JSX.Element => {
-    const dispatch = useDispatch();
-    const history = useHistory();
+const DefaultValues = {
+    type: "Unset",
+    caption: "",
+    text1: "",
+    text2: "",
+    button: "",
+};
 
-    const activation = useSelector((state: ApplicationState) => state.contentActivateAccount);
-    const activate = useSelector((state: ApplicationState) => state.userActivate);
+export const ActivateAccount = (props: ActivateAccountProps): JSX.Element => {
+    const dispatch = useDispatch();
+    const contentData = useSelector((state: ApplicationState) => state.contentActivateAccount);
+
+    const onSuccess = contentData?.content?.onSuccess;
+    const onVerifying = contentData?.content?.onVerifying;
+    const onProcessing = contentData?.content?.onProcessing;
+    const onError = contentData?.content?.onError;
+
+    const onSuccessWithoutLock = {
+        ...onSuccess,
+        text1: onSuccess?.noBusinessLock.text1,
+        text2: onSuccess?.noBusinessLock.text2,
+    };
+    const onSuccessWithLock = {
+        ...onSuccess,
+        text1: onSuccess?.businessLock.text1,
+        text2: onSuccess?.businessLock.text2,
+    };
+
+    const userActivation = useSelector((state: ApplicationState) => state.userActivate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
-    const onProcessing = activation.content?.onProcessing;
-    const onSuccess = activation.content?.onSuccess;
-    const onError = activation.content?.onError;
-
-    const hasNotStarted = activate?.status === OperationStatus.notStarted;
-    const hasFinished = activate?.status === OperationStatus.hasFinished;
+    const hasNotStarted = userActivation?.status === OperationStatus.notStarted;
+    const hasFinished = userActivation?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [content, setContent] = React.useState(onProcessing);
-    const [isButtonOff, setIsButtonOff] = React.useState(true);
+    const [content, setContent] = React.useState(DefaultValues);
     const [hasProgress, setHasProgress] = React.useState(true);
-    const [isRequested, setIsRequested] = React.useState(false);
+    const [hasRequested, setHasRequested] = React.useState(false);
 
     React.useEffect(() => {
         if (!hasProgress) return;
+        if (content?.type === "Unset") {
+            if (props.type === "verification") {
+                setContent(onVerifying);
+                return;
+            }
 
-        if (content.type === "Unset") {
             setContent(onProcessing);
             return;
         }
@@ -43,12 +65,11 @@ export const ActivateAccount = (props: Properties): JSX.Element => {
         if (hasError) {
             setContent(onError);
             setHasProgress(false);
-            setIsButtonOff(false);
             return;
         }
 
-        if (hasNotStarted && hasProgress && !isRequested) {
-            setIsRequested(true);
+        if (hasNotStarted && hasProgress && !hasRequested) {
+            setHasRequested(true);
             setTimeout(
                 () =>
                     dispatch(
@@ -63,36 +84,43 @@ export const ActivateAccount = (props: Properties): JSX.Element => {
         }
 
         if (hasFinished) {
-            setContent(onSuccess);
+            dispatch(
+                UserNotificationAction.notify({
+                    userId: userActivation.response.userId,
+                    handler: "user_activated",
+                })
+            );
+
             setHasProgress(false);
-            setIsButtonOff(false);
-        }
-    }, [content.type, props.id, hasProgress, isRequested, hasError, hasNotStarted, hasFinished]);
 
-    const buttonHandler = React.useCallback(() => {
-        if (content.type === "Error") {
-            setContent(onProcessing);
-            setIsRequested(false);
-            setHasProgress(true);
-            setIsButtonOff(true);
-            dispatch(UserActivateAction.clear());
+            return userActivation.response.hasBusinessLock
+                ? setContent(onSuccessWithLock)
+                : setContent(onSuccessWithoutLock);
         }
-
-        if (content.type === "Success") {
-            history.push("/");
-        }
-    }, [content.type]);
+    }, [
+        props.id,
+        props.type,
+        content?.type,
+        hasError,
+        hasProgress,
+        hasRequested,
+        hasNotStarted,
+        hasFinished,
+        onProcessing,
+        onVerifying,
+        userActivation?.response.hasBusinessLock,
+        userActivation?.response.userId,
+        onSuccessWithLock,
+        onSuccessWithoutLock,
+    ]);
 
     return (
         <ActivateAccountView
-            isLoading={activation.isLoading}
-            caption={content.caption}
-            text1={content.text1}
-            text2={content.text2}
-            buttonHandler={buttonHandler}
-            buttonDisabled={isButtonOff}
+            isLoading={contentData?.isLoading}
+            caption={content?.caption}
+            text1={content?.text1}
+            text2={content?.text2}
             progress={hasProgress}
-            buttonText={content.button}
         />
     );
 };
