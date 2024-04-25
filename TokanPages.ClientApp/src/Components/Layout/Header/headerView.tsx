@@ -17,18 +17,18 @@ import Validate from "validate.js";
 const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();
 
-    if (Validate.isEmpty(props.content?.action?.href)) {
+    if (Validate.isEmpty(props?.content?.action?.href)) {
         return (
             <Button variant="contained" className={classes.action_button}>
-                {props.content?.action?.text}
+                {props?.content?.action?.text}
             </Button>
         );
     }
 
     return (
-        <Link to={props.content?.action?.href} className={classes.action_link}>
+        <Link to={props?.content?.action?.href} className={classes.action_link}>
             <Button variant="contained" className={classes.action_button}>
-                {props.content?.action?.text}
+                {props?.content?.action?.text}
             </Button>
         </Link>
     );
@@ -44,23 +44,23 @@ export const HeaderView = (): JSX.Element => {
                 <Grid container className={classes.top_margin}>
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.image_box}>
-                            {header.isLoading ? (
+                            {header?.isLoading ? (
                                 <Skeleton variant="circle" className={classes.image_skeleton} />
                             ) : (
-                                RenderImage(GET_IMAGES_URL, header.content?.photo, classes.image)
+                                RenderImage(GET_IMAGES_URL, header?.content?.photo, classes.image)
                             )}
                         </Box>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <Box className={classes.content_box}>
                             <Typography variant="h3" gutterBottom={true}>
-                                {header.isLoading ? <Skeleton variant="text" /> : header.content?.caption}
+                                {header?.isLoading ? <Skeleton variant="text" /> : header?.content?.caption}
                             </Typography>
                             <Typography variant="h6" className={classes.content_description}>
-                                {header.isLoading ? <Skeleton variant="text" /> : header.content?.description}
+                                {header?.isLoading ? <Skeleton variant="text" /> : header?.content?.description}
                             </Typography>
                             <Box mt={4}>
-                                {header.isLoading ? (
+                                {header?.isLoading ? (
                                     <Skeleton variant="rect" height="48px" />
                                 ) : (
                                     <ActiveButton {...header} />

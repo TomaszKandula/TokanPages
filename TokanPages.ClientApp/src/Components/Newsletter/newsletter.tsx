@@ -83,16 +83,16 @@ export const Newsletter = (): JSX.Element => {
 
     return (
         <NewsletterView
-            isLoading={newsletter.isLoading}
-            caption={newsletter.content?.caption}
-            text={newsletter.content?.text}
+            isLoading={newsletter?.isLoading}
+            caption={newsletter?.content?.caption}
+            text={newsletter?.content?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={newsletter.content?.button}
-            labelEmail={newsletter.content?.labelEmail}
+            buttonText={newsletter?.content?.button}
+            labelEmail={newsletter?.content?.labelEmail}
         />
     );
 };

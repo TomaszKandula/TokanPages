@@ -19,17 +19,17 @@ export const Cookies = (): JSX.Element => {
             sameSite: "Strict",
             secure: false,
         });
-    }, [cookies.content?.days]);
+    }, [cookies?.content?.days]);
 
     return (
         <CookiesView
-            isLoading={cookies.isLoading}
+            isLoading={cookies?.isLoading}
             modalClose={isOpen}
             shouldShow={Validate.isEmpty(currentCookie)}
-            caption={cookies.content?.caption}
-            text={cookies.content?.text}
+            caption={cookies?.content?.caption}
+            text={cookies?.content?.text}
             onClickEvent={onClickEvent}
-            buttonText={cookies.content?.button}
+            buttonText={cookies?.content?.button}
         />
     );
 };

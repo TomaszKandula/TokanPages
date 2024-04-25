@@ -45,7 +45,7 @@ export const Navigation = (): JSX.Element => {
 
     return (
         <NavigationView
-            isLoading={navigation.isLoading}
+            isLoading={navigation?.isLoading}
             drawerState={drawer}
             openHandler={toggleDrawer(true)}
             closeHandler={toggleDrawer(false)}
@@ -57,7 +57,7 @@ export const Navigation = (): JSX.Element => {
             languages={language}
             languageId={language?.id}
             languageHandler={languageHandler}
-            menu={navigation.content?.menu}
+            menu={navigation?.content?.menu}
         />
     );
 };

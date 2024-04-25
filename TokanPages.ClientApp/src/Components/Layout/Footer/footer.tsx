@@ -15,19 +15,18 @@ export const Footer = (props: Properties): JSX.Element => {
     const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
     const backgroundColor: string = !props.backgroundColor ? Colours.colours.lightGray1 : props.backgroundColor;
-
     const footer = useSelector((state: ApplicationState) => state.contentFooter);
 
     return (
         <FooterView
-            terms={footer.content?.terms}
-            policy={footer.content?.policy}
+            terms={footer?.content?.terms}
+            policy={footer?.content?.policy}
             versionInfo={versionInfo}
             hasVersionInfo={hasVersionInfo}
             backgroundColor={backgroundColor}
-            copyright={footer.content?.copyright}
-            reserved={footer.content?.reserved}
-            icons={footer.content?.icons}
+            copyright={footer?.content?.copyright}
+            reserved={footer?.content?.reserved}
+            icons={footer?.content?.icons}
         />
     );
 };

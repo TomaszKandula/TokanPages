@@ -116,9 +116,9 @@ export const ContactForm = (): JSX.Element => {
 
     return (
         <ContactFormView
-            isLoading={contactForm.isLoading}
-            caption={contactForm.content?.caption}
-            text={contactForm.content?.text}
+            isLoading={contactForm?.isLoading}
+            caption={contactForm?.content?.caption}
+            text={contactForm?.content?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             firstName={form.firstName}
@@ -129,13 +129,13 @@ export const ContactForm = (): JSX.Element => {
             terms={form.terms}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={contactForm.content?.button}
-            consent={contactForm.content?.consent}
-            labelFirstName={contactForm.content?.labelFirstName}
-            labelLastName={contactForm.content?.labelLastName}
-            labelEmail={contactForm.content?.labelEmail}
-            labelSubject={contactForm.content?.labelSubject}
-            labelMessage={contactForm.content?.labelMessage}
+            buttonText={contactForm?.content?.button}
+            consent={contactForm?.content?.consent}
+            labelFirstName={contactForm?.content?.labelFirstName}
+            labelLastName={contactForm?.content?.labelLastName}
+            labelEmail={contactForm?.content?.labelEmail}
+            labelSubject={contactForm?.content?.labelSubject}
+            labelMessage={contactForm?.content?.labelMessage}
         />
     );
 };

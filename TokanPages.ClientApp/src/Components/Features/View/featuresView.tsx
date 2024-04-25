@@ -20,18 +20,18 @@ import Validate from "validate.js";
 const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     const classes = FeaturesStyle();
 
-    if (Validate.isEmpty(props.content?.action?.href)) {
+    if (Validate.isEmpty(props?.content?.action?.href)) {
         return (
             <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
+                {props?.isLoading ? <Skeleton variant="text" /> : props?.content?.action?.text}
             </Button>
         );
     }
 
     return (
-        <Link to={props.content?.action?.href} className={classes.link}>
+        <Link to={props?.content?.action?.href} className={classes.link}>
             <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                {props.isLoading ? <Skeleton variant="text" /> : props.content?.action?.text}
+                {props?.isLoading ? <Skeleton variant="text" /> : props?.content?.action?.text}
             </Button>
         </Link>
     );
@@ -47,7 +47,7 @@ export const FeaturesView = (): JSX.Element => {
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
                         <Typography className={classes.title}>
-                            {features.isLoading ? <Skeleton variant="text" /> : features.content?.title.toUpperCase()}
+                            {features?.isLoading ? <Skeleton variant="text" /> : features?.content?.title.toUpperCase()}
                         </Typography>
                     </Box>
                     <Container maxWidth="lg">
@@ -58,23 +58,23 @@ export const FeaturesView = (): JSX.Element => {
                                         <CardContent className={classes.card_content}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography className={classes.text1}>
-                                                    {features.isLoading ? (
+                                                    {features?.isLoading ? (
                                                         <Skeleton variant="text" />
                                                     ) : (
-                                                        features.content?.text1
+                                                        features?.content?.text1
                                                     )}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
                                                     <Typography className={classes.text2}>
-                                                        {features.isLoading ? (
+                                                        {features?.isLoading ? (
                                                             <Skeleton variant="text" />
                                                         ) : (
-                                                            features.content?.text2
+                                                            features?.content?.text2
                                                         )}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
-                                                    {features.isLoading ? (
+                                                    {features?.isLoading ? (
                                                         <Skeleton variant="rect" width="100%" height="25px" />
                                                     ) : (
                                                         <ActiveButton {...features} />
@@ -88,12 +88,12 @@ export const FeaturesView = (): JSX.Element => {
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {features.isLoading ? (
+                                                {features?.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        features.content?.image1,
+                                                        features?.content?.image1,
                                                         classes.media
                                                     )
                                                 )}
@@ -101,12 +101,12 @@ export const FeaturesView = (): JSX.Element => {
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {features.isLoading ? (
+                                                {features?.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        features.content?.image2,
+                                                        features?.content?.image2,
                                                         classes.media
                                                     )
                                                 )}
@@ -114,12 +114,12 @@ export const FeaturesView = (): JSX.Element => {
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {features.isLoading ? (
+                                                {features?.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        features.content?.image3,
+                                                        features?.content?.image3,
                                                         classes.media
                                                     )
                                                 )}
@@ -127,12 +127,12 @@ export const FeaturesView = (): JSX.Element => {
                                         </Grid>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {features.isLoading ? (
+                                                {features?.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        features.content?.image4,
+                                                        features?.content?.image4,
                                                         classes.media
                                                     )
                                                 )}

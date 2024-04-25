@@ -11,10 +11,10 @@ import Validate from "validate.js";
 
 const RenderCaption = (props: ContentClientsState): JSX.Element | null => {
     const classes = ClientsStyle();
-    if (!Validate.isEmpty(props.content?.caption)) {
+    if (!Validate.isEmpty(props?.content?.caption)) {
         return (
             <Box mb={8}>
-                <Typography className={classes.caption}>{props.content?.caption?.toUpperCase()}</Typography>
+                <Typography className={classes.caption}>{props?.content?.caption?.toUpperCase()}</Typography>
             </Box>
         );
     }
@@ -27,7 +27,7 @@ const RenderImages = (props: ContentClientsState): JSX.Element => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
         <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
-            {props.content?.images.map((item: string, _index: number) => (
+            {props?.content?.images.map((item: string, _index: number) => (
                 <img key={uuidv4()} src={getImagePath(item)} alt="" className={classes.logo} />
             ))}
         </Box>
@@ -43,8 +43,8 @@ export const ClientsView = (): JSX.Element => {
             <div className={classes.divider}></div>
             <section className={classes.section}>
                 <Container maxWidth="lg">
-                    {clients.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
-                    {clients.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}
+                    {clients?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
+                    {clients?.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}
                 </Container>
             </section>
         </>
