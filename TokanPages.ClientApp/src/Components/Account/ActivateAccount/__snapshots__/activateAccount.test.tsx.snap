@@ -22,58 +22,32 @@ exports[`Test account group component: activateAccount should render correctly '
             <div
               class="MuiBox-root MuiBox-root-10"
             >
-              <p
-                class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1 MuiTypography-gutterBottom"
+              <div
+                class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
               >
                 Account Activation
-              </p>
+              </div>
             </div>
             <div
               class="MuiBox-root MuiBox-root-11"
             >
-              <p
-                class="MuiTypography-root makeStyles-text1-3 MuiTypography-body1"
+              <div
+                class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
               >
-                Processing your account..., please wait.
-              </p>
+                <div>
+                  Processing your account..., please wait.
+                </div>
+              </div>
             </div>
             <div
               class="MuiBox-root MuiBox-root-12"
             >
-              <p
-                class="MuiTypography-root makeStyles-text2-4 MuiTypography-body1"
-              />
-            </div>
-            <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-19 Mui-disabled MuiButton-fullWidth Mui-disabled"
-              disabled=""
-              tabindex="-1"
-              type="submit"
-            >
-              <span
-                class="MuiButton-label"
+              <div
+                class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
               >
-                <div
-                  class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-                  role="progressbar"
-                  style="width:20px;height:20px"
-                >
-                  <svg
-                    class="MuiCircularProgress-svg"
-                    viewBox="22 22 44 44"
-                  >
-                    <circle
-                      class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                      cx="44"
-                      cy="44"
-                      fill="none"
-                      r="20.2"
-                      stroke-width="3.6"
-                    />
-                  </svg>
-                </div>
-              </span>
-            </button>
+                <div />
+              </div>
+            </div>
           </div>
         </div>
       </div>
