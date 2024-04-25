@@ -1,7 +1,8 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { shallow } from "enzyme";
+import { BrowserRouter as Router } from "react-router-dom";
+import { render } from "enzyme";
 import { UserSignup } from "./userSignup";
 
 jest.mock("react-redux", () => ({
@@ -24,24 +25,18 @@ describe("test account group component: userSignup", () => {
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
-    const wrapper = shallow(
-        <div>
-            <UserSignup />
-        </div>
-    );
-
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
             content: testContent
         });
 
-        wrapper.find("UserSignup").dive();
+        useDispatchMock.mockReturnValue(jest.fn());
     });
 
     it("should render correctly '<UserSignup />' when content is loaded.", () => {
-        useDispatchMock.mockReturnValue(jest.fn());
+        const html = render(<Router><UserSignup /></Router>);
         expect(useDispatchMock).toBeCalledTimes(1);
-        expect(wrapper).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

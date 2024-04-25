@@ -3,9 +3,8 @@ import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
 import * as Dom from "react-router-dom";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { ActivateAccount } from "./activateAccount";
-import { ApplicationDefault } from "../../../Store/Configuration";
 
 jest.mock("react-router", () => ({
     ...(jest.requireActual("react-router") as typeof Router),
@@ -17,6 +16,11 @@ jest.mock("react-router-dom", () => ({
     useLocation: () => ({
         search: "localhost:3000/accountactivation/?id=dba4043c-7428-4f72-ba13-fe782c7a88fa",
     }),
+}));
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
 }));
 
 describe("Test account group component: activateAccount", () => {
@@ -47,24 +51,18 @@ describe("Test account group component: activateAccount", () => {
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <ActivateAccount id={testId} content={testContent} isLoading={false} />
-        </div>
-    );
-
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        useDispatchMock.mockClear();
-        wrapper.find("ActivateAccount").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
+
+        useDispatchMock.mockReturnValue(jest.fn());
     });
 
     it("should render correctly '<ActivateAccount />' when content is loaded.", () => {
-        useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefault);
-
+        const html = render(<ActivateAccount id={testId} />);
         expect(useDispatchMock).toBeCalledTimes(1);
-        expect(wrapper).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

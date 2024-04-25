@@ -23,7 +23,6 @@ describe("test account group component: resetPassword", () => {
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
-
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
