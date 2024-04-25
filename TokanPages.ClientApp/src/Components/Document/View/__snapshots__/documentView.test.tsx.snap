@@ -2,138 +2,186 @@
 
 exports[`test component: documentView should render correctly '<DocumentView />' when policy content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-2"
+  <div
+    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      py={12}
+    <div
+      class="MuiBox-root MuiBox-root-4"
     >
       <div
         data-aos="fade-down"
       >
-        <Link
-          to="/"
+        <a
+          href="/"
         >
-          <WithStyles(ForwardRef(IconButton))>
-            <Memo(ForwardRef(ArrowBackIcon)) />
-          </WithStyles(ForwardRef(IconButton))>
-        </Link>
-        <WithStyles(ForwardRef(Divider))
-          className="makeStyles-divider-3"
+          <button
+            class="MuiButtonBase-root MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </a>
+        <hr
+          class="MuiDivider-root makeStyles-divider-3"
         />
       </div>
       <div
         data-aos="fade-up"
       >
-        <RenderContent
-          items={
-            Array [
-              Object {
-                "id": "5b30be71-0e68-4be4-bd29-7f40fe130414",
-                "prop": "",
-                "text": "",
-                "type": "html",
-                "value": "<p>Policy text</p>",
-              },
-            ]
-          }
-        />
+        <span
+          class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-9 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Policy text
+            </p>
+          </div>
+        </span>
       </div>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+    </div>
+  </div>
 </section>
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when story content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-19"
 >
-  <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-2"
+  <div
+    class="MuiContainer-root makeStyles-container-20 MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      py={12}
+    <div
+      class="MuiBox-root MuiBox-root-22"
     >
       <div
         data-aos="fade-down"
       >
-        <Link
-          to="/"
+        <a
+          href="/"
         >
-          <WithStyles(ForwardRef(IconButton))>
-            <Memo(ForwardRef(ArrowBackIcon)) />
-          </WithStyles(ForwardRef(IconButton))>
-        </Link>
-        <WithStyles(ForwardRef(Divider))
-          className="makeStyles-divider-3"
+          <button
+            class="MuiButtonBase-root MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </a>
+        <hr
+          class="MuiDivider-root makeStyles-divider-21"
         />
       </div>
       <div
         data-aos="fade-up"
       >
-        <RenderContent
-          items={
-            Array [
-              Object {
-                "id": "5b30be71-0e68-4be4-bd29-7f40fe130414",
-                "prop": "",
-                "text": "",
-                "type": "html",
-                "value": "<p>Story text</p>",
-              },
-            ]
-          }
-        />
+        <span
+          class="MuiTypography-root makeStyles-common-23 makeStyles-paragraph-27 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Story text
+            </p>
+          </div>
+        </span>
       </div>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+    </div>
+  </div>
 </section>
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when terms content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-10"
 >
-  <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-2"
+  <div
+    class="MuiContainer-root makeStyles-container-11 MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      py={12}
+    <div
+      class="MuiBox-root MuiBox-root-13"
     >
       <div
         data-aos="fade-down"
       >
-        <Link
-          to="/"
+        <a
+          href="/"
         >
-          <WithStyles(ForwardRef(IconButton))>
-            <Memo(ForwardRef(ArrowBackIcon)) />
-          </WithStyles(ForwardRef(IconButton))>
-        </Link>
-        <WithStyles(ForwardRef(Divider))
-          className="makeStyles-divider-3"
+          <button
+            class="MuiButtonBase-root MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </a>
+        <hr
+          class="MuiDivider-root makeStyles-divider-12"
         />
       </div>
       <div
         data-aos="fade-up"
       >
-        <RenderContent
-          items={
-            Array [
-              Object {
-                "id": "5b30be71-0e68-4be4-bd29-7f40fe130414",
-                "prop": "",
-                "text": "",
-                "type": "html",
-                "value": "<p>Terms text</p>",
-              },
-            ]
-          }
-        />
+        <span
+          class="MuiTypography-root makeStyles-common-14 makeStyles-paragraph-18 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Terms text
+            </p>
+          </div>
+        </span>
       </div>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+    </div>
+  </div>
 </section>
 `;

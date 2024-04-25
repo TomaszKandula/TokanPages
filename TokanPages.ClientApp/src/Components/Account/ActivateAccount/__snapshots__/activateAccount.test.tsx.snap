@@ -1,36 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test account group component: activateAccount should render correctly '<ActivateAccount />' when content is loaded. 1`] = `
-<div>
-  <ActivateAccount
-    content={
-      Object {
-        "language": "eng",
-        "onError": Object {
-          "button": "Retry",
-          "caption": "Account Activation",
-          "text1": "Could not activate your account.",
-          "text2": "Please contact IT support.",
-          "type": "Error",
-        },
-        "onProcessing": Object {
-          "button": "",
-          "caption": "Account Activation",
-          "text1": "Processing your account..., please wait.",
-          "text2": "",
-          "type": "Processing",
-        },
-        "onSuccess": Object {
-          "button": "Go to main",
-          "caption": "Account Activation",
-          "text1": "Your account has been successfully activated!",
-          "text2": "You can now sign in.",
-          "type": "Success",
-        },
-      }
-    }
-    id="dba4043c-7428-4f72-ba13-fe782c7a88fa"
-    isLoading={false}
-  />
-</div>
+<section
+  class="makeStyles-section-1"
+>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthSm"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-8"
+    >
+      <div
+        class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+      >
+        <div
+          class="MuiCardContent-root makeStyles-card_content-6"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-9"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-10"
+            >
+              <p
+                class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1 MuiTypography-gutterBottom"
+              >
+                Account Activation
+              </p>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-11"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text1-3 MuiTypography-body1"
+              >
+                Processing your account..., please wait.
+              </p>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-12"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text2-4 MuiTypography-body1"
+              />
+            </div>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-19 Mui-disabled MuiButton-fullWidth Mui-disabled"
+              disabled=""
+              tabindex="-1"
+              type="submit"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                <div
+                  class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+                  role="progressbar"
+                  style="width:20px;height:20px"
+                >
+                  <svg
+                    class="MuiCircularProgress-svg"
+                    viewBox="22 22 44 44"
+                  >
+                    <circle
+                      class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                      cx="44"
+                      cy="44"
+                      fill="none"
+                      r="20.2"
+                      stroke-width="3.6"
+                    />
+                  </svg>
+                </div>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 `;
