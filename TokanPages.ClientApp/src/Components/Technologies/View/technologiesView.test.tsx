@@ -21,6 +21,7 @@ describe("test component: featuresView", () => {
     };
     
     let data = ApplicationDefault;
+    data.contentFeatures.isLoading = false;
     data.contentFeatures.content = testContent;
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");

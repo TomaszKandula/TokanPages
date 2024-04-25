@@ -6,6 +6,23 @@ import { UserSignup } from "./userSignup";
 import { ApplicationDefault } from "../../../Store/Configuration";
 
 describe("test account group component: userSignup", () => {
+    const testContent = {
+        language: "",
+        caption: "",
+        button: "",
+        link: "",
+        warning: "",
+        consent: "",
+        labelFirstName: "",
+        labelLastName: "",
+        labelEmail: "",
+        labelPassword: ""
+    };
+
+    let data = ApplicationDefault;
+    data.contentUserSignup.isLoading = false;
+    data.contentUserSignup.content = testContent;
+
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const wrapper = shallow(
@@ -22,7 +39,7 @@ describe("test account group component: userSignup", () => {
 
     it("should render correctly '<UserSignup />' when content is loaded.", () => {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefault);
+        useSelectorMock.mockReturnValue(data);
 
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();

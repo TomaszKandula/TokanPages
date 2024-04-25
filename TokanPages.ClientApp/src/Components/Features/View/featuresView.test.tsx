@@ -23,6 +23,7 @@ describe("test articles group component: ArticleFeaturesView", () => {
     };
     
     let data = ApplicationDefault;
+    data.contentArticleFeatures.isLoading = false;
     data.contentArticleFeatures.content = testContent;
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");

@@ -23,6 +23,7 @@ describe("test account group component: userSignin", () => {
     };
 
     let data = ApplicationDefault;
+    data.contentUserSignin.isLoading = false;
     data.contentUserSignin.content = testContent;
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");

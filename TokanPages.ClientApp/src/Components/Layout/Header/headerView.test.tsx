@@ -18,6 +18,7 @@ describe("test component: headerView", () => {
     };
     
     let data = ApplicationDefault;
+    data.contentHeader.isLoading = false;
     data.contentHeader.content = testContent;
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");

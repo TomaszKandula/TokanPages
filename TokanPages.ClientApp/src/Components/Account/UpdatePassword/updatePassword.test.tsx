@@ -28,6 +28,7 @@ describe("test account group component: updatePassword", () => {
     };
 
     let data = ApplicationDefault;
+    data.contentUpdatePassword.isLoading = false;
     data.contentUpdatePassword.content = testContent;
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
