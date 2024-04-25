@@ -4,6 +4,13 @@ export const ContentActivateAccount: ContentActivateAccountState = {
     isLoading: false,
     content: {
         language: "",
+        onVerifying: {
+            text1: "",
+            text2: "",
+            type: "",
+            caption: "",
+            button: ""
+        },
         onProcessing: {
             type: "Unset",
             caption: "",
@@ -12,11 +19,17 @@ export const ContentActivateAccount: ContentActivateAccountState = {
             button: "",
         },
         onSuccess: {
+            noBusinessLock: {
+                text1: "",
+                text2: ""
+            },
+            businessLock: {
+                text1: "",
+                text2: ""
+            },
             type: "Unset",
             caption: "",
-            text1: "",
-            text2: "",
-            button: "",
+            button: ""
         },
         onError: {
             type: "Unset",

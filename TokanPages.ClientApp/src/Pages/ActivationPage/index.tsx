@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Box, Typography, Container } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
-import { Navigation, Footer } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 
 import { ContentActivateAccountAction, ContentNavigationAction, ContentFooterAction } from "../../Store/Actions";
 
@@ -25,6 +25,8 @@ export const ActivationPage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id");
+    const type = queryParam.get("type") as string;
+
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
@@ -35,14 +37,11 @@ export const ActivationPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation />
-            <Container>
-                {id ? (
-                    <ActivateAccount id={id} />
-                ) : (
-                    <ErrorMessage />
-                )}
-            </Container>
+            {id ? (
+                <ActivateAccount id={id} type={type} />
+            ) : (
+                <ErrorMessage />
+            )}
             <Footer />
         </>
     );
