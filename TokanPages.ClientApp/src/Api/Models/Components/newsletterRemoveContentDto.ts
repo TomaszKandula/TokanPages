@@ -1,6 +1,6 @@
 import { ContentDto } from "./Common/contentDto";
 
-export interface UnsubscribeContentDto {
+export interface NewsletterRemoveContentDto {
     content: {
         language: string;
         contentPre: ContentDto;

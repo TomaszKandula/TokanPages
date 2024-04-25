@@ -1,14 +1,14 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { ContentUnsubscribeState } from "../../States";
+import { ContentNewsletterRemoveState } from "../../States";
 
-import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Content/contentUnsubscribe";
+import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Content/contentNewsletterRemove";
 
-export const ContentUnsubscribe: Reducer<ContentUnsubscribeState> = (
-    state: ContentUnsubscribeState | undefined,
+export const ContentNewsletterRemove: Reducer<ContentNewsletterRemoveState> = (
+    state: ContentNewsletterRemoveState | undefined,
     incomingAction: Action
-): ContentUnsubscribeState => {
-    if (state === undefined) return ApplicationDefault.contentUnsubscribe;
+): ContentNewsletterRemoveState => {
+    if (state === undefined) return ApplicationDefault.contentNewsletterRemove;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {

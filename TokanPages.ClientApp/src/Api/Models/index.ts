@@ -52,7 +52,7 @@ export type { UserSigninContentDto } from "./Components/userSigninContentDto";
 export type { UserSignoutContentDto } from "./Components/userSignoutContentDto";
 export type { UserSignupContentDto } from "./Components/userSignupContentDto";
 export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
-export type { UnsubscribeContentDto } from "./Components/unsubscribeContentDto";
+export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveContentDto";
 export type { ActivateAccountContentDto } from "./Components/activateAccountContentDto";
 export type { UpdateNewsletterContentDto } from "./Components/updateNewsletterContentDto";
 export type { WrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";

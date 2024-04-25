@@ -24,7 +24,7 @@ export { ContentResetPassword } from "./Content/contentResetPassword";
 export { ContentStory } from "./Content/contentStory";
 export { ContentTerms } from "./Content/contentTerms";
 export { ContentTestimonials } from "./Content/contentTestimonials";
-export { ContentUnsubscribe } from "./Content/contentUnsubscribe";
+export { ContentNewsletterRemove } from "./Content/contentNewsletterRemove";
 export { ContentUpdatePassword } from "./Content/contentUpdatePassword";
 export { ContentUpdateNewsletter } from "./Content/contentUpdateNewsletter";
 export { ContentUserSignin } from "./Content/contentUserSignin";

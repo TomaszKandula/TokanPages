@@ -12,7 +12,7 @@ interface Properties {
 }
 
 export const NewsletterRemove = (props: Properties): JSX.Element => {
-    const content = useSelector((state: ApplicationState) => state.contentUnsubscribe);
+    const content = useSelector((state: ApplicationState) => state.contentNewsletterRemove);
 
     const contentPre: ContentDto = content.content?.contentPre;
     const contentPost: ContentDto = content.content?.contentPost;

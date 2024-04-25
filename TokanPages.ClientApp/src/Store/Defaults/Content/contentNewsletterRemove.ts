@@ -1,6 +1,6 @@
-import { ContentUnsubscribeState } from "../../States";
+import { ContentNewsletterRemoveState } from "../../States";
 
-export const ContentUnsubscribe: ContentUnsubscribeState = {
+export const ContentNewsletterRemove: ContentNewsletterRemoveState = {
     isLoading: false,
     content: {
         language: "",

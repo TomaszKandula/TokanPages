@@ -17,7 +17,7 @@ import {
     ContentNewsletterState,
     ContentResetPasswordState,
     ContentTestimonialsState,
-    ContentUnsubscribeState,
+    ContentNewsletterRemoveState,
     ContentUpdatePasswordState,
     ContentUpdateNewsletterState,
     ContentUserSigninState,
@@ -71,7 +71,7 @@ export interface ApplicationState {
     contentStory: ContentStoryState;
     contentTerms: ContentTermsState;
     contentTestimonials: ContentTestimonialsState;
-    contentUnsubscribe: ContentUnsubscribeState;
+    contentNewsletterRemove: ContentNewsletterRemoveState;
     contentUpdatePassword: ContentUpdatePasswordState;
     contentUpdateNewsletter: ContentUpdateNewsletterState;
     contentUserSignin: ContentUserSigninState;

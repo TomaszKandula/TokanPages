@@ -1,23 +1,23 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_UNSUBSCRIBE_CONTENT } from "../../../Api/Request";
-import { UnsubscribeContentDto } from "../../../Api/Models";
+import { NewsletterRemoveContentDto } from "../../../Api/Models";
 
-export const REQUEST = "REQUEST_UNSUBSCRIBE_CONTENT";
-export const RECEIVE = "RECEIVE_UNSUBSCRIBE_CONTENT";
+export const REQUEST = "REQUEST_REMOVE_NEWSLETTER_CONTENT";
+export const RECEIVE = "RECEIVE_REMOVE_NEWSLETTER_CONTENT";
 interface Request {
     type: typeof REQUEST;
 }
 interface Receive {
     type: typeof RECEIVE;
-    payload: UnsubscribeContentDto;
+    payload: NewsletterRemoveContentDto;
 }
 export type TKnownActions = Request | Receive;
 
-export const ContentUnsubscribeAction = {
+export const ContentNewsletterRemoveAction = {
     get: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        const content = getState().contentUnsubscribe.content;
+        const content = getState().contentNewsletterRemove.content;
         const languageId = getState().applicationLanguage.id;
-        const isContentChanged = content !== ApplicationDefault.contentUnsubscribe.content;
+        const isContentChanged = content !== ApplicationDefault.contentNewsletterRemove.content;
         const isLanguageChanged = languageId !== content.language;
 
         if (isContentChanged && !isLanguageChanged) {

@@ -6,7 +6,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
 
-import { ContentNavigationAction, ContentFooterAction, ContentUnsubscribeAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentNewsletterRemoveAction } from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -21,7 +21,7 @@ export const NewsletterRemovePage = (): JSX.Element => {
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
-        dispatch(ContentUnsubscribeAction.get());
+        dispatch(ContentNewsletterRemoveAction.get());
     }, [language?.id]);
 
     return (
