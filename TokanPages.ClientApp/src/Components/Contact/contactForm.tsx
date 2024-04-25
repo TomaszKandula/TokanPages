@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { ContentContactFormState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ContactFormView } from "./View/contactFormView";
@@ -24,8 +23,10 @@ const formDefault: ContactFormInput = {
     terms: false,
 };
 
-export const ContactForm = (props: ContentContactFormState): JSX.Element => {
+export const ContactForm = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const contactForm = useSelector((state: ApplicationState) => state.contentContactForm);
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -115,9 +116,9 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element => {
 
     return (
         <ContactFormView
-            isLoading={props.isLoading}
-            caption={props.content?.caption}
-            text={props.content?.text}
+            isLoading={contactForm.isLoading}
+            caption={contactForm.content?.caption}
+            text={contactForm.content?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             firstName={form.firstName}
@@ -128,13 +129,13 @@ export const ContactForm = (props: ContentContactFormState): JSX.Element => {
             terms={form.terms}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={props.content?.button}
-            consent={props.content?.consent}
-            labelFirstName={props.content?.labelFirstName}
-            labelLastName={props.content?.labelLastName}
-            labelEmail={props.content?.labelEmail}
-            labelSubject={props.content?.labelSubject}
-            labelMessage={props.content?.labelMessage}
+            buttonText={contactForm.content?.button}
+            consent={contactForm.content?.consent}
+            labelFirstName={contactForm.content?.labelFirstName}
+            labelLastName={contactForm.content?.labelLastName}
+            labelEmail={contactForm.content?.labelEmail}
+            labelSubject={contactForm.content?.labelSubject}
+            labelMessage={contactForm.content?.labelMessage}
         />
     );
 };

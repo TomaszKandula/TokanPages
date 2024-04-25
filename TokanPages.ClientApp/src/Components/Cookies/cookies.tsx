@@ -1,10 +1,13 @@
 import * as React from "react";
-import { ContentCookiesPromptState } from "../../Store/States";
+import { useSelector } from "react-redux";
+import { ApplicationState } from "../../Store/Configuration";
 import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
 import { CookiesView } from "./View/cookiesView";
 import Validate from "validate.js";
 
-export const Cookies = (props: ContentCookiesPromptState): JSX.Element => {
+export const Cookies = (): JSX.Element => {
+    const cookies = useSelector((state: ApplicationState) => state.contentCookiesPrompt);
+
     const [isOpen, setIsOpen] = React.useState(false);
     const currentCookie = GetCookie({ cookieName: "cookieConsent" });
     const onClickEvent = React.useCallback(() => {
@@ -12,21 +15,21 @@ export const Cookies = (props: ContentCookiesPromptState): JSX.Element => {
         SetCookie({
             cookieName: "cookieConsent",
             value: "granted",
-            days: props.content?.days,
+            days: cookies.content?.days,
             sameSite: "Strict",
             secure: false,
         });
-    }, [props.content?.days]);
+    }, [cookies.content?.days]);
 
     return (
         <CookiesView
-            isLoading={props.isLoading}
+            isLoading={cookies.isLoading}
             modalClose={isOpen}
             shouldShow={Validate.isEmpty(currentCookie)}
-            caption={props.content?.caption}
-            text={props.content?.text}
+            caption={cookies.content?.caption}
+            text={cookies.content?.text}
             onClickEvent={onClickEvent}
-            buttonText={props.content?.button}
+            buttonText={cookies.content?.button}
         />
     );
 };

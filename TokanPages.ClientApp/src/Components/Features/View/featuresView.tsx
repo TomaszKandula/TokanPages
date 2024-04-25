@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -9,6 +10,7 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ApplicationState } from "../../../Store/Configuration";
 import { ContentArticleFeaturesState } from "../../../Store/States";
 import { RenderCardMedia } from "../../../Shared/Components";
 import { GET_ARTICLE_IMAGE_URL } from "../../../Api/Request";
@@ -35,15 +37,17 @@ const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     );
 };
 
-export const FeaturesView = (props: ContentArticleFeaturesState): JSX.Element => {
+export const FeaturesView = (): JSX.Element => {
     const classes = FeaturesStyle();
+    const features = useSelector((state: ApplicationState) => state.contentArticleFeatures);
+
     return (
         <section className={classes.section}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
                         <Typography className={classes.title}>
-                            {props.isLoading ? <Skeleton variant="text" /> : props.content?.title.toUpperCase()}
+                            {features.isLoading ? <Skeleton variant="text" /> : features.content?.title.toUpperCase()}
                         </Typography>
                     </Box>
                     <Container maxWidth="lg">
@@ -54,26 +58,26 @@ export const FeaturesView = (props: ContentArticleFeaturesState): JSX.Element =>
                                         <CardContent className={classes.card_content}>
                                             <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
                                                 <Typography className={classes.text1}>
-                                                    {props.isLoading ? (
+                                                    {features.isLoading ? (
                                                         <Skeleton variant="text" />
                                                     ) : (
-                                                        props.content?.text1
+                                                        features.content?.text1
                                                     )}
                                                 </Typography>
                                                 <Box mt="auto" mb={2}>
                                                     <Typography className={classes.text2}>
-                                                        {props.isLoading ? (
+                                                        {features.isLoading ? (
                                                             <Skeleton variant="text" />
                                                         ) : (
-                                                            props.content?.text2
+                                                            features.content?.text2
                                                         )}
                                                     </Typography>
                                                 </Box>
                                                 <Box textAlign="right">
-                                                    {props.isLoading ? (
+                                                    {features.isLoading ? (
                                                         <Skeleton variant="rect" width="100%" height="25px" />
                                                     ) : (
-                                                        <ActiveButton {...props} />
+                                                        <ActiveButton {...features} />
                                                     )}
                                                 </Box>
                                             </Box>
@@ -84,12 +88,12 @@ export const FeaturesView = (props: ContentArticleFeaturesState): JSX.Element =>
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {props.isLoading ? (
+                                                {features.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        props.content?.image1,
+                                                        features.content?.image1,
                                                         classes.media
                                                     )
                                                 )}
@@ -97,12 +101,12 @@ export const FeaturesView = (props: ContentArticleFeaturesState): JSX.Element =>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {props.isLoading ? (
+                                                {features.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        props.content?.image2,
+                                                        features.content?.image2,
                                                         classes.media
                                                     )
                                                 )}
@@ -110,12 +114,12 @@ export const FeaturesView = (props: ContentArticleFeaturesState): JSX.Element =>
                                         </Grid>
                                         <Grid item xs={12} md={4}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {props.isLoading ? (
+                                                {features.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        props.content?.image3,
+                                                        features.content?.image3,
                                                         classes.media
                                                     )
                                                 )}
@@ -123,12 +127,12 @@ export const FeaturesView = (props: ContentArticleFeaturesState): JSX.Element =>
                                         </Grid>
                                         <Grid item xs={12} md={8}>
                                             <Card elevation={0} className={classes.card_image}>
-                                                {props.isLoading ? (
+                                                {features.isLoading ? (
                                                     <Skeleton variant="rect" height="128px" />
                                                 ) : (
                                                     RenderCardMedia(
                                                         GET_ARTICLE_IMAGE_URL,
-                                                        props.content?.image4,
+                                                        features.content?.image4,
                                                         classes.media
                                                     )
                                                 )}

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ApplicationState } from "../../Store/Configuration";
-import { ContentNewsletterState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { NewsletterView } from "./View/newsletterView";
@@ -14,8 +13,10 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Ser
 
 import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
+export const Newsletter = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletter);
     const add = useSelector((state: ApplicationState) => state.newsletterAdd);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -82,16 +83,16 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
 
     return (
         <NewsletterView
-            isLoading={props.isLoading}
-            caption={props.content?.caption}
-            text={props.content?.text}
+            isLoading={newsletter.isLoading}
+            caption={newsletter.content?.caption}
+            text={newsletter.content?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={props.content?.button}
-            labelEmail={props.content?.labelEmail}
+            buttonText={newsletter.content?.button}
+            labelEmail={newsletter.content?.labelEmail}
         />
     );
 };

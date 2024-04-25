@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Box, Container, Typography } from "@material-ui/core";
+import { ApplicationState } from "../../../Store/Configuration";
 import { ContentClientsState } from "../../../Store/States";
 import { GET_ICONS_URL } from "../../../Api/Request";
 import { ClientsStyle } from "./clientsStyle";
@@ -32,15 +34,17 @@ const RenderImages = (props: ContentClientsState): JSX.Element => {
     );
 };
 
-export const ClientsView = (props: ContentClientsState): JSX.Element => {
+export const ClientsView = (): JSX.Element => {
     const classes = ClientsStyle();
+    const clients = useSelector((state: ApplicationState) => state.contentClients);
+
     return (
         <>
             <div className={classes.divider}></div>
             <section className={classes.section}>
                 <Container maxWidth="lg">
-                    {props.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...props} />}
-                    {props.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...props} />}
+                    {clients.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
+                    {clients.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}
                 </Container>
             </section>
         </>

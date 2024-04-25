@@ -31,18 +31,6 @@ export const MainPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
-    const header = useSelector((state: ApplicationState) => state.contentHeader);
-    const clients = useSelector((state: ApplicationState) => state.contentClients);
-    const features = useSelector((state: ApplicationState) => state.contentFeatures);
-    const articles = useSelector((state: ApplicationState) => state.contentArticleFeatures);
-    const featured = useSelector((state: ApplicationState) => state.contentFeatured);
-    const testimonials = useSelector((state: ApplicationState) => state.contentTestimonials);
-    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletter);
-    const contactForm = useSelector((state: ApplicationState) => state.contentContactForm);
-    const cookiesPrompt = useSelector((state: ApplicationState) => state.contentCookiesPrompt);
-
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentHeaderAction.get());
@@ -60,17 +48,17 @@ export const MainPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
-            <Header content={header?.content} isLoading={header?.isLoading} />
-            <Clients content={clients?.content} isLoading={clients?.isLoading} />
-            <Technologies content={features?.content} isLoading={features?.isLoading} />
-            <Features content={articles?.content} isLoading={articles?.isLoading} />
-            <Featured content={featured?.content} isLoading={featured?.isLoading} />
-            <Testimonials content={testimonials?.content} isLoading={testimonials?.isLoading} />
-            <Newsletter content={newsletter?.content} isLoading={newsletter?.isLoading} />
-            <ContactForm content={contactForm?.content} isLoading={contactForm?.isLoading} />
-            <Cookies content={cookiesPrompt?.content} isLoading={cookiesPrompt?.isLoading} />
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            <Navigation />
+            <Header />
+            <Clients />
+            <Technologies />
+            <Features />
+            <Featured />
+            <Testimonials />
+            <Newsletter />
+            <ContactForm />
+            <Cookies />
+            <Footer />
         </>
     );
 };
