@@ -45,6 +45,7 @@ import {
     ContentStory,
     UserMediaUpload,
     UserSignout,
+    UserNotification,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -85,6 +86,7 @@ export const ApplicationDefault: ApplicationState = {
     userActivate: UserActivate,
     userDataStore: UserDataStore,
     userMediaUpload: UserMediaUpload,
+    userNotification: UserNotification,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

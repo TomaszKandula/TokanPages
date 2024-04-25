@@ -44,6 +44,7 @@ import {
     ContentStoryState,
     UserMediaUploadState,
     UserSignoutState,
+    UserNotificationState,
 } from "../States";
 
 export interface ApplicationState {
@@ -84,6 +85,7 @@ export interface ApplicationState {
     userActivate: UserActivateState;
     userDataStore: UserDataStoreState;
     userMediaUpload: UserMediaUploadState;
+    userNotification: UserNotificationState;
     userPasswordReset: UserPasswordResetState;
     userPasswordUpdate: UserPasswordUpdateState;
     userReAuthenticate: UserReAuthenticateState;

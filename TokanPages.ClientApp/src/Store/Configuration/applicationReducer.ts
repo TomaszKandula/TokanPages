@@ -44,6 +44,7 @@ import {
     ContentStory,
     UserMediaUpload,
     UserSignout,
+    UserNotification,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -84,6 +85,7 @@ export const ApplicationReducer = {
     userActivate: UserActivate,
     userDataStore: UserDataStore,
     userMediaUpload: UserMediaUpload,
+    userNotification: UserNotification,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

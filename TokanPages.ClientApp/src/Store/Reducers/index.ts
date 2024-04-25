@@ -47,3 +47,4 @@ export { UserPasswordUpdate } from "./Users/userPasswordUpdate";
 export { UserUpdate } from "./Users/userUpdate";
 export { UserMediaUpload } from "./Users/userMediaUpload";
 export { UserSignout } from "./Users/userSignout";
+export { UserNotification } from "./Users/userNotification";

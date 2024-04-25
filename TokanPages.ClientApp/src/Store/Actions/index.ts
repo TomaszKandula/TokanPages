@@ -47,3 +47,4 @@ export { UserPasswordUpdateAction } from "./Users/userPasswordUpdate";
 export { UserUpdateAction } from "./Users/userUpdate";
 export { UserMediaUploadAction } from "./Users/userMediaUpload";
 export { UserSignoutAction } from "./Users/userSignout";
+export { UserNotificationAction } from "./Users/userNotification";
