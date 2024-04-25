@@ -14,11 +14,11 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentArticleFeaturesState } from "../../../../Store/States";
 import { RenderCardMedia } from "../../../../Shared/Components";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
-import { FeaturesStyle } from "./articleFeatureStyle";
+import { ArticleFeatureStyle } from "./articleFeatureStyle";
 import Validate from "validate.js";
 
 const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
-    const classes = FeaturesStyle();
+    const classes = ArticleFeatureStyle();
 
     if (Validate.isEmpty(props?.content?.action?.href)) {
         return (
@@ -37,8 +37,8 @@ const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     );
 };
 
-export const FeaturesView = (): JSX.Element => {
-    const classes = FeaturesStyle();
+export const ArticleFeatureView = (): JSX.Element => {
+    const classes = ArticleFeatureStyle();
     const features = useSelector((state: ApplicationState) => state.contentArticleFeatures);
 
     return (

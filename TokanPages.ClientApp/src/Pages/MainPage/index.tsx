@@ -8,7 +8,7 @@ import { Testimonials } from "../../Components/Testimonials";
 import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
-import { Features } from "../../Components/Articles/ArticleFeature";
+import { ArticleFeature } from "../../Components/Articles";
 
 import { Navigation, Header, Footer } from "../../Components/Layout";
 
@@ -52,7 +52,7 @@ export const MainPage = (): JSX.Element => {
             <Header />
             <Clients />
             <Technologies />
-            <Features />
+            <ArticleFeature />
             <Featured />
             <Testimonials />
             <Newsletter />

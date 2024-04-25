@@ -1,1 +1,1 @@
-export { FeaturesView as Features } from "./View/articleFeatureView";
+export { ArticleFeatureView as ArticleFeature } from "./View/articleFeatureView";
