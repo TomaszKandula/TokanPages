@@ -14,7 +14,7 @@ export { ContentClients } from "./Content/contentClients";
 export { ContentContactForm } from "./Content/contentContactForm";
 export { ContentCookiesPrompt } from "./Content/contentCookiesPrompt";
 export { ContentFeatured } from "./Content/contentFeatured";
-export { ContentFeatures } from "./Content/contentFeatures";
+export { ContentTechnologies } from "./Content/contentTechnologies";
 export { ContentFooter } from "./Content/contentFooter";
 export { ContentHeader } from "./Content/contentHeader";
 export { ContentNavigation } from "./Content/contentNavigation";

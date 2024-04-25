@@ -1,4 +1,4 @@
-export interface FeaturesContentDto {
+export interface TechnologiesContentDto {
     content: {
         language: string;
         caption: string;

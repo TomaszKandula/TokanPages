@@ -56,7 +56,7 @@ export const GET_CONTACT_FORM_CONTENT = `${API_CONTENT_URI}/getContent/?name=con
 export const GET_COOKIES_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent/?name=cookiesPrompt&type=component`;
 export const GET_CLIENTS_CONTENT = `${API_CONTENT_URI}/getContent/?name=clients&type=component`;
 export const GET_FEATURED_CONTENT = `${API_CONTENT_URI}/getContent/?name=featured&type=component`;
-export const GET_FEATURES_CONTENT = `${API_CONTENT_URI}/getContent/?name=features&type=component`;
+export const GET_TECHNOLOGIES_CONTENT = `${API_CONTENT_URI}/getContent/?name=technologies&type=component`;
 export const GET_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=newsletter&type=component`;
 export const GET_RESET_PASSWORD_CONTENT = `${API_CONTENT_URI}/getContent/?name=resetPassword&type=component`;
 export const GET_UPDATE_PASSWORD_CONTENT = `${API_CONTENT_URI}/getContent/?name=updatePassword&type=component`;

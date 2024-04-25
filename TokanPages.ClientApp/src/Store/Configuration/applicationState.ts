@@ -10,7 +10,7 @@ import {
     ContentContactFormState,
     ContentCookiesPromptState,
     ContentFeaturedState,
-    ContentFeaturesState,
+    ContentTechnologiesState,
     ContentFooterState,
     ContentHeaderState,
     ContentNavigationState,
@@ -61,7 +61,7 @@ export interface ApplicationState {
     contentContactForm: ContentContactFormState;
     contentCookiesPrompt: ContentCookiesPromptState;
     contentFeatured: ContentFeaturedState;
-    contentFeatures: ContentFeaturesState;
+    contentTechnologies: ContentTechnologiesState;
     contentFooter: ContentFooterState;
     contentHeader: ContentHeaderState;
     contentNavigation: ContentNavigationState;

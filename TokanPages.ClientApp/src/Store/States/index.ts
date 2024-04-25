@@ -14,7 +14,7 @@ export type { ContentClientsState } from "./Content/contentClients";
 export type { ContentContactFormState } from "./Content/contentContactForm";
 export type { ContentCookiesPromptState } from "./Content/contentCookiesPrompt";
 export type { ContentFeaturedState } from "./Content/contentFeatured";
-export type { ContentFeaturesState } from "./Content/contentFeatures";
+export type { ContentTechnologiesState } from "./Content/contentTechnologies";
 export type { ContentFooterState } from "./Content/contentFooter";
 export type { ContentHeaderState } from "./Content/contentHeader";
 export type { ContentNavigationState } from "./Content/contentNavigation";

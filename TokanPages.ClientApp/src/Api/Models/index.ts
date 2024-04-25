@@ -44,7 +44,7 @@ export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesCont
 export type { ContactFormContentDto } from "./Components/contactFormContentDto";
 export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
 export type { FeaturedContentDto } from "./Components/featuredContentDto";
-export type { FeaturesContentDto } from "./Components/featuresContentDto";
+export type { TechnologiesContentDto } from "./Components/technologiesContentDto";
 export type { NewsletterContentDto } from "./Components/newsletterContentDto";
 export type { ResetPasswordContentDto } from "./Components/resetPasswordContentDto";
 export type { UpdatePasswordContentDto } from "./Components/updatePasswordContentDto";

@@ -1,6 +1,6 @@
-import { ContentFeaturesState } from "../../States";
+import { ContentTechnologiesState } from "../../States";
 
-export const ContentFeatures: ContentFeaturesState = {
+export const ContentTechnologies: ContentTechnologiesState = {
     isLoading: false,
     content: {
         language: "",

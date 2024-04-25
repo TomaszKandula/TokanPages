@@ -20,7 +20,7 @@ import {
     ContentFooterAction,
     ContentClientsAction,
     ContentFeaturedAction,
-    ContentFeaturesAction,
+    ContentTechnologiesAction,
     ContentNewsletterAction,
     ContentContactFormAction,
     ContentCookiesPromptAction,
@@ -39,7 +39,7 @@ export const MainPage = (): JSX.Element => {
         dispatch(ContentFooterAction.get());
         dispatch(ContentClientsAction.get());
         dispatch(ContentFeaturedAction.get());
-        dispatch(ContentFeaturesAction.get());
+        dispatch(ContentTechnologiesAction.get());
         dispatch(ContentNewsletterAction.get());
         dispatch(ContentContactFormAction.get());
         dispatch(ContentCookiesPromptAction.get());

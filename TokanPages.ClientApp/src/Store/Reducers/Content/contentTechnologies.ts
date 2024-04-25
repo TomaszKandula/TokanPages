@@ -1,14 +1,14 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { ContentFeaturesState } from "../../States";
+import { ContentTechnologiesState } from "../../States";
 
-import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Content/contentFeatures";
+import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Content/contentTechnologies";
 
-export const ContentFeatures: Reducer<ContentFeaturesState> = (
-    state: ContentFeaturesState | undefined,
+export const ContentTechnologies: Reducer<ContentTechnologiesState> = (
+    state: ContentTechnologiesState | undefined,
     incomingAction: Action
-): ContentFeaturesState => {
-    if (state === undefined) return ApplicationDefault.contentFeatures;
+): ContentTechnologiesState => {
+    if (state === undefined) return ApplicationDefault.contentTechnologies;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {

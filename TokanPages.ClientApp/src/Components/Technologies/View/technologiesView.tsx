@@ -15,7 +15,7 @@ import { TechnologiesStyle } from "./technologiesStyle";
 
 export const TechnologiesView = (): JSX.Element => {
     const classes = TechnologiesStyle();
-    const technology = useSelector((state: ApplicationState) => state.contentFeatures);
+    const technology = useSelector((state: ApplicationState) => state.contentTechnologies);
 
     return (
         <section className={classes.section}>
