@@ -26,7 +26,7 @@ export { ContentTermsAction } from "./Content/contentTerms";
 export { ContentTestimonialsAction } from "./Content/contentTestimonials";
 export { ContentUnsubscribeAction } from "./Content/contentUnsubscribe";
 export { ContentUpdatePasswordAction } from "./Content/contentUpdatePassword";
-export { ContentUpdateSubscriberAction } from "./Content/contentUpdateSubscriber";
+export { ContentUpdateNewsletterAction } from "./Content/contentUpdateNewsletter";
 export { ContentUserSigninAction } from "./Content/contentUserSignin";
 export { ContentUserSignoutAction } from "./Content/contentUserSignout";
 export { ContentUserSignupAction } from "./Content/contentUserSignup";

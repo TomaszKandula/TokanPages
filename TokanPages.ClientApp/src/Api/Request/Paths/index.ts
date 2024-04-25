@@ -66,7 +66,7 @@ export const GET_SIGNOUT_CONTENT = `${API_CONTENT_URI}/getContent/?name=userSign
 export const GET_TESTIMONIALS_CONTENT = `${API_CONTENT_URI}/getContent/?name=testimonials&type=component`;
 export const GET_UNSUBSCRIBE_CONTENT = `${API_CONTENT_URI}/getContent/?name=unsubscribe&type=component`;
 export const GET_ACTIVATE_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=activateAccount&type=component`;
-export const GET_UPDATE_SUBSCRIBER_CONTENT = `${API_CONTENT_URI}/getContent/?name=updateSubscriber&type=component`;
+export const GET_UPDATE_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=updateNewsletter&type=component`;
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent/?name=wrongPagePrompt&type=component`;
 export const GET_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=account&type=component`;
 export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=story&type=document`;
