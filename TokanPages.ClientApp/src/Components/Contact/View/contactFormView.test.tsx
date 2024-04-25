@@ -27,6 +27,8 @@ describe("test component: contactFormView", () => {
                 labelEmail="Email address"
                 labelSubject="Subject"
                 labelMessage="Message"
+                multiline={false}
+                minRows={undefined}
             />
         );
 
