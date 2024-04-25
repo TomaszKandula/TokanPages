@@ -26,7 +26,7 @@ export { ContentTerms } from "./Content/contentTerms";
 export { ContentTestimonials } from "./Content/contentTestimonials";
 export { ContentNewsletterRemove } from "./Content/contentNewsletterRemove";
 export { ContentUpdatePassword } from "./Content/contentUpdatePassword";
-export { ContentUpdateNewsletter } from "./Content/contentUpdateNewsletter";
+export { ContentNewsletterUpdate } from "./Content/contentNewsletterUpdate";
 export { ContentUserSignin } from "./Content/contentUserSignin";
 export { ContentUserSignout } from "./Content/contentUserSignout";
 export { ContentUserSignup } from "./Content/contentUserSignup";

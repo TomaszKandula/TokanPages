@@ -26,7 +26,7 @@ export type { ContentTermsState } from "./Content/contentTerms";
 export type { ContentTestimonialsState } from "./Content/contentTestimonials";
 export type { ContentNewsletterRemoveState } from "./Content/contentNewsletterRemove";
 export type { ContentUpdatePasswordState } from "./Content/contentUpdatePassword";
-export type { ContentUpdateNewsletterState } from "./Content/contentUpdateNewsletter";
+export type { ContentNewsletterUpdateState } from "./Content/contentNewsletterUpdate";
 export type { ContentUserSigninState } from "./Content/contentUserSignin";
 export type { ContentUserSignoutState } from "./Content/contentUserSignout";
 export type { ContentUserSignupState } from "./Content/contentUserSignup";

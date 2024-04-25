@@ -1,6 +1,6 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { GetContent, GET_UPDATE_NEWSLETTER_CONTENT } from "../../../Api/Request";
-import { UpdateNewsletterContentDto } from "../../../Api/Models";
+import { NewsletterUpdateContentDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_UPDATE_NEWSLETTER_CONTENT";
 export const RECEIVE = "RECEIVE_UPDATE_NEWSLETTER_CONTENT";
@@ -9,15 +9,15 @@ interface Request {
 }
 interface Receive {
     type: typeof RECEIVE;
-    payload: UpdateNewsletterContentDto;
+    payload: NewsletterUpdateContentDto;
 }
 export type TKnownActions = Request | Receive;
 
-export const ContentUpdateNewsletterAction = {
+export const ContentNewsletterUpdateAction = {
     get: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        const content = getState().contentUpdateNewsletter.content;
+        const content = getState().contentNewsletterUpdate.content;
         const languageId = getState().applicationLanguage.id;
-        const isContentChanged = content !== ApplicationDefault.contentUpdateNewsletter.content;
+        const isContentChanged = content !== ApplicationDefault.contentNewsletterUpdate.content;
         const isLanguageChanged = languageId !== content.language;
 
         if (isContentChanged && !isLanguageChanged) {

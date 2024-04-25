@@ -1,4 +1,4 @@
-export interface UpdateNewsletterContentDto {
+export interface NewsletterUpdateContentDto {
     content: {
         language: string;
         caption: string;

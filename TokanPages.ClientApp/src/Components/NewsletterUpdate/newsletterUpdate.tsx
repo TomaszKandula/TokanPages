@@ -26,7 +26,7 @@ export const NewsletterUpdate = (props: Properties): JSX.Element => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
 
-    const newsletter = useSelector((state: ApplicationState) => state.contentUpdateNewsletter);
+    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletterUpdate);
     const update = useSelector((state: ApplicationState) => state.newsletterUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 

@@ -1,6 +1,6 @@
-import { ContentUpdateNewsletterState } from "../../States";
+import { ContentNewsletterUpdateState } from "../../States";
 
-export const ContentUpdateNewsletter: ContentUpdateNewsletterState = {
+export const ContentNewsletterUpdate: ContentNewsletterUpdateState = {
     isLoading: false,
     content: {
         language: "",

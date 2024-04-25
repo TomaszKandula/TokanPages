@@ -1,14 +1,14 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
-import { ContentUpdateNewsletterState } from "../../States";
+import { ContentNewsletterUpdateState } from "../../States";
 
-import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Content/contentUpdateNewsletter";
+import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Content/contentNewsletterUpdate";
 
-export const ContentUpdateNewsletter: Reducer<ContentUpdateNewsletterState> = (
-    state: ContentUpdateNewsletterState | undefined,
+export const ContentNewsletterUpdate: Reducer<ContentNewsletterUpdateState> = (
+    state: ContentNewsletterUpdateState | undefined,
     incomingAction: Action
-): ContentUpdateNewsletterState => {
-    if (state === undefined) return ApplicationDefault.contentUpdateNewsletter;
+): ContentNewsletterUpdateState => {
+    if (state === undefined) return ApplicationDefault.contentNewsletterUpdate;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {
