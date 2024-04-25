@@ -10,7 +10,6 @@ import { ContentNavigationAction, ContentFooterAction, ContentContactFormAction 
 export const ContactPage = () => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const form = useSelector((state: ApplicationState) => state.contentContactForm);
 
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
@@ -23,7 +22,7 @@ export const ContactPage = () => {
             <Navigation />
             <Container>
                 <Box mt={8}>
-                    <ContactForm content={form?.content} isLoading={form?.isLoading} />
+                    <ContactForm />
                 </Box>
             </Container>
             <Footer />
