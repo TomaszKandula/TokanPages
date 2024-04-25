@@ -1,9 +1,9 @@
-import "../../../setupTests";
+import "../../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "enzyme";
-import { FeaturesView } from "./featuresView";
+import { FeaturesView } from "./articleFeatureView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),

@@ -10,11 +10,11 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ApplicationState } from "../../../Store/Configuration";
-import { ContentArticleFeaturesState } from "../../../Store/States";
-import { RenderCardMedia } from "../../../Shared/Components";
-import { GET_ARTICLE_IMAGE_URL } from "../../../Api/Request";
-import { FeaturesStyle } from "./featuresStyle";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { ContentArticleFeaturesState } from "../../../../Store/States";
+import { RenderCardMedia } from "../../../../Shared/Components";
+import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
+import { FeaturesStyle } from "./articleFeatureStyle";
 import Validate from "validate.js";
 
 const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {

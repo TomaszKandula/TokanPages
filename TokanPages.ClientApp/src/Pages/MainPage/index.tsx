@@ -8,7 +8,7 @@ import { Testimonials } from "../../Components/Testimonials";
 import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
-import { Features } from "../../Components/Features";
+import { Features } from "../../Components/Articles/ArticleFeature";
 
 import { Navigation, Header, Footer } from "../../Components/Layout";
 

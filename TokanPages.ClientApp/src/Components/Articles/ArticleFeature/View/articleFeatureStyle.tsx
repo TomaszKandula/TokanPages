@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Colours } from "../../../Theme";
+import { Colours } from "../../../../Theme";
 
 export const FeaturesStyle = makeStyles(theme => ({
     section: {
