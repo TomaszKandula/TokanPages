@@ -3,7 +3,11 @@ import React from "react";
 import * as Redux from "react-redux";
 import { shallow } from "enzyme";
 import { UserSignup } from "./userSignup";
-import { ApplicationDefault } from "../../../Store/Configuration";
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
+}));
 
 describe("test account group component: userSignup", () => {
     const testContent = {
@@ -19,12 +23,7 @@ describe("test account group component: userSignup", () => {
         labelPassword: ""
     };
 
-    let data = ApplicationDefault;
-    data.contentUserSignup.isLoading = false;
-    data.contentUserSignup.content = testContent;
-
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const wrapper = shallow(
         <div>
             <UserSignup />
@@ -32,15 +31,16 @@ describe("test account group component: userSignup", () => {
     );
 
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        useDispatchMock.mockClear();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
+
         wrapper.find("UserSignup").dive();
     });
 
     it("should render correctly '<UserSignup />' when content is loaded.", () => {
         useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(data);
-
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(wrapper).toMatchSnapshot();
     });

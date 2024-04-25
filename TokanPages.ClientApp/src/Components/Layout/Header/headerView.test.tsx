@@ -1,9 +1,14 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { shallow } from "enzyme";
-import { ApplicationDefault } from "../../../Store/Configuration";
+import { BrowserRouter as Router } from "react-router-dom";
+import { render } from "enzyme";
 import { HeaderView } from "./headerView";
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
+}));
 
 describe("test component: headerView", () => {
     const testContent = {
@@ -16,25 +21,16 @@ describe("test component: headerView", () => {
             href: "/action-link",
         },
     };
-    
-    let data = ApplicationDefault;
-    data.contentHeader.isLoading = false;
-    data.contentHeader.content = testContent;
-
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <HeaderView />
-        </div>
-    );
 
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        wrapper.find("HeaderView").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
     });
 
     it("should render correctly '<HeaderView />' when content is loaded.", () => {
-        useSelectorMock.mockReturnValue(data);
-        expect(wrapper).toMatchSnapshot();
+        const html = render(<Router><HeaderView /></Router>);
+        expect(html).toMatchSnapshot();
     });
 });

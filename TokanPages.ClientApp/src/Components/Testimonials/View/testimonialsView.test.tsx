@@ -1,9 +1,13 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { shallow } from "enzyme";
-import { ApplicationDefault } from "../../../Store/Configuration";
+import { render } from "enzyme";
 import { TestimonialsView } from "./testimonialsView";
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
+}));
 
 describe("test component: testimonialsView", () => {
     const testContent = {
@@ -23,25 +27,16 @@ describe("test component: testimonialsView", () => {
         occupation3: "BPO",
         text3: "Joe is one of those rare talents...",
     };
-    
-    let data = ApplicationDefault;
-    data.contentTestimonials.isLoading = false;
-    data.contentTestimonials.content = testContent;
-
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <TestimonialsView />
-        </div>
-    );
 
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        wrapper.find("TestimonialsView").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
     });
 
     it("should render correctly '<TestimonialsView />' when content is loaded.", () => {
-        useSelectorMock.mockReturnValue(data);
-        expect(wrapper).toMatchSnapshot();
+        const html = render(<TestimonialsView />);
+        expect(html).toMatchSnapshot();
     });
 });

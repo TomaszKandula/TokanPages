@@ -1,11 +1,15 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { shallow } from "enzyme";
-import { ApplicationDefault } from "../../../Store/Configuration";
+import { render } from "enzyme";
 import { TechnologiesView } from "./technologiesView";
 
-describe("test component: featuresView", () => {
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
+}));
+
+describe("test component: technologiesView", () => {
     const testContent = {
         language: "eng",
         caption: "Technologies",
@@ -19,25 +23,16 @@ describe("test component: featuresView", () => {
         title4: "Cloud Services",
         text4: "I have experience with...",
     };
-    
-    let data = ApplicationDefault;
-    data.contentFeatures.isLoading = false;
-    data.contentFeatures.content = testContent;
-
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <TechnologiesView />
-        </div>
-    );
 
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        wrapper.find("TechnologiesView").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
     });
 
-    it("should render correctly '<FeaturesView />' when content is loaded.", () => {
-        useSelectorMock.mockReturnValue(data);
-        expect(wrapper).toMatchSnapshot();
+    it("should render correctly '<TechnologiesView />' when content is loaded.", () => {
+        const html = render(<TechnologiesView />);
+        expect(html).toMatchSnapshot();
     });
 });

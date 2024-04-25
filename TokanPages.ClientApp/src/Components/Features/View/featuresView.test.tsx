@@ -1,9 +1,14 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { shallow } from "enzyme";
-import { ApplicationDefault } from "../../../Store/Configuration";
+import { BrowserRouter as Router } from "react-router-dom";
+import { render } from "enzyme";
 import { FeaturesView } from "./featuresView";
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
+}));
 
 describe("test articles group component: ArticleFeaturesView", () => {
     const testContent = {
@@ -21,25 +26,16 @@ describe("test articles group component: ArticleFeaturesView", () => {
         image3: "image3.jpg",
         image4: "image4.jpg",
     };
-    
-    let data = ApplicationDefault;
-    data.contentArticleFeatures.isLoading = false;
-    data.contentArticleFeatures.content = testContent;
-
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <FeaturesView />
-        </div>
-    );
 
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        wrapper.find("FeaturesView").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
     });
-    
+
     it("should render correctly '<ArticleFeaturesView />' when content is loaded.", () => {
-        useSelectorMock.mockReturnValue(data);
-        expect(wrapper).toMatchSnapshot();
+        const html = render(<Router><FeaturesView /></Router>);
+        expect(html).toMatchSnapshot();
     });
 });

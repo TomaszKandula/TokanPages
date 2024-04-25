@@ -1,9 +1,13 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { shallow } from "enzyme";
-import { ApplicationDefault } from "../../../Store/Configuration";
+import { render } from "enzyme";
 import { FeaturedView } from "./featuredView";
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn()
+}));
 
 describe("test component: featuredView", () => {
     const testContent = {
@@ -24,29 +28,15 @@ describe("test component: featuredView", () => {
         image3: "article2.jpg",
     };
 
-    let data = ApplicationDefault;
-    data.contentFeatured.isLoading = false;
-    data.contentFeatured.content = testContent;
-
-    const useDispatchMock = jest.spyOn(Redux, "useDispatch");
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <FeaturedView />
-        </div>
-    );
-
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        useDispatchMock.mockClear();
-        wrapper.find("FeaturedView").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent
+        });
     });
 
     it("should render correctly '<FeaturedView />' when content is loaded.", () => {
-        useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(data);
-
-        expect(useDispatchMock).toBeCalledTimes(1);
-        expect(wrapper).toMatchSnapshot();
+        const html = render(<FeaturedView />);
+        expect(html).toMatchSnapshot();
     });
 });
