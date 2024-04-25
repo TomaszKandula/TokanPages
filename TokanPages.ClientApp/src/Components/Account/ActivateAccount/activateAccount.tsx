@@ -3,25 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { UserActivateAction } from "../../../Store/Actions";
-import { ContentActivateAccountState } from "../../../Store/States";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-interface Properties extends ContentActivateAccountState {
+interface Properties {
     id: string;
 }
 
 export const ActivateAccount = (props: Properties): JSX.Element => {
-    const onProcessing = props.content?.onProcessing;
-    const onSuccess = props.content?.onSuccess;
-    const onError = props.content?.onError;
-
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const activation = useSelector((state: ApplicationState) => state.contentActivateAccount);
     const activate = useSelector((state: ApplicationState) => state.userActivate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+
+    const onProcessing = activation.content?.onProcessing;
+    const onSuccess = activation.content?.onSuccess;
+    const onError = activation.content?.onError;
 
     const hasNotStarted = activate?.status === OperationStatus.notStarted;
     const hasFinished = activate?.status === OperationStatus.hasFinished;
@@ -85,7 +85,7 @@ export const ActivateAccount = (props: Properties): JSX.Element => {
 
     return (
         <ActivateAccountView
-            isLoading={props.isLoading}
+            isLoading={activation.isLoading}
             caption={content.caption}
             text1={content.text1}
             text2={content.text2}

@@ -25,9 +25,7 @@ export const ActivationPage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id");
-
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const activation = useSelector((state: ApplicationState) => state.contentActivateAccount);
 
     React.useEffect(() => {
         dispatch(ContentActivateAccountAction.get());
@@ -40,7 +38,7 @@ export const ActivationPage = (): JSX.Element => {
             <Navigation />
             <Container>
                 {id ? (
-                    <ActivateAccount id={id} content={activation?.content} isLoading={activation?.isLoading} />
+                    <ActivateAccount id={id} />
                 ) : (
                     <ErrorMessage />
                 )}
