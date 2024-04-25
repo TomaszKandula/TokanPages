@@ -3,6 +3,7 @@ const APP_BACKEND = process.env.REACT_APP_BACKEND;
 export const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
 const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
+const API_NOTIFICATIONS_WEB_URI = `${API_BASE_URI}/notifications/web`;
 const API_NEWSLETTERS_URI = `${API_BASE_URI}/sender/newsletters`;
 const API_MAILER_URI = `${API_BASE_URI}/sender/mailer`;
 const API_CONTENT_URI = `${API_BASE_URI}/content/components`;
@@ -43,6 +44,9 @@ export const REMOVE_NEWSLETTER = `${API_NEWSLETTERS_URI}/removeNewsletter`;
 
 export const SEND_MESSAGE = `${API_MAILER_URI}/sendMessage`;
 export const SEND_NEWSLETTER = `${API_MAILER_URI}/sendNewsletter`;
+
+export const NOTIFY_WEB_URL = `${API_NOTIFICATIONS_WEB_URI}/notify`;
+export const NOTIFICATION_STATUS = `${API_NOTIFICATIONS_WEB_URI}/status`;
 
 export const GET_IMAGE_ASSET = `${API_ASSETS_URI}/getImageAsset/?blobName={name}`;
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset/?blobName={name}`;
