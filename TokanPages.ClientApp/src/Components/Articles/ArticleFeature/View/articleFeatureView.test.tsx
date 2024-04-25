@@ -3,14 +3,14 @@ import React from "react";
 import * as Redux from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "enzyme";
-import { FeaturesView } from "./articleFeatureView";
+import { ArticleFeatureView } from "./articleFeatureView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
     useSelector: jest.fn()
 }));
 
-describe("test articles group component: ArticleFeaturesView", () => {
+describe("test articles group component: ArticleFeatureView", () => {
     const testContent = {
         language: "eng",
         title: "Articles",
@@ -34,8 +34,8 @@ describe("test articles group component: ArticleFeaturesView", () => {
         });
     });
 
-    it("should render correctly '<ArticleFeaturesView />' when content is loaded.", () => {
-        const html = render(<Router><FeaturesView /></Router>);
+    it("should render correctly '<ArticleFeatureView />' when content is loaded.", () => {
+        const html = render(<Router><ArticleFeatureView /></Router>);
         expect(html).toMatchSnapshot();
     });
 });
