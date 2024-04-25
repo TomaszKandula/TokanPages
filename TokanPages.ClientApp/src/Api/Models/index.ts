@@ -34,8 +34,10 @@ export type { UploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto"
 export type { ErrorDto } from "./Error/errorDto";
 export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
 
-export type { DocumentContentDto } from "./Components/documentContentDto";
+export type { GetContentManifestDto } from "./Content/getContentManifestDto";
+export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 
+export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto } from "./Components/navigationContentDto";
 export type { HeaderContentDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
@@ -64,12 +66,16 @@ export type {
     SectionAccountRemoval,
 } from "./Components/accountContentDto";
 
+export type { NotificationData } from "./NotificationsWeb/notificationData";
+export type { NotificationRequest } from "./NotificationsWeb/notificationRequest";
+export type { NotificationResponse } from "./NotificationsWeb/notificationResponse";
+export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
+export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
+
 export type { IconDto } from "./Components/Common/iconDto";
 export type { LinkDto } from "./Components/Common/linkDto";
 export type { RowItemDto } from "./Components/Common/rowItemDto";
 export type { TextItemDto } from "./Components/Common/textItemDto";
 export type { ContentDto } from "./Components/Common/contentDto";
 
-export type { GetContentManifestDto } from "./Content/getContentManifestDto";
-export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 export type { JWT } from "./Jwt";
