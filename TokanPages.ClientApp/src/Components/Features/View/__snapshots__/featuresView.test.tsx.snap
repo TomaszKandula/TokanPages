@@ -2,173 +2,160 @@
 
 exports[`test articles group component: ArticleFeaturesView should render correctly '<ArticleFeaturesView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      pb={12}
-      pt={8}
+    <div
+      class="MuiBox-root MuiBox-root-12"
     >
-      <Styled(MuiBox)
+      <div
+        class="MuiBox-root MuiBox-root-13"
         data-aos="fade-down"
-        mb={6}
-        textAlign="center"
       >
-        <WithStyles(ForwardRef(Typography))
-          className="makeStyles-title-5"
+        <p
+          class="MuiTypography-root makeStyles-title-5 MuiTypography-body1"
         >
           ARTICLES
-        </WithStyles(ForwardRef(Typography))>
-      </Styled(MuiBox)>
-      <WithStyles(ForwardRef(Container))
-        maxWidth="lg"
+        </p>
+      </div>
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
           data-aos="fade-up"
         >
-          <WithStyles(ForwardRef(Grid))
-            container={true}
+          <div
+            class="MuiGrid-root MuiGrid-container"
           >
-            <WithStyles(ForwardRef(Grid))
-              className="makeStyles-content-9"
-              item={true}
-              lg={6}
-              xs={12}
+            <div
+              class="MuiGrid-root makeStyles-content-9 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
             >
-              <WithStyles(ForwardRef(Card))
-                className="makeStyles-card-2"
-                elevation={0}
+              <div
+                class="MuiPaper-root MuiCard-root makeStyles-card-2 MuiPaper-elevation0 MuiPaper-rounded"
               >
-                <WithStyles(ForwardRef(CardContent))
-                  className="makeStyles-card_content-3"
+                <div
+                  class="MuiCardContent-root makeStyles-card_content-3"
                 >
-                  <Styled(MuiBox)
-                    display="flex"
-                    flexDirection="column"
-                    height="100%"
-                    pt={2}
-                    px={2}
+                  <div
+                    class="MuiBox-root MuiBox-root-14"
                   >
-                    <WithStyles(ForwardRef(Typography))
-                      className="makeStyles-text1-6"
+                    <p
+                      class="MuiTypography-root makeStyles-text1-6 MuiTypography-body1"
                     >
                       .NET Core, Azure, databases and others.
-                    </WithStyles(ForwardRef(Typography))>
-                    <Styled(MuiBox)
-                      mb={2}
-                      mt="auto"
+                    </p>
+                    <div
+                      class="MuiBox-root MuiBox-root-15"
                     >
-                      <WithStyles(ForwardRef(Typography))
-                        className="makeStyles-text2-7"
+                      <p
+                        class="MuiTypography-root makeStyles-text2-7 MuiTypography-body1"
                       >
                         Let's dive into Microsoft technology...
-                      </WithStyles(ForwardRef(Typography))>
-                    </Styled(MuiBox)>
-                    <Styled(MuiBox)
-                      textAlign="right"
+                      </p>
+                    </div>
+                    <div
+                      class="MuiBox-root MuiBox-root-16"
                     >
-                      <ActiveButton
-                        content={
-                          Object {
-                            "action": Object {
-                              "href": "/action-link",
-                              "text": "View list of articles",
-                            },
-                            "description": "I write regularly...",
-                            "image1": "image1.jpg",
-                            "image2": "image2.jpg",
-                            "image3": "image3.jpg",
-                            "image4": "image4.jpg",
-                            "language": "eng",
-                            "text1": ".NET Core, Azure, databases and others.",
-                            "text2": "Let's dive into Microsoft technology...",
-                            "title": "Articles",
-                          }
-                        }
-                        isLoading={false}
-                      />
-                    </Styled(MuiBox)>
-                  </Styled(MuiBox)>
-                </WithStyles(ForwardRef(CardContent))>
-              </WithStyles(ForwardRef(Card))>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              lg={6}
-              xs={12}
+                      <a
+                        class="makeStyles-link-26"
+                        href="/action-link"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          >
+                            View list of articles
+                            <span
+                              class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
             >
-              <WithStyles(ForwardRef(Grid))
-                container={true}
-                spacing={2}
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
               >
-                <WithStyles(ForwardRef(Grid))
-                  item={true}
-                  md={8}
-                  xs={12}
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                 >
-                  <WithStyles(ForwardRef(Card))
-                    className="makeStyles-card_image-4"
-                    elevation={0}
+                  <div
+                    class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                   >
-                    <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image1.jpg"
+                    <div
+                      class="MuiCardMedia-root makeStyles-media-8"
+                      style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image1.jpg\\")"
                     />
-                  </WithStyles(ForwardRef(Card))>
-                </WithStyles(ForwardRef(Grid))>
-                <WithStyles(ForwardRef(Grid))
-                  item={true}
-                  md={4}
-                  xs={12}
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 >
-                  <WithStyles(ForwardRef(Card))
-                    className="makeStyles-card_image-4"
-                    elevation={0}
+                  <div
+                    class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                   >
-                    <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image2.jpg"
+                    <div
+                      class="MuiCardMedia-root makeStyles-media-8"
+                      style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image2.jpg\\")"
                     />
-                  </WithStyles(ForwardRef(Card))>
-                </WithStyles(ForwardRef(Grid))>
-                <WithStyles(ForwardRef(Grid))
-                  item={true}
-                  md={4}
-                  xs={12}
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 >
-                  <WithStyles(ForwardRef(Card))
-                    className="makeStyles-card_image-4"
-                    elevation={0}
+                  <div
+                    class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                   >
-                    <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image3.jpg"
+                    <div
+                      class="MuiCardMedia-root makeStyles-media-8"
+                      style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image3.jpg\\")"
                     />
-                  </WithStyles(ForwardRef(Card))>
-                </WithStyles(ForwardRef(Grid))>
-                <WithStyles(ForwardRef(Grid))
-                  item={true}
-                  md={8}
-                  xs={12}
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                 >
-                  <WithStyles(ForwardRef(Card))
-                    className="makeStyles-card_image-4"
-                    elevation={0}
+                  <div
+                    class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                   >
-                    <WithStyles(ForwardRef(CardMedia))
-                      className="makeStyles-media-8"
-                      image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image4.jpg"
+                    <div
+                      class="MuiCardMedia-root makeStyles-media-8"
+                      style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/articles/image4.jpg\\")"
                     />
-                  </WithStyles(ForwardRef(Card))>
-                </WithStyles(ForwardRef(Grid))>
-              </WithStyles(ForwardRef(Grid))>
-            </WithStyles(ForwardRef(Grid))>
-          </WithStyles(ForwardRef(Grid))>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </WithStyles(ForwardRef(Container))>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+      </div>
+    </div>
+  </div>
 </section>
 `;

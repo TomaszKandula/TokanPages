@@ -2,66 +2,63 @@
 
 exports[`test component: headerView should render correctly '<HeaderView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <WithStyles(ForwardRef(Grid))
-      className="makeStyles-top_margin-2"
-      container={true}
+    <div
+      class="MuiGrid-root makeStyles-top_margin-2 MuiGrid-container"
     >
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        sm={6}
-        xs={12}
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
       >
-        <Styled(MuiBox)
-          className="makeStyles-image_box-8"
+        <div
+          class="MuiBox-root MuiBox-root-10 makeStyles-image_box-8"
         />
-      </WithStyles(ForwardRef(Grid))>
-      <WithStyles(ForwardRef(Grid))
-        item={true}
-        sm={6}
-        xs={12}
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
       >
-        <Styled(MuiBox)
-          className="makeStyles-content_box-5"
+        <div
+          class="MuiBox-root MuiBox-root-11 makeStyles-content_box-5"
         >
-          <WithStyles(ForwardRef(Typography))
-            gutterBottom={true}
-            variant="h3"
+          <h3
+            class="MuiTypography-root MuiTypography-h3 MuiTypography-gutterBottom"
           >
             Welcome to my web page
-          </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-content_description-6"
-            variant="h6"
+          </h3>
+          <h6
+            class="MuiTypography-root makeStyles-content_description-6 MuiTypography-h6"
           >
             I do programming for a living...
-          </WithStyles(ForwardRef(Typography))>
-          <Styled(MuiBox)
-            mt={4}
+          </h6>
+          <div
+            class="MuiBox-root MuiBox-root-12"
           >
-            <ActiveButton
-              content={
-                Object {
-                  "action": Object {
-                    "href": "/action-link",
-                    "text": "Read the story",
-                  },
-                  "caption": "Welcome to my web page",
-                  "description": "I do programming for a living...",
-                  "language": "eng",
-                  "photo": "",
-                }
-              }
-              isLoading={false}
-            />
-          </Styled(MuiBox)>
-        </Styled(MuiBox)>
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Grid))>
-  </WithStyles(ForwardRef(Container))>
+            <a
+              class="makeStyles-action_link-16"
+              href="/action-link"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-15"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Read the story
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

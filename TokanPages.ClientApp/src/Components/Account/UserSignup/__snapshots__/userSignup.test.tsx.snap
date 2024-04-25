@@ -1,25 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test account group component: userSignup should render correctly '<UserSignup />' when content is loaded. 1`] = `
-<UserSignupView
-  button=""
-  buttonHandler={[Function]}
-  caption=""
-  consent=""
-  email=""
-  firstName=""
-  formHandler={[Function]}
-  isLoading={false}
-  keyHandler={[Function]}
-  labelEmail=""
-  labelFirstName=""
-  labelLastName=""
-  labelPassword=""
-  lastName=""
-  link=""
-  password=""
-  progress={false}
-  terms={false}
-  warning=""
-/>
+<div>
+  <UserSignup />
+</div>
 `;
