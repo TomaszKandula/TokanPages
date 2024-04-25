@@ -21,8 +21,8 @@ import {
     SignupPage,
     SignoutPage,
     AccountPage,
-    ResetPasswordPage,
-    UpdatePasswordPage,
+    PasswordResetPage,
+    PasswordUpdatePage,
     NewsletterRemovePage,
     NewsletterUpdatePage,
     ActivationPage,
@@ -87,15 +87,15 @@ const App = (props: Properties): JSX.Element => {
                         <AccountPage />
                     </Route>
                     <Route exact path="/resetpassword">
-                        <ResetPasswordPage />
+                        <PasswordResetPage />
                     </Route>
                     <Route exact path="/updatepassword">
-                        <UpdatePasswordPage />
+                        <PasswordUpdatePage />
                     </Route>
-                    <Route exact path="/unsubscribe">
+                    <Route exact path="/remove-from-newsletter">
                         <NewsletterRemovePage />
                     </Route>
-                    <Route exact path="/updatesubscriber">
+                    <Route exact path="/update-newsletter">
                         <NewsletterUpdatePage />
                     </Route>
                     <Route exact path="/accountactivation">

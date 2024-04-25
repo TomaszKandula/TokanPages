@@ -7,7 +7,7 @@ import { ResetPassword } from "../../Components/Account";
 
 import { ContentNavigationAction, ContentFooterAction, ContentResetPasswordAction } from "../../Store/Actions";
 
-export const ResetPasswordPage = (): JSX.Element => {
+export const PasswordResetPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 

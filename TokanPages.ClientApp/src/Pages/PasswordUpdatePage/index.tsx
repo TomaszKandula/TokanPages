@@ -7,7 +7,7 @@ import { UpdatePassword } from "../../Components/Account";
 
 import { ContentNavigationAction, ContentFooterAction, ContentUpdatePasswordAction } from "../../Store/Actions";
 
-export const UpdatePasswordPage = (): JSX.Element => {
+export const PasswordUpdatePage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
