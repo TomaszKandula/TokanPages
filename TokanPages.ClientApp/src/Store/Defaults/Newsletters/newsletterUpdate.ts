@@ -3,5 +3,5 @@ import { NewsletterUpdateState } from "../../States";
 
 export const NewsletterUpdate: NewsletterUpdateState = {
     status: OperationStatus.notStarted,
-    response: {},
+    response: { },
 };

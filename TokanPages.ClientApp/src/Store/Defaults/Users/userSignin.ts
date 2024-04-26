@@ -3,5 +3,5 @@ import { OperationStatus } from "../../../Shared/enums";
 
 export const UserSignin: UserSigninState = {
     status: OperationStatus.notStarted,
-    response: {},
+    response: { },
 };

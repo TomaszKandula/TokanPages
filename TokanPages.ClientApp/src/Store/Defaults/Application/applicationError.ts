@@ -4,6 +4,6 @@ import { NO_ERRORS } from "../../../Shared/constants";
 
 export const ApplicationError: ApplicationErrorState = {
     errorMessage: NO_ERRORS,
-    errorDetails: {},
+    errorDetails: undefined,
     dialogType: DialogType.toast,
 };
