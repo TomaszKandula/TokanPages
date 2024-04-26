@@ -12,8 +12,6 @@ export interface TemplatesContent {
             textUpdateSubscriber: string;
             textRemoveSubscriber: string;
             textAccountSettings: string;
-            textPromoPageEditing: string;
-            textBankData: string;
         };
         templates: {
             application: {
@@ -38,12 +36,6 @@ export interface TemplatesContent {
                 generalError: string;
                 removalError: string;
             };
-            promoPage: {
-                editError: string;
-                statusWarning: string;
-                captionWarning: string;
-                backButton: string;
-            };
             messageOut: {
                 success: string;
                 warning: string;
@@ -56,8 +48,7 @@ export interface TemplatesContent {
                 updateWarning: string;
                 emailVerification: string;
                 signingWarning: string;
-                signupClientSuccess: string;
-                signupCreatorSuccess: string;
+                signupSuccess: string;
                 signupWarning: string;
                 bankDataWarning: string;
                 bankDataSuccess: string;

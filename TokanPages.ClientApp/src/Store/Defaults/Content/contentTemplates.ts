@@ -15,8 +15,6 @@ export const ContentTemplates: ContentTemplatesState = {
             textUpdateSubscriber: "",
             textRemoveSubscriber: "",
             textAccountSettings: "",
-            textPromoPageEditing: "",
-            textBankData: "",
         },
         templates: {
             application: {
@@ -41,12 +39,6 @@ export const ContentTemplates: ContentTemplatesState = {
                 generalError: "",
                 removalError: "",
             },
-            promoPage: {
-                editError: "",
-                statusWarning: "",
-                captionWarning: "",
-                backButton: "",
-            },
             messageOut: {
                 success: "",
                 warning: "",
@@ -59,8 +51,7 @@ export const ContentTemplates: ContentTemplatesState = {
                 updateWarning: "",
                 emailVerification: "",
                 signingWarning: "",
-                signupClientSuccess: "",
-                signupCreatorSuccess: "",
+                signupSuccess: "",
                 signupWarning: "",
                 bankDataWarning: "",
                 bankDataSuccess: "",
