@@ -2,7 +2,6 @@ import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
 import { UpdatePasswordView } from "./updatePasswordView";
-import { UPDATE_FORM } from "../../../../Shared/constants";
 
 describe("test account group component: updatePasswordView", () => {
     it("should render correctly '<UpdatePasswordView />' when content is loaded.", () => {
@@ -10,7 +9,7 @@ describe("test account group component: updatePasswordView", () => {
             <UpdatePasswordView
                 isLoading={false}
                 progress={false}
-                caption={UPDATE_FORM}
+                caption="Update password"
                 button="Submit"
                 newPassword="user1password"
                 verifyPassword="user1password"
