@@ -4,6 +4,6 @@ import { OperationStatus } from "../../../Shared/enums";
 export interface UserMediaUploadState {
     handle?: string;
     status: OperationStatus;
-    error: any;
+    error: object;
     payload: UploadUserMediaResultDto | undefined;
 }
