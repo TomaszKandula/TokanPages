@@ -16,12 +16,19 @@ export const UserActivate: Reducer<UserActivateState> = (
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: {},
+                response: {
+                    userId: "",
+                    hasBusinessLock: undefined,
+                },
             };
+
         case ACTIVATE:
             return {
                 status: OperationStatus.inProgress,
-                response: state.response,
+                response: {
+                    userId: "",
+                    hasBusinessLock: undefined,
+                },
             };
 
         case RESPONSE:
