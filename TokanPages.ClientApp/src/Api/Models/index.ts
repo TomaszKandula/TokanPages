@@ -38,6 +38,7 @@ export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 
+export type { TemplatesContent } from "./Components/Templates";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto } from "./Components/navigationContentDto";
 export type { HeaderContentDto } from "./Components/headerContentDto";
