@@ -5,7 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignup } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentUserSignupAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentUserSignupAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const SignupPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export const SignupPage = (): JSX.Element => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentUserSignupAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

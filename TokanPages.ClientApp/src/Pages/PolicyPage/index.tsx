@@ -5,7 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
-import { ContentNavigationAction, ContentFooterAction, ContentPolicyAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentPolicyAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const PolicyPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export const PolicyPage = (): JSX.Element => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentPolicyAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

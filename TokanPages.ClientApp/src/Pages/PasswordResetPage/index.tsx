@@ -5,7 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentResetPasswordAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentResetPasswordAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const PasswordResetPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export const PasswordResetPage = (): JSX.Element => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentResetPasswordAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

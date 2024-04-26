@@ -25,6 +25,7 @@ import {
     ContentContactFormAction,
     ContentCookiesPromptAction,
     ContentTestimonialsAction,
+    ContentTemplatesAction,
 } from "../../Store/Actions";
 
 export const MainPage = (): JSX.Element => {
@@ -44,6 +45,7 @@ export const MainPage = (): JSX.Element => {
         dispatch(ContentContactFormAction.get());
         dispatch(ContentCookiesPromptAction.get());
         dispatch(ContentTestimonialsAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

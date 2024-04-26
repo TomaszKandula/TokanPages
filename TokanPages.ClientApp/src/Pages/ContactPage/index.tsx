@@ -5,7 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
-import { ContentNavigationAction, ContentFooterAction, ContentContactFormAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentContactFormAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const ContactPage = () => {
     const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export const ContactPage = () => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentContactFormAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

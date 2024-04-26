@@ -5,7 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
-import { ContentNavigationAction, ContentFooterAction, ContentTermsAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentTermsAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const TermsPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -16,6 +16,7 @@ export const TermsPage = (): JSX.Element => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentTermsAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

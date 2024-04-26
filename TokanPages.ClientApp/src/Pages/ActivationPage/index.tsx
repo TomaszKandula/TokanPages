@@ -6,7 +6,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
 import { Footer } from "../../Components/Layout";
 
-import { ContentActivateAccountAction, ContentNavigationAction, ContentFooterAction } from "../../Store/Actions";
+import { ContentActivateAccountAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -31,8 +31,8 @@ export const ActivationPage = (): JSX.Element => {
 
     React.useEffect(() => {
         dispatch(ContentActivateAccountAction.get());
-        dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

@@ -5,7 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { UpdatePassword } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentUpdatePasswordAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentUpdatePasswordAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const PasswordUpdatePage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -15,6 +15,7 @@ export const PasswordUpdatePage = (): JSX.Element => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
         dispatch(ContentUpdatePasswordAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (

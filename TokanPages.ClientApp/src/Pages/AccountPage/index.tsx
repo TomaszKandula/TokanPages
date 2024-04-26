@@ -6,7 +6,7 @@ import Validate from "validate.js";
 
 import { AccessDenied, UserInfo, UserPassword, UserRemoval } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentAccountAction } from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentAccountAction, ContentTemplatesAction } from "../../Store/Actions";
 
 export const AccountPage = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export const AccountPage = (): JSX.Element => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentAccountAction.get());
         dispatch(ContentFooterAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (
