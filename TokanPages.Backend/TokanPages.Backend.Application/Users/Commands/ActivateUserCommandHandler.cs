@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
@@ -8,19 +7,21 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
-public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Unit>
+public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, ActivateUserCommandResult>
 {
     private readonly IDateTimeService _dateTimeService;
 
     public ActivateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
 
-    public override async Task<Unit> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
+    public override async Task<ActivateUserCommandResult> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await DatabaseContext.Users
-            .SingleOrDefaultAsync(users => users.ActivationId == request.ActivationId, cancellationToken);
+            .Where(users => users.ActivationId == request.ActivationId)
+            .Where(users => !users.IsDeleted)
+            .SingleOrDefaultAsync(cancellationToken);
 
-        if (user == null)
+        if (user is null)
             throw new BusinessException(nameof(ErrorCodes.INVALID_ACTIVATION_ID), ErrorCodes.INVALID_ACTIVATION_ID);
 
         if (user.ActivationIdEnds < _dateTimeService.Now)
@@ -37,6 +38,10 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Un
         LoggerService.LogInformation($"User account has been activated, user ID: {user.Id}");
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        return Unit.Value;
+        return new ActivateUserCommandResult
+        {
+            UserId = user.Id,
+            HasBusinessLock = user.HasBusinessLock
+        };
     }
 }
