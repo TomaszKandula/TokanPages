@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
 import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
-import { SELECTED_LANGUAGE } from "../../Shared/constants";
+import { SELECTED_LANGUAGE } from "../constants";
 import { GetDataFromStorage } from "./StorageServices";
 import Validate from "validate.js";
 

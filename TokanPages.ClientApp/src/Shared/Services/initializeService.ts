@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { USER_DATA } from "../../Shared/constants";
+import { USER_DATA } from "../constants";
 import { GetDataFromStorage } from "./StorageServices";
 import { UserDataStoreAction } from "../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../Api/Models";
