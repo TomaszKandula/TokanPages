@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
-import { ApplicationState } from "../../Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
 import { SELECTED_LANGUAGE } from "../../Shared/constants";
 import { GetDataFromStorage } from "./StorageServices";
@@ -30,7 +29,30 @@ const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
     return false;
 };
 
-export const UpdateUserLanguage = (manifest: GetContentManifestDto): void => {
+export const MapToPayULanguageId = (iso: string): string => {
+    const currencyIso = iso.toLowerCase();
+    switch (currencyIso) {
+        case "pol":
+            return "pl";
+        case "ukr":
+            return "uk";
+        case "eng":
+            return "en";
+        case "fra":
+            return "fr";
+        case "spa":
+            return "es";
+        case "ger":
+            return "de";
+
+        default:
+            return "pl";
+    }
+};
+
+export const UpdateUserLanguage = (manifest: GetContentManifestDto | undefined): void => {
+    if (manifest === undefined) return;
+
     const languages = manifest.languages;
     const defaultId = GetDefaultId(languages);
 
@@ -42,13 +64,5 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto): void => {
     const languageId = IsLanguageIdValid(preservedId, languages) ? preservedId : defaultId;
 
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
-    if (language === undefined) {
-        return;
-    }
-
-    if (language.id !== languageId) {
-        dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
-    }
+    dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
 };

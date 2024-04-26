@@ -4,6 +4,8 @@ import { GetDataFromStorage } from "./StorageServices";
 import { UserDataStoreAction } from "../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../Api/Models";
 import Validate from "validate.js";
+import base64 from "base-64";
+import utf8 from "utf8";
 
 export const UpdateUserData = (): void => {
     const dispatch = useDispatch();
@@ -12,7 +14,9 @@ export const UpdateUserData = (): void => {
         return;
     }
 
-    const data = JSON.parse(window.atob(encoded)) as AuthenticateUserResultDto;
+    const decoded = base64.decode(encoded);
+    const text = utf8.decode(decoded);
+    const data = JSON.parse(text) as AuthenticateUserResultDto;
     const hasData = Object.entries(data).length !== 0;
 
     if (hasData) {
