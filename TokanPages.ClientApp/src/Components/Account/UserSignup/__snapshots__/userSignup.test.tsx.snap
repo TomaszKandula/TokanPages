@@ -50,7 +50,8 @@ exports[`test account group component: userSignup should render correctly '<User
                   >
                     <input
                       aria-invalid="false"
-                      autocomplete="fname"
+                      autocomplete="one-time-code"
+                      autofocus=""
                       class="MuiInputBase-input MuiOutlinedInput-input"
                       id="firstName"
                       name="firstName"
@@ -86,7 +87,7 @@ exports[`test account group component: userSignup should render correctly '<User
                   >
                     <input
                       aria-invalid="false"
-                      autocomplete="lname"
+                      autocomplete="one-time-code"
                       class="MuiInputBase-input MuiOutlinedInput-input"
                       id="lastName"
                       name="lastName"
@@ -122,7 +123,7 @@ exports[`test account group component: userSignup should render correctly '<User
                   >
                     <input
                       aria-invalid="false"
-                      autocomplete="email"
+                      autocomplete="one-time-code"
                       class="MuiInputBase-input MuiOutlinedInput-input"
                       id="email"
                       name="email"
