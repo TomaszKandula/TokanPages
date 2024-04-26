@@ -7,6 +7,7 @@ export { ArticleListing } from "./Articles/articleListing";
 export { ArticleSelection } from "./Articles/articleSelection";
 export { ArticleUpdate } from "./Articles/articleUpdate";
 
+export { ContentTemplates } from "./Content/contentTemplates";
 export { ContentAccount } from "./Content/contentAccount";
 export { ContentActivateAccount } from "./Content/contentActivateAccount";
 export { ContentArticleFeatures } from "./Content/contentArticleFeatures";

@@ -45,6 +45,7 @@ import {
     UserMediaUploadState,
     UserSignoutState,
     UserNotificationState,
+    ContentTemplatesState,
 } from "../States";
 
 export interface ApplicationState {
@@ -55,6 +56,7 @@ export interface ApplicationState {
     articleListing: ArticleListingState;
     articleSelection: ArticleSelectionState;
     articleUpdate: ArticleUpdateState;
+    contentTemplates: ContentTemplatesState,
     contentAccount: ContentAccountState;
     contentActivateAccount: ContentActivateAccountState;
     contentArticleFeatures: ContentArticleFeaturesState;

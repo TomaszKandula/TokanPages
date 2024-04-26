@@ -45,6 +45,7 @@ import {
     UserMediaUpload,
     UserSignout,
     UserNotification,
+    ContentTemplates,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -55,6 +56,7 @@ export const ApplicationReducer = {
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,
+    contentTemplates: ContentTemplates,
     contentAccount: ContentAccount,
     contentActivateAccount: ContentActivateAccount,
     contentArticleFeatures: ContentArticleFeatures,
