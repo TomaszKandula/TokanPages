@@ -35,10 +35,11 @@ export const UserRemoval = (): JSX.Element => {
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
 
-        dispatch(UserRemoveAction.clear);
-        setHasProgress(false);
+        dispatch(UserRemoveAction.clear());
         dispatch(UserSigninAction.clear());
         dispatch(UserDataStoreAction.clear());
+
+        setHasProgress(false);
         history.push("/");
     }, [hasProgress]);
 
@@ -60,6 +61,10 @@ export const UserRemoval = (): JSX.Element => {
     }, [hasProgress, hasError, hasNotStarted, hasFinished]);
 
     const deleteButtonHandler = React.useCallback(() => {
+        if (remove?.status !== OperationStatus.notStarted) {
+            dispatch(UserRemoveAction.clear());
+        }
+
         if (!hasProgress) {
             setHasProgress(true);
         }
