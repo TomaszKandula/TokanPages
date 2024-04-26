@@ -18,7 +18,7 @@ export const ApplicationError: Reducer<ApplicationErrorState> = (
         case CLEAR:
             return {
                 errorMessage: NO_ERRORS,
-                errorDetails: {},
+                errorDetails: undefined,
                 dialogType: DialogType.toast,
             };
         case RAISE:

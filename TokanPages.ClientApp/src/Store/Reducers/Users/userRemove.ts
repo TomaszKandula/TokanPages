@@ -16,7 +16,7 @@ export const UserRemove: Reducer<UserRemoveState> = (
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: {},
+                response: { },
             };
         case REMOVE:
             return {

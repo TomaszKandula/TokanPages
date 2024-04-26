@@ -18,7 +18,7 @@ export const UserNotification: Reducer<UserNotificationState> = (
                 response: {
                     userId: "",
                     handler: "",
-                    payload: {},
+                    payload: { },
                 },
             };
         }

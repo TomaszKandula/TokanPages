@@ -16,7 +16,7 @@ export const UserPasswordReset: Reducer<UserPasswordResetState> = (
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: {},
+                response: { },
             };
         case RESET:
             return {
