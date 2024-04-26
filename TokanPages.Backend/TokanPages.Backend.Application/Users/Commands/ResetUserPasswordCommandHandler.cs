@@ -57,8 +57,8 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var expirationDate = baseDateTime.AddMinutes(resetMaturity);
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
         await SendNotification(request.EmailAddress!, resetId, expirationDate, cancellationToken);
+        await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         return Unit.Value;
     }
