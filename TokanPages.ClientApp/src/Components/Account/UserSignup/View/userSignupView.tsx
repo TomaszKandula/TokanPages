@@ -91,6 +91,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 onChange={props.formHandler}
                                                 value={props.firstName}
                                                 label={props.labelFirstName}
+                                                disabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -109,6 +110,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 onChange={props.formHandler}
                                                 value={props.lastName}
                                                 label={props.labelLastName}
+                                                disabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -127,6 +129,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 onChange={props.formHandler}
                                                 value={props.email}
                                                 label={props.labelEmail}
+                                                disabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -141,6 +144,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 label={props.labelPassword}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
+                                                isDisabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -164,6 +168,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                         name="terms"
                                                         onChange={props.formHandler}
                                                         checked={props.terms}
+                                                        disabled={props.progress}
                                                     />
                                                 }
                                                 label={props.consent}

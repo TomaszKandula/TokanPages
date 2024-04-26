@@ -69,7 +69,7 @@ export const UpdatePasswordView = (props: Properties): JSX.Element => {
                                                 label={props.labelNewPassword}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                isDisabled={props.disableForm}
+                                                isDisabled={props.disableForm || props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -84,7 +84,7 @@ export const UpdatePasswordView = (props: Properties): JSX.Element => {
                                                 label={props.labelVerifyPassword}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                isDisabled={props.disableForm}
+                                                isDisabled={props.disableForm || props.progress}
                                             />
                                         )}
                                     </Grid>
