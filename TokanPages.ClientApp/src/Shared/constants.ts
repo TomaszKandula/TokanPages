@@ -23,24 +23,6 @@ export const PASSWORD_MISSING_NUMBER: string = "must contain at least one number
 export const PASSWORD_MISSING_LARGE_LETTER: string = "must contain at least one large letter";
 export const PASSWORD_MISSING_SMALL_LETTER: string = "must contain at least one small letter";
 
-export const MESSAGE_OUT_SUCCESS: string = "<p>Congratulations!</p><p>The message has been sent successfully, we will try to respond as soon as possible.</p>";
-export const MESSAGE_OUT_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To send an email all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
-export const MESSAGE_OUT_ERROR: string = "<p>Ouch!</p><p>The message could not be sent.</p><p>{ERROR}.</p>";
-
-export const SIGNIN_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To sign-in all fields must be filled properly.</span>";
-export const SIGNUP_SUCCESS: string = "<p>Congratulations!</p><p>The account has been setup successfully, please check your e-mail and follow given instructions to make newly created account active.</p>";
-export const SIGNUP_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To sign-up all fields must be filled along with acceptance of Terms of Use and Privacy Policy.</span>";
-
-export const RESET_PASSWORD_SUCCESS: string = "<p>The password has been reset. Please check your email box and follow the instruction to setup new password.</p>";
-export const RESET_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To reset user password registered and verified e-mail address must be provided.</span>";
-
-export const DEACTIVATE_USER: string = "<p>Your data has been preserved, and your account has been deactivated.</p><p>If you would like to activate it again, please send a request to IT Support.</p>";
-
-export const REMOVE_USER: string = "<p>Your account has been permanently deleted from the system along with related data.</p>";
-export const UPDATE_USER_SUCCESS: string = "<p>Congratulations!</p><p>Your data has been updated.</p>";
-export const UPDATE_USER_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To update your data you must provide values that complies to the requirements.</span>";
-export const UPDATE_PASSWORD_SUCCESS: string = "<p>Congratulations!</p><p>Your password is now set. You may log in again.</p>";
-export const UPDATE_PASSWORD_WARNING: string = "<span>We have received following warning(s):</span><ul>{LIST}</ul><span>To update your password you must provide values that complies to the requirements.</span>";
 
 export const NEWSLETTER_SUCCESS: string = "<p>Congratulations!</p><p>You have been added to the newsletter.</p>";
 export const NEWSLETTER_WARNING: string = "<span>The newsletter could not be setup, following warning(s) received:</span><ul>{LIST}</ul><span>Please make sure the email is valid and you have access to it.</span>";
@@ -61,14 +43,6 @@ export const LIKES_HINT_FOR_USER: string = "You may give up to {LEFT_LIKES} thum
 export const MAX_LIKES_REACHED: string = "You've reached max thumbs up :)";
 
 
-
-
-export const SIGNIN_FORM: string = "Signin Form";
-export const SIGNUP_FORM: string = "Signup Form";
-export const RESET_FORM: string = "Password Reset";
-export const UPDATE_FORM: string = "Update Password";
-export const CONTACT_FORM: string = "Contact Form";
-export const ACCOUNT_FORM: string = "Account Settings";
 export const NEWSLETTER: string = "Newsletter";
 export const UPDATE_SUBSCRIBER: string = "Update Subscriber";
 export const REMOVE_SUBSCRIBER: string = "Remove Subscriber";

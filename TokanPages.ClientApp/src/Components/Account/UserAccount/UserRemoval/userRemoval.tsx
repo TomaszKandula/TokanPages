@@ -14,12 +14,13 @@ import {
 
 import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 
-import { ACCOUNT_FORM, RECEIVED_ERROR_MESSAGE, REMOVE_USER } from "../../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export const UserRemoval = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const account = useSelector((state: ApplicationState) => state.contentAccount);
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -30,7 +31,7 @@ export const UserRemoval = (): JSX.Element => {
 
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -56,9 +57,9 @@ export const UserRemoval = (): JSX.Element => {
 
         if (hasFinished) {
             clear();
-            showSuccess(REMOVE_USER);
+            showSuccess(template.templates.user.removal);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const deleteButtonHandler = React.useCallback(() => {
         if (remove?.status !== OperationStatus.notStarted) {

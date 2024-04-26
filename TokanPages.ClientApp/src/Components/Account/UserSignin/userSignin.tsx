@@ -13,7 +13,7 @@ import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utiliti
 
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 
-import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const formDefault: SigninFormInput = {
     email: "",
@@ -24,6 +24,7 @@ export const UserSignin = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const content = useSelector((state: ApplicationState) => state.contentUserSignin);
     const signin = useSelector((state: ApplicationState) => state.userSignin);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -36,7 +37,7 @@ export const UserSignin = (): JSX.Element => {
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showWarning = (text: string) => {
-        dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text)));
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSigning, text)));
     };
 
     const clearForm = React.useCallback(() => {
@@ -95,8 +96,8 @@ export const UserSignin = (): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: SIGNIN_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: result, template: template.templates.user.signingWarning }));
+    }, [form, template]);
 
     return (
         <UserSigninView

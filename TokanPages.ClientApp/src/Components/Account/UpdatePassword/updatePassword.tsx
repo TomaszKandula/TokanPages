@@ -13,12 +13,7 @@ import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/Fo
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 
-import {
-    RECEIVED_ERROR_MESSAGE,
-    UPDATE_FORM,
-    UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_WARNING,
-} from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -33,6 +28,7 @@ export const UpdatePassword = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const password = useSelector((state: ApplicationState) => state.contentUpdatePassword);
     const data = useSelector((state: ApplicationState) => state.userDataStore);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
@@ -46,8 +42,8 @@ export const UpdatePassword = (): JSX.Element => {
     const userId = data?.userData.userId;
     const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_FORM, text)));
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);
@@ -79,9 +75,9 @@ export const UpdatePassword = (): JSX.Element => {
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            showSuccess(UPDATE_PASSWORD_SUCCESS);
+            showSuccess(template.templates.password.updateSuccess);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -110,8 +106,8 @@ export const UpdatePassword = (): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: results, template: UPDATE_PASSWORD_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: results, template: template.templates.password.updateWarning }));
+    }, [form, template]);
 
     return (
         <UpdatePasswordView

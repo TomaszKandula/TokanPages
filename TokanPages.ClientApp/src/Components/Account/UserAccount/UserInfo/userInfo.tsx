@@ -18,18 +18,13 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../../Shar
 
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
 
-import {
-    ACCOUNT_FORM,
-    DEACTIVATE_USER,
-    RECEIVED_ERROR_MESSAGE,
-    UPDATE_USER_SUCCESS,
-    UPDATE_USER_WARNING,
-} from "../../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export const UserInfo = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const account = useSelector((state: ApplicationState) => state.contentAccount);
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
@@ -51,8 +46,8 @@ export const UserInfo = (): JSX.Element => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -99,10 +94,14 @@ export const UserInfo = (): JSX.Element => {
                 })
             );
 
-            showSuccess(isUserActivated.checked ? UPDATE_USER_SUCCESS : DEACTIVATE_USER);
+            showSuccess(isUserActivated.checked 
+                ? template.templates.user.updateSuccess 
+                : template.templates.user.deactivation
+            );
+
             clear();
         }
-    }, [hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
+    }, [hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished, template]);
 
     React.useEffect(() => {
         if (hasMediaUploadFinished) {
@@ -144,7 +143,7 @@ export const UserInfo = (): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: UPDATE_USER_WARNING }));
+        showWarning(GetTextWarning({ object: result, template: template.templates.user.updateWarning }));
     }, [form]);
 
     return (

@@ -12,7 +12,7 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/
 
 import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 
-import { RECEIVED_ERROR_MESSAGE, SIGNUP_FORM, SIGNUP_SUCCESS, SIGNUP_WARNING } from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const formDefault: SignupFormInput = {
     firstName: "",
@@ -25,6 +25,7 @@ const formDefault: SignupFormInput = {
 export const UserSignup = (): JSX.Element => {
     const dispatch = useDispatch();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content); 
     const content = useSelector((state: ApplicationState) => state.contentUserSignup);
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -36,8 +37,8 @@ export const UserSignup = (): JSX.Element => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text)));
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textSignup, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSignup, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -69,9 +70,9 @@ export const UserSignup = (): JSX.Element => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
-            showSuccess(SIGNUP_SUCCESS);
+            showSuccess(template.templates.user.signupSuccess);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -108,8 +109,8 @@ export const UserSignup = (): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: SIGNUP_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: result, template: template.templates.user.signupWarning }));
+    }, [form, template]);
 
     return (
         <UserSignupView

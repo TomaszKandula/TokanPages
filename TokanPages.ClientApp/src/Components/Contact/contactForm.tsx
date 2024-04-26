@@ -12,7 +12,7 @@ import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/For
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 
-import { CONTACT_FORM, MESSAGE_OUT_SUCCESS, MESSAGE_OUT_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
 const formDefault: ContactFormInput = {
     firstName: "",
@@ -26,6 +26,7 @@ const formDefault: ContactFormInput = {
 export const ContactForm = (): JSX.Element => {
     const dispatch = useDispatch();
 
+    const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const contactForm = useSelector((state: ApplicationState) => state.contentContactForm);
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -37,8 +38,8 @@ export const ContactForm = (): JSX.Element => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(CONTACT_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(CONTACT_FORM, text)));
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(content.forms.textContactForm, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textContactForm, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -71,9 +72,9 @@ export const ContactForm = (): JSX.Element => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
-            showSuccess(MESSAGE_OUT_SUCCESS);
+            showSuccess(content.templates.messageOut.success);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, content]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -111,8 +112,8 @@ export const ContactForm = (): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: MESSAGE_OUT_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
+    }, [form, content]);
 
     return (
         <ContactFormView

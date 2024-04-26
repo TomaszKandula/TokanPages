@@ -12,16 +12,12 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../../Shar
 
 import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
 
-import {
-    ACCOUNT_FORM,
-    RECEIVED_ERROR_MESSAGE,
-    UPDATE_PASSWORD_SUCCESS,
-    UPDATE_USER_WARNING,
-} from "../../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export const UserPassword = (): JSX.Element => {
     const dispatch = useDispatch();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const account = useSelector((state: ApplicationState) => state.contentAccount);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -39,8 +35,8 @@ export const UserPassword = (): JSX.Element => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(ACCOUNT_FORM, text)));
+    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -63,9 +59,9 @@ export const UserPassword = (): JSX.Element => {
 
         if (hasFinished) {
             clear();
-            showSuccess(UPDATE_PASSWORD_SUCCESS);
+            showSuccess(template.templates.password.updateSuccess);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -90,7 +86,7 @@ export const UserPassword = (): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: UPDATE_USER_WARNING }));
+        showWarning(GetTextWarning({ object: result, template: template.templates.password.updateWarning }));
     }, [form]);
 
     return (
