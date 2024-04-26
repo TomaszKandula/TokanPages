@@ -85,7 +85,8 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 id="firstName"
                                                 name="firstName"
                                                 variant="outlined"
-                                                autoComplete="fname"
+                                                autoComplete="one-time-code"
+                                                autoFocus={true}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.firstName}
@@ -103,7 +104,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 id="lastName"
                                                 name="lastName"
                                                 variant="outlined"
-                                                autoComplete="lname"
+                                                autoComplete="one-time-code"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.lastName}
@@ -121,7 +122,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 id="email"
                                                 name="email"
                                                 variant="outlined"
-                                                autoComplete="email"
+                                                autoComplete="one-time-code"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.email}
