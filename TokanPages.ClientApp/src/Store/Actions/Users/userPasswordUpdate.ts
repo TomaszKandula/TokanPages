@@ -19,7 +19,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Update | Clear | Response;
 

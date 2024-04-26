@@ -9,7 +9,7 @@ interface Remove {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Remove | Response;
 

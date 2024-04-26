@@ -9,7 +9,7 @@ interface Update {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Update | Response;
 

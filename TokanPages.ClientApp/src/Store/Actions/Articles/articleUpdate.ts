@@ -32,7 +32,7 @@ interface Response {
     payload: any;
 }
 export type TKnownActions = Update | Clear | Response;
-
+//TODO: add types
 const DispatchCall = async (dispatch: any, url: string, data: any) => {
     dispatch({ type: UPDATE });
 

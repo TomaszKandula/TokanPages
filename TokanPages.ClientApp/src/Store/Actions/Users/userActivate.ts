@@ -1,5 +1,5 @@
 import { ApplicationAction } from "../../Configuration";
-import { ActivateUserDto } from "../../../Api/Models";
+import { ActivateUserDto, ActivateUserResultDto } from "../../../Api/Models";
 import { Execute, GetConfiguration, ExecuteContract, RequestContract, ACTIVATE_USER } from "../../../Api/Request";
 
 export const ACTIVATE = "ACTIVATE_ACCOUNT";
@@ -13,7 +13,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: ActivateUserResultDto;
 }
 export type TKnownActions = Activate | Clear | Response;
 

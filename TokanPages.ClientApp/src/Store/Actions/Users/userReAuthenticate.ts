@@ -18,7 +18,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = ReAuthenticate | Clear | Response | TUpdateActions;
 
