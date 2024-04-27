@@ -13,16 +13,7 @@ export const NO_ERRORS: string = "NO_ERRORS";
 export const USER_DATA: string = "USER_DATA";
 
 
-
-
-
-
 export const PASSWORD_MISSING_CHAR: string = "must contain at least one of the following characters: !, @, #, $, %, ^, &, *";
 export const PASSWORD_MISSING_NUMBER: string = "must contain at least one number";
 export const PASSWORD_MISSING_LARGE_LETTER: string = "must contain at least one large letter";
 export const PASSWORD_MISSING_SMALL_LETTER: string = "must contain at least one small letter";
-
-export const UNEXPECTED_STATUS: string = "Received unexpected status code: {STATUS_CODE}. Please contact IT Support";
-export const UNEXPECTED_ERROR: string = "Unexpected error occured";
-export const VALIDATION_ERRORS: string = "Validation errors have been found";
-export const NULL_RESPONSE_ERROR: string = "The response data has returned null. Possible parsing issue due to invalid JSON/XML format";
