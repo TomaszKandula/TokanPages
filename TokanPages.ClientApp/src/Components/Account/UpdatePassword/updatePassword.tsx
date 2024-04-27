@@ -133,18 +133,18 @@ export const UpdatePassword = (): JSX.Element => {
 
     return (
         <UpdatePasswordView
-            isLoading={password.isLoading}
+            isLoading={password?.isLoading}
             progress={hasProgress}
-            caption={password.content.caption}
-            button={password.content.button}
+            caption={password?.content?.caption}
+            button={password?.content?.button}
             newPassword={form.newPassword}
             verifyPassword={form.verifyPassword}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             disableForm={canDisableForm}
-            labelNewPassword={password.content.labelNewPassword}
-            labelVerifyPassword={password.content.labelVerifyPassword}
+            labelNewPassword={password?.content?.labelNewPassword}
+            labelVerifyPassword={password?.content?.labelVerifyPassword}
         />
     );
 };

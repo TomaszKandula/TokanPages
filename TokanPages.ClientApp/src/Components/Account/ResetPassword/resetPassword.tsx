@@ -91,15 +91,15 @@ export const ResetPassword = (): JSX.Element => {
 
     return (
         <ResetPasswordView
-            isLoading={content.isLoading}
+            isLoading={content?.isLoading}
             progress={hasProgress}
-            caption={content.content.caption}
-            button={content.content.button}
+            caption={content?.content?.caption}
+            button={content?.content?.button}
             email={form.email}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            labelEmail={content.content.labelEmail}
+            labelEmail={content?.content?.labelEmail}
         />
     );
 };

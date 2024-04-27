@@ -136,12 +136,12 @@ export const UserSignup = (): JSX.Element => {
 
     return (
         <UserSignupView
-            isLoading={content.isLoading}
-            caption={content.content.caption}
-            warning={content.content.warning}
-            consent={content.content.consent}
-            button={content.content.button}
-            link={content.content.link}
+            isLoading={content?.isLoading}
+            caption={content?.content?.caption}
+            warning={content?.content?.warning}
+            consent={content?.content?.consent}
+            button={content?.content?.button}
+            link={content?.content?.link}
             buttonHandler={buttonHandler}
             keyHandler={keyHandler}
             formHandler={formHandler}
@@ -151,10 +151,10 @@ export const UserSignup = (): JSX.Element => {
             email={form.email}
             password={form.password}
             terms={form.terms}
-            labelFirstName={content.content.labelFirstName}
-            labelLastName={content.content.labelLastName}
-            labelEmail={content.content.labelEmail}
-            labelPassword={content.content.labelPassword}
+            labelFirstName={content?.content?.labelFirstName}
+            labelLastName={content?.content?.labelLastName}
+            labelEmail={content?.content?.labelEmail}
+            labelPassword={content?.content?.labelPassword}
         />
     );
 };

@@ -101,19 +101,19 @@ export const UserSignin = (): JSX.Element => {
 
     return (
         <UserSigninView
-            isLoading={content.isLoading}
-            caption={content.content.caption}
-            button={content.content.button}
-            link1={content.content.link1}
-            link2={content.content.link2}
+            isLoading={content?.isLoading}
+            caption={content?.content?.caption}
+            button={content?.content?.button}
+            link1={content?.content?.link1}
+            link2={content?.content?.link2}
             buttonHandler={buttonHandler}
             progress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             password={form.password}
-            labelEmail={content.content.labelEmail}
-            labelPassword={content.content.labelPassword}
+            labelEmail={content?.content?.labelEmail}
+            labelPassword={content?.content?.labelPassword}
         />
     );
 };
