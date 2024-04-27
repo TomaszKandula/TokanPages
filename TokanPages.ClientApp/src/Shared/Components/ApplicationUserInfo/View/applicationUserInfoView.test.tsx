@@ -8,6 +8,7 @@ describe("test view component for application user info", () => {
     it("should render correctly view component with passed props.", () => {
         const testData: AuthenticateUserResultDto = {
             userId: "5f4d15e2-0d32-4e20-b5f0-5a736152e993",
+            isVerified: true,
             email: "happy@tester.com",
             aliasName: "tester",
             avatarName: "tester-avatar-icon.png",
