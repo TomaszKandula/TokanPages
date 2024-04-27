@@ -6,6 +6,7 @@ const testContent = {
     nameInvalid: "must be between 1..255 characters.",
     surnameInvalid: "must be between 1..255 characters.",
     passwordInvalid: "must be between 8..50 characters.",
+    missingTerms: "^You must accept terms of use and privacy policy.",
     missingChar: "Missing char",
     missingLargeLetter: "Missing large letter",
     missingNumber: "Missing number",
