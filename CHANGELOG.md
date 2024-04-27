@@ -1,3 +1,61 @@
+# [0.78.0](https://github.com/TomaszKandula/TokanPages/compare/v0.77.1...v0.78.0) (2024-04-27)
+
+
+### Bug Fixes
+
+* add missing dependency ([9457080](https://github.com/TomaszKandula/TokanPages/commit/9457080b530f2abe398e03440fe57222daaf9434))
+* add missing dependency ([30ced3f](https://github.com/TomaszKandula/TokanPages/commit/30ced3fed6cb45d35450e821cd73da19d2a8639d))
+* add nullables ([d398ddf](https://github.com/TomaszKandula/TokanPages/commit/d398ddfce701b7cf76c69859f26becf29d53a868))
+* do not allow browser to auto-fill ([0e3b38d](https://github.com/TomaszKandula/TokanPages/commit/0e3b38d5e3680764e3e2f49da2573cda046fdda9))
+* remove unused code ([e5f72ba](https://github.com/TomaszKandula/TokanPages/commit/e5f72ba62506ffc59df80ad803068e44ad291c19))
+* resolve issue w/race condition ([975af81](https://github.com/TomaszKandula/TokanPages/commit/975af816c8373b08c4752bb93b93cb2b88571e4f))
+* resolve not saved ID in the database ([b71769b](https://github.com/TomaszKandula/TokanPages/commit/b71769b07956c3d43dbdaece64b66ec0664e014d))
+* resolve remove action issues ([0f28c51](https://github.com/TomaszKandula/TokanPages/commit/0f28c51a52a1d8c0a0160d38dacb72132d087162))
+* update state and activation page ([8712f7b](https://github.com/TomaszKandula/TokanPages/commit/8712f7bc6be546632fc7ab1dd0337c1c31054308))
+* update test to changed implementation ([fe69b32](https://github.com/TomaszKandula/TokanPages/commit/fe69b32f4a0686e645687faa57158d6d41c260be))
+
+
+### Features
+
+* add API request paths ([e9b5d1d](https://github.com/TomaszKandula/TokanPages/commit/e9b5d1deba82f7b1c831eb573e4787456df6d4e7))
+* add custom hook ([253146c](https://github.com/TomaszKandula/TokanPages/commit/253146c1f7e818fb9575736b5117d2db2af24c30))
+* add isVerified flag, update action ([9365759](https://github.com/TomaszKandula/TokanPages/commit/9365759827f00ef005b06ebba2690b185bafa841))
+* add model ([e9de668](https://github.com/TomaszKandula/TokanPages/commit/e9de668a4350d8400a8f95096c95baca5a9afbac))
+* add models ([e74b093](https://github.com/TomaszKandula/TokanPages/commit/e74b093bf0f19e488979fea78baa6c6f66d1cdc1))
+* add new action to store to get templates ([daeccdf](https://github.com/TomaszKandula/TokanPages/commit/daeccdfbd3802c0d397276eca86ab2a7380ba197))
+* add new API enpoint to paths ([2e58f3c](https://github.com/TomaszKandula/TokanPages/commit/2e58f3c96bd7a84076c6dbee9eb9f7ed2c17b07e))
+* add service to check if we run on iOS or Android ([332ae91](https://github.com/TomaszKandula/TokanPages/commit/332ae916b60bc996fa1a5a9d7eaf9e427bb8f7a2))
+* add types to models ([a8a48d2](https://github.com/TomaszKandula/TokanPages/commit/a8a48d2325edd3aeeb434703a8cacb2f90191668))
+* add web sockets ([5cd4d6c](https://github.com/TomaszKandula/TokanPages/commit/5cd4d6c2b71fa13b6191f8bfd574d66ba77b3fef))
+* add/update models ([d1eccc7](https://github.com/TomaszKandula/TokanPages/commit/d1eccc7f969b3ee2d76112f4ee75bf1cb48b6e2e))
+* disable when in-progress ([2bd9006](https://github.com/TomaszKandula/TokanPages/commit/2bd9006360f68e4dc4ef5f2d3819341a11e88cb5))
+* extend model ([dd3a358](https://github.com/TomaszKandula/TokanPages/commit/dd3a35837dd955d41a3ce3549c750adee849061a))
+* extend model ([1fc6a9a](https://github.com/TomaszKandula/TokanPages/commit/1fc6a9a6ca8a4b364dbe2d02806c6bf859006181))
+* get content from remote location ([9738f51](https://github.com/TomaszKandula/TokanPages/commit/9738f511920d9d59ac792c0d66ec2f57aa22dde1))
+* get message template from remote location ([f89aa0a](https://github.com/TomaszKandula/TokanPages/commit/f89aa0ab8508327fa24af2725e9433db75710251))
+* get message template from remote location ([3aa18f2](https://github.com/TomaszKandula/TokanPages/commit/3aa18f2d2fa94d45254aa069f06976e54cd28f62))
+* get template from remote location ([5c3b2b1](https://github.com/TomaszKandula/TokanPages/commit/5c3b2b12d90a55fa1c4521f13d1d02b842ad5422))
+* include new fields ([7574566](https://github.com/TomaszKandula/TokanPages/commit/7574566dcff75d06291cbd27adf6412f9a4288c7))
+* pass optional values ([64ecf8d](https://github.com/TomaszKandula/TokanPages/commit/64ecf8d4e76902ccad2c81feb01d92bb5d257e3f))
+* replace window.atob with custom solution ([fa5d885](https://github.com/TomaszKandula/TokanPages/commit/fa5d885b281a034fd06f937edc41f7accd085d71))
+* return user id and business lock on user activation ([c63921d](https://github.com/TomaszKandula/TokanPages/commit/c63921df01460f6912af098c2be8e5ab4423ded7))
+* return user ID and business lock state ([1b79515](https://github.com/TomaszKandula/TokanPages/commit/1b795159da3db4d06d14fed2a4be0ef04da33a8e))
+* update components ([14730f8](https://github.com/TomaszKandula/TokanPages/commit/14730f83a290c7c055e6ce44c1d55174b746804c))
+* update constant file ([75ec223](https://github.com/TomaszKandula/TokanPages/commit/75ec2239819302b128bcf54613a4371909680aa4))
+* update model ([a8342e8](https://github.com/TomaszKandula/TokanPages/commit/a8342e85a273f5e745fe1c60a0d47c365c42d024))
+* update pages, get templates ([c36931f](https://github.com/TomaszKandula/TokanPages/commit/c36931fa75de83d204b4d9a47d2d253f8d7a236d))
+* upgrade account activation ([d38cee0](https://github.com/TomaszKandula/TokanPages/commit/d38cee0cd5d1f30732936e589bf4c17e783fba14))
+* upgrade API request service ([54bec33](https://github.com/TomaszKandula/TokanPages/commit/54bec3326207e7da414e63ae1da9f25eef065a0a))
+* upgrade form validation, get content from remote location ([2c9a916](https://github.com/TomaszKandula/TokanPages/commit/2c9a916acda4f087d2aade91513e79add4dde580))
+* upgrade language and suer data services ([47e8fd9](https://github.com/TomaszKandula/TokanPages/commit/47e8fd954365d854fd8527246e0793dcaaad6a25))
+* upgrade share services, remove unused code ([4326ede](https://github.com/TomaszKandula/TokanPages/commit/4326edeafa689aad45f1b65337ba41530e1e24d4))
+* upgrade store actions, pass state ([2057f13](https://github.com/TomaszKandula/TokanPages/commit/2057f138b89eef8fbd7af5e8c2860abd378f9efb))
+* upgrade store for account activation ([44a5c0b](https://github.com/TomaszKandula/TokanPages/commit/44a5c0b2d427c47288a9bcd06439329d60e4fea4))
+* upgrade user info component ([8af07f7](https://github.com/TomaszKandula/TokanPages/commit/8af07f70db8dfb25b712617b06b8b41bafeca698))
+* upgrade validation ([0d11cb4](https://github.com/TomaszKandula/TokanPages/commit/0d11cb45d6aef8bafb00f0c41ddf897c0f36d84d))
+* use remote content ([6085280](https://github.com/TomaszKandula/TokanPages/commit/6085280048bb6ad16ef1d5413a97748ad10850ea))
+* use skeletons, enable back button after signout is completed ([0a691d1](https://github.com/TomaszKandula/TokanPages/commit/0a691d1c05372090ee805254dd4567edf08b9da6))
+
 ## [0.77.1](https://github.com/TomaszKandula/TokanPages/compare/v0.77.0...v0.77.1) (2024-04-24)
 
 
