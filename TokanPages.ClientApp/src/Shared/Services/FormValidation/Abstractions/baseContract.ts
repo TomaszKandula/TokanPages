@@ -1,5 +1,9 @@
 export interface BaseContract {
     content: {
+        emailInvalid: string;
+        nameInvalid: string;
+        surnameInvalid: string;
+        passwordInvalid: string;
         missingChar: string;
         missingLargeLetter: string;
         missingNumber: string;

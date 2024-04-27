@@ -9,7 +9,7 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
             length: {
                 minimum: 8,
                 maximum: 50,
-                message: "must be between 8..50 characters",
+                message: props.content.passwordInvalid,
             },
         },
         newPassword: {
@@ -17,7 +17,7 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
             length: {
                 minimum: 8,
                 maximum: 50,
-                message: "must be between 8..50 characters",
+                message: props.content.passwordInvalid,
             },
         },
         confirmPassword: {
@@ -25,7 +25,7 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
             length: {
                 minimum: 8,
                 maximum: 50,
-                message: "must be between 8..50 characters",
+                message: props.content.passwordInvalid,
             },
         },
     };

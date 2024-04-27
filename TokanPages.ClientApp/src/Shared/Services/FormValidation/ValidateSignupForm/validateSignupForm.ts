@@ -10,7 +10,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
             length: {
                 minimum: 1,
                 maximum: 255,
-                message: "must be between 1..255 characters",
+                message: props.content.nameInvalid,
             },
         },
         lastName: {
@@ -18,7 +18,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
             length: {
                 minimum: 1,
                 maximum: 255,
-                message: "must be between 1..255 characters",
+                message: props.content.surnameInvalid,
             },
         },
     };
@@ -26,7 +26,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
     const baseConstraints = {
         email: {
             email: {
-                message: "does not look like a valid email",
+                message: props.content.emailInvalid,
             },
         },
         password: {
@@ -34,7 +34,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
             length: {
                 minimum: 8,
                 maximum: 50,
-                message: "must be between 8..50 characters",
+                message: props.content.passwordInvalid,
             },
         },
     };
@@ -42,11 +42,11 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
     const constraints = {
         ...baseConstraints,
         ...nameConstraints,
-        request: {
+        terms: {
             presence: true,
-            length: {
-                minimum: 20,
-                message: "must be at least 20 characters",
+            inclusion: {
+                within: [true],
+                message: "^You must accept terms of use and privacy policy",
             },
         },
     };
@@ -57,6 +57,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
             lastName: props.lastName,
             email: props.email,
             password: props.password,
+            terms: props.terms
         },
         constraints
     );
