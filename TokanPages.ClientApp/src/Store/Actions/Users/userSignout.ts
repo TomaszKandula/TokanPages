@@ -50,7 +50,7 @@ export const UserSignoutAction = {
     clearRefreshToken: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: REVOKE_REFRESH_TOKEN_CLEAR });
     },
-    revokeUserToken: (): ApplicationAction<TKnownActions> => dispatch => {
+    revokeUserToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         const requestRevokeToken: RequestContract = {
             configuration: {
                 method: "POST",
@@ -62,6 +62,7 @@ export const UserSignoutAction = {
         const revokeUserToken: ExecuteContract = {
             configuration: GetConfiguration(requestRevokeToken),
             dispatch: dispatch,
+            state: getState,
             responseType: USER_TOKEN_RESPONSE,
         };
 
@@ -84,6 +85,7 @@ export const UserSignoutAction = {
         const revokeRefreshToken: ExecuteContract = {
             configuration: GetConfiguration(requestRevokeRefreshToken),
             dispatch: dispatch,
+            state: getState,
             responseType: REFRESH_TOKEN_RESPONSE,
         };
 

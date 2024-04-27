@@ -23,7 +23,7 @@ export const ArticleSelectionAction = {
     },
     select:
         (id: string): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: REQUEST });
 
             const url = GET_ARTICLE.replace("{id}", id);
@@ -38,6 +38,7 @@ export const ArticleSelectionAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RECEIVE,
             };
 

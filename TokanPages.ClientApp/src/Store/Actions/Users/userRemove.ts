@@ -23,7 +23,7 @@ export const UserRemoveAction = {
     },
     remove:
         (payload: RemoveUserDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: REMOVE });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const UserRemoveAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

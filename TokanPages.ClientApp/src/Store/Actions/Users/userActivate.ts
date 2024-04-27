@@ -23,7 +23,7 @@ export const UserActivateAction = {
     },
     activate:
         (payload: ActivateUserDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: ACTIVATE });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const UserActivateAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

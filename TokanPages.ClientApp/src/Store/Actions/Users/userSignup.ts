@@ -23,7 +23,7 @@ export const UserSignupAction = {
     },
     signup:
         (payload: AddUserDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: SIGNUP });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const UserSignupAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

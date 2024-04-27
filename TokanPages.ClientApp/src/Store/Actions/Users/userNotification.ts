@@ -23,7 +23,7 @@ export const UserNotificationAction = {
     },
     notify:
         (payload: NotificationRequest): ApplicationAction<TKnownActions> =>
-        (dispatch) => {
+        (dispatch, getState) => {
             dispatch({ type: NOTIFY });
 
             const request: RequestContract = {
@@ -37,7 +37,7 @@ export const UserNotificationAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
-                //state: getState,//TODO: get template from state
+                state: getState,
                 responseType: NOTIFIED,
             };
 
