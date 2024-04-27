@@ -1,12 +1,20 @@
 import "../../../../setupTests";
 import { UpdateFormInput, ValidateUpdateForm } from "..";
 
+const testContent = {
+    missingChar: "Missing char",
+    missingLargeLetter: "Missing large letter",
+    missingNumber: "Missing number",
+    missingSmallLetter: "Missing small letter",
+};
+
 describe("verify update password form validation methods", () => {
     it("should return undefined, when update password form is filled correctly.", () => {
         // Arrange
         const form: UpdateFormInput = {
             newPassword: "Abcde#123456",
             verifyPassword: "Abcde#123456",
+            content: testContent,
         };
 
         // Act
@@ -21,21 +29,25 @@ describe("verify update password form validation methods", () => {
         const form1: UpdateFormInput = {
             newPassword: "",
             verifyPassword: "",
+            content: testContent,
         };
 
         const form2: UpdateFormInput = {
             newPassword: "123",
             verifyPassword: "654",
+            content: testContent,
         };
 
         const form3: UpdateFormInput = {
             newPassword: "abcde123456",
             verifyPassword: "",
+            content: testContent,
         };
 
         const form4: UpdateFormInput = {
             newPassword: "",
             verifyPassword: "abcde123456",
+            content: testContent,
         };
 
         // Act

@@ -1,6 +1,13 @@
 import "../../../../setupTests";
 import { SignupFormInput, ValidateSignupForm } from "..";
 
+const testContent = {
+    missingChar: "Missing char",
+    missingLargeLetter: "Missing large letter",
+    missingNumber: "Missing number",
+    missingSmallLetter: "Missing small letter",
+};
+
 describe("verify signup form validation methods", () => {
     it("should return defined, when missing first name.", () => {
         // Arrange
@@ -9,7 +16,8 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester@gmail.com",
             password: "QwertyQwerty#2020%",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -26,7 +34,8 @@ describe("verify signup form validation methods", () => {
             lastName: "",
             email: "ester@gmail.com",
             password: "QwertyQwerty#2020%",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -43,7 +52,26 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester",
             password: "QwertyQwerty#2020%",
-            terms: true,
+            content: testContent,
+            terms: true
+        };
+
+        // Act
+        const result = ValidateSignupForm(form);
+
+        // Assert
+        expect(result).toBeDefined();
+    });
+
+    it("should return defined, when have missing request field.", () => {
+        // Arrange
+        const form: SignupFormInput = {
+            firstName: "ester",
+            lastName: "exposito",
+            email: "ester",
+            password: "QwertyQwerty#2020%",
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -60,7 +88,8 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester@gmail.com",
             password: "qwerty",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -78,7 +107,8 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester@gmail.com",
             password: "qwertyqwerty",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -96,7 +126,8 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester@gmail.com",
             password: "qwertyqwerty2020",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -114,7 +145,8 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester@gmail.com",
             password: "qwertyqwerty#2020%",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
@@ -132,7 +164,8 @@ describe("verify signup form validation methods", () => {
             lastName: "exposito",
             email: "ester@gmail.com",
             password: "QwertyQwerty#2020%",
-            terms: true,
+            content: testContent,
+            terms: true
         };
 
         // Act
