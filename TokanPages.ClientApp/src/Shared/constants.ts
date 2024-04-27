@@ -11,9 +11,3 @@ export const SELECTED_LANGUAGE: string = "SELECTED_LANGUAGE";
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
 export const USER_DATA: string = "USER_DATA";
-
-
-export const PASSWORD_MISSING_CHAR: string = "must contain at least one of the following characters: !, @, #, $, %, ^, &, *";
-export const PASSWORD_MISSING_NUMBER: string = "must contain at least one number";
-export const PASSWORD_MISSING_LARGE_LETTER: string = "must contain at least one large letter";
-export const PASSWORD_MISSING_SMALL_LETTER: string = "must contain at least one small letter";
