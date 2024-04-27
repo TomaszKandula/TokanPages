@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useInterval } from "./UseInterval";
+import { useInterval } from "../../../Shared/Hooks";
 import { ApplicationState } from "../../../Store/Configuration";
 import { UserReAuthenticateAction, UserDataStoreAction } from "../../../Store/Actions";
 import { JWT } from "../../../Api/Models";
@@ -48,6 +48,5 @@ export const ApplicationSession = (props: Properties): JSX.Element => {
     }, [store?.userData?.userToken, expiration]);
 
     useInterval(() => sessionTimer(), 5000);
-
     return <>{props.children}</>;
 };
