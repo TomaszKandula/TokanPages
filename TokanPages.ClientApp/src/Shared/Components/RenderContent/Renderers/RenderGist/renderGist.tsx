@@ -1,11 +1,11 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import { Card } from "@material-ui/core";
 import { TextItem } from "../../Models/TextModel";
-import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { RAISE } from "../../../../../Store/Actions/Application/applicationError";
-import { GetErrorMessage } from "../../../../Services/ErrorServices";
+import { RaiseError } from "../../../../../Shared/Services/ErrorServices";
+import { ApplicationState } from "../../../../../Store/Configuration";
 import { API_BASE_URI, ExecuteAsync } from "../../../../../Api/Request";
 import { RenderGistStyle } from "./renderGistStyle";
 import validate from "validate.js";
@@ -13,6 +13,7 @@ import validate from "validate.js";
 export const RenderGist = (props: TextItem): JSX.Element => {
     const classes = RenderGistStyle();
     const dispatch = useDispatch();
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content?.templates);
 
     let gistUrl: string = props.value as string;
     if (!gistUrl.includes("https://")) {
@@ -32,7 +33,11 @@ export const RenderGist = (props: TextItem): JSX.Element => {
         }
 
         if (result.error !== null) {
-            dispatch({ type: RAISE, errorObject: GetErrorMessage({ errorObject: result.error }) });
+            RaiseError({
+                dispatch: dispatch,
+                errorObject: result.error,
+                content: template.application
+            });
         }
     }, [dispatch, gistUrl]);
 
