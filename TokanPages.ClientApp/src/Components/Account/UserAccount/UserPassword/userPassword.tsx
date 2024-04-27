@@ -31,6 +31,10 @@ export const UserPassword = (): JSX.Element => {
         newPassword: "",
         confirmPassword: "",
         content: {
+            emailInvalid: "",
+            nameInvalid: "",
+            surnameInvalid: "",
+            passwordInvalid: "",
             missingChar: "",
             missingLargeLetter: "",
             missingNumber: "",
@@ -91,6 +95,10 @@ export const UserPassword = (): JSX.Element => {
             newPassword: form.newPassword,
             confirmPassword: form.confirmPassword,
             content: {
+                emailInvalid: template.templates.password.emailInvalid,
+                nameInvalid: template.templates.password.nameInvalid,
+                surnameInvalid: template.templates.password.surnameInvalid,
+                passwordInvalid: template.templates.password.passwordInvalid,
                 missingChar: template.templates.password.missingChar,
                 missingLargeLetter: template.templates.password.missingLargeLetter,
                 missingNumber: template.templates.password.missingNumber,
