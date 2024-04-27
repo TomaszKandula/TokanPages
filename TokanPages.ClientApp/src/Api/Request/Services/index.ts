@@ -1,8 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { NULL_RESPONSE_ERROR, USER_DATA } from "../../../Shared/constants";
+import { USER_DATA } from "../../../Shared/constants";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { AuthenticateUserResultDto } from "../../Models";
 import Validate from "validate.js";
 
@@ -69,6 +68,7 @@ export const GetContent = (props: GetContentContract) => {
     const input: ExecuteContract = {
         configuration: GetConfiguration(request),
         dispatch: props.dispatch,
+        state: props.state,
         responseType: props.receive,
     };
 
@@ -76,19 +76,28 @@ export const GetContent = (props: GetContentContract) => {
 };
 
 export const Execute = (props: ExecuteContract): void => {
+    const state = props.state();
+    const content = state.contentTemplates.content.templates.application;
+
     axios(props.configuration)
         .then(response => {
             if (!IsSuccessStatusCode(response.status)) {
+                const statusText = content.unexpectedStatus.replace("{STATUS_CODE}", response.status.toString());
                 RaiseError({
                     dispatch: props.dispatch,
-                    errorObject: GetTextStatusCode({ statusCode: response.status }),
+                    errorObject: statusText,
+                    content: content,
                 });
 
                 return;
             }
 
             if (response.data === null) {
-                RaiseError({ dispatch: props.dispatch, errorObject: NULL_RESPONSE_ERROR });
+                RaiseError({
+                    dispatch: props.dispatch,
+                    errorObject: content.nullError,
+                    content: content,
+                });
                 return;
             }
 
@@ -103,7 +112,11 @@ export const Execute = (props: ExecuteContract): void => {
             }
         })
         .catch(error => {
-            RaiseError({ dispatch: props.dispatch, errorObject: error });
+            RaiseError({
+                dispatch: props.dispatch,
+                errorObject: error,
+                content: content,
+            });
         });
 };
 
