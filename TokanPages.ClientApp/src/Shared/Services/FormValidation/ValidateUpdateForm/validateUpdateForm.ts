@@ -1,15 +1,15 @@
 import Validate from "validate.js";
 import { UpdateFormInput } from "..";
-import { containNumber, haveLargeLetter, haveSmallLetter, haveSpecialCharacter } from "../Helpers";
+import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter, HaveSpecialCharacter } from "../Helpers";
 
 export const ValidateUpdateForm = (props: UpdateFormInput): any => {
     let constraints = {
-        password: {
+        newPassword: {
             presence: true,
             length: {
                 minimum: 8,
                 maximum: 50,
-                message: "must be between 8..50 characters",
+                message: props.content.passwordInvalid,
             },
         },
         verifyPassword: {
@@ -17,23 +17,46 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
             length: {
                 minimum: 8,
                 maximum: 50,
-                message: "must be between 8..50 characters",
+                message: props.content.passwordInvalid,
             },
         },
     };
 
     let result = Validate(
         {
-            password: props.newPassword,
+            newPassword: props.newPassword,
             verifyPassword: props.verifyPassword,
         },
         constraints
     );
 
-    containNumber(props.newPassword, result);
-    haveSpecialCharacter(props.newPassword, result);
-    haveLargeLetter(props.newPassword, result);
-    haveSmallLetter(props.newPassword, result);
+    if (!HaveSpecialCharacter(props.newPassword)) {
+        const data = HasProperty(result, "newPassword")
+            ? [...result.newPassword, props.content.missingChar]
+            : [props.content.missingChar];
+        result = { ...result, password: data };
+    }
+
+    if (!ContainNumber(props.newPassword)) {
+        const data = HasProperty(result, "newPassword")
+            ? [...result.newPassword, props.content.missingNumber]
+            : [props.content.missingNumber];
+        result = { ...result, password: data };
+    }
+
+    if (!HaveLargeLetter(props.newPassword)) {
+        const data = HasProperty(result, "newPassword")
+            ? [...result.newPassword, props.content.missingLargeLetter]
+            : [props.content.missingLargeLetter];
+        result = { ...result, password: data };
+    }
+
+    if (!HaveSmallLetter(props.newPassword)) {
+        const data = HasProperty(result, "newPassword")
+            ? [...result.newPassword, props.content.missingSmallLetter]
+            : [props.content.missingSmallLetter];
+        result = { ...result, password: data };
+    }
 
     if (props.newPassword !== props.verifyPassword) {
         const errorText = "Password do not match";
@@ -41,11 +64,11 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
             return { message: errorText };
         }
 
-        let isNewPasswordUndefined = result["password"] === undefined;
+        let isNewPasswordUndefined = result["newPassword"] === undefined;
         let isVerifyPasswordUndefined = result["verifyPassword"] === undefined;
 
         if (!isNewPasswordUndefined && !isVerifyPasswordUndefined) {
-            return { password: [...result.password], verifyPassword: [...result.verifyPassword, errorText] };
+            return { newPassword: [...result.newPassword], verifyPassword: [...result.verifyPassword, errorText] };
         }
 
         if (isNewPasswordUndefined && !isVerifyPasswordUndefined) {
@@ -53,7 +76,7 @@ export const ValidateUpdateForm = (props: UpdateFormInput): any => {
         }
 
         if (!isNewPasswordUndefined && isVerifyPasswordUndefined) {
-            return { password: [...result.password] };
+            return { newPassword: [...result.newPassword] };
         }
     }
 

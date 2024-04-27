@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { NewsletterRemoveView } from "./newsletterRemoveView";
 import { ContentDto } from "../../../Api/Models";
 
@@ -14,7 +14,7 @@ describe("test component: newsletterRemoveView", () => {
             button: "Unsubscribe",
         };
 
-        const tree = shallow(
+        const html = render(
             <NewsletterRemoveView
                 isLoading={false}
                 buttonHandler={jest.fn()}
@@ -26,6 +26,6 @@ describe("test component: newsletterRemoveView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

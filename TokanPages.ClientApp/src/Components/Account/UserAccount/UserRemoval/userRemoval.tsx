@@ -2,7 +2,6 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentAccountState } from "../../../../Store/States";
 import { OperationStatus } from "../../../../Shared/enums";
 import { UserRemovalView } from "./View/userRemovalView";
 
@@ -15,12 +14,14 @@ import {
 
 import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 
-import { ACCOUNT_FORM, RECEIVED_ERROR_MESSAGE, REMOVE_USER } from "../../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
-export const UserRemoval = (props: ContentAccountState): JSX.Element => {
+export const UserRemoval = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -30,15 +31,17 @@ export const UserRemoval = (props: ContentAccountState): JSX.Element => {
 
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(ACCOUNT_FORM, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
 
-        dispatch(UserRemoveAction.clear);
-        setHasProgress(false);
+        dispatch(UserRemoveAction.clear());
         dispatch(UserSigninAction.clear());
         dispatch(UserDataStoreAction.clear());
+
+        setHasProgress(false);
         history.push("/");
     }, [hasProgress]);
 
@@ -55,11 +58,15 @@ export const UserRemoval = (props: ContentAccountState): JSX.Element => {
 
         if (hasFinished) {
             clear();
-            showSuccess(REMOVE_USER);
+            showSuccess(template.templates.user.removal);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const deleteButtonHandler = React.useCallback(() => {
+        if (remove?.status !== OperationStatus.notStarted) {
+            dispatch(UserRemoveAction.clear());
+        }
+
         if (!hasProgress) {
             setHasProgress(true);
         }
@@ -67,11 +74,11 @@ export const UserRemoval = (props: ContentAccountState): JSX.Element => {
 
     return (
         <UserRemovalView
-            isLoading={props.isLoading}
+            isLoading={account.isLoading}
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
-            sectionAccessDenied={props.content?.sectionAccessDenied}
-            sectionAccountRemoval={props.content?.sectionAccountRemoval}
+            sectionAccessDenied={account.content?.sectionAccessDenied}
+            sectionAccountRemoval={account.content?.sectionAccountRemoval}
         />
     );
 };

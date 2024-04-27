@@ -9,14 +9,14 @@ interface Remove {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Remove | Response;
 
 export const NewsletterRemoveAction = {
     remove:
         (payload: RemoveNewsletterDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: REMOVE });
 
             const request: RequestContract = {
@@ -30,6 +30,7 @@ export const NewsletterRemoveAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

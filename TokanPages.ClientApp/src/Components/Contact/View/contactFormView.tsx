@@ -33,6 +33,8 @@ interface Properties extends ViewProperties {
     labelEmail: string;
     labelSubject: string;
     labelMessage: string;
+    multiline?: boolean;
+    minRows?: number;
 }
 
 const ActiveButton = (props: Properties): JSX.Element => {
@@ -153,8 +155,8 @@ export const ContactFormView = (props: Properties): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                multiline
-                                                minRows={6}
+                                                multiline={props.multiline}
+                                                minRows={props.minRows}
                                                 id="message"
                                                 name="message"
                                                 autoComplete="message"

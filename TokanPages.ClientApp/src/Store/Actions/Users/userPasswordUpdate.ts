@@ -19,7 +19,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Update | Clear | Response;
 
@@ -29,7 +29,7 @@ export const UserPasswordUpdateAction = {
     },
     update:
         (payload: UpdateUserPasswordDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: UPDATE });
 
             const request: RequestContract = {
@@ -43,6 +43,7 @@ export const UserPasswordUpdateAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

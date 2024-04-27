@@ -2,10 +2,18 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { UserDataStoreState } from "../../States";
 import { USER_DATA } from "../../../Shared/constants";
+import base64 from "base-64";
+import utf8 from "utf8";
 
 import { DelDataFromStorage, SetDataInStorage } from "../../../Shared/Services/StorageServices";
 
 import { TKnownActions, SHOW, CLEAR, UPDATE } from "../../Actions/Users/userDataStore";
+
+const GetBase64 = (input: object): string => {
+    const json = JSON.stringify(input);
+    const utf8data = utf8.encode(json);
+    return base64.encode(utf8data);
+};
 
 export const UserDataStore: Reducer<UserDataStoreState> = (
     state: UserDataStoreState | undefined,
@@ -26,12 +34,12 @@ export const UserDataStore: Reducer<UserDataStoreState> = (
             return ApplicationDefault.userDataStore;
 
         case UPDATE:
-            const encodedNew = window.btoa(JSON.stringify(action.payload));
-            SetDataInStorage({ selection: encodedNew, key: USER_DATA });
+            SetDataInStorage({ selection: GetBase64(action.payload), key: USER_DATA });
             return {
                 isShown: state.isShown,
                 userData: {
                     userId: action.payload.userId,
+                    isVerified: action.payload.isVerified,
                     aliasName: action.payload.aliasName,
                     avatarName: action.payload.avatarName,
                     firstName: action.payload.firstName,

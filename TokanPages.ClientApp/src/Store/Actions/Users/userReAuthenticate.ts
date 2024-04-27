@@ -1,9 +1,7 @@
 import axios from "axios";
 import { ApplicationAction } from "../../Configuration";
 import { ReAuthenticateUserDto } from "../../../Api/Models";
-import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { REAUTHENTICATE as REAUTHENTICATE_USER, RequestContract, GetConfiguration } from "../../../Api/Request";
 
@@ -18,7 +16,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = ReAuthenticate | Clear | Response | TUpdateActions;
 
@@ -29,8 +27,12 @@ export const UserReAuthenticateAction = {
     },
     reAuthenticate:
         (refreshToken: string, userId: string): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: REAUTHENTICATE });
+
+            const content = getState().contentTemplates.content.templates.application;
+            const nullError = content.nullError;
+            const unexpectedStatus = content.unexpectedStatus;
 
             const payload: ReAuthenticateUserDto = {
                 userId: userId,
@@ -54,14 +56,27 @@ export const UserReAuthenticateAction = {
                         };
 
                         return response.data === null
-                            ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR })
+                            ? RaiseError({
+                                  dispatch: dispatch,
+                                  errorObject: nullError,
+                                  content: content,
+                              })
                             : pushData();
                     }
 
-                    RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
+                    const statusText = unexpectedStatus.replace("{STATUS_CODE}", response.status.toString());
+                    RaiseError({
+                        dispatch: dispatch,
+                        errorObject: statusText,
+                        content: content,
+                    });
                 })
                 .catch(error => {
-                    RaiseError({ dispatch: dispatch, errorObject: error });
+                    RaiseError({
+                        dispatch: dispatch,
+                        errorObject: error,
+                        content: content,
+                    });
                 });
         },
 };

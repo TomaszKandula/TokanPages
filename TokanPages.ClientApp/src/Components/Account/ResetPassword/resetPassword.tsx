@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentResetPasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ResetPasswordView } from "./View/resetPasswordView";
@@ -13,19 +12,17 @@ import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/Form
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 
-import {
-    RECEIVED_ERROR_MESSAGE,
-    RESET_FORM,
-    RESET_PASSWORD_SUCCESS,
-    RESET_PASSWORD_WARNING,
-} from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const formDefaultValues: ResetFormInput = {
     email: "",
 };
 
-export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => {
+export const ResetPassword = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const content = useSelector((state: ApplicationState) => state.contentResetPassword);
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -33,8 +30,10 @@ export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => 
     const hasFinished = reset?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(RESET_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(RESET_FORM, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textPasswordReset, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textPasswordReset, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);
@@ -64,9 +63,9 @@ export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => 
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            showSuccess(RESET_PASSWORD_SUCCESS);
+            showSuccess(template.templates.password.resetSuccess);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback((event: ReactKeyboardEvent) => {
         if (event.code === "Enter") {
@@ -89,20 +88,20 @@ export const ResetPassword = (props: ContentResetPasswordState): JSX.Element => 
             return;
         }
 
-        showWarning(GetTextWarning({ object: results, template: RESET_PASSWORD_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: results, template: template.templates.password.resetWarning }));
+    }, [form, template]);
 
     return (
         <ResetPasswordView
-            isLoading={props.isLoading}
+            isLoading={content?.isLoading}
             progress={hasProgress}
-            caption={props.content.caption}
-            button={props.content.button}
+            caption={content?.content?.caption}
+            button={content?.content?.button}
             email={form.email}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            labelEmail={props.content.labelEmail}
+            labelEmail={content?.content?.labelEmail}
         />
     );
 };

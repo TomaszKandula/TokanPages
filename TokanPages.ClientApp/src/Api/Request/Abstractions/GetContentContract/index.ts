@@ -1,6 +1,8 @@
+import { ApplicationState } from "../../../../Store/Configuration";
+
 export interface GetContentContract {
-    dispatch: any;
-    state: any;
+    dispatch: (action: any) => void;
+    state: () => ApplicationState;
     request: string;
     receive: string;
     url: string;

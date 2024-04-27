@@ -5,5 +5,7 @@ export const UserMediaUpload: UserMediaUploadState = {
     handle: undefined,
     status: OperationStatus.notStarted,
     error: {},
-    payload: { blobName: "" },
+    payload: {
+        blobName: "",
+    },
 };

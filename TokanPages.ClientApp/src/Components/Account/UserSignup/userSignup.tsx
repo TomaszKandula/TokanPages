@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentUserSignupState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UserSignupView } from "./View/userSignupView";
@@ -13,18 +12,32 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/
 
 import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 
-import { RECEIVED_ERROR_MESSAGE, SIGNUP_FORM, SIGNUP_SUCCESS, SIGNUP_WARNING } from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
-const formDefault: SignupFormInput = {
+const defaultForm: SignupFormInput = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     terms: false,
+    content: {
+        emailInvalid: "",
+        nameInvalid: "",
+        surnameInvalid: "",
+        passwordInvalid: "",
+        missingTerms: "",
+        missingChar: "",
+        missingLargeLetter: "",
+        missingNumber: "",
+        missingSmallLetter: "",
+    },
 };
 
-export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
+export const UserSignup = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const content = useSelector((state: ApplicationState) => state.contentUserSignup);
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -32,11 +45,13 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
     const hasFinished = signup?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [form, setForm] = React.useState(formDefault);
+    const [form, setForm] = React.useState(defaultForm);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(SIGNUP_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNUP_FORM, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textSignup, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSignup, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -67,10 +82,10 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
 
         if (hasFinished) {
             clearForm();
-            setForm(formDefault);
-            showSuccess(SIGNUP_SUCCESS);
+            setForm(defaultForm);
+            showSuccess(template.templates.user.signupSuccess);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -100,6 +115,17 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
             email: form.email,
             password: form.password,
             terms: form.terms,
+            content: {
+                emailInvalid: template.templates.password.emailInvalid,
+                nameInvalid: template.templates.password.nameInvalid,
+                surnameInvalid: template.templates.password.surnameInvalid,
+                passwordInvalid: template.templates.password.passwordInvalid,
+                missingTerms: template.templates.password.missingTerms,
+                missingChar: template.templates.password.missingChar,
+                missingLargeLetter: template.templates.password.missingLargeLetter,
+                missingNumber: template.templates.password.missingNumber,
+                missingSmallLetter: template.templates.password.missingSmallLetter,
+            },
         });
 
         if (!Validate.isDefined(result)) {
@@ -107,17 +133,17 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: SIGNUP_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: result, template: template.templates.user.signupWarning }));
+    }, [form, template]);
 
     return (
         <UserSignupView
-            isLoading={props.isLoading}
-            caption={props.content.caption}
-            warning={props.content.warning}
-            consent={props.content.consent}
-            button={props.content.button}
-            link={props.content.link}
+            isLoading={content?.isLoading}
+            caption={content?.content?.caption}
+            warning={content?.content?.warning}
+            consent={content?.content?.consent}
+            button={content?.content?.button}
+            link={content?.content?.link}
             buttonHandler={buttonHandler}
             keyHandler={keyHandler}
             formHandler={formHandler}
@@ -127,10 +153,10 @@ export const UserSignup = (props: ContentUserSignupState): JSX.Element => {
             email={form.email}
             password={form.password}
             terms={form.terms}
-            labelFirstName={props.content.labelFirstName}
-            labelLastName={props.content.labelLastName}
-            labelEmail={props.content.labelEmail}
-            labelPassword={props.content.labelPassword}
+            labelFirstName={content?.content?.labelFirstName}
+            labelLastName={content?.content?.labelLastName}
+            labelEmail={content?.content?.labelEmail}
+            labelPassword={content?.content?.labelPassword}
         />
     );
 };

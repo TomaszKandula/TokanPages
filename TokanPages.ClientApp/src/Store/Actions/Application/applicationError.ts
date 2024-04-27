@@ -8,7 +8,7 @@ interface Clear {
 }
 interface Raise {
     type: typeof RAISE;
-    errorDetails: any;
+    errorDetails?: string;
     dialogType?: DialogType;
 }
 export type TErrorActions = Clear | Raise;

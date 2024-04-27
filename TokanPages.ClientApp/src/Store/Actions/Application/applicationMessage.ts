@@ -13,7 +13,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Send | Clear | Response;
 
@@ -23,7 +23,7 @@ export const ApplicationMessageAction = {
     },
     send:
         (payload: SendMessageDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: SEND });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const ApplicationMessageAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

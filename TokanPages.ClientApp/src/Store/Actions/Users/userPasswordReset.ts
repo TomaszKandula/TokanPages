@@ -13,7 +13,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: object;
 }
 export type TKnownActions = Reset | Clear | Response;
 
@@ -23,7 +23,7 @@ export const UserPasswordResetAction = {
     },
     reset:
         (payload: ResetUserPasswordDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: RESET });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const UserPasswordResetAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

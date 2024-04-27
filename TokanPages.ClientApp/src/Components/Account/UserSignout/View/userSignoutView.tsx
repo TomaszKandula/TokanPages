@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { Skeleton } from "@material-ui/lab";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -15,6 +16,7 @@ interface Properties extends ViewProperties {
     caption: string;
     status: string;
     buttonText: string;
+    isAnonymous: boolean;
 }
 
 export const UserSignoutView = (props: Properties): JSX.Element => {
@@ -27,12 +29,16 @@ export const UserSignoutView = (props: Properties): JSX.Element => {
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>{props.caption}</Typography>
+                                <Typography className={classes.caption}>
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
+                                </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <Typography className={classes.status}>{props.status}</Typography>
+                                        <Typography className={classes.status}>
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.status}
+                                        </Typography>
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -42,7 +48,7 @@ export const UserSignoutView = (props: Properties): JSX.Element => {
                                         fullWidth
                                         variant="contained"
                                         className={classes.button}
-                                        disabled={props.isLoading}
+                                        disabled={props.isLoading || !props.isAnonymous}
                                     >
                                         {props.buttonText}
                                     </Button>

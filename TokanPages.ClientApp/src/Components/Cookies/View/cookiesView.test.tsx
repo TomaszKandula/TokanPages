@@ -1,11 +1,11 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { CookiesView } from "./cookiesView";
 
 describe("test component: cookiesView", () => {
     it("should render correctly '<CookiesView />' when content is loaded.", () => {
-        const tree = shallow(
+        const html = render(
             <CookiesView
                 isLoading={false}
                 modalClose={false}
@@ -17,6 +17,6 @@ describe("test component: cookiesView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

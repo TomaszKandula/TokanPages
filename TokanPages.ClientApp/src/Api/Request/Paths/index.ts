@@ -3,6 +3,7 @@ const APP_BACKEND = process.env.REACT_APP_BACKEND;
 export const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
 const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
+const API_NOTIFICATIONS_WEB_URI = `${API_BASE_URI}/notifications/web`;
 const API_NEWSLETTERS_URI = `${API_BASE_URI}/sender/newsletters`;
 const API_MAILER_URI = `${API_BASE_URI}/sender/mailer`;
 const API_CONTENT_URI = `${API_BASE_URI}/content/components`;
@@ -44,10 +45,14 @@ export const REMOVE_NEWSLETTER = `${API_NEWSLETTERS_URI}/removeNewsletter`;
 export const SEND_MESSAGE = `${API_MAILER_URI}/sendMessage`;
 export const SEND_NEWSLETTER = `${API_MAILER_URI}/sendNewsletter`;
 
+export const NOTIFY_WEB_URL = `${API_NOTIFICATIONS_WEB_URI}/notify`;
+export const NOTIFICATION_STATUS = `${API_NOTIFICATIONS_WEB_URI}/status`;
+
 export const GET_IMAGE_ASSET = `${API_ASSETS_URI}/getImageAsset/?blobName={name}`;
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset/?blobName={name}`;
 
 export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getManifest`;
+export const GET_CONTENT_TEMPLATES = `${API_CONTENT_URI}/getContent/?name=templates&type=component`;
 export const GET_NAVIGATION_CONTENT = `${API_CONTENT_URI}/getContent/?name=navigation&type=component`;
 export const GET_HEADER_CONTENT = `${API_CONTENT_URI}/getContent/?name=header&type=component`;
 export const GET_FOOTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=footer&type=component`;
@@ -56,7 +61,7 @@ export const GET_CONTACT_FORM_CONTENT = `${API_CONTENT_URI}/getContent/?name=con
 export const GET_COOKIES_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent/?name=cookiesPrompt&type=component`;
 export const GET_CLIENTS_CONTENT = `${API_CONTENT_URI}/getContent/?name=clients&type=component`;
 export const GET_FEATURED_CONTENT = `${API_CONTENT_URI}/getContent/?name=featured&type=component`;
-export const GET_FEATURES_CONTENT = `${API_CONTENT_URI}/getContent/?name=features&type=component`;
+export const GET_TECHNOLOGIES_CONTENT = `${API_CONTENT_URI}/getContent/?name=technologies&type=component`;
 export const GET_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=newsletter&type=component`;
 export const GET_RESET_PASSWORD_CONTENT = `${API_CONTENT_URI}/getContent/?name=resetPassword&type=component`;
 export const GET_UPDATE_PASSWORD_CONTENT = `${API_CONTENT_URI}/getContent/?name=updatePassword&type=component`;
@@ -66,7 +71,7 @@ export const GET_SIGNOUT_CONTENT = `${API_CONTENT_URI}/getContent/?name=userSign
 export const GET_TESTIMONIALS_CONTENT = `${API_CONTENT_URI}/getContent/?name=testimonials&type=component`;
 export const GET_UNSUBSCRIBE_CONTENT = `${API_CONTENT_URI}/getContent/?name=unsubscribe&type=component`;
 export const GET_ACTIVATE_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=activateAccount&type=component`;
-export const GET_UPDATE_SUBSCRIBER_CONTENT = `${API_CONTENT_URI}/getContent/?name=updateSubscriber&type=component`;
+export const GET_UPDATE_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=updateNewsletter&type=component`;
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent/?name=wrongPagePrompt&type=component`;
 export const GET_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=account&type=component`;
 export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=story&type=document`;

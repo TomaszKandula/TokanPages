@@ -2,141 +2,149 @@
 
 exports[`test component: featuredView should render correctly '<FeaturedView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      pb={5}
-      pt={8}
-      textAlign="center"
+    <div
+      class="MuiBox-root MuiBox-root-8"
     >
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-caption_text-2"
+      <p
+        class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
         data-aos="fade-down"
       >
         FEATURED
-      </WithStyles(ForwardRef(Typography))>
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      pb={15}
-      textAlign="center"
+      </p>
+    </div>
+    <div
+      class="MuiBox-root MuiBox-root-9"
     >
-      <WithStyles(ForwardRef(Grid))
-        container={true}
-        spacing={6}
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
       >
-        <WithStyles(ForwardRef(Grid))
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           data-aos="fade-up"
           data-aos-delay="350"
-          item={true}
-          md={4}
-          xs={12}
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-card-3"
-            elevation={0}
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
           >
-            <WithStyles(ForwardRef(CardActionArea))
+            <a
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiCardActionArea-root"
               href="https://.../net-memory-management-64389b01f642"
+              tabindex="0"
               target="_blank"
             >
-              <WithStyles(ForwardRef(CardMedia))
-                className="makeStyles-card_media-7"
-                image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article0.jpg"
+              <div
+                class="MuiCardMedia-root makeStyles-card_media-7"
+                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article0.jpg\\")"
               />
-              <WithStyles(ForwardRef(CardContent))
-                className="makeStyles-card_content-4"
+              <div
+                class="MuiCardContent-root makeStyles-card_content-4"
               >
-                <WithStyles(ForwardRef(Typography))
-                  className="makeStyles-card_title-5"
+                <p
+                  class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
                 >
                   Memory Management
-                </WithStyles(ForwardRef(Typography))>
-                <WithStyles(ForwardRef(Typography))
-                  className="makeStyles-card_subtitle-6"
+                </p>
+                <p
+                  class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
                 >
                   The basics you should know, when writing an application...
-                </WithStyles(ForwardRef(Typography))>
-              </WithStyles(ForwardRef(CardContent))>
-            </WithStyles(ForwardRef(CardActionArea))>
-          </WithStyles(ForwardRef(Card))>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight"
+              />
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </a>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           data-aos="fade-up"
           data-aos-delay="150"
-          item={true}
-          md={4}
-          xs={12}
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-card-3"
-            elevation={0}
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
           >
-            <WithStyles(ForwardRef(CardActionArea))
+            <a
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiCardActionArea-root"
               href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
+              tabindex="0"
               target="_blank"
             >
-              <WithStyles(ForwardRef(CardMedia))
-                className="makeStyles-card_media-7"
-                image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article1.jpg"
+              <div
+                class="MuiCardMedia-root makeStyles-card_media-7"
+                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article1.jpg\\")"
               />
-              <WithStyles(ForwardRef(CardContent))
-                className="makeStyles-card_content-4"
+              <div
+                class="MuiCardContent-root makeStyles-card_content-4"
               >
-                <WithStyles(ForwardRef(Typography))
-                  className="makeStyles-card_title-5"
+                <p
+                  class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
                 >
                   Stored Procedures
-                </WithStyles(ForwardRef(Typography))>
-                <WithStyles(ForwardRef(Typography))
-                  className="makeStyles-card_subtitle-6"
+                </p>
+                <p
+                  class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
                 >
                   I explain why I do not need them that much...
-                </WithStyles(ForwardRef(Typography))>
-              </WithStyles(ForwardRef(CardContent))>
-            </WithStyles(ForwardRef(CardActionArea))>
-          </WithStyles(ForwardRef(Card))>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight"
+              />
+            </a>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           data-aos="fade-up"
           data-aos-delay="550"
-          item={true}
-          md={4}
-          xs={12}
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-card-3"
-            elevation={0}
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
           >
-            <WithStyles(ForwardRef(CardActionArea))
+            <a
+              aria-disabled="false"
+              class="MuiButtonBase-root MuiCardActionArea-root"
               href="https://.../sql-injection-1bde8bb76ebc"
+              tabindex="0"
               target="_blank"
             >
-              <WithStyles(ForwardRef(CardMedia))
-                className="makeStyles-card_media-7"
-                image="http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article2.jpg"
+              <div
+                class="MuiCardMedia-root makeStyles-card_media-7"
+                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article2.jpg\\")"
               />
-              <WithStyles(ForwardRef(CardContent))
-                className="makeStyles-card_content-4"
+              <div
+                class="MuiCardContent-root makeStyles-card_content-4"
               >
-                <WithStyles(ForwardRef(Typography))
-                  className="makeStyles-card_title-5"
+                <p
+                  class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
                 >
                   SQL Injection
-                </WithStyles(ForwardRef(Typography))>
-                <WithStyles(ForwardRef(Typography))
-                  className="makeStyles-card_subtitle-6"
+                </p>
+                <p
+                  class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
                 >
                   This article will explore the issue in greater detail...
-                </WithStyles(ForwardRef(Typography))>
-              </WithStyles(ForwardRef(CardContent))>
-            </WithStyles(ForwardRef(CardActionArea))>
-          </WithStyles(ForwardRef(Card))>
-        </WithStyles(ForwardRef(Grid))>
-      </WithStyles(ForwardRef(Grid))>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+                </p>
+              </div>
+              <span
+                class="MuiCardActionArea-focusHighlight"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

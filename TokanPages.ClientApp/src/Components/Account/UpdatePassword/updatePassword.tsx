@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentUpdatePasswordState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UpdatePasswordView } from "./View/updatePasswordView";
@@ -14,12 +13,7 @@ import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/Fo
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 
-import {
-    RECEIVED_ERROR_MESSAGE,
-    UPDATE_FORM,
-    UPDATE_PASSWORD_SUCCESS,
-    UPDATE_PASSWORD_WARNING,
-} from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -28,12 +22,25 @@ const useQuery = () => {
 const formDefaultValues: UpdateFormInput = {
     newPassword: "",
     verifyPassword: "",
+    content: {
+        emailInvalid: "",
+        nameInvalid: "",
+        surnameInvalid: "",
+        passwordInvalid: "",
+        missingTerms: "",
+        missingChar: "",
+        missingLargeLetter: "",
+        missingNumber: "",
+        missingSmallLetter: "",
+    },
 };
 
-export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element => {
+export const UpdatePassword = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const password = useSelector((state: ApplicationState) => state.contentUpdatePassword);
     const data = useSelector((state: ApplicationState) => state.userDataStore);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -46,8 +53,10 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
     const userId = data?.userData.userId;
     const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_FORM, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_FORM, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);
@@ -79,9 +88,9 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            showSuccess(UPDATE_PASSWORD_SUCCESS);
+            showSuccess(template.templates.password.updateSuccess);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -103,6 +112,17 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
         let results = ValidateUpdateForm({
             newPassword: form.newPassword,
             verifyPassword: form.verifyPassword,
+            content: {
+                emailInvalid: template.templates.password.emailInvalid,
+                nameInvalid: template.templates.password.nameInvalid,
+                surnameInvalid: template.templates.password.surnameInvalid,
+                passwordInvalid: template.templates.password.passwordInvalid,
+                missingTerms: template.templates.password.missingTerms,
+                missingChar: template.templates.password.missingChar,
+                missingLargeLetter: template.templates.password.missingLargeLetter,
+                missingNumber: template.templates.password.missingNumber,
+                missingSmallLetter: template.templates.password.missingSmallLetter,
+            },
         });
 
         if (!Validate.isDefined(results)) {
@@ -110,23 +130,23 @@ export const UpdatePassword = (props: ContentUpdatePasswordState): JSX.Element =
             return;
         }
 
-        showWarning(GetTextWarning({ object: results, template: UPDATE_PASSWORD_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: results, template: template.templates.password.updateWarning }));
+    }, [form, template]);
 
     return (
         <UpdatePasswordView
-            isLoading={props.isLoading}
+            isLoading={password?.isLoading}
             progress={hasProgress}
-            caption={props.content.caption}
-            button={props.content.button}
+            caption={password?.content?.caption}
+            button={password?.content?.button}
             newPassword={form.newPassword}
             verifyPassword={form.verifyPassword}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             disableForm={canDisableForm}
-            labelNewPassword={props.content.labelNewPassword}
-            labelVerifyPassword={props.content.labelVerifyPassword}
+            labelNewPassword={password?.content?.labelNewPassword}
+            labelVerifyPassword={password?.content?.labelVerifyPassword}
         />
     );
 };

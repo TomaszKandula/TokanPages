@@ -23,7 +23,7 @@ export const UserUpdateAction = {
     },
     update:
         (payload: UpdateUserDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: UPDATE });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const UserUpdateAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 

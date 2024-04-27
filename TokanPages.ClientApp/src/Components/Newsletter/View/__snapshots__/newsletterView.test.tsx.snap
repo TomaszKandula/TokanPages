@@ -2,104 +2,124 @@
 
 exports[`test component: newsletterView should render correctly '<NewsletterView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      py={8}
-      textAlign="center"
+    <div
+      class="MuiBox-root MuiBox-root-5"
     >
-      <WithStyles(ForwardRef(Grid))
-        container={true}
-        spacing={2}
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
       >
-        <WithStyles(ForwardRef(Grid))
-          item={true}
-          md={5}
-          xs={12}
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
         >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-caption-2"
+          <p
+            class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1"
             data-aos="fade-down"
           >
             Join the newsletter!
-          </WithStyles(ForwardRef(Typography))>
+          </p>
           <div
             data-aos="zoom-in"
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-text-3"
+            <p
+              class="MuiTypography-root makeStyles-text-3 MuiTypography-body1"
             >
               We will never share your email address.
-            </WithStyles(ForwardRef(Typography))>
+            </p>
           </div>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          item={true}
-          md={7}
-          xs={12}
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
         >
           <div
             data-aos="zoom-in"
           >
-            <Styled(MuiBox)
-              display="flex"
-              height="100%"
+            <div
+              class="MuiBox-root MuiBox-root-6"
             >
-              <Styled(MuiBox)
-                my="auto"
-                width="100%"
+              <div
+                class="MuiBox-root MuiBox-root-7"
               >
-                <WithStyles(ForwardRef(Grid))
-                  container={true}
-                  spacing={2}
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
                 >
-                  <WithStyles(ForwardRef(Grid))
-                    item={true}
-                    sm={7}
-                    xs={12}
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-7"
                   >
-                    <WithStyles(ForwardRef(TextField))
-                      autoComplete="email"
-                      fullWidth={true}
-                      id="email_newletter"
-                      label="Email address"
-                      name="email"
-                      onChange={[MockFunction]}
-                      onKeyUp={[MockFunction]}
-                      required={true}
-                      size="small"
-                      value="ester.exposito@gmail.com"
-                      variant="outlined"
-                    />
-                  </WithStyles(ForwardRef(Grid))>
-                  <WithStyles(ForwardRef(Grid))
-                    item={true}
-                    sm={5}
-                    xs={12}
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-marginDense MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+                        data-shrink="true"
+                        for="email_newletter"
+                        id="email_newletter-label"
+                      >
+                        Email address
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           *
+                        </span>
+                      </label>
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
+                      >
+                        <input
+                          aria-invalid="false"
+                          autocomplete="email"
+                          class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
+                          id="email_newletter"
+                          name="email"
+                          required=""
+                          type="text"
+                          value="ester.exposito@gmail.com"
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
+                          >
+                            <span>
+                              Email address *
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-5"
                   >
-                    <ActiveButton
-                      buttonHandler={[MockFunction]}
-                      buttonText="Subscribe"
-                      caption="Join the newsletter!"
-                      email="ester.exposito@gmail.com"
-                      formHandler={[MockFunction]}
-                      isLoading={false}
-                      keyHandler={[MockFunction]}
-                      labelEmail="Email address"
-                      progress={false}
-                      text="We will never share your email address."
-                    />
-                  </WithStyles(ForwardRef(Grid))>
-                </WithStyles(ForwardRef(Grid))>
-              </Styled(MuiBox)>
-            </Styled(MuiBox)>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-15 MuiButton-fullWidth"
+                      tabindex="0"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Subscribe
+                      </span>
+                      <span
+                        class="MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </WithStyles(ForwardRef(Grid))>
-      </WithStyles(ForwardRef(Grid))>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

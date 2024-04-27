@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentUserSigninState } from "../../../Store/States";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { UserSigninView } from "./View/userSigninView";
@@ -14,17 +13,23 @@ import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utiliti
 
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 
-import { RECEIVED_ERROR_MESSAGE, SIGNIN_FORM, SIGNIN_WARNING } from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const formDefault: SigninFormInput = {
     email: "",
     password: "",
+    content: {
+        emailInvalid: "",
+        passwordInvalid: "",
+    },
 };
 
-export const UserSignin = (props: ContentUserSigninState): JSX.Element => {
+export const UserSignin = (): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const content = useSelector((state: ApplicationState) => state.contentUserSignin);
     const signin = useSelector((state: ApplicationState) => state.userSignin);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -36,7 +41,7 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element => {
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showWarning = (text: string) => {
-        dispatch(ApplicationDialogAction.raise(WarningMessage(SIGNIN_FORM, text)));
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSigning, text)));
     };
 
     const clearForm = React.useCallback(() => {
@@ -88,6 +93,10 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element => {
         const result = ValidateSigninForm({
             email: form.email,
             password: form.password,
+            content: {
+                emailInvalid: template.templates.password.emailInvalid,
+                passwordInvalid: template.templates.password.passwordInvalid,
+            },
         });
 
         if (!Validate.isDefined(result)) {
@@ -95,24 +104,24 @@ export const UserSignin = (props: ContentUserSigninState): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: SIGNIN_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: result, template: template.templates.user.signingWarning }));
+    }, [form, template]);
 
     return (
         <UserSigninView
-            isLoading={props.isLoading}
-            caption={props.content.caption}
-            button={props.content.button}
-            link1={props.content.link1}
-            link2={props.content.link2}
+            isLoading={content?.isLoading}
+            caption={content?.content?.caption}
+            button={content?.content?.button}
+            link1={content?.content?.link1}
+            link2={content?.content?.link2}
             buttonHandler={buttonHandler}
             progress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             password={form.password}
-            labelEmail={props.content.labelEmail}
-            labelPassword={props.content.labelPassword}
+            labelEmail={content?.content?.labelEmail}
+            labelPassword={content?.content?.labelPassword}
         />
     );
 };

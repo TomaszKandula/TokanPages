@@ -21,6 +21,7 @@ interface Properties {
 
 export const ArticleDetail = (props: Properties): JSX.Element => {
     const dispatch = useDispatch();
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.articles);
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
 
@@ -139,7 +140,7 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
             articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
             articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
             articleContent={ArticleContent(selection.article.id, selection.isLoading, selection.article.text)}
-            renderLikesLeft={LikesLeft(isAnonymous, likesLeft)}
+            renderLikesLeft={LikesLeft(isAnonymous, likesLeft, template)}
             thumbsHandler={thumbsHandler}
             totalLikes={totalLikes}
             renderAuthorName={AuthorName(

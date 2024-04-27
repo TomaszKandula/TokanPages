@@ -85,8 +85,8 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> ActivateUser([FromBody] ActivateUserDto payload)
+    [ProducesResponseType(typeof(ActivateUserCommandResult), StatusCodes.Status200OK)]
+    public async Task<ActivateUserCommandResult> ActivateUser([FromBody] ActivateUserDto payload)
         => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payload));
 
     /// <summary>
