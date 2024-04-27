@@ -1,9 +1,9 @@
-import { LIKES_HINT_FOR_ANONYM, LIKES_HINT_FOR_USER, MAX_LIKES_REACHED } from "../../../../Shared/constants";
+import { ArticlesProps } from "../../../../Api/Models";
 
-export const LikesLeft = (isAnonymous: boolean, likesLeft: number) => {
+export const LikesLeft = (isAnonymous: boolean, likesLeft: number, template: ArticlesProps) => {
     const textLikesLeft = isAnonymous
-        ? LIKES_HINT_FOR_ANONYM.replace("{LEFT_LIKES}", likesLeft.toString())
-        : LIKES_HINT_FOR_USER.replace("{LEFT_LIKES}", likesLeft.toString());
+        ? template.likesHintAnonym.replace("{LEFT_LIKES}", likesLeft.toString())
+        : template.likesHintUser.replace("{LEFT_LIKES}", likesLeft.toString());
 
-    return likesLeft === 0 ? MAX_LIKES_REACHED : textLikesLeft;
+    return likesLeft === 0 ? template.maxLikesReached : textLikesLeft;
 };
