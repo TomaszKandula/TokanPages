@@ -7,7 +7,7 @@ import { ArticleFeatureView } from "./articleFeatureView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("test articles group component: ArticleFeatureView", () => {
@@ -30,12 +30,16 @@ describe("test articles group component: ArticleFeatureView", () => {
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
     });
 
     it("should render correctly '<ArticleFeatureView />' when content is loaded.", () => {
-        const html = render(<Router><ArticleFeatureView /></Router>);
+        const html = render(
+            <Router>
+                <ArticleFeatureView />
+            </Router>
+        );
         expect(html).toMatchSnapshot();
     });
 });

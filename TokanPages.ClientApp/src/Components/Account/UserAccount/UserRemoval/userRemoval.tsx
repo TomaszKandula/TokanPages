@@ -31,7 +31,8 @@ export const UserRemoval = (): JSX.Element => {
 
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;

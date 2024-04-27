@@ -5,6 +5,6 @@ export const UserActivate: UserActivateState = {
     status: OperationStatus.notStarted,
     response: {
         userId: "",
-        hasBusinessLock: undefined
+        hasBusinessLock: undefined,
     },
 };

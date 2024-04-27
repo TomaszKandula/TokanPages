@@ -47,11 +47,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): JSX.Element => {
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography component="span" className={classes.caption}>
-                                    {props.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        props.accessDeniedCaption
-                                    )}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.accessDeniedCaption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -60,9 +56,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): JSX.Element => {
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />
                                     ) : (
-                                        <ReactHtmlParser
-                                            html={props.accessDeniedPrompt}
-                                        />
+                                        <ReactHtmlParser html={props.accessDeniedPrompt} />
                                     )}
                                 </Typography>
                             </Box>

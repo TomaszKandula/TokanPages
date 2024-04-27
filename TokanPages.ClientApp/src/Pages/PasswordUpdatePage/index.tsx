@@ -5,7 +5,12 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { UpdatePassword } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentUpdatePasswordAction, ContentTemplatesAction } from "../../Store/Actions";
+import {
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentUpdatePasswordAction,
+    ContentTemplatesAction,
+} from "../../Store/Actions";
 
 export const PasswordUpdatePage = (): JSX.Element => {
     const dispatch = useDispatch();

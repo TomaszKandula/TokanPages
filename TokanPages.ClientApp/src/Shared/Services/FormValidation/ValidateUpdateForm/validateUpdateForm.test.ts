@@ -10,7 +10,7 @@ const testContent = {
     missingChar: "Missing char",
     missingLargeLetter: "Missing large letter",
     missingNumber: "Missing number",
-    missingSmallLetter: "Missing small letter"
+    missingSmallLetter: "Missing small letter",
 };
 
 describe("verify update password form validation methods", () => {

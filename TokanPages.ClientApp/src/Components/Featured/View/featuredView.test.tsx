@@ -6,7 +6,7 @@ import { FeaturedView } from "./featuredView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("test component: featuredView", () => {
@@ -31,7 +31,7 @@ describe("test component: featuredView", () => {
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
     });
 

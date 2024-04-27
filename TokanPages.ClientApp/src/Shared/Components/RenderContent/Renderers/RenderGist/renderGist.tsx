@@ -36,7 +36,7 @@ export const RenderGist = (props: TextItem): JSX.Element => {
             RaiseError({
                 dispatch: dispatch,
                 errorObject: result.error,
-                content: template.application
+                content: template.application,
             });
         }
     }, [dispatch, gistUrl]);

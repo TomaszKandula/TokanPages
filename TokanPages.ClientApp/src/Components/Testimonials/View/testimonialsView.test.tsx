@@ -6,7 +6,7 @@ import { TestimonialsView } from "./testimonialsView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("test component: testimonialsView", () => {
@@ -31,7 +31,7 @@ describe("test component: testimonialsView", () => {
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
     });
 

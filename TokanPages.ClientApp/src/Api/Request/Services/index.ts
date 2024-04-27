@@ -41,10 +41,10 @@ export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => 
         UserTimezoneOffset: timezoneOffset,
     };
 
-    const withAuthorizationConfig = { 
-        ...props.configuration, 
-        withCredentials: true, 
-        headers: withAuthorization 
+    const withAuthorizationConfig = {
+        ...props.configuration,
+        withCredentials: true,
+        headers: withAuthorization,
     };
 
     const withoutAuthorizationConfig = {

@@ -21,7 +21,7 @@ const formDefaultValues: ResetFormInput = {
 export const ResetPassword = (): JSX.Element => {
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content); 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const content = useSelector((state: ApplicationState) => state.contentResetPassword);
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -30,8 +30,10 @@ export const ResetPassword = (): JSX.Element => {
     const hasFinished = reset?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textPasswordReset, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textPasswordReset, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textPasswordReset, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textPasswordReset, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);

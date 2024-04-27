@@ -10,11 +10,11 @@ export const AccessDenied = (): JSX.Element => {
     const homeButtonText = account.content?.sectionAccessDenied?.homeButtonText;
 
     return (
-        <AccessDeniedView 
+        <AccessDeniedView
             isLoading={account.isLoading}
             accessDeniedCaption={accessDeniedCaption}
             accessDeniedPrompt={accessDeniedPrompt}
             homeButtonText={homeButtonText}
         />
     );
-}
+};

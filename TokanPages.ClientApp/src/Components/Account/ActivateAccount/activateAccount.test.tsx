@@ -14,7 +14,7 @@ jest.mock("react-router-dom", () => ({
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("Test account group component: activateAccount", () => {
@@ -26,42 +26,42 @@ describe("Test account group component: activateAccount", () => {
             caption: "Email Verification",
             text1: "Processing your account..., please wait.",
             text2: "",
-            button: ""
-          },
-          onProcessing: {
+            button: "",
+        },
+        onProcessing: {
             type: "Processing",
             caption: "Account Activation",
             text1: "Processing your account..., please wait.",
             text2: "",
-            button: ""
-          },
-          onSuccess: {
+            button: "",
+        },
+        onSuccess: {
             type: "Success",
             caption: "Account Processing",
             button: "Go to main",
             noBusinessLock: {
-              text1: "Your account has been successfully processed!",
-              text2: "You can now use all our services."
+                text1: "Your account has been successfully processed!",
+                text2: "You can now use all our services.",
             },
             businessLock: {
-              text1: "Your account has been <b>partially activated</b>.",
-              text2: "Please wait for our decision. You will hear from us soon."
-            }
-          },
-          onError: {
+                text1: "Your account has been <b>partially activated</b>.",
+                text2: "Please wait for our decision. You will hear from us soon.",
+            },
+        },
+        onError: {
             type: "Error",
             caption: "Processing Error",
             text1: "Could not process your account. Unexpected error occurred.",
             text2: "Please contact IT support.",
-            button: "Retry"
-        }
+            button: "Retry",
+        },
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
 
         useDispatchMock.mockReturnValue(jest.fn());

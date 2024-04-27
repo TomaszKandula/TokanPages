@@ -19,7 +19,7 @@ jest.mock("react-router-dom", () => ({
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("test account group component: updatePassword", () => {
@@ -35,7 +35,7 @@ describe("test account group component: updatePassword", () => {
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
 
         useDispatchMock.mockReturnValue(jest.fn());

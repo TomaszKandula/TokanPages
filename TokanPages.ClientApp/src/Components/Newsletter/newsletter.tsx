@@ -28,8 +28,10 @@ export const Newsletter = (): JSX.Element => {
     const [form, setForm] = React.useState({ email: "" });
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textNewsletter, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textNewsletter, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textNewsletter, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textNewsletter, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;

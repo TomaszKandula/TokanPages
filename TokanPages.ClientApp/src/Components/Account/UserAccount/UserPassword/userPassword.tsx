@@ -40,14 +40,16 @@ export const UserPassword = (): JSX.Element => {
             missingLargeLetter: "",
             missingNumber: "",
             missingSmallLetter: "",
-        }
+        },
     };
 
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;

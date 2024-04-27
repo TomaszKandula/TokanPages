@@ -7,7 +7,7 @@ import { HeaderView } from "./headerView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("test component: headerView", () => {
@@ -25,12 +25,16 @@ describe("test component: headerView", () => {
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
     });
 
     it("should render correctly '<HeaderView />' when content is loaded.", () => {
-        const html = render(<Router><HeaderView /></Router>);
+        const html = render(
+            <Router>
+                <HeaderView />
+            </Router>
+        );
         expect(html).toMatchSnapshot();
     });
 });

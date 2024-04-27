@@ -22,7 +22,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "QwertyQwerty#2020%",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -40,7 +40,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "QwertyQwerty#2020%",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -58,7 +58,7 @@ describe("verify signup form validation methods", () => {
             email: "ester",
             password: "QwertyQwerty#2020%",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -76,7 +76,7 @@ describe("verify signup form validation methods", () => {
             email: "ester",
             password: "QwertyQwerty#2020%",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -94,7 +94,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "qwerty",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -113,7 +113,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "qwertyqwerty",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -132,7 +132,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "qwertyqwerty2020",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -151,7 +151,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "qwertyqwerty#2020%",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act
@@ -170,7 +170,7 @@ describe("verify signup form validation methods", () => {
             email: "ester@gmail.com",
             password: "QwertyQwerty#2020%",
             content: testContent,
-            terms: true
+            terms: true,
         };
 
         // Act

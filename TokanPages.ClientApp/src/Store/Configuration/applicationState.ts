@@ -56,7 +56,7 @@ export interface ApplicationState {
     articleListing: ArticleListingState;
     articleSelection: ArticleSelectionState;
     articleUpdate: ArticleUpdateState;
-    contentTemplates: ContentTemplatesState,
+    contentTemplates: ContentTemplatesState;
     contentAccount: ContentAccountState;
     contentActivateAccount: ContentActivateAccountState;
     contentArticleFeatures: ContentArticleFeaturesState;

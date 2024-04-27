@@ -5,7 +5,12 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { DocumentContent } from "../../Components/Document";
 
-import { ContentNavigationAction, ContentFooterAction, ContentPolicyAction, ContentTemplatesAction } from "../../Store/Actions";
+import {
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentPolicyAction,
+    ContentTemplatesAction,
+} from "../../Store/Actions";
 
 export const PolicyPage = (): JSX.Element => {
     const dispatch = useDispatch();

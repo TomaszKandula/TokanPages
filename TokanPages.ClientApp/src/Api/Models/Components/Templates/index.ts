@@ -72,7 +72,7 @@ export interface PaymentsProps {
 export interface TemplatesProps {
     application: ApplicationProps;
     password: PasswordProps;
-    articles: ArticlesProps,
+    articles: ArticlesProps;
     newsletter: NewsletterProps;
     messageOut: MessageProps;
     user: UserProps;

@@ -24,7 +24,11 @@ describe("test component: documentView", () => {
             },
         };
 
-        const html = render(<Router><DocumentView content={policyContent.content} isLoading={policyContent.isLoading} /></Router>);
+        const html = render(
+            <Router>
+                <DocumentView content={policyContent.content} isLoading={policyContent.isLoading} />
+            </Router>
+        );
         expect(html).toMatchSnapshot();
     });
 
@@ -45,7 +49,11 @@ describe("test component: documentView", () => {
             },
         };
 
-        const html = render(<Router><DocumentView content={termsContent.content} isLoading={termsContent.isLoading} /></Router>);
+        const html = render(
+            <Router>
+                <DocumentView content={termsContent.content} isLoading={termsContent.isLoading} />
+            </Router>
+        );
         expect(html).toMatchSnapshot();
     });
 
@@ -66,7 +74,11 @@ describe("test component: documentView", () => {
             },
         };
 
-        const html = render(<Router><DocumentView content={storyContent.content} isLoading={storyContent.isLoading} /></Router>);
+        const html = render(
+            <Router>
+                <DocumentView content={storyContent.content} isLoading={storyContent.isLoading} />
+            </Router>
+        );
         expect(html).toMatchSnapshot();
     });
 });

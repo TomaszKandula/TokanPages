@@ -37,11 +37,7 @@ export const ActivationPage = (): JSX.Element => {
 
     return (
         <>
-            {id ? (
-                <ActivateAccount id={id} type={type} />
-            ) : (
-                <ErrorMessage />
-            )}
+            {id ? <ActivateAccount id={id} type={type} /> : <ErrorMessage />}
             <Footer />
         </>
     );

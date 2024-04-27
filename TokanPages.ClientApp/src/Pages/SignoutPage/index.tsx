@@ -5,7 +5,12 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignout } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentUserSignoutAction, ContentTemplatesAction } from "../../Store/Actions";
+import {
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentUserSignoutAction,
+    ContentTemplatesAction,
+} from "../../Store/Actions";
 
 export const SignoutPage = (): JSX.Element => {
     const dispatch = useDispatch();

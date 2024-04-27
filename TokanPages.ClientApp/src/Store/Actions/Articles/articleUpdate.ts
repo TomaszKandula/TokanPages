@@ -32,7 +32,12 @@ interface Response {
 }
 export type TKnownActions = Update | Clear | Response;
 
-const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: string, data: object, content: ApplicationProps) => {
+const DispatchCall = async (
+    dispatch: (action: TKnownActions) => void,
+    url: string,
+    data: object,
+    content: ApplicationProps
+) => {
     dispatch({ type: UPDATE });
 
     let result = await ExecuteAsync({
@@ -46,7 +51,7 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
         RaiseError({
             dispatch: dispatch,
             errorObject: result.error,
-            content: content
+            content: content,
         });
 
         return;
@@ -58,12 +63,12 @@ const DispatchCall = async (dispatch: (action: TKnownActions) => void, url: stri
         return;
     }
 
-    const statusCode = result.status as number; 
+    const statusCode = result.status as number;
     const statusText = content.unexpectedStatus.replace("{STATUS_CODE}", statusCode.toString());
     RaiseError({
         dispatch: dispatch,
         errorObject: statusText,
-        content: content
+        content: content,
     });
 };
 

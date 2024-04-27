@@ -7,7 +7,7 @@ import { UserSignup } from "./userSignup";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
-    useSelector: jest.fn()
+    useSelector: jest.fn(),
 }));
 
 describe("test account group component: userSignup", () => {
@@ -21,21 +21,25 @@ describe("test account group component: userSignup", () => {
         labelFirstName: "",
         labelLastName: "",
         labelEmail: "",
-        labelPassword: ""
+        labelPassword: "",
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
             isLoading: false,
-            content: testContent
+            content: testContent,
         });
 
         useDispatchMock.mockReturnValue(jest.fn());
     });
 
     it("should render correctly '<UserSignup />' when content is loaded.", () => {
-        const html = render(<Router><UserSignup /></Router>);
+        const html = render(
+            <Router>
+                <UserSignup />
+            </Router>
+        );
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });

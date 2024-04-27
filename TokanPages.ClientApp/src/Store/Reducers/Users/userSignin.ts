@@ -16,7 +16,7 @@ export const UserSignin: Reducer<UserSigninState> = (
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { },
+                response: {},
             };
 
         case SIGNIN:

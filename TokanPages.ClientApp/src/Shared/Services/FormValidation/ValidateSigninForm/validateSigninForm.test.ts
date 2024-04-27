@@ -19,7 +19,7 @@ describe("verify signin form validation methods", () => {
         const form: SigninFormInput = {
             email: "ester.exposito@gmail.com",
             password: "ester1990spain",
-            content: testContent
+            content: testContent,
         };
 
         // Act
@@ -34,7 +34,7 @@ describe("verify signin form validation methods", () => {
         const form: SigninFormInput = {
             email: "ester.exposito@",
             password: "e",
-            content: testContent
+            content: testContent,
         };
 
         // Act

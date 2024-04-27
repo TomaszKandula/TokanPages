@@ -32,7 +32,7 @@ const formDefaultValues: UpdateFormInput = {
         missingLargeLetter: "",
         missingNumber: "",
         missingSmallLetter: "",
-    }
+    },
 };
 
 export const UpdatePassword = (): JSX.Element => {
@@ -53,8 +53,10 @@ export const UpdatePassword = (): JSX.Element => {
     const userId = data?.userData.userId;
     const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);

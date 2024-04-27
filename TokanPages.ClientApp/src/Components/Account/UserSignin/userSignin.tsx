@@ -21,7 +21,7 @@ const formDefault: SigninFormInput = {
     content: {
         emailInvalid: "",
         passwordInvalid: "",
-    }
+    },
 };
 
 export const UserSignin = (): JSX.Element => {
@@ -96,7 +96,7 @@ export const UserSignin = (): JSX.Element => {
             content: {
                 emailInvalid: template.templates.password.emailInvalid,
                 passwordInvalid: template.templates.password.passwordInvalid,
-            }
+            },
         });
 
         if (!Validate.isDefined(result)) {

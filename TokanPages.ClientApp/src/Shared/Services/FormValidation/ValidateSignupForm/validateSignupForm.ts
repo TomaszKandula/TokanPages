@@ -57,7 +57,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
             lastName: props.lastName,
             email: props.email,
             password: props.password,
-            terms: props.terms
+            terms: props.terms,
         },
         constraints
     );

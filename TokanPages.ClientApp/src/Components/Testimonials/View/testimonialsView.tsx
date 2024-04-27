@@ -28,7 +28,11 @@ export const TestimonialsView = (): JSX.Element => {
             <Container maxWidth="lg">
                 <Box pt={8} pb={10} textAlign="center" mb={5}>
                     <Typography className={classes.caption_text} data-aos="fade-down">
-                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.caption?.toUpperCase()}
+                        {testimonials?.isLoading ? (
+                            <Skeleton variant="text" />
+                        ) : (
+                            testimonials?.content?.caption?.toUpperCase()
+                        )}
                     </Typography>
                 </Box>
                 <Box pb={15} textAlign="center">
@@ -46,10 +50,18 @@ export const TestimonialsView = (): JSX.Element => {
                                 )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.name1}
+                                        {testimonials?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            testimonials?.content?.name1
+                                        )}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.occupation1}
+                                        {testimonials?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            testimonials?.content?.occupation1
+                                        )}
                                     </Typography>
                                     <Typography className={classes.card_text}>
                                         {testimonials?.isLoading ? (
@@ -81,10 +93,18 @@ export const TestimonialsView = (): JSX.Element => {
                                 )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.name2}
+                                        {testimonials?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            testimonials?.content?.name2
+                                        )}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.occupation2}
+                                        {testimonials?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            testimonials?.content?.occupation2
+                                        )}
                                     </Typography>
                                     <Typography className={classes.card_text}>
                                         {testimonials?.isLoading ? (
@@ -116,10 +136,18 @@ export const TestimonialsView = (): JSX.Element => {
                                 )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.name3}
+                                        {testimonials?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            testimonials?.content?.name3
+                                        )}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {testimonials?.isLoading ? <Skeleton variant="text" /> : testimonials?.content?.occupation3}
+                                        {testimonials?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            testimonials?.content?.occupation3
+                                        )}
                                     </Typography>
                                     <Typography className={classes.card_text}>
                                         {testimonials?.isLoading ? (

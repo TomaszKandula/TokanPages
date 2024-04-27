@@ -6,7 +6,12 @@ import Validate from "validate.js";
 
 import { AccessDenied, UserInfo, UserPassword, UserRemoval } from "../../Components/Account";
 
-import { ContentNavigationAction, ContentFooterAction, ContentAccountAction, ContentTemplatesAction } from "../../Store/Actions";
+import {
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentAccountAction,
+    ContentTemplatesAction,
+} from "../../Store/Actions";
 
 export const AccountPage = (): JSX.Element => {
     const dispatch = useDispatch();

@@ -24,7 +24,11 @@ export const TechnologiesView = (): JSX.Element => {
                     <Box mb={8}>
                         <div data-aos="fade-down">
                             <Typography className={classes.caption_text}>
-                                {technology?.isLoading ? <Skeleton variant="text" /> : technology?.content?.caption?.toUpperCase()}
+                                {technology?.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    technology?.content?.caption?.toUpperCase()
+                                )}
                             </Typography>
                         </div>
                     </Box>

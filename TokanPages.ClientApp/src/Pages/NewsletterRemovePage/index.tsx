@@ -6,7 +6,12 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
 
-import { ContentNavigationAction, ContentFooterAction, ContentNewsletterRemoveAction, ContentTemplatesAction } from "../../Store/Actions";
+import {
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentNewsletterRemoveAction,
+    ContentTemplatesAction,
+} from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);

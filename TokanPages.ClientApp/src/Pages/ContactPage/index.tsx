@@ -5,7 +5,12 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
-import { ContentNavigationAction, ContentFooterAction, ContentContactFormAction, ContentTemplatesAction } from "../../Store/Actions";
+import {
+    ContentNavigationAction,
+    ContentFooterAction,
+    ContentContactFormAction,
+    ContentTemplatesAction,
+} from "../../Store/Actions";
 
 export const ContactPage = () => {
     const dispatch = useDispatch();

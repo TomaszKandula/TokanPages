@@ -17,7 +17,7 @@ export const UserMediaUpload: Reducer<UserMediaUploadState> = (
             return {
                 handle: undefined,
                 status: OperationStatus.notStarted,
-                error: { },
+                error: {},
                 payload: undefined,
             };
 

@@ -36,7 +36,7 @@ const defaultForm: SignupFormInput = {
 export const UserSignup = (): JSX.Element => {
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content); 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
     const content = useSelector((state: ApplicationState) => state.contentUserSignup);
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -48,8 +48,10 @@ export const UserSignup = (): JSX.Element => {
     const [form, setForm] = React.useState(defaultForm);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textSignup, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSignup, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textSignup, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSignup, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -123,7 +125,7 @@ export const UserSignup = (): JSX.Element => {
                 missingLargeLetter: template.templates.password.missingLargeLetter,
                 missingNumber: template.templates.password.missingNumber,
                 missingSmallLetter: template.templates.password.missingSmallLetter,
-        }
+            },
         });
 
         if (!Validate.isDefined(result)) {

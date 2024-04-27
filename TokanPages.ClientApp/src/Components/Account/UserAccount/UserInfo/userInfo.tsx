@@ -2,7 +2,12 @@ import * as React from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ApplicationDialogAction, UserUpdateAction, UserDataStoreAction, UserSigninAction } from "../../../../Store/Actions";
+import {
+    ApplicationDialogAction,
+    UserUpdateAction,
+    UserDataStoreAction,
+    UserSigninAction,
+} from "../../../../Store/Actions";
 import { ExecuteAsync, GetConfiguration, NOTIFICATION_STATUS, RequestContract } from "../../../../Api/Request";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
 import { useInterval } from "../../../../Shared/Hooks";
@@ -50,8 +55,10 @@ export const UserInfo = (): JSX.Element => {
     const [hasProgress, setHasProgress] = React.useState(false);
     const [canUpdateStore, setUpdateStore] = React.useState<UpdateStoreProps | undefined>(undefined);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -102,7 +109,7 @@ export const UserInfo = (): JSX.Element => {
     const verifyButtonHandler = React.useCallback(() => {
         setRequesting(true);
     }, [isRequesting]);
-    
+
     React.useEffect(() => {
         if (hasError) {
             clear();
@@ -135,9 +142,8 @@ export const UserInfo = (): JSX.Element => {
                 })
             );
 
-            showSuccess(isUserActivated.checked 
-                ? template.templates.user.updateSuccess 
-                : template.templates.user.deactivation
+            showSuccess(
+                isUserActivated.checked ? template.templates.user.updateSuccess : template.templates.user.deactivation
             );
 
             clear();

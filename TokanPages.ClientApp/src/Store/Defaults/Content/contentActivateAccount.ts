@@ -9,7 +9,7 @@ export const ContentActivateAccount: ContentActivateAccountState = {
             text2: "",
             type: "",
             caption: "",
-            button: ""
+            button: "",
         },
         onProcessing: {
             type: "Unset",
@@ -21,15 +21,15 @@ export const ContentActivateAccount: ContentActivateAccountState = {
         onSuccess: {
             noBusinessLock: {
                 text1: "",
-                text2: ""
+                text2: "",
             },
             businessLock: {
                 text1: "",
-                text2: ""
+                text2: "",
             },
             type: "Unset",
             caption: "",
-            button: ""
+            button: "",
         },
         onError: {
             type: "Unset",

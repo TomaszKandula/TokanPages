@@ -16,7 +16,7 @@ export const UserReAuthenticate: Reducer<UserReAuthenticateState> = (
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { },
+                response: {},
             };
         case REAUTHENTICATE:
             return {

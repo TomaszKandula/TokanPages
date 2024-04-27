@@ -38,8 +38,10 @@ export const ContactForm = (): JSX.Element => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(content.forms.textContactForm, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textContactForm, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(content.forms.textContactForm, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textContactForm, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;

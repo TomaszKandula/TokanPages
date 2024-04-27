@@ -66,7 +66,7 @@ export type {
     SectionAccountPassword,
     SectionAccountRemoval,
 } from "./Components/accountContentDto";
-export type { 
+export type {
     TemplatesContent,
     ApplicationProps,
     ArticlesProps,
@@ -76,7 +76,7 @@ export type {
     FormsProps,
     MessageProps,
     TemplatesProps,
-    NewsletterProps
+    NewsletterProps,
 } from "./Components/Templates";
 
 export type { NotificationData } from "./NotificationsWeb/notificationData";
