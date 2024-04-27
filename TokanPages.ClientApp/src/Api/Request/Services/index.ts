@@ -4,6 +4,8 @@ import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { AuthenticateUserResultDto } from "../../Models";
 import Validate from "validate.js";
+import base64 from "base-64";
+import utf8 from "utf8";
 
 import { ExecuteContract, GetContentContract, PromiseResultContract, RequestContract } from "../Abstractions";
 
@@ -25,7 +27,9 @@ export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => 
         };
     }
 
-    const data = JSON.parse(window.atob(encoded)) as AuthenticateUserResultDto;
+    const decoded = base64.decode(encoded);
+    const text = utf8.decode(decoded);
+    const data = JSON.parse(text) as AuthenticateUserResultDto;
     const hasAuthorization = Validate.isObject(data) && !Validate.isEmpty(data.userToken);
 
     const withAuthorization: any = {
@@ -37,7 +41,12 @@ export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => 
         UserTimezoneOffset: timezoneOffset,
     };
 
-    const withAuthorizationConfig = { ...props.configuration, withCredentials: true, headers: withAuthorization };
+    const withAuthorizationConfig = { 
+        ...props.configuration, 
+        withCredentials: true, 
+        headers: withAuthorization 
+    };
+
     const withoutAuthorizationConfig = {
         ...props.configuration,
         withCredentials: false,
