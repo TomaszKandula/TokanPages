@@ -42,6 +42,7 @@ exports[`test account group component: userSigninView should render correctly '<
               >
                 <WithStyles(ForwardRef(TextField))
                   autoComplete="email"
+                  disabled={false}
                   fullWidth={true}
                   id="email"
                   label="Email address"
@@ -59,6 +60,7 @@ exports[`test account group component: userSigninView should render correctly '<
               >
                 <TextFiedWithPassword
                   fullWidth={true}
+                  isDisabled={false}
                   label="Password"
                   onChange={[MockFunction]}
                   onKeyUp={[MockFunction]}
