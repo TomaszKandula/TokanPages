@@ -4,6 +4,7 @@ export const UserDataStore: UserDataStoreState = {
     isShown: false,
     userData: {
         userId: "",
+        isVerified: false,
         aliasName: "",
         avatarName: "",
         firstName: "",

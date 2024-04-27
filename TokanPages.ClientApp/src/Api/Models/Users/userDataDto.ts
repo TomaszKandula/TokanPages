@@ -1,5 +1,6 @@
 export interface UserDataDto {
     userId: string;
+    isVerified: boolean;
     aliasName: string;
     avatarName: string;
     firstName: string;
