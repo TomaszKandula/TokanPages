@@ -2,6 +2,10 @@ import "../../../../setupTests";
 import { PasswordFormInput, ValidatePasswordForm } from "..";
 
 const testContent = {
+    emailInvalid: "does not look like a valid email.",
+    nameInvalid: "must be between 1..255 characters.",
+    surnameInvalid: "must be between 1..255 characters.",
+    passwordInvalid: "must be between 8..50 characters.",
     missingChar: "Missing char",
     missingLargeLetter: "Missing large letter",
     missingNumber: "Missing number",
