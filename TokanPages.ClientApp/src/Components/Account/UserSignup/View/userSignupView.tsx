@@ -85,11 +85,13 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 id="firstName"
                                                 name="firstName"
                                                 variant="outlined"
-                                                autoComplete="fname"
+                                                autoComplete="one-time-code"
+                                                autoFocus={true}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.firstName}
                                                 label={props.labelFirstName}
+                                                disabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -103,11 +105,12 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 id="lastName"
                                                 name="lastName"
                                                 variant="outlined"
-                                                autoComplete="lname"
+                                                autoComplete="one-time-code"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.lastName}
                                                 label={props.labelLastName}
+                                                disabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -121,11 +124,12 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 id="email"
                                                 name="email"
                                                 variant="outlined"
-                                                autoComplete="email"
+                                                autoComplete="one-time-code"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.email}
                                                 label={props.labelEmail}
+                                                disabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -140,6 +144,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                 label={props.labelPassword}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
+                                                isDisabled={props.progress}
                                             />
                                         )}
                                     </Grid>
@@ -163,6 +168,7 @@ export const UserSignupView = (props: Properties): JSX.Element => {
                                                         name="terms"
                                                         onChange={props.formHandler}
                                                         checked={props.terms}
+                                                        disabled={props.progress}
                                                     />
                                                 }
                                                 label={props.consent}

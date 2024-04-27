@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ApplicationState } from "../../Store/Configuration";
-import { ContentNewsletterState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { NewsletterView } from "./View/newsletterView";
@@ -12,10 +11,13 @@ import { NewsletterAddAction, ApplicationDialogAction } from "../../Store/Action
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 
-import { NEWSLETTER, NEWSLETTER_SUCCESS, NEWSLETTER_WARNING, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
+export const Newsletter = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletter);
     const add = useSelector((state: ApplicationState) => state.newsletterAdd);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -26,8 +28,10 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
     const [form, setForm] = React.useState({ email: "" });
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(NEWSLETTER, text)));
-    const showWarning = (text: string) => dispatch(ApplicationDialogAction.raise(WarningMessage(NEWSLETTER, text)));
+    const showSuccess = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textNewsletter, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textNewsletter, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -49,9 +53,9 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
         if (hasFinished) {
             clearForm();
             setForm({ email: "" });
-            showSuccess(NEWSLETTER_SUCCESS);
+            showSuccess(template.templates.newsletter.success);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -77,21 +81,21 @@ export const Newsletter = (props: ContentNewsletterState): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: NEWSLETTER_WARNING }));
-    }, [form]);
+        showWarning(GetTextWarning({ object: result, template: template.templates.newsletter.warning }));
+    }, [form, template]);
 
     return (
         <NewsletterView
-            isLoading={props.isLoading}
-            caption={props.content?.caption}
-            text={props.content?.text}
+            isLoading={newsletter?.isLoading}
+            caption={newsletter?.content?.caption}
+            text={newsletter?.content?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={props.content?.button}
-            labelEmail={props.content?.labelEmail}
+            buttonText={newsletter?.content?.button}
+            labelEmail={newsletter?.content?.labelEmail}
         />
     );
 };

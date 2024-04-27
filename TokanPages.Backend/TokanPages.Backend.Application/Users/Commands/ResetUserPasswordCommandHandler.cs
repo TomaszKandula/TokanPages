@@ -57,13 +57,17 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var expirationDate = baseDateTime.AddMinutes(resetMaturity);
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
-        await SendNotification(request.EmailAddress!, resetId, expirationDate, cancellationToken);
+        var messageId = await PrepareNotificationUncommitted(cancellationToken);
+        await CommitAllChanges(cancellationToken);
+        await SendNotification(messageId, request.EmailAddress!, resetId, expirationDate, cancellationToken);
 
         return Unit.Value;
     }
 
-    private async Task SendNotification(string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
+    private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
+        => await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+    private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
     {
         var messageId = Guid.NewGuid();
         var serviceBusMessage = new ServiceBusMessage
@@ -72,6 +76,12 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
             IsConsumed = false
         };
 
+        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        return messageId;
+    }
+
+    private async Task SendNotification(Guid messageId, string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
+    {
         var configuration = new ResetPasswordConfiguration
         {
             MessageId = messageId,
@@ -80,7 +90,6 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
             ExpirationDate = expirationDate
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
         await _emailSenderService.SendToServiceBus(configuration, cancellationToken);
     }
 }

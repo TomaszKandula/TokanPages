@@ -1,219 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test component: featuresView should render correctly '<NavigationView />' when content is loaded. 1`] = `
-<HideOnScroll
-  avatarName=""
-  avatarSource=""
-  closeHandler={[MockFunction]}
-  drawerState={
-    Object {
-      "open": false,
-    }
-  }
-  infoHandler={[MockFunction]}
-  isAnonymous={false}
-  isLoading={false}
-  languageHandler={[MockFunction]}
-  languageId="eng"
-  languages={
-    Object {
-      "id": "eng",
-      "languages": Array [
-        Object {
-          "id": "eng",
-          "isDefault": true,
-          "name": "English",
-        },
-        Object {
-          "id": "pol",
-          "isDefault": false,
-          "name": "Polski",
-        },
-      ],
-    }
-  }
-  menu={
-    Object {
-      "image": "",
-      "items": Array [
-        Object {
-          "enabled": true,
-          "icon": "Home",
-          "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-          "link": "/",
-          "type": "item",
-          "value": "Home",
-        },
-      ],
-    }
-  }
-  openHandler={[MockFunction]}
-  userAliasText=""
+<header
+  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-1 mui-fixed MuiPaper-elevation4"
 >
-  <WithStyles(ForwardRef(AppBar))
-    className="makeStyles-app_bar-1"
+  <div
+    class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-2 MuiToolbar-gutters"
   >
-    <WithStyles(ForwardRef(Toolbar))
-      className="makeStyles-tool_bar-2"
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
     >
-      <WithStyles(ForwardRef(Grid))
-        container={true}
-        item={true}
-        spacing={3}
-        xs={12}
+      <div
+        class="MuiGrid-root makeStyles-nav_menu-5 MuiGrid-item MuiGrid-grid-xs-true"
       >
-        <WithStyles(ForwardRef(Grid))
-          className="makeStyles-nav_menu-5"
-          item={true}
-          xs={true}
+        <button
+          aria-label="menu"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-18 MuiIconButton-colorInherit"
+          tabindex="0"
+          type="button"
         >
-          <RenderMenuIcon
-            avatarName=""
-            avatarSource=""
-            closeHandler={[MockFunction]}
-            drawerState={
-              Object {
-                "open": false,
-              }
-            }
-            infoHandler={[MockFunction]}
-            isAnonymous={false}
-            isLoading={false}
-            languageHandler={[MockFunction]}
-            languageId="eng"
-            languages={
-              Object {
-                "id": "eng",
-                "languages": Array [
-                  Object {
-                    "id": "eng",
-                    "isDefault": true,
-                    "name": "English",
-                  },
-                  Object {
-                    "id": "pol",
-                    "isDefault": false,
-                    "name": "Polski",
-                  },
-                ],
-              }
-            }
-            menu={
-              Object {
-                "image": "",
-                "items": Array [
-                  Object {
-                    "enabled": true,
-                    "icon": "Home",
-                    "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-                    "link": "/",
-                    "type": "item",
-                    "value": "Home",
-                  },
-                ],
-              }
-            }
-            openHandler={[MockFunction]}
-            userAliasText=""
-          />
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          className="makeStyles-app_link-7"
-          item={true}
-          xs={true}
-        >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-app_full_logo-3"
+          <span
+            class="MuiIconButton-label"
           >
-            &lt;/&gt; tom kandula
-          </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-app_just_logo-4"
-          >
-            &lt;/&gt;
-          </WithStyles(ForwardRef(Typography))>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          className="makeStyles-content_right_side-11"
-          item={true}
-          xs={true}
-        >
-          <RenderContent
-            avatarName=""
-            avatarSource=""
-            closeHandler={[MockFunction]}
-            drawerState={
-              Object {
-                "open": false,
-              }
-            }
-            infoHandler={[MockFunction]}
-            isAnonymous={false}
-            isLoading={false}
-            languageHandler={[MockFunction]}
-            languageId="eng"
-            languages={
-              Object {
-                "id": "eng",
-                "languages": Array [
-                  Object {
-                    "id": "eng",
-                    "isDefault": true,
-                    "name": "English",
-                  },
-                  Object {
-                    "id": "pol",
-                    "isDefault": false,
-                    "name": "Polski",
-                  },
-                ],
-              }
-            }
-            menu={
-              Object {
-                "image": "",
-                "items": Array [
-                  Object {
-                    "enabled": true,
-                    "icon": "Home",
-                    "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-                    "link": "/",
-                    "type": "item",
-                    "value": "Home",
-                  },
-                ],
-              }
-            }
-            openHandler={[MockFunction]}
-            userAliasText=""
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
           />
-        </WithStyles(ForwardRef(Grid))>
-      </WithStyles(ForwardRef(Grid))>
-    </WithStyles(ForwardRef(Toolbar))>
-    <SideMenuView
-      closeHandler={[MockFunction]}
-      drawerState={
-        Object {
-          "open": false,
-        }
-      }
-      isAnonymous={false}
-      menu={
-        Object {
-          "image": "",
-          "items": Array [
-            Object {
-              "enabled": true,
-              "icon": "Home",
-              "id": "79a6c65d-08b8-479b-9507-97feb05e30c2",
-              "link": "/",
-              "type": "item",
-              "value": "Home",
-            },
-          ],
-        }
-      }
-    />
-  </WithStyles(ForwardRef(AppBar))>
-</HideOnScroll>
+        </button>
+      </div>
+      <div
+        class="MuiGrid-root makeStyles-app_link-7 MuiGrid-item MuiGrid-grid-xs-true"
+      >
+        <p
+          class="MuiTypography-root makeStyles-app_full_logo-3 MuiTypography-body1"
+        >
+          &lt;/&gt; tom kandula
+        </p>
+        <p
+          class="MuiTypography-root makeStyles-app_just_logo-4 MuiTypography-body1"
+        >
+          &lt;/&gt;
+        </p>
+      </div>
+      <div
+        class="MuiGrid-root makeStyles-content_right_side-11 MuiGrid-item MuiGrid-grid-xs-true"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-37 makeStyles-languagesBox-32"
+        >
+          <div
+            class="MuiFormControl-root"
+          >
+            <div
+              class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-33 MuiInputBase-formControl MuiInput-formControl"
+            >
+              <div
+                aria-haspopup="listbox"
+                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                role="button"
+                tabindex="0"
+              >
+                English
+              </div>
+              <input
+                aria-hidden="true"
+                class="MuiSelect-nativeInput"
+                tabindex="-1"
+                value="eng"
+              />
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSelect-icon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="makeStyles-user_avatar-36"
+        >
+          <button
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <div
+                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 `;

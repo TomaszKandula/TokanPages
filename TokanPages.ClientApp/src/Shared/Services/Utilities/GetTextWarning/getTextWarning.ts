@@ -7,18 +7,13 @@ interface Properties {
 }
 
 export const GetTextWarning = (props: Properties): string => {
-    const input = {
-        object: props.object,
-    };
-
+    const input = { object: props.object };
     const fields = PropsToFields(input);
-
     const result = {
         inputArray: fields,
         tag: "li",
     };
 
     const lines = RenderHtmlLines(result);
-
     return props.template.replace("{LIST}", lines);
 };

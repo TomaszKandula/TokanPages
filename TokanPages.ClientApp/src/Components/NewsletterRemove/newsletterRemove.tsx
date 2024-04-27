@@ -2,19 +2,20 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { NewsletterRemoveAction } from "../../Store/Actions";
-import { ContentUnsubscribeState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ContentDto } from "../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 
-interface Properties extends ContentUnsubscribeState {
+interface Properties {
     id: string;
 }
 
 export const NewsletterRemove = (props: Properties): JSX.Element => {
-    const contentPre: ContentDto = props.content?.contentPre;
-    const contentPost: ContentDto = props.content?.contentPost;
+    const content = useSelector((state: ApplicationState) => state.contentNewsletterRemove);
+
+    const contentPre: ContentDto = content.content?.contentPre;
+    const contentPost: ContentDto = content.content?.contentPost;
 
     const dispatch = useDispatch();
     const remove = useSelector((state: ApplicationState) => state.newsletterRemove);
@@ -60,7 +61,7 @@ export const NewsletterRemove = (props: Properties): JSX.Element => {
 
     return (
         <NewsletterRemoveView
-            isLoading={props.isLoading}
+            isLoading={content.isLoading}
             contentPre={contentPre}
             contentPost={contentPost}
             buttonHandler={buttonHandler}

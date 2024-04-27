@@ -1,6 +1,18 @@
 import "../../../../setupTests";
 import { PasswordFormInput, ValidatePasswordForm } from "..";
 
+const testContent = {
+    emailInvalid: "does not look like a valid email.",
+    nameInvalid: "must be between 1..255 characters.",
+    surnameInvalid: "must be between 1..255 characters.",
+    passwordInvalid: "must be between 8..50 characters.",
+    missingTerms: "^You must accept terms of use and privacy policy.",
+    missingChar: "Missing char",
+    missingLargeLetter: "Missing large letter",
+    missingNumber: "Missing number",
+    missingSmallLetter: "Missing small letter",
+};
+
 describe("verify new password validation methods", () => {
     it("should return undefined, when passwords are correct.", () => {
         // Arrange
@@ -8,6 +20,7 @@ describe("verify new password validation methods", () => {
             oldPassword: "123456789abcde",
             newPassword: "Abcde#123456",
             confirmPassword: "Abcde#123456",
+            content: testContent,
         };
 
         // Act
@@ -23,24 +36,28 @@ describe("verify new password validation methods", () => {
             oldPassword: "",
             newPassword: "",
             confirmPassword: "",
+            content: testContent,
         };
 
         const form2: PasswordFormInput = {
             oldPassword: "456",
             newPassword: "123",
             confirmPassword: "654",
+            content: testContent,
         };
 
         const form3: PasswordFormInput = {
             oldPassword: "",
             newPassword: "abcde123456",
             confirmPassword: "",
+            content: testContent,
         };
 
         const form4: PasswordFormInput = {
             oldPassword: "951",
             newPassword: "",
             confirmPassword: "abcde123456",
+            content: testContent,
         };
 
         // Act

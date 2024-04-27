@@ -1,8 +1,6 @@
 import axios from "axios";
 import { ApplicationAction } from "../../Configuration";
 import { UploadUserMediaDto, UploadUserMediaResultDto } from "../../../Api/Models";
-import { NULL_RESPONSE_ERROR } from "../../../Shared/constants";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { UPLOAD_USER_IMAGE, RequestContract, GetConfiguration } from "../../../Api/Request";
 import Validate from "validate.js";
@@ -30,9 +28,12 @@ export const UserMediaUploadAction = {
     },
     upload:
         (payload: UploadUserMediaDto, skipDb?: boolean, handle?: string): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: UPLOAD });
 
+            const content = getState().contentTemplates.content.templates.application;
+            const nullError = content.nullError;
+            const unexpectedStatus = content.unexpectedStatus;
             const hasBase64Data = !Validate.isEmpty(payload.base64Data);
             const hasBinaryData = !Validate.isEmpty(payload.binaryData);
 
@@ -55,14 +56,27 @@ export const UserMediaUploadAction = {
                 .then(response => {
                     if (response.status === 200) {
                         return response.data === null
-                            ? RaiseError({ dispatch: dispatch, errorObject: NULL_RESPONSE_ERROR })
+                            ? RaiseError({
+                                  dispatch: dispatch,
+                                  errorObject: nullError,
+                                  content: content,
+                              })
                             : dispatch({ type: RESPONSE, payload: response.data, handle: handle });
                     }
 
-                    RaiseError({ dispatch: dispatch, errorObject: GetTextStatusCode({ statusCode: response.status }) });
+                    const statusText = unexpectedStatus.replace("{STATUS_CODE}", response.status.toString());
+                    RaiseError({
+                        dispatch: dispatch,
+                        errorObject: statusText,
+                        content: content,
+                    });
                 })
                 .catch(error => {
-                    RaiseError({ dispatch: dispatch, errorObject: error });
+                    RaiseError({
+                        dispatch: dispatch,
+                        errorObject: error,
+                        content: content,
+                    });
                 });
         },
 };

@@ -4,8 +4,8 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { GetContentManifestDto } from "./Api/Models";
 import { ScrollToTop } from "./Shared/Components/Scroll";
-import { UpdateUserData } from "./Shared/Services/updateUserDataService";
-import { UpdateUserLanguage } from "./Shared/Services/updateUserLanguageService";
+import { UpdateUserData } from "./Shared/Services/initializeService";
+import { UpdateUserLanguage } from "./Shared/Services/languageService";
 import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -21,8 +21,8 @@ import {
     SignupPage,
     SignoutPage,
     AccountPage,
-    ResetPasswordPage,
-    UpdatePasswordPage,
+    PasswordResetPage,
+    PasswordUpdatePage,
     NewsletterRemovePage,
     NewsletterUpdatePage,
     ActivationPage,
@@ -87,15 +87,15 @@ const App = (props: Properties): JSX.Element => {
                         <AccountPage />
                     </Route>
                     <Route exact path="/resetpassword">
-                        <ResetPasswordPage />
+                        <PasswordResetPage />
                     </Route>
                     <Route exact path="/updatepassword">
-                        <UpdatePasswordPage />
+                        <PasswordUpdatePage />
                     </Route>
-                    <Route exact path="/unsubscribe">
+                    <Route exact path="/remove-from-newsletter">
                         <NewsletterRemovePage />
                     </Route>
-                    <Route exact path="/updatesubscriber">
+                    <Route exact path="/update-newsletter">
                         <NewsletterUpdatePage />
                     </Route>
                     <Route exact path="/accountactivation">

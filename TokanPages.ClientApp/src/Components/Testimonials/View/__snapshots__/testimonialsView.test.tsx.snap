@@ -2,147 +2,128 @@
 
 exports[`test component: testimonialsView should render correctly '<TestimonialsView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      mb={5}
-      pb={10}
-      pt={8}
-      textAlign="center"
+    <div
+      class="MuiBox-root MuiBox-root-10"
     >
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-caption_text-2"
+      <p
+        class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
         data-aos="fade-down"
       >
         TESTIMONIALS
-      </WithStyles(ForwardRef(Typography))>
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      pb={15}
-      textAlign="center"
+      </p>
+    </div>
+    <div
+      class="MuiBox-root MuiBox-root-11"
     >
-      <WithStyles(ForwardRef(Grid))
-        container={true}
-        spacing={6}
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
       >
-        <WithStyles(ForwardRef(Grid))
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           data-aos="fade-up"
           data-aos-delay="350"
-          item={true}
-          md={4}
-          xs={12}
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-card-3"
-            elevation={0}
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
           >
-            <WithStyles(ForwardRef(CardMedia))
-              className="makeStyles-card_image-5"
-              component="img"
-              image=" "
+            <img
+              class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
             />
-            <WithStyles(ForwardRef(CardContent))
-              className="makeStyles-card_content-6"
+            <div
+              class="MuiCardContent-root makeStyles-card_content-6"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_title-7"
+              <p
+                class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
               >
                 Joanna
-              </WithStyles(ForwardRef(Typography))>
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_subheader-8"
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
               >
                 Senior Digital Tax Specialist
-              </WithStyles(ForwardRef(Typography))>
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_text-9"
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
               >
                 Joe is very motivated...
-              </WithStyles(ForwardRef(Typography))>
-            </WithStyles(ForwardRef(CardContent))>
-          </WithStyles(ForwardRef(Card))>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          className="makeStyles-card_space-4"
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           data-aos="fade-up"
           data-aos-delay="150"
-          item={true}
-          md={4}
-          xs={12}
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-card-3"
-            elevation={3}
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
           >
-            <WithStyles(ForwardRef(CardMedia))
-              className="makeStyles-card_image-5"
-              component="img"
-              image=" "
+            <img
+              class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
             />
-            <WithStyles(ForwardRef(CardContent))
-              className="makeStyles-card_content-6"
+            <div
+              class="MuiCardContent-root makeStyles-card_content-6"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_title-7"
+              <p
+                class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
               >
                 Adama
-              </WithStyles(ForwardRef(Typography))>
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_subheader-8"
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
               >
                 Full-stack Developer chez DFDS POLSKA
-              </WithStyles(ForwardRef(Typography))>
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_text-9"
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
               >
                 Joe have done very good work...
-              </WithStyles(ForwardRef(Typography))>
-            </WithStyles(ForwardRef(CardContent))>
-          </WithStyles(ForwardRef(Card))>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          className="makeStyles-card_space-4"
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           data-aos="fade-up"
           data-aos-delay="550"
-          item={true}
-          md={4}
-          xs={12}
         >
-          <WithStyles(ForwardRef(Card))
-            className="makeStyles-card-3"
-            elevation={3}
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
           >
-            <WithStyles(ForwardRef(CardMedia))
-              className="makeStyles-card_image-5"
-              component="img"
-              image=" "
+            <img
+              class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
             />
-            <WithStyles(ForwardRef(CardContent))
-              className="makeStyles-card_content-6"
+            <div
+              class="MuiCardContent-root makeStyles-card_content-6"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_title-7"
+              <p
+                class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
               >
                 Scott
-              </WithStyles(ForwardRef(Typography))>
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_subheader-8"
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
               >
                 BPO
-              </WithStyles(ForwardRef(Typography))>
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-card_text-9"
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
               >
                 Joe is one of those rare talents...
-              </WithStyles(ForwardRef(Typography))>
-            </WithStyles(ForwardRef(CardContent))>
-          </WithStyles(ForwardRef(Card))>
-        </WithStyles(ForwardRef(Grid))>
-      </WithStyles(ForwardRef(Grid))>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

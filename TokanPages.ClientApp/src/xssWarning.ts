@@ -20,8 +20,7 @@ const selfXssWarningContent = {
         firstLineText: "Ta funkcja przeglądarki jest przeznaczona wyłącznie dla programistów serwisu.",
         secondLineText:
             "Jeśli ktoś polecił Ci edytować stronę w ten sposób, jest to próba ataku i wyłudzenia danych.\nNic tutaj nie wklejaj ani nie wpisuj.",
-        thirdLineText:
-            "Zamknij okno tego narzędzia (kliknij X w prawym, górnym rogu).\nPoinformuj nas o próbie ataku.",
+        thirdLineText: "Zamknij okno tego narzędzia (kliknij X w prawym, górnym rogu).\nPoinformuj nas o próbie ataku.",
     },
     eng: {
         bannerText: "WARNING!",

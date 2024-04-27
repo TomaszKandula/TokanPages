@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
@@ -32,7 +32,7 @@ describe("test component: featuresView", () => {
             ],
         };
 
-        const tree = shallow(
+        const html = render(
             <NavigationView
                 isLoading={false}
                 drawerState={{ open: false }}
@@ -50,6 +50,6 @@ describe("test component: featuresView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

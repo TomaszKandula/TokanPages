@@ -14,7 +14,7 @@ interface Receive {
 export type TKnownActions = Request | Receive;
 
 export const ArticleListingAction = {
-    get: (): ApplicationAction<TKnownActions> => dispatch => {
+    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         dispatch({ type: REQUEST });
 
         const request: RequestContract = {
@@ -28,6 +28,7 @@ export const ArticleListingAction = {
         const input: ExecuteContract = {
             configuration: GetConfiguration(request),
             dispatch: dispatch,
+            state: getState,
             responseType: RECEIVE,
         };
 

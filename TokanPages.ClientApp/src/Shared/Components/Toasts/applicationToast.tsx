@@ -46,7 +46,7 @@ export const ApplicationToast = (): JSX.Element => {
         if (error?.errorMessage === RECEIVED_ERROR_MESSAGE) {
             setToastState({
                 isOpen: true,
-                errorMessage: error?.errorDetails,
+                errorMessage: error?.errorDetails ?? "",
             });
         }
     }, [error]);

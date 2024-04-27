@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Box, Typography, Container } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
-import { Navigation, Footer } from "../../Components/Layout";
+import { Footer } from "../../Components/Layout";
 
-import { ContentActivateAccountAction, ContentNavigationAction, ContentFooterAction } from "../../Store/Actions";
+import { ContentActivateAccountAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -25,29 +25,20 @@ export const ActivationPage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id");
+    const type = queryParam.get("type") as string;
 
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const activation = useSelector((state: ApplicationState) => state.contentActivateAccount);
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
-    const footer = useSelector((state: ApplicationState) => state.contentFooter);
 
     React.useEffect(() => {
         dispatch(ContentActivateAccountAction.get());
-        dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
+        dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
     return (
         <>
-            <Navigation content={navigation?.content} isLoading={navigation?.isLoading} />
-            <Container>
-                {id ? (
-                    <ActivateAccount id={id} content={activation?.content} isLoading={activation?.isLoading} />
-                ) : (
-                    <ErrorMessage />
-                )}
-            </Container>
-            <Footer content={footer?.content} isLoading={footer?.isLoading} />
+            {id ? <ActivateAccount id={id} type={type} /> : <ErrorMessage />}
+            <Footer />
         </>
     );
 };

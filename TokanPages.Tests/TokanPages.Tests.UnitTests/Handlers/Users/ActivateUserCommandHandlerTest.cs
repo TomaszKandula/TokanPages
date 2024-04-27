@@ -17,8 +17,10 @@ public class ActivateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var activationId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
         var users = new Backend.Domain.Entities.User.Users
         { 
+            Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
             CryptedPassword = DataUtilityService.GetRandomString(),
@@ -47,7 +49,8 @@ public class ActivateUserCommandHandlerTest : TestBase
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        result.Should().Be(Unit.Value);
+        result.UserId.Should().Be(userId);
+        result.HasBusinessLock.Should().BeFalse();
     }
 
     [Fact]

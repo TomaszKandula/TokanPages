@@ -1,11 +1,11 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { NewsletterView } from "./newsletterView";
 
 describe("test component: newsletterView", () => {
     it("should render correctly '<NewsletterView />' when content is loaded.", () => {
-        const tree = shallow(
+        const html = render(
             <NewsletterView
                 isLoading={false}
                 caption={"Join the newsletter!"}
@@ -20,6 +20,6 @@ describe("test component: newsletterView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

@@ -10,16 +10,16 @@ import {
     ContentContactFormState,
     ContentCookiesPromptState,
     ContentFeaturedState,
-    ContentFeaturesState,
+    ContentTechnologiesState,
     ContentFooterState,
     ContentHeaderState,
     ContentNavigationState,
     ContentNewsletterState,
     ContentResetPasswordState,
     ContentTestimonialsState,
-    ContentUnsubscribeState,
+    ContentNewsletterRemoveState,
     ContentUpdatePasswordState,
-    ContentUpdateSubscriberState,
+    ContentNewsletterUpdateState,
     ContentUserSigninState,
     ContentUserSignoutState,
     ContentUserSignupState,
@@ -44,6 +44,8 @@ import {
     ContentStoryState,
     UserMediaUploadState,
     UserSignoutState,
+    UserNotificationState,
+    ContentTemplatesState,
 } from "../States";
 
 export interface ApplicationState {
@@ -54,6 +56,7 @@ export interface ApplicationState {
     articleListing: ArticleListingState;
     articleSelection: ArticleSelectionState;
     articleUpdate: ArticleUpdateState;
+    contentTemplates: ContentTemplatesState;
     contentAccount: ContentAccountState;
     contentActivateAccount: ContentActivateAccountState;
     contentArticleFeatures: ContentArticleFeaturesState;
@@ -61,7 +64,7 @@ export interface ApplicationState {
     contentContactForm: ContentContactFormState;
     contentCookiesPrompt: ContentCookiesPromptState;
     contentFeatured: ContentFeaturedState;
-    contentFeatures: ContentFeaturesState;
+    contentTechnologies: ContentTechnologiesState;
     contentFooter: ContentFooterState;
     contentHeader: ContentHeaderState;
     contentNavigation: ContentNavigationState;
@@ -71,9 +74,9 @@ export interface ApplicationState {
     contentStory: ContentStoryState;
     contentTerms: ContentTermsState;
     contentTestimonials: ContentTestimonialsState;
-    contentUnsubscribe: ContentUnsubscribeState;
+    contentNewsletterRemove: ContentNewsletterRemoveState;
     contentUpdatePassword: ContentUpdatePasswordState;
-    contentUpdateSubscriber: ContentUpdateSubscriberState;
+    contentNewsletterUpdate: ContentNewsletterUpdateState;
     contentUserSignin: ContentUserSigninState;
     contentUserSignout: ContentUserSignoutState;
     contentUserSignup: ContentUserSignupState;
@@ -84,6 +87,7 @@ export interface ApplicationState {
     userActivate: UserActivateState;
     userDataStore: UserDataStoreState;
     userMediaUpload: UserMediaUploadState;
+    userNotification: UserNotificationState;
     userPasswordReset: UserPasswordResetState;
     userPasswordUpdate: UserPasswordUpdateState;
     userReAuthenticate: UserReAuthenticateState;

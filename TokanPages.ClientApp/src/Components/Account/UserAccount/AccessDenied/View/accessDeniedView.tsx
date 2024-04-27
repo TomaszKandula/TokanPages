@@ -6,17 +6,23 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { ContentAccountState } from "../../../../../Store/States";
 import { AccessDeniedStyle } from "./accessDeniedStyle";
 
 import { Button, Divider, Typography } from "@material-ui/core";
 
-const HomeButton = (props: ContentAccountState): JSX.Element => {
+interface AccessDeniedViewProps {
+    isLoading: boolean;
+    accessDeniedCaption: string;
+    accessDeniedPrompt: string;
+    homeButtonText: string;
+}
+
+const HomeButton = (props: AccessDeniedViewProps): JSX.Element => {
     const classes = AccessDeniedStyle();
     return (
         <Link to="/" className={classes.home_link}>
             <Button fullWidth variant="contained" className={classes.home_button} disabled={props.isLoading}>
-                {props.content?.sectionAccessDenied?.homeButtonText}
+                {props.homeButtonText}
             </Button>
         </Link>
     );
@@ -31,7 +37,7 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const AccessDeniedView = (props: ContentAccountState): JSX.Element => {
+export const AccessDeniedView = (props: AccessDeniedViewProps): JSX.Element => {
     const classes = AccessDeniedStyle();
     return (
         <section className={classes.section}>
@@ -41,11 +47,7 @@ export const AccessDeniedView = (props: ContentAccountState): JSX.Element => {
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography component="span" className={classes.caption}>
-                                    {props.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        props.content?.sectionAccessDenied?.accessDeniedCaption
-                                    )}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.accessDeniedCaption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -54,9 +56,7 @@ export const AccessDeniedView = (props: ContentAccountState): JSX.Element => {
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />
                                     ) : (
-                                        <ReactHtmlParser
-                                            html={props.content?.sectionAccessDenied?.accessDeniedPrompt}
-                                        />
+                                        <ReactHtmlParser html={props.accessDeniedPrompt} />
                                     )}
                                 </Typography>
                             </Box>

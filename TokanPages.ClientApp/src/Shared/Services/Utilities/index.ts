@@ -2,7 +2,6 @@ export { CountWords } from "./CountWords/countWords";
 export { GetReadTime } from "./GetReadTime/getReadTime";
 export { GetShortText } from "./GetShortText/getShortText";
 export { GetTextError } from "./GetTextError/getTextError";
-export { GetTextStatusCode } from "./GetTextStatusCode/getTextStatusCode";
 export { GetTextWarning } from "./GetTextWarning/getTextWarning";
 
 export { ErrorMessage } from "./Messages/errorMessage";

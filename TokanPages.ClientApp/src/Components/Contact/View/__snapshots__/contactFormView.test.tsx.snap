@@ -2,194 +2,359 @@
 
 exports[`test component: contactFormView should render correctly '<ContactFormView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <WithStyles(ForwardRef(Container))
-      maxWidth="sm"
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthSm"
     >
-      <Styled(MuiBox)
-        pb={10}
-        pt={8}
+      <div
+        class="MuiBox-root MuiBox-root-4"
       >
-        <Styled(MuiBox)
+        <div
+          class="MuiBox-root MuiBox-root-5"
           data-aos="fade-down"
-          mb={6}
-          textAlign="center"
         >
-          <WithStyles(ForwardRef(Typography))
-            className="makeStyles-caption-2"
-            gutterBottom={true}
+          <p
+            class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1 MuiTypography-gutterBottom"
           >
             CONTACT ME
-          </WithStyles(ForwardRef(Typography))>
-        </Styled(MuiBox)>
-        <Styled(MuiBox)>
-          <WithStyles(ForwardRef(Grid))
-            container={true}
-            spacing={2}
+          </p>
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-6"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
           >
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              sm={6}
-              xs={12}
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
                 data-aos="zoom-in"
               >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="fname"
-                  fullWidth={true}
-                  id="firstName"
-                  label="First name"
-                  name="firstName"
-                  onChange={[MockFunction]}
-                  onKeyUp={[MockFunction]}
-                  required={true}
-                  value="Ester"
-                  variant="outlined"
-                />
-              </div>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              sm={6}
-              xs={12}
-            >
-              <div
-                data-aos="zoom-in"
-              >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="lname"
-                  fullWidth={true}
-                  id="lastName"
-                  label="Last name"
-                  name="lastName"
-                  onChange={[MockFunction]}
-                  onKeyUp={[MockFunction]}
-                  required={true}
-                  value="Exposito"
-                  variant="outlined"
-                />
-              </div>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              xs={12}
-            >
-              <div
-                data-aos="zoom-in"
-              >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="email"
-                  fullWidth={true}
-                  id="email"
-                  label="Email address"
-                  name="email"
-                  onChange={[MockFunction]}
-                  onKeyUp={[MockFunction]}
-                  required={true}
-                  value="ester.exposito@gmail.com"
-                  variant="outlined"
-                />
-              </div>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              xs={12}
-            >
-              <div
-                data-aos="zoom-in"
-              >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="subject"
-                  fullWidth={true}
-                  id="subject"
-                  label="Subject"
-                  name="subject"
-                  onChange={[MockFunction]}
-                  onKeyUp={[MockFunction]}
-                  required={true}
-                  value="Test subject"
-                  variant="outlined"
-                />
-              </div>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              xs={12}
-            >
-              <div
-                data-aos="zoom-in"
-              >
-                <WithStyles(ForwardRef(TextField))
-                  autoComplete="message"
-                  fullWidth={true}
-                  id="message"
-                  label="Message"
-                  minRows={6}
-                  multiline={true}
-                  name="message"
-                  onChange={[MockFunction]}
-                  required={true}
-                  value="Test message..."
-                  variant="outlined"
-                />
-              </div>
-            </WithStyles(ForwardRef(Grid))>
-            <WithStyles(ForwardRef(Grid))
-              item={true}
-              xs={12}
-            >
-              <div
-                data-aos="zoom-in"
-              >
-                <WithStyles(ForwardRef(FormControlLabel))
-                  control={
-                    <WithStyles(Component)
-                      checked={false}
-                      id="terms"
-                      name="terms"
-                      onChange={[MockFunction]}
+                <div
+                  class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+                    data-shrink="true"
+                    for="firstName"
+                    id="firstName-label"
+                  >
+                    First name
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      autocomplete="fname"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="firstName"
+                      name="firstName"
+                      required=""
+                      type="text"
+                      value="Ester"
                     />
-                  }
-                  label="I agree!"
-                />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-7 MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legendLabelled-9 PrivateNotchedOutline-legendNotched-10"
+                      >
+                        <span>
+                          First name *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
               </div>
-            </WithStyles(ForwardRef(Grid))>
-          </WithStyles(ForwardRef(Grid))>
-          <Styled(MuiBox)
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+            >
+              <div
+                data-aos="zoom-in"
+              >
+                <div
+                  class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+                    data-shrink="true"
+                    for="lastName"
+                    id="lastName-label"
+                  >
+                    Last name
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      autocomplete="lname"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="lastName"
+                      name="lastName"
+                      required=""
+                      type="text"
+                      value="Exposito"
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                      >
+                        <span>
+                          Last name *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                data-aos="zoom-in"
+              >
+                <div
+                  class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+                    data-shrink="true"
+                    for="email"
+                    id="email-label"
+                  >
+                    Email address
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      autocomplete="email"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="email"
+                      name="email"
+                      required=""
+                      type="text"
+                      value="ester.exposito@gmail.com"
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-15 MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legendLabelled-17 PrivateNotchedOutline-legendNotched-18"
+                      >
+                        <span>
+                          Email address *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                data-aos="zoom-in"
+              >
+                <div
+                  class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+                    data-shrink="true"
+                    for="subject"
+                    id="subject-label"
+                  >
+                    Subject
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      autocomplete="subject"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="subject"
+                      name="subject"
+                      required=""
+                      type="text"
+                      value="Test subject"
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-19 MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legendLabelled-21 PrivateNotchedOutline-legendNotched-22"
+                      >
+                        <span>
+                          Subject *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                data-aos="zoom-in"
+              >
+                <div
+                  class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                >
+                  <label
+                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled Mui-required Mui-required"
+                    data-shrink="true"
+                    for="message"
+                    id="message-label"
+                  >
+                    Message
+                    <span
+                      aria-hidden="true"
+                      class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                  >
+                    <input
+                      aria-invalid="false"
+                      autocomplete="message"
+                      class="MuiInputBase-input MuiOutlinedInput-input"
+                      id="message"
+                      name="message"
+                      required=""
+                      type="text"
+                      value="Test message..."
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="PrivateNotchedOutline-root-23 MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="PrivateNotchedOutline-legendLabelled-25 PrivateNotchedOutline-legendNotched-26"
+                      >
+                        <span>
+                          Message *
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                data-aos="zoom-in"
+              >
+                <label
+                  class="MuiFormControlLabel-root"
+                >
+                  <span
+                    aria-disabled="false"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root Component-root-27"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input-32"
+                        data-indeterminate="false"
+                        id="terms"
+                        name="terms"
+                        type="checkbox"
+                      />
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+                  >
+                    I agree!
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-33"
             data-aos="fade-up"
-            my={2}
           >
-            <ActiveButton
-              buttonHandler={[MockFunction]}
-              buttonText="Submit"
-              caption="Contact me"
-              consent="I agree!"
-              email="ester.exposito@gmail.com"
-              firstName="Ester"
-              formHandler={[MockFunction]}
-              isLoading={false}
-              keyHandler={[MockFunction]}
-              labelEmail="Email address"
-              labelFirstName="First name"
-              labelLastName="Last name"
-              labelMessage="Message"
-              labelSubject="Subject"
-              lastName="Exposito"
-              message="Test message..."
-              progress={false}
-              subject="Test subject"
-              terms={false}
-              text="If you have any questions..."
-            />
-          </Styled(MuiBox)>
-        </Styled(MuiBox)>
-      </Styled(MuiBox)>
-    </WithStyles(ForwardRef(Container))>
-  </WithStyles(ForwardRef(Container))>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-36 MuiButton-fullWidth"
+              tabindex="0"
+              type="submit"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Submit
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

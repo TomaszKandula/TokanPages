@@ -1,6 +1,7 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { BrowserRouter as Router } from "react-router-dom";
+import { render } from "enzyme";
 import { ContentPolicyState, ContentTermsState, ContentStoryState } from "../../../Store/States";
 import { TextItemDto } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
@@ -23,8 +24,12 @@ describe("test component: documentView", () => {
             },
         };
 
-        const tree = shallow(<DocumentView content={policyContent.content} isLoading={policyContent.isLoading} />);
-        expect(tree).toMatchSnapshot();
+        const html = render(
+            <Router>
+                <DocumentView content={policyContent.content} isLoading={policyContent.isLoading} />
+            </Router>
+        );
+        expect(html).toMatchSnapshot();
     });
 
     it("should render correctly '<DocumentView />' when terms content is loaded.", () => {
@@ -44,8 +49,12 @@ describe("test component: documentView", () => {
             },
         };
 
-        const tree = shallow(<DocumentView content={termsContent.content} isLoading={termsContent.isLoading} />);
-        expect(tree).toMatchSnapshot();
+        const html = render(
+            <Router>
+                <DocumentView content={termsContent.content} isLoading={termsContent.isLoading} />
+            </Router>
+        );
+        expect(html).toMatchSnapshot();
     });
 
     it("should render correctly '<DocumentView />' when story content is loaded.", () => {
@@ -65,7 +74,11 @@ describe("test component: documentView", () => {
             },
         };
 
-        const tree = shallow(<DocumentView content={storyContent.content} isLoading={storyContent.isLoading} />);
-        expect(tree).toMatchSnapshot();
+        const html = render(
+            <Router>
+                <DocumentView content={storyContent.content} isLoading={storyContent.isLoading} />
+            </Router>
+        );
+        expect(html).toMatchSnapshot();
     });
 });

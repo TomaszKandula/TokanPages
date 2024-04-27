@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { ContentUpdateSubscriberState } from "../../Store/States";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../Shared/types";
@@ -12,20 +11,18 @@ import { ApplicationDialogAction, NewsletterUpdateAction } from "../../Store/Act
 
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 
-import {
-    NEWSLETTER_SUCCESS,
-    NEWSLETTER_WARNING,
-    RECEIVED_ERROR_MESSAGE,
-    UPDATE_SUBSCRIBER,
-} from "../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-interface Properties extends ContentUpdateSubscriberState {
+interface Properties {
     id: string;
 }
 
 export const NewsletterUpdate = (props: Properties): JSX.Element => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
+
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
+    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletterUpdate);
     const update = useSelector((state: ApplicationState) => state.newsletterUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
@@ -38,9 +35,9 @@ export const NewsletterUpdate = (props: Properties): JSX.Element => {
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(UPDATE_SUBSCRIBER, text)));
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textNewsletter, text)));
     const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(UPDATE_SUBSCRIBER, text)));
+        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textNewsletter, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -70,9 +67,9 @@ export const NewsletterUpdate = (props: Properties): JSX.Element => {
         if (hasFinished) {
             clearForm();
             setForm({ email: "" });
-            showSuccess(NEWSLETTER_SUCCESS);
+            showSuccess(template.templates.newsletter.success);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
     const formHandler = React.useCallback(
         (event: ReactChangeEvent) => {
@@ -93,20 +90,20 @@ export const NewsletterUpdate = (props: Properties): JSX.Element => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: NEWSLETTER_WARNING }));
-    }, [props.id, form]);
+        showWarning(GetTextWarning({ object: result, template: template.templates.newsletter.warning }));
+    }, [props.id, form, template]);
 
     return (
         <NewsletterUpdateView
-            isLoading={props.isLoading}
-            caption={props.content?.caption}
+            isLoading={newsletter.isLoading}
+            caption={newsletter.content?.caption}
             formHandler={formHandler}
             email={form.email}
             buttonHandler={buttonHandler}
             buttonState={hasButton}
             progress={hasProgress}
-            buttonText={props.content?.button}
-            labelEmail={props.content.labelEmail}
+            buttonText={newsletter.content?.button}
+            labelEmail={newsletter.content.labelEmail}
         />
     );
 };

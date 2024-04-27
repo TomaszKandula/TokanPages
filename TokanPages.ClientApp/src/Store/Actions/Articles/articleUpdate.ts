@@ -1,7 +1,5 @@
 import { ApplicationAction } from "../../Configuration";
-import { RAISE } from "../Application/applicationError";
-import { GetTextStatusCode } from "../../../Shared/Services/Utilities";
-import { GetErrorMessage } from "../../../Shared/Services/ErrorServices";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 
 import {
     ExecuteAsync,
@@ -12,6 +10,7 @@ import {
 } from "../../../Api/Request";
 
 import {
+    ApplicationProps,
     UpdateArticleContentDto,
     UpdateArticleCountDto,
     UpdateArticleLikesDto,
@@ -33,7 +32,12 @@ interface Response {
 }
 export type TKnownActions = Update | Clear | Response;
 
-const DispatchCall = async (dispatch: any, url: string, data: any) => {
+const DispatchCall = async (
+    dispatch: (action: TKnownActions) => void,
+    url: string,
+    data: object,
+    content: ApplicationProps
+) => {
     dispatch({ type: UPDATE });
 
     let result = await ExecuteAsync({
@@ -44,7 +48,12 @@ const DispatchCall = async (dispatch: any, url: string, data: any) => {
     });
 
     if (result.error !== null) {
-        dispatch({ type: RAISE, errorObject: GetErrorMessage({ errorObject: result.error }) });
+        RaiseError({
+            dispatch: dispatch,
+            errorObject: result.error,
+            content: content,
+        });
+
         return;
     }
 
@@ -54,8 +63,13 @@ const DispatchCall = async (dispatch: any, url: string, data: any) => {
         return;
     }
 
-    const error = GetTextStatusCode({ statusCode: result.status as number });
-    dispatch({ type: RAISE, errorObject: error });
+    const statusCode = result.status as number;
+    const statusText = content.unexpectedStatus.replace("{STATUS_CODE}", statusCode.toString());
+    RaiseError({
+        dispatch: dispatch,
+        errorObject: statusText,
+        content: content,
+    });
 };
 
 export const ArticleUpdateAction = {
@@ -64,22 +78,26 @@ export const ArticleUpdateAction = {
     },
     updateContent:
         (payload: UpdateArticleContentDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
-            DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload);
+        (dispatch, getState) => {
+            const content = getState().contentTemplates.content.templates.application;
+            DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload, content);
         },
     updateCount:
         (payload: UpdateArticleCountDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
-            DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload);
+        (dispatch, getState) => {
+            const content = getState().contentTemplates.content.templates.application;
+            DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload, content);
         },
     updateLikes:
         (payload: UpdateArticleLikesDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
-            DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload);
+        (dispatch, getState) => {
+            const content = getState().contentTemplates.content.templates.application;
+            DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload, content);
         },
     updateVisibility:
         (payload: UpdateArticleVisibilityDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
-            DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload);
+        (dispatch, getState) => {
+            const content = getState().contentTemplates.content.templates.application;
+            DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload, content);
         },
 };

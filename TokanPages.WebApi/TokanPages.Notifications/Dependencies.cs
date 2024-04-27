@@ -15,6 +15,8 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PushNotificationService;
 using TokanPages.Services.PushNotificationService.Abstractions;
+using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService;
 using TokanPages.Services.WebSocketService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -76,6 +78,7 @@ public static class Dependencies
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+		services.AddScoped<IUserService, UserService>();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();

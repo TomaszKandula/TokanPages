@@ -42,7 +42,9 @@ exports[`test account group component: userSignupView should render correctly '<
                 xs={12}
               >
                 <WithStyles(ForwardRef(TextField))
-                  autoComplete="fname"
+                  autoComplete="one-time-code"
+                  autoFocus={true}
+                  disabled={false}
                   fullWidth={true}
                   id="firstName"
                   label="First name"
@@ -60,7 +62,8 @@ exports[`test account group component: userSignupView should render correctly '<
                 xs={12}
               >
                 <WithStyles(ForwardRef(TextField))
-                  autoComplete="lname"
+                  autoComplete="one-time-code"
+                  disabled={false}
                   fullWidth={true}
                   id="lastName"
                   label="Last name"
@@ -77,7 +80,8 @@ exports[`test account group component: userSignupView should render correctly '<
                 xs={12}
               >
                 <WithStyles(ForwardRef(TextField))
-                  autoComplete="email"
+                  autoComplete="one-time-code"
+                  disabled={false}
                   fullWidth={true}
                   id="email"
                   label="Email address"
@@ -95,6 +99,7 @@ exports[`test account group component: userSignupView should render correctly '<
               >
                 <TextFiedWithPassword
                   fullWidth={true}
+                  isDisabled={false}
                   label="Password"
                   onChange={[MockFunction]}
                   onKeyUp={[MockFunction]}
@@ -122,6 +127,7 @@ exports[`test account group component: userSignupView should render correctly '<
                   control={
                     <WithStyles(Component)
                       checked={false}
+                      disabled={false}
                       id="terms"
                       name="terms"
                       onChange={[MockFunction]}

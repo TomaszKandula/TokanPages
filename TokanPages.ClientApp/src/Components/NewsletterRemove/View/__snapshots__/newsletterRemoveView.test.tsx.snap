@@ -2,93 +2,75 @@
 
 exports[`test component: newsletterRemoveView should render correctly '<NewsletterRemoveView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="sm"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthSm"
   >
-    <Styled(MuiBox)
-      py={15}
+    <div
+      class="MuiBox-root MuiBox-root-8"
     >
-      <WithStyles(ForwardRef(Card))
-        elevation={4}
+      <div
+        class="MuiPaper-root MuiCard-root MuiPaper-elevation4 MuiPaper-rounded"
       >
-        <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card-6"
+        <div
+          class="MuiCardContent-root makeStyles-card-6"
         >
-          <Styled(MuiBox)
-            mb={3}
-            textAlign="center"
+          <div
+            class="MuiBox-root MuiBox-root-9"
           >
-            <Styled(MuiBox)
-              mb={2}
-              mt={2}
+            <div
+              class="MuiBox-root MuiBox-root-10"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-caption-2"
+              <p
+                class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1"
               >
                 Cancel your subscribtion
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <Styled(MuiBox)
-              mb={2}
-              mt={5}
+              </p>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-11"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-text1-3"
+              <p
+                class="MuiTypography-root makeStyles-text1-3 MuiTypography-body1"
               >
                 We are sorry to see you go...
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <Styled(MuiBox)
-              mb={2}
-              mt={5}
+              </p>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-12"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-text2-4"
+              <p
+                class="MuiTypography-root makeStyles-text2-4 MuiTypography-body1"
               >
                 ...but we understand there are circumstances
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <Styled(MuiBox)
-              mb={7}
-              mt={5}
+              </p>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-13"
             >
-              <WithStyles(ForwardRef(Typography))
-                className="makeStyles-text3-5"
+              <p
+                class="MuiTypography-root makeStyles-text3-5 MuiTypography-body1"
               >
                 Please contact us should you have any questions
-              </WithStyles(ForwardRef(Typography))>
-            </Styled(MuiBox)>
-            <ActiveButton
-              buttonHandler={[MockFunction]}
-              buttonState={false}
-              contentPost={
-                Object {
-                  "button": "Unsubscribe",
-                  "caption": "Cancel your subscribtion",
-                  "text1": "We are sorry to see you go...",
-                  "text2": "...but we understand there are circumstances",
-                  "text3": "Please contact us should you have any questions",
-                }
-              }
-              contentPre={
-                Object {
-                  "button": "Unsubscribe",
-                  "caption": "Cancel your subscribtion",
-                  "text1": "We are sorry to see you go...",
-                  "text2": "...but we understand there are circumstances",
-                  "text3": "Please contact us should you have any questions",
-                }
-              }
-              isLoading={false}
-              isRemoved={false}
-              progress={false}
-            />
-          </Styled(MuiBox)>
-        </WithStyles(ForwardRef(CardContent))>
-      </WithStyles(ForwardRef(Card))>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+              </p>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-20 Mui-disabled MuiButton-fullWidth Mui-disabled"
+              disabled=""
+              tabindex="-1"
+              type="submit"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Unsubscribe
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

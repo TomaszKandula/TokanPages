@@ -1,11 +1,11 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { ContactFormView } from "./contactFormView";
 
 describe("test component: contactFormView", () => {
     it("should render correctly '<ContactFormView />' when content is loaded.", () => {
-        const tree = shallow(
+        const html = render(
             <ContactFormView
                 isLoading={false}
                 caption="Contact me"
@@ -27,9 +27,11 @@ describe("test component: contactFormView", () => {
                 labelEmail="Email address"
                 labelSubject="Subject"
                 labelMessage="Message"
+                multiline={false}
+                minRows={undefined}
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

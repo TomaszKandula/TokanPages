@@ -1,36 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test account group component: activateAccount should render correctly '<ActivateAccount />' when content is loaded. 1`] = `
-<div>
-  <ActivateAccount
-    content={
-      Object {
-        "language": "eng",
-        "onError": Object {
-          "button": "Retry",
-          "caption": "Account Activation",
-          "text1": "Could not activate your account.",
-          "text2": "Please contact IT support.",
-          "type": "Error",
-        },
-        "onProcessing": Object {
-          "button": "",
-          "caption": "Account Activation",
-          "text1": "Processing your account..., please wait.",
-          "text2": "",
-          "type": "Processing",
-        },
-        "onSuccess": Object {
-          "button": "Go to main",
-          "caption": "Account Activation",
-          "text1": "Your account has been successfully activated!",
-          "text2": "You can now sign in.",
-          "type": "Success",
-        },
-      }
-    }
-    id="dba4043c-7428-4f72-ba13-fe782c7a88fa"
-    isLoading={false}
-  />
-</div>
+<section
+  class="makeStyles-section-1"
+>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthSm"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-8"
+    >
+      <div
+        class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+      >
+        <div
+          class="MuiCardContent-root makeStyles-card_content-6"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-9"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-10"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+              >
+                Account Activation
+              </div>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-11"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
+              >
+                <div>
+                  Processing your account..., please wait.
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-12"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+              >
+                <div />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 `;

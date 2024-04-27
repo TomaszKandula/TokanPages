@@ -25,6 +25,7 @@ interface BaseProperties extends ViewProperties {
     formHandler: (event: ReactChangeEvent) => void;
     switchHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
+    verifyButtonHandler: () => void;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
 }

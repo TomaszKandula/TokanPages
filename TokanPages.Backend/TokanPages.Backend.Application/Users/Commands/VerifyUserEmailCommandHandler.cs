@@ -40,15 +40,19 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
 
         user.ActivationId = activationId;
         user.ActivationIdEnds = activationIdEnds;
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        await NotifyUser(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+        var messageId = await PrepareNotificationUncommitted(cancellationToken);
+        await CommitAllChanges(cancellationToken);
+        await SendNotification(messageId, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+
         LoggerService.LogInformation($"Sending activation email to verify user email address.");
-
         return Unit.Value;
     }
 
-    private async Task NotifyUser(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
+        => await DatabaseContext.SaveChangesAsync(cancellationToken);
+
+    private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
     {
         var messageId = Guid.NewGuid();
         var serviceBusMessage = new ServiceBusMessage
@@ -57,6 +61,12 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
             IsConsumed = false
         };
 
+        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        return messageId;
+    }
+
+    private async Task SendNotification(Guid messageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    {
         var configuration = new VerifyEmailConfiguration
         {
             MessageId = messageId,
@@ -65,8 +75,6 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
             VerificationIdEnds = activationIdEnds
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
         await _emailSenderService.SendToServiceBus(configuration, cancellationToken);
     }
 }

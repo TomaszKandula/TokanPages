@@ -68,9 +68,10 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             users.ActivationId = activationId;
             users.ActivationIdEnds = activationIdEnds;
 
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
-            await SendNotificationUncommitted(request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+            var id = await PrepareNotificationUncommitted(cancellationToken);
+            await CommitAllChanges(cancellationToken);
 
+            await SendNotification(id, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
             LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
             return users.Id;
         }
@@ -87,11 +88,13 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
         var input = new UserDataInput { UserId = newUserId, Command = request };
 
+        var messageId = await PrepareNotificationUncommitted(cancellationToken);
         await CreateUserUncommitted(input, adminUser, userAlias, getHashedPassword, activationId, activationIdEnds, cancellationToken);
         await CreateUserInfoUncommitted(input, defaultAvatarName, adminUser, cancellationToken);
         await SetupDefaultPermissionsUncommitted(newUserId, adminUser?.UserId, cancellationToken);
-        await SendNotificationUncommitted(request.EmailAddress, activationId, expirationDate, cancellationToken);
         await CommitAllChanges(cancellationToken);
+
+        await SendNotification(messageId, request.EmailAddress, activationId, expirationDate, cancellationToken);
 
         var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
         LoggerService.LogInformation($"Registering new user account, user id: {newUserId}.");
@@ -216,7 +219,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         await DatabaseContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
     }
 
-    private async Task SendNotificationUncommitted(string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
     {
         var messageId = Guid.NewGuid();
         var serviceBusMessage = new ServiceBusMessage
@@ -225,6 +228,12 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             IsConsumed = false
         };
 
+        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        return messageId;
+    }
+
+    private async Task SendNotification(Guid messageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    {
         var configuration = new CreateUserConfiguration
         {
             MessageId = messageId,
@@ -233,7 +242,6 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ActivationIdEnds = activationIdEnds
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
         await _emailSenderService.SendToServiceBus(configuration, cancellationToken);
     }
 }

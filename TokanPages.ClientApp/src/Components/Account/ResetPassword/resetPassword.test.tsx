@@ -2,12 +2,16 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { ResetPassword } from "./resetPassword";
-import { ApplicationDefault } from "../../../Store/Configuration";
 
 jest.mock("react-router", () => ({
     ...(jest.requireActual("react-router") as typeof Router),
+}));
+
+jest.mock("react-redux", () => ({
+    ...jest.requireActual("react-redux"),
+    useSelector: jest.fn(),
 }));
 
 describe("test account group component: resetPassword", () => {
@@ -19,24 +23,18 @@ describe("test account group component: resetPassword", () => {
     };
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
-    const useSelectorMock = jest.spyOn(Redux, "useSelector");
-    const wrapper = shallow(
-        <div>
-            <ResetPassword content={testContent} isLoading={false} />
-        </div>
-    );
-
     beforeEach(() => {
-        useSelectorMock.mockClear();
-        useDispatchMock.mockClear();
-        wrapper.find("ResetPassword").dive();
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
+            isLoading: false,
+            content: testContent,
+        });
+
+        useDispatchMock.mockReturnValue(jest.fn());
     });
 
     it("should renders correctly '<ResetPassword />' when content is loaded.", () => {
-        useDispatchMock.mockReturnValue(jest.fn());
-        useSelectorMock.mockReturnValue(ApplicationDefault);
-
+        const html = render(<ResetPassword />);
         expect(useDispatchMock).toBeCalledTimes(1);
-        expect(wrapper).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

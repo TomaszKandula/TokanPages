@@ -1,5 +1,5 @@
 import { ApplicationAction } from "../../Configuration";
-import { ActivateUserDto } from "../../../Api/Models";
+import { ActivateUserDto, ActivateUserResultDto } from "../../../Api/Models";
 import { Execute, GetConfiguration, ExecuteContract, RequestContract, ACTIVATE_USER } from "../../../Api/Request";
 
 export const ACTIVATE = "ACTIVATE_ACCOUNT";
@@ -13,7 +13,7 @@ interface Clear {
 }
 interface Response {
     type: typeof RESPONSE;
-    payload: any;
+    payload: ActivateUserResultDto;
 }
 export type TKnownActions = Activate | Clear | Response;
 
@@ -23,7 +23,7 @@ export const UserActivateAction = {
     },
     activate:
         (payload: ActivateUserDto): ApplicationAction<TKnownActions> =>
-        dispatch => {
+        (dispatch, getState) => {
             dispatch({ type: ACTIVATE });
 
             const request: RequestContract = {
@@ -37,6 +37,7 @@ export const UserActivateAction = {
             const input: ExecuteContract = {
                 configuration: GetConfiguration(request),
                 dispatch: dispatch,
+                state: getState,
                 responseType: RESPONSE,
             };
 
