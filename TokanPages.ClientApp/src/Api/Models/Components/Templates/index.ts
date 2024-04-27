@@ -9,8 +9,6 @@ export interface TemplatesContent {
             textContactForm: string;
             textCheckoutForm: string;
             textNewsletter: string;
-            textUpdateSubscriber: string;
-            textRemoveSubscriber: string;
             textAccountSettings: string;
         };
         templates: {
@@ -30,6 +28,14 @@ export interface TemplatesContent {
                 updateSuccess: string;
                 updateWarning: string;
             };
+            articles: {
+                success: string;
+                warning: string;
+                error: string;
+                likesHintAnonym: string;
+                likesHintUser: string;
+                maxLikesReached: string;
+            },
             newsletter: {
                 success: string;
                 warning: string;
@@ -50,8 +56,6 @@ export interface TemplatesContent {
                 signingWarning: string;
                 signupSuccess: string;
                 signupWarning: string;
-                bankDataWarning: string;
-                bankDataSuccess: string;
             };
             payments: {
                 checkoutWarning: string;

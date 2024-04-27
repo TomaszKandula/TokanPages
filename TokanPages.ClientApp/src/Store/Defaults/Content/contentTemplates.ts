@@ -12,8 +12,6 @@ export const ContentTemplates: ContentTemplatesState = {
             textContactForm: "",
             textCheckoutForm: "",
             textNewsletter: "",
-            textUpdateSubscriber: "",
-            textRemoveSubscriber: "",
             textAccountSettings: "",
         },
         templates: {
@@ -32,6 +30,14 @@ export const ContentTemplates: ContentTemplatesState = {
                 resetWarning: "",
                 updateSuccess: "",
                 updateWarning: "",
+            },
+            articles: {
+                success: "",
+                warning: "",
+                error: "",
+                likesHintAnonym: "",
+                likesHintUser: "",
+                maxLikesReached: "",
             },
             newsletter: {
                 success: "",
@@ -53,8 +59,6 @@ export const ContentTemplates: ContentTemplatesState = {
                 signingWarning: "",
                 signupSuccess: "",
                 signupWarning: "",
-                bankDataWarning: "",
-                bankDataSuccess: "",
             },
             payments: {
                 checkoutWarning: "",
