@@ -26,6 +26,7 @@ export const ContentTemplates: ContentTemplatesState = {
                 nameInvalid: "",
                 surnameInvalid: "",
                 passwordInvalid: "",
+                missingTerms: "",
                 missingChar: "",
                 missingNumber: "",
                 missingLargeLetter: "",
