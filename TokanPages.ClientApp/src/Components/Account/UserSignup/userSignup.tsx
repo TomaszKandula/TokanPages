@@ -14,12 +14,18 @@ import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/Fo
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
-const formDefault: SignupFormInput = {
+const defaultForm: SignupFormInput = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     terms: false,
+    content: {
+        missingChar: "",
+        missingLargeLetter: "",
+        missingNumber: "",
+        missingSmallLetter: "",
+    },
 };
 
 export const UserSignup = (): JSX.Element => {
@@ -34,7 +40,7 @@ export const UserSignup = (): JSX.Element => {
     const hasFinished = signup?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [form, setForm] = React.useState(formDefault);
+    const [form, setForm] = React.useState(defaultForm);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) => dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textSignup, text)));
@@ -69,7 +75,7 @@ export const UserSignup = (): JSX.Element => {
 
         if (hasFinished) {
             clearForm();
-            setForm(formDefault);
+            setForm(defaultForm);
             showSuccess(template.templates.user.signupSuccess);
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
@@ -102,6 +108,12 @@ export const UserSignup = (): JSX.Element => {
             email: form.email,
             password: form.password,
             terms: form.terms,
+            content: {
+                missingChar: template.templates.password.missingChar,
+                missingLargeLetter: template.templates.password.missingLargeLetter,
+                missingNumber: template.templates.password.missingNumber,
+                missingSmallLetter: template.templates.password.missingSmallLetter,
+        }
         });
 
         if (!Validate.isDefined(result)) {

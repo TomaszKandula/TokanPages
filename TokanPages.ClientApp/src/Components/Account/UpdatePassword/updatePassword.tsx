@@ -22,6 +22,12 @@ const useQuery = () => {
 const formDefaultValues: UpdateFormInput = {
     newPassword: "",
     verifyPassword: "",
+    content: {
+        missingChar: "",
+        missingLargeLetter: "",
+        missingNumber: "",
+        missingSmallLetter: "",
+    }
 };
 
 export const UpdatePassword = (): JSX.Element => {
@@ -99,6 +105,12 @@ export const UpdatePassword = (): JSX.Element => {
         let results = ValidateUpdateForm({
             newPassword: form.newPassword,
             verifyPassword: form.verifyPassword,
+            content: {
+                missingChar: template.templates.password.missingChar,
+                missingLargeLetter: template.templates.password.missingLargeLetter,
+                missingNumber: template.templates.password.missingNumber,
+                missingSmallLetter: template.templates.password.missingSmallLetter,
+            },
         });
 
         if (!Validate.isDefined(results)) {

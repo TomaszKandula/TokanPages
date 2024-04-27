@@ -30,6 +30,12 @@ export const UserPassword = (): JSX.Element => {
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",
+        content: {
+            missingChar: "",
+            missingLargeLetter: "",
+            missingNumber: "",
+            missingSmallLetter: "",
+        }
     };
 
     const [form, setForm] = React.useState(formDefault);
@@ -80,7 +86,18 @@ export const UserPassword = (): JSX.Element => {
     );
 
     const buttonHandler = React.useCallback(() => {
-        const result = ValidatePasswordForm(form);
+        const result = ValidatePasswordForm({
+            oldPassword: form.oldPassword,
+            newPassword: form.newPassword,
+            confirmPassword: form.confirmPassword,
+            content: {
+                missingChar: template.templates.password.missingChar,
+                missingLargeLetter: template.templates.password.missingLargeLetter,
+                missingNumber: template.templates.password.missingNumber,
+                missingSmallLetter: template.templates.password.missingSmallLetter,
+            },
+        });
+
         if (!Validate.isDefined(result)) {
             setHasProgress(true);
             return;
