@@ -22,6 +22,10 @@ export const ContentTemplates: ContentTemplatesState = {
                 nullError: "",
             },
             password: {
+                emailInvalid: "",
+                nameInvalid: "",
+                surnameInvalid: "",
+                passwordInvalid: "",
                 missingChar: "",
                 missingNumber: "",
                 missingLargeLetter: "",

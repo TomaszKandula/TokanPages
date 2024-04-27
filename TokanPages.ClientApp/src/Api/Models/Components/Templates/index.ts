@@ -17,6 +17,10 @@ export interface ApplicationProps {
 }
 
 export interface PasswordProps {
+    emailInvalid: string;
+    nameInvalid: string;
+    surnameInvalid: string;
+    passwordInvalid: string;
     missingChar: string;
     missingNumber: string;
     missingLargeLetter: string;
