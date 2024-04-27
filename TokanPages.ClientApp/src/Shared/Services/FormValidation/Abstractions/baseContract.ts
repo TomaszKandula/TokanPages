@@ -4,6 +4,7 @@ export interface BaseContract {
         nameInvalid: string;
         surnameInvalid: string;
         passwordInvalid: string;
+        missingTerms: string;
         missingChar: string;
         missingLargeLetter: string;
         missingNumber: string;

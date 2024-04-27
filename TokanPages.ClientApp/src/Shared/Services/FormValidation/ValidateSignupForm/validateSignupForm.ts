@@ -46,7 +46,7 @@ export const ValidateSignupForm = (props: SignupFormInput): any => {
             presence: true,
             inclusion: {
                 within: [true],
-                message: "^You must accept terms of use and privacy policy",
+                message: props.content.missingTerms,
             },
         },
     };
