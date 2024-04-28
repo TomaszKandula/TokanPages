@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -10,7 +9,7 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
-public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
+public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, UpdateUserCommandResult>
 {
     private readonly IUserService _userService;
 
@@ -23,20 +22,24 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
         _userService = userService;
     }
 
-    public override async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public override async Task<UpdateUserCommandResult> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
+        var shouldVerify = !string.Equals(request.EmailAddress, user.EmailAddress, StringComparison.CurrentCultureIgnoreCase);
 
-        await UpdateUserUncommitted(user, request, cancellationToken);
+        await UpdateUserUncommitted(user, request, shouldVerify, cancellationToken);
         await UpdateUserInfoUncommitted(user.Id, request, cancellationToken);
         await CommitAllChanges(cancellationToken);
 
-        return Unit.Value;
+        return new UpdateUserCommandResult
+        {
+            ShouldVerifyEmail = shouldVerify
+        };
     }
 
     private async Task CommitAllChanges(CancellationToken cancellationToken) => await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-    private async Task UpdateUserUncommitted(Domain.Entities.User.Users user, UpdateUserCommand request, CancellationToken cancellationToken = default)
+    private async Task UpdateUserUncommitted(Domain.Entities.User.Users user, UpdateUserCommand request, bool shouldVerify, CancellationToken cancellationToken = default)
     {
         var emails = await DatabaseContext.Users
             .AsNoTracking()
@@ -52,7 +55,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Unit>
         user.EmailAddress = request.EmailAddress ?? user.EmailAddress;
         user.ModifiedAt = _dateTimeService.Now;
         user.ModifiedBy = user.Id;
-        user.IsVerified = !string.Equals(request.EmailAddress, user.EmailAddress, StringComparison.CurrentCultureIgnoreCase);
+        user.IsVerified = shouldVerify;
     }
 
     private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
