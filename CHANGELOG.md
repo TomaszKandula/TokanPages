@@ -1,3 +1,16 @@
+# [0.79.0](https://github.com/TomaszKandula/TokanPages/compare/v0.78.1...v0.79.0) (2024-04-28)
+
+
+### Features
+
+* add email verification capability ([70651f8](https://github.com/TomaszKandula/TokanPages/commit/70651f876c63c55824df4e37fcce4c2ef5e0d5a4))
+* add endpoint for email verification ([ee25781](https://github.com/TomaszKandula/TokanPages/commit/ee2578117d876b478c1ec5bdfcc60ca888a4e3f8))
+* add new action into redux store ([5a3a786](https://github.com/TomaszKandula/TokanPages/commit/5a3a786a1502e7ab461374f309302b73cacab4dd))
+* export API path ([5fd06e3](https://github.com/TomaszKandula/TokanPages/commit/5fd06e30b55cfdaf7673119ed5cb67fc74562829))
+* export model ([897ecac](https://github.com/TomaszKandula/TokanPages/commit/897ecac1b3468474d141c1ab30688d06758ea996))
+* update style ([fc04e24](https://github.com/TomaszKandula/TokanPages/commit/fc04e24d1467cdcef4bbdfaaa6aba4f1a699fc20))
+* use backdrop ([2fbe6b9](https://github.com/TomaszKandula/TokanPages/commit/2fbe6b90ab3664507fbb4b9a39492a25f61bb378))
+
 ## [0.78.1](https://github.com/TomaszKandula/TokanPages/compare/v0.78.0...v0.78.1) (2024-04-28)
 
 
