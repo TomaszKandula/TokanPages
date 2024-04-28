@@ -93,7 +93,7 @@ public class UsersController : ApiBaseController
     /// Allows to request a user email verification.
     /// </summary>
     /// <remarks>
-    /// Requires: Roles.OrdinaryUser.
+    /// Requires: Roles.EverydayUser.
     /// </remarks>
     /// <param name="payload">Email address.</param>
     /// <returns>MediatR unit value.</returns>
