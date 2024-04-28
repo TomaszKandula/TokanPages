@@ -46,6 +46,7 @@ import {
     UserSignoutState,
     UserNotificationState,
     ContentTemplatesState,
+    UserEmailVerificationState,
 } from "../States";
 
 export interface ApplicationState {
@@ -85,6 +86,7 @@ export interface ApplicationState {
     newsletterRemove: NewsletterRemoveState;
     newsletterUpdate: NewsletterUpdateState;
     userActivate: UserActivateState;
+    userEmailVerification: UserEmailVerificationState;
     userDataStore: UserDataStoreState;
     userMediaUpload: UserMediaUploadState;
     userNotification: UserNotificationState;
