@@ -4,6 +4,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { Button, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel, Backdrop } from "@material-ui/core";
+import { AuthenticateUserResultDto, SectionAccessDenied, SectionAccountInformation } from "../../../../../Api/Models";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
@@ -11,20 +13,17 @@ import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
 
-import { Button, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel } from "@material-ui/core";
-
-import { AuthenticateUserResultDto, SectionAccessDenied, SectionAccountInformation } from "../../../../../Api/Models";
-
 interface BaseProperties extends ViewProperties {
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
     isUserActivated: boolean;
+    isRequestingVerification: boolean;
     formProgress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     switchHandler: (event: ReactChangeEvent) => void;
-    buttonHandler: () => void;
+    saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
@@ -63,7 +62,7 @@ const UpdateAccountButton = (props: BaseProperties): JSX.Element => {
             fullWidth
             type="submit"
             variant="contained"
-            onClick={props.buttonHandler}
+            onClick={props.saveButtonHandler}
             disabled={props.formProgress}
             className={classes.button_update}
         >
@@ -72,10 +71,32 @@ const UpdateAccountButton = (props: BaseProperties): JSX.Element => {
     );
 };
 
+const RequestVerificationButton = (props: BaseProperties): JSX.Element => {
+    const classes = UserInfoStyle();
+    const clickable = (
+        <Typography component="span" onClick={props.verifyButtonHandler} className={classes.user_email_verification}>
+            request verification
+        </Typography>
+    );
+
+    const link = (
+        <>
+            <Typography component="span">&nbsp;(</Typography>
+            {clickable}
+            <Typography component="span">)</Typography>
+        </>
+    );
+
+    return props.userStore.isVerified ? <></> : link;
+};
+
 export const UserInfoView = (props: BaseProperties): JSX.Element => {
     const classes = UserInfoStyle();
     return (
         <section className={classes.section}>
+            <Backdrop className={classes.backdrop} open={props.isRequestingVerification}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <Container maxWidth="md">
                 <Box pt={15} pb={5}>
                     <Card elevation={0} className={classes.card}>
@@ -99,6 +120,26 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                     <Grid item xs={12} sm={9}>
                                         <Typography component="span" className={classes.user_id}>
                                             <RenderText {...props} value={props.userStore?.userId} />
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={3}>
+                                        <Typography component="span" className={classes.label}>
+                                            <RenderText
+                                                {...props}
+                                                value={props.sectionAccountInformation?.labelEmailStatus?.label}
+                                            />
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12} sm={9}>
+                                        <Typography className={classes.user_email_status}>
+                                            {props.isLoading ? (
+                                                <Skeleton variant="text" />
+                                            ) : props.userStore?.isVerified ? (
+                                                props.sectionAccountInformation?.labelEmailStatus?.positive
+                                            ) : (
+                                                props.sectionAccountInformation?.labelEmailStatus?.negative
+                                            )}
+                                            <RequestVerificationButton {...props} />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>

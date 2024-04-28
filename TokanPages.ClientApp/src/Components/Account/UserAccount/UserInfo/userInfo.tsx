@@ -7,6 +7,7 @@ import {
     UserUpdateAction,
     UserDataStoreAction,
     UserSigninAction,
+    UserEmailVerificationAction,
 } from "../../../../Store/Actions";
 import { ExecuteAsync, GetConfiguration, NOTIFICATION_STATUS, RequestContract } from "../../../../Api/Request";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
@@ -36,10 +37,13 @@ export const UserInfo = (): JSX.Element => {
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const media = useSelector((state: ApplicationState) => state.userMediaUpload);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const verification = useSelector((state: ApplicationState) => state.userEmailVerification);
 
     const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
     const hasUpdateFinished = update?.status === OperationStatus.hasFinished;
     const hasMediaUploadFinished = media?.status === OperationStatus.hasFinished;
+    const hasVerificationNotStarted = verification?.status === OperationStatus.notStarted;
+    const hasVerificationFinished = verification?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const formDefault: AccountFormInput = {
@@ -49,7 +53,7 @@ export const UserInfo = (): JSX.Element => {
 
     const avatarName = Validate.isEmpty(store.avatarName) ? "N/A" : store.avatarName;
     const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
-    const [canCheckAltStatus, _] = React.useState(false);
+    const [canCheckAltStatus, setCheckAltStatus] = React.useState(false);
     const [form, setForm] = React.useState(formDefault);
     const [isRequesting, setRequesting] = React.useState(false);
     const [hasProgress, setHasProgress] = React.useState(false);
@@ -172,28 +176,28 @@ export const UserInfo = (): JSX.Element => {
         }
     }, [store, media.handle, media.payload?.blobName, hasMediaUploadFinished]);
 
-    // React.useEffect(() => {
-    //     if (hasError) {
-    //         return;
-    //     }
+    React.useEffect(() => {
+        if (hasError) {
+            return;
+        }
 
-    //     if (hasVerificationNotStarted && isRequesting) {
-    //         dispatch(
-    //             UserEmailVerificationAction.verify({
-    //                 emailAddress: form.emailAddress,
-    //             })
-    //         );
+        if (hasVerificationNotStarted && isRequesting) {
+            dispatch(
+                UserEmailVerificationAction.verify({
+                    emailAddress: form.email,
+                })
+            );
 
-    //         return;
-    //     }
+            return;
+        }
 
-    //     if (hasVerificationFinished) {
-    //         setRequesting(false);
-    //         setCheckAltStatus(true);
-    //         dispatch(UserEmailVerificationAction.clear());
-    //         showSuccess(template.templates.user.emailVerification);
-    //     }
-    // }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished]);
+        if (hasVerificationFinished) {
+            setRequesting(false);
+            setCheckAltStatus(true);
+            dispatch(UserEmailVerificationAction.clear());
+            showSuccess(template.templates.user.emailVerification);
+        }
+    }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished]);
 
     React.useEffect(() => {
         if (canUpdateStore?.canUpdate) {
@@ -257,11 +261,12 @@ export const UserInfo = (): JSX.Element => {
             accountForm={form}
             userImageName={avatarName}
             isUserActivated={isUserActivated.checked}
+            isRequestingVerification={isRequesting}
             formProgress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}
             switchHandler={switchHandler}
-            buttonHandler={saveButtonHandler}
+            saveButtonHandler={saveButtonHandler}
             verifyButtonHandler={verifyButtonHandler}
             sectionAccessDenied={account.content?.sectionAccessDenied}
             sectionAccountInformation={account.content?.sectionAccountInformation}

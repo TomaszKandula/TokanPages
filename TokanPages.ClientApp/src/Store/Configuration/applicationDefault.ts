@@ -47,6 +47,7 @@ import {
     UserSignout,
     UserNotification,
     ContentTemplates,
+    UserEmailVerification,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -86,6 +87,7 @@ export const ApplicationDefault: ApplicationState = {
     newsletterRemove: NewsletterRemove,
     newsletterUpdate: NewsletterUpdate,
     userActivate: UserActivate,
+    userEmailVerification: UserEmailVerification,
     userDataStore: UserDataStore,
     userMediaUpload: UserMediaUpload,
     userNotification: UserNotification,

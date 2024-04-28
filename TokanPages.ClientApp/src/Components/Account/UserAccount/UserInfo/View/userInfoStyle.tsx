@@ -7,6 +7,10 @@ export const UserInfoStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: "#FFFFFF",
+    },
     label: {
         color: Colours.colours.gray1,
     },
@@ -40,6 +44,17 @@ export const UserInfoStyle = makeStyles(theme => ({
             marginBottom: 15,
         },
         marginBottom: 30,
+    },
+    user_email_status: {
+        [theme.breakpoints.down("xs")]: {
+            marginBottom: 4,
+        },
+        marginBottom: 0,
+    },
+    user_email_verification: {
+        cursor: "pointer",
+        color: Colours.colours.red,
+        textDecoration: "underline",
     },
     user_avatar_box: {
         [theme.breakpoints.down("xs")]: {
