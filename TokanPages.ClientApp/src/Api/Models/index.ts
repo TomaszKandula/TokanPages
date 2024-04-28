@@ -17,6 +17,7 @@ export type { RemoveNewsletterDto } from "./Newsletters/removeNewsletterDto";
 export type { UserDataDto } from "./Users/userDataDto";
 export type { ActivateUserDto } from "./Users/activateUserDto";
 export type { ActivateUserResultDto } from "./Users/activateUserResultDto";
+export type { VerifyUserEmailDto } from "./Users/verifyUserEmailDto";
 export type { AddUserDto } from "./Users/addUserDto";
 export type { UpdateUserDto } from "./Users/updateUserDto";
 export type { RemoveUserDto } from "./Users/removeUserDto";

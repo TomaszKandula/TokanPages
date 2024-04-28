@@ -53,6 +53,16 @@ public static class UsersMapper
     };
 
     /// <summary>
+    /// Map request DTO to a given command.
+    /// </summary>
+    /// <param name="model">Users object.</param>
+    /// <returns>Command object.</returns>
+    public static VerifyUserEmailCommand MapToVerifyUserEmailCommand(VerifyUserEmailDto model) => new()
+    {
+        EmailAddress = model.EmailAddress
+    };
+
+    /// <summary>
     /// Maps request DTO to given command.
     /// </summary>
     /// <param name="model">Payload object.</param>

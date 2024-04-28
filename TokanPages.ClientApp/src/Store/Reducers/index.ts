@@ -49,3 +49,4 @@ export { UserUpdate } from "./Users/userUpdate";
 export { UserMediaUpload } from "./Users/userMediaUpload";
 export { UserSignout } from "./Users/userSignout";
 export { UserNotification } from "./Users/userNotification";
+export { UserEmailVerification } from "./Users/userEmailVerification";

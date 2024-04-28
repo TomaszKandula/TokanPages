@@ -12,6 +12,11 @@ export const ContentAccount: ContentAccountState = {
         sectionAccountInformation: {
             caption: "",
             labelUserId: "",
+            labelEmailStatus: {
+                label: "",
+                negative: "",
+                positive: ""
+            },
             labelUserAlias: "",
             labelFirstName: "",
             labelLastName: "",
