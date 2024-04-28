@@ -22,6 +22,7 @@ export const REMOVE_ARTICLE = `${API_ARTICLES_URI}/removeArticle`;
 export const ACTIVATE_USER = `${API_USERS_URI}/activateUser`;
 export const AUTHENTICATE = `${API_USERS_URI}/authenticateUser`;
 export const REAUTHENTICATE = `${API_USERS_URI}/reAuthenticateUser`;
+export const VERIFY_USER_EMAIL = `${API_USERS_URI}/requestEmailVerification`;
 export const REVOKE_USER_TOKEN = `${API_USERS_URI}/revokeUserToken`;
 export const REVOKE_REFRESH_TOKEN = `${API_USERS_URI}/revokeUserRefreshToken`;
 export const GET_USER = `${API_USERS_URI}/{id}/getUser`;
