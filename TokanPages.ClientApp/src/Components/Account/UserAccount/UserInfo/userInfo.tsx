@@ -143,6 +143,7 @@ export const UserInfo = (): JSX.Element => {
                     lastName: form.lastName,
                     email: form.email,
                     shortBio: form.userAboutText,
+                    isVerified: update.response.shouldVerifyEmail
                 })
             );
 
@@ -154,6 +155,7 @@ export const UserInfo = (): JSX.Element => {
         }
     }, [
         store,
+        update,
         template,
         form.firstName,
         form.lastName,
