@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
-public class UpdateUserCommand : IRequest<Unit>
+public class UpdateUserCommand : IRequest<UpdateUserCommandResult>
 {
     public Guid? Id { get; set; }
 

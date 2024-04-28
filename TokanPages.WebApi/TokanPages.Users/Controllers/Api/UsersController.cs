@@ -179,8 +179,8 @@ public class UsersController : ApiBaseController
     [HttpPost]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
-    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> UpdateUser([FromBody] UpdateUserDto payload)
+    [ProducesResponseType(typeof(UpdateUserCommandResult), StatusCodes.Status200OK)]
+    public async Task<UpdateUserCommandResult> UpdateUser([FromBody] UpdateUserDto payload)
         => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payload));
 
     /// <summary>
