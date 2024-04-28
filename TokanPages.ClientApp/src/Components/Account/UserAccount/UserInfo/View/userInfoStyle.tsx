@@ -49,7 +49,7 @@ export const UserInfoStyle = makeStyles(theme => ({
         [theme.breakpoints.down("xs")]: {
             marginBottom: 4,
         },
-        marginBottom: 8,
+        marginBottom: 0,
     },
     user_email_verification: {
         cursor: "pointer",
