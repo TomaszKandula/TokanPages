@@ -1,3 +1,10 @@
+## [0.78.1](https://github.com/TomaszKandula/TokanPages/compare/v0.78.0...v0.78.1) (2024-04-28)
+
+
+### Bug Fixes
+
+* allow WS connections ([1c43f71](https://github.com/TomaszKandula/TokanPages/commit/1c43f71d7103f5dd871dcb8ef8ed151a2e1874ba))
+
 # [0.78.0](https://github.com/TomaszKandula/TokanPages/compare/v0.77.1...v0.78.0) (2024-04-27)
 
 
