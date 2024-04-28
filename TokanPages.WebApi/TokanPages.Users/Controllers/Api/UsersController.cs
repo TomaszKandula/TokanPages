@@ -90,6 +90,21 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToActivateUserCommand(payload));
 
     /// <summary>
+    /// Allows to request a user email verification.
+    /// </summary>
+    /// <remarks>
+    /// Requires: Roles.OrdinaryUser.
+    /// </remarks>
+    /// <param name="payload">Email address.</param>
+    /// <returns>MediatR unit value.</returns>
+    [HttpPost]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> RequestEmailVerification([FromBody] VerifyUserEmailDto payload) 
+        => await Mediator.Send(UsersMapper.MapToVerifyUserEmailCommand(payload));
+
+    /// <summary>
     /// Resets existing user password.
     /// </summary>
     /// <param name="payload">User data.</param>
