@@ -17,6 +17,11 @@ export interface SectionAccessDenied {
 export interface SectionAccountInformation {
     caption: string;
     labelUserId: string;
+    labelEmailStatus: {
+        label: string;
+        negative: string;
+        positive: string;
+  };
     labelUserAlias: string;
     labelFirstName: string;
     labelLastName: string;
