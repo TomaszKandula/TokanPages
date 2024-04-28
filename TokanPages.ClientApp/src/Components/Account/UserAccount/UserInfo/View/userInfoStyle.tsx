@@ -7,6 +7,10 @@ export const UserInfoStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: "#FFFFFF",
+    },
     label: {
         color: Colours.colours.gray1,
     },

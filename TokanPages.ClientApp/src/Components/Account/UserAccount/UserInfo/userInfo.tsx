@@ -261,6 +261,7 @@ export const UserInfo = (): JSX.Element => {
             accountForm={form}
             userImageName={avatarName}
             isUserActivated={isUserActivated.checked}
+            isRequestingVerification={isRequesting}
             formProgress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}

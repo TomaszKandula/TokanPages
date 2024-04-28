@@ -4,7 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Button, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel } from "@material-ui/core";
+import { Button, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel, Backdrop } from "@material-ui/core";
 import { AuthenticateUserResultDto, SectionAccessDenied, SectionAccountInformation } from "../../../../../Api/Models";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
@@ -18,6 +18,7 @@ interface BaseProperties extends ViewProperties {
     accountForm: AccountFormInput;
     userImageName: string;
     isUserActivated: boolean;
+    isRequestingVerification: boolean;
     formProgress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
@@ -93,6 +94,9 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
     const classes = UserInfoStyle();
     return (
         <section className={classes.section}>
+            <Backdrop className={classes.backdrop} open={props.isRequestingVerification}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <Container maxWidth="md">
                 <Box pt={15} pb={5}>
                     <Card elevation={0} className={classes.card}>
