@@ -1,3 +1,11 @@
+# [0.80.0](https://github.com/TomaszKandula/TokanPages/compare/v0.79.0...v0.80.0) (2024-04-28)
+
+
+### Features
+
+* email should be verified if it has been changed ([7404784](https://github.com/TomaszKandula/TokanPages/commit/74047842cee8cb7198a3b45586eac2303d7ce50e))
+* return flag on email verification ([44a24af](https://github.com/TomaszKandula/TokanPages/commit/44a24afac1dadf99a503c6d9331bc8e1528ae88d))
+
 # [0.79.0](https://github.com/TomaszKandula/TokanPages/compare/v0.78.1...v0.79.0) (2024-04-28)
 
 
