@@ -55,8 +55,8 @@ exports[`test view component for application user info should render correctly v
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-item-2"
       >
-        User alias:
-         
+        User alias
+        : 
         <WithStyles(ForwardRef(Typography))
           className="makeStyles-value-3"
           component="span"
@@ -71,8 +71,8 @@ exports[`test view component for application user info should render correctly v
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-item-2"
       >
-        Registered:
-         
+        Registered
+        : 
         <WithStyles(ForwardRef(Typography))
           className="makeStyles-value-3"
           component="span"
@@ -87,7 +87,8 @@ exports[`test view component for application user info should render correctly v
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-item-2"
       >
-        Roles assigned:
+        Assigned roles
+        : 
       </WithStyles(ForwardRef(Typography))>
     </Styled(MuiBox)>
     <WithStyles(ForwardRef(List))
@@ -110,7 +111,8 @@ exports[`test view component for application user info should render correctly v
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-item-2"
       >
-        Permissions assigned:
+        Assigned permissions
+        : 
       </WithStyles(ForwardRef(Typography))>
     </Styled(MuiBox)>
     <WithStyles(ForwardRef(List))
