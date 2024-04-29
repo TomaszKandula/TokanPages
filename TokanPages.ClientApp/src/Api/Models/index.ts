@@ -41,7 +41,7 @@ export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 
 export type { DocumentContentDto } from "./Components/documentContentDto";
-export type { NavigationContentDto } from "./Components/navigationContentDto";
+export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
 export type { HeaderContentDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto } from "./Components/clientsContentDto";
