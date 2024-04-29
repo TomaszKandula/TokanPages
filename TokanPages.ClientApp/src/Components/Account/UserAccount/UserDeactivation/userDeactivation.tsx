@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { OperationStatus } from "../../../../Shared/enums";
-import { ApplicationDialogAction, UserUpdateAction } from "../../../../Store/Actions";
+import { ApplicationDialogAction, UserDataStoreAction, UserUpdateAction } from "../../../../Store/Actions";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 import { UserDeactivationView } from "./View/userDeactivationView";
@@ -54,6 +54,7 @@ export const UserDeactivation = (): JSX.Element => {
 
         if (hasUpdateFinished) {
             showSuccess(template.templates.user.deactivation);
+            dispatch(UserDataStoreAction.clear());
             dispatch(UserUpdateAction.clear());
             history.push("/");
         }
