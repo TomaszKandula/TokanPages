@@ -5,10 +5,10 @@ import { UserDataStoreAction } from "../../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../../Api/Models";
 import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 
-// TODO: add component content from the server
 export const ApplicationUserInfo = (): JSX.Element => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
 
     const onClickHandler = React.useCallback(() => {
         dispatch(UserDataStoreAction.show(false));
@@ -19,5 +19,10 @@ export const ApplicationUserInfo = (): JSX.Element => {
         avatarName: store?.userData.avatarName,
     };
 
-    return <ApplicationUserInfoView state={store?.isShown ?? false} data={data} closeHandler={onClickHandler} />;
+    return <ApplicationUserInfoView 
+        state={store?.isShown ?? false}
+        content={navigation?.content?.userInfo}
+        data={data} 
+        closeHandler={onClickHandler} 
+    />;
 };
