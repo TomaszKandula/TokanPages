@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Button, CircularProgress, Divider, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
-import { AuthenticateUserResultDto, SectionAccessDenied, SectionAccountInformation } from "../../../../../Api/Models";
+import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
@@ -25,7 +25,6 @@ interface BaseProperties extends ViewProperties {
     switchHandler: (event: ReactChangeEvent) => void;
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
-    sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
 }
 
@@ -276,30 +275,6 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                             />
                                         )}
                                     </Grid>
-                                    {/* <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className={classes.label}>
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelIsActivated}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="40px" />
-                                        ) : (
-                                            <FormControlLabel
-                                                control={
-                                                    <CustomSwitchStyle
-                                                        name="checked"
-                                                        checked={props.isUserActivated}
-                                                        onChange={props.switchHandler}
-                                                    />
-                                                }
-                                                label={props.sectionAccountInformation?.isActivatedText}
-                                            />
-                                        )}
-                                    </Grid> */}
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
                                 <Grid className={classes.button_container_update}>

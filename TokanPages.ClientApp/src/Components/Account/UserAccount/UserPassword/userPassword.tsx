@@ -3,16 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { OperationStatus } from "../../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../../Shared/Services/Utilities";
+import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
-
-import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
-
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../../Shared/Services/Utilities";
-
-import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export const UserPassword = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -128,7 +124,6 @@ export const UserPassword = (): JSX.Element => {
             formProgress={hasProgress}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            sectionAccessDenied={account.content?.sectionAccessDenied}
             sectionAccountPassword={account.content?.sectionAccountPassword}
         />
     );

@@ -1,21 +1,18 @@
 import * as React from "react";
+import { Button, CircularProgress, Divider, Grid, Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { SectionAccountRemoval } from "../../../../../Api/Models";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
-import { Button, CircularProgress, Divider, Grid, Typography } from "@material-ui/core";
-
-import { SectionAccessDenied, SectionAccountRemoval } from "../../../../../Api/Models";
-
 interface Properties extends ViewProperties {
     deleteButtonHandler: () => void;
     deleteAccountProgress: boolean;
-    sectionAccessDenied: SectionAccessDenied;
     sectionAccountRemoval: SectionAccountRemoval;
 }
 

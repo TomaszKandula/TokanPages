@@ -1,17 +1,15 @@
 import * as React from "react";
+import { Button, CircularProgress, Divider, Grid, Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { SectionAccountPassword } from "../../../../../Api/Models";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordStyle } from "./userPasswordStyle";
-
-import { Button, CircularProgress, Divider, Grid, Typography } from "@material-ui/core";
-
-import { SectionAccessDenied, SectionAccountPassword } from "../../../../../Api/Models";
 
 interface Properties extends ViewProperties {
     oldPassword: string;
@@ -21,7 +19,6 @@ interface Properties extends ViewProperties {
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
-    sectionAccessDenied: SectionAccessDenied;
     sectionAccountPassword: SectionAccountPassword;
 }
 
