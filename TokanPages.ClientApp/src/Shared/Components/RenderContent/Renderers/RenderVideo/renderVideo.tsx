@@ -5,6 +5,17 @@ import { RenderVideoStyle } from "./renderVideoStyle";
 import { API_BASE_URI } from "../../../../../Api/Request";
 import Validate from "validate.js";
 
+const RenderDescription = (props: { text: string }): JSX.Element => {
+    const classes = RenderVideoStyle();
+    return (
+        <CardContent>
+            <Typography component="p" variant="body2" className={classes.text}>
+                {props.text}
+            </Typography>
+        </CardContent>
+    );
+};
+
 export const RenderVideo = (props: TextItem): JSX.Element => {
     const classes = RenderVideoStyle();
 
@@ -19,18 +30,7 @@ export const RenderVideo = (props: TextItem): JSX.Element => {
     }
 
     const [hasImage, setHasImage] = React.useState(true);
-
     const onClickEvent = React.useCallback(() => setHasImage(false), []);
-
-    const renderDescription = () => {
-        return (
-            <CardContent>
-                <Typography component="p" variant="body2" className={classes.text}>
-                    {props.text}
-                </Typography>
-            </CardContent>
-        );
-    };
 
     return (
         <Card elevation={3} classes={{ root: classes.card }}>
@@ -39,7 +39,7 @@ export const RenderVideo = (props: TextItem): JSX.Element => {
             ) : (
                 <CardMedia component="video" src={valueUrl} controls autoPlay />
             )}
-            {Validate.isEmpty(props.text) ? null : renderDescription()}
+            {Validate.isEmpty(props.text) ? null : <RenderDescription text={props.text} />}
         </Card>
     );
 };
