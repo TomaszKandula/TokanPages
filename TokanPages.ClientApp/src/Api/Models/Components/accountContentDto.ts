@@ -4,6 +4,7 @@ export interface AccountContentDto {
         sectionAccessDenied: SectionAccessDenied;
         sectionAccountInformation: SectionAccountInformation;
         sectionAccountPassword: SectionAccountPassword;
+        sectionAccountDeactivation: SectionAccountDeactivation
         sectionAccountRemoval: SectionAccountRemoval;
     };
 }
@@ -28,8 +29,6 @@ export interface SectionAccountInformation {
     labelEmail: string;
     labelShortBio: string;
     labelUserAvatar: string;
-    labelIsActivated: string;
-    isActivatedText: string;
     updateButtonText: string;
     uploadAvatarButtonText: string;
 }
@@ -40,6 +39,12 @@ export interface SectionAccountPassword {
     labelNewPassword: string;
     labelConfirmPassword: string;
     updateButtonText: string;
+}
+
+export interface SectionAccountDeactivation {
+    caption: string;
+    warningText: string;
+    deactivateButtonText: string;
 }
 
 export interface SectionAccountRemoval {

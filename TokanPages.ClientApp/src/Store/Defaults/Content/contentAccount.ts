@@ -23,8 +23,6 @@ export const ContentAccount: ContentAccountState = {
             labelEmail: "",
             labelShortBio: "",
             labelUserAvatar: "",
-            labelIsActivated: "",
-            isActivatedText: "",
             updateButtonText: "",
             uploadAvatarButtonText: "",
         },
@@ -34,6 +32,11 @@ export const ContentAccount: ContentAccountState = {
             labelNewPassword: "",
             labelConfirmPassword: "",
             updateButtonText: "",
+        },
+        sectionAccountDeactivation: {
+            caption: "",
+            warningText: "",
+            deactivateButtonText: ""
         },
         sectionAccountRemoval: {
             caption: "",
