@@ -5,6 +5,11 @@ export const UserPasswordStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    label_centered: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column"
+    },
     label: {
         color: Colours.colours.gray1,
     },

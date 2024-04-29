@@ -53,7 +53,7 @@ export const UserRemovalView = (props: Properties): JSX.Element => {
     return (
         <section className={classes.section}>
             <Container maxWidth="md">
-                <Box pt={5} pb={10}>
+                <Box pb={5}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
