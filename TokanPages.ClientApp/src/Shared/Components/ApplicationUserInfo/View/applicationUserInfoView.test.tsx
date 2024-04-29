@@ -1,11 +1,19 @@
 import "../../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { AuthenticateUserResultDto } from "../../../../Api/Models";
+import { AuthenticateUserResultDto, UserInfoProps } from "../../../../Api/Models";
 import { ApplicationUserInfoView } from "../View/applicationUserInfoView";
 
 describe("test view component for application user info", () => {
     it("should render correctly view component with passed props.", () => {
+        const userInfo: UserInfoProps = {
+            textUserAlias: "User alias",
+            textRegistered: "Registered",
+            textRoles: "Assigned roles",
+            textPermissions: "Assigned permissions",
+            textButton: "OK"
+        }
+
         const testData: AuthenticateUserResultDto = {
             userId: "5f4d15e2-0d32-4e20-b5f0-5a736152e993",
             isVerified: true,
@@ -42,7 +50,12 @@ describe("test view component for application user info", () => {
             ],
         };
 
-        const tree = shallow(<ApplicationUserInfoView state={true} data={testData} closeHandler={jest.fn()} />);
+        const tree = shallow(<ApplicationUserInfoView 
+            state={true} 
+            content={userInfo}
+            data={testData} 
+            closeHandler={jest.fn()} 
+        />);
 
         expect(tree).toMatchSnapshot();
     });

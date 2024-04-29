@@ -12,13 +12,14 @@ import Box from "@material-ui/core/Box";
 import { green } from "@material-ui/core/colors";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { AuthenticateUserResultDto, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
+import { AuthenticateUserResultDto, UserInfoProps, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
 import { v4 as uuidv4 } from "uuid";
 
 interface Properties {
     state: boolean;
+    content: UserInfoProps;
     data: AuthenticateUserResultDto;
     closeHandler: () => void;
 }
@@ -57,16 +58,16 @@ export const ApplicationUserInfoView = (props: Properties): JSX.Element => {
                     <Grid item xs={12}>
                         <Box mt={1}>
                             <UserAvatar
-                                userId={props.data.userId}
+                                userId={props.data?.userId}
                                 isLarge={true}
-                                avatarName={props.data.avatarName}
-                                userLetter={props.data.aliasName?.charAt(0).toUpperCase()}
+                                avatarName={props.data?.avatarName}
+                                userLetter={props.data?.aliasName?.charAt(0).toUpperCase()}
                             />
                         </Box>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography className={classes.fullname}>
-                            {props.data.firstName} {props.data.lastName}
+                            {props.data?.firstName} {props.data?.lastName}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -75,22 +76,22 @@ export const ApplicationUserInfoView = (props: Properties): JSX.Element => {
             <DialogContent>
                 <Box pt={2}>
                     <Typography className={classes.item}>
-                        User alias:{" "}
+                        {props.content?.textUserAlias}:&nbsp;
                         <Typography component="span" className={classes.value}>
-                            {props.data.aliasName}
+                            {props.data?.aliasName}
                         </Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
                     <Typography className={classes.item}>
-                        Registered:{" "}
+                        {props.content?.textRegistered}:&nbsp;
                         <Typography component="span" className={classes.value}>
                             {registered}
                         </Typography>
                     </Typography>
                 </Box>
                 <Box pt={2}>
-                    <Typography className={classes.item}>Roles assigned:</Typography>
+                    <Typography className={classes.item}>{props.content?.textRoles}:&nbsp;</Typography>
                 </Box>
                 <List dense={true}>
                     {props.data.roles?.map((item: UserRoleDto, _index: number) => (
@@ -98,7 +99,7 @@ export const ApplicationUserInfoView = (props: Properties): JSX.Element => {
                     ))}
                 </List>
                 <Box pt={0}>
-                    <Typography className={classes.item}>Permissions assigned:</Typography>
+                    <Typography className={classes.item}>{props.content?.textPermissions}:&nbsp;</Typography>
                 </Box>
                 <List dense={true}>
                     {props.data.permissions?.map((item: UserPermissionDto, _index: number) => (
