@@ -1,3 +1,15 @@
+# [0.81.0](https://github.com/TomaszKandula/TokanPages/compare/v0.80.0...v0.81.0) (2024-04-29)
+
+
+### Features
+
+* clear user data ([f4c76a7](https://github.com/TomaszKandula/TokanPages/commit/f4c76a7dcc5e0407f222b6b49f0883adb009b973))
+* extend model, update default state ([5ea5be1](https://github.com/TomaszKandula/TokanPages/commit/5ea5be14c78fda1a7a42961c9db1dc6d4d6da06b))
+* get content from remote location ([7f1aeb7](https://github.com/TomaszKandula/TokanPages/commit/7f1aeb77d5cbff16165256bfe06d63cb25396215))
+* remove unused code ([a91e536](https://github.com/TomaszKandula/TokanPages/commit/a91e5365b0746aac655944bc08cfcf169a53e3aa))
+* update user info style, remove switch ([74b75a0](https://github.com/TomaszKandula/TokanPages/commit/74b75a0184ab60690d663fa04254662ef3fc0b94))
+* use separate card for account removal ([dda532c](https://github.com/TomaszKandula/TokanPages/commit/dda532cdb4f159f31220ce68b0175a6944005d96))
+
 # [0.80.0](https://github.com/TomaszKandula/TokanPages/compare/v0.79.0...v0.80.0) (2024-04-28)
 
 
