@@ -270,7 +270,6 @@ export const UserInfo = (): JSX.Element => {
             switchHandler={switchHandler}
             saveButtonHandler={saveButtonHandler}
             verifyButtonHandler={verifyButtonHandler}
-            sectionAccessDenied={account.content?.sectionAccessDenied}
             sectionAccountInformation={account.content?.sectionAccountInformation}
         />
     );

@@ -5,6 +5,13 @@ export const ContentNavigation: ContentNavigationState = {
     content: {
         language: "",
         logo: "",
+        userInfo: {
+            textUserAlias: "",
+            textRegistered: "",
+            textRoles: "",
+            textPermissions: "",
+            textButton: ""
+        },
         menu: {
             image: "",
             items: [],

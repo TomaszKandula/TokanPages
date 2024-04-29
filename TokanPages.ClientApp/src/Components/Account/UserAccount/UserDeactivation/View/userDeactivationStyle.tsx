@@ -1,14 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../../Theme";
 
-export const UserPasswordStyle = makeStyles(theme => ({
+export const UserDeactivationStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
-    },
-    label_centered: {
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column"
     },
     label: {
         color: Colours.colours.gray1,
@@ -32,17 +27,17 @@ export const UserPasswordStyle = makeStyles(theme => ({
         marginRight: 15,
         marginBottom: 10,
     },
-    button_update: {
+    delete_update: {
         [theme.breakpoints.down("xs")]: {
             width: "100%",
         },
         width: 150,
         "&:hover": {
             color: Colours.colours.white,
-            background: Colours.colours.darkViolet1,
+            background: Colours.colours.red,
         },
         color: Colours.colours.white,
-        background: Colours.colours.violet,
+        background: Colours.colours.redDark,
     },
     button_container_update: {
         [theme.breakpoints.down("xs")]: {

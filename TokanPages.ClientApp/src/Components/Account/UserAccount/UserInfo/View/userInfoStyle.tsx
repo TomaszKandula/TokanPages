@@ -11,6 +11,11 @@ export const UserInfoStyle = makeStyles(theme => ({
         zIndex: theme.zIndex.drawer + 1,
         color: "#FFFFFF",
     },
+    label_centered: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column"
+    },
     label: {
         color: Colours.colours.gray1,
     },
@@ -55,12 +60,6 @@ export const UserInfoStyle = makeStyles(theme => ({
         cursor: "pointer",
         color: Colours.colours.red,
         textDecoration: "underline",
-    },
-    user_avatar_box: {
-        [theme.breakpoints.down("xs")]: {
-            marginBottom: 15,
-        },
-        marginBottom: 30,
     },
     user_avatar_text: {
         marginLeft: 15,

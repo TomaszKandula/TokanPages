@@ -4,7 +4,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import Validate from "validate.js";
 
-import { AccessDenied, UserInfo, UserPassword, UserRemoval } from "../../Components/Account";
+import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../Components/Account";
 
 import {
     ContentNavigationAction,
@@ -37,6 +37,7 @@ export const AccountPage = (): JSX.Element => {
                 <>
                     <UserInfo />
                     <UserPassword />
+                    <UserDeactivation />
                     <UserRemoval />
                 </>
             )}
