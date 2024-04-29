@@ -4,14 +4,14 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Button, CircularProgress, Divider, Grid, TextField, Typography, FormControlLabel, Backdrop } from "@material-ui/core";
-import { AuthenticateUserResultDto, SectionAccessDenied, SectionAccountInformation } from "../../../../../Api/Models";
+import { Button, CircularProgress, Divider, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
+import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { UserMedia } from "../../../../../Shared/enums";
 import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
-import { UserInfoStyle, CustomSwitchStyle } from "./userInfoStyle";
+import { UserInfoStyle } from "./userInfoStyle";
 
 interface BaseProperties extends ViewProperties {
     userStore: AuthenticateUserResultDto;
@@ -25,7 +25,6 @@ interface BaseProperties extends ViewProperties {
     switchHandler: (event: ReactChangeEvent) => void;
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
-    sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
 }
 
@@ -155,7 +154,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                             <RenderText {...props} value={props.userStore?.aliasName} />
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText
                                                 {...props}
@@ -164,21 +163,22 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        <Box className={classes.user_avatar_box}>
-                                            {props.isLoading ? null : (
-                                                <UploadUserMedia
-                                                    mediaTarget={UserMedia.userImage}
-                                                    handle="userInfoSection_userImage"
-                                                />
-                                            )}
-                                            {props.isLoading ? null : (
-                                                <Typography component="span" className={classes.user_avatar_text}>
-                                                    {ReturnFileName(props.userImageName)}
-                                                </Typography>
-                                            )}
-                                        </Box>
+                                        {props.isLoading ? null : (
+                                            <UploadUserMedia
+                                                mediaTarget={UserMedia.userImage}
+                                                handle="userInfoSection_userImage"
+                                            />
+                                        )}
+                                        {props.isLoading ? null : (
+                                            <Typography component="span" className={classes.user_avatar_text}>
+                                                {ReturnFileName(props.userImageName)}
+                                            </Typography>
+                                        )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                </Grid>
+                                <CustomDivider marginTop={4} marginBottom={4} />
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText
                                                 {...props}
@@ -202,7 +202,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText
                                                 {...props}
@@ -226,7 +226,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText
                                                 {...props}
@@ -250,7 +250,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
                                         <Typography component="span" className={classes.label}>
                                             <RenderText
                                                 {...props}
@@ -272,30 +272,6 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                                 variant="outlined"
                                                 value={props.accountForm?.userAboutText}
                                                 onChange={props.formHandler}
-                                            />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className={classes.label}>
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelIsActivated}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="40px" />
-                                        ) : (
-                                            <FormControlLabel
-                                                control={
-                                                    <CustomSwitchStyle
-                                                        name="checked"
-                                                        checked={props.isUserActivated}
-                                                        onChange={props.switchHandler}
-                                                    />
-                                                }
-                                                label={props.sectionAccountInformation?.isActivatedText}
                                             />
                                         )}
                                     </Grid>

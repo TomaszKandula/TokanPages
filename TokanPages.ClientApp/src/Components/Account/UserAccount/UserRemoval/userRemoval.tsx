@@ -77,7 +77,6 @@ export const UserRemoval = (): JSX.Element => {
             isLoading={account.isLoading}
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
-            sectionAccessDenied={account.content?.sectionAccessDenied}
             sectionAccountRemoval={account.content?.sectionAccountRemoval}
         />
     );

@@ -66,6 +66,7 @@ export type {
     SectionAccessDenied,
     SectionAccountInformation,
     SectionAccountPassword,
+    SectionAccountDeactivation,
     SectionAccountRemoval,
 } from "./Components/accountContentDto";
 export type {

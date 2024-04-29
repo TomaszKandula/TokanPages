@@ -5,30 +5,30 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SectionAccountRemoval } from "../../../../../Api/Models";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { UserRemovalStyle } from "./userRemovalStyle";
+import { SectionAccountDeactivation } from "../../../../../Api/Models";
+import { UserDeactivationStyle } from "./userDeactivationStyle";
 
 interface Properties extends ViewProperties {
-    deleteButtonHandler: () => void;
-    deleteAccountProgress: boolean;
-    sectionAccountRemoval: SectionAccountRemoval;
+    buttonHandler: () => void;
+    progress: boolean;
+    section: SectionAccountDeactivation;
 }
 
-const DeleteAccountButton = (props: Properties): JSX.Element => {
-    const classes = UserRemovalStyle();
+const DeactivationButton = (props: Properties): JSX.Element => {
+    const classes = UserDeactivationStyle();
     return (
         <Button
             fullWidth
             type="submit"
             variant="contained"
-            onClick={props.deleteButtonHandler}
-            disabled={props.deleteAccountProgress}
+            onClick={props.buttonHandler}
+            disabled={props.progress}
             className={classes.delete_update}
         >
-            {!props.deleteAccountProgress ? (
-                props.sectionAccountRemoval?.deleteButtonText
+            {!props.progress ? (
+                props.section?.deactivateButtonText
             ) : (
                 <CircularProgress size={20} />
             )}
@@ -37,7 +37,7 @@ const DeleteAccountButton = (props: Properties): JSX.Element => {
 };
 
 const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
-    const classes = UserRemovalStyle();
+    const classes = UserDeactivationStyle();
     return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
             <Divider className={classes.divider} />
@@ -45,8 +45,8 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserRemovalView = (props: Properties): JSX.Element => {
-    const classes = UserRemovalStyle();
+export const UserDeactivationView = (props: Properties): JSX.Element => {
+    const classes = UserDeactivationStyle();
     return (
         <section className={classes.section}>
             <Container maxWidth="md">
@@ -58,7 +58,7 @@ export const UserRemovalView = (props: Properties): JSX.Element => {
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        props.sectionAccountRemoval?.caption
+                                        props.section?.caption
                                     )}
                                 </Typography>
                             </Box>
@@ -70,7 +70,7 @@ export const UserRemovalView = (props: Properties): JSX.Element => {
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" width="200px" />
                                             ) : (
-                                                <ReactHtmlParser html={props.sectionAccountRemoval?.warningText} />
+                                                <ReactHtmlParser html={props.section?.warningText} />
                                             )}
                                         </Typography>
                                     </Grid>
@@ -81,7 +81,7 @@ export const UserRemovalView = (props: Properties): JSX.Element => {
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />
                                         ) : (
-                                            <DeleteAccountButton {...props} />
+                                            <DeactivationButton {...props} />
                                         )}
                                     </Box>
                                 </Grid>
@@ -92,4 +92,4 @@ export const UserRemovalView = (props: Properties): JSX.Element => {
             </Container>
         </section>
     );
-};
+}

@@ -9,3 +9,4 @@ export { AccessDenied } from "./UserAccount";
 export { UserInfo } from "./UserAccount";
 export { UserPassword } from "./UserAccount";
 export { UserRemoval } from "./UserAccount";
+export { UserDeactivation } from "./UserAccount";
