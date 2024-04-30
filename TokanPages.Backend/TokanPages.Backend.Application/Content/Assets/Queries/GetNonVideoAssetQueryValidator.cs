@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
 
-public class GetImageAssetQueryValidator : AbstractValidator<GetImageAssetQuery>
+public class GetNonVideoAssetQueryValidator : AbstractValidator<GetNonVideoAssetQuery>
 {
-    public GetImageAssetQueryValidator()
+    public GetNonVideoAssetQueryValidator()
     {
         RuleFor(query => query.BlobName)
             .NotEmpty()
