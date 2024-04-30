@@ -1,3 +1,13 @@
+## [0.81.1](https://github.com/TomaszKandula/TokanPages/compare/v0.81.0...v0.81.1) (2024-04-30)
+
+
+### Bug Fixes
+
+* do not allow to send video file, we have separate ep for that ([6f2a9c5](https://github.com/TomaszKandula/TokanPages/commit/6f2a9c5f99206dabbb8cc26e9b59a31ba666df1b))
+* rename endpoint to avoid confusion ([fd9529b](https://github.com/TomaszKandula/TokanPages/commit/fd9529bf4bdd87ab63c7a83112ff163677c96335))
+* rename for clarity ([285e1d8](https://github.com/TomaszKandula/TokanPages/commit/285e1d8a2cf609539f5b2134be29cb947d7dd967))
+* resolve issues w/images, refactor video renderer ([ffa073e](https://github.com/TomaszKandula/TokanPages/commit/ffa073ee35bab481b48e339ad9038e4d59d606a8))
+
 # [0.81.0](https://github.com/TomaszKandula/TokanPages/compare/v0.80.0...v0.81.0) (2024-04-29)
 
 
