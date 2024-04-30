@@ -40,7 +40,7 @@ exports[`test component: featuredView should render correctly '<FeaturedView />'
             >
               <div
                 class="MuiCardMedia-root makeStyles-card_media-7"
-                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article0.jpg\\")"
+                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/sections/featured/article0.jpg\\")"
               />
               <div
                 class="MuiCardContent-root makeStyles-card_content-4"
@@ -82,7 +82,7 @@ exports[`test component: featuredView should render correctly '<FeaturedView />'
             >
               <div
                 class="MuiCardMedia-root makeStyles-card_media-7"
-                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article1.jpg\\")"
+                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/sections/featured/article1.jpg\\")"
               />
               <div
                 class="MuiCardContent-root makeStyles-card_content-4"
@@ -121,7 +121,7 @@ exports[`test component: featuredView should render correctly '<FeaturedView />'
             >
               <div
                 class="MuiCardMedia-root makeStyles-card_media-7"
-                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getImageAsset/?blobName=images/sections/featured/article2.jpg\\")"
+                style="background-image:url(\\"http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/sections/featured/article2.jpg\\")"
               />
               <div
                 class="MuiCardContent-root makeStyles-card_content-4"
