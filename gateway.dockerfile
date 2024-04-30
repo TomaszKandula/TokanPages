@@ -6,7 +6,6 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18 AS PROJECTS
 WORKDIR /app
 COPY . ./
 
-# RESTORE & BUILD & TEST
 RUN dotnet restore --disable-parallel
 RUN dotnet build -c Release --force
 
@@ -20,11 +19,8 @@ WORKDIR /app
 RUN apk add icu-libs --no-cache
 RUN apk add icu-data-full --no-cache
 
-# BACKEND
 COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Application/bin/Release/net6.0" .
 COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
-
-# WEBAPI
 COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Gateway/bin/Release/net6.0" .
 
 ARG ENV_VALUE
