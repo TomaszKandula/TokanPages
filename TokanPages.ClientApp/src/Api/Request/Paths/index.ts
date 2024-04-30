@@ -8,7 +8,7 @@ const API_NEWSLETTERS_URI = `${API_BASE_URI}/sender/newsletters`;
 const API_MAILER_URI = `${API_BASE_URI}/sender/mailer`;
 const API_CONTENT_URI = `${API_BASE_URI}/content/components`;
 const API_ASSETS_URI = `${API_BASE_URI}/content/assets`;
-const API_IMAGE_ASSETS_URI = `${API_ASSETS_URI}/getImageAsset`;
+const API_NON_VIDEO_ASSETS_URI = `${API_ASSETS_URI}/getNonVideoAsset`;
 
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;
 export const GET_ARTICLE = `${API_ARTICLES_URI}/{id}/getArticle`;
@@ -49,7 +49,7 @@ export const SEND_NEWSLETTER = `${API_MAILER_URI}/sendNewsletter`;
 export const NOTIFY_WEB_URL = `${API_NOTIFICATIONS_WEB_URI}/notify`;
 export const NOTIFICATION_STATUS = `${API_NOTIFICATIONS_WEB_URI}/status`;
 
-export const GET_IMAGE_ASSET = `${API_ASSETS_URI}/getImageAsset/?blobName={name}`;
+export const GET_NON_VIDEO_ASSET = `${API_ASSETS_URI}/getNonVideoAsset/?blobName={name}`;
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset/?blobName={name}`;
 
 export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getManifest`;
@@ -81,11 +81,11 @@ export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent/?name=policy&ty
 
 export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset/?id={id}&assetName=image.jpg`;
 
-export const GET_IMAGES_URL = `${API_IMAGE_ASSETS_URI}/?blobName=images`;
-export const GET_ARTICLE_IMAGE_URL = `${API_IMAGE_ASSETS_URI}/?blobName=images/sections/articles`;
-export const GET_FEATURED_IMAGE_URL = `${API_IMAGE_ASSETS_URI}/?blobName=images/sections/featured`;
-export const GET_TESTIMONIALS_URL = `${API_IMAGE_ASSETS_URI}/?blobName=images/sections/testimonials`;
-export const GET_ICONS_URL = `${API_IMAGE_ASSETS_URI}/?blobName=images/icons`;
+export const GET_IMAGES_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images`;
+export const GET_ARTICLE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/articles`;
+export const GET_FEATURED_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/featured`;
+export const GET_TESTIMONIALS_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/testimonials`;
+export const GET_ICONS_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/icons`;
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;
