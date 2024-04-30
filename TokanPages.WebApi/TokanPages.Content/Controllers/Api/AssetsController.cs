@@ -39,16 +39,19 @@ public class AssetsController : ApiBaseController
         => await Mediator.Send(new GetArticleAssetQuery { Id = id, AssetName = assetName });
 
     /// <summary>
-    /// Returns image file from storage by its full name.
+    /// Returns file from storage by its full name.
     /// </summary>
+    /// <remarks>
+    /// This endpoint will reject any video file (we have separate endpoint for video content).
+    /// </remarks>
     /// <param name="blobName">Full blob name (case sensitive).</param>
-    /// <returns>Image file.</returns>
+    /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]
     [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetImageAsset([FromQuery] string blobName) => 
-        await Mediator.Send(new GetImageAssetQuery { BlobName = blobName });
+    public async Task<IActionResult> GetNonVideoAsset([FromQuery] string blobName) => 
+        await Mediator.Send(new GetNonVideoAssetQuery { BlobName = blobName });
 
     /// <summary>
     /// Allow to upload a single image asset to an Azure Storage.
