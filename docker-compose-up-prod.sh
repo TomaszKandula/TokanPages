@@ -1,5 +1,5 @@
 #!/bin/bash
-# PREPARE DOCKER COMPOSE FILE
+# PREPARE CONFIGURATION
 cp docker-compose-prod.yml docker-compose-run.yml
 cp TokanPages.ClientApp/nginx/nginx-https.conf TokanPages.ClientApp/nginx/nginx.conf
 
