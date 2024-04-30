@@ -31,6 +31,9 @@ public class GetImageAssetQueryHandler : RequestHandler<GetImageAssetQuery, File
         if (streamContent.ContentType is null)
             throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
+        if (streamContent.ContentType.Contains("video"))
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+
         await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
         return new FileContentResult(memoryStream.ToArray(), streamContent.ContentType);
     }
