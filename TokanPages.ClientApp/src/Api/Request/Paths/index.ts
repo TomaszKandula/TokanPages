@@ -78,6 +78,7 @@ export const GET_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=account&
 export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=story&type=document`;
 export const GET_TERMS_CONTENT = `${API_CONTENT_URI}/getContent/?name=terms&type=document`;
 export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent/?name=policy&type=document`;
+export const GET_SHOWCASE_CONTENT = `${API_CONTENT_URI}/getContent/?name=showcase&type=document`;
 
 export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset/?id={id}&assetName=image.jpg`;
 

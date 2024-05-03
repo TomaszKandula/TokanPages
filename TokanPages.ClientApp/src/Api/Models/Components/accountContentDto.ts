@@ -4,7 +4,7 @@ export interface AccountContentDto {
         sectionAccessDenied: SectionAccessDenied;
         sectionAccountInformation: SectionAccountInformation;
         sectionAccountPassword: SectionAccountPassword;
-        sectionAccountDeactivation: SectionAccountDeactivation
+        sectionAccountDeactivation: SectionAccountDeactivation;
         sectionAccountRemoval: SectionAccountRemoval;
     };
 }
@@ -22,7 +22,7 @@ export interface SectionAccountInformation {
         label: string;
         negative: string;
         positive: string;
-  };
+    };
     labelUserAlias: string;
     labelFirstName: string;
     labelLastName: string;

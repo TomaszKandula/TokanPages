@@ -4,7 +4,7 @@ export interface NavigationContentDto {
     content: {
         language: string;
         logo: string;
-        userInfo: UserInfoProps,
+        userInfo: UserInfoProps;
         menu: {
             image: string;
             items: Item[];

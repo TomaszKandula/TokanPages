@@ -27,11 +27,7 @@ const DeactivationButton = (props: Properties): JSX.Element => {
             disabled={props.progress}
             className={classes.delete_update}
         >
-            {!props.progress ? (
-                props.section?.deactivateButtonText
-            ) : (
-                <CircularProgress size={20} />
-            )}
+            {!props.progress ? props.section?.deactivateButtonText : <CircularProgress size={20} />}
         </Button>
     );
 };
@@ -55,11 +51,7 @@ export const UserDeactivationView = (props: Properties): JSX.Element => {
                         <CardContent className={classes.card_content}>
                             <Box pt={0} pb={0}>
                                 <Typography component="span" className={classes.caption}>
-                                    {props.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        props.section?.caption
-                                    )}
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.section?.caption}
                                 </Typography>
                             </Box>
                             <CustomDivider marginTop={2} marginBottom={1} />
@@ -92,4 +84,4 @@ export const UserDeactivationView = (props: Properties): JSX.Element => {
             </Container>
         </section>
     );
-}
+};

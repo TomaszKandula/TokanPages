@@ -47,6 +47,7 @@ import {
     UserNotification,
     ContentTemplates,
     UserEmailVerification,
+    ContentShowcase,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -73,6 +74,7 @@ export const ApplicationReducer = {
     contentPolicy: ContentPolicy,
     contentResetPassword: ContentResetPassword,
     contentStory: ContentStory,
+    contentShowcase: ContentShowcase,
     contentTerms: ContentTerms,
     contentTestimonials: ContentTestimonials,
     contentNewsletterRemove: ContentNewsletterRemove,

@@ -8,7 +8,7 @@ export const UserPasswordStyle = makeStyles(theme => ({
     label_centered: {
         display: "flex",
         justifyContent: "center",
-        flexDirection: "column"
+        flexDirection: "column",
     },
     label: {
         color: Colours.colours.gray1,
