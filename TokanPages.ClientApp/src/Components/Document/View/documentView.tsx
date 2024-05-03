@@ -5,10 +5,10 @@ import Box from "@material-ui/core/Box";
 import { Divider, IconButton } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { DocumentStyle } from "./documentStyle";
-import { ContentPolicyState, ContentTermsState, ContentStoryState } from "../../../Store/States";
+import { ContentPolicyState, ContentTermsState, ContentStoryState, ContentShowcaseState } from "../../../Store/States";
 import { ProgressBar, RenderContent } from "../../../Shared/Components";
 
-type DocumentViewProps = ContentPolicyState | ContentTermsState | ContentStoryState;
+type DocumentViewProps = ContentPolicyState | ContentTermsState | ContentStoryState | ContentShowcaseState;
 
 export const DocumentView = (props: DocumentViewProps): JSX.Element => {
     const classes = DocumentStyle();
