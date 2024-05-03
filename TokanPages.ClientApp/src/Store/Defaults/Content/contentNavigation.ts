@@ -10,7 +10,7 @@ export const ContentNavigation: ContentNavigationState = {
             textRegistered: "",
             textRoles: "",
             textPermissions: "",
-            textButton: ""
+            textButton: "",
         },
         menu: {
             image: "",

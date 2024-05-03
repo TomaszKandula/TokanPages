@@ -143,7 +143,7 @@ export const UserInfo = (): JSX.Element => {
                     lastName: form.lastName,
                     email: form.email,
                     shortBio: form.userAboutText,
-                    isVerified: update.response.shouldVerifyEmail
+                    isVerified: update.response.shouldVerifyEmail,
                 })
             );
 

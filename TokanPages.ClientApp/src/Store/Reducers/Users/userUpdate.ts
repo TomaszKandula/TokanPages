@@ -17,7 +17,7 @@ export const UserUpdate: Reducer<UserUpdateState> = (
             return {
                 status: OperationStatus.notStarted,
                 response: {
-                    shouldVerifyEmail: false
+                    shouldVerifyEmail: false,
                 },
             };
         case UPDATE:

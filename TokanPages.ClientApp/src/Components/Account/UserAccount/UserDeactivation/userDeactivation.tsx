@@ -23,7 +23,7 @@ export const UserDeactivation = (): JSX.Element => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const showSuccess = (text: string) =>
-    dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
 
     const [hasProgress, setHasProgress] = React.useState(false);
 
@@ -32,7 +32,6 @@ export const UserDeactivation = (): JSX.Element => {
 
         dispatch(UserUpdateAction.clear());
         setHasProgress(false);
-
     }, [hasProgress]);
 
     React.useEffect(() => {
@@ -58,14 +57,7 @@ export const UserDeactivation = (): JSX.Element => {
             dispatch(UserUpdateAction.clear());
             history.push("/");
         }
-    }, [
-        store,
-        template,
-        hasProgress,
-        hasError,
-        hasUpdateNotStarted,
-        hasUpdateFinished,
-    ]);
+    }, [store, template, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
 
     const deactivateButtonHandler = React.useCallback(() => {
         if (update?.status !== OperationStatus.notStarted) {
@@ -78,11 +70,11 @@ export const UserDeactivation = (): JSX.Element => {
     }, [hasProgress]);
 
     return (
-        <UserDeactivationView 
+        <UserDeactivationView
             isLoading={account.isLoading}
             buttonHandler={deactivateButtonHandler}
             progress={hasProgress}
             section={account.content?.sectionAccountDeactivation}
         />
     );
-}
+};

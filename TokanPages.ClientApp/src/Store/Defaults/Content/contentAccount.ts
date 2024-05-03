@@ -15,7 +15,7 @@ export const ContentAccount: ContentAccountState = {
             labelEmailStatus: {
                 label: "",
                 negative: "",
-                positive: ""
+                positive: "",
             },
             labelUserAlias: "",
             labelFirstName: "",
@@ -36,7 +36,7 @@ export const ContentAccount: ContentAccountState = {
         sectionAccountDeactivation: {
             caption: "",
             warningText: "",
-            deactivateButtonText: ""
+            deactivateButtonText: "",
         },
         sectionAccountRemoval: {
             caption: "",
