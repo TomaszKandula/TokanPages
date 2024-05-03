@@ -22,6 +22,7 @@ export type { ContentNavigationState } from "./Content/contentNavigation";
 export type { ContentNewsletterState } from "./Content/contentNewsletter";
 export type { ContentPolicyState } from "./Content/contentPolicy";
 export type { ContentResetPasswordState } from "./Content/contentResetPassword";
+export type { ContentShowcaseState } from "./Content/contentShowcase";
 export type { ContentStoryState } from "./Content/contentStory";
 export type { ContentTermsState } from "./Content/contentTerms";
 export type { ContentTestimonialsState } from "./Content/contentTestimonials";
