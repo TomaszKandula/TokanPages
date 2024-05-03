@@ -1,3 +1,11 @@
+# [0.82.0](https://github.com/TomaszKandula/TokanPages/compare/v0.81.1...v0.82.0) (2024-05-03)
+
+
+### Features
+
+* add redux action for showcase document ([3430aa2](https://github.com/TomaszKandula/TokanPages/commit/3430aa2e843b08e41a8e6e02b81bd45cfe1ffd56))
+* add showcase page ([26d128d](https://github.com/TomaszKandula/TokanPages/commit/26d128d290ee29453a1c347492b2528c2cb42900))
+
 ## [0.81.1](https://github.com/TomaszKandula/TokanPages/compare/v0.81.0...v0.81.1) (2024-04-30)
 
 
