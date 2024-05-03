@@ -11,8 +11,8 @@ describe("test view component for application user info", () => {
             textRegistered: "Registered",
             textRoles: "Assigned roles",
             textPermissions: "Assigned permissions",
-            textButton: "OK"
-        }
+            textButton: "OK",
+        };
 
         const testData: AuthenticateUserResultDto = {
             userId: "5f4d15e2-0d32-4e20-b5f0-5a736152e993",
@@ -50,12 +50,9 @@ describe("test view component for application user info", () => {
             ],
         };
 
-        const tree = shallow(<ApplicationUserInfoView 
-            state={true} 
-            content={userInfo}
-            data={testData} 
-            closeHandler={jest.fn()} 
-        />);
+        const tree = shallow(
+            <ApplicationUserInfoView state={true} content={userInfo} data={testData} closeHandler={jest.fn()} />
+        );
 
         expect(tree).toMatchSnapshot();
     });

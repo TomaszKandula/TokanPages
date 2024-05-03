@@ -17,6 +17,7 @@ import {
     TermsPage,
     PolicyPage,
     ContactPage,
+    ShowcasePage,
     SigninPage,
     SignupPage,
     SignoutPage,
@@ -64,6 +65,9 @@ const App = (props: Properties): JSX.Element => {
                     </Route>
                     <Route exact path="/articles">
                         <ArticlesPage />
+                    </Route>
+                    <Route exact path="/showcase">
+                        <ShowcasePage />
                     </Route>
                     <Route exact path="/terms">
                         <TermsPage />

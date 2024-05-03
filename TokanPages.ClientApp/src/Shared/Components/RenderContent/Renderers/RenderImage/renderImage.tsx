@@ -41,7 +41,15 @@ export const RenderImage = (props: TextItem): JSX.Element => {
 
     return (
         <Card elevation={3} classes={{ root: classes.card }}>
-            {hasPropAndValue ? <CardMedia component="img" image={propUrl} alt="image" className={classes.image} onClick={onClickEvent} /> : null}
+            {hasPropAndValue ? (
+                <CardMedia
+                    component="img"
+                    image={propUrl}
+                    alt="image"
+                    className={classes.image}
+                    onClick={onClickEvent}
+                />
+            ) : null}
             {hasValueOnly ? <CardMedia component="img" image={valueUrl} alt="image" /> : null}
             {hasText ? <RenderDescription text={props.text} /> : null}
         </Card>

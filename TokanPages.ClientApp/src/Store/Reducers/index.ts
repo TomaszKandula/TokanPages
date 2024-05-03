@@ -23,6 +23,7 @@ export { ContentNewsletter } from "./Content/contentNewsletter";
 export { ContentPolicy } from "./Content/contentPolicy";
 export { ContentResetPassword } from "./Content/contentResetPassword";
 export { ContentStory } from "./Content/contentStory";
+export { ContentShowcase } from "./Content/contentShowcase";
 export { ContentTerms } from "./Content/contentTerms";
 export { ContentTestimonials } from "./Content/contentTestimonials";
 export { ContentNewsletterRemove } from "./Content/contentNewsletterRemove";

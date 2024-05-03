@@ -47,6 +47,7 @@ import {
     UserNotificationState,
     ContentTemplatesState,
     UserEmailVerificationState,
+    ContentShowcaseState,
 } from "../States";
 
 export interface ApplicationState {
@@ -73,6 +74,7 @@ export interface ApplicationState {
     contentPolicy: ContentPolicyState;
     contentResetPassword: ContentResetPasswordState;
     contentStory: ContentStoryState;
+    contentShowcase: ContentShowcaseState;
     contentTerms: ContentTermsState;
     contentTestimonials: ContentTestimonialsState;
     contentNewsletterRemove: ContentNewsletterRemoveState;
