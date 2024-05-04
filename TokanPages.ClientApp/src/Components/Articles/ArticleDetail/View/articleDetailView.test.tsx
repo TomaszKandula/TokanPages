@@ -28,6 +28,7 @@ describe("test articles group component: ArticleDetailView", () => {
                 totalLikes={50}
                 renderAuthorName="Ester Exposito"
                 authorShortBio="Happy developer"
+                flagImage="eng.png"
             />
         );
 
