@@ -6,6 +6,7 @@ import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import { GET_FLAG_URL } from "../../../../Api/Request";
+import { ArticleContentDto } from "../../../../Api/Models";
 import { RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
@@ -34,6 +35,7 @@ interface Properties {
     renderAuthorName: string;
     authorShortBio: string;
     flagImage: string;
+    content: ArticleContentDto;
 }
 
 export const ArticleDetailView = (props: Properties): JSX.Element => {
@@ -56,7 +58,7 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                                     variant="subtitle1"
                                     align="right"
                                 >
-                                    Read: {props.articleReadCount}
+                                    {props.content.content.textReadCount}&nbsp;{props.articleReadCount}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -88,13 +90,13 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                                 >
                                     <Box mt={2} mb={2} ml={3} mr={3}>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            First name: {props.authorFirstName}
+                                            {props.content.content.textFirstName}&nbsp;{props.authorFirstName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Last name: {props.authorLastName}
+                                            {props.content.content.textSurname}&nbsp;{props.authorLastName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            Registered at: {props.authorRegistered}
+                                            {props.content.content.textRegistered}&nbsp;{props.authorRegistered}
                                         </Typography>
                                     </Box>
                                 </Popover>
@@ -102,16 +104,16 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                         </Grid>
                         <Box mt={1} mb={5}>
                             <Typography component="p" variant="subtitle1">
-                                Language: {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
+                                {props.content.content.textLanguage}&nbsp;{RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
                             </Typography>
                             <Typography component="p" variant="subtitle1">
-                                Read time: {props.articleReadTime} min.
+                                {props.content.content.textReadTime}&nbsp;{props.articleReadTime} min.
                             </Typography>
                             <Typography component="p" variant="subtitle1">
-                                Published at: {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
+                                {props.content.content.textPublished}&nbsp;{GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
                             </Typography>
                             <Typography component="p" variant="subtitle2" color="textSecondary">
-                                Updated at: {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
+                                {props.content.content.textUpdated}&nbsp;{GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
                             </Typography>
                         </Box>
                     </div>
@@ -148,7 +150,7 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                                 align="left"
                                 color="textSecondary"
                             >
-                                Written by
+                                {props.content.content.textWritten}
                             </Typography>
                             <Box fontWeight="fontWeightBold">
                                 <Typography className={classes.aliasName} component="span" variant="h6" align="left">
@@ -162,7 +164,7 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                                 align="left"
                                 color="textSecondary"
                             >
-                                About the author: {props.authorShortBio}
+                                {props.content.content.textAbout}&nbsp;{props.authorShortBio}
                             </Typography>
                         </Grid>
                     </Grid>

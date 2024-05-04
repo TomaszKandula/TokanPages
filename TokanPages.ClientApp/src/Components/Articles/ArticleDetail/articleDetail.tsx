@@ -21,6 +21,7 @@ interface Properties {
 export const ArticleDetail = (props: Properties): JSX.Element => {
     const dispatch = useDispatch();
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.articles);
+    const content = useSelector((state: ApplicationState) => state.contentArticle);
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
 
@@ -160,6 +161,7 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
             )}
             authorShortBio={selection.article.author.shortBio}
             flagImage={flagImage}
+            content={content}
         />
     );
 };
