@@ -5,11 +5,11 @@ import { Divider, Grid, IconButton, Popover, Tooltip, Typography } from "@materi
 import { ArrowBack } from "@material-ui/icons";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
+import { GET_FLAG_URL } from "../../../../Api/Request";
+import { RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ArticleDetailStyle } from "./articleDetailStyle";
-import { RenderImage } from "Shared/Components";
-import { GET_FLAG_URL } from "Api/Request";
 
 interface Properties {
     backButtonHandler: () => void;
