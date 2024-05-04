@@ -48,6 +48,7 @@ import {
     ContentTemplates,
     UserEmailVerification,
     ContentShowcase,
+    ContentArticle,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -61,6 +62,7 @@ export const ApplicationReducer = {
     contentTemplates: ContentTemplates,
     contentAccount: ContentAccount,
     contentActivateAccount: ContentActivateAccount,
+    contentArticle: ContentArticle,
     contentArticleFeatures: ContentArticleFeatures,
     contentClients: ContentClients,
     contentContactForm: ContentContactForm,

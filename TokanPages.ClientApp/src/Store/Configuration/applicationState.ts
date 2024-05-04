@@ -48,6 +48,7 @@ import {
     ContentTemplatesState,
     UserEmailVerificationState,
     ContentShowcaseState,
+    ContentArticleState,
 } from "../States";
 
 export interface ApplicationState {
@@ -61,6 +62,7 @@ export interface ApplicationState {
     contentTemplates: ContentTemplatesState;
     contentAccount: ContentAccountState;
     contentActivateAccount: ContentActivateAccountState;
+    contentArticle: ContentArticleState;
     contentArticleFeatures: ContentArticleFeaturesState;
     contentClients: ContentClientsState;
     contentContactForm: ContentContactFormState;
