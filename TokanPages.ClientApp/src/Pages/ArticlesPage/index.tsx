@@ -30,7 +30,7 @@ export const ArticlesPage = (): JSX.Element => {
     return (
         <>
             <Navigation />
-            {id ? <ProgressOnScroll height={10} bgcolor={Colours.application.navigation} duration={1} /> : null}
+            {id ? <ProgressOnScroll height={10} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
             <Container>{id ? <ArticleDetail id={id} /> : <ArticleList />}</Container>
             <Footer />
         </>
