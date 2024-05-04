@@ -4,16 +4,15 @@ import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
+import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
+import { UserAvatar } from "../../../Shared/Components/UserAvatar";
+import { ReactMouseEvent } from "../../../Shared/types";
 import { ArticleContent } from "./Helpers/articleContent";
 import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
 import { ReadTime } from "./Helpers/readTime";
-import { UserAvatar } from "../../../Shared/Components/UserAvatar";
-import { ReactMouseEvent } from "../../../Shared/types";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
-
-import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 
 interface Properties {
     id: string;
@@ -40,6 +39,17 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
     const isPopoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
+
+    let flagImage = "";
+    switch (selection.article.languageIso.toLowerCase()) {
+        case "eng": flagImage = "eng.png"; break;
+        case "fra": flagImage = "fra.png"; break;
+        case "ger": flagImage = "ger.png"; break;
+        case "pol": flagImage = "pol.png"; break;
+        case "spa": flagImage = "spa.png"; break;
+        case "ukr": flagImage = "ukr.png"; break;
+        default: flagImage = "eng.png";
+    }
 
     React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
@@ -149,6 +159,7 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
                 selection.article.author.aliasName
             )}
             authorShortBio={selection.article.author.shortBio}
+            flagImage={flagImage}
         />
     );
 };

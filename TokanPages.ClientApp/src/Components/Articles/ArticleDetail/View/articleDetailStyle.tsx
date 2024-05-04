@@ -16,6 +16,10 @@ export const ArticleDetailStyle = makeStyles(() => ({
         marginTop: 30,
         marginBottom: 30,
     },
+    flag_image: {
+        height: 18,
+        width: 18,
+    },
     readCount: {
         paddingTop: 10,
     },

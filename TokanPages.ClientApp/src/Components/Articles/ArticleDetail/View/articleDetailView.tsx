@@ -8,6 +8,8 @@ import Emoji from "react-emoji-render";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ArticleDetailStyle } from "./articleDetailStyle";
+import { RenderImage } from "Shared/Components";
+import { GET_FLAG_URL } from "Api/Request";
 
 interface Properties {
     backButtonHandler: () => void;
@@ -31,6 +33,7 @@ interface Properties {
     totalLikes: number;
     renderAuthorName: string;
     authorShortBio: string;
+    flagImage: string;
 }
 
 export const ArticleDetailView = (props: Properties): JSX.Element => {
@@ -98,6 +101,9 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                             </Grid>
                         </Grid>
                         <Box mt={1} mb={5}>
+                            <Typography component="p" variant="subtitle1">
+                                Language: {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
+                            </Typography>
                             <Typography component="p" variant="subtitle1">
                                 Read time: {props.articleReadTime} min.
                             </Typography>
