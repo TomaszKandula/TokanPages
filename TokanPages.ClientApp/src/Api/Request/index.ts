@@ -72,4 +72,10 @@ export {
     MAIN_ICON,
     MEDIUM_ICON,
     ARTICLE_PATH,
+    GET_FLAG_ENG_URL,
+    GET_FLAG_FRA_URL,
+    GET_FLAG_GER_URL,
+    GET_FLAG_POL_URL,
+    GET_FLAG_SPA_URL,
+    GET_FLAG_UKR_URL
 } from "./Paths";
