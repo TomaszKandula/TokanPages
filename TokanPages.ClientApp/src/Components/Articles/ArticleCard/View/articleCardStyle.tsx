@@ -38,6 +38,10 @@ export const ArticleCardStyle = makeStyles(theme => ({
     card_action: {
         marginTop: 25,
     },
+    flag_image: {
+        height: 32,
+        width: 32,
+    },
     button: {
         [theme.breakpoints.down(700)]: {
             marginLeft: "auto",

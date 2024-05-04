@@ -5,6 +5,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { GET_FLAG_URL } from "../../../../Api/Request";
+import { RenderImage } from "../../../../Shared/Components";
 import { ArticleCardStyle } from "./articleCardStyle";
 
 interface Properties {
@@ -13,6 +15,7 @@ interface Properties {
     description: string;
     onClickEvent: () => void;
     buttonText: string;
+    flagImage: string;
 }
 
 export const ArticleCardView = (props: Properties): JSX.Element => {
@@ -21,6 +24,7 @@ export const ArticleCardView = (props: Properties): JSX.Element => {
         <div data-aos="fade-up">
             <Card elevation={0} className={classes.card}>
                 <CardMedia image={props.imageUrl} className={classes.card_image} />
+                {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
                 <CardContent>
                     <Typography gutterBottom={true} className={classes.card_title}>
                         {props.title}

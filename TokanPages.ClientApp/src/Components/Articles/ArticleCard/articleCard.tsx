@@ -7,9 +7,10 @@ import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
 interface Properties {
+    id: string;
     title: string;
     description: string;
-    id: string;
+    languageIso: string;
 }
 
 export const ArticleCard = (props: Properties): JSX.Element => {
@@ -25,6 +26,17 @@ export const ArticleCard = (props: Properties): JSX.Element => {
         history.push(articleUrl);
     }, [props.id, articleUrl]);
 
+    let flagImage = "";
+    switch (props.languageIso.toLowerCase()) {
+        case "eng": flagImage = "eng.png"; break;
+        case "fra": flagImage = "fra.png"; break;
+        case "ger": flagImage = "ger.png"; break;
+        case "pol": flagImage = "pol.png"; break;
+        case "spa": flagImage = "spa.png"; break;
+        case "ukr": flagImage = "ukr.png"; break;
+        default: flagImage = "eng.png";
+    }
+
     return (
         <ArticleCardView
             imageUrl={imageUrl}
@@ -32,6 +44,7 @@ export const ArticleCard = (props: Properties): JSX.Element => {
             description={GetShortText({ value: props.description, limit: 12 })}
             onClickEvent={onClickEvent}
             buttonText={content.button}
+            flagImage={flagImage}
         />
     );
 };
