@@ -4,6 +4,7 @@ export const ContentArticle: ContentArticleState = {
     isLoading: false,
     content: {
         language: "",
+        button: "",
         textReadCount: "",
         textFirstName: "",
         textSurname: "",

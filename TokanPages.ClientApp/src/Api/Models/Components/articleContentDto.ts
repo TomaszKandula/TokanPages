@@ -1,6 +1,7 @@
 export interface ArticleContentDto {
     content: {
         language: string;
+        button: string;
         textReadCount: string;
         textFirstName: string;
         textSurname: string;
