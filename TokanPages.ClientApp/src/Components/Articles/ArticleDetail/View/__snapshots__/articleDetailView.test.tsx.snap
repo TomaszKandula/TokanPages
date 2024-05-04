@@ -37,7 +37,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
               component="p"
               variant="subtitle1"
             >
-              Read: 
+              Read count:
+               
               0
             </WithStyles(ForwardRef(Typography))>
           </WithStyles(ForwardRef(Grid))>
@@ -109,7 +110,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
                   component="p"
                   variant="subtitle2"
                 >
-                  First name: 
+                  First name:
+                   
                   Ester
                 </WithStyles(ForwardRef(Typography))>
                 <WithStyles(ForwardRef(Typography))
@@ -117,7 +119,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
                   component="p"
                   variant="subtitle2"
                 >
-                  Last name: 
+                  Last name:
+                   
                   Exposito
                 </WithStyles(ForwardRef(Typography))>
                 <WithStyles(ForwardRef(Typography))
@@ -125,7 +128,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
                   component="p"
                   variant="subtitle2"
                 >
-                  Registered at: 
+                  Registered at:
+                   
                 </WithStyles(ForwardRef(Typography))>
               </Styled(MuiBox)>
             </WithStyles(ForwardRef(Popover))>
@@ -139,7 +143,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
             component="p"
             variant="subtitle1"
           >
-            Language: 
+            Article language:
+             
             <img
               alt=""
               className="makeStyles-flag_image-5"
@@ -150,15 +155,17 @@ exports[`test articles group component: ArticleDetailView should render correctl
             component="p"
             variant="subtitle1"
           >
-            Read time: 
-            4 min.
+            Read time:
+             
+            4
              min.
           </WithStyles(ForwardRef(Typography))>
           <WithStyles(ForwardRef(Typography))
             component="p"
             variant="subtitle1"
           >
-            Published at: 
+            Published at:
+             
             01/10/2020, 12:15 PM
           </WithStyles(ForwardRef(Typography))>
           <WithStyles(ForwardRef(Typography))
@@ -166,7 +173,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
             component="p"
             variant="subtitle2"
           >
-            Updated at: 
+            Updated at:
+             
             01/10/2020, 12:15 PM
           </WithStyles(ForwardRef(Typography))>
         </Styled(MuiBox)>
@@ -267,7 +275,8 @@ exports[`test articles group component: ArticleDetailView should render correctl
             component="span"
             variant="subtitle1"
           >
-            About the author: 
+            About the author:
+             
             Happy developer
           </WithStyles(ForwardRef(Typography))>
         </WithStyles(ForwardRef(Grid))>
