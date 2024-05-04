@@ -69,6 +69,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
                 CreatedAt = articles.CreatedAt,
                 UpdatedAt = articles.UpdatedAt,
                 ReadCount = articles.ReadCount,
+                LanguageIso = articles.LanguageIso,
                 LikeCount = totalLikes,
                 UserLikes = userLikes,
                 Author = new GetUserDto
