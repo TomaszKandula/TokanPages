@@ -12,6 +12,7 @@ describe("test articles group component: ArticleCardView", () => {
                 description="Article short description"
                 onClickEvent={jest.fn()}
                 buttonText="READ"
+                flagImage="eng.png"
             />
         );
 
