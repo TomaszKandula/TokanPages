@@ -11,12 +11,13 @@ exports[`test articles group component: ArticleCardView should render correctly 
     <WithStyles(ForwardRef(CardMedia))
       className="makeStyles-card_image-3"
       image="/images/card.jpg"
-    />
-    <img
-      alt=""
-      className="makeStyles-flag_image-7"
-      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
-    />
+    >
+      <img
+        alt=""
+        className="makeStyles-flag_image-7"
+        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
+      />
+    </WithStyles(ForwardRef(CardMedia))>
     <WithStyles(ForwardRef(CardContent))>
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-card_title-4"
