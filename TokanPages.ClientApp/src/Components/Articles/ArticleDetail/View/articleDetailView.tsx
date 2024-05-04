@@ -40,6 +40,7 @@ interface Properties {
 
 export const ArticleDetailView = (props: Properties): JSX.Element => {
     const classes = ArticleDetailStyle();
+    const readTime = props.content.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
         <section className={classes.section}>
             <Container className={classes.container}>
@@ -103,18 +104,31 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                             </Grid>
                         </Grid>
                         <Box mt={1} mb={5}>
+                            <div className={classes.text_block}>
+                                <Typography component="p" variant="subtitle1">
+                                    {props.content.content.textLanguage}&nbsp;
+                                </Typography>
+                                {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
+                            </div>
                             <Typography component="p" variant="subtitle1">
-                                {props.content.content.textLanguage}&nbsp;{RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
+                                {readTime}
                             </Typography>
-                            <Typography component="p" variant="subtitle1">
-                                {props.content.content.textReadTime}&nbsp;{props.articleReadTime} min.
-                            </Typography>
-                            <Typography component="p" variant="subtitle1">
-                                {props.content.content.textPublished}&nbsp;{GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
-                            </Typography>
-                            <Typography component="p" variant="subtitle2" color="textSecondary">
-                                {props.content.content.textUpdated}&nbsp;{GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
-                            </Typography>
+                            <div className={classes.text_block}>
+                                <Typography component="p" variant="subtitle1">
+                                    {props.content.content.textPublished}
+                                </Typography>
+                                <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
+                                    {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
+                                </Typography>
+                            </div>
+                            <div className={classes.text_block}>
+                                <Typography component="p" variant="subtitle1">
+                                    {props.content.content.textUpdated}
+                                </Typography>
+                                <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
+                                    {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
+                                </Typography>
+                            </div>
                         </Box>
                     </div>
                     <div data-aos="fade-up">{props.articleContent}</div>
