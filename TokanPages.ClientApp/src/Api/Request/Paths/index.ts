@@ -87,13 +87,7 @@ export const GET_ARTICLE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=imag
 export const GET_FEATURED_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/featured`;
 export const GET_TESTIMONIALS_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/testimonials`;
 export const GET_ICONS_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/icons`;
-
-export const GET_FLAG_ENG_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags/eng.png`;
-export const GET_FLAG_FRA_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags/fra.png`;
-export const GET_FLAG_GER_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags/ger.png`;
-export const GET_FLAG_POL_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags/pol.png`;
-export const GET_FLAG_SPA_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags/spa.png`;
-export const GET_FLAG_UKR_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags/ukr.png`;
+export const GET_FLAG_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags`;
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;
