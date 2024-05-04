@@ -33,7 +33,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           >
             <WithStyles(ForwardRef(Typography))
               align="right"
-              className="makeStyles-readCount-6"
+              className="makeStyles-readCount-8"
               component="p"
               variant="subtitle1"
             >
@@ -69,7 +69,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           >
             <WithStyles(ForwardRef(Typography))
               align="left"
-              className="makeStyles-aliasName-7"
+              className="makeStyles-aliasName-9"
               component="div"
               variant="subtitle1"
             >
@@ -87,7 +87,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
                   "vertical": "bottom",
                 }
               }
-              className="makeStyles-popover-12"
+              className="makeStyles-popover-14"
               disableRestoreFocus={true}
               id="mouse-over-popover"
               onClose={[MockFunction]}
@@ -139,44 +139,62 @@ exports[`test articles group component: ArticleDetailView should render correctl
           mb={5}
           mt={1}
         >
-          <WithStyles(ForwardRef(Typography))
-            component="p"
-            variant="subtitle1"
+          <div
+            className="makeStyles-text_block-5"
           >
-            Article language:
-             
+            <WithStyles(ForwardRef(Typography))
+              component="p"
+              variant="subtitle1"
+            >
+              Article language:
+               
+            </WithStyles(ForwardRef(Typography))>
             <img
               alt=""
-              className="makeStyles-flag_image-5"
+              className="makeStyles-flag_image-7"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
             />
-          </WithStyles(ForwardRef(Typography))>
+          </div>
           <WithStyles(ForwardRef(Typography))
             component="p"
             variant="subtitle1"
           >
             Read time:
-             
-            4
-             min.
           </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            component="p"
-            variant="subtitle1"
+          <div
+            className="makeStyles-text_block-5"
           >
-            Published at:
-             
-            01/10/2020, 12:15 PM
-          </WithStyles(ForwardRef(Typography))>
-          <WithStyles(ForwardRef(Typography))
-            color="textSecondary"
-            component="p"
-            variant="subtitle2"
+            <WithStyles(ForwardRef(Typography))
+              component="p"
+              variant="subtitle1"
+            >
+              Published at:
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-text_padding_left-6"
+              component="p"
+              variant="subtitle1"
+            >
+              01/10/2020, 12:15 PM
+            </WithStyles(ForwardRef(Typography))>
+          </div>
+          <div
+            className="makeStyles-text_block-5"
           >
-            Updated at:
-             
-            01/10/2020, 12:15 PM
-          </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              component="p"
+              variant="subtitle1"
+            >
+              Updated at:
+            </WithStyles(ForwardRef(Typography))>
+            <WithStyles(ForwardRef(Typography))
+              className="makeStyles-text_padding_left-6"
+              component="p"
+              variant="subtitle1"
+            >
+              01/10/2020, 12:15 PM
+            </WithStyles(ForwardRef(Typography))>
+          </div>
         </Styled(MuiBox)>
       </div>
       <div
@@ -200,7 +218,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
               arrow={true}
               title={
                 <span
-                  className="makeStyles-likesTip-11"
+                  className="makeStyles-likesTip-13"
                 >
                   <Emoji
                     text="25"
@@ -209,7 +227,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
               }
             >
               <Memo(ForwardRef(ThumbUpIcon))
-                className="makeStyles-thumbsMedium-10"
+                className="makeStyles-thumbsMedium-12"
                 onClick={[MockFunction]}
               />
             </WithStyles(ForwardRef(Tooltip))>
@@ -249,7 +267,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
         >
           <WithStyles(ForwardRef(Typography))
             align="left"
-            className="makeStyles-aliasName-7"
+            className="makeStyles-aliasName-9"
             color="textSecondary"
             component="span"
             variant="h6"
@@ -261,7 +279,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           >
             <WithStyles(ForwardRef(Typography))
               align="left"
-              className="makeStyles-aliasName-7"
+              className="makeStyles-aliasName-9"
               component="span"
               variant="h6"
             >
@@ -270,7 +288,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             align="left"
-            className="makeStyles-aliasName-7"
+            className="makeStyles-aliasName-9"
             color="textSecondary"
             component="span"
             variant="subtitle1"
