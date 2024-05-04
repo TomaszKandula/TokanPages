@@ -51,6 +51,7 @@ exports[`test articles group component: ArticleListView should render correctly 
                   "description": "Some article",
                   "id": "8919332f-6654-4346-946f-5204cb7a3234",
                   "isPublished": false,
+                  "languageIso": "spa",
                   "likeCount": 0,
                   "readCount": 0,
                   "text": Array [
