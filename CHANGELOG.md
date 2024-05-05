@@ -1,3 +1,29 @@
+# [0.83.0](https://github.com/TomaszKandula/TokanPages/compare/v0.82.0...v0.83.0) (2024-05-05)
+
+
+### Features
+
+* add language iso property ([6eafdeb](https://github.com/TomaszKandula/TokanPages/commit/6eafdeb7e4c950bb1f59802064d44a2491ff8faf))
+* add language iso property for add/update actions ([5b0b44c](https://github.com/TomaszKandula/TokanPages/commit/5b0b44c63edc0936b84db2620af59d771515e571))
+* add language iso property for add/update actions ([9e8388d](https://github.com/TomaszKandula/TokanPages/commit/9e8388deb4e8880cfd7ffa36d23c56ff5d627463))
+* add new API path ([3b3f860](https://github.com/TomaszKandula/TokanPages/commit/3b3f860f75664ff5f6e905b4632612676634de80))
+* add paths for flags ([fc39066](https://github.com/TomaszKandula/TokanPages/commit/fc3906647501bb223d59d072eb86d66978b966dd))
+* add redux action for article content ([2e90b9d](https://github.com/TomaszKandula/TokanPages/commit/2e90b9d414942f37938b4fb43b432e47ec96f8e5))
+* change margin ([4279ce7](https://github.com/TomaszKandula/TokanPages/commit/4279ce77eb5244dd7588df62d62003665dc991ba))
+* change progress bar behaviour while scrolling the article ([a637ca7](https://github.com/TomaszKandula/TokanPages/commit/a637ca721faac8cc24d192c241bd467f3c570da4))
+* display language flag ([6dbfdfe](https://github.com/TomaszKandula/TokanPages/commit/6dbfdfe7897cde05df8d691615b0317f4cb90915))
+* display language flag above the article header ([9f4af79](https://github.com/TomaszKandula/TokanPages/commit/9f4af79ea170a1f726b8d1d99a651fe8732f7269))
+* get button text from remote content ([b7e1a4e](https://github.com/TomaszKandula/TokanPages/commit/b7e1a4ebdd18e3cfd17417e8e4a26027f3683dc0))
+* get remote content ([38b4efa](https://github.com/TomaszKandula/TokanPages/commit/38b4efa3f4456d887808d7313623792aa8d47f6e))
+* improve styling ([f7b1ae6](https://github.com/TomaszKandula/TokanPages/commit/f7b1ae623718b5f594b6e2592dafddd5ebd12cd4))
+* language iso column ([cd9ab98](https://github.com/TomaszKandula/TokanPages/commit/cd9ab98213203edd1b48d3e1d51404ba223b976b))
+* load remote content ([4fc7d01](https://github.com/TomaszKandula/TokanPages/commit/4fc7d0133a156d62709a815256478cd6f8991d1d))
+* place flag on top of the article/preview image ([0fdecb9](https://github.com/TomaszKandula/TokanPages/commit/0fdecb971d0ceae729eb22328344428bbbfb05a6))
+* return language iso ([d39d03a](https://github.com/TomaszKandula/TokanPages/commit/d39d03aa63908548659bad2564e020dc20cf52b1))
+* update API paths ([b2d2a1a](https://github.com/TomaszKandula/TokanPages/commit/b2d2a1aef152a07bfb2e59e643f093c50411fa89))
+* update card style ([2158912](https://github.com/TomaszKandula/TokanPages/commit/21589125cfa6345e551c2b84f853a2e8c09213e8))
+* update imports ([8c965c2](https://github.com/TomaszKandula/TokanPages/commit/8c965c23884921fdd797f97f4471ca4beada26dc))
+
 # [0.82.0](https://github.com/TomaszKandula/TokanPages/compare/v0.81.1...v0.82.0) (2024-05-03)
 
 
