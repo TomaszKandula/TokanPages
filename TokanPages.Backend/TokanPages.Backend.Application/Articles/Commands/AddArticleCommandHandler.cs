@@ -33,7 +33,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             ReadCount = 0,
             CreatedAt = _dateTimeService.Now,
             UpdatedAt = null,
-            UserId = user.Id
+            UserId = user.Id,
+            LanguageIso = "ENG"
         };
 
         await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);

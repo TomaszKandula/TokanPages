@@ -53,6 +53,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 
         article.Title = request.Title ?? article.Title;
         article.Description = request.Description ?? article.Description;
+        article.LanguageIso = request.LanguageIso ?? article.LanguageIso;
         article.UpdatedAt = request.Title != null && request.Description != null
             ? _dateTimeService.Now
             : article.UpdatedAt;

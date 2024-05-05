@@ -37,7 +37,8 @@ public class RemoveArticleCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = userId
+            UserId = userId,
+            LanguageIso = "ENG"
         };
 
         var articleLikes = new ArticleLikes
@@ -115,7 +116,8 @@ public class RemoveArticleCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = userId
+            UserId = userId,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();

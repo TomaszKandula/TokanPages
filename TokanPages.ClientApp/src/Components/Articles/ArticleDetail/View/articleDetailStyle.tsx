@@ -16,6 +16,20 @@ export const ArticleDetailStyle = makeStyles(() => ({
         marginTop: 30,
         marginBottom: 30,
     },
+    text_block: {
+        display: "flex",
+        justifyContent: "left",
+        flexDirection: "row",
+    },
+    text_padding_left: {
+        paddingLeft: 5
+    },
+    flag_image: {
+        height: 18,
+        width: 18,
+        display: "flex",
+        alignSelf: "center"
+    },
     readCount: {
         paddingTop: 10,
     },

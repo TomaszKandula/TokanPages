@@ -17,7 +17,7 @@ const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
     return (
         <>
             {args.articles.map((item: ArticleItem) => (
-                <ArticleCard title={item.title} description={item.description} id={item.id} key={item.id} />
+                <ArticleCard title={item.title} description={item.description} id={item.id} key={item.id} languageIso={item.languageIso} />
             ))}
         </>
     );

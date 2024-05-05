@@ -13,4 +13,6 @@ public class UpdateArticleContentCommand : IRequest<Unit>
     public string? TextToUpload { get; set; }
         
     public string? ImageToUpload { get; set; }
+
+    public string? LanguageIso { get; set; }
 }

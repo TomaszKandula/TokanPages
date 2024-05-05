@@ -12,7 +12,7 @@ public class ArticlesConfiguration : IEntityTypeConfiguration<Backend.Domain.Ent
         builder.Property(articles => articles.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(articles => articles.UserNavigation)
+            .HasOne(articles => articles.Users)
             .WithMany(users => users.Articles)
             .HasForeignKey(articles => articles.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

@@ -12,6 +12,7 @@ export const ArticleSelection: ArticleSelectionState = {
         readCount: 0,
         createdAt: "",
         updatedAt: "",
+        languageIso: "eng",
         author: {
             userId: "",
             aliasName: "",

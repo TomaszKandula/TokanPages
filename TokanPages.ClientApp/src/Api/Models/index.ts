@@ -45,6 +45,7 @@ export type { NavigationContentDto, UserInfoProps } from "./Components/navigatio
 export type { HeaderContentDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto } from "./Components/clientsContentDto";
+export type { ArticleContentDto } from "./Components/articleContentDto";
 export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { ContactFormContentDto } from "./Components/contactFormContentDto";
 export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";

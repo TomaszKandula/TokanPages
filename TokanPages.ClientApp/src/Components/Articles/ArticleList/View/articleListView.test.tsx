@@ -36,6 +36,7 @@ describe("test articles group component: ArticleListView", () => {
             readCount: 0,
             createdAt: "2020-09-21",
             updatedAt: "2020-12-05",
+            languageIso: "spa",
             author: author,
             text: [text],
         };

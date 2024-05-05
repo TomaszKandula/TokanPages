@@ -146,6 +146,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ReadCount = DataUtilityService.GetRandomInteger(),
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             UpdatedAt = null,
+            LanguageIso = "ENG"
         };
 
         var articleLike = new ArticleLikes

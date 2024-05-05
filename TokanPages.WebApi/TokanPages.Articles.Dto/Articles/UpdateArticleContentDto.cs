@@ -32,4 +32,9 @@ public class UpdateArticleContentDto
     /// Image name to upload.
     /// </summary>
     public string? ImageToUpload { get; set; }
+
+    /// <summary>
+    /// Article language.
+    /// </summary>
+    public string? LanguageIso { get; set; }
 }

@@ -49,6 +49,7 @@ import {
     ContentTemplates,
     UserEmailVerification,
     ContentShowcase,
+    ContentArticle,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -62,6 +63,7 @@ export const ApplicationDefault: ApplicationState = {
     contentTemplates: ContentTemplates,
     contentAccount: ContentAccount,
     contentActivateAccount: ContentActivateAccount,
+    contentArticle: ContentArticle,
     contentArticleFeatures: ContentArticleFeatures,
     contentClients: ContentClients,
     contentContactForm: ContentContactForm,

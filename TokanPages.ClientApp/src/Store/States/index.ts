@@ -10,6 +10,7 @@ export type { ArticleUpdateState } from "./Articles/articleUpdate";
 export type { ContentTemplatesState } from "./Content/contentTemplates";
 export type { ContentAccountState } from "./Content/contentAccount";
 export type { ContentActivateAccountState } from "./Content/contentActivateAccount";
+export type { ContentArticleState } from "./Content/contentArticle";
 export type { ContentArticleFeaturesState } from "./Content/contentArticleFeatures";
 export type { ContentClientsState } from "./Content/contentClients";
 export type { ContentContactFormState } from "./Content/contentContactForm";
