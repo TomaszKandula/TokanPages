@@ -26,10 +26,12 @@ export const ArticleCardStyle = makeStyles(theme => ({
         [theme.breakpoints.down(700)]: {
             height: 180,
             width: "auto",
+            marginRight: 10,            
         },
         [theme.breakpoints.up(700)]: {
             height: "auto",
             width: 180,
+            marginRight: 0,            
         },
     },
     card_title: {
