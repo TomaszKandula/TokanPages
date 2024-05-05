@@ -39,7 +39,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = user.Id
+            UserId = user.Id,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -116,7 +117,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = users.Id,
+            LanguageIso = "ENG"
         };
 
         var likes = new ArticleLikes 
@@ -199,7 +201,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = user.Id
+            UserId = user.Id,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -287,7 +290,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = user.Id
+            UserId = user.Id,
+            LanguageIso = "ENG"
         };
             
         var likes = new ArticleLikes 

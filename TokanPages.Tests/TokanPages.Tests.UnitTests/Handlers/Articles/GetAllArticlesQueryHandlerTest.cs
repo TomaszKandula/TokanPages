@@ -31,7 +31,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = DateTime.Now.AddDays(-10),
                 UpdatedAt = null,
-                UserId = user.Id
+                UserId = user.Id,
+                LanguageIso = "ENG"
             },
             new()
             {
@@ -41,7 +42,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = DateTime.Now.AddDays(-15),
                 UpdatedAt = null,
-                UserId = user.Id
+                UserId = user.Id,
+                LanguageIso = "ENG"
             }
         };
 
