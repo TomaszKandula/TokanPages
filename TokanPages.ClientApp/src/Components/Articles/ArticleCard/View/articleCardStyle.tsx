@@ -18,6 +18,11 @@ export const ArticleCardStyle = makeStyles(theme => ({
         textDecoration: "none",
     },
     card_image: {
+        marginLeft: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        padding: 10,
+        borderRadius: 15,
         [theme.breakpoints.down(700)]: {
             height: 180,
             width: "auto",
