@@ -10,6 +10,7 @@ export { ArticleUpdateAction } from "./Articles/articleUpdate";
 export { ContentTemplatesAction } from "./Content/contentTemplates";
 export { ContentAccountAction } from "./Content/contentAccount";
 export { ContentActivateAccountAction } from "./Content/contentActivateAccount";
+export { ContentArticleAction } from "./Content/contentArticle";
 export { ContentArticleFeaturesAction } from "./Content/contentArticleFeatures";
 export { ContentClientsAction } from "./Content/contentClients";
 export { ContentContactFormAction } from "./Content/contentContactForm";

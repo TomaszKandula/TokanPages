@@ -75,6 +75,7 @@ export const GET_ACTIVATE_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name
 export const GET_UPDATE_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent/?name=updateNewsletter&type=component`;
 export const GET_WRONG_PAGE_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent/?name=wrongPagePrompt&type=component`;
 export const GET_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent/?name=account&type=component`;
+export const GET_ARTICLE_CONTENT = `${API_CONTENT_URI}/getContent/?name=article&type=component`;
 export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=story&type=document`;
 export const GET_TERMS_CONTENT = `${API_CONTENT_URI}/getContent/?name=terms&type=document`;
 export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent/?name=policy&type=document`;
@@ -87,6 +88,7 @@ export const GET_ARTICLE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=imag
 export const GET_FEATURED_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/featured`;
 export const GET_TESTIMONIALS_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/sections/testimonials`;
 export const GET_ICONS_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/icons`;
+export const GET_FLAG_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags`;
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;

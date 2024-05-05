@@ -21,7 +21,8 @@ public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, List<Get
                 IsPublished = articles.IsPublished,
                 ReadCount = articles.ReadCount,
                 CreatedAt = articles.CreatedAt,
-                UpdatedAt = articles.UpdatedAt
+                UpdatedAt = articles.UpdatedAt,
+                LanguageIso = articles.LanguageIso
             })
             .OrderByDescending(articles => articles.CreatedAt)
             .ToListAsync(cancellationToken);

@@ -20,7 +20,8 @@ public static class ArticlesMapper
         Title = model.Title,
         Description = model.Description,
         TextToUpload = model.TextToUpload,
-        ImageToUpload = model.ImageToUpload
+        ImageToUpload = model.ImageToUpload,
+        LanguageIso = model.LanguageIso
     };
 
     /// <summary>
@@ -34,7 +35,8 @@ public static class ArticlesMapper
         Title = model.Title,
         Description = model.Description,
         TextToUpload = model.TextToUpload,
-        ImageToUpload = model.ImageToUpload
+        ImageToUpload = model.ImageToUpload,
+        LanguageIso = model.LanguageIso
     };
 
     /// <summary>

@@ -11,6 +11,7 @@ export interface ArticleItem {
     readCount: number;
     createdAt: string;
     updatedAt: string;
+    languageIso: string;
     author: Author;
     text: TextItem[];
 }

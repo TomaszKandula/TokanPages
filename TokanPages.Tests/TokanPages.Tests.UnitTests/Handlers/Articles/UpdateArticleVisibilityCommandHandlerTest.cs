@@ -60,6 +60,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             UpdatedAt = null,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -140,6 +141,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             UpdatedAt = null,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -222,6 +224,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             UpdatedAt = null,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();

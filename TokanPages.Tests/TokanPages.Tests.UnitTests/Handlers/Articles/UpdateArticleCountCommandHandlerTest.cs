@@ -39,7 +39,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = userId
+            UserId = userId,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -115,7 +116,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             ReadCount = 10,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = userId
+            UserId = userId,
+            LanguageIso = "ENG"
         };
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
@@ -206,7 +208,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             ReadCount = 5,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = userId
+            UserId = userId,
+            LanguageIso = "ENG"
         };
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
@@ -302,7 +305,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = user.Id
+            UserId = user.Id,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();

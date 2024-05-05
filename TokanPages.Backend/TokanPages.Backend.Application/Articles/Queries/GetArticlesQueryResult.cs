@@ -15,4 +15,6 @@ public class GetArticlesQueryResult
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+
+    public string? LanguageIso { get; set; }
 }

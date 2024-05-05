@@ -62,7 +62,8 @@ public class GetArticleQueryHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = testDate,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = users.Id,
+            LanguageIso = "ENG"
         };
 
         var likes = new List<ArticleLikes> 
@@ -157,7 +158,8 @@ public class GetArticleQueryHandlerTest : TestBase
             ReadCount = 0,
             CreatedAt = DateTime.Now,
             UpdatedAt = null,
-            UserId = users.Id
+            UserId = users.Id,
+            LanguageIso = "ENG"
         };
 
         var databaseContext = GetTestDatabaseContext();
