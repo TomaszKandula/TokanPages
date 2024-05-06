@@ -33,7 +33,7 @@ export const ArticleCard = (props: Properties): JSX.Element => {
         case "fra": flagImage = "fra.png"; break;
         case "ger": flagImage = "ger.png"; break;
         case "pol": flagImage = "pol.png"; break;
-        case "spa": flagImage = "spa.png"; break;
+        case "esp": flagImage = "esp.png"; break;
         case "ukr": flagImage = "ukr.png"; break;
         default: flagImage = "eng.png";
     }

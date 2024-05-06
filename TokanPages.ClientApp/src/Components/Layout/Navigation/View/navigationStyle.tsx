@@ -52,6 +52,11 @@ export const NavigationStyle = makeStyles(theme => ({
         display: "flex",
         justifyContent: "center",
     },
+    flag_image: {
+        height: 14,
+        width: 14,
+        marginRight: 5,
+    },
     languagesBox: {
         [theme.breakpoints.down(700)]: {
             marginRight: 0,
@@ -59,11 +64,11 @@ export const NavigationStyle = makeStyles(theme => ({
         marginRight: 30,
         alignSelf: "center",
     },
+    languages_control: {
+    },
     languages_selection: {
         color: Colours.colours.gray1,
-    },
-    languages_menu: {
-        color: Colours.colours.violet,
+        width: 120,
     },
     content_right_side: {
         display: "flex",
