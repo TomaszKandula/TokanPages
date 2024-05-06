@@ -6,11 +6,13 @@ import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
+import { GET_FLAG_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
+import { RenderImage } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
@@ -57,8 +59,8 @@ const RenderContent = (props: BaseProperties): JSX.Element => {
             <Box className={classes.languagesBox}>
                 <RenderLanguageSelection
                     {...props}
+                    styleControl={classes.languages_control}
                     styleSelect={classes.languages_selection}
-                    styleMenu={classes.languages_menu}
                 />
             </Box>
             <div className={classes.user_avatar}>
@@ -80,17 +82,22 @@ const RenderMenuIcon = (props: Properties): JSX.Element => {
 };
 
 const RenderLanguageSelection = (props: Properties): JSX.Element => {
+    const classes = NavigationStyle();
     return (
         <FormControl className={props.styleControl}>
             <Select
+                displayEmpty
+                disableUnderline
                 value={props.languageId}
                 onChange={props.languageHandler}
-                disableUnderline
                 className={props.styleSelect}
             >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
-                        {item.name}
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            {RenderImage(GET_FLAG_URL, `${item.id}.png`, classes.flag_image)}
+                            <div>{item.name}</div>
+                        </div>
                     </MenuItem>
                 ))}
             </Select>
