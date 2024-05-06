@@ -1,3 +1,11 @@
+# [0.84.0](https://github.com/TomaszKandula/TokanPages/compare/v0.83.0...v0.84.0) (2024-05-06)
+
+
+### Features
+
+* change abbreviation ([6a7111d](https://github.com/TomaszKandula/TokanPages/commit/6a7111d2c5eabf5c4e31f1abef1e037aebf801cb))
+* display flag for selected language ([70e42f8](https://github.com/TomaszKandula/TokanPages/commit/70e42f815ae5ba433c8492ebb35431c88b4096e4))
+
 # [0.83.0](https://github.com/TomaszKandula/TokanPages/compare/v0.82.0...v0.83.0) (2024-05-05)
 
 
