@@ -8,6 +8,7 @@ import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ConfigureStore } from "./Store/Configuration";
+import { ErrorBoundary } from "./Shared/Components";
 import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
@@ -22,7 +23,9 @@ const ReactApp = (manifest: GetContentManifestDto) => {
             <ConnectedRouter history={history}>
                 <ThemeProvider theme={AppTheme}>
                     <CssBaseline />
-                    <App manifest={manifest} />
+                    <ErrorBoundary>
+                        <App manifest={manifest} />
+                    </ErrorBoundary>
                 </ThemeProvider>
             </ConnectedRouter>
         </Provider>,
