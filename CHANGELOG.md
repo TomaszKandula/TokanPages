@@ -1,3 +1,22 @@
+# [0.85.0](https://github.com/TomaszKandula/TokanPages/compare/v0.84.0...v0.85.0) (2024-05-07)
+
+
+### Bug Fixes
+
+* ensure that page will start from top ([104cfa3](https://github.com/TomaszKandula/TokanPages/commit/104cfa388f0e4c67691492206730b0d20acdfb59))
+
+
+### Features
+
+* add and use error boundary component ([c5dc4c4](https://github.com/TomaszKandula/TokanPages/commit/c5dc4c48533886c02420523eae97f1596afaea80))
+* allow to collapse testimonial card ([7b34f8d](https://github.com/TomaszKandula/TokanPages/commit/7b34f8df27939b962cf752a6ebc514ee0732e013))
+* allow to override default path ([fd9779e](https://github.com/TomaszKandula/TokanPages/commit/fd9779e10618975c0a259e0bae4c434b621b8004))
+* change back arrow style for articles ([ae8e52c](https://github.com/TomaszKandula/TokanPages/commit/ae8e52c6e6847ac9959b4069820fe7e7cdd0a745))
+* change style ([2ff9847](https://github.com/TomaszKandula/TokanPages/commit/2ff9847717a42c49f47bd7034dbfa1ae32594afa))
+* component for going back ([8294fde](https://github.com/TomaszKandula/TokanPages/commit/8294fde20377f4ddbb1018148283d1ab96903a8f))
+* nullable ([1a40dd9](https://github.com/TomaszKandula/TokanPages/commit/1a40dd9c86034bb6222a0318e6b5e2c751b9951e))
+* use shared component ([9b6d2e0](https://github.com/TomaszKandula/TokanPages/commit/9b6d2e0453f6e82dab57b29a479a45f10ce1b988))
+
 # [0.84.0](https://github.com/TomaszKandula/TokanPages/compare/v0.83.0...v0.84.0) (2024-05-06)
 
 
