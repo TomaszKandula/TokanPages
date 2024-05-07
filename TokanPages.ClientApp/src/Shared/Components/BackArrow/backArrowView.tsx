@@ -4,10 +4,16 @@ import { Link } from "react-router-dom";
 import { ArrowBack } from "@material-ui/icons";
 import { BackArrowStyle } from "./backArrowStyle";
 
-export const BackArrowView = (): JSX.Element => {
+interface BackArrowViewProps {
+    backPathFragment?: string;
+}
+
+export const BackArrowView = (props: BackArrowViewProps): JSX.Element => {
     const classes = BackArrowStyle();
+    const path = props.backPathFragment ?? "/";
+
     return (<>
-        <Link to="/">
+        <Link to={path}>
             <IconButton>
                 <ArrowBack />
             </IconButton>
