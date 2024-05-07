@@ -14,7 +14,7 @@ export const BackArrowView = (props: BackArrowViewProps): JSX.Element => {
 
     return (<>
         <Link to={path}>
-            <IconButton>
+            <IconButton className={classes.icon}>
                 <ArrowBack />
             </IconButton>
         </Link>
