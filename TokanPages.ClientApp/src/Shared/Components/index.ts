@@ -13,3 +13,4 @@ export { UploadUserMedia } from "./UploadUserMedia";
 export { TextFiedWithPassword } from "./TextFieldWithPassword";
 export { ApplicationSession } from "./ApplicationSession";
 export { BackArrow } from "./BackArrow";
+export { ErrorBoundary } from "./ErrorBoundary";
