@@ -6,7 +6,7 @@ export { RenderImage } from "./CustomImage/customImage";
 export { GetIcon } from "./GetIcon/getIcon";
 export { RenderList } from "./ListRender/renderList";
 export { ProgressBarView as ProgressBar } from "./ProgressBar";
-export { ScrollToTop, HideOnScroll, ProgressOnScroll } from "./Scroll";
+export { ScrollToTop, HideOnScroll, ProgressOnScroll, ClearPageStart } from "./Scroll";
 export { ApplicationToast } from "./Toasts/applicationToast";
 export { UserAvatar } from "./UserAvatar";
 export { UploadUserMedia } from "./UploadUserMedia";
