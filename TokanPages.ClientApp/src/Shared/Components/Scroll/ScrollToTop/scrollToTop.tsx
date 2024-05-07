@@ -1,10 +1,21 @@
 import * as React from "react";
+import { useLocation } from "react-router-dom";
 import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { ScrollToTopStyle } from "./scrollToTopStyle";
 
 export interface Properties {
     children: React.ReactElement;
+}
+
+export const ClearPageStart = (props: Properties): JSX.Element => {
+    const location = useLocation();
+
+    React.useEffect(() => {
+        window.scrollTo({top: 0, left: 0, behavior: "smooth" });
+    }, [location]);
+
+    return <>{props.children}</>;
 }
 
 export const ScrollToTop = (props: Properties): JSX.Element => {
