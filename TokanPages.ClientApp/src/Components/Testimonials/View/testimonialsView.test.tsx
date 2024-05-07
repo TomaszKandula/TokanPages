@@ -1,13 +1,7 @@
 import "../../../setupTests";
 import React from "react";
-//import * as Redux from "react-redux";
 import { render } from "enzyme";
 import { TestimonialsView } from "./testimonialsView";
-
-// jest.mock("react-redux", () => ({
-//     ...jest.requireActual("react-redux"),
-//     useSelector: jest.fn(),
-// }));
 
 describe("test component: testimonialsView", () => {
     const testContent = {
@@ -27,13 +21,6 @@ describe("test component: testimonialsView", () => {
         occupation3: "BPO",
         text3: "Joe is one of those rare talents...",
     };
-
-    // beforeEach(() => {
-    //     jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-    //         isLoading: false,
-    //         content: testContent,
-    //     });
-    // });
 
     it("should render correctly '<TestimonialsView />' when content is loaded.", () => {
         const html = render(<TestimonialsView 
