@@ -1,6 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { BrowserRouter as Router } from "react-router-dom";
+import { render } from "enzyme";
 import { Author } from "../../../../Shared/Components/RenderContent/Models";
 import { TextItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
@@ -41,8 +42,12 @@ describe("test articles group component: ArticleListView", () => {
             text: [text],
         };
 
-        const tree = shallow(<ArticleListView isLoading={false} articles={[articles]} />);
+        const html = render(
+            <Router>
+                <ArticleListView isLoading={false} articles={[articles]} />
+            </Router>
+        );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

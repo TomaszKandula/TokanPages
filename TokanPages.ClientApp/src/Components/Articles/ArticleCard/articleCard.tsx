@@ -44,7 +44,7 @@ export const ArticleCard = (props: Properties): JSX.Element => {
             title={GetShortText({ value: props.title, limit: 6 })}
             description={GetShortText({ value: props.description, limit: 12 })}
             onClickEvent={onClickEvent}
-            buttonText={content.content.button}
+            buttonText={content?.content?.button}
             flagImage={flagImage}
         />
     );

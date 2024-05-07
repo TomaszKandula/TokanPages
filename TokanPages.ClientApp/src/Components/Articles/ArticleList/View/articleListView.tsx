@@ -1,10 +1,8 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import { Box, Divider, Grid, IconButton } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { ArrowBack } from "@material-ui/icons";
+import { Box, Grid } from "@material-ui/core";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
-import { ProgressBar } from "../../../../Shared/Components";
+import { BackArrow, ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
@@ -30,18 +28,15 @@ export const ArticleListView = (props: Properties): JSX.Element => {
             <Container className={classes.container}>
                 <Box pt={12} pb={8}>
                     <div data-aos="fade-down">
-                        <Link to="/">
-                            <IconButton>
-                                <ArrowBack />
-                            </IconButton>
-                        </Link>
-                        <Divider className={classes.divider} />
+                        <BackArrow />
                     </div>
-                    <Grid container justifyContent="center">
-                        <Grid item xs={12} sm={12}>
-                            {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                    <Box pt={3}>
+                        <Grid container justifyContent="center">
+                            <Grid item xs={12} sm={12}>
+                                {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Box>
                 </Box>
             </Container>
         </section>

@@ -48,16 +48,15 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                     <div data-aos="fade-down">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
-                                <IconButton onClick={props.backButtonHandler}>
+                                <IconButton className={classes.icon} onClick={props.backButtonHandler}>
                                     <ArrowBack />
                                 </IconButton>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={6} className={classes.grid_read_count}>
                                 <Typography
-                                    className={classes.readCount}
+                                    className={classes.text_read_count}
                                     component="p"
                                     variant="subtitle1"
-                                    align="right"
                                 >
                                     {props.content.content.textReadCount}&nbsp;{props.articleReadCount}
                                 </Typography>
