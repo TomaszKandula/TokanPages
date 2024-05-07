@@ -8,7 +8,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
     class="MuiContainer-root MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-10"
+      class="MuiBox-root MuiBox-root-12"
     >
       <p
         class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
@@ -18,7 +18,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
       </p>
     </div>
     <div
-      class="MuiBox-root MuiBox-root-11"
+      class="MuiBox-root MuiBox-root-13"
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -48,11 +48,49 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
               >
                 Senior Digital Tax Specialist
               </p>
-              <p
-                class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+              <div
+                class="MuiCollapse-root MuiCollapse-entered"
+                style="min-height:120px"
               >
-                Joe is very motivated...
-              </p>
+                <div
+                  class="MuiCollapse-wrapper"
+                >
+                  <div
+                    class="MuiCollapse-wrapperInner"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                    >
+                      Joe is very motivated...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-expanded="true"
+                aria-label="show more"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
             </div>
           </div>
         </div>
@@ -81,11 +119,46 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
               >
                 Full-stack Developer chez DFDS POLSKA
               </p>
-              <p
-                class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+              <div
+                class="MuiCollapse-root MuiCollapse-entered"
+                style="min-height:120px"
               >
-                Joe have done very good work...
-              </p>
+                <div
+                  class="MuiCollapse-wrapper"
+                >
+                  <div
+                    class="MuiCollapse-wrapperInner"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                    >
+                      Joe have done very good work...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-expanded="true"
+                aria-label="show more"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -99,7 +172,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
           >
             <img
               class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-              src=" "
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/sections/testimonials/Scott"
             />
             <div
               class="MuiCardContent-root makeStyles-card_content-6"
@@ -114,11 +187,46 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
               >
                 BPO
               </p>
-              <p
-                class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+              <div
+                class="MuiCollapse-root MuiCollapse-entered"
+                style="min-height:120px"
               >
-                Joe is one of those rare talents...
-              </p>
+                <div
+                  class="MuiCollapse-wrapper"
+                >
+                  <div
+                    class="MuiCollapse-wrapperInner"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                    >
+                      Joe is one of those rare talents...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-expanded="true"
+                aria-label="show more"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
         </div>
