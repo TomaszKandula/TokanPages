@@ -8,9 +8,12 @@ export const ArticleDetailStyle = makeStyles(() => ({
     container: {
         maxWidth: 700,
     },
+    icon: {
+        border: `solid 1px ${Colours.colours.lightGray2}`,
+    },
     dividerTop: {
         marginTop: 20,
-        marginBottom: 20,
+        marginBottom: 33,
     },
     dividerBottom: {
         marginTop: 30,
@@ -30,8 +33,14 @@ export const ArticleDetailStyle = makeStyles(() => ({
         display: "flex",
         alignSelf: "center"
     },
-    readCount: {
-        paddingTop: 10,
+    grid_read_count: {
+        display: "flex",
+        alignSelf: "center",
+        justifyContent: "flex-end",
+    },
+    text_read_count: {
+        display: "flex",
+        justifyContent: "flex-end",
     },
     aliasName: {
         paddingTop: 10,

@@ -30,11 +30,13 @@ export const ArticleListView = (props: Properties): JSX.Element => {
                     <div data-aos="fade-down">
                         <BackArrow />
                     </div>
-                    <Grid container justifyContent="center">
-                        <Grid item xs={12} sm={12}>
-                            {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                    <Box pt={3}>
+                        <Grid container justifyContent="center">
+                            <Grid item xs={12} sm={12}>
+                                {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Box>
                 </Box>
             </Container>
         </section>
