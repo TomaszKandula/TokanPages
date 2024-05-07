@@ -1,1 +1,1 @@
-export { TestimonialsView as Testimonials } from "./View/testimonialsView";
+export { Testimonials } from "./testimonials";
