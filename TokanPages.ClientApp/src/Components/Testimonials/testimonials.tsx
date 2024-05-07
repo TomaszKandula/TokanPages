@@ -24,7 +24,7 @@ export const Testimonials = (): JSX.Element => {
 
     return (
         <TestimonialsView 
-            isLoading={testimonials.isLoading}
+            isLoading={testimonials?.isLoading}
             hasTestimonialOne={hasTestimonialOne}
             hasTestimonialTwo={hasTestimonialTwo}
             hasTestimonialThree={hasTestimonialThree}
