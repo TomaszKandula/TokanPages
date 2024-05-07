@@ -17,7 +17,7 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           href="/"
         >
           <button
-            class="MuiButtonBase-root MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-5"
             tabindex="0"
             type="button"
           >
@@ -41,14 +41,14 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           </button>
         </a>
         <hr
-          class="MuiDivider-root makeStyles-divider-3"
+          class="MuiDivider-root makeStyles-divider-6"
         />
       </div>
       <div
         data-aos="fade-up"
       >
         <span
-          class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-9 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-7 makeStyles-paragraph-11 MuiTypography-body1"
         >
           <div>
             <p>
@@ -64,13 +64,13 @@ exports[`test component: documentView should render correctly '<DocumentView />'
 
 exports[`test component: documentView should render correctly '<DocumentView />' when showcase content is loaded. 1`] = `
 <section
-  class="makeStyles-section-28"
+  class="makeStyles-section-34"
 >
   <div
-    class="MuiContainer-root makeStyles-container-29 MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-31"
+      class="MuiBox-root MuiBox-root-37"
     >
       <div
         data-aos="fade-down"
@@ -79,7 +79,7 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           href="/"
         >
           <button
-            class="MuiButtonBase-root MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-38"
             tabindex="0"
             type="button"
           >
@@ -103,14 +103,14 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           </button>
         </a>
         <hr
-          class="MuiDivider-root makeStyles-divider-30"
+          class="MuiDivider-root makeStyles-divider-39"
         />
       </div>
       <div
         data-aos="fade-up"
       >
         <span
-          class="MuiTypography-root makeStyles-common-32 makeStyles-paragraph-36 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-40 makeStyles-paragraph-44 MuiTypography-body1"
         >
           <div>
             <p>
@@ -126,13 +126,13 @@ exports[`test component: documentView should render correctly '<DocumentView />'
 
 exports[`test component: documentView should render correctly '<DocumentView />' when story content is loaded. 1`] = `
 <section
-  class="makeStyles-section-19"
+  class="makeStyles-section-23"
 >
   <div
-    class="MuiContainer-root makeStyles-container-20 MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-22"
+      class="MuiBox-root MuiBox-root-26"
     >
       <div
         data-aos="fade-down"
@@ -141,7 +141,7 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           href="/"
         >
           <button
-            class="MuiButtonBase-root MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-27"
             tabindex="0"
             type="button"
           >
@@ -165,14 +165,14 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           </button>
         </a>
         <hr
-          class="MuiDivider-root makeStyles-divider-21"
+          class="MuiDivider-root makeStyles-divider-28"
         />
       </div>
       <div
         data-aos="fade-up"
       >
         <span
-          class="MuiTypography-root makeStyles-common-23 makeStyles-paragraph-27 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-29 makeStyles-paragraph-33 MuiTypography-body1"
         >
           <div>
             <p>
@@ -188,13 +188,13 @@ exports[`test component: documentView should render correctly '<DocumentView />'
 
 exports[`test component: documentView should render correctly '<DocumentView />' when terms content is loaded. 1`] = `
 <section
-  class="makeStyles-section-10"
+  class="makeStyles-section-12"
 >
   <div
-    class="MuiContainer-root makeStyles-container-11 MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-13"
+      class="MuiBox-root MuiBox-root-15"
     >
       <div
         data-aos="fade-down"
@@ -203,7 +203,7 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           href="/"
         >
           <button
-            class="MuiButtonBase-root MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-16"
             tabindex="0"
             type="button"
           >
@@ -227,14 +227,14 @@ exports[`test component: documentView should render correctly '<DocumentView />'
           </button>
         </a>
         <hr
-          class="MuiDivider-root makeStyles-divider-12"
+          class="MuiDivider-root makeStyles-divider-17"
         />
       </div>
       <div
         data-aos="fade-up"
       >
         <span
-          class="MuiTypography-root makeStyles-common-14 makeStyles-paragraph-18 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-18 makeStyles-paragraph-22 MuiTypography-body1"
         >
           <div>
             <p>

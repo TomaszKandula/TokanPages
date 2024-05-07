@@ -22,18 +22,19 @@ exports[`test articles group component: ArticleDetailView should render correctl
             xs={6}
           >
             <WithStyles(ForwardRef(IconButton))
+              className="makeStyles-icon-3"
               onClick={[MockFunction]}
             >
               <Memo(ForwardRef(ArrowBackIcon)) />
             </WithStyles(ForwardRef(IconButton))>
           </WithStyles(ForwardRef(Grid))>
           <WithStyles(ForwardRef(Grid))
+            className="makeStyles-grid_read_count-9"
             item={true}
             xs={6}
           >
             <WithStyles(ForwardRef(Typography))
-              align="right"
-              className="makeStyles-readCount-8"
+              className="makeStyles-text_read_count-10"
               component="p"
               variant="subtitle1"
             >
@@ -44,7 +45,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           </WithStyles(ForwardRef(Grid))>
         </WithStyles(ForwardRef(Grid))>
         <WithStyles(ForwardRef(Divider))
-          className="makeStyles-dividerTop-3"
+          className="makeStyles-dividerTop-4"
         />
         <WithStyles(ForwardRef(Grid))
           container={true}
@@ -69,7 +70,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           >
             <WithStyles(ForwardRef(Typography))
               align="left"
-              className="makeStyles-aliasName-9"
+              className="makeStyles-aliasName-11"
               component="div"
               variant="subtitle1"
             >
@@ -87,7 +88,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
                   "vertical": "bottom",
                 }
               }
-              className="makeStyles-popover-14"
+              className="makeStyles-popover-16"
               disableRestoreFocus={true}
               id="mouse-over-popover"
               onClose={[MockFunction]}
@@ -140,7 +141,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           mt={1}
         >
           <div
-            className="makeStyles-text_block-5"
+            className="makeStyles-text_block-6"
           >
             <WithStyles(ForwardRef(Typography))
               component="p"
@@ -151,7 +152,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             </WithStyles(ForwardRef(Typography))>
             <img
               alt=""
-              className="makeStyles-flag_image-7"
+              className="makeStyles-flag_image-8"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
             />
           </div>
@@ -162,7 +163,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             Read time:
           </WithStyles(ForwardRef(Typography))>
           <div
-            className="makeStyles-text_block-5"
+            className="makeStyles-text_block-6"
           >
             <WithStyles(ForwardRef(Typography))
               component="p"
@@ -171,7 +172,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
               Published at:
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-text_padding_left-6"
+              className="makeStyles-text_padding_left-7"
               component="p"
               variant="subtitle1"
             >
@@ -179,7 +180,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             </WithStyles(ForwardRef(Typography))>
           </div>
           <div
-            className="makeStyles-text_block-5"
+            className="makeStyles-text_block-6"
           >
             <WithStyles(ForwardRef(Typography))
               component="p"
@@ -188,7 +189,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
               Updated at:
             </WithStyles(ForwardRef(Typography))>
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-text_padding_left-6"
+              className="makeStyles-text_padding_left-7"
               component="p"
               variant="subtitle1"
             >
@@ -218,7 +219,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
               arrow={true}
               title={
                 <span
-                  className="makeStyles-likesTip-13"
+                  className="makeStyles-likesTip-15"
                 >
                   <Emoji
                     text="25"
@@ -227,7 +228,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
               }
             >
               <Memo(ForwardRef(ThumbUpIcon))
-                className="makeStyles-thumbsMedium-12"
+                className="makeStyles-thumbsMedium-14"
                 onClick={[MockFunction]}
               />
             </WithStyles(ForwardRef(Tooltip))>
@@ -247,7 +248,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
         </WithStyles(ForwardRef(Grid))>
       </Styled(MuiBox)>
       <WithStyles(ForwardRef(Divider))
-        className="makeStyles-dividerBottom-4"
+        className="makeStyles-dividerBottom-5"
       />
       <WithStyles(ForwardRef(Grid))
         container={true}
@@ -267,7 +268,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
         >
           <WithStyles(ForwardRef(Typography))
             align="left"
-            className="makeStyles-aliasName-9"
+            className="makeStyles-aliasName-11"
             color="textSecondary"
             component="span"
             variant="h6"
@@ -279,7 +280,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           >
             <WithStyles(ForwardRef(Typography))
               align="left"
-              className="makeStyles-aliasName-9"
+              className="makeStyles-aliasName-11"
               component="span"
               variant="h6"
             >
@@ -288,7 +289,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           </Styled(MuiBox)>
           <WithStyles(ForwardRef(Typography))
             align="left"
-            className="makeStyles-aliasName-9"
+            className="makeStyles-aliasName-11"
             color="textSecondary"
             component="span"
             variant="subtitle1"
