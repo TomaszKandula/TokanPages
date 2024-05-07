@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test component: testimonials should render correctly '<Testimonials />' when content is loaded. 1`] = `
+<section
+  class="makeStyles-section-1"
+>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-12"
+    >
+      <p
+        class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
+        data-aos="fade-down"
+      >
+        TESTIMONIALS
+      </p>
+    </div>
+    <div
+      class="MuiBox-root MuiBox-root-13"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+          data-aos="fade-up"
+          data-aos-delay="350"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+          >
+            <img
+              class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
+            />
+            <div
+              class="MuiCardContent-root makeStyles-card_content-6"
+            >
+              <p
+                class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+              >
+                Joanna
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+              >
+                Senior Digital Tax Specialist
+              </p>
+              <div
+                class="MuiCollapse-root"
+                style="min-height:120px"
+              >
+                <div
+                  class="MuiCollapse-wrapper"
+                >
+                  <div
+                    class="MuiCollapse-wrapperInner"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                    >
+                      Joe is very motivated...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-expanded="false"
+                aria-label="show more"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+          data-aos="fade-up"
+          data-aos-delay="150"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
+          >
+            <img
+              class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
+            />
+            <div
+              class="MuiCardContent-root makeStyles-card_content-6"
+            >
+              <p
+                class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+              >
+                Adama
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+              >
+                Full-stack Developer chez DFDS POLSKA
+              </p>
+              <div
+                class="MuiCollapse-root"
+                style="min-height:120px"
+              >
+                <div
+                  class="MuiCollapse-wrapper"
+                >
+                  <div
+                    class="MuiCollapse-wrapperInner"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                    >
+                      Joe have done very good work...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-expanded="false"
+                aria-label="show more"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+          data-aos="fade-up"
+          data-aos-delay="550"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
+          >
+            <img
+              class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
+            />
+            <div
+              class="MuiCardContent-root makeStyles-card_content-6"
+            >
+              <p
+                class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+              >
+                Scott
+              </p>
+              <p
+                class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+              >
+                BPO
+              </p>
+              <div
+                class="MuiCollapse-root"
+                style="min-height:120px"
+              >
+                <div
+                  class="MuiCollapse-wrapper"
+                >
+                  <div
+                    class="MuiCollapse-wrapperInner"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                    >
+                      Joe is one of those rare talents...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                aria-expanded="false"
+                aria-label="show more"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
