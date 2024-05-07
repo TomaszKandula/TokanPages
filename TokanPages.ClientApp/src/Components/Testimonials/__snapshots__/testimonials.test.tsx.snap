@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test component: testimonialsView should render correctly '<TestimonialsView />' when content is loaded. 1`] = `
+exports[`test component: testimonials should render correctly '<Testimonials />' when content is loaded. 1`] = `
 <section
   class="makeStyles-section-1"
 >
@@ -49,7 +49,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
                 Senior Digital Tax Specialist
               </p>
               <div
-                class="MuiCollapse-root MuiCollapse-entered"
+                class="MuiCollapse-root"
                 style="min-height:120px"
               >
                 <div
@@ -67,9 +67,9 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
                 </div>
               </div>
               <button
-                aria-expanded="true"
+                aria-expanded="false"
                 aria-label="show more"
-                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10"
                 tabindex="0"
                 type="button"
               >
@@ -120,7 +120,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
                 Full-stack Developer chez DFDS POLSKA
               </p>
               <div
-                class="MuiCollapse-root MuiCollapse-entered"
+                class="MuiCollapse-root"
                 style="min-height:120px"
               >
                 <div
@@ -138,9 +138,9 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
                 </div>
               </div>
               <button
-                aria-expanded="true"
+                aria-expanded="false"
                 aria-label="show more"
-                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10"
                 tabindex="0"
                 type="button"
               >
@@ -172,7 +172,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
           >
             <img
               class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/sections/testimonials/Scott"
+              src=" "
             />
             <div
               class="MuiCardContent-root makeStyles-card_content-6"
@@ -188,7 +188,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
                 BPO
               </p>
               <div
-                class="MuiCollapse-root MuiCollapse-entered"
+                class="MuiCollapse-root"
                 style="min-height:120px"
               >
                 <div
@@ -206,9 +206,9 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
                 </div>
               </div>
               <button
-                aria-expanded="true"
+                aria-expanded="false"
                 aria-label="show more"
-                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10"
                 tabindex="0"
                 type="button"
               >

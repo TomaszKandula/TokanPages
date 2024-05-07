@@ -1,3 +1,3 @@
 export { HideOnScroll } from "./HideOnScroll";
 export { ProgressOnScroll } from "./ProgressOnScroll";
-export { ScrollToTop } from "./ScrollToTop/scrollToTop";
+export { ScrollToTop, ClearPageStart } from "./ScrollToTop/scrollToTop";
