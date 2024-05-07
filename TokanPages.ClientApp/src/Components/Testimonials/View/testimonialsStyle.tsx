@@ -57,4 +57,14 @@ export const TestimonialsStyle = makeStyles(theme => ({
         marginTop: 15,
         color: Colours.colours.gray1,
     },
+    expand: {
+        transform: "rotate(0deg)",
+        marginLeft: "auto",
+        transition: theme.transitions.create("transform", {
+          duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expand_open: {
+        transform: "rotate(180deg)",
+    },
 }));
