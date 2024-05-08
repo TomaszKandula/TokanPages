@@ -1,32 +1,21 @@
 import { ContentDocumentState } from "../../States";
 
+const defaultValues = { 
+    isLoading: false,
+    content: {
+        language: "",
+        items: [],
+    },
+}
+
 export const ContentDocument: ContentDocumentState = {
-    contentPolicy: {
-        isLoading: false,
-        content: {
-            language: "",
-            items: [],
-        },
-    },
-    contentTerms: {
-        isLoading: false,
-        content: {
-            language: "",
-            items: [],
-        },
-    },
-    contentStory: {
-        isLoading: false,
-        content: {
-            language: "",
-            items: [],
-        },
-    },
-    contentShowcase: {
-        isLoading: false,
-        content: {
-            language: "",
-            items: [],
-        },
-    }
+    contentPolicy: defaultValues,
+    contentTerms: defaultValues,
+    contentStory: defaultValues,
+    contentShowcase: defaultValues,
+    contentBicycle: defaultValues,
+    contentFootball: defaultValues,
+    contentElectronics: defaultValues,
+    contentGuitar: defaultValues,
+    contentPhotography: defaultValues
 };

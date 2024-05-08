@@ -10,7 +10,17 @@ import {
     REQUEST_STORY,
     RECEIVE_STORY,
     REQUEST_SHOWCASE,
-    RECEIVE_SHOWCASE
+    RECEIVE_SHOWCASE,
+    REQUEST_BICYCLE,
+    RECEIVE_BICYCLE,
+    REQUEST_FOOTBALL,
+    RECEIVE_FOOTBALL,
+    REQUEST_ELECTRONICS,
+    RECEIVE_ELECTRONICS,
+    REQUEST_GUITAR,
+    RECEIVE_GUITAR,
+    REQUEST_PHOTOGRAPHY,
+    RECEIVE_PHOTOGRAPHY
 } from "../../Actions/Content/contentDocument";
 
 export const ContentDocument: Reducer<ContentDocumentState> = (
@@ -86,6 +96,86 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                     content: action.payload.content,
                 }
             };
+        case REQUEST_BICYCLE:
+            return {
+                ...state,
+                contentBicycle: {
+                    isLoading: true,
+                    content: state.contentBicycle?.content ?? fallback,
+                },
+            };
+        case RECEIVE_BICYCLE:
+            return {
+                ...state,
+                contentBicycle: {
+                    isLoading: false,
+                    content: action.payload.content,
+                }
+            };
+        case REQUEST_ELECTRONICS:
+            return {
+                ...state,
+                contentElectronics: {
+                    isLoading: true,
+                    content: state.contentElectronics?.content ?? fallback,
+                },
+            };
+        case RECEIVE_ELECTRONICS:
+            return {
+                ...state,
+                contentElectronics: {
+                    isLoading: false,
+                    content: action.payload.content,
+                }
+            };
+        case REQUEST_FOOTBALL:
+            return {
+                ...state,
+                contentFootball: {
+                    isLoading: true,
+                    content: state.contentFootball?.content ?? fallback,
+                },
+            };
+        case RECEIVE_FOOTBALL:
+            return {
+                ...state,
+                contentFootball: {
+                    isLoading: false,
+                    content: action.payload.content,
+                }
+            };
+        case REQUEST_GUITAR:
+            return {
+                ...state,
+                contentGuitar: {
+                    isLoading: true,
+                    content: state.contentGuitar?.content ?? fallback,
+                },
+            };
+        case RECEIVE_GUITAR:
+            return {
+                ...state,
+                contentGuitar: {
+                    isLoading: false,
+                    content: action.payload.content,
+                }
+            };
+        case REQUEST_PHOTOGRAPHY:
+            return {
+                ...state,
+                contentPhotography: {
+                    isLoading: true,
+                    content: state.contentPhotography?.content ?? fallback,
+                },
+            };
+        case RECEIVE_PHOTOGRAPHY:
+            return {
+                ...state,
+                contentPhotography: {
+                isLoading: false,
+                content: action.payload.content,
+                }
+        };
         default:
             return state;
     }
