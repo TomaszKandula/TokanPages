@@ -36,8 +36,12 @@ import {
     NewsletterUpdatePage,
     ActivationPage,
     WrongPage,
+    BicyclePage, 
+    ElectronicsPage, 
+    FootballPage, 
+    GuitarPage, 
+    PhotographyPage
 } from "./Pages";
-
 
 interface Properties {
     manifest: GetContentManifestDto;
@@ -77,6 +81,23 @@ const App = (props: Properties): JSX.Element => {
                         <Route exact path="/showcase">
                             <ShowcasePage />
                         </Route>
+
+                        <Route exact path="/bicycle">
+                            <BicyclePage />
+                        </Route>
+                        <Route exact path="/electronics">
+                            <ElectronicsPage />
+                        </Route>
+                        <Route exact path="/football">
+                            <FootballPage />
+                        </Route>
+                        <Route exact path="/guitar">
+                            <GuitarPage />
+                        </Route>
+                        <Route exact path="/photography">
+                            <PhotographyPage />
+                        </Route>
+
                         <Route exact path="/terms">
                             <TermsPage />
                         </Route>
