@@ -29,13 +29,26 @@ export const ArticleCard = (props: Properties): JSX.Element => {
 
     let flagImage = "";
     switch (props.languageIso.toLowerCase()) {
-        case "eng": flagImage = "eng.png"; break;
-        case "fra": flagImage = "fra.png"; break;
-        case "ger": flagImage = "ger.png"; break;
-        case "pol": flagImage = "pol.png"; break;
-        case "esp": flagImage = "esp.png"; break;
-        case "ukr": flagImage = "ukr.png"; break;
-        default: flagImage = "eng.png";
+        case "eng":
+            flagImage = "eng.png";
+            break;
+        case "fra":
+            flagImage = "fra.png";
+            break;
+        case "ger":
+            flagImage = "ger.png";
+            break;
+        case "pol":
+            flagImage = "pol.png";
+            break;
+        case "esp":
+            flagImage = "esp.png";
+            break;
+        case "ukr":
+            flagImage = "ukr.png";
+            break;
+        default:
+            flagImage = "eng.png";
     }
 
     return (

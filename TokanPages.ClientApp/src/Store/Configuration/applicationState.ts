@@ -39,15 +39,12 @@ import {
     ArticleUpdateState,
     UserPasswordUpdateState,
     ApplicationLanguageState,
-    ContentPolicyState,
-    ContentTermsState,
-    ContentStoryState,
+    ContentDocumentState,
     UserMediaUploadState,
     UserSignoutState,
     UserNotificationState,
     ContentTemplatesState,
     UserEmailVerificationState,
-    ContentShowcaseState,
     ContentArticleState,
 } from "../States";
 
@@ -73,11 +70,8 @@ export interface ApplicationState {
     contentHeader: ContentHeaderState;
     contentNavigation: ContentNavigationState;
     contentNewsletter: ContentNewsletterState;
-    contentPolicy: ContentPolicyState;
+    contentDocument: ContentDocumentState;
     contentResetPassword: ContentResetPasswordState;
-    contentStory: ContentStoryState;
-    contentShowcase: ContentShowcaseState;
-    contentTerms: ContentTermsState;
     contentTestimonials: ContentTestimonialsState;
     contentNewsletterRemove: ContentNewsletterRemoveState;
     contentUpdatePassword: ContentUpdatePasswordState;

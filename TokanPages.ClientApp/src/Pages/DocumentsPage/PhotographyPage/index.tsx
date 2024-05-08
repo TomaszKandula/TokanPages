@@ -1,34 +1,37 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { ApplicationState } from "../../Store/Configuration";
-import { Navigation, Footer } from "../../Components/Layout";
-import { DocumentContent } from "../../Components/Document";
+import { ApplicationState } from "../../../Store/Configuration";
+import { Navigation, Footer } from "../../../Components/Layout";
+import { DocumentContent } from "../../../Components/Document";
 
 import {
     ContentNavigationAction,
     ContentFooterAction,
-    ContentStoryAction,
+    ContentDocumentAction,
     ContentTemplatesAction,
-} from "../../Store/Actions";
+} from "../../../Store/Actions";
 
-export const StoryPage = (): JSX.Element => {
+export const PhotographyPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const story = useSelector((state: ApplicationState) => state.contentStory);
+    const document = useSelector((state: ApplicationState) => state.contentDocument);
 
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
-        dispatch(ContentStoryAction.get());
+        dispatch(ContentDocumentAction.getPhotography());
         dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
+
+    const isLoading = document?.contentPhotography?.isLoading ?? false;
+    const items = document?.contentPhotography?.content.items ?? [];
 
     return (
         <>
             <Navigation />
             <Container>
-                <DocumentContent content={story?.content} isLoading={story?.isLoading} />
+                <DocumentContent isLoading={isLoading} items={items} />
             </Container>
             <Footer />
         </>

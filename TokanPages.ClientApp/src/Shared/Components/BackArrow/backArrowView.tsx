@@ -12,12 +12,14 @@ export const BackArrowView = (props: BackArrowViewProps): JSX.Element => {
     const classes = BackArrowStyle();
     const path = props.backPathFragment ?? "/";
 
-    return (<>
-        <Link to={path}>
-            <IconButton className={classes.icon}>
-                <ArrowBack />
-            </IconButton>
-        </Link>
-        <Divider className={classes.divider} />
-    </>);
-}
+    return (
+        <>
+            <Link to={path}>
+                <IconButton className={classes.icon}>
+                    <ArrowBack />
+                </IconButton>
+            </Link>
+            <Divider className={classes.divider} />
+        </>
+    );
+};

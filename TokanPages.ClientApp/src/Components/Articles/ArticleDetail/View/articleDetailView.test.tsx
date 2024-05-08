@@ -19,8 +19,8 @@ describe("test articles group component: ArticleDetailView", () => {
                 textPublished: "Published at:",
                 textUpdated: "Updated at:",
                 textWritten: "Written by",
-                textAbout: "About the author:"
-            }
+                textAbout: "About the author:",
+            },
         };
 
         const tree = shallow(

@@ -25,13 +25,13 @@ export const ArticleDetailStyle = makeStyles(() => ({
         flexDirection: "row",
     },
     text_padding_left: {
-        paddingLeft: 5
+        paddingLeft: 5,
     },
     flag_image: {
         height: 18,
         width: 18,
         display: "flex",
-        alignSelf: "center"
+        alignSelf: "center",
     },
     grid_read_count: {
         display: "flex",
