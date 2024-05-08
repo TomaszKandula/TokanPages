@@ -2,10 +2,13 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { DocumentStyle } from "./documentStyle";
-import { ContentPolicyState, ContentTermsState, ContentStoryState, ContentShowcaseState } from "../../../Store/States";
 import { BackArrow, ProgressBar, RenderContent } from "../../../Shared/Components";
+import { TextItem } from "../../../Shared/Components/RenderContent/Models";
 
-type DocumentViewProps = ContentPolicyState | ContentTermsState | ContentStoryState | ContentShowcaseState;
+interface DocumentViewProps {
+    isLoading: boolean;
+    items: TextItem[];
+}   
 
 export const DocumentView = (props: DocumentViewProps): JSX.Element => {
     const classes = DocumentStyle();
@@ -17,7 +20,7 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
                         <BackArrow />
                     </div>
                     <div data-aos="fade-up">
-                        {props.isLoading ? <ProgressBar /> : <RenderContent items={props.content?.items} />}
+                        {props.isLoading ? <ProgressBar /> : <RenderContent items={props.items} />}
                     </div>
                 </Box>
             </Container>
