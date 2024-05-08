@@ -8,27 +8,30 @@ import { DocumentContent } from "../../Components/Document";
 import {
     ContentNavigationAction,
     ContentFooterAction,
-    ContentStoryAction,
+    ContentDocumentAction,
     ContentTemplatesAction,
 } from "../../Store/Actions";
 
 export const StoryPage = (): JSX.Element => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const story = useSelector((state: ApplicationState) => state.contentStory);
+    const document = useSelector((state: ApplicationState) => state.contentDocument);
 
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
-        dispatch(ContentStoryAction.get());
+        dispatch(ContentDocumentAction.getStory());
         dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
+
+    const isLoading = document?.contentStory?.isLoading ?? false;
+    const items = document?.contentStory?.content.items ?? [];
 
     return (
         <>
             <Navigation />
             <Container>
-                <DocumentContent content={story?.content} isLoading={story?.isLoading} />
+                <DocumentContent isLoading={isLoading} items={items} />
             </Container>
             <Footer />
         </>
