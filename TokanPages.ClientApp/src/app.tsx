@@ -98,20 +98,20 @@ const App = (props: Properties): JSX.Element => {
                         <Route exact path="/account">
                             <AccountPage />
                         </Route>
-                        <Route exact path="/resetpassword">
-                            <PasswordResetPage />
+                        <Route exact path="/accountactivation">
+                            <ActivationPage />
                         </Route>
                         <Route exact path="/updatepassword">
                             <PasswordUpdatePage />
                         </Route>
-                        <Route exact path="/remove-from-newsletter">
-                            <NewsletterRemovePage />
+                        <Route exact path="/resetpassword">
+                            <PasswordResetPage />
                         </Route>
                         <Route exact path="/update-newsletter">
                             <NewsletterUpdatePage />
                         </Route>
-                        <Route exact path="/accountactivation">
-                            <ActivationPage />
+                        <Route exact path="/remove-newsletter">
+                            <NewsletterRemovePage />
                         </Route>
                         <Route exact path="/albums" component={redirect500px} />
                         <Route component={WrongPage} />
