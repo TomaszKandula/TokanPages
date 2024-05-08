@@ -80,6 +80,11 @@ export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent/?name=story&type
 export const GET_TERMS_CONTENT = `${API_CONTENT_URI}/getContent/?name=terms&type=document`;
 export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent/?name=policy&type=document`;
 export const GET_SHOWCASE_CONTENT = `${API_CONTENT_URI}/getContent/?name=showcase&type=document`;
+export const GET_BICYCLE_CONTENT = `${API_CONTENT_URI}/getContent/?name=bicycle&type=document`;
+export const GET_ELECTRONICS_CONTENT = `${API_CONTENT_URI}/getContent/?name=electronics&type=document`;
+export const GET_FOOTBALL_CONTENT = `${API_CONTENT_URI}/getContent/?name=football&type=document`;
+export const GET_GUITAR_CONTENT = `${API_CONTENT_URI}/getContent/?name=guitar&type=document`;
+export const GET_PHOTOGRAPHY_CONTENT = `${API_CONTENT_URI}/getContent/?name=photography&type=document`;
 
 export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset/?id={id}&assetName=image.jpg`;
 
