@@ -23,7 +23,7 @@ export const Testimonials = (): JSX.Element => {
     }, [hasTestimonialThree]);
 
     return (
-        <TestimonialsView 
+        <TestimonialsView
             isLoading={testimonials?.isLoading}
             hasTestimonialOne={hasTestimonialOne}
             hasTestimonialTwo={hasTestimonialTwo}
@@ -47,4 +47,4 @@ export const Testimonials = (): JSX.Element => {
             text3={testimonials?.content?.text3}
         />
     );
-}
+};

@@ -1,7 +1,5 @@
 export type { ExecuteContract, GetContentContract, PromiseResultContract, RequestContract } from "./Abstractions";
-
 export { GetConfiguration, GetContent, Execute, ExecuteAsync } from "./Services";
-
 export {
     API_BASE_URI,
     GET_ARTICLES,
@@ -73,5 +71,13 @@ export {
     MAIN_ICON,
     MEDIUM_ICON,
     ARTICLE_PATH,
-    GET_FLAG_URL
+    GET_FLAG_URL,
+    GET_BICYCLE_CONTENT,
+    GET_ELECTRONICS_CONTENT,
+    GET_FOOTBALL_CONTENT,
+    GET_GUITAR_CONTENT,
+    GET_NON_VIDEO_ASSET,
+    GET_PHOTOGRAPHY_CONTENT,
+    GET_USER_VIDEO,
+    GET_VIDEO_ASSET,
 } from "./Paths";

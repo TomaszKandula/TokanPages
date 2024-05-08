@@ -49,11 +49,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
             <Container maxWidth="lg">
                 <Box pt={8} pb={10} textAlign="center" mb={5}>
                     <Typography className={classes.caption_text} data-aos="fade-down">
-                        {props.isLoading ? (
-                            <Skeleton variant="text" />
-                        ) : (
-                            props.caption?.toUpperCase()
-                        )}
+                        {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
                     </Typography>
                 </Box>
                 <Box pb={15} textAlign="center">
@@ -71,30 +67,14 @@ export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
                                 )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.name1
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.name1}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.occupation1
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.occupation1}
                                     </Typography>
-                                    <Collapse 
-                                        in={props.hasTestimonialOne}
-                                        collapsedSize={120} 
-                                        timeout="auto" 
-                                    >
+                                    <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
                                         <Typography className={classes.card_text}>
-                                            {props.isLoading ? (
-                                                <Skeleton variant="text" />
-                                            ) : (
-                                                props.text1
-                                            )}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.text1}
                                         </Typography>
                                     </Collapse>
                                     <IconButton
@@ -130,30 +110,14 @@ export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
                                 )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.name2
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.name2}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.occupation2
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.occupation2}
                                     </Typography>
-                                    <Collapse 
-                                        in={props.hasTestimonialTwo}
-                                        collapsedSize={120} 
-                                        timeout="auto" 
-                                    >
+                                    <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
                                         <Typography className={classes.card_text}>
-                                            {props.isLoading ? (
-                                                <Skeleton variant="text" />
-                                            ) : (
-                                                props.text2
-                                            )}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.text2}
                                         </Typography>
                                     </Collapse>
                                     <IconButton
@@ -189,30 +153,14 @@ export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
                                 )}
                                 <CardContent className={classes.card_content}>
                                     <Typography className={classes.card_title}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.name3
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.name3}
                                     </Typography>
                                     <Typography className={classes.card_subheader}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.occupation3
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.occupation3}
                                     </Typography>
-                                    <Collapse
-                                        in={props.hasTestimonialThree}
-                                        collapsedSize={120} 
-                                        timeout="auto" 
-                                    >
+                                    <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
                                         <Typography className={classes.card_text}>
-                                            {props.isLoading ? (
-                                                <Skeleton variant="text" />
-                                            ) : (
-                                                props.text3
-                                            )}
+                                            {props.isLoading ? <Skeleton variant="text" /> : props.text3}
                                         </Typography>
                                     </Collapse>
                                     <IconButton

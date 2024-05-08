@@ -53,11 +53,7 @@ export const ArticleDetailView = (props: Properties): JSX.Element => {
                                 </IconButton>
                             </Grid>
                             <Grid item xs={6} className={classes.grid_read_count}>
-                                <Typography
-                                    className={classes.text_read_count}
-                                    component="p"
-                                    variant="subtitle1"
-                                >
+                                <Typography className={classes.text_read_count} component="p" variant="subtitle1">
                                     {props.content.content.textReadCount}&nbsp;{props.articleReadCount}
                                 </Typography>
                             </Grid>

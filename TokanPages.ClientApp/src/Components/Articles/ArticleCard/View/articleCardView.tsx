@@ -23,8 +23,8 @@ export const ArticleCardView = (props: Properties): JSX.Element => {
     return (
         <div data-aos="fade-up">
             <Card elevation={0} className={classes.card}>
-                <CardMedia image={props.imageUrl} className={classes.card_image} >
-                    {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)} 
+                <CardMedia image={props.imageUrl} className={classes.card_image}>
+                    {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
                 </CardMedia>
                 <CardContent>
                     <Typography gutterBottom={true} className={classes.card_title}>

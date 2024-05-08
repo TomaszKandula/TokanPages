@@ -64,8 +64,7 @@ export const NavigationStyle = makeStyles(theme => ({
         marginRight: 30,
         alignSelf: "center",
     },
-    languages_control: {
-    },
+    languages_control: {},
     languages_selection: {
         color: Colours.colours.gray1,
         width: 120,
