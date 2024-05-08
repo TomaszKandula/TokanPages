@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import { ApplicationState } from "../../Store/Configuration";
-import { Navigation, Footer } from "../../Components/Layout";
-import { DocumentContent } from "../../Components/Document";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { Navigation, Footer } from "../../../../Components/Layout";
+import { DocumentContent } from "../../../../Components/Document";
 
 import {
     ContentNavigationAction,
     ContentFooterAction,
     ContentDocumentAction,
     ContentTemplatesAction,
-} from "../../Store/Actions";
+} from "../../../../Store/Actions";
 
 export const TermsPage = (): JSX.Element => {
     const dispatch = useDispatch();

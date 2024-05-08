@@ -6,12 +6,19 @@ export { MainPage } from "./MainPage";
 export { SigninPage } from "./SigninPage";
 export { SignoutPage } from "./SignoutPage";
 export { SignupPage } from "./SignupPage";
-export { PolicyPage } from "./PolicyPage";
-export { StoryPage } from "./StoryPage";
-export { TermsPage } from "./TermsPage";
 export { PasswordUpdatePage } from "./PasswordUpdatePage";
 export { PasswordResetPage } from "./PasswordResetPage";
 export { NewsletterRemovePage } from "./NewsletterRemovePage";
 export { NewsletterUpdatePage } from "./NewsletterUpdatePage";
 export { WrongPage } from "./WrongPage";
-export { BicyclePage, ElectronicsPage, FootballPage, GuitarPage, PhotographyPage, ShowcasePage } from "./DocumentsPage";
+export { 
+    BicyclePage, 
+    ElectronicsPage, 
+    FootballPage, 
+    GuitarPage, 
+    PhotographyPage, 
+    ShowcasePage,
+    StoryPage,
+    PolicyPage,
+    TermsPage 
+} from "./DocumentsPage";
