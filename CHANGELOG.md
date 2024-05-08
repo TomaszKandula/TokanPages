@@ -1,3 +1,26 @@
+# [0.86.0](https://github.com/TomaszKandula/TokanPages/compare/v0.85.0...v0.86.0) (2024-05-08)
+
+
+### Bug Fixes
+
+* resolve issues w/import paths ([379ce49](https://github.com/TomaszKandula/TokanPages/commit/379ce490fac15fb86d474d261a9e704c7f0ea044))
+
+
+### Features
+
+* add exports ([01ff74c](https://github.com/TomaszKandula/TokanPages/commit/01ff74ce0dfb4b372e11520b0b74eb2be987e11e))
+* add new routes ([d1bbcf3](https://github.com/TomaszKandula/TokanPages/commit/d1bbcf32f0c983272e8e2133174e7073f59eea28))
+* add redux store actions for new document pages ([534d37a](https://github.com/TomaszKandula/TokanPages/commit/534d37a7ec14d28b7c9349b681adaeb7fd337dfb))
+* align implementation to the store changes ([12a4044](https://github.com/TomaszKandula/TokanPages/commit/12a4044bf3c0feb8b473c4adab82b774662847cd))
+* create new pages ([5438698](https://github.com/TomaszKandula/TokanPages/commit/5438698bf465b75bda5b8637bda38ff142fad73b))
+* export new API paths ([a8601b1](https://github.com/TomaszKandula/TokanPages/commit/a8601b1392427173e7813e041237235e2211130f))
+* relocate routes for clarity ([02314fe](https://github.com/TomaszKandula/TokanPages/commit/02314fe71f93e99a9dbbc75ef5bd9035bd412044))
+* relocate showcase page ([ba324be](https://github.com/TomaszKandula/TokanPages/commit/ba324bea36ea9ab1792d1f4b26efb580c8b899ee))
+* relocate story and legal pages ([5969ec5](https://github.com/TomaszKandula/TokanPages/commit/5969ec5bbeb77133c1f7ce187532fd9bcace534a))
+* reorder pages for clarity ([44b0d9b](https://github.com/TomaszKandula/TokanPages/commit/44b0d9b5cd8103391c6da34ee3372cacc4cf86e1))
+* unify policy, terms, story and showcase in one action w/separate calls ([9211ea1](https://github.com/TomaszKandula/TokanPages/commit/9211ea1e067c57cc1c0e306929de117c76fe8b71))
+* update pages ([3f53259](https://github.com/TomaszKandula/TokanPages/commit/3f5325986a822c9e91e0e65c128fdf454f7c1074))
+
 # [0.85.0](https://github.com/TomaszKandula/TokanPages/compare/v0.84.0...v0.85.0) (2024-05-07)
 
 
