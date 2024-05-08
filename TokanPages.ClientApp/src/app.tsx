@@ -6,8 +6,8 @@ import { GetContentManifestDto } from "./Api/Models";
 import { UpdateUserData } from "./Shared/Services/initializeService";
 import { UpdateUserLanguage } from "./Shared/Services/languageService";
 import { AppStyle } from "./app.style";
-import { WrongPage } from "Pages";
-import { Routes } from "routes";
+import { WrongPage } from "./Pages";
+import { Routes } from "./routes";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {
