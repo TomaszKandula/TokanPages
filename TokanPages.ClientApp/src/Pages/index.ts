@@ -15,10 +15,4 @@ export { PasswordResetPage } from "./PasswordResetPage";
 export { NewsletterRemovePage } from "./NewsletterRemovePage";
 export { NewsletterUpdatePage } from "./NewsletterUpdatePage";
 export { WrongPage } from "./WrongPage";
-export { 
-    BicyclePage, 
-    ElectronicsPage, 
-    FootballPage, 
-    GuitarPage, 
-    PhotographyPage 
-} from "./DocumentsPage";
+export { BicyclePage, ElectronicsPage, FootballPage, GuitarPage, PhotographyPage } from "./DocumentsPage";

@@ -12,5 +12,5 @@ export interface ArticleContentDto {
         textUpdated: string;
         textWritten: string;
         textAbout: string;
-    }
+    };
 }

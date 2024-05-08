@@ -79,5 +79,5 @@ export {
     GET_NON_VIDEO_ASSET,
     GET_PHOTOGRAPHY_CONTENT,
     GET_USER_VIDEO,
-    GET_VIDEO_ASSET
+    GET_VIDEO_ASSET,
 } from "./Paths";

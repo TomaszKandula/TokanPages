@@ -23,7 +23,7 @@ describe("test component: documentView", () => {
                     language: "eng",
                     items: [textItem],
                 },
-            }
+            },
         };
 
         const isLoading = document.contentPolicy?.isLoading ?? false;
@@ -52,7 +52,7 @@ describe("test component: documentView", () => {
                     language: "eng",
                     items: [textItem],
                 },
-            }
+            },
         };
 
         const isLoading = document.contentTerms?.isLoading ?? false;
@@ -81,7 +81,7 @@ describe("test component: documentView", () => {
                     language: "eng",
                     items: [textItem],
                 },
-            }
+            },
         };
 
         const isLoading = document.contentStory?.isLoading ?? false;
@@ -110,7 +110,7 @@ describe("test component: documentView", () => {
                     language: "eng",
                     items: [textItem],
                 },
-            }
+            },
         };
 
         const isLoading = document.contentShowcase?.isLoading ?? false;

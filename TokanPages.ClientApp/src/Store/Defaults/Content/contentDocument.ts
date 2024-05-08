@@ -1,12 +1,12 @@
 import { ContentDocumentState } from "../../States";
 
-const defaultValues = { 
+const defaultValues = {
     isLoading: false,
     content: {
         language: "",
         items: [],
     },
-}
+};
 
 export const ContentDocument: ContentDocumentState = {
     contentPolicy: defaultValues,
@@ -17,5 +17,5 @@ export const ContentDocument: ContentDocumentState = {
     contentFootball: defaultValues,
     contentElectronics: defaultValues,
     contentGuitar: defaultValues,
-    contentPhotography: defaultValues
+    contentPhotography: defaultValues,
 };

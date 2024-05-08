@@ -9,13 +9,13 @@ import { AppStyle } from "./app.style";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import { 
-    ClearPageStart, 
-    ScrollToTop, 
-    ApplicationToast, 
-    ApplicationDialogBox, 
-    ApplicationUserInfo, 
-    ApplicationSession 
+import {
+    ClearPageStart,
+    ScrollToTop,
+    ApplicationToast,
+    ApplicationDialogBox,
+    ApplicationUserInfo,
+    ApplicationSession,
 } from "./Shared/Components";
 
 import {
@@ -36,11 +36,11 @@ import {
     NewsletterUpdatePage,
     ActivationPage,
     WrongPage,
-    BicyclePage, 
-    ElectronicsPage, 
-    FootballPage, 
-    GuitarPage, 
-    PhotographyPage
+    BicyclePage,
+    ElectronicsPage,
+    FootballPage,
+    GuitarPage,
+    PhotographyPage,
 } from "./Pages";
 
 interface Properties {

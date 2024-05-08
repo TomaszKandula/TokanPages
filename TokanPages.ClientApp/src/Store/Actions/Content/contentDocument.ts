@@ -1,16 +1,16 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
 import { DocumentContentDto } from "../../../Api/Models";
-import { 
-    GetContent, 
-    GET_POLICY_CONTENT, 
-    GET_TERMS_CONTENT, 
-    GET_STORY_CONTENT, 
-    GET_SHOWCASE_CONTENT, 
+import {
+    GetContent,
+    GET_POLICY_CONTENT,
+    GET_TERMS_CONTENT,
+    GET_STORY_CONTENT,
+    GET_SHOWCASE_CONTENT,
     GET_BICYCLE_CONTENT,
     GET_ELECTRONICS_CONTENT,
     GET_GUITAR_CONTENT,
     GET_PHOTOGRAPHY_CONTENT,
-    GET_FOOTBALL_CONTENT
+    GET_FOOTBALL_CONTENT,
 } from "../../../Api/Request";
 
 export const REQUEST_POLICY = "REQUEST_POLICY_CONTENT";
@@ -32,25 +32,63 @@ export const RECEIVE_GUITAR = "RECEIVE_GUITAR_CONTENT";
 export const REQUEST_PHOTOGRAPHY = "REQUEST_PHOTOGRAPHY_CONTENT";
 export const RECEIVE_PHOTOGRAPHY = "RECEIVE_PHOTOGRAPHY_CONTENT";
 
-interface Payload { payload: DocumentContentDto; }
-interface RequestPolicy { type: typeof REQUEST_POLICY; }
-interface ReceivePolicy extends Payload { type: typeof RECEIVE_POLICY; }
-interface RequestTerms { type: typeof REQUEST_TERMS; }
-interface ReceiveTerms extends Payload { type: typeof RECEIVE_TERMS; }
-interface RequestStory { type: typeof REQUEST_STORY; }
-interface ReceiveStory extends Payload { type: typeof RECEIVE_STORY; }
-interface RequestShowcase { type: typeof REQUEST_SHOWCASE; }
-interface ReceiveShowcase extends Payload { type: typeof RECEIVE_SHOWCASE; }
-interface RequestBicycle { type: typeof REQUEST_BICYCLE; }
-interface ReceiveBicycle extends Payload { type: typeof RECEIVE_BICYCLE; }
-interface RequestElectronics { type: typeof REQUEST_ELECTRONICS; }
-interface ReceiveElectronics extends Payload { type: typeof RECEIVE_ELECTRONICS; }
-interface RequestFootball { type: typeof REQUEST_FOOTBALL; }
-interface ReceiveFootball extends Payload { type: typeof RECEIVE_FOOTBALL; }
-interface RequestGuitar { type: typeof REQUEST_GUITAR; }
-interface ReceiveGuitar extends Payload { type: typeof RECEIVE_GUITAR; }
-interface RequestPhotography { type: typeof REQUEST_PHOTOGRAPHY; }
-interface ReceivePhotography extends Payload { type: typeof RECEIVE_PHOTOGRAPHY; }
+interface Payload {
+    payload: DocumentContentDto;
+}
+interface RequestPolicy {
+    type: typeof REQUEST_POLICY;
+}
+interface ReceivePolicy extends Payload {
+    type: typeof RECEIVE_POLICY;
+}
+interface RequestTerms {
+    type: typeof REQUEST_TERMS;
+}
+interface ReceiveTerms extends Payload {
+    type: typeof RECEIVE_TERMS;
+}
+interface RequestStory {
+    type: typeof REQUEST_STORY;
+}
+interface ReceiveStory extends Payload {
+    type: typeof RECEIVE_STORY;
+}
+interface RequestShowcase {
+    type: typeof REQUEST_SHOWCASE;
+}
+interface ReceiveShowcase extends Payload {
+    type: typeof RECEIVE_SHOWCASE;
+}
+interface RequestBicycle {
+    type: typeof REQUEST_BICYCLE;
+}
+interface ReceiveBicycle extends Payload {
+    type: typeof RECEIVE_BICYCLE;
+}
+interface RequestElectronics {
+    type: typeof REQUEST_ELECTRONICS;
+}
+interface ReceiveElectronics extends Payload {
+    type: typeof RECEIVE_ELECTRONICS;
+}
+interface RequestFootball {
+    type: typeof REQUEST_FOOTBALL;
+}
+interface ReceiveFootball extends Payload {
+    type: typeof RECEIVE_FOOTBALL;
+}
+interface RequestGuitar {
+    type: typeof REQUEST_GUITAR;
+}
+interface ReceiveGuitar extends Payload {
+    type: typeof RECEIVE_GUITAR;
+}
+interface RequestPhotography {
+    type: typeof REQUEST_PHOTOGRAPHY;
+}
+interface ReceivePhotography extends Payload {
+    type: typeof RECEIVE_PHOTOGRAPHY;
+}
 
 type Policy = RequestPolicy | ReceivePolicy;
 type Terms = RequestTerms | ReceiveTerms;
@@ -61,8 +99,7 @@ type Electronics = RequestElectronics | ReceiveElectronics;
 type Football = RequestFootball | ReceiveFootball;
 type Guitar = RequestGuitar | ReceiveGuitar;
 type Photography = RequestPhotography | ReceivePhotography;
-export type TKnownActions = Policy | Terms | Story | Showcase | Bicycle 
-| Electronics | Football | Guitar | Photography;
+export type TKnownActions = Policy | Terms | Story | Showcase | Bicycle | Electronics | Football | Guitar | Photography;
 
 export const ContentDocumentAction = {
     getPolicy: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {

@@ -14,6 +14,6 @@ export const ContentArticle: ContentArticleState = {
         textPublished: "",
         textUpdated: "",
         textWritten: "",
-        textAbout: ""
+        textAbout: "",
     },
 };

@@ -8,7 +8,7 @@ import { TextItem } from "../../../Shared/Components/RenderContent/Models";
 interface DocumentViewProps {
     isLoading: boolean;
     items: TextItem[];
-}   
+}
 
 export const DocumentView = (props: DocumentViewProps): JSX.Element => {
     const classes = DocumentStyle();

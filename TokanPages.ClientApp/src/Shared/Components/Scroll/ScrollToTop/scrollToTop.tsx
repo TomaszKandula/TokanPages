@@ -12,11 +12,11 @@ export const ClearPageStart = (props: Properties): JSX.Element => {
     const location = useLocation();
 
     React.useEffect(() => {
-        window.scrollTo({top: 0, left: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }, [location]);
 
     return <>{props.children}</>;
-}
+};
 
 export const ScrollToTop = (props: Properties): JSX.Element => {
     const classes = ScrollToTopStyle();

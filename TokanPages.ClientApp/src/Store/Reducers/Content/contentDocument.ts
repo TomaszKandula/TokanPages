@@ -1,12 +1,12 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ContentDocumentState } from "../../States";
-import { 
-    TKnownActions, 
-    RECEIVE_POLICY, 
-    REQUEST_POLICY, 
-    RECEIVE_TERMS, 
-    REQUEST_TERMS, 
+import {
+    TKnownActions,
+    RECEIVE_POLICY,
+    REQUEST_POLICY,
+    RECEIVE_TERMS,
+    REQUEST_TERMS,
     REQUEST_STORY,
     RECEIVE_STORY,
     REQUEST_SHOWCASE,
@@ -20,7 +20,7 @@ import {
     REQUEST_GUITAR,
     RECEIVE_GUITAR,
     REQUEST_PHOTOGRAPHY,
-    RECEIVE_PHOTOGRAPHY
+    RECEIVE_PHOTOGRAPHY,
 } from "../../Actions/Content/contentDocument";
 
 export const ContentDocument: Reducer<ContentDocumentState> = (
@@ -46,7 +46,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentPolicy: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_TERMS:
             return {
@@ -62,7 +62,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentTerms: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_STORY:
             return {
@@ -78,7 +78,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentStory: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_SHOWCASE:
             return {
@@ -94,7 +94,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentShowcase: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_BICYCLE:
             return {
@@ -110,7 +110,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentBicycle: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_ELECTRONICS:
             return {
@@ -126,7 +126,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentElectronics: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_FOOTBALL:
             return {
@@ -142,7 +142,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentFootball: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_GUITAR:
             return {
@@ -158,7 +158,7 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
                 contentGuitar: {
                     isLoading: false,
                     content: action.payload.content,
-                }
+                },
             };
         case REQUEST_PHOTOGRAPHY:
             return {
@@ -172,10 +172,10 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
             return {
                 ...state,
                 contentPhotography: {
-                isLoading: false,
-                content: action.payload.content,
-                }
-        };
+                    isLoading: false,
+                    content: action.payload.content,
+                },
+            };
         default:
             return state;
     }
