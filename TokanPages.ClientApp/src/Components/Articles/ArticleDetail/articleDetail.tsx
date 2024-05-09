@@ -15,7 +15,7 @@ import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
 interface Properties {
-    id: string;
+    title: string;
 }
 
 export const ArticleDetail = (props: Properties): JSX.Element => {
@@ -26,7 +26,7 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
     const user = useSelector((state: ApplicationState) => state.userDataStore);
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading) {
-        dispatch(ArticleSelectionAction.select(props.id));
+        dispatch(ArticleSelectionAction.select({ title: props.title }));
     }
 
     const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
@@ -77,12 +77,13 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
 
     React.useEffect(() => {
         if (selection.isLoading) return;
+        if (Validate.isEmpty(selection.article.id)) return;
         dispatch(
             ArticleUpdateAction.updateCount({
-                id: props.id,
+                id: selection.article.id,
             })
         );
-    }, [props.id, selection.isLoading]);
+    }, [selection.article.id, selection.isLoading]);
 
     React.useEffect(() => {
         const intervalId = setInterval(() => {
@@ -90,7 +91,7 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
 
             dispatch(
                 ArticleUpdateAction.updateLikes({
-                    id: props.id,
+                    id: selection.article.id,
                     addToLikes: userLikes,
                 })
             );

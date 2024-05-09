@@ -16,14 +16,15 @@ interface Properties {
 
 export const ArticleCard = (props: Properties): JSX.Element => {
     const content = useSelector((state: ApplicationState) => state.contentArticle);
-    const articleUrl = ARTICLE_PATH.replace("{id}", props.id);
+    const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
+    const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);
     const imageUrl = GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id);
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const onClickEvent = React.useCallback(() => {
-        dispatch(ArticleSelectionAction.select(props.id));
+        dispatch(ArticleSelectionAction.select({ id: props.id }));
         history.push(articleUrl);
     }, [props.id, articleUrl]);
 

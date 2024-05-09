@@ -21,7 +21,7 @@ const useQuery = () => {
 export const ArticlesPage = (): JSX.Element => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
-    const id = queryParam.get("id");
+    const title = queryParam.get("title");
 
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -35,8 +35,8 @@ export const ArticlesPage = (): JSX.Element => {
     return (
         <>
             <Navigation />
-            {id ? <ProgressOnScroll height={10} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
-            <Container>{id ? <ArticleDetail id={id} /> : <ArticleList />}</Container>
+            {title ? <ProgressOnScroll height={10} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
+            <Container>{title ? <ArticleDetail title={title} /> : <ArticleList />}</Container>
             <Footer />
         </>
     );
