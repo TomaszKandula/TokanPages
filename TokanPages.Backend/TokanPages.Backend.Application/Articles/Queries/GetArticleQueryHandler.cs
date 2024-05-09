@@ -35,13 +35,20 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var user = await _userService.GetUser(cancellationToken);
         var isAnonymousUser = user == null;
 
+        var requestId = Guid.Empty;
+        if (request.Id is not null)
+            requestId = (Guid)request.Id;
+
+        if (!string.IsNullOrWhiteSpace(request.Title))
+            requestId = await GetArticleIdByTitle(request.Title, cancellationToken);
+
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-        var textAsString = await GetArticleTextContent(request.Id, cancellationToken);
+        var textAsString = await GetArticleTextContent(requestId, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString, settings);
 
         var userLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
-            .Where(likes => likes.ArticleId == request.Id)
+            .Where(likes => likes.ArticleId == requestId)
             .WhereIfElse(isAnonymousUser,
                 likes => likes.IpAddress == _userService.GetRequestIpAddress(),
                 likes => likes.UserId == user!.UserId)
@@ -50,7 +57,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
         var totalLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
-            .Where(likes => likes.ArticleId == request.Id)
+            .Where(likes => likes.ArticleId == requestId)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 
@@ -59,7 +66,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             on articles.UserId equals userInfo.UserId
             join users in DatabaseContext.Users
             on articles.UserId equals users.Id
-            where articles.Id == request.Id
+            where articles.Id == requestId
             select new GetArticleQueryResult
             {
                 Id = articles.Id,
@@ -91,6 +98,16 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         return query;
+    }
+
+    private async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
+    {
+        var comparableTitle = title.Replace("-", " ").ToLower();
+        return await DatabaseContext.Articles
+            .AsNoTracking()
+            .Where(articles => articles.Title.ToLower() == comparableTitle)
+            .Select(articles => articles.Id)
+            .SingleOrDefaultAsync(cancellationToken);
     }
 
     private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)

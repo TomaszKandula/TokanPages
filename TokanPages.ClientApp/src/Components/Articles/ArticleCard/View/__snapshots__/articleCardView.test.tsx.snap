@@ -15,7 +15,7 @@ exports[`test articles group component: ArticleCardView should render correctly 
       <img
         alt=""
         className="makeStyles-flag_image-7"
-        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
+        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
       />
     </WithStyles(ForwardRef(CardMedia))>
     <WithStyles(ForwardRef(CardContent))>

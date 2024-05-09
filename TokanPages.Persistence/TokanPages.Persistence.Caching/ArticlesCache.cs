@@ -52,13 +52,29 @@ public class ArticlesCache : IArticlesCache
     public async Task<GetArticleQueryResult> GetArticle(Guid id, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetArticleQuery { Id = id});
+            return await _mediator.Send(new GetArticleQuery { Id = id });
 
         var key = $"{_environment.EnvironmentName}:article:{id}";
         var value = await _redisDistributedCache.GetObjectAsync<GetArticleQueryResult>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetArticleQuery { Id = id});
+        value = await _mediator.Send(new GetArticleQuery { Id = id });
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
+    public async Task<GetArticleQueryResult> GetArticle(string title, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetArticleQuery { Title = title });
+
+        var key = $"{_environment.EnvironmentName}:article:{title}";
+        var value = await _redisDistributedCache.GetObjectAsync<GetArticleQueryResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetArticleQuery { Title = title });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

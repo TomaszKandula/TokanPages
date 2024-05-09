@@ -8,7 +8,7 @@ namespace TokanPages.Tests.UnitTests.Validators.Articles;
 public class GetArticleQueryValidatorTest
 {
     [Fact]
-    public void GivenValidInput_WhenGetArticle_ShouldSucceed() 
+    public void GivenValidId_WhenGetArticle_ShouldSucceed() 
     {
         // Arrange
         var query = new GetArticleQuery { Id = Guid.NewGuid() };
@@ -22,7 +22,7 @@ public class GetArticleQueryValidatorTest
     }
 
     [Fact]
-    public void GivenEmptyInput_WhenGetArticle_ShouldThrowError()
+    public void GivenEmptyId_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
         var getArticleQuery = new GetArticleQuery { Id = Guid.Empty };
@@ -33,6 +33,65 @@ public class GetArticleQueryValidatorTest
 
         // Assert
         result.Errors.Count.Should().Be(1);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_GUID_VALUE));
+    }
+    [Fact]
+
+    public void GivenNoId_WhenGetArticle_ShouldSucceed()
+    {
+        // Arrange
+        var getArticleQuery = new GetArticleQuery { Id = null };
+
+        // Act
+        var validator = new GetArticleQueryValidator();
+        var result = validator.Validate(getArticleQuery);
+
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
+    
+    
+    [Fact]
+    public void GivenValidTitle_WhenGetArticle_ShouldSucceed()
+    {
+        // Arrange
+        var query = new GetArticleQuery { Title = "test-article" };
+
+        // Act
+        var validator = new GetArticleQueryValidator();
+        var result = validator.Validate(query);
+
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void GivenEmptyTitle_WhenGetArticle_ShouldThrowError()
+    {
+        // Arrange
+        var getArticleQuery = new GetArticleQuery { Title = "" };
+
+        // Act
+        var validator = new GetArticleQueryValidator();
+        var result = validator.Validate(getArticleQuery);
+
+        // Assert
+        result.Errors.Count.Should().Be(1);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
+    [Fact]
+
+    public void GivenNoTitle_WhenGetArticle_ShouldSucceed()
+    {
+        // Arrange
+        var getArticleQuery = new GetArticleQuery { Title = null };
+
+        // Act
+        var validator = new GetArticleQueryValidator();
+        var result = validator.Validate(getArticleQuery);
+
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
+    
 }

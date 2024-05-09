@@ -1,6 +1,14 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, GET_ARTICLE } from "../../../Api/Request";
+import Validate from "validate.js";
+import { 
+    Execute, 
+    GetConfiguration, 
+    ExecuteContract, 
+    RequestContract, 
+    GET_ARTICLE, 
+    GET_ARTICLE_BY_TITLE 
+} from "../../../Api/Request";
 
 export const RESET = "RESET_SELECTION";
 export const REQUEST = "REQUEST_ARTICLE";
@@ -22,11 +30,18 @@ export const ArticleSelectionAction = {
         dispatch({ type: RESET });
     },
     select:
-        (id: string): ApplicationAction<TKnownActions> =>
+        (props: {id?: string, title?: string}): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REQUEST });
 
-            const url = GET_ARTICLE.replace("{id}", id);
+            let url = "";
+            if (Validate.isDefined(props.id) && !Validate.isEmpty(props.id)) {
+                url = GET_ARTICLE.replace("{id}", props.id!);
+            }
+
+            if (Validate.isDefined(props.title) && !Validate.isEmpty(props.title)) {
+                url = GET_ARTICLE_BY_TITLE.replace("{title}", props.title?.toLowerCase()!);
+            }
 
             const request: RequestContract = {
                 configuration: {

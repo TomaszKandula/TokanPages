@@ -76,7 +76,7 @@ exports[`test component: featuresView should render correctly '<NavigationView /
                   <img
                     alt=""
                     class="makeStyles-flag_image-48"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
                   <div>
                     English
