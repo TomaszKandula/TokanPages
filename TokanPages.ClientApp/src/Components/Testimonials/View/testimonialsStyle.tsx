@@ -59,6 +59,7 @@ export const TestimonialsStyle = makeStyles(theme => ({
     },
     expand: {
         transform: "rotate(0deg)",
+        marginTop: 10,
         marginLeft: "auto",
         transition: theme.transitions.create("transform", {
             duration: theme.transitions.duration.shortest,

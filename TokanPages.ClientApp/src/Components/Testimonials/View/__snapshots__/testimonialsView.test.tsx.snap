@@ -172,7 +172,7 @@ exports[`test component: testimonialsView should render correctly '<Testimonials
           >
             <img
               class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/sections/testimonials/Scott"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
             />
             <div
               class="MuiCardContent-root makeStyles-card_content-6"

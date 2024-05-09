@@ -53,6 +53,18 @@ public class ArticlesController : ApiBaseController
         => await _articlesCache.GetArticle(id, noCache);
 
     /// <summary>
+    /// Returns single article.
+    /// </summary>
+    /// <param name="title">Normalized article title.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>Object.</returns>
+    [HttpGet]
+    [Route("{title}/[action]")]
+    [ProducesResponseType(typeof(GetArticleQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetArticleQueryResult> GetArticle([FromRoute] string title, [FromQuery] bool noCache = false)
+        => await _articlesCache.GetArticle(title, noCache);
+
+    /// <summary>
     /// Adds new article to the database.
     /// </summary>
     /// <param name="payload">Article data.</param>

@@ -153,7 +153,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             <img
               alt=""
               className="makeStyles-flag_image-8"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset/?blobName=images/flags/eng.png"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
             />
           </div>
           <WithStyles(ForwardRef(Typography))
