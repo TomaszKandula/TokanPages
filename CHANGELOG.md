@@ -1,3 +1,13 @@
+# [0.87.0](https://github.com/TomaszKandula/TokanPages/compare/v0.86.0...v0.87.0) (2024-05-09)
+
+
+### Features
+
+* add new API path ([bf75123](https://github.com/TomaszKandula/TokanPages/commit/bf751232fa659e8dc711d4ff05435e6ca4ecbddc))
+* allow to get article by normalized title ([8e2b467](https://github.com/TomaszKandula/TokanPages/commit/8e2b467635405992b523f9ad2a729aa5b71a4a7c))
+* extend validator ([3886715](https://github.com/TomaszKandula/TokanPages/commit/388671569dbf503ed7e39c978b4fb6b9c1a99e71))
+* replace query id param to title, use id internally only ([5a55b4d](https://github.com/TomaszKandula/TokanPages/commit/5a55b4d7be9513d1f7512a720c0b601074f81a48))
+
 # [0.86.0](https://github.com/TomaszKandula/TokanPages/compare/v0.85.0...v0.86.0) (2024-05-08)
 
 
