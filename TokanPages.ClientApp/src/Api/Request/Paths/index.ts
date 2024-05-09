@@ -12,6 +12,7 @@ const API_NON_VIDEO_ASSETS_URI = `${API_ASSETS_URI}/getNonVideoAsset`;
 
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;
 export const GET_ARTICLE = `${API_ARTICLES_URI}/{id}/getArticle`;
+export const GET_ARTICLE_BY_TITLE = `${API_ARTICLES_URI}/{title}/getArticle`;
 export const ADD_ARTICLE = `${API_ARTICLES_URI}/addArticle`;
 export const UPDATE_ARTICLE_CONTENT = `${API_ARTICLES_URI}/updateArticleContent`;
 export const UPDATE_ARTICLE_COUNT = `${API_ARTICLES_URI}/updateArticleCount`;
@@ -97,4 +98,4 @@ export const GET_FLAG_URL = `${API_NON_VIDEO_ASSETS_URI}/?blobName=images/flags`
 
 export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
 export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;
-export const ARTICLE_PATH = "/articles/?id={id}";
+export const ARTICLE_PATH = "/articles?title={title}";
