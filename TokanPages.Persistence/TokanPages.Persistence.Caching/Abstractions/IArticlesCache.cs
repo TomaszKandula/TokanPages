@@ -22,4 +22,12 @@ public interface IArticlesCache
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
     Task<GetArticleQueryResult> GetArticle(Guid id, bool noCache = false);
+
+    /// <summary>
+    /// Returns single article
+    /// </summary>
+    /// <param name="title">Normalized and queryable article title</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
+    Task<GetArticleQueryResult> GetArticle(string title, bool noCache = false);
 }
