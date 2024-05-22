@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
+import { CardMedia } from "@material-ui/core";
+import { GET_IMAGES_URL } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentHeaderState } from "../../../Store/States";
-import { GET_IMAGES_URL } from "../../../Api/Request";
-import { RenderImage } from "../../../Shared/Components";
+import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
@@ -37,39 +37,43 @@ const ActiveButton = (props: ContentHeaderState): JSX.Element => {
 export const HeaderView = (): JSX.Element => {
     const classes = HeaderStyle();
     const header = useSelector((state: ApplicationState) => state.contentHeader);
+    const imageUrl = (name: string) => {
+        if (name === "") return " ";
+        return `${GET_IMAGES_URL}/${name}`;
+    };
 
     return (
         <section className={classes.section}>
-            <Container maxWidth="lg">
-                <Grid container className={classes.top_margin}>
-                    <Grid item xs={12} sm={6}>
-                        <Box className={classes.image_box}>
+            <Grid container spacing={3}>
+                <Grid item xs={12} md={7}>
+                    {header?.isLoading ? (
+                        <Skeleton variant="rect" className={classes.image_skeleton} />
+                    ) : (
+                        <CardMedia
+                            image={imageUrl(header?.content?.photo)}
+                            component="img"
+                            className={classes.image_card}
+                        />
+                    )}
+                </Grid>
+                <Grid item xs={12} md={5} className={classes.section_container}>
+                    <Box className={classes.content_box}>
+                        <Typography component="span" className={classes.content_caption}>
+                            {header?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.content?.caption} />}
+                        </Typography>
+                        <Typography component="span" className={classes.content_description}>
+                            {header?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.content?.description} />}
+                        </Typography>
+                        <Box mt={4}>
                             {header?.isLoading ? (
-                                <Skeleton variant="circle" className={classes.image_skeleton} />
+                                <Skeleton variant="rect" height="48px" />
                             ) : (
-                                RenderImage(GET_IMAGES_URL, header?.content?.photo, classes.image)
+                                <ActiveButton {...header} />
                             )}
                         </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <Box className={classes.content_box}>
-                            <Typography variant="h3" gutterBottom={true}>
-                                {header?.isLoading ? <Skeleton variant="text" /> : header?.content?.caption}
-                            </Typography>
-                            <Typography variant="h6" className={classes.content_description}>
-                                {header?.isLoading ? <Skeleton variant="text" /> : header?.content?.description}
-                            </Typography>
-                            <Box mt={4}>
-                                {header?.isLoading ? (
-                                    <Skeleton variant="rect" height="48px" />
-                                ) : (
-                                    <ActiveButton {...header} />
-                                )}
-                            </Box>
-                        </Box>
-                    </Grid>
+                    </Box>
                 </Grid>
-            </Container>
+            </Grid>
         </section>
     );
 };
