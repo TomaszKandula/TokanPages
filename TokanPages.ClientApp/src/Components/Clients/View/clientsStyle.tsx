@@ -2,11 +2,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../Theme";
 
 export const ClientsStyle = makeStyles(theme => ({
-    divider: {
-        marginTop: 42,
-        height: 2,
-        backgroundColor: Colours.colours.lightGray1,
-    },
     caption: {
         textAlign: "center",
         fontSize: "2.0rem",
@@ -14,17 +9,20 @@ export const ClientsStyle = makeStyles(theme => ({
     },
     section: {
         backgroundColor: Colours.colours.white,
-        marginTop: 42,
-        marginBottom: 42,
+        paddingTop: 50,
+        paddingBottom: 50,
+        [theme.breakpoints.down(900)]: {
+            marginTop: 50,
+        },
     },
     logo: {
-        height: 48,
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
+        height: 50,
+        paddingLeft: "5%",
+        paddingRight: "5%",
         marginBottom: theme.spacing(4),
-        [theme.breakpoints.down("md")]: {
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
+        [theme.breakpoints.down(900)]: {
+            paddingLeft: "2%",
+            paddingRight: "2%",
         },
         color: Colours.colours.gray1,
     },

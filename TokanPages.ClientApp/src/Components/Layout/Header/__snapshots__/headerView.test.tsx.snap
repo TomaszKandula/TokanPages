@@ -5,57 +5,58 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
   class="makeStyles-section-1"
 >
   <div
-    class="MuiContainer-root MuiContainer-maxWidthLg"
+    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
   >
     <div
-      class="MuiGrid-root makeStyles-top_margin-2 MuiGrid-container"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
+    >
+      <img
+        class="MuiCardMedia-root makeStyles-image_card-8 MuiCardMedia-media MuiCardMedia-img"
+        src=" "
+      />
+    </div>
+    <div
+      class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
     >
       <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        class="MuiBox-root MuiBox-root-11 makeStyles-content_box-3"
       >
-        <div
-          class="MuiBox-root MuiBox-root-10 makeStyles-image_box-8"
-        />
-      </div>
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-11 makeStyles-content_box-5"
+        <span
+          class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
         >
-          <h3
-            class="MuiTypography-root MuiTypography-h3 MuiTypography-gutterBottom"
-          >
+          <div>
             Welcome to my web page
-          </h3>
-          <h6
-            class="MuiTypography-root makeStyles-content_description-6 MuiTypography-h6"
-          >
-            I do programming for a living...
-          </h6>
-          <div
-            class="MuiBox-root MuiBox-root-12"
-          >
-            <a
-              class="makeStyles-action_link-16"
-              href="/action-link"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-15"
-                tabindex="0"
-                type="button"
-              >
-                <span
-                  class="MuiButton-label"
-                >
-                  Read the story
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </button>
-            </a>
           </div>
+        </span>
+        <span
+          class="MuiTypography-root makeStyles-content_description-5 MuiTypography-body1"
+        >
+          <div>
+            I do programming for a living...
+          </div>
+        </span>
+        <div
+          class="MuiBox-root MuiBox-root-12"
+        >
+          <a
+            class="makeStyles-action_link-22"
+            href="/action-link"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-21"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                Read the story
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </a>
         </div>
       </div>
     </div>
