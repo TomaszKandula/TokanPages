@@ -2,7 +2,7 @@
 
 exports[`test component: featuresView should render correctly '<NavigationView />' when content is loaded. 1`] = `
 <header
-  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-1 mui-fixed MuiPaper-elevation4"
+  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-1 mui-fixed MuiPaper-elevation0"
 >
   <div
     class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-2 MuiToolbar-gutters"
@@ -37,20 +37,6 @@ exports[`test component: featuresView should render correctly '<NavigationView /
             class="MuiTouchRipple-root"
           />
         </button>
-      </div>
-      <div
-        class="MuiGrid-root makeStyles-app_link-7 MuiGrid-item MuiGrid-grid-xs-true"
-      >
-        <p
-          class="MuiTypography-root makeStyles-app_full_logo-3 MuiTypography-body1"
-        >
-          &lt;/&gt; tom kandula
-        </p>
-        <p
-          class="MuiTypography-root makeStyles-app_just_logo-4 MuiTypography-body1"
-        >
-          &lt;/&gt;
-        </p>
       </div>
       <div
         class="MuiGrid-root makeStyles-content_right_side-12 MuiGrid-item MuiGrid-grid-xs-true"
