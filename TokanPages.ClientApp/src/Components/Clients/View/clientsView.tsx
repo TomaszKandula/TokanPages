@@ -40,7 +40,6 @@ export const ClientsView = (): JSX.Element => {
 
     return (
         <>
-            <div className={classes.divider}></div>
             <section className={classes.section}>
                 <Container maxWidth="lg">
                     {clients?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}

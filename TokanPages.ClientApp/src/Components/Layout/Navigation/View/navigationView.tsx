@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
-import { FormControl, Grid, MenuItem, Select, Typography, Box } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, Box } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
@@ -54,6 +54,16 @@ const RenderAvatar = (props: BaseProperties): JSX.Element => {
 
 const RenderContent = (props: BaseProperties): JSX.Element => {
     const classes = NavigationStyle();
+    const RenderAvatarIconButton = (): JSX.Element => { 
+        return (
+            <div className={classes.user_avatar}>
+                <IconButton color="inherit" onClick={props.infoHandler}>
+                    <RenderAvatar {...props} />
+                </IconButton>
+            </div>
+        )
+    };
+
     return (
         <>
             <Box className={classes.languagesBox}>
@@ -63,11 +73,7 @@ const RenderContent = (props: BaseProperties): JSX.Element => {
                     styleSelect={classes.languages_selection}
                 />
             </Box>
-            <div className={classes.user_avatar}>
-                <IconButton color="inherit" onClick={props.infoHandler}>
-                    <RenderAvatar {...props} />
-                </IconButton>
-            </div>
+            {props.isAnonymous ? <></> : <RenderAvatarIconButton />}
         </>
     );
 };
@@ -107,19 +113,13 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
 
 export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
-    const fullName = "</> tom kandula";
-    const justLogo = "</>";
     return (
         <HideOnScroll {...props}>
-            <AppBar className={classes.app_bar}>
+            <AppBar className={classes.app_bar} elevation={0}>
                 <Toolbar className={classes.tool_bar}>
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
-                        </Grid>
-                        <Grid item xs className={classes.app_link}>
-                            <Typography className={classes.app_full_logo}>{fullName}</Typography>
-                            <Typography className={classes.app_just_logo}>{justLogo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
                             {props.isLoading ? null : <RenderContent {...props} />}
