@@ -9,20 +9,20 @@ export const ClientsStyle = makeStyles(theme => ({
     },
     section: {
         backgroundColor: Colours.colours.white,
-        paddingTop: 42,
-        paddingBottom: 42,
+        paddingTop: 50,
+        paddingBottom: 50,
         [theme.breakpoints.down(900)]: {
-            marginTop: 42,
+            marginTop: 50,
         },
     },
     logo: {
-        height: 48,
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
+        height: 50,
+        paddingLeft: "5%",
+        paddingRight: "5%",
         marginBottom: theme.spacing(4),
-        [theme.breakpoints.down("md")]: {
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
+        [theme.breakpoints.down(900)]: {
+            paddingLeft: "2%",
+            paddingRight: "2%",
         },
         color: Colours.colours.gray1,
     },

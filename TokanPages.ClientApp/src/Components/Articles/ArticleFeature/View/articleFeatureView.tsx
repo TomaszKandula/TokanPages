@@ -43,7 +43,7 @@ export const ArticleFeatureView = (): JSX.Element => {
 
     return (
         <section className={classes.section}>
-            <Container maxWidth="lg">
+            <Container maxWidth="xl">
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
                         <Typography className={classes.title}>
