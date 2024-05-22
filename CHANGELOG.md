@@ -1,3 +1,13 @@
+# [0.88.0](https://github.com/TomaszKandula/TokanPages/compare/v0.87.0...v0.88.0) (2024-05-22)
+
+
+### Features
+
+* change sizes ([3ec18f1](https://github.com/TomaszKandula/TokanPages/commit/3ec18f189005937152fe44ed866c2786bcb4051c))
+* remove divider, restyle ([a8edec9](https://github.com/TomaszKandula/TokanPages/commit/a8edec92ace4dff8df8febe3c8c5ab2c2533165f))
+* restyle header section ([5482bdb](https://github.com/TomaszKandula/TokanPages/commit/5482bdb1c1d885c36b3d9eafca358bca9df19a27))
+* restyle navigation bar ([2eced2a](https://github.com/TomaszKandula/TokanPages/commit/2eced2a62b43c22fa6304dd6d9dc3e9ec311f364))
+
 # [0.87.0](https://github.com/TomaszKandula/TokanPages/compare/v0.86.0...v0.87.0) (2024-05-09)
 
 
