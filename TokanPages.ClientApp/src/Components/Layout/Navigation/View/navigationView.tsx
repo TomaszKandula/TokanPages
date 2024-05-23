@@ -97,12 +97,18 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
                 value={props.languageId}
                 onChange={props.languageHandler}
                 className={props.styleSelect}
+                renderValue={(value) => 
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
+                        <div>{(value as string).toUpperCase()}</div>
+                    </div>
+                }
             >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                             {RenderImage(GET_FLAG_URL, `${item.id}.png`, classes.flag_image)}
-                            <div className={classes.language_name}>{item.name}</div>
+                            <div>{item.name}</div>
                         </div>
                     </MenuItem>
                 ))}
