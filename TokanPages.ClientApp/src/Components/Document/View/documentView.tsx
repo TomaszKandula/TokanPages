@@ -20,7 +20,7 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
                         <BackArrow />
                     </div>
                     <div data-aos="fade-up">
-                        {props.isLoading ? <ProgressBar /> : <RenderContent items={props.items} />}
+                        {props.isLoading ? <ProgressBar styleObject={{ marginTop: 30 }} /> : <RenderContent items={props.items} />}
                     </div>
                 </Box>
             </Container>
