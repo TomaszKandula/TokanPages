@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
-import { FormControl, Grid, MenuItem, Select, Box } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, Box, Typography } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
@@ -113,13 +113,23 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
 
 export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
+    const logo = "</>";
+    const name = "</> tom kandula";
     return (
         <HideOnScroll {...props}>
-            <AppBar className={classes.app_bar} elevation={0}>
+            <AppBar className={classes.app_bar} elevation={0} >
                 <Toolbar className={classes.tool_bar}>
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
+                        </Grid>
+                        <Grid item xs className={classes.content_right_side}>
+                            <Typography className={classes.app_full_logo}>
+                                {name}
+                            </Typography>
+                            <Typography className={classes.app_just_logo}>
+                                {logo}
+                            </Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
                             {props.isLoading ? null : <RenderContent {...props} />}

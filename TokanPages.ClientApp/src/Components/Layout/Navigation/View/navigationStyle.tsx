@@ -3,7 +3,7 @@ import { Colours } from "../../../../Theme";
 
 export const NavigationStyle = makeStyles(theme => ({
     app_bar: {
-        background: "transparent",
+        background: Colours.colours.white,
     },
     tool_bar: {
         justifyContent: "center",
