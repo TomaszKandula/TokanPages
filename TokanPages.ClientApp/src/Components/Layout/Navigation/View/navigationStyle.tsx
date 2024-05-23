@@ -3,7 +3,7 @@ import { Colours } from "../../../../Theme";
 
 export const NavigationStyle = makeStyles(theme => ({
     app_bar: {
-        background: "transparent",
+        background: Colours.colours.white,
     },
     tool_bar: {
         justifyContent: "center",
@@ -68,6 +68,15 @@ export const NavigationStyle = makeStyles(theme => ({
     languages_selection: {
         color: Colours.colours.black,
         width: 120,
+        [theme.breakpoints.down(700)]: {
+            width: 50,
+        },
+    },
+    language_name: {
+        display: "block",
+        [theme.breakpoints.down(700)]: {
+            display: "none",
+        },
     },
     content_right_side: {
         display: "flex",

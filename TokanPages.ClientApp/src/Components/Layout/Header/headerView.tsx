@@ -59,10 +59,18 @@ export const HeaderView = (): JSX.Element => {
                 <Grid item xs={12} md={5} className={classes.section_container}>
                     <Box className={classes.content_box}>
                         <Typography component="span" className={classes.content_caption}>
-                            {header?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.content?.caption} />}
+                            {header?.isLoading ? (
+                                <Skeleton variant="text" />
+                            ) : (
+                                <ReactHtmlParser html={header?.content?.caption} />
+                            )}
                         </Typography>
                         <Typography component="span" className={classes.content_description}>
-                            {header?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.content?.description} />}
+                            {header?.isLoading ? (
+                                <Skeleton variant="text" />
+                            ) : (
+                                <ReactHtmlParser html={header?.content?.description} />
+                            )}
                         </Typography>
                         <Box mt={4}>
                             {header?.isLoading ? (

@@ -5,6 +5,7 @@ exports[`test progress bar component should correctly render 'CenteredCircularLo
   alignItems="center"
   display="flex"
   justifyContent="center"
+  style={Object {}}
 >
   <Styled(MuiBox)
     m="auto"

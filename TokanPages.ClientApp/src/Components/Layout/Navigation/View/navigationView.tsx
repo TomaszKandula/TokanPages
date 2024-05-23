@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
-import { FormControl, Grid, MenuItem, Select, Box } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, Box, Typography } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
@@ -54,14 +54,14 @@ const RenderAvatar = (props: BaseProperties): JSX.Element => {
 
 const RenderContent = (props: BaseProperties): JSX.Element => {
     const classes = NavigationStyle();
-    const RenderAvatarIconButton = (): JSX.Element => { 
+    const RenderAvatarIconButton = (): JSX.Element => {
         return (
             <div className={classes.user_avatar}>
                 <IconButton color="inherit" onClick={props.infoHandler}>
                     <RenderAvatar {...props} />
                 </IconButton>
             </div>
-        )
+        );
     };
 
     return (
@@ -102,7 +102,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                             {RenderImage(GET_FLAG_URL, `${item.id}.png`, classes.flag_image)}
-                            <div>{item.name}</div>
+                            <div className={classes.language_name}>{item.name}</div>
                         </div>
                     </MenuItem>
                 ))}
@@ -113,6 +113,8 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
 
 export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
+    const logo = "</>";
+    const name = "</> tom kandula";
     return (
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar} elevation={0}>
@@ -120,6 +122,10 @@ export const NavigationView = (props: Properties): JSX.Element => {
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
+                        </Grid>
+                        <Grid item xs className={classes.content_right_side}>
+                            <Typography className={classes.app_full_logo}>{name}</Typography>
+                            <Typography className={classes.app_just_logo}>{logo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
                             {props.isLoading ? null : <RenderContent {...props} />}
