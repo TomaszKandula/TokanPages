@@ -1,3 +1,20 @@
+# [0.89.0](https://github.com/TomaszKandula/TokanPages/compare/v0.88.0...v0.89.0) (2024-05-23)
+
+
+### Bug Fixes
+
+* allow to use custom style, add margin ([cded018](https://github.com/TomaszKandula/TokanPages/commit/cded018cdb848d64368a93e14f2bc708b39bf426))
+* remove unnecessary container ([5d20fb6](https://github.com/TomaszKandula/TokanPages/commit/5d20fb6aa912751149316ab95bafbe6453df5eff))
+
+
+### Features
+
+* change button colour ([c73ec7d](https://github.com/TomaszKandula/TokanPages/commit/c73ec7d57ff616b5f0422912785cc203b86161a5))
+* change colours ([6c694b6](https://github.com/TomaszKandula/TokanPages/commit/6c694b6fa7e1009658acc54f485094a15610b2f5))
+* change navigation bar colour, put logo/name on it ([fa1cbff](https://github.com/TomaszKandula/TokanPages/commit/fa1cbff35894029fbb64ced52ffa4e7ddf7a950b))
+* change progress on scroll height ([47b8e53](https://github.com/TomaszKandula/TokanPages/commit/47b8e53bbde42e66ea40daeb47e37a72f8b2fcc9))
+* hide language name for small screens ([554e298](https://github.com/TomaszKandula/TokanPages/commit/554e29830e5b6d2c42a4d0286b4f75d8942719e6))
+
 # [0.88.0](https://github.com/TomaszKandula/TokanPages/compare/v0.87.0...v0.88.0) (2024-05-22)
 
 
