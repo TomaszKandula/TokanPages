@@ -138,7 +138,6 @@ export const NavigationView = (props: Properties): JSX.Element => {
                         </Grid>
                     </Grid>
                 </Toolbar>
-
                 <SideMenuView
                     drawerState={props.drawerState}
                     closeHandler={props.closeHandler}
