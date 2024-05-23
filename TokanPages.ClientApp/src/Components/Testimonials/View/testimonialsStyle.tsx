@@ -8,7 +8,7 @@ export const TestimonialsStyle = makeStyles(theme => ({
     caption_text: {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: Colours.colours.darkViolet1,
+        color: Colours.colours.violet,
     },
     card: {
         minHeight: 340,
@@ -49,7 +49,7 @@ export const TestimonialsStyle = makeStyles(theme => ({
         textAlign: "center",
         fontSize: "1.0rem",
         lineHeight: "2.0",
-        color: Colours.colours.darkViolet1,
+        color: Colours.colours.violet,
     },
     card_text: {
         textAlign: "left",

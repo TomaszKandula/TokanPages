@@ -22,7 +22,7 @@ export const ArticleFeatureStyle = makeStyles(theme => ({
     title: {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: Colours.colours.darkViolet1,
+        color: Colours.colours.violet,
     },
     text1: {
         fontSize: "1.5rem",
