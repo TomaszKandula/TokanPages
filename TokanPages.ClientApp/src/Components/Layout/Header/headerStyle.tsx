@@ -30,7 +30,7 @@ export const HeaderStyle = makeStyles(theme => ({
         },
     },
     content_caption: {
-        fontSize: "3.5rem"
+        fontSize: "3.5rem",
     },
     content_description: {
         color: Colours.colours.black,

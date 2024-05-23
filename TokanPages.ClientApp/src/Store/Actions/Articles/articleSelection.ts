@@ -1,13 +1,13 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
-import { 
-    Execute, 
-    GetConfiguration, 
-    ExecuteContract, 
-    RequestContract, 
-    GET_ARTICLE, 
-    GET_ARTICLE_BY_TITLE 
+import {
+    Execute,
+    GetConfiguration,
+    ExecuteContract,
+    RequestContract,
+    GET_ARTICLE,
+    GET_ARTICLE_BY_TITLE,
 } from "../../../Api/Request";
 
 export const RESET = "RESET_SELECTION";
@@ -30,7 +30,7 @@ export const ArticleSelectionAction = {
         dispatch({ type: RESET });
     },
     select:
-        (props: {id?: string, title?: string}): ApplicationAction<TKnownActions> =>
+        (props: { id?: string; title?: string }): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REQUEST });
 

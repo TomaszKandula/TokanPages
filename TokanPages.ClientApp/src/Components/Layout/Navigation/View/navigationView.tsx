@@ -54,14 +54,14 @@ const RenderAvatar = (props: BaseProperties): JSX.Element => {
 
 const RenderContent = (props: BaseProperties): JSX.Element => {
     const classes = NavigationStyle();
-    const RenderAvatarIconButton = (): JSX.Element => { 
+    const RenderAvatarIconButton = (): JSX.Element => {
         return (
             <div className={classes.user_avatar}>
                 <IconButton color="inherit" onClick={props.infoHandler}>
                     <RenderAvatar {...props} />
                 </IconButton>
             </div>
-        )
+        );
     };
 
     return (
@@ -117,19 +117,15 @@ export const NavigationView = (props: Properties): JSX.Element => {
     const name = "</> tom kandula";
     return (
         <HideOnScroll {...props}>
-            <AppBar className={classes.app_bar} elevation={0} >
+            <AppBar className={classes.app_bar} elevation={0}>
                 <Toolbar className={classes.tool_bar}>
                     <Grid container item xs={12} spacing={3}>
                         <Grid item xs className={classes.nav_menu}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            <Typography className={classes.app_full_logo}>
-                                {name}
-                            </Typography>
-                            <Typography className={classes.app_just_logo}>
-                                {logo}
-                            </Typography>
+                            <Typography className={classes.app_full_logo}>{name}</Typography>
+                            <Typography className={classes.app_just_logo}>{logo}</Typography>
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
                             {props.isLoading ? null : <RenderContent {...props} />}
