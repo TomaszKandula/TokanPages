@@ -15,7 +15,7 @@ exports[`test component: featuresView should render correctly '<NavigationView /
       >
         <button
           aria-label="menu"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-19 MuiIconButton-colorInherit"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-20 MuiIconButton-colorInherit"
           tabindex="0"
           type="button"
         >
@@ -39,16 +39,30 @@ exports[`test component: featuresView should render correctly '<NavigationView /
         </button>
       </div>
       <div
-        class="MuiGrid-root makeStyles-content_right_side-12 MuiGrid-item MuiGrid-grid-xs-true"
+        class="MuiGrid-root makeStyles-content_right_side-13 MuiGrid-item MuiGrid-grid-xs-true"
+      >
+        <p
+          class="MuiTypography-root makeStyles-app_full_logo-3 MuiTypography-body1"
+        >
+          &lt;/&gt; tom kandula
+        </p>
+        <p
+          class="MuiTypography-root makeStyles-app_just_logo-4 MuiTypography-body1"
+        >
+          &lt;/&gt;
+        </p>
+      </div>
+      <div
+        class="MuiGrid-root makeStyles-content_right_side-13 MuiGrid-item MuiGrid-grid-xs-true"
       >
         <div
-          class="MuiBox-root MuiBox-root-40 makeStyles-languagesBox-35"
+          class="MuiBox-root MuiBox-root-43 makeStyles-languagesBox-37"
         >
           <div
-            class="MuiFormControl-root makeStyles-languages_control-36"
+            class="MuiFormControl-root makeStyles-languages_control-38"
           >
             <div
-              class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-37 MuiInputBase-formControl MuiInput-formControl"
+              class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-39 MuiInputBase-formControl MuiInput-formControl"
             >
               <div
                 aria-haspopup="listbox"
@@ -61,10 +75,12 @@ exports[`test component: featuresView should render correctly '<NavigationView /
                 >
                   <img
                     alt=""
-                    class="makeStyles-flag_image-48"
+                    class="makeStyles-flag_image-51"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
-                  <div>
+                  <div
+                    class="makeStyles-language_name-55"
+                  >
                     English
                   </div>
                 </div>
@@ -89,7 +105,7 @@ exports[`test component: featuresView should render correctly '<NavigationView /
           </div>
         </div>
         <div
-          class="makeStyles-user_avatar-39"
+          class="makeStyles-user_avatar-42"
         >
           <button
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"

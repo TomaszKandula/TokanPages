@@ -8,7 +8,7 @@ export const FeaturedStyle = makeStyles(() => ({
     caption_text: {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: Colours.colours.darkViolet1,
+        color: Colours.colours.violet,
     },
     card: {
         borderRadius: 15,

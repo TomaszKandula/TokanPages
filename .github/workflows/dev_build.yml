@@ -53,7 +53,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Log to Azure Cloud
-      uses: Azure/login@v1.6.1
+      uses: Azure/login@v2.1.0
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 

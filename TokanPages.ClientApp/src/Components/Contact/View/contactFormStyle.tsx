@@ -8,7 +8,7 @@ export const ContactFormStyle = makeStyles(() => ({
     caption: {
         textAlign: "center",
         fontSize: "2.0rem",
-        color: Colours.colours.darkViolet1,
+        color: Colours.colours.violet,
     },
     button: {
         "&:hover": {
