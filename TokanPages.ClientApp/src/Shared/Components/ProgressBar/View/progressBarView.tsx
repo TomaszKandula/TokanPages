@@ -8,7 +8,7 @@ interface ProgressBarViewProps {
 
 export const ProgressBarView = (props: ProgressBarViewProps): JSX.Element => {
     const classes = ProgressBarStyle();
-    const externalStyle = props.styleObject !== undefined ? props.styleObject : { };
+    const externalStyle = props.styleObject !== undefined ? props.styleObject : {};
     return (
         <Box display="flex" alignItems="center" justifyContent="center" style={externalStyle}>
             <Box m="auto">
