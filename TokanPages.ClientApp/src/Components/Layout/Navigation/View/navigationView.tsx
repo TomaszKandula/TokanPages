@@ -102,7 +102,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                             {RenderImage(GET_FLAG_URL, `${item.id}.png`, classes.flag_image)}
-                            <div>{item.name}</div>
+                            <div className={classes.language_name}>{item.name}</div>
                         </div>
                     </MenuItem>
                 ))}
