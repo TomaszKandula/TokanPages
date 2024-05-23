@@ -55,11 +55,11 @@ export const HeaderStyle = makeStyles(theme => ({
     },
     action_button: {
         "&:hover": {
-            color: Colours.colours.lightViolet,
+            color: Colours.colours.white,
             background: Colours.colours.darkViolet1,
         },
-        color: Colours.colours.darkViolet1,
-        background: Colours.colours.lightViolet,
+        color: Colours.colours.white,
+        background: Colours.colours.violet,
         [theme.breakpoints.down("xs")]: {
             width: "100%",
         },
