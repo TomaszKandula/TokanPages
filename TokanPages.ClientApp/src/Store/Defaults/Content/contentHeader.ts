@@ -6,6 +6,7 @@ export const ContentHeader: ContentHeaderState = {
         language: "",
         photo: "",
         caption: "",
+        subtitle: "",
         description: "",
         action: {
             text: "",
