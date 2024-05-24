@@ -89,6 +89,14 @@ const RenderMenuIcon = (props: Properties): JSX.Element => {
 
 const RenderLanguageSelection = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
+    const toUpper = (value?: any): string | undefined => {
+        if (value !== undefined) {
+            return (value as string).toUpperCase();
+        }
+
+        return undefined;
+    };
+
     return (
         <FormControl className={props.styleControl}>
             <Select
@@ -97,12 +105,12 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
                 value={props.languageId}
                 onChange={props.languageHandler}
                 className={props.styleSelect}
-                renderValue={(value) => 
+                renderValue={value => (
                     <div style={{ display: "flex", alignItems: "center" }}>
                         {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
-                        <div>{(value as string).toUpperCase()}</div>
+                        <div>{toUpper(value)}</div>
                     </div>
-                }
+                )}
             >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
