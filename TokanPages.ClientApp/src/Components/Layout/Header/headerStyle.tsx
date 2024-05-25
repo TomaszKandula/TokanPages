@@ -11,6 +11,7 @@ export const HeaderStyle = makeStyles(theme => ({
     },
     content_box: {
         marginTop: "auto",
+        marginRight: 30,
         paddingTop: 60,
         paddingBottom: 60,
         paddingLeft: 80,
@@ -27,15 +28,26 @@ export const HeaderStyle = makeStyles(theme => ({
             maxWidth: 900,
             padding: 15,
             marginLeft: 0,
+            marginRight: 0,
         },
     },
     content_caption: {
-        fontSize: "3.5rem",
+        color: Colours.colours.gray3,
+        fontSize: "3.4rem",
+        fontWeight: 700,
+        lineHeight: 1.5,
+    },
+    content_subtitle: {
+        color: Colours.colours.gray3,
+        fontSize: "1.4rem",
+        fontWeight: 700,
+        lineHeight: 1.5,
     },
     content_description: {
-        color: Colours.colours.black,
+        color: Colours.colours.gray3,
         fontSize: "1.125rem",
         fontWeight: 400,
+        lineHeight: 1.5,
     },
     image_skeleton: {
         height: 300,

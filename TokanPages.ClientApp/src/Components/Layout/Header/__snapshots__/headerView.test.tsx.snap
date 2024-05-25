@@ -11,7 +11,7 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
     >
       <img
-        class="MuiCardMedia-root makeStyles-image_card-8 MuiCardMedia-media MuiCardMedia-img"
+        class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
         src=" "
       />
     </div>
@@ -19,7 +19,7 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
       class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
     >
       <div
-        class="MuiBox-root MuiBox-root-11 makeStyles-content_box-3"
+        class="MuiBox-root MuiBox-root-12 makeStyles-content_box-3"
       >
         <span
           class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
@@ -29,21 +29,26 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
           </div>
         </span>
         <span
-          class="MuiTypography-root makeStyles-content_description-5 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
+        >
+          <div />
+        </span>
+        <span
+          class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
         >
           <div>
             I do programming for a living...
           </div>
         </span>
         <div
-          class="MuiBox-root MuiBox-root-12"
+          class="MuiBox-root MuiBox-root-13"
         >
           <a
-            class="makeStyles-action_link-22"
+            class="makeStyles-action_link-24"
             href="/action-link"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-21"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-23"
               tabindex="0"
               type="button"
             >
