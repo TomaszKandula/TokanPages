@@ -55,7 +55,7 @@ export const ArticleFeatureView = (): JSX.Element => {
                             <Grid item xs={12} lg={6} className={classes.content}>
                                 <Card elevation={0} className={classes.card}>
                                     <CardContent className={classes.card_content}>
-                                        <Box display="flex" flexDirection="column" height="100%" pt={2} px={2}>
+                                        <Box display="flex" flexDirection="column" pt={2} px={2}>
                                             <Typography className={classes.text1}>
                                                 {features?.isLoading ? (
                                                     <Skeleton variant="text" />
@@ -63,7 +63,7 @@ export const ArticleFeatureView = (): JSX.Element => {
                                                     features?.content?.text1
                                                 )}
                                             </Typography>
-                                            <Box mt="auto" mb={2}>
+                                            <Box mt={2} mb={5}>
                                                 <Typography className={classes.text2}>
                                                     {features?.isLoading ? (
                                                         <Skeleton variant="text" />
@@ -72,7 +72,7 @@ export const ArticleFeatureView = (): JSX.Element => {
                                                     )}
                                                 </Typography>
                                             </Box>
-                                            <Box textAlign="right">
+                                            <Box pt={0} textAlign="right">
                                                 {features?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
                                                 ) : (

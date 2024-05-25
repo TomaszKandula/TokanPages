@@ -65,6 +65,13 @@ export const HeaderView = (): JSX.Element => {
                                 <ReactHtmlParser html={header?.content?.caption} />
                             )}
                         </Typography>
+                        <Typography component="span" className={classes.content_subtitle}>
+                            {header?.isLoading ? (
+                                <Skeleton variant="text" />
+                            ) : (
+                                <ReactHtmlParser html={header?.content?.subtitle} />
+                            )}
+                        </Typography>
                         <Typography component="span" className={classes.content_description}>
                             {header?.isLoading ? (
                                 <Skeleton variant="text" />
