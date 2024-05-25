@@ -35,19 +35,19 @@ export const HeaderStyle = makeStyles(theme => ({
         color: Colours.colours.gray3,
         fontSize: "3.4rem",
         fontWeight: 700,
-        lineHeight: 1.2,
+        lineHeight: 1.5,
     },
     content_subtitle: {
         color: Colours.colours.gray3,
         fontSize: "1.4rem",
         fontWeight: 700,
-        lineHeight: 1.2,
+        lineHeight: 1.5,
     },
     content_description: {
         color: Colours.colours.gray3,
         fontSize: "1.125rem",
         fontWeight: 400,
-        lineHeight: 1.2,
+        lineHeight: 1.5,
     },
     image_skeleton: {
         height: 300,
