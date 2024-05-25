@@ -1,3 +1,13 @@
+# [0.91.0](https://github.com/TomaszKandula/TokanPages/compare/v0.90.0...v0.91.0) (2024-05-25)
+
+
+### Features
+
+* add new property for the remote content ([4ab8f19](https://github.com/TomaszKandula/TokanPages/commit/4ab8f19454612053a875d4ba661e129ef3b8a5c7))
+* add subtitle, restyle ([722b9c9](https://github.com/TomaszKandula/TokanPages/commit/722b9c955db6bbed3e22a25face51d591d16fea7))
+* change line height ([d5d6bad](https://github.com/TomaszKandula/TokanPages/commit/d5d6bad3079e0d1554d47b18b83bdf39f3fb1815))
+* restyle ([dd89cfa](https://github.com/TomaszKandula/TokanPages/commit/dd89cfa662922e7f0112524cbd32a22e9f29e267))
+
 # [0.90.0](https://github.com/TomaszKandula/TokanPages/compare/v0.89.0...v0.90.0) (2024-05-24)
 
 
