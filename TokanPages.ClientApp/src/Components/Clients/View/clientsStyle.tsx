@@ -11,9 +11,6 @@ export const ClientsStyle = makeStyles(theme => ({
         backgroundColor: Colours.colours.white,
         paddingTop: 50,
         paddingBottom: 50,
-        [theme.breakpoints.down(900)]: {
-            marginTop: 50,
-        },
     },
     logo: {
         height: 50,
