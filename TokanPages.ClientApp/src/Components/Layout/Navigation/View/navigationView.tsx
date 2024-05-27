@@ -4,9 +4,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
-import { FormControl, Grid, MenuItem, Select, Box, Typography } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, Box } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
-import { GET_FLAG_URL } from "../../../../Api/Request";
+import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
@@ -27,6 +27,7 @@ interface BaseProperties extends ViewProperties {
     avatarName: string;
     avatarSource: string;
     userAliasText: string;
+    logoImgName: string;
     languages: ApplicationLanguageState;
     languageId: string;
     languageHandler: (event: LanguageChangeEvent) => void;
@@ -127,8 +128,6 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
 
 export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
-    const logo = "</>";
-    const name = "</> tom kandula";
     return (
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar} elevation={0}>
@@ -138,8 +137,8 @@ export const NavigationView = (props: Properties): JSX.Element => {
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            <Typography className={classes.app_full_logo}>{name}</Typography>
-                            <Typography className={classes.app_just_logo}>{logo}</Typography>
+                            {RenderImage(GET_ICONS_URL, props.logoImgName, classes.app_full_logo)}
+                            {RenderImage(GET_ICONS_URL, props.menu.image, classes.app_just_logo)}
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
                             {props.isLoading ? null : <RenderContent {...props} />}

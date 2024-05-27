@@ -12,12 +12,9 @@ export const NavigationStyle = makeStyles(theme => ({
         [theme.breakpoints.down(700)]: {
             display: "none",
         },
+        height: 30,
         marginLeft: "auto",
         marginRight: "auto",
-        fontSize: "1.5rem",
-        fontWeight: 500,
-        color: Colours.colours.violet,
-        cursor: "default",
         alignSelf: "center",
     },
     app_just_logo: {
@@ -27,12 +24,9 @@ export const NavigationStyle = makeStyles(theme => ({
         [theme.breakpoints.up(700)]: {
             display: "none",
         },
+        height: 40,
         marginLeft: "auto",
         marginRight: "auto",
-        fontSize: "1.5rem",
-        fontWeight: 500,
-        color: Colours.colours.violet,
-        cursor: "default",
         alignSelf: "center",
     },
     nav_menu: {
