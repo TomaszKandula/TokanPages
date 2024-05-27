@@ -137,8 +137,8 @@ export const NavigationView = (props: Properties): JSX.Element => {
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
-                            {RenderImage(GET_ICONS_URL, props.logoImgName, classes.app_full_logo)}
-                            {RenderImage(GET_ICONS_URL, props.menu.image, classes.app_just_logo)}
+                            {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
+                            {RenderImage(GET_ICONS_URL, props?.menu?.image, classes.app_just_logo)}
                         </Grid>
                         <Grid item xs className={classes.content_right_side}>
                             {props.isLoading ? null : <RenderContent {...props} />}
