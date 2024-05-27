@@ -26,7 +26,7 @@ interface Properties {
 const App = (props: Properties): JSX.Element => {
     const classes = AppStyle();
 
-    AOS.init();
+    AOS.init({ once: true });
     UpdateUserData();
     UpdateUserLanguage(props.manifest);
 
