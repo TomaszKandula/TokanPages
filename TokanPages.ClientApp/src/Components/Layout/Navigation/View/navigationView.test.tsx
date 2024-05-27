@@ -44,6 +44,7 @@ describe("test component: featuresView", () => {
                 avatarSource=""
                 userAliasText=""
                 menu={{ image: "", items: [items] }}
+                logoImgName="logo.svg"
                 languages={languages}
                 languageId="eng"
                 languageHandler={jest.fn()}

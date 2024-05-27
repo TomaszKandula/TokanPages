@@ -15,11 +15,10 @@ export const SideMenuStyle = makeStyles(() => ({
         alignItems: "center",
         backgroundColor: Colours.colours.lightViolet,
     },
-    drawer_logo: {
-        fontSize: "3.5rem",
-        fontWeight: 900,
-        color: Colours.colours.violet,
-        textAlign: "center",
-        cursor: "default",
+    logo: {
+        height: 120,
+        marginLeft: "auto",
+        marginRight: "auto",
+        alignSelf: "center",
     },
 }));

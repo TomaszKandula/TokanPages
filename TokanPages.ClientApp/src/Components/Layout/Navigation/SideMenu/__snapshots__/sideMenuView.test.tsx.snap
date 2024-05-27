@@ -11,13 +11,7 @@ exports[`test component: menuView should render correctly '<MenuView />' when co
   >
     <Styled(MuiBox)
       className="makeStyles-drawer_hero-3"
-    >
-      <div
-        className="makeStyles-drawer_logo-4"
-      >
-        &lt;/&gt;
-      </div>
-    </Styled(MuiBox)>
+    />
     <RenderList
       isAnonymous={true}
       items={

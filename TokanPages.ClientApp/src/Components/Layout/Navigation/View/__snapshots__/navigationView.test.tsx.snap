@@ -41,16 +41,11 @@ exports[`test component: featuresView should render correctly '<NavigationView /
       <div
         class="MuiGrid-root makeStyles-content_right_side-12 MuiGrid-item MuiGrid-grid-xs-true"
       >
-        <p
-          class="MuiTypography-root makeStyles-app_full_logo-3 MuiTypography-body1"
-        >
-          &lt;/&gt; tom kandula
-        </p>
-        <p
-          class="MuiTypography-root makeStyles-app_just_logo-4 MuiTypography-body1"
-        >
-          &lt;/&gt;
-        </p>
+        <img
+          alt=""
+          class="makeStyles-app_full_logo-3"
+          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+        />
       </div>
       <div
         class="MuiGrid-root makeStyles-content_right_side-12 MuiGrid-item MuiGrid-grid-xs-true"
