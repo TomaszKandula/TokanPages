@@ -96,6 +96,4 @@ export const GET_TESTIMONIALS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images
 export const GET_ICONS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/icons`;
 export const GET_FLAG_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/flags`;
 
-export const MAIN_ICON = `${GET_ICONS_URL}/main_logo.svg`;
-export const MEDIUM_ICON = `${GET_ICONS_URL}/medium_icon.svg`;
 export const ARTICLE_PATH = "/articles?title={title}";
