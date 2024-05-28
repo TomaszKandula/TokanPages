@@ -54,6 +54,7 @@ export const Navigation = (): JSX.Element => {
             userAliasText={store?.userData?.aliasName}
             avatarName={store?.userData?.avatarName}
             avatarSource={avatarSource}
+            logoImgName={navigation?.content?.logo}
             languages={language}
             languageId={language?.id}
             languageHandler={languageHandler}
