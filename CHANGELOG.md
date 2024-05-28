@@ -1,3 +1,13 @@
+# [0.92.0](https://github.com/TomaszKandula/TokanPages/compare/v0.91.0...v0.92.0) (2024-05-28)
+
+
+### Features
+
+* nullable ([5cf0199](https://github.com/TomaszKandula/TokanPages/commit/5cf0199bc565889bdee822919884dac86bcbac40))
+* remove top margin ([2146e2b](https://github.com/TomaszKandula/TokanPages/commit/2146e2b20060d45ffd08c8c8dcce6441177af0ef))
+* set one time animation for all animations ([941a94b](https://github.com/TomaszKandula/TokanPages/commit/941a94be10a28a2d23d654fbd9ea759d057608fe))
+* use image instead of the rendered text for logos ([1732385](https://github.com/TomaszKandula/TokanPages/commit/17323851304b8e23244e0acda14108f1b013e4bd))
+
 # [0.91.0](https://github.com/TomaszKandula/TokanPages/compare/v0.90.0...v0.91.0) (2024-05-25)
 
 
