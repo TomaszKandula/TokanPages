@@ -1,3 +1,11 @@
+# [0.93.0](https://github.com/TomaszKandula/TokanPages/compare/v0.92.0...v0.93.0) (2024-06-02)
+
+
+### Features
+
+* add key for route component ([bd52c82](https://github.com/TomaszKandula/TokanPages/commit/bd52c82314586a0395bd5d7b84887a9901feaa42))
+* change page path, simplify code ([4f5e948](https://github.com/TomaszKandula/TokanPages/commit/4f5e948d4d3b0db6f5e26ad1039a45b10734eea7))
+
 # [0.92.0](https://github.com/TomaszKandula/TokanPages/compare/v0.91.0...v0.92.0) (2024-05-28)
 
 
