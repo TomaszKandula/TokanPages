@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,
     StoryPage,
@@ -56,7 +57,7 @@ const pages: PageProps[] = [
 export const Routes = (): JSX.Element => {
     const renderRoute = (props: PageProps) => {
         return (
-            <Route exact path={props.componentPath}>
+            <Route exact path={props.componentPath} key={uuidv4()}>
                 {props.componentPage}
             </Route>
         )
