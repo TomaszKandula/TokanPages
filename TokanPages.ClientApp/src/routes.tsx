@@ -24,72 +24,48 @@ import {
     PhotographyPage,
 } from "./Pages";
 
+interface PageProps {
+    componentPath: string;
+    componentPage: JSX.Element;
+}
+
+const pages: PageProps[] = [
+    { componentPath: "/", componentPage: <MainPage /> },
+    { componentPath: "/about", componentPage: <StoryPage /> },
+    { componentPath: "/articles", componentPage: <ArticlesPage /> },
+    { componentPath: "/showcase", componentPage: <ShowcasePage /> },
+    { componentPath: "/bicycle", componentPage: <BicyclePage /> },
+    { componentPath: "/electronics", componentPage: <ElectronicsPage /> },
+    { componentPath: "/football", componentPage: <FootballPage /> },
+    { componentPath: "/guitar", componentPage: <GuitarPage /> },
+    { componentPath: "/photography", componentPage: <PhotographyPage /> },
+    { componentPath: "/terms", componentPage: <TermsPage /> },
+    { componentPath: "/policy", componentPage: <PolicyPage /> },
+    { componentPath: "/contact", componentPage: <ContactPage /> },
+    { componentPath: "/signin", componentPage: <SigninPage /> },
+    { componentPath: "/signup", componentPage: <SignupPage /> },
+    { componentPath: "/signout", componentPage: <SignoutPage /> },
+    { componentPath: "/account", componentPage: <AccountPage /> },
+    { componentPath: "/accountactivation", componentPage: <ActivationPage /> },
+    { componentPath: "/updatepassword", componentPage: <PasswordUpdatePage /> },
+    { componentPath: "/resetpassword", componentPage: <PasswordResetPage /> },
+    { componentPath: "/update-newsletter", componentPage: <NewsletterUpdatePage /> },
+    { componentPath: "/remove-newsletter", componentPage: <NewsletterRemovePage /> },
+];
+
 export const Routes = (): JSX.Element => {
-    return (
-        <>
-            <Route exact path="/">
-                <MainPage />
+    const renderRoute = (props: PageProps) => {
+        return (
+            <Route exact path={props.componentPath}>
+                {props.componentPage}
             </Route>
-            <Route exact path="/mystory">
-                <StoryPage />
-            </Route>
-            <Route exact path="/articles">
-                <ArticlesPage />
-            </Route>
-            <Route exact path="/showcase">
-                <ShowcasePage />
-            </Route>
-            <Route exact path="/bicycle">
-                <BicyclePage />
-            </Route>
-            <Route exact path="/electronics">
-                <ElectronicsPage />
-            </Route>
-            <Route exact path="/football">
-                <FootballPage />
-            </Route>
-            <Route exact path="/guitar">
-                <GuitarPage />
-            </Route>
-            <Route exact path="/photography">
-                <PhotographyPage />
-            </Route>
-            <Route exact path="/terms">
-                <TermsPage />
-            </Route>
-            <Route exact path="/policy">
-                <PolicyPage />
-            </Route>
-            <Route exact path="/contact">
-                <ContactPage />
-            </Route>
-            <Route exact path="/signin">
-                <SigninPage />
-            </Route>
-            <Route exact path="/signup">
-                <SignupPage />
-            </Route>
-            <Route exact path="/signout">
-                <SignoutPage />
-            </Route>
-            <Route exact path="/account">
-                <AccountPage />
-            </Route>
-            <Route exact path="/accountactivation">
-                <ActivationPage />
-            </Route>
-            <Route exact path="/updatepassword">
-                <PasswordUpdatePage />
-            </Route>
-            <Route exact path="/resetpassword">
-                <PasswordResetPage />
-            </Route>
-            <Route exact path="/update-newsletter">
-                <NewsletterUpdatePage />
-            </Route>
-            <Route exact path="/remove-newsletter">
-                <NewsletterRemovePage />
-            </Route>
-        </>
-    );
+        )
+    };
+
+    let buffer: JSX.Element[] = [];
+    pages.forEach(item => {
+        buffer.push(renderRoute({ componentPath: item.componentPath, componentPage: item.componentPage }));
+    });
+
+    return buffer.length > 0 ? <>{buffer}</> : <></>;
 };
