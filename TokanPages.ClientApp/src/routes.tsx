@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,
+    AboutPage,
     StoryPage,
     ArticlesPage,
     TermsPage,
@@ -32,7 +33,8 @@ interface PageProps {
 
 const pages: PageProps[] = [
     { componentPath: "/", componentPage: <MainPage /> },
-    { componentPath: "/about", componentPage: <StoryPage /> },
+    { componentPath: "/about", componentPage: <AboutPage /> },
+    { componentPath: "/story", componentPage: <StoryPage /> },
     { componentPath: "/articles", componentPage: <ArticlesPage /> },
     { componentPath: "/showcase", componentPage: <ShowcasePage /> },
     { componentPath: "/bicycle", componentPage: <BicyclePage /> },
