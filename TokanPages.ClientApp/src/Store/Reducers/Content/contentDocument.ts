@@ -7,6 +7,8 @@ import {
     REQUEST_POLICY,
     RECEIVE_TERMS,
     REQUEST_TERMS,
+    RECEIVE_ABOUT,
+    REQUEST_ABOUT,
     REQUEST_STORY,
     RECEIVE_STORY,
     REQUEST_SHOWCASE,
@@ -60,6 +62,22 @@ export const ContentDocument: Reducer<ContentDocumentState> = (
             return {
                 ...state,
                 contentTerms: {
+                    isLoading: false,
+                    content: action.payload.content,
+                },
+            };
+        case REQUEST_ABOUT:
+            return {
+                ...state,
+                contentAbout: {
+                    isLoading: true,
+                    content: state.contentAbout?.content ?? fallback,
+                },
+            };
+        case RECEIVE_ABOUT:
+            return {
+                ...state,
+                contentAbout: {
                     isLoading: false,
                     content: action.payload.content,
                 },
