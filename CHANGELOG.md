@@ -1,3 +1,10 @@
+# [0.94.0](https://github.com/TomaszKandula/TokanPages/compare/v0.93.0...v0.94.0) (2024-06-06)
+
+
+### Features
+
+* add about page ([335587d](https://github.com/TomaszKandula/TokanPages/commit/335587d9c18b1ab46b65bb6a7e4fabef9267667c))
+
 # [0.93.0](https://github.com/TomaszKandula/TokanPages/compare/v0.92.0...v0.93.0) (2024-06-02)
 
 
