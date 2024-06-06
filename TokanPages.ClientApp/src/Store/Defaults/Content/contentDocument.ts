@@ -11,6 +11,7 @@ const defaultValues = {
 export const ContentDocument: ContentDocumentState = {
     contentPolicy: defaultValues,
     contentTerms: defaultValues,
+    contentAbout: defaultValues,
     contentStory: defaultValues,
     contentShowcase: defaultValues,
     contentBicycle: defaultValues,

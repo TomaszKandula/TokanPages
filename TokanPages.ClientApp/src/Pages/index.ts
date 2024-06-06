@@ -18,6 +18,7 @@ export {
     GuitarPage,
     PhotographyPage,
     ShowcasePage,
+    AboutPage,
     StoryPage,
     PolicyPage,
     TermsPage,

@@ -11,12 +11,15 @@ import {
     GET_GUITAR_CONTENT,
     GET_PHOTOGRAPHY_CONTENT,
     GET_FOOTBALL_CONTENT,
+    GET_ABOUT_CONTENT
 } from "../../../Api/Request";
 
 export const REQUEST_POLICY = "REQUEST_POLICY_CONTENT";
 export const RECEIVE_POLICY = "RECEIVE_POLICY_CONTENT";
 export const REQUEST_TERMS = "REQUEST_TERMS_CONTENT";
 export const RECEIVE_TERMS = "RECEIVE_TERMS_CONTENT";
+export const REQUEST_ABOUT = "REQUEST_ABOUT_CONTENT";
+export const RECEIVE_ABOUT = "RECEIVE_ABOUT_CONTENT";
 export const REQUEST_STORY = "REQUEST_STORY_CONTENT";
 export const RECEIVE_STORY = "RECEIVE_STORY_CONTENT";
 export const REQUEST_SHOWCASE = "REQUEST_SHOWCASE_CONTENT";
@@ -46,6 +49,12 @@ interface RequestTerms {
 }
 interface ReceiveTerms extends Payload {
     type: typeof RECEIVE_TERMS;
+}
+interface RequestAbout {
+    type: typeof REQUEST_ABOUT;
+}
+interface ReceiveAbout extends Payload {
+    type: typeof RECEIVE_ABOUT;
 }
 interface RequestStory {
     type: typeof REQUEST_STORY;
@@ -92,6 +101,7 @@ interface ReceivePhotography extends Payload {
 
 type Policy = RequestPolicy | ReceivePolicy;
 type Terms = RequestTerms | ReceiveTerms;
+type About = RequestAbout | ReceiveAbout;
 type Story = RequestStory | ReceiveStory;
 type Showcase = RequestShowcase | ReceiveShowcase;
 type Bicycle = RequestBicycle | ReceiveBicycle;
@@ -99,7 +109,7 @@ type Electronics = RequestElectronics | ReceiveElectronics;
 type Football = RequestFootball | ReceiveFootball;
 type Guitar = RequestGuitar | ReceiveGuitar;
 type Photography = RequestPhotography | ReceivePhotography;
-export type TKnownActions = Policy | Terms | Story | Showcase | Bicycle | Electronics | Football | Guitar | Photography;
+export type TKnownActions = Policy | Terms | About | Story | Showcase | Bicycle | Electronics | Football | Guitar | Photography;
 
 export const ContentDocumentAction = {
     getPolicy: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
@@ -138,6 +148,24 @@ export const ContentDocumentAction = {
             url: GET_TERMS_CONTENT,
         });
     },
+    getAbout: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
+        const content = getState().contentDocument.contentAbout?.content;
+        const languageId = getState().applicationLanguage.id;
+        const isContentChanged = content !== ApplicationDefault.contentDocument.contentAbout?.content;
+        const isLanguageChanged = languageId !== content?.language;
+
+        if (isContentChanged && !isLanguageChanged) {
+            return;
+        }
+
+        GetContent({
+            dispatch: dispatch,
+            state: getState,
+            request: REQUEST_ABOUT,
+            receive: RECEIVE_ABOUT,
+            url: GET_ABOUT_CONTENT,
+        });
+    },
     getStory: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         const content = getState().contentDocument.contentTerms?.content;
         const languageId = getState().applicationLanguage.id;
@@ -174,7 +202,6 @@ export const ContentDocumentAction = {
             url: GET_SHOWCASE_CONTENT,
         });
     },
-
     getBicycle: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         const content = getState().contentDocument.contentBicycle?.content;
         const languageId = getState().applicationLanguage.id;
