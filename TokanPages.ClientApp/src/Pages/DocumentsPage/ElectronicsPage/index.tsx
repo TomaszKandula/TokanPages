@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "@material-ui/core/Container";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Navigation, Footer } from "../../../Components/Layout";
-import { DocumentContent } from "../../../Components/Document";
+import { DocumentContentWrapper } from "../../../Shared/Components";
 
 import {
     ContentNavigationAction,
@@ -30,9 +29,7 @@ export const ElectronicsPage = (): JSX.Element => {
     return (
         <>
             <Navigation />
-            <Container>
-                <DocumentContent isLoading={isLoading} items={items} />
-            </Container>
+            <DocumentContentWrapper isLoading={isLoading} items={items} />
             <Footer />
         </>
     );
