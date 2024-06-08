@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
+import { ArrowRight } from "@material-ui/icons";
 import { TextItem } from "../../Models/TextModel";
 import { RenderTextStyle } from "./renderTextStyle";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
@@ -31,10 +32,13 @@ const RenderLink = (props: DataProps): JSX.Element => {
         <Typography 
             variant="body1" 
             component="span" 
-            className={`${classes.common} ${classes.paragraph}`} 
+            className={`${classes.common} ${classes.paragraph} ${classes.link}`} 
             onClick={onClickHandler}
         >
-            <ReactHtmlParser html={props.text ?? NO_CONTENT} />
+            <span className={classes.wrapper}>
+                <ArrowRight />
+                <ReactHtmlParser html={props.text ?? NO_CONTENT} />
+            </span>
         </Typography>
     );
 }
