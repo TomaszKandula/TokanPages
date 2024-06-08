@@ -1,3 +1,16 @@
+# [0.95.0](https://github.com/TomaszKandula/TokanPages/compare/v0.94.0...v0.95.0) (2024-06-08)
+
+
+### Features
+
+* add arrow right icon ([6ee1038](https://github.com/TomaszKandula/TokanPages/commit/6ee1038a4fdb25a93bf23bb4af44f79581dd15a5))
+* add icon check for selected language ([6f360ee](https://github.com/TomaszKandula/TokanPages/commit/6f360eecdce36cf4d2ac16729fe45a7f41230c8e))
+* add LINK render sub component ([17ec648](https://github.com/TomaszKandula/TokanPages/commit/17ec6489b65250f180d3a566e6b157f47ec3d069))
+* allow more HTML tags ([5ca86bb](https://github.com/TomaszKandula/TokanPages/commit/5ca86bbc3ce40c40dc3b831af2167d7cdf010a7b))
+* relocate sub components, update style ([47eef54](https://github.com/TomaszKandula/TokanPages/commit/47eef54280755e2ca080fa248df7444077619ea5))
+* rename ([12f8aef](https://github.com/TomaszKandula/TokanPages/commit/12f8aef932638e9acf60da8a8349e449d52dd183))
+* use progress on scroll for all documents ([ac1cf00](https://github.com/TomaszKandula/TokanPages/commit/ac1cf0002527b26ddafdf0c715b73f8a63921379))
+
 # [0.94.0](https://github.com/TomaszKandula/TokanPages/compare/v0.93.0...v0.94.0) (2024-06-06)
 
 
