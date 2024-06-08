@@ -14,7 +14,7 @@ interface DataProps {
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
-const RenderLink = (props: DataProps): JSX.Element => {
+const RenderItemLink = (props: DataProps): JSX.Element => {
     const location = useLocation();
     const classes = RenderTextStyle();
     const data = props.data ?? "";
@@ -99,8 +99,8 @@ export const RenderText = (props: TextItem): JSX.Element => {
     const data: string = props.value as string;
 
     switch (props.prop) {
-        case "link":
-            return <RenderLink data={data} text={props.text} />;
+        case "item-link":
+            return <RenderItemLink data={data} text={props.text} />;
         case "title":
             return <RenderTitle data={data} />;
         case "subtitle":
