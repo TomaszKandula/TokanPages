@@ -4,6 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
+import CheckIcon from "@material-ui/icons/Check";
 import { FormControl, Grid, MenuItem, Select, Box } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
@@ -98,6 +99,14 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
         return undefined;
     };
 
+    const renderIcon = (selection: string): JSX.Element | null => {
+        if (props.languageId === selection) {
+            return <CheckIcon className={classes.languages_check} />;
+        }
+
+        return null
+    }
+
     return (
         <FormControl className={props.styleControl}>
             <Select
@@ -107,7 +116,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
                 onChange={props.languageHandler}
                 className={props.styleSelect}
                 renderValue={value => (
-                    <div style={{ display: "flex", alignItems: "center" }}>
+                    <div className={classes.languages_wrapper}>
                         {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
                         <div>{toUpper(value)}</div>
                     </div>
@@ -115,9 +124,10 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
             >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
-                        <div style={{ display: "flex", alignItems: "center" }}>
+                        <div className={classes.languages_wrapper}>
                             {RenderImage(GET_FLAG_URL, `${item.id}.png`, classes.flag_image)}
                             <div>{item.name}</div>
+                            {renderIcon(item.id)}
                         </div>
                     </MenuItem>
                 ))}

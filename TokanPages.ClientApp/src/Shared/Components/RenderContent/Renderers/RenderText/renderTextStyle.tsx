@@ -7,6 +7,15 @@ export const RenderTextStyle = makeStyles(() => ({
         textAlign: "left",
         color: Colours.colours.gray3,
     },
+    wrapper: {
+        display: "flex", 
+        alignItems: "center"
+    },
+    link: {
+        cursor: "pointer",
+        textAlign: "center",
+        verticalAlign: "middle",
+    },
     title: {
         fontSize: 28,
         fontWeight: "bold",
