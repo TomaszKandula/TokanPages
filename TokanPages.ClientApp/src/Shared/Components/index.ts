@@ -1,5 +1,6 @@
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
+export { DocumentContentWrapper } from "./DocumentContentWrapper";
 export { RenderContent } from "./RenderContent/renderContent";
 export { RenderCardMedia } from "./CustomCardMedia/customCardMedia";
 export { RenderImage } from "./CustomImage/customImage";
