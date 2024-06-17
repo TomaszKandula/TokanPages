@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
 import { TextItem } from "../../Models/TextModel";
 import { RenderTextStyle } from "./renderTextStyle";
+import { useHash } from "../../../../../Shared/Hooks";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import "../../../../../Theme/Css/customDropCap.css";
 
@@ -15,18 +15,18 @@ interface DataProps {
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
 const RenderItemLink = (props: DataProps): JSX.Element => {
-    const location = useLocation();
+    const hash = useHash();
     const classes = RenderTextStyle();
-    const data = props.data ?? "";
-
+    const data = props.data;
     const onClickHandler = React.useCallback(() => {
-        const element = document.querySelector(data);
-        location.hash = data;
-
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+        if (data && data !== "") {
+            const element = document?.querySelector(data);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                window.history.pushState(null, "", window.location.pathname + data);
+            }
         }
-    }, [ data ]);
+    }, [ hash, data ]);
 
     return (
         <Typography 
