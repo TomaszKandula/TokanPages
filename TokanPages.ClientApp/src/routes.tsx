@@ -27,47 +27,48 @@ import {
 } from "./Pages";
 
 interface PageProps {
-    componentPath: string;
-    componentPage: JSX.Element;
+    path: string;
+    page: JSX.Element;
+    exact?: boolean;
 }
 
 const pages: PageProps[] = [
-    { componentPath: "/", componentPage: <MainPage /> },
-    { componentPath: "/about", componentPage: <AboutPage /> },
-    { componentPath: "/story", componentPage: <StoryPage /> },
-    { componentPath: "/articles", componentPage: <ArticlesPage /> },
-    { componentPath: "/showcase", componentPage: <ShowcasePage /> },
-    { componentPath: "/bicycle", componentPage: <BicyclePage /> },
-    { componentPath: "/electronics", componentPage: <ElectronicsPage /> },
-    { componentPath: "/football", componentPage: <FootballPage /> },
-    { componentPath: "/guitar", componentPage: <GuitarPage /> },
-    { componentPath: "/photography", componentPage: <PhotographyPage /> },
-    { componentPath: "/terms", componentPage: <TermsPage /> },
-    { componentPath: "/policy", componentPage: <PolicyPage /> },
-    { componentPath: "/contact", componentPage: <ContactPage /> },
-    { componentPath: "/signin", componentPage: <SigninPage /> },
-    { componentPath: "/signup", componentPage: <SignupPage /> },
-    { componentPath: "/signout", componentPage: <SignoutPage /> },
-    { componentPath: "/account", componentPage: <AccountPage /> },
-    { componentPath: "/accountactivation", componentPage: <ActivationPage /> },
-    { componentPath: "/updatepassword", componentPage: <PasswordUpdatePage /> },
-    { componentPath: "/resetpassword", componentPage: <PasswordResetPage /> },
-    { componentPath: "/update-newsletter", componentPage: <NewsletterUpdatePage /> },
-    { componentPath: "/remove-newsletter", componentPage: <NewsletterRemovePage /> },
+    { path: "/", page: <MainPage /> },
+    { path: "/about", page: <AboutPage /> },
+    { path: "/story", page: <StoryPage /> },
+    { path: "/articles", page: <ArticlesPage /> },
+    { path: "/showcase", page: <ShowcasePage /> },
+    { path: "/bicycle", page: <BicyclePage /> },
+    { path: "/electronics", page: <ElectronicsPage /> },
+    { path: "/football", page: <FootballPage /> },
+    { path: "/guitar", page: <GuitarPage /> },
+    { path: "/photography", page: <PhotographyPage /> },
+    { path: "/terms", page: <TermsPage /> },
+    { path: "/policy", page: <PolicyPage /> },
+    { path: "/contact", page: <ContactPage /> },
+    { path: "/signin", page: <SigninPage /> },
+    { path: "/signup", page: <SignupPage /> },
+    { path: "/signout", page: <SignoutPage /> },
+    { path: "/account", page: <AccountPage /> },
+    { path: "/accountactivation", page: <ActivationPage /> },
+    { path: "/updatepassword", page: <PasswordUpdatePage /> },
+    { path: "/resetpassword", page: <PasswordResetPage /> },
+    { path: "/update-newsletter", page: <NewsletterUpdatePage /> },
+    { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
 ];
 
 export const Routes = (): JSX.Element => {
     const renderRoute = (props: PageProps) => {
         return (
-            <Route exact path={props.componentPath} key={uuidv4()}>
-                {props.componentPage}
+            <Route exact={props.exact ?? true} path={props.path} key={uuidv4()}>
+                {props.page}
             </Route>
         )
     };
 
     let buffer: JSX.Element[] = [];
     pages.forEach(item => {
-        buffer.push(renderRoute({ componentPath: item.componentPath, componentPage: item.componentPage }));
+        buffer.push(renderRoute({ path: item.path, page: item.page }));
     });
 
     return buffer.length > 0 ? <>{buffer}</> : <></>;
