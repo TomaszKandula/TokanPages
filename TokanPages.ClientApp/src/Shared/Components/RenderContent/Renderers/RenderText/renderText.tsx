@@ -17,14 +17,15 @@ const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 const RenderItemLink = (props: DataProps): JSX.Element => {
     const hash = useHash();
     const classes = RenderTextStyle();
-    const data = props.data ?? "";
+    const data = props.data;
     const onClickHandler = React.useCallback(() => {
-        const element = document.querySelector(data);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-            window.history.pushState(null, "", window.location.pathname + data);
+        if (data && data !== "") {
+            const element = document?.querySelector(data);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                window.history.pushState(null, "", window.location.pathname + data);
+            }
         }
-
     }, [ hash, data ]);
 
     return (
