@@ -1,3 +1,15 @@
+# [0.96.0](https://github.com/TomaszKandula/TokanPages/compare/v0.95.0...v0.96.0) (2024-06-17)
+
+
+### Features
+
+* add new useHash hook ([6ea2fe4](https://github.com/TomaszKandula/TokanPages/commit/6ea2fe431d7bd374b8aed12170d93d0316102d17))
+* check for empty hash ([bcec257](https://github.com/TomaszKandula/TokanPages/commit/bcec2570e5d1f64f51b182aa22d1885c0d791d81))
+* check for undefined/empty hash ([b66d74c](https://github.com/TomaszKandula/TokanPages/commit/b66d74c3bd0d413d0f2362e9dd0f58d2e21c733b))
+* scroll to hash content after page is loaded ([84b988a](https://github.com/TomaszKandula/TokanPages/commit/84b988a9b6bdf677114effe0a257deea682765fa))
+* scroll to selected content on click ([2b07c70](https://github.com/TomaszKandula/TokanPages/commit/2b07c701f0192a0fde341004b4e4f128de2993ad))
+* simplify, add 'exact' parameter ([cb25d18](https://github.com/TomaszKandula/TokanPages/commit/cb25d1889b9da75ea378270785428e28b9d4b8b0))
+
 # [0.95.0](https://github.com/TomaszKandula/TokanPages/compare/v0.94.0...v0.95.0) (2024-06-08)
 
 
