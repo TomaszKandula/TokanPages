@@ -20,7 +20,11 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
             return;
         }
 
-        const element = document.querySelector(hash);
+        if (hash === "") {
+            return;
+        }
+
+        const element = document?.querySelector(hash);
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
         }
