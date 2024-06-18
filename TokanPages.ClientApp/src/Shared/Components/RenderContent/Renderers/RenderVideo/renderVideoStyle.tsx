@@ -11,11 +11,8 @@ export const RenderVideoStyle = makeStyles(() => ({
         cursor: "pointer",
     },
     text: {
-        color: Colours.colours.gray1,
-        paddingTop: 1,
-        paddingBottom: 1,
-        paddingLeft: 10,
-        paddingRight: 10,
+        fontSize: 14,
         lineHeight: 1.8,
+        color: Colours.colours.gray1,
     },
 }));
