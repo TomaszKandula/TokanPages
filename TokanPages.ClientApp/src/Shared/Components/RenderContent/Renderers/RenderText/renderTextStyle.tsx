@@ -15,7 +15,9 @@ export const RenderTextStyle = makeStyles(() => ({
         cursor: "pointer",
         textAlign: "center",
         verticalAlign: "middle",
+        fontWeight: 400,
         "&:hover": {
+            fontWeight: 500,
             color: Colours.colours.darkViolet1,
         }
     },
