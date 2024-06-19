@@ -87,7 +87,7 @@ export const HeaderStyle = makeStyles(theme => ({
         color: Colours.colours.white,
         background: Colours.colours.gray1,
         marginTop: 0,
-        marginLeft: 15,        
+        marginLeft: 15,
         [theme.breakpoints.down("xs")]: {
             width: "100%",
             marginTop: 15,

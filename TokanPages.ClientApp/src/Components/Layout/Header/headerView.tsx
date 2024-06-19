@@ -28,15 +28,11 @@ const OpenLinkButton = (props: ContentHeaderState): JSX.Element => {
     }, [url]);
 
     return (
-        <Button 
-            variant="contained" 
-            className={classes.resume_button}
-            onClick={onClickEvent}
-        >
+        <Button variant="contained" className={classes.resume_button} onClick={onClickEvent}>
             {props?.content?.resume?.text}
         </Button>
     );
-}
+};
 
 const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();

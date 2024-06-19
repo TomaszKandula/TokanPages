@@ -26,12 +26,16 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
 
         const element = document?.querySelector(hash);
         if (element) {
-            setTimeout(() => element.scrollIntoView({ 
-                block: "start", 
-                behavior: "smooth" 
-            }), 500);
+            setTimeout(
+                () =>
+                    element.scrollIntoView({
+                        block: "start",
+                        behavior: "smooth",
+                    }),
+                500
+            );
         }
-    }, [ hash, props.isLoading ]);
+    }, [hash, props.isLoading]);
 
     return (
         <section className={classes.section}>

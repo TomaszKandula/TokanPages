@@ -52,7 +52,7 @@ export const NavigationStyle = makeStyles(theme => ({
         marginRight: 5,
     },
     languages_wrapper: {
-        display: "flex", 
+        display: "flex",
         alignItems: "center",
     },
     languagesBox: {
@@ -70,7 +70,7 @@ export const NavigationStyle = makeStyles(theme => ({
     languages_check: {
         paddingLeft: 5,
         color: Colours.colours.darkViolet1,
-    }, 
+    },
     content_right_side: {
         display: "flex",
         justifyContent: "flex-end",

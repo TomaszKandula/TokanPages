@@ -8,9 +8,8 @@ export const useHash = () => {
             setHash(window.location.hash);
         };
 
-      window.addEventListener("hashchange", onHashChange);
-      return () => window.removeEventListener("hashchange", onHashChange);
-
+        window.addEventListener("hashchange", onHashChange);
+        return () => window.removeEventListener("hashchange", onHashChange);
     }, []);
 
     return hash;

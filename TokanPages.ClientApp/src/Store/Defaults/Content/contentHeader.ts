@@ -15,6 +15,6 @@ export const ContentHeader: ContentHeaderState = {
         resume: {
             text: "",
             href: "",
-        }
+        },
     },
 };
