@@ -1,3 +1,16 @@
+# [0.97.0](https://github.com/TomaszKandula/TokanPages/compare/v0.96.0...v0.97.0) (2024-06-20)
+
+
+### Features
+
+* add resume button to download CV ([4e2a857](https://github.com/TomaszKandula/TokanPages/commit/4e2a857910b8d5043c14da2000bc660cac05f42b))
+* apply prettier ([32755a0](https://github.com/TomaszKandula/TokanPages/commit/32755a0f6d7f970862358c1a401187ed5da1ed12))
+* change font colour on mouse hover ([cd52399](https://github.com/TomaszKandula/TokanPages/commit/cd52399e4f84ecf43317e0448d64dcf7a452a53a))
+* change style on hover ([7f1e692](https://github.com/TomaszKandula/TokanPages/commit/7f1e692f49917872d333a04dbbd22d3ca80ca3cb))
+* delay before scrolling into view ([ad9230e](https://github.com/TomaszKandula/TokanPages/commit/ad9230e07adc2013df189871f07d4c4a507846c1))
+* update styles ([a23df9e](https://github.com/TomaszKandula/TokanPages/commit/a23df9ee45269d7fea198cfa72c908af12393b3b))
+* use html parser for description ([c192dab](https://github.com/TomaszKandula/TokanPages/commit/c192dabab2da334070c3fb4e67cfcc8b0f717840))
+
 # [0.96.0](https://github.com/TomaszKandula/TokanPages/compare/v0.95.0...v0.96.0) (2024-06-17)
 
 
