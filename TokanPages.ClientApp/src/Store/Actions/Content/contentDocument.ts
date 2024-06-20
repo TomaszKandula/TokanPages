@@ -11,7 +11,7 @@ import {
     GET_GUITAR_CONTENT,
     GET_PHOTOGRAPHY_CONTENT,
     GET_FOOTBALL_CONTENT,
-    GET_ABOUT_CONTENT
+    GET_ABOUT_CONTENT,
 } from "../../../Api/Request";
 
 export const REQUEST_POLICY = "REQUEST_POLICY_CONTENT";
@@ -109,7 +109,17 @@ type Electronics = RequestElectronics | ReceiveElectronics;
 type Football = RequestFootball | ReceiveFootball;
 type Guitar = RequestGuitar | ReceiveGuitar;
 type Photography = RequestPhotography | ReceivePhotography;
-export type TKnownActions = Policy | Terms | About | Story | Showcase | Bicycle | Electronics | Football | Guitar | Photography;
+export type TKnownActions =
+    | Policy
+    | Terms
+    | About
+    | Story
+    | Showcase
+    | Bicycle
+    | Electronics
+    | Football
+    | Guitar
+    | Photography;
 
 export const ContentDocumentAction = {
     getPolicy: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {

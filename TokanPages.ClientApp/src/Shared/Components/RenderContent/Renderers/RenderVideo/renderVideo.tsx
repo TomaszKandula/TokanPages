@@ -3,14 +3,15 @@ import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { TextItem } from "../../Models/TextModel";
 import { RenderVideoStyle } from "./renderVideoStyle";
 import { API_BASE_URI } from "../../../../../Api/Request";
+import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import Validate from "validate.js";
 
 const RenderDescription = (props: { text: string }): JSX.Element => {
     const classes = RenderVideoStyle();
     return (
         <CardContent>
-            <Typography component="p" variant="body2" className={classes.text}>
-                {props.text}
+            <Typography component="span" className={classes.text}>
+                <ReactHtmlParser html={props.text} />
             </Typography>
         </CardContent>
     );

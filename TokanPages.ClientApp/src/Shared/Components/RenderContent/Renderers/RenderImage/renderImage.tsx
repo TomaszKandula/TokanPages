@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api/Request";
+import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { TextItem } from "../../Models/TextModel";
 import { RenderImageStyle } from "./renderImageStyle";
 import Validate from "validate.js";
@@ -9,8 +10,8 @@ const RenderDescription = (props: { text: string }): JSX.Element => {
     const classes = RenderImageStyle();
     return (
         <CardContent>
-            <Typography component="p" variant="body2" className={classes.text}>
-                {props.text}
+            <Typography component="span" className={classes.text}>
+                <ReactHtmlParser html={props.text} />
             </Typography>
         </CardContent>
     );

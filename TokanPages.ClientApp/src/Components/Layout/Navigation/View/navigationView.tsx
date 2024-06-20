@@ -104,8 +104,8 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
             return <CheckIcon className={classes.languages_check} />;
         }
 
-        return null
-    }
+        return null;
+    };
 
     return (
         <FormControl className={props.styleControl}>

@@ -19,7 +19,7 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
       class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
     >
       <div
-        class="MuiBox-root MuiBox-root-12 makeStyles-content_box-3"
+        class="MuiBox-root MuiBox-root-13 makeStyles-content_box-3"
       >
         <span
           class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
@@ -41,14 +41,14 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
           </div>
         </span>
         <div
-          class="MuiBox-root MuiBox-root-13"
+          class="MuiBox-root MuiBox-root-14"
         >
           <a
-            class="makeStyles-action_link-24"
+            class="makeStyles-action_link-25"
             href="/action-link"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-23"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
               tabindex="0"
               type="button"
             >

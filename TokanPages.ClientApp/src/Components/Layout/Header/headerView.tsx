@@ -7,12 +7,32 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
 import { CardMedia } from "@material-ui/core";
-import { GET_IMAGES_URL } from "../../../Api/Request";
+import { API_BASE_URI, GET_IMAGES_URL } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentHeaderState } from "../../../Store/States";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
+
+const OpenLinkButton = (props: ContentHeaderState): JSX.Element => {
+    const classes = HeaderStyle();
+    const href = props?.content?.resume?.href;
+
+    if (Validate.isEmpty(href)) {
+        return <></>;
+    }
+
+    const url = API_BASE_URI + href;
+    const onClickEvent = React.useCallback(() => {
+        window.open(url, "_blank");
+    }, [url]);
+
+    return (
+        <Button variant="contained" className={classes.resume_button} onClick={onClickEvent}>
+            {props?.content?.resume?.text}
+        </Button>
+    );
+};
 
 const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();
@@ -83,7 +103,10 @@ export const HeaderView = (): JSX.Element => {
                             {header?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />
                             ) : (
-                                <ActiveButton {...header} />
+                                <>
+                                    <ActiveButton {...header} />
+                                    <OpenLinkButton {...header} />
+                                </>
                             )}
                         </Box>
                     </Box>
