@@ -8,13 +8,18 @@ export const RenderTextStyle = makeStyles(() => ({
         color: Colours.colours.gray3,
     },
     wrapper: {
-        display: "flex", 
-        alignItems: "center"
+        display: "flex",
+        alignItems: "center",
     },
     link: {
         cursor: "pointer",
         textAlign: "center",
         verticalAlign: "middle",
+        fontWeight: 400,
+        "&:hover": {
+            fontWeight: 500,
+            color: Colours.colours.darkViolet1,
+        },
     },
     title: {
         fontSize: 28,

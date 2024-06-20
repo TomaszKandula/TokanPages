@@ -26,25 +26,27 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
 
         const element = document?.querySelector(hash);
         if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            setTimeout(
+                () =>
+                    element.scrollIntoView({
+                        block: "start",
+                        behavior: "smooth",
+                    }),
+                500
+            );
         }
-
-    }, [ hash, props.isLoading ]);
+    }, [hash, props.isLoading]);
 
     return (
         <section className={classes.section}>
             <Container className={classes.container}>
                 <Box py={12}>
-                    <div data-aos="fade-down">
-                        <BackArrow />
-                    </div>
-                    <div data-aos="fade-up">
-                        {props.isLoading ? (
-                            <ProgressBar styleObject={{ marginTop: 30 }} />
-                        ) : (
-                            <RenderContent items={props.items} />
-                        )}
-                    </div>
+                    <BackArrow />
+                    {props.isLoading ? (
+                        <ProgressBar styleObject={{ marginTop: 30 }} />
+                    ) : (
+                        <RenderContent items={props.items} />
+                    )}
                 </Box>
             </Container>
         </section>

@@ -19,4 +19,4 @@ export const DocumentContentWrapper = (props: DocumentContentWrapperProps): JSX.
             </Container>
         </>
     );
-}
+};

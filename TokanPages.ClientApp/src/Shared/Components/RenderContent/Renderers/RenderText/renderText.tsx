@@ -7,8 +7,8 @@ import { useHash } from "../../../../../Shared/Hooks";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import "../../../../../Theme/Css/customDropCap.css";
 
-interface DataProps { 
-    data?: string 
+interface DataProps {
+    data?: string;
     text?: string;
 }
 
@@ -26,13 +26,13 @@ const RenderItemLink = (props: DataProps): JSX.Element => {
                 window.history.pushState(null, "", window.location.pathname + data);
             }
         }
-    }, [ hash, data ]);
+    }, [hash, data]);
 
     return (
-        <Typography 
-            variant="body1" 
-            component="span" 
-            className={`${classes.common} ${classes.paragraph} ${classes.link}`} 
+        <Typography
+            variant="body1"
+            component="span"
+            className={`${classes.common} ${classes.paragraph} ${classes.link}`}
             onClick={onClickHandler}
         >
             <span className={classes.wrapper}>
@@ -41,7 +41,7 @@ const RenderItemLink = (props: DataProps): JSX.Element => {
             </span>
         </Typography>
     );
-}
+};
 
 const RenderTitle = (props: DataProps): JSX.Element => {
     const classes = RenderTextStyle();

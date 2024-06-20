@@ -63,7 +63,7 @@ export const Routes = (): JSX.Element => {
             <Route exact={props.exact ?? true} path={props.path} key={uuidv4()}>
                 {props.page}
             </Route>
-        )
+        );
     };
 
     let buffer: JSX.Element[] = [];

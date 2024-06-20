@@ -8,5 +8,6 @@ export interface HeaderContentDto {
         subtitle: string;
         description: string;
         action: LinkDto;
+        resume: LinkDto;
     };
 }

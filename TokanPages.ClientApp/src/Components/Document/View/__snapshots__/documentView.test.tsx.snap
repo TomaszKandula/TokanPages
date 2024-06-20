@@ -10,53 +10,45 @@ exports[`test component: documentView should render correctly '<DocumentView />'
     <div
       class="MuiBox-root MuiBox-root-4"
     >
-      <div
-        data-aos="fade-down"
+      <a
+        href="/"
       >
-        <a
-          href="/"
+        <button
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-5"
+          tabindex="0"
+          type="button"
         >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-5"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiIconButton-label"
           >
-            <span
-              class="MuiIconButton-label"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-6"
-        />
-      </div>
-      <div
-        data-aos="fade-up"
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </a>
+      <hr
+        class="MuiDivider-root makeStyles-divider-6"
+      />
+      <span
+        class="MuiTypography-root makeStyles-common-7 makeStyles-paragraph-13 MuiTypography-body1"
       >
-        <span
-          class="MuiTypography-root makeStyles-common-7 makeStyles-paragraph-13 MuiTypography-body1"
-        >
-          <div>
-            <p>
-              Policy text
-            </p>
-          </div>
-        </span>
-      </div>
+        <div>
+          <p>
+            Policy text
+          </p>
+        </div>
+      </span>
     </div>
   </div>
 </section>
@@ -72,53 +64,45 @@ exports[`test component: documentView should render correctly '<DocumentView />'
     <div
       class="MuiBox-root MuiBox-root-43"
     >
-      <div
-        data-aos="fade-down"
+      <a
+        href="/"
       >
-        <a
-          href="/"
+        <button
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-44"
+          tabindex="0"
+          type="button"
         >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-44"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiIconButton-label"
           >
-            <span
-              class="MuiIconButton-label"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-45"
-        />
-      </div>
-      <div
-        data-aos="fade-up"
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </a>
+      <hr
+        class="MuiDivider-root makeStyles-divider-45"
+      />
+      <span
+        class="MuiTypography-root makeStyles-common-46 makeStyles-paragraph-52 MuiTypography-body1"
       >
-        <span
-          class="MuiTypography-root makeStyles-common-46 makeStyles-paragraph-52 MuiTypography-body1"
-        >
-          <div>
-            <p>
-              Showcase text
-            </p>
-          </div>
-        </span>
-      </div>
+        <div>
+          <p>
+            Showcase text
+          </p>
+        </div>
+      </span>
     </div>
   </div>
 </section>
@@ -134,53 +118,45 @@ exports[`test component: documentView should render correctly '<DocumentView />'
     <div
       class="MuiBox-root MuiBox-root-30"
     >
-      <div
-        data-aos="fade-down"
+      <a
+        href="/"
       >
-        <a
-          href="/"
+        <button
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-31"
+          tabindex="0"
+          type="button"
         >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-31"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiIconButton-label"
           >
-            <span
-              class="MuiIconButton-label"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-32"
-        />
-      </div>
-      <div
-        data-aos="fade-up"
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </a>
+      <hr
+        class="MuiDivider-root makeStyles-divider-32"
+      />
+      <span
+        class="MuiTypography-root makeStyles-common-33 makeStyles-paragraph-39 MuiTypography-body1"
       >
-        <span
-          class="MuiTypography-root makeStyles-common-33 makeStyles-paragraph-39 MuiTypography-body1"
-        >
-          <div>
-            <p>
-              Story text
-            </p>
-          </div>
-        </span>
-      </div>
+        <div>
+          <p>
+            Story text
+          </p>
+        </div>
+      </span>
     </div>
   </div>
 </section>
@@ -196,53 +172,45 @@ exports[`test component: documentView should render correctly '<DocumentView />'
     <div
       class="MuiBox-root MuiBox-root-17"
     >
-      <div
-        data-aos="fade-down"
+      <a
+        href="/"
       >
-        <a
-          href="/"
+        <button
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
+          tabindex="0"
+          type="button"
         >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
-            tabindex="0"
-            type="button"
+          <span
+            class="MuiIconButton-label"
           >
-            <span
-              class="MuiIconButton-label"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-19"
-        />
-      </div>
-      <div
-        data-aos="fade-up"
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+              />
+            </svg>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </a>
+      <hr
+        class="MuiDivider-root makeStyles-divider-19"
+      />
+      <span
+        class="MuiTypography-root makeStyles-common-20 makeStyles-paragraph-26 MuiTypography-body1"
       >
-        <span
-          class="MuiTypography-root makeStyles-common-20 makeStyles-paragraph-26 MuiTypography-body1"
-        >
-          <div>
-            <p>
-              Terms text
-            </p>
-          </div>
-        </span>
-      </div>
+        <div>
+          <p>
+            Terms text
+          </p>
+        </div>
+      </span>
     </div>
   </div>
 </section>
