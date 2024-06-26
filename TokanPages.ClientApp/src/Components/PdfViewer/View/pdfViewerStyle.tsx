@@ -12,4 +12,12 @@ export const PdfViewerStyle = makeStyles(() => ({
         marginTop: 20,
         marginBottom: 10,
     },
+    header: {
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: Colours.colours.gray1,
+        textAlign: "center",
+        marginTop: 25,
+        padding: 5,
+    },
 }));
