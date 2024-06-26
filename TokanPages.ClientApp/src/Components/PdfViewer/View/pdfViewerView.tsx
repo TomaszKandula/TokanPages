@@ -1,33 +1,43 @@
 import * as React from "react";
-
-//TODO: refactor for final implementation
+import { Box } from "@material-ui/core";
+import { GET_DOCUMENTS_URL } from "../../../Api/Request";
+import { PDF_WORKER_URL } from "../../../Shared/constants";
 
 interface PdfViewerViewProps {
     pdfFile: string;
+    scale?: number;
 }
 
-const pdfWorkerUrl = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
-
-export const PdfViewerView = (_: PdfViewerViewProps): JSX.Element => {
+export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     //@ts-expect-error
     let { pdfjsLib } = globalThis;
-    pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
 
-    const testUrl = "http://localhost:7000/api/v1.0/content/assets/getNonVideoAsset?blobName=documents/tomasz_tom_kandula_resume.pdf";
+    const handleId = "pdf-canvas";
+    const scale = props.scale ?? 1.2;
+    const url = GET_DOCUMENTS_URL + "/" + props.pdfFile;
+
+    const [isRendered, setRendered] = React.useState(false);
+    const [numPages, setNumPages] = React.useState(0);
+    const [currentPage, _] = React.useState(1);
 
     React.useEffect(() => {
-        pdfjsLib.getDocument(testUrl).promise.then((doc: any) => {
-            console.log(`This document has ${doc._pdfInfo.numPages} pages.`);
-            doc.getPage(1).then((page: any) => {
-                const scale = 2.0;
-                const viewport = page.getViewport({ scale: scale });
-                let canvas = document.querySelector("#pdf-canvas");
+        if (isRendered) {
+            return;
+        }
 
-                //@ts-expect-error
+        pdfjsLib.getDocument(url).promise.then((doc: any) => {
+            doc.getPage(currentPage).then((page: any) => {
+                setNumPages(doc._pdfInfo.numPages);
+
+                let canvas = document.querySelector(`#${handleId}`) as HTMLCanvasElement | null;
+                if (canvas === null) {
+                    return;
+                }
+
+                const viewport = page.getViewport({ scale: scale });
                 const context = canvas.getContext("2d");
-                //@ts-expect-error
                 canvas.height = viewport.height;
-                //@ts-expect-error
                 canvas.width = viewport.width;
 
                 const renderContext = {
@@ -37,15 +47,17 @@ export const PdfViewerView = (_: PdfViewerViewProps): JSX.Element => {
 
                 const renderTask = page.render(renderContext);
                 renderTask.promise.then(() => {
-                    console.log("Page rendered");
+                    setRendered(true);
                 });
             });
         });
-    }, []);
+
+    }, [ isRendered, currentPage ]);
 
     return (
-        <div>
-            <canvas id="pdf-canvas"></canvas>
-        </div>
+        <Box>
+            {numPages}
+            <canvas id={handleId}></canvas>
+        </Box>
     );
 }
