@@ -35,8 +35,8 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const viewport = page.getViewport({ scale: scale });
         const context = canvas.getContext("2d");
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        //canvas.height = viewport.height;
+        //canvas.width = viewport.width;
 
         const renderContext = {
             canvasContext: context,
@@ -71,11 +71,15 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     }, [isLoading]);
 
     return (
-        <Grid container justifyContent="center" direction="column">
-            {isLoading 
-            ? <ProgressBar /> 
-            : <Box className={classes.header}>{currentPage} / {numPages}</Box>}
-            <canvas id={handleId}></canvas>
-        </Grid>
+        <section className={classes.section}>
+            <Grid container justifyContent="center" direction="column">
+                {isLoading ? <ProgressBar /> : <></>}
+                <Box pt={2} pb={2} className={classes.header}>
+                    {currentPage} / {numPages}
+                </Box>
+                <canvas id={handleId} className={classes.canvas}></canvas>
+                <Box mt={10}></Box>
+            </Grid>
+        </section>
     );
 }

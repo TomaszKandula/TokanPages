@@ -3,21 +3,25 @@ import { Colours } from "../../../Theme";
 
 export const PdfViewerStyle = makeStyles(() => ({
     section: {
-        backgroundColor: Colours.colours.white,
-    },
-    container: {
-        maxWidth: 700,
-    },
-    divider: {
-        marginTop: 20,
-        marginBottom: 10,
+        backgroundColor: Colours.colours.gray1,
     },
     header: {
+        color: Colours.colours.lightGray2,
+        fontSize: 14,
+        fontWeight: 500,
         borderStyle: "solid",
         borderWidth: 1,
         borderColor: Colours.colours.gray1,
         textAlign: "center",
-        marginTop: 25,
-        padding: 5,
+    },
+    canvas: {
+        paddingLeft: 15,
+        paddingRight: 15,
+        marginLeft: "auto",
+        marginRight: "auto",
+        display: "block",
+        maxWidth: 800,
+        height: "100%",
+        width: "100%",
     },
 }));
