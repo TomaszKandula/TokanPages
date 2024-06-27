@@ -4,6 +4,7 @@ import { ProgressBarStyle } from "./progressBarStyle";
 
 interface ProgressBarViewProps {
     styleObject?: object;
+    size?: number;
 }
 
 export const ProgressBarView = (props: ProgressBarViewProps): JSX.Element => {
@@ -12,7 +13,7 @@ export const ProgressBarView = (props: ProgressBarViewProps): JSX.Element => {
     return (
         <Box display="flex" alignItems="center" justifyContent="center" style={externalStyle}>
             <Box m="auto">
-                <CircularProgress className={classes.main} />
+                <CircularProgress className={classes.main} size={props.size} />
             </Box>
         </Box>
     );

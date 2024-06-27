@@ -62,6 +62,20 @@ exports[`test component: headerView should render correctly '<HeaderView />' whe
               />
             </button>
           </a>
+          <a
+            class="makeStyles-action_link-37"
+            href=""
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              />
+            </button>
+          </a>
         </div>
       </div>
     </div>

@@ -90,6 +90,7 @@ export const GET_PHOTOGRAPHY_CONTENT = `${API_CONTENT_URI}/getContent?name=photo
 
 export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset?id={id}&assetName=image.jpg`;
 
+export const GET_DOCUMENTS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=documents`;
 export const GET_IMAGES_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images`;
 export const GET_ARTICLE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/articles`;
 export const GET_FEATURED_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/featured`;
