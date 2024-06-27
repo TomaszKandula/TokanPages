@@ -13,12 +13,59 @@ interface PdfViewerViewProps {
     scale?: number;
 }
 
+interface PdfCanvasProps {
+    pdfDocument: any;
+    pageNumber: number;
+    scale?: number;
+    htmlAttributes: React.HTMLAttributes<HTMLCanvasElement>;
+}
+
+const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
+    const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+
+    const renderPage = React.useCallback(
+        async (numPage: number, canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => {
+            const page = await props.pdfDocument.getPage(numPage);
+            const viewport = page.getViewport({ scale: 1.5 });
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = { canvasContext: context, viewport: viewport };
+            const renderTask = page.render(renderContext);
+
+            renderTask.promise.then(() => {
+                renderTask.cancel();
+            });
+        },
+        [props.pdfDocument]
+    );
+
+    React.useEffect(() => {
+        const canvas = canvasRef.current;
+        if (canvas === null) {
+            return;
+        }
+
+        const context = canvas.getContext("2d");
+        if (context === null) {
+            return;
+        }
+
+        if (props.pdfDocument !== null && props.pageNumber > 0) {
+            renderPage(props.pageNumber, canvas, context);
+        }
+
+    }, [props.pdfDocument, props.pageNumber]);
+
+    return <canvas ref={canvasRef} {...props.htmlAttributes} />
+}
+
 export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     //@ts-expect-error
     let { pdfjsLib } = globalThis;
     pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
 
-    const handleId = "pdf-canvas";
     const scale = props.scale ?? 1.5;
     const url = GET_DOCUMENTS_URL + "/" + props.pdfFile;
     const classes = PdfViewerStyle();
@@ -27,29 +74,6 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     const [pdfDocument, setPdfDocument] = React.useState<any>(null);
     const [numPages, setNumPages] = React.useState(0);
     const [currentPage, setCurrentPage] = React.useState(0);
-
-    const renderPage = React.useCallback(
-        async (numPage: number) => {
-            const page = await pdfDocument.getPage(numPage);
-
-            let canvas = document.querySelector(`#${handleId}`) as HTMLCanvasElement | null;
-            if (canvas === null) {
-                return;
-            }
-
-            const viewport = page.getViewport({ scale: scale });
-            const context = canvas.getContext("2d");
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            const renderContext = { canvasContext: context, viewport: viewport };
-            const renderTask = page.render(renderContext);
-            renderTask.promise.then(() => {
-                renderTask.cancel();
-            });
-        },
-        [pdfDocument, currentPage]
-    );
 
     const getDocument = React.useCallback(async () => {
         const doc = await pdfjsLib.getDocument(url).promise;
@@ -66,7 +90,6 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const next = currentPage + 1;
         setCurrentPage(next);
-        renderPage(next);
     }, [numPages, currentPage]);
 
     const previousPage = React.useCallback(() => {
@@ -76,14 +99,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const previous = currentPage - 1;
         setCurrentPage(previous);
-        renderPage(previous);
     }, [numPages, currentPage]);
-
-    React.useEffect(() => {
-        if (pdfDocument !== null && currentPage > 0) {
-            renderPage(currentPage);
-        }
-    }, [pdfDocument, currentPage]);
 
     React.useEffect(() => {
         if (isLoading) {
@@ -105,7 +121,12 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </div>
                 </Box>
                 <Box className={classes.canvasWrapper}>
-                    <canvas id={handleId} className={classes.canvas}></canvas>
+                    <PdfCanvas 
+                        pdfDocument={pdfDocument}
+                        pageNumber={currentPage}
+                        scale={scale}
+                        htmlAttributes={{ className: classes.canvas }} 
+                    />
                 </Box>
             </Grid>
         </section>
