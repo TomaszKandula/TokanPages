@@ -28,26 +28,28 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     const [numPages, setNumPages] = React.useState(0);
     const [currentPage, setCurrentPage] = React.useState(0);
 
-    const renderPage = React.useCallback(async (numPage: number) => {
-        const page = await pdfDocument.getPage(numPage);
+    const renderPage = React.useCallback(
+        async (numPage: number) => {
+            const page = await pdfDocument.getPage(numPage);
 
-        let canvas = document.querySelector(`#${handleId}`) as HTMLCanvasElement | null;
-        if (canvas === null) {
-            return;
-        }
+            let canvas = document.querySelector(`#${handleId}`) as HTMLCanvasElement | null;
+            if (canvas === null) {
+                return;
+            }
 
-        const viewport = page.getViewport({ scale: scale });
-        const context = canvas.getContext("2d");
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+            const viewport = page.getViewport({ scale: scale });
+            const context = canvas.getContext("2d");
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
 
-        const renderContext = { canvasContext: context, viewport: viewport };
-        const renderTask = page.render(renderContext);
-        renderTask.promise.then(() => {
-            renderTask.cancel();
-        });
-
-    }, [pdfDocument, currentPage]);
+            const renderContext = { canvasContext: context, viewport: viewport };
+            const renderTask = page.render(renderContext);
+            renderTask.promise.then(() => {
+                renderTask.cancel();
+            });
+        },
+        [pdfDocument, currentPage]
+    );
 
     const getDocument = React.useCallback(async () => {
         const doc = await pdfjsLib.getDocument(url).promise;
@@ -108,4 +110,4 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
             </Grid>
         </section>
     );
-}
+};

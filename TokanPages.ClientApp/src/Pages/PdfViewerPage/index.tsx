@@ -6,11 +6,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { PdfViewer } from "../../Components/PdfViewer";
 
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentTemplatesAction,
-} from "../../Store/Actions";
+import { ContentNavigationAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);

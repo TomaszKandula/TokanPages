@@ -15,7 +15,7 @@ export const PdfViewerStyle = makeStyles(() => ({
         borderColor: Colours.colours.gray1,
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
     },
     header_pages: {
         alignSelf: "center",
