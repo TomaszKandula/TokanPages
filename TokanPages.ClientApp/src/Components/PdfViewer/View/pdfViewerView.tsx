@@ -35,14 +35,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const viewport = page.getViewport({ scale: scale });
         const context = canvas.getContext("2d");
-        //canvas.height = viewport.height;
-        //canvas.width = viewport.width;
-
-        const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
-
+        const renderContext = { canvasContext: context, viewport: viewport };
         const renderTask = page.render(renderContext);
         renderTask.promise.then(() => {
             console.debug("Page rendered...");
