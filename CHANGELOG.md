@@ -1,3 +1,25 @@
+# [0.98.0](https://github.com/TomaszKandula/TokanPages/compare/v0.97.0...v0.98.0) (2024-06-27)
+
+
+### Features
+
+* add documents url ([8707c41](https://github.com/TomaszKandula/TokanPages/commit/8707c414046a11bfc18f85b43678a5743781cc4d))
+* add header with page info ([3774be8](https://github.com/TomaszKandula/TokanPages/commit/3774be8a5d3510069f4544f0817c4ed52dbc9121))
+* add next/prev buttons ([22295ac](https://github.com/TomaszKandula/TokanPages/commit/22295ac783cf062a9cb1fe2fefd349acaed0cce5))
+* add pdf js worker url ([b1b613b](https://github.com/TomaszKandula/TokanPages/commit/b1b613b2b87a1fea2e929b9956cb11f424df2236))
+* add pdf page ([741522e](https://github.com/TomaszKandula/TokanPages/commit/741522e9805f3faf57896d2f7e6dbc030b77ab55))
+* add pdf viewer component ([8388cc5](https://github.com/TomaszKandula/TokanPages/commit/8388cc52e8ec2728d895e2a4f5655f2f3e38cef3))
+* add pdf.js ([960220b](https://github.com/TomaszKandula/TokanPages/commit/960220b08f2afccc662b9b80222cd782f8832742))
+* add react-pdf ([8999d5f](https://github.com/TomaszKandula/TokanPages/commit/8999d5f7f00fcceab46efb1d3581790b16e665dc))
+* allow to set size of progress bar ([ce3e95b](https://github.com/TomaszKandula/TokanPages/commit/ce3e95b49a68966ff97e8d0eb52fa2dd77649938))
+* apply prettier ([7306a88](https://github.com/TomaszKandula/TokanPages/commit/7306a885de56f5f6bca0fb39ab7932d4fe31590e))
+* get pdf name from query ([572fcb2](https://github.com/TomaszKandula/TokanPages/commit/572fcb28d2621682220c325a7ba4db4481f3ceff))
+* implement pdf reader ([b2cea46](https://github.com/TomaszKandula/TokanPages/commit/b2cea4683c54422da8c8518c8ae301c1a81036f1))
+* replace with custom implementation (pdfjsLib) ([e3ac117](https://github.com/TomaszKandula/TokanPages/commit/e3ac117607dda43be8efa69b9cab97e27b69d016))
+* restyle, auto-scale pdf ([5715c4b](https://github.com/TomaszKandula/TokanPages/commit/5715c4b0debdc2dd0f6e9a2b81fc584874a52e0f))
+* show loader on loading and check mark on ready document ([a5d4d17](https://github.com/TomaszKandula/TokanPages/commit/a5d4d17f130a7f58275550890cd8ec6c0c2526ab))
+* update style ([a88da79](https://github.com/TomaszKandula/TokanPages/commit/a88da79d4f041e7ed9070787bf841be264c27e4c))
+
 # [0.97.0](https://github.com/TomaszKandula/TokanPages/compare/v0.96.0...v0.97.0) (2024-06-20)
 
 
