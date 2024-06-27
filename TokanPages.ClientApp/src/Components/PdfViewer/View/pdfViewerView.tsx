@@ -1,9 +1,13 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CheckIcon from "@material-ui/icons/Check";
+import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import { ApplicationState } from "../../../Store/Configuration";
 import { GET_DOCUMENTS_URL } from "../../../Api/Request";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { PDF_WORKER_URL } from "../../../Shared/constants";
 import { ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
@@ -13,51 +17,96 @@ interface PdfViewerViewProps {
     scale?: number;
 }
 
-export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
-    //@ts-expect-error
-    let { pdfjsLib } = globalThis;
-    pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
+interface PdfCanvasProps {
+    pdfDocument: any;
+    pageNumber: number;
+    scale: number;
+    htmlAttributes: React.HTMLAttributes<HTMLCanvasElement>;
+}
 
-    const handleId = "pdf-canvas";
-    const scale = props.scale ?? 1.5;
-    const url = GET_DOCUMENTS_URL + "/" + props.pdfFile;
-    const classes = PdfViewerStyle();
-
-    const [isLoading, setLoading] = React.useState(true);
-    const [pdfDocument, setPdfDocument] = React.useState<any>(null);
-    const [numPages, setNumPages] = React.useState(0);
-    const [currentPage, setCurrentPage] = React.useState(0);
+const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
+    const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
     const renderPage = React.useCallback(
-        async (numPage: number) => {
-            const page = await pdfDocument.getPage(numPage);
+        async (numPage: number, canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => {
+            const page = await props.pdfDocument.getPage(numPage);
+            const viewport = page.getViewport({ scale: props.scale });
 
-            let canvas = document.querySelector(`#${handleId}`) as HTMLCanvasElement | null;
-            if (canvas === null) {
-                return;
-            }
-
-            const viewport = page.getViewport({ scale: scale });
-            const context = canvas.getContext("2d");
             canvas.height = viewport.height;
             canvas.width = viewport.width;
 
             const renderContext = { canvasContext: context, viewport: viewport };
             const renderTask = page.render(renderContext);
+
             renderTask.promise.then(() => {
                 renderTask.cancel();
             });
         },
-        [pdfDocument, currentPage]
+        [props.pdfDocument]
     );
 
+    React.useEffect(() => {
+        const canvas = canvasRef.current;
+        if (canvas === null) {
+            return;
+        }
+
+        const context = canvas.getContext("2d");
+        if (context === null) {
+            return;
+        }
+
+        if (props.pdfDocument !== null && props.pageNumber > 0) {
+            renderPage(props.pageNumber, canvas, context);
+        }
+    }, [props.pdfDocument, props.pageNumber]);
+
+    return <canvas ref={canvasRef} {...props.htmlAttributes} />;
+};
+
+export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
+    //@ts-expect-error
+    let { pdfjsLib } = globalThis;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
+    const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
+
+    const dispatch = useDispatch();
+    const classes = PdfViewerStyle();
+
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.application);
+    const hasTemplates =
+        template.nullError !== "" &&
+        template.unexpectedError !== "" &&
+        template.unexpectedStatus !== "" &&
+        template.validationError !== "";
+
+    const [isLoading, setLoading] = React.useState(true);
+    const [hasError, setError] = React.useState(false);
+    const [pdfDocument, setPdfDocument] = React.useState<any>(null);
+    const [numPages, setNumPages] = React.useState(0);
+    const [currentPage, setCurrentPage] = React.useState(0);
+
     const getDocument = React.useCallback(async () => {
-        const doc = await pdfjsLib.getDocument(url).promise;
+        let doc;
+        try {
+            doc = await pdfjsLib.getDocument(url).promise;
+        } catch (error: any) {
+            const statusText = template.unexpectedStatus.replace("{STATUS_CODE}", error.status.toString());
+            setError(true);
+            RaiseError({
+                dispatch: dispatch,
+                errorObject: statusText,
+                content: template,
+            });
+
+            return;
+        }
+
         setNumPages(doc._pdfInfo.numPages);
         setPdfDocument(doc);
         setLoading(false);
         setCurrentPage(1);
-    }, []);
+    }, [template]);
 
     const nextPage = React.useCallback(() => {
         if (numPages === currentPage) {
@@ -66,7 +115,6 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const next = currentPage + 1;
         setCurrentPage(next);
-        renderPage(next);
     }, [numPages, currentPage]);
 
     const previousPage = React.useCallback(() => {
@@ -76,26 +124,25 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const previous = currentPage - 1;
         setCurrentPage(previous);
-        renderPage(previous);
     }, [numPages, currentPage]);
 
     React.useEffect(() => {
-        if (pdfDocument !== null && currentPage > 0) {
-            renderPage(currentPage);
-        }
-    }, [pdfDocument, currentPage]);
-
-    React.useEffect(() => {
-        if (isLoading) {
+        if (isLoading && hasTemplates) {
             getDocument();
         }
-    }, [isLoading]);
+    }, [isLoading, hasTemplates]);
 
     return (
         <section className={classes.section}>
             <Grid container justifyContent="center" direction="column">
                 <Box mt={2} pt={2} pb={2} className={classes.header}>
-                    {isLoading ? <ProgressBar size={20} /> : <CheckIcon />}
+                    {isLoading && !hasError ? (
+                        <ProgressBar size={20} />
+                    ) : hasError ? (
+                        <ReportProblemIcon />
+                    ) : (
+                        <CheckIcon />
+                    )}
                     <div className={classes.header_pages}>
                         {currentPage} / {numPages}
                     </div>
@@ -105,7 +152,12 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </div>
                 </Box>
                 <Box className={classes.canvasWrapper}>
-                    <canvas id={handleId} className={classes.canvas}></canvas>
+                    <PdfCanvas
+                        pdfDocument={pdfDocument}
+                        pageNumber={currentPage}
+                        scale={props.scale ?? 1.5}
+                        htmlAttributes={{ className: classes.canvas }}
+                    />
                 </Box>
             </Grid>
         </section>
