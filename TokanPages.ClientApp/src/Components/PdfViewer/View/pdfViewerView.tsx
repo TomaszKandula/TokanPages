@@ -2,6 +2,7 @@ import * as React from "react";
 import { Box, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import CheckIcon from "@material-ui/icons/Check";
 import { GET_DOCUMENTS_URL } from "../../../Api/Request";
 import { PDF_WORKER_URL } from "../../../Shared/constants";
 import { ProgressBar } from "../../../Shared/Components";
@@ -91,8 +92,8 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     return (
         <section className={classes.section}>
             <Grid container justifyContent="center" direction="column">
-                {isLoading ? <ProgressBar /> : <></>}
                 <Box mt={2} pt={2} pb={2} className={classes.header}>
+                    {isLoading ? <ProgressBar size={20} /> : <CheckIcon />}
                     <div className={classes.header_pages}>
                         {currentPage} / {numPages}
                     </div>
