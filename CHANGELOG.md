@@ -1,3 +1,18 @@
+# [0.99.0](https://github.com/TomaszKandula/TokanPages/compare/v0.98.0...v0.99.0) (2024-06-27)
+
+
+### Bug Fixes
+
+* add missing scale prop ([00c8dbf](https://github.com/TomaszKandula/TokanPages/commit/00c8dbf0ef1c938a04cef7e66bd2c5e972d86be7))
+
+
+### Features
+
+* apply prettier ([661f319](https://github.com/TomaszKandula/TokanPages/commit/661f3192893d3d5d8f012e142227509609472ba7))
+* apply prettier ([805c5b6](https://github.com/TomaszKandula/TokanPages/commit/805c5b6307abf9db730c035f05a16ecc22bad465))
+* error handling for pdfjs ([cb18900](https://github.com/TomaszKandula/TokanPages/commit/cb1890011a5f8a4008f363e47e369d0a113c3b24))
+* improve, use separate sub component ([15d9ac1](https://github.com/TomaszKandula/TokanPages/commit/15d9ac135ce1ee6381daa4b8c969f14349d568d7))
+
 # [0.98.0](https://github.com/TomaszKandula/TokanPages/compare/v0.97.0...v0.98.0) (2024-06-27)
 
 
