@@ -1,9 +1,13 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import CheckIcon from "@material-ui/icons/Check";
+import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import { ApplicationState } from "../../../Store/Configuration";
 import { GET_DOCUMENTS_URL } from "../../../Api/Request";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { PDF_WORKER_URL } from "../../../Shared/constants";
 import { ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
@@ -64,23 +68,44 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     //@ts-expect-error
     let { pdfjsLib } = globalThis;
     pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
+    const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
 
-    const scale = props.scale ?? 1.5;
-    const url = GET_DOCUMENTS_URL + "/" + props.pdfFile;
+    const dispatch = useDispatch();
     const classes = PdfViewerStyle();
 
+    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.application);
+    const hasTemplates = template.nullError !== "" 
+    && template.unexpectedError !== "" 
+    && template.unexpectedStatus !== "" 
+    && template.validationError !== "";
+
     const [isLoading, setLoading] = React.useState(true);
+    const [hasError, setError] = React.useState(false);
     const [pdfDocument, setPdfDocument] = React.useState<any>(null);
     const [numPages, setNumPages] = React.useState(0);
     const [currentPage, setCurrentPage] = React.useState(0);
 
     const getDocument = React.useCallback(async () => {
-        const doc = await pdfjsLib.getDocument(url).promise;
+        let doc;
+        try {
+            doc = await pdfjsLib.getDocument(url).promise;
+        } catch (error : any) {
+            const statusText = template.unexpectedStatus.replace("{STATUS_CODE}", error.status.toString());
+            setError(true);
+            RaiseError({
+                dispatch: dispatch,
+                errorObject: statusText,
+                content: template,
+            });
+
+            return;
+        }
+
         setNumPages(doc._pdfInfo.numPages);
         setPdfDocument(doc);
         setLoading(false);
         setCurrentPage(1);
-    }, []);
+    }, [template]);
 
     const nextPage = React.useCallback(() => {
         if (numPages === currentPage) {
@@ -101,16 +126,16 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     }, [numPages, currentPage]);
 
     React.useEffect(() => {
-        if (isLoading) {
+        if (isLoading && hasTemplates) {
             getDocument();
         }
-    }, [isLoading]);
+    }, [isLoading, hasTemplates]);
 
     return (
         <section className={classes.section}>
             <Grid container justifyContent="center" direction="column">
                 <Box mt={2} pt={2} pb={2} className={classes.header}>
-                    {isLoading ? <ProgressBar size={20} /> : <CheckIcon />}
+                    {isLoading && !hasError ? <ProgressBar size={20} /> : hasError ? <ReportProblemIcon/> : <CheckIcon />}
                     <div className={classes.header_pages}>
                         {currentPage} / {numPages}
                     </div>
@@ -123,7 +148,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     <PdfCanvas
                         pdfDocument={pdfDocument}
                         pageNumber={currentPage}
-                        scale={scale}
+                        scale={props.scale ?? 1.5}
                         htmlAttributes={{ className: classes.canvas }}
                     />
                 </Box>
