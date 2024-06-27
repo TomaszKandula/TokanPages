@@ -28,15 +28,16 @@ export const PdfViewerStyle = makeStyles(() => ({
         cursor: "pointer",
     },
     canvas: {
-        padding: 30,
+        padding: 60,
         marginLeft: "auto",
         marginRight: "auto",
         display: "block",
-        maxWidth: 800,
+        maxWidth: 900,
         height: "100%",
         width: "100%",
     },
     canvasWrapper: {
         backgroundColor: Colours.colours.gray1,
+        marginBottom: 60,
     },
 }));
