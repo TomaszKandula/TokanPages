@@ -74,10 +74,11 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     const classes = PdfViewerStyle();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.application);
-    const hasTemplates = template.nullError !== "" 
-    && template.unexpectedError !== "" 
-    && template.unexpectedStatus !== "" 
-    && template.validationError !== "";
+    const hasTemplates =
+        template.nullError !== "" &&
+        template.unexpectedError !== "" &&
+        template.unexpectedStatus !== "" &&
+        template.validationError !== "";
 
     const [isLoading, setLoading] = React.useState(true);
     const [hasError, setError] = React.useState(false);
@@ -89,7 +90,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
         let doc;
         try {
             doc = await pdfjsLib.getDocument(url).promise;
-        } catch (error : any) {
+        } catch (error: any) {
             const statusText = template.unexpectedStatus.replace("{STATUS_CODE}", error.status.toString());
             setError(true);
             RaiseError({
@@ -135,7 +136,13 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
         <section className={classes.section}>
             <Grid container justifyContent="center" direction="column">
                 <Box mt={2} pt={2} pb={2} className={classes.header}>
-                    {isLoading && !hasError ? <ProgressBar size={20} /> : hasError ? <ReportProblemIcon/> : <CheckIcon />}
+                    {isLoading && !hasError ? (
+                        <ProgressBar size={20} />
+                    ) : hasError ? (
+                        <ReportProblemIcon />
+                    ) : (
+                        <CheckIcon />
+                    )}
                     <div className={classes.header_pages}>
                         {currentPage} / {numPages}
                     </div>
