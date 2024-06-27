@@ -11,6 +11,7 @@ export { PasswordResetPage } from "./PasswordResetPage";
 export { NewsletterRemovePage } from "./NewsletterRemovePage";
 export { NewsletterUpdatePage } from "./NewsletterUpdatePage";
 export { WrongPage } from "./WrongPage";
+export { PdfViewerPage } from "./PdfViewerPage";
 export {
     BicyclePage,
     ElectronicsPage,
