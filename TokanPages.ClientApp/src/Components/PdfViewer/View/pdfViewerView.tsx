@@ -20,7 +20,7 @@ interface PdfViewerViewProps {
 interface PdfCanvasProps {
     pdfDocument: any;
     pageNumber: number;
-    scale?: number;
+    scale: number;
     htmlAttributes: React.HTMLAttributes<HTMLCanvasElement>;
 }
 
@@ -30,7 +30,7 @@ const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
     const renderPage = React.useCallback(
         async (numPage: number, canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => {
             const page = await props.pdfDocument.getPage(numPage);
-            const viewport = page.getViewport({ scale: 1.5 });
+            const viewport = page.getViewport({ scale: props.scale });
 
             canvas.height = viewport.height;
             canvas.width = viewport.width;
