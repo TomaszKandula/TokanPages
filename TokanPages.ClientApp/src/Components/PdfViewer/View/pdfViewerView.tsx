@@ -55,11 +55,10 @@ const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
         if (props.pdfDocument !== null && props.pageNumber > 0) {
             renderPage(props.pageNumber, canvas, context);
         }
-
     }, [props.pdfDocument, props.pageNumber]);
 
-    return <canvas ref={canvasRef} {...props.htmlAttributes} />
-}
+    return <canvas ref={canvasRef} {...props.htmlAttributes} />;
+};
 
 export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     //@ts-expect-error
@@ -121,11 +120,11 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </div>
                 </Box>
                 <Box className={classes.canvasWrapper}>
-                    <PdfCanvas 
+                    <PdfCanvas
                         pdfDocument={pdfDocument}
                         pageNumber={currentPage}
                         scale={scale}
-                        htmlAttributes={{ className: classes.canvas }} 
+                        htmlAttributes={{ className: classes.canvas }}
                     />
                 </Box>
             </Grid>
