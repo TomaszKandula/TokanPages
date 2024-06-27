@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Box, Grid } from "@material-ui/core";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { GET_DOCUMENTS_URL } from "../../../Api/Request";
 import { PDF_WORKER_URL } from "../../../Shared/constants";
 import { ProgressBar } from "../../../Shared/Components";
@@ -35,10 +37,13 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
 
         const viewport = page.getViewport({ scale: scale });
         const context = canvas.getContext("2d");
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
         const renderContext = { canvasContext: context, viewport: viewport };
         const renderTask = page.render(renderContext);
         renderTask.promise.then(() => {
-            console.debug("Page rendered...");
+            renderTask.cancel();
         });
 
     }, [pdfDocument, currentPage]);
@@ -50,6 +55,26 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
         setLoading(false);
         setCurrentPage(1);
     }, []);
+
+    const nextPage = React.useCallback(() => {
+        if (numPages === currentPage) {
+            return;
+        }
+
+        const next = currentPage + 1;
+        setCurrentPage(next);
+        renderPage(next);
+    }, [numPages, currentPage]);
+
+    const previousPage = React.useCallback(() => {
+        if (currentPage === 1) {
+            return;
+        }
+
+        const previous = currentPage - 1;
+        setCurrentPage(previous);
+        renderPage(previous);
+    }, [numPages, currentPage]);
 
     React.useEffect(() => {
         if (pdfDocument !== null && currentPage > 0) {
@@ -67,11 +92,18 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
         <section className={classes.section}>
             <Grid container justifyContent="center" direction="column">
                 {isLoading ? <ProgressBar /> : <></>}
-                <Box pt={2} pb={2} className={classes.header}>
-                    {currentPage} / {numPages}
+                <Box mt={2} pt={2} pb={2} className={classes.header}>
+                    <div className={classes.header_pages}>
+                        {currentPage} / {numPages}
+                    </div>
+                    <div>
+                        <NavigateBeforeIcon className={classes.header_buttons} onClick={previousPage} />
+                        <NavigateNextIcon className={classes.header_buttons} onClick={nextPage} />
+                    </div>
                 </Box>
-                <canvas id={handleId} className={classes.canvas}></canvas>
-                <Box mt={10}></Box>
+                <Box className={classes.canvasWrapper}>
+                    <canvas id={handleId} className={classes.canvas}></canvas>
+                </Box>
             </Grid>
         </section>
     );
