@@ -10,6 +10,7 @@ describe("test component: contactFormView", () => {
                 isLoading={false}
                 caption="Contact me"
                 text="If you have any questions..."
+                hasBackButton={true}
                 keyHandler={jest.fn()}
                 formHandler={jest.fn()}
                 firstName="Ester"
