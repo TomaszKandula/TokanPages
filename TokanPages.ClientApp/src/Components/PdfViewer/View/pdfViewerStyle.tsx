@@ -5,6 +5,9 @@ export const PdfViewerStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     header: {
         color: Colours.colours.black,
         fontSize: 14,
@@ -28,7 +31,7 @@ export const PdfViewerStyle = makeStyles(() => ({
         cursor: "pointer",
     },
     canvas: {
-        padding: 60,
+        padding: 15,
         marginLeft: "auto",
         marginRight: "auto",
         display: "block",
