@@ -2,6 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import { render } from "enzyme";
 import { ResetPassword } from "./resetPassword";
 
@@ -33,7 +34,11 @@ describe("test account group component: resetPassword", () => {
     });
 
     it("should renders correctly '<ResetPassword />' when content is loaded.", () => {
-        const html = render(<ResetPassword />);
+        const html = render(
+            <BrowserRouter>
+                <ResetPassword />
+            </BrowserRouter>
+        );
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
