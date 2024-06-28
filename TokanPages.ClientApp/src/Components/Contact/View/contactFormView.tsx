@@ -62,25 +62,29 @@ export const ContactFormView = (props: Properties): JSX.Element => {
         <section className={classes.section}>
             <Container className={classes.container}>
                 <Box pt={props.hasBackButton ? 0 : 6} pb={10}>
-                    {props.hasBackButton 
-                    ? <Box pt={4} pb={6}>
-                        <BackArrow />
-                    </Box> 
-                    : <Box mb={6} textAlign="center" data-aos="fade-down">
-                        <Typography gutterBottom={true} className={classes.caption}>
-                            {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
-                        </Typography>
-                    </Box>}
+                    {props.hasBackButton ? (
+                        <Box pt={4} pb={6}>
+                            <BackArrow />
+                        </Box>
+                    ) : (
+                        <Box mb={6} textAlign="center" data-aos="fade-down">
+                            <Typography gutterBottom={true} className={classes.caption}>
+                                {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
+                            </Typography>
+                        </Box>
+                    )}
                     <Card elevation={0} className={props.hasBackButton ? classes.card : undefined}>
                         <CardContent className={classes.card_content}>
-                            {props.hasBackButton 
-                            ? <Box mb={3} textAlign="center">
-                                <ContactMailIcon className={classes.icon} />
-                                <Typography className={classes.small_caption}>
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
-                                </Typography>
-                            </Box>
-                            : <></>}
+                            {props.hasBackButton ? (
+                                <Box mb={3} textAlign="center">
+                                    <ContactMailIcon className={classes.icon} />
+                                    <Typography className={classes.small_caption}>
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.caption}
+                                    </Typography>
+                                </Box>
+                            ) : (
+                                <></>
+                            )}
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
