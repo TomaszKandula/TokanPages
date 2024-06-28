@@ -1,3 +1,13 @@
+# [0.100.0](https://github.com/TomaszKandula/TokanPages/compare/v0.99.0...v0.100.0) (2024-06-28)
+
+
+### Features
+
+* add back arrow ([447dd41](https://github.com/TomaszKandula/TokanPages/commit/447dd41f6465c412918689c7abc7b5161f7ee719))
+* apply prettier ([5043464](https://github.com/TomaszKandula/TokanPages/commit/50434648f38ab2647637eddace95d9765f1fe160))
+* restyle contact form, use back button ([329458e](https://github.com/TomaszKandula/TokanPages/commit/329458e26d8872de0c8f389f807ac42d4f3c418a))
+* update snapshots ([b257fb1](https://github.com/TomaszKandula/TokanPages/commit/b257fb1b82ffccac6b9cdcba18783f6d162cc0bc))
+
 # [0.99.0](https://github.com/TomaszKandula/TokanPages/compare/v0.98.0...v0.99.0) (2024-06-27)
 
 
