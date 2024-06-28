@@ -5,27 +5,70 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
   class="makeStyles-section-1"
 >
   <div
-    class="MuiContainer-root MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiContainer-root MuiContainer-maxWidthSm"
+      class="MuiBox-root MuiBox-root-9"
     >
       <div
-        class="MuiBox-root MuiBox-root-4"
+        class="MuiBox-root MuiBox-root-10"
+      >
+        <a
+          href="/"
+        >
+          <button
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-11"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </a>
+        <hr
+          class="MuiDivider-root makeStyles-divider-12"
+        />
+      </div>
+      <div
+        class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
       >
         <div
-          class="MuiBox-root MuiBox-root-5"
-          data-aos="fade-down"
+          class="MuiCardContent-root makeStyles-card_content-8"
         >
-          <p
-            class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1 MuiTypography-gutterBottom"
+          <div
+            class="MuiBox-root MuiBox-root-13"
           >
-            CONTACT ME
-          </p>
-        </div>
-        <div
-          class="MuiBox-root MuiBox-root-6"
-        >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root makeStyles-icon-6"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M21 8V7l-3 2-3-2v1l3 2 3-2zm1-5H2C.9 3 0 3.9 0 5v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2L24 5c0-1.1-.9-2-2-2zM8 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H2v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm8-6h-8V6h8v6z"
+              />
+            </svg>
+            <p
+              class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+            >
+              Contact me
+            </p>
+          </div>
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
           >
@@ -67,10 +110,10 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-7 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-14 MuiOutlinedInput-notchedOutline"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legendLabelled-9 PrivateNotchedOutline-legendNotched-10"
+                        class="PrivateNotchedOutline-legendLabelled-16 PrivateNotchedOutline-legendNotched-17"
                       >
                         <span>
                           First name *
@@ -119,10 +162,10 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-18 MuiOutlinedInput-notchedOutline"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                        class="PrivateNotchedOutline-legendLabelled-20 PrivateNotchedOutline-legendNotched-21"
                       >
                         <span>
                           Last name *
@@ -171,10 +214,10 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-15 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-22 MuiOutlinedInput-notchedOutline"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legendLabelled-17 PrivateNotchedOutline-legendNotched-18"
+                        class="PrivateNotchedOutline-legendLabelled-24 PrivateNotchedOutline-legendNotched-25"
                       >
                         <span>
                           Email address *
@@ -223,10 +266,10 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-19 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-26 MuiOutlinedInput-notchedOutline"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legendLabelled-21 PrivateNotchedOutline-legendNotched-22"
+                        class="PrivateNotchedOutline-legendLabelled-28 PrivateNotchedOutline-legendNotched-29"
                       >
                         <span>
                           Subject *
@@ -275,10 +318,10 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-23 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-30 MuiOutlinedInput-notchedOutline"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legendLabelled-25 PrivateNotchedOutline-legendNotched-26"
+                        class="PrivateNotchedOutline-legendLabelled-32 PrivateNotchedOutline-legendNotched-33"
                       >
                         <span>
                           Message *
@@ -300,13 +343,13 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root Component-root-27"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-36 MuiCheckbox-root Component-root-34"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-32"
+                        class="PrivateSwitchBase-input-39"
                         data-indeterminate="false"
                         id="terms"
                         name="terms"
@@ -323,9 +366,6 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
                         />
                       </svg>
                     </span>
-                    <span
-                      class="MuiTouchRipple-root"
-                    />
                   </span>
                   <span
                     class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
@@ -337,11 +377,11 @@ exports[`test component: contactFormView should render correctly '<ContactFormVi
             </div>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-33"
+            class="MuiBox-root MuiBox-root-40"
             data-aos="fade-up"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-36 MuiButton-fullWidth"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-45 MuiButton-fullWidth"
               tabindex="0"
               type="submit"
             >

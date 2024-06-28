@@ -14,7 +14,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../../Theme";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { BackArrow, TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupStyle } from "./userSignupStyle";
 
@@ -63,8 +63,11 @@ export const UserSignupView = (props: Properties): JSX.Element => {
     const classes = UserSignupStyle();
     return (
         <section className={classes.section}>
-            <Container maxWidth="sm">
-                <Box pt={18} pb={10}>
+            <Container className={classes.container}>
+                <Box pt={8} pb={10}>
+                    <Box pt={4} pb={6}>
+                        <BackArrow />
+                    </Box>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">

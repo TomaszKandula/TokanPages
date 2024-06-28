@@ -3,6 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
 import * as Dom from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { render } from "enzyme";
 import { UpdatePassword } from "./updatePassword";
 
@@ -42,7 +43,11 @@ describe("test account group component: updatePassword", () => {
     });
 
     it("should render correctly '<UpdatePassword />' when content is loaded.", () => {
-        const html = render(<UpdatePassword />);
+        const html = render(
+            <BrowserRouter>
+                <UpdatePassword />
+            </BrowserRouter>
+        );
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
