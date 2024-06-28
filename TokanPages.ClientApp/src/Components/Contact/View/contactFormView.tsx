@@ -6,9 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import { CircularProgress } from "@material-ui/core";
+import ContactMailIcon from "@material-ui/icons/ContactMail";
+import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../Theme";
+import { BackArrow } from "../../../Shared/Components";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormStyle } from "./contactFormStyle";
@@ -16,6 +18,7 @@ import { ContactFormStyle } from "./contactFormStyle";
 interface Properties extends ViewProperties {
     caption: string;
     text: string;
+    hasBackButton: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     firstName: string;
@@ -57,15 +60,27 @@ export const ContactFormView = (props: Properties): JSX.Element => {
     const classes = ContactFormStyle();
     return (
         <section className={classes.section}>
-            <Container maxWidth="lg">
-                <Container maxWidth="sm">
-                    <Box pt={8} pb={10}>
-                        <Box mb={6} textAlign="center" data-aos="fade-down">
-                            <Typography gutterBottom={true} className={classes.caption}>
-                                {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
-                            </Typography>
-                        </Box>
-                        <Box>
+            <Container className={classes.container}>
+                <Box pt={props.hasBackButton ? 0 : 6} pb={10}>
+                    {props.hasBackButton 
+                    ? <Box pt={4} pb={6}>
+                        <BackArrow />
+                    </Box> 
+                    : <Box mb={6} textAlign="center" data-aos="fade-down">
+                        <Typography gutterBottom={true} className={classes.caption}>
+                            {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
+                        </Typography>
+                    </Box>}
+                    <Card elevation={0} className={props.hasBackButton ? classes.card : undefined}>
+                        <CardContent className={classes.card_content}>
+                            {props.hasBackButton 
+                            ? <Box mb={3} textAlign="center">
+                                <ContactMailIcon className={classes.icon} />
+                                <Typography className={classes.small_caption}>
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
+                                </Typography>
+                            </Box>
+                            : <></>}
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
@@ -195,9 +210,9 @@ export const ContactFormView = (props: Properties): JSX.Element => {
                                     <ActiveButton {...props} />
                                 )}
                             </Box>
-                        </Box>
-                    </Box>
-                </Container>
+                        </CardContent>
+                    </Card>
+                </Box>
             </Container>
         </section>
     );
