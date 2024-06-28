@@ -5,28 +5,34 @@ exports[`test account group component: userSigninView should render correctly '<
   className="makeStyles-section-1"
 >
   <WithStyles(ForwardRef(Container))
-    maxWidth="sm"
+    className="makeStyles-container-2"
   >
     <Styled(MuiBox)
       pb={10}
-      pt={18}
+      pt={8}
     >
+      <Styled(MuiBox)
+        pb={6}
+        pt={4}
+      >
+        <BackArrowView />
+      </Styled(MuiBox)>
       <WithStyles(ForwardRef(Card))
-        className="makeStyles-card-6"
+        className="makeStyles-card-7"
         elevation={0}
       >
         <WithStyles(ForwardRef(CardContent))
-          className="makeStyles-card_content-7"
+          className="makeStyles-card_content-8"
         >
           <Styled(MuiBox)
             mb={3}
             textAlign="center"
           >
             <Memo(ForwardRef(AccountCircleIcon))
-              className="makeStyles-account-4"
+              className="makeStyles-account-5"
             />
             <WithStyles(ForwardRef(Typography))
-              className="makeStyles-caption-5"
+              className="makeStyles-caption-6"
             >
               Sign in
             </WithStyles(ForwardRef(Typography))>
@@ -89,7 +95,7 @@ exports[`test account group component: userSigninView should render correctly '<
               />
             </Styled(MuiBox)>
             <WithStyles(ForwardRef(Grid))
-              className="makeStyles-actions-3"
+              className="makeStyles-actions-4"
               container={true}
               spacing={2}
             >
@@ -104,7 +110,7 @@ exports[`test account group component: userSigninView should render correctly '<
                 />
               </WithStyles(ForwardRef(Grid))>
               <WithStyles(ForwardRef(Grid))
-                className="makeStyles-tertiaryAction-2"
+                className="makeStyles-tertiaryAction-3"
                 item={true}
                 sm={6}
                 xs={12}
