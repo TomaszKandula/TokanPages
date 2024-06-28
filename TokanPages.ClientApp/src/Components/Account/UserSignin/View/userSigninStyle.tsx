@@ -5,6 +5,9 @@ export const UserSigninStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     tertiaryAction: {
         [theme.breakpoints.up("sm")]: {
             textAlign: "right",

@@ -14,6 +14,10 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Ser
 
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
+interface ContactFormProps {
+    hasBackButton?: boolean;
+}
+
 const formDefault: ContactFormInput = {
     firstName: "",
     lastName: "",
@@ -23,7 +27,7 @@ const formDefault: ContactFormInput = {
     terms: false,
 };
 
-export const ContactForm = (): JSX.Element => {
+export const ContactForm = (props: ContactFormProps): JSX.Element => {
     const dispatch = useDispatch();
 
     const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);
@@ -122,6 +126,7 @@ export const ContactForm = (): JSX.Element => {
             isLoading={contactForm?.isLoading}
             caption={contactForm?.content?.caption}
             text={contactForm?.content?.text}
+            hasBackButton={props.hasBackButton ?? false}
             keyHandler={keyHandler}
             formHandler={formHandler}
             firstName={form.firstName}
