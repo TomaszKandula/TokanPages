@@ -15,7 +15,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormStyle } from "./contactFormStyle";
 
-interface Properties extends ViewProperties {
+interface ContactFormViewProps extends ViewProperties {
     caption: string;
     text: string;
     hasBackButton: boolean;
@@ -38,9 +38,10 @@ interface Properties extends ViewProperties {
     labelMessage: string;
     multiline?: boolean;
     minRows?: number;
+    background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: ContactFormViewProps): JSX.Element => {
     const classes = ContactFormStyle();
     return (
         <Button
@@ -56,10 +57,10 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const ContactFormView = (props: Properties): JSX.Element => {
+export const ContactFormView = (props: ContactFormViewProps): JSX.Element => {
     const classes = ContactFormStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={props.hasBackButton ? 0 : 6} pb={10}>
                     {props.hasBackButton ? (

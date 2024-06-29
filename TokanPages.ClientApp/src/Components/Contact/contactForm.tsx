@@ -16,6 +16,7 @@ import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
 interface ContactFormProps {
     hasBackButton?: boolean;
+    background?: React.CSSProperties;
 }
 
 const formDefault: ContactFormInput = {
@@ -146,6 +147,7 @@ export const ContactForm = (props: ContactFormProps): JSX.Element => {
             labelMessage={contactForm?.content?.labelMessage}
             multiline={true}
             minRows={6}
+            background={props.background}
         />
     );
 };

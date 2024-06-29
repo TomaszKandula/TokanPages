@@ -18,7 +18,7 @@ import { BackArrow, TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupStyle } from "./userSignupStyle";
 
-interface Properties extends ViewProperties {
+interface UserSignupViewProps extends ViewProperties {
     caption: string;
     warning: string;
     consent: string;
@@ -37,9 +37,10 @@ interface Properties extends ViewProperties {
     labelLastName: string;
     labelEmail: string;
     labelPassword: string;
+    background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: UserSignupViewProps): JSX.Element => {
     const classes = UserSignupStyle();
     return (
         <Button
@@ -59,10 +60,10 @@ const RedirectTo = (args: { path: string; name: string }): JSX.Element => {
     return <Link to={args.path}>{args.name}</Link>;
 };
 
-export const UserSignupView = (props: Properties): JSX.Element => {
+export const UserSignupView = (props: UserSignupViewProps): JSX.Element => {
     const classes = UserSignupStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={8} pb={10}>
                     <Box pt={4} pb={6}>

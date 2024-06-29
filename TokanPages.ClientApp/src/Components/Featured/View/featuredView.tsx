@@ -13,12 +13,16 @@ import { RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
 import { FeaturedStyle } from "./featuredStyle";
 
-export const FeaturedView = (): JSX.Element => {
+interface FeaturedViewProps {
+    background?: React.CSSProperties;
+}
+
+export const FeaturedView = (props: FeaturedViewProps): JSX.Element => {
     const classes = FeaturedStyle();
     const featured = useSelector((state: ApplicationState) => state.contentFeatured);
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={5} textAlign="center">
                     <Typography className={classes.caption_text} data-aos="fade-down">

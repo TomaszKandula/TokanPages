@@ -10,13 +10,14 @@ import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
 import { UserDeactivationStyle } from "./userDeactivationStyle";
 
-interface Properties extends ViewProperties {
+interface UserDeactivationViewProps extends ViewProperties {
     buttonHandler: () => void;
     progress: boolean;
     section: SectionAccountDeactivation;
+    background?: React.CSSProperties;
 }
 
-const DeactivationButton = (props: Properties): JSX.Element => {
+const DeactivationButton = (props: UserDeactivationViewProps): JSX.Element => {
     const classes = UserDeactivationStyle();
     return (
         <Button
@@ -41,10 +42,10 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserDeactivationView = (props: Properties): JSX.Element => {
+export const UserDeactivationView = (props: UserDeactivationViewProps): JSX.Element => {
     const classes = UserDeactivationStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="md">
                 <Box pb={5}>
                     <Card elevation={0} className={classes.card}>

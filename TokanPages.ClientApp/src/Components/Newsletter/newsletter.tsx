@@ -13,7 +13,11 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Ser
 
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-export const Newsletter = (): JSX.Element => {
+interface NewsletterProps {
+    background?: React.CSSProperties;
+}
+
+export const Newsletter = (props: NewsletterProps): JSX.Element => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
@@ -96,6 +100,7 @@ export const Newsletter = (): JSX.Element => {
             progress={hasProgress}
             buttonText={newsletter?.content?.button}
             labelEmail={newsletter?.content?.labelEmail}
+            background={props.background}
         />
     );
 };

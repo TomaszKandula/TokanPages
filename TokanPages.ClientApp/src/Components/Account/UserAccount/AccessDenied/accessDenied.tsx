@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { AccessDeniedView } from "./View/accessDeniedView";
 
-export const AccessDenied = (): JSX.Element => {
+interface AccessDeniedProps {
+    background?: React.CSSProperties;
+}
+
+export const AccessDenied = (props: AccessDeniedProps): JSX.Element => {
     const account = useSelector((state: ApplicationState) => state.contentAccount);
     const accessDeniedCaption = account.content?.sectionAccessDenied?.accessDeniedCaption;
     const accessDeniedPrompt = account.content?.sectionAccessDenied?.accessDeniedPrompt;
@@ -15,6 +19,7 @@ export const AccessDenied = (): JSX.Element => {
             accessDeniedCaption={accessDeniedCaption}
             accessDeniedPrompt={accessDeniedPrompt}
             homeButtonText={homeButtonText}
+            background={props.background}
         />
     );
 };

@@ -7,8 +7,9 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface Properties extends ViewProperties {
+interface ArticleListViewProps extends ViewProperties {
     articles: ArticleItem[];
+    background?: React.CSSProperties;
 }
 
 const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
@@ -27,10 +28,10 @@ const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
     );
 };
 
-export const ArticleListView = (props: Properties): JSX.Element => {
+export const ArticleListView = (props: ArticleListViewProps): JSX.Element => {
     const classes = ArticleListStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={12} pb={8}>
                     <div data-aos="fade-down">

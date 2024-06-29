@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { TestimonialsView } from "./View/testimonialsView";
 
-export const Testimonials = (): JSX.Element => {
+interface TestimonialsProps {
+    background?: React.CSSProperties;
+}
+
+export const Testimonials = (props: TestimonialsProps): JSX.Element => {
     const testimonials = useSelector((state: ApplicationState) => state.contentTestimonials);
 
     const [hasTestimonialOne, setTestimonialOne] = React.useState(false);
@@ -45,6 +49,7 @@ export const Testimonials = (): JSX.Element => {
             name3={testimonials?.content?.name3}
             occupation3={testimonials?.content?.occupation3}
             text3={testimonials?.content?.text3}
+            background={props.background}
         />
     );
 };

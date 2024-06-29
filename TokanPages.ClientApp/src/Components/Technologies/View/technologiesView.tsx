@@ -13,12 +13,16 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { TechnologiesStyle } from "./technologiesStyle";
 
-export const TechnologiesView = (): JSX.Element => {
+interface TechnologiesViewProps {
+    background?: React.CSSProperties;
+}
+
+export const TechnologiesView = (props: TechnologiesViewProps): JSX.Element => {
     const classes = TechnologiesStyle();
     const technology = useSelector((state: ApplicationState) => state.contentTechnologies);
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">
                 <Box py={8}>
                     <Box mb={8}>

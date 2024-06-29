@@ -9,6 +9,7 @@ import { useHash } from "../../../Shared/Hooks";
 interface DocumentViewProps {
     isLoading: boolean;
     items: TextItem[];
+    background?: React.CSSProperties;
 }
 
 export const DocumentView = (props: DocumentViewProps): JSX.Element => {
@@ -38,7 +39,7 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
     }, [hash, props.isLoading]);
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box py={12}>
                     <BackArrow />

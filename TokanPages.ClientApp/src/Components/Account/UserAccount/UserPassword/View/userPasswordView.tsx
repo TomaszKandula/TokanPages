@@ -11,7 +11,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/type
 import { TextFiedWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordStyle } from "./userPasswordStyle";
 
-interface Properties extends ViewProperties {
+interface UserPasswordViewProps extends ViewProperties {
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
@@ -20,9 +20,10 @@ interface Properties extends ViewProperties {
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     sectionAccountPassword: SectionAccountPassword;
+    background?: React.CSSProperties;
 }
 
-const UpdatePasswordButton = (props: Properties): JSX.Element => {
+const UpdatePasswordButton = (props: UserPasswordViewProps): JSX.Element => {
     const classes = UserPasswordStyle();
     return (
         <Button
@@ -47,10 +48,10 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserPasswordView = (props: Properties): JSX.Element => {
+export const UserPasswordView = (props: UserPasswordViewProps): JSX.Element => {
     const classes = UserPasswordStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="md">
                 <Box pb={5}>
                     <Card elevation={0} className={classes.card}>

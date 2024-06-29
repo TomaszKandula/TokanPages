@@ -14,6 +14,10 @@ import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/Fo
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
+interface UserSignupProps {
+    background?: React.CSSProperties;
+}
+
 const defaultForm: SignupFormInput = {
     firstName: "",
     lastName: "",
@@ -33,7 +37,7 @@ const defaultForm: SignupFormInput = {
     },
 };
 
-export const UserSignup = (): JSX.Element => {
+export const UserSignup = (props: UserSignupProps): JSX.Element => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
@@ -157,6 +161,7 @@ export const UserSignup = (): JSX.Element => {
             labelLastName={content?.content?.labelLastName}
             labelEmail={content?.content?.labelEmail}
             labelPassword={content?.content?.labelPassword}
+            background={props.background}
         />
     );
 };

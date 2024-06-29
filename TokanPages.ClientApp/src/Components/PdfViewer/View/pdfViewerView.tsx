@@ -15,6 +15,7 @@ import { PdfViewerStyle } from "./pdfViewerStyle";
 interface PdfViewerViewProps {
     pdfFile: string;
     scale?: number;
+    background?: React.CSSProperties;
 }
 
 interface PdfCanvasProps {
@@ -133,7 +134,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     }, [isLoading, hasTemplates]);
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={4} pb={6}>
                     <BackArrow />

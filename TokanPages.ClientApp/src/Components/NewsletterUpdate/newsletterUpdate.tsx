@@ -13,11 +13,12 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Ser
 
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
-interface Properties {
+interface NewsletterUpdateProps {
     id: string;
+    background?: React.CSSProperties;
 }
 
-export const NewsletterUpdate = (props: Properties): JSX.Element => {
+export const NewsletterUpdate = (props: NewsletterUpdateProps): JSX.Element => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
 
@@ -104,6 +105,7 @@ export const NewsletterUpdate = (props: Properties): JSX.Element => {
             progress={hasProgress}
             buttonText={newsletter.content?.button}
             labelEmail={newsletter.content.labelEmail}
+            background={props.background}
         />
     );
 };
