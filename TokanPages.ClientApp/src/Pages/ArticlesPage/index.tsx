@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import { ApplicationState } from "../../Store/Configuration";
 import {
     ContentNavigationAction,
@@ -36,7 +35,7 @@ export const ArticlesPage = (): JSX.Element => {
         <>
             <Navigation />
             {title ? <ProgressOnScroll height={3} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
-            <Container>{title ? <ArticleDetail title={title} /> : <ArticleList />}</Container>
+            {title ? <ArticleDetail title={title} /> : <ArticleList />}
             <Footer />
         </>
     );
