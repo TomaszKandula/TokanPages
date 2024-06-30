@@ -142,7 +142,14 @@ export const NavigationView = (props: Properties): JSX.Element => {
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar} elevation={0}>
                 <Toolbar className={classes.tool_bar}>
-                    <Grid container item xs={12} spacing={3}>
+                    <Box className={`${classes.nav_left} ${classes.nav_large_screen}`}>
+                        {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
+                    </Box>
+                    {/* TODO: MENU ITEMS HERE */}
+                    <Box className={`${classes.nav_right} ${classes.nav_large_screen}`}>
+                        {props.isLoading ? null : <RenderContent {...props} />}
+                    </Box>
+                    <Grid container item xs={12} spacing={3} className={classes.nav_small_screen}>
                         <Grid item xs className={classes.nav_menu}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>

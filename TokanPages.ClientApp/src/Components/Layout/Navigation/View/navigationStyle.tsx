@@ -5,11 +5,8 @@ export const NavigationStyle = makeStyles(theme => ({
     app_bar: {
         background: Colours.colours.white,
     },
-    tool_bar: {
-        justifyContent: "center",
-    },
     app_full_logo: {
-        [theme.breakpoints.down(700)]: {
+        [theme.breakpoints.down(600)]: {
             display: "none",
         },
         height: 30,
@@ -18,16 +15,42 @@ export const NavigationStyle = makeStyles(theme => ({
         alignSelf: "center",
     },
     app_just_logo: {
-        [theme.breakpoints.down(700)]: {
+        [theme.breakpoints.down(600)]: {
             display: "block",
         },
-        [theme.breakpoints.up(700)]: {
+        [theme.breakpoints.up(600)]: {
             display: "none",
         },
         height: 40,
         marginLeft: "auto",
         marginRight: "auto",
         alignSelf: "center",
+    },
+    app_link: {
+        [theme.breakpoints.down(600)]: {
+            justifyContent: "right",
+        },
+        display: "flex",
+        justifyContent: "center",
+    },
+    tool_bar: {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        justifyContent: "space-between",
+    },
+    nav_large_screen: {
+        [theme.breakpoints.down(800)]: {
+            display: "none",
+        },
+    },
+    nav_small_screen: {
+        [theme.breakpoints.down(800)]: {
+            display: "flex",
+        },
+        [theme.breakpoints.up(800)]: {
+            display: "none",
+        },
     },
     nav_menu: {
         color: Colours.colours.black,
@@ -39,24 +62,18 @@ export const NavigationStyle = makeStyles(theme => ({
         marginTop: 6,
         marginBottom: 6,
     },
-    app_link: {
-        [theme.breakpoints.down(700)]: {
-            justifyContent: "right",
-        },
-        display: "flex",
-        justifyContent: "center",
+    nav_left: {
+        justifyContent: "flex-start",
     },
-    flag_image: {
-        height: 14,
-        width: 14,
-        marginRight: 5,
+    nav_right: {
+        justifyContent: "flex-end",
     },
     languages_wrapper: {
         display: "flex",
         alignItems: "center",
     },
     languagesBox: {
-        [theme.breakpoints.down(700)]: {
+        [theme.breakpoints.down(600)]: {
             marginRight: 0,
         },
         marginRight: 30,
@@ -76,9 +93,14 @@ export const NavigationStyle = makeStyles(theme => ({
         justifyContent: "flex-end",
     },
     user_avatar: {
-        [theme.breakpoints.down(700)]: {
+        [theme.breakpoints.down(600)]: {
             display: "none",
         },
         display: "flex",
+    },
+    flag_image: {
+        height: 14,
+        width: 14,
+        marginRight: 5,
     },
 }));
