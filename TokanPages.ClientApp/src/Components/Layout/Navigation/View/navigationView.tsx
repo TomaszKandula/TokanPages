@@ -142,22 +142,26 @@ export const NavigationView = (props: Properties): JSX.Element => {
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar} elevation={0}>
                 <Toolbar className={classes.tool_bar}>
-                    <Box className={`${classes.nav_left} ${classes.nav_large_screen}`}>
-                        {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
-                    </Box>
-                    {/* TODO: MENU ITEMS HERE */}
-                    <Box className={`${classes.nav_right} ${classes.nav_large_screen}`}>
-                        {props.isLoading ? null : <RenderContent {...props} />}
-                    </Box>
+                    <Grid container item xs={12} spacing={3} className={classes.nav_large_screen}>
+                        <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
+                            {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_left_logo)}
+                        </Grid>
+                        <Grid item xs className={`${classes.nav_items} ${classes.nav_centre}`}>
+                            {/* TODO: MENU ITEMS HERE */}
+                        </Grid>
+                        <Grid item xs className={`${classes.nav_items} ${classes.nav_right}`}>
+                            {props.isLoading ? null : <RenderContent {...props} />}
+                        </Grid>
+                    </Grid>
                     <Grid container item xs={12} spacing={3} className={classes.nav_small_screen}>
-                        <Grid item xs className={classes.nav_menu}>
+                        <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
                         </Grid>
-                        <Grid item xs className={classes.content_right_side}>
+                        <Grid item xs className={`${classes.nav_items} ${classes.nav_centre}`}>
                             {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
                             {RenderImage(GET_ICONS_URL, props?.menu?.image, classes.app_just_logo)}
                         </Grid>
-                        <Grid item xs className={classes.content_right_side}>
+                        <Grid item xs className={`${classes.nav_items} ${classes.nav_right}`}>
                             {props.isLoading ? null : <RenderContent {...props} />}
                         </Grid>
                     </Grid>

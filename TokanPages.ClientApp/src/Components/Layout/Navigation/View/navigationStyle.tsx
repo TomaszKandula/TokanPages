@@ -5,6 +5,10 @@ export const NavigationStyle = makeStyles(theme => ({
     app_bar: {
         background: Colours.colours.white,
     },
+    app_left_logo: {
+        height: 30,
+        alignSelf: "center",
+    },
     app_full_logo: {
         [theme.breakpoints.down(600)]: {
             display: "none",
@@ -55,18 +59,24 @@ export const NavigationStyle = makeStyles(theme => ({
     nav_menu: {
         color: Colours.colours.black,
         display: "flex",
-        justifyContent: "flex-start",
     },
     nav_icon: {
         height: 48,
         marginTop: 6,
         marginBottom: 6,
     },
+    nav_items: {
+        display: "flex",
+        alignItems: "center",
+    },
     nav_left: {
         justifyContent: "flex-start",
     },
     nav_right: {
         justifyContent: "flex-end",
+    },
+    nav_centre: {
+        justifyContent: "center",
     },
     languages_wrapper: {
         display: "flex",
@@ -87,10 +97,6 @@ export const NavigationStyle = makeStyles(theme => ({
     languages_check: {
         paddingLeft: 5,
         color: Colours.colours.darkViolet1,
-    },
-    content_right_side: {
-        display: "flex",
-        justifyContent: "flex-end",
     },
     user_avatar: {
         [theme.breakpoints.down(600)]: {
