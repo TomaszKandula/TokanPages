@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
+const smallScreenWeb = 800;
+const smallScreenMobile = 600;
+
 export const NavigationStyle = makeStyles(theme => ({
     app_bar: {
         background: Colours.colours.white,
@@ -10,7 +13,7 @@ export const NavigationStyle = makeStyles(theme => ({
         alignSelf: "center",
     },
     app_full_logo: {
-        [theme.breakpoints.down(600)]: {
+        [theme.breakpoints.down(smallScreenMobile)]: {
             display: "none",
         },
         height: 30,
@@ -19,10 +22,10 @@ export const NavigationStyle = makeStyles(theme => ({
         alignSelf: "center",
     },
     app_just_logo: {
-        [theme.breakpoints.down(600)]: {
+        [theme.breakpoints.down(smallScreenMobile)]: {
             display: "block",
         },
-        [theme.breakpoints.up(600)]: {
+        [theme.breakpoints.up(smallScreenMobile)]: {
             display: "none",
         },
         height: 40,
@@ -31,7 +34,7 @@ export const NavigationStyle = makeStyles(theme => ({
         alignSelf: "center",
     },
     app_link: {
-        [theme.breakpoints.down(600)]: {
+        [theme.breakpoints.down(smallScreenMobile)]: {
             justifyContent: "right",
         },
         display: "flex",
@@ -44,15 +47,15 @@ export const NavigationStyle = makeStyles(theme => ({
         justifyContent: "space-between",
     },
     nav_large_screen: {
-        [theme.breakpoints.down(800)]: {
+        [theme.breakpoints.down(smallScreenWeb)]: {
             display: "none",
         },
     },
     nav_small_screen: {
-        [theme.breakpoints.down(800)]: {
+        [theme.breakpoints.down(smallScreenWeb)]: {
             display: "flex",
         },
-        [theme.breakpoints.up(800)]: {
+        [theme.breakpoints.up(smallScreenWeb)]: {
             display: "none",
         },
     },
@@ -83,7 +86,7 @@ export const NavigationStyle = makeStyles(theme => ({
         alignItems: "center",
     },
     languagesBox: {
-        [theme.breakpoints.down(600)]: {
+        [theme.breakpoints.down(smallScreenMobile)]: {
             marginRight: 0,
         },
         marginRight: 30,
@@ -99,7 +102,7 @@ export const NavigationStyle = makeStyles(theme => ({
         color: Colours.colours.darkViolet1,
     },
     user_avatar: {
-        [theme.breakpoints.down(600)]: {
+        [theme.breakpoints.down(smallScreenWeb)]: {
             display: "none",
         },
         display: "flex",
