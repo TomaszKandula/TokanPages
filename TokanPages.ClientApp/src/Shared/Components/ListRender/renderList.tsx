@@ -9,6 +9,8 @@ interface Properties {
     items: Item[] | undefined;
 }
 
+type VariantType = "inset" | "middle" | "fullWidth" | undefined;
+
 export const RenderList = (props: Properties): JSX.Element => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
@@ -58,7 +60,7 @@ export const RenderList = (props: Properties): JSX.Element => {
 
             case "divider": {
                 renderBuffer.push(
-                    <Divider key={item.id} variant={item.value as "inset" | "middle" | "fullWidth" | undefined} />
+                    <Divider key={item.id} variant={item.value as VariantType} />
                 );
                 break;
             }
