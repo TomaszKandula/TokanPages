@@ -13,7 +13,7 @@ import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/ListRender/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
-import { RenderImage } from "../../../../Shared/Components";
+import { RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
@@ -142,17 +142,15 @@ export const NavigationView = (props: Properties): JSX.Element => {
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar} elevation={0}>
                 <Toolbar className={classes.tool_bar}>
-                    <Grid container item xs={12} spacing={3} className={classes.nav_large_screen}>
-                        <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
-                            {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_left_logo)}
-                        </Grid>
-                        <Grid item xs className={`${classes.nav_items} ${classes.nav_centre}`}>
-                            {/* TODO: MENU ITEMS HERE */}
-                        </Grid>
-                        <Grid item xs className={`${classes.nav_items} ${classes.nav_right}`}>
-                            {props.isLoading ? null : <RenderContent {...props} />}
-                        </Grid>
-                    </Grid>
+                    <Box className={`${classes.nav_large_screen} ${classes.nav_menu} ${classes.nav_left}`}>
+                        {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_left_logo)}
+                    </Box>
+                    <Box className={`${classes.nav_large_screen} ${classes.nav_items} ${classes.nav_centre}`}>
+                        <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu.items} />
+                    </Box>
+                    <Box className={`${classes.nav_large_screen} ${classes.nav_items} ${classes.nav_right}`}>
+                        {props.isLoading ? null : <RenderContent {...props} />}
+                    </Box>
                     <Grid container item xs={12} spacing={3} className={classes.nav_small_screen}>
                         <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
                             {props.isLoading ? null : <RenderMenuIcon {...props} />}
