@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
-const smallScreenWeb = 800;
+const smallScreenWeb = 1000;
 const smallScreenMobile = 600;
 
 export const NavigationStyle = makeStyles(theme => ({
