@@ -136,34 +136,54 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
     );
 };
 
+const RenderToolbarLargeScreen = (props: Properties): JSX.Element => {
+    const classes = NavigationStyle();
+    return(
+        <Toolbar className={classes.tool_bar}>
+            <Box className={`${classes.nav_menu} ${classes.nav_left}`}>
+                {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_left_logo)}
+            </Box>
+            <Box className={`${classes.nav_items} ${classes.nav_centre}`}>
+                <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu.items} />
+            </Box>
+            <Box className={`${classes.nav_items} ${classes.nav_right}`}>
+                {props.isLoading ? null : <RenderContent {...props} />}
+            </Box>
+        </Toolbar>
+    );
+}
+
+const RenderToolbarSmallScreen = (props: Properties) => {
+    const classes = NavigationStyle();
+    return(
+        <Toolbar className={classes.tool_bar}>
+            <Grid container item xs={12} spacing={3}>
+                <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
+                    {props.isLoading ? null : <RenderMenuIcon {...props} />}
+                </Grid>
+                <Grid item xs className={`${classes.nav_items} ${classes.nav_centre}`}>
+                    {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
+                    {RenderImage(GET_ICONS_URL, props?.menu?.image, classes.app_just_logo)}
+                </Grid>
+                <Grid item xs className={`${classes.nav_items} ${classes.nav_right}`}>
+                    {props.isLoading ? null : <RenderContent {...props} />}
+                </Grid>
+            </Grid>
+        </Toolbar>
+    );
+}
+
 export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
     return (
         <HideOnScroll {...props}>
             <AppBar className={classes.app_bar} elevation={0}>
-                <Toolbar className={classes.tool_bar}>
-                    <Box className={`${classes.nav_large_screen} ${classes.nav_menu} ${classes.nav_left}`}>
-                        {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_left_logo)}
-                    </Box>
-                    <Box className={`${classes.nav_large_screen} ${classes.nav_items} ${classes.nav_centre}`}>
-                        <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu.items} />
-                    </Box>
-                    <Box className={`${classes.nav_large_screen} ${classes.nav_items} ${classes.nav_right}`}>
-                        {props.isLoading ? null : <RenderContent {...props} />}
-                    </Box>
-                    <Grid container item xs={12} spacing={3} className={classes.nav_small_screen}>
-                        <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
-                            {props.isLoading ? null : <RenderMenuIcon {...props} />}
-                        </Grid>
-                        <Grid item xs className={`${classes.nav_items} ${classes.nav_centre}`}>
-                            {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
-                            {RenderImage(GET_ICONS_URL, props?.menu?.image, classes.app_just_logo)}
-                        </Grid>
-                        <Grid item xs className={`${classes.nav_items} ${classes.nav_right}`}>
-                            {props.isLoading ? null : <RenderContent {...props} />}
-                        </Grid>
-                    </Grid>
-                </Toolbar>
+                <div className={classes.nav_large_screen}>
+                    <RenderToolbarLargeScreen {...props} />
+                </div>
+                <div className={classes.nav_small_screen}>
+                    <RenderToolbarSmallScreen {...props} />
+                </div>
                 <SideMenuView
                     drawerState={props.drawerState}
                     closeHandler={props.closeHandler}

@@ -50,10 +50,13 @@ export const NavigationStyle = makeStyles(theme => ({
         [theme.breakpoints.down(smallScreenWeb)]: {
             display: "none",
         },
+        [theme.breakpoints.up(smallScreenWeb)]: {
+            display: "block",
+        },
     },
     nav_small_screen: {
         [theme.breakpoints.down(smallScreenWeb)]: {
-            display: "flex",
+            display: "block",
         },
         [theme.breakpoints.up(smallScreenWeb)]: {
             display: "none",
