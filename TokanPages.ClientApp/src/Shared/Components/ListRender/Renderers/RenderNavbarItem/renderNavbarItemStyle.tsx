@@ -5,4 +5,10 @@ export const RenderNavbarItemStyle = makeStyles(() => ({
     href: {
         color: Colours.colours.black,
     },
+    text: {
+        color: Colours.colours.black,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+    },
 }));
