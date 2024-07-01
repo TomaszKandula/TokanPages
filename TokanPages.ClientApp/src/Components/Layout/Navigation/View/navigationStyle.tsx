@@ -3,20 +3,28 @@ import { Colours } from "../../../../Theme";
 
 const smallScreenWeb = 1000;
 const smallScreenMobile = 600;
+const logoHeightSmall = 30;
+const logoHeightLarge = 40;
 
 export const NavigationStyle = makeStyles(theme => ({
+    app_logo_small: {
+        height: logoHeightSmall,
+    },
+    app_logo_large: {
+        height: logoHeightLarge,
+    },
     app_bar: {
         background: Colours.colours.white,
     },
     app_left_logo: {
-        height: 30,
+        height: logoHeightSmall,
         alignSelf: "center",
     },
     app_full_logo: {
         [theme.breakpoints.down(smallScreenMobile)]: {
             display: "none",
         },
-        height: 30,
+        height: logoHeightSmall,
         marginLeft: "auto",
         marginRight: "auto",
         alignSelf: "center",
@@ -28,7 +36,7 @@ export const NavigationStyle = makeStyles(theme => ({
         [theme.breakpoints.up(smallScreenMobile)]: {
             display: "none",
         },
-        height: 40,
+        height: logoHeightLarge,
         marginLeft: "auto",
         marginRight: "auto",
         alignSelf: "center",
