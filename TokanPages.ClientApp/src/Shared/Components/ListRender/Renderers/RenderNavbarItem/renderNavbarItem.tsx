@@ -15,7 +15,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
-                    <ListItemText primary={props.value} className={classes.text} />
+                    <ListItemText primary={props.value} className={classes.text} disableTypography={true} />
                 </ListItem>
             </Href>
         );
@@ -24,7 +24,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
     const RenderItemWithLink = (): JSX.Element => {
         return (
             <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
-                <ListItemText primary={props.value} className={classes.text} />
+                <ListItemText primary={props.value} className={classes.text} disableTypography={true} />
             </ListItem>
         );
     };
