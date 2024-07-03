@@ -66,10 +66,6 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
                 );
                 break;
             }
-
-            default: {
-                renderBuffer.push(<></>);
-            }
         }
     });
 
