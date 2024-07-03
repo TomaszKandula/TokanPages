@@ -9,7 +9,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { GET_DOCUMENTS_URL } from "../../../Api/Request";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { PDF_WORKER_URL } from "../../../Shared/constants";
-import { ProgressBar } from "../../../Shared/Components";
+import { BackArrow, ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
 
 interface PdfViewerViewProps {
@@ -136,7 +136,10 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={8} pb={2}>
+                <Box pt={4} pb={6}>
+                    <Box pt={0} pb={6}>
+                        <BackArrow className={classes.back_arrow} />
+                    </Box>
                     <Grid container justifyContent="center" direction="column">
                         <Box pt={2} pb={2} className={classes.header}>
                             {isLoading && !hasError ? (
