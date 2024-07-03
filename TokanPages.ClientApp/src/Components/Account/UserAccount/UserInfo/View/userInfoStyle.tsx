@@ -7,6 +7,9 @@ export const UserInfoStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     backdrop: {
         zIndex: theme.zIndex.drawer + 1,
         color: "#FFFFFF",

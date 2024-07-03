@@ -97,7 +97,7 @@ export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
             <Backdrop className={classes.backdrop} open={props.isRequestingVerification}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Container maxWidth="md">
+            <Container className={classes.container}>
                 <Box pt={15} pb={5}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>

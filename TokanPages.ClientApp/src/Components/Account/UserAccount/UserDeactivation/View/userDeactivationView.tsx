@@ -46,7 +46,7 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): JSX.Elem
     const classes = UserDeactivationStyle();
     return (
         <section className={classes.section} style={props.background}>
-            <Container maxWidth="md">
+            <Container className={classes.container}>
                 <Box pb={5}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>

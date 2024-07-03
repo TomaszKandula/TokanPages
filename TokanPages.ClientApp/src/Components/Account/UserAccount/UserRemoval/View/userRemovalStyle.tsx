@@ -5,6 +5,9 @@ export const UserRemovalStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     label: {
         color: Colours.colours.gray1,
     },

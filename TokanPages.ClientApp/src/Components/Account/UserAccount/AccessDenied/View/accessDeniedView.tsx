@@ -42,7 +42,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): JSX.Element => {
     const classes = AccessDeniedStyle();
     return (
         <section className={classes.section} style={props.background}>
-            <Container maxWidth="md">
+            <Container className={classes.container}>
                 <Box pt={15} pb={8}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
