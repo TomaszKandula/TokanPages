@@ -35,7 +35,7 @@ export const ArticleListView = (props: ArticleListViewProps): JSX.Element => {
             <Container className={classes.container}>
                 <Box pt={12} pb={8}>
                     <div data-aos="fade-down">
-                        <BackArrow />
+                        <BackArrow className={classes.back_arrow} />
                     </div>
                     <Box pt={3}>
                         <Grid container justifyContent="center">
