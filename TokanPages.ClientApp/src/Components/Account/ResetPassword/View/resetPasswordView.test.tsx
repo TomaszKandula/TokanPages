@@ -1,11 +1,11 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { ResetPasswordView } from "./resetPasswordView";
 
 describe("test account group component: resetPasswordView", () => {
     it("should render correctly '<ResetPasswordView />' when content is loaded.", () => {
-        const tree = shallow(
+        const html = render(
             <ResetPasswordView
                 isLoading={false}
                 progress={false}
@@ -19,6 +19,6 @@ describe("test account group component: resetPasswordView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

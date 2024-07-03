@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { FooterView } from "../View/footerView";
 import { IconDto } from "../../../../Api/Models";
 
@@ -11,7 +11,7 @@ describe("test component: footerView", () => {
             href: "https://www.linkedin.com/",
         };
 
-        const tree = shallow(
+        const html = render(
             <FooterView
                 terms={{ text: "Terms of use", href: "/terms" }}
                 policy={{ text: "Privacy policy", href: "/policy" }}
@@ -24,6 +24,6 @@ describe("test component: footerView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

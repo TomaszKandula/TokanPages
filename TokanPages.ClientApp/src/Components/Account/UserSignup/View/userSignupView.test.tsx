@@ -1,11 +1,11 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { UserSignupView } from "./userSignupView";
 
 describe("test account group component: userSignupView", () => {
     it("should render correctly '<UserSignupView />' when content is loaded.", () => {
-        const tree = shallow(
+        const html = render(
             <UserSignupView
                 isLoading={false}
                 caption="Create a new account"
@@ -29,6 +29,6 @@ describe("test account group component: userSignupView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });
