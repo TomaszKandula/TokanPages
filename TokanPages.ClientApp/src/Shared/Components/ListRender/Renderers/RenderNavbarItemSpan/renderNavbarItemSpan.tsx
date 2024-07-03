@@ -15,6 +15,7 @@ const Items = (props: Item): JSX.Element => {
             link={item.link}
             icon={item.icon}
             enabled={item.enabled}
+            indent={true}
         />
     ));
 

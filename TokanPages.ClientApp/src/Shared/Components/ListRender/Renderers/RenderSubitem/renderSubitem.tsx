@@ -8,7 +8,11 @@ import { GetIcon } from "../../../../../Shared/Components";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitemsStyle } from "./renderSubitemsStyle";
 
-export const RenderSubitem = (props: Subitem): JSX.Element => {
+interface RenderSubitemProps extends Subitem {
+    indent?: boolean;
+}
+
+export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
     const classes = RenderSubitemsStyle();
 
     const link: string = props.link as string;
@@ -17,7 +21,7 @@ export const RenderSubitem = (props: Subitem): JSX.Element => {
     const RenderItemWithHref = (): JSX.Element => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
-                <ListItem button key={props.id} className={classes.nested} disabled={!props.enabled}>
+                <ListItem button key={props.id} className={props.indent ? undefined : classes.nested} disabled={!props.enabled}>
                     <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                     <ListItemText primary={props.value} />
                 </ListItem>
@@ -30,7 +34,7 @@ export const RenderSubitem = (props: Subitem): JSX.Element => {
             <ListItem
                 button
                 key={props.id}
-                className={classes.nested}
+                className={props.indent ? undefined : classes.nested}
                 disabled={!props.enabled}
                 component={Link}
                 to={props.link as string}
