@@ -6,6 +6,7 @@ import { BackArrowStyle } from "./backArrowStyle";
 
 interface BackArrowViewProps {
     backPathFragment?: string;
+    className?: string;
 }
 
 export const BackArrowView = (props: BackArrowViewProps): JSX.Element => {
@@ -13,13 +14,13 @@ export const BackArrowView = (props: BackArrowViewProps): JSX.Element => {
     const path = props.backPathFragment ?? "/";
 
     return (
-        <>
+        <div className={props.className}>
             <Link to={path}>
                 <IconButton className={classes.icon}>
                     <ArrowBack />
                 </IconButton>
             </Link>
             <Divider className={classes.divider} />
-        </>
+        </div>
     );
 };
