@@ -21,7 +21,12 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
     const RenderItemWithHref = (): JSX.Element => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
-                <ListItem button key={props.id} className={props.indent ? undefined : classes.nested} disabled={!props.enabled}>
+                <ListItem
+                    button
+                    key={props.id}
+                    className={props.indent ? undefined : classes.nested}
+                    disabled={!props.enabled}
+                >
                     <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                     <ListItemText primary={props.value} />
                 </ListItem>

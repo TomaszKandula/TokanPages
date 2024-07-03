@@ -49,7 +49,10 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): JSX.Element =>
                     <div data-aos="fade-down">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
-                                <IconButton className={`${classes.icon} ${classes.back_arrow}`} onClick={props.backButtonHandler}>
+                                <IconButton
+                                    className={`${classes.icon} ${classes.back_arrow}`}
+                                    onClick={props.backButtonHandler}
+                                >
                                     <ArrowBack />
                                 </IconButton>
                             </Grid>

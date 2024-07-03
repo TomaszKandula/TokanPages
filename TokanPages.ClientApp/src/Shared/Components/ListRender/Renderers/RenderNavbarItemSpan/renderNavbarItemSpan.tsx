@@ -20,7 +20,7 @@ const Items = (props: Item): JSX.Element => {
     ));
 
     return <>{data}</>;
-}
+};
 
 export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
     const classes = RenderNavbarItemSpanStyle();
@@ -28,7 +28,7 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
     const handleToggle = (): void => {
-        setOpen((prevOpen) => !prevOpen);
+        setOpen(prevOpen => !prevOpen);
     };
 
     const handleClose = (event: React.MouseEvent<EventTarget>): void => {
@@ -56,14 +56,17 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
         prevOpen.current = isOpen;
     }, [isOpen]);
 
-    const checkItems = EnsureDefinedExt({
-        values: [props.link, props.icon, props.enabled],
-        messages: [
-            "Cannot render. Missing 'link' property.",
-            "Cannot render. Missing 'icon' property.",
-            "Cannot render. Missing 'enabled' property.",
-        ],
-    }, <Items {...props} />);
+    const checkItems = EnsureDefinedExt(
+        {
+            values: [props.link, props.icon, props.enabled],
+            messages: [
+                "Cannot render. Missing 'link' property.",
+                "Cannot render. Missing 'icon' property.",
+                "Cannot render. Missing 'enabled' property.",
+            ],
+        },
+        <Items {...props} />
+    );
 
     if (checkItems.hasErrors || checkItems.hasWarnings) {
         return <div>Cannot render.</div>;
@@ -81,17 +84,21 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                 <ListItemText ref={anchorRef} primary={props.value} className={classes.text} disableTypography={true} />
             </Button>
             <Popper open={isOpen} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-            {({ TransitionProps, placement }) => (
-                <Grow {...TransitionProps} style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom" }}>
-                    <Paper>
-                        <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                <Items {...props} />
-                            </MenuList>
-                        </ClickAwayListener>
-                    </Paper>
-                </Grow>)}
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom" }}
+                    >
+                        <Paper>
+                            <ClickAwayListener onClickAway={handleClose}>
+                                <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                    <Items {...props} />
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
             </Popper>
         </div>
     );
-}
+};

@@ -70,4 +70,4 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
     });
 
     return <List className={classes.list}>{renderBuffer}</List>;
-}
+};

@@ -59,9 +59,7 @@ export const RenderList = (props: Properties): JSX.Element => {
             }
 
             case "divider": {
-                renderBuffer.push(
-                    <Divider key={item.id} variant={item.value as VariantType} />
-                );
+                renderBuffer.push(<Divider key={item.id} variant={item.value as VariantType} />);
                 break;
             }
 

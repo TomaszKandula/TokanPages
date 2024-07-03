@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../../Theme";
 
-export const RenderNavbarItemSpanStyle = makeStyles((theme) => ({
+export const RenderNavbarItemSpanStyle = makeStyles(theme => ({
     href: {
         color: Colours.colours.black,
     },

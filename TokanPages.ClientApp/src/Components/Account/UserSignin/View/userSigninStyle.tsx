@@ -10,7 +10,7 @@ export const UserSigninStyle = makeStyles(theme => ({
     },
     back_arrow: {
         [theme.breakpoints.up(1000)]: {
-            display: "none"
+            display: "none",
         },
         display: "block",
     },

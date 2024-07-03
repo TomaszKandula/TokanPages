@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../Theme";
 
-export const DocumentStyle = makeStyles((theme) => ({
+export const DocumentStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
@@ -14,7 +14,7 @@ export const DocumentStyle = makeStyles((theme) => ({
     },
     back_arrow: {
         [theme.breakpoints.up(1000)]: {
-            display: "none"
+            display: "none",
         },
         display: "block",
     },

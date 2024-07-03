@@ -139,7 +139,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
 
 const RenderToolbarLargeScreen = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
-    return(
+    return (
         <Toolbar className={classes.tool_bar}>
             <Box className={`${classes.nav_menu} ${classes.nav_left}`}>
                 <Link to="/" className={classes.app_logo_small}>
@@ -154,11 +154,11 @@ const RenderToolbarLargeScreen = (props: Properties): JSX.Element => {
             </Box>
         </Toolbar>
     );
-}
+};
 
 const RenderToolbarSmallScreen = (props: Properties) => {
     const classes = NavigationStyle();
-    return(
+    return (
         <Toolbar className={classes.tool_bar}>
             <Grid container item xs={12} spacing={3}>
                 <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
@@ -178,7 +178,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
             </Grid>
         </Toolbar>
     );
-}
+};
 
 export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();

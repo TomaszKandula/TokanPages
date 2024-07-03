@@ -24,9 +24,9 @@ interface ApplicationUserInfoViewProps {
     closeHandler: () => void;
 }
 
-interface ItemsProps { 
-    item: string; 
-    className: string 
+interface ItemsProps {
+    item: string;
+    className: string;
 }
 
 const CustomListItem = (props: ItemsProps): JSX.Element => {
