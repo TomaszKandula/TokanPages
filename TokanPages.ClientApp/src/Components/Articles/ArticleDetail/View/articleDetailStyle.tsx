@@ -1,12 +1,18 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../../Theme";
 
-export const ArticleDetailStyle = makeStyles(() => ({
+export const ArticleDetailStyle = makeStyles((theme) => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
     container: {
         maxWidth: 700,
+    },
+    back_arrow: {
+        [theme.breakpoints.up(1000)]: {
+            display: "none"
+        },
+        display: "block",
     },
     icon: {
         border: `solid 1px ${Colours.colours.lightGray2}`,
