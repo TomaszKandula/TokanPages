@@ -57,7 +57,7 @@ export const UserSigninView = (props: UserSigninViewProps): JSX.Element => {
             <Container className={classes.container}>
                 <Box pt={8} pb={10}>
                     <Box pt={4} pb={6}>
-                        <BackArrow />
+                        <BackArrow className={classes.back_arrow} />
                     </Box>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
