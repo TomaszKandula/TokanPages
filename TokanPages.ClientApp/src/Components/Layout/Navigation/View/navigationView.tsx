@@ -147,7 +147,7 @@ const RenderToolbarLargeScreen = (props: Properties): JSX.Element => {
                 </Link>
             </Box>
             <Box className={`${classes.nav_items} ${classes.nav_centre}`}>
-                <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu.items} />
+                <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu?.items} />
             </Box>
             <Box className={`${classes.nav_items} ${classes.nav_right}`}>
                 {props.isLoading ? null : <RenderContent {...props} />}
