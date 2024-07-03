@@ -8,54 +8,58 @@ exports[`test account group component: userSignup should render correctly '<User
     class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-8"
+      class="MuiBox-root MuiBox-root-9"
     >
       <div
-        class="MuiBox-root MuiBox-root-9"
-      >
-        <a
-          href="/"
-        >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-10"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-11"
-        />
-      </div>
-      <div
-        class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+        class="MuiBox-root MuiBox-root-10"
       >
         <div
-          class="MuiCardContent-root makeStyles-card_content-6"
+          class="makeStyles-back_arrow-3"
+        >
+          <a
+            href="/"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-11"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </a>
+          <hr
+            class="MuiDivider-root makeStyles-divider-12"
+          />
+        </div>
+      </div>
+      <div
+        class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+      >
+        <div
+          class="MuiCardContent-root makeStyles-card_content-7"
         >
           <div
-            class="MuiBox-root MuiBox-root-12"
+            class="MuiBox-root MuiBox-root-13"
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root makeStyles-account-3"
+              class="MuiSvgIcon-root makeStyles-account-4"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -64,11 +68,11 @@ exports[`test account group component: userSignup should render correctly '<User
               />
             </svg>
             <p
-              class="MuiTypography-root makeStyles-caption-4 MuiTypography-body1"
+              class="MuiTypography-root makeStyles-caption-5 MuiTypography-body1"
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-13"
+            class="MuiBox-root MuiBox-root-14"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -95,11 +99,11 @@ exports[`test account group component: userSignup should render correctly '<User
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-14 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-15 MuiOutlinedInput-notchedOutline"
                       style="padding-left:8px"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legend-15"
+                        class="PrivateNotchedOutline-legend-16"
                         style="width:0.01px"
                       >
                         <span>
@@ -131,11 +135,11 @@ exports[`test account group component: userSignup should render correctly '<User
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-18 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-19 MuiOutlinedInput-notchedOutline"
                       style="padding-left:8px"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legend-19"
+                        class="PrivateNotchedOutline-legend-20"
                         style="width:0.01px"
                       >
                         <span>
@@ -167,11 +171,11 @@ exports[`test account group component: userSignup should render correctly '<User
                     />
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-22 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-23 MuiOutlinedInput-notchedOutline"
                       style="padding-left:8px"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legend-23"
+                        class="PrivateNotchedOutline-legend-24"
                         style="width:0.01px"
                       >
                         <span>
@@ -186,7 +190,7 @@ exports[`test account group component: userSignup should render correctly '<User
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
               >
                 <div
-                  class="MuiFormControl-root makeStyles-textField-26 MuiFormControl-fullWidth"
+                  class="MuiFormControl-root makeStyles-textField-27 MuiFormControl-fullWidth"
                 >
                   <label
                     class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
@@ -231,11 +235,11 @@ exports[`test account group component: userSignup should render correctly '<User
                     </div>
                     <fieldset
                       aria-hidden="true"
-                      class="PrivateNotchedOutline-root-27 MuiOutlinedInput-notchedOutline"
+                      class="PrivateNotchedOutline-root-28 MuiOutlinedInput-notchedOutline"
                       style="padding-left:8px"
                     >
                       <legend
-                        class="PrivateNotchedOutline-legend-28"
+                        class="PrivateNotchedOutline-legend-29"
                         style="width:0.01px"
                       >
                         <span>
@@ -282,13 +286,13 @@ exports[`test account group component: userSignup should render correctly '<User
                 >
                   <span
                     aria-disabled="false"
-                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-33 MuiCheckbox-root Component-root-31"
+                    class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-34 MuiCheckbox-root Component-root-32"
                   >
                     <span
                       class="MuiIconButton-label"
                     >
                       <input
-                        class="PrivateSwitchBase-input-36"
+                        class="PrivateSwitchBase-input-37"
                         data-indeterminate="false"
                         id="terms"
                         name="terms"
@@ -313,10 +317,10 @@ exports[`test account group component: userSignup should render correctly '<User
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-37"
+              class="MuiBox-root MuiBox-root-38"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-44 MuiButton-fullWidth"
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-46 MuiButton-fullWidth"
                 tabindex="0"
                 type="submit"
               >
@@ -326,7 +330,7 @@ exports[`test account group component: userSignup should render correctly '<User
               </button>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-45"
+              class="MuiBox-root MuiBox-root-47"
             >
               <a
                 href="/signin"

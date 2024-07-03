@@ -49,81 +49,65 @@ exports[`test view component for application user info should render correctly v
   </WithStyles(ForwardRef(DialogTitle))>
   <WithStyles(ForwardRef(Divider)) />
   <WithStyles(ForwardRef(DialogContent))>
-    <Styled(MuiBox)
-      pt={2}
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-item-2"
     >
+      User alias
+      : 
       <WithStyles(ForwardRef(Typography))
-        className="makeStyles-item-2"
+        className="makeStyles-value-3"
+        component="span"
       >
-        User alias
-        : 
-        <WithStyles(ForwardRef(Typography))
-          className="makeStyles-value-3"
-          component="span"
-        >
-          tester
-        </WithStyles(ForwardRef(Typography))>
+        tester
       </WithStyles(ForwardRef(Typography))>
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      pt={2}
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-item-2"
     >
+      Registered
+      : 
       <WithStyles(ForwardRef(Typography))
-        className="makeStyles-item-2"
+        className="makeStyles-value-3"
+        component="span"
       >
-        Registered
-        : 
-        <WithStyles(ForwardRef(Typography))
-          className="makeStyles-value-3"
-          component="span"
-        >
-          01/01/2020, 03:02 PM
-        </WithStyles(ForwardRef(Typography))>
+        01/01/2020, 03:02 PM
       </WithStyles(ForwardRef(Typography))>
-    </Styled(MuiBox)>
-    <Styled(MuiBox)
-      pt={2}
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-item-2"
     >
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-item-2"
-      >
-        Assigned roles
-        : 
-      </WithStyles(ForwardRef(Typography))>
-    </Styled(MuiBox)>
+      Assigned roles
+      : 
+    </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(List))
       dense={true}
     >
-      <Items
+      <CustomListItem
         className="makeStyles-value-3"
         item="EverydayUser"
         key="f905ce01-c28f-4810-bb86-d29e8048f5b6"
       />
-      <Items
+      <CustomListItem
         className="makeStyles-value-3"
         item="Tester"
         key="52a520f3-9f60-4c76-80e3-28b9dcfe9bfb"
       />
     </WithStyles(ForwardRef(List))>
-    <Styled(MuiBox)
-      pt={0}
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-item-2"
     >
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-item-2"
-      >
-        Assigned permissions
-        : 
-      </WithStyles(ForwardRef(Typography))>
-    </Styled(MuiBox)>
+      Assigned permissions
+      : 
+    </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(List))
       dense={true}
     >
-      <Items
+      <CustomListItem
         className="makeStyles-value-3"
         item="CanTestEverything"
         key="f34d2965-1caf-4c8b-8215-94d326d151d8"
       />
-      <Items
+      <CustomListItem
         className="makeStyles-value-3"
         item="CanOrderPizza"
         key="198e0248-ade0-4868-b0f5-926dc5168a6e"
