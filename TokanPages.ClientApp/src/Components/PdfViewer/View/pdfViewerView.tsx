@@ -9,7 +9,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { GET_DOCUMENTS_URL } from "../../../Api/Request";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { PDF_WORKER_URL } from "../../../Shared/constants";
-import { BackArrow, ProgressBar } from "../../../Shared/Components";
+import { ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
 
 interface PdfViewerViewProps {
@@ -136,35 +136,34 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={4} pb={6}>
-                    <BackArrow />
+                <Box pt={8} pb={2}>
+                    <Grid container justifyContent="center" direction="column">
+                        <Box pt={2} pb={2} className={classes.header}>
+                            {isLoading && !hasError ? (
+                                <ProgressBar size={20} />
+                            ) : hasError ? (
+                                <ReportProblemIcon />
+                            ) : (
+                                <CheckIcon />
+                            )}
+                            <div className={classes.header_pages}>
+                                {currentPage} / {numPages}
+                            </div>
+                            <div>
+                                <NavigateBeforeIcon className={classes.header_buttons} onClick={previousPage} />
+                                <NavigateNextIcon className={classes.header_buttons} onClick={nextPage} />
+                            </div>
+                        </Box>
+                        <Box className={classes.canvasWrapper}>
+                            <PdfCanvas
+                                pdfDocument={pdfDocument}
+                                pageNumber={currentPage}
+                                scale={props.scale ?? 1.5}
+                                htmlAttributes={{ className: classes.canvas }}
+                            />
+                        </Box>
+                    </Grid>
                 </Box>
-                <Grid container justifyContent="center" direction="column">
-                    <Box pt={2} pb={2} className={classes.header}>
-                        {isLoading && !hasError ? (
-                            <ProgressBar size={20} />
-                        ) : hasError ? (
-                            <ReportProblemIcon />
-                        ) : (
-                            <CheckIcon />
-                        )}
-                        <div className={classes.header_pages}>
-                            {currentPage} / {numPages}
-                        </div>
-                        <div>
-                            <NavigateBeforeIcon className={classes.header_buttons} onClick={previousPage} />
-                            <NavigateNextIcon className={classes.header_buttons} onClick={nextPage} />
-                        </div>
-                    </Box>
-                    <Box className={classes.canvasWrapper}>
-                        <PdfCanvas
-                            pdfDocument={pdfDocument}
-                            pageNumber={currentPage}
-                            scale={props.scale ?? 1.5}
-                            htmlAttributes={{ className: classes.canvas }}
-                        />
-                    </Box>
-                </Grid>
             </Container>
         </section>
     );
