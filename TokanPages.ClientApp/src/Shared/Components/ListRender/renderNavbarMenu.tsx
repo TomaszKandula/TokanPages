@@ -1,7 +1,7 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { Item } from "./Models";
-import { RenderNavbarItem } from "./Renderers";
+import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
 import { RenderNavbarMenuStyle } from "./renderNavbarMenuStyle";
 
 interface Properties {
@@ -22,6 +22,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
         const isRoot = item.link === "/";
         const isTerms = item.link === "/terms";
         const isPolicy = item.link === "/policy";
+        const isGithub = item.icon === "Github";
 
         switch (item.type) {
             case "item": {
@@ -49,9 +50,10 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
                 if (isRoot) return;
+                if (isGithub) return;
 
                 renderBuffer.push(
-                    <RenderNavbarItem
+                    <RenderNavbarItemSpan
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -59,6 +61,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
                         link={item.link}
                         icon={item.icon}
                         enabled={item.enabled}
+                        subitems={item.subitems}
                     />
                 );
                 break;
