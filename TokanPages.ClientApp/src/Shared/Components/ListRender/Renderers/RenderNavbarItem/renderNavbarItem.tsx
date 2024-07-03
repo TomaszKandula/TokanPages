@@ -1,34 +1,21 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Subitem } from "../../Models";
-import { GetIcon } from "../../../../../Shared/Components";
+import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
-import { RenderSubitemsStyle } from "./renderSubitemsStyle";
+import { RenderNavbarItemStyle } from "./renderNavbarItemStyle";
 
-interface RenderSubitemProps extends Subitem {
-    indent?: boolean;
-}
-
-export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
-    const classes = RenderSubitemsStyle();
-
+export const RenderNavbarItem = (props: Item): JSX.Element => {
+    const classes = RenderNavbarItemStyle();
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
-                <ListItem
-                    button
-                    key={props.id}
-                    className={props.indent ? undefined : classes.nested}
-                    disabled={!props.enabled}
-                >
-                    <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
-                    <ListItemText primary={props.value} />
+                <ListItem button key={props.id} disabled={!props.enabled}>
+                    <ListItemText primary={props.value} className={classes.text} disableTypography={true} />
                 </ListItem>
             </Href>
         );
@@ -36,16 +23,8 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
 
     const RenderItemWithLink = (): JSX.Element => {
         return (
-            <ListItem
-                button
-                key={props.id}
-                className={props.indent ? undefined : classes.nested}
-                disabled={!props.enabled}
-                component={Link}
-                to={props.link as string}
-            >
-                <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
-                <ListItemText primary={props.value} />
+            <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
+                <ListItemText primary={props.value} className={classes.text} disableTypography={true} />
             </ListItem>
         );
     };

@@ -12,6 +12,7 @@ export const ApplicationUserInfoStyle = makeStyles(() => ({
     },
     value: {
         fontSize: "1.1rem",
+        lineHeight: 0.9,
         color: Colours.colours.gray2,
     },
     button: {

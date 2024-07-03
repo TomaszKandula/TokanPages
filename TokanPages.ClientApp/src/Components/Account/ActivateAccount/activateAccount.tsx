@@ -9,6 +9,7 @@ import { ActivateAccountView } from "./View/activateAccountView";
 export interface ActivateAccountProps {
     id: string;
     type: string;
+    background?: React.CSSProperties;
 }
 
 const DefaultValues = {
@@ -121,6 +122,7 @@ export const ActivateAccount = (props: ActivateAccountProps): JSX.Element => {
             text1={content?.text1}
             text2={content?.text2}
             progress={hasProgress}
+            background={props.background}
         />
     );
 };

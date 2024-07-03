@@ -4,44 +4,51 @@ exports[`test articles group component: ArticleCardView should render correctly 
 <div
   data-aos="fade-up"
 >
-  <WithStyles(ForwardRef(Card))
-    className="makeStyles-card-1"
-    elevation={0}
+  <div
+    class="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation0 MuiPaper-rounded"
   >
-    <WithStyles(ForwardRef(CardMedia))
-      className="makeStyles-card_image-3"
-      image="/images/card.jpg"
+    <div
+      class="MuiCardMedia-root makeStyles-card_image-3"
+      style="background-image:url(\\"/images/card.jpg\\")"
     >
       <img
         alt=""
-        className="makeStyles-flag_image-7"
+        class="makeStyles-flag_image-7"
         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
       />
-    </WithStyles(ForwardRef(CardMedia))>
-    <WithStyles(ForwardRef(CardContent))>
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-card_title-4"
-        gutterBottom={true}
+    </div>
+    <div
+      class="MuiCardContent-root"
+    >
+      <p
+        class="MuiTypography-root makeStyles-card_title-4 MuiTypography-body1 MuiTypography-gutterBottom"
       >
         Article title
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        className="makeStyles-card_description-5"
+      </p>
+      <p
+        class="MuiTypography-root makeStyles-card_description-5 MuiTypography-body1"
       >
         Article short description
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(CardActions))
-        className="makeStyles-card_action-6"
+      </p>
+      <div
+        class="MuiCardActions-root makeStyles-card_action-6 MuiCardActions-spacing"
       >
-        <WithStyles(ForwardRef(Button))
-          className="makeStyles-button-8"
-          onClick={[MockFunction]}
-          size="small"
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8 MuiButton-textSizeSmall MuiButton-sizeSmall"
+          tabindex="0"
+          type="button"
         >
-          READ
-        </WithStyles(ForwardRef(Button))>
-      </WithStyles(ForwardRef(CardActions))>
-    </WithStyles(ForwardRef(CardContent))>
-  </WithStyles(ForwardRef(Card))>
+          <span
+            class="MuiButton-label"
+          >
+            READ
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 `;

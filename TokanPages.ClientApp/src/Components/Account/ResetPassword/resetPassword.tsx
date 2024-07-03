@@ -14,11 +14,15 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
+interface ResetPasswordProps {
+    background?: React.CSSProperties;
+}
+
 const formDefaultValues: ResetFormInput = {
     email: "",
 };
 
-export const ResetPassword = (): JSX.Element => {
+export const ResetPassword = (props: ResetPasswordProps): JSX.Element => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
@@ -102,6 +106,7 @@ export const ResetPassword = (): JSX.Element => {
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             labelEmail={content?.content?.labelEmail}
+            background={props.background}
         />
     );
 };

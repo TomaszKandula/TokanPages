@@ -5,6 +5,9 @@ export const AccessDeniedStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     divider: {
         width: "100%",
         height: "1px",

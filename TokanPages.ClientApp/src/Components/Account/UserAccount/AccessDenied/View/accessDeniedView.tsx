@@ -15,6 +15,7 @@ interface AccessDeniedViewProps {
     accessDeniedCaption: string;
     accessDeniedPrompt: string;
     homeButtonText: string;
+    background?: React.CSSProperties;
 }
 
 const HomeButton = (props: AccessDeniedViewProps): JSX.Element => {
@@ -40,8 +41,8 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
 export const AccessDeniedView = (props: AccessDeniedViewProps): JSX.Element => {
     const classes = AccessDeniedStyle();
     return (
-        <section className={classes.section}>
-            <Container maxWidth="md">
+        <section className={classes.section} style={props.background}>
+            <Container className={classes.container}>
                 <Box pt={15} pb={8}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>

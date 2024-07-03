@@ -11,7 +11,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { NewsletterStyle } from "./newsletterStyle";
 
-interface Properties extends ViewProperties {
+interface NewsletterViewProps extends ViewProperties {
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -21,9 +21,10 @@ interface Properties extends ViewProperties {
     progress: boolean;
     buttonText: string;
     labelEmail: string;
+    background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: NewsletterViewProps): JSX.Element => {
     const classes = NewsletterStyle();
     return (
         <Button
@@ -39,10 +40,10 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const NewsletterView = (props: Properties): JSX.Element => {
+export const NewsletterView = (props: NewsletterViewProps): JSX.Element => {
     const classes = NewsletterStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">
                 <Box py={8} textAlign="center">
                     <Grid container spacing={2}>

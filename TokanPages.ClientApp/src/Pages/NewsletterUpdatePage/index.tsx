@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { NewsletterUpdate } from "../../Components/NewsletterUpdate";
@@ -33,9 +32,7 @@ export const NewsletterUpdatePage = (): JSX.Element => {
     return (
         <>
             <Navigation />
-            <Container>
-                <NewsletterUpdate id={id} />
-            </Container>
+            <NewsletterUpdate id={id} />
             <Footer />
         </>
     );

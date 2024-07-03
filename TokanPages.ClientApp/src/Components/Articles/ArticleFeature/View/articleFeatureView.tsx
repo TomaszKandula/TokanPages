@@ -17,6 +17,10 @@ import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
 import { ArticleFeatureStyle } from "./articleFeatureStyle";
 import Validate from "validate.js";
 
+interface ArticleFeatureViewProps {
+    background?: React.CSSProperties;
+}
+
 const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     const classes = ArticleFeatureStyle();
 
@@ -37,12 +41,12 @@ const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     );
 };
 
-export const ArticleFeatureView = (): JSX.Element => {
+export const ArticleFeatureView = (props: ArticleFeatureViewProps): JSX.Element => {
     const classes = ArticleFeatureStyle();
     const features = useSelector((state: ApplicationState) => state.contentArticleFeatures);
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">

@@ -14,7 +14,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { BackArrow, TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninStyle } from "./userSigninStyle";
 
-interface Properties extends ViewProperties {
+interface UserSigninViewProps extends ViewProperties {
     caption: string;
     button: string;
     link1: string;
@@ -27,9 +27,10 @@ interface Properties extends ViewProperties {
     password: string;
     labelEmail: string;
     labelPassword: string;
+    background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: UserSigninViewProps): JSX.Element => {
     const classes = UserSigninStyle();
     return (
         <Button
@@ -49,14 +50,14 @@ const RedirectTo = (args: { path: string; name: string }): JSX.Element => {
     return <Link to={args.path}>{args.name}</Link>;
 };
 
-export const UserSigninView = (props: Properties): JSX.Element => {
+export const UserSigninView = (props: UserSigninViewProps): JSX.Element => {
     const classes = UserSigninStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={8} pb={10}>
                     <Box pt={4} pb={6}>
-                        <BackArrow />
+                        <BackArrow className={classes.back_arrow} />
                     </Box>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>

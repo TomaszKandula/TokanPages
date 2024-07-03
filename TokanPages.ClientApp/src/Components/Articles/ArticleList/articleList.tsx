@@ -4,7 +4,11 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { ArticleListView } from "./View/articleListView";
 
-export const ArticleList = (): JSX.Element => {
+interface ArticleListProps {
+    background?: React.CSSProperties;
+}
+
+export const ArticleList = (props: ArticleListProps): JSX.Element => {
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
 
@@ -12,5 +16,5 @@ export const ArticleList = (): JSX.Element => {
         dispatch(ArticleListingAction.get());
     }, []);
 
-    return <ArticleListView isLoading={article.isLoading} articles={article.articles} />;
+    return <ArticleListView isLoading={article.isLoading} articles={article.articles} background={props.background} />;
 };

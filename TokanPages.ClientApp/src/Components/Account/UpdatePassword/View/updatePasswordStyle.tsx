@@ -1,12 +1,18 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../Theme";
 
-export const UpdatePasswordStyle = makeStyles(() => ({
+export const UpdatePasswordStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
     container: {
         maxWidth: 700,
+    },
+    back_arrow: {
+        [theme.breakpoints.up(1000)]: {
+            display: "none",
+        },
+        display: "block",
     },
     account: {
         fontSize: 72,

@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { ArticleContentDto } from "../../../../Api/Models";
 import { ArticleDetailView } from "./articleDetailView";
 
@@ -23,7 +23,7 @@ describe("test articles group component: ArticleDetailView", () => {
             },
         };
 
-        const tree = shallow(
+        const html = render(
             <ArticleDetailView
                 backButtonHandler={jest.fn()}
                 articleReadCount={0}
@@ -51,6 +51,6 @@ describe("test articles group component: ArticleDetailView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

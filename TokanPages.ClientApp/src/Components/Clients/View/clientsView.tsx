@@ -9,6 +9,10 @@ import { ClientsStyle } from "./clientsStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
+interface ClientsViewProps {
+    background?: React.CSSProperties;
+}
+
 const RenderCaption = (props: ContentClientsState): JSX.Element | null => {
     const classes = ClientsStyle();
     if (!Validate.isEmpty(props?.content?.caption)) {
@@ -34,13 +38,13 @@ const RenderImages = (props: ContentClientsState): JSX.Element => {
     );
 };
 
-export const ClientsView = (): JSX.Element => {
+export const ClientsView = (props: ClientsViewProps): JSX.Element => {
     const classes = ClientsStyle();
     const clients = useSelector((state: ApplicationState) => state.contentClients);
 
     return (
         <>
-            <section className={classes.section}>
+            <section className={classes.section} style={props.background}>
                 <Container maxWidth="lg">
                     {clients?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
                     {clients?.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}

@@ -21,12 +21,16 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
 
+interface UserInfoProps {
+    background?: React.CSSProperties;
+}
+
 interface UpdateStoreProps {
     canUpdate: boolean;
     isVerified: boolean;
 }
 
-export const UserInfo = (): JSX.Element => {
+export const UserInfo = (props: UserInfoProps): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
     const socket = useWebSockets();
@@ -271,6 +275,7 @@ export const UserInfo = (): JSX.Element => {
             saveButtonHandler={saveButtonHandler}
             verifyButtonHandler={verifyButtonHandler}
             sectionAccountInformation={account.content?.sectionAccountInformation}
+            background={props.background}
         />
     );
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Container from "@material-ui/core/Container";
 import { ApplicationState } from "../../Store/Configuration";
 import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignout } from "../../Components/Account";
@@ -26,9 +25,7 @@ export const SignoutPage = (): JSX.Element => {
     return (
         <>
             <Navigation />
-            <Container>
-                <UserSignout />
-            </Container>
+            <UserSignout />
             <Footer />
         </>
     );

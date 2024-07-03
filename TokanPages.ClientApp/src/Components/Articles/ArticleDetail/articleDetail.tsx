@@ -14,11 +14,12 @@ import { ReadTime } from "./Helpers/readTime";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
-interface Properties {
+interface ArticleDetailProps {
     title: string;
+    background?: React.CSSProperties;
 }
 
-export const ArticleDetail = (props: Properties): JSX.Element => {
+export const ArticleDetail = (props: ArticleDetailProps): JSX.Element => {
     const dispatch = useDispatch();
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.articles);
     const content = useSelector((state: ApplicationState) => state.contentArticle);
@@ -176,6 +177,7 @@ export const ArticleDetail = (props: Properties): JSX.Element => {
             authorShortBio={selection.article.author.shortBio}
             flagImage={flagImage}
             content={content}
+            background={props.background}
         />
     );
 };

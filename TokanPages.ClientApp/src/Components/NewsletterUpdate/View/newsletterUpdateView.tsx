@@ -14,7 +14,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent } from "../../../Shared/types";
 import { NewsletterUpdateStyle } from "./newsletterUpdateStyle";
 
-interface Properties extends ViewProperties {
+interface NewsletterUpdateViewProps extends ViewProperties {
     caption: string;
     formHandler: (event: ReactChangeEvent) => void;
     email: string;
@@ -23,9 +23,10 @@ interface Properties extends ViewProperties {
     progress: boolean;
     buttonText: string;
     labelEmail: string;
+    background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: NewsletterUpdateViewProps): JSX.Element => {
     const classes = NewsletterUpdateStyle();
     return (
         <Button
@@ -40,7 +41,7 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const NewsletterUpdateView = (props: Properties): JSX.Element => {
+export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): JSX.Element => {
     const classes = NewsletterUpdateStyle();
     return (
         <section className={classes.section}>

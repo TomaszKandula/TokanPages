@@ -2,68 +2,74 @@
 
 exports[`test component: footerView should render correctly '<FooterView />' when content is loaded. 1`] = `
 <footer
-  className="makeStyles-page_footer-1"
+  class="makeStyles-page_footer-1"
 >
-  <WithStyles(ForwardRef(Container))
-    maxWidth="lg"
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg"
   >
-    <RenderCopyrightBar
-      backgroundColor="#FFFFFF"
-      copyright="© 2020 - 2023 Tomasz Kandula"
-      hasVersionInfo={false}
-      icons={
-        Array [
-          Object {
-            "href": "https://www.linkedin.com/",
-            "name": "LinkedInIcon",
-          },
-        ]
-      }
-      policy={
-        Object {
-          "href": "/policy",
-          "text": "Privacy policy",
-        }
-      }
-      reserved="All rights reserved"
-      terms={
-        Object {
-          "href": "/terms",
-          "text": "Terms of use",
-        }
-      }
-      versionInfo="1.0"
+    <div
+      class="MuiBox-root MuiBox-root-15 makeStyles-copyright_box-11"
+    >
+      <p
+        class="MuiTypography-root makeStyles-copyright-12 MuiTypography-body1"
+        data-aos="zoom-in"
+      >
+        © 2020 - 2023 Tomasz Kandula | All rights reserved | 
+        <a
+          class="makeStyles-links-21"
+          href="/terms"
+        >
+          Terms of use
+        </a>
+         | 
+        <a
+          class="makeStyles-links-21"
+          href="/policy"
+        >
+          Privacy policy
+        </a>
+      </p>
+      <div
+        class="MuiBox-root MuiBox-root-23 makeStyles-icon_box-17"
+        data-aos="zoom-in"
+      >
+        <a
+          aria-disabled="false"
+          aria-label="LinkedInIcon"
+          class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
+          href="https://www.linkedin.com/"
+          tabindex="0"
+          target="_blank"
+        >
+          <span
+            class="MuiIconButton-label"
+          >
+            <span
+              aria-hidden="true"
+              class="material-icons MuiIcon-root"
+            >
+              linkedinicon
+            </span>
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </a>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root MuiBox-root-31"
+      data-aos="zoom-in"
+    >
+      <p
+        class="MuiTypography-root makeStyles-version-30 MuiTypography-body1"
+      >
+        1.0
+      </p>
+    </div>
+    <div
+      class="MuiBox-root MuiBox-root-32"
     />
-    <RenderVersionInfo
-      backgroundColor="#FFFFFF"
-      copyright="© 2020 - 2023 Tomasz Kandula"
-      hasVersionInfo={false}
-      icons={
-        Array [
-          Object {
-            "href": "https://www.linkedin.com/",
-            "name": "LinkedInIcon",
-          },
-        ]
-      }
-      policy={
-        Object {
-          "href": "/policy",
-          "text": "Privacy policy",
-        }
-      }
-      reserved="All rights reserved"
-      terms={
-        Object {
-          "href": "/terms",
-          "text": "Terms of use",
-        }
-      }
-      versionInfo="1.0"
-    />
-    <Styled(MuiBox)
-      pb={15}
-    />
-  </WithStyles(ForwardRef(Container))>
+  </div>
 </footer>
 `;

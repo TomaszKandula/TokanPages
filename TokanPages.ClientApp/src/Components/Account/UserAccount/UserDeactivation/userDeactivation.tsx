@@ -8,7 +8,11 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 import { UserDeactivationView } from "./View/userDeactivationView";
 
-export const UserDeactivation = (): JSX.Element => {
+interface UserDeactivationProps {
+    background?: React.CSSProperties;
+}
+
+export const UserDeactivation = (props: UserDeactivationProps): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -75,6 +79,7 @@ export const UserDeactivation = (): JSX.Element => {
             buttonHandler={deactivateButtonHandler}
             progress={hasProgress}
             section={account.content?.sectionAccountDeactivation}
+            background={props.background}
         />
     );
 };

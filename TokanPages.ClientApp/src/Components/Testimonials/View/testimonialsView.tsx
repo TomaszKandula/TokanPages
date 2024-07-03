@@ -35,6 +35,7 @@ interface TestimonialsViewProps extends ViewProperties {
     name3: string;
     occupation3: string;
     text3: string;
+    background?: React.CSSProperties;
 }
 
 export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
@@ -45,7 +46,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
     };
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={10} textAlign="center" mb={5}>
                     <Typography className={classes.caption_text} data-aos="fade-down">

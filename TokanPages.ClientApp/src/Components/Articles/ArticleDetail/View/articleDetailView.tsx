@@ -12,7 +12,7 @@ import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ArticleDetailStyle } from "./articleDetailStyle";
 
-interface Properties {
+interface ArticleDetailViewProps {
     backButtonHandler: () => void;
     articleReadCount: number;
     openPopoverHandler: (event: ReactMouseEvent) => void;
@@ -36,19 +36,23 @@ interface Properties {
     authorShortBio: string;
     flagImage: string;
     content: ArticleContentDto;
+    background?: React.CSSProperties;
 }
 
-export const ArticleDetailView = (props: Properties): JSX.Element => {
+export const ArticleDetailView = (props: ArticleDetailViewProps): JSX.Element => {
     const classes = ArticleDetailStyle();
     const readTime = props.content.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box py={12}>
                     <div data-aos="fade-down">
                         <Grid container spacing={3}>
                             <Grid item xs={6}>
-                                <IconButton className={classes.icon} onClick={props.backButtonHandler}>
+                                <IconButton
+                                    className={`${classes.icon} ${classes.back_arrow}`}
+                                    onClick={props.backButtonHandler}
+                                >
                                     <ArrowBack />
                                 </IconButton>
                             </Grid>

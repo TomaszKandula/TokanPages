@@ -16,7 +16,11 @@ import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
-export const UserRemoval = (): JSX.Element => {
+interface UserRemovalProps {
+    background?: React.CSSProperties;
+}
+
+export const UserRemoval = (props: UserRemovalProps): JSX.Element => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -78,6 +82,7 @@ export const UserRemoval = (): JSX.Element => {
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
             sectionAccountRemoval={account.content?.sectionAccountRemoval}
+            background={props.background}
         />
     );
 };

@@ -12,17 +12,18 @@ import { AccountCircle } from "@material-ui/icons";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UserSignoutStyle } from "./userSignoutStyle";
 
-interface Properties extends ViewProperties {
+interface UserSignoutViewProps extends ViewProperties {
     caption: string;
     status: string;
     buttonText: string;
     isAnonymous: boolean;
+    background?: React.CSSProperties;
 }
 
-export const UserSignoutView = (props: Properties): JSX.Element => {
+export const UserSignoutView = (props: UserSignoutViewProps): JSX.Element => {
     const classes = UserSignoutStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="sm">
                 <Box pt={18} pb={10}>
                     <Card elevation={0} className={classes.card}>
