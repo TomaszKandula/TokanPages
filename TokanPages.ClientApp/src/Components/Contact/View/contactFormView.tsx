@@ -65,7 +65,7 @@ export const ContactFormView = (props: ContactFormViewProps): JSX.Element => {
                 <Box pt={props.hasBackButton ? 0 : 6} pb={10}>
                     {props.hasBackButton ? (
                         <Box pt={4} pb={6}>
-                            <BackArrow />
+                            <BackArrow className={classes.back_arrow} />
                         </Box>
                     ) : (
                         <Box mb={6} textAlign="center" data-aos="fade-down">
