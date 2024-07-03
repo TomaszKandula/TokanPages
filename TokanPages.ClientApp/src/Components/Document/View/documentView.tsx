@@ -42,7 +42,7 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box py={12}>
-                    <BackArrow />
+                    <BackArrow className={classes.back_arrow} />
                     {props.isLoading ? (
                         <ProgressBar styleObject={{ marginTop: 30 }} />
                     ) : (
