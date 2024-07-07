@@ -1,4 +1,4 @@
-import { Item } from "../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../Shared/Components/MenuRender/Models";
 
 export interface NavigationContentDto {
     content: {
