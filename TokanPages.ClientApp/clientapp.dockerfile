@@ -23,11 +23,11 @@ ENV REACT_APP_BACKEND=${APP_BACKEND}
 
 RUN npm install
 RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
-    npm global add sonarqube-scanner; fi
+    npm install sonarqube-scanner -g; fi
 RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ] && [ APP_BUILD_TEST = true ]; then  \
     npm run app-test --ci --coverage; fi
 RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
-    npm sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
+    npm run sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
 RUN npm run build
 
 # 2 - Build Debian w/NGINX 
