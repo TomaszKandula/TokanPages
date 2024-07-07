@@ -24,6 +24,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
             case "item": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
+                if (!item.sideMenuOn) return;
 
                 renderBuffer.push(
                     <RenderSidemenuItem
@@ -42,6 +43,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
             case "itemspan": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
+                if (!item.sideMenuOn) return;
 
                 renderBuffer.push(
                     <RenderSidemenuItemSpan

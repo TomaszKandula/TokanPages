@@ -19,19 +19,13 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
     props.items?.forEach(item => {
         const isAnonymous = props.isAnonymous && (item.link === "/account" || item.link === "/signout");
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
-        const isRoot = item.link === "/";
-        const isTerms = item.link === "/terms";
-        const isPolicy = item.link === "/policy";
-        const isGithub = item.icon === "Github";
 
         switch (item.type) {
             case "item": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
-                if (isRoot) return;
-                if (isTerms) return;
-                if (isPolicy) return;
-
+                if (!item.navbarMenuOn) return;
+                
                 renderBuffer.push(
                     <RenderNavbarItem
                         key={item.id}
@@ -49,8 +43,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
             case "itemspan": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
-                if (isRoot) return;
-                if (isGithub) return;
+                if (!item.navbarMenuOn) return;
 
                 renderBuffer.push(
                     <RenderNavbarItemSpan
