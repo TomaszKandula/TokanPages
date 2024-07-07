@@ -18,7 +18,7 @@ export const ApplicationNavbar: Reducer<ApplicationNavbarState> = (
             };
         case SET:
             return {
-                selection: action.menu.selection
+                selection: action.menu.selection,
             };
         default:
             return state;

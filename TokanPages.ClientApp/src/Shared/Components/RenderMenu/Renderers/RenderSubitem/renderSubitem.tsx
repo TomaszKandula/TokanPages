@@ -24,13 +24,15 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
-            <Href href={link} onClick={props.onClickEvent} className={classes.href} underline="none" target="_blank" rel="noopener">
-                <ListItem
-                    button
-                    key={props.id}
-                    className={listItemStyle}
-                    disabled={!props.enabled}
-                >
+            <Href
+                href={link}
+                onClick={props.onClickEvent}
+                className={classes.href}
+                underline="none"
+                target="_blank"
+                rel="noopener"
+            >
+                <ListItem button key={props.id} className={listItemStyle} disabled={!props.enabled}>
                     <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                     <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
                 </ListItem>

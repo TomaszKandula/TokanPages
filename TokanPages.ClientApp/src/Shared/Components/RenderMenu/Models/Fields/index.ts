@@ -6,5 +6,5 @@ export interface Fields {
     icon?: string;
     enabled?: boolean;
     sideMenuOn?: boolean;
-    navbarMenuOn?: boolean; 
+    navbarMenuOn?: boolean;
 }

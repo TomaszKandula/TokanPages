@@ -102,7 +102,12 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                 className={classes.button}
                 disableRipple={true}
             >
-                <ListItemText ref={anchorRef} primary={props.value} className={selectionStyle} disableTypography={true} />
+                <ListItemText
+                    ref={anchorRef}
+                    primary={props.value}
+                    className={selectionStyle}
+                    disableTypography={true}
+                />
             </Button>
             <Popper open={isOpen} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (

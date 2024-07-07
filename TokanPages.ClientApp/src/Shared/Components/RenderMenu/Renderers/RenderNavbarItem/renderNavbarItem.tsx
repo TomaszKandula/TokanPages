@@ -28,7 +28,14 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
-            <Href href={link} onClick={() => onClickEvent(props.id)} className={classes.href} underline="none" target="_blank" rel="noopener">
+            <Href
+                href={link}
+                onClick={() => onClickEvent(props.id)}
+                className={classes.href}
+                underline="none"
+                target="_blank"
+                rel="noopener"
+            >
                 <ListItem button key={props.id} disabled={!props.enabled}>
                     <ListItemText primary={props.value} className={selectionStyle} disableTypography={true} />
                 </ListItem>
@@ -38,13 +45,13 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
 
     const RenderItemWithLink = (): JSX.Element => {
         return (
-            <ListItem 
-                button 
+            <ListItem
+                button
                 onClick={() => onClickEvent(props.id)}
-                key={props.id} 
-                disabled={!props.enabled} 
-                component={Link} 
-                to={props.link as string} 
+                key={props.id}
+                disabled={!props.enabled}
+                component={Link}
+                to={props.link as string}
                 className={classes.list_item}
             >
                 <ListItemText primary={props.value} className={selectionStyle} disableTypography={true} />

@@ -25,7 +25,7 @@ export const RenderNavbarItemStyle = makeStyles(theme => ({
             color: Colours.colours.darkViolet1,
         },
         "&::after": {
-	        content: "''",
+            content: "''",
             display: "inline-block",
             position: "absolute",
             width: 30,

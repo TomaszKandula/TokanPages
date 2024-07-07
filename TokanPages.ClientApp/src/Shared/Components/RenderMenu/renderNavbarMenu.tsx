@@ -25,7 +25,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
                 if (!item.navbarMenuOn) return;
-                
+
                 renderBuffer.push(
                     <RenderNavbarItem
                         key={item.id}
