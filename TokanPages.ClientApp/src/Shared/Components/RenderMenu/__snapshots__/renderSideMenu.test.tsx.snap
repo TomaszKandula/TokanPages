@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test render function 'renderList' should return 'Cannot render content.' when called with empty array of items. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`test render function 'renderList' should return 'Cannot render content.' when called with items undefined. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`test render function 'renderList' should return rendered list when items are provided. 1`] = `
+<WithStyles(ForwardRef(List))>
+  <WithStyles(ForwardRef(Divider))
+    key="945b6c9c-f37f-4b03-bb6f-3256a559fafe"
+    variant="middle"
+  />
+  <div
+    key="8495adf7-2b49-417e-83aa-6dcef4201ac4"
+  >
+    Unknown element.
+  </div>
+  <WithStyles(ForwardRef(Divider))
+    key="2455c0e2-da5e-4ba9-ac29-e87c82d998cc"
+    variant="middle"
+  />
+</WithStyles(ForwardRef(List))>
+`;
