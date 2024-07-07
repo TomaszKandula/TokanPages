@@ -1,17 +1,17 @@
 import "../../../setupTests";
 import React from "react";
 import { shallow } from "enzyme";
-import { RenderList } from "./renderList";
+import { RenderSideMenu } from "./renderSideMenu";
 import { Item } from "./Models";
 
 describe("test render function 'renderList'", () => {
-    const noItems = shallow(<RenderList isAnonymous={true} items={undefined}></RenderList>);
+    const noItems = shallow(<RenderSideMenu isAnonymous={true} items={undefined}></RenderSideMenu>);
 
     it("should return 'Cannot render content.' when called with items undefined.", () => {
         expect(noItems).toMatchSnapshot();
     });
 
-    const emptyItems = shallow(<RenderList isAnonymous={true} items={[]}></RenderList>);
+    const emptyItems = shallow(<RenderSideMenu isAnonymous={true} items={[]}></RenderSideMenu>);
 
     it("should return 'Cannot render content.' when called with empty array of items.", () => {
         expect(emptyItems).toMatchSnapshot();
@@ -137,7 +137,7 @@ describe("test render function 'renderList'", () => {
         },
     ];
 
-    const menuItems = shallow(<RenderList isAnonymous={false} items={items}></RenderList>);
+    const menuItems = shallow(<RenderSideMenu isAnonymous={false} items={items}></RenderSideMenu>);
 
     it("should return rendered list when items are provided.", () => {
         expect(menuItems).toMatchSnapshot();

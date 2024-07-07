@@ -5,7 +5,7 @@ export { RenderContent } from "./RenderContent/renderContent";
 export { RenderCardMedia } from "./CustomCardMedia/customCardMedia";
 export { RenderImage } from "./CustomImage/customImage";
 export { GetIcon } from "./GetIcon/getIcon";
-export { RenderList } from "./ListRender/renderList";
+export { RenderSideMenu } from "./ListRender/renderSideMenu";
 export { RenderNavbarMenu } from "./ListRender/renderNavbarMenu";
 export { ProgressBarView as ProgressBar } from "./ProgressBar";
 export { ScrollToTop, HideOnScroll, ProgressOnScroll, ClearPageStart } from "./Scroll";

@@ -11,7 +11,7 @@ interface Properties {
 
 type VariantType = "inset" | "middle" | "fullWidth" | undefined;
 
-export const RenderList = (props: Properties): JSX.Element => {
+export const RenderSideMenu = (props: Properties): JSX.Element => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
