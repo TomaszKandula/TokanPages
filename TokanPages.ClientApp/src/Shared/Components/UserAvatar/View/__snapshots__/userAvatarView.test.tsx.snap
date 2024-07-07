@@ -1,33 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test user avatar component should correctly render large user avatar as user letter. 1`] = `
-<WithStyles(ForwardRef(Avatar))
-  className="makeStyles-avatarLarge-2"
+<div
+  class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-2 MuiAvatar-colorDefault"
 >
   T
-</WithStyles(ForwardRef(Avatar))>
+</div>
 `;
 
 exports[`test user avatar component should correctly render large user avatar image. 1`] = `
-<WithStyles(ForwardRef(Avatar))
-  alt="Avatar"
-  className="makeStyles-avatarLarge-2"
-  src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
-/>
+<div
+  class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-6"
+>
+  <img
+    alt="Avatar"
+    class="MuiAvatar-img"
+    src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
+  />
+</div>
 `;
 
 exports[`test user avatar component should correctly render small user avatar as user letter. 1`] = `
-<WithStyles(ForwardRef(Avatar))
-  className="makeStyles-avatarSmall-1"
+<div
+  class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarSmall-3 MuiAvatar-colorDefault"
 >
   T
-</WithStyles(ForwardRef(Avatar))>
+</div>
 `;
 
 exports[`test user avatar component should correctly render small user avatar image. 1`] = `
-<WithStyles(ForwardRef(Avatar))
-  alt="Avatar"
-  className="makeStyles-avatarSmall-1"
-  src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
-/>
+<div
+  class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarSmall-7"
+>
+  <img
+    alt="Avatar"
+    class="MuiAvatar-img"
+    src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
+  />
+</div>
 `;
