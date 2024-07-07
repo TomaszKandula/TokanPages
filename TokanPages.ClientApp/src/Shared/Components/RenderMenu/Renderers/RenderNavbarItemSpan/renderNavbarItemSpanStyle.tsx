@@ -12,6 +12,12 @@ export const RenderNavbarItemSpanStyle = makeStyles(theme => ({
             backgroundColor: Colours.colours.white,
         },
     },
+    menu_box: {
+        backgroundColor: Colours.colours.white,
+    },
+    menu_list: {
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
+    },
     list_item_text: {
         [theme.breakpoints.down(1100)]: {
             fontSize: 14,

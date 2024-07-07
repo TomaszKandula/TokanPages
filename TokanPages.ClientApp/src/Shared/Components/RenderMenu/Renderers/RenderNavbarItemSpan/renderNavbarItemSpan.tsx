@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Paper, Popper } from "@material-ui/core";
+import { Box, Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
 import { ApplicationState } from "../../../../../Store/Configuration";
 import { ApplicationNavbarAction } from "../../../../../Store/Actions";
 import { Item } from "../../Models";
@@ -116,13 +116,13 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom" }}
                     >
-                        <Paper>
+                        <Box className={classes.menu_box}>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown} className={classes.menu_list}>
                                     <Items {...props} onClickEvent={() => onClickEvent(props.id)} />
                                 </MenuList>
                             </ClickAwayListener>
-                        </Paper>
+                        </Box>
                     </Grow>
                 )}
             </Popper>
