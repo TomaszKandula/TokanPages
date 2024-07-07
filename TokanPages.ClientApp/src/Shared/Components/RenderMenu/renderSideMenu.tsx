@@ -1,7 +1,7 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { Item } from "./Models";
-import { RenderItem, RenderItemSpan } from "./Renderers";
+import { RenderSidemenuItem, RenderSidemenuItemSpan } from "./Renderers";
 import { Divider } from "@material-ui/core";
 
 interface Properties {
@@ -11,22 +11,23 @@ interface Properties {
 
 type VariantType = "inset" | "middle" | "fullWidth" | undefined;
 
-export const RenderList = (props: Properties): JSX.Element => {
+export const RenderSideMenu = (props: Properties): JSX.Element => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
     let renderBuffer: JSX.Element[] = [];
     props.items.forEach(item => {
-        const isAnonymous = props.isAnonymous && (item.link === "/account" || item.link === "/signout");
+        const isAnonymous = props.isAnonymous && item.link === "/account";
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
 
         switch (item.type) {
             case "item": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
+                if (!item.sideMenuOn) return;
 
                 renderBuffer.push(
-                    <RenderItem
+                    <RenderSidemenuItem
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -42,9 +43,10 @@ export const RenderList = (props: Properties): JSX.Element => {
             case "itemspan": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
+                if (!item.sideMenuOn) return;
 
                 renderBuffer.push(
-                    <RenderItemSpan
+                    <RenderSidemenuItemSpan
                         key={item.id}
                         id={item.id}
                         type={item.type}

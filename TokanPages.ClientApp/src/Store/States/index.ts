@@ -2,6 +2,7 @@ export type { ApplicationDialogState } from "./Application/applicationDialog";
 export type { ApplicationErrorState } from "./Application/applicationError";
 export type { ApplicationLanguageState } from "./Application/applicationLanguage";
 export type { ApplicationEmailState } from "./Application/applicationEmail";
+export type { ApplicationNavbarState } from "./Application/applicationNavbar";
 
 export type { ArticleListingState } from "./Articles/articleListing";
 export type { ArticleSelectionState } from "./Articles/articleSelection";

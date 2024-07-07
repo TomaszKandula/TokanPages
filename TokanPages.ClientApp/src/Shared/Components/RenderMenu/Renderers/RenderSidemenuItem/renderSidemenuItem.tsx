@@ -6,10 +6,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Item } from "../../Models";
 import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
-import { RenderItemStyle } from "./renderItemStyle";
+import { RenderSidemenuItemStyle } from "./renderSidemenuItemStyle";
 
-export const RenderItem = (props: Item): JSX.Element => {
-    const classes = RenderItemStyle();
+export const RenderSidemenuItem = (props: Item): JSX.Element => {
+    const classes = RenderSidemenuItemStyle();
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 

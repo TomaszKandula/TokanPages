@@ -15,6 +15,7 @@ export const NavigationStyle = makeStyles(theme => ({
     },
     app_bar: {
         background: Colours.colours.white,
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
     },
     app_left_logo: {
         height: logoHeightSmall,

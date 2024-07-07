@@ -46,6 +46,7 @@ import {
     ContentTemplates,
     UserEmailVerification,
     ContentArticle,
+    ApplicationNavbar,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -53,6 +54,7 @@ export const ApplicationReducer = {
     applicationEmail: ApplicationEmail,
     applicationDialog: ApplicationDialog,
     applicationLanguage: ApplicationLanguage,
+    applicationNavbar: ApplicationNavbar,
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,

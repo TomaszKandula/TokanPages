@@ -4,6 +4,7 @@ import { shallow } from "enzyme";
 import { AuthenticateUserResultDto, UserInfoProps } from "../../../../Api/Models";
 import { ApplicationUserInfoView } from "../View/applicationUserInfoView";
 
+//TODO: use render
 describe("test view component for application user info", () => {
     it("should render correctly view component with passed props.", () => {
         const userInfo: UserInfoProps = {
@@ -50,10 +51,10 @@ describe("test view component for application user info", () => {
             ],
         };
 
-        const tree = shallow(
+        const html = shallow(
             <ApplicationUserInfoView state={true} content={userInfo} data={testData} closeHandler={jest.fn()} />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

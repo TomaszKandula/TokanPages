@@ -1,15 +1,22 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../../../Theme";
 
-export const RenderNavbarItemSpanStyle = makeStyles(theme => ({
+export const RenderSubitemsStyle = makeStyles(theme => ({
     href: {
         color: Colours.colours.black,
     },
-    button: {
-        textTransform: "none",
-        fontWeight: 400,
+    list_item: {
+        "&:hover": {
+            backgroundColor: Colours.colours.white,
+        },
     },
-    text: {
+    list_item_indent: {
+        paddingLeft: theme.spacing(4),
+    },
+    list_item_base: {
+        fontSize: 16,
+    },
+    list_item_text: {
         [theme.breakpoints.down(1100)]: {
             fontSize: 14,
         },
@@ -20,5 +27,8 @@ export const RenderNavbarItemSpanStyle = makeStyles(theme => ({
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
+        "&:hover": {
+            color: Colours.colours.darkViolet1,
+        },
     },
 }));

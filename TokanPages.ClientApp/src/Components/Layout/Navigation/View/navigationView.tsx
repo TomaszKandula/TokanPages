@@ -11,7 +11,7 @@ import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
-import { Item } from "../../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
 import { RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";

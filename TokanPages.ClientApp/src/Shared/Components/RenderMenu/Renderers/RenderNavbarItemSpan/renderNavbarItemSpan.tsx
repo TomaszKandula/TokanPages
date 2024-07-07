@@ -1,11 +1,18 @@
 import * as React from "react";
-import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Paper, Popper } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
+import { ApplicationState } from "../../../../../Store/Configuration";
+import { ApplicationNavbarAction } from "../../../../../Store/Actions";
 import { Item } from "../../Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 import { RenderNavbarItemSpanStyle } from "./renderNavbarItemSpanStyle";
 
-const Items = (props: Item): JSX.Element => {
+interface ItemsProps extends Item {
+    onClickEvent?: () => void;
+}
+
+const Items = (props: ItemsProps): JSX.Element => {
     const data = props.subitems?.map(item => (
         <RenderSubitem
             key={item.id}
@@ -15,7 +22,9 @@ const Items = (props: Item): JSX.Element => {
             link={item.link}
             icon={item.icon}
             enabled={item.enabled}
-            indent={true}
+            indent={false}
+            navbar={true}
+            onClickEvent={props.onClickEvent}
         />
     ));
 
@@ -24,8 +33,20 @@ const Items = (props: Item): JSX.Element => {
 
 export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
     const classes = RenderNavbarItemSpanStyle();
+    const dispatch = useDispatch();
+
     const [isOpen, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+    const selection = useSelector((state: ApplicationState) => state.applicationNavbar.selection);
+    const isSelected = props.id === selection && window.location.pathname !== "/";
+
+    const selectionClass = `${classes.list_item_text} ${classes.list_item_text_selected}`;
+    const selectionStyle = isSelected ? selectionClass : classes.list_item_text;
+
+    const onClickEvent = React.useCallback((value: string) => {
+        dispatch(ApplicationNavbarAction.set({ selection: value }));
+    }, []);
 
     const handleToggle = (): void => {
         setOpen(prevOpen => !prevOpen);
@@ -80,8 +101,14 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                 disabled={!props.enabled}
                 onClick={handleToggle}
                 className={classes.button}
+                disableRipple={true}
             >
-                <ListItemText ref={anchorRef} primary={props.value} className={classes.text} disableTypography={true} />
+                <ListItemText
+                    ref={anchorRef}
+                    primary={props.value}
+                    className={selectionStyle}
+                    disableTypography={true}
+                />
             </Button>
             <Popper open={isOpen} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                 {({ TransitionProps, placement }) => (
@@ -89,13 +116,13 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom" }}
                     >
-                        <Paper>
+                        <Box className={classes.menu_box}>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                    <Items {...props} />
+                                <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown} className={classes.menu_list}>
+                                    <Items {...props} onClickEvent={() => onClickEvent(props.id)} />
                                 </MenuList>
                             </ClickAwayListener>
-                        </Paper>
+                        </Box>
                     </Grow>
                 )}
             </Popper>

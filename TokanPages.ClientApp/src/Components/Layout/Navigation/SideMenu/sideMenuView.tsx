@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Drawer } from "@material-ui/core";
-import { RenderImage, RenderList } from "../../../../Shared/Components";
-import { Item } from "../../../../Shared/Components/ListRender/Models";
+import { RenderImage, RenderSideMenu } from "../../../../Shared/Components";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { GET_ICONS_URL } from "../../../../Api/Request";
 import { SideMenuStyle } from "./sideMenuStyle";
 
@@ -20,7 +20,7 @@ export const SideMenuView = (props: Properties): JSX.Element => {
                 <Box className={classes.drawer_hero}>
                     {RenderImage(GET_ICONS_URL, props?.menu?.image, classes.logo)}
                 </Box>
-                <RenderList isAnonymous={props.isAnonymous} items={props.menu?.items} />
+                <RenderSideMenu isAnonymous={props.isAnonymous} items={props.menu?.items} />
             </div>
         </Drawer>
     );

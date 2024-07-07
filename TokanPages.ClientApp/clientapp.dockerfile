@@ -21,14 +21,14 @@ ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
 
-RUN yarn install
+RUN npm install
 RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
-    yarn global add sonarqube-scanner; fi
+    npm install yarn -g; npm install sonarqube-scanner -g; fi
 RUN if [ $ENV_VALUE = Testing ] || [ $ENV_VALUE = Staging ] && [ APP_BUILD_TEST = true ]; then  \
-    yarn app-test --ci --coverage; fi
+    npm run app-test --ci --coverage; fi
 RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
     yarn sonar -Dsonar.login=${SONAR_TOKEN} -Dsonar.projectKey=${SONAR_KEY} -Dsonar.host.url=${SONAR_HOST}; fi
-RUN yarn build
+RUN npm run build
 
 # 2 - Build Debian w/NGINX 
 FROM debian:latest

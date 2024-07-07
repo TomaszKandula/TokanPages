@@ -17,7 +17,7 @@ export const RenderTextStyle = makeStyles(() => ({
         verticalAlign: "middle",
         fontWeight: 400,
         "&:hover": {
-            fontWeight: 500,
+            fontWeight: 400,
             color: Colours.colours.darkViolet1,
         },
     },
