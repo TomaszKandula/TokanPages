@@ -10,6 +10,7 @@ import { RenderSubitemsStyle } from "./renderSubitemsStyle";
 
 interface RenderSubitemProps extends Subitem {
     indent?: boolean;
+    onClickEvent?: () => void;
 }
 
 export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
@@ -20,7 +21,7 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
-            <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
+            <Href href={link} onClick={props.onClickEvent} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem
                     button
                     key={props.id}
@@ -39,6 +40,7 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
             <ListItem
                 button
                 key={props.id}
+                onClick={props.onClickEvent}
                 className={props.indent ? undefined : classes.nested}
                 disabled={!props.enabled}
                 component={Link}
