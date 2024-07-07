@@ -17,7 +17,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
 
     let renderBuffer: JSX.Element[] = [];
     props.items.forEach(item => {
-        const isAnonymous = props.isAnonymous && (item.link === "/account" || item.link === "/signout");
+        const isAnonymous = props.isAnonymous && (item.link === "/account");
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
 
         switch (item.type) {
