@@ -25,14 +25,15 @@ jobs:
     - name: Install dependencies
       run: |
         cd $PWD/TokanPages.ClientApp
-        npm install
+        npm install yarn -g
         npm install sonarqube-scanner -g
+        npm install
 
     - name: Test client application
       run: |
         cd $PWD/TokanPages.ClientApp
         npm run app-test --ci --coverage
-        npm run sonar \
+        yarn sonar \
         -Dsonar.login=${{ secrets.SONARQUBE_TOKEN_FE }} \
         -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY_FE }} \
         -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}
