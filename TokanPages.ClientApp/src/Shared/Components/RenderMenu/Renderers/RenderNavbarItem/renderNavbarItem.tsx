@@ -14,7 +14,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
     const dispatch = useDispatch();
 
     const selection = useSelector((state: ApplicationState) => state.applicationNavbar.selection);
-    const isSelected = props.id === selection && window.location.pathname !== "/";
+    const isSelected = props.id === selection && window.location.pathname !== "/" && window.location.pathname === props.link;
 
     const selectionClass = `${classes.list_item_text} ${classes.list_item_text_selected}`;
     const selectionStyle = isSelected ? selectionClass : classes.list_item_text;
