@@ -19,17 +19,20 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
+    const listItemStyle = props.indent ? classes.list_item_indent : classes.list_item;
+    const listItemTextStyle = props.indent ? undefined : classes.list_item_text;
+
     const RenderItemWithHref = (): JSX.Element => {
         return (
             <Href href={link} onClick={props.onClickEvent} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem
                     button
                     key={props.id}
-                    className={props.indent ? undefined : classes.nested}
+                    className={listItemStyle}
                     disabled={!props.enabled}
                 >
                     <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
-                    <ListItemText primary={props.value} />
+                    <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
                 </ListItem>
             </Href>
         );
@@ -41,13 +44,13 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
                 button
                 key={props.id}
                 onClick={props.onClickEvent}
-                className={props.indent ? undefined : classes.nested}
+                className={listItemStyle}
                 disabled={!props.enabled}
                 component={Link}
                 to={props.link as string}
             >
                 <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
-                <ListItemText primary={props.value} />
+                <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
             </ListItem>
         );
     };
