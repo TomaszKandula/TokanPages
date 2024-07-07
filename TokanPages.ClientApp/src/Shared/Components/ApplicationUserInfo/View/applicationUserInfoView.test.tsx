@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { AuthenticateUserResultDto, UserInfoProps } from "../../../../Api/Models";
 import { ApplicationUserInfoView } from "../View/applicationUserInfoView";
 
@@ -50,10 +50,10 @@ describe("test view component for application user info", () => {
             ],
         };
 
-        const tree = shallow(
+        const html = render(
             <ApplicationUserInfoView state={true} content={userInfo} data={testData} closeHandler={jest.fn()} />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

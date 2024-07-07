@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { GetIcon } from "./getIcon";
 
 describe("test render function 'getIcon'", () => {
@@ -25,7 +25,7 @@ describe("test render function 'getIcon'", () => {
         "Unknown element renders apple icon",
     ];
 
-    const wrapper = shallow(
+    const html = render(
         <div>
             {NameList.map((item, index) => (
                 <GetIcon key={index} iconName={item} />
@@ -34,6 +34,6 @@ describe("test render function 'getIcon'", () => {
     );
 
     it("should render SVG icon based on input string.", () => {
-        expect(wrapper).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

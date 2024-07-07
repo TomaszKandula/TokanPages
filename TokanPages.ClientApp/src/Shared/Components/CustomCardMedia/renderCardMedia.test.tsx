@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { RenderCardMedia } from "./customCardMedia";
 
 describe("test rendering 'Custom Card Media' component", () => {
@@ -15,14 +15,14 @@ describe("test rendering 'Custom Card Media' component", () => {
     };
 
     it("should not render 'Custom Card Media' component.", () => {
-        const tree = shallow(<TestComponent basePath="" imageSource="" className="style" />);
-        expect(tree).toMatchSnapshot();
+        const html = render(<TestComponent basePath="" imageSource="" className="style" />);
+        expect(html).toMatchSnapshot();
     });
 
     it("should render 'Custom Card Media' component.", () => {
-        const tree = shallow(
+        const html = render(
             <TestComponent basePath="http://domain.com/" imageSource="test-image.jpg" className="style" />
         );
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

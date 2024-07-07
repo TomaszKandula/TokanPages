@@ -1,12 +1,12 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { IconType } from "../../../enums";
 import { ApplicationDialogBoxView } from "../View/applicationDialogBoxView";
 
 describe("test view component for application diaog box", () => {
     it("should render correctly view component with passed props.", () => {
-        const tree = shallow(
+        const html = render(
             <ApplicationDialogBoxView
                 state={true}
                 icon={IconType.info}
@@ -16,6 +16,6 @@ describe("test view component for application diaog box", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });
