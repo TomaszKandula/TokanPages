@@ -10,6 +10,7 @@ import { RenderSubitemsStyle } from "./renderSubitemsStyle";
 
 interface RenderSubitemProps extends Subitem {
     indent?: boolean;
+    navbar?: boolean;
     onClickEvent?: () => void;
 }
 
@@ -20,7 +21,9 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
     const listItemStyle = props.indent ? classes.list_item_indent : classes.list_item;
-    const listItemTextStyle = props.indent ? undefined : classes.list_item_text;
+    const listItemTextIdentStyle = props.indent ? undefined : classes.list_item_text;
+    const listItemTextBaseStyle = props.navbar ? classes.list_item_text : classes.list_item_base;
+    const listItemTextStyle = `${listItemTextIdentStyle} ${listItemTextBaseStyle}`;
 
     const RenderItemWithHref = (): JSX.Element => {
         return (

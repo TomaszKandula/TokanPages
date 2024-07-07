@@ -23,6 +23,7 @@ const Items = (props: ItemsProps): JSX.Element => {
             icon={item.icon}
             enabled={item.enabled}
             indent={false}
+            navbar={true}
             onClickEvent={props.onClickEvent}
         />
     ));

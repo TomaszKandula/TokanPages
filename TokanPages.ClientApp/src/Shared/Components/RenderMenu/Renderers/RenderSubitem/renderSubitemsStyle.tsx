@@ -13,6 +13,9 @@ export const RenderSubitemsStyle = makeStyles(theme => ({
     list_item_indent: {
         paddingLeft: theme.spacing(4),
     },
+    list_item_base: {
+        fontSize: 16,
+    },
     list_item_text: {
         [theme.breakpoints.down(1100)]: {
             fontSize: 14,

@@ -42,6 +42,7 @@ export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
                             icon={item.icon}
                             enabled={item.enabled}
                             indent={true}
+                            navbar={false}
                         />
                     ))}
                 </List>
