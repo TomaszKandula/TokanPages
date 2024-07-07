@@ -22,7 +22,7 @@ const Items = (props: ItemsProps): JSX.Element => {
             link={item.link}
             icon={item.icon}
             enabled={item.enabled}
-            indent={true}
+            indent={false}
             onClickEvent={props.onClickEvent}
         />
     ));
