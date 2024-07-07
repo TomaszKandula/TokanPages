@@ -10,13 +10,13 @@ interface Properties {
 }
 
 export const RenderNavbarMenu = (props: Properties): JSX.Element => {
+    const classes = RenderNavbarMenuStyle();
+
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
-    const classes = RenderNavbarMenuStyle();
-
     let renderBuffer: JSX.Element[] = [];
-    props.items.forEach(item => {
+    props.items?.forEach(item => {
         const isAnonymous = props.isAnonymous && (item.link === "/account" || item.link === "/signout");
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
         const isRoot = item.link === "/";
