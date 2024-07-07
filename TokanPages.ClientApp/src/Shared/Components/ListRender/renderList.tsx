@@ -1,7 +1,7 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { Item } from "./Models";
-import { RenderItem, RenderItemSpan } from "./Renderers";
+import { RenderSidemenuItem, RenderSidemenuItemSpan } from "./Renderers";
 import { Divider } from "@material-ui/core";
 
 interface Properties {
@@ -26,7 +26,7 @@ export const RenderList = (props: Properties): JSX.Element => {
                 if (isNotAnonymous) return;
 
                 renderBuffer.push(
-                    <RenderItem
+                    <RenderSidemenuItem
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -44,7 +44,7 @@ export const RenderList = (props: Properties): JSX.Element => {
                 if (isNotAnonymous) return;
 
                 renderBuffer.push(
-                    <RenderItemSpan
+                    <RenderSidemenuItemSpan
                         key={item.id}
                         id={item.id}
                         type={item.type}
