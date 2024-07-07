@@ -4,7 +4,7 @@ import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Subitem } from "../../Models";
-import { GetIcon } from "../../../../../Shared/Components";
+import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitemsStyle } from "./renderSubitemsStyle";
 

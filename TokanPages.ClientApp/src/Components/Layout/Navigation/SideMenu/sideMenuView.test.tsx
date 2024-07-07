@@ -2,7 +2,7 @@ import "../../../../setupTests";
 import React from "react";
 import { render } from "enzyme";
 import { SideMenuView } from "./sideMenuView";
-import { Item } from "../../../../Shared/Components/MenuRender/Models";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 
 describe("test component: menuView", () => {
     it("should render correctly '<MenuView />' when content is loaded.", () => {

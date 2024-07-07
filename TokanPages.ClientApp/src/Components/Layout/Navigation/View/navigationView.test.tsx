@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
-import { Item } from "../../../../Shared/Components/MenuRender/Models";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
 describe("test component: featuresView", () => {

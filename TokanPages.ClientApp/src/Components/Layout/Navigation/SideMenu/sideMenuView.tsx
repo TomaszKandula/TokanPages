@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Drawer } from "@material-ui/core";
 import { RenderImage, RenderSideMenu } from "../../../../Shared/Components";
-import { Item } from "../../../../Shared/Components/MenuRender/Models";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { GET_ICONS_URL } from "../../../../Api/Request";
 import { SideMenuStyle } from "./sideMenuStyle";
 
