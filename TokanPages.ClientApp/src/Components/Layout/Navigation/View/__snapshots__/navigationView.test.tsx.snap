@@ -82,7 +82,7 @@ exports[`test component: featuresView should render correctly '<NavigationView /
           </div>
         </div>
         <div
-          class="makeStyles-user_avatar-72"
+          class="makeStyles-user_avatar-119"
         >
           <button
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
@@ -108,17 +108,17 @@ exports[`test component: featuresView should render correctly '<NavigationView /
     class="makeStyles-nav_small_screen-10"
   >
     <div
-      class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-105 MuiToolbar-gutters"
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-128 MuiToolbar-gutters"
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
       >
         <div
-          class="MuiGrid-root makeStyles-nav_menu-108 makeStyles-nav_left-111 MuiGrid-item MuiGrid-grid-xs-true"
+          class="MuiGrid-root makeStyles-nav_menu-131 makeStyles-nav_left-134 MuiGrid-item MuiGrid-grid-xs-true"
         >
           <button
             aria-label="menu"
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-132 MuiIconButton-colorInherit"
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-155 MuiIconButton-colorInherit"
             tabindex="0"
             type="button"
           >
@@ -139,34 +139,34 @@ exports[`test component: featuresView should render correctly '<NavigationView /
           </button>
         </div>
         <div
-          class="MuiGrid-root makeStyles-nav_items-110 makeStyles-nav_centre-113 MuiGrid-item MuiGrid-grid-xs-true"
+          class="MuiGrid-root makeStyles-nav_items-133 makeStyles-nav_centre-136 MuiGrid-item MuiGrid-grid-xs-true"
         >
           <a
-            class="makeStyles-app_logo_small-98"
+            class="makeStyles-app_logo_small-121"
             href="/"
           >
             <img
               alt=""
-              class="makeStyles-app_full_logo-102"
+              class="makeStyles-app_full_logo-125"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
             />
           </a>
           <a
-            class="makeStyles-app_logo_large-99"
+            class="makeStyles-app_logo_large-122"
             href="/"
           />
         </div>
         <div
-          class="MuiGrid-root makeStyles-nav_items-110 makeStyles-nav_right-112 MuiGrid-item MuiGrid-grid-xs-true"
+          class="MuiGrid-root makeStyles-nav_items-133 makeStyles-nav_right-135 MuiGrid-item MuiGrid-grid-xs-true"
         >
           <div
-            class="MuiBox-root MuiBox-root-167 makeStyles-languagesBox-161"
+            class="MuiBox-root MuiBox-root-190 makeStyles-languagesBox-184"
           >
             <div
-              class="MuiFormControl-root makeStyles-languages_control-162"
+              class="MuiFormControl-root makeStyles-languages_control-185"
             >
               <div
-                class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-163 MuiInputBase-formControl MuiInput-formControl"
+                class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-186 MuiInputBase-formControl MuiInput-formControl"
               >
                 <div
                   aria-haspopup="listbox"
@@ -175,11 +175,11 @@ exports[`test component: featuresView should render correctly '<NavigationView /
                   tabindex="0"
                 >
                   <div
-                    class="makeStyles-languages_wrapper-184"
+                    class="makeStyles-languages_wrapper-207"
                   >
                     <img
                       alt=""
-                      class="makeStyles-flag_image-190"
+                      class="makeStyles-flag_image-213"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                     />
                     <div>
@@ -207,7 +207,7 @@ exports[`test component: featuresView should render correctly '<NavigationView /
             </div>
           </div>
           <div
-            class="makeStyles-user_avatar-165"
+            class="makeStyles-user_avatar-235"
           >
             <button
               class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"

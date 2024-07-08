@@ -55,18 +55,19 @@ const RenderAvatar = (props: BaseProperties): JSX.Element => {
     return <Avatar alt="Avatar" src={props.avatarSource} />;
 };
 
+const RenderAvatarIconButton = (props: BaseProperties): JSX.Element => {
+    const classes = NavigationStyle();
+    return (
+        <div className={classes.user_avatar}>
+            <IconButton color="inherit" onClick={props.infoHandler}>
+                <RenderAvatar {...props} />
+            </IconButton>
+        </div>
+    );
+};
+
 const RenderContent = (props: BaseProperties): JSX.Element => {
     const classes = NavigationStyle();
-    const RenderAvatarIconButton = (): JSX.Element => {
-        return (
-            <div className={classes.user_avatar}>
-                <IconButton color="inherit" onClick={props.infoHandler}>
-                    <RenderAvatar {...props} />
-                </IconButton>
-            </div>
-        );
-    };
-
     return (
         <>
             <Box className={classes.languagesBox}>
@@ -76,7 +77,7 @@ const RenderContent = (props: BaseProperties): JSX.Element => {
                     styleSelect={classes.languages_selection}
                 />
             </Box>
-            {props.isAnonymous ? <></> : <RenderAvatarIconButton />}
+            {props.isAnonymous ? <></> : <RenderAvatarIconButton {...props} />}
         </>
     );
 };

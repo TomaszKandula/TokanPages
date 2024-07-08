@@ -22,15 +22,15 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
-    const onClickEvent = React.useCallback((value: string) => {
-        dispatch(ApplicationNavbarAction.set({ selection: value }));
-    }, []);
+    const onClickEvent = React.useCallback(() => {
+        dispatch(ApplicationNavbarAction.set({ selection: props.id }));
+    }, [props.id]);
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
             <Href
                 href={link}
-                onClick={() => onClickEvent(props.id)}
+                onClick={onClickEvent}
                 className={classes.href}
                 underline="none"
                 target="_blank"
@@ -47,7 +47,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
         return (
             <ListItem
                 button
-                onClick={() => onClickEvent(props.id)}
+                onClick={onClickEvent}
                 key={props.id}
                 disabled={!props.enabled}
                 component={Link}
