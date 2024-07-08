@@ -44,28 +44,28 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
     const selectionClass = `${classes.list_item_text} ${classes.list_item_text_selected}`;
     const selectionStyle = isSelected ? selectionClass : classes.list_item_text;
 
-    const onClickEvent = React.useCallback((value: string) => {
-        dispatch(ApplicationNavbarAction.set({ selection: value }));
+    const onClickEvent = React.useCallback(() => {
+        dispatch(ApplicationNavbarAction.set({ selection: props.id }));
+    }, [props.id]);
+
+    const handleToggle = React.useCallback((): void => {
+        setOpen(prevOpen => !prevOpen);
     }, []);
 
-    const handleToggle = (): void => {
-        setOpen(prevOpen => !prevOpen);
-    };
-
-    const handleClose = (event: React.MouseEvent<EventTarget>): void => {
+    const handleClose = React.useCallback((event: React.MouseEvent<EventTarget>): void => {
         if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
             return;
         }
 
         setOpen(false);
-    };
+    }, [anchorRef.current]);
 
-    const handleListKeyDown = (event: React.KeyboardEvent): void => {
+    const handleListKeyDown = React.useCallback((event: React.KeyboardEvent): void => {
         if (event.key === "Tab") {
             event.preventDefault();
             setOpen(false);
         }
-    };
+    }, []);
 
     /* Return focus to the button when we transitioned from "!open" to "open" */
     const prevOpen = React.useRef(isOpen);
@@ -119,7 +119,7 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                         <Box className={classes.menu_box}>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown} className={classes.menu_list}>
-                                    <Items {...props} onClickEvent={() => onClickEvent(props.id)} />
+                                    <Items {...props} onClickEvent={onClickEvent} />
                                 </MenuList>
                             </ClickAwayListener>
                         </Box>
