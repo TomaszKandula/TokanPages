@@ -25,6 +25,21 @@ interface PdfCanvasProps {
     htmlAttributes: React.HTMLAttributes<HTMLCanvasElement>;
 }
 
+interface RenderIconOrErrorProps {
+    isLoading: boolean;
+    hasError: boolean;
+}
+
+const RenderIconOrError = (props: RenderIconOrErrorProps): JSX.Element => {
+    return props.isLoading && !props.hasError ? (
+        <ProgressBar size={20} />
+    ) : props.hasError ? (
+        <ReportProblemIcon />
+    ) : (
+        <CheckIcon />
+    );
+}
+
 const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
@@ -142,13 +157,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </Box>
                     <Grid container justifyContent="center" direction="column">
                         <Box pt={2} pb={2} className={classes.header}>
-                            {isLoading && !hasError ? (
-                                <ProgressBar size={20} />
-                            ) : hasError ? (
-                                <ReportProblemIcon />
-                            ) : (
-                                <CheckIcon />
-                            )}
+                            <RenderIconOrError isLoading={isLoading} hasError={hasError} />
                             <div className={classes.header_pages}>
                                 {currentPage} / {numPages}
                             </div>
