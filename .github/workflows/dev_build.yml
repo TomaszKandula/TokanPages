@@ -26,8 +26,8 @@ jobs:
       run: |
         cd $PWD/TokanPages.ClientApp
         npm install --global yarn
-        yarn install
         yarn global add sonarqube-scanner
+        yarn install
 
     - name: Test client application
       run: |

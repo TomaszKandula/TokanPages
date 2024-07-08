@@ -10,7 +10,11 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
 
-export const UserPassword = (): JSX.Element => {
+interface UserPasswordProps {
+    background?: React.CSSProperties;
+}
+
+export const UserPassword = (props: UserPasswordProps): JSX.Element => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
@@ -125,6 +129,7 @@ export const UserPassword = (): JSX.Element => {
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             sectionAccountPassword={account.content?.sectionAccountPassword}
+            background={props.background}
         />
     );
 };

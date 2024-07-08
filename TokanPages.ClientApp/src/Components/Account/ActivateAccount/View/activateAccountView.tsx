@@ -13,12 +13,13 @@ interface IProperties extends ViewProperties {
     text1: string;
     text2: string;
     progress: boolean;
+    background?: React.CSSProperties;
 }
 
 export const ActivateAccountView = (props: IProperties): JSX.Element => {
     const classes = ActivateAccountStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="sm">
                 <Box py={15}>
                     <Card elevation={0} className={classes.card}>

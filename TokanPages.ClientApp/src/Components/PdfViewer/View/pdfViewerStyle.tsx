@@ -1,12 +1,18 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../Theme";
 
-export const PdfViewerStyle = makeStyles(() => ({
+export const PdfViewerStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
     container: {
         maxWidth: 700,
+    },
+    back_arrow: {
+        [theme.breakpoints.up(1000)]: {
+            display: "none",
+        },
+        display: "block",
     },
     header: {
         color: Colours.colours.black,

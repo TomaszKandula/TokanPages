@@ -6,7 +6,11 @@ import { OperationStatus } from "../../../Shared/enums";
 import { UserSignoutView } from "./View/userSignoutView";
 import Validate from "validate.js";
 
-export const UserSignout = (): JSX.Element => {
+interface UserSignoutProps {
+    background?: React.CSSProperties;
+}
+
+export const UserSignout = (props: UserSignoutProps): JSX.Element => {
     const dispatch = useDispatch();
     const [hasProgress, setHasProgress] = React.useState(true);
 
@@ -45,6 +49,7 @@ export const UserSignout = (): JSX.Element => {
             status={status}
             buttonText={contentData?.content.buttonText}
             isAnonymous={isAnonymous}
+            background={props.background}
         />
     );
 };

@@ -2,6 +2,7 @@ export { ApplicationDialogAction } from "./Application/applicationDialog";
 export { ApplicationErrorAction } from "./Application/applicationError";
 export { ApplicationLanguageAction } from "./Application/applicationLanguage";
 export { ApplicationMessageAction } from "./Application/applicationMessage";
+export { ApplicationNavbarAction } from "./Application/applicationNavbar";
 
 export { ArticleListingAction } from "./Articles/articleListing";
 export { ArticleSelectionAction } from "./Articles/articleSelection";

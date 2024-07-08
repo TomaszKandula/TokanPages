@@ -1,8 +1,9 @@
 import "../../../../setupTests";
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import { render } from "enzyme";
 import { NavigationView } from "../../Navigation/View/navigationView";
-import { Item } from "../../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
 describe("test component: featuresView", () => {
@@ -33,22 +34,24 @@ describe("test component: featuresView", () => {
         };
 
         const html = render(
-            <NavigationView
-                isLoading={false}
-                drawerState={{ open: false }}
-                openHandler={jest.fn()}
-                closeHandler={jest.fn()}
-                infoHandler={jest.fn()}
-                isAnonymous={false}
-                avatarName=""
-                avatarSource=""
-                userAliasText=""
-                menu={{ image: "", items: [items] }}
-                logoImgName="logo.svg"
-                languages={languages}
-                languageId="eng"
-                languageHandler={jest.fn()}
-            />
+            <BrowserRouter>
+                <NavigationView
+                    isLoading={false}
+                    drawerState={{ open: false }}
+                    openHandler={jest.fn()}
+                    closeHandler={jest.fn()}
+                    infoHandler={jest.fn()}
+                    isAnonymous={false}
+                    avatarName=""
+                    avatarSource=""
+                    userAliasText=""
+                    menu={{ image: "", items: [items] }}
+                    logoImgName="logo.svg"
+                    languages={languages}
+                    languageId="eng"
+                    languageHandler={jest.fn()}
+                />
+            </BrowserRouter>
         );
 
         expect(html).toMatchSnapshot();

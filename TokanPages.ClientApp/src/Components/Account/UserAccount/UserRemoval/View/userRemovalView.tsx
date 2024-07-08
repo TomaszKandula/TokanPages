@@ -10,13 +10,14 @@ import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
-interface Properties extends ViewProperties {
+interface UserRemovalViewProps extends ViewProperties {
     deleteButtonHandler: () => void;
     deleteAccountProgress: boolean;
     sectionAccountRemoval: SectionAccountRemoval;
+    background?: React.CSSProperties;
 }
 
-const DeleteAccountButton = (props: Properties): JSX.Element => {
+const DeleteAccountButton = (props: UserRemovalViewProps): JSX.Element => {
     const classes = UserRemovalStyle();
     return (
         <Button
@@ -45,11 +46,11 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserRemovalView = (props: Properties): JSX.Element => {
+export const UserRemovalView = (props: UserRemovalViewProps): JSX.Element => {
     const classes = UserRemovalStyle();
     return (
-        <section className={classes.section}>
-            <Container maxWidth="md">
+        <section className={classes.section} style={props.background}>
+            <Container className={classes.container}>
                 <Box pb={5}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>

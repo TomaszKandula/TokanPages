@@ -1,8 +1,8 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { SideMenuView } from "./sideMenuView";
-import { Item } from "../../../../Shared/Components/ListRender/Models";
+import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 
 describe("test component: menuView", () => {
     it("should render correctly '<MenuView />' when content is loaded.", () => {
@@ -15,7 +15,7 @@ describe("test component: menuView", () => {
             enabled: true,
         };
 
-        const tree = shallow(
+        const html = render(
             <SideMenuView
                 drawerState={{ open: false }}
                 closeHandler={jest.fn()}
@@ -24,6 +24,6 @@ describe("test component: menuView", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

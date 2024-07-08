@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test rendering image component should not render an image component. 1`] = `""`;
+exports[`test rendering image component should not render an image component. 1`] = `null`;
 
 exports[`test rendering image component should render an image component. 1`] = `
 <img
   alt=""
-  className="style"
+  class="style"
   src="http://localhost:5000//test-image.jpg"
 />
 `;

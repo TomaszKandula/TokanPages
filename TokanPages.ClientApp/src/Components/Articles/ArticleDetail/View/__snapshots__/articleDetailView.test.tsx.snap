@@ -2,201 +2,139 @@
 
 exports[`test articles group component: ArticleDetailView should render correctly '<ArticleDetailView />' when content is loaded. 1`] = `
 <section
-  className="makeStyles-section-1"
+  class="makeStyles-section-1"
 >
-  <WithStyles(ForwardRef(Container))
-    className="makeStyles-container-2"
+  <div
+    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
-    <Styled(MuiBox)
-      py={12}
+    <div
+      class="MuiBox-root MuiBox-root-18"
     >
       <div
         data-aos="fade-down"
       >
-        <WithStyles(ForwardRef(Grid))
-          container={true}
-          spacing={3}
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
         >
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            xs={6}
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
           >
-            <WithStyles(ForwardRef(IconButton))
-              className="makeStyles-icon-3"
-              onClick={[MockFunction]}
+            <button
+              class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-4 makeStyles-back_arrow-3"
+              tabindex="0"
+              type="button"
             >
-              <Memo(ForwardRef(ArrowBackIcon)) />
-            </WithStyles(ForwardRef(IconButton))>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            className="makeStyles-grid_read_count-9"
-            item={true}
-            xs={6}
+              <span
+                class="MuiIconButton-label"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                  />
+                </svg>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="MuiGrid-root makeStyles-grid_read_count-10 MuiGrid-item MuiGrid-grid-xs-6"
           >
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-text_read_count-10"
-              component="p"
-              variant="subtitle1"
+            <p
+              class="MuiTypography-root makeStyles-text_read_count-11 MuiTypography-subtitle1"
             >
-              Read count:
-               
-              0
-            </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Divider))
-          className="makeStyles-dividerTop-4"
+              Read count: 0
+            </p>
+          </div>
+        </div>
+        <hr
+          class="MuiDivider-root makeStyles-dividerTop-5"
         />
-        <WithStyles(ForwardRef(Grid))
-          container={true}
-          spacing={2}
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
         >
-          <WithStyles(ForwardRef(Grid))
-            item={true}
+          <div
+            class="MuiGrid-root MuiGrid-item"
           >
-            <Styled(MuiBox)
-              onMouseEnter={[MockFunction]}
-              onMouseLeave={[MockFunction]}
+            <div
+              class="MuiBox-root MuiBox-root-19"
             >
               <div>
                 renderSmallAvatar
               </div>
-            </Styled(MuiBox)>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            xs={true}
-            zeroMinWidth={true}
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
           >
-            <WithStyles(ForwardRef(Typography))
-              align="left"
-              className="makeStyles-aliasName-11"
-              component="div"
-              variant="subtitle1"
+            <div
+              class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-subtitle1 MuiTypography-alignLeft"
             >
-              <Styled(MuiBox)
-                fontWeight="fontWeightBold"
+              <div
+                class="MuiBox-root MuiBox-root-20"
               >
                 Ester
-              </Styled(MuiBox)>
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Popover))
-              anchorEl={null}
-              anchorOrigin={
-                Object {
-                  "horizontal": "left",
-                  "vertical": "bottom",
-                }
-              }
-              className="makeStyles-popover-16"
-              disableRestoreFocus={true}
-              id="mouse-over-popover"
-              onClose={[MockFunction]}
-              open={false}
-              transformOrigin={
-                Object {
-                  "horizontal": "left",
-                  "vertical": "top",
-                }
-              }
-            >
-              <Styled(MuiBox)
-                mb={2}
-                ml={3}
-                mr={3}
-                mt={2}
-              >
-                <WithStyles(ForwardRef(Typography))
-                  color="textSecondary"
-                  component="p"
-                  variant="subtitle2"
-                >
-                  First name:
-                   
-                  Ester
-                </WithStyles(ForwardRef(Typography))>
-                <WithStyles(ForwardRef(Typography))
-                  color="textSecondary"
-                  component="p"
-                  variant="subtitle2"
-                >
-                  Last name:
-                   
-                  Exposito
-                </WithStyles(ForwardRef(Typography))>
-                <WithStyles(ForwardRef(Typography))
-                  color="textSecondary"
-                  component="p"
-                  variant="subtitle2"
-                >
-                  Registered at:
-                   
-                </WithStyles(ForwardRef(Typography))>
-              </Styled(MuiBox)>
-            </WithStyles(ForwardRef(Popover))>
-          </WithStyles(ForwardRef(Grid))>
-        </WithStyles(ForwardRef(Grid))>
-        <Styled(MuiBox)
-          mb={5}
-          mt={1}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-21"
         >
           <div
-            className="makeStyles-text_block-6"
+            class="makeStyles-text_block-7"
           >
-            <WithStyles(ForwardRef(Typography))
-              component="p"
-              variant="subtitle1"
+            <p
+              class="MuiTypography-root MuiTypography-subtitle1"
             >
-              Article language:
-               
-            </WithStyles(ForwardRef(Typography))>
+              Article language: 
+            </p>
             <img
               alt=""
-              className="makeStyles-flag_image-8"
+              class="makeStyles-flag_image-9"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
             />
           </div>
-          <WithStyles(ForwardRef(Typography))
-            component="p"
-            variant="subtitle1"
+          <p
+            class="MuiTypography-root MuiTypography-subtitle1"
           >
             Read time:
-          </WithStyles(ForwardRef(Typography))>
+          </p>
           <div
-            className="makeStyles-text_block-6"
+            class="makeStyles-text_block-7"
           >
-            <WithStyles(ForwardRef(Typography))
-              component="p"
-              variant="subtitle1"
+            <p
+              class="MuiTypography-root MuiTypography-subtitle1"
             >
               Published at:
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-text_padding_left-7"
-              component="p"
-              variant="subtitle1"
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-text_padding_left-8 MuiTypography-subtitle1"
             >
               01/10/2020, 12:15 PM
-            </WithStyles(ForwardRef(Typography))>
+            </p>
           </div>
           <div
-            className="makeStyles-text_block-6"
+            class="makeStyles-text_block-7"
           >
-            <WithStyles(ForwardRef(Typography))
-              component="p"
-              variant="subtitle1"
+            <p
+              class="MuiTypography-root MuiTypography-subtitle1"
             >
               Updated at:
-            </WithStyles(ForwardRef(Typography))>
-            <WithStyles(ForwardRef(Typography))
-              className="makeStyles-text_padding_left-7"
-              component="p"
-              variant="subtitle1"
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-text_padding_left-8 MuiTypography-subtitle1"
             >
               01/10/2020, 12:15 PM
-            </WithStyles(ForwardRef(Typography))>
+            </p>
           </div>
-        </Styled(MuiBox)>
+        </div>
       </div>
       <div
         data-aos="fade-up"
@@ -205,102 +143,75 @@ exports[`test articles group component: ArticleDetailView should render correctl
           articleContent
         </div>
       </div>
-      <Styled(MuiBox)
-        mt={5}
+      <div
+        class="MuiBox-root MuiBox-root-22"
       >
-        <WithStyles(ForwardRef(Grid))
-          container={true}
-          spacing={2}
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
         >
-          <WithStyles(ForwardRef(Grid))
-            item={true}
+          <div
+            class="MuiGrid-root MuiGrid-item"
           >
-            <WithStyles(ForwardRef(Tooltip))
-              arrow={true}
-              title={
-                <span
-                  className="makeStyles-likesTip-15"
-                >
-                  <Emoji
-                    text="25"
-                  />
-                </span>
-              }
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root makeStyles-thumbsMedium-15"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <Memo(ForwardRef(ThumbUpIcon))
-                className="makeStyles-thumbsMedium-14"
-                onClick={[MockFunction]}
+              <path
+                d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
               />
-            </WithStyles(ForwardRef(Tooltip))>
-          </WithStyles(ForwardRef(Grid))>
-          <WithStyles(ForwardRef(Grid))
-            item={true}
-            xs={true}
-            zeroMinWidth={true}
+            </svg>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
           >
-            <WithStyles(ForwardRef(Typography))
-              component="p"
-              variant="subtitle1"
+            <p
+              class="MuiTypography-root MuiTypography-subtitle1"
             >
               50
-            </WithStyles(ForwardRef(Typography))>
-          </WithStyles(ForwardRef(Grid))>
-        </WithStyles(ForwardRef(Grid))>
-      </Styled(MuiBox)>
-      <WithStyles(ForwardRef(Divider))
-        className="makeStyles-dividerBottom-5"
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr
+        class="MuiDivider-root makeStyles-dividerBottom-6"
       />
-      <WithStyles(ForwardRef(Grid))
-        container={true}
-        spacing={2}
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
       >
-        <WithStyles(ForwardRef(Grid))
-          item={true}
+        <div
+          class="MuiGrid-root MuiGrid-item"
         >
           <div>
             renderLargeAvatar
           </div>
-        </WithStyles(ForwardRef(Grid))>
-        <WithStyles(ForwardRef(Grid))
-          item={true}
-          xs={true}
-          zeroMinWidth={true}
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
         >
-          <WithStyles(ForwardRef(Typography))
-            align="left"
-            className="makeStyles-aliasName-11"
-            color="textSecondary"
-            component="span"
-            variant="h6"
+          <span
+            class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
           >
             Written by
-          </WithStyles(ForwardRef(Typography))>
-          <Styled(MuiBox)
-            fontWeight="fontWeightBold"
+          </span>
+          <div
+            class="MuiBox-root MuiBox-root-23"
           >
-            <WithStyles(ForwardRef(Typography))
-              align="left"
-              className="makeStyles-aliasName-11"
-              component="span"
-              variant="h6"
+            <span
+              class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-h6 MuiTypography-alignLeft"
             >
               Ester Exposito
-            </WithStyles(ForwardRef(Typography))>
-          </Styled(MuiBox)>
-          <WithStyles(ForwardRef(Typography))
-            align="left"
-            className="makeStyles-aliasName-11"
-            color="textSecondary"
-            component="span"
-            variant="subtitle1"
+            </span>
+          </div>
+          <span
+            class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
           >
-            About the author:
-             
-            Happy developer
-          </WithStyles(ForwardRef(Typography))>
-        </WithStyles(ForwardRef(Grid))>
-      </WithStyles(ForwardRef(Grid))>
-    </Styled(MuiBox)>
-  </WithStyles(ForwardRef(Container))>
+            About the author: Happy developer
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 `;

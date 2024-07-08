@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { TextObject } from "./Models/TextModel";
 import { RenderContent } from "./renderContent";
 
@@ -107,9 +107,9 @@ describe("test render function 'renderContent'", () => {
         ],
     };
 
-    const noItems = shallow(<TestComponent textObject={undefined}></TestComponent>);
-    const emptyItems = shallow(<TestComponent textObject={{ items: [] }}></TestComponent>);
-    const withItems = shallow(<TestComponent textObject={TestObject}></TestComponent>);
+    const noItems = render(<TestComponent textObject={undefined}></TestComponent>);
+    const emptyItems = render(<TestComponent textObject={{ items: [] }}></TestComponent>);
+    const withItems = render(<TestComponent textObject={TestObject}></TestComponent>);
 
     it("should return 'Cannot render content.' when called with items undefined.", () => {
         expect(noItems).toMatchSnapshot();

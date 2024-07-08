@@ -1,30 +1,33 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { Item } from "./Models";
-import { RenderItem, RenderItemSpan } from "./Renderers";
-import { Divider } from "@material-ui/core";
+import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
+import { RenderNavbarMenuStyle } from "./renderNavbarMenuStyle";
 
 interface Properties {
     isAnonymous: boolean;
     items: Item[] | undefined;
 }
 
-export const RenderList = (props: Properties): JSX.Element => {
+export const RenderNavbarMenu = (props: Properties): JSX.Element => {
+    const classes = RenderNavbarMenuStyle();
+
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
     let renderBuffer: JSX.Element[] = [];
-    props.items.forEach(item => {
-        const isAnonymous = props.isAnonymous && (item.link === "/account" || item.link === "/signout");
+    props.items?.forEach(item => {
+        const isAnonymous = props.isAnonymous && item.link === "/account";
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
 
         switch (item.type) {
             case "item": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
+                if (!item.navbarMenuOn) return;
 
                 renderBuffer.push(
-                    <RenderItem
+                    <RenderNavbarItem
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -40,9 +43,10 @@ export const RenderList = (props: Properties): JSX.Element => {
             case "itemspan": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
+                if (!item.navbarMenuOn) return;
 
                 renderBuffer.push(
-                    <RenderItemSpan
+                    <RenderNavbarItemSpan
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -55,19 +59,8 @@ export const RenderList = (props: Properties): JSX.Element => {
                 );
                 break;
             }
-
-            case "divider": {
-                renderBuffer.push(
-                    <Divider key={item.id} variant={item.value as "inset" | "middle" | "fullWidth" | undefined} />
-                );
-                break;
-            }
-
-            default: {
-                renderBuffer.push(<div key={item.id}>Unknown element.</div>);
-            }
         }
     });
 
-    return <List>{renderBuffer}</List>;
+    return <List className={classes.list}>{renderBuffer}</List>;
 };

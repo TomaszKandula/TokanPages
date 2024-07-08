@@ -2,62 +2,46 @@
 
 exports[`test component: featuresView should render correctly '<NavigationView />' when content is loaded. 1`] = `
 <header
-  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-1 mui-fixed MuiPaper-elevation0"
+  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-3 mui-fixed MuiPaper-elevation0"
 >
   <div
-    class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-2 MuiToolbar-gutters"
+    class="makeStyles-nav_large_screen-9"
   >
     <div
-      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-31 MuiToolbar-gutters"
     >
       <div
-        class="MuiGrid-root makeStyles-nav_menu-5 MuiGrid-item MuiGrid-grid-xs-true"
+        class="MuiBox-root MuiBox-root-47 makeStyles-nav_menu-34 makeStyles-nav_left-37"
       >
-        <button
-          aria-label="menu"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-21 MuiIconButton-colorInherit"
-          tabindex="0"
-          type="button"
+        <a
+          class="makeStyles-app_logo_small-24"
+          href="/"
         >
-          <span
-            class="MuiIconButton-label"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-              />
-            </svg>
-          </span>
-          <span
-            class="MuiTouchRipple-root"
+          <img
+            alt=""
+            class="makeStyles-app_left_logo-27"
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
           />
-        </button>
+        </a>
       </div>
       <div
-        class="MuiGrid-root makeStyles-content_right_side-14 MuiGrid-item MuiGrid-grid-xs-true"
+        class="MuiBox-root MuiBox-root-48 makeStyles-nav_items-36 makeStyles-nav_centre-39"
       >
-        <img
-          alt=""
-          class="makeStyles-app_full_logo-3"
-          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+        <ul
+          class="MuiList-root makeStyles-list-49 MuiList-padding"
         />
       </div>
       <div
-        class="MuiGrid-root makeStyles-content_right_side-14 MuiGrid-item MuiGrid-grid-xs-true"
+        class="MuiBox-root MuiBox-root-50 makeStyles-nav_items-36 makeStyles-nav_right-38"
       >
         <div
-          class="MuiBox-root MuiBox-root-46 makeStyles-languagesBox-40"
+          class="MuiBox-root MuiBox-root-74 makeStyles-languagesBox-68"
         >
           <div
-            class="MuiFormControl-root makeStyles-languages_control-41"
+            class="MuiFormControl-root makeStyles-languages_control-69"
           >
             <div
-              class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-42 MuiInputBase-formControl MuiInput-formControl"
+              class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-70 MuiInputBase-formControl MuiInput-formControl"
             >
               <div
                 aria-haspopup="listbox"
@@ -66,11 +50,11 @@ exports[`test component: featuresView should render correctly '<NavigationView /
                 tabindex="0"
               >
                 <div
-                  class="makeStyles-languages_wrapper-55"
+                  class="makeStyles-languages_wrapper-91"
                 >
                   <img
                     alt=""
-                    class="makeStyles-flag_image-54"
+                    class="makeStyles-flag_image-97"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
                   <div>
@@ -98,7 +82,7 @@ exports[`test component: featuresView should render correctly '<NavigationView /
           </div>
         </div>
         <div
-          class="makeStyles-user_avatar-45"
+          class="makeStyles-user_avatar-119"
         >
           <button
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
@@ -112,7 +96,133 @@ exports[`test component: featuresView should render correctly '<NavigationView /
                 class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
               />
             </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="makeStyles-nav_small_screen-10"
+  >
+    <div
+      class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-128 MuiToolbar-gutters"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
+      >
+        <div
+          class="MuiGrid-root makeStyles-nav_menu-131 makeStyles-nav_left-134 MuiGrid-item MuiGrid-grid-xs-true"
+        >
+          <button
+            aria-label="menu"
+            class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-155 MuiIconButton-colorInherit"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-nav_items-133 makeStyles-nav_centre-136 MuiGrid-item MuiGrid-grid-xs-true"
+        >
+          <a
+            class="makeStyles-app_logo_small-121"
+            href="/"
+          >
+            <img
+              alt=""
+              class="makeStyles-app_full_logo-125"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+            />
+          </a>
+          <a
+            class="makeStyles-app_logo_large-122"
+            href="/"
+          />
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-nav_items-133 makeStyles-nav_right-135 MuiGrid-item MuiGrid-grid-xs-true"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-190 makeStyles-languagesBox-184"
+          >
+            <div
+              class="MuiFormControl-root makeStyles-languages_control-185"
+            >
+              <div
+                class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-186 MuiInputBase-formControl MuiInput-formControl"
+              >
+                <div
+                  aria-haspopup="listbox"
+                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="makeStyles-languages_wrapper-207"
+                  >
+                    <img
+                      alt=""
+                      class="makeStyles-flag_image-213"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                    />
+                    <div>
+                      ENG
+                    </div>
+                  </div>
+                </div>
+                <input
+                  aria-hidden="true"
+                  class="MuiSelect-nativeInput"
+                  tabindex="-1"
+                  value="eng"
+                />
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSelect-icon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7 10l5 5 5-5z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+            class="makeStyles-user_avatar-235"
+          >
+            <button
+              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

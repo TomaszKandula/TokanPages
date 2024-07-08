@@ -7,11 +7,12 @@ import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ContentDto } from "../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 
-interface Properties {
+interface NewsletterRemoveProps {
     id: string;
+    background?: React.CSSProperties;
 }
 
-export const NewsletterRemove = (props: Properties): JSX.Element => {
+export const NewsletterRemove = (props: NewsletterRemoveProps): JSX.Element => {
     const content = useSelector((state: ApplicationState) => state.contentNewsletterRemove);
 
     const contentPre: ContentDto = content.content?.contentPre;
@@ -68,6 +69,7 @@ export const NewsletterRemove = (props: Properties): JSX.Element => {
             buttonState={hasButton}
             progress={hasProgress}
             isRemoved={isRemoved}
+            background={props.background}
         />
     );
 };

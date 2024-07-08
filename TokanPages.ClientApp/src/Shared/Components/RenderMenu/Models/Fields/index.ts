@@ -5,4 +5,6 @@ export interface Fields {
     link?: string;
     icon?: string;
     enabled?: boolean;
+    sideMenuOn?: boolean;
+    navbarMenuOn?: boolean;
 }

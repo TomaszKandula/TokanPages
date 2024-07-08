@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../Theme";
 
-export const DocumentStyle = makeStyles(() => ({
+export const DocumentStyle = makeStyles(theme => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
@@ -11,5 +11,11 @@ export const DocumentStyle = makeStyles(() => ({
     divider: {
         marginTop: 20,
         marginBottom: 10,
+    },
+    back_arrow: {
+        [theme.breakpoints.up(1000)]: {
+            display: "none",
+        },
+        display: "block",
     },
 }));

@@ -14,6 +14,10 @@ import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
+interface HeaderViewProps {
+    background?: React.CSSProperties;
+}
+
 const OpenLinkButton = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();
 
@@ -46,7 +50,7 @@ const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     );
 };
 
-export const HeaderView = (): JSX.Element => {
+export const HeaderView = (props: HeaderViewProps): JSX.Element => {
     const classes = HeaderStyle();
     const header = useSelector((state: ApplicationState) => state.contentHeader);
     const imageUrl = (name: string) => {
@@ -55,7 +59,7 @@ export const HeaderView = (): JSX.Element => {
     };
 
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={7}>
                     {header?.isLoading ? (

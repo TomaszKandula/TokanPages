@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { RenderImage } from "./customImage";
 
 describe("test rendering image component", () => {
@@ -15,14 +15,15 @@ describe("test rendering image component", () => {
     };
 
     it("should not render an image component.", () => {
-        const tree = shallow(<TestComponent basePath="" imageSource="" className="style" />);
-        expect(tree).toMatchSnapshot();
+        const html = render(<TestComponent basePath="" imageSource="" className="style" />);
+        expect(html).toMatchSnapshot();
     });
 
     it("should render an image component.", () => {
-        const tree = shallow(
+        const html = render(
             <TestComponent basePath="http://localhost:5000/" imageSource="test-image.jpg" className="style" />
         );
-        expect(tree).toMatchSnapshot();
+
+        expect(html).toMatchSnapshot();
     });
 });

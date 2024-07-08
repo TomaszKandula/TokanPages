@@ -22,6 +22,7 @@ interface Properties extends ViewProperties {
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     labelEmail: string;
+    background?: React.CSSProperties;
 }
 
 const ActiveButton = (props: Properties): JSX.Element => {
@@ -43,11 +44,11 @@ const ActiveButton = (props: Properties): JSX.Element => {
 export const ResetPasswordView = (props: Properties): JSX.Element => {
     const classes = ResetPasswordStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={8} pb={10}>
                     <Box pt={4} pb={6}>
-                        <BackArrow />
+                        <BackArrow className={classes.back_arrow} />
                     </Box>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>

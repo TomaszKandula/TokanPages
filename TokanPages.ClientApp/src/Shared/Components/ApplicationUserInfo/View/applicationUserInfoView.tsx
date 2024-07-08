@@ -17,14 +17,19 @@ import { UserAvatar } from "../../UserAvatar";
 import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
 import { v4 as uuidv4 } from "uuid";
 
-interface Properties {
+interface ApplicationUserInfoViewProps {
     state: boolean;
     content: UserInfoProps;
     data: AuthenticateUserResultDto;
     closeHandler: () => void;
 }
 
-const Items = (props: { item: string; className: string }): JSX.Element => {
+interface ItemsProps {
+    item: string;
+    className: string;
+}
+
+const CustomListItem = (props: ItemsProps): JSX.Element => {
     return (
         <ListItem>
             <ListItemIcon style={{ color: green[500] }}>
@@ -37,7 +42,7 @@ const Items = (props: { item: string; className: string }): JSX.Element => {
     );
 };
 
-export const ApplicationUserInfoView = (props: Properties): JSX.Element => {
+export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): JSX.Element => {
     const classes = ApplicationUserInfoStyle();
     const registered = GetDateTime({
         value: props.data.registered,
@@ -74,36 +79,28 @@ export const ApplicationUserInfoView = (props: Properties): JSX.Element => {
             </DialogTitle>
             <Divider />
             <DialogContent>
-                <Box pt={2}>
-                    <Typography className={classes.item}>
-                        {props.content?.textUserAlias}:&nbsp;
-                        <Typography component="span" className={classes.value}>
-                            {props.data?.aliasName}
-                        </Typography>
+                <Typography className={classes.item}>
+                    {props.content?.textUserAlias}:&nbsp;
+                    <Typography component="span" className={classes.value}>
+                        {props.data?.aliasName}
                     </Typography>
-                </Box>
-                <Box pt={2}>
-                    <Typography className={classes.item}>
-                        {props.content?.textRegistered}:&nbsp;
-                        <Typography component="span" className={classes.value}>
-                            {registered}
-                        </Typography>
+                </Typography>
+                <Typography className={classes.item}>
+                    {props.content?.textRegistered}:&nbsp;
+                    <Typography component="span" className={classes.value}>
+                        {registered}
                     </Typography>
-                </Box>
-                <Box pt={2}>
-                    <Typography className={classes.item}>{props.content?.textRoles}:&nbsp;</Typography>
-                </Box>
+                </Typography>
+                <Typography className={classes.item}>{props.content?.textRoles}:&nbsp;</Typography>
                 <List dense={true}>
                     {props.data.roles?.map((item: UserRoleDto, _index: number) => (
-                        <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
+                        <CustomListItem item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                     ))}
                 </List>
-                <Box pt={0}>
-                    <Typography className={classes.item}>{props.content?.textPermissions}:&nbsp;</Typography>
-                </Box>
+                <Typography className={classes.item}>{props.content?.textPermissions}:&nbsp;</Typography>
                 <List dense={true}>
                     {props.data.permissions?.map((item: UserPermissionDto, _index: number) => (
-                        <Items item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
+                        <CustomListItem item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
                     ))}
                 </List>
             </DialogContent>

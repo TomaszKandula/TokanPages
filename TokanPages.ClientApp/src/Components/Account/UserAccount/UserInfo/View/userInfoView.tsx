@@ -13,7 +13,7 @@ import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoStyle } from "./userInfoStyle";
 
-interface BaseProperties extends ViewProperties {
+interface UserInfoViewProps extends ViewProperties {
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
@@ -26,9 +26,10 @@ interface BaseProperties extends ViewProperties {
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
+    background?: React.CSSProperties;
 }
 
-interface Properties extends BaseProperties {
+interface Properties extends UserInfoViewProps {
     value: string;
 }
 
@@ -54,7 +55,7 @@ const RenderText = (props: Properties): JSX.Element => {
     return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
 };
 
-const UpdateAccountButton = (props: BaseProperties): JSX.Element => {
+const UpdateAccountButton = (props: UserInfoViewProps): JSX.Element => {
     const classes = UserInfoStyle();
     return (
         <Button
@@ -70,7 +71,7 @@ const UpdateAccountButton = (props: BaseProperties): JSX.Element => {
     );
 };
 
-const RequestVerificationButton = (props: BaseProperties): JSX.Element => {
+const RequestVerificationButton = (props: UserInfoViewProps): JSX.Element => {
     const classes = UserInfoStyle();
     const clickable = (
         <Typography component="span" onClick={props.verifyButtonHandler} className={classes.user_email_verification}>
@@ -89,14 +90,24 @@ const RequestVerificationButton = (props: BaseProperties): JSX.Element => {
     return props.userStore.isVerified ? <></> : link;
 };
 
-export const UserInfoView = (props: BaseProperties): JSX.Element => {
+const RenderEmailStatus = (props: UserInfoViewProps): JSX.Element => {
+    return props.isLoading ? (
+        <Skeleton variant="text" />
+    ) : props.userStore?.isVerified ? (
+        <>{props.sectionAccountInformation?.labelEmailStatus?.positive}</>
+    ) : (
+        <>{props.sectionAccountInformation?.labelEmailStatus?.negative}</>
+    )
+}
+
+export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
     const classes = UserInfoStyle();
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Backdrop className={classes.backdrop} open={props.isRequestingVerification}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Container maxWidth="md">
+            <Container className={classes.container}>
                 <Box pt={15} pb={5}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
@@ -131,13 +142,7 @@ export const UserInfoView = (props: BaseProperties): JSX.Element => {
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Typography className={classes.user_email_status}>
-                                            {props.isLoading ? (
-                                                <Skeleton variant="text" />
-                                            ) : props.userStore?.isVerified ? (
-                                                props.sectionAccountInformation?.labelEmailStatus?.positive
-                                            ) : (
-                                                props.sectionAccountInformation?.labelEmailStatus?.negative
-                                            )}
+                                            <RenderEmailStatus {...props} />
                                             <RequestVerificationButton {...props} />
                                         </Typography>
                                     </Grid>

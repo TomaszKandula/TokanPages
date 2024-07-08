@@ -1,6 +1,6 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "enzyme";
 import { ApplicationToastView } from "./applicationToastView";
 import { Slide, SlideProps } from "@material-ui/core";
 
@@ -13,7 +13,7 @@ describe("test view component for application toast", () => {
 
         const TransitionLeft = (props: Omit<SlideProps, "direction">) => <Slide {...props} direction="left" />;
 
-        const tree = shallow(
+        const html = render(
             <ApplicationToastView
                 anchorOrigin={{ vertical, horizontal }}
                 isOpen={false}
@@ -26,6 +26,6 @@ describe("test view component for application toast", () => {
             />
         );
 
-        expect(tree).toMatchSnapshot();
+        expect(html).toMatchSnapshot();
     });
 });

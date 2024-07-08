@@ -47,6 +47,7 @@ import {
     ContentTemplates,
     UserEmailVerification,
     ContentArticle,
+    ApplicationNavbar,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -54,6 +55,7 @@ export const ApplicationDefault: ApplicationState = {
     applicationEmail: ApplicationEmail,
     applicationDialog: ApplicationDialog,
     applicationLanguage: ApplicationLanguage,
+    applicationNavbar: ApplicationNavbar,
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,

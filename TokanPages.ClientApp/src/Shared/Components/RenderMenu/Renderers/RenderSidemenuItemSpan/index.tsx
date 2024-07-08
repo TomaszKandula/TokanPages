@@ -10,7 +10,7 @@ import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
-export const RenderItemSpan = (props: Item): JSX.Element => {
+export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
     const [isOpen, setIsOpen] = React.useState(false);
     const onClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
@@ -41,6 +41,8 @@ export const RenderItemSpan = (props: Item): JSX.Element => {
                             link={item.link}
                             icon={item.icon}
                             enabled={item.enabled}
+                            indent={true}
+                            navbar={false}
                         />
                     ))}
                 </List>

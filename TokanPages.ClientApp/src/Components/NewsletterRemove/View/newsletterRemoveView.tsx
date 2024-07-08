@@ -10,16 +10,17 @@ import { ContentDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { NewsletterRemoveStyle } from "./newsletterRemoveStyle";
 
-interface Properties extends ViewProperties {
+interface NewsletterRemoveViewProps extends ViewProperties {
     contentPre: ContentDto;
     contentPost: ContentDto;
     buttonHandler: () => void;
     buttonState: boolean;
     progress: boolean;
     isRemoved: boolean;
+    background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: NewsletterRemoveViewProps): JSX.Element => {
     const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
@@ -36,11 +37,11 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const NewsletterRemoveView = (props: Properties): JSX.Element => {
+export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): JSX.Element => {
     const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
-        <section className={classes.section}>
+        <section className={classes.section} style={props.background}>
             <Container maxWidth="sm">
                 <Box py={15}>
                     <Card elevation={4}>
