@@ -91,13 +91,11 @@ const RequestVerificationButton = (props: UserInfoViewProps): JSX.Element => {
 };
 
 const RenderEmailStatus = (props: UserInfoViewProps): JSX.Element => {
-    return props.isLoading ? (
-        <Skeleton variant="text" />
-    ) : props.userStore?.isVerified ? (
-        <>{props.sectionAccountInformation?.labelEmailStatus?.positive}</>
-    ) : (
-        <>{props.sectionAccountInformation?.labelEmailStatus?.negative}</>
-    )
+    const EmailStatus = (): JSX.Element => props.userStore?.isVerified
+    ? <>{props.sectionAccountInformation?.labelEmailStatus?.positive}</>
+    : <>{props.sectionAccountInformation?.labelEmailStatus?.negative}</>;
+
+    return props.isLoading ? <Skeleton variant="text" /> : <EmailStatus />;
 }
 
 export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
