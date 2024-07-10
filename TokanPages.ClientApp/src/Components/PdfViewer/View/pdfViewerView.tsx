@@ -30,12 +30,12 @@ interface RenderIconOrErrorProps {
     hasError: boolean;
 }
 
-const RenderIconOrError = (props: RenderIconOrErrorProps): JSX.Element => {
-    const RenderIcon = () => props.hasError 
-    ? <ReportProblemIcon />
-    : <CheckIcon />;
+const RenderIcon = (props: RenderIconOrErrorProps) => {
+    return props.hasError ? <ReportProblemIcon /> : <CheckIcon />
+};
 
-    return props.isLoading && !props.hasError ? <ProgressBar size={20} /> : <RenderIcon />;
+const RenderIconOrLoading = (props: RenderIconOrErrorProps): JSX.Element => {
+    return props.isLoading && !props.hasError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
 }
 
 const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
@@ -155,7 +155,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </Box>
                     <Grid container justifyContent="center" direction="column">
                         <Box pt={2} pb={2} className={classes.header}>
-                            <RenderIconOrError isLoading={isLoading} hasError={hasError} />
+                            <RenderIconOrLoading isLoading={isLoading} hasError={hasError} />
                             <div className={classes.header_pages}>
                                 {currentPage} / {numPages}
                             </div>
