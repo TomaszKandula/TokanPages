@@ -109,13 +109,13 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
         return null;
     };
 
-    function renderValue(value: SelectProps["value"]): React.ReactNode {
+    const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
         return (
             <div className={classes.languages_wrapper}>
                 {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
             <div>{toUpper(value)}</div>
         </div>);
-    };
+    }, []);
 
     return (
         <FormControl className={props.styleControl}>
