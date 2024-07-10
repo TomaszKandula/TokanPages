@@ -91,11 +91,13 @@ const RequestVerificationButton = (props: UserInfoViewProps): JSX.Element => {
 };
 
 const RenderEmailStatus = (props: UserInfoViewProps): JSX.Element => {
-    const EmailStatus = (): JSX.Element => props.userStore?.isVerified
+    return props.userStore?.isVerified
     ? <>{props.sectionAccountInformation?.labelEmailStatus?.positive}</>
-    : <>{props.sectionAccountInformation?.labelEmailStatus?.negative}</>;
+    : <>{props.sectionAccountInformation?.labelEmailStatus?.negative}</>
+};
 
-    return props.isLoading ? <Skeleton variant="text" /> : <EmailStatus />;
+const RenderLoadingOrStatus = (props: UserInfoViewProps): JSX.Element => {
+    return props.isLoading ? <Skeleton variant="text" /> : <RenderEmailStatus {...props} />;
 }
 
 export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
@@ -140,7 +142,7 @@ export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Typography className={classes.user_email_status}>
-                                            <RenderEmailStatus {...props} />
+                                            <RenderLoadingOrStatus {...props} />
                                             <RequestVerificationButton {...props} />
                                         </Typography>
                                     </Grid>
