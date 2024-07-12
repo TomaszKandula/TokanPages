@@ -31,12 +31,12 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasError ? <ReportProblemIcon /> : <CheckIcon />
+    return props.hasError ? <ReportProblemIcon /> : <CheckIcon />;
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): JSX.Element => {
     return props.isLoading && !props.hasError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
-}
+};
 
 const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);

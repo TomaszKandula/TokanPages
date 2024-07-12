@@ -113,8 +113,9 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
         return (
             <div className={classes.languages_wrapper}>
                 {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
-            <div>{toUpper(value)}</div>
-        </div>);
+                <div>{toUpper(value)}</div>
+            </div>
+        );
     }, []);
 
     return (

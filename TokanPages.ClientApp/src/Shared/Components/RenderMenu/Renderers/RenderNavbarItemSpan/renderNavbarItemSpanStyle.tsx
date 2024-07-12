@@ -31,9 +31,12 @@ export const RenderNavbarItemSpanStyle = makeStyles(theme => ({
         textOverflow: "ellipsis",
         "&:hover": {
             color: Colours.colours.darkViolet1,
+            transform: "scale(1.1)",
+            transition: "transform 0.3s ease 0s",
         },
     },
     list_item_text_selected: {
         color: Colours.colours.darkViolet1,
+        transform: "scale(1.1)",
     },
 }));

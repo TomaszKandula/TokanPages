@@ -23,21 +23,12 @@ export const RenderNavbarItemStyle = makeStyles(theme => ({
         textOverflow: "ellipsis",
         "&:hover": {
             color: Colours.colours.darkViolet1,
-        },
-        "&::after": {
-            content: "''",
-            display: "inline-block",
-            position: "absolute",
-            width: 30,
-            height: 1,
-            backgroundColor: Colours.colours.darkViolet1,
-            bottom: 7,
-            left: "50%",
-            transform: "translate(-50%, 0px) scaleX(0)",
+            transform: "scale(1.1)",
             transition: "transform 0.3s ease 0s",
         },
     },
     list_item_text_selected: {
         color: Colours.colours.darkViolet1,
+        transform: "scale(1.1)",
     },
 }));

@@ -52,13 +52,16 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
         setOpen(prevOpen => !prevOpen);
     }, []);
 
-    const handleClose = React.useCallback((event: React.MouseEvent<EventTarget>): void => {
-        if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-            return;
-        }
+    const handleClose = React.useCallback(
+        (event: React.MouseEvent<EventTarget>): void => {
+            if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
+                return;
+            }
 
-        setOpen(false);
-    }, [anchorRef.current]);
+            setOpen(false);
+        },
+        [anchorRef.current]
+    );
 
     const handleListKeyDown = React.useCallback((event: React.KeyboardEvent): void => {
         if (event.key === "Tab") {
@@ -118,7 +121,12 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
                     >
                         <Box className={classes.menu_box}>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={isOpen} id="menu-list-grow" onKeyDown={handleListKeyDown} className={classes.menu_list}>
+                                <MenuList
+                                    autoFocusItem={isOpen}
+                                    id="menu-list-grow"
+                                    onKeyDown={handleListKeyDown}
+                                    className={classes.menu_list}
+                                >
                                     <Items {...props} onClickEvent={onClickEvent} />
                                 </MenuList>
                             </ClickAwayListener>
