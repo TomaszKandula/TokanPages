@@ -29,6 +29,8 @@ export const RenderSubitemsStyle = makeStyles(theme => ({
         textOverflow: "ellipsis",
         "&:hover": {
             color: Colours.colours.darkViolet1,
+            transform: "scale(1.05)",
+            transition: "transform 0.3s ease 0s",
         },
     },
 }));
