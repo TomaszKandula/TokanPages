@@ -27,7 +27,7 @@ export const ContactPage = () => {
         <>
             <Navigation />
             <Box mt={8}>
-                <ContactForm hasBackButton={true} />
+                <ContactForm hasCaptionWithIcon={true} />
             </Box>
             <Footer />
         </>

@@ -15,7 +15,7 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Ser
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
 interface ContactFormProps {
-    hasBackButton?: boolean;
+    hasCaptionWithIcon?: boolean;
     background?: React.CSSProperties;
 }
 
@@ -127,7 +127,6 @@ export const ContactForm = (props: ContactFormProps): JSX.Element => {
             isLoading={contactForm?.isLoading}
             caption={contactForm?.content?.caption}
             text={contactForm?.content?.text}
-            hasBackButton={props.hasBackButton ?? false}
             keyHandler={keyHandler}
             formHandler={formHandler}
             firstName={form.firstName}
@@ -148,6 +147,7 @@ export const ContactForm = (props: ContactFormProps): JSX.Element => {
             multiline={true}
             minRows={6}
             background={props.background}
+            hasCaptionWithIcon={props.hasCaptionWithIcon}
         />
     );
 };
