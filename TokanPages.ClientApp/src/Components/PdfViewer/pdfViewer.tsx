@@ -80,7 +80,7 @@ export const PdfViewer = (props: PdfViewerProps): JSX.Element => {
     }, [isLoading, hasTemplates]);
 
     return (
-        <PdfViewerView 
+        <PdfViewerView
             isLoading={isLoading}
             hasError={hasError}
             currentPage={currentPage}

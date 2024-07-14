@@ -44,8 +44,8 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </Box>
                     <Grid container justifyContent="center" direction="column">
                         <Box pt={2} pb={2} className={classes.header}>
-                            <RenderIconOrLoading 
-                                isLoading={props.isLoading} 
+                            <RenderIconOrLoading
+                                isLoading={props.isLoading}
                                 hasError={props.hasError}
                                 pdfUrl={props.pdfUrl}
                             />

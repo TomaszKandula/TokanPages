@@ -13,4 +13,4 @@ export const DownloadAsset = (props: DownloadAssetProps): JSX.Element => {
             <GetAppIcon />
         </a>
     );
-} 
+};
