@@ -8,6 +8,9 @@ export const PdfViewerStyle = makeStyles(theme => ({
     container: {
         maxWidth: 700,
     },
+    href: {
+        color: Colours.colours.black,
+    },
     back_arrow: {
         [theme.breakpoints.up(1000)]: {
             display: "none",

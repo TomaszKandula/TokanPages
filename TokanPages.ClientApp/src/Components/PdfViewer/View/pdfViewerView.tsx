@@ -14,6 +14,7 @@ interface PdfViewerViewProps {
     numPages: number;
     pdfDocument: any;
     scale?: number;
+    pdfUrl?: string;
     background?: React.CSSProperties;
     onPreviousPage?: React.MouseEventHandler<SVGSVGElement>;
     onNextPage?: React.MouseEventHandler<SVGSVGElement>;
@@ -22,10 +23,13 @@ interface PdfViewerViewProps {
 interface RenderIconOrErrorProps {
     isLoading: boolean;
     hasError: boolean;
+    pdfUrl?: string;
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasError ? <ReportProblemIcon /> : <GetAppIcon />;
+    const classes = PdfViewerStyle();
+    const url = props.pdfUrl as string;
+    return props.hasError ? <ReportProblemIcon /> : <a href={url} className={classes.href}><GetAppIcon /></a>;
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): JSX.Element => {
@@ -43,7 +47,11 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                     </Box>
                     <Grid container justifyContent="center" direction="column">
                         <Box pt={2} pb={2} className={classes.header}>
-                            <RenderIconOrLoading isLoading={props.isLoading} hasError={props.hasError} />
+                            <RenderIconOrLoading 
+                                isLoading={props.isLoading} 
+                                hasError={props.hasError}
+                                pdfUrl={props.pdfUrl}
+                            />
                             <div className={classes.header_pages}>
                                 {props.currentPage} / {props.numPages}
                             </div>

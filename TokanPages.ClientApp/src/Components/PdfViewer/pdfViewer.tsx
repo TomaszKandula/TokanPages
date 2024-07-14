@@ -88,6 +88,7 @@ export const PdfViewer = (props: PdfViewerProps): JSX.Element => {
             pdfDocument={pdfDocument}
             scale={props.scale}
             background={props.background}
+            pdfUrl={url}
             onPreviousPage={onPreviousPageHandler}
             onNextPage={onNextPageHandler}
         />
