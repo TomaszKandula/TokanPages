@@ -15,8 +15,8 @@ interface PdfViewerViewProps {
     pdfDocument: any;
     scale?: number;
     background?: React.CSSProperties;
-    previousPage: () => void;
-    nextPage: () => void;
+    onPreviousPage?: React.MouseEventHandler<SVGSVGElement>;
+    onNextPage?: React.MouseEventHandler<SVGSVGElement>;
 }
 
 interface RenderIconOrErrorProps {
@@ -48,8 +48,8 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
                                 {props.currentPage} / {props.numPages}
                             </div>
                             <div>
-                                <NavigateBeforeIcon className={classes.header_buttons} onClick={props.previousPage} />
-                                <NavigateNextIcon className={classes.header_buttons} onClick={props.nextPage} />
+                                <NavigateBeforeIcon className={classes.header_buttons} onClick={props.onPreviousPage} />
+                                <NavigateNextIcon className={classes.header_buttons} onClick={props.onNextPage} />
                             </div>
                         </Box>
                         <Box className={classes.canvasWrapper}>

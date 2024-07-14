@@ -55,7 +55,7 @@ export const PdfViewer = (props: PdfViewerProps): JSX.Element => {
         setCurrentPage(1);
     }, [template]);
 
-    const nextPage = React.useCallback(() => {
+    const onNextPageHandler = React.useCallback(() => {
         if (numPages === currentPage) {
             return;
         }
@@ -64,7 +64,7 @@ export const PdfViewer = (props: PdfViewerProps): JSX.Element => {
         setCurrentPage(next);
     }, [numPages, currentPage]);
 
-    const previousPage = React.useCallback(() => {
+    const onPreviousPageHandler = React.useCallback(() => {
         if (currentPage === 1) {
             return;
         }
@@ -88,8 +88,8 @@ export const PdfViewer = (props: PdfViewerProps): JSX.Element => {
             pdfDocument={pdfDocument}
             scale={props.scale}
             background={props.background}
-            previousPage={previousPage}
-            nextPage={nextPage}
+            onPreviousPage={onPreviousPageHandler}
+            onNextPage={onNextPageHandler}
         />
     );
 };
