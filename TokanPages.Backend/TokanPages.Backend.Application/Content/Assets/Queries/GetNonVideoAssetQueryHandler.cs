@@ -3,18 +3,19 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using Microsoft.AspNetCore.Mvc;
+using TokanPages.Backend.Application.Content.Assets.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
 
-public class GetNonVideoAssetQueryHandler : RequestHandler<GetNonVideoAssetQuery, FileContentResult>
+public class GetNonVideoAssetQueryHandler : RequestHandler<GetNonVideoAssetQuery, ContentOutput>
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     public GetNonVideoAssetQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
-    public override async Task<FileContentResult> Handle(GetNonVideoAssetQuery request, CancellationToken cancellationToken)
+    public override async Task<ContentOutput> Handle(GetNonVideoAssetQuery request, CancellationToken cancellationToken)
     {
         var requestUrl = $"content/assets/{request.BlobName}";
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
@@ -35,6 +36,15 @@ public class GetNonVideoAssetQueryHandler : RequestHandler<GetNonVideoAssetQuery
             throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);
-        return new FileContentResult(memoryStream.ToArray(), streamContent.ContentType);
+
+        if (request.CanDownload)
+            streamContent.ContentType = "application/octet-stream";
+
+        var data = new FileContentResult(memoryStream.ToArray(), streamContent.ContentType);
+        return new ContentOutput
+        {
+            FileContent = data,
+            FileName = Path.GetFileName(requestUrl)
+        };
     }
 }
