@@ -47,7 +47,7 @@ public class AssetsController : ApiBaseController
     /// This endpoint will reject any video file (we have separate endpoint for video content).
     /// </remarks>
     /// <param name="blobName">Full blob name (case sensitive).</param>
-    /// <param name="canDownload">Web Browser will download a file instead showing it (images, pdf...).</param>
+    /// <param name="canDownload">Web Browser will always download a file instead of showing it.</param>
     /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]
