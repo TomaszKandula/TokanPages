@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box, Container, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import CheckIcon from "@material-ui/icons/Check";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import { BackArrow, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
@@ -25,7 +25,7 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasError ? <ReportProblemIcon /> : <CheckIcon />;
+    return props.hasError ? <ReportProblemIcon /> : <GetAppIcon />;
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): JSX.Element => {
