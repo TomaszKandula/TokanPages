@@ -2,7 +2,7 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { DocumentStyle } from "./documentStyle";
-import { BackArrow, ProgressBar, RenderContent } from "../../../Shared/Components";
+import { ProgressBar, RenderContent } from "../../../Shared/Components";
 import { TextItem } from "../../../Shared/Components/RenderContent/Models";
 import { useHash } from "../../../Shared/Hooks";
 
@@ -42,7 +42,6 @@ export const DocumentView = (props: DocumentViewProps): JSX.Element => {
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box py={12}>
-                    <BackArrow className={classes.back_arrow} />
                     {props.isLoading ? (
                         <ProgressBar styleObject={{ marginTop: 30 }} />
                     ) : (
