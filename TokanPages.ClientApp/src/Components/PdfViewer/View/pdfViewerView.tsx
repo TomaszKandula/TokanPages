@@ -28,7 +28,7 @@ interface RenderIconOrErrorProps {
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
     const classes = PdfViewerStyle();
-    const url = props.pdfUrl as string;
+    const url = `${props.pdfUrl}&canDownload=true`;
     return props.hasError ? <ReportProblemIcon /> : <a href={url} className={classes.href}><GetAppIcon /></a>;
 };
 

@@ -2,8 +2,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Application.Content.Assets.Commands;
 using TokanPages.Backend.Application.Content.Assets.Queries;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Content.Controllers.Mappers;
 using TokanPages.Content.Dto.Assets;
 
@@ -45,13 +47,29 @@ public class AssetsController : ApiBaseController
     /// This endpoint will reject any video file (we have separate endpoint for video content).
     /// </remarks>
     /// <param name="blobName">Full blob name (case sensitive).</param>
+    /// <param name="canDownload">Web Browser will download a file instead showing it (images, pdf...).</param>
     /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "blobName" })]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new[] { "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetNonVideoAsset([FromQuery] string blobName) => 
-        await Mediator.Send(new GetNonVideoAssetQuery { BlobName = blobName });
+    public async Task<IActionResult> GetNonVideoAsset([FromQuery] string blobName, [FromQuery] bool? canDownload = default)
+    {
+        var result = await Mediator.Send(new GetNonVideoAssetQuery
+        {
+            BlobName = blobName,
+            CanDownload = canDownload ?? false
+        });
+
+        if (result.FileContent is null)
+            throw new GeneralException(ErrorCodes.ERROR_UNEXPECTED);
+
+        if (canDownload is null or false)
+            return result.FileContent;
+
+        HttpContext.Response.Headers.Add("Content-disposition", $"attachment; filename={result.FileName}");
+        return result.FileContent;
+    }
 
     /// <summary>
     /// Allow to upload a single image asset to an Azure Storage.
