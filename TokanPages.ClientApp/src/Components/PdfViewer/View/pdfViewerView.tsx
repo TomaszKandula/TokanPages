@@ -2,9 +2,8 @@ import * as React from "react";
 import { Box, Container, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import GetAppIcon from "@material-ui/icons/GetApp";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
-import { BackArrow, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { BackArrow, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
 
 interface PdfViewerViewProps {
@@ -27,9 +26,7 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    const classes = PdfViewerStyle();
-    const url = `${props.pdfUrl}&canDownload=true`;
-    return props.hasError ? <ReportProblemIcon /> : <a href={url} className={classes.href}><GetAppIcon /></a>;
+    return props.hasError ? <ReportProblemIcon /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): JSX.Element => {
