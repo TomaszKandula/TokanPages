@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
+import { CustomBreadcrumb } from "../../Shared/Components";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
 
@@ -26,9 +26,8 @@ export const ContactPage = () => {
     return (
         <>
             <Navigation />
-            <Box mt={8}>
-                <ContactForm hasCaptionWithIcon={true} />
-            </Box>
+            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} />
+            <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} />
             <Footer />
         </>
     );

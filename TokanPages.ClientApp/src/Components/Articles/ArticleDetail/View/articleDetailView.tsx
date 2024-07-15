@@ -1,8 +1,7 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import { Divider, Grid, IconButton, Popover, Tooltip, Typography } from "@material-ui/core";
-import { ArrowBack } from "@material-ui/icons";
+import { Divider, Grid, Popover, Tooltip, Typography } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import { GET_FLAG_URL } from "../../../../Api/Request";
@@ -45,24 +44,8 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): JSX.Element =>
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box py={12}>
+                <Box pb={12}>
                     <div data-aos="fade-down">
-                        <Grid container spacing={3}>
-                            <Grid item xs={6}>
-                                <IconButton
-                                    className={`${classes.icon} ${classes.back_arrow}`}
-                                    onClick={props.backButtonHandler}
-                                >
-                                    <ArrowBack />
-                                </IconButton>
-                            </Grid>
-                            <Grid item xs={6} className={classes.grid_read_count}>
-                                <Typography className={classes.text_read_count} component="p" variant="subtitle1">
-                                    {props.content.content.textReadCount}&nbsp;{props.articleReadCount}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        <Divider className={classes.dividerTop} />
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Box onMouseEnter={props.openPopoverHandler} onMouseLeave={props.closePopoverHandler}>
@@ -126,6 +109,14 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): JSX.Element =>
                                 </Typography>
                                 <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
                                     {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
+                                </Typography>
+                            </div>
+                            <div className={classes.text_block}>
+                                <Typography component="p" variant="subtitle1">
+                                    {props.content.content.textReadCount}
+                                </Typography>
+                                <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
+                                    {props.articleReadCount}
                                 </Typography>
                             </div>
                         </Box>

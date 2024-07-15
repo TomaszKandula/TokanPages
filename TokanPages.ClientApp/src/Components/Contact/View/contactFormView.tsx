@@ -37,7 +37,9 @@ interface ContactFormViewProps extends ViewProperties {
     multiline?: boolean;
     minRows?: number;
     background?: React.CSSProperties;
-    hasCaptionWithIcon?: boolean;
+    hasIcon?: boolean;
+    hasCaption?: boolean;
+    hasShadow?: boolean;
 }
 
 const ActiveButton = (props: ContactFormViewProps): JSX.Element => {
@@ -61,24 +63,22 @@ export const ContactFormView = (props: ContactFormViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={6} pb={10}>
-                    <Box mb={6} textAlign="center" data-aos="fade-down">
+                <Box pt={props.hasCaption ? 6 : 4} pb={10}>
+                    <Box textAlign="center" data-aos="fade-down">
                         <Typography gutterBottom={true} className={classes.caption}>
-                            {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
+                            {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
                     </Box>
-                    <Card elevation={0} className={props.hasCaptionWithIcon ? classes.card : undefined}>
+                    <Card elevation={0} className={props.hasShadow ? classes.card : undefined}>
                         <CardContent className={classes.card_content}>
-                            {props.hasCaptionWithIcon ? (
-                                <Box mb={3} textAlign="center">
+                            <Box mb={3} textAlign="center">
+                                {props.hasIcon 
+                                ? <>
                                     <ContactMailIcon className={classes.icon} />
-                                    <Typography className={classes.small_caption}>
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.caption}
-                                    </Typography>
-                                </Box>
-                            ) : (
-                                <></>
-                            )}
+                                    <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                </>
+                                : <></>}
+                            </Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">

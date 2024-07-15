@@ -2,7 +2,7 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import { Box, Grid } from "@material-ui/core";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
-import { BackArrow, ProgressBar } from "../../../../Shared/Components";
+import { ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListStyle } from "./articleListStyle";
@@ -33,17 +33,12 @@ export const ArticleListView = (props: ArticleListViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={12} pb={8}>
-                    <div data-aos="fade-down">
-                        <BackArrow className={classes.back_arrow} />
-                    </div>
-                    <Box pt={3}>
-                        <Grid container justifyContent="center">
-                            <Grid item xs={12} sm={12}>
-                                {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
-                            </Grid>
+                <Box pt={0} pb={8}>
+                    <Grid container justifyContent="center">
+                        <Grid item xs={12} sm={12}>
+                            {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
                         </Grid>
-                    </Box>
+                    </Grid>
                 </Box>
             </Container>
         </section>
