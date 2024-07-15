@@ -19,6 +19,8 @@ interface Properties {
     copyright: string;
     reserved: string;
     icons: IconDto[];
+    onTermsClickEvent: () => void;
+    onPolicyClickEvent: () => void;
 }
 
 const SetTermsLink = (props: Properties): JSX.Element => {
@@ -29,7 +31,7 @@ const SetTermsLink = (props: Properties): JSX.Element => {
     }
 
     return (
-        <Link to={props?.terms?.href} className={classes.links}>
+        <Link to={props?.terms?.href} className={classes.links} onClick={props.onTermsClickEvent}>
             {props?.terms?.text}
         </Link>
     );
@@ -43,7 +45,7 @@ const SetPolicyLink = (props: Properties): JSX.Element => {
     }
 
     return (
-        <Link to={props?.policy?.href} className={classes.links}>
+        <Link to={props?.policy?.href} className={classes.links} onClick={props.onPolicyClickEvent}>
             {props?.policy?.text}
         </Link>
     );

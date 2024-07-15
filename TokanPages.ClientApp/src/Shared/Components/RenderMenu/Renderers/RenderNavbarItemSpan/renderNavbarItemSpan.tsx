@@ -45,8 +45,12 @@ export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
     const selectionStyle = isSelected ? selectionClass : classes.list_item_text;
 
     const onClickEvent = React.useCallback(() => {
-        dispatch(ApplicationNavbarAction.set({ selection: props.id }));
-    }, [props.id]);
+        dispatch(ApplicationNavbarAction.set({ 
+            selection: props.id, 
+            name: props.value,
+            path: props.link,
+        }));
+    }, [props.id, props.value, props.link]);
 
     const handleToggle = React.useCallback((): void => {
         setOpen(prevOpen => !prevOpen);

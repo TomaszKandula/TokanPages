@@ -24,8 +24,12 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
     const onClickEvent = React.useCallback(() => {
-        dispatch(ApplicationNavbarAction.set({ selection: props.id }));
-    }, [props.id]);
+        dispatch(ApplicationNavbarAction.set({ 
+            selection: props.id,
+            name: props.value,
+            path: props.link,
+        }));
+    }, [props.id, props.value, props.link]);
 
     const RenderItemWithHref = (): JSX.Element => {
         return (

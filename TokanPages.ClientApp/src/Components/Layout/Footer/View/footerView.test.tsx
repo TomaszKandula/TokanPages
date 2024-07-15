@@ -23,6 +23,8 @@ describe("test component: footerView", () => {
                     copyright="© 2020 - 2023 Tomasz Kandula"
                     reserved="All rights reserved"
                     icons={[icons]}
+                    onPolicyClickEvent={jest.fn()}
+                    onTermsClickEvent={jest.fn()}
                 />
             </BrowserRouter>
         );
