@@ -15,10 +15,14 @@ export const ApplicationNavbar: Reducer<ApplicationNavbarState> = (
         case CLEAR:
             return {
                 selection: undefined,
+                name: undefined,
+                path: undefined,
             };
         case SET:
             return {
                 selection: action.menu.selection,
+                name: action.menu.name,
+                path: action.menu.path,
             };
         default:
             return state;
