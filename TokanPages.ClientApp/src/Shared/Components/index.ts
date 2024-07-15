@@ -1,5 +1,6 @@
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
+export { CustomBreadcrumb } from "./CustomBreadcrumb";
 export { DocumentContentWrapper } from "./DocumentContentWrapper";
 export { DownloadAsset } from "./DownloadAsset";
 export { RenderContent } from "./RenderContent/renderContent";
