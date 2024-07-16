@@ -4,7 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { ArticleListView } from "./View/articleListView";
 
-interface ArticleListProps {
+export interface ArticleListProps {
     background?: React.CSSProperties;
 }
 

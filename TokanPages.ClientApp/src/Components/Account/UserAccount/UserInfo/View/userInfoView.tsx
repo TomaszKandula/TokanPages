@@ -11,9 +11,10 @@ import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { UserInfoProps } from "../userInfo";
 import { UserInfoStyle } from "./userInfoStyle";
 
-interface UserInfoViewProps extends ViewProperties {
+interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
@@ -26,7 +27,6 @@ interface UserInfoViewProps extends ViewProperties {
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
-    background?: React.CSSProperties;
 }
 
 interface Properties extends UserInfoViewProps {

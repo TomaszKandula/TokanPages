@@ -5,6 +5,9 @@ export const ActivateAccountStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     caption: {
         fontSize: "2.0rem",
         fontWeight: 400,

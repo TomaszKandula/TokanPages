@@ -9,9 +9,10 @@ import { ArticleContentDto } from "../../../../Api/Models";
 import { RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
+import { ExtendedViewProps } from "../articleDetail";
 import { ArticleDetailStyle } from "./articleDetailStyle";
 
-interface ArticleDetailViewProps {
+interface ArticleDetailViewProps extends ExtendedViewProps {
     backButtonHandler: () => void;
     articleReadCount: number;
     openPopoverHandler: (event: ReactMouseEvent) => void;
@@ -35,7 +36,6 @@ interface ArticleDetailViewProps {
     authorShortBio: string;
     flagImage: string;
     content: ArticleContentDto;
-    background?: React.CSSProperties;
 }
 
 export const ArticleDetailView = (props: ArticleDetailViewProps): JSX.Element => {

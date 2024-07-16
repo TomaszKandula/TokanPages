@@ -10,9 +10,10 @@ import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { ResetPasswordProps } from "../resetPassword";
 import { ResetPasswordStyle } from "./resetPasswordStyle";
 
-interface Properties extends ViewProperties {
+interface Properties extends ViewProperties, ResetPasswordProps {
     progress: boolean;
     caption: string;
     button: string;
@@ -21,7 +22,6 @@ interface Properties extends ViewProperties {
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     labelEmail: string;
-    background?: React.CSSProperties;
 }
 
 const ActiveButton = (props: Properties): JSX.Element => {
@@ -45,7 +45,7 @@ export const ResetPasswordView = (props: Properties): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={18} pb={10}>
+                <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">

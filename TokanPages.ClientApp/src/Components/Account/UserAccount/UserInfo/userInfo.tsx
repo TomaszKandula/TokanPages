@@ -21,13 +21,13 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
 
-interface UserInfoProps {
-    background?: React.CSSProperties;
-}
-
 interface UpdateStoreProps {
     canUpdate: boolean;
     isVerified: boolean;
+}
+
+export interface UserInfoProps {
+    background?: React.CSSProperties;
 }
 
 export const UserInfo = (props: UserInfoProps): JSX.Element => {

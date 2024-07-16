@@ -10,7 +10,7 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
 
-interface UserPasswordProps {
+export interface UserPasswordProps {
     background?: React.CSSProperties;
 }
 

@@ -5,11 +5,11 @@ import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models"
 import { ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
+import { ArticleListProps } from "../articleList";
 import { ArticleListStyle } from "./articleListStyle";
 
-interface ArticleListViewProps extends ViewProperties {
+interface ArticleListViewProps extends ViewProperties, ArticleListProps {
     articles: ArticleItem[];
-    background?: React.CSSProperties;
 }
 
 const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
