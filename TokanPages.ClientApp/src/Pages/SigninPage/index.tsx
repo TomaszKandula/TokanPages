@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { UserSignin } from "../../Components/Account";
+import { BackArrow } from "../../Shared/Components";
 import { Colours } from "../../Theme";
 
 import {
@@ -23,10 +24,13 @@ export const SigninPage = (): JSX.Element => {
     }, [language?.id]);
 
     return (
-        <UserSignin 
-            pt={10}
-            pb={30}
-            background={{ backgroundColor: Colours.colours.lightGray3 }} 
-        />
+        <>
+            <BackArrow />
+            <UserSignin 
+                pt={10}
+                pb={30}
+                background={{ backgroundColor: Colours.colours.lightGray3 }} 
+            />
+        </>
     );
 };

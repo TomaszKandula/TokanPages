@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
+import { BackArrow } from "../../Shared/Components";
 import { Colours } from "../../Theme";
 
 import { ContentActivateAccountAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
@@ -36,6 +37,7 @@ export const ActivationPage = (): JSX.Element => {
 
     return (
         <>
+            <BackArrow />
             {id 
             ? <ActivateAccount 
                 id={id}
