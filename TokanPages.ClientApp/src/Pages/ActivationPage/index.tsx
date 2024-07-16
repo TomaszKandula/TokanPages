@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
-import { Footer } from "../../Components/Layout";
+import { Colours } from "../../Theme";
 
 import { ContentActivateAccountAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
 
@@ -12,8 +12,7 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
-const ErrorMessage = () => {
-    // TODO: improve UI for message
+const ErrorMessage = (): JSX.Element => {
     return (
         <Box mt={10} mb={15}>
             <Typography>Uuuppss..., there is a missing ID...</Typography>
@@ -37,8 +36,15 @@ export const ActivationPage = (): JSX.Element => {
 
     return (
         <>
-            {id ? <ActivateAccount id={id} type={type} /> : <ErrorMessage />}
-            <Footer />
+            {id 
+            ? <ActivateAccount 
+                id={id}
+                type={type}
+                pt={10}
+                pb={30}
+                background={{ backgroundColor: Colours.colours.lightGray3 }} 
+            />
+            : <ErrorMessage />}
         </>
     );
 };
