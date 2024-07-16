@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { Navigation, Footer } from "../../Components/Layout";
 import { ResetPassword } from "../../Components/Account";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -23,10 +23,10 @@ export const PasswordResetPage = (): JSX.Element => {
     }, [language?.id]);
 
     return (
-        <>
-            <Navigation />
-            <ResetPassword />
-            <Footer />
-        </>
+        <ResetPassword 
+            pt={10}
+            pb={30}
+            background={{ backgroundColor: Colours.colours.lightGray3 }} 
+        />
     );
 };

@@ -2,8 +2,8 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
-import { Navigation, Footer } from "../../Components/Layout";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -30,10 +30,11 @@ export const NewsletterRemovePage = (): JSX.Element => {
     }, [language?.id]);
 
     return (
-        <>
-            <Navigation />
-            <NewsletterRemove id={id} />
-            <Footer />
-        </>
+        <NewsletterRemove 
+            id={id} 
+            pt={10} 
+            pb={30} 
+            background={{ backgroundColor: Colours.colours.lightGray3 }} 
+        />
     );
 };
