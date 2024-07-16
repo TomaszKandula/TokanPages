@@ -15,10 +15,7 @@ import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = React.useState(false);
-
-    const onListItemClickEvent = React.useCallback(() => {
-        setIsOpen(!isOpen), [isOpen]
-    }, []);
+    const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
     const onSubitemClickEvent = React.useCallback(() => {
         dispatch(ApplicationNavbarAction.set({ 
