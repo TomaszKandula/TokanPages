@@ -16,9 +16,10 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
+import { UserSignupProps } from "../userSignup";
 import { UserSignupStyle } from "./userSignupStyle";
 
-interface UserSignupViewProps extends ViewProperties {
+interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     caption: string;
     warning: string;
     consent: string;
@@ -37,7 +38,6 @@ interface UserSignupViewProps extends ViewProperties {
     labelLastName: string;
     labelEmail: string;
     labelPassword: string;
-    background?: React.CSSProperties;
 }
 
 const ActiveButton = (props: UserSignupViewProps): JSX.Element => {
@@ -65,7 +65,7 @@ export const UserSignupView = (props: UserSignupViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={4} pb={10}>
+                <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">

@@ -14,10 +14,6 @@ import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/Fo
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
-interface UserSignupProps {
-    background?: React.CSSProperties;
-}
-
 const defaultForm: SignupFormInput = {
     firstName: "",
     lastName: "",
@@ -36,6 +32,12 @@ const defaultForm: SignupFormInput = {
         missingSmallLetter: "",
     },
 };
+
+export interface UserSignupProps {
+    pt?: number;
+    pb?: number;
+    background?: React.CSSProperties;
+}
 
 export const UserSignup = (props: UserSignupProps): JSX.Element => {
     const dispatch = useDispatch();
@@ -161,6 +163,8 @@ export const UserSignup = (props: UserSignupProps): JSX.Element => {
             labelLastName={content?.content?.labelLastName}
             labelEmail={content?.content?.labelEmail}
             labelPassword={content?.content?.labelPassword}
+            pt={props.pt}
+            pb={props.pb}
             background={props.background}
         />
     );

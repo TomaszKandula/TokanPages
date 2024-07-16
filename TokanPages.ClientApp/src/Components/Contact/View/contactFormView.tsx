@@ -12,9 +12,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ContactFormProps } from "../contactForm";
 import { ContactFormStyle } from "./contactFormStyle";
 
-interface ContactFormViewProps extends ViewProperties {
+interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -36,10 +37,6 @@ interface ContactFormViewProps extends ViewProperties {
     labelMessage: string;
     multiline?: boolean;
     minRows?: number;
-    background?: React.CSSProperties;
-    hasIcon?: boolean;
-    hasCaption?: boolean;
-    hasShadow?: boolean;
 }
 
 const ActiveButton = (props: ContactFormViewProps): JSX.Element => {
@@ -63,7 +60,7 @@ export const ContactFormView = (props: ContactFormViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={props.hasCaption ? 6 : 4} pb={10}>
+                <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
                     <Box textAlign="center" data-aos="fade-down">
                         <Typography gutterBottom={true} className={classes.caption}>
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}

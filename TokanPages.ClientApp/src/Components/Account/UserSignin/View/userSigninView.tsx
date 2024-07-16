@@ -12,9 +12,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { UserSigninProps } from "../userSignin";
 import { UserSigninStyle } from "./userSigninStyle";
 
-interface UserSigninViewProps extends ViewProperties {
+interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     caption: string;
     button: string;
     link1: string;
@@ -27,7 +28,6 @@ interface UserSigninViewProps extends ViewProperties {
     password: string;
     labelEmail: string;
     labelPassword: string;
-    background?: React.CSSProperties;
 }
 
 const ActiveButton = (props: UserSigninViewProps): JSX.Element => {
@@ -55,7 +55,7 @@ export const UserSigninView = (props: UserSigninViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={4} pb={10}>
+                <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
