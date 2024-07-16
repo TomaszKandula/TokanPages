@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { CustomBreadcrumb } from "../../Shared/Components";
-import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -24,11 +23,13 @@ export const ContactPage = () => {
     }, [language?.id]);
 
     return (
-        <>
-            <Navigation />
-            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} />
-            <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} />
-            <Footer />
-        </>
+        <ContactForm 
+            pt={10}
+            pb={30}
+            background={{ backgroundColor: Colours.colours.lightGray3 }} 
+            hasCaption={false} 
+            hasIcon={true} 
+            hasShadow={true} 
+        />
     );
 };

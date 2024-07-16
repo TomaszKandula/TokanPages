@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { CustomBreadcrumb } from "../../Shared/Components";
-import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignup } from "../../Components/Account";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -24,11 +23,10 @@ export const SignupPage = (): JSX.Element => {
     }, [language?.id]);
 
     return (
-        <>
-            <Navigation />
-            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} />
-            <UserSignup />
-            <Footer />
-        </>
+        <UserSignup 
+            pt={10}
+            pb={30}
+            background={{ backgroundColor: Colours.colours.lightGray3 }} 
+        />
     );
 };
