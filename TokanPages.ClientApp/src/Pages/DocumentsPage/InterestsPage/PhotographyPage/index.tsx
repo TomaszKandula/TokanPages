@@ -1,15 +1,15 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../../Store/Configuration";
-import { Navigation, Footer } from "../../../Components/Layout";
-import { CustomBreadcrumb, DocumentContentWrapper } from "../../../Shared/Components";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { Navigation, Footer } from "../../../../Components/Layout";
+import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 
 import {
     ContentNavigationAction,
     ContentFooterAction,
     ContentDocumentAction,
     ContentTemplatesAction,
-} from "../../../Store/Actions";
+} from "../../../../Store/Actions";
 
 export const PhotographyPage = (): JSX.Element => {
     const dispatch = useDispatch();
