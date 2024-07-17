@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { Box, Breadcrumbs, Divider } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Item } from "../RenderMenu/Models";
+import { Item, Subitem } from "../RenderMenu/Models";
 import { StyledBreadcrumb } from "./customBreadcrumbStyle";
 
 interface CustomBreadcrumbProps {
@@ -16,14 +16,22 @@ interface CustomBreadcrumbProps {
     mbDivider?: number;
 }
 
-const GetRootCaption = (items: Item[]): string => {
-    let result = "";
-    items.find((value) => {
-        if (value.link === "/") {
-            result = value.value;
+const PathToItem = (pathname: string): Item | Subitem | undefined => {
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+
+    let result = undefined;
+    navigation.menu.items.find((value: Item) => {
+        if (value.link === pathname) {
+            result = value;
+        } else if (value.subitems !== undefined) {
+            value.subitems.find((value: Subitem) => {
+                if (value.link === pathname) {
+                    result = value;
+                }
+            });
         }
 
-        return "";
+        return undefined;
     });
 
     return result;
@@ -31,35 +39,24 @@ const GetRootCaption = (items: Item[]): string => {
 
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
     const history = useHistory();
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
-    const navbar = useSelector((state: ApplicationState) => state.applicationNavbar);
 
     const onBackToRoot = React.useCallback(() => {
         history.push("/");
     }, []);
-
-    const onBackToPrevious = React.useCallback(() => {
-        if (navbar.path === undefined) {
-            return;
-        }
-
-        history.push(navbar.path);
-
-    }, [navbar.path]);
 
     return (
         <Box mt={props.mt} mb={props.mb} mr={props.mr} ml={props.ml}>
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
                 <StyledBreadcrumb 
                     component="div"
-                    label={GetRootCaption(navigation.menu.items)}
+                    label={PathToItem("/")?.value}
                     icon={<Home fontSize="small" />}
                     onClick={onBackToRoot}
                 />
                 <StyledBreadcrumb 
                     component="div"
-                    label={navbar.name}
-                    onClick={onBackToPrevious}
+                    label={PathToItem(window.location.pathname)?.value}
+                    onClick={() => history.push(window.location.pathname)}
                 />
             </Breadcrumbs>
             <Box mt={props.mtDivider} mb={props.mbDivider}>
