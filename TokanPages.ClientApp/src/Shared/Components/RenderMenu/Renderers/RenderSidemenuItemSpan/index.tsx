@@ -1,29 +1,18 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Collapse } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
-import { ApplicationNavbarAction } from "../../../../../Store/Actions";
 import { GetIcon } from "../../..";
 import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
 export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
-    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = React.useState(false);
     const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
-
-    const onSubitemClickEvent = React.useCallback(() => {
-        dispatch(ApplicationNavbarAction.set({ 
-            selection: props.id,
-            name: props.value,
-            path: props.link,
-        }));
-    }, [props.id, props.value, props.link]);
 
     return EnsureDefined(
         {
@@ -54,7 +43,6 @@ export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
                             enabled={item.enabled}
                             indent={true}
                             navbar={false}
-                            onClickEvent={onSubitemClickEvent}
                         />
                     ))}
                 </List>

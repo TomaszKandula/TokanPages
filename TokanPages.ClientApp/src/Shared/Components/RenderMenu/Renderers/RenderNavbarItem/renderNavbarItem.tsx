@@ -1,41 +1,25 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ApplicationState } from "../../../../../Store/Configuration";
-import { ApplicationNavbarAction } from "../../../../../Store/Actions";
 import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderNavbarItemStyle } from "./renderNavbarItemStyle";
 
 export const RenderNavbarItem = (props: Item): JSX.Element => {
     const classes = RenderNavbarItemStyle();
-    const dispatch = useDispatch();
 
-    const selection = useSelector((state: ApplicationState) => state.applicationNavbar.selection);
-    const isSelected =
-        props.id === selection && window.location.pathname !== "/" && window.location.pathname === props.link;
-
+    const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
     const selectionClass = `${classes.list_item_text} ${classes.list_item_text_selected}`;
     const selectionStyle = isSelected ? selectionClass : classes.list_item_text;
 
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
-    const onClickEvent = React.useCallback(() => {
-        dispatch(ApplicationNavbarAction.set({ 
-            selection: props.id,
-            name: props.value,
-            path: props.link,
-        }));
-    }, [props.id, props.value, props.link]);
-
     const RenderItemWithHref = (): JSX.Element => {
         return (
             <Href
                 href={link}
-                onClick={onClickEvent}
                 className={classes.href}
                 underline="none"
                 target="_blank"
@@ -52,7 +36,6 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
         return (
             <ListItem
                 button
-                onClick={onClickEvent}
                 key={props.id}
                 disabled={!props.enabled}
                 component={Link}
