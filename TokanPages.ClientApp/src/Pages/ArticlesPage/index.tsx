@@ -34,7 +34,7 @@ export const ArticlesPage = (): JSX.Element => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} />
+            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} watchparam="title" />
             {title ? <ProgressOnScroll height={3} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
             {title ? <ArticleDetail title={title} /> : <ArticleList />}
             <Footer />
