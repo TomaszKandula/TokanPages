@@ -1,3 +1,51 @@
+# [0.102.0](https://github.com/TomaszKandula/TokanPages/compare/v0.101.0...v0.102.0) (2024-07-18)
+
+
+### Bug Fixes
+
+* resolve issue w/collapsable component ([0814db0](https://github.com/TomaszKandula/TokanPages/commit/0814db089b328fe910ceb0bef1b19f5171e6ba72))
+* split render functions ([e5ff004](https://github.com/TomaszKandula/TokanPages/commit/e5ff0045592ead652bbdd29d222f3ffe6006e893))
+* use callback ([69f4636](https://github.com/TomaszKandula/TokanPages/commit/69f463606975ed7b821494ce6a562d192dd79f68))
+
+
+### Features
+
+* add breadcrumb component ([6e3aeab](https://github.com/TomaszKandula/TokanPages/commit/6e3aeaba7d749c0a878805b04c88c58ce636d57c))
+* allow to download pdf file ([07208bc](https://github.com/TomaszKandula/TokanPages/commit/07208bc0a95ddbd65a06bbb0e4858dfbe1d1169b))
+* apply prettier ([9580df5](https://github.com/TomaszKandula/TokanPages/commit/9580df5fa71b2d9a3e5e7c8ce68f834a6335d161))
+* apply prettier ([5a27885](https://github.com/TomaszKandula/TokanPages/commit/5a2788576934ec4ee16873fa67bfd794d61d99be))
+* apply prettier ([a035ac6](https://github.com/TomaszKandula/TokanPages/commit/a035ac63f0dd9c48db30e7b1d35824d748887317))
+* change back arrow ([fa3d2b7](https://github.com/TomaszKandula/TokanPages/commit/fa3d2b7cbeda55491044a19be5b74ea7892b8ef9))
+* change icon ([3513c72](https://github.com/TomaszKandula/TokanPages/commit/3513c728bd1c35c9eca89e7d59b6c62bd5017ef9))
+* dispatch selected menu item ([c3bfee1](https://github.com/TomaszKandula/TokanPages/commit/c3bfee19df4f44c156c1745dd7821c196879f30c))
+* export component ([1540ea7](https://github.com/TomaszKandula/TokanPages/commit/1540ea7fbef681633915ea7054b5fa56a9a1893e))
+* expose additional props ([836438f](https://github.com/TomaszKandula/TokanPages/commit/836438ffadea6d8175c5c485fcebcf1427a5c344))
+* expose padding w/default values ([28c4a11](https://github.com/TomaszKandula/TokanPages/commit/28c4a11c9f9f05db1a22f746cb61aa094adfabfc))
+* extend breadcrumb to show selected title ([128ca5a](https://github.com/TomaszKandula/TokanPages/commit/128ca5a0595bb474039cdfbe6b45723f673fc724))
+* extend redux store for navbar ([729310e](https://github.com/TomaszKandula/TokanPages/commit/729310e0f1c6ba81ab63392f322ae69d927a49c1))
+* improve breadcrumb, simplify ([b8448c5](https://github.com/TomaszKandula/TokanPages/commit/b8448c5a8e542730f5ff4b80ab8a2e7851c08dd4))
+* option to download a file (will not be shown in Web Browser) ([55e5159](https://github.com/TomaszKandula/TokanPages/commit/55e5159310c3bb46f3d7864379fc45f16059c9ca))
+* refactor pdf canvas to a separate component ([a5b060c](https://github.com/TomaszKandula/TokanPages/commit/a5b060c0e713fb03a81942eb2448e8f1462d5bcb))
+* remove back arrow from contact component ([3e66ca7](https://github.com/TomaszKandula/TokanPages/commit/3e66ca73bd7e82b570c0f78ddd877d31dfca228e))
+* remove back buton ([6b9e236](https://github.com/TomaszKandula/TokanPages/commit/6b9e236ad13d491019010b0f5ff9573d1e45784c))
+* remove back button ([8d1ee80](https://github.com/TomaszKandula/TokanPages/commit/8d1ee80116ef5fdd25df988356a8e3b9afb756e5))
+* remove footer and navbar from pdf page ([08bee51](https://github.com/TomaszKandula/TokanPages/commit/08bee51c3f99ddaa58d108ae72f74b59ba1ad72d))
+* remove unnecessary dispatch ([446f778](https://github.com/TomaszKandula/TokanPages/commit/446f778c8d5784369bed86067a3337d2770059f7))
+* remove unnecessary dispatch ([16f99e6](https://github.com/TomaszKandula/TokanPages/commit/16f99e691b4d578ac3910497242c53d7493cef0b))
+* rename ([e9667e3](https://github.com/TomaszKandula/TokanPages/commit/e9667e3aa71db268643a5bce7429366650f152f7))
+* restyle menu ([79fea9f](https://github.com/TomaszKandula/TokanPages/commit/79fea9fbc301ec32108d1b12df44b94ac8ce1dda))
+* set custom paddings and section colour ([4617430](https://github.com/TomaszKandula/TokanPages/commit/4617430ad555e1e030118989920537e951eb2299))
+* set different background, reformat ([35834ea](https://github.com/TomaszKandula/TokanPages/commit/35834eac3e7565c8efc4cbd80455d9284bd33542))
+* set paddings and background ([83ebfae](https://github.com/TomaszKandula/TokanPages/commit/83ebfae9917e8f9db242a3594c77f4c8b69e69df))
+* simplify code ([792a579](https://github.com/TomaszKandula/TokanPages/commit/792a57968dc3fdee2a4c5f4bb77e2d6c7bd1aabf))
+* simplify code, use internal function ([b47280c](https://github.com/TomaszKandula/TokanPages/commit/b47280c2e72920baaf35b6e0d5def798f11cb385))
+* split view from logic ([77c94d4](https://github.com/TomaszKandula/TokanPages/commit/77c94d49116c4bdd35d18b9bddc7e6d31125ad3e))
+* update dispatch data ([695a290](https://github.com/TomaszKandula/TokanPages/commit/695a290bae9503c6e6cfd16924e8f7c8b86c9a46))
+* update XML comment ([4d9c2f2](https://github.com/TomaszKandula/TokanPages/commit/4d9c2f2ccdd28b5b1ccb269f10d5b0dd3e430ee1))
+* use back arrow for pages without navbar ([f3c8ffc](https://github.com/TomaszKandula/TokanPages/commit/f3c8ffc3cd1a8c6560c7f8d0a1faa5ffa922f64e))
+* use breadcrumb ([76fd7cf](https://github.com/TomaszKandula/TokanPages/commit/76fd7cf8952c4a2796a0570c8db2895b5fc2a0a8))
+* use separate reusable component ([deac85f](https://github.com/TomaszKandula/TokanPages/commit/deac85f7de06307a33c010bc12a558b92b7b841c))
+
 # [0.101.0](https://github.com/TomaszKandula/TokanPages/compare/v0.100.0...v0.101.0) (2024-07-08)
 
 
