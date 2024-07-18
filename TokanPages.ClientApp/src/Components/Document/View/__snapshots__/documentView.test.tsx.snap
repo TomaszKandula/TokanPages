@@ -7,227 +7,75 @@ exports[`test component: documentView should render correctly '<DocumentView />'
   <div
     class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
-    <div
-      class="MuiBox-root MuiBox-root-5"
+    <span
+      class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-11 MuiTypography-body1"
     >
-      <div
-        class="makeStyles-back_arrow-4"
-      >
-        <a
-          href="/"
-        >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-6"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-7"
-        />
+      <div>
+        <p>
+          Policy text
+        </p>
       </div>
-      <span
-        class="MuiTypography-root makeStyles-common-8 makeStyles-paragraph-14 MuiTypography-body1"
-      >
-        <div>
-          <p>
-            Policy text
-          </p>
-        </div>
-      </span>
-    </div>
+    </span>
   </div>
 </section>
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when showcase content is loaded. 1`] = `
 <section
-  class="makeStyles-section-43"
+  class="makeStyles-section-34"
 >
   <div
-    class="MuiContainer-root makeStyles-container-44 MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
   >
-    <div
-      class="MuiBox-root MuiBox-root-47"
+    <span
+      class="MuiTypography-root makeStyles-common-38 makeStyles-paragraph-44 MuiTypography-body1"
     >
-      <div
-        class="makeStyles-back_arrow-46"
-      >
-        <a
-          href="/"
-        >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-48"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-49"
-        />
+      <div>
+        <p>
+          Showcase text
+        </p>
       </div>
-      <span
-        class="MuiTypography-root makeStyles-common-50 makeStyles-paragraph-56 MuiTypography-body1"
-      >
-        <div>
-          <p>
-            Showcase text
-          </p>
-        </div>
-      </span>
-    </div>
+    </span>
   </div>
 </section>
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when story content is loaded. 1`] = `
 <section
-  class="makeStyles-section-29"
+  class="makeStyles-section-23"
 >
   <div
-    class="MuiContainer-root makeStyles-container-30 MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
   >
-    <div
-      class="MuiBox-root MuiBox-root-33"
+    <span
+      class="MuiTypography-root makeStyles-common-27 makeStyles-paragraph-33 MuiTypography-body1"
     >
-      <div
-        class="makeStyles-back_arrow-32"
-      >
-        <a
-          href="/"
-        >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-34"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-35"
-        />
+      <div>
+        <p>
+          Story text
+        </p>
       </div>
-      <span
-        class="MuiTypography-root makeStyles-common-36 makeStyles-paragraph-42 MuiTypography-body1"
-      >
-        <div>
-          <p>
-            Story text
-          </p>
-        </div>
-      </span>
-    </div>
+    </span>
   </div>
 </section>
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when terms content is loaded. 1`] = `
 <section
-  class="makeStyles-section-15"
+  class="makeStyles-section-12"
 >
   <div
-    class="MuiContainer-root makeStyles-container-16 MuiContainer-maxWidthLg"
+    class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
   >
-    <div
-      class="MuiBox-root MuiBox-root-19"
+    <span
+      class="MuiTypography-root makeStyles-common-16 makeStyles-paragraph-22 MuiTypography-body1"
     >
-      <div
-        class="makeStyles-back_arrow-18"
-      >
-        <a
-          href="/"
-        >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-20"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </a>
-        <hr
-          class="MuiDivider-root makeStyles-divider-21"
-        />
+      <div>
+        <p>
+          Terms text
+        </p>
       </div>
-      <span
-        class="MuiTypography-root makeStyles-common-22 makeStyles-paragraph-28 MuiTypography-body1"
-      >
-        <div>
-          <p>
-            Terms text
-          </p>
-        </div>
-      </span>
-    </div>
+    </span>
   </div>
 </section>
 `;
