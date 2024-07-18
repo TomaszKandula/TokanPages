@@ -26,11 +26,7 @@ export const SigninPage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            <UserSignin 
-                pt={10}
-                pb={30}
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
+            <UserSignin pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

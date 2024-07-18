@@ -38,15 +38,17 @@ export const ActivationPage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            {id 
-            ? <ActivateAccount 
-                id={id}
-                type={type}
-                pt={10}
-                pb={30}
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
-            : <ErrorMessage />}
+            {id ? (
+                <ActivateAccount
+                    id={id}
+                    type={type}
+                    pt={10}
+                    pb={30}
+                    background={{ backgroundColor: Colours.colours.lightGray3 }}
+                />
+            ) : (
+                <ErrorMessage />
+            )}
         </>
     );
 };

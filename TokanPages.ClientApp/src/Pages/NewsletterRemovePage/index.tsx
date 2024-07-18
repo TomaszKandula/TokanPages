@@ -33,12 +33,7 @@ export const NewsletterRemovePage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            <NewsletterRemove 
-                id={id} 
-                pt={10} 
-                pb={30} 
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
+            <NewsletterRemove id={id} pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

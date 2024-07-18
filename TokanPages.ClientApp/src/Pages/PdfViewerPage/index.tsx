@@ -28,10 +28,7 @@ export const PdfViewerPage = () => {
     return (
         <>
             <BackArrow />
-            <PdfViewer 
-                pdfFile={name} 
-                background={{ backgroundColor: Colours.colours.lightGray3 }}
-            />
+            <PdfViewer pdfFile={name} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

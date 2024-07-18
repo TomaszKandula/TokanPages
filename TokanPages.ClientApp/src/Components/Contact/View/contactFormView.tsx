@@ -69,12 +69,14 @@ export const ContactFormView = (props: ContactFormViewProps): JSX.Element => {
                     <Card elevation={0} className={props.hasShadow ? classes.card : undefined}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
-                                {props.hasIcon 
-                                ? <>
-                                    <ContactMailIcon className={classes.icon} />
-                                    <Typography className={classes.small_caption}>{props.caption}</Typography>
-                                </>
-                                : <></>}
+                                {props.hasIcon ? (
+                                    <>
+                                        <ContactMailIcon className={classes.icon} />
+                                        <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
                             </Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>

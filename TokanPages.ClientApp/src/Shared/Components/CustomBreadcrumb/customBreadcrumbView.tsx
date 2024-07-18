@@ -41,7 +41,7 @@ const PathToItem = (pathname: string): Item | Subitem | undefined => {
     });
 
     return result;
-}
+};
 
 const toUpper = (value: string | undefined): string => {
     if (value === undefined) {
@@ -51,11 +51,11 @@ const toUpper = (value: string | undefined): string => {
     return value
         .toLowerCase()
         .split(" ")
-        .map(function(word) {
+        .map(function (word) {
             return word[0].toUpperCase() + word.substring(1);
         })
         .join(" ");
-}
+};
 
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
     const history = useHistory();
@@ -71,27 +71,22 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
     return (
         <Box mt={props.mt} mb={props.mb} mr={props.mr} ml={props.ml}>
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
-                <StyledBreadcrumb 
+                <StyledBreadcrumb
                     component="div"
                     label={PathToItem("/")?.value}
                     icon={<Home fontSize="small" />}
                     onClick={onBackToRoot}
                 />
-                <StyledBreadcrumb 
+                <StyledBreadcrumb
                     component="div"
                     label={PathToItem(window.location.pathname)?.value}
                     onClick={() => history.push(window.location.pathname)}
                 />
-                {hasParam 
-                ? <StyledBreadcrumb 
-                    component="div"
-                    label={toUpper(paramValue)}
-                />
-                : null}
+                {hasParam ? <StyledBreadcrumb component="div" label={toUpper(paramValue)} /> : null}
             </Breadcrumbs>
             <Box mt={props.mtDivider} mb={props.mbDivider}>
                 <Divider />
             </Box>
         </Box>
     );
-}
+};

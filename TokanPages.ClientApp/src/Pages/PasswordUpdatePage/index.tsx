@@ -26,11 +26,7 @@ export const PasswordUpdatePage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            <UpdatePassword 
-                pt={10}
-                pb={30}
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
+            <UpdatePassword pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

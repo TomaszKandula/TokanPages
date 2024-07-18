@@ -18,13 +18,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
-            <Href
-                href={link}
-                className={classes.href}
-                underline="none"
-                target="_blank"
-                rel="noopener"
-            >
+            <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
                     <ListItemText primary={props.value} className={selectionStyle} disableTypography={true} />
                 </ListItem>

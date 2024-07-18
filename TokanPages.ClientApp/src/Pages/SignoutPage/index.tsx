@@ -26,11 +26,7 @@ export const SignoutPage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            <UserSignout 
-                pt={10}
-                pb={30}
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
+            <UserSignout pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

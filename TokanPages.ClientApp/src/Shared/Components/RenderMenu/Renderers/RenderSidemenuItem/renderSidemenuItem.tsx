@@ -16,17 +16,9 @@ export const RenderSidemenuItem = (props: Item): JSX.Element => {
 
     const RenderItemWithHref = (): JSX.Element => {
         return (
-            <Href 
-                href={link} 
-                className={classes.href} 
-                underline="none" 
-                target="_blank" 
-                rel="noopener"
-            >
+            <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
-                    <ListItemIcon>
-                        {GetIcon({ iconName: props.icon as string })}
-                    </ListItemIcon>
+                    <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                     <ListItemText primary={props.value} />
                 </ListItem>
             </Href>
@@ -35,16 +27,8 @@ export const RenderSidemenuItem = (props: Item): JSX.Element => {
 
     const RenderItemWithLink = (): JSX.Element => {
         return (
-            <ListItem 
-                button 
-                key={props.id} 
-                disabled={!props.enabled} 
-                component={Link} 
-                to={props.link as string}
-            >
-                <ListItemIcon>
-                    {GetIcon({ iconName: props.icon as string })}
-                </ListItemIcon>
+            <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
+                <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
             </ListItem>
         );

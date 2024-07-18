@@ -26,11 +26,7 @@ export const SignupPage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            <UserSignup 
-                pt={10}
-                pb={30}
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
+            <UserSignup pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

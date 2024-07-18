@@ -26,11 +26,7 @@ export const PasswordResetPage = (): JSX.Element => {
     return (
         <>
             <BackArrow />
-            <ResetPassword 
-                pt={10}
-                pb={30}
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
-            />
+            <ResetPassword pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

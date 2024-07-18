@@ -26,13 +26,13 @@ export const ContactPage = () => {
     return (
         <>
             <BackArrow />
-            <ContactForm 
+            <ContactForm
                 pt={10}
                 pb={30}
-                hasCaption={false} 
-                hasIcon={true} 
-                hasShadow={true} 
-                background={{ backgroundColor: Colours.colours.lightGray3 }} 
+                hasCaption={false}
+                hasIcon={true}
+                hasShadow={true}
+                background={{ backgroundColor: Colours.colours.lightGray3 }}
             />
         </>
     );
