@@ -11,9 +11,10 @@ import { UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { UserInfoProps } from "../userInfo";
 import { UserInfoStyle } from "./userInfoStyle";
 
-interface UserInfoViewProps extends ViewProperties {
+interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
@@ -26,7 +27,6 @@ interface UserInfoViewProps extends ViewProperties {
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
-    background?: React.CSSProperties;
 }
 
 interface Properties extends UserInfoViewProps {
@@ -91,14 +91,16 @@ const RequestVerificationButton = (props: UserInfoViewProps): JSX.Element => {
 };
 
 const RenderEmailStatus = (props: UserInfoViewProps): JSX.Element => {
-    return props.isLoading ? (
-        <Skeleton variant="text" />
-    ) : props.userStore?.isVerified ? (
+    return props.userStore?.isVerified ? (
         <>{props.sectionAccountInformation?.labelEmailStatus?.positive}</>
     ) : (
         <>{props.sectionAccountInformation?.labelEmailStatus?.negative}</>
-    )
-}
+    );
+};
+
+const RenderLoadingOrStatus = (props: UserInfoViewProps): JSX.Element => {
+    return props.isLoading ? <Skeleton variant="text" /> : <RenderEmailStatus {...props} />;
+};
 
 export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
     const classes = UserInfoStyle();
@@ -142,7 +144,7 @@ export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
                                         <Typography className={classes.user_email_status}>
-                                            <RenderEmailStatus {...props} />
+                                            <RenderLoadingOrStatus {...props} />
                                             <RequestVerificationButton {...props} />
                                         </Typography>
                                     </Grid>

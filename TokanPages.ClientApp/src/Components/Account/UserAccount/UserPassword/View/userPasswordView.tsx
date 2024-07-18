@@ -9,9 +9,10 @@ import { SectionAccountPassword } from "../../../../../Api/Models";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../../Shared/Components";
+import { UserPasswordProps } from "../userPassword";
 import { UserPasswordStyle } from "./userPasswordStyle";
 
-interface UserPasswordViewProps extends ViewProperties {
+interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
@@ -20,7 +21,6 @@ interface UserPasswordViewProps extends ViewProperties {
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     sectionAccountPassword: SectionAccountPassword;
-    background?: React.CSSProperties;
 }
 
 const UpdatePasswordButton = (props: UserPasswordViewProps): JSX.Element => {

@@ -58,7 +58,7 @@ export const MainPage = (): JSX.Element => {
             <Featured />
             <Testimonials />
             <Newsletter />
-            <ContactForm />
+            <ContactForm pt={6} hasCaption={true} />
             <Cookies />
             <Footer />
         </>

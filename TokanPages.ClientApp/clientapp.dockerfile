@@ -21,6 +21,7 @@ ENV REACT_APP_VERSION_NUMBER=${APP_VERSION}
 ENV REACT_APP_VERSION_DATE_TIME=${APP_DATE_TIME}
 ENV REACT_APP_BACKEND=${APP_BACKEND}
 
+RUN yarn config set network-timeout 300000
 RUN yarn install
 RUN if [ $ENV_VALUE = Testing ] && [ APP_BUILD_TEST = true ]; then  \
     yarn global add sonarqube-scanner; fi

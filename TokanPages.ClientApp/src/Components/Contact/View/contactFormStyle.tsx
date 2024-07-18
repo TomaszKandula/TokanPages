@@ -1,18 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../Theme";
 
-export const ContactFormStyle = makeStyles(theme => ({
+export const ContactFormStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
     container: {
         maxWidth: 700,
-    },
-    back_arrow: {
-        [theme.breakpoints.up(1000)]: {
-            display: "none",
-        },
-        display: "block",
     },
     caption: {
         textAlign: "center",

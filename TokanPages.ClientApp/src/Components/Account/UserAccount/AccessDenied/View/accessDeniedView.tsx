@@ -5,17 +5,16 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { Button, Divider, Typography } from "@material-ui/core";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { AccessDeniedProps } from "../accessDenied";
 import { AccessDeniedStyle } from "./accessDeniedStyle";
 
-import { Button, Divider, Typography } from "@material-ui/core";
-
-interface AccessDeniedViewProps {
+interface AccessDeniedViewProps extends AccessDeniedProps {
     isLoading: boolean;
     accessDeniedCaption: string;
     accessDeniedPrompt: string;
     homeButtonText: string;
-    background?: React.CSSProperties;
 }
 
 const HomeButton = (props: AccessDeniedViewProps): JSX.Element => {

@@ -5,22 +5,22 @@ exports[`test account group component: activateAccountView should render correct
   class="makeStyles-section-1"
 >
   <div
-    class="MuiContainer-root MuiContainer-maxWidthSm"
+    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-8"
+      class="MuiBox-root MuiBox-root-9"
     >
       <div
-        class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+        class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
       >
         <div
-          class="MuiCardContent-root makeStyles-card_content-6"
+          class="MuiCardContent-root makeStyles-card_content-7"
         >
           <div
-            class="MuiBox-root MuiBox-root-9"
+            class="MuiBox-root MuiBox-root-10"
           >
             <div
-              class="MuiBox-root MuiBox-root-10"
+              class="MuiBox-root MuiBox-root-11"
             >
               <div
                 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
@@ -29,7 +29,7 @@ exports[`test account group component: activateAccountView should render correct
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-11"
+              class="MuiBox-root MuiBox-root-12"
             >
               <div
                 class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
@@ -40,7 +40,7 @@ exports[`test account group component: activateAccountView should render correct
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-12"
+              class="MuiBox-root MuiBox-root-13"
             >
               <div
                 class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"

@@ -5,6 +5,9 @@ export const NewsletterUpdateStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
+    container: {
+        maxWidth: 700,
+    },
     account: {
         fontSize: 72,
         color: Colours.colours.violet,

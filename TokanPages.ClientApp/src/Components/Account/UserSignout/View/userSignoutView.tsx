@@ -10,14 +10,14 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { AccountCircle } from "@material-ui/icons";
 import { ViewProperties } from "../../../../Shared/Abstractions";
+import { UserSignoutProps } from "../userSignout";
 import { UserSignoutStyle } from "./userSignoutStyle";
 
-interface UserSignoutViewProps extends ViewProperties {
+interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
     caption: string;
     status: string;
     buttonText: string;
     isAnonymous: boolean;
-    background?: React.CSSProperties;
 }
 
 export const UserSignoutView = (props: UserSignoutViewProps): JSX.Element => {
@@ -25,7 +25,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container maxWidth="sm">
-                <Box pt={18} pb={10}>
+                <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">

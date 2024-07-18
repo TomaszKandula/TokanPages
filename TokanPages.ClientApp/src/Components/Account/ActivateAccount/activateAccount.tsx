@@ -6,12 +6,6 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { ActivateAccountView } from "./View/activateAccountView";
 
-export interface ActivateAccountProps {
-    id: string;
-    type: string;
-    background?: React.CSSProperties;
-}
-
 const DefaultValues = {
     type: "Unset",
     caption: "",
@@ -19,6 +13,17 @@ const DefaultValues = {
     text2: "",
     button: "",
 };
+
+export interface ExtendedViewProps {
+    pt?: number;
+    pb?: number;
+    background?: React.CSSProperties;
+}
+
+export interface ActivateAccountProps extends ExtendedViewProps {
+    id: string;
+    type: string;
+}
 
 export const ActivateAccount = (props: ActivateAccountProps): JSX.Element => {
     const dispatch = useDispatch();
@@ -122,6 +127,8 @@ export const ActivateAccount = (props: ActivateAccountProps): JSX.Element => {
             text1={content?.text1}
             text2={content?.text2}
             progress={hasProgress}
+            pt={props.pt}
+            pb={props.pb}
             background={props.background}
         />
     );

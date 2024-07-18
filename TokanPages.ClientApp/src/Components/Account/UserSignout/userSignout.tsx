@@ -6,7 +6,9 @@ import { OperationStatus } from "../../../Shared/enums";
 import { UserSignoutView } from "./View/userSignoutView";
 import Validate from "validate.js";
 
-interface UserSignoutProps {
+export interface UserSignoutProps {
+    pt?: number;
+    pb?: number;
     background?: React.CSSProperties;
 }
 
@@ -49,6 +51,8 @@ export const UserSignout = (props: UserSignoutProps): JSX.Element => {
             status={status}
             buttonText={contentData?.content.buttonText}
             isAnonymous={isAnonymous}
+            pt={props.pt}
+            pb={props.pb}
             background={props.background}
         />
     );

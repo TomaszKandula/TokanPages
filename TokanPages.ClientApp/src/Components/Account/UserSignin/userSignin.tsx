@@ -15,10 +15,6 @@ import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/Fo
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
-interface UserSigninProps {
-    background?: React.CSSProperties;
-}
-
 const formDefault: SigninFormInput = {
     email: "",
     password: "",
@@ -27,6 +23,12 @@ const formDefault: SigninFormInput = {
         passwordInvalid: "",
     },
 };
+
+export interface UserSigninProps {
+    pt?: number;
+    pb?: number;
+    background?: React.CSSProperties;
+}
 
 export const UserSignin = (props: UserSigninProps): JSX.Element => {
     const dispatch = useDispatch();
@@ -126,6 +128,8 @@ export const UserSignin = (props: UserSigninProps): JSX.Element => {
             password={form.password}
             labelEmail={content?.content?.labelEmail}
             labelPassword={content?.content?.labelPassword}
+            pt={props.pt}
+            pb={props.pb}
             background={props.background}
         />
     );

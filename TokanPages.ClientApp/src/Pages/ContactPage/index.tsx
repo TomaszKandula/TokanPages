@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
-import { Navigation, Footer } from "../../Components/Layout";
 import { ContactForm } from "../../Components/Contact";
+import { BackArrow } from "../../Shared/Components";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -25,11 +25,15 @@ export const ContactPage = () => {
 
     return (
         <>
-            <Navigation />
-            <Box mt={8}>
-                <ContactForm hasBackButton={true} />
-            </Box>
-            <Footer />
+            <BackArrow />
+            <ContactForm
+                pt={10}
+                pb={30}
+                hasCaption={false}
+                hasIcon={true}
+                hasShadow={true}
+                background={{ backgroundColor: Colours.colours.lightGray3 }}
+            />
         </>
     );
 };

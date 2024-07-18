@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import CheckIcon from "@material-ui/icons/Check";
-import { FormControl, Grid, MenuItem, Select, Box } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, Box, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
@@ -109,6 +109,15 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
         return null;
     };
 
+    const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
+        return (
+            <div className={classes.languages_wrapper}>
+                {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
+                <div>{toUpper(value)}</div>
+            </div>
+        );
+    }, []);
+
     return (
         <FormControl className={props.styleControl}>
             <Select
@@ -117,12 +126,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
                 value={props.languageId}
                 onChange={props.languageHandler}
                 className={props.styleSelect}
-                renderValue={value => (
-                    <div className={classes.languages_wrapper}>
-                        {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
-                        <div>{toUpper(value)}</div>
-                    </div>
-                )}
+                renderValue={renderValue}
             >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>

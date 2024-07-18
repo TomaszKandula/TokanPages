@@ -8,12 +8,6 @@ export const UserSigninStyle = makeStyles(theme => ({
     container: {
         maxWidth: 700,
     },
-    back_arrow: {
-        [theme.breakpoints.up(1000)]: {
-            display: "none",
-        },
-        display: "block",
-    },
     tertiaryAction: {
         [theme.breakpoints.up("sm")]: {
             textAlign: "right",

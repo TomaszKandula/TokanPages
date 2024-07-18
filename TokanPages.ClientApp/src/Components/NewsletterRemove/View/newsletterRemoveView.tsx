@@ -8,16 +8,16 @@ import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ContentDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
+import { ExtendedViewProps } from "../newsletterRemove";
 import { NewsletterRemoveStyle } from "./newsletterRemoveStyle";
 
-interface NewsletterRemoveViewProps extends ViewProperties {
+interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
     contentPre: ContentDto;
     contentPost: ContentDto;
     buttonHandler: () => void;
     buttonState: boolean;
     progress: boolean;
     isRemoved: boolean;
-    background?: React.CSSProperties;
 }
 
 const ActiveButton = (props: NewsletterRemoveViewProps): JSX.Element => {
@@ -42,8 +42,8 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): JSX.Elem
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <section className={classes.section} style={props.background}>
-            <Container maxWidth="sm">
-                <Box py={15}>
+            <Container className={classes.container}>
+                <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
                             <Box textAlign="center" mb={3}>

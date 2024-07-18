@@ -8,13 +8,13 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
+import { UserDeactivationProps } from "../userDeactivation";
 import { UserDeactivationStyle } from "./userDeactivationStyle";
 
-interface UserDeactivationViewProps extends ViewProperties {
+interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
     buttonHandler: () => void;
     progress: boolean;
     section: SectionAccountDeactivation;
-    background?: React.CSSProperties;
 }
 
 const DeactivationButton = (props: UserDeactivationViewProps): JSX.Element => {

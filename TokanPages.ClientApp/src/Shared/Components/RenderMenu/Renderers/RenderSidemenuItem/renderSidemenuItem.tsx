@@ -10,6 +10,7 @@ import { RenderSidemenuItemStyle } from "./renderSidemenuItemStyle";
 
 export const RenderSidemenuItem = (props: Item): JSX.Element => {
     const classes = RenderSidemenuItemStyle();
+
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 

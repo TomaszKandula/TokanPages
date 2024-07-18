@@ -5,58 +5,58 @@ exports[`test component: newsletterRemoveView should render correctly '<Newslett
   class="makeStyles-section-1"
 >
   <div
-    class="MuiContainer-root MuiContainer-maxWidthSm"
+    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-8"
+      class="MuiBox-root MuiBox-root-9"
     >
       <div
         class="MuiPaper-root MuiCard-root MuiPaper-elevation4 MuiPaper-rounded"
       >
         <div
-          class="MuiCardContent-root makeStyles-card-6"
+          class="MuiCardContent-root makeStyles-card-7"
         >
           <div
-            class="MuiBox-root MuiBox-root-9"
+            class="MuiBox-root MuiBox-root-10"
           >
-            <div
-              class="MuiBox-root MuiBox-root-10"
-            >
-              <p
-                class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1"
-              >
-                Cancel your subscribtion
-              </p>
-            </div>
             <div
               class="MuiBox-root MuiBox-root-11"
             >
               <p
-                class="MuiTypography-root makeStyles-text1-3 MuiTypography-body1"
+                class="MuiTypography-root makeStyles-caption-3 MuiTypography-body1"
               >
-                We are sorry to see you go...
+                Cancel your subscribtion
               </p>
             </div>
             <div
               class="MuiBox-root MuiBox-root-12"
             >
               <p
-                class="MuiTypography-root makeStyles-text2-4 MuiTypography-body1"
+                class="MuiTypography-root makeStyles-text1-4 MuiTypography-body1"
               >
-                ...but we understand there are circumstances
+                We are sorry to see you go...
               </p>
             </div>
             <div
               class="MuiBox-root MuiBox-root-13"
             >
               <p
-                class="MuiTypography-root makeStyles-text3-5 MuiTypography-body1"
+                class="MuiTypography-root makeStyles-text2-5 MuiTypography-body1"
+              >
+                ...but we understand there are circumstances
+              </p>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-14"
+            >
+              <p
+                class="MuiTypography-root makeStyles-text3-6 MuiTypography-body1"
               >
                 Please contact us should you have any questions
               </p>
             </div>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-20 Mui-disabled MuiButton-fullWidth Mui-disabled"
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-22 Mui-disabled MuiButton-fullWidth Mui-disabled"
               disabled=""
               tabindex="-1"
               type="submit"
