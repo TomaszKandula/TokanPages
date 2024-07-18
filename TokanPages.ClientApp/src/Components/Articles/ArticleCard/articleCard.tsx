@@ -7,14 +7,14 @@ import { GetShortText } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
-interface Properties {
+interface ArticleCardProps {
     id: string;
     title: string;
     description: string;
     languageIso: string;
 }
 
-export const ArticleCard = (props: Properties): JSX.Element => {
+export const ArticleCard = (props: ArticleCardProps): JSX.Element => {
     const content = useSelector((state: ApplicationState) => state.contentArticle);
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);

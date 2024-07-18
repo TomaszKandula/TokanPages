@@ -8,13 +8,13 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { SectionAccountRemoval } from "../../../../../Api/Models";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
+import { UserRemovalProps } from "../userRemoval";
 import { UserRemovalStyle } from "./userRemovalStyle";
 
-interface UserRemovalViewProps extends ViewProperties {
+interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
     deleteButtonHandler: () => void;
     deleteAccountProgress: boolean;
     sectionAccountRemoval: SectionAccountRemoval;
-    background?: React.CSSProperties;
 }
 
 const DeleteAccountButton = (props: UserRemovalViewProps): JSX.Element => {

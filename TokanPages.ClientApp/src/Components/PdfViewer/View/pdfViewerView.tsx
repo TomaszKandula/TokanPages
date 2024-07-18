@@ -3,7 +3,7 @@ import { Box, Container, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
-import { BackArrow, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 import { PdfViewerStyle } from "./pdfViewerStyle";
 
 interface PdfViewerViewProps {
@@ -38,10 +38,7 @@ export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
-                <Box pt={4} pb={6}>
-                    <Box pt={0} pb={6}>
-                        <BackArrow className={classes.back_arrow} />
-                    </Box>
+                <Box pt={10} pb={6}>
                     <Grid container justifyContent="center" direction="column">
                         <Box pt={2} pb={2} className={classes.header}>
                             <RenderIconOrLoading

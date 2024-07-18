@@ -12,9 +12,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent } from "../../../Shared/types";
+import { ExtendedViewProps } from "../newsletterUpdate";
 import { NewsletterUpdateStyle } from "./newsletterUpdateStyle";
 
-interface NewsletterUpdateViewProps extends ViewProperties {
+interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
     caption: string;
     formHandler: (event: ReactChangeEvent) => void;
     email: string;
@@ -23,7 +24,6 @@ interface NewsletterUpdateViewProps extends ViewProperties {
     progress: boolean;
     buttonText: string;
     labelEmail: string;
-    background?: React.CSSProperties;
 }
 
 const ActiveButton = (props: NewsletterUpdateViewProps): JSX.Element => {
@@ -45,8 +45,8 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): JSX.Elem
     const classes = NewsletterUpdateStyle();
     return (
         <section className={classes.section}>
-            <Container maxWidth="sm">
-                <Box pt={18} pb={10}>
+            <Container className={classes.container}>
+                <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
                     <Card elevation={4}>
                         <CardContent className={classes.card}>
                             <Box mb={3} textAlign="center">

@@ -1,18 +1,12 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../../Theme";
 
-export const ArticleDetailStyle = makeStyles(theme => ({
+export const ArticleDetailStyle = makeStyles(() => ({
     section: {
         backgroundColor: Colours.colours.white,
     },
     container: {
         maxWidth: 700,
-    },
-    back_arrow: {
-        [theme.breakpoints.up(1000)]: {
-            display: "none",
-        },
-        display: "block",
     },
     icon: {
         border: `solid 1px ${Colours.colours.lightGray2}`,
@@ -38,15 +32,6 @@ export const ArticleDetailStyle = makeStyles(theme => ({
         width: 18,
         display: "flex",
         alignSelf: "center",
-    },
-    grid_read_count: {
-        display: "flex",
-        alignSelf: "center",
-        justifyContent: "flex-end",
-    },
-    text_read_count: {
-        display: "flex",
-        justifyContent: "flex-end",
     },
     aliasName: {
         paddingTop: 10,

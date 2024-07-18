@@ -8,54 +8,11 @@ exports[`test articles group component: ArticleDetailView should render correctl
     class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
   >
     <div
-      class="MuiBox-root MuiBox-root-18"
+      class="MuiBox-root MuiBox-root-15"
     >
       <div
         data-aos="fade-down"
       >
-        <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
-        >
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6"
-          >
-            <button
-              class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-4 makeStyles-back_arrow-3"
-              tabindex="0"
-              type="button"
-            >
-              <span
-                class="MuiIconButton-label"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-                  />
-                </svg>
-              </span>
-              <span
-                class="MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiGrid-root makeStyles-grid_read_count-10 MuiGrid-item MuiGrid-grid-xs-6"
-          >
-            <p
-              class="MuiTypography-root makeStyles-text_read_count-11 MuiTypography-subtitle1"
-            >
-              Read count: 0
-            </p>
-          </div>
-        </div>
-        <hr
-          class="MuiDivider-root makeStyles-dividerTop-5"
-        />
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
         >
@@ -63,7 +20,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             class="MuiGrid-root MuiGrid-item"
           >
             <div
-              class="MuiBox-root MuiBox-root-19"
+              class="MuiBox-root MuiBox-root-16"
             >
               <div>
                 renderSmallAvatar
@@ -74,10 +31,10 @@ exports[`test articles group component: ArticleDetailView should render correctl
             class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
           >
             <div
-              class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-subtitle1 MuiTypography-alignLeft"
+              class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-alignLeft"
             >
               <div
-                class="MuiBox-root MuiBox-root-20"
+                class="MuiBox-root MuiBox-root-17"
               >
                 Ester
               </div>
@@ -85,10 +42,10 @@ exports[`test articles group component: ArticleDetailView should render correctl
           </div>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-21"
+          class="MuiBox-root MuiBox-root-18"
         >
           <div
-            class="makeStyles-text_block-7"
+            class="makeStyles-text_block-6"
           >
             <p
               class="MuiTypography-root MuiTypography-subtitle1"
@@ -97,7 +54,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             </p>
             <img
               alt=""
-              class="makeStyles-flag_image-9"
+              class="makeStyles-flag_image-8"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
             />
           </div>
@@ -107,7 +64,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
             Read time:
           </p>
           <div
-            class="makeStyles-text_block-7"
+            class="makeStyles-text_block-6"
           >
             <p
               class="MuiTypography-root MuiTypography-subtitle1"
@@ -115,13 +72,13 @@ exports[`test articles group component: ArticleDetailView should render correctl
               Published at:
             </p>
             <p
-              class="MuiTypography-root makeStyles-text_padding_left-8 MuiTypography-subtitle1"
+              class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
             >
               01/10/2020, 12:15 PM
             </p>
           </div>
           <div
-            class="makeStyles-text_block-7"
+            class="makeStyles-text_block-6"
           >
             <p
               class="MuiTypography-root MuiTypography-subtitle1"
@@ -129,9 +86,23 @@ exports[`test articles group component: ArticleDetailView should render correctl
               Updated at:
             </p>
             <p
-              class="MuiTypography-root makeStyles-text_padding_left-8 MuiTypography-subtitle1"
+              class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
             >
               01/10/2020, 12:15 PM
+            </p>
+          </div>
+          <div
+            class="makeStyles-text_block-6"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-subtitle1"
+            >
+              Read count:
+            </p>
+            <p
+              class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+            >
+              0
             </p>
           </div>
         </div>
@@ -144,7 +115,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
         </div>
       </div>
       <div
-        class="MuiBox-root MuiBox-root-22"
+        class="MuiBox-root MuiBox-root-19"
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -154,7 +125,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root makeStyles-thumbsMedium-15"
+              class="MuiSvgIcon-root makeStyles-thumbsMedium-12"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -175,7 +146,7 @@ exports[`test articles group component: ArticleDetailView should render correctl
         </div>
       </div>
       <hr
-        class="MuiDivider-root makeStyles-dividerBottom-6"
+        class="MuiDivider-root makeStyles-dividerBottom-5"
       />
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -191,21 +162,21 @@ exports[`test articles group component: ArticleDetailView should render correctl
           class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
         >
           <span
-            class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+            class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
           >
             Written by
           </span>
           <div
-            class="MuiBox-root MuiBox-root-23"
+            class="MuiBox-root MuiBox-root-20"
           >
             <span
-              class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-h6 MuiTypography-alignLeft"
+              class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-alignLeft"
             >
               Ester Exposito
             </span>
           </div>
           <span
-            class="MuiTypography-root makeStyles-aliasName-12 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+            class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
           >
             About the author: Happy developer
           </span>

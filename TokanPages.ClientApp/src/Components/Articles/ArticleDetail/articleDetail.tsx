@@ -14,9 +14,12 @@ import { ReadTime } from "./Helpers/readTime";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
-interface ArticleDetailProps {
-    title: string;
+export interface ExtendedViewProps {
     background?: React.CSSProperties;
+}
+
+export interface ArticleDetailProps extends ExtendedViewProps {
+    title: string;
 }
 
 export const ArticleDetail = (props: ArticleDetailProps): JSX.Element => {

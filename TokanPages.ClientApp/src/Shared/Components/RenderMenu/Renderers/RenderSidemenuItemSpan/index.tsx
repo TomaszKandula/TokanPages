@@ -12,7 +12,7 @@ import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
 export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const onClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
+    const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
     return EnsureDefined(
         {
@@ -25,7 +25,7 @@ export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
             ],
         },
         <>
-            <ListItem button key={props.id} onClick={onClickEvent} disabled={!props.enabled}>
+            <ListItem button key={props.id} onClick={onListItemClickEvent} disabled={!props.enabled}>
                 <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
                 {isOpen ? <ExpandLess /> : <ExpandMore />}

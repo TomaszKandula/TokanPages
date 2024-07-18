@@ -7,9 +7,14 @@ import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ContentDto } from "../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 
-interface NewsletterRemoveProps {
-    id: string;
+export interface ExtendedViewProps {
+    pt?: number;
+    pb?: number;
     background?: React.CSSProperties;
+}
+
+export interface NewsletterRemoveProps extends ExtendedViewProps {
+    id: string;
 }
 
 export const NewsletterRemove = (props: NewsletterRemoveProps): JSX.Element => {
@@ -69,6 +74,8 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): JSX.Element => {
             buttonState={hasButton}
             progress={hasProgress}
             isRemoved={isRemoved}
+            pt={props.pt}
+            pb={props.pb}
             background={props.background}
         />
     );

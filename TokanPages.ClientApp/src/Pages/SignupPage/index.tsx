@@ -1,8 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { Navigation, Footer } from "../../Components/Layout";
 import { UserSignup } from "../../Components/Account";
+import { BackArrow } from "../../Shared/Components";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -24,9 +25,8 @@ export const SignupPage = (): JSX.Element => {
 
     return (
         <>
-            <Navigation />
-            <UserSignup />
-            <Footer />
+            <BackArrow />
+            <UserSignup pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

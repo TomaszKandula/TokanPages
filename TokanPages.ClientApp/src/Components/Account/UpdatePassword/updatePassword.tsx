@@ -15,10 +15,6 @@ import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
-interface UpdatePasswordProps {
-    background?: React.CSSProperties;
-}
-
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
@@ -38,6 +34,12 @@ const formDefaultValues: UpdateFormInput = {
         missingSmallLetter: "",
     },
 };
+
+export interface UpdatePasswordProps {
+    pt?: number;
+    pb?: number;
+    background?: React.CSSProperties;
+}
 
 export const UpdatePassword = (props: UpdatePasswordProps): JSX.Element => {
     const queryParam = useQuery();
@@ -151,6 +153,8 @@ export const UpdatePassword = (props: UpdatePasswordProps): JSX.Element => {
             disableForm={canDisableForm}
             labelNewPassword={password?.content?.labelNewPassword}
             labelVerifyPassword={password?.content?.labelVerifyPassword}
+            pt={props.pt}
+            pb={props.pb}
             background={props.background}
         />
     );

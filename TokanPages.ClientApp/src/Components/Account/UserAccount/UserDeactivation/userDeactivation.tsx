@@ -8,7 +8,7 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 import { UserDeactivationView } from "./View/userDeactivationView";
 
-interface UserDeactivationProps {
+export interface UserDeactivationProps {
     background?: React.CSSProperties;
 }
 

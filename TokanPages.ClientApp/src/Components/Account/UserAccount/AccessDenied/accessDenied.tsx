@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { AccessDeniedView } from "./View/accessDeniedView";
 
-interface AccessDeniedProps {
+export interface AccessDeniedProps {
     background?: React.CSSProperties;
 }
 
