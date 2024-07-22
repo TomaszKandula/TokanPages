@@ -65,6 +65,11 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
                 );
                 break;
             }
+
+            case "itempipe": {
+                renderBuffer.push(<div key={item.id} className={classes.list_item_pipe}>&nbsp;</div>);
+                break;
+            }
         }
     });
 

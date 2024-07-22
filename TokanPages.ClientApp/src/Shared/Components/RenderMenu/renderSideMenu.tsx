@@ -66,6 +66,11 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
                 break;
             }
 
+            case "itempipe": {
+                renderBuffer.push(<div key={item.id}></div>);
+                break;
+            }
+
             case "divider": {
                 renderBuffer.push(<Divider key={item.id} variant={item.value as VariantType} />);
                 break;
