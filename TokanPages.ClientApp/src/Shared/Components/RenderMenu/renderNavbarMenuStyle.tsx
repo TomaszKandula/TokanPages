@@ -22,6 +22,6 @@ export const RenderNavbarMenuStyle = makeStyles((theme) => ({
         marginLeft: 2,
         marginRight: 2,
         cursor: "default",
-        backgroundColor: Colours.colours.black,
+        backgroundColor: Colours.colours.gray3,
     },
 }));
