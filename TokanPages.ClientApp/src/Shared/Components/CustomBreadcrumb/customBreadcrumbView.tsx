@@ -22,21 +22,28 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
+//TODO: refactor this code!
 const PathToItem = (pathname: string): Item | Subitem | undefined => {
     const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
 
     let result = undefined;
-    navigation.menu.items.find((value: Item) => {
-        if (value.link === pathname) {
-            result = value;
-        } else if (value.subitems !== undefined) {
-            value.subitems.find((value: Subitem) => {
-                if (value.link === pathname) {
-                    result = value;
+    let itemCheck: Item | undefined = undefined;
+    let subitemCheck = undefined;
+
+    itemCheck = navigation.menu.items.find((item: Item) => {
+        if (item.link === pathname) {
+            result = item;
+        } else if (item.subitems !== undefined) {
+            subitemCheck = item.subitems.find((subitem: Subitem) => {
+                if (subitem.link === pathname) {
+                    result = subitem;
                 }
             });
+
+            console.debug(subitemCheck);
         }
 
+        console.debug(itemCheck);
         return undefined;
     });
 
