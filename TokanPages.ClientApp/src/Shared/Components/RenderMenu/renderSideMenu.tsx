@@ -18,7 +18,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
     props.items.sort((a: Item, b: Item) => {
         const item1 = a.sideMenu?.sortOrder ?? 0;
         const item2 = b.sideMenu?.sortOrder ?? 0;
-        return (item1 < item2) ? -1 : (item1 > item2) ? 1 : 0;
+        return item1 < item2 ? -1 : item1 > item2 ? 1 : 0;
     });
 
     let renderBuffer: JSX.Element[] = [];

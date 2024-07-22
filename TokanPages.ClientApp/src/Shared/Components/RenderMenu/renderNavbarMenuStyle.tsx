@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../Theme";
 
-export const RenderNavbarMenuStyle = makeStyles((theme) => ({
+export const RenderNavbarMenuStyle = makeStyles(theme => ({
     list: {
         display: "flex",
         flexDirection: "row",
@@ -12,7 +12,7 @@ export const RenderNavbarMenuStyle = makeStyles((theme) => ({
         [theme.breakpoints.down(1100)]: {
             marginTop: 12,
             marginBottom: 12,
-            },
+        },
         [theme.breakpoints.up(1100)]: {
             marginTop: 10,
             marginBottom: 10,
