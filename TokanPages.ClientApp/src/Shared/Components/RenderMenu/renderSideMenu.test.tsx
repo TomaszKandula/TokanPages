@@ -34,13 +34,27 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/",
             icon: "Home",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: false,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 1
+            },
+            navbarMenu: {
+                enabled: false,
+                sortOrder: 1
+            },
         },
         {
             id: "d253bd15-b1d4-4d91-b00c-9c6a3e43ca88",
             type: "divider",
             value: "middle",
+            sideMenu: {
+                enabled: true,
+                sortOrder: 2
+            },
+            navbarMenu: {
+                enabled: false,
+                sortOrder: 2
+            },
         },
         {
             id: "5d762733-6724-4b4f-bc8c-7ede6baf77d5",
@@ -49,8 +63,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/signin",
             icon: "Vpn_Key",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 3
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 3
+            },
         },
         {
             id: "bdd33e5c-f942-4b14-96c7-16523f693c1c",
@@ -59,8 +79,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/signup",
             icon: "Person_Add",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 4
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 4
+            },
         },
         {
             id: "e8284fe7-5ced-46a5-b779-2fe516fe88c2",
@@ -69,8 +95,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/account",
             icon: "Person",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 5
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 5
+            },
             subitems: [
                 {
                     id: "c4314ddd-4519-4951-92ff-160744b27fec",
@@ -79,8 +111,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/userarticles",
                     icon: "Menu_Book",
                     enabled: false,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 1
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 1
+                    },
                 },
                 {
                     id: "f30d37d8-8c65-4610-a6e5-d9477445788d",
@@ -89,8 +127,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/usernotes",
                     icon: "Notes",
                     enabled: false,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 2
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 2
+                    },
                 },
                 {
                     id: "dfc55ebf-7180-462d-9509-34ca7f87f5b9",
@@ -99,8 +143,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/userfiles",
                     icon: "File_Copy",
                     enabled: false,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 3
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 3
+                    },
                 },
                 {
                     id: "20f31599-5bb2-40d0-83b3-ab3aae4e15b2",
@@ -109,8 +159,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/account",
                     icon: "Settings",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 4
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 4
+                    },
                 },
                 {
                     id: "d3ada751-012d-4c58-a4dd-a89c89928338",
@@ -119,8 +175,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/signout",
                     icon: "Lock",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 5
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 5
+                    },
                 },
             ],
         },
@@ -128,6 +190,14 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "945b6c9c-f37f-4b03-bb6f-3256a559fafe",
             type: "divider",
             value: "middle",
+            sideMenu: {
+                enabled: true,
+                sortOrder: 6
+            },
+            navbarMenu: {
+                enabled: false,
+                sortOrder: 6
+            },
         },
         {
             id: "a90bc6a8-237b-40c2-9865-68829e8df1a4",
@@ -136,8 +206,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/showcase",
             icon: "Video_Library",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 7
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 7
+            },
         },
         {
             id: "d5303362-76fb-4638-a6ee-5077cac76826",
@@ -146,8 +222,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "#",
             icon: "Github",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: false,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 8
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 8
+            },
             subitems: [
                 {
                     id: "34eecbfe-4b8d-4a96-b5dc-a7fb06346282",
@@ -156,8 +238,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "https://github.com/TomaszKandula?tab=overview",
                     icon: "Code",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 1
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 1
+                    },
                 },
                 {
                     id: "49d434fc-5ba7-4b90-8234-c3ec072d1727",
@@ -166,8 +254,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "https://github.com/TomaszKandula/TokanPages",
                     icon: "Code",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 2
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 2
+                    },
                 },
                 {
                     id: "58bbcb40-ce8c-45bc-843a-90ad023a86fd",
@@ -176,8 +270,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "https://github.com/TomaszKandula/EmailSender",
                     icon: "Code",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 3
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 3
+                    },
                 },
             ],
         },
@@ -185,6 +285,14 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "6d8f8d4f-cbab-494e-8dc5-f1920b0bfdb6",
             type: "divider",
             value: "middle",
+            sideMenu: {
+                enabled: true,
+                sortOrder: 9
+            },
+            navbarMenu: {
+                enabled: false,
+                sortOrder: 9
+            },
         },
         {
             id: "7c3f3893-2ac1-4ee8-94dc-baa44b668ec7",
@@ -193,8 +301,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/articles",
             icon: "Menu_Book",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 10
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 10
+            },
         },
         {
             id: "5e8a29af-ada6-40dc-a07d-1c16d42cef87",
@@ -203,8 +317,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "#",
             icon: "Star",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 11
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 11
+            },
             subitems: [
                 {
                     id: "eb7b1155-04c3-4dfe-b648-5f3e2432e6cc",
@@ -213,8 +333,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/photography",
                     icon: "Photo_Camera",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 1
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 1
+                    },
                 },
                 {
                     id: "0b349f9f-2c69-446e-9861-314706a0d88f",
@@ -223,8 +349,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/football",
                     icon: "Sports_Soccer",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 2
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 2
+                    },
                 },
                 {
                     id: "827994a1-ce3b-4ff7-9452-e48fd4ccedae",
@@ -233,8 +365,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/guitar",
                     icon: "Music_Note",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 3
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 3
+                    },
                 },
                 {
                     id: "7a37afa9-a3a8-48f9-9694-95208f0e683a",
@@ -243,8 +381,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/bicycle",
                     icon: "Directions_Bike",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 4
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 4
+                    },
                 },
                 {
                     id: "c3f5a67d-265b-4b86-98d3-2f4b2cc33083",
@@ -253,8 +397,14 @@ describe("test render function 'RenderSideMenu'", () => {
                     link: "/electronics",
                     icon: "Electrical_Services",
                     enabled: true,
-                    sideMenuOn: true,
-                    navbarMenuOn: true,
+                    sideMenu: {
+                        enabled: true,
+                        sortOrder: 5
+                    },
+                    navbarMenu: {
+                        enabled: true,
+                        sortOrder: 5
+                    },
                 },
             ],
         },
@@ -262,6 +412,14 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "2455c0e2-da5e-4ba9-ac29-e87c82d998cc",
             type: "divider",
             value: "middle",
+            sideMenu: {
+                enabled: true,
+                sortOrder: 12
+            },
+            navbarMenu: {
+                enabled: false,
+                sortOrder: 12
+            },
         },
         {
             id: "8495adf7-2b49-417e-83aa-6dcef4201ac4",
@@ -270,8 +428,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/contact",
             icon: "Contact_Mail",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 13
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 13
+            },
         },
         {
             id: "925cc29a-e0ad-4178-8492-813dedbcc563",
@@ -280,13 +444,27 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/about",
             icon: "Information_Circle",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: true,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 14
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 14
+            },
         },
         {
             id: "8cfd30dd-f2ec-4f6d-80d5-e40b463f7348",
             type: "divider",
             value: "middle",
+            sideMenu: {
+                enabled: true,
+                sortOrder: 15
+            },
+            navbarMenu: {
+                enabled: false,
+                sortOrder: 15
+            },
         },
         {
             id: "eb48d59c-a6a2-4526-914a-21caeb63ca1a",
@@ -295,8 +473,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/terms",
             icon: "Gavel",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: false,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 16
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 16
+            },
         },
         {
             id: "3b54919c-837e-4efb-afd2-abd1c1d8b53b",
@@ -305,8 +489,14 @@ describe("test render function 'RenderSideMenu'", () => {
             link: "/policy",
             icon: "Policy",
             enabled: true,
-            sideMenuOn: true,
-            navbarMenuOn: false,
+            sideMenu: {
+                enabled: true,
+                sortOrder: 17
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 17
+            },
         },
     ];
 
