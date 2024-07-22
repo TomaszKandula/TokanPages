@@ -52,8 +52,21 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 2,
             },
             navbarMenu: {
-                enabled: false,
+                enabled: true,
                 sortOrder: 2,
+            },
+        },
+        {
+            id: "051a2f0c-591b-4aa7-b303-b58915262a70",
+            type: "itempipe",
+            value: "middle",
+            sideMenu: {
+                enabled: false,
+                sortOrder: 0,
+            },
+            navbarMenu: {
+                enabled: true,
+                sortOrder: 18,
             },
         },
         {
@@ -69,7 +82,7 @@ describe("test render function 'RenderSideMenu'", () => {
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 3,
+                sortOrder: 19,
             },
         },
         {
@@ -85,7 +98,7 @@ describe("test render function 'RenderSideMenu'", () => {
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 4,
+                sortOrder: 20,
             },
         },
         {
@@ -101,7 +114,7 @@ describe("test render function 'RenderSideMenu'", () => {
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 5,
+                sortOrder: 21,
             },
             subitems: [
                 {
@@ -195,7 +208,7 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 6,
             },
             navbarMenu: {
-                enabled: false,
+                enabled: true,
                 sortOrder: 6,
             },
         },
@@ -227,7 +240,7 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 8,
             },
             navbarMenu: {
-                enabled: true,
+                enabled: false,
                 sortOrder: 8,
             },
             subitems: [
@@ -243,7 +256,7 @@ describe("test render function 'RenderSideMenu'", () => {
                         sortOrder: 1,
                     },
                     navbarMenu: {
-                        enabled: true,
+                        enabled: false,
                         sortOrder: 1,
                     },
                 },
@@ -259,7 +272,7 @@ describe("test render function 'RenderSideMenu'", () => {
                         sortOrder: 2,
                     },
                     navbarMenu: {
-                        enabled: true,
+                        enabled: false,
                         sortOrder: 2,
                     },
                 },
@@ -275,7 +288,7 @@ describe("test render function 'RenderSideMenu'", () => {
                         sortOrder: 3,
                     },
                     navbarMenu: {
-                        enabled: true,
+                        enabled: false,
                         sortOrder: 3,
                     },
                 },
@@ -290,7 +303,7 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 9,
             },
             navbarMenu: {
-                enabled: false,
+                enabled: true,
                 sortOrder: 9,
             },
         },
@@ -417,7 +430,7 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 12,
             },
             navbarMenu: {
-                enabled: false,
+                enabled: true,
                 sortOrder: 12,
             },
         },
@@ -462,7 +475,7 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 15,
             },
             navbarMenu: {
-                enabled: false,
+                enabled: true,
                 sortOrder: 15,
             },
         },
@@ -478,7 +491,7 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 16,
             },
             navbarMenu: {
-                enabled: true,
+                enabled: false,
                 sortOrder: 16,
             },
         },
@@ -494,19 +507,29 @@ describe("test render function 'RenderSideMenu'", () => {
                 sortOrder: 17,
             },
             navbarMenu: {
-                enabled: true,
+                enabled: false,
                 sortOrder: 17,
             },
         },
     ];
 
-    const menuItems = render(
+    const menuItemsLogged = render(
         <BrowserRouter>
             <RenderSideMenu isAnonymous={false} items={items}></RenderSideMenu>
         </BrowserRouter>
     );
 
-    it("should return rendered list when items are provided.", () => {
-        expect(menuItems).toMatchSnapshot();
+    it("should return rendered list when items are provided, user is logged.", () => {
+        expect(menuItemsLogged).toMatchSnapshot();
+    });
+
+    const menuItemsAnonymous = render(
+        <BrowserRouter>
+            <RenderSideMenu isAnonymous={true} items={items}></RenderSideMenu>
+        </BrowserRouter>
+    );
+
+    it("should return rendered list when items are provided, user is anonymous.", () => {
+        expect(menuItemsAnonymous).toMatchSnapshot();
     });
 });
