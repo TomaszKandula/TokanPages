@@ -10,6 +10,6 @@ export interface Fields {
 }
 
 export interface MenuProps {
-    enabled: true;
+    enabled: boolean;
     sortOrder: number;
 }
