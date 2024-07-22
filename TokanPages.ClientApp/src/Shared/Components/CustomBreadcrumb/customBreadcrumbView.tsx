@@ -68,6 +68,10 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
         history.push("/");
     }, []);
 
+    const onBackToPrevious = React.useCallback(() => {
+        history.push(window.location.pathname);
+    }, [window.location.pathname]);
+
     return (
         <Box mt={props.mt} mb={props.mb} mr={props.mr} ml={props.ml}>
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
@@ -80,7 +84,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
                 <StyledBreadcrumb
                     component="div"
                     label={PathToItem(window.location.pathname)?.value}
-                    onClick={() => history.push(window.location.pathname)}
+                    onClick={onBackToPrevious}
                 />
                 {hasParam ? <StyledBreadcrumb component="div" label={toUpper(paramValue)} /> : null}
             </Breadcrumbs>
