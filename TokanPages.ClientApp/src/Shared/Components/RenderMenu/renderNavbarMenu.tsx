@@ -15,6 +15,12 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
+    props.items.sort((a: Item, b: Item) => {
+        const item1 = a.navbarMenu?.sortOrder ?? 0;
+        const item2 = b.navbarMenu?.sortOrder ?? 0;
+        return (item1 < item2) ? -1 : (item1 > item2) ? 1 : 0;
+    });
+
     let renderBuffer: JSX.Element[] = [];
     props.items?.forEach(item => {
         const isAnonymous = props.isAnonymous && item.link === "/account";
@@ -24,7 +30,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
             case "item": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
-                if (!item.navbarMenuOn) return;
+                if (!item.navbarMenu?.enabled) return;
 
                 renderBuffer.push(
                     <RenderNavbarItem
@@ -43,7 +49,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
             case "itemspan": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
-                if (!item.navbarMenuOn) return;
+                if (!item.navbarMenu?.enabled) return;
 
                 renderBuffer.push(
                     <RenderNavbarItemSpan

@@ -5,6 +5,11 @@ export interface Fields {
     link?: string;
     icon?: string;
     enabled?: boolean;
-    sideMenuOn?: boolean;
-    navbarMenuOn?: boolean;
+    sideMenu?: MenuProps;
+    navbarMenu?: MenuProps;
+}
+
+export interface MenuProps {
+    enabled: true;
+    sortOrder: number;
 }
