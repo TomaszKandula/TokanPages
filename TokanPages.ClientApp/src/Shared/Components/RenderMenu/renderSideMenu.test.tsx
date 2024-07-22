@@ -36,11 +36,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 1
+                sortOrder: 1,
             },
             navbarMenu: {
                 enabled: false,
-                sortOrder: 1
+                sortOrder: 1,
             },
         },
         {
@@ -49,11 +49,11 @@ describe("test render function 'RenderSideMenu'", () => {
             value: "middle",
             sideMenu: {
                 enabled: true,
-                sortOrder: 2
+                sortOrder: 2,
             },
             navbarMenu: {
                 enabled: false,
-                sortOrder: 2
+                sortOrder: 2,
             },
         },
         {
@@ -65,11 +65,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 3
+                sortOrder: 3,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 3
+                sortOrder: 3,
             },
         },
         {
@@ -81,11 +81,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 4
+                sortOrder: 4,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 4
+                sortOrder: 4,
             },
         },
         {
@@ -97,11 +97,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 5
+                sortOrder: 5,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 5
+                sortOrder: 5,
             },
             subitems: [
                 {
@@ -113,11 +113,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: false,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 1
+                        sortOrder: 1,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 1
+                        sortOrder: 1,
                     },
                 },
                 {
@@ -129,11 +129,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: false,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 2
+                        sortOrder: 2,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 2
+                        sortOrder: 2,
                     },
                 },
                 {
@@ -145,11 +145,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: false,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 3
+                        sortOrder: 3,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 3
+                        sortOrder: 3,
                     },
                 },
                 {
@@ -161,11 +161,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 4
+                        sortOrder: 4,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 4
+                        sortOrder: 4,
                     },
                 },
                 {
@@ -177,11 +177,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 5
+                        sortOrder: 5,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 5
+                        sortOrder: 5,
                     },
                 },
             ],
@@ -192,11 +192,11 @@ describe("test render function 'RenderSideMenu'", () => {
             value: "middle",
             sideMenu: {
                 enabled: true,
-                sortOrder: 6
+                sortOrder: 6,
             },
             navbarMenu: {
                 enabled: false,
-                sortOrder: 6
+                sortOrder: 6,
             },
         },
         {
@@ -208,11 +208,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 7
+                sortOrder: 7,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 7
+                sortOrder: 7,
             },
         },
         {
@@ -224,11 +224,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 8
+                sortOrder: 8,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 8
+                sortOrder: 8,
             },
             subitems: [
                 {
@@ -240,11 +240,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 1
+                        sortOrder: 1,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 1
+                        sortOrder: 1,
                     },
                 },
                 {
@@ -256,11 +256,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 2
+                        sortOrder: 2,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 2
+                        sortOrder: 2,
                     },
                 },
                 {
@@ -272,11 +272,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 3
+                        sortOrder: 3,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 3
+                        sortOrder: 3,
                     },
                 },
             ],
@@ -287,11 +287,11 @@ describe("test render function 'RenderSideMenu'", () => {
             value: "middle",
             sideMenu: {
                 enabled: true,
-                sortOrder: 9
+                sortOrder: 9,
             },
             navbarMenu: {
                 enabled: false,
-                sortOrder: 9
+                sortOrder: 9,
             },
         },
         {
@@ -303,11 +303,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 10
+                sortOrder: 10,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 10
+                sortOrder: 10,
             },
         },
         {
@@ -319,11 +319,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 11
+                sortOrder: 11,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 11
+                sortOrder: 11,
             },
             subitems: [
                 {
@@ -335,11 +335,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 1
+                        sortOrder: 1,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 1
+                        sortOrder: 1,
                     },
                 },
                 {
@@ -351,11 +351,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 2
+                        sortOrder: 2,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 2
+                        sortOrder: 2,
                     },
                 },
                 {
@@ -367,11 +367,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 3
+                        sortOrder: 3,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 3
+                        sortOrder: 3,
                     },
                 },
                 {
@@ -383,11 +383,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 4
+                        sortOrder: 4,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 4
+                        sortOrder: 4,
                     },
                 },
                 {
@@ -399,11 +399,11 @@ describe("test render function 'RenderSideMenu'", () => {
                     enabled: true,
                     sideMenu: {
                         enabled: true,
-                        sortOrder: 5
+                        sortOrder: 5,
                     },
                     navbarMenu: {
                         enabled: true,
-                        sortOrder: 5
+                        sortOrder: 5,
                     },
                 },
             ],
@@ -414,11 +414,11 @@ describe("test render function 'RenderSideMenu'", () => {
             value: "middle",
             sideMenu: {
                 enabled: true,
-                sortOrder: 12
+                sortOrder: 12,
             },
             navbarMenu: {
                 enabled: false,
-                sortOrder: 12
+                sortOrder: 12,
             },
         },
         {
@@ -430,11 +430,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 13
+                sortOrder: 13,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 13
+                sortOrder: 13,
             },
         },
         {
@@ -446,11 +446,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 14
+                sortOrder: 14,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 14
+                sortOrder: 14,
             },
         },
         {
@@ -459,11 +459,11 @@ describe("test render function 'RenderSideMenu'", () => {
             value: "middle",
             sideMenu: {
                 enabled: true,
-                sortOrder: 15
+                sortOrder: 15,
             },
             navbarMenu: {
                 enabled: false,
-                sortOrder: 15
+                sortOrder: 15,
             },
         },
         {
@@ -475,11 +475,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 16
+                sortOrder: 16,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 16
+                sortOrder: 16,
             },
         },
         {
@@ -491,11 +491,11 @@ describe("test render function 'RenderSideMenu'", () => {
             enabled: true,
             sideMenu: {
                 enabled: true,
-                sortOrder: 17
+                sortOrder: 17,
             },
             navbarMenu: {
                 enabled: true,
-                sortOrder: 17
+                sortOrder: 17,
             },
         },
     ];
