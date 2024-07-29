@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { UpdatePassword } from "../../Components/Account";
-import { BackArrow } from "../../Shared/Components";
+import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
 import {
@@ -25,8 +25,8 @@ export const PasswordUpdatePage = (): JSX.Element => {
 
     return (
         <>
-            <BackArrow />
-            <UpdatePassword pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+            <Navigation backNavigationOnly={true} />
+            <UpdatePassword pt={15} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

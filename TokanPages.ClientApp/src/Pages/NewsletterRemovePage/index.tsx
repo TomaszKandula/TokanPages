@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
-import { BackArrow } from "../../Shared/Components";
+import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
 import {
@@ -32,8 +32,8 @@ export const NewsletterRemovePage = (): JSX.Element => {
 
     return (
         <>
-            <BackArrow />
-            <NewsletterRemove id={id} pt={10} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+            <Navigation backNavigationOnly={true} />
+            <NewsletterRemove id={id} pt={15} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
         </>
     );
 };

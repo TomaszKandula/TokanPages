@@ -93,6 +93,11 @@ export const NavigationStyle = makeStyles(theme => ({
     nav_centre: {
         justifyContent: "center",
     },
+    nav_back: {
+        marginTop: 8,
+        marginBottom: 8,
+        marginLeft: 8,
+    },
     languages_wrapper: {
         display: "flex",
         alignItems: "center",
