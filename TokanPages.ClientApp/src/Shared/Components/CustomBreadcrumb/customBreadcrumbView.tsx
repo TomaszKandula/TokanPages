@@ -64,6 +64,25 @@ const toUpper = (value: string | undefined): string => {
         .join(" ");
 };
 
+const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Element[] | null => {
+    let fragments = pathname.split("/");
+    fragments = fragments.filter(e => String(e).trim());
+
+    const itemName = PathToItem(pathname)?.value;
+    if (fragments !== undefined) {
+        return fragments.map((value: string, index: number) => (
+            <StyledBreadcrumb
+                key={index}
+                component="div"
+                label={value === itemName ? itemName : toUpper(value)}
+                onClick={onClick}
+            />)
+        );
+    }
+
+    return null;
+}
+
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
     const history = useHistory();
     const queryParam = useQuery();
@@ -88,11 +107,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
                     icon={<Home fontSize="small" />}
                     onClick={onBackToRoot}
                 />
-                <StyledBreadcrumb
-                    component="div"
-                    label={PathToItem(window.location.pathname)?.value}
-                    onClick={onBackToPrevious}
-                />
+                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious)}
                 {hasParam ? <StyledBreadcrumb component="div" label={toUpper(paramValue)} /> : null}
             </Breadcrumbs>
             <Box mt={props.mtDivider} mb={props.mbDivider}>
