@@ -194,11 +194,13 @@ export const NavigationView = (props: Properties): JSX.Element => {
         <HideOnScroll {...props}>
             {props.backNavigationOnly 
             ? <AppBar className={classes.app_bar} elevation={0}>
-                <Link to={props.backPathFragment ?? "/"}>
-                    <IconButton className={classes.nav_back}>
-                        <ArrowBack />
-                    </IconButton>
-                </Link>
+                <div>
+                    <Link to={props.backPathFragment ?? "/"}>
+                        <IconButton className={classes.nav_back}>
+                            <ArrowBack />
+                        </IconButton>
+                    </Link>
+                </div>
             </AppBar>
             : <AppBar className={classes.app_bar} elevation={0}>
                 <div className={classes.nav_large_screen}>
