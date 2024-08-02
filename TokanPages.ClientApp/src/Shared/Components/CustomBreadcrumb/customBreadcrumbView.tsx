@@ -76,12 +76,12 @@ const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Elemen
                 component="div"
                 label={value === itemName ? itemName : toUpper(value)}
                 onClick={onClick}
-            />)
-        );
+            />
+        ));
     }
 
     return null;
-}
+};
 
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
     const history = useHistory();

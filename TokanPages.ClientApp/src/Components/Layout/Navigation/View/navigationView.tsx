@@ -192,30 +192,32 @@ export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
     return (
         <HideOnScroll {...props}>
-            {props.backNavigationOnly 
-            ? <AppBar className={classes.app_bar} elevation={0}>
-                <div>
-                    <Link to={props.backPathFragment ?? "/"}>
-                        <IconButton className={classes.nav_back}>
-                            <ArrowBack />
-                        </IconButton>
-                    </Link>
-                </div>
-            </AppBar>
-            : <AppBar className={classes.app_bar} elevation={0}>
-                <div className={classes.nav_large_screen}>
-                    <RenderToolbarLargeScreen {...props} />
-                </div>
-                <div className={classes.nav_small_screen}>
-                    <RenderToolbarSmallScreen {...props} />
-                </div>
-                <SideMenuView
-                    drawerState={props.drawerState}
-                    closeHandler={props.closeHandler}
-                    isAnonymous={props.isAnonymous}
-                    menu={props.menu}
-                />
-            </AppBar>}
+            {props.backNavigationOnly ? (
+                <AppBar className={classes.app_bar} elevation={0}>
+                    <div>
+                        <Link to={props.backPathFragment ?? "/"}>
+                            <IconButton className={classes.nav_back}>
+                                <ArrowBack />
+                            </IconButton>
+                        </Link>
+                    </div>
+                </AppBar>
+            ) : (
+                <AppBar className={classes.app_bar} elevation={0}>
+                    <div className={classes.nav_large_screen}>
+                        <RenderToolbarLargeScreen {...props} />
+                    </div>
+                    <div className={classes.nav_small_screen}>
+                        <RenderToolbarSmallScreen {...props} />
+                    </div>
+                    <SideMenuView
+                        drawerState={props.drawerState}
+                        closeHandler={props.closeHandler}
+                        isAnonymous={props.isAnonymous}
+                        menu={props.menu}
+                    />
+                </AppBar>
+            )}
         </HideOnScroll>
     );
 };
