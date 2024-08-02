@@ -11,6 +11,8 @@ export const RenderNavbarItemSpanStyle = makeStyles(theme => ({
         "&:hover": {
             backgroundColor: Colours.colours.white,
         },
+        paddingLeft: 16,
+        paddingRight: 16,
     },
     menu_box: {
         backgroundColor: Colours.colours.white,
