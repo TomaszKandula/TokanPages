@@ -1,3 +1,29 @@
+# [0.103.0](https://github.com/TomaszKandula/TokanPages/compare/v0.102.0...v0.103.0) (2024-08-14)
+
+
+### Bug Fixes
+
+* do not use arrow function directly ([8ca28f9](https://github.com/TomaszKandula/TokanPages/commit/8ca28f97de39213b43e53c13c2cc481db37f4b56))
+* resolve href issue ([70ee8d1](https://github.com/TomaszKandula/TokanPages/commit/70ee8d187adfae3e9eb06c083480879656677a72))
+* type ([bca892e](https://github.com/TomaszKandula/TokanPages/commit/bca892e095962ebcb52de7ef95501637f2953229))
+
+
+### Features
+
+* apply prettier ([5404be7](https://github.com/TomaszKandula/TokanPages/commit/5404be7a8fc6cc21fd5080524d16a3a0896f5a79))
+* apply prettier ([53bad9f](https://github.com/TomaszKandula/TokanPages/commit/53bad9fb88369c72adfe28c89a0c55bb27a44d91))
+* apply prettier ([e7d6459](https://github.com/TomaszKandula/TokanPages/commit/e7d6459511e7b01f4d0ac164334cf2fa66d99dba))
+* change margins ([dafde3f](https://github.com/TomaszKandula/TokanPages/commit/dafde3ffb19df9349bdd21e8a61298aeed818c75))
+* change pipe colour ([978a6cd](https://github.com/TomaszKandula/TokanPages/commit/978a6cdd4c488d2509070713a0012ce7a3a6471c))
+* change routes ([8541b02](https://github.com/TomaszKandula/TokanPages/commit/8541b02fc7f3df6015fa4f5039bd457167c86090))
+* generate breadcrumb base on path ([3385413](https://github.com/TomaszKandula/TokanPages/commit/33854138802a769a3674668a41e374ec518ba2ad))
+* improve breadcrumb ([beb7e4c](https://github.com/TomaszKandula/TokanPages/commit/beb7e4c14ad8e779cf00b88614875fc3f4cb5825))
+* keep nav height at minimum 64px ([12b5668](https://github.com/TomaszKandula/TokanPages/commit/12b566851a013f334c23b6035c2902822dded25f))
+* render item pipe ([5da57e2](https://github.com/TomaszKandula/TokanPages/commit/5da57e29436741f30c8121e2bd628b84f80adc2c))
+* restyle, add padding to navbar button ([54a9b12](https://github.com/TomaszKandula/TokanPages/commit/54a9b12d94281a83ed35753c3eb821e01e4f1823))
+* reuse nav bar w/back arrow ([580c156](https://github.com/TomaszKandula/TokanPages/commit/580c156f736a15d6613d11026da16c53264aa49b))
+* sort menu items ([b9cee1e](https://github.com/TomaszKandula/TokanPages/commit/b9cee1e3dbebab98fd6d83622930f82feb3b6da7))
+
 # [0.102.0](https://github.com/TomaszKandula/TokanPages/compare/v0.101.0...v0.102.0) (2024-07-18)
 
 
