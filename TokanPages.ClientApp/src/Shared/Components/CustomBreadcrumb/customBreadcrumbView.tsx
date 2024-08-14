@@ -22,27 +22,6 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
-const PathToItem = (pathname: string): Item | Subitem | undefined => {
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
-
-    let result = undefined;
-    navigation.menu.items.find((value: Item) => {
-        if (value.link === pathname) {
-            result = value;
-        } else if (value.subitems !== undefined) {
-            value.subitems.find((value: Subitem) => {
-                if (value.link === pathname) {
-                    result = value;
-                }
-            });
-        }
-
-        return undefined;
-    });
-
-    return result;
-};
-
 const toUpper = (value: string | undefined): string => {
     if (value === undefined) {
         return "";
@@ -57,6 +36,94 @@ const toUpper = (value: string | undefined): string => {
         .join(" ");
 };
 
+const getHomeText = (): string => {
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+    const text = navigation.menu.items.find((item: Item) => {
+        if (item.link === "/") {
+            return item;
+        }
+
+        return undefined;
+    });
+
+    return text?.value ?? "";
+};
+
+const pathToRootText = (pathname: string): string => {
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+    const array = pathname.split("/");
+    const fragments = array.filter(e => String(e).trim());
+    const rootWithHash = `#${fragments[0]}`;
+    const rootWithSlash = `/${fragments[0]}`;
+
+    const text = navigation.menu.items.find((item: Item) => {
+        if (item.link?.toUpperCase() === rootWithHash.toUpperCase()) {
+            return item;
+        }
+
+        if (item.link?.toUpperCase() === rootWithSlash.toUpperCase()) {
+            return item;
+        }
+
+        return undefined;
+    });
+
+    return text?.value ?? "";
+};
+
+const pathToSubitemText = (pathname: string): string => {
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+    const array = pathname.split("/");
+    const fragments = array.filter(e => String(e).trim());
+    const root = `#${fragments[0]}`;
+
+    const itemWithSubitem = navigation.menu.items.find((item: Item) => {
+        if (item.link?.toUpperCase() === root.toUpperCase() && item.subitems !== undefined) {
+            return item;
+        }
+
+        return undefined;
+    });
+
+    if (itemWithSubitem?.subitems) {
+        const text = itemWithSubitem?.subitems.find((subitem: Subitem) => {
+            if (subitem.link?.toUpperCase() === pathname.toUpperCase()) {
+                return subitem;
+            }
+
+            return undefined;
+        });
+
+        return text?.value ?? "";
+    }
+
+    return "";
+};
+
+const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Element[] | null => {
+    let fragments = pathname.split("/");
+    fragments = fragments.filter(e => String(e).trim());
+
+    const rootName = pathToRootText(pathname);
+    const itemName = pathToSubitemText(pathname);
+
+    const setValue = (index: number): string => {
+        if (index === 0) {
+            return rootName;
+        } else {
+            return itemName;
+        }
+    };
+
+    if (fragments !== undefined) {
+        return fragments.map((_: string, index: number) => (
+            <StyledBreadcrumb key={index} component="div" label={setValue(index)} onClick={onClick} />
+        ));
+    }
+
+    return null;
+};
+
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
     const history = useHistory();
     const queryParam = useQuery();
@@ -68,20 +135,20 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
         history.push("/");
     }, []);
 
+    const onBackToPrevious = React.useCallback(() => {
+        history.push(window.location.pathname);
+    }, [window.location.pathname]);
+
     return (
         <Box mt={props.mt} mb={props.mb} mr={props.mr} ml={props.ml}>
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
                 <StyledBreadcrumb
                     component="div"
-                    label={PathToItem("/")?.value}
+                    label={getHomeText()}
                     icon={<Home fontSize="small" />}
                     onClick={onBackToRoot}
                 />
-                <StyledBreadcrumb
-                    component="div"
-                    label={PathToItem(window.location.pathname)?.value}
-                    onClick={() => history.push(window.location.pathname)}
-                />
+                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious)}
                 {hasParam ? <StyledBreadcrumb component="div" label={toUpper(paramValue)} /> : null}
             </Breadcrumbs>
             <Box mt={props.mtDivider} mb={props.mbDivider}>

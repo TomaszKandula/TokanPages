@@ -2,13 +2,13 @@ import "../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "enzyme";
-import { RenderSideMenu } from "./renderSideMenu";
+import { RenderNavbarMenu } from "./renderNavbarMenu";
 import { Item } from "./Models";
 
-describe("test render function 'RenderSideMenu'", () => {
+describe("test render function 'RenderNavbarMenu'", () => {
     const noItems = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} items={undefined}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={true} items={undefined}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
@@ -18,7 +18,7 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const emptyItems = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} items={[]}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={true} items={[]}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
@@ -515,21 +515,21 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const menuItemsLogged = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={false} items={items}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={false} items={items}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
-    it("should return rendered list when items are provided, user is logged.", () => {
+    it("should return rendered list when items are provided and user is logged.", () => {
         expect(menuItemsLogged).toMatchSnapshot();
     });
 
     const menuItemsAnonymous = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} items={items}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={true} items={items}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
-    it("should return rendered list when items are provided, user is anonymous.", () => {
+    it("should return rendered list when items are provided and user is anonymous.", () => {
         expect(menuItemsAnonymous).toMatchSnapshot();
     });
 });

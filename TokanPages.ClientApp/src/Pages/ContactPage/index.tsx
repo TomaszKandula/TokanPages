@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContactForm } from "../../Components/Contact";
-import { BackArrow } from "../../Shared/Components";
+import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
 import {
@@ -25,9 +25,9 @@ export const ContactPage = () => {
 
     return (
         <>
-            <BackArrow />
+            <Navigation backNavigationOnly={true} />
             <ContactForm
-                pt={10}
+                pt={15}
                 pb={30}
                 hasCaption={false}
                 hasIcon={true}

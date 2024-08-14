@@ -12,10 +12,353 @@ exports[`test render function 'RenderSideMenu' should return 'Cannot render cont
 </div>
 `;
 
-exports[`test render function 'RenderSideMenu' should return rendered list when items are provided. 1`] = `
+exports[`test render function 'RenderSideMenu' should return rendered list when items are provided, user is anonymous. 1`] = `
 <ul
   class="MuiList-root MuiList-padding"
 >
+  <div />
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        home
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Home
+      </span>
+    </div>
+  </a>
+  <hr
+    class="MuiDivider-root MuiDivider-middle"
+  />
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/signin"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        vpn_key
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Sign in
+      </span>
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/signup"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        person_add
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Sign up
+      </span>
+    </div>
+  </a>
+  <hr
+    class="MuiDivider-root MuiDivider-middle"
+  />
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/showcase"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        video_library
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Showcase
+      </span>
+    </div>
+  </a>
+  <div
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <svg
+        aria-hidden="true"
+        class="MuiSvgIcon-root"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
+        />
+      </svg>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Github
+      </span>
+    </div>
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+      />
+    </svg>
+  </div>
+  <hr
+    class="MuiDivider-root MuiDivider-middle"
+  />
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/articles"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        menu_book
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Tech Articles
+      </span>
+    </div>
+  </a>
+  <div
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        star
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        My interests
+      </span>
+    </div>
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+      />
+    </svg>
+  </div>
+  <hr
+    class="MuiDivider-root MuiDivider-middle"
+  />
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/contact"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        contact_mail
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Contact
+      </span>
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/about"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        information_circle
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        About
+      </span>
+    </div>
+  </a>
+  <hr
+    class="MuiDivider-root MuiDivider-middle"
+  />
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/terms"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        gavel
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Terms of use
+      </span>
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
+    href="/policy"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemIcon-root"
+    >
+      <span
+        aria-hidden="true"
+        class="material-icons MuiIcon-root"
+      >
+        policy
+      </span>
+    </div>
+    <div
+      class="MuiListItemText-root"
+    >
+      <span
+        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+      >
+        Privacy policy
+      </span>
+    </div>
+  </a>
+</ul>
+`;
+
+exports[`test render function 'RenderSideMenu' should return rendered list when items are provided, user is logged. 1`] = `
+<ul
+  class="MuiList-root MuiList-padding"
+>
+  <div />
   <a
     aria-disabled="false"
     class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"

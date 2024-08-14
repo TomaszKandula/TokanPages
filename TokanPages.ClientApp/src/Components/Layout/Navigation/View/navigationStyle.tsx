@@ -16,6 +16,7 @@ export const NavigationStyle = makeStyles(theme => ({
     app_bar: {
         background: Colours.colours.white,
         boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
+        minHeight: 64,
     },
     app_left_logo: {
         height: logoHeightSmall,
@@ -92,6 +93,11 @@ export const NavigationStyle = makeStyles(theme => ({
     },
     nav_centre: {
         justifyContent: "center",
+    },
+    nav_back: {
+        marginTop: 8,
+        marginBottom: 8,
+        marginLeft: 8,
     },
     languages_wrapper: {
         display: "flex",

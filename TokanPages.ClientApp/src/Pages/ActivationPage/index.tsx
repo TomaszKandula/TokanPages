@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ActivateAccount } from "../../Components/Account";
-import { BackArrow } from "../../Shared/Components";
+import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
 import { ContentActivateAccountAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
@@ -37,12 +37,12 @@ export const ActivationPage = (): JSX.Element => {
 
     return (
         <>
-            <BackArrow />
+            <Navigation backNavigationOnly={true} />
             {id ? (
                 <ActivateAccount
                     id={id}
                     type={type}
-                    pt={10}
+                    pt={15}
                     pb={30}
                     background={{ backgroundColor: Colours.colours.lightGray3 }}
                 />

@@ -15,6 +15,12 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
+    props.items.sort((a: Item, b: Item) => {
+        const item1 = a.sideMenu?.sortOrder ?? 0;
+        const item2 = b.sideMenu?.sortOrder ?? 0;
+        return item1 < item2 ? -1 : item1 > item2 ? 1 : 0;
+    });
+
     let renderBuffer: JSX.Element[] = [];
     props.items.forEach(item => {
         const isAnonymous = props.isAnonymous && item.link === "/account";
@@ -24,7 +30,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
             case "item": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
-                if (!item.sideMenuOn) return;
+                if (!item.sideMenu?.enabled) return;
 
                 renderBuffer.push(
                     <RenderSidemenuItem
@@ -43,7 +49,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
             case "itemspan": {
                 if (isAnonymous) return;
                 if (isNotAnonymous) return;
-                if (!item.sideMenuOn) return;
+                if (!item.sideMenu?.enabled) return;
 
                 renderBuffer.push(
                     <RenderSidemenuItemSpan
@@ -57,6 +63,11 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
                         subitems={item.subitems}
                     />
                 );
+                break;
+            }
+
+            case "itempipe": {
+                renderBuffer.push(<div key={item.id}></div>);
                 break;
             }
 
