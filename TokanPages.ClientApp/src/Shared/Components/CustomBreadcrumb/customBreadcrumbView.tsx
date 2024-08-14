@@ -38,7 +38,7 @@ const toUpper = (value: string | undefined): string => {
 
 const getHomeText = (): string => {
     const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
-    const text = navigation.menu.items.find((item: Item) =>{
+    const text = navigation.menu.items.find((item: Item) => {
         if (item.link === "/") {
             return item;
         }
@@ -47,7 +47,7 @@ const getHomeText = (): string => {
     });
 
     return text?.value ?? "";
-}
+};
 
 const pathToRootText = (pathname: string): string => {
     const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
@@ -56,7 +56,7 @@ const pathToRootText = (pathname: string): string => {
     const rootWithHash = `#${fragments[0]}`;
     const rootWithSlash = `/${fragments[0]}`;
 
-    const text = navigation.menu.items.find((item: Item) =>{
+    const text = navigation.menu.items.find((item: Item) => {
         if (item.link?.toUpperCase() === rootWithHash.toUpperCase()) {
             return item;
         }
@@ -69,7 +69,7 @@ const pathToRootText = (pathname: string): string => {
     });
 
     return text?.value ?? "";
-} 
+};
 
 const pathToSubitemText = (pathname: string): string => {
     const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
@@ -77,7 +77,7 @@ const pathToSubitemText = (pathname: string): string => {
     const fragments = array.filter(e => String(e).trim());
     const root = `#${fragments[0]}`;
 
-    const itemWithSubitem = navigation.menu.items.find((item: Item) =>{
+    const itemWithSubitem = navigation.menu.items.find((item: Item) => {
         if (item.link?.toUpperCase() === root.toUpperCase() && item.subitems !== undefined) {
             return item;
         }
@@ -98,7 +98,7 @@ const pathToSubitemText = (pathname: string): string => {
     }
 
     return "";
-}
+};
 
 const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Element[] | null => {
     let fragments = pathname.split("/");
@@ -113,16 +113,11 @@ const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Elemen
         } else {
             return itemName;
         }
-    }
+    };
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <StyledBreadcrumb
-                key={index}
-                component="div"
-                label={setValue(index)}
-                onClick={onClick}
-            />
+            <StyledBreadcrumb key={index} component="div" label={setValue(index)} onClick={onClick} />
         ));
     }
 
