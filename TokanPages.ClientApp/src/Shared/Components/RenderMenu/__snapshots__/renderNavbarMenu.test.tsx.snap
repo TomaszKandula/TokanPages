@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test render function 'RenderNavbarMenu' should return 'Cannot render content.' when called with empty array of items. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`test render function 'RenderNavbarMenu' should return 'Cannot render content.' when called with items undefined. 1`] = `
+<div>
+  Cannot render content.
+</div>
+`;
+
+exports[`test render function 'RenderNavbarMenu' should return rendered list when items are provided and user is anonymous. 1`] = `
+<ul
+  class="MuiList-root makeStyles-list-1 MuiList-padding"
+>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/showcase"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Showcase
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/articles"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Tech Articles
+    </div>
+  </a>
+  <div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiListItemText-root makeStyles-list_item_text-11"
+        >
+          My interests
+        </div>
+      </span>
+    </button>
+  </div>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/contact"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Contact
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/about"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      About
+    </div>
+  </a>
+  <div
+    class="makeStyles-list_item_pipe-2"
+  >
+     
+  </div>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/signin"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Sign in
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/signup"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Sign up
+    </div>
+  </a>
+</ul>
+`;
+
+exports[`test render function 'RenderNavbarMenu' should return rendered list when items are provided and user is logged. 1`] = `
+<ul
+  class="MuiList-root makeStyles-list-1 MuiList-padding"
+>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/showcase"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Showcase
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/articles"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Tech Articles
+    </div>
+  </a>
+  <div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiListItemText-root makeStyles-list_item_text-11"
+        >
+          My interests
+        </div>
+      </span>
+    </button>
+  </div>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/contact"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      Contact
+    </div>
+  </a>
+  <a
+    aria-disabled="false"
+    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+    href="/about"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="MuiListItemText-root makeStyles-list_item_text-5"
+    >
+      About
+    </div>
+  </a>
+  <div
+    class="makeStyles-list_item_pipe-2"
+  >
+     
+  </div>
+  <div>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label"
+      >
+        <div
+          class="MuiListItemText-root makeStyles-list_item_text-11"
+        >
+          Account
+        </div>
+      </span>
+    </button>
+  </div>
+</ul>
+`;

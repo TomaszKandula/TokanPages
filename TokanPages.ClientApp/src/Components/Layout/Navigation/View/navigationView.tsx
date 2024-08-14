@@ -6,6 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import CheckIcon from "@material-ui/icons/Check";
+import ArrowBack from "@material-ui/icons/ArrowBack";
 import { FormControl, Grid, MenuItem, Select, Box, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
@@ -34,6 +35,8 @@ interface BaseProperties extends ViewProperties {
     languageId: string;
     languageHandler: (event: LanguageChangeEvent) => void;
     menu: { image: string; items: Item[] };
+    backNavigationOnly?: boolean;
+    backPathFragment?: string;
 }
 
 interface Properties extends BaseProperties {
@@ -189,20 +192,32 @@ export const NavigationView = (props: Properties): JSX.Element => {
     const classes = NavigationStyle();
     return (
         <HideOnScroll {...props}>
-            <AppBar className={classes.app_bar} elevation={0}>
-                <div className={classes.nav_large_screen}>
-                    <RenderToolbarLargeScreen {...props} />
-                </div>
-                <div className={classes.nav_small_screen}>
-                    <RenderToolbarSmallScreen {...props} />
-                </div>
-                <SideMenuView
-                    drawerState={props.drawerState}
-                    closeHandler={props.closeHandler}
-                    isAnonymous={props.isAnonymous}
-                    menu={props.menu}
-                />
-            </AppBar>
+            {props.backNavigationOnly ? (
+                <AppBar className={classes.app_bar} elevation={0}>
+                    <div>
+                        <Link to={props.backPathFragment ?? "/"}>
+                            <IconButton className={classes.nav_back}>
+                                <ArrowBack />
+                            </IconButton>
+                        </Link>
+                    </div>
+                </AppBar>
+            ) : (
+                <AppBar className={classes.app_bar} elevation={0}>
+                    <div className={classes.nav_large_screen}>
+                        <RenderToolbarLargeScreen {...props} />
+                    </div>
+                    <div className={classes.nav_small_screen}>
+                        <RenderToolbarSmallScreen {...props} />
+                    </div>
+                    <SideMenuView
+                        drawerState={props.drawerState}
+                        closeHandler={props.closeHandler}
+                        isAnonymous={props.isAnonymous}
+                        menu={props.menu}
+                    />
+                </AppBar>
+            )}
         </HideOnScroll>
     );
 };

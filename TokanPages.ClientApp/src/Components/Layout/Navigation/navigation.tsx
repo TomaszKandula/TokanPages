@@ -10,7 +10,12 @@ import Validate from "validate.js";
 
 import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/Actions";
 
-export const Navigation = (): JSX.Element => {
+interface NavigationProps {
+    backNavigationOnly?: boolean;
+    backPathFragment?: string;
+}
+
+export const Navigation = (props: NavigationProps): JSX.Element => {
     const dispatch = useDispatch();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore);
@@ -59,6 +64,8 @@ export const Navigation = (): JSX.Element => {
             languageId={language?.id}
             languageHandler={languageHandler}
             menu={navigation?.content?.menu}
+            backNavigationOnly={props.backNavigationOnly}
+            backPathFragment={props.backPathFragment}
         />
     );
 };
