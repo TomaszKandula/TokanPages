@@ -4,17 +4,16 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { BusinessFormStyle } from "./businessFormStyle";
+import { BusinessFormProps } from "../businessForm";
 
-interface BusinessFormViewProps extends ViewProperties {
+interface BusinessFormViewProps extends ViewProperties, BusinessFormProps {
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -24,7 +23,6 @@ interface BusinessFormViewProps extends ViewProperties {
     email: string;
     subject: string;
     message: string;
-    terms?: boolean;
     buttonHandler: () => void;
     progress: boolean;
     buttonText: string;
@@ -54,23 +52,29 @@ const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
     );
 };
 
-//TODO: change view
+//TODO: change view //import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
     const classes = BusinessFormStyle();
     return (
         <section className={classes.section}>
             <Container className={classes.container}>
-                <Box pt={4} pb={10}>
+                <Box pt={15} pb={30}>
                     <Box textAlign="center" data-aos="fade-down">
                         <Typography gutterBottom={true} className={classes.caption}>
-                            {props.caption?.toUpperCase()}
+                            {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
                     </Box>
                     <Card elevation={0} className={classes.card}>
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
-                                <ContactMailIcon className={classes.icon} />
-                                <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                {props.hasIcon ? (
+                                    <>
+                                        <BusinessCenterIcon className={classes.icon} />
+                                        <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
                             </Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
@@ -170,25 +174,6 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 onChange={props.formHandler}
                                                 value={props.message}
                                                 label={props.labelMessage}
-                                            />
-                                        )}
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="30px" />
-                                        ) : (
-                                            <FormControlLabel
-                                                control={
-                                                    <VioletCheckbox
-                                                        onChange={props.formHandler}
-                                                        checked={props.terms}
-                                                        name="terms"
-                                                        id="terms"
-                                                    />
-                                                }
-                                                label={props.consent}
                                             />
                                         )}
                                     </div>

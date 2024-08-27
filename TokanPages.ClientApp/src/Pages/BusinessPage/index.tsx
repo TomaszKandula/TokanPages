@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
+import { Colours } from "../../Theme";
 
 import {
     ContentNavigationAction,
@@ -23,7 +24,14 @@ export const BusinessPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <BusinessForm />
+            <BusinessForm 
+                pt={15}
+                pb={30}
+                hasCaption={false}
+                hasIcon={true}
+                hasShadow={true}
+                background={{ backgroundColor: Colours.colours.lightGray3 }}
+            />
         </>
     );
 };
