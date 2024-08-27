@@ -36,10 +36,10 @@
         "@commitlint/cli": "^16.2.1",
         "@commitlint/config-conventional": "^16.2.1",
         "@testing-library/jest-dom": "^5.16.2",
+        "@testing-library/react": "12.1.5",
         "@types/aos": "^3.0.4",
         "@types/base-64": "^1.0.2",
         "@types/dompurify": "^2.4.0",
-        "@types/enzyme": "^3.10.11",
         "@types/history": "4.7.3",
         "@types/jest": "^27.4.1",
         "@types/node": "^17.0.19",
@@ -53,12 +53,9 @@
         "@types/uuid": "^9.0.0",
         "@typescript-eslint/eslint-plugin": "^5.49.0",
         "@typescript-eslint/parser": "^5.12.1",
-        "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
         "clsx": "^1.2.1",
         "connected-react-router": "^6.9.2",
         "cross-env": "^7.0.3",
-        "enzyme": "^3.11.0",
-        "enzyme-to-json": "^3.6.2",
         "eslint": "^8.9.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-flowtype": "^8.0.3",
@@ -99,9 +96,6 @@
         "transform": {
             "^.+\\.(ts|tsx)$": "ts-jest"
         },
-        "snapshotSerializers": [
-            "enzyme-to-json/serializer"
-        ],
         "collectCoverageFrom": [
             "*/**/*.ts",
             "*/**/*.tsx"
