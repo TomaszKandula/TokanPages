@@ -68,7 +68,7 @@ Object {
                 </a>
                 <a
                   class="makeStyles-action_link-37"
-                  href=""
+                  href="/"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
@@ -151,7 +151,7 @@ Object {
               </a>
               <a
                 class="makeStyles-action_link-37"
-                href=""
+                href="/"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
