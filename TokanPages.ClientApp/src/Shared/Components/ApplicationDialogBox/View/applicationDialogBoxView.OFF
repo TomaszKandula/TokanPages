@@ -1,0 +1,26 @@
+//TODO: resolve issues with '@material-ui/core/Modal/Modal.js'
+
+// import "../../../../setupTests";
+// import React from "react";
+// import { render } from "@testing-library/react";
+// import { IconType } from "../../../enums";
+// import { ApplicationDialogBoxView } from "../View/applicationDialogBoxView";
+// import { Box } from "@material-ui/core";
+
+// describe("test view component for application diaog box", () => {
+//     it("should render correctly view component with passed props.", () => {
+//         const html = render(
+//             <Box minHeight="100vh">
+//             <ApplicationDialogBoxView
+//                 state={true}
+//                 icon={IconType.info}
+//                 title="Test title"
+//                 message="Test message"
+//                 closeHandler={jest.fn()}
+//             />
+//             </Box>
+//         );
+
+//         expect(html).toMatchSnapshot();
+//     });
+// });
