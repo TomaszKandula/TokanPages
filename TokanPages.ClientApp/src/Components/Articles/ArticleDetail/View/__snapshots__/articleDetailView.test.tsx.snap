@@ -1,188 +1,438 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test articles group component: ArticleDetailView should render correctly '<ArticleDetailView />' when content is loaded. 1`] = `
-<section
-  class="makeStyles-section-1"
->
-  <div
-    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
-  >
-    <div
-      class="MuiBox-root MuiBox-root-15"
-    >
-      <div
-        data-aos="fade-down"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiGrid-root MuiGrid-item"
+            class="MuiBox-root MuiBox-root-15"
           >
             <div
-              class="MuiBox-root MuiBox-root-16"
-            >
-              <div>
-                renderSmallAvatar
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
-          >
-            <div
-              class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-alignLeft"
+              data-aos="fade-down"
             >
               <div
-                class="MuiBox-root MuiBox-root-17"
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
               >
-                Ester
+                <div
+                  class="MuiGrid-root MuiGrid-item"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-16"
+                  >
+                    <div>
+                      renderSmallAvatar
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
+                >
+                  <div
+                    class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-alignLeft"
+                  >
+                    <div
+                      class="MuiBox-root MuiBox-root-17"
+                    >
+                      Ester
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-18"
+              >
+                <div
+                  class="makeStyles-text_block-6"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-subtitle1"
+                  >
+                    Article language:
+                     
+                  </p>
+                  <img
+                    alt=""
+                    class="makeStyles-flag_image-8"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                  />
+                </div>
+                <p
+                  class="MuiTypography-root MuiTypography-subtitle1"
+                >
+                  Read time:
+                </p>
+                <div
+                  class="makeStyles-text_block-6"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-subtitle1"
+                  >
+                    Published at:
+                  </p>
+                  <p
+                    class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                  >
+                    01/10/2020, 12:15 PM
+                  </p>
+                </div>
+                <div
+                  class="makeStyles-text_block-6"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-subtitle1"
+                  >
+                    Updated at:
+                  </p>
+                  <p
+                    class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                  >
+                    01/10/2020, 12:15 PM
+                  </p>
+                </div>
+                <div
+                  class="makeStyles-text_block-6"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-subtitle1"
+                  >
+                    Read count:
+                  </p>
+                  <p
+                    class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                  >
+                    0
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              data-aos="fade-up"
+            >
+              <div>
+                articleContent
+              </div>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-19"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root makeStyles-thumbsMedium-12"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-subtitle1"
+                  >
+                    50
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root makeStyles-dividerBottom-5"
+            />
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item"
+              >
+                <div>
+                  renderLargeAvatar
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
+              >
+                <span
+                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                >
+                  Written by
+                </span>
+                <div
+                  class="MuiBox-root MuiBox-root-20"
+                >
+                  <span
+                    class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-alignLeft"
+                  >
+                    Ester Exposito
+                  </span>
+                </div>
+                <span
+                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                >
+                  About the author:
+                   
+                  Happy developer
+                </span>
               </div>
             </div>
           </div>
         </div>
-        <div
-          class="MuiBox-root MuiBox-root-18"
-        >
-          <div
-            class="makeStyles-text_block-6"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-subtitle1"
-            >
-              Article language: 
-            </p>
-            <img
-              alt=""
-              class="makeStyles-flag_image-8"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
-            />
-          </div>
-          <p
-            class="MuiTypography-root MuiTypography-subtitle1"
-          >
-            Read time:
-          </p>
-          <div
-            class="makeStyles-text_block-6"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-subtitle1"
-            >
-              Published at:
-            </p>
-            <p
-              class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
-            >
-              01/10/2020, 12:15 PM
-            </p>
-          </div>
-          <div
-            class="makeStyles-text_block-6"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-subtitle1"
-            >
-              Updated at:
-            </p>
-            <p
-              class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
-            >
-              01/10/2020, 12:15 PM
-            </p>
-          </div>
-          <div
-            class="makeStyles-text_block-6"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-subtitle1"
-            >
-              Read count:
-            </p>
-            <p
-              class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
-            >
-              0
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        data-aos="fade-up"
-      >
-        <div>
-          articleContent
-        </div>
-      </div>
-      <div
-        class="MuiBox-root MuiBox-root-19"
-      >
-        <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
-        >
-          <div
-            class="MuiGrid-root MuiGrid-item"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root makeStyles-thumbsMedium-12"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-subtitle1"
-            >
-              50
-            </p>
-          </div>
-        </div>
-      </div>
-      <hr
-        class="MuiDivider-root makeStyles-dividerBottom-5"
-      />
-      <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
-      >
-        <div
-          class="MuiGrid-root MuiGrid-item"
-        >
-          <div>
-            renderLargeAvatar
-          </div>
-        </div>
-        <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
-        >
-          <span
-            class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
-          >
-            Written by
-          </span>
-          <div
-            class="MuiBox-root MuiBox-root-20"
-          >
-            <span
-              class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-alignLeft"
-            >
-              Ester Exposito
-            </span>
-          </div>
-          <span
-            class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
-          >
-            About the author: Happy developer
-          </span>
-        </div>
-      </div>
+      </section>
     </div>
-  </div>
-</section>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
+    >
+      <div
+        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-15"
+        >
+          <div
+            data-aos="fade-down"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-16"
+                >
+                  <div>
+                    renderSmallAvatar
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
+              >
+                <div
+                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-alignLeft"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-17"
+                  >
+                    Ester
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-18"
+            >
+              <div
+                class="makeStyles-text_block-6"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-subtitle1"
+                >
+                  Article language:
+                   
+                </p>
+                <img
+                  alt=""
+                  class="makeStyles-flag_image-8"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                />
+              </div>
+              <p
+                class="MuiTypography-root MuiTypography-subtitle1"
+              >
+                Read time:
+              </p>
+              <div
+                class="makeStyles-text_block-6"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-subtitle1"
+                >
+                  Published at:
+                </p>
+                <p
+                  class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                >
+                  01/10/2020, 12:15 PM
+                </p>
+              </div>
+              <div
+                class="makeStyles-text_block-6"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-subtitle1"
+                >
+                  Updated at:
+                </p>
+                <p
+                  class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                >
+                  01/10/2020, 12:15 PM
+                </p>
+              </div>
+              <div
+                class="makeStyles-text_block-6"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-subtitle1"
+                >
+                  Read count:
+                </p>
+                <p
+                  class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                >
+                  0
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            data-aos="fade-up"
+          >
+            <div>
+              articleContent
+            </div>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-19"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root makeStyles-thumbsMedium-12"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                  />
+                </svg>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-subtitle1"
+                >
+                  50
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root makeStyles-dividerBottom-5"
+          />
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item"
+            >
+              <div>
+                renderLargeAvatar
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
+            >
+              <span
+                class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+              >
+                Written by
+              </span>
+              <div
+                class="MuiBox-root MuiBox-root-20"
+              >
+                <span
+                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-alignLeft"
+                >
+                  Ester Exposito
+                </span>
+              </div>
+              <span
+                class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+              >
+                About the author:
+                 
+                Happy developer
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

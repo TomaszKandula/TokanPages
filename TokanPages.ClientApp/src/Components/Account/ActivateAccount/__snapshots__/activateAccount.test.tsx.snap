@@ -1,57 +1,170 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test account group component: activateAccount should render correctly '<ActivateAccount />' when content is loaded. 1`] = `
-<section
-  class="makeStyles-section-1"
->
-  <div
-    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
-  >
-    <div
-      class="MuiBox-root MuiBox-root-9"
-    >
-      <div
-        class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
       >
         <div
-          class="MuiCardContent-root makeStyles-card_content-7"
+          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-10"
+            class="MuiBox-root MuiBox-root-9"
           >
             <div
-              class="MuiBox-root MuiBox-root-11"
+              class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+                class="MuiCardContent-root makeStyles-card_content-7"
               >
-                Account Activation
-              </div>
-            </div>
-            <div
-              class="MuiBox-root MuiBox-root-12"
-            >
-              <div
-                class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
-              >
-                <div>
-                  Processing your account..., please wait.
+                <div
+                  class="MuiBox-root MuiBox-root-10"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-11"
+                  >
+                    <div
+                      class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+                    >
+                      Account Activation
+                    </div>
+                  </div>
+                  <div
+                    class="MuiBox-root MuiBox-root-12"
+                  >
+                    <div
+                      class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
+                    >
+                      <div>
+                        Processing your account..., please wait.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiBox-root MuiBox-root-13"
+                  >
+                    <div
+                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                    >
+                      <div />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
+    >
+      <div
+        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-9"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+          >
             <div
-              class="MuiBox-root MuiBox-root-13"
+              class="MuiCardContent-root makeStyles-card_content-7"
             >
               <div
-                class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                class="MuiBox-root MuiBox-root-10"
               >
-                <div />
+                <div
+                  class="MuiBox-root MuiBox-root-11"
+                >
+                  <div
+                    class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+                  >
+                    Account Activation
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-12"
+                >
+                  <div
+                    class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
+                  >
+                    <div>
+                      Processing your account..., please wait.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-13"
+                >
+                  <div
+                    class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                  >
+                    <div />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

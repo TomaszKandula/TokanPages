@@ -1,75 +1,212 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test component: footerView should render correctly '<FooterView />' when content is loaded. 1`] = `
-<footer
-  class="makeStyles-page_footer-1"
->
-  <div
-    class="MuiContainer-root MuiContainer-maxWidthLg"
-  >
-    <div
-      class="MuiBox-root MuiBox-root-15 makeStyles-copyright_box-11"
-    >
-      <p
-        class="MuiTypography-root makeStyles-copyright-12 MuiTypography-body1"
-        data-aos="zoom-in"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <footer
+        class="makeStyles-page_footer-1"
       >
-        © 2020 - 2023 Tomasz Kandula | All rights reserved | 
-        <a
-          class="makeStyles-links-21"
-          href="/terms"
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthLg"
         >
-          Terms of use
-        </a>
-         | 
-        <a
-          class="makeStyles-links-21"
-          href="/policy"
-        >
-          Privacy policy
-        </a>
-      </p>
-      <div
-        class="MuiBox-root MuiBox-root-23 makeStyles-icon_box-17"
-        data-aos="zoom-in"
-      >
-        <a
-          aria-disabled="false"
-          aria-label="LinkedInIcon"
-          class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
-          href="https://www.linkedin.com/"
-          tabindex="0"
-          target="_blank"
-        >
-          <span
-            class="MuiIconButton-label"
+          <div
+            class="MuiBox-root MuiBox-root-15 makeStyles-copyright_box-11"
           >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+            <p
+              class="MuiTypography-root makeStyles-copyright-12 MuiTypography-body1"
+              data-aos="zoom-in"
             >
-              linkedinicon
-            </span>
-          </span>
-          <span
-            class="MuiTouchRipple-root"
+              © 2020 - 2023 Tomasz Kandula
+               | 
+              All rights reserved
+               | 
+              <a
+                class="makeStyles-links-21"
+                href="/terms"
+              >
+                Terms of use
+              </a>
+               | 
+              <a
+                class="makeStyles-links-21"
+                href="/policy"
+              >
+                Privacy policy
+              </a>
+            </p>
+            <div
+              class="MuiBox-root MuiBox-root-23 makeStyles-icon_box-17"
+              data-aos="zoom-in"
+            >
+              <a
+                aria-disabled="false"
+                aria-label="LinkedInIcon"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
+                href="https://www.linkedin.com/"
+                tabindex="0"
+                target="_blank"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="material-icons MuiIcon-root"
+                  >
+                    linkedinicon
+                  </span>
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </a>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-31"
+            data-aos="zoom-in"
+          >
+            <p
+              class="MuiTypography-root makeStyles-version-30 MuiTypography-body1"
+            >
+              1.0
+            </p>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-32"
           />
-        </a>
-      </div>
+        </div>
+      </footer>
     </div>
-    <div
-      class="MuiBox-root MuiBox-root-31"
-      data-aos="zoom-in"
+  </body>,
+  "container": <div>
+    <footer
+      class="makeStyles-page_footer-1"
     >
-      <p
-        class="MuiTypography-root makeStyles-version-30 MuiTypography-body1"
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg"
       >
-        1.0
-      </p>
-    </div>
-    <div
-      class="MuiBox-root MuiBox-root-32"
-    />
-  </div>
-</footer>
+        <div
+          class="MuiBox-root MuiBox-root-15 makeStyles-copyright_box-11"
+        >
+          <p
+            class="MuiTypography-root makeStyles-copyright-12 MuiTypography-body1"
+            data-aos="zoom-in"
+          >
+            © 2020 - 2023 Tomasz Kandula
+             | 
+            All rights reserved
+             | 
+            <a
+              class="makeStyles-links-21"
+              href="/terms"
+            >
+              Terms of use
+            </a>
+             | 
+            <a
+              class="makeStyles-links-21"
+              href="/policy"
+            >
+              Privacy policy
+            </a>
+          </p>
+          <div
+            class="MuiBox-root MuiBox-root-23 makeStyles-icon_box-17"
+            data-aos="zoom-in"
+          >
+            <a
+              aria-disabled="false"
+              aria-label="LinkedInIcon"
+              class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
+              href="https://www.linkedin.com/"
+              tabindex="0"
+              target="_blank"
+            >
+              <span
+                class="MuiIconButton-label"
+              >
+                <span
+                  aria-hidden="true"
+                  class="material-icons MuiIcon-root"
+                >
+                  linkedinicon
+                </span>
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </a>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-31"
+          data-aos="zoom-in"
+        >
+          <p
+            class="MuiTypography-root makeStyles-version-30 MuiTypography-body1"
+          >
+            1.0
+          </p>
+        </div>
+        <div
+          class="MuiBox-root MuiBox-root-32"
+        />
+      </div>
+    </footer>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

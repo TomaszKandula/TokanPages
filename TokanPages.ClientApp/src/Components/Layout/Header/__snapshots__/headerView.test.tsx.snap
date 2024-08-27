@@ -1,84 +1,224 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test component: headerView should render correctly '<HeaderView />' when content is loaded. 1`] = `
-<section
-  class="makeStyles-section-1"
->
-  <div
-    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
-  >
-    <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
-    >
-      <img
-        class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
-        src=" "
-      />
-    </div>
-    <div
-      class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
-    >
-      <div
-        class="MuiBox-root MuiBox-root-13 makeStyles-content_box-3"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
       >
-        <span
-          class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
-        >
-          <div>
-            Welcome to my web page
-          </div>
-        </span>
-        <span
-          class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
-        >
-          <div />
-        </span>
-        <span
-          class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
-        >
-          <div>
-            I do programming for a living...
-          </div>
-        </span>
         <div
-          class="MuiBox-root MuiBox-root-14"
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
         >
-          <a
-            class="makeStyles-action_link-25"
-            href="/action-link"
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
           >
-            <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
-              tabindex="0"
-              type="button"
+            <img
+              class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
+              src=" "
+            />
+          </div>
+          <div
+            class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-13 makeStyles-content_box-3"
             >
               <span
-                class="MuiButton-label"
+                class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
               >
-                Read the story
+                <div>
+                  Welcome to my web page
+                </div>
               </span>
               <span
-                class="MuiTouchRipple-root"
-              />
-            </button>
-          </a>
-          <a
-            class="makeStyles-action_link-37"
-            href=""
-          >
-            <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
-              tabindex="0"
-              type="button"
-            >
+                class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
+              >
+                <div />
+              </span>
               <span
-                class="MuiButton-label"
-              />
-            </button>
-          </a>
+                class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
+              >
+                <div>
+                  I do programming for a living...
+                </div>
+              </span>
+              <div
+                class="MuiBox-root MuiBox-root-14"
+              >
+                <a
+                  class="makeStyles-action_link-25"
+                  href="/action-link"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Read the story
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </a>
+                <a
+                  class="makeStyles-action_link-37"
+                  href=""
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    />
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
+        >
+          <img
+            class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
+            src=" "
+          />
+        </div>
+        <div
+          class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-13 makeStyles-content_box-3"
+          >
+            <span
+              class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
+            >
+              <div>
+                Welcome to my web page
+              </div>
+            </span>
+            <span
+              class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
+            >
+              <div />
+            </span>
+            <span
+              class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
+            >
+              <div>
+                I do programming for a living...
+              </div>
+            </span>
+            <div
+              class="MuiBox-root MuiBox-root-14"
+            >
+              <a
+                class="makeStyles-action_link-25"
+                href="/action-link"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    Read the story
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </a>
+              <a
+                class="makeStyles-action_link-37"
+                href=""
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  />
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
