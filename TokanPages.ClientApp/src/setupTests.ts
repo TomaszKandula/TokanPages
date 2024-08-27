@@ -6,6 +6,7 @@ import "@testing-library/jest-dom";
 import enableHooks from "jest-react-hooks-shallow";
 
 enableHooks(jest);
+window.scrollTo = jest.fn();
 
 jest.mock("react-redux", () => ({
     useSelector: jest.fn(),
