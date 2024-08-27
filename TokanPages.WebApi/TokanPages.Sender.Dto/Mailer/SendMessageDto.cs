@@ -42,4 +42,9 @@ public class SendMessageDto
     /// Message content.
     /// </summary>
     public string Message { get; set; } = "";
+
+    /// <summary>
+    /// Additional associated payload.
+    /// </summary>
+    public string BusinessData { get; set; } = "";
 }
