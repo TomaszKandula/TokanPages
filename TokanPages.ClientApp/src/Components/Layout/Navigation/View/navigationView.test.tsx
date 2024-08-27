@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { NavigationView } from "../../Navigation/View/navigationView";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";

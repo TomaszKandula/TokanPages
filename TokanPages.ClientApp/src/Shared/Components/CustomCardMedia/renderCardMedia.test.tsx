@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { RenderCardMedia } from "./customCardMedia";
 
 describe("test rendering 'Custom Card Media' component", () => {

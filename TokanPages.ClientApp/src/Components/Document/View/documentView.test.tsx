@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { ContentDocumentState } from "../../../Store/States";
 import { TextItemDto } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
