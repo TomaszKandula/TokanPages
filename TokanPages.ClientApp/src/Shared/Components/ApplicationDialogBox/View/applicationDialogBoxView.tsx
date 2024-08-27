@@ -42,10 +42,10 @@ export const ApplicationDialogBoxView = (props: Properties): JSX.Element => {
         <Dialog
             open={props.state}
             onClose={props.closeHandler}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
             disablePortal={props.disablePortal}
             hideBackdrop={props.hideBackdrop}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
         >
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
