@@ -17,6 +17,8 @@ interface Properties {
     icon: IconType;
     title: string;
     message: string;
+    disablePortal?: boolean;
+    hideBackdrop?: boolean;
     closeHandler: () => void;
 }
 
@@ -42,6 +44,8 @@ export const ApplicationDialogBoxView = (props: Properties): JSX.Element => {
             onClose={props.closeHandler}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            disablePortal={props.disablePortal}
+            hideBackdrop={props.hideBackdrop}
         >
             <DialogTitle id="alert-dialog-title" className={classes.title}>
                 <div className={classes.icon_holder}>
