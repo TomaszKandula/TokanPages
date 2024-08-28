@@ -6,34 +6,60 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
-import { Card, CardContent, CircularProgress } from "@material-ui/core";
+import { Card, CardContent, Checkbox, CircularProgress, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { BusinessFormStyle } from "./businessFormStyle";
 import { BusinessFormProps } from "../businessForm";
 
-interface BusinessFormViewProps extends ViewProperties, BusinessFormProps {
+interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
     caption: string;
     text: string;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    firstName: string;
-    lastName: string;
-    email: string;
-    subject: string;
-    message: string;
-    buttonHandler: () => void;
     progress: boolean;
     buttonText: string;
-    consent: string;
-    labelFirstName: string;
-    labelLastName: string;
-    labelEmail: string;
-    labelSubject: string;
-    labelMessage: string;
-    multiline?: boolean;
-    minRows?: number;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
+}
+
+interface TechStackItem {
+    value: string;
+    key: number;
+}
+
+interface FormProps {
+    companyText: string;
+    companyLabel: string;
+    contactText: string;
+    contactLabel: string;
+    emailText: string;
+    emailLabel: string;
+    phoneText: string;
+    phoneLabel: string;
+    techHeader: string;
+    techItems: TechStackItem[];
+    techLabel: string;
+    description: DescriptionProps;
+}
+
+interface DescriptionProps {
+    frontendText: string;
+    frontendLabel: string;
+    frontendMultiline: boolean;
+    frontendRows: number;
+    backendText: string;
+    backendLabel: string;
+    backendMultiline: boolean;
+    backendRows: number;
+    mobileText: string;
+    mobileLabel: string;
+    mobileMultiline: boolean;
+    mobileRows: number;
+    infoText: string;
+    infoLabel: string;
+    infoMultiline: boolean;
+    infoRows: number;
 }
 
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
@@ -51,6 +77,27 @@ const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
         </Button>
     );
 };
+
+const TechStackList = (props: { list: TechStackItem[] }): JSX.Element => {
+    return (
+        <List>
+            {props.list.map((value: TechStackItem, index: number) => (
+                <ListItem key={index} role={undefined} dense button>
+                    <ListItemIcon>
+                        <Checkbox
+                            edge="start"
+                            //checked={checked.indexOf(value) !== -1}
+                            tabIndex={-1}
+                            disableRipple
+                            inputProps={{ "aria-labelledby": `key-${index}` }}
+                    />
+                    </ListItemIcon>
+                    <ListItemText id={value.key.toString()} primary={value.value} />
+                </ListItem>
+            ))}
+        </List>
+    );
+}
 
 //TODO: change view //import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
@@ -77,7 +124,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 )}
                             </Box>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12}>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -85,19 +132,19 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="firstName"
-                                                name="firstName"
-                                                autoComplete="fname"
+                                                id="company"
+                                                name="company"
+                                                autoComplete="company"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.firstName}
-                                                label={props.labelFirstName}
+                                                value={props.companyText}
+                                                label={props.companyLabel}
                                             />
                                         )}
                                     </div>
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12}>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -105,14 +152,14 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="lastName"
-                                                name="lastName"
-                                                autoComplete="lname"
+                                                id="contact"
+                                                name="contact"
+                                                autoComplete="contact"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.lastName}
-                                                label={props.labelLastName}
+                                                value={props.contactText}
+                                                label={props.contactLabel}
                                             />
                                         )}
                                     </div>
@@ -131,8 +178,8 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.email}
-                                                label={props.labelEmail}
+                                                value={props.emailText}
+                                                label={props.emailLabel}
                                             />
                                         )}
                                     </div>
@@ -151,8 +198,42 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.subject}
-                                                label={props.labelSubject}
+                                                value={props.phoneText}
+                                                label={props.phoneLabel}
+                                            />
+                                        )}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography>
+                                        {props.techHeader}
+                                    </Typography>
+                                    <div data-aos="zoom-in">
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TechStackList list={props.techItems} />
+                                        )}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div data-aos="zoom-in">
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="frontend"
+                                                name="frontend"
+                                                autoComplete="frontend"
+                                                variant="outlined"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.description.frontendText}
+                                                label={props.description.frontendLabel}
+                                                multiline={props.description.frontendMultiline}
+                                                minRows={props.description.frontendRows}
                                             />
                                         )}
                                     </div>
@@ -165,21 +246,66 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                multiline={props.multiline}
-                                                minRows={props.minRows}
-                                                id="message"
-                                                name="message"
-                                                autoComplete="message"
+                                                id="backend"
+                                                name="backend"
+                                                autoComplete="backend"
                                                 variant="outlined"
+                                                onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.message}
-                                                label={props.labelMessage}
+                                                value={props.description.backendText}
+                                                label={props.description.backendLabel}
+                                                multiline={props.description.backendMultiline}
+                                                minRows={props.description.backendRows}
+                                            />
+                                        )}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div data-aos="zoom-in">
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="mobile"
+                                                name="mobile"
+                                                autoComplete="mobile"
+                                                variant="outlined"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.description.mobileText}
+                                                label={props.description.mobileLabel}
+                                                multiline={props.description.mobileMultiline}
+                                                minRows={props.description.mobileRows}
+                                            />
+                                        )}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <div data-aos="zoom-in">
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="info"
+                                                name="info"
+                                                autoComplete="info"
+                                                variant="outlined"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.description.infoText}
+                                                label={props.description.infoLabel}
+                                                multiline={props.description.infoMultiline}
+                                                minRows={props.description.infoRows}
                                             />
                                         )}
                                     </div>
                                 </Grid>
                             </Grid>
-                            <Box my={2} data-aos="fade-up">
+                            <Box my={5} data-aos="fade-up">
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
