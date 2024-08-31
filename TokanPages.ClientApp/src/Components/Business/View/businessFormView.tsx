@@ -31,8 +31,10 @@ interface TechStackItem {
 interface FormProps {
     companyText: string;
     companyLabel: string;
-    contactText: string;
-    contactLabel: string;
+    firstNameText: string;
+    firstNameLabel: string;
+    lastNameText: string;
+    lastNameLabel: string;
     emailText: string;
     emailLabel: string;
     phoneText: string;
@@ -43,23 +45,23 @@ interface FormProps {
     description: DescriptionProps;
 }
 
+interface ItemProps {
+    header: string;
+    text: string;
+    label: string;
+    multiline: boolean;
+    rows: number;
+    required?: boolean | undefined;
+}
+
 interface DescriptionProps {
-    frontendText: string;
-    frontendLabel: string;
-    frontendMultiline: boolean;
-    frontendRows: number;
-    backendText: string;
-    backendLabel: string;
-    backendMultiline: boolean;
-    backendRows: number;
-    mobileText: string;
-    mobileLabel: string;
-    mobileMultiline: boolean;
-    mobileRows: number;
-    infoText: string;
-    infoLabel: string;
-    infoMultiline: boolean;
-    infoRows: number;
+    web: ItemProps;
+    mobile: ItemProps;
+    info: ItemProps;
+}
+
+interface TechStackListProps {
+    list: TechStackItem[];
 }
 
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
@@ -78,7 +80,7 @@ const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
     );
 };
 
-const TechStackList = (props: { list: TechStackItem[] }): JSX.Element => {
+const TechStackList = (props: TechStackListProps): JSX.Element => {
     return (
         <List>
             {props.list.map((value: TechStackItem, index: number) => (
@@ -99,7 +101,6 @@ const TechStackList = (props: { list: TechStackItem[] }): JSX.Element => {
     );
 }
 
-//TODO: change view //import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
     const classes = BusinessFormStyle();
     return (
@@ -144,7 +145,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         )}
                                     </div>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -158,13 +159,33 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.contactText}
-                                                label={props.contactLabel}
+                                                value={props.firstNameText}
+                                                label={props.firstNameLabel}
                                             />
                                         )}
                                     </div>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={6}>
+                                    <div data-aos="zoom-in">
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="contact"
+                                                name="contact"
+                                                autoComplete="contact"
+                                                variant="outlined"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.lastNameText}
+                                                label={props.lastNameLabel}
+                                            />
+                                        )}
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -184,7 +205,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         )}
                                     </div>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -205,9 +226,11 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Typography>
-                                        {props.techHeader}
-                                    </Typography>
+                                    <Box mt={1} mb={1}>
+                                        <Typography className={classes.header_text}>
+                                            {props.techHeader}
+                                        </Typography>
+                                    </Box>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -217,34 +240,17 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <Box mt={1} mb={2}>
+                                        <Typography className={classes.header_text}>
+                                            {props.description.web.header}
+                                        </Typography>
+                                    </Box>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
                                             <TextField
-                                                required
-                                                fullWidth
-                                                id="frontend"
-                                                name="frontend"
-                                                autoComplete="frontend"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.description.frontendText}
-                                                label={props.description.frontendLabel}
-                                                multiline={props.description.frontendMultiline}
-                                                minRows={props.description.frontendRows}
-                                            />
-                                        )}
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
+                                                required={props.description.web.required}
                                                 fullWidth
                                                 id="backend"
                                                 name="backend"
@@ -252,21 +258,26 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.description.backendText}
-                                                label={props.description.backendLabel}
-                                                multiline={props.description.backendMultiline}
-                                                minRows={props.description.backendRows}
+                                                value={props.description.web.text}
+                                                label={props.description.web.label}
+                                                multiline={props.description.web.multiline}
+                                                minRows={props.description.web.rows}
                                             />
                                         )}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <Box mt={1} mb={2}>
+                                        <Typography className={classes.header_text}>
+                                            {props.description.mobile.header}
+                                        </Typography>
+                                    </Box>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
                                             <TextField
-                                                required
+                                                required={props.description.mobile.required}
                                                 fullWidth
                                                 id="mobile"
                                                 name="mobile"
@@ -274,21 +285,26 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.description.mobileText}
-                                                label={props.description.mobileLabel}
-                                                multiline={props.description.mobileMultiline}
-                                                minRows={props.description.mobileRows}
+                                                value={props.description.mobile.text}
+                                                label={props.description.mobile.label}
+                                                multiline={props.description.mobile.multiline}
+                                                minRows={props.description.mobile.rows}
                                             />
                                         )}
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
+                                    <Box mt={1} mb={2}>
+                                        <Typography className={classes.header_text}>
+                                            {props.description.info.header}
+                                        </Typography>
+                                    </Box>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
                                             <TextField
-                                                required
+                                                required={props.description.info.required}
                                                 fullWidth
                                                 id="info"
                                                 name="info"
@@ -296,10 +312,10 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.description.infoText}
-                                                label={props.description.infoLabel}
-                                                multiline={props.description.infoMultiline}
-                                                minRows={props.description.infoRows}
+                                                value={props.description.info.text}
+                                                label={props.description.info.label}
+                                                multiline={props.description.info.multiline}
+                                                minRows={props.description.info.rows}
                                             />
                                         )}
                                     </div>

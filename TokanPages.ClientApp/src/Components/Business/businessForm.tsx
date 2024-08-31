@@ -23,49 +23,51 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             formHandler={() => {}}
             buttonHandler={() => {}}
             companyText=""
-            companyLabel="Company"
-            contactText=""
-            contactLabel="Contact Name"
+            companyLabel="Company Name"
+            firstNameText=""
+            firstNameLabel="Name"
+            lastNameText=""
+            lastNameLabel="Surname"
             emailText=""
-            emailLabel="Email"
+            emailLabel="Business Email"
             phoneText=""
-            phoneLabel="Phone"
-            techHeader="Required tech-stack"
+            phoneLabel="Business Phone"
+            techHeader="Required key technologies"
             techItems={[
                 { value: ".NET/C#", key: 0 },
                 { value: "JavaScript/TypeScript", key: 1 },
-                { value: "MS SQL/T-SQL", key: 2 },
-                { value: "React w/Redux or ContextAPI", key: 3 },
-                { value: "Entity Framework/EF Core/Dapper", key: 4 },
-                { value: "VPS + Docker images", key: 14 },
-                { value: "Azure App Services", key: 5 },
-                { value: "Azure Storage", key: 6 },
-                { value: "Azure SQL Database", key: 7 },
-                { value: "Azure CosmosDb", key: 8 },
-                { value: "Azure Key Vault", key: 9 },
-                { value: "Azure WebJobs", key: 10 },
-                { value: "Azure Functions", key: 11 },
-                { value: "Azure Application Insights", key: 12 },
-                { value: "Azure Containers", key: 13 }
+                { value: "React/ReactNative", key: 2 },
+                { value: "Material UI", key: 3 },
+                { value: "MS SQL/T-SQL", key: 4 },
+                { value: "Entity Framework Core", key: 5 },
+                { value: "VPS w/Docker images", key: 6 },
+                { value: "Microsoft Azure Cloud", key: 7 },
             ]}
             techLabel=""
             description={{
-                frontendText: "",
-                frontendLabel: "Frontend description",
-                frontendMultiline: true,
-                frontendRows: 12,
-                backendText: "",
-                backendLabel: "Backend description",
-                backendMultiline: true,
-                backendRows: 12,
-                mobileText: "",
-                mobileLabel: "Mobile application description",
-                mobileMultiline: true,
-                mobileRows: 12,
-                infoText: "",
-                infoLabel: "Additional info",
-                infoMultiline: true,
-                infoRows: 6
+                web: {
+                    header: "Describe your project that will involve building frontend with or without backend. You may also specify another UI framework. However, please do note that backend can be done only with C# language.",
+                    text: "",
+                    label: "Required description",
+                    multiline: true,
+                    rows: 10,
+                    required: true,
+                },
+                mobile: {
+                    header: "Describe mobile application you want me to build.",
+                    text: "",
+                    label: "Required description",
+                    multiline: true,
+                    rows: 10,
+                    required: true,
+                },
+                info: {
+                    header: "You may specify project tenure and some other requirements like specific CI/CD etc.",
+                    text: "",
+                    label: "Optional additional information",
+                    multiline: true,
+                    rows: 6,
+                }
             }}
             pt={props.pt}
             pb={props.pb}
