@@ -153,9 +153,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="contact"
-                                                name="contact"
-                                                autoComplete="contact"
+                                                id="firstname"
+                                                name="firstname"
+                                                autoComplete="firstname"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -173,9 +173,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="contact"
-                                                name="contact"
-                                                autoComplete="contact"
+                                                id="lastname"
+                                                name="lastname"
+                                                autoComplete="lastname"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -213,9 +213,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="subject"
-                                                name="subject"
-                                                autoComplete="subject"
+                                                id="phone"
+                                                name="phone"
+                                                autoComplete="phone"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -252,9 +252,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required={props.description.web.required}
                                                 fullWidth
-                                                id="backend"
-                                                name="backend"
-                                                autoComplete="backend"
+                                                id="web"
+                                                name="web"
+                                                autoComplete="web"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
