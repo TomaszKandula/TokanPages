@@ -50,7 +50,7 @@ export const BusinessFormStyle = makeStyles(() => ({
         fontSize: 20,
     },
     pricing_text: {
-        marginTop: 10,
+        marginTop: 15,
         color: Colours.colours.gray2,
     },
 }));

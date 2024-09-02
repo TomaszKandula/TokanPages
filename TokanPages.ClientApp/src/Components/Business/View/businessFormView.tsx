@@ -48,7 +48,6 @@ interface FormProps {
 }
 
 interface DescriptionProps {
-    header: string;
     text: string;
     label: string;
     multiline: boolean;
@@ -243,11 +242,6 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Box mt={1} mb={2}>
-                                        <Typography className={classes.header_text}>
-                                            {props.description.header}
-                                        </Typography>
-                                    </Box>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
