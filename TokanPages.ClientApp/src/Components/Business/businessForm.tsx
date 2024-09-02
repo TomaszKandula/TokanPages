@@ -32,7 +32,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             emailLabel="Business Email"
             phoneText=""
             phoneLabel="Business Phone"
-            techHeader="Key technologies"
+            techHeader="Select key technologies"
             techItems={[
                 { value: ".NET/C#", key: 0 },
                 { value: "JavaScript/TypeScript", key: 1 },
@@ -52,10 +52,13 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
                 required: true,
             }}
             pricing={{
-                caption: "Pricing",
-                text: "Software development (web/mobile/backend) starts from <b>30 USD/hour</b>.",
-                hosting: "Hosting and maintaining the solution on a dedicated VPS starts from <b>60 USD/month</b>.",
-                support: "Additional support after roll-out has fixed price of <b>15 USD/hour</b>."
+                caption: "Select service",
+                programing: "Software development (web/mobile/backend).",
+                programmingPrice: "<b>30 USD/hour</b>",
+                hosting: "Hosting and maintaining the solution on a dedicated VPS.",
+                hostingPrice: "<b>60 USD/month</b>",
+                support: "Additional <i>ad hoc</i> support after roll-out.",
+                supportPrice: "<b>15 USD/hour</b>",
             }}
             pt={props.pt}
             pb={props.pb}

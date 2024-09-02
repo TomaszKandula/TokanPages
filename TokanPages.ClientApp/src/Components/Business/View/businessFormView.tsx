@@ -57,9 +57,12 @@ interface DescriptionProps {
 
 interface PricingProps {
     caption: string;
-    text: string;
+    programing: string;
+    programmingPrice: string;
     hosting: string;
+    hostingPrice: string;
     support: string;
+    supportPrice: string;
 }
 
 interface TechStackListProps {
@@ -274,7 +277,10 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     <Grid item xs={12} sm={4}>
                                         <Paper elevation={3} className={classes.paper}>
                                             <Typography className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.text} />
+                                                <ReactHtmlParser html={props.pricing.programing} />
+                                            </Typography>
+                                            <Typography className={classes.pricing_text}>
+                                                <ReactHtmlParser html={props.pricing.programmingPrice} />
                                             </Typography>
                                         </Paper>
                                     </Grid>
@@ -283,12 +289,18 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <Typography className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.hosting} />
                                             </Typography>
+                                            <Typography className={classes.pricing_text}>
+                                                <ReactHtmlParser html={props.pricing.hostingPrice} />
+                                            </Typography>
                                         </Paper>
                                     </Grid>
                                     <Grid item xs={12} sm={4}>
                                         <Paper elevation={3} className={classes.paper}>
                                             <Typography className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.support} />
+                                            </Typography>
+                                            <Typography className={classes.pricing_text}>
+                                                <ReactHtmlParser html={props.pricing.supportPrice} />
                                             </Typography>
                                         </Paper>
                                     </Grid>
