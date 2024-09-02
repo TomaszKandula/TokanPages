@@ -6,9 +6,10 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
-import { Card, CardContent, Checkbox, CircularProgress, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { Card, CardContent, Checkbox, CircularProgress, Divider, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { ViewProperties } from "../../../Shared/Abstractions";
+import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { BusinessFormStyle } from "./businessFormStyle";
 import { BusinessFormProps } from "../businessForm";
@@ -43,9 +44,10 @@ interface FormProps {
     techItems: TechStackItem[];
     techLabel: string;
     description: DescriptionProps;
+    pricing: PricingProps;
 }
 
-interface ItemProps {
+interface DescriptionProps {
     header: string;
     text: string;
     label: string;
@@ -54,10 +56,11 @@ interface ItemProps {
     required?: boolean | undefined;
 }
 
-interface DescriptionProps {
-    web: ItemProps;
-    mobile: ItemProps;
-    info: ItemProps;
+interface PricingProps {
+    caption: string;
+    text: string;
+    hosting: string;
+    support: string;
 }
 
 interface TechStackListProps {
@@ -242,7 +245,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 <Grid item xs={12}>
                                     <Box mt={1} mb={2}>
                                         <Typography className={classes.header_text}>
-                                            {props.description.web.header}
+                                            {props.description.header}
                                         </Typography>
                                     </Box>
                                     <div data-aos="zoom-in">
@@ -250,7 +253,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
                                             <TextField
-                                                required={props.description.web.required}
+                                                required={props.description.required}
                                                 fullWidth
                                                 id="web"
                                                 name="web"
@@ -258,69 +261,35 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                value={props.description.web.text}
-                                                label={props.description.web.label}
-                                                multiline={props.description.web.multiline}
-                                                minRows={props.description.web.rows}
-                                            />
-                                        )}
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Box mt={1} mb={2}>
-                                        <Typography className={classes.header_text}>
-                                            {props.description.mobile.header}
-                                        </Typography>
-                                    </Box>
-                                    <div data-aos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required={props.description.mobile.required}
-                                                fullWidth
-                                                id="mobile"
-                                                name="mobile"
-                                                autoComplete="mobile"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.description.mobile.text}
-                                                label={props.description.mobile.label}
-                                                multiline={props.description.mobile.multiline}
-                                                minRows={props.description.mobile.rows}
-                                            />
-                                        )}
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Box mt={1} mb={2}>
-                                        <Typography className={classes.header_text}>
-                                            {props.description.info.header}
-                                        </Typography>
-                                    </Box>
-                                    <div data-aos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required={props.description.info.required}
-                                                fullWidth
-                                                id="info"
-                                                name="info"
-                                                autoComplete="info"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.description.info.text}
-                                                label={props.description.info.label}
-                                                multiline={props.description.info.multiline}
-                                                minRows={props.description.info.rows}
+                                                value={props.description.text}
+                                                label={props.description.label}
+                                                multiline={props.description.multiline}
+                                                minRows={props.description.rows}
                                             />
                                         )}
                                     </div>
                                 </Grid>
                             </Grid>
+                            <Box mt={5} mb={3}>
+                                <Divider />
+                            </Box>
+                            <Box mt={2}>
+                                <Typography className={classes.pricing_caption}>
+                                    <ReactHtmlParser html={props.pricing.caption} />
+                                </Typography>
+                                <Typography className={classes.pricing_text}>
+                                    <ReactHtmlParser html={props.pricing.text} />
+                                </Typography>
+                                <Typography className={classes.pricing_text}>
+                                    <ReactHtmlParser html={props.pricing.hosting} />
+                                </Typography>
+                                <Typography className={classes.pricing_text}>
+                                    <ReactHtmlParser html={props.pricing.support} />
+                                </Typography>
+                            </Box>
+                            <Box mt={5} mb={3}>
+                                <Divider />
+                            </Box>
                             <Box my={5} data-aos="fade-up">
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />

@@ -41,7 +41,16 @@ export const BusinessFormStyle = makeStyles(() => ({
     },
     header_text: {
         padding: 10,
+        borderRadius: 5,
         color: Colours.colours.gray2,
         backgroundColor: Colours.colours.lightGray1
+    },
+    pricing_caption: {
+        paddingBottom: 10,
+        fontSize: 20,
+    },
+    pricing_text: {
+        marginTop: 10,
+        color: Colours.colours.gray2,
     },
 }));

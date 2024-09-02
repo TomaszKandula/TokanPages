@@ -25,9 +25,9 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             companyText=""
             companyLabel="Company Name"
             firstNameText=""
-            firstNameLabel="Name"
+            firstNameLabel="First Name"
             lastNameText=""
-            lastNameLabel="Surname"
+            lastNameLabel="Last Name"
             emailText=""
             emailLabel="Business Email"
             phoneText=""
@@ -45,29 +45,18 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             ]}
             techLabel=""
             description={{
-                web: {
-                    header: "Describe your project that will involve building frontend with or without backend. You may also specify another UI framework. However, please do note that backend can be done only with C# language.",
-                    text: "",
-                    label: "Required description",
-                    multiline: true,
-                    rows: 10,
-                    required: true,
-                },
-                mobile: {
-                    header: "Describe mobile application you want me to build.",
-                    text: "",
-                    label: "Required description",
-                    multiline: true,
-                    rows: 10,
-                    required: true,
-                },
-                info: {
-                    header: "You may specify project tenure and some other requirements like specific CI/CD etc.",
-                    text: "",
-                    label: "Optional additional information",
-                    multiline: true,
-                    rows: 6,
-                }
+                header: "Describe your project that will involve building web app/mobile app with or without backend. You may also specify another UI framework. However, please do note that backend can be done only with C# language.",
+                text: "",
+                label: "Required description",
+                multiline: true,
+                rows: 12,
+                required: true,
+            }}
+            pricing={{
+                caption: "Pricing",
+                text: "Wheter you are interested in MVP development (when you need to validate an idea before expanding further) or just product design & development (when you are at product-market fit and want to ramp up feature releases); the cost is <b>30 USD / hour</b>.",
+                hosting: "I can host the solution on dedicated VPS. In such case the cost is <b>60 USD / month</b>.",
+                support: "Additional support after roll-out costs <b>15 USD / hour</b>."
             }}
             pt={props.pt}
             pb={props.pb}
