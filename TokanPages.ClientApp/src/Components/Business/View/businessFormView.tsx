@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Card, CardContent, Checkbox, CircularProgress, Divider, List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { Card, CardContent, Checkbox, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
@@ -228,20 +228,6 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Box mt={1} mb={1}>
-                                        <Typography className={classes.header_text}>
-                                            {props.techHeader}
-                                        </Typography>
-                                    </Box>
-                                    <div data-aos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TechStackList list={props.techItems} />
-                                        )}
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
                                     <div data-aos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
@@ -263,26 +249,50 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         )}
                                     </div>
                                 </Grid>
+                                <Grid item xs={12}>
+                                    <Box mt={2} mb={1}>
+                                        <Typography className={classes.header}>
+                                            {props.techHeader}
+                                        </Typography>
+                                    </Box>
+                                    <div data-aos="zoom-in">
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <TechStackList list={props.techItems} />
+                                        )}
+                                    </div>
+                                </Grid>
                             </Grid>
-                            <Box mt={5} mb={3}>
-                                <Divider />
-                            </Box>
-                            <Box mt={2}>
-                                <Typography className={classes.pricing_caption}>
-                                    <ReactHtmlParser html={props.pricing.caption} />
-                                </Typography>
-                                <Typography className={classes.pricing_text}>
-                                    <ReactHtmlParser html={props.pricing.text} />
-                                </Typography>
-                                <Typography className={classes.pricing_text}>
-                                    <ReactHtmlParser html={props.pricing.hosting} />
-                                </Typography>
-                                <Typography className={classes.pricing_text}>
-                                    <ReactHtmlParser html={props.pricing.support} />
-                                </Typography>
-                            </Box>
-                            <Box mt={5} mb={3}>
-                                <Divider />
+                            <Box mt={2} mb={10}>
+                                <Box mt={1} mb={4}>
+                                    <Typography className={classes.header}>
+                                        <ReactHtmlParser html={props.pricing.caption} />
+                                    </Typography>
+                                </Box>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={12} sm={4}>
+                                        <Paper elevation={3} className={classes.paper}>
+                                            <Typography className={classes.pricing_text}>
+                                                <ReactHtmlParser html={props.pricing.text} />
+                                            </Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item xs={12} sm={4}>
+                                        <Paper elevation={3} className={classes.paper}>
+                                            <Typography className={classes.pricing_text}>
+                                                <ReactHtmlParser html={props.pricing.hosting} />
+                                            </Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item xs={12} sm={4}>
+                                        <Paper elevation={3} className={classes.paper}>
+                                            <Typography className={classes.pricing_text}>
+                                                <ReactHtmlParser html={props.pricing.support} />
+                                            </Typography>
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
                             </Box>
                             <Box my={5} data-aos="fade-up">
                                 {props.isLoading ? (
