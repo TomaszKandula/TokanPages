@@ -7,10 +7,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Card, CardContent, Checkbox, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core";
+import { Card, CardContent, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { VioletCheckbox } from "../../../Theme";
 import { BusinessFormStyle } from "./businessFormStyle";
 import { BusinessFormProps } from "../businessForm";
 
@@ -91,11 +92,11 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
             {props.list.map((value: TechStackItem, index: number) => (
                 <ListItem key={index} role={undefined} dense button>
                     <ListItemIcon>
-                        <Checkbox
+                        <VioletCheckbox
                             edge="start"
                             //checked={checked.indexOf(value) !== -1}
                             tabIndex={-1}
-                            disableRipple
+                            disableRipple={true}
                             inputProps={{ "aria-labelledby": `key-${index}` }}
                     />
                     </ListItemIcon>
@@ -269,39 +270,45 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             </Grid>
                             <Box mt={2} mb={10}>
                                 <Box mt={1} mb={4}>
-                                    <Typography className={classes.header}>
+                                    <Typography component="span" className={classes.header}>
                                         <ReactHtmlParser html={props.pricing.caption} />
                                     </Typography>
                                 </Box>
                                 <Grid container spacing={3}>
                                     <Grid item xs={12} sm={4}>
-                                        <Paper elevation={3} className={classes.paper}>
-                                            <Typography className={classes.pricing_text}>
+                                        <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
+                                            <Typography component="span" className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.programing} />
                                             </Typography>
-                                            <Typography className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.programmingPrice} />
-                                            </Typography>
+                                            <Box mt={1}>
+                                                <Typography component="span" className={classes.pricing_text}>
+                                                    <ReactHtmlParser html={props.pricing.programmingPrice} />
+                                                </Typography>
+                                            </Box>
                                         </Paper>
                                     </Grid>
                                     <Grid item xs={12} sm={4}>
-                                        <Paper elevation={3} className={classes.paper}>
-                                            <Typography className={classes.pricing_text}>
+                                        <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
+                                            <Typography component="span" className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.hosting} />
                                             </Typography>
-                                            <Typography className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.hostingPrice} />
-                                            </Typography>
+                                            <Box mt={1}>
+                                                <Typography component="span" className={classes.pricing_text}>
+                                                    <ReactHtmlParser html={props.pricing.hostingPrice} />
+                                                </Typography>
+                                            </Box>
                                         </Paper>
                                     </Grid>
                                     <Grid item xs={12} sm={4}>
-                                        <Paper elevation={3} className={classes.paper}>
-                                            <Typography className={classes.pricing_text}>
+                                        <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
+                                            <Typography component="span" className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.support} />
                                             </Typography>
-                                            <Typography className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.supportPrice} />
-                                            </Typography>
+                                            <Box mt={1}>
+                                                <Typography component="span" className={classes.pricing_text}>
+                                                    <ReactHtmlParser html={props.pricing.supportPrice} />
+                                                </Typography>
+                                            </Box>
                                         </Paper>
                                     </Grid>
                                 </Grid>

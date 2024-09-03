@@ -45,8 +45,26 @@ export const BusinessFormStyle = makeStyles(() => ({
     pricing_text: {
         color: Colours.colours.gray2,
     },
+    unselected: {
+        border: "solid",
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: Colours.colours.lightGray2,
+        backgroundColor: Colours.colours.white,
+    },
+    selected: {
+        border: "solid",
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: Colours.colours.lightGray2,
+        backgroundColor: Colours.colours.lightGray1,
+    },
     paper: {
         minHeight: 110,
         padding: 15,
+        cursor: "pointer",
+        "&:hover": {
+            boxShadow: "0 4px 4px 0 rgb(0 0 0 / 10%)",
+        },
     },
 }));
