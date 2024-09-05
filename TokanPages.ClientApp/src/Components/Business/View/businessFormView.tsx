@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import Skeleton from "@material-ui/lab/Skeleton";
+import InfoIcon from "@material-ui/icons/Info";
 import { Card, CardContent, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
@@ -64,6 +65,7 @@ interface PricingProps {
     hostingPrice: string;
     support: string;
     supportPrice: string;
+    info: string;
 }
 
 interface TechStackListProps {
@@ -87,10 +89,11 @@ const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
 };
 
 const TechStackList = (props: TechStackListProps): JSX.Element => {
+    const classes = BusinessFormStyle();
     return (
         <List>
             {props.list.map((value: TechStackItem, index: number) => (
-                <ListItem key={index} role={undefined} dense button>
+                <ListItem key={index} role={undefined} button className={classes.list_item}>
                     <ListItemIcon>
                         <VioletCheckbox
                             edge="start"
@@ -114,7 +117,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
             <Container className={classes.container}>
                 <Box pt={15} pb={30}>
                     <Box textAlign="center" data-aos="fade-down">
-                        <Typography gutterBottom={true} className={classes.caption}>
+                        <Typography gutterBottom={true} className={classes.large_caption}>
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
                     </Box>
@@ -123,7 +126,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <>
-                                        <BusinessCenterIcon className={classes.icon} />
+                                        <BusinessCenterIcon className={classes.main_icon} />
                                         <Typography className={classes.small_caption}>{props.caption}</Typography>
                                     </>
                                 ) : (
@@ -268,7 +271,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                             </Grid>
-                            <Box mt={2} mb={10}>
+                            <Box mt={2} mb={4}>
                                 <Box mt={1} mb={4}>
                                     <Typography component="span" className={classes.header}>
                                         <ReactHtmlParser html={props.pricing.caption} />
@@ -280,7 +283,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <Typography component="span" className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.programing} />
                                             </Typography>
-                                            <Box mt={1}>
+                                            <Box mt={2}>
                                                 <Typography component="span" className={classes.pricing_text}>
                                                     <ReactHtmlParser html={props.pricing.programmingPrice} />
                                                 </Typography>
@@ -292,7 +295,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <Typography component="span" className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.hosting} />
                                             </Typography>
-                                            <Box mt={1}>
+                                            <Box mt={2}>
                                                 <Typography component="span" className={classes.pricing_text}>
                                                     <ReactHtmlParser html={props.pricing.hostingPrice} />
                                                 </Typography>
@@ -304,7 +307,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <Typography component="span" className={classes.pricing_text}>
                                                 <ReactHtmlParser html={props.pricing.support} />
                                             </Typography>
-                                            <Box mt={1}>
+                                            <Box mt={2}>
                                                 <Typography component="span" className={classes.pricing_text}>
                                                     <ReactHtmlParser html={props.pricing.supportPrice} />
                                                 </Typography>
@@ -312,6 +315,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         </Paper>
                                     </Grid>
                                 </Grid>
+                            </Box>
+                            <Box mb={10} className={classes.info_box}>
+                                <InfoIcon className={classes.info_icon} />
+                                <Typography component="span">
+                                    <ReactHtmlParser html={props.pricing.info} />
+                                </Typography>
                             </Box>
                             <Box my={5} data-aos="fade-up">
                                 {props.isLoading ? (

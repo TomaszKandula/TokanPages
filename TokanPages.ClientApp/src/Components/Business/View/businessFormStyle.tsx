@@ -8,7 +8,7 @@ export const BusinessFormStyle = makeStyles(() => ({
     container: {
         maxWidth: 900,
     },
-    caption: {
+    large_caption: {
         textAlign: "center",
         fontSize: "2.0rem",
         color: Colours.colours.violet,
@@ -25,7 +25,7 @@ export const BusinessFormStyle = makeStyles(() => ({
         color: Colours.colours.white,
         background: Colours.colours.violet,
     },
-    icon: {
+    main_icon: {
         fontSize: 72,
         color: Colours.colours.violet,
     },
@@ -42,8 +42,9 @@ export const BusinessFormStyle = makeStyles(() => ({
     header: {
         fontSize: 20,
     },
-    pricing_text: {
-        color: Colours.colours.gray2,
+    list_item: {
+        paddingTop: 0,
+        paddingBottom: 0,
     },
     unselected: {
         border: "solid",
@@ -60,11 +61,23 @@ export const BusinessFormStyle = makeStyles(() => ({
         backgroundColor: Colours.colours.lightGray1,
     },
     paper: {
-        minHeight: 110,
+        minHeight: 120,
         padding: 15,
         cursor: "pointer",
         "&:hover": {
             boxShadow: "0 4px 4px 0 rgb(0 0 0 / 10%)",
         },
+    },
+    pricing_text: {
+        color: Colours.colours.gray2,
+    },
+    info_box: {
+        display: "flex",
+        justifyContent: "left",
+        flexDirection: "row",
+    },
+    info_icon: {
+        marginRight: 10,
+        color: Colours.colours.violet,
     },
 }));
