@@ -137,9 +137,9 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
     return(
         <BusinessFormView
-            isLoading={false}
+            isLoading={businessForm.isLoading}
             caption={businessForm.content.caption}
-            progress={false}
+            progress={hasProgress}
             buttonText={businessForm.content.buttonText}
             keyHandler={keyHandler}
             formHandler={formHandler}
