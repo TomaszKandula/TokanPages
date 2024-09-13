@@ -23,6 +23,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
+    techHandler: (value: { value: string; key: number }, isChecked: boolean) => void;
 }
 
 interface TechStackItem {
@@ -68,6 +69,7 @@ interface PricingProps {
 
 interface TechStackListProps {
     list: TechStackItem[];
+    handler: (value: { value: string; key: number }, isChecked: boolean) => void;
 }
 
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
@@ -94,8 +96,10 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
                 <ListItem key={index} role={undefined} button className={classes.list_item}>
                     <ListItemIcon>
                         <VioletCheckbox
+                            id={`tech-${index}`}
+                            name={`tech-${index}`}
                             edge="start"
-                            //checked={checked.indexOf(value) !== -1}
+                            onChange={(_: ReactChangeEvent, checked: boolean) => props.handler(value, checked)}
                             tabIndex={-1}
                             disableRipple={true}
                             inputProps={{ "aria-labelledby": `key-${index}` }}
@@ -264,7 +268,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
-                                            <TechStackList list={props.techItems} />
+                                            <TechStackList list={props.techItems} handler={props.techHandler} />
                                         )}
                                     </div>
                                 </Grid>

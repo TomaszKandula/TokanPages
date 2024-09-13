@@ -96,7 +96,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             form.emailText, 
             form.firstNameText, 
             form.lastNameText, 
-            form.phoneText
+            form.phoneText,
         ]
     );
 
@@ -106,6 +106,13 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         },
         [form]
     );
+
+    const techHandler = React.useCallback((value: { value: string; key: number }, isChecked: boolean) => {
+
+        console.log(value);
+        console.log(isChecked);
+
+    }, [  ]);
 
     const buttonHandler = React.useCallback(() => {
         // const result = ValidateContactForm({
@@ -137,6 +144,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
+            techHandler={techHandler}
             companyText={form.companyText}
             companyLabel={businessForm.content.companyLabel}
             firstNameText={form.firstNameText}
