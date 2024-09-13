@@ -9,6 +9,7 @@ import {
     ContentNavigationAction,
     ContentFooterAction,
     ContentTemplatesAction,
+    ContentBusinessFormAction,
 } from "../../Store/Actions";
 
 export const BusinessPage = () => {
@@ -18,6 +19,7 @@ export const BusinessPage = () => {
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
+        dispatch(ContentBusinessFormAction.get());
         dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
