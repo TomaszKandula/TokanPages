@@ -18,7 +18,6 @@ import { BusinessFormProps } from "../businessForm";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
     caption: string;
-    text: string;
     progress: boolean;
     buttonText: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -42,7 +41,6 @@ interface FormProps {
     emailLabel: string;
     phoneText: string;
     phoneLabel: string;
-    techHeader: string;
     techItems: TechStackItem[];
     techLabel: string;
     description: DescriptionProps;
@@ -142,9 +140,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="company"
-                                                name="company"
-                                                autoComplete="company"
+                                                id="companyText"
+                                                name="companyText"
+                                                autoComplete="companyText"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -162,9 +160,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="firstname"
-                                                name="firstname"
-                                                autoComplete="firstname"
+                                                id="firstNameText"
+                                                name="firstNameText"
+                                                autoComplete="firstNameText"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -182,9 +180,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="lastname"
-                                                name="lastname"
-                                                autoComplete="lastname"
+                                                id="lastNameText"
+                                                name="lastNameText"
+                                                autoComplete="lastNameText"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -202,9 +200,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="email"
-                                                name="email"
-                                                autoComplete="email"
+                                                id="emailText"
+                                                name="emailText"
+                                                autoComplete="emailText"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -222,9 +220,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="phone"
-                                                name="phone"
-                                                autoComplete="phone"
+                                                id="phoneText"
+                                                name="phoneText"
+                                                autoComplete="phoneText"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -242,9 +240,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <TextField
                                                 required={props.description.required}
                                                 fullWidth
-                                                id="web"
-                                                name="web"
-                                                autoComplete="web"
+                                                id="descriptionText"
+                                                name="descriptionText"
+                                                autoComplete="descriptionText"
                                                 variant="outlined"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -259,7 +257,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 <Grid item xs={12}>
                                     <Box mt={2} mb={1}>
                                         <Typography className={classes.header}>
-                                            {props.techHeader}
+                                            {props.techLabel}
                                         </Typography>
                                     </Box>
                                     <div data-aos="zoom-in">
