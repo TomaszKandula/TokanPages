@@ -14,6 +14,7 @@ export type { ContentActivateAccountState } from "./Content/contentActivateAccou
 export type { ContentArticleState } from "./Content/contentArticle";
 export type { ContentArticleFeaturesState } from "./Content/contentArticleFeatures";
 export type { ContentClientsState } from "./Content/contentClients";
+export type { ContentBusinessFormState } from "./Content/contentBusinessForm";
 export type { ContentContactFormState } from "./Content/contentContactForm";
 export type { ContentCookiesPromptState } from "./Content/contentCookiesPrompt";
 export type { ContentFeaturedState } from "./Content/contentFeatured";

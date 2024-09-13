@@ -14,6 +14,7 @@ export { ContentActivateAccount } from "./Content/contentActivateAccount";
 export { ContentArticle } from "./Content/contentArticle";
 export { ContentArticleFeatures } from "./Content/contentArticleFeatures";
 export { ContentClients } from "./Content/contentClients";
+export { ContentBusinessForm } from "./Content/contentBusinessForm";
 export { ContentContactForm } from "./Content/contentContactForm";
 export { ContentCookiesPrompt } from "./Content/contentCookiesPrompt";
 export { ContentFeatured } from "./Content/contentFeatured";
