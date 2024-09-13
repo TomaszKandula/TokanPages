@@ -9,6 +9,7 @@ export const ContentTemplates: ContentTemplatesState = {
             textSignup: "",
             textPasswordReset: "",
             textUpdatePassword: "",
+            textBusinessForm: "",
             textContactForm: "",
             textCheckoutForm: "",
             textNewsletter: "",
