@@ -64,6 +64,12 @@ export const HeaderStyle = makeStyles(theme => ({
         height: 700,
         display: "flex",
         flexDirection: "column",
+        [theme.breakpoints.up(1400)]: {
+            height: 900,
+        },
+        [theme.breakpoints.up(1900)]: {
+            height: 1100,
+        },
     },
     action_button: {
         "&:hover": {
