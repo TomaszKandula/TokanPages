@@ -33,6 +33,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefault);
+    const [techStack, setTechStack] = React.useState<string[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
@@ -99,12 +100,30 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         [form]
     );
 
-    const techHandler = React.useCallback((value: TechStackItem, isChecked: boolean) => {
-
-        console.log(value);
-        console.log(isChecked);
-
-    }, [  ]);
+    const techHandler = React.useCallback((item: TechStackItem, isChecked: boolean) => {
+        if (isChecked) {
+            if (!techStack) {
+                const data = [];
+                data.push(item.value);
+                setTechStack(data);
+            } else {
+                const data = techStack.slice();
+                if (!data.includes(item.value)) {
+                    data.push(item.value);
+                    setTechStack(data);
+                }
+            }
+        } else {
+            if (techStack) {
+                const data = techStack.slice();
+                const index = data.indexOf(item.value);
+                if (index !== -1) {
+                    data.splice(index, 1);
+                    setTechStack(data);
+                }
+            }
+        }
+    }, [techStack]);
 
     const buttonHandler = React.useCallback(() => {
         // const result = ValidateContactForm({
