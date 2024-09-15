@@ -7,15 +7,7 @@ import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { SuccessMessage } from "../../Shared/Services/Utilities";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
-
-export interface BusinessFormProps {
-    pt?: number;
-    pb?: number;
-    hasCaption?: boolean;
-    hasIcon?: boolean;
-    hasShadow?: boolean;
-    background?: React.CSSProperties;
-}
+import { BusinessFormProps, TechStackItem } from "./Models";
 
 const internalSubjectText = "Incoming Business Inquiry";
 const internalMessageText = "Please check the internal payload for more details.";
@@ -107,7 +99,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         [form]
     );
 
-    const techHandler = React.useCallback((value: { value: string; key: number }, isChecked: boolean) => {
+    const techHandler = React.useCallback((value: TechStackItem, isChecked: boolean) => {
 
         console.log(value);
         console.log(isChecked);

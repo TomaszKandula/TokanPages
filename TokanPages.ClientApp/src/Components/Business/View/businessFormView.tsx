@@ -13,8 +13,8 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { VioletCheckbox } from "../../../Theme";
+import { BusinessFormProps, TechStackItem, TechStackListProps } from "../Models";
 import { BusinessFormStyle } from "./businessFormStyle";
-import { BusinessFormProps } from "../businessForm";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
     caption: string;
@@ -24,11 +24,6 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     techHandler: (value: { value: string; key: number }, isChecked: boolean) => void;
-}
-
-interface TechStackItem {
-    value: string;
-    key: number;
 }
 
 interface FormProps {
@@ -65,11 +60,6 @@ interface PricingProps {
     support: string;
     supportPrice: string;
     info: string;
-}
-
-interface TechStackListProps {
-    list: TechStackItem[];
-    handler: (value: { value: string; key: number }, isChecked: boolean) => void;
 }
 
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
