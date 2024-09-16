@@ -4,20 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { OperationStatus } from "../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { SuccessMessage } from "../../Shared/Services/Utilities";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
-import { BusinessFormProps, TechStackItem } from "./Models";
+import { BusinessFormProps, MessageFormProps, TechStackItem } from "./Models";
 
-const internalSubjectText = "Incoming Business Inquiry";
-const internalMessageText = "Please check the internal payload for more details.";
-const formDefault = {
-    companyText: "",
-    firstNameText: "",
-    lastNameText: "",
-    emailText: "",
-    phoneText: "",
-    descriptionText: "",
+const formDefault: MessageFormProps = {
+    company: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    description: "",
 }
 
 export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
@@ -32,7 +31,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     const hasFinished = email?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const [form, setForm] = React.useState(formDefault);
+    const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [techStack, setTechStack] = React.useState<string[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
 
@@ -54,16 +53,21 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         }
 
         if (hasNotStarted && hasProgress) {
+            const data = JSON.stringify({ 
+                ...form,
+                techStack: techStack,
+            });
+
             dispatch(
                 ApplicationMessageAction.send({
-                    firstName: form.firstNameText,
-                    lastName: form.lastNameText,
-                    userEmail: form.emailText,
-                    emailFrom: form.emailText,
-                    emailTos: [form.emailText],
-                    subject: internalSubjectText,
-                    message: internalMessageText,
-                    businessData: JSON.stringify(form)
+                    firstName: form.firstName,
+                    lastName: form.lastName,
+                    userEmail: form.email,
+                    emailFrom: form.email,
+                    emailTos: [form.email],
+                    subject: INTERNAL_SUBJECT_TEXT,
+                    message: INTERNAL_MESSAGE_TEXT,
+                    businessData: data,
                 })
             );
 
@@ -84,20 +88,34 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             }
         },
         [
-            form.companyText, 
-            form.descriptionText, 
-            form.emailText, 
-            form.firstNameText, 
-            form.lastNameText, 
-            form.phoneText,
+            form.company, 
+            form.description, 
+            form.email, 
+            form.firstName, 
+            form.lastName, 
+            form.phone,
         ]
     );
 
     const formHandler = React.useCallback(
         (event: ReactChangeEvent) => {
+            if (event.currentTarget.name === "phone") {
+                const value = event.currentTarget.value;
+                const hasDigitOnly = /^\d+$/.test(value);
+                if (value !== "" && !hasDigitOnly) {
+                    return;
+                }
+
+                const phone = formatPhoneNumber(value);
+                if (phone !== null) {
+                    setForm({ ...form, phone: phone });
+                    return;
+                }
+            }
+
             setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
-        [form]
+        [form, form.phone]
     );
 
     const techHandler = React.useCallback((item: TechStackItem, isChecked: boolean) => {
@@ -156,20 +174,20 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             techHandler={techHandler}
-            companyText={form.companyText}
+            companyText={form.company}
             companyLabel={businessForm.content.companyLabel}
-            firstNameText={form.firstNameText}
+            firstNameText={form.firstName}
             firstNameLabel={businessForm.content.firstNameLabel}
-            lastNameText={form.lastNameText}
+            lastNameText={form.lastName}
             lastNameLabel={businessForm.content.lastNameLabel}
-            emailText={form.emailText}
+            emailText={form.email}
             emailLabel={businessForm.content.emailLabel}
-            phoneText={form.phoneText}
+            phoneText={form.phone}
             phoneLabel={businessForm.content.phoneLabel}
             techLabel={businessForm.content.techLabel}
             techItems={businessForm.content.techItems}
             description={{
-                text: form.descriptionText,
+                text: form.description,
                 label: businessForm.content.description.label,
                 multiline: businessForm.content.description.multiline,
                 rows: businessForm.content.description.rows,

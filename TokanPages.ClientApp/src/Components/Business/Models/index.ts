@@ -1,3 +1,14 @@
+export interface MessageFormProps {
+    company: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    description: string;
+    techStack?: string[];
+    services?: string[];
+}
+
 export interface TechStackItem {
     value: string;
     key: number;
