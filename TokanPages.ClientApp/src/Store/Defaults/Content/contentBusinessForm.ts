@@ -21,13 +21,8 @@ export const ContentBusinessForm: ContentBusinessFormState = {
         },
         pricing: {
             caption: "",
-            programing: "",
-            programmingPrice: "",
-            hosting: "",
-            hostingPrice: "",
-            support: "",
-            supportPrice: "",
-            info: ""
+            disclaimer: "",
+            services: [],
         }
     },
 };

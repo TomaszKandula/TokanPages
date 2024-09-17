@@ -3,10 +3,10 @@ import { BusinessFormView } from "./View/businessFormView";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
-import { OperationStatus } from "../../Shared/enums";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { SuccessMessage } from "../../Shared/Services/Utilities";
+import { OperationStatus } from "../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { BusinessFormProps, MessageFormProps, TechStackItem } from "./Models";
 
@@ -37,6 +37,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [techStack, setTechStack] = React.useState<string[] | undefined>(undefined);
+    //const [services, setServices] = React.useState<string[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
@@ -199,13 +200,8 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             }}
             pricing={{
                 caption: businessForm.content.pricing.caption,
-                programing: businessForm.content.pricing.programing,
-                programmingPrice: businessForm.content.pricing.programmingPrice,
-                hosting: businessForm.content.pricing.hosting,
-                hostingPrice: businessForm.content.pricing.hostingPrice,
-                support: businessForm.content.pricing.support,
-                supportPrice: businessForm.content.pricing.supportPrice,
-                info: businessForm.content.pricing.info,
+                disclaimer: businessForm.content.pricing.disclaimer,
+                services: businessForm.content.pricing.services
             }}
             pt={props.pt}
             pb={props.pb}

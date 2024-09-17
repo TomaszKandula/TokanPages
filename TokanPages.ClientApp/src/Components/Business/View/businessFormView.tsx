@@ -9,6 +9,7 @@ import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import Skeleton from "@material-ui/lab/Skeleton";
 import InfoIcon from "@material-ui/icons/Info";
 import { Card, CardContent, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core";
+import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
@@ -23,7 +24,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
-    techHandler: (value: { value: string; key: number }, isChecked: boolean) => void;
+    techHandler: (value: TechItemsDto, isChecked: boolean) => void;
 }
 
 interface FormProps {
@@ -37,29 +38,14 @@ interface FormProps {
     emailLabel: string;
     phoneText: string;
     phoneLabel: string;
-    techItems: TechStackItem[];
     techLabel: string;
-    description: DescriptionProps;
-    pricing: PricingProps;
+    techItems: TechItemsDto[];
+    description: ExtendedDescriptionProps;
+    pricing: PricingDto;
 }
 
-interface DescriptionProps {
+interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
-    label: string;
-    multiline: boolean;
-    rows: number;
-    required?: boolean | undefined;
-}
-
-interface PricingProps {
-    caption: string;
-    programing: string;
-    programmingPrice: string;
-    hosting: string;
-    hostingPrice: string;
-    support: string;
-    supportPrice: string;
-    info: string;
 }
 
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
@@ -99,6 +85,29 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
                 </ListItem>
             ))}
         </List>
+    );
+}
+
+interface ServiceItemCardProps {
+    key: number;
+    value: ServiceItemDto;
+}
+
+const ServiceItemCard = (props: ServiceItemCardProps) => {
+    const classes = BusinessFormStyle();
+    return (
+        <Grid item xs={12} sm={4}>
+            <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
+                <Typography component="span" className={classes.pricing_text}>
+                    <ReactHtmlParser html={props.value.text} />
+                </Typography>
+                <Box mt={2}>
+                    <Typography component="span" className={classes.pricing_text}>
+                        <ReactHtmlParser html={props.value.price} />
+                    </Typography>
+                </Box>
+            </Paper>
+        </Grid>
     );
 }
 
@@ -269,48 +278,15 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </Typography>
                                 </Box>
                                 <Grid container spacing={3}>
-                                    <Grid item xs={12} sm={4}>
-                                        <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
-                                            <Typography component="span" className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.programing} />
-                                            </Typography>
-                                            <Box mt={2}>
-                                                <Typography component="span" className={classes.pricing_text}>
-                                                    <ReactHtmlParser html={props.pricing.programmingPrice} />
-                                                </Typography>
-                                            </Box>
-                                        </Paper>
-                                    </Grid>
-                                    <Grid item xs={12} sm={4}>
-                                        <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
-                                            <Typography component="span" className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.hosting} />
-                                            </Typography>
-                                            <Box mt={2}>
-                                                <Typography component="span" className={classes.pricing_text}>
-                                                    <ReactHtmlParser html={props.pricing.hostingPrice} />
-                                                </Typography>
-                                            </Box>
-                                        </Paper>
-                                    </Grid>
-                                    <Grid item xs={12} sm={4}>
-                                        <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
-                                            <Typography component="span" className={classes.pricing_text}>
-                                                <ReactHtmlParser html={props.pricing.support} />
-                                            </Typography>
-                                            <Box mt={2}>
-                                                <Typography component="span" className={classes.pricing_text}>
-                                                    <ReactHtmlParser html={props.pricing.supportPrice} />
-                                                </Typography>
-                                            </Box>
-                                        </Paper>
-                                    </Grid>
+                                    {props.pricing.services.map((value: ServiceItemDto, index: number) => (
+                                        <ServiceItemCard key={index} value={value} />
+                                    ))}
                                 </Grid>
                             </Box>
                             <Box mb={10} className={classes.info_box}>
                                 <InfoIcon className={classes.info_icon} />
                                 <Typography component="span">
-                                    <ReactHtmlParser html={props.pricing.info} />
+                                    <ReactHtmlParser html={props.pricing.disclaimer} />
                                 </Typography>
                             </Box>
                             <Box my={5} data-aos="fade-up">
