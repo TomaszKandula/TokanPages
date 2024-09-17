@@ -56,9 +56,9 @@ export const BusinessFormStyle = makeStyles(() => ({
     selected: {
         border: "solid",
         borderRadius: 10,
-        borderWidth: 1,
-        borderColor: Colours.colours.lightGray2,
-        backgroundColor: Colours.colours.lightGray1,
+        borderWidth: 1.5,
+        borderColor: Colours.colours.violet,
+        backgroundColor: Colours.colours.white,
     },
     paper: {
         minHeight: 120,
