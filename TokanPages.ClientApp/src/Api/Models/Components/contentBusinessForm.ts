@@ -1,3 +1,7 @@
+import { DescriptionItemDto } from "./Common/descriptionItemDto";
+import { PricingDto } from "./Common/pricingDto";
+import { TechItemsDto } from "./Common/techItemsDto";
+
 export interface BusinessFormContentDto {
     content: {
         language: string;
@@ -9,31 +13,8 @@ export interface BusinessFormContentDto {
         emailLabel: string;
         phoneLabel: string;
         techLabel: string;
-        techItems: TechItemsProps[];
-        description: DescriptionProps;
-        pricing: PricingProps;
+        techItems: TechItemsDto[];
+        description: DescriptionItemDto;
+        pricing: PricingDto;
     };
-}
-
-interface TechItemsProps {
-    value: string;
-    key: number;
-}
-
-interface DescriptionProps {
-    label: string;
-    multiline: boolean;
-    rows: number;
-    required: boolean;
-}
-
-interface PricingProps {
-    caption: string;
-    programing: string;
-    programmingPrice: string;
-    hosting: string;
-    hostingPrice: string;
-    support: string;
-    supportPrice: string;
-    info: string;
 }
