@@ -200,6 +200,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             buttonHandler={buttonHandler}
             techHandler={techHandler}
             serviceHandler={serviceHandler}
+            serviceSelection={services}
             companyText={form.company}
             companyLabel={businessForm.content.companyLabel}
             firstNameText={form.firstName}

@@ -26,6 +26,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     buttonHandler: () => void;
     techHandler: (value: TechItemsDto, isChecked: boolean) => void;
     serviceHandler: (event: ReactMouseEvent, id: string) => void;
+    serviceSelection?: string[];
 }
 
 interface FormProps {
@@ -93,15 +94,18 @@ interface ServiceItemCardProps {
     key: number;
     value: ServiceItemDto;
     handler: (event: ReactMouseEvent, id: string) => void;
+    services?: string[];
 }
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
     const classes = BusinessFormStyle();
+    const isSelected = props.services?.includes(props.value.id) ?? false;
+    const style = isSelected ? classes.selected : classes.unselected;
     return (
         <Grid item xs={12} sm={4}>
             <Paper 
                 elevation={0} 
-                className={`${classes.paper} ${classes.unselected}`}
+                className={`${classes.paper} ${style}`}
                 onClick={(event: ReactMouseEvent) => props.handler(event, props.value.id) }
             >
                 <Typography component="span" className={classes.pricing_text}>
@@ -285,7 +289,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 </Box>
                                 <Grid container spacing={3}>
                                     {props.pricing.services.map((value: ServiceItemDto, index: number) => (
-                                        <ServiceItemCard key={index} value={value} handler={props.serviceHandler} />
+                                        <ServiceItemCard 
+                                            key={index} 
+                                            value={value} 
+                                            handler={props.serviceHandler} 
+                                            services={props.serviceSelection}
+                                        />
                                     ))}
                                 </Grid>
                             </Box>
