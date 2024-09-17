@@ -50,6 +50,13 @@ interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
 }
 
+interface ServiceItemCardProps {
+    key: number;
+    value: ServiceItemDto;
+    handler: (event: ReactMouseEvent, id: string) => void;
+    services?: string[];
+}
+
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
     const classes = BusinessFormStyle();
     return (
@@ -88,13 +95,6 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
             ))}
         </List>
     );
-}
-
-interface ServiceItemCardProps {
-    key: number;
-    value: ServiceItemDto;
-    handler: (event: ReactMouseEvent, id: string) => void;
-    services?: string[];
 }
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
