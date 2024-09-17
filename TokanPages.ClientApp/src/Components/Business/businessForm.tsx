@@ -19,6 +19,10 @@ const formDefault: MessageFormProps = {
     description: "",
 }
 
+const valueCleanUp = (input: string): string => {
+    return input.replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "");
+}
+
 export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     const dispatch = useDispatch();
 
@@ -100,7 +104,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     const formHandler = React.useCallback(
         (event: ReactChangeEvent) => {
             if (event.currentTarget.name === "phone") {
-                const value = event.currentTarget.value;
+                const value = valueCleanUp(event.currentTarget.value);
                 const hasDigitOnly = /^\d+$/.test(value);
                 if (value !== "" && !hasDigitOnly) {
                     return;
