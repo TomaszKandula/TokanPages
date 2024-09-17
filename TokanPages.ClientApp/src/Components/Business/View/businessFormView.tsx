@@ -12,7 +12,7 @@ import { Card, CardContent, CircularProgress, List, ListItem, ListItemIcon, List
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { VioletCheckbox } from "../../../Theme";
 import { BusinessFormProps, TechStackItem, TechStackListProps } from "../Models";
 import { BusinessFormStyle } from "./businessFormStyle";
@@ -25,6 +25,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     techHandler: (value: TechItemsDto, isChecked: boolean) => void;
+    serviceHandler: (event: ReactMouseEvent, id: string) => void;
 }
 
 interface FormProps {
@@ -91,13 +92,18 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
 interface ServiceItemCardProps {
     key: number;
     value: ServiceItemDto;
+    handler: (event: ReactMouseEvent, id: string) => void;
 }
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
     const classes = BusinessFormStyle();
     return (
         <Grid item xs={12} sm={4}>
-            <Paper elevation={0} className={`${classes.paper} ${classes.unselected}`}>
+            <Paper 
+                elevation={0} 
+                className={`${classes.paper} ${classes.unselected}`}
+                onClick={(event: ReactMouseEvent) => props.handler(event, props.value.id) }
+            >
                 <Typography component="span" className={classes.pricing_text}>
                     <ReactHtmlParser html={props.value.text} />
                 </Typography>
@@ -279,7 +285,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 </Box>
                                 <Grid container spacing={3}>
                                     {props.pricing.services.map((value: ServiceItemDto, index: number) => (
-                                        <ServiceItemCard key={index} value={value} />
+                                        <ServiceItemCard key={index} value={value} handler={props.serviceHandler} />
                                     ))}
                                 </Grid>
                             </Box>

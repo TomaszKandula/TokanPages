@@ -7,7 +7,7 @@ import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } 
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { SuccessMessage } from "../../Shared/Services/Utilities";
 import { OperationStatus } from "../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
 import { BusinessFormProps, MessageFormProps, TechStackItem } from "./Models";
 
 const formDefault: MessageFormProps = {
@@ -37,7 +37,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [techStack, setTechStack] = React.useState<string[] | undefined>(undefined);
-    //const [services, setServices] = React.useState<string[] | undefined>(undefined);
+    const [services, setServices] = React.useState<string[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
@@ -61,6 +61,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             const data = JSON.stringify({ 
                 ...form,
                 techStack: techStack,
+                services: services,
             });
 
             dispatch(
@@ -148,6 +149,25 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         }
     }, [techStack]);
 
+    const serviceHandler = React.useCallback((event: ReactMouseEvent, id: string) => {
+        event.preventDefault();
+        if (!services) {
+            const data = [];
+            data.push(id);
+            setServices(data);
+        } else {
+            const data = services.slice();
+            const index = data.indexOf(id);
+            if (!data.includes(id)) {
+                data.push(id);
+                setServices(data);
+            } else {
+                data.splice(index, 1);
+                setServices(data);
+            }
+        }
+    }, [services]);
+
     const buttonHandler = React.useCallback(() => {
         // const result = ValidateContactForm({
         //     firstName: form.firstName,
@@ -179,6 +199,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             techHandler={techHandler}
+            serviceHandler={serviceHandler}
             companyText={form.company}
             companyLabel={businessForm.content.companyLabel}
             firstNameText={form.firstName}
