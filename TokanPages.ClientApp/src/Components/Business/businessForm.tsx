@@ -3,12 +3,14 @@ import { BusinessFormView } from "./View/businessFormView";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
+import { OperationStatus } from "../../Shared/enums";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
-import { SuccessMessage } from "../../Shared/Services/Utilities";
-import { OperationStatus } from "../../Shared/enums";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
+import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
 import { BusinessFormProps, MessageFormProps, TechStackItem } from "./Models";
+import Validate from "validate.js";
 
 const formDefault: MessageFormProps = {
     company: "",
@@ -42,11 +44,14 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
     const showSuccess = (text: string) =>
         dispatch(ApplicationDialogAction.raise(SuccessMessage(content.forms.textBusinessForm, text)));
-    // const showWarning = (text: string) =>
-    //     dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textBusinessForm, text)));
+    const showWarning = (text: string) =>
+        dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textBusinessForm, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
+        setTechStack(undefined);
+        setServices(undefined);
+        setForm(formDefault);
         setHasProgress(false);
         dispatch(ApplicationMessageAction.clear());
     }, [hasProgress]);
@@ -82,7 +87,6 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
         if (hasFinished) {
             clearForm();
-            setForm(formDefault);
             showSuccess(content.templates.messageOut.success);
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, content]);
@@ -169,25 +173,25 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     }, [services]);
 
     const buttonHandler = React.useCallback(() => {
-        // const result = ValidateContactForm({
-        //     firstName: form.firstName,
-        //     lastName: form.lastName,
-        //     email: form.email,
-        //     subject: form.subject,
-        //     message: form.message,
-        //     terms: form.terms,
-        // });
+        const result = ValidateBusinessForm({
+            company: form.company,
+            firstName: form.firstName,
+            lastName: form.lastName,
+            email: form.email,
+            phone: form.phone,
+            description: form.description,
+            techStack: techStack,
+            services: services,
+        });
 
-        // if (!Validate.isDefined(result)) {
-        //     setHasProgress(true);
-        //     return;
-        // }
+        if (!Validate.isDefined(result)) {
+            setHasProgress(true);
+            return;
+        }
 
-        //showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
+        showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
 
-        console.log(form);
-
-    }, [form, content]);
+    }, [form, content, techStack, services]);
 
     return(
         <BusinessFormView
