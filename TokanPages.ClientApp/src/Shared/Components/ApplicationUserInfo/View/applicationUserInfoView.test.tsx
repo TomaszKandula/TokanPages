@@ -51,13 +51,13 @@ describe("test view component for application user info", () => {
         };
 
         const html = render(
-            <ApplicationUserInfoView 
-                state={true} 
-                content={userInfo} 
-                data={testData} 
+            <ApplicationUserInfoView
+                state={true}
+                content={userInfo}
+                data={testData}
                 disablePortal={true}
                 hideBackdrop={true}
-                closeHandler={jest.fn()} 
+                closeHandler={jest.fn()}
             />
         );
 

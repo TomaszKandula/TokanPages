@@ -8,7 +8,16 @@ import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import Skeleton from "@material-ui/lab/Skeleton";
 import InfoIcon from "@material-ui/icons/Info";
-import { Card, CardContent, CircularProgress, List, ListItem, ListItemIcon, ListItemText, Paper } from "@material-ui/core";
+import {
+    Card,
+    CardContent,
+    CircularProgress,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Paper,
+} from "@material-ui/core";
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
@@ -89,7 +98,7 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
             ))}
         </List>
     );
-}
+};
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
     const classes = BusinessFormStyle();
@@ -97,10 +106,10 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
     const style = isSelected ? classes.selected : classes.unselected;
     return (
         <Grid item xs={12} sm={4}>
-            <Paper 
-                elevation={0} 
+            <Paper
+                elevation={0}
                 className={`${classes.paper} ${style}`}
-                onClick={(event: ReactMouseEvent) => props.handler(event, props.value.id) }
+                onClick={(event: ReactMouseEvent) => props.handler(event, props.value.id)}
             >
                 <Typography component="span" className={classes.pricing_text}>
                     <ReactHtmlParser html={props.value.text} />
@@ -113,7 +122,7 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
             </Paper>
         </Grid>
     );
-}
+};
 
 export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
     const classes = BusinessFormStyle();
@@ -123,13 +132,17 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                 <Box pt={15} pb={30}>
                     <Box textAlign="center">
                         <Typography gutterBottom={true} className={classes.large_caption}>
-                            {props.hasCaption 
-                            ? <>
-                                {props.isLoading 
-                                ? <Skeleton variant="rect" width="100%" height="60px" /> 
-                                : props.caption?.toUpperCase()}
-                            </> 
-                            : <></>}
+                            {props.hasCaption ? (
+                                <>
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" width="100%" height="60px" />
+                                    ) : (
+                                        props.caption?.toUpperCase()
+                                    )}
+                                </>
+                            ) : (
+                                <></>
+                            )}
                         </Typography>
                     </Box>
                     <Card elevation={0} className={classes.card}>
@@ -137,12 +150,16 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="rect" width="100%" height="60px" /> 
-                                        : <>
-                                            <BusinessCenterIcon className={classes.main_icon} />
-                                            <Typography className={classes.small_caption}>{props.caption}</Typography>
-                                        </>}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="60px" />
+                                        ) : (
+                                            <>
+                                                <BusinessCenterIcon className={classes.main_icon} />
+                                                <Typography className={classes.small_caption}>
+                                                    {props.caption}
+                                                </Typography>
+                                            </>
+                                        )}
                                     </>
                                 ) : (
                                     <></>
@@ -272,11 +289,11 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Box mt={2} mb={1}>
-                                        {props.isLoading 
-                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                        : <Typography className={classes.header}>
-                                            {props.techLabel}
-                                        </Typography>}
+                                        {props.isLoading ? (
+                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                        ) : (
+                                            <Typography className={classes.header}>{props.techLabel}</Typography>
+                                        )}
                                     </Box>
                                     <div>
                                         {props.isLoading ? (
@@ -289,34 +306,40 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             </Grid>
                             <Box mt={2} mb={4}>
                                 <Box mt={1} mb={4}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="rect" width="100%" height="45px" /> 
-                                    : <Typography component="span" className={classes.header}>
-                                        <ReactHtmlParser html={props.pricing.caption} />
-                                    </Typography>}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" width="100%" height="45px" />
+                                    ) : (
+                                        <Typography component="span" className={classes.header}>
+                                            <ReactHtmlParser html={props.pricing.caption} />
+                                        </Typography>
+                                    )}
                                 </Box>
                                 <Grid container spacing={3}>
-                                    {props.isLoading 
-                                    ? <Skeleton variant="rect" width="100%" height="100px" />
-                                    : props.pricing.services.map((value: ServiceItemDto, index: number) => (
-                                        <ServiceItemCard 
-                                            key={index} 
-                                            value={value} 
-                                            handler={props.serviceHandler} 
-                                            services={props.serviceSelection}
-                                        />
-                                    ))}
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" width="100%" height="100px" />
+                                    ) : (
+                                        props.pricing.services.map((value: ServiceItemDto, index: number) => (
+                                            <ServiceItemCard
+                                                key={index}
+                                                value={value}
+                                                handler={props.serviceHandler}
+                                                services={props.serviceSelection}
+                                            />
+                                        ))
+                                    )}
                                 </Grid>
                             </Box>
                             <Box mb={10} className={classes.info_box}>
-                                {props.isLoading 
-                                ? <Skeleton variant="rect" width="100%" height="45px" />
-                                : <>
-                                    <InfoIcon className={classes.info_icon} />
-                                    <Typography component="span">
-                                        <ReactHtmlParser html={props.pricing.disclaimer} />
-                                    </Typography>
-                                </>}
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" width="100%" height="45px" />
+                                ) : (
+                                    <>
+                                        <InfoIcon className={classes.info_icon} />
+                                        <Typography component="span">
+                                            <ReactHtmlParser html={props.pricing.disclaimer} />
+                                        </Typography>
+                                    </>
+                                )}
                             </Box>
                             <Box my={5}>
                                 {props.isLoading ? (

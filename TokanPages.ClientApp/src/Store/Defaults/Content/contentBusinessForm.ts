@@ -17,12 +17,12 @@ export const ContentBusinessForm: ContentBusinessFormState = {
             label: "",
             multiline: false,
             rows: 0,
-            required: false
+            required: false,
         },
         pricing: {
             caption: "",
             disclaimer: "",
             services: [],
-        }
+        },
     },
 };

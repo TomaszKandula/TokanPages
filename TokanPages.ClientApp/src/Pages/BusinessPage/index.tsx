@@ -26,7 +26,7 @@ export const BusinessPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <BusinessForm 
+            <BusinessForm
                 pt={15}
                 pb={30}
                 hasCaption={false}

@@ -90,8 +90,8 @@ export type { NotificationResponse } from "./NotificationsWeb/notificationRespon
 export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
 export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
 
-export type { 
-    IconDto, 
+export type {
+    IconDto,
     LinkDto,
     RowItemDto,
     TextItemDto,

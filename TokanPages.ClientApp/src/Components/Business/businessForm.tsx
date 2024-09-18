@@ -22,11 +22,11 @@ const formDefault: MessageFormProps = {
     description: "",
     techStack: [""],
     services: [""],
-}
+};
 
 const valueCleanUp = (input: string): string => {
     return input.replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "");
-}
+};
 
 const getTechSelection = (input?: TechItemsDto[]): string[] => {
     if (!input) {
@@ -41,7 +41,7 @@ const getTechSelection = (input?: TechItemsDto[]): string[] => {
     });
 
     return result;
-}
+};
 
 const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
     if (!input) {
@@ -54,7 +54,7 @@ const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
     });
 
     return result;
-}
+};
 
 export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     const dispatch = useDispatch();
@@ -104,7 +104,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
         if (hasNotStarted && hasProgress) {
             const techStack = getTechSelection(techStackItems);
-            const data = JSON.stringify({ 
+            const data = JSON.stringify({
                 ...form,
                 techStack: techStack,
                 services: services,
@@ -138,14 +138,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
                 buttonHandler();
             }
         },
-        [
-            form.company, 
-            form.description, 
-            form.email, 
-            form.firstName, 
-            form.lastName, 
-            form.phone,
-        ]
+        [form.company, form.description, form.email, form.firstName, form.lastName, form.phone]
     );
 
     const formHandler = React.useCallback(
@@ -169,36 +162,41 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         [form, form.phone]
     );
 
-    const techHandler = React.useCallback((item: TechItemsDto, isChecked: boolean) => {
-        if (!techStackItems) {
-            return;
-        }
+    const techHandler = React.useCallback(
+        (item: TechItemsDto, isChecked: boolean) => {
+            if (!techStackItems) {
+                return;
+            }
 
-        const data = techStackItems.slice();
-        const index = data?.indexOf(item);
-        data[index].isChecked = isChecked;
-        setTechStackItems(data);
+            const data = techStackItems.slice();
+            const index = data?.indexOf(item);
+            data[index].isChecked = isChecked;
+            setTechStackItems(data);
+        },
+        [techStackItems]
+    );
 
-    }, [techStackItems]);
-
-    const serviceHandler = React.useCallback((event: ReactMouseEvent, id: string) => {
-        event.preventDefault();
-        if (!services) {
-            const data = [];
-            data.push(id);
-            setServices(data);
-        } else {
-            const data = services.slice();
-            const index = data.indexOf(id);
-            if (!data.includes(id)) {
+    const serviceHandler = React.useCallback(
+        (event: ReactMouseEvent, id: string) => {
+            event.preventDefault();
+            if (!services) {
+                const data = [];
                 data.push(id);
                 setServices(data);
             } else {
-                data.splice(index, 1);
-                setServices(data);
+                const data = services.slice();
+                const index = data.indexOf(id);
+                if (!data.includes(id)) {
+                    data.push(id);
+                    setServices(data);
+                } else {
+                    data.splice(index, 1);
+                    setServices(data);
+                }
             }
-        }
-    }, [services]);
+        },
+        [services]
+    );
 
     const buttonHandler = React.useCallback(() => {
         const techStack = getTechSelection(techStackItems);
@@ -219,10 +217,9 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         }
 
         showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
-
     }, [form, content, services, techStackItems]);
 
-    return(
+    return (
         <BusinessFormView
             isLoading={businessForm.isLoading}
             caption={businessForm.content.caption}
@@ -256,7 +253,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             pricing={{
                 caption: businessForm.content.pricing.caption,
                 disclaimer: businessForm.content.pricing.disclaimer,
-                services: businessForm.content.pricing.services
+                services: businessForm.content.pricing.services,
             }}
             pt={props.pt}
             pb={props.pb}

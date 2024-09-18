@@ -20,4 +20,4 @@ export const formatPhoneNumber = (phoneNumberString: string): string | null => {
     }
 
     return null;
-}
+};
