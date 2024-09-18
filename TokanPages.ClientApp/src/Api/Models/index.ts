@@ -47,6 +47,7 @@ export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto } from "./Components/clientsContentDto";
 export type { ArticleContentDto } from "./Components/articleContentDto";
 export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
+export type { BusinessFormContentDto } from "./Components/contentBusinessForm";
 export type { ContactFormContentDto } from "./Components/contactFormContentDto";
 export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
 export type { FeaturedContentDto } from "./Components/featuredContentDto";
@@ -89,10 +90,16 @@ export type { NotificationResponse } from "./NotificationsWeb/notificationRespon
 export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
 export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
 
-export type { IconDto } from "./Components/Common/iconDto";
-export type { LinkDto } from "./Components/Common/linkDto";
-export type { RowItemDto } from "./Components/Common/rowItemDto";
-export type { TextItemDto } from "./Components/Common/textItemDto";
-export type { ContentDto } from "./Components/Common/contentDto";
+export type {
+    IconDto,
+    LinkDto,
+    RowItemDto,
+    TextItemDto,
+    ContentDto,
+    DescriptionItemDto,
+    PricingDto,
+    TechItemsDto,
+    ServiceItemDto,
+} from "./Components/Common/";
 
 export type { JWT } from "./Jwt";

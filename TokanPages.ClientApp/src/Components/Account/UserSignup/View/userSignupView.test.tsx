@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { UserSignupView } from "./userSignupView";
 
 describe("test account group component: userSignupView", () => {

@@ -14,6 +14,7 @@ export { ContentActivateAccountAction } from "./Content/contentActivateAccount";
 export { ContentArticleAction } from "./Content/contentArticle";
 export { ContentArticleFeaturesAction } from "./Content/contentArticleFeatures";
 export { ContentClientsAction } from "./Content/contentClients";
+export { ContentBusinessFormAction } from "./Content/contentBusinessForm";
 export { ContentContactFormAction } from "./Content/contentContactForm";
 export { ContentCookiesPromptAction } from "./Content/contentCookiesPrompt";
 export { ContentFeaturedAction } from "./Content/contentFeatured";

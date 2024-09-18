@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import * as Dom from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { ActivateAccount } from "./activateAccount";
 
 jest.mock("react-router-dom", () => ({

@@ -1,6 +1,6 @@
 import "../../../setupTests";
 import React from "react";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { RenderImage } from "./customImage";
 
 describe("test rendering image component", () => {

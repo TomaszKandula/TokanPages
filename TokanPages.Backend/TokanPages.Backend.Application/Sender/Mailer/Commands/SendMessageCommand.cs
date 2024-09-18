@@ -17,4 +17,6 @@ public class SendMessageCommand : IRequest<Unit>
     public string Subject { get; set; } = "";
 
     public string Message { get; set; } = "";
+
+    public string BusinessData { get; set; } = "";
 }

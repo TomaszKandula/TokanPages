@@ -1,6 +1,7 @@
 export { AccountPage } from "./AccountPage";
 export { ActivationPage } from "./ActivationPage";
 export { ArticlesPage } from "./ArticlesPage";
+export { BusinessPage } from "./BusinessPage";
 export { ContactPage } from "./ContactPage";
 export { MainPage } from "./MainPage";
 export { SigninPage } from "./SigninPage";

@@ -3,6 +3,7 @@ import { Colours } from "../../../Theme";
 
 export const HeaderStyle = makeStyles(theme => ({
     section: {
+        marginTop: 60,
         backgroundColor: Colours.colours.white,
     },
     section_container: {
@@ -64,6 +65,12 @@ export const HeaderStyle = makeStyles(theme => ({
         height: 700,
         display: "flex",
         flexDirection: "column",
+        [theme.breakpoints.up(1400)]: {
+            height: 800,
+        },
+        [theme.breakpoints.up(1900)]: {
+            height: 1000,
+        },
     },
     action_button: {
         "&:hover": {

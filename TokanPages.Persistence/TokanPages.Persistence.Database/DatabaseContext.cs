@@ -65,6 +65,8 @@ public class DatabaseContext : DbContext
     public virtual DbSet<ServiceBusMessage> ServiceBusMessages { get; set; }
     public virtual DbSet<SubscriptionPricing> SubscriptionPricing { get; set; }
 
+    public virtual DbSet<BusinessInquiry> BusinessInquiry { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { UserSignup } from "./userSignup";
 
 jest.mock("react-redux", () => ({
@@ -40,7 +40,7 @@ describe("test account group component: userSignup", () => {
                 <UserSignup />
             </Router>
         );
-        expect(useDispatchMock).toBeCalledTimes(1);
+        expect(useDispatchMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });
 });

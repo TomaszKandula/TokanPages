@@ -3,6 +3,7 @@ export interface FormsProps {
     textSignup: string;
     textPasswordReset: string;
     textUpdatePassword: string;
+    textBusinessForm: string;
     textContactForm: string;
     textCheckoutForm: string;
     textNewsletter: string;

@@ -33,7 +33,7 @@ const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     }
 
     return (
-        <Link to={props?.content?.action?.href} className={classes.link}>
+        <Link to={props?.content?.action?.href ?? ""} className={classes.link}>
             <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
                 {props?.isLoading ? <Skeleton variant="text" /> : props?.content?.action?.text}
             </Button>

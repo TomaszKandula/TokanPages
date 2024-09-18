@@ -1,10 +1,9 @@
 import "../../../../setupTests";
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import { AuthenticateUserResultDto, UserInfoProps } from "../../../../Api/Models";
 import { ApplicationUserInfoView } from "../View/applicationUserInfoView";
 
-//TODO: use render
 describe("test view component for application user info", () => {
     it("should render correctly view component with passed props.", () => {
         const userInfo: UserInfoProps = {
@@ -51,8 +50,15 @@ describe("test view component for application user info", () => {
             ],
         };
 
-        const html = shallow(
-            <ApplicationUserInfoView state={true} content={userInfo} data={testData} closeHandler={jest.fn()} />
+        const html = render(
+            <ApplicationUserInfoView
+                state={true}
+                content={userInfo}
+                data={testData}
+                disablePortal={true}
+                hideBackdrop={true}
+                closeHandler={jest.fn()}
+            />
         );
 
         expect(html).toMatchSnapshot();
