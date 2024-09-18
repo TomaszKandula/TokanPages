@@ -82,7 +82,7 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
                             tabIndex={-1}
                             disableRipple={true}
                             inputProps={{ "aria-labelledby": `key-${index}` }}
-                    />
+                        />
                     </ListItemIcon>
                     <ListItemText id={value.key.toString()} primary={value.value} />
                 </ListItem>
@@ -121,9 +121,15 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
         <section className={classes.section}>
             <Container className={classes.container}>
                 <Box pt={15} pb={30}>
-                    <Box textAlign="center" data-aos="fade-down">
+                    <Box textAlign="center">
                         <Typography gutterBottom={true} className={classes.large_caption}>
-                            {props.hasCaption ? props.caption?.toUpperCase() : <></>}
+                            {props.hasCaption 
+                            ? <>
+                                {props.isLoading 
+                                ? <Skeleton variant="rect" width="100%" height="60px" /> 
+                                : props.caption?.toUpperCase()}
+                            </> 
+                            : <></>}
                         </Typography>
                     </Box>
                     <Card elevation={0} className={classes.card}>
@@ -131,8 +137,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <>
-                                        <BusinessCenterIcon className={classes.main_icon} />
-                                        <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                        {props.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="60px" /> 
+                                        : <>
+                                            <BusinessCenterIcon className={classes.main_icon} />
+                                            <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                        </>}
                                     </>
                                 ) : (
                                     <></>
@@ -140,7 +150,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             </Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -160,7 +170,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -180,7 +190,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -200,7 +210,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -220,7 +230,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -240,7 +250,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                     </div>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -262,13 +272,15 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Box mt={2} mb={1}>
-                                        <Typography className={classes.header}>
+                                        {props.isLoading 
+                                        ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                        : <Typography className={classes.header}>
                                             {props.techLabel}
-                                        </Typography>
+                                        </Typography>}
                                     </Box>
-                                    <div data-aos="zoom-in">
+                                    <div>
                                         {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
+                                            <Skeleton variant="rect" width="100%" height="100px" />
                                         ) : (
                                             <TechStackList list={props.techItems} handler={props.techHandler} />
                                         )}
@@ -277,12 +289,16 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                             </Grid>
                             <Box mt={2} mb={4}>
                                 <Box mt={1} mb={4}>
-                                    <Typography component="span" className={classes.header}>
+                                    {props.isLoading 
+                                    ? <Skeleton variant="rect" width="100%" height="45px" /> 
+                                    : <Typography component="span" className={classes.header}>
                                         <ReactHtmlParser html={props.pricing.caption} />
-                                    </Typography>
+                                    </Typography>}
                                 </Box>
                                 <Grid container spacing={3}>
-                                    {props.pricing.services.map((value: ServiceItemDto, index: number) => (
+                                    {props.isLoading 
+                                    ? <Skeleton variant="rect" width="100%" height="100px" />
+                                    : props.pricing.services.map((value: ServiceItemDto, index: number) => (
                                         <ServiceItemCard 
                                             key={index} 
                                             value={value} 
@@ -293,12 +309,16 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                 </Grid>
                             </Box>
                             <Box mb={10} className={classes.info_box}>
-                                <InfoIcon className={classes.info_icon} />
-                                <Typography component="span">
-                                    <ReactHtmlParser html={props.pricing.disclaimer} />
-                                </Typography>
+                                {props.isLoading 
+                                ? <Skeleton variant="rect" width="100%" height="45px" />
+                                : <>
+                                    <InfoIcon className={classes.info_icon} />
+                                    <Typography component="span">
+                                        <ReactHtmlParser html={props.pricing.disclaimer} />
+                                    </Typography>
+                                </>}
                             </Box>
-                            <Box my={5} data-aos="fade-up">
+                            <Box my={5}>
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
