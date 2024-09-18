@@ -80,7 +80,7 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
     return (
         <List>
             {props.list.map((value: TechItemsDto, index: number) => (
-                <ListItem key={index} role={undefined} button className={classes.list_item}>
+                <ListItem disabled={props.isDisabled} key={index} role={undefined} button className={classes.list_item}>
                     <ListItemIcon>
                         <VioletCheckbox
                             id={`tech-${index}`}
@@ -104,12 +104,16 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
     const classes = BusinessFormStyle();
     const isSelected = props.services.includes(props.value.id) ?? false;
     const style = isSelected ? classes.selected : classes.unselected;
+    const disabled = props.isDisabled ? classes.disabled : classes.enabled;
     return (
         <Grid item xs={12} sm={4}>
             <Paper
                 elevation={0}
-                className={`${classes.paper} ${style}`}
-                onClick={(event: ReactMouseEvent) => props.handler(event, props.value.id)}
+                className={`${classes.paper} ${style} ${disabled}`}
+                onClick={(event: ReactMouseEvent) => {
+                    if (props.isDisabled) { return; }
+                    props.handler(event, props.value.id);
+                }}
             >
                 <Typography component="span" className={classes.pricing_text}>
                     <ReactHtmlParser html={props.value.text} />
@@ -177,6 +181,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 id="company"
                                                 name="company"
                                                 variant="outlined"
+                                                disabled={props.progress}
                                                 inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -197,6 +202,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 id="firstName"
                                                 name="firstName"
                                                 variant="outlined"
+                                                disabled={props.progress}
                                                 inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -217,6 +223,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 id="lastName"
                                                 name="lastName"
                                                 variant="outlined"
+                                                disabled={props.progress}
                                                 inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -237,6 +244,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 id="email"
                                                 name="email"
                                                 variant="outlined"
+                                                disabled={props.progress}
                                                 inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -257,6 +265,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 id="phone"
                                                 name="phone"
                                                 variant="outlined"
+                                                disabled={props.progress}
                                                 inputProps={{ maxLength: 17 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
@@ -277,6 +286,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                                 id="description"
                                                 name="description"
                                                 variant="outlined"
+                                                disabled={props.progress}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.description.text}
@@ -299,7 +309,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="100px" />
                                         ) : (
-                                            <TechStackList list={props.techItems} handler={props.techHandler} />
+                                            <TechStackList isDisabled={props.progress} list={props.techItems} handler={props.techHandler} />
                                         )}
                                     </div>
                                 </Grid>
@@ -322,6 +332,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                             <ServiceItemCard
                                                 key={index}
                                                 value={value}
+                                                isDisabled={props.progress}
                                                 handler={props.serviceHandler}
                                                 services={props.serviceSelection}
                                             />

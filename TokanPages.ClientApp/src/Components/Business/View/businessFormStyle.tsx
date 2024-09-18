@@ -60,10 +60,15 @@ export const BusinessFormStyle = makeStyles(() => ({
         borderColor: Colours.colours.violet,
         backgroundColor: Colours.colours.white,
     },
+    disabled: {
+        cursor: "wait",
+    },
+    enabled: {
+        cursor: "pointer",
+    },
     paper: {
         minHeight: 120,
         padding: 15,
-        cursor: "pointer",
         "&:hover": {
             boxShadow: "0 4px 4px 0 rgb(0 0 0 / 10%)",
         },

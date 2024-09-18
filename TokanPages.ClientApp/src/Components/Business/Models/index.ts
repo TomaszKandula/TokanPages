@@ -13,11 +13,13 @@ export interface MessageFormProps {
 }
 
 export interface TechStackListProps {
+    isDisabled: boolean;
     list: TechItemsDto[];
     handler: (value: TechItemsDto, isChecked: boolean) => void;
 }
 
 export interface ServiceItemCardProps {
+    isDisabled: boolean;
     key: number;
     value: ServiceItemDto;
     handler: (event: ReactMouseEvent, id: string) => void;
