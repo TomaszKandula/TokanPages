@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { Author } from "../../../../Shared/Components/RenderContent/Models";
 import { TextItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";

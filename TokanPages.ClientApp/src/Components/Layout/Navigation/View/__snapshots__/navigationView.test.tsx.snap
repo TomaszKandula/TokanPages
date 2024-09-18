@@ -1,231 +1,518 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test component: featuresView should render correctly '<NavigationView />' when content is loaded. 1`] = `
-<header
-  class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-3 mui-fixed MuiPaper-elevation0"
->
-  <div
-    class="makeStyles-nav_large_screen-9"
-  >
-    <div
-      class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-32 MuiToolbar-gutters"
-    >
-      <div
-        class="MuiBox-root MuiBox-root-49 makeStyles-nav_menu-35 makeStyles-nav_left-38"
-      >
-        <a
-          class="makeStyles-app_logo_small-25"
-          href="/"
-        >
-          <img
-            alt=""
-            class="makeStyles-app_left_logo-28"
-            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
-          />
-        </a>
-      </div>
-      <div
-        class="MuiBox-root MuiBox-root-50 makeStyles-nav_items-37 makeStyles-nav_centre-40"
-      >
-        <ul
-          class="MuiList-root makeStyles-list-51 MuiList-padding"
-        />
-      </div>
-      <div
-        class="MuiBox-root MuiBox-root-53 makeStyles-nav_items-37 makeStyles-nav_right-39"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <header
+        class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-3 mui-fixed MuiPaper-elevation0"
       >
         <div
-          class="MuiBox-root MuiBox-root-78 makeStyles-languagesBox-72"
+          class="makeStyles-nav_large_screen-9"
         >
           <div
-            class="MuiFormControl-root makeStyles-languages_control-73"
+            class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-32 MuiToolbar-gutters"
           >
             <div
-              class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-74 MuiInputBase-formControl MuiInput-formControl"
+              class="MuiBox-root MuiBox-root-49 makeStyles-nav_menu-35 makeStyles-nav_left-38"
+            >
+              <a
+                class="makeStyles-app_logo_small-25"
+                href="/"
+              >
+                <img
+                  alt=""
+                  class="makeStyles-app_left_logo-28"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+                />
+              </a>
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-50 makeStyles-nav_items-37 makeStyles-nav_centre-40"
+            >
+              <ul
+                class="MuiList-root makeStyles-list-51 MuiList-padding"
+              />
+            </div>
+            <div
+              class="MuiBox-root MuiBox-root-53 makeStyles-nav_items-37 makeStyles-nav_right-39"
             >
               <div
-                aria-haspopup="listbox"
-                class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-                role="button"
-                tabindex="0"
+                class="MuiBox-root MuiBox-root-78 makeStyles-languagesBox-72"
               >
                 <div
-                  class="makeStyles-languages_wrapper-96"
+                  class="MuiFormControl-root makeStyles-languages_control-73"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-74 MuiInputBase-formControl MuiInput-formControl"
+                  >
+                    <div
+                      aria-haspopup="listbox"
+                      class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <div
+                        class="makeStyles-languages_wrapper-96"
+                      >
+                        <img
+                          alt=""
+                          class="makeStyles-flag_image-102"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                        />
+                        <div>
+                          ENG
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      aria-hidden="true"
+                      class="MuiSelect-nativeInput"
+                      tabindex="-1"
+                      value="eng"
+                    />
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSelect-icon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7 10l5 5 5-5z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="makeStyles-user_avatar-125"
+              >
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                    />
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="makeStyles-nav_small_screen-10"
+        >
+          <div
+            class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-134 MuiToolbar-gutters"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
+            >
+              <div
+                class="MuiGrid-root makeStyles-nav_menu-137 makeStyles-nav_left-140 MuiGrid-item MuiGrid-grid-xs-true"
+              >
+                <button
+                  aria-label="menu"
+                  class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-162 MuiIconButton-colorInherit"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div
+                class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_centre-142 MuiGrid-item MuiGrid-grid-xs-true"
+              >
+                <a
+                  class="makeStyles-app_logo_small-127"
+                  href="/"
                 >
                   <img
                     alt=""
-                    class="makeStyles-flag_image-102"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                    class="makeStyles-app_full_logo-131"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                   />
-                  <div>
-                    ENG
-                  </div>
-                </div>
+                </a>
+                <a
+                  class="makeStyles-app_logo_large-128"
+                  href="/"
+                />
               </div>
-              <input
-                aria-hidden="true"
-                class="MuiSelect-nativeInput"
-                tabindex="-1"
-                value="eng"
-              />
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSelect-icon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div
-          class="makeStyles-user_avatar-125"
-        >
-          <button
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
               <div
-                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
-              />
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="makeStyles-nav_small_screen-10"
-  >
-    <div
-      class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-134 MuiToolbar-gutters"
-    >
-      <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
-      >
-        <div
-          class="MuiGrid-root makeStyles-nav_menu-137 makeStyles-nav_left-140 MuiGrid-item MuiGrid-grid-xs-true"
-        >
-          <button
-            aria-label="menu"
-            class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-162 MuiIconButton-colorInherit"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
-        <div
-          class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_centre-142 MuiGrid-item MuiGrid-grid-xs-true"
-        >
-          <a
-            class="makeStyles-app_logo_small-127"
-            href="/"
-          >
-            <img
-              alt=""
-              class="makeStyles-app_full_logo-131"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
-            />
-          </a>
-          <a
-            class="makeStyles-app_logo_large-128"
-            href="/"
-          />
-        </div>
-        <div
-          class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_right-141 MuiGrid-item MuiGrid-grid-xs-true"
-        >
-          <div
-            class="MuiBox-root MuiBox-root-199 makeStyles-languagesBox-193"
-          >
-            <div
-              class="MuiFormControl-root makeStyles-languages_control-194"
-            >
-              <div
-                class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-195 MuiInputBase-formControl MuiInput-formControl"
+                class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_right-141 MuiGrid-item MuiGrid-grid-xs-true"
               >
                 <div
-                  aria-haspopup="listbox"
-                  class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
-                  role="button"
-                  tabindex="0"
+                  class="MuiBox-root MuiBox-root-199 makeStyles-languagesBox-193"
                 >
                   <div
-                    class="makeStyles-languages_wrapper-217"
+                    class="MuiFormControl-root makeStyles-languages_control-194"
                   >
-                    <img
-                      alt=""
-                      class="makeStyles-flag_image-223"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
-                    />
-                    <div>
-                      ENG
+                    <div
+                      class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-195 MuiInputBase-formControl MuiInput-formControl"
+                    >
+                      <div
+                        aria-haspopup="listbox"
+                        class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <div
+                          class="makeStyles-languages_wrapper-217"
+                        >
+                          <img
+                            alt=""
+                            class="makeStyles-flag_image-223"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                          />
+                          <div>
+                            ENG
+                          </div>
+                        </div>
+                      </div>
+                      <input
+                        aria-hidden="true"
+                        class="MuiSelect-nativeInput"
+                        tabindex="-1"
+                        value="eng"
+                      />
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSelect-icon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
                     </div>
                   </div>
                 </div>
-                <input
-                  aria-hidden="true"
-                  class="MuiSelect-nativeInput"
-                  tabindex="-1"
-                  value="eng"
-                />
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSelect-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <div
+                  class="makeStyles-user_avatar-246"
                 >
-                  <path
-                    d="M7 10l5 5 5-5z"
-                  />
-                </svg>
+                  <button
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiIconButton-label"
+                    >
+                      <div
+                        class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                      />
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </header>
+    </div>
+  </body>,
+  "container": <div>
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-3 mui-fixed MuiPaper-elevation0"
+    >
+      <div
+        class="makeStyles-nav_large_screen-9"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-32 MuiToolbar-gutters"
+        >
           <div
-            class="makeStyles-user_avatar-246"
+            class="MuiBox-root MuiBox-root-49 makeStyles-nav_menu-35 makeStyles-nav_left-38"
           >
-            <button
-              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-              tabindex="0"
-              type="button"
+            <a
+              class="makeStyles-app_logo_small-25"
+              href="/"
             >
-              <span
-                class="MuiIconButton-label"
+              <img
+                alt=""
+                class="makeStyles-app_left_logo-28"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+              />
+            </a>
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-50 makeStyles-nav_items-37 makeStyles-nav_centre-40"
+          >
+            <ul
+              class="MuiList-root makeStyles-list-51 MuiList-padding"
+            />
+          </div>
+          <div
+            class="MuiBox-root MuiBox-root-53 makeStyles-nav_items-37 makeStyles-nav_right-39"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-78 makeStyles-languagesBox-72"
+            >
+              <div
+                class="MuiFormControl-root makeStyles-languages_control-73"
               >
                 <div
-                  class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                  class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-74 MuiInputBase-formControl MuiInput-formControl"
+                >
+                  <div
+                    aria-haspopup="listbox"
+                    class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <div
+                      class="makeStyles-languages_wrapper-96"
+                    >
+                      <img
+                        alt=""
+                        class="makeStyles-flag_image-102"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                      />
+                      <div>
+                        ENG
+                      </div>
+                    </div>
+                  </div>
+                  <input
+                    aria-hidden="true"
+                    class="MuiSelect-nativeInput"
+                    tabindex="-1"
+                    value="eng"
+                  />
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSelect-icon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7 10l5 5 5-5z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div
+              class="makeStyles-user_avatar-125"
+            >
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <div
+                    class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                  />
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
                 />
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
+      <div
+        class="makeStyles-nav_small_screen-10"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-134 MuiToolbar-gutters"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
+          >
+            <div
+              class="MuiGrid-root makeStyles-nav_menu-137 makeStyles-nav_left-140 MuiGrid-item MuiGrid-grid-xs-true"
+            >
+              <button
+                aria-label="menu"
+                class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-162 MuiIconButton-colorInherit"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiIconButton-label"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div
+              class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_centre-142 MuiGrid-item MuiGrid-grid-xs-true"
+            >
+              <a
+                class="makeStyles-app_logo_small-127"
+                href="/"
+              >
+                <img
+                  alt=""
+                  class="makeStyles-app_full_logo-131"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+                />
+              </a>
+              <a
+                class="makeStyles-app_logo_large-128"
+                href="/"
+              />
+            </div>
+            <div
+              class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_right-141 MuiGrid-item MuiGrid-grid-xs-true"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-199 makeStyles-languagesBox-193"
+              >
+                <div
+                  class="MuiFormControl-root makeStyles-languages_control-194"
+                >
+                  <div
+                    class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-195 MuiInputBase-formControl MuiInput-formControl"
+                  >
+                    <div
+                      aria-haspopup="listbox"
+                      class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiInputBase-input MuiInput-input"
+                      role="button"
+                      tabindex="0"
+                    >
+                      <div
+                        class="makeStyles-languages_wrapper-217"
+                      >
+                        <img
+                          alt=""
+                          class="makeStyles-flag_image-223"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                        />
+                        <div>
+                          ENG
+                        </div>
+                      </div>
+                    </div>
+                    <input
+                      aria-hidden="true"
+                      class="MuiSelect-nativeInput"
+                      tabindex="-1"
+                      value="eng"
+                    />
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSelect-icon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M7 10l5 5 5-5z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="makeStyles-user_avatar-246"
+              >
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiIconButton-label"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                    />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

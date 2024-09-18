@@ -1,81 +1,389 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test component: documentView should render correctly '<DocumentView />' when policy content is loaded. 1`] = `
-<section
-  class="makeStyles-section-1"
->
-  <div
-    class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
-  >
-    <span
-      class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-11 MuiTypography-body1"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
+      >
+        <div
+          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        >
+          <span
+            class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-11 MuiTypography-body1"
+          >
+            <div>
+              <p>
+                Policy text
+              </p>
+            </div>
+          </span>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
     >
-      <div>
-        <p>
-          Policy text
-        </p>
+      <div
+        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+      >
+        <span
+          class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-11 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Policy text
+            </p>
+          </div>
+        </span>
       </div>
-    </span>
-  </div>
-</section>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when showcase content is loaded. 1`] = `
-<section
-  class="makeStyles-section-34"
->
-  <div
-    class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
-  >
-    <span
-      class="MuiTypography-root makeStyles-common-38 makeStyles-paragraph-44 MuiTypography-body1"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-34"
+      >
+        <div
+          class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
+        >
+          <span
+            class="MuiTypography-root makeStyles-common-38 makeStyles-paragraph-44 MuiTypography-body1"
+          >
+            <div>
+              <p>
+                Showcase text
+              </p>
+            </div>
+          </span>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-34"
     >
-      <div>
-        <p>
-          Showcase text
-        </p>
+      <div
+        class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
+      >
+        <span
+          class="MuiTypography-root makeStyles-common-38 makeStyles-paragraph-44 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Showcase text
+            </p>
+          </div>
+        </span>
       </div>
-    </span>
-  </div>
-</section>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when story content is loaded. 1`] = `
-<section
-  class="makeStyles-section-23"
->
-  <div
-    class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
-  >
-    <span
-      class="MuiTypography-root makeStyles-common-27 makeStyles-paragraph-33 MuiTypography-body1"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-23"
+      >
+        <div
+          class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
+        >
+          <span
+            class="MuiTypography-root makeStyles-common-27 makeStyles-paragraph-33 MuiTypography-body1"
+          >
+            <div>
+              <p>
+                Story text
+              </p>
+            </div>
+          </span>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-23"
     >
-      <div>
-        <p>
-          Story text
-        </p>
+      <div
+        class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
+      >
+        <span
+          class="MuiTypography-root makeStyles-common-27 makeStyles-paragraph-33 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Story text
+            </p>
+          </div>
+        </span>
       </div>
-    </span>
-  </div>
-</section>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`test component: documentView should render correctly '<DocumentView />' when terms content is loaded. 1`] = `
-<section
-  class="makeStyles-section-12"
->
-  <div
-    class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
-  >
-    <span
-      class="MuiTypography-root makeStyles-common-16 makeStyles-paragraph-22 MuiTypography-body1"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-12"
+      >
+        <div
+          class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
+        >
+          <span
+            class="MuiTypography-root makeStyles-common-16 makeStyles-paragraph-22 MuiTypography-body1"
+          >
+            <div>
+              <p>
+                Terms text
+              </p>
+            </div>
+          </span>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-12"
     >
-      <div>
-        <p>
-          Terms text
-        </p>
+      <div
+        class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
+      >
+        <span
+          class="MuiTypography-root makeStyles-common-16 makeStyles-paragraph-22 MuiTypography-body1"
+        >
+          <div>
+            <p>
+              Terms text
+            </p>
+          </div>
+        </span>
       </div>
-    </span>
-  </div>
-</section>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

@@ -6,7 +6,7 @@ export const PdfViewerStyle = makeStyles(() => ({
         backgroundColor: Colours.colours.white,
     },
     container: {
-        maxWidth: 700,
+        maxWidth: 1200,
     },
     header: {
         color: Colours.colours.black,
@@ -21,9 +21,11 @@ export const PdfViewerStyle = makeStyles(() => ({
         justifyContent: "space-around",
     },
     header_pages: {
+        fontSize: 16,
         alignSelf: "center",
     },
     header_buttons: {
+        fontSize: 26,
         alignSelf: "center",
         verticalAlign: "middle",
         marginLeft: 5,

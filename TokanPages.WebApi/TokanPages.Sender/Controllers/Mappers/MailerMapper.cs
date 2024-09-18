@@ -23,7 +23,8 @@ public static class MailerMapper
         EmailFrom = model.EmailFrom,
         EmailTos = model.EmailTos,
         Subject = model.Subject,
-        Message = model.Message
+        Message = model.Message,
+        BusinessData = model.BusinessData
     };
 
     /// <summary>

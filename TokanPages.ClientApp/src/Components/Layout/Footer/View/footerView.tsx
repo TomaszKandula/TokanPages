@@ -29,7 +29,7 @@ const SetTermsLink = (props: Properties): JSX.Element => {
     }
 
     return (
-        <Link to={props?.terms?.href} className={classes.links}>
+        <Link to={props?.terms?.href ?? ""} className={classes.links}>
             {props?.terms?.text}
         </Link>
     );
@@ -43,7 +43,7 @@ const SetPolicyLink = (props: Properties): JSX.Element => {
     }
 
     return (
-        <Link to={props?.policy?.href} className={classes.links}>
+        <Link to={props?.policy?.href ?? ""} className={classes.links}>
             {props?.policy?.text}
         </Link>
     );

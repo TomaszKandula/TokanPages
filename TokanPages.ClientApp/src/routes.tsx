@@ -25,6 +25,7 @@ import {
     GuitarPage,
     PhotographyPage,
     PdfViewerPage,
+    BusinessPage,
 } from "./Pages";
 
 interface PageProps {
@@ -40,6 +41,7 @@ const pages: PageProps[] = [
     { path: "/articles", page: <ArticlesPage /> },
     { path: "/showcase", page: <ShowcasePage /> },
     { path: "/document", page: <PdfViewerPage /> },
+    { path: "/business", page: <BusinessPage /> },
     { path: "/leisure/bicycle", page: <BicyclePage /> },
     { path: "/leisure/electronics", page: <ElectronicsPage /> },
     { path: "/leisure/football", page: <FootballPage /> },

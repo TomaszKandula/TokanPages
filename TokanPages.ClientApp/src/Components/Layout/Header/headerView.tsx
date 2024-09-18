@@ -22,7 +22,7 @@ const OpenLinkButton = (props: ContentHeaderState): JSX.Element => {
     const classes = HeaderStyle();
 
     return (
-        <Link to={props?.content?.resume?.href} className={classes.action_link}>
+        <Link to={props?.content?.resume?.href ?? ""} className={classes.action_link}>
             <Button variant="contained" className={classes.resume_button}>
                 {props?.content?.resume?.text}
             </Button>
@@ -42,7 +42,7 @@ const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     }
 
     return (
-        <Link to={props?.content?.action?.href} className={classes.action_link}>
+        <Link to={props?.content?.action?.href ?? ""} className={classes.action_link}>
             <Button variant="contained" className={classes.action_button}>
                 {props?.content?.action?.text}
             </Button>

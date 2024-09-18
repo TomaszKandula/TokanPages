@@ -4,7 +4,7 @@ import * as Redux from "react-redux";
 import * as Router from "react-router";
 import * as Dom from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { UpdatePassword } from "./updatePassword";
 
 jest.mock("react-router", () => ({

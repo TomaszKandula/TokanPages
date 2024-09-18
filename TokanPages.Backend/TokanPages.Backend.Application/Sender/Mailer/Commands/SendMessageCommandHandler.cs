@@ -38,15 +38,6 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var dateTime = baseDateTime.ToString(CultureInfo.InvariantCulture);
 
-        var templateValues = new Dictionary<string, string>
-        {
-            { "{FIRST_NAME}", request.FirstName },
-            { "{LAST_NAME}", request.LastName },
-            { "{EMAIL_ADDRESS}", request.UserEmail },
-            { "{USER_MSG}", request.Message },
-            { "{DATE_TIME}", dateTime }
-        };
-
         var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
         var contactForm = _configuration.GetValue<string>("Paths_Templates_ContactForm");
 
@@ -63,18 +54,47 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
             IsConsumed = false
         };
 
-        var payload = new SendMessageConfiguration
+        var templateValues = new Dictionary<string, string>
+        {
+            { "{FIRST_NAME}", request.FirstName },
+            { "{LAST_NAME}", request.LastName },
+            { "{EMAIL_ADDRESS}", request.UserEmail },
+            { "{DATE_TIME}", dateTime }
+        };
+
+        var message = new SendMessageConfiguration
         {
             MessageId = messageId,
             From = contactAddress,
             To = new List<string> { contactAddress },
-            Subject = $"New user message from {request.FirstName}",
-            Body = template.MakeBody(templateValues)
+            Subject = $"New user message from {request.FirstName}"
         };
+
+        if (!string.IsNullOrWhiteSpace(request.BusinessData))
+        {
+            var payloadId = Guid.NewGuid();
+            templateValues.Add("{USER_MSG}", $"New business inquiry registered with the System ID: {payloadId}.");
+            message.Subject = "New business inquiry";
+            var businessInquiry = new BusinessInquiry
+            {
+                Id = payloadId,
+                JsonData = request.BusinessData,
+                CreatedAt = _dateTimeService.Now,
+                CreatedBy = Guid.Empty
+            };
+
+            await DatabaseContext.BusinessInquiry.AddAsync(businessInquiry, cancellationToken);
+        }
+        else
+        {
+            templateValues.Add("{USER_MSG}", request.Message);
+        }
+
+        message.Body = template.MakeBody(templateValues);
 
         await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
-        await _emailSenderService.SendToServiceBus(payload, cancellationToken);
+        await _emailSenderService.SendToServiceBus(message, cancellationToken);
 
         return Unit.Value;
     }

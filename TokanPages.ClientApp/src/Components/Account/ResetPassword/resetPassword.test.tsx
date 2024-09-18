@@ -3,7 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import * as Router from "react-router";
 import { BrowserRouter } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { ResetPassword } from "./resetPassword";
 
 jest.mock("react-router", () => ({

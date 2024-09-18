@@ -21,6 +21,8 @@ interface ApplicationUserInfoViewProps {
     state: boolean;
     content: UserInfoProps;
     data: AuthenticateUserResultDto;
+    disablePortal?: boolean;
+    hideBackdrop?: boolean;
     closeHandler: () => void;
 }
 
@@ -55,6 +57,8 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): JS
             maxWidth="xs"
             open={props.state}
             onClose={props.closeHandler}
+            disablePortal={props.disablePortal}
+            hideBackdrop={props.hideBackdrop}
             aria-labelledby="dialog-title"
             aria-describedby="dialog-description"
         >

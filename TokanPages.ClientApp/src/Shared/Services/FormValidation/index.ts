@@ -6,6 +6,7 @@ export type { SignupFormInput } from "./Abstractions/SignupFormInput";
 export type { UpdateFormInput } from "./Abstractions/UpdateFormInput";
 export type { AccountFormInput } from "./Abstractions/AccountFormInput";
 export type { PasswordFormInput } from "./Abstractions/PasswordFormInput";
+export type { BusinessFormInput } from "./Abstractions/BusinessFormInput";
 
 export { ValidateContactForm } from "./ValidateContactForm/validateContactForm";
 export { ValidateEmailForm } from "./ValidateEmailForm/validateEmailForm";
@@ -15,3 +16,4 @@ export { ValidateSignupForm } from "./ValidateSignupForm/validateSignupForm";
 export { ValidateUpdateForm } from "./ValidateUpdateForm/validateUpdateForm";
 export { ValidateAccountForm } from "./ValidateAccountForm/validateAccountForm";
 export { ValidatePasswordForm } from "./ValidatePasswordForm/validatePasswordForm";
+export { ValidateBusinessForm } from "./ValidateBusinessForm/validateBusinessForm";

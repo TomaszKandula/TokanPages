@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { FeaturedView } from "./featuredView";
 
 jest.mock("react-redux", () => ({

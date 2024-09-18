@@ -6,4 +6,5 @@ export interface SendMessageDto {
     emailTos: string[];
     subject: string;
     message: string;
+    businessData?: string;
 }

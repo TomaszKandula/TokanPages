@@ -147,6 +147,33 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.BusinessInquiry", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("JsonData")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BusinessInquiry");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.HttpRequests", b =>
                 {
                     b.Property<Guid>("Id")

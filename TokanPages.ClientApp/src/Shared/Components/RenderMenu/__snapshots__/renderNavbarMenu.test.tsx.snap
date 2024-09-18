@@ -1,218 +1,455 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test render function 'RenderNavbarMenu' should return 'Cannot render content.' when called with empty array of items. 1`] = `
-<div>
-  Cannot render content.
-</div>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body />,
+  "container": <div />,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`test render function 'RenderNavbarMenu' should return 'Cannot render content.' when called with items undefined. 1`] = `
-<div>
-  Cannot render content.
-</div>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        Cannot render content.
+      </div>
+    </div>
+    <div>
+      <div>
+        Cannot render content.
+      </div>
+    </div>
+    <div>
+      <ul
+        class="MuiList-root makeStyles-list-1 MuiList-padding"
+      >
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/showcase"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Showcase
+          </div>
+        </a>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/articles"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Tech Articles
+          </div>
+        </a>
+        <div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              <div
+                class="MuiListItemText-root makeStyles-list_item_text-11"
+              >
+                My interests
+              </div>
+            </span>
+          </button>
+        </div>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/contact"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Contact
+          </div>
+        </a>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/about"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            About
+          </div>
+        </a>
+        <div
+          class="makeStyles-list_item_pipe-2"
+        >
+           
+        </div>
+        <div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              <div
+                class="MuiListItemText-root makeStyles-list_item_text-11"
+              >
+                Account
+              </div>
+            </span>
+          </button>
+        </div>
+      </ul>
+    </div>
+    <div>
+      <ul
+        class="MuiList-root makeStyles-list-1 MuiList-padding"
+      >
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/showcase"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Showcase
+          </div>
+        </a>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/articles"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Tech Articles
+          </div>
+        </a>
+        <div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              <div
+                class="MuiListItemText-root makeStyles-list_item_text-11"
+              >
+                My interests
+              </div>
+            </span>
+          </button>
+        </div>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/contact"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Contact
+          </div>
+        </a>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/about"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            About
+          </div>
+        </a>
+        <div
+          class="makeStyles-list_item_pipe-2"
+        >
+           
+        </div>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/signin"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Sign in
+          </div>
+        </a>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
+          href="/signup"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root makeStyles-list_item_text-5"
+          >
+            Sign up
+          </div>
+        </a>
+      </ul>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      Cannot render content.
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`test render function 'RenderNavbarMenu' should return rendered list when items are provided and user is anonymous. 1`] = `
-<ul
-  class="MuiList-root makeStyles-list-1 MuiList-padding"
->
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/showcase"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Showcase
-    </div>
-  </a>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/articles"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Tech Articles
-    </div>
-  </a>
-  <div>
-    <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiListItemText-root makeStyles-list_item_text-11"
-        >
-          My interests
-        </div>
-      </span>
-    </button>
-  </div>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/contact"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Contact
-    </div>
-  </a>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/about"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      About
-    </div>
-  </a>
-  <div
-    class="makeStyles-list_item_pipe-2"
-  >
-     
-  </div>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/signin"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Sign in
-    </div>
-  </a>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/signup"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Sign up
-    </div>
-  </a>
-</ul>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body />,
+  "container": <div />,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`test render function 'RenderNavbarMenu' should return rendered list when items are provided and user is logged. 1`] = `
-<ul
-  class="MuiList-root makeStyles-list-1 MuiList-padding"
->
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/showcase"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Showcase
-    </div>
-  </a>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/articles"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Tech Articles
-    </div>
-  </a>
-  <div>
-    <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiListItemText-root makeStyles-list_item_text-11"
-        >
-          My interests
-        </div>
-      </span>
-    </button>
-  </div>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/contact"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      Contact
-    </div>
-  </a>
-  <a
-    aria-disabled="false"
-    class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-4 MuiListItem-gutters MuiListItem-button"
-    href="/about"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="MuiListItemText-root makeStyles-list_item_text-5"
-    >
-      About
-    </div>
-  </a>
-  <div
-    class="makeStyles-list_item_pipe-2"
-  >
-     
-  </div>
-  <div>
-    <button
-      class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiButton-label"
-      >
-        <div
-          class="MuiListItemText-root makeStyles-list_item_text-11"
-        >
-          Account
-        </div>
-      </span>
-    </button>
-  </div>
-</ul>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body />,
+  "container": <div />,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

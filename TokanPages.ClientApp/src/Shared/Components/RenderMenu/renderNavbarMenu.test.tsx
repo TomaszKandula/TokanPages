@@ -1,7 +1,7 @@
 import "../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { render } from "enzyme";
+import { render } from "@testing-library/react";
 import { RenderNavbarMenu } from "./renderNavbarMenu";
 import { Item } from "./Models";
 
