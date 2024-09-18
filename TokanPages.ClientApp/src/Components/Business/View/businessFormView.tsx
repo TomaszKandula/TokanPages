@@ -111,7 +111,9 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
                 elevation={0}
                 className={`${classes.paper} ${style} ${disabled}`}
                 onClick={(event: ReactMouseEvent) => {
-                    if (props.isDisabled) { return; }
+                    if (props.isDisabled) {
+                        return;
+                    }
                     props.handler(event, props.value.id);
                 }}
             >
@@ -309,7 +311,11 @@ export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="100px" />
                                         ) : (
-                                            <TechStackList isDisabled={props.progress} list={props.techItems} handler={props.techHandler} />
+                                            <TechStackList
+                                                isDisabled={props.progress}
+                                                list={props.techItems}
+                                                handler={props.techHandler}
+                                            />
                                         )}
                                     </div>
                                 </Grid>
