@@ -9,8 +9,9 @@ import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
-import { BusinessFormProps, MessageFormProps, TechStackItem } from "./Models";
+import { BusinessFormProps, MessageFormProps } from "./Models";
 import Validate from "validate.js";
+import { TechItemsDto } from "Api/Models";
 
 const formDefault: MessageFormProps = {
     company: "",
@@ -19,10 +20,40 @@ const formDefault: MessageFormProps = {
     email: "",
     phone: "",
     description: "",
+    techStack: [""],
+    services: [""],
 }
 
 const valueCleanUp = (input: string): string => {
     return input.replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "");
+}
+
+const getTechSelection = (input?: TechItemsDto[]): string[] => {
+    if (!input) {
+        return [""];
+    }
+
+    let result: string[] = [];
+    input.forEach(item => {
+        if (item.isChecked) {
+            result.push(item.value);
+        }
+    });
+
+    return result;
+}
+
+const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
+    if (!input) {
+        return [];
+    }
+
+    let result: TechItemsDto[] = [];
+    input.forEach(item => {
+        result.push({ ...item, isChecked: false });
+    });
+
+    return result;
 }
 
 export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
@@ -38,8 +69,8 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
-    const [techStack, setTechStack] = React.useState<string[] | undefined>(undefined);
-    const [services, setServices] = React.useState<string[] | undefined>(undefined);
+    const [techStackItems, setTechStackItems] = React.useState<TechItemsDto[] | undefined>(undefined);
+    const [services, setServices] = React.useState<string[]>([""]);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
@@ -48,13 +79,22 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textBusinessForm, text)));
 
     const clearForm = React.useCallback(() => {
-        if (!hasProgress) return;
-        setTechStack(undefined);
-        setServices(undefined);
+        if (!hasProgress) {
+            return;
+        }
+
+        setTechStackItems(resetTechStack(techStackItems));
+        setServices([""]);
         setForm(formDefault);
         setHasProgress(false);
         dispatch(ApplicationMessageAction.clear());
-    }, [hasProgress]);
+    }, [hasProgress, techStackItems]);
+
+    React.useEffect(() => {
+        if (!techStackItems && businessForm.content.techItems.length > 0) {
+            setTechStackItems(businessForm.content.techItems);
+        }
+    }, [businessForm.content.techItems]);
 
     React.useEffect(() => {
         if (hasError) {
@@ -63,6 +103,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         }
 
         if (hasNotStarted && hasProgress) {
+            const techStack = getTechSelection(techStackItems);
             const data = JSON.stringify({ 
                 ...form,
                 techStack: techStack,
@@ -128,30 +169,17 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
         [form, form.phone]
     );
 
-    const techHandler = React.useCallback((item: TechStackItem, isChecked: boolean) => {
-        if (isChecked) {
-            if (!techStack) {
-                const data = [];
-                data.push(item.value);
-                setTechStack(data);
-            } else {
-                const data = techStack.slice();
-                if (!data.includes(item.value)) {
-                    data.push(item.value);
-                    setTechStack(data);
-                }
-            }
-        } else {
-            if (techStack) {
-                const data = techStack.slice();
-                const index = data.indexOf(item.value);
-                if (index !== -1) {
-                    data.splice(index, 1);
-                    setTechStack(data);
-                }
-            }
+    const techHandler = React.useCallback((item: TechItemsDto, isChecked: boolean) => {
+        if (!techStackItems) {
+            return;
         }
-    }, [techStack]);
+
+        const data = techStackItems.slice();
+        const index = data?.indexOf(item);
+        data[index].isChecked = isChecked;
+        setTechStackItems(data);
+
+    }, [techStackItems]);
 
     const serviceHandler = React.useCallback((event: ReactMouseEvent, id: string) => {
         event.preventDefault();
@@ -173,6 +201,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     }, [services]);
 
     const buttonHandler = React.useCallback(() => {
+        const techStack = getTechSelection(techStackItems);
         const result = ValidateBusinessForm({
             company: form.company,
             firstName: form.firstName,
@@ -191,7 +220,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
         showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
 
-    }, [form, content, techStack, services]);
+    }, [form, content, services, techStackItems]);
 
     return(
         <BusinessFormView
@@ -216,7 +245,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             phoneText={form.phone}
             phoneLabel={businessForm.content.phoneLabel}
             techLabel={businessForm.content.techLabel}
-            techItems={businessForm.content.techItems}
+            techItems={techStackItems ?? []}
             description={{
                 text: form.description,
                 label: businessForm.content.description.label,

@@ -1,3 +1,6 @@
+import { ServiceItemDto, TechItemsDto } from "../../../Api/Models";
+import { ReactMouseEvent } from "../../../Shared/types";
+
 export interface MessageFormProps {
     company: string;
     firstName: string;
@@ -5,18 +8,20 @@ export interface MessageFormProps {
     email: string;
     phone: string;
     description: string;
-    techStack?: string[];
-    services?: string[];
-}
-
-export interface TechStackItem {
-    value: string;
-    key: number;
+    techStack: string[];
+    services: string[];
 }
 
 export interface TechStackListProps {
-    list: TechStackItem[];
-    handler: (value: TechStackItem, isChecked: boolean) => void;
+    list: TechItemsDto[];
+    handler: (value: TechItemsDto, isChecked: boolean) => void;
+}
+
+export interface ServiceItemCardProps {
+    key: number;
+    value: ServiceItemDto;
+    handler: (event: ReactMouseEvent, id: string) => void;
+    services: string[];
 }
 
 export interface BusinessFormProps {

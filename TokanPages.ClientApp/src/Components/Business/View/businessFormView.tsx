@@ -14,7 +14,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { VioletCheckbox } from "../../../Theme";
-import { BusinessFormProps, TechStackItem, TechStackListProps } from "../Models";
+import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 import { BusinessFormStyle } from "./businessFormStyle";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
@@ -26,7 +26,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     buttonHandler: () => void;
     techHandler: (value: TechItemsDto, isChecked: boolean) => void;
     serviceHandler: (event: ReactMouseEvent, id: string) => void;
-    serviceSelection?: string[];
+    serviceSelection: string[];
 }
 
 interface FormProps {
@@ -50,13 +50,6 @@ interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
 }
 
-interface ServiceItemCardProps {
-    key: number;
-    value: ServiceItemDto;
-    handler: (event: ReactMouseEvent, id: string) => void;
-    services?: string[];
-}
-
 const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
     const classes = BusinessFormStyle();
     return (
@@ -77,7 +70,7 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
     const classes = BusinessFormStyle();
     return (
         <List>
-            {props.list.map((value: TechStackItem, index: number) => (
+            {props.list.map((value: TechItemsDto, index: number) => (
                 <ListItem key={index} role={undefined} button className={classes.list_item}>
                     <ListItemIcon>
                         <VioletCheckbox
@@ -85,6 +78,7 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
                             name={`tech-${index}`}
                             edge="start"
                             onChange={(_: ReactChangeEvent, checked: boolean) => props.handler(value, checked)}
+                            checked={value.isChecked}
                             tabIndex={-1}
                             disableRipple={true}
                             inputProps={{ "aria-labelledby": `key-${index}` }}
@@ -99,7 +93,7 @@ const TechStackList = (props: TechStackListProps): JSX.Element => {
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
     const classes = BusinessFormStyle();
-    const isSelected = props.services?.includes(props.value.id) ?? false;
+    const isSelected = props.services.includes(props.value.id) ?? false;
     const style = isSelected ? classes.selected : classes.unselected;
     return (
         <Grid item xs={12} sm={4}>
