@@ -13,7 +13,7 @@ interface ClientsViewProps {
     background?: React.CSSProperties;
 }
 
-const RenderCaption = (props: ContentClientsState): JSX.Element | null => {
+const RenderCaption = (props: ContentClientsState): React.ReactElement | null => {
     const classes = ClientsStyle();
     if (!Validate.isEmpty(props?.content?.caption)) {
         return (
@@ -26,7 +26,7 @@ const RenderCaption = (props: ContentClientsState): JSX.Element | null => {
     return null;
 };
 
-const RenderImages = (props: ContentClientsState): JSX.Element => {
+const RenderImages = (props: ContentClientsState): React.ReactElement => {
     const classes = ClientsStyle();
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
@@ -38,7 +38,7 @@ const RenderImages = (props: ContentClientsState): JSX.Element => {
     );
 };
 
-export const ClientsView = (props: ClientsViewProps): JSX.Element => {
+export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
     const classes = ClientsStyle();
     const clients = useSelector((state: ApplicationState) => state.contentClients);
 

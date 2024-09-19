@@ -59,7 +59,7 @@ interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
 }
 
-const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
+const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
     const classes = BusinessFormStyle();
     return (
         <Button
@@ -75,7 +75,7 @@ const ActiveButton = (props: BusinessFormViewProps): JSX.Element => {
     );
 };
 
-const TechStackList = (props: TechStackListProps): JSX.Element => {
+const TechStackList = (props: TechStackListProps): React.ReactElement => {
     const classes = BusinessFormStyle();
     return (
         <List>
@@ -130,7 +130,7 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
     );
 };
 
-export const BusinessFormView = (props: BusinessFormViewProps): JSX.Element => {
+export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
     const classes = BusinessFormStyle();
     return (
         <section className={classes.section}>

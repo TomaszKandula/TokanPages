@@ -22,7 +22,7 @@ export interface ArticleDetailProps extends ExtendedViewProps {
     title: string;
 }
 
-export const ArticleDetail = (props: ArticleDetailProps): JSX.Element => {
+export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => {
     const dispatch = useDispatch();
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.articles);
     const content = useSelector((state: ApplicationState) => state.contentArticle);

@@ -30,7 +30,7 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
-const ActiveButton = (props: UserSigninViewProps): JSX.Element => {
+const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
     const classes = UserSigninStyle();
     return (
         <Button
@@ -46,11 +46,11 @@ const ActiveButton = (props: UserSigninViewProps): JSX.Element => {
     );
 };
 
-const RedirectTo = (args: { path: string; name: string }): JSX.Element => {
+const RedirectTo = (args: { path: string; name: string }): React.ReactElement => {
     return <Link to={args.path}>{args.name}</Link>;
 };
 
-export const UserSigninView = (props: UserSigninViewProps): JSX.Element => {
+export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
     const classes = UserSigninStyle();
     return (
         <section className={classes.section} style={props.background}>

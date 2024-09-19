@@ -10,7 +10,7 @@ export interface Properties {
     avatarName: string;
 }
 
-export const UserAvatar = (props: Properties): JSX.Element => {
+export const UserAvatar = (props: Properties): React.ReactElement => {
     let baseUrl = "";
     let source = "";
 

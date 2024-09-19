@@ -14,7 +14,7 @@ export interface UserPasswordProps {
     background?: React.CSSProperties;
 }
 
-export const UserPassword = (props: UserPasswordProps): JSX.Element => {
+export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);

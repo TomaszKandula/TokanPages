@@ -42,7 +42,7 @@ const ReturnFileName = (value: string): string => {
     return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
 };
 
-const CustomDivider = (args: { marginTop: number; marginBottom: number }): JSX.Element => {
+const CustomDivider = (args: { marginTop: number; marginBottom: number }): React.ReactElement => {
     const classes = UserInfoStyle();
     return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
@@ -51,11 +51,11 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }): JSX.E
     );
 };
 
-const RenderText = (props: Properties): JSX.Element => {
+const RenderText = (props: Properties): React.ReactElement => {
     return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
 };
 
-const UpdateAccountButton = (props: UserInfoViewProps): JSX.Element => {
+const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
     const classes = UserInfoStyle();
     return (
         <Button
@@ -71,7 +71,7 @@ const UpdateAccountButton = (props: UserInfoViewProps): JSX.Element => {
     );
 };
 
-const RequestVerificationButton = (props: UserInfoViewProps): JSX.Element => {
+const RequestVerificationButton = (props: UserInfoViewProps): React.ReactElement => {
     const classes = UserInfoStyle();
     const clickable = (
         <Typography component="span" onClick={props.verifyButtonHandler} className={classes.user_email_verification}>
@@ -90,7 +90,7 @@ const RequestVerificationButton = (props: UserInfoViewProps): JSX.Element => {
     return props.userStore.isVerified ? <></> : link;
 };
 
-const RenderEmailStatus = (props: UserInfoViewProps): JSX.Element => {
+const RenderEmailStatus = (props: UserInfoViewProps): React.ReactElement => {
     return props.userStore?.isVerified ? (
         <>{props.sectionAccountInformation?.labelEmailStatus?.positive}</>
     ) : (
@@ -98,11 +98,11 @@ const RenderEmailStatus = (props: UserInfoViewProps): JSX.Element => {
     );
 };
 
-const RenderLoadingOrStatus = (props: UserInfoViewProps): JSX.Element => {
+const RenderLoadingOrStatus = (props: UserInfoViewProps): React.ReactElement => {
     return props.isLoading ? <Skeleton variant="text" /> : <RenderEmailStatus {...props} />;
 };
 
-export const UserInfoView = (props: UserInfoViewProps): JSX.Element => {
+export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     const classes = UserInfoStyle();
     return (
         <section className={classes.section} style={props.background}>

@@ -13,7 +13,7 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
-const ErrorMessage = (): JSX.Element => {
+const ErrorMessage = (): React.ReactElement => {
     return (
         <Box mt={10} mb={15}>
             <Typography>Uuuppss..., there is a missing ID...</Typography>
@@ -21,7 +21,7 @@ const ErrorMessage = (): JSX.Element => {
     );
 };
 
-export const ActivationPage = (): JSX.Element => {
+export const ActivationPage = (): React.ReactElement => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id");

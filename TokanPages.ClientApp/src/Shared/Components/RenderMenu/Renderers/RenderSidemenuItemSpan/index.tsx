@@ -10,7 +10,7 @@ import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
-export const RenderSidemenuItemSpan = (props: Item): JSX.Element => {
+export const RenderSidemenuItemSpan = (props: Item): React.ReactElement => {
     const [isOpen, setIsOpen] = React.useState(false);
     const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 

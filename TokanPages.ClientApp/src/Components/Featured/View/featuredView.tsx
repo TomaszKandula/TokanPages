@@ -17,7 +17,7 @@ interface FeaturedViewProps {
     background?: React.CSSProperties;
 }
 
-export const FeaturedView = (props: FeaturedViewProps): JSX.Element => {
+export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const classes = FeaturedStyle();
     const featured = useSelector((state: ApplicationState) => state.contentFeatured);
 

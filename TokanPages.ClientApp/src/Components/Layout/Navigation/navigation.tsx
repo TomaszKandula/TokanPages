@@ -15,7 +15,7 @@ interface NavigationProps {
     backPathFragment?: string;
 }
 
-export const Navigation = (props: NavigationProps): JSX.Element => {
+export const Navigation = (props: NavigationProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore);

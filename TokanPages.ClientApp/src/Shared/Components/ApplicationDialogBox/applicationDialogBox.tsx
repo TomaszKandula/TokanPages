@@ -19,7 +19,7 @@ const DialogState: Properties = {
 };
 
 // TODO: refactor, remove component state
-export const ApplicationDialogBox = (): JSX.Element => {
+export const ApplicationDialogBox = (): React.ReactElement => {
     const dispatch = useDispatch();
     const [dialogState, setDialogState] = React.useState(DialogState);
     const dialog = useSelector((state: ApplicationState) => state.applicationDialog);

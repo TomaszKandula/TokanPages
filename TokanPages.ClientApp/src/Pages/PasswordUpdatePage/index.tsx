@@ -12,7 +12,7 @@ import {
     ContentTemplatesAction,
 } from "../../Store/Actions";
 
-export const PasswordUpdatePage = (): JSX.Element => {
+export const PasswordUpdatePage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 

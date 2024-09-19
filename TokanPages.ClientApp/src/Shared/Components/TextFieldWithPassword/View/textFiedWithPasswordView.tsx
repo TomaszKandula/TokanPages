@@ -19,7 +19,7 @@ interface Properties {
     iconOnMouseDownHandler: (event: ReactMouseEvent) => void;
 }
 
-export const TextFiedWithPasswordView = (props: Properties): JSX.Element => {
+export const TextFiedWithPasswordView = (props: Properties): React.ReactElement => {
     const classes = TextFiedWithPasswordStyle();
     return (
         <>

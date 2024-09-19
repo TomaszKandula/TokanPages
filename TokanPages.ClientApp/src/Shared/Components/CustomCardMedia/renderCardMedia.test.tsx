@@ -10,7 +10,7 @@ describe("test rendering 'Custom Card Media' component", () => {
         className: string;
     }
 
-    const TestComponent = (props: Properties): JSX.Element => {
+    const TestComponent = (props: Properties): React.ReactElement => {
         return RenderCardMedia(props.basePath, props.imageSource, props.className);
     };
 

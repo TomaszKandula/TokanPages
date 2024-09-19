@@ -12,7 +12,7 @@ interface PdfViewerProps {
     background?: React.CSSProperties;
 }
 
-export const PdfViewer = (props: PdfViewerProps): JSX.Element => {
+export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     //@ts-expect-error
     let { pdfjsLib } = globalThis;
     pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;

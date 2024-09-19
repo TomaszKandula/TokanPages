@@ -9,7 +9,7 @@ interface DocumentContentWrapperProps {
     items: TextItemDto[];
 }
 
-export const DocumentContentWrapper = (props: DocumentContentWrapperProps): JSX.Element => {
+export const DocumentContentWrapper = (props: DocumentContentWrapperProps): React.ReactElement => {
     return (
         <>
             <ProgressOnScroll height={3} bgcolor={Colours.application.navigation} duration={0.1} />

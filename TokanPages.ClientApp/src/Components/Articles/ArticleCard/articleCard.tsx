@@ -14,7 +14,7 @@ interface ArticleCardProps {
     languageIso: string;
 }
 
-export const ArticleCard = (props: ArticleCardProps): JSX.Element => {
+export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const content = useSelector((state: ApplicationState) => state.contentArticle);
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);

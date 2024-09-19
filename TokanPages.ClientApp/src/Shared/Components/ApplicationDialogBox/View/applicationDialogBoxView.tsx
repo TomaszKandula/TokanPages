@@ -22,7 +22,7 @@ interface Properties {
     closeHandler: () => void;
 }
 
-const RenderIcon = (props: Properties): JSX.Element => {
+const RenderIcon = (props: Properties): React.ReactElement => {
     const classes = ApplicationDialogBoxStyle();
     switch (props.icon) {
         case IconType.info:
@@ -36,7 +36,7 @@ const RenderIcon = (props: Properties): JSX.Element => {
     }
 };
 
-export const ApplicationDialogBoxView = (props: Properties): JSX.Element => {
+export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
     const classes = ApplicationDialogBoxStyle();
     return (
         <Dialog

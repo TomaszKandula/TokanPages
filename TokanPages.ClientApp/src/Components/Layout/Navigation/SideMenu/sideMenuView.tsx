@@ -12,7 +12,7 @@ interface Properties {
     menu: { image: string; items: Item[] };
 }
 
-export const SideMenuView = (props: Properties): JSX.Element => {
+export const SideMenuView = (props: Properties): React.ReactElement => {
     const classes = SideMenuStyle();
     return (
         <Drawer anchor="left" open={props.drawerState.open} onClose={props.closeHandler}>

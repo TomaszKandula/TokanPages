@@ -30,7 +30,7 @@ export interface UserSigninProps {
     background?: React.CSSProperties;
 }
 
-export const UserSignin = (props: UserSigninProps): JSX.Element => {
+export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
 

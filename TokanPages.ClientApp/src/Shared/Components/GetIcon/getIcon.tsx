@@ -7,7 +7,7 @@ interface Properties {
     iconName: string;
 }
 
-const GetNonMaterialIcon = (name: string): JSX.Element | undefined => {
+const GetNonMaterialIcon = (name: string): React.ReactElement | undefined => {
     switch (name) {
         case "github":
             return <GitHub />;
@@ -18,7 +18,7 @@ const GetNonMaterialIcon = (name: string): JSX.Element | undefined => {
     }
 };
 
-const DisplayIcon = (args: { name: string }): JSX.Element => {
+const DisplayIcon = (args: { name: string }): React.ReactElement => {
     const nonMaterialIcon = GetNonMaterialIcon(args.name);
     if (nonMaterialIcon !== undefined) {
         return nonMaterialIcon;
@@ -27,7 +27,7 @@ const DisplayIcon = (args: { name: string }): JSX.Element => {
     return <Icon>{args.name}</Icon>;
 };
 
-export const GetIcon = (props: Properties): JSX.Element => {
+export const GetIcon = (props: Properties): React.ReactElement => {
     let iconName = props.iconName !== "" ? props.iconName.toLowerCase() : "X";
     return <DisplayIcon name={iconName} />;
 };

@@ -12,7 +12,7 @@ export interface UserDeactivationProps {
     background?: React.CSSProperties;
 }
 
-export const UserDeactivation = (props: UserDeactivationProps): JSX.Element => {
+export const UserDeactivation = (props: UserDeactivationProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
 

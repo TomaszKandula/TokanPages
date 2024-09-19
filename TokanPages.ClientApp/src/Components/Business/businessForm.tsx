@@ -56,7 +56,7 @@ const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
     return result;
 };
 
-export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
+export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);

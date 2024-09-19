@@ -10,7 +10,7 @@ import { API_BASE_URI, ExecuteAsync } from "../../../../../Api/Request";
 import { RenderGistStyle } from "./renderGistStyle";
 import validate from "validate.js";
 
-export const RenderGist = (props: TextItem): JSX.Element => {
+export const RenderGist = (props: TextItem): React.ReactElement => {
     const classes = RenderGistStyle();
     const dispatch = useDispatch();
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content?.templates);

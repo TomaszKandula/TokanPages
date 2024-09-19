@@ -18,7 +18,7 @@ interface CustomBreadcrumbProps {
     watchparam?: string;
 }
 
-const useQuery = () => {
+const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
 };
 
@@ -100,7 +100,7 @@ const pathToSubitemText = (pathname: string): string => {
     return "";
 };
 
-const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Element[] | null => {
+const makeStyledBreadcrumb = (pathname: string, onClick: () => void): React.ReactElement[] | null => {
     let fragments = pathname.split("/");
     fragments = fragments.filter(e => String(e).trim());
 
@@ -124,7 +124,7 @@ const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Elemen
     return null;
 };
 
-export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
+export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
     const history = useHistory();
     const queryParam = useQuery();
     const param = queryParam.get(props.watchparam ?? "");

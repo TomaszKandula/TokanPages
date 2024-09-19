@@ -1,7 +1,7 @@
 import * as React from "react";
 import { RenderSeparatorStyle } from "./renderSeparatorStyle";
 
-export const RenderSeparator = (): JSX.Element => {
+export const RenderSeparator = (): React.ReactElement => {
     const classes = RenderSeparatorStyle();
     return (
         <div className={classes.separator}>

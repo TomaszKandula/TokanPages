@@ -9,7 +9,7 @@ interface ItemsProps extends Item {
     onClickEvent?: () => void;
 }
 
-const Items = (props: ItemsProps): JSX.Element => {
+const Items = (props: ItemsProps): React.ReactElement => {
     const data = props.subitems?.map(item => (
         <RenderSubitem
             key={item.id}
@@ -28,7 +28,7 @@ const Items = (props: ItemsProps): JSX.Element => {
     return <>{data}</>;
 };
 
-export const RenderNavbarItemSpan = (props: Item): JSX.Element => {
+export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
     const classes = RenderNavbarItemSpanStyle();
 
     const [isOpen, setOpen] = React.useState(false);

@@ -9,7 +9,7 @@ interface Properties {
     avatarSource: string;
 }
 
-export const UserAvatarView = (props: Properties): JSX.Element => {
+export const UserAvatarView = (props: Properties): React.ReactElement => {
     const classes = UserAvatarStyle();
     const className = props.isLarge ? classes.avatarLarge : classes.avatarSmall;
 

@@ -4,11 +4,11 @@ import { Languages } from "../../languages";
 
 import { RenderText, RenderGist, RenderTable, RenderImage, RenderVideo, RenderSeparator } from "./Renderers";
 
-export const RenderContent = (textObject: TextObject | undefined): JSX.Element => {
+export const RenderContent = (textObject: TextObject | undefined): React.ReactElement => {
     if (textObject === undefined) return <div>Cannot render content.</div>;
     if (textObject.items.length === 0) return <div>Cannot render content.</div>;
 
-    let renderBuffer: JSX.Element[] = [];
+    let renderBuffer: React.ReactElement[] = [];
     textObject.items.forEach(item => {
         switch (item.type) {
             case "separator":

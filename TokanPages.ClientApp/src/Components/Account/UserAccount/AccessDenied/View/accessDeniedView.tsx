@@ -17,7 +17,7 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
     homeButtonText: string;
 }
 
-const HomeButton = (props: AccessDeniedViewProps): JSX.Element => {
+const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
     const classes = AccessDeniedStyle();
     return (
         <Link to="/" className={classes.home_link}>
@@ -37,7 +37,7 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const AccessDeniedView = (props: AccessDeniedViewProps): JSX.Element => {
+export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
     const classes = AccessDeniedStyle();
     return (
         <section className={classes.section} style={props.background}>

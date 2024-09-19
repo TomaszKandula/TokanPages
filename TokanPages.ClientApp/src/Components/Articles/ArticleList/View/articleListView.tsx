@@ -12,7 +12,7 @@ interface ArticleListViewProps extends ViewProperties, ArticleListProps {
     articles: ArticleItem[];
 }
 
-const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
+const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement => {
     return (
         <>
             {args.articles.map((item: ArticleItem) => (
@@ -28,7 +28,7 @@ const RenderContent = (args: { articles: ArticleItem[] }): JSX.Element => {
     );
 };
 
-export const ArticleListView = (props: ArticleListViewProps): JSX.Element => {
+export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
     const classes = ArticleListStyle();
     return (
         <section className={classes.section} style={props.background}>

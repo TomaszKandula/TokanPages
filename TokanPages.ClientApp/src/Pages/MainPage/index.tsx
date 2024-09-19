@@ -28,7 +28,7 @@ import {
     ContentTemplatesAction,
 } from "../../Store/Actions";
 
-export const MainPage = (): JSX.Element => {
+export const MainPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 

@@ -10,13 +10,13 @@ interface Properties {
     isOpen: boolean;
     autoHideDuration: number;
     closeEventHandler: (event?: ReactSyntheticEvent, reason?: string) => void;
-    TransitionComponent: (props: Omit<SlideProps, "direction">) => JSX.Element;
+    TransitionComponent: (props: Omit<SlideProps, "direction">) => React.ReactElement;
     componentKey: string;
     toastSeverity: Color;
     toastMessage: string;
 }
 
-export const ApplicationToastView = (props: Properties): JSX.Element => {
+export const ApplicationToastView = (props: Properties): React.ReactElement => {
     const classes = ApplicationToastViewStyle();
     return (
         <div className={classes.root}>

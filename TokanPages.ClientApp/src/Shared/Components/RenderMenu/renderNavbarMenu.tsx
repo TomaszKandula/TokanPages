@@ -9,7 +9,7 @@ interface Properties {
     items: Item[] | undefined;
 }
 
-export const RenderNavbarMenu = (props: Properties): JSX.Element => {
+export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
     const classes = RenderNavbarMenuStyle();
 
     if (props.items === undefined) return <div>Cannot render content.</div>;
@@ -21,7 +21,7 @@ export const RenderNavbarMenu = (props: Properties): JSX.Element => {
         return item1 < item2 ? -1 : item1 > item2 ? 1 : 0;
     });
 
-    let renderBuffer: JSX.Element[] = [];
+    let renderBuffer: React.ReactElement[] = [];
     props.items?.forEach(item => {
         const isAnonymous = props.isAnonymous && item.link === "/account";
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");

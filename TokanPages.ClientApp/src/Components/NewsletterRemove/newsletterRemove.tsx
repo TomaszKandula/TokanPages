@@ -17,7 +17,7 @@ export interface NewsletterRemoveProps extends ExtendedViewProps {
     id: string;
 }
 
-export const NewsletterRemove = (props: NewsletterRemoveProps): JSX.Element => {
+export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactElement => {
     const content = useSelector((state: ApplicationState) => state.contentNewsletterRemove);
 
     const contentPre: ContentDto = content.content?.contentPre;

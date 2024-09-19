@@ -45,7 +45,7 @@ interface Properties extends BaseProperties {
     styleMenu?: string;
 }
 
-const RenderAvatar = (props: BaseProperties): JSX.Element => {
+const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
         return <Avatar>A</Avatar>;
     }
@@ -58,7 +58,7 @@ const RenderAvatar = (props: BaseProperties): JSX.Element => {
     return <Avatar alt="Avatar" src={props.avatarSource} />;
 };
 
-const RenderAvatarIconButton = (props: BaseProperties): JSX.Element => {
+const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
     const classes = NavigationStyle();
     return (
         <div className={classes.user_avatar}>
@@ -69,7 +69,7 @@ const RenderAvatarIconButton = (props: BaseProperties): JSX.Element => {
     );
 };
 
-const RenderContent = (props: BaseProperties): JSX.Element => {
+const RenderContent = (props: BaseProperties): React.ReactElement => {
     const classes = NavigationStyle();
     return (
         <>
@@ -85,7 +85,7 @@ const RenderContent = (props: BaseProperties): JSX.Element => {
     );
 };
 
-const RenderMenuIcon = (props: Properties): JSX.Element => {
+const RenderMenuIcon = (props: Properties): React.ReactElement => {
     const classes = NavigationStyle();
     return (
         <IconButton color="inherit" aria-label="menu" onClick={props.openHandler} className={classes.nav_icon}>
@@ -94,7 +94,7 @@ const RenderMenuIcon = (props: Properties): JSX.Element => {
     );
 };
 
-const RenderLanguageSelection = (props: Properties): JSX.Element => {
+const RenderLanguageSelection = (props: Properties): React.ReactElement => {
     const classes = NavigationStyle();
     const toUpper = (value?: any): string | undefined => {
         if (value !== undefined) {
@@ -104,7 +104,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
         return undefined;
     };
 
-    const renderIcon = (selection: string): JSX.Element | null => {
+    const renderIcon = (selection: string): React.ReactElement | null => {
         if (props.languageId === selection) {
             return <CheckIcon className={classes.languages_check} />;
         }
@@ -145,7 +145,7 @@ const RenderLanguageSelection = (props: Properties): JSX.Element => {
     );
 };
 
-const RenderToolbarLargeScreen = (props: Properties): JSX.Element => {
+const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
     const classes = NavigationStyle();
     return (
         <Toolbar className={classes.tool_bar}>
@@ -188,7 +188,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
     );
 };
 
-export const NavigationView = (props: Properties): JSX.Element => {
+export const NavigationView = (props: Properties): React.ReactElement => {
     const classes = NavigationStyle();
     return (
         <HideOnScroll {...props}>

@@ -25,7 +25,7 @@ export interface ActivateAccountProps extends ExtendedViewProps {
     type: string;
 }
 
-export const ActivateAccount = (props: ActivateAccountProps): JSX.Element => {
+export const ActivateAccount = (props: ActivateAccountProps): React.ReactElement => {
     const dispatch = useDispatch();
     const contentData = useSelector((state: ApplicationState) => state.contentActivateAccount);
 

@@ -5,7 +5,7 @@ interface Properties {
     html: string;
 }
 
-export const ReactHtmlParser = (props: Properties): JSX.Element => {
+export const ReactHtmlParser = (props: Properties): React.ReactElement => {
     const safeHTML = DOMPurify.sanitize(props.html, {
         ALLOWED_TAGS: ["p", "b", "ul", "li", "a", "u", "i", "div", "span"],
         FORBID_TAGS: ["style"],

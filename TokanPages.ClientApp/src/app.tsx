@@ -23,7 +23,7 @@ interface Properties {
     manifest: GetContentManifestDto;
 }
 
-const App = (props: Properties): JSX.Element => {
+const App = (props: Properties): React.ReactElement => {
     const classes = AppStyle();
 
     AOS.init({ once: true });

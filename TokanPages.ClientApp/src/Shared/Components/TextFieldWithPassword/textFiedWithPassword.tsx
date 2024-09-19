@@ -12,7 +12,7 @@ interface Properties {
     isDisabled?: boolean;
 }
 
-export const TextFiedWithPassword = (props: Properties): JSX.Element => {
+export const TextFiedWithPassword = (props: Properties): React.ReactElement => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
     const iconOnClickHandler = React.useCallback(() => {
