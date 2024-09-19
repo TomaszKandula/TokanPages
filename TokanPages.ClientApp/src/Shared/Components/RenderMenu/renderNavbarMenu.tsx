@@ -18,7 +18,8 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
     props.items.sort((a: Item, b: Item) => {
         const item1 = a.navbarMenu?.sortOrder ?? 0;
         const item2 = b.navbarMenu?.sortOrder ?? 0;
-        return item1 < item2 ? -1 : item1 > item2 ? 1 : 0;
+        const isGreater = item1 > item2 ? 1 : 0;
+        return item1 < item2 ? -1 : isGreater;
     });
 
     let renderBuffer: React.ReactElement[] = [];
