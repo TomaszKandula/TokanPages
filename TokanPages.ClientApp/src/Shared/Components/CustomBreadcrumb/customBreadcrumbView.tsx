@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { Box, Breadcrumbs, Divider } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
+import { UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Item, Subitem } from "../RenderMenu/Models";
 import { StyledBreadcrumb } from "./customBreadcrumbStyle";
@@ -18,7 +19,17 @@ interface CustomBreadcrumbProps {
     watchparam?: string;
 }
 
-const useQuery = () => {
+interface NavigationProps {
+    language: string;
+    logo: string;
+    userInfo: UserInfoProps;
+    menu: {
+        image: string;
+        items: Item[];
+    }
+}
+
+const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
 };
 
@@ -36,8 +47,7 @@ const toUpper = (value: string | undefined): string => {
         .join(" ");
 };
 
-const getHomeText = (): string => {
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+const getHomeText = (navigation: NavigationProps): string => {
     const text = navigation.menu.items.find((item: Item) => {
         if (item.link === "/") {
             return item;
@@ -49,8 +59,7 @@ const getHomeText = (): string => {
     return text?.value ?? "";
 };
 
-const pathToRootText = (pathname: string): string => {
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+const pathToRootText = (pathname: string, navigation: NavigationProps): string => {
     const array = pathname.split("/");
     const fragments = array.filter(e => String(e).trim());
     const rootWithHash = `#${fragments[0]}`;
@@ -71,8 +80,7 @@ const pathToRootText = (pathname: string): string => {
     return text?.value ?? "";
 };
 
-const pathToSubitemText = (pathname: string): string => {
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+const pathToSubitemText = (pathname: string, navigation: NavigationProps): string => {
     const array = pathname.split("/");
     const fragments = array.filter(e => String(e).trim());
     const root = `#${fragments[0]}`;
@@ -100,12 +108,12 @@ const pathToSubitemText = (pathname: string): string => {
     return "";
 };
 
-const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Element[] | null => {
+const makeStyledBreadcrumb = (pathname: string, onClick: () => void, navigation: NavigationProps): React.ReactElement[] | null => {
     let fragments = pathname.split("/");
     fragments = fragments.filter(e => String(e).trim());
 
-    const rootName = pathToRootText(pathname);
-    const itemName = pathToSubitemText(pathname);
+    const rootName = pathToRootText(pathname, navigation);
+    const itemName = pathToSubitemText(pathname, navigation);
 
     const setValue = (index: number): string => {
         if (index === 0) {
@@ -124,9 +132,11 @@ const makeStyledBreadcrumb = (pathname: string, onClick: () => void): JSX.Elemen
     return null;
 };
 
-export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
+export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
     const history = useHistory();
     const queryParam = useQuery();
+    const navigation = useSelector((state: ApplicationState) => state.contentNavigation.content);
+
     const param = queryParam.get(props.watchparam ?? "");
     const hasParam = !Validate.isEmpty(param);
     let paramValue = param?.replaceAll("-", " ");
@@ -144,11 +154,11 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps) => {
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
                 <StyledBreadcrumb
                     component="div"
-                    label={getHomeText()}
+                    label={getHomeText(navigation)}
                     icon={<Home fontSize="small" />}
                     onClick={onBackToRoot}
                 />
-                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious)}
+                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
                 {hasParam ? <StyledBreadcrumb component="div" label={toUpper(paramValue)} /> : null}
             </Breadcrumbs>
             <Box mt={props.mtDivider} mb={props.mbDivider}>

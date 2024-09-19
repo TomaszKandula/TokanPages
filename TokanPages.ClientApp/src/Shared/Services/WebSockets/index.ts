@@ -15,7 +15,7 @@ class WebSockets {
             .build();
     }
 
-    registerHandler(name: string, callback: any) {
+    registerHandler(name: string, callback: any): void {
         console.log(`WebSocket handler registered: ${name}...`);
         this.connection.on(name, (data: string) => callback(data));
     }

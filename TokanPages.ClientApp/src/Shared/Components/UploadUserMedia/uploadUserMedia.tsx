@@ -27,7 +27,7 @@ const GetAcceptedType = (media: UserMedia): string => {
     return "";
 };
 
-export const UploadUserMedia = (props: Properties): JSX.Element => {
+export const UploadUserMedia = (props: Properties): React.ReactElement => {
     const dispatch = useDispatch();
     const accepting = GetAcceptedType(props.mediaTarget);
 

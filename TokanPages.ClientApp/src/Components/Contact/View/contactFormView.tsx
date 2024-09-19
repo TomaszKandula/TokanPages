@@ -39,7 +39,7 @@ interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     minRows?: number;
 }
 
-const ActiveButton = (props: ContactFormViewProps): JSX.Element => {
+const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
     const classes = ContactFormStyle();
     return (
         <Button
@@ -55,7 +55,7 @@ const ActiveButton = (props: ContactFormViewProps): JSX.Element => {
     );
 };
 
-export const ContactFormView = (props: ContactFormViewProps): JSX.Element => {
+export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
     const classes = ContactFormStyle();
     return (
         <section className={classes.section} style={props.background}>

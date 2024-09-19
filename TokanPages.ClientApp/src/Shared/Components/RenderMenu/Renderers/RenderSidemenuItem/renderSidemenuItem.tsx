@@ -8,13 +8,13 @@ import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSidemenuItemStyle } from "./renderSidemenuItemStyle";
 
-export const RenderSidemenuItem = (props: Item): JSX.Element => {
+export const RenderSidemenuItem = (props: Item): React.ReactElement => {
     const classes = RenderSidemenuItemStyle();
 
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
-    const RenderItemWithHref = (): JSX.Element => {
+    const RenderItemWithHref = (): React.ReactElement => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
@@ -25,7 +25,7 @@ export const RenderSidemenuItem = (props: Item): JSX.Element => {
         );
     };
 
-    const RenderItemWithLink = (): JSX.Element => {
+    const RenderItemWithLink = (): React.ReactElement => {
         return (
             <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
                 <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
@@ -34,7 +34,7 @@ export const RenderSidemenuItem = (props: Item): JSX.Element => {
         );
     };
 
-    const RenderListItem = (): JSX.Element => {
+    const RenderListItem = (): React.ReactElement => {
         return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
     };
 

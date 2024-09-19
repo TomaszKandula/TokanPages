@@ -18,7 +18,7 @@ interface HeaderViewProps {
     background?: React.CSSProperties;
 }
 
-const OpenLinkButton = (props: ContentHeaderState): JSX.Element => {
+const OpenLinkButton = (props: ContentHeaderState): React.ReactElement => {
     const classes = HeaderStyle();
 
     return (
@@ -30,7 +30,7 @@ const OpenLinkButton = (props: ContentHeaderState): JSX.Element => {
     );
 };
 
-const ActiveButton = (props: ContentHeaderState): JSX.Element => {
+const ActiveButton = (props: ContentHeaderState): React.ReactElement => {
     const classes = HeaderStyle();
 
     if (Validate.isEmpty(props?.content?.action?.href)) {
@@ -50,7 +50,7 @@ const ActiveButton = (props: ContentHeaderState): JSX.Element => {
     );
 };
 
-export const HeaderView = (props: HeaderViewProps): JSX.Element => {
+export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const classes = HeaderStyle();
     const header = useSelector((state: ApplicationState) => state.contentHeader);
     const imageUrl = (name: string) => {

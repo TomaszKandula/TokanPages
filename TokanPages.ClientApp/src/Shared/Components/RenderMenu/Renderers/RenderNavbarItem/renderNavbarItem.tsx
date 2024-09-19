@@ -6,7 +6,7 @@ import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderNavbarItemStyle } from "./renderNavbarItemStyle";
 
-export const RenderNavbarItem = (props: Item): JSX.Element => {
+export const RenderNavbarItem = (props: Item): React.ReactElement => {
     const classes = RenderNavbarItemStyle();
 
     const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
@@ -16,7 +16,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
-    const RenderItemWithHref = (): JSX.Element => {
+    const RenderItemWithHref = (): React.ReactElement => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
@@ -26,7 +26,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
         );
     };
 
-    const RenderItemWithLink = (): JSX.Element => {
+    const RenderItemWithLink = (): React.ReactElement => {
         return (
             <ListItem
                 button
@@ -41,7 +41,7 @@ export const RenderNavbarItem = (props: Item): JSX.Element => {
         );
     };
 
-    const RenderListItem = (): JSX.Element => {
+    const RenderListItem = (): React.ReactElement => {
         return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
     };
 

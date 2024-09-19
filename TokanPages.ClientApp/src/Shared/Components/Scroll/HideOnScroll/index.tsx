@@ -6,7 +6,7 @@ interface Properties {
     children: React.ReactElement;
 }
 
-export const HideOnScroll = (props: Properties): JSX.Element => {
+export const HideOnScroll = (props: Properties): React.ReactElement => {
     const hasTrigger = useScrollTrigger();
     return (
         <Slide appear={false} direction="down" in={!hasTrigger}>

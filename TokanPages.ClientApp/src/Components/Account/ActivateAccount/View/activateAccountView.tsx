@@ -16,7 +16,7 @@ interface ActivateAccountViewProps extends ViewProperties, ExtendedViewProps {
     progress: boolean;
 }
 
-export const ActivateAccountView = (props: ActivateAccountViewProps): JSX.Element => {
+export const ActivateAccountView = (props: ActivateAccountViewProps): React.ReactElement => {
     const classes = ActivateAccountStyle();
     return (
         <section className={classes.section} style={props.background}>

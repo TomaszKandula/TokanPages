@@ -11,7 +11,7 @@ interface Properties {
 
 type VariantType = "inset" | "middle" | "fullWidth" | undefined;
 
-export const RenderSideMenu = (props: Properties): JSX.Element => {
+export const RenderSideMenu = (props: Properties): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
@@ -21,7 +21,7 @@ export const RenderSideMenu = (props: Properties): JSX.Element => {
         return item1 < item2 ? -1 : item1 > item2 ? 1 : 0;
     });
 
-    let renderBuffer: JSX.Element[] = [];
+    let renderBuffer: React.ReactElement[] = [];
     props.items.forEach(item => {
         const isAnonymous = props.isAnonymous && item.link === "/account";
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");

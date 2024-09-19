@@ -11,7 +11,7 @@ interface Properties {
     accepting: string;
 }
 
-export const UploadUserMediaView = (props: Properties): JSX.Element => {
+export const UploadUserMediaView = (props: Properties): React.ReactElement => {
     const classes = UploadUserMediaStyle();
     const uuid = uuidv4();
     return (

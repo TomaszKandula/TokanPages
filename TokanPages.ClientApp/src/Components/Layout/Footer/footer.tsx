@@ -9,7 +9,7 @@ interface Properties {
     backgroundColor?: string;
 }
 
-export const Footer = (props: Properties): JSX.Element => {
+export const Footer = (props: Properties): React.ReactElement => {
     const versionDateTime: string = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
     const versionNumber: string = process.env.REACT_APP_VERSION_NUMBER ?? "";
     const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;

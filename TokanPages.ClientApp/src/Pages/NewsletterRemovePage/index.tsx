@@ -17,7 +17,7 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
-export const NewsletterRemovePage = (): JSX.Element => {
+export const NewsletterRemovePage = (): React.ReactElement => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") as string;

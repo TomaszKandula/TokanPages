@@ -17,8 +17,8 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     articleReadCount: number;
     openPopoverHandler: (event: ReactMouseEvent) => void;
     closePopoverHandler: () => void;
-    renderSmallAvatar: JSX.Element;
-    renderLargeAvatar: JSX.Element;
+    renderSmallAvatar: React.ReactElement;
+    renderLargeAvatar: React.ReactElement;
     authorAliasName: string;
     popoverOpen: boolean;
     popoverElement: HTMLElement | null;
@@ -28,7 +28,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     articleReadTime: string;
     articleCreatedAt: string;
     articleUpdatedAt: string;
-    articleContent: JSX.Element;
+    articleContent: React.ReactElement;
     renderLikesLeft: string;
     thumbsHandler: any;
     totalLikes: number;
@@ -38,7 +38,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     content: ArticleContentDto;
 }
 
-export const ArticleDetailView = (props: ArticleDetailViewProps): JSX.Element => {
+export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
     const classes = ArticleDetailStyle();
     const readTime = props.content.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (

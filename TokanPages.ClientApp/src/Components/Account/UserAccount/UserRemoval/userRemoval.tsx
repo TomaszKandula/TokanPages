@@ -20,7 +20,7 @@ export interface UserRemovalProps {
     background?: React.CSSProperties;
 }
 
-export const UserRemoval = (props: UserRemovalProps): JSX.Element => {
+export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
 

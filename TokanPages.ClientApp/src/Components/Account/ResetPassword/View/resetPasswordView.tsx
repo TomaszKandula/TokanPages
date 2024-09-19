@@ -24,7 +24,7 @@ interface Properties extends ViewProperties, ResetPasswordProps {
     labelEmail: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: Properties): React.ReactElement => {
     const classes = ResetPasswordStyle();
     return (
         <Button
@@ -40,7 +40,7 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const ResetPasswordView = (props: Properties): JSX.Element => {
+export const ResetPasswordView = (props: Properties): React.ReactElement => {
     const classes = ResetPasswordStyle();
     return (
         <section className={classes.section} style={props.background}>

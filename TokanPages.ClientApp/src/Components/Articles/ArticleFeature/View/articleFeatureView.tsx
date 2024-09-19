@@ -21,7 +21,7 @@ interface ArticleFeatureViewProps {
     background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
+const ActiveButton = (props: ContentArticleFeaturesState): React.ReactElement => {
     const classes = ArticleFeatureStyle();
 
     if (Validate.isEmpty(props?.content?.action?.href)) {
@@ -41,7 +41,7 @@ const ActiveButton = (props: ContentArticleFeaturesState): JSX.Element => {
     );
 };
 
-export const ArticleFeatureView = (props: ArticleFeatureViewProps): JSX.Element => {
+export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const classes = ArticleFeatureStyle();
     const features = useSelector((state: ApplicationState) => state.contentArticleFeatures);
 

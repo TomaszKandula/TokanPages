@@ -5,7 +5,7 @@ import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
 import { CookiesView } from "./View/cookiesView";
 import Validate from "validate.js";
 
-export const Cookies = (): JSX.Element => {
+export const Cookies = (): React.ReactElement => {
     const cookies = useSelector((state: ApplicationState) => state.contentCookiesPrompt);
 
     const [isOpen, setIsOpen] = React.useState(false);

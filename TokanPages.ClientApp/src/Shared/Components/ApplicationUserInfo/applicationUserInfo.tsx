@@ -5,7 +5,7 @@ import { UserDataStoreAction } from "../../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../../Api/Models";
 import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 
-export const ApplicationUserInfo = (): JSX.Element => {
+export const ApplicationUserInfo = (): React.ReactElement => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const navigation = useSelector((state: ApplicationState) => state.contentNavigation);

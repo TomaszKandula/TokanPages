@@ -9,7 +9,7 @@ describe("test render function 'renderContent'", () => {
         textObject: TextObject | undefined;
     }
 
-    const TestComponent = (props: Properties): JSX.Element => {
+    const TestComponent = (props: Properties): React.ReactElement => {
         return RenderContent(props.textObject);
     };
 

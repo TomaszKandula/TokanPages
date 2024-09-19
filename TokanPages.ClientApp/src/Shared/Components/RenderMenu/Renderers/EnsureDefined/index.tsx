@@ -6,7 +6,7 @@ interface Properties {
     messages: string[];
 }
 
-export const EnsureDefined = (object: Properties, onSuccess: JSX.Element): JSX.Element => {
+export const EnsureDefined = (object: Properties, onSuccess: React.ReactElement): React.ReactElement => {
     if (object.values.length !== object.messages.length) return <div></div>;
 
     for (let index = 0; index < object.values.length; index++) {
@@ -19,12 +19,12 @@ export const EnsureDefined = (object: Properties, onSuccess: JSX.Element): JSX.E
 };
 
 interface EnsureDefinedExtProps {
-    object: JSX.Element;
+    object: React.ReactElement;
     hasErrors: boolean;
     hasWarnings: boolean;
 }
 
-export const EnsureDefinedExt = (object: Properties, onSuccess: JSX.Element): EnsureDefinedExtProps => {
+export const EnsureDefinedExt = (object: Properties, onSuccess: React.ReactElement): EnsureDefinedExtProps => {
     if (object.values.length !== object.messages.length)
         return {
             object: <div></div>,

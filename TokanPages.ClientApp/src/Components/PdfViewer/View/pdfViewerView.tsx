@@ -29,11 +29,11 @@ const RenderIcon = (props: RenderIconOrErrorProps) => {
     return props.hasError ? <ReportProblemIcon /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
 };
 
-const RenderIconOrLoading = (props: RenderIconOrErrorProps): JSX.Element => {
+const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement => {
     return props.isLoading && !props.hasError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
 };
 
-export const PdfViewerView = (props: PdfViewerViewProps): JSX.Element => {
+export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     const classes = PdfViewerStyle();
     return (
         <section className={classes.section} style={props.background}>

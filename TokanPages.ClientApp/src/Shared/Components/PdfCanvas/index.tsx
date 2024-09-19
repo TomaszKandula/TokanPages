@@ -7,7 +7,7 @@ interface PdfCanvasProps {
     htmlAttributes: React.HTMLAttributes<HTMLCanvasElement>;
 }
 
-export const PdfCanvas = (props: PdfCanvasProps): JSX.Element => {
+export const PdfCanvas = (props: PdfCanvasProps): React.ReactElement => {
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
     const renderPage = React.useCallback(

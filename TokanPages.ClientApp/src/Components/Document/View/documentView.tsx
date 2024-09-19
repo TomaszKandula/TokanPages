@@ -11,7 +11,7 @@ interface DocumentViewProps {
     background?: React.CSSProperties;
 }
 
-export const DocumentView = (props: DocumentViewProps): JSX.Element => {
+export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     const hash = useHash();
     const classes = DocumentStyle();
 

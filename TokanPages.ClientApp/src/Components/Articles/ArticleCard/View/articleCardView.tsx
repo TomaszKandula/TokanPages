@@ -18,7 +18,7 @@ interface Properties {
     flagImage: string;
 }
 
-export const ArticleCardView = (props: Properties): JSX.Element => {
+export const ArticleCardView = (props: Properties): React.ReactElement => {
     const classes = ArticleCardStyle();
     return (
         <div data-aos="fade-up">

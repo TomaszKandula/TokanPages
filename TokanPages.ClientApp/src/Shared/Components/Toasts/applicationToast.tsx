@@ -19,12 +19,12 @@ const ToastState: Properties = {
     errorMessage: "",
 };
 
-const TransitionLeft = (props: Omit<SlideProps, "direction">): JSX.Element => {
+const TransitionLeft = (props: Omit<SlideProps, "direction">): React.ReactElement => {
     return <Slide {...props} direction="left" />;
 };
 
 // TODO: remove component state
-export const ApplicationToast = (): JSX.Element => {
+export const ApplicationToast = (): React.ReactElement => {
     const vertical = "top";
     const horizontal = "right";
     const toastSeverity = "error";

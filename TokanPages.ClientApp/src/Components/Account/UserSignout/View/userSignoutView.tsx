@@ -20,7 +20,7 @@ interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
     isAnonymous: boolean;
 }
 
-export const UserSignoutView = (props: UserSignoutViewProps): JSX.Element => {
+export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => {
     const classes = UserSignoutStyle();
     return (
         <section className={classes.section} style={props.background}>

@@ -7,7 +7,7 @@ interface ProgressBarViewProps {
     size?: number;
 }
 
-export const ProgressBarView = (props: ProgressBarViewProps): JSX.Element => {
+export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement => {
     const classes = ProgressBarStyle();
     const externalStyle = props.styleObject !== undefined ? props.styleObject : {};
     return (

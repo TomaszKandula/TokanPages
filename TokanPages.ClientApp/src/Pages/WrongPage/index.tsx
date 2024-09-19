@@ -7,7 +7,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentWrongPagePromptAction } from "../../Store/Actions";
 import { Style } from "./style";
 
-const ActionButton = (args: { button: string }): JSX.Element => {
+const ActionButton = (args: { button: string }): React.ReactElement => {
     const classes = Style();
     return (
         <Link to="/" className={classes.link}>
@@ -18,7 +18,7 @@ const ActionButton = (args: { button: string }): JSX.Element => {
     );
 };
 
-export const WrongPage = (): JSX.Element => {
+export const WrongPage = (): React.ReactElement => {
     const classes = Style();
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);

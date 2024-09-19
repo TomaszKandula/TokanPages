@@ -7,7 +7,7 @@ interface TestimonialsProps {
     background?: React.CSSProperties;
 }
 
-export const Testimonials = (props: TestimonialsProps): JSX.Element => {
+export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
     const testimonials = useSelector((state: ApplicationState) => state.contentTestimonials);
 
     const [hasTestimonialOne, setTestimonialOne] = React.useState(false);

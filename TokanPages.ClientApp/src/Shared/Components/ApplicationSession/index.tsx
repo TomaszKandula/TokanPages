@@ -11,12 +11,12 @@ interface Properties {
     children: React.ReactNode;
 }
 
-export const ApplicationSession = (props: Properties): JSX.Element => {
+export const ApplicationSession = (props: Properties): React.ReactElement => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const [expiration, setExpiration] = React.useState<number | undefined>(undefined);
 
-    const sessionTimer = () => {
+    const sessionTimer = (): void => {
         if (!expiration) return;
 
         const currentDateTime = new Date().getTime() / 1000;

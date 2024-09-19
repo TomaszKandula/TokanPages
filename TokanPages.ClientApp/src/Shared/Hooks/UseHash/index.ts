@@ -1,10 +1,10 @@
 import * as React from "react";
 
-export const useHash = () => {
+export const useHash = (): string => {
     const [hash, setHash] = React.useState(window.location.hash);
 
     React.useEffect(() => {
-        const onHashChange = () => {
+        const onHashChange = (): void => {
             setHash(window.location.hash);
         };
 

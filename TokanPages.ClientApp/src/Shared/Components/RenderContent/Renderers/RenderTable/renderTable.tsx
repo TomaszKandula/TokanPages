@@ -5,12 +5,12 @@ import { RowItem, TextItem } from "../../Models/TextModel";
 import { CustomTableCell, CustomTableRow } from "../../CustomTable/customTable";
 import { RenderTableStyle } from "./renderTableStyle";
 
-export const RenderTable = (props: TextItem): JSX.Element => {
+export const RenderTable = (props: TextItem): React.ReactElement => {
     const tableData: RowItem[] = props.value as RowItem[];
     const classes = RenderTableStyle();
 
     const renderHeader = () => {
-        let renderBuffer: JSX.Element[] = [];
+        let renderBuffer: React.ReactElement[] = [];
         tableData.forEach(item => {
             if (item.column0 === "") {
                 renderBuffer.push(
@@ -27,7 +27,7 @@ export const RenderTable = (props: TextItem): JSX.Element => {
     };
 
     const renderRows = () => {
-        let renderBuffer: JSX.Element[] = [];
+        let renderBuffer: React.ReactElement[] = [];
         tableData.forEach(item => {
             if (item.column0 !== "") {
                 renderBuffer.push(

@@ -41,7 +41,7 @@ export interface UpdatePasswordProps {
     background?: React.CSSProperties;
 }
 
-export const UpdatePassword = (props: UpdatePasswordProps): JSX.Element => {
+export const UpdatePassword = (props: UpdatePasswordProps): React.ReactElement => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
 

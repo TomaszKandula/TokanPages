@@ -8,7 +8,7 @@ export interface Properties {
     children: React.ReactElement;
 }
 
-export const ClearPageStart = (props: Properties): JSX.Element => {
+export const ClearPageStart = (props: Properties): React.ReactElement => {
     const location = useLocation();
 
     React.useEffect(() => {
@@ -18,7 +18,7 @@ export const ClearPageStart = (props: Properties): JSX.Element => {
     return <>{props.children}</>;
 };
 
-export const ScrollToTop = (props: Properties): JSX.Element => {
+export const ScrollToTop = (props: Properties): React.ReactElement => {
     const classes = ScrollToTopStyle();
     const hasTrigger = useScrollTrigger({
         disableHysteresis: true,

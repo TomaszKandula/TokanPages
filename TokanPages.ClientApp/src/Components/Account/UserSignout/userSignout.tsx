@@ -12,7 +12,7 @@ export interface UserSignoutProps {
     background?: React.CSSProperties;
 }
 
-export const UserSignout = (props: UserSignoutProps): JSX.Element => {
+export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const dispatch = useDispatch();
     const [hasProgress, setHasProgress] = React.useState(true);
 

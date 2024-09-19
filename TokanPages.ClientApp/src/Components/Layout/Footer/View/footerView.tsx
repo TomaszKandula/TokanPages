@@ -21,7 +21,7 @@ interface Properties {
     icons: IconDto[];
 }
 
-const SetTermsLink = (props: Properties): JSX.Element => {
+const SetTermsLink = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
 
     if (Validate.isEmpty(props?.terms?.href)) {
@@ -35,7 +35,7 @@ const SetTermsLink = (props: Properties): JSX.Element => {
     );
 };
 
-const SetPolicyLink = (props: Properties): JSX.Element => {
+const SetPolicyLink = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
 
     if (Validate.isEmpty(props?.policy?.href)) {
@@ -49,7 +49,7 @@ const SetPolicyLink = (props: Properties): JSX.Element => {
     );
 };
 
-const RenderIconButtons = (props: Properties): JSX.Element => {
+const RenderIconButtons = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
     const icons = (
         <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
@@ -71,7 +71,7 @@ const RenderIconButtons = (props: Properties): JSX.Element => {
     return icons;
 };
 
-const RenderCopyrightBar = (props: Properties): JSX.Element => {
+const RenderCopyrightBar = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
     return (
         <Box pt={6} pb={1} className={classes.copyright_box}>
@@ -83,7 +83,7 @@ const RenderCopyrightBar = (props: Properties): JSX.Element => {
     );
 };
 
-const RenderVersionInfo = (props: Properties): JSX.Element | null => {
+const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
     const classes = FooterStyle();
     const applicationVersionInfo = (
         <Box display="flex" justifyContent="center" alignItems="center" data-aos="zoom-in">
@@ -94,7 +94,7 @@ const RenderVersionInfo = (props: Properties): JSX.Element | null => {
     return props.hasVersionInfo ? null : applicationVersionInfo;
 };
 
-export const FooterView = (props: Properties): JSX.Element => {
+export const FooterView = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
     return (
         <footer className={classes.page_footer}>
