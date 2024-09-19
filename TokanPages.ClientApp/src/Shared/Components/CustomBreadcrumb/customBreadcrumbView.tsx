@@ -7,6 +7,7 @@ import { UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Item, Subitem } from "../RenderMenu/Models";
 import { StyledBreadcrumb } from "./customBreadcrumbStyle";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface CustomBreadcrumbProps {
@@ -125,7 +126,7 @@ const makeStyledBreadcrumb = (pathname: string, onClick: () => void, navigation:
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <StyledBreadcrumb key={index} component="div" label={setValue(index)} onClick={onClick} />
+            <StyledBreadcrumb key={uuidv4()} component="div" label={setValue(index)} onClick={onClick} />
         ));
     }
 
