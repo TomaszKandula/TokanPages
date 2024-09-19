@@ -31,6 +31,12 @@ export const HeaderStyle = makeStyles(theme => ({
             marginLeft: 0,
             marginRight: 0,
         },
+        [theme.breakpoints.up(900)]: {
+            maxWidth: 900,
+            padding: 15,
+            marginLeft: 0,
+            marginRight: 0,
+        },
     },
     content_caption: {
         color: Colours.colours.gray3,
