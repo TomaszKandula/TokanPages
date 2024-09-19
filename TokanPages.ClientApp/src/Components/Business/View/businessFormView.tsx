@@ -59,6 +59,18 @@ interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
 }
 
+interface RenderTextProps {
+    isLoading: boolean; 
+    value: string;
+    height: number;
+}
+
+interface RenderElementProps {
+    isLoading: boolean; 
+    element: React.ReactElement | React.ReactElement[];
+    height: number;
+}
+
 const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
     const classes = BusinessFormStyle();
     return (
@@ -133,6 +145,14 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
     );
 };
 
+const RenderText = (props: RenderTextProps): React.ReactElement => {
+    return props.isLoading ? <Skeleton variant="rect" width="100%" height={`${props.height}px`} /> : <>{props.value}</>;
+};
+
+const RenderElement = (props: RenderElementProps): React.ReactElement => {
+    return props.isLoading ? <Skeleton variant="rect" width="100%" height={`${props.height}px`} /> : <>{props.element}</>;
+};
+
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
     const classes = BusinessFormStyle();
     return (
@@ -142,13 +162,11 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                     <Box textAlign="center">
                         <Typography gutterBottom={true} className={classes.large_caption}>
                             {props.hasCaption ? (
-                                <>
-                                    {props.isLoading ? (
-                                        <Skeleton variant="rect" width="100%" height="60px" />
-                                    ) : (
-                                        props.caption?.toUpperCase()
-                                    )}
-                                </>
+                                <RenderText 
+                                    isLoading={props.isLoading}
+                                    value={props.caption?.toUpperCase()}
+                                    height={60}
+                                />
                             ) : (
                                 <></>
                             )}
@@ -158,186 +176,166 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
-                                    <>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="60px" />
-                                        ) : (
-                                            <>
-                                                <BusinessCenterIcon className={classes.main_icon} />
-                                                <Typography className={classes.small_caption}>
-                                                    {props.caption}
-                                                </Typography>
-                                            </>
-                                        )}
-                                    </>
+                                    <RenderElement isLoading={props.isLoading} element={<>
+                                        <BusinessCenterIcon className={classes.main_icon} />
+                                        <Typography className={classes.small_caption}>
+                                            {props.caption}
+                                        </Typography>
+                                    </>} height={60} />
                                 ) : (
                                     <></>
                                 )}
                             </Box>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="company"
-                                                name="company"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.companyText}
-                                                label={props.companyLabel}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<TextField
+                                            required
+                                            fullWidth
+                                            id="company"
+                                            name="company"
+                                            variant="outlined"
+                                            disabled={props.progress}
+                                            inputProps={{ maxLength: 255 }}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.companyText}
+                                            label={props.companyLabel}
+                                        />} 
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="firstName"
-                                                name="firstName"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.firstNameText}
-                                                label={props.firstNameLabel}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<TextField
+                                            required
+                                            fullWidth
+                                            id="firstName"
+                                            name="firstName"
+                                            variant="outlined"
+                                            disabled={props.progress}
+                                            inputProps={{ maxLength: 255 }}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.firstNameText}
+                                            label={props.firstNameLabel}
+                                        />}
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="lastName"
-                                                name="lastName"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.lastNameText}
-                                                label={props.lastNameLabel}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<TextField
+                                            required
+                                            fullWidth
+                                            id="lastName"
+                                            name="lastName"
+                                            variant="outlined"
+                                            disabled={props.progress}
+                                            inputProps={{ maxLength: 255 }}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.lastNameText}
+                                            label={props.lastNameLabel}
+                                        />}
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="email"
-                                                name="email"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.emailText}
-                                                label={props.emailLabel}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<TextField
+                                            required
+                                            fullWidth
+                                            id="email"
+                                            name="email"
+                                            variant="outlined"
+                                            disabled={props.progress}
+                                            inputProps={{ maxLength: 255 }}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.emailText}
+                                            label={props.emailLabel}
+                                        />}
+                                    />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="phone"
-                                                name="phone"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 17 }}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.phoneText}
-                                                label={props.phoneLabel}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<TextField
+                                            required
+                                            fullWidth
+                                            id="phone"
+                                            name="phone"
+                                            variant="outlined"
+                                            disabled={props.progress}
+                                            inputProps={{ maxLength: 17 }}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.phoneText}
+                                            label={props.phoneLabel}
+                                        />}                                    
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required={props.description.required}
-                                                fullWidth
-                                                id="description"
-                                                name="description"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.description.text}
-                                                label={props.description.label}
-                                                multiline={props.description.multiline}
-                                                minRows={props.description.rows}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<TextField
+                                            required={props.description.required}
+                                            fullWidth
+                                            id="description"
+                                            name="description"
+                                            variant="outlined"
+                                            disabled={props.progress}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.description.text}
+                                            label={props.description.label}
+                                            multiline={props.description.multiline}
+                                            minRows={props.description.rows}
+                                        />}                                    
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Box mt={2} mb={1}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <Typography className={classes.header}>{props.techLabel}</Typography>
-                                        )}
+                                        <RenderElement 
+                                            isLoading={props.isLoading} 
+                                            height={45} 
+                                            element={<Typography className={classes.header}>{props.techLabel}</Typography>}
+                                        />
                                     </Box>
-                                    <div>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="100px" />
-                                        ) : (
-                                            <TechStackList
-                                                isDisabled={props.progress}
-                                                list={props.techItems}
-                                                handler={props.techHandler}
-                                            />
-                                        )}
-                                    </div>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={100} 
+                                        element={<TechStackList
+                                            isDisabled={props.progress}
+                                            list={props.techItems}
+                                            handler={props.techHandler}
+                                        />}
+                                    />
                                 </Grid>
                             </Grid>
                             <Box mt={2} mb={4}>
                                 <Box mt={1} mb={4}>
-                                    {props.isLoading ? (
-                                        <Skeleton variant="rect" width="100%" height="45px" />
-                                    ) : (
-                                        <Typography component="span" className={classes.header}>
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={45} 
+                                        element={<Typography component="span" className={classes.header}>
                                             <ReactHtmlParser html={props.pricing.caption} />
-                                        </Typography>
-                                    )}
+                                        </Typography>}
+                                    />
                                 </Box>
                                 <Grid container spacing={3}>
-                                    {props.isLoading ? (
-                                        <Skeleton variant="rect" width="100%" height="100px" />
-                                    ) : (
-                                        props.pricing.services.map((value: ServiceItemDto, _index: number) => (
+                                    <RenderElement 
+                                        isLoading={props.isLoading} 
+                                        height={100} 
+                                        element={props.pricing.services.map((value: ServiceItemDto, _index: number) => (
                                             <ServiceItemCard
                                                 key={value.id}
                                                 value={value}
@@ -345,28 +343,28 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 handler={props.serviceHandler}
                                                 services={props.serviceSelection}
                                             />
-                                        ))
-                                    )}
+                                        ))}
+                                    />
                                 </Grid>
                             </Box>
                             <Box mb={10} className={classes.info_box}>
-                                {props.isLoading ? (
-                                    <Skeleton variant="rect" width="100%" height="45px" />
-                                ) : (
-                                    <>
+                                <RenderElement 
+                                    isLoading={props.isLoading} 
+                                    height={45} 
+                                    element={<>
                                         <InfoIcon className={classes.info_icon} />
                                         <Typography component="span">
                                             <ReactHtmlParser html={props.pricing.disclaimer} />
                                         </Typography>
-                                    </>
-                                )}
+                                    </>}
+                                />
                             </Box>
                             <Box my={5}>
-                                {props.isLoading ? (
-                                    <Skeleton variant="rect" width="100%" height="40px" />
-                                ) : (
-                                    <ActiveButton {...props} />
-                                )}
+                                <RenderElement 
+                                    isLoading={props.isLoading} 
+                                    height={40} 
+                                    element={<ActiveButton {...props} />}
+                                />
                             </Box>
                         </CardContent>
                     </Card>
