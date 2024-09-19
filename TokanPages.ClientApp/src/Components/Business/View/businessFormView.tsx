@@ -34,7 +34,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
     techHandler: (event: ReactChangeEvent, isChecked: boolean) => void;
-    serviceHandler: (event: ReactMouseEvent, id: string) => void;
+    serviceHandler: (event: ReactMouseEvent) => void;
     serviceSelection: string[];
 }
 
@@ -108,14 +108,11 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
     return (
         <Grid item xs={12} sm={4}>
             <Paper
+                id={props.value.id}
+                data-disabled={props.isDisabled}
                 elevation={0}
                 className={`${classes.paper} ${style} ${disabled}`}
-                onClick={(event: ReactMouseEvent) => {
-                    if (props.isDisabled) {
-                        return;
-                    }
-                    props.handler(event, props.value.id);
-                }}
+                onClick={props.handler}
             >
                 <Typography component="span" className={classes.pricing_text}>
                     <ReactHtmlParser html={props.value.text} />

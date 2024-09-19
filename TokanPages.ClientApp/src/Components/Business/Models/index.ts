@@ -22,7 +22,7 @@ export interface ServiceItemCardProps {
     isDisabled: boolean;
     key: React.Key | null | undefined;
     value: ServiceItemDto;
-    handler: (event: ReactMouseEvent, id: string) => void;
+    handler: (event: ReactMouseEvent) => void;
     services: string[];
 }
 

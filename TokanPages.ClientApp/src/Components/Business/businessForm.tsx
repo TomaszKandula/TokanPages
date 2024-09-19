@@ -177,8 +177,15 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     );
 
     const serviceHandler = React.useCallback(
-        (event: ReactMouseEvent, id: string) => {
+        (event: ReactMouseEvent) => {
             event.preventDefault();
+            const data = event.currentTarget.getAttribute("data-disabled") as string;
+            const isDisabled = JSON.parse(data as string);
+            if (isDisabled) {
+                return;
+            }
+
+            const id = event.currentTarget.id;
             if (!services) {
                 const data = [];
                 data.push(id);
