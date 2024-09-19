@@ -17,7 +17,7 @@ const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as
 const history = createBrowserHistory({ basename: baseUrl });
 const store = ConfigureStore(history);
 
-const ReactApp = (manifest: GetContentManifestDto) => {
+const ReactApp = (manifest: GetContentManifestDto): void => {
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter history={history}>

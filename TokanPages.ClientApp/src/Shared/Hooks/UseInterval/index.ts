@@ -2,7 +2,7 @@ import * as React from "react";
 
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 
-export const useInterval = (callback: () => void, delay: number | null) => {
+export const useInterval = (callback: () => void, delay: number | null): void => {
     const savedCallback = React.useRef(callback);
 
     useIsomorphicLayoutEffect(() => {

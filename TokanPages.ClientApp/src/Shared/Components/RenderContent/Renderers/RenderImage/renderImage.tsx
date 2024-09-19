@@ -6,7 +6,7 @@ import { TextItem } from "../../Models/TextModel";
 import { RenderImageStyle } from "./renderImageStyle";
 import Validate from "validate.js";
 
-const RenderDescription = (props: { text: string }): JSX.Element => {
+const RenderDescription = (props: { text: string }): React.ReactElement => {
     const classes = RenderImageStyle();
     return (
         <CardContent>
@@ -17,7 +17,7 @@ const RenderDescription = (props: { text: string }): JSX.Element => {
     );
 };
 
-export const RenderImage = (props: TextItem): JSX.Element => {
+export const RenderImage = (props: TextItem): React.ReactElement => {
     const classes = RenderImageStyle();
 
     const hasProp = !Validate.isEmpty(props.prop);

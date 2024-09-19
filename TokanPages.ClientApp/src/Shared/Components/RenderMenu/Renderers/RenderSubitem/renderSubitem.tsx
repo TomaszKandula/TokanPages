@@ -14,7 +14,7 @@ interface RenderSubitemProps extends Subitem {
     onClickEvent?: () => void;
 }
 
-export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
+export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => {
     const classes = RenderSubitemsStyle();
 
     const link: string = props.link as string;
@@ -25,7 +25,7 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
     const listItemTextBaseStyle = props.navbar ? classes.list_item_text : classes.list_item_base;
     const listItemTextStyle = `${listItemTextIdentStyle} ${listItemTextBaseStyle}`;
 
-    const RenderItemWithHref = (): JSX.Element => {
+    const RenderItemWithHref = (): React.ReactElement => {
         return (
             <Href
                 href={link}
@@ -43,7 +43,7 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
         );
     };
 
-    const RenderItemWithLink = (): JSX.Element => {
+    const RenderItemWithLink = (): React.ReactElement => {
         return (
             <ListItem
                 button
@@ -60,7 +60,7 @@ export const RenderSubitem = (props: RenderSubitemProps): JSX.Element => {
         );
     };
 
-    const RenderListItem = (): JSX.Element => {
+    const RenderListItem = (): React.ReactElement => {
         return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
     };
 

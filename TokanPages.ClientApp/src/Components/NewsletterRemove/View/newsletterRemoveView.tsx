@@ -20,7 +20,7 @@ interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
     isRemoved: boolean;
 }
 
-const ActiveButton = (props: NewsletterRemoveViewProps): JSX.Element => {
+const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
@@ -37,7 +37,7 @@ const ActiveButton = (props: NewsletterRemoveViewProps): JSX.Element => {
     );
 };
 
-export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): JSX.Element => {
+export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (

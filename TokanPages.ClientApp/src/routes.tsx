@@ -30,7 +30,7 @@ import {
 
 interface PageProps {
     path: string;
-    page: JSX.Element;
+    page: React.ReactElement;
     exact?: boolean;
 }
 
@@ -61,7 +61,7 @@ const pages: PageProps[] = [
     { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
 ];
 
-export const Routes = (): JSX.Element => {
+export const Routes = (): React.ReactElement => {
     const renderRoute = (props: PageProps) => {
         return (
             <Route exact={props.exact ?? true} path={props.path} key={uuidv4()}>
@@ -70,7 +70,7 @@ export const Routes = (): JSX.Element => {
         );
     };
 
-    let buffer: JSX.Element[] = [];
+    let buffer: React.ReactElement[] = [];
     pages.forEach(item => {
         buffer.push(renderRoute({ path: item.path, page: item.page }));
     });

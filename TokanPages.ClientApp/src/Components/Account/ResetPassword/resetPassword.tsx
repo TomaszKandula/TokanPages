@@ -24,7 +24,7 @@ export interface ResetPasswordProps {
     background?: React.CSSProperties;
 }
 
-export const ResetPassword = (props: ResetPasswordProps): JSX.Element => {
+export const ResetPassword = (props: ResetPasswordProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);

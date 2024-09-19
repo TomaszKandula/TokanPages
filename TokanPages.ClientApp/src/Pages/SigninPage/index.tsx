@@ -12,7 +12,7 @@ import {
     ContentTemplatesAction,
 } from "../../Store/Actions";
 
-export const SigninPage = (): JSX.Element => {
+export const SigninPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 

@@ -30,7 +30,7 @@ export interface UserInfoProps {
     background?: React.CSSProperties;
 }
 
-export const UserInfo = (props: UserInfoProps): JSX.Element => {
+export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
     const socket = useWebSockets();

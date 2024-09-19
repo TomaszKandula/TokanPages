@@ -17,7 +17,7 @@ interface TechnologiesViewProps {
     background?: React.CSSProperties;
 }
 
-export const TechnologiesView = (props: TechnologiesViewProps): JSX.Element => {
+export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
     const classes = TechnologiesStyle();
     const technology = useSelector((state: ApplicationState) => state.contentTechnologies);
 

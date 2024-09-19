@@ -38,7 +38,7 @@ interface TestimonialsViewProps extends ViewProperties {
     background?: React.CSSProperties;
 }
 
-export const TestimonialsView = (props: TestimonialsViewProps): JSX.Element => {
+export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => {
     const classes = TestimonialsStyle();
     const imageUrl = (name: string) => {
         if (name === "") return " ";

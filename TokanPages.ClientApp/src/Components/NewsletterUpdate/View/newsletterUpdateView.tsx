@@ -26,7 +26,7 @@ interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
     labelEmail: string;
 }
 
-const ActiveButton = (props: NewsletterUpdateViewProps): JSX.Element => {
+const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => {
     const classes = NewsletterUpdateStyle();
     return (
         <Button
@@ -41,7 +41,7 @@ const ActiveButton = (props: NewsletterUpdateViewProps): JSX.Element => {
     );
 };
 
-export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): JSX.Element => {
+export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.ReactElement => {
     const classes = NewsletterUpdateStyle();
     return (
         <section className={classes.section}>

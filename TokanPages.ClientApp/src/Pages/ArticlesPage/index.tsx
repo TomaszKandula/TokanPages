@@ -17,7 +17,7 @@ const useQuery = () => {
     return new URLSearchParams(useLocation().search);
 };
 
-export const ArticlesPage = (): JSX.Element => {
+export const ArticlesPage = (): React.ReactElement => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const title = queryParam.get("title");

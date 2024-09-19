@@ -23,7 +23,7 @@ export interface NewsletterUpdateProps extends ExtendedViewProps {
     id: string;
 }
 
-export const NewsletterUpdate = (props: NewsletterUpdateProps): JSX.Element => {
+export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactElement => {
     const hasId = props.id === null ? false : true;
     const dispatch = useDispatch();
 

@@ -6,7 +6,7 @@ import { API_BASE_URI } from "../../../../../Api/Request";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import Validate from "validate.js";
 
-const RenderDescription = (props: { text: string }): JSX.Element => {
+const RenderDescription = (props: { text: string }): React.ReactElement => {
     const classes = RenderVideoStyle();
     return (
         <CardContent>
@@ -17,7 +17,7 @@ const RenderDescription = (props: { text: string }): JSX.Element => {
     );
 };
 
-export const RenderVideo = (props: TextItem): JSX.Element => {
+export const RenderVideo = (props: TextItem): React.ReactElement => {
     const classes = RenderVideoStyle();
 
     let valueUrl = props.value as string;

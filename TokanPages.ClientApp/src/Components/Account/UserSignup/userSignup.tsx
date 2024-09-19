@@ -39,7 +39,7 @@ export interface UserSignupProps {
     background?: React.CSSProperties;
 }
 
-export const UserSignup = (props: UserSignupProps): JSX.Element => {
+export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);

@@ -17,7 +17,7 @@ interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProp
     section: SectionAccountDeactivation;
 }
 
-const DeactivationButton = (props: UserDeactivationViewProps): JSX.Element => {
+const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElement => {
     const classes = UserDeactivationStyle();
     return (
         <Button
@@ -42,7 +42,7 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserDeactivationView = (props: UserDeactivationViewProps): JSX.Element => {
+export const UserDeactivationView = (props: UserDeactivationViewProps): React.ReactElement => {
     const classes = UserDeactivationStyle();
     return (
         <section className={classes.section} style={props.background}>

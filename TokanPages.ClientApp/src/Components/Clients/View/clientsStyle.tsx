@@ -9,8 +9,12 @@ export const ClientsStyle = makeStyles(theme => ({
     },
     section: {
         backgroundColor: Colours.colours.white,
-        paddingTop: 50,
-        paddingBottom: 50,
+        paddingTop: 5,
+        paddingBottom: 5,
+        [theme.breakpoints.down(900)]: {
+            paddingTop: 50,
+            paddingBottom: 50,
+        },
     },
     logo: {
         height: 50,

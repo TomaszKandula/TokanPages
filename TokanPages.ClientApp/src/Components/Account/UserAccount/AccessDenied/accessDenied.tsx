@@ -7,7 +7,7 @@ export interface AccessDeniedProps {
     background?: React.CSSProperties;
 }
 
-export const AccessDenied = (props: AccessDeniedProps): JSX.Element => {
+export const AccessDenied = (props: AccessDeniedProps): React.ReactElement => {
     const account = useSelector((state: ApplicationState) => state.contentAccount);
     const accessDeniedCaption = account.content?.sectionAccessDenied?.accessDeniedCaption;
     const accessDeniedPrompt = account.content?.sectionAccessDenied?.accessDeniedPrompt;

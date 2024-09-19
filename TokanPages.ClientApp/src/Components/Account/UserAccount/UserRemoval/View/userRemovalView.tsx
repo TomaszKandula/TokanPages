@@ -17,7 +17,7 @@ interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
     sectionAccountRemoval: SectionAccountRemoval;
 }
 
-const DeleteAccountButton = (props: UserRemovalViewProps): JSX.Element => {
+const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement => {
     const classes = UserRemovalStyle();
     return (
         <Button
@@ -46,7 +46,7 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserRemovalView = (props: UserRemovalViewProps): JSX.Element => {
+export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement => {
     const classes = UserRemovalStyle();
     return (
         <section className={classes.section} style={props.background}>

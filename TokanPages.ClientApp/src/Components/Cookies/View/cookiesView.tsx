@@ -19,7 +19,7 @@ interface Properties extends ViewProperties {
     buttonText: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: Properties): React.ReactElement => {
     const classes = CookiesStyle();
     return (
         <Button onClick={props.onClickEvent} className={classes.button}>
@@ -28,9 +28,9 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const CookiesView = (props: Properties): JSX.Element => {
+export const CookiesView = (props: Properties): React.ReactElement => {
     const classes = CookiesStyle();
-    const renderConsent = (): JSX.Element => {
+    const renderConsent = (): React.ReactElement => {
         return (
             <Box
                 position="fixed"

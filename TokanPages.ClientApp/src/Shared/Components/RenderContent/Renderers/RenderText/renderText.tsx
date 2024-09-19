@@ -14,7 +14,7 @@ interface DataProps {
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
-const RenderItemLink = (props: DataProps): JSX.Element => {
+const RenderItemLink = (props: DataProps): React.ReactElement => {
     const hash = useHash();
     const classes = RenderTextStyle();
     const data = props.data;
@@ -43,7 +43,7 @@ const RenderItemLink = (props: DataProps): JSX.Element => {
     );
 };
 
-const RenderTitle = (props: DataProps): JSX.Element => {
+const RenderTitle = (props: DataProps): React.ReactElement => {
     const classes = RenderTextStyle();
     return (
         <Box mt={7} mb={0}>
@@ -54,7 +54,7 @@ const RenderTitle = (props: DataProps): JSX.Element => {
     );
 };
 
-const RenderSubtitle = (props: DataProps): JSX.Element => {
+const RenderSubtitle = (props: DataProps): React.ReactElement => {
     const classes = RenderTextStyle();
     return (
         <Box mt={1} mb={5}>
@@ -65,7 +65,7 @@ const RenderSubtitle = (props: DataProps): JSX.Element => {
     );
 };
 
-const RenderHeader = (props: DataProps): JSX.Element => {
+const RenderHeader = (props: DataProps): React.ReactElement => {
     const classes = RenderTextStyle();
     return (
         <Box mt={7} mb={2}>
@@ -76,7 +76,7 @@ const RenderHeader = (props: DataProps): JSX.Element => {
     );
 };
 
-const RenderParagraph = (props: DataProps): JSX.Element => {
+const RenderParagraph = (props: DataProps): React.ReactElement => {
     const classes = RenderTextStyle();
     return (
         <Typography variant="body1" component="span" className={`${classes.common} ${classes.paragraph}`}>
@@ -85,7 +85,7 @@ const RenderParagraph = (props: DataProps): JSX.Element => {
     );
 };
 
-const RenderParagraphWithDropCap = (props: DataProps): JSX.Element => {
+const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     const classes = RenderTextStyle();
     const replaced = props.data?.replace("<p>", "<p class='custom-drop-cap'>");
     return (
@@ -95,7 +95,7 @@ const RenderParagraphWithDropCap = (props: DataProps): JSX.Element => {
     );
 };
 
-export const RenderText = (props: TextItem): JSX.Element => {
+export const RenderText = (props: TextItem): React.ReactElement => {
     const data: string = props.value as string;
 
     switch (props.prop) {

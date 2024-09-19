@@ -10,7 +10,7 @@ describe("test rendering image component", () => {
         className: string;
     }
 
-    const TestComponent = (props: Properties): JSX.Element | null => {
+    const TestComponent = (props: Properties): React.ReactElement | null => {
         return RenderImage(props.basePath, props.imageSource, props.className);
     };
 

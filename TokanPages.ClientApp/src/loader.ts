@@ -9,7 +9,7 @@ const requestManifest: RequestContract = {
     },
 };
 
-const hidePreloader = () => {
+const hidePreloader = (): void => {
     let preloader = document.getElementById("preloader");
     if (preloader !== null) preloader.style.display = "none";
 };

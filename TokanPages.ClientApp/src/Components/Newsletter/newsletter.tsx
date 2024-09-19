@@ -17,7 +17,7 @@ interface NewsletterProps {
     background?: React.CSSProperties;
 }
 
-export const Newsletter = (props: NewsletterProps): JSX.Element => {
+export const Newsletter = (props: NewsletterProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);

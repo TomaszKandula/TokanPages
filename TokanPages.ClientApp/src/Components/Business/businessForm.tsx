@@ -56,7 +56,7 @@ const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
     return result;
 };
 
-export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
+export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);
@@ -70,7 +70,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [techStackItems, setTechStackItems] = React.useState<TechItemsDto[] | undefined>(undefined);
-    const [services, setServices] = React.useState<string[]>([""]);
+    const [services, setServices] = React.useState<string[]>([]);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
@@ -130,7 +130,7 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
             clearForm();
             showSuccess(content.templates.messageOut.success);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, content]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, content, techStackItems, services]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -163,13 +163,13 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     );
 
     const techHandler = React.useCallback(
-        (item: TechItemsDto, isChecked: boolean) => {
+        (event: ReactChangeEvent, isChecked: boolean) => {
             if (!techStackItems) {
                 return;
             }
 
+            const index = Number(event.currentTarget.id);
             const data = techStackItems.slice();
-            const index = data?.indexOf(item);
             data[index].isChecked = isChecked;
             setTechStackItems(data);
         },
@@ -177,8 +177,15 @@ export const BusinessForm = (props: BusinessFormProps): JSX.Element => {
     );
 
     const serviceHandler = React.useCallback(
-        (event: ReactMouseEvent, id: string) => {
+        (event: ReactMouseEvent) => {
             event.preventDefault();
+            const data = event.currentTarget.getAttribute("data-disabled") as string;
+            const isDisabled = JSON.parse(data as string);
+            if (isDisabled) {
+                return;
+            }
+
+            const id = event.currentTarget.id;
             if (!services) {
                 const data = [];
                 data.push(id);

@@ -8,7 +8,7 @@ export interface ArticleListProps {
     background?: React.CSSProperties;
 }
 
-export const ArticleList = (props: ArticleListProps): JSX.Element => {
+export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
 

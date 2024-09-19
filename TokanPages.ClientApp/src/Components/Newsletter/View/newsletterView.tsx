@@ -24,7 +24,7 @@ interface NewsletterViewProps extends ViewProperties {
     background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: NewsletterViewProps): JSX.Element => {
+const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
     const classes = NewsletterStyle();
     return (
         <Button
@@ -40,7 +40,7 @@ const ActiveButton = (props: NewsletterViewProps): JSX.Element => {
     );
 };
 
-export const NewsletterView = (props: NewsletterViewProps): JSX.Element => {
+export const NewsletterView = (props: NewsletterViewProps): React.ReactElement => {
     const classes = NewsletterStyle();
     return (
         <section className={classes.section} style={props.background}>

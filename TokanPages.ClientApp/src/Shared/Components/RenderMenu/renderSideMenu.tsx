@@ -11,17 +11,18 @@ interface Properties {
 
 type VariantType = "inset" | "middle" | "fullWidth" | undefined;
 
-export const RenderSideMenu = (props: Properties): JSX.Element => {
+export const RenderSideMenu = (props: Properties): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
     props.items.sort((a: Item, b: Item) => {
         const item1 = a.sideMenu?.sortOrder ?? 0;
         const item2 = b.sideMenu?.sortOrder ?? 0;
-        return item1 < item2 ? -1 : item1 > item2 ? 1 : 0;
+        const isGreater = item1 > item2 ? 1 : 0;
+        return item1 < item2 ? -1 : isGreater;
     });
 
-    let renderBuffer: JSX.Element[] = [];
+    let renderBuffer: React.ReactElement[] = [];
     props.items.forEach(item => {
         const isAnonymous = props.isAnonymous && item.link === "/account";
         const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");

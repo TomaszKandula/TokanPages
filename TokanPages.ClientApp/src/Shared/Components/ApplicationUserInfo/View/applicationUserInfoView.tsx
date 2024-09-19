@@ -31,7 +31,7 @@ interface ItemsProps {
     className: string;
 }
 
-const CustomListItem = (props: ItemsProps): JSX.Element => {
+const CustomListItem = (props: ItemsProps): React.ReactElement => {
     return (
         <ListItem>
             <ListItemIcon style={{ color: green[500] }}>
@@ -44,7 +44,7 @@ const CustomListItem = (props: ItemsProps): JSX.Element => {
     );
 };
 
-export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): JSX.Element => {
+export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): React.ReactElement => {
     const classes = ApplicationUserInfoStyle();
     const registered = GetDateTime({
         value: props.data.registered,

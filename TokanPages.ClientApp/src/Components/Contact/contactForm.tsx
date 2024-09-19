@@ -32,7 +32,7 @@ export interface ContactFormProps {
     background?: React.CSSProperties;
 }
 
-export const ContactForm = (props: ContactFormProps): JSX.Element => {
+export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);

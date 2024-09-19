@@ -23,7 +23,7 @@ interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
     sectionAccountPassword: SectionAccountPassword;
 }
 
-const UpdatePasswordButton = (props: UserPasswordViewProps): JSX.Element => {
+const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement => {
     const classes = UserPasswordStyle();
     return (
         <Button
@@ -48,7 +48,7 @@ const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
     );
 };
 
-export const UserPasswordView = (props: UserPasswordViewProps): JSX.Element => {
+export const UserPasswordView = (props: UserPasswordViewProps): React.ReactElement => {
     const classes = UserPasswordStyle();
     return (
         <section className={classes.section} style={props.background}>

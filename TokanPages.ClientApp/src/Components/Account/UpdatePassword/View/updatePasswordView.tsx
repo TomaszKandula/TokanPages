@@ -27,7 +27,7 @@ interface Properties extends ViewProperties, UpdatePasswordProps {
     labelVerifyPassword: string;
 }
 
-const ActiveButton = (props: Properties): JSX.Element => {
+const ActiveButton = (props: Properties): React.ReactElement => {
     const classes = UpdatePasswordStyle();
     return (
         <Button
@@ -43,7 +43,7 @@ const ActiveButton = (props: Properties): JSX.Element => {
     );
 };
 
-export const UpdatePasswordView = (props: Properties): JSX.Element => {
+export const UpdatePasswordView = (props: Properties): React.ReactElement => {
     const classes = UpdatePasswordStyle();
     return (
         <section className={classes.section} style={props.background}>
