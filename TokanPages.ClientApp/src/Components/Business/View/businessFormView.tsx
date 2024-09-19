@@ -80,7 +80,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
     return (
         <List>
             {props.list.map((value: TechItemsDto, index: number) => (
-                <ListItem disabled={props.isDisabled} key={index} role={undefined} button className={classes.list_item}>
+                <ListItem disabled={props.isDisabled} key={value.key} role={undefined} button className={classes.list_item}>
                     <ListItemIcon>
                         <VioletCheckbox
                             id={`tech-${index}`}
@@ -93,7 +93,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                             inputProps={{ "aria-labelledby": `key-${index}` }}
                         />
                     </ListItemIcon>
-                    <ListItemText id={value.key.toString()} primary={value.value} />
+                    <ListItemText id={`${value.key}`} primary={value.value} />
                 </ListItem>
             ))}
         </List>
@@ -334,9 +334,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     {props.isLoading ? (
                                         <Skeleton variant="rect" width="100%" height="100px" />
                                     ) : (
-                                        props.pricing.services.map((value: ServiceItemDto, index: number) => (
+                                        props.pricing.services.map((value: ServiceItemDto, _index: number) => (
                                             <ServiceItemCard
-                                                key={index}
+                                                key={value.id}
                                                 value={value}
                                                 isDisabled={props.progress}
                                                 handler={props.serviceHandler}

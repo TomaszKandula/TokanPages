@@ -20,7 +20,7 @@ export interface TechStackListProps {
 
 export interface ServiceItemCardProps {
     isDisabled: boolean;
-    key: number;
+    key: React.Key | null | undefined;
     value: ServiceItemDto;
     handler: (event: ReactMouseEvent, id: string) => void;
     services: string[];
