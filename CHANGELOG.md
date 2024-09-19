@@ -1,3 +1,20 @@
+## [0.104.1](https://github.com/TomaszKandula/TokanPages/compare/v0.104.0...v0.104.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* extract nested ternary operation into an independent statement ([deec7f9](https://github.com/TomaszKandula/TokanPages/commit/deec7f9e5538823106a594b0740d84bbd5f29399))
+* incorrect init value, missing dependencies ([778c0da](https://github.com/TomaszKandula/TokanPages/commit/778c0da766d4ed680b900473d29a6d1b321b1866))
+* layout correction ([b43a3da](https://github.com/TomaszKandula/TokanPages/commit/b43a3daa1fc8cfdc1358674703fadeb3ff35d164))
+* pass the navigation state to functions ([9baac7d](https://github.com/TomaszKandula/TokanPages/commit/9baac7df33ed3645228cd05512e88fec1967ec13))
+* provide key ([6518fe0](https://github.com/TomaszKandula/TokanPages/commit/6518fe064eabe54f5291e48c5d025d54ae847fdc))
+* reduce cognitive complexity ([a60038f](https://github.com/TomaszKandula/TokanPages/commit/a60038f7e4e8a89b1771d7f437cf06f366207236))
+* replace JSX.Element with React.ReactElement, add missing return type ([4562c7e](https://github.com/TomaszKandula/TokanPages/commit/4562c7e79cebfd49120cddd3e0f98ece715435b0))
+* resolve issue 'JSX props should not use arrow functions' ([43ea10f](https://github.com/TomaszKandula/TokanPages/commit/43ea10f6e325bc96bd6b7d1c73fcd7e0b3519d8a))
+* resolve issue 'JSX props should not use arrow functions' ([8246ee1](https://github.com/TomaszKandula/TokanPages/commit/8246ee1382a1bba903521f80755094a88a6a1b45))
+* resolve layout issue ([8bcabc1](https://github.com/TomaszKandula/TokanPages/commit/8bcabc1d71a69169987f1d614b8887adf5b80316))
+* use unique key ([17f1b8d](https://github.com/TomaszKandula/TokanPages/commit/17f1b8d7b3d5d14a9db571eb2612fb39d9047a9f))
+
 # [0.104.0](https://github.com/TomaszKandula/TokanPages/compare/v0.103.0...v0.104.0) (2024-09-18)
 
 
