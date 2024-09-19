@@ -80,7 +80,13 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
     return (
         <List>
             {props.list.map((value: TechItemsDto, index: number) => (
-                <ListItem disabled={props.isDisabled} key={value.key} role={undefined} button className={classes.list_item}>
+                <ListItem
+                    disabled={props.isDisabled}
+                    key={value.key}
+                    role={undefined}
+                    button
+                    className={classes.list_item}
+                >
                     <ListItemIcon>
                         <VioletCheckbox
                             id={`${index}`}

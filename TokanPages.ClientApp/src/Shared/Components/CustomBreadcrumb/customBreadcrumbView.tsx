@@ -27,7 +27,7 @@ interface NavigationProps {
     menu: {
         image: string;
         items: Item[];
-    }
+    };
 }
 
 const useQuery = (): URLSearchParams => {
@@ -109,7 +109,11 @@ const pathToSubitemText = (pathname: string, navigation: NavigationProps): strin
     return "";
 };
 
-const makeStyledBreadcrumb = (pathname: string, onClick: () => void, navigation: NavigationProps): React.ReactElement[] | null => {
+const makeStyledBreadcrumb = (
+    pathname: string,
+    onClick: () => void,
+    navigation: NavigationProps
+): React.ReactElement[] | null => {
     let fragments = pathname.split("/");
     fragments = fragments.filter(e => String(e).trim());
 
