@@ -25,13 +25,7 @@ export const HeaderStyle = makeStyles(theme => ({
             maxWidth: 600,
             marginLeft: "-33%",
         },
-        [theme.breakpoints.down(900)]: {
-            maxWidth: 900,
-            padding: 15,
-            marginLeft: 0,
-            marginRight: 0,
-        },
-        [theme.breakpoints.up(900)]: {
+        [theme.breakpoints.down(960)]: {
             maxWidth: 900,
             padding: 15,
             marginLeft: 0,
