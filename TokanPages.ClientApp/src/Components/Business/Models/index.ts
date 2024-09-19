@@ -1,5 +1,5 @@
 import { ServiceItemDto, TechItemsDto } from "../../../Api/Models";
-import { ReactMouseEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactMouseEvent } from "../../../Shared/types";
 
 export interface MessageFormProps {
     company: string;
@@ -15,7 +15,7 @@ export interface MessageFormProps {
 export interface TechStackListProps {
     isDisabled: boolean;
     list: TechItemsDto[];
-    handler: (value: TechItemsDto, isChecked: boolean) => void;
+    handler: (event: ReactChangeEvent, isChecked: boolean) => void;
 }
 
 export interface ServiceItemCardProps {

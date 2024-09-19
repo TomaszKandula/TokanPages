@@ -33,7 +33,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
-    techHandler: (value: TechItemsDto, isChecked: boolean) => void;
+    techHandler: (event: ReactChangeEvent, isChecked: boolean) => void;
     serviceHandler: (event: ReactMouseEvent, id: string) => void;
     serviceSelection: string[];
 }
@@ -83,10 +83,10 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                 <ListItem disabled={props.isDisabled} key={value.key} role={undefined} button className={classes.list_item}>
                     <ListItemIcon>
                         <VioletCheckbox
-                            id={`tech-${index}`}
+                            id={`${index}`}
                             name={`tech-${index}`}
                             edge="start"
-                            onChange={(_: ReactChangeEvent, checked: boolean) => props.handler(value, checked)}
+                            onChange={props.handler}
                             checked={value.isChecked}
                             tabIndex={-1}
                             disableRipple={true}

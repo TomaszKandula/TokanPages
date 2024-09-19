@@ -163,13 +163,13 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     );
 
     const techHandler = React.useCallback(
-        (item: TechItemsDto, isChecked: boolean) => {
+        (event: ReactChangeEvent, isChecked: boolean) => {
             if (!techStackItems) {
                 return;
             }
 
+            const index = Number(event.currentTarget.id);
             const data = techStackItems.slice();
-            const index = data?.indexOf(item);
             data[index].isChecked = isChecked;
             setTechStackItems(data);
         },
