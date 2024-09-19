@@ -7,6 +7,7 @@ import { UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Item, Subitem } from "../RenderMenu/Models";
 import { StyledBreadcrumb } from "./customBreadcrumbStyle";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface CustomBreadcrumbProps {
@@ -26,7 +27,7 @@ interface NavigationProps {
     menu: {
         image: string;
         items: Item[];
-    }
+    };
 }
 
 const useQuery = (): URLSearchParams => {
@@ -108,7 +109,11 @@ const pathToSubitemText = (pathname: string, navigation: NavigationProps): strin
     return "";
 };
 
-const makeStyledBreadcrumb = (pathname: string, onClick: () => void, navigation: NavigationProps): React.ReactElement[] | null => {
+const makeStyledBreadcrumb = (
+    pathname: string,
+    onClick: () => void,
+    navigation: NavigationProps
+): React.ReactElement[] | null => {
     let fragments = pathname.split("/");
     fragments = fragments.filter(e => String(e).trim());
 
@@ -125,7 +130,7 @@ const makeStyledBreadcrumb = (pathname: string, onClick: () => void, navigation:
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <StyledBreadcrumb key={index} component="div" label={setValue(index)} onClick={onClick} />
+            <StyledBreadcrumb key={uuidv4()} component="div" label={setValue(index)} onClick={onClick} />
         ));
     }
 

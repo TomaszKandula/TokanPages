@@ -163,13 +163,13 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     );
 
     const techHandler = React.useCallback(
-        (item: TechItemsDto, isChecked: boolean) => {
+        (event: ReactChangeEvent, isChecked: boolean) => {
             if (!techStackItems) {
                 return;
             }
 
+            const index = Number(event.currentTarget.id);
             const data = techStackItems.slice();
-            const index = data?.indexOf(item);
             data[index].isChecked = isChecked;
             setTechStackItems(data);
         },
@@ -177,8 +177,15 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     );
 
     const serviceHandler = React.useCallback(
-        (event: ReactMouseEvent, id: string) => {
+        (event: ReactMouseEvent) => {
             event.preventDefault();
+            const data = event.currentTarget.getAttribute("data-disabled") as string;
+            const isDisabled = JSON.parse(data as string);
+            if (isDisabled) {
+                return;
+            }
+
+            const id = event.currentTarget.id;
             if (!services) {
                 const data = [];
                 data.push(id);
