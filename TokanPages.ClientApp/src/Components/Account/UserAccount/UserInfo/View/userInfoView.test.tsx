@@ -69,6 +69,7 @@ describe("test account group component: userInfoView", () => {
                         multiline: undefined,
                         minRows: undefined
                     }}
+                    fileUploadingCustomHandle="UserFile-Avatar"
                 />
             </BrowserRouter>
         );
