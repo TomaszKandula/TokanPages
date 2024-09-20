@@ -15,6 +15,7 @@ import { UserInfoProps } from "../userInfo";
 import { UserInfoStyle } from "./userInfoStyle";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
+    fileUploadingCustomHandle?: string;
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
@@ -176,6 +177,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <Grid item xs={12} sm={9}>
                                         {props.isLoading ? null : (
                                             <UploadUserMedia
+                                                customHandle={props.fileUploadingCustomHandle}
                                                 mediaTarget={UserMedia.userImage}
                                                 handle="userInfoSection_userImage"
                                             />
