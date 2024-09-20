@@ -1,0 +1,1190 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test component: businessFormView should render correctly '<BusinessFormView />' when content is loaded. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
+      >
+        <div
+          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-19"
+          >
+            <div
+              class="MuiBox-root MuiBox-root-20"
+            >
+              <p
+                class="MuiTypography-root makeStyles-large_caption-3 MuiTypography-body1 MuiTypography-gutterBottom"
+              >
+                BUSINESS INQUIRY
+              </p>
+            </div>
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root makeStyles-card_content-8"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-21"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root makeStyles-main_icon-6"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 0h-4V5h4v2z"
+                    />
+                  </svg>
+                  <p
+                    class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+                  >
+                    Business Inquiry
+                  </p>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="company"
+                        id="company-label"
+                      >
+                        Company name
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="company"
+                          maxlength="255"
+                          name="company"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-22 MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legendLabelled-24"
+                          >
+                            <span>
+                              Company name
+                               *
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="firstName"
+                        id="firstName-label"
+                      >
+                        First name
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="firstName"
+                          maxlength="255"
+                          name="firstName"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-26 MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legendLabelled-28"
+                          >
+                            <span>
+                              First name
+                               *
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="lastName"
+                        id="lastName-label"
+                      >
+                        Last name
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="lastName"
+                          maxlength="255"
+                          name="lastName"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-30 MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legendLabelled-32"
+                          >
+                            <span>
+                              Last name
+                               *
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="email"
+                        id="email-label"
+                      >
+                        Email
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="email"
+                          maxlength="255"
+                          name="email"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-34 MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legendLabelled-36"
+                          >
+                            <span>
+                              Email
+                               *
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="phone"
+                        id="phone-label"
+                      >
+                        Business phone
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="phone"
+                          maxlength="17"
+                          name="phone"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-38 MuiOutlinedInput-notchedOutline"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legendLabelled-40"
+                          >
+                            <span>
+                              Business phone
+                               *
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="description"
+                          name="description"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-42 MuiOutlinedInput-notchedOutline"
+                          style="padding-left: 8px;"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legend-43"
+                            style="width: 0.01px;"
+                          >
+                            <span>
+                              ​
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                  >
+                    <div
+                      class="MuiBox-root MuiBox-root-46"
+                    >
+                      <p
+                        class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                      >
+                        Which technologies are you interested in?
+                      </p>
+                    </div>
+                    <ul
+                      class="MuiList-root MuiList-padding"
+                    >
+                      <div
+                        aria-disabled="false"
+                        class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                        tabindex="0"
+                      >
+                        <div
+                          class="MuiListItemIcon-root"
+                        >
+                          <span
+                            aria-disabled="false"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-67 MuiCheckbox-root Component-root-65 MuiIconButton-edgeStart"
+                          >
+                            <span
+                              class="MuiIconButton-label"
+                            >
+                              <input
+                                aria-labelledby="key-0"
+                                class="PrivateSwitchBase-input-70"
+                                data-indeterminate="false"
+                                id="0"
+                                name="tech-0"
+                                tabindex="-1"
+                                type="checkbox"
+                                value=""
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </div>
+                        <div
+                          class="MuiListItemText-root"
+                          id="1"
+                        >
+                          <span
+                            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                          >
+                            ABC
+                          </span>
+                        </div>
+                        <span
+                          class="MuiTouchRipple-root"
+                        />
+                      </div>
+                      <div
+                        aria-disabled="false"
+                        class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                        tabindex="0"
+                      >
+                        <div
+                          class="MuiListItemIcon-root"
+                        >
+                          <span
+                            aria-disabled="false"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-73 MuiCheckbox-root Component-root-71 MuiIconButton-edgeStart"
+                          >
+                            <span
+                              class="MuiIconButton-label"
+                            >
+                              <input
+                                aria-labelledby="key-1"
+                                class="PrivateSwitchBase-input-76"
+                                data-indeterminate="false"
+                                id="1"
+                                name="tech-1"
+                                tabindex="-1"
+                                type="checkbox"
+                                value=""
+                              />
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </div>
+                        <div
+                          class="MuiListItemText-root"
+                          id="2"
+                        >
+                          <span
+                            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                          >
+                            CDE
+                          </span>
+                        </div>
+                      </div>
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-77"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-78"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                    >
+                      <div />
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+                  >
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+                    >
+                      <div
+                        class="MuiPaper-root makeStyles-paper-93 makeStyles-unselected-89 makeStyles-enabled-92 MuiPaper-elevation0 MuiPaper-rounded"
+                        data-disabled="false"
+                        id="web"
+                      >
+                        <span
+                          class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                        >
+                          <div>
+                            Web Development
+                          </div>
+                        </span>
+                        <div
+                          class="MuiBox-root MuiBox-root-97"
+                        >
+                          <span
+                            class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                          >
+                            <div>
+                              30 USD/h
+                            </div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+                    >
+                      <div
+                        class="MuiPaper-root makeStyles-paper-112 makeStyles-unselected-108 makeStyles-enabled-111 MuiPaper-elevation0 MuiPaper-rounded"
+                        data-disabled="false"
+                        id="mobile"
+                      >
+                        <span
+                          class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                        >
+                          <div>
+                            Mobile Development
+                          </div>
+                        </span>
+                        <div
+                          class="MuiBox-root MuiBox-root-116"
+                        >
+                          <span
+                            class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                          >
+                            <div>
+                              45 USD/h
+                            </div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-117 makeStyles-info_box-17"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root makeStyles-info_icon-18"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTypography-root MuiTypography-body1"
+                  >
+                    <div />
+                  </span>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-118"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-123 MuiButton-fullWidth"
+                    tabindex="0"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Submit
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
+    >
+      <div
+        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-19"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-20"
+          >
+            <p
+              class="MuiTypography-root makeStyles-large_caption-3 MuiTypography-body1 MuiTypography-gutterBottom"
+            >
+              BUSINESS INQUIRY
+            </p>
+          </div>
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root makeStyles-card_content-8"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-21"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root makeStyles-main_icon-6"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 0h-4V5h4v2z"
+                  />
+                </svg>
+                <p
+                  class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+                >
+                  Business Inquiry
+                </p>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                >
+                  <div
+                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="company"
+                      id="company-label"
+                    >
+                      Company name
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        id="company"
+                        maxlength="255"
+                        name="company"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-22 MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="PrivateNotchedOutline-legendLabelled-24"
+                        >
+                          <span>
+                            Company name
+                             *
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                >
+                  <div
+                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="firstName"
+                      id="firstName-label"
+                    >
+                      First name
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        id="firstName"
+                        maxlength="255"
+                        name="firstName"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-26 MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="PrivateNotchedOutline-legendLabelled-28"
+                        >
+                          <span>
+                            First name
+                             *
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                >
+                  <div
+                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="lastName"
+                      id="lastName-label"
+                    >
+                      Last name
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        id="lastName"
+                        maxlength="255"
+                        name="lastName"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-30 MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="PrivateNotchedOutline-legendLabelled-32"
+                        >
+                          <span>
+                            Last name
+                             *
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                >
+                  <div
+                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="email"
+                      id="email-label"
+                    >
+                      Email
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        id="email"
+                        maxlength="255"
+                        name="email"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-34 MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="PrivateNotchedOutline-legendLabelled-36"
+                        >
+                          <span>
+                            Email
+                             *
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                >
+                  <div
+                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="phone"
+                      id="phone-label"
+                    >
+                      Business phone
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        id="phone"
+                        maxlength="17"
+                        name="phone"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-38 MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="PrivateNotchedOutline-legendLabelled-40"
+                        >
+                          <span>
+                            Business phone
+                             *
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                >
+                  <div
+                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                  >
+                    
+                    <div
+                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiInputBase-input MuiOutlinedInput-input"
+                        id="description"
+                        name="description"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="PrivateNotchedOutline-root-42 MuiOutlinedInput-notchedOutline"
+                        style="padding-left: 8px;"
+                      >
+                        <legend
+                          class="PrivateNotchedOutline-legend-43"
+                          style="width: 0.01px;"
+                        >
+                          <span>
+                            ​
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-46"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                    >
+                      Which technologies are you interested in?
+                    </p>
+                  </div>
+                  <ul
+                    class="MuiList-root MuiList-padding"
+                  >
+                    <div
+                      aria-disabled="false"
+                      class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                      tabindex="0"
+                    >
+                      <div
+                        class="MuiListItemIcon-root"
+                      >
+                        <span
+                          aria-disabled="false"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-67 MuiCheckbox-root Component-root-65 MuiIconButton-edgeStart"
+                        >
+                          <span
+                            class="MuiIconButton-label"
+                          >
+                            <input
+                              aria-labelledby="key-0"
+                              class="PrivateSwitchBase-input-70"
+                              data-indeterminate="false"
+                              id="0"
+                              name="tech-0"
+                              tabindex="-1"
+                              type="checkbox"
+                              value=""
+                            />
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        class="MuiListItemText-root"
+                        id="1"
+                      >
+                        <span
+                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >
+                          ABC
+                        </span>
+                      </div>
+                      <span
+                        class="MuiTouchRipple-root"
+                      />
+                    </div>
+                    <div
+                      aria-disabled="false"
+                      class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                      tabindex="0"
+                    >
+                      <div
+                        class="MuiListItemIcon-root"
+                      >
+                        <span
+                          aria-disabled="false"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-73 MuiCheckbox-root Component-root-71 MuiIconButton-edgeStart"
+                        >
+                          <span
+                            class="MuiIconButton-label"
+                          >
+                            <input
+                              aria-labelledby="key-1"
+                              class="PrivateSwitchBase-input-76"
+                              data-indeterminate="false"
+                              id="1"
+                              name="tech-1"
+                              tabindex="-1"
+                              type="checkbox"
+                              value=""
+                            />
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        class="MuiListItemText-root"
+                        id="2"
+                      >
+                        <span
+                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >
+                          CDE
+                        </span>
+                      </div>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-77"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-78"
+                >
+                  <span
+                    class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                  >
+                    <div />
+                  </span>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+                  >
+                    <div
+                      class="MuiPaper-root makeStyles-paper-93 makeStyles-unselected-89 makeStyles-enabled-92 MuiPaper-elevation0 MuiPaper-rounded"
+                      data-disabled="false"
+                      id="web"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                      >
+                        <div>
+                          Web Development
+                        </div>
+                      </span>
+                      <div
+                        class="MuiBox-root MuiBox-root-97"
+                      >
+                        <span
+                          class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                        >
+                          <div>
+                            30 USD/h
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+                  >
+                    <div
+                      class="MuiPaper-root makeStyles-paper-112 makeStyles-unselected-108 makeStyles-enabled-111 MuiPaper-elevation0 MuiPaper-rounded"
+                      data-disabled="false"
+                      id="mobile"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                      >
+                        <div>
+                          Mobile Development
+                        </div>
+                      </span>
+                      <div
+                        class="MuiBox-root MuiBox-root-116"
+                      >
+                        <span
+                          class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                        >
+                          <div>
+                            45 USD/h
+                          </div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-117 makeStyles-info_box-17"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root makeStyles-info_icon-18"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                  />
+                </svg>
+                <span
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  <div />
+                </span>
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-118"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-123 MuiButton-fullWidth"
+                  tabindex="0"
+                  type="submit"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    Submit
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
