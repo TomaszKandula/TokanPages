@@ -8,6 +8,7 @@ import { OperationStatus, UserMedia } from "../../enums";
 import { UploadUserMediaView } from "./View/uploadUserMediaView";
 
 interface Properties {
+    customHandle?: string;
     handle?: string;
     skipDb?: boolean;
     mediaTarget: UserMedia;
@@ -80,5 +81,5 @@ export const UploadUserMedia = (props: Properties): React.ReactElement => {
         setIsUploading(true);
     }, []);
 
-    return <UploadUserMediaView buttonState={!isUploading} inputHandler={inputHandler} accepting={accepting} />;
+    return <UploadUserMediaView customHandle={props.customHandle} buttonState={!isUploading} inputHandler={inputHandler} accepting={accepting} />;
 };
