@@ -27,6 +27,10 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
+    userAbout?: {
+        multiline?: boolean;
+        minRows?: number;
+    }
 }
 
 interface Properties extends UserInfoViewProps {
@@ -272,8 +276,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                multiline
-                                                minRows={6}
+                                                multiline={props.userAbout?.multiline}
+                                                minRows={props.userAbout?.minRows}
                                                 id="userAboutText"
                                                 name="userAboutText"
                                                 variant="outlined"

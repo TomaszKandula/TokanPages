@@ -1,0 +1,870 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test account group component: userInfoView should render correctly '<UserInfoView />' when content is loaded. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
+        style="background-color: white;"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBackdrop-root makeStyles-backdrop-3"
+          style="opacity: 0; visibility: hidden;"
+        >
+          <div
+            class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
+            role="progressbar"
+            style="width: 40px; height: 40px;"
+          >
+            <svg
+              class="MuiCircularProgress-svg"
+              viewBox="22 22 44 44"
+            >
+              <circle
+                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                cx="44"
+                cy="44"
+                fill="none"
+                r="20.2"
+                stroke-width="3.6"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-18"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-card-8 MuiPaper-elevation0 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root makeStyles-card_content-9"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-19"
+                >
+                  <span
+                    class="MuiTypography-root makeStyles-caption-7 MuiTypography-body1"
+                  >
+                    USER DETAILS
+                  </span>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-37"
+                >
+                  <hr
+                    class="MuiDivider-root makeStyles-divider-25"
+                  />
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-38"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  >
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        User ID:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-user_id-10 MuiTypography-body1"
+                      >
+                        123456789
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        Status
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <p
+                        class="MuiTypography-root makeStyles-user_email_status-12 MuiTypography-body1"
+                      >
+                        Unverified
+                        <span
+                          class="MuiTypography-root MuiTypography-body1"
+                        >
+                           (
+                        </span>
+                        <span
+                          class="MuiTypography-root makeStyles-user_email_verification-51 MuiTypography-body1"
+                        >
+                          request verification
+                        </span>
+                        <span
+                          class="MuiTypography-root MuiTypography-body1"
+                        >
+                          )
+                        </span>
+                      </p>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        User alias:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-user_alias-11 MuiTypography-body1"
+                      >
+                        Ester
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        Avatar:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <label
+                        for="userFile-411e840e-3b20-4234-82ed-a8ee26a1a771"
+                      >
+                        <input
+                          accept=""
+                          hidden=""
+                          id="userFile-411e840e-3b20-4234-82ed-a8ee26a1a771"
+                          name="userFile-411e840e-3b20-4234-82ed-a8ee26a1a771"
+                          type="file"
+                        />
+                        <span
+                          aria-disabled="false"
+                          class="MuiButtonBase-root MuiIconButton-root makeStyles-button_upload-56 MuiIconButton-sizeSmall"
+                          role="button"
+                          tabindex="0"
+                        >
+                          <span
+                            class="MuiIconButton-label"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"
+                              />
+                            </svg>
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </span>
+                      </label>
+                      <span
+                        class="MuiTypography-root makeStyles-user_avatar_text-14 MuiTypography-body1"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="MuiBox-root MuiBox-root-74"
+                  >
+                    <hr
+                      class="MuiDivider-root makeStyles-divider-62"
+                    />
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  >
+                    <div
+                      class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        First name:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      >
+                        <div
+                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiInputBase-input MuiOutlinedInput-input"
+                            id="firstName"
+                            name="firstName"
+                            required=""
+                            type="text"
+                            value="Ester"
+                          />
+                          <fieldset
+                            aria-hidden="true"
+                            class="PrivateNotchedOutline-root-75 MuiOutlinedInput-notchedOutline"
+                            style="padding-left: 8px;"
+                          >
+                            <legend
+                              class="PrivateNotchedOutline-legend-76"
+                              style="width: 0.01px;"
+                            >
+                              <span>
+                                ​
+                              </span>
+                            </legend>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        last name:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      >
+                        <div
+                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiInputBase-input MuiOutlinedInput-input"
+                            id="lastName"
+                            name="lastName"
+                            required=""
+                            type="text"
+                            value="Exposito"
+                          />
+                          <fieldset
+                            aria-hidden="true"
+                            class="PrivateNotchedOutline-root-79 MuiOutlinedInput-notchedOutline"
+                            style="padding-left: 8px;"
+                          >
+                            <legend
+                              class="PrivateNotchedOutline-legend-80"
+                              style="width: 0.01px;"
+                            >
+                              <span>
+                                ​
+                              </span>
+                            </legend>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        Email:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      >
+                        <div
+                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiInputBase-input MuiOutlinedInput-input"
+                            id="email"
+                            name="email"
+                            required=""
+                            type="text"
+                            value="ester.exposito@gmail.com"
+                          />
+                          <fieldset
+                            aria-hidden="true"
+                            class="PrivateNotchedOutline-root-83 MuiOutlinedInput-notchedOutline"
+                            style="padding-left: 8px;"
+                          >
+                            <legend
+                              class="PrivateNotchedOutline-legend-84"
+                              style="width: 0.01px;"
+                            >
+                              <span>
+                                ​
+                              </span>
+                            </legend>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                      >
+                        Bio:
+                      </span>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      >
+                        <div
+                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiInputBase-input MuiOutlinedInput-input"
+                            id="userAboutText"
+                            name="userAboutText"
+                            required=""
+                            type="text"
+                            value="Spanish Developer"
+                          />
+                          <fieldset
+                            aria-hidden="true"
+                            class="PrivateNotchedOutline-root-87 MuiOutlinedInput-notchedOutline"
+                            style="padding-left: 8px;"
+                          >
+                            <legend
+                              class="PrivateNotchedOutline-legend-88"
+                              style="width: 0.01px;"
+                            >
+                              <span>
+                                ​
+                              </span>
+                            </legend>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiBox-root MuiBox-root-108"
+                  >
+                    <hr
+                      class="MuiDivider-root makeStyles-divider-96"
+                    />
+                  </div>
+                  <div
+                    class="MuiGrid-root makeStyles-button_container_update-16"
+                  >
+                    <div
+                      class="MuiBox-root MuiBox-root-109"
+                    >
+                      <button
+                        class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button_update-124 MuiButton-fullWidth"
+                        tabindex="0"
+                        type="submit"
+                      >
+                        <span
+                          class="MuiButton-label"
+                        >
+                          Update
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
+      style="background-color: white;"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root makeStyles-backdrop-3"
+        style="opacity: 0; visibility: hidden;"
+      >
+        <div
+          class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
+          role="progressbar"
+          style="width: 40px; height: 40px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+            />
+          </svg>
+        </div>
+      </div>
+      <div
+        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-18"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-8 MuiPaper-elevation0 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root makeStyles-card_content-9"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-19"
+              >
+                <span
+                  class="MuiTypography-root makeStyles-caption-7 MuiTypography-body1"
+                >
+                  USER DETAILS
+                </span>
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-37"
+              >
+                <hr
+                  class="MuiDivider-root makeStyles-divider-25"
+                />
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-38"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      User ID:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-user_id-10 MuiTypography-body1"
+                    >
+                      123456789
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      Status
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <p
+                      class="MuiTypography-root makeStyles-user_email_status-12 MuiTypography-body1"
+                    >
+                      Unverified
+                      <span
+                        class="MuiTypography-root MuiTypography-body1"
+                      >
+                         (
+                      </span>
+                      <span
+                        class="MuiTypography-root makeStyles-user_email_verification-51 MuiTypography-body1"
+                      >
+                        request verification
+                      </span>
+                      <span
+                        class="MuiTypography-root MuiTypography-body1"
+                      >
+                        )
+                      </span>
+                    </p>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      User alias:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-user_alias-11 MuiTypography-body1"
+                    >
+                      Ester
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      Avatar:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <label
+                      for="userFile-411e840e-3b20-4234-82ed-a8ee26a1a771"
+                    >
+                      <input
+                        accept=""
+                        hidden=""
+                        id="userFile-411e840e-3b20-4234-82ed-a8ee26a1a771"
+                        name="userFile-411e840e-3b20-4234-82ed-a8ee26a1a771"
+                        type="file"
+                      />
+                      <span
+                        aria-disabled="false"
+                        class="MuiButtonBase-root MuiIconButton-root makeStyles-button_upload-56 MuiIconButton-sizeSmall"
+                        role="button"
+                        tabindex="0"
+                      >
+                        <span
+                          class="MuiIconButton-label"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"
+                            />
+                          </svg>
+                        </span>
+                        <span
+                          class="MuiTouchRipple-root"
+                        />
+                      </span>
+                    </label>
+                    <span
+                      class="MuiTypography-root makeStyles-user_avatar_text-14 MuiTypography-body1"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-74"
+                >
+                  <hr
+                    class="MuiDivider-root makeStyles-divider-62"
+                  />
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                >
+                  <div
+                    class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      First name:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="firstName"
+                          name="firstName"
+                          required=""
+                          type="text"
+                          value="Ester"
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-75 MuiOutlinedInput-notchedOutline"
+                          style="padding-left: 8px;"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legend-76"
+                            style="width: 0.01px;"
+                          >
+                            <span>
+                              ​
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      last name:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="lastName"
+                          name="lastName"
+                          required=""
+                          type="text"
+                          value="Exposito"
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-79 MuiOutlinedInput-notchedOutline"
+                          style="padding-left: 8px;"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legend-80"
+                            style="width: 0.01px;"
+                          >
+                            <span>
+                              ​
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      Email:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="email"
+                          name="email"
+                          required=""
+                          type="text"
+                          value="ester.exposito@gmail.com"
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-83 MuiOutlinedInput-notchedOutline"
+                          style="padding-left: 8px;"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legend-84"
+                            style="width: 0.01px;"
+                          >
+                            <span>
+                              ​
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root makeStyles-label_centered-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-5 MuiTypography-body1"
+                    >
+                      Bio:
+                    </span>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                  >
+                    <div
+                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    >
+                      <div
+                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      >
+                        <input
+                          aria-invalid="false"
+                          class="MuiInputBase-input MuiOutlinedInput-input"
+                          id="userAboutText"
+                          name="userAboutText"
+                          required=""
+                          type="text"
+                          value="Spanish Developer"
+                        />
+                        <fieldset
+                          aria-hidden="true"
+                          class="PrivateNotchedOutline-root-87 MuiOutlinedInput-notchedOutline"
+                          style="padding-left: 8px;"
+                        >
+                          <legend
+                            class="PrivateNotchedOutline-legend-88"
+                            style="width: 0.01px;"
+                          >
+                            <span>
+                              ​
+                            </span>
+                          </legend>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-108"
+                >
+                  <hr
+                    class="MuiDivider-root makeStyles-divider-96"
+                  />
+                </div>
+                <div
+                  class="MuiGrid-root makeStyles-button_container_update-16"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-109"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button_update-124 MuiButton-fullWidth"
+                      tabindex="0"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Update
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
