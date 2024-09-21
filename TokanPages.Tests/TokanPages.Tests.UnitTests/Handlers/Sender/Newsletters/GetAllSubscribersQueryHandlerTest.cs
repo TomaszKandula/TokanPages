@@ -4,7 +4,7 @@ using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Handlers.Newsletters;
+namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 
 public class GetAllSubscribersQueryHandlerTest : TestBase
 {
