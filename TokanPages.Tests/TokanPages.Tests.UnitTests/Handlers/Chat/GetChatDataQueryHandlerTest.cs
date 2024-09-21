@@ -60,10 +60,12 @@ public class GetChatDataQueryHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
+        var user1ChatData = GetRandomChatItem(userId1, false, chatKey);
+        var user2ChatData = GetRandomChatItem(userId2, false, chatKey);
         var chatData = new List<GetChatItem>(2)
         {
-            GetRandomChatItem(userId1, false, chatKey),
-            GetRandomChatItem(userId2, false, chatKey)
+            user1ChatData,
+            user2ChatData
         };
 
         var jsonSerializer = new JsonSerializer();
@@ -80,10 +82,8 @@ public class GetChatDataQueryHandlerTest : TestBase
         };
 
         var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users1);
-        await databaseContext.Users.AddAsync(users2);
-        await databaseContext.UserInfo.AddAsync(userInfo1);
-        await databaseContext.UserInfo.AddAsync(userInfo2);
+        await databaseContext.Users.AddRangeAsync(new List<Backend.Domain.Entities.User.Users>{ users1, users2 });
+        await databaseContext.UserInfo.AddRangeAsync(new List<Backend.Domain.Entities.User.UserInfo>{ userInfo1, userInfo2 });
         await databaseContext.UserMessages.AddAsync(userMessage);
         await databaseContext.SaveChangesAsync();
 
@@ -99,6 +99,19 @@ public class GetChatDataQueryHandlerTest : TestBase
         // Assert
         result.ChatData.Should().NotBeNull();
         result.ChatData.Should().NotBeEmpty();
+
+        var testChatData = jsonSerializer.Deserialize<List<GetChatItem>>(result.ChatData);
+        testChatData.Count.Should().Be(2);
+        testChatData[0].UserId.Should().Be(userId1);
+        testChatData[0].ChatKey.Should().Be(chatKey);
+        testChatData[0].Initials.Should().NotBe("A");
+        testChatData[0].AvatarName.Should().Be(userInfo1.UserImageName);
+        testChatData[0].Text.Should().Be(user1ChatData.Text);
+        testChatData[1].UserId.Should().Be(userId2);
+        testChatData[1].ChatKey.Should().Be(chatKey);
+        testChatData[1].Initials.Should().NotBe("A");
+        testChatData[1].AvatarName.Should().Be(userInfo2.UserImageName);
+        testChatData[1].Text.Should().Be(user2ChatData.Text);
     }
 
     private GetChatItem GetRandomChatItem(Guid userId, bool isArchived, string chatKey)
@@ -109,8 +122,6 @@ public class GetChatDataQueryHandlerTest : TestBase
             UserId = userId,
             ChatKey = chatKey,
             IsArchived = isArchived,
-            AvatarName = DataUtilityService.GetRandomString(20),
-            Initials = DataUtilityService.GetRandomString(2),
             DateTime = DataUtilityService.GetRandomDateTime(),
             Text = DataUtilityService.GetRandomString()
         };
