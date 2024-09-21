@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Invoicing.Payments.Queries;
@@ -9,6 +10,7 @@ namespace TokanPages.Persistence.Caching;
 /// <summary>
 /// Payments cache implementation.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class PaymentsCache : IPaymentsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;

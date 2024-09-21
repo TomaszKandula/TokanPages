@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Services.PushNotificationService.Abstractions;
 
 namespace TokanPages.Services.PushNotificationService;
 
+[ExcludeFromCodeCoverage]
 public class AzureNotificationHubFactory : IAzureNotificationHubFactory
 {
     private readonly string _hubName;

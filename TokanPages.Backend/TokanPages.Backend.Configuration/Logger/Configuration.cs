@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 
 namespace TokanPages.Backend.Configuration.Logger;
 
+[ExcludeFromCodeCoverage]
 public static class Configuration
 {
     private const string LogTemplate 

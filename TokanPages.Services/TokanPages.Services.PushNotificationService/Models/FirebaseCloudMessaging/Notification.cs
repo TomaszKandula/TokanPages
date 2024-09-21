@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
 namespace TokanPages.Services.PushNotificationService.Models.FirebaseCloudMessaging;
 
+[ExcludeFromCodeCoverage]
 public class Notification
 {
     [JsonProperty("title")]

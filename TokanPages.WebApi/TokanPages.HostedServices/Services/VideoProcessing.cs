@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -15,6 +16,7 @@ namespace TokanPages.HostedServices.Services;
 /// <summary>
 /// Implementation of video processing hosted service.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class VideoProcessing : Processing
 {
     /// <summary>

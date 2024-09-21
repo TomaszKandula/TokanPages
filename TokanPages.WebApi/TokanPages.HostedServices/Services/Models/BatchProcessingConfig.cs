@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.HostedServices.Services.Abstractions;
 
 namespace TokanPages.HostedServices.Services.Models;
@@ -5,6 +6,7 @@ namespace TokanPages.HostedServices.Services.Models;
 /// <summary>
 /// Batch processing configuration.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class BatchProcessingConfig : IBatchProcessingConfig
 {
     /// <summary>

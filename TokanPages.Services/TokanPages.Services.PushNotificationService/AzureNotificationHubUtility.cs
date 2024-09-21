@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -10,6 +11,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace TokanPages.Services.PushNotificationService;
 
+[ExcludeFromCodeCoverage]
 public class AzureNotificationHubUtility : IAzureNotificationHubUtility
 {
     private const string Scheme = "https";
