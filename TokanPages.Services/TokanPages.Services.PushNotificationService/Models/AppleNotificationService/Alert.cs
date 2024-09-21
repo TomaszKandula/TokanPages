@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
 namespace TokanPages.Services.PushNotificationService.Models.AppleNotificationService;
 
+[ExcludeFromCodeCoverage]
 public class Alert
 {
     [JsonProperty("title")]

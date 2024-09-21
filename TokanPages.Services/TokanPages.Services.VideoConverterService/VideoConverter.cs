@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Services.VideoConverterService.Abstractions;
 using TokanPages.Services.VideoConverterService.Models;
@@ -7,6 +8,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace TokanPages.Services.VideoConverterService;
 
+[ExcludeFromCodeCoverage]
 public class VideoConverter : IVideoConverter
 {
     private const string ResourcesDirName = "Resources";

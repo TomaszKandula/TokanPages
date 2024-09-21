@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Services.VideoConverterService.Models;
 
+[ExcludeFromCodeCoverage]
 public class ConverterOutput
 {
     public string OutputVideoName { get; set; } = "";

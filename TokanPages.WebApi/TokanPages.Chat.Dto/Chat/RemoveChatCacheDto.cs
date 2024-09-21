@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Chat.Dto.Chat;
 
 /// <summary>
 /// Use it when you want to remove chat cache.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class RemoveChatCacheDto
 {
     /// <summary>

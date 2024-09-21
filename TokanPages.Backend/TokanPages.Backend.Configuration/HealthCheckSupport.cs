@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -5,6 +6,7 @@ using Newtonsoft.Json;
 
 namespace TokanPages.Backend.Configuration;
 
+[ExcludeFromCodeCoverage]
 public static class HealthCheckSupport
 {
     public static HealthCheckOptions WriteResponse()

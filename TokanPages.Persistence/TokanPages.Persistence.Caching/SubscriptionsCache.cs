@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Revenue.Queries;
@@ -9,6 +10,7 @@ namespace TokanPages.Persistence.Caching;
 /// <summary>
 /// Subscription cache implementation.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class SubscriptionsCache : ISubscriptionsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;

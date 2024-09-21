@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Services.Abstractions;
 using TokanPages.HostedServices.Services.Base;
@@ -8,6 +9,7 @@ namespace TokanPages.HostedServices.Services.CronJobs;
 /// <summary>
 /// CRON job implementation.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class BatchProcessingJob : CronJob
 {
     private readonly IBatchService _batchService;
