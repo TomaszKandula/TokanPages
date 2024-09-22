@@ -45,6 +45,7 @@ Object {
                 aria-label="LinkedInIcon"
                 class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
                 href="https://www.linkedin.com/"
+                rel="noopener"
                 tabindex="0"
                 target="_blank"
               >
@@ -122,6 +123,7 @@ Object {
               aria-label="LinkedInIcon"
               class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
               href="https://www.linkedin.com/"
+              rel="noopener"
               tabindex="0"
               target="_blank"
             >
