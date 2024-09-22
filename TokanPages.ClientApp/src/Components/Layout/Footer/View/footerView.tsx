@@ -61,6 +61,7 @@ const RenderIconButtons = (props: Properties): React.ReactElement => {
                     key={uuidv4()}
                     color="default"
                     target="_blank"
+                    rel="noopener"
                 >
                     <GetIcon iconName={item.name} />
                 </IconButton>
