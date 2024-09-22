@@ -31,7 +31,7 @@ Object {
                       style="background-image: url(http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.jpg);"
                     >
                       <img
-                        alt=""
+                        alt="image of eng.png"
                         class="makeStyles-flag_image-10"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                       />
@@ -102,7 +102,7 @@ Object {
                     style="background-image: url(http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.jpg);"
                   >
                     <img
-                      alt=""
+                      alt="image of eng.png"
                       class="makeStyles-flag_image-10"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                     />

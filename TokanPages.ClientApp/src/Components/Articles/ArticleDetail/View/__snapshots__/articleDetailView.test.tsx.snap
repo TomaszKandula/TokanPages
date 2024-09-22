@@ -58,7 +58,7 @@ Object {
                      
                   </p>
                   <img
-                    alt=""
+                    alt="image of eng.png"
                     class="makeStyles-flag_image-8"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
@@ -248,7 +248,7 @@ Object {
                    
                 </p>
                 <img
-                  alt=""
+                  alt="image of eng.png"
                   class="makeStyles-flag_image-8"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                 />
