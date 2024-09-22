@@ -9,6 +9,7 @@ APP_VERSION=${GIT_APP_VERSION} # THIS IS SET BY SEMANTIC RELEASE
 APP_BUILD_TEST="false"
 APP_DATE_TIME=$(date +"%Y-%m-%d at %T")
 APP_BACKEND="tomkandula.com"
+WWW_SERVER_NAME="www.tomkandula.com"
 SERVER_NAME="tomkandula.com"
 SONAR_TOKEN=""
 SONAR_KEY=""
@@ -27,6 +28,7 @@ sed -i \
 docker-compose-run.yml 
 sed -i \
 -e "s/\${SERVER_NAME}/${SERVER_NAME}/" \
+-e "s/\${WWW_SERVER_NAME}/${WWW_SERVER_NAME}/" \
 TokanPages.ClientApp/nginx/nginx.conf 
 
 # RUN DOCKER COMPOSE
