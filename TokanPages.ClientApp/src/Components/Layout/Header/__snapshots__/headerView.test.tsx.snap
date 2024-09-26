@@ -15,6 +15,7 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
           >
             <img
+              alt="photo of "
               class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
               src=" "
             />
@@ -98,6 +99,7 @@ Object {
           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
         >
           <img
+            alt="photo of "
             class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
             src=" "
           />
