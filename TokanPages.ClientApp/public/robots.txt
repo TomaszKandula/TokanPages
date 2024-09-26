@@ -1,11 +1,13 @@
-#    
-#    
-#    
-#
-#
-#
-#
-#
+#                               ▒░
+#                   ▒░         ▒░  ▒░              ▒▒▒▒▒▒▒▒▒░    ▒▒▒▒░      ▒░         ▒░
+#                 ▒░          ▒░     ▒░                ▒░       ▒░    ▒░    ▒░▒      ▒░▒░
+#               ▒░           ▒░        ▒░              ▒░      ▒░      ▒░   ▒░ ▒░   ▒░ ▒░
+#             ▒░            ▒░           ▒░            ▒░     ▒░        ▒░  ▒░  ▒░ ▒░  ▒░
+#             ▒░           ▒░            ▒░            ▒░     ▒░        ▒░  ▒░   ▒▒░   ▒░
+#               ▒░        ▒░           ▒░              ▒░      ▒░      ▒░   ▒░         ▒░
+#                 ▒░     ▒░          ▒░                ▒░       ▒░    ▒░    ▒░         ▒░
+#                   ▒░  ▒░         ▒░                  ▒░        ▒▒▒▒░      ▒░         ▒░
+#                      ▒░
 #
 #    Hello bot, engineer, or very lost layperson! Welcome to Tom Kandula web site.
 #    If you're a human you can skip reading this file. 
