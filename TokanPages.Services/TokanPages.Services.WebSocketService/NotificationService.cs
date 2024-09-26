@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Microsoft.AspNetCore.SignalR;
 
 namespace TokanPages.Services.WebSocketService;
 
+[ExcludeFromCodeCoverage]
 public class NotificationService<T> : INotificationService where T : Hub
 {
     private readonly IHubContext<T> _hubContext;

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Invoicing.Templates.Queries;
@@ -10,6 +11,7 @@ namespace TokanPages.Persistence.Caching;
 /// <summary>
 /// Templates cache implementation.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class TemplatesCache : ITemplatesCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;

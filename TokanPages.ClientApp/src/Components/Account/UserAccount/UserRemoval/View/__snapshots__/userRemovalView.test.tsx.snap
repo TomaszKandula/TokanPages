@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test account group component: userRemovalView should render correctly '<UserRemovalView />' when content is loaded. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="makeStyles-section-1"
+      >
+        <div
+          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        >
+          <div
+            class="MuiBox-root MuiBox-root-10"
+          >
+            <div
+              class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root makeStyles-card_content-7"
+              >
+                <div
+                  class="MuiBox-root MuiBox-root-11"
+                >
+                  <span
+                    class="MuiTypography-root makeStyles-caption-5 MuiTypography-body1"
+                  >
+                    Account Removal
+                  </span>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-21"
+                >
+                  <hr
+                    class="MuiDivider-root makeStyles-divider-15"
+                  />
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-22"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  >
+                    <div
+                      class="MuiGrid-root MuiGrid-item"
+                    >
+                      <span
+                        class="MuiTypography-root makeStyles-label-3 MuiTypography-body1"
+                      >
+                        <div>
+                          <p>
+                            Warning!
+                          </p>
+                          <p>
+                            Once you remove your existing account, you will lose all your data...
+                          </p>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiBox-root MuiBox-root-32"
+                  >
+                    <hr
+                      class="MuiDivider-root makeStyles-divider-26"
+                    />
+                  </div>
+                  <div
+                    class="MuiGrid-root makeStyles-button_container_update-9"
+                  >
+                    <div
+                      class="MuiBox-root MuiBox-root-33"
+                    >
+                      <button
+                        class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-delete_update-41 Mui-disabled MuiButton-fullWidth Mui-disabled"
+                        disabled=""
+                        tabindex="-1"
+                        type="submit"
+                      >
+                        <span
+                          class="MuiButton-label"
+                        >
+                          <div
+                            class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+                            role="progressbar"
+                            style="width: 20px; height: 20px;"
+                          >
+                            <svg
+                              class="MuiCircularProgress-svg"
+                              viewBox="22 22 44 44"
+                            >
+                              <circle
+                                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                                cx="44"
+                                cy="44"
+                                fill="none"
+                                r="20.2"
+                                stroke-width="3.6"
+                              />
+                            </svg>
+                          </div>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="makeStyles-section-1"
+    >
+      <div
+        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-10"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root makeStyles-card_content-7"
+            >
+              <div
+                class="MuiBox-root MuiBox-root-11"
+              >
+                <span
+                  class="MuiTypography-root makeStyles-caption-5 MuiTypography-body1"
+                >
+                  Account Removal
+                </span>
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-21"
+              >
+                <hr
+                  class="MuiDivider-root makeStyles-divider-15"
+                />
+              </div>
+              <div
+                class="MuiBox-root MuiBox-root-22"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-item"
+                  >
+                    <span
+                      class="MuiTypography-root makeStyles-label-3 MuiTypography-body1"
+                    >
+                      <div>
+                        <p>
+                          Warning!
+                        </p>
+                        <p>
+                          Once you remove your existing account, you will lose all your data...
+                        </p>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root MuiBox-root-32"
+                >
+                  <hr
+                    class="MuiDivider-root makeStyles-divider-26"
+                  />
+                </div>
+                <div
+                  class="MuiGrid-root makeStyles-button_container_update-9"
+                >
+                  <div
+                    class="MuiBox-root MuiBox-root-33"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-delete_update-41 Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        <div
+                          class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+                          role="progressbar"
+                          style="width: 20px; height: 20px;"
+                        >
+                          <svg
+                            class="MuiCircularProgress-svg"
+                            viewBox="22 22 44 44"
+                          >
+                            <circle
+                              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+                              cx="44"
+                              cy="44"
+                              fill="none"
+                              r="20.2"
+                              stroke-width="3.6"
+                            />
+                          </svg>
+                        </div>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

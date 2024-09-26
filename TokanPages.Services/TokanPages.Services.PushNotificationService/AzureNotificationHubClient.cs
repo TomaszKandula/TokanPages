@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Enums;
@@ -9,6 +10,7 @@ using Microsoft.Azure.NotificationHubs;
 
 namespace TokanPages.Services.PushNotificationService;
 
+[ExcludeFromCodeCoverage]
 public class AzureNotificationHubClient : IAzureNotificationHubClient
 {
     private readonly NotificationHubClient _notificationHubClient;

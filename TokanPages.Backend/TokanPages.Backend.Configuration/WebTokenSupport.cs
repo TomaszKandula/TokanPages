@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +12,7 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Configuration;
 
+[ExcludeFromCodeCoverage]
 public static class WebTokenSupport
 {
 	public static void SetupWebToken(IServiceCollection services, IConfiguration configuration)

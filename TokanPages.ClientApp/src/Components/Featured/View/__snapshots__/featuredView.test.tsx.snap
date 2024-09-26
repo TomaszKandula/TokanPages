@@ -39,6 +39,7 @@ Object {
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiCardActionArea-root"
                     href="https://.../net-memory-management-64389b01f642"
+                    rel="noopener"
                     tabindex="0"
                     target="_blank"
                   >
@@ -81,6 +82,7 @@ Object {
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiCardActionArea-root"
                     href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
+                    rel="noopener"
                     tabindex="0"
                     target="_blank"
                   >
@@ -120,6 +122,7 @@ Object {
                     aria-disabled="false"
                     class="MuiButtonBase-root MuiCardActionArea-root"
                     href="https://.../sql-injection-1bde8bb76ebc"
+                    rel="noopener"
                     tabindex="0"
                     target="_blank"
                   >
@@ -188,6 +191,7 @@ Object {
                   aria-disabled="false"
                   class="MuiButtonBase-root MuiCardActionArea-root"
                   href="https://.../net-memory-management-64389b01f642"
+                  rel="noopener"
                   tabindex="0"
                   target="_blank"
                 >
@@ -230,6 +234,7 @@ Object {
                   aria-disabled="false"
                   class="MuiButtonBase-root MuiCardActionArea-root"
                   href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
+                  rel="noopener"
                   tabindex="0"
                   target="_blank"
                 >
@@ -269,6 +274,7 @@ Object {
                   aria-disabled="false"
                   class="MuiButtonBase-root MuiCardActionArea-root"
                   href="https://.../sql-injection-1bde8bb76ebc"
+                  rel="noopener"
                   tabindex="0"
                   target="_blank"
                 >

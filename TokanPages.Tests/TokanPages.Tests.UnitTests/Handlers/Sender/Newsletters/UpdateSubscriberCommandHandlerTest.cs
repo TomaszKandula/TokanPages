@@ -8,7 +8,7 @@ using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Handlers.Newsletters;
+namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 
 public class UpdateSubscriberCommandHandlerTest : TestBase
 {

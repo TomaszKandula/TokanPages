@@ -16,7 +16,7 @@ Object {
             style="background-image: url(/images/card.jpg);"
           >
             <img
-              alt=""
+              alt="image of eng.png"
               class="makeStyles-flag_image-7"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
             />
@@ -69,7 +69,7 @@ Object {
           style="background-image: url(/images/card.jpg);"
         >
           <img
-            alt=""
+            alt="image of eng.png"
             class="makeStyles-flag_image-7"
             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
           />

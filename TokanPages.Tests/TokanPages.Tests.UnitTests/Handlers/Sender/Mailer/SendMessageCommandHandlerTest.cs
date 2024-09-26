@@ -10,7 +10,7 @@ using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Handlers.Mailer;
+namespace TokanPages.Tests.UnitTests.Handlers.Sender.Mailer;
 
 public class SendMessageCommandHandlerTest : TestBase
 {

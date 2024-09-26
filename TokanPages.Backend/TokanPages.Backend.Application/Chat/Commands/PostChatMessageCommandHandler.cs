@@ -129,7 +129,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
         var initials = "A";
         var userInfo = await DatabaseContext.UserInfo
             .AsNoTracking()
-            .Where(users => users.Id == userId)
+            .Where(users => users.UserId == userId)
             .Select(users => new
             {
                 users.FirstName,

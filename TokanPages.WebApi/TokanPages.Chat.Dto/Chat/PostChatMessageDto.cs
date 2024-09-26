@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Chat.Dto.Chat;
 
 /// <summary>
 /// Use it when you want to post a new chat message.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class PostChatMessageDto
 {
     /// <summary>

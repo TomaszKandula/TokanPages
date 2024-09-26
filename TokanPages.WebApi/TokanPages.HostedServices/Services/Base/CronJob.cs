@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Cronos;
 
 namespace TokanPages.HostedServices.Services.Base;
@@ -5,6 +6,7 @@ namespace TokanPages.HostedServices.Services.Base;
 /// <summary>
 /// Cron job base implementation using threading timer.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class CronJob : IHostedService, IDisposable
 {
     private Timer? _timer;

@@ -5,7 +5,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Handlers.Newsletters;
+namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 
 public class RemoveSubscriberCommandHandlerTest : TestBase
 {

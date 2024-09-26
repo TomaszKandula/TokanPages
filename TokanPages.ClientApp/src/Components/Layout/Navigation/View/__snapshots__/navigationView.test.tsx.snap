@@ -22,7 +22,7 @@ Object {
                 href="/"
               >
                 <img
-                  alt=""
+                  alt="image of logo.svg"
                   class="makeStyles-app_left_logo-28"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
@@ -57,7 +57,7 @@ Object {
                         class="makeStyles-languages_wrapper-96"
                       >
                         <img
-                          alt=""
+                          alt="image of eng.png"
                           class="makeStyles-flag_image-102"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                         />
@@ -150,7 +150,7 @@ Object {
                   href="/"
                 >
                   <img
-                    alt=""
+                    alt="image of logo.svg"
                     class="makeStyles-app_full_logo-131"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                   />
@@ -182,7 +182,7 @@ Object {
                           class="makeStyles-languages_wrapper-217"
                         >
                           <img
-                            alt=""
+                            alt="image of eng.png"
                             class="makeStyles-flag_image-223"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                           />
@@ -252,7 +252,7 @@ Object {
               href="/"
             >
               <img
-                alt=""
+                alt="image of logo.svg"
                 class="makeStyles-app_left_logo-28"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
               />
@@ -287,7 +287,7 @@ Object {
                       class="makeStyles-languages_wrapper-96"
                     >
                       <img
-                        alt=""
+                        alt="image of eng.png"
                         class="makeStyles-flag_image-102"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                       />
@@ -380,7 +380,7 @@ Object {
                 href="/"
               >
                 <img
-                  alt=""
+                  alt="image of logo.svg"
                   class="makeStyles-app_full_logo-131"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
@@ -412,7 +412,7 @@ Object {
                         class="makeStyles-languages_wrapper-217"
                       >
                         <img
-                          alt=""
+                          alt="image of eng.png"
                           class="makeStyles-flag_image-223"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                         />

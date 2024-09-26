@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 
@@ -6,6 +7,7 @@ namespace TokanPages.HostedServices.Services;
 /// <summary>
 /// Video Processing Worker using Hosted Service.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class VideoProcessingWorker : IHostedService, IDisposable
 {
     private readonly ILoggerService _loggerService;

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 
 namespace TokanPages.HostedServices.Services;
@@ -5,6 +6,7 @@ namespace TokanPages.HostedServices.Services;
 /// <summary>
 /// Email Processing Worker using Hosted Service.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class EmailProcessingWorker : IHostedService, IDisposable
 {
     private readonly ILoggerService _loggerService;

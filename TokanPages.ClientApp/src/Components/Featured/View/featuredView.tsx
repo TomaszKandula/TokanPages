@@ -33,7 +33,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className={classes.card}>
-                                <CardActionArea href={featured?.content?.link1} target="_blank">
+                                <CardActionArea href={featured?.content?.link1} target="_blank" rel="noopener">
                                     {featured?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
@@ -64,7 +64,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="150">
                             <Card elevation={0} className={classes.card}>
-                                <CardActionArea href={featured?.content?.link2} target="_blank">
+                                <CardActionArea href={featured?.content?.link2} target="_blank" rel="noopener">
                                     {featured?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
@@ -95,7 +95,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="550">
                             <Card elevation={0} className={classes.card}>
-                                <CardActionArea href={featured?.content?.link3} target="_blank">
+                                <CardActionArea href={featured?.content?.link3} target="_blank" rel="noopener">
                                     {featured?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (

@@ -109,7 +109,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     private async Task<string?> UploadDefaultAvatar(Guid newUserId, CancellationToken cancellationToken = default)
     {
         const string defaultAvatarPath = "content/assets/images/avatars/";
-        const string defaultAvatarName = "avatar-default-288.jpeg";
+        const string defaultAvatarName = "avatar-default-288.webp";
         const string sourceAvatarPath = $"{defaultAvatarPath}{defaultAvatarName}";
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);

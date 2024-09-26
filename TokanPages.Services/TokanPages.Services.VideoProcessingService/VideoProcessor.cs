@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -15,6 +16,7 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.VideoProcessingService;
 
+[ExcludeFromCodeCoverage]
 public class VideoProcessor : IVideoProcessor
 {
     private readonly IVideoConverter _videoConverter;

@@ -125,7 +125,7 @@ services:
     expose:
       - "80"
     volumes:
-      - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets-docker.json:/app/appsettings.Testing.json:ro
 
   hosted-services-api:
     build:

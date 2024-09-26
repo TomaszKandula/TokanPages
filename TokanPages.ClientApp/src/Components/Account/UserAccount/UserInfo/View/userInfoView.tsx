@@ -15,6 +15,7 @@ import { UserInfoProps } from "../userInfo";
 import { UserInfoStyle } from "./userInfoStyle";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
+    fileUploadingCustomHandle?: string;
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
@@ -27,6 +28,10 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
+    userAbout?: {
+        multiline?: boolean;
+        minRows?: number;
+    }
 }
 
 interface Properties extends UserInfoViewProps {
@@ -172,6 +177,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <Grid item xs={12} sm={9}>
                                         {props.isLoading ? null : (
                                             <UploadUserMedia
+                                                customHandle={props.fileUploadingCustomHandle}
                                                 mediaTarget={UserMedia.userImage}
                                                 handle="userInfoSection_userImage"
                                             />
@@ -272,8 +278,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             <TextField
                                                 required
                                                 fullWidth
-                                                multiline
-                                                minRows={6}
+                                                multiline={props.userAbout?.multiline}
+                                                minRows={props.userAbout?.minRows}
                                                 id="userAboutText"
                                                 name="userAboutText"
                                                 variant="outlined"

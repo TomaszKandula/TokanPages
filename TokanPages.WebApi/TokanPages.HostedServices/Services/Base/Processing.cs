@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Services.Abstractions;
@@ -8,6 +9,7 @@ namespace TokanPages.HostedServices.Services.Base;
 /// <summary>
 /// Processing contract implementation.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public abstract class Processing : IProcessing
 {
     /// <summary>
