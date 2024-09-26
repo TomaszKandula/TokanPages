@@ -69,6 +69,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                             image={imageUrl(header?.content?.photo)}
                             component="img"
                             className={classes.image_card}
+                            alt={`photo of ${header?.content?.photo}`}
                         />
                     )}
                 </Grid>

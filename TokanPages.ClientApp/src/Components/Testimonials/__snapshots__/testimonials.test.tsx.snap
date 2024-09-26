@@ -36,8 +36,9 @@ Object {
                   class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <img
+                    alt="photo of joanna.webp"
                     class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-                    src=" "
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                   />
                   <div
                     class="MuiCardContent-root makeStyles-card_content-6"
@@ -107,8 +108,9 @@ Object {
                   class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
+                    alt="photo of adama.webp"
                     class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-                    src=" "
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                   />
                   <div
                     class="MuiCardContent-root makeStyles-card_content-6"
@@ -175,8 +177,9 @@ Object {
                   class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
+                    alt="photo of scott.webp"
                     class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-                    src=" "
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
                   />
                   <div
                     class="MuiCardContent-root makeStyles-card_content-6"
@@ -272,8 +275,9 @@ Object {
                 class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <img
+                  alt="photo of joanna.webp"
                   class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-                  src=" "
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                 />
                 <div
                   class="MuiCardContent-root makeStyles-card_content-6"
@@ -343,8 +347,9 @@ Object {
                 class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
+                  alt="photo of adama.webp"
                   class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-                  src=" "
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                 />
                 <div
                   class="MuiCardContent-root makeStyles-card_content-6"
@@ -411,8 +416,9 @@ Object {
                 class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
+                  alt="photo of scott.webp"
                   class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
-                  src=" "
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
                 />
                 <div
                   class="MuiCardContent-root makeStyles-card_content-6"

@@ -64,6 +64,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         image={imageUrl(props.photo1)}
                                         component="img"
                                         className={classes.card_image}
+                                        alt={`photo of ${props.photo1}`}
                                     />
                                 )}
                                 <CardContent className={classes.card_content}>
@@ -107,6 +108,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         image={imageUrl(props.photo2)}
                                         component="img"
                                         className={classes.card_image}
+                                        alt={`photo of ${props.photo2}`}
                                     />
                                 )}
                                 <CardContent className={classes.card_content}>
@@ -150,6 +152,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         image={imageUrl(props.photo3)}
                                         component="img"
                                         className={classes.card_image}
+                                        alt={`photo of ${props.photo3}`}
                                     />
                                 )}
                                 <CardContent className={classes.card_content}>

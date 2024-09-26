@@ -15,8 +15,9 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
           >
             <img
+              alt="photo of ester-exposito.webp"
               class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
-              src=" "
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/ester-exposito.webp"
             />
           </div>
           <div
@@ -98,8 +99,9 @@ Object {
           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
         >
           <img
+            alt="photo of ester-exposito.webp"
             class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
-            src=" "
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/ester-exposito.webp"
           />
         </div>
         <div
