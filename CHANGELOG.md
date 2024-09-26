@@ -1,3 +1,34 @@
+# [0.105.0](https://github.com/TomaszKandula/TokanPages/compare/v0.104.1...v0.105.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* add logo to issing robots.txt ([c1d59fa](https://github.com/TomaszKandula/TokanPages/commit/c1d59fa447e2f5aae2a103488bdc6818513cec5b))
+* add missing ads.txt (not in use now) ([9eb72fb](https://github.com/TomaszKandula/TokanPages/commit/9eb72fb9bdef5a70c76a6c47ecda6281fd2d3a42))
+* add missing cache headers ([d73cecb](https://github.com/TomaszKandula/TokanPages/commit/d73cecbba9161f30b01043132d80b57a2309a9ce))
+* add missing meta data ([75a4caa](https://github.com/TomaszKandula/TokanPages/commit/75a4caaf7ac5d9146faaf2723f4d2eeff9cabbdb))
+* add missing robots.txt ([f51011d](https://github.com/TomaszKandula/TokanPages/commit/f51011dbe3af249493ed26178b8a8506cb5b9f16))
+* add missing site map ([9962167](https://github.com/TomaszKandula/TokanPages/commit/996216753464ff15ceb545a29aa54655bd5519a7))
+* change configuration for www server ([fb74379](https://github.com/TomaszKandula/TokanPages/commit/fb74379d198f777546d0d641b58fa315b6316b6d))
+* change default image type ([02c3a47](https://github.com/TomaszKandula/TokanPages/commit/02c3a4780156dbabe99e2830168cdc3db96cb50f))
+* do not use empty 'alt' ([6b7a57a](https://github.com/TomaszKandula/TokanPages/commit/6b7a57a9e98890863c520f8c6a5a4f34a2b9f9f6))
+* enable http2, redirect www to main domain ([a3cd379](https://github.com/TomaszKandula/TokanPages/commit/a3cd379a0d48dfad9b2567839f3a5a1dc5ea943c))
+* incorrect ID property ([e24c685](https://github.com/TomaszKandula/TokanPages/commit/e24c685b1b45770f00a03ef5d485a5e26bbaa3df))
+* incorrect ID property ([7577a2d](https://github.com/TomaszKandula/TokanPages/commit/7577a2d9c22391558346fcd88bdfaa43c3eb361e))
+* remove performance and security issues by adding 'noopener' ([292bd9c](https://github.com/TomaszKandula/TokanPages/commit/292bd9c3636b524986319ff76826d800680e188b))
+* use separate variable for redirection ([8ddb0df](https://github.com/TomaszKandula/TokanPages/commit/8ddb0df0fe58eda05a2f86450bc97e82e532fc3f))
+* use webp file ([0ed09c0](https://github.com/TomaszKandula/TokanPages/commit/0ed09c0a3e99f9eb87eb16e4b32acb64ba124c7f))
+
+
+### Features
+
+* add test and snapshot ([1d0f057](https://github.com/TomaszKandula/TokanPages/commit/1d0f05755bc3db86b7d3530945657a175ac9b1d6))
+* add test and snapshots ([279f7fe](https://github.com/TomaszKandula/TokanPages/commit/279f7fe7f85c2a7a4a2403d96c8f8789d9980854))
+* add test and snapshots for the account views ([043e142](https://github.com/TomaszKandula/TokanPages/commit/043e14202b607be8b1abe31303833557bc0a7244))
+* allow to have custom handle name ([ab15765](https://github.com/TomaszKandula/TokanPages/commit/ab15765ed997a16460f13e81850913e2874febcc))
+* pass new prop ([2379c09](https://github.com/TomaszKandula/TokanPages/commit/2379c09833d6e55b7d733d42095b76eac89c2e70))
+* update test and snapshot ([5f29b92](https://github.com/TomaszKandula/TokanPages/commit/5f29b9283eaa4e7d056e9407842d993deb90bafb))
+
 ## [0.104.1](https://github.com/TomaszKandula/TokanPages/compare/v0.104.0...v0.104.1) (2024-09-19)
 
 
