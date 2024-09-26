@@ -1,7 +1,7 @@
 # ======================================================================================================================
 # 1 - BUILD PROJECTS AND RUN TESTS
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18 AS PROJECTS
+FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18 AS projects
 
 WORKDIR /app
 COPY . ./
@@ -19,9 +19,9 @@ WORKDIR /app
 RUN apk add icu-libs --no-cache
 RUN apk add icu-data-full --no-cache
 
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Application/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
-COPY --from=PROJECTS "/app/TokanPages.WebApi/TokanPages.Gateway/bin/Release/net6.0" .
+COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Application/bin/Release/net6.0" .
+COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
+COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Gateway/bin/Release/net6.0" .
 
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}

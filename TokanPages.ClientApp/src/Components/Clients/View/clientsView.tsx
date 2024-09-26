@@ -32,7 +32,7 @@ const RenderImages = (props: ContentClientsState): React.ReactElement => {
     return (
         <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
             {props?.content?.images.map((item: string, _index: number) => (
-                <img key={uuidv4()} src={getImagePath(item)} alt="" className={classes.logo} />
+                <img key={uuidv4()} src={getImagePath(item)} alt={`image of ${item}`} className={classes.logo} />
             ))}
         </Box>
     );

@@ -1,0 +1,148 @@
+#                               ▒░
+#                   ▒░         ▒░  ▒░              ▒▒▒▒▒▒▒▒▒░    ▒▒▒▒░      ▒░         ▒░
+#                 ▒░          ▒░     ▒░                ▒░       ▒░    ▒░    ▒░▒      ▒░▒░
+#               ▒░           ▒░        ▒░              ▒░      ▒░      ▒░   ▒░ ▒░   ▒░ ▒░
+#             ▒░            ▒░           ▒░            ▒░     ▒░        ▒░  ▒░  ▒░ ▒░  ▒░
+#             ▒░           ▒░            ▒░            ▒░     ▒░        ▒░  ▒░   ▒▒░   ▒░
+#               ▒░        ▒░           ▒░              ▒░      ▒░      ▒░   ▒░         ▒░
+#                 ▒░     ▒░          ▒░                ▒░       ▒░    ▒░    ▒░         ▒░
+#                   ▒░  ▒░         ▒░                  ▒░        ▒▒▒▒░      ▒░         ▒░
+#                      ▒░
+#
+#    Hello bot, engineer, or very lost layperson! Welcome to Tom Kandula web site.
+#    If you're a human you can skip reading this file. 
+#    If you're a bot who likes crawling webpages, please mind the house rules and avoid accessing any disallowed subfolders.
+#    Either way, thanks for stopping by!
+#    See you on the next crawl!
+
+User-agent: Googlebot
+Allow: /
+Allow: /about/
+Allow: /story/
+Allow: /articles/
+Allow: /showcase/
+Allow: /leisure/bicycle/
+Allow: /leisure/electronics/
+Allow: /leisure/football/
+Allow: /leisure/guitar/
+Allow: /leisure/photography/
+Disallow: /business/
+Disallow: /contact/
+Disallow: /terms/
+Disallow: /policy/
+Disallow: /signin/ 
+Disallow: /signup/
+Disallow: /signout/
+Disallow: /document?name=tomasz_tom_kandula_resume.pdf
+Disallow: /account/
+Disallow: /accountactivation/
+Disallow: /updatepassword/
+Disallow: /resetpassword/
+Disallow: /update-newsletter/
+Disallow: /remove-newsletter/
+
+User-agent: Bingbot
+Allow: /
+Allow: /about/
+Allow: /story/
+Allow: /articles/
+Allow: /showcase/
+Allow: /leisure/bicycle/
+Allow: /leisure/electronics/
+Allow: /leisure/football/
+Allow: /leisure/guitar/
+Allow: /leisure/photography/
+Disallow: /business/
+Disallow: /contact/
+Disallow: /terms/
+Disallow: /policy/
+Disallow: /signin/ 
+Disallow: /signup/
+Disallow: /signout/
+Disallow: /document?name=tomasz_tom_kandula_resume.pdf
+Disallow: /account/
+Disallow: /accountactivation/
+Disallow: /updatepassword/
+Disallow: /resetpassword/
+Disallow: /update-newsletter/
+Disallow: /remove-newsletter/
+
+User-agent: YandexBot
+Allow: /
+Allow: /about/
+Allow: /story/
+Allow: /articles/
+Allow: /showcase/
+Allow: /leisure/bicycle/
+Allow: /leisure/electronics/
+Allow: /leisure/football/
+Allow: /leisure/guitar/
+Allow: /leisure/photography/
+Disallow: /business/
+Disallow: /contact/
+Disallow: /terms/
+Disallow: /policy/
+Disallow: /signin/ 
+Disallow: /signup/
+Disallow: /signout/
+Disallow: /document?name=tomasz_tom_kandula_resume.pdf
+Disallow: /account/
+Disallow: /accountactivation/
+Disallow: /updatepassword/
+Disallow: /resetpassword/
+Disallow: /update-newsletter/
+Disallow: /remove-newsletter/
+
+User-agent: Baiduspider
+Allow: /
+Allow: /about/
+Allow: /story/
+Allow: /articles/
+Allow: /showcase/
+Allow: /leisure/bicycle/
+Allow: /leisure/electronics/
+Allow: /leisure/football/
+Allow: /leisure/guitar/
+Allow: /leisure/photography/
+Disallow: /business/
+Disallow: /contact/
+Disallow: /terms/
+Disallow: /policy/
+Disallow: /signin/ 
+Disallow: /signup/
+Disallow: /signout/
+Disallow: /document?name=tomasz_tom_kandula_resume.pdf
+Disallow: /account/
+Disallow: /accountactivation/
+Disallow: /updatepassword/
+Disallow: /resetpassword/
+Disallow: /update-newsletter/
+Disallow: /remove-newsletter/
+
+User-Agent: *
+Allow: /
+Allow: /about/
+Allow: /story/
+Allow: /articles/
+Allow: /showcase/
+Allow: /leisure/bicycle/
+Allow: /leisure/electronics/
+Allow: /leisure/football/
+Allow: /leisure/guitar/
+Allow: /leisure/photography/
+Disallow: /business/
+Disallow: /contact/
+Disallow: /terms/
+Disallow: /policy/
+Disallow: /signin/ 
+Disallow: /signup/
+Disallow: /signout/
+Disallow: /document?name=tomasz_tom_kandula_resume.pdf
+Disallow: /account/
+Disallow: /accountactivation/
+Disallow: /updatepassword/
+Disallow: /resetpassword/
+Disallow: /update-newsletter/
+Disallow: /remove-newsletter/
+
+Sitemap: https://tomkandula.com/sitemap.xml

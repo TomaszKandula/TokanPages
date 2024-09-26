@@ -89,7 +89,7 @@ export const GET_FOOTBALL_CONTENT = `${API_CONTENT_URI}/getContent?name=football
 export const GET_GUITAR_CONTENT = `${API_CONTENT_URI}/getContent?name=guitar&type=document`;
 export const GET_PHOTOGRAPHY_CONTENT = `${API_CONTENT_URI}/getContent?name=photography&type=document`;
 
-export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset?id={id}&assetName=image.jpg`;
+export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset?id={id}&assetName=image.webp`;
 
 export const GET_DOCUMENTS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=documents`;
 export const GET_IMAGES_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images`;
