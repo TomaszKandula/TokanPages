@@ -1,3 +1,11 @@
+## [0.105.1](https://github.com/TomaszKandula/TokanPages/compare/v0.105.0...v0.105.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* add missing alt attribute ([c25c7d3](https://github.com/TomaszKandula/TokanPages/commit/c25c7d3e2eb7c941056a2012261026d6defae0b7))
+* add more information for SEO ([763b549](https://github.com/TomaszKandula/TokanPages/commit/763b5499b065f4691bf8f689e17789fa9777b7b2))
+
 # [0.105.0](https://github.com/TomaszKandula/TokanPages/compare/v0.104.1...v0.105.0) (2024-09-26)
 
 
