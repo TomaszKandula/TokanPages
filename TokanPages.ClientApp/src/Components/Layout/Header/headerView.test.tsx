@@ -13,7 +13,7 @@ jest.mock("react-redux", () => ({
 describe("test component: headerView", () => {
     const testContent = {
         language: "eng",
-        photo: "",
+        photo: "ester-exposito.webp",
         caption: "Welcome to my web page",
         description: "I do programming for a living...",
         action: {
