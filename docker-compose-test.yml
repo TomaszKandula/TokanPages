@@ -162,6 +162,8 @@ services:
       - "3000:80"
     volumes:
       - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-base.conf:/etc/nginx/nginx-base.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-proxy.conf:/etc/nginx/nginx-proxy.conf:ro
 
 networks:
   xnet:
