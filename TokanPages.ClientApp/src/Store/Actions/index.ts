@@ -32,7 +32,6 @@ export { ContentNewsletterUpdateAction } from "./Content/contentNewsletterUpdate
 export { ContentUserSigninAction } from "./Content/contentUserSignin";
 export { ContentUserSignoutAction } from "./Content/contentUserSignout";
 export { ContentUserSignupAction } from "./Content/contentUserSignup";
-export { ContentWrongPagePromptAction } from "./Content/contentWrongPagePrompt";
 
 export { NewsletterAddAction } from "./Newsletters/newsletterAdd";
 export { NewsletterRemoveAction } from "./Newsletters/newsletterRemove";

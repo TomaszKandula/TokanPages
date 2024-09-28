@@ -26,7 +26,6 @@ import {
     PhotographyPage,
     PdfViewerPage,
     BusinessPage,
-    WrongPage,
 } from "./Pages";
 
 interface PageProps {
@@ -60,7 +59,6 @@ const pages: PageProps[] = [
     { path: "/resetpassword", page: <PasswordResetPage /> },
     { path: "/update-newsletter", page: <NewsletterUpdatePage /> },
     { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
-    { path: "*", page: <WrongPage /> },
 ];
 
 export const Routes = (): React.ReactElement => {
