@@ -1,3 +1,20 @@
+# [0.106.0](https://github.com/TomaszKandula/TokanPages/compare/v0.105.1...v0.106.0) (2024-09-29)
+
+
+### Bug Fixes
+
+* correct path ([0331475](https://github.com/TomaszKandula/TokanPages/commit/033147575700d6df3150de8e2f89d5fe94f36282))
+* remove unused index.htm ([ef69d0a](https://github.com/TomaszKandula/TokanPages/commit/ef69d0a153bc2d17625538c4a8aa8665fd4f8b2f))
+* resolve issue with 404 page ([73ecb3e](https://github.com/TomaszKandula/TokanPages/commit/73ecb3e704db6e6b1c4b36a44ff2a562c14d835a))
+
+
+### Features
+
+* add error pages ([fcf578b](https://github.com/TomaszKandula/TokanPages/commit/fcf578b020b245582316afac8f01c0d95e80fcf7))
+* change nginx configuration ([f5d4495](https://github.com/TomaszKandula/TokanPages/commit/f5d4495ba761cab5e55774afd4efcaad34742f7a))
+* remove wrong page component ([6b6f395](https://github.com/TomaszKandula/TokanPages/commit/6b6f395976374c95e37b334241018c6aa82ea812))
+* restrict specific locations ([ed292d8](https://github.com/TomaszKandula/TokanPages/commit/ed292d8a70a083823472f99aece20ddd66ea7e66))
+
 ## [0.105.1](https://github.com/TomaszKandula/TokanPages/compare/v0.105.0...v0.105.1) (2024-09-26)
 
 
