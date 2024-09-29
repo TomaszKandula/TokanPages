@@ -115,6 +115,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Users.Dto", "Tok
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Nginx", "5. Nginx", "{81559082-2D02-493B-98BA-12AA28B99871}"
 	ProjectSection(SolutionItems) = preProject
+		TokanPages.ClientApp\nginx\nginx-base.conf = TokanPages.ClientApp\nginx\nginx-base.conf
+		TokanPages.ClientApp\nginx\nginx-proxy.conf = TokanPages.ClientApp\nginx\nginx-proxy.conf
+		TokanPages.ClientApp\nginx\nginx-ssl.conf = TokanPages.ClientApp\nginx\nginx-ssl.conf
 		TokanPages.ClientApp\nginx\nginx-http.conf = TokanPages.ClientApp\nginx\nginx-http.conf
 		TokanPages.ClientApp\nginx\nginx-https.conf = TokanPages.ClientApp\nginx\nginx-https.conf
 	EndProjectSection

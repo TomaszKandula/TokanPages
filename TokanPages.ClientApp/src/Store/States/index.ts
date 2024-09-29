@@ -32,7 +32,6 @@ export type { ContentNewsletterUpdateState } from "./Content/contentNewsletterUp
 export type { ContentUserSigninState } from "./Content/contentUserSignin";
 export type { ContentUserSignoutState } from "./Content/contentUserSignout";
 export type { ContentUserSignupState } from "./Content/contentUserSignup";
-export type { ContentWrongPagePromptState } from "./Content/contentWrongPagePrompt";
 
 export type { NewsletterAddState } from "./Newsletters/newsletterAdd";
 export type { NewsletterRemoveState } from "./Newsletters/newsletterRemove";

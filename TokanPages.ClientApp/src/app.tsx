@@ -1,12 +1,11 @@
 import * as React from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { GetContentManifestDto } from "./Api/Models";
 import { UpdateUserData } from "./Shared/Services/initializeService";
 import { UpdateUserLanguage } from "./Shared/Services/languageService";
 import { AppStyle } from "./app.style";
-import { WrongPage } from "./Pages";
 import { Routes } from "./routes";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -41,7 +40,6 @@ const App = (props: Properties): React.ReactElement => {
                 <ClearPageStart>
                     <Switch>
                         <Routes />
-                        <Route component={WrongPage} />
                     </Switch>
                 </ClearPageStart>
             </Router>

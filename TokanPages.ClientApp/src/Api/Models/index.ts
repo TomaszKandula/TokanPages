@@ -62,7 +62,6 @@ export type { TestimonialsContentDto } from "./Components/testimonialsContentDto
 export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveContentDto";
 export type { ActivateAccountContentDto } from "./Components/activateAccountContentDto";
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
-export type { WrongPagePromptContentDto } from "./Components/wrongPagePromptContentDto";
 export type {
     AccountContentDto,
     SectionAccessDenied,

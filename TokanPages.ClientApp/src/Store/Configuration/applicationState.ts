@@ -23,7 +23,6 @@ import {
     ContentUserSigninState,
     ContentUserSignoutState,
     ContentUserSignupState,
-    ContentWrongPagePromptState,
     ApplicationDialogState,
     ApplicationErrorState,
     UserReAuthenticateState,
@@ -83,7 +82,6 @@ export interface ApplicationState {
     contentUserSignin: ContentUserSigninState;
     contentUserSignout: ContentUserSignoutState;
     contentUserSignup: ContentUserSignupState;
-    contentWrongPagePrompt: ContentWrongPagePromptState;
     newsletterAdd: NewsletterAddState;
     newsletterRemove: NewsletterRemoveState;
     newsletterUpdate: NewsletterUpdateState;
