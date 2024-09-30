@@ -52,4 +52,13 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Validators\Invoicing\Batches\" />
+    <Folder Include="Validators\Invoicing\Countries\" />
+    <Folder Include="Validators\Invoicing\Currencies\" />
+    <Folder Include="Validators\Invoicing\Payments\" />
+    <Folder Include="Validators\Invoicing\Templates\" />
+    <Folder Include="Validators\Revenue\" />
+  </ItemGroup>
+
 </Project>
