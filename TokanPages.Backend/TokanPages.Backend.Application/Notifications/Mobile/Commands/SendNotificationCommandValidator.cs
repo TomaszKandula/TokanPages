@@ -8,7 +8,7 @@ public class SendNotificationCommandValidator : AbstractValidator<SendNotificati
     public SendNotificationCommandValidator()
     {
         RuleFor(command => command.Platform)
-            .NotEmpty()
+            .IsInEnum()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED);
 
