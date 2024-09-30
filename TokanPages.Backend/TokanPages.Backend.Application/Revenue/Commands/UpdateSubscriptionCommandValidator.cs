@@ -10,34 +10,14 @@ public class UpdateSubscriptionCommandValidator : AbstractValidator<UpdateSubscr
         When(command => command.UserId != null, () =>
         {
             RuleFor(command => command.UserId)
-                .NotEmpty()
                 .NotEqual(Guid.Empty)
                 .WithErrorCode(nameof(ValidationCodes.INVALID_GUID_VALUE))
                 .WithMessage(ValidationCodes.INVALID_GUID_VALUE);
         });
 
-        When(command => command.AutoRenewal != null, () =>
-        {
-            RuleFor(command => command.AutoRenewal)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        });
-
-        When(command => command.Term != null, () =>
-        {
-            RuleFor(command => command.Term)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-        });
-
         When(command => command.TotalAmount != null, () =>
         {
             RuleFor(command => command.TotalAmount)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED)
                 .NotEqual(0)
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

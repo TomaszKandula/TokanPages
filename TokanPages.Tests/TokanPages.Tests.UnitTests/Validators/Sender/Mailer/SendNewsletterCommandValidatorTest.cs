@@ -4,7 +4,7 @@ using TokanPages.Backend.Application.Sender.Mailer.Models;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Validators.Mailer;
+namespace TokanPages.Tests.UnitTests.Validators.Sender.Mailer;
 
 public class SendNewsletterCommandValidatorTest : TestBase
 {

@@ -3,7 +3,7 @@ using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Validators.NotificationsWeb;
+namespace TokanPages.Tests.UnitTests.Validators.Notifications.Web;
 
 public class NotifyRequestCommandValidatorTest : TestBase
 {
