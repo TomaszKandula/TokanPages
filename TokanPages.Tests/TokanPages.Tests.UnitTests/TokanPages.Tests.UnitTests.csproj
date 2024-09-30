@@ -52,8 +52,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validators\Notifications\Mobile\" />
-  </ItemGroup>
-
 </Project>
