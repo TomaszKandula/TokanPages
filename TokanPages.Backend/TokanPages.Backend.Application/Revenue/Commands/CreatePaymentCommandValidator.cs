@@ -11,7 +11,6 @@ public class CreatePaymentCommandValidator : AbstractValidator<CreatePaymentComm
         When(command => command.UserId != null, () =>
         {
             RuleFor(command => command.UserId)
-                .NotEmpty()
                 .NotEqual(Guid.Empty)
                 .WithErrorCode(nameof(ValidationCodes.INVALID_GUID_VALUE))
                 .WithMessage(ValidationCodes.INVALID_GUID_VALUE);
