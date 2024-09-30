@@ -3,7 +3,7 @@ using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Validators.Newsletters;
+namespace TokanPages.Tests.UnitTests.Validators.Sender.Newsletters;
 
 public class RemoveSubscriberCommandValidatorTest : TestBase
 {
