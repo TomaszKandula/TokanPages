@@ -29,11 +29,37 @@ public class AddImageAssetCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenEmptyFile_WhenAddImageAssetCommand_ShouldSucceed()
+    public void GivenValidInputs_WhenAddImageAssetCommand_ShouldSucceed()
+    {
+        // Arrange
+        const int testFileSizeInKb = 1;
+        const string name = "Test";
+        const string fileName = "TestFile.webp";
+
+        var stream = DataUtilityService.GetRandomStream(testFileSizeInKb);
+        var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
+
+        var command = new AddImageAssetCommand { BinaryData = form };
+        var mockedConfig = new Mock<IConfiguration>();
+
+        mockedConfig
+            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
+            .Returns(SetReturnValue("1000"));
+
+        // Act
+        var validator = new AddImageAssetCommandValidator(mockedConfig.Object);
+        var result = validator.Validate(command);
+
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void GivenEmptyFile_WhenAddImageAssetCommand_ShouldFail()
     {
         // Arrange
         const string name = "Test";
-        const string fileName = "TestFile.txt";
+        const string fileName = "TestFile.webp";
 
         var stream = DataUtilityService.GetRandomStream(0);
         var form = new FormFile(stream, 0, 0, name, fileName);
@@ -55,38 +81,12 @@ public class AddImageAssetCommandValidatorTest : TestBase
     }
     
     [Fact]
-    public void GivenValidInputs_WhenAddImageAssetCommand_ShouldSucceed()
-    {
-        // Arrange
-        const int testFileSizeInKb = 1;
-        const string name = "Test";
-        const string fileName = "TestFile.txt";
-
-        var stream = DataUtilityService.GetRandomStream(testFileSizeInKb);
-        var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
-
-        var command = new AddImageAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("1000"));
-
-        // Act
-        var validator = new AddImageAssetCommandValidator(mockedConfig.Object);
-        var result = validator.Validate(command);
-
-        // Assert
-        result.Errors.Should().BeEmpty();
-    }
-    
-    [Fact]
     public void GivenFileTooLarge_WhenAddImageAssetCommand_ShouldFail()
     {
         // Arrange
         const int testFileSizeInKb = 20;
         const string name = "Test";
-        const string fileName = "TestFile.txt";
+        const string fileName = "TestFile.webp";
 
         var stream = DataUtilityService.GetRandomStream(testFileSizeInKb);
         var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
