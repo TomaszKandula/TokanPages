@@ -36,7 +36,9 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
                 rel="noopener"
             >
                 <ListItem button key={props.id} className={listItemStyle} disabled={!props.enabled}>
-                    <ListItemIcon className={classes.list_icon}>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                    <ListItemIcon className={classes.list_icon}>
+                        {GetIcon({ iconName: props.icon as string })}
+                    </ListItemIcon>
                     <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
                 </ListItem>
             </Href>
