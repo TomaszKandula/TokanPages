@@ -19,7 +19,7 @@ export {
     GuitarPage,
     PhotographyPage,
     ShowcasePage,
-    AboutPage,
+    InfoPage,
     StoryPage,
     PolicyPage,
     TermsPage,

@@ -81,5 +81,12 @@ export const UploadUserMedia = (props: Properties): React.ReactElement => {
         setIsUploading(true);
     }, []);
 
-    return <UploadUserMediaView customHandle={props.customHandle} buttonState={!isUploading} inputHandler={inputHandler} accepting={accepting} />;
+    return (
+        <UploadUserMediaView
+            customHandle={props.customHandle}
+            buttonState={!isUploading}
+            inputHandler={inputHandler}
+            accepting={accepting}
+        />
+    );
 };

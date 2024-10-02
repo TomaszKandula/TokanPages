@@ -31,7 +31,7 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     userAbout?: {
         multiline?: boolean;
         minRows?: number;
-    }
+    };
 }
 
 interface Properties extends UserInfoViewProps {

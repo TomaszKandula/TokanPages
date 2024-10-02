@@ -30,6 +30,16 @@ interface NavigationProps {
     };
 }
 
+interface PathProps {
+    pathname: string;
+    navigation: NavigationProps;
+}
+
+interface PathToRootTextResultProps {
+    value: string;
+    hasHash: boolean;
+}
+
 const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
 };
@@ -60,14 +70,16 @@ const getHomeText = (navigation: NavigationProps): string => {
     return text?.value ?? "";
 };
 
-const pathToRootText = (pathname: string, navigation: NavigationProps): string => {
-    const array = pathname.split("/");
+const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
+    const array = props.pathname.split("/");
     const fragments = array.filter(e => String(e).trim());
     const rootWithHash = `#${fragments[0]}`;
     const rootWithSlash = `/${fragments[0]}`;
+    let hasHash: boolean = false;
 
-    const text = navigation.menu.items.find((item: Item) => {
+    const text = props.navigation.menu.items.find((item: Item) => {
         if (item.link?.toUpperCase() === rootWithHash.toUpperCase()) {
+            hasHash = true;
             return item;
         }
 
@@ -78,15 +90,18 @@ const pathToRootText = (pathname: string, navigation: NavigationProps): string =
         return undefined;
     });
 
-    return text?.value ?? "";
+    return {
+        value: text?.value ?? "",
+        hasHash: hasHash,
+    };
 };
 
-const pathToSubitemText = (pathname: string, navigation: NavigationProps): string => {
-    const array = pathname.split("/");
+const pathToSubitemText = (props: PathProps): string => {
+    const array = props.pathname.split("/");
     const fragments = array.filter(e => String(e).trim());
     const root = `#${fragments[0]}`;
 
-    const itemWithSubitem = navigation.menu.items.find((item: Item) => {
+    const itemWithSubitem = props.navigation.menu.items.find((item: Item) => {
         if (item.link?.toUpperCase() === root.toUpperCase() && item.subitems !== undefined) {
             return item;
         }
@@ -96,7 +111,7 @@ const pathToSubitemText = (pathname: string, navigation: NavigationProps): strin
 
     if (itemWithSubitem?.subitems) {
         const text = itemWithSubitem?.subitems.find((subitem: Subitem) => {
-            if (subitem.link?.toUpperCase() === pathname.toUpperCase()) {
+            if (subitem.link?.toUpperCase() === props.pathname.toUpperCase()) {
                 return subitem;
             }
 
@@ -117,12 +132,12 @@ const makeStyledBreadcrumb = (
     let fragments = pathname.split("/");
     fragments = fragments.filter(e => String(e).trim());
 
-    const rootName = pathToRootText(pathname, navigation);
-    const itemName = pathToSubitemText(pathname, navigation);
+    const rootName = pathToRootText({ pathname, navigation });
+    const itemName = pathToSubitemText({ pathname, navigation });
 
     const setValue = (index: number): string => {
         if (index === 0) {
-            return rootName;
+            return rootName.value;
         } else {
             return itemName;
         }
@@ -130,7 +145,12 @@ const makeStyledBreadcrumb = (
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <StyledBreadcrumb key={uuidv4()} component="div" label={setValue(index)} onClick={onClick} />
+            <StyledBreadcrumb
+                key={uuidv4()}
+                component="div"
+                label={setValue(index)}
+                onClick={rootName.hasHash ? undefined : onClick}
+            />
         ));
     }
 

@@ -22,15 +22,19 @@ describe("test account group component: userInfoView", () => {
                         registered: "2020-01-01",
                         userToken: "123654789",
                         refreshToken: "951753789654123",
-                        roles: [{
-                            id: "357159",
-                            name: "Admin",
-                            description: "System administrator"
-                        }],
-                        permissions: [{
-                            id: "951753",
-                            name: "Access_All"
-                        }],
+                        roles: [
+                            {
+                                id: "357159",
+                                name: "Admin",
+                                description: "System administrator",
+                            },
+                        ],
+                        permissions: [
+                            {
+                                id: "951753",
+                                name: "Access_All",
+                            },
+                        ],
                     }}
                     accountForm={{
                         firstName: "Ester",
@@ -67,7 +71,7 @@ describe("test account group component: userInfoView", () => {
                     background={{ backgroundColor: "white" }}
                     userAbout={{
                         multiline: undefined,
-                        minRows: undefined
+                        minRows: undefined,
                     }}
                     fileUploadingCustomHandle="UserFile-Avatar"
                 />

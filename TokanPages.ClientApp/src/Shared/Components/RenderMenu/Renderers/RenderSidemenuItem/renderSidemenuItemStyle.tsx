@@ -5,4 +5,7 @@ export const RenderSidemenuItemStyle = makeStyles(() => ({
     href: {
         color: Colours.colours.black,
     },
+    list_icon: {
+        minWidth: 40,
+    },
 }));
