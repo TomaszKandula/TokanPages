@@ -30,15 +30,18 @@ describe("test component: businessFormView", () => {
                     phoneText=""
                     phoneLabel="Business phone"
                     techLabel="Which technologies are you interested in?"
-                    techItems={[{
-                        value: "ABC",
-                        key: 1,
-                        isChecked: false
-                    }, {
-                        value: "CDE",
-                        key: 2,
-                        isChecked: false
-                    }]}
+                    techItems={[
+                        {
+                            value: "ABC",
+                            key: 1,
+                            isChecked: false,
+                        },
+                        {
+                            value: "CDE",
+                            key: 2,
+                            isChecked: false,
+                        },
+                    ]}
                     description={{
                         text: "",
                         label: "",
@@ -49,15 +52,18 @@ describe("test component: businessFormView", () => {
                     pricing={{
                         caption: "",
                         disclaimer: "",
-                        services: [{
-                            id: "web",
-                            text: "Web Development",
-                            price: "30 USD/h"
-                        }, {
-                            id: "mobile",
-                            text: "Mobile Development",
-                            price: "45 USD/h"
-                        }],
+                        services: [
+                            {
+                                id: "web",
+                                text: "Web Development",
+                                price: "30 USD/h",
+                            },
+                            {
+                                id: "mobile",
+                                text: "Mobile Development",
+                                price: "45 USD/h",
+                            },
+                        ],
                     }}
                     pt={15}
                     pb={15}
@@ -65,7 +71,7 @@ describe("test component: businessFormView", () => {
                     hasIcon={true}
                     hasCaption={true}
                     hasShadow={true}
-            />
+                />
             </BrowserRouter>
         );
 

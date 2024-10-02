@@ -9,8 +9,11 @@ import { GetIcon } from "../../..";
 import { Item } from "../../Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
+import { RenderSidemenuItemSpanStyle } from "./renderSidemenuItemSpanStyle";
 
 export const RenderSidemenuItemSpan = (props: Item): React.ReactElement => {
+    const classes = RenderSidemenuItemSpanStyle();
+
     const [isOpen, setIsOpen] = React.useState(false);
     const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
@@ -26,7 +29,7 @@ export const RenderSidemenuItemSpan = (props: Item): React.ReactElement => {
         },
         <>
             <ListItem button key={props.id} onClick={onListItemClickEvent} disabled={!props.enabled}>
-                <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className={classes.list_icon}>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
                 {isOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItem>

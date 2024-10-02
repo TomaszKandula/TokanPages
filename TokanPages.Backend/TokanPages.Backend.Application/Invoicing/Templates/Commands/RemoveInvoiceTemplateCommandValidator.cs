@@ -8,8 +8,8 @@ public class RemoveInvoiceTemplateCommandValidator : AbstractValidator<RemoveInv
     public RemoveInvoiceTemplateCommandValidator()
     {
         RuleFor(command => command.Id)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+            .NotEqual(Guid.Empty)
+            .WithErrorCode(nameof(ValidationCodes.INVALID_GUID_VALUE))
+            .WithMessage(ValidationCodes.INVALID_GUID_VALUE);
     }
 }

@@ -86,7 +86,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -115,7 +115,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-3"
           >
             <span
               aria-hidden="true"
@@ -155,7 +155,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -181,7 +181,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-3"
           >
             <svg
               aria-hidden="true"
@@ -225,7 +225,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -251,7 +251,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-3"
           >
             <span
               aria-hidden="true"
@@ -291,7 +291,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -318,7 +318,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -348,7 +348,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -375,7 +375,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -409,7 +409,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -439,7 +439,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -466,7 +466,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -496,7 +496,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -522,7 +522,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-3"
           >
             <svg
               aria-hidden="true"
@@ -566,7 +566,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -592,7 +592,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-3"
           >
             <span
               aria-hidden="true"
@@ -632,7 +632,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -659,7 +659,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -689,7 +689,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"
@@ -716,7 +716,7 @@ Object {
           tabindex="0"
         >
           <div
-            class="MuiListItemIcon-root"
+            class="MuiListItemIcon-root makeStyles-list_icon-2"
           >
             <span
               aria-hidden="true"

@@ -18,7 +18,9 @@ export const RenderSidemenuItem = (props: Item): React.ReactElement => {
         return (
             <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
-                    <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                    <ListItemIcon className={classes.list_icon}>
+                        {GetIcon({ iconName: props.icon as string })}
+                    </ListItemIcon>
                     <ListItemText primary={props.value} />
                 </ListItem>
             </Href>
@@ -28,7 +30,7 @@ export const RenderSidemenuItem = (props: Item): React.ReactElement => {
     const RenderItemWithLink = (): React.ReactElement => {
         return (
             <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
-                <ListItemIcon>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className={classes.list_icon}>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
             </ListItem>
         );

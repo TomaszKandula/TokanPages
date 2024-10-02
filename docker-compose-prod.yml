@@ -165,6 +165,7 @@ services:
       - ./TokanPages.ClientApp/nginx/nginx-base.conf:/etc/nginx/nginx-base.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-proxy.conf:/etc/nginx/nginx-proxy.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-ssl.conf:/etc/nginx/nginx-ssl.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-ui-paths.conf:/etc/nginx/nginx-ui-paths.conf:ro
       - /opt/certs/wildcard-tomkandula.com.chain:/etc/nginx/wildcard-tomkandula.com.chain:ro
       - /opt/certs/wildcard-tomkandula.com.key:/etc/nginx/wildcard-tomkandula.com.key:ro
       - /opt/certs/wildcard-tomkandula.com.ca:/etc/nginx/wildcard-tomkandula.com.ca:ro

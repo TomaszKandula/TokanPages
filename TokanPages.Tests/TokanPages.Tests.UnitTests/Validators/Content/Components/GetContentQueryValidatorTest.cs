@@ -3,7 +3,7 @@ using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 
-namespace TokanPages.Tests.UnitTests.Validators.Content;
+namespace TokanPages.Tests.UnitTests.Validators.Content.Components;
 
 public class GetContentQueryValidatorTest : TestBase
 {

@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,
-    AboutPage,
+    InfoPage,
     StoryPage,
     ArticlesPage,
     TermsPage,
@@ -36,8 +36,8 @@ interface PageProps {
 
 const pages: PageProps[] = [
     { path: "/", page: <MainPage /> },
-    { path: "/about", page: <AboutPage /> },
-    { path: "/story", page: <StoryPage /> },
+    { path: "/about/info", page: <InfoPage /> },
+    { path: "/about/story", page: <StoryPage /> },
     { path: "/articles", page: <ArticlesPage /> },
     { path: "/showcase", page: <ShowcasePage /> },
     { path: "/document", page: <PdfViewerPage /> },

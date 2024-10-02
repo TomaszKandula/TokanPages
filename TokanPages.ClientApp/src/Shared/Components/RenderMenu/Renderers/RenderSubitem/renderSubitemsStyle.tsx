@@ -5,6 +5,9 @@ export const RenderSubitemsStyle = makeStyles(theme => ({
     href: {
         color: Colours.colours.black,
     },
+    list_icon: {
+        minWidth: 40,
+    },
     list_item: {
         "&:hover": {
             backgroundColor: Colours.colours.white,
