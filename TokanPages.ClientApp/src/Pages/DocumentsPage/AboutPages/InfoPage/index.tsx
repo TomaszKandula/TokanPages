@@ -1,17 +1,17 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../../Store/Configuration";
-import { Navigation, Footer } from "../../../Components/Layout";
-import { CustomBreadcrumb, DocumentContentWrapper } from "../../../Shared/Components";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { Navigation, Footer } from "../../../../Components/Layout";
+import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 
 import {
     ContentNavigationAction,
     ContentFooterAction,
     ContentDocumentAction,
     ContentTemplatesAction,
-} from "../../../Store/Actions";
+} from "../../../../Store/Actions";
 
-export const StoryPage = (): React.ReactElement => {
+export const InfoPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const document = useSelector((state: ApplicationState) => state.contentDocument);
@@ -19,12 +19,12 @@ export const StoryPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(ContentNavigationAction.get());
         dispatch(ContentFooterAction.get());
-        dispatch(ContentDocumentAction.getStory());
+        dispatch(ContentDocumentAction.getAbout());
         dispatch(ContentTemplatesAction.get());
     }, [language?.id]);
 
-    const isLoading = document?.contentStory?.isLoading ?? false;
-    const items = document?.contentStory?.content.items ?? [];
+    const isLoading = document?.contentAbout?.isLoading ?? false;
+    const items = document?.contentAbout?.content.items ?? [];
 
     return (
         <>

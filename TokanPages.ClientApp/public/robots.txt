@@ -17,8 +17,8 @@
 
 User-agent: Googlebot
 Allow: /
-Allow: /about/
-Allow: /story/
+Allow: /about/info
+Allow: /about/story/
 Allow: /articles/
 Allow: /showcase/
 Allow: /leisure/bicycle/
@@ -43,8 +43,8 @@ Disallow: /remove-newsletter/
 
 User-agent: Bingbot
 Allow: /
-Allow: /about/
-Allow: /story/
+Allow: /about/info
+Allow: /about/story/
 Allow: /articles/
 Allow: /showcase/
 Allow: /leisure/bicycle/
@@ -69,8 +69,8 @@ Disallow: /remove-newsletter/
 
 User-agent: YandexBot
 Allow: /
-Allow: /about/
-Allow: /story/
+Allow: /about/info
+Allow: /about/story/
 Allow: /articles/
 Allow: /showcase/
 Allow: /leisure/bicycle/
@@ -95,8 +95,8 @@ Disallow: /remove-newsletter/
 
 User-agent: Baiduspider
 Allow: /
-Allow: /about/
-Allow: /story/
+Allow: /about/info
+Allow: /about/story/
 Allow: /articles/
 Allow: /showcase/
 Allow: /leisure/bicycle/
@@ -121,8 +121,8 @@ Disallow: /remove-newsletter/
 
 User-Agent: *
 Allow: /
-Allow: /about/
-Allow: /story/
+Allow: /about/info
+Allow: /about/story/
 Allow: /articles/
 Allow: /showcase/
 Allow: /leisure/bicycle/
