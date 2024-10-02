@@ -92,8 +92,8 @@ const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
 
     return {
         value: text?.value ?? "",
-        hasHash: hasHash
-    }
+        hasHash: hasHash,
+    };
 };
 
 const pathToSubitemText = (props: PathProps): string => {
@@ -145,7 +145,12 @@ const makeStyledBreadcrumb = (
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <StyledBreadcrumb key={uuidv4()} component="div" label={setValue(index)} onClick={rootName.hasHash ? undefined : onClick} />
+            <StyledBreadcrumb
+                key={uuidv4()}
+                component="div"
+                label={setValue(index)}
+                onClick={rootName.hasHash ? undefined : onClick}
+            />
         ));
     }
 

@@ -11,7 +11,9 @@ describe("test account group component: accessDeniedView", () => {
                 <AccessDeniedView
                     isLoading={false}
                     accessDeniedCaption={"Access Denied"}
-                    accessDeniedPrompt={"<p>You do not have access to this page.</p><p>If you believe this is an error, please contact IT support.</p>"}
+                    accessDeniedPrompt={
+                        "<p>You do not have access to this page.</p><p>If you believe this is an error, please contact IT support.</p>"
+                    }
                     homeButtonText={"Go back"}
                 />
             </BrowserRouter>
