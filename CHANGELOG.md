@@ -1,3 +1,26 @@
+# [0.107.0](https://github.com/TomaszKandula/TokanPages/compare/v0.106.0...v0.107.0) (2024-10-02)
+
+
+### Bug Fixes
+
+* add missing empty check ([a7d1eca](https://github.com/TomaszKandula/TokanPages/commit/a7d1eca8824c9d46204903a67f8ec700197e60c6))
+* check enum the correct way ([d0d1d50](https://github.com/TomaszKandula/TokanPages/commit/d0d1d5035d054d1e6044a53a1e081310d29b16c4))
+* check for empty guid ([ab99e43](https://github.com/TomaszKandula/TokanPages/commit/ab99e43664981c63bbecf74f751e5293d11a794f))
+* check length if not null ([5d2912f](https://github.com/TomaszKandula/TokanPages/commit/5d2912f39e76b7779a2f37e15595bcdedd9a4c9b))
+* check length if not null ([f8ca8ca](https://github.com/TomaszKandula/TokanPages/commit/f8ca8cad86fa39a0371d5a9126b4a2903ab4c2ce))
+* do not allow click on hashed subitem ([5627785](https://github.com/TomaszKandula/TokanPages/commit/562778532ab80f9c53e19ca32c67ac7f79031fdc))
+* do not use 'not empty', check integer ([39ed50f](https://github.com/TomaszKandula/TokanPages/commit/39ed50f776c6e313398467a9d7f25958c5b0a157))
+* do not use 'not empty', check integer ([00e304f](https://github.com/TomaszKandula/TokanPages/commit/00e304f63917d1a357fd842f1a4b235f0ed2ca83))
+* relocate story page, use breadcrumb ([3282746](https://github.com/TomaszKandula/TokanPages/commit/32827460fd11b2fbebc3b09cafbaa6ca6cba5c11))
+* remove unnecessary cheks ([490df6f](https://github.com/TomaszKandula/TokanPages/commit/490df6f36a5578bfe5083f139a7930665ba61a35))
+* remove unnecessary rule ([47f54eb](https://github.com/TomaszKandula/TokanPages/commit/47f54eb76567584a9916f53a6d316e6b0b6050bc))
+* remove unnecessary rules ([4470dc2](https://github.com/TomaszKandula/TokanPages/commit/4470dc270bdaf4826006d27a422319124a62c58b))
+
+
+### Features
+
+* restyle navbar menu and side menu ([701b444](https://github.com/TomaszKandula/TokanPages/commit/701b444d6be0fe590472e7c7572765f39322a13e))
+
 # [0.106.0](https://github.com/TomaszKandula/TokanPages/compare/v0.105.1...v0.106.0) (2024-09-29)
 
 
