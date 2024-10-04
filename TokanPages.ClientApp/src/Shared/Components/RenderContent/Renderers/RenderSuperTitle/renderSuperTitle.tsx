@@ -1,9 +1,9 @@
 import * as React from "react";
 import { TextItem } from "../../Models";
 import { Box, Card, CardMedia, Typography } from "@material-ui/core";
+import { API_BASE_URI } from "../../../../../Api/Request";
+import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { RenderSuperTitleStyle } from "./renderSuperTitleStyle";
-import { ReactHtmlParser } from "Shared/Services/Renderers";
-import { API_BASE_URI } from "Api/Request";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
