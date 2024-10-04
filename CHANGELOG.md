@@ -1,3 +1,18 @@
+# [0.108.0](https://github.com/TomaszKandula/TokanPages/compare/v0.107.0...v0.108.0) (2024-10-04)
+
+
+### Bug Fixes
+
+* correct imports ([de6e3ec](https://github.com/TomaszKandula/TokanPages/commit/de6e3ec91e6d11dc616ab8ca24510861f290e1a5))
+
+
+### Features
+
+* add new render component ([594d08c](https://github.com/TomaszKandula/TokanPages/commit/594d08c11f805bdea72e32f23af06f9b1068c6f4))
+* apply new render component and constraint for images/video thumbnails ([8684f10](https://github.com/TomaszKandula/TokanPages/commit/8684f1028b49abe8b184f22176b40befbc7ef672))
+* pass new props to constraint image ([70e7f84](https://github.com/TomaszKandula/TokanPages/commit/70e7f84da49ff060b7b970a6273e0f77f896c3da))
+* update model ([056c450](https://github.com/TomaszKandula/TokanPages/commit/056c4506201850296a3fc0a2fed85c25473720d1))
+
 # [0.107.0](https://github.com/TomaszKandula/TokanPages/compare/v0.106.0...v0.107.0) (2024-10-02)
 
 
