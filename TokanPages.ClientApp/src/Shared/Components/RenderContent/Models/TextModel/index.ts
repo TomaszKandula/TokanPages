@@ -1,19 +1,26 @@
-interface TextObject {
+export interface TextObject {
     items: TextItem[];
 }
 
-interface TextItem {
+export interface ConstraintProps {
+    maxWidth?: number;
+    maxHeight?: number;
+}
+
+export interface TextItem {
     id: string;
     type: string;
     value: string | RowItem[];
     prop: string;
     text: string;
+    propTitle?: string;
+    propSubtitle?: string;
+    propImg?: string;
+    constraint?: ConstraintProps;
 }
 
-interface RowItem {
+export interface RowItem {
     column0: string;
     column1: string;
     column2: string;
 }
-
-export type { TextObject, TextItem, RowItem };
