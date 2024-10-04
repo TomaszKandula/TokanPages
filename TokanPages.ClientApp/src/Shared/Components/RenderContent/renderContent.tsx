@@ -2,7 +2,15 @@ import * as React from "react";
 import { TextObject } from "./Models/TextModel";
 import { Languages } from "../../languages";
 
-import { RenderText, RenderGist, RenderTable, RenderImage, RenderVideo, RenderSeparator } from "./Renderers";
+import {
+    RenderSuperTitle,
+    RenderText,
+    RenderGist,
+    RenderTable,
+    RenderImage,
+    RenderVideo,
+    RenderSeparator,
+} from "./Renderers";
 
 export const RenderContent = (textObject: TextObject | undefined): React.ReactElement => {
     if (textObject === undefined) return <div>Cannot render content.</div>;
@@ -28,6 +36,22 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                 );
                 break;
 
+            case "super-title":
+                renderBuffer.push(
+                    <RenderSuperTitle
+                        key={item.id}
+                        id={item.id}
+                        type={item.type}
+                        value={item.value}
+                        prop={item.prop}
+                        text={item.text}
+                        propTitle={item.propTitle}
+                        propSubtitle={item.propSubtitle}
+                        propImg={item.propImg}
+                    />
+                );
+                break;
+
             case "image":
                 renderBuffer.push(
                     <RenderImage
@@ -37,6 +61,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        constraint={item.constraint}
                     />
                 );
                 break;
@@ -50,6 +75,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        constraint={item.constraint}
                     />
                 );
                 break;

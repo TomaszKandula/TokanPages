@@ -49,9 +49,23 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                     alt="image"
                     className={classes.image}
                     onClick={onClickEvent}
+                    style={{
+                        maxWidth: props.constraint?.maxWidth,
+                        maxHeight: props.constraint?.maxHeight,
+                    }}
                 />
             ) : null}
-            {hasValueOnly ? <CardMedia component="img" image={valueUrl} alt="image" /> : null}
+            {hasValueOnly ? (
+                <CardMedia
+                    component="img"
+                    image={valueUrl}
+                    alt="image"
+                    style={{
+                        maxWidth: props.constraint?.maxWidth,
+                        maxHeight: props.constraint?.maxHeight,
+                    }}
+                />
+            ) : null}
             {hasText ? <RenderDescription text={props.text} /> : null}
         </Card>
     );
