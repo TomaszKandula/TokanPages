@@ -36,14 +36,14 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
     return (
         <Card elevation={3} classes={{ root: classes.card }}>
             {hasImage ? (
-                <CardMedia 
-                    component="img" 
-                    image={propUrl} 
-                    onClick={onClickEvent} 
-                    className={classes.image} 
-                    style={{ 
-                        maxWidth: props.constraint?.maxWidth, 
-                        maxHeight: props.constraint?.maxHeight 
+                <CardMedia
+                    component="img"
+                    image={propUrl}
+                    onClick={onClickEvent}
+                    className={classes.image}
+                    style={{
+                        maxWidth: props.constraint?.maxWidth,
+                        maxHeight: props.constraint?.maxHeight,
                     }}
                 />
             ) : (

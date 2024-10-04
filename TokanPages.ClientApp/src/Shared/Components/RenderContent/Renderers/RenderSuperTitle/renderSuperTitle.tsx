@@ -15,7 +15,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
         propUrl = `${API_BASE_URI}${propUrl}`;
     }
 
-    return(
+    return (
         <Box className={classes.container}>
             <Box className={classes.contentText}>
                 <Box mt={7} mb={0}>
@@ -30,13 +30,8 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                 </Box>
             </Box>
             <Card elevation={0} classes={{ root: classes.card }} className={classes.contentImage}>
-                <CardMedia
-                    component="img"
-                    image={propUrl}
-                    alt="image"
-                    className={classes.image}
-                />
+                <CardMedia component="img" image={propUrl} alt="image" className={classes.image} />
             </Card>
         </Box>
     );
-}
+};

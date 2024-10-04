@@ -6,7 +6,7 @@ export const RenderSuperTitleStyle = makeStyles(() => ({
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     contentText: {
         alignContent: "center",
@@ -31,7 +31,7 @@ export const RenderSuperTitleStyle = makeStyles(() => ({
     image: {
         cursor: "cursor",
         maxWidth: 300,
-        maxHeight: 60
+        maxHeight: 60,
     },
     title: {
         fontSize: 28,

@@ -2,7 +2,15 @@ import * as React from "react";
 import { TextObject } from "./Models/TextModel";
 import { Languages } from "../../languages";
 
-import { RenderSuperTitle, RenderText, RenderGist, RenderTable, RenderImage, RenderVideo, RenderSeparator } from "./Renderers";
+import {
+    RenderSuperTitle,
+    RenderText,
+    RenderGist,
+    RenderTable,
+    RenderImage,
+    RenderVideo,
+    RenderSeparator,
+} from "./Renderers";
 
 export const RenderContent = (textObject: TextObject | undefined): React.ReactElement => {
     if (textObject === undefined) return <div>Cannot render content.</div>;

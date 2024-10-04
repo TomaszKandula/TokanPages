@@ -41,10 +41,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
     }, [valueUrl]);
 
     return (
-        <Card 
-            elevation={3} 
-            classes={{ root: classes.card }} 
-        >
+        <Card elevation={3} classes={{ root: classes.card }}>
             {hasPropAndValue ? (
                 <CardMedia
                     component="img"
@@ -52,22 +49,23 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                     alt="image"
                     className={classes.image}
                     onClick={onClickEvent}
-                    style={{ 
-                        maxWidth: props.constraint?.maxWidth, 
-                        maxHeight: props.constraint?.maxHeight 
+                    style={{
+                        maxWidth: props.constraint?.maxWidth,
+                        maxHeight: props.constraint?.maxHeight,
                     }}
                 />
             ) : null}
-            {hasValueOnly 
-            ? <CardMedia 
-                component="img" 
-                image={valueUrl} 
-                alt="image"
-                style={{ 
-                    maxWidth: props.constraint?.maxWidth, 
-                    maxHeight: props.constraint?.maxHeight 
-                }}
-            /> : null}
+            {hasValueOnly ? (
+                <CardMedia
+                    component="img"
+                    image={valueUrl}
+                    alt="image"
+                    style={{
+                        maxWidth: props.constraint?.maxWidth,
+                        maxHeight: props.constraint?.maxHeight,
+                    }}
+                />
+            ) : null}
             {hasText ? <RenderDescription text={props.text} /> : null}
         </Card>
     );
