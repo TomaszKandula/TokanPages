@@ -49,13 +49,13 @@ public class CachingService : ICachingService
         await page.GoToAsync(sourceUrl);
         await page.EvaluateExpressionHandleAsync(DocumentFontReady);
 
-        var outputFile = Path.Combine(PdfDir, $"{Guid.NewGuid()}.pdf");
-        var fileInfo = new FileInfo(outputFile);
+        var outputPath = Path.Combine(PdfDir, $"{Guid.NewGuid()}.pdf");
+        var fileInfo = new FileInfo(outputPath);
         if (fileInfo.Exists)
             fileInfo.Delete();
 
-        await page.PdfAsync(outputFile);
-        return outputFile;
+        await page.PdfAsync(outputPath);
+        return outputPath;
     }
 
     /// <inheritdoc />
