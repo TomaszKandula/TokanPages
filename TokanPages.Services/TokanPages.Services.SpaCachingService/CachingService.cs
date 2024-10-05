@@ -59,7 +59,7 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<string> RenderStaticPage(string sourceUrl, string pageName)
+    public async Task<string> RenderStaticPage(string sourceUrl, string pageName, int waitForRender = 500)
     {
         var browserFetcher = new BrowserFetcher();
         var launchOptions = new LaunchOptions
@@ -73,6 +73,7 @@ public class CachingService : ICachingService
 
         await page.GoToAsync(sourceUrl);
         await page.EvaluateExpressionHandleAsync(DocumentFontReady);
+        Thread.Sleep(waitForRender);
         var htmlContent = await page.GetContentAsync();
 
         var outputPath = Path.Combine(CacheDir, $"{pageName}.html");
