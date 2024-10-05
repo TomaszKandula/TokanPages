@@ -17,6 +17,6 @@ public interface ICachingService
     /// </summary>
     /// <param name="sourceUrl">Web page URL.</param>
     /// <param name="pageName">Page name.</param>
-    /// <returns>Returns an async. task.</returns>
-    Task RenderStaticPage(string sourceUrl, string pageName);
+    /// <returns>Returns full path to a generated HTML.</returns>
+    Task<string> RenderStaticPage(string sourceUrl, string pageName);
 }

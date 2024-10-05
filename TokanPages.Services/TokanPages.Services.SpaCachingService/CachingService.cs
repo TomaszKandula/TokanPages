@@ -59,7 +59,7 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task RenderStaticPage(string sourceUrl, string pageName)
+    public async Task<string> RenderStaticPage(string sourceUrl, string pageName)
     {
         var browserFetcher = new BrowserFetcher();
         var launchOptions = new LaunchOptions
@@ -75,7 +75,8 @@ public class CachingService : ICachingService
         await page.EvaluateExpressionHandleAsync(DocumentFontReady);
         var htmlContent = await page.GetContentAsync();
 
-        var outputFile = Path.Combine(CacheDir, $"{pageName}.html");
-        await File.WriteAllTextAsync(outputFile, htmlContent);
+        var outputPath = Path.Combine(CacheDir, $"{pageName}.html");
+        await File.WriteAllTextAsync(outputPath, htmlContent);
+        return outputPath;
     }
 }
