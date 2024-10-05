@@ -18,6 +18,7 @@ public class CachingServiceTest : TestBase
 
         // Assert
         result.Should().NotBeEmpty();
+        result.Should().Contain(".pdf");
     }
 
     [Fact]
@@ -26,6 +27,7 @@ public class CachingServiceTest : TestBase
         // Arrange
         const string url = "http://www.google.com";
         const string pageName = "google";
+        const string expectedFileName = $"{pageName}.html";
         var cachingService = new CachingService();
 
         // Act
@@ -33,5 +35,6 @@ public class CachingServiceTest : TestBase
 
         // Assert
         result.Should().NotBeEmpty();
+        result.Should().Contain(expectedFileName);
     }
 }
