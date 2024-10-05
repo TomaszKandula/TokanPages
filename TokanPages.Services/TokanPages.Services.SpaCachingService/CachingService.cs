@@ -13,6 +13,12 @@ public class CachingService : ICachingService
 
     private const string DocumentFontReady = "document.fonts.ready";
 
+    private static readonly WaitUntilNavigation[] WaitUntilOptions = {
+        WaitUntilNavigation.Load,
+        WaitUntilNavigation.DOMContentLoaded,
+        WaitUntilNavigation.Networkidle0
+    };
+
     public string PdfDir { get; }
 
     public string CacheDir { get; }
@@ -46,7 +52,7 @@ public class CachingService : ICachingService
         await using var browser = await Puppeteer.LaunchAsync(launchOptions);
         await using var page = await browser.NewPageAsync();
 
-        await page.GoToAsync(sourceUrl);
+        await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
         await page.EvaluateExpressionHandleAsync(DocumentFontReady);
 
         var outputPath = Path.Combine(PdfDir, $"{Guid.NewGuid()}.pdf");
@@ -59,7 +65,7 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<string> RenderStaticPage(string sourceUrl, string pageName, int waitForRender = 500)
+    public async Task<string> RenderStaticPage(string sourceUrl, string pageName)
     {
         var browserFetcher = new BrowserFetcher();
         var launchOptions = new LaunchOptions
@@ -71,9 +77,8 @@ public class CachingService : ICachingService
         await using var browser = await Puppeteer.LaunchAsync(launchOptions);
         await using var page = await browser.NewPageAsync();
 
-        await page.GoToAsync(sourceUrl);
+        await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
         await page.EvaluateExpressionHandleAsync(DocumentFontReady);
-        Thread.Sleep(waitForRender);
         var htmlContent = await page.GetContentAsync();
 
         var outputPath = Path.Combine(CacheDir, $"{pageName}.html");

@@ -17,7 +17,6 @@ public interface ICachingService
     /// </summary>
     /// <param name="sourceUrl">Web page URL.</param>
     /// <param name="pageName">Page name.</param>
-    /// <param name="waitForRender">Optional wait parameter.</param>
     /// <returns>Returns full path to a generated HTML.</returns>
-    Task<string> RenderStaticPage(string sourceUrl, string pageName, int waitForRender = 500);
+    Task<string> RenderStaticPage(string sourceUrl, string pageName);
 }
