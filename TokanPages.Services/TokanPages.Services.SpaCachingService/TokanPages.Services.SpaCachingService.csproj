@@ -10,4 +10,8 @@
         <IsPublishable>true</IsPublishable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="PuppeteerSharp" Version="18.1.0" />
+    </ItemGroup>
+
 </Project>
