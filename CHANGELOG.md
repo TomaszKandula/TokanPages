@@ -1,3 +1,10 @@
+## [0.108.1](https://github.com/TomaszKandula/TokanPages/compare/v0.108.0...v0.108.1) (2024-10-05)
+
+
+### Bug Fixes
+
+* hide logo on small screen ([a9b8b1d](https://github.com/TomaszKandula/TokanPages/commit/a9b8b1d9e4545646d68756d480c0f844f29f7225))
+
 # [0.108.0](https://github.com/TomaszKandula/TokanPages/compare/v0.107.0...v0.108.0) (2024-10-04)
 
 
