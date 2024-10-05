@@ -21,6 +21,7 @@ using TokanPages.HostedServices.Services.Models;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
+using TokanPages.Services.SpaCachingService;
 
 namespace TokanPages.HostedServices;
 
@@ -72,27 +73,26 @@ public static class Dependencies
 	{
 		services.AddHttpContextAccessor();
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
-		services.AddScoped<IJsonSerializer, JsonSerializer>();
+
+        services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IVideoConverter, VideoConverter>();
 		services.AddScoped<IVideoProcessor, VideoProcessor>();
         services.AddScoped<IBatchService, BatchService>();
         services.AddScoped<IEmailSenderService, EmailSenderService>();
+        services.AddScoped<ICachingService, CachingService>();
+
         services.AddScoped<VideoProcessing>();
         services.AddScoped<EmailProcessing>();
         services.AddHostedService<VideoProcessingWorker>();
         services.AddHostedService<EmailProcessingWorker>();
 
-        var cron = configuration.GetValue<string>("BatchInvoicing_Cron");
-        var batchProcessingConfig = new BatchProcessingConfig
-        {
-            TimeZoneInfo = TimeZoneInfo.Local,
-            CronExpression = cron ?? string.Empty
-        };
+        services.SetupCronServices(configuration);
+        services.SetupAzureServices(configuration);
+    }
 
-        services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
-        services.AddHostedService<BatchProcessingJob>();
-
+    private static void SetupAzureServices(this IServiceCollection services, IConfiguration configuration)
+    {
         services.AddSingleton<IAzureBusFactory>(_ =>
         {
             var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? string.Empty;
@@ -105,5 +105,29 @@ public static class Dependencies
             var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? string.Empty;
             return new AzureBlobStorageFactory(connectionString, containerName);
         });
-	}
+    }
+
+    private static void SetupCronServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        var batchInvoicingCron = configuration.GetValue<string>("BatchInvoicing_Cron");
+        var cachingServiceCron = configuration.GetValue<string>("CachingService_Cron");
+
+        var batchProcessingConfig = new BatchProcessingConfig
+        {
+            TimeZoneInfo = TimeZoneInfo.Local,
+            CronExpression = batchInvoicingCron ?? string.Empty
+        };
+
+        var cachingProcessingConfig = new CachingProcessingConfig
+        {
+            TimeZoneInfo = TimeZoneInfo.Local,
+            CronExpression = cachingServiceCron ?? string.Empty
+        };
+
+        services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
+        services.AddHostedService<BatchProcessingJob>();
+
+        services.AddSingleton<ICachingProcessingConfig>(cachingProcessingConfig);
+        services.AddHostedService<CachingProcessingJob>();
+    }
 }
