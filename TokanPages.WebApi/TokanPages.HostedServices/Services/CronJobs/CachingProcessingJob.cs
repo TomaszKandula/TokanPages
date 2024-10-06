@@ -44,17 +44,17 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{DateTime.Now:T} {nameof(CachingProcessingJob)} is working...");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: working...");
         if (_paths.Count == 0)
         {
-            _loggerService.LogInformation("No routes registered for caching..., quitting the job...");
+            _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: no routes registered for caching..., quitting the job...");
             return;
         }
 
         foreach (var path in _paths)
         {
             await _cachingService.RenderStaticPage(path.Url, path.Name);
-            _loggerService.LogInformation($"Page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+            _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
         }
     }
 
@@ -77,7 +77,7 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{DateTime.Now:T} {nameof(CachingProcessingJob)} is stopped.");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }
