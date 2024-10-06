@@ -21,8 +21,8 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component"
+            ContentName = "activateAccount",
+            ContentType = "component"
         };
     
         var databaseContext = GetTestDatabaseContext();
@@ -101,8 +101,8 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component",
+            ContentName = "activateAccount",
+            ContentType = "component",
             Language = "pol" 
         };
 
@@ -156,8 +156,8 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = DataUtilityService.GetRandomString()
+            ContentName = "activateAccount",
+            ContentType = DataUtilityService.GetRandomString()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -210,8 +210,8 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component"
+            ContentName = "activateAccount",
+            ContentType = "component"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -258,8 +258,8 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component"
+            ContentName = "activateAccount",
+            ContentType = "component"
         };
 
         var databaseContext = GetTestDatabaseContext();

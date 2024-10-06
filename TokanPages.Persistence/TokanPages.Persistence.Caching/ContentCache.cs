@@ -52,13 +52,13 @@ public class ContentCache : IContentCache
     public async Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
+            return await _mediator.Send(new GetContentQuery { ContentType = type, ContentName = name, Language = language });
 
         var key = $"{_environment.EnvironmentName}:content:{type}:{name}:{language}";
         var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
+        value = await _mediator.Send(new GetContentQuery { ContentType = type, ContentName = name, Language = language });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

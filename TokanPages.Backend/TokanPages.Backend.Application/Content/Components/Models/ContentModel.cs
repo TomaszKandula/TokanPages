@@ -2,7 +2,9 @@ namespace TokanPages.Backend.Application.Content.Components.Models;
 
 public class ContentModel
 {
-    public string Type { get; set; } = "";
+    public string ContentType { get; set; } = "";
 
-    public string Name { get; set; } = "";
+    public string ContentName { get; set; } = "";
+
+    public dynamic? Content { get; set; }
 }

@@ -16,12 +16,12 @@ public class GetPageContentQueryValidator : AbstractValidator<GetPageContentQuer
     {
         public ContentModelValidator()
         {
-            RuleFor(query => query.Type)
+            RuleFor(query => query.ContentType)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);
             
-            RuleFor(query => query.Name)
+            RuleFor(query => query.ContentName)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED);

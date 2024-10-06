@@ -13,8 +13,8 @@ public class GetContentQueryValidatorTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Type = DataUtilityService.GetRandomString(),
-            Name = DataUtilityService.GetRandomString()
+            ContentType = DataUtilityService.GetRandomString(),
+            ContentName = DataUtilityService.GetRandomString()
         };
 
         // Act
@@ -31,8 +31,8 @@ public class GetContentQueryValidatorTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Type = string.Empty,
-            Name = string.Empty
+            ContentType = string.Empty,
+            ContentName = string.Empty
         };
 
         // Act

@@ -19,13 +19,13 @@ public class GetPageContentQueryValidatorTest : TestBase
             {
                 new()
                 {
-                    Name = DataUtilityService.GetRandomString(),
-                    Type = DataUtilityService.GetRandomString()
+                    ContentName = DataUtilityService.GetRandomString(),
+                    ContentType = DataUtilityService.GetRandomString()
                 },
                 new()
                 {
-                    Name = DataUtilityService.GetRandomString(),
-                    Type = DataUtilityService.GetRandomString()
+                    ContentName = DataUtilityService.GetRandomString(),
+                    ContentType = DataUtilityService.GetRandomString()
                 }
             }
         };
@@ -49,13 +49,13 @@ public class GetPageContentQueryValidatorTest : TestBase
             {
                 new()
                 {
-                    Name = string.Empty,
-                    Type = string.Empty
+                    ContentName = string.Empty,
+                    ContentType = string.Empty
                 },
                 new()
                 {
-                    Name = string.Empty,
-                    Type = string.Empty
+                    ContentName = string.Empty,
+                    ContentType = string.Empty
                 }
             }
         };
