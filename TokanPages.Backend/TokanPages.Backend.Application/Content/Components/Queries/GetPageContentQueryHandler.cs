@@ -23,7 +23,7 @@ public class GetPageContentQueryHandler : RequestHandler<GetPageContentQuery, Ge
     public override async Task<GetPageContentQueryResult> Handle(GetPageContentQuery request, CancellationToken cancellationToken)
     {
         var count = request.Components.Count;
-        ParallelOptions parallelOptions = new() { MaxDegreeOfParallelism = count };
+        ParallelOptions parallelOptions = new() { MaxDegreeOfParallelism = count > 20 ? 20 : count };
 
         var range = Enumerable.Range(0, count);
         var content = new List<GetContentQueryResult>(count);
