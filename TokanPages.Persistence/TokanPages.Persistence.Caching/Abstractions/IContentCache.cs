@@ -23,4 +23,12 @@ public interface IContentCache
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
     Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false);
+
+    /// <summary>
+    /// Returns list of component's content
+    /// </summary>
+    /// <param name="request">Language and list of requested components.</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Component's content</returns>
+    Task<GetPageContentQueryResult> GetPageContent(GetPageContentQuery request, bool noCache = false);
 }

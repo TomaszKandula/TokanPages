@@ -48,4 +48,15 @@ public class ComponentsController : ApiBaseController
         [FromQuery] string name = "",
         [FromQuery] bool noCache = false)
         => await _contentCache.GetContent(language, type, name, noCache);
+
+    /// <summary>
+    /// Returns component's content.
+    /// </summary>
+    /// <param name="request">Language and list of requested components.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>Object.</returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(GetPageContentQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetPageContentQueryResult> RequestPageContent([FromBody] GetPageContentQuery request, [FromQuery] bool noCache = false) 
+        => await _contentCache.GetPageContent(request, noCache);
 }
