@@ -71,4 +71,23 @@ public class GetPageContentQueryValidatorTest : TestBase
         result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
+
+    [Fact]
+    public void GivenNoInput_WhenGetPageContent_ShouldThrowError()
+    {
+        // Arrange
+        var query = new GetPageContentQuery
+        {
+            Language = "eng",
+            Components = new List<ContentModel>()
+        };
+
+        // Act
+        var validator = new GetPageContentQueryValidator();
+        var result = validator.Validate(query);
+
+        // Assert
+        result.Errors.Count.Should().Be(1);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LIST_EMPTY));
+    }
 }
