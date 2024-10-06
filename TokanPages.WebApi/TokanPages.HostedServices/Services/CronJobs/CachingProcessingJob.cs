@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Services.Abstractions;
 using TokanPages.HostedServices.Services.Base;
+using TokanPages.HostedServices.Services.Models;
 using TokanPages.Services.SpaCachingService;
 
 namespace TokanPages.HostedServices.Services.CronJobs;
@@ -18,6 +19,8 @@ public class CachingProcessingJob : CronJob
 
     private readonly string _cronExpression;
 
+    private readonly List<RoutePath> _paths;
+
     /// <summary>
     /// CRON job implementation.
     /// </summary>
@@ -31,6 +34,7 @@ public class CachingProcessingJob : CronJob
         _cachingService = cachingService;
         _loggerService = loggerService;
         _cronExpression = config.CronExpression;
+        _paths = config.RoutePaths;
     }
 
     /// <summary>
@@ -41,31 +45,17 @@ public class CachingProcessingJob : CronJob
     public override async Task DoWork(CancellationToken cancellationToken)
     {
         _loggerService.LogInformation($"{DateTime.Now:T} {nameof(CachingProcessingJob)} is working...");
+        if (_paths.Count == 0)
+        {
+            _loggerService.LogInformation("No routes registered for caching..., quitting the job...");
+            return;
+        }
 
-        await _cachingService.RenderStaticPage("/", "MainPage");
-        await _cachingService.RenderStaticPage("/about/info", "InfoPage");
-        await _cachingService.RenderStaticPage("/about/story", "StoryPage");
-        await _cachingService.RenderStaticPage("/articles", "ArticlesPage");
-        await _cachingService.RenderStaticPage("/showcase", "ShowcasePage");
-        await _cachingService.RenderStaticPage("/document", "PdfViewerPage");
-        await _cachingService.RenderStaticPage("/business", "BusinessPage");
-        await _cachingService.RenderStaticPage("/leisure/bicycle", "BicyclePage");
-        await _cachingService.RenderStaticPage("/leisure/electronics", "ElectronicsPage");
-        await _cachingService.RenderStaticPage("/leisure/football", "FootballPage");
-        await _cachingService.RenderStaticPage("/leisure/guitar", "GuitarPage");
-        await _cachingService.RenderStaticPage("/leisure/photography", "PhotographyPage");
-        await _cachingService.RenderStaticPage("/terms", "TermsPage");
-        await _cachingService.RenderStaticPage("/policy", "PolicyPage");
-        await _cachingService.RenderStaticPage("/contact", "ContactPage");
-        await _cachingService.RenderStaticPage("/signin", "SigninPage");
-        await _cachingService.RenderStaticPage("/signup", "SignupPage");
-        await _cachingService.RenderStaticPage("/signout", "SignoutPage");
-        await _cachingService.RenderStaticPage("/account", "AccountPage");
-        await _cachingService.RenderStaticPage("/accountactivation", "ActivationPage");
-        await _cachingService.RenderStaticPage("/updatepassword", "PasswordUpdatePage");
-        await _cachingService.RenderStaticPage("/resetpassword", "PasswordResetPage");
-        await _cachingService.RenderStaticPage("/update-newsletter", "NewsletterUpdatePage");
-        await _cachingService.RenderStaticPage("/remove-newsletter", "NewsletterRemovePage");
+        foreach (var path in _paths)
+        {
+            await _cachingService.RenderStaticPage(path.Url, path.Name);
+            _loggerService.LogInformation($"Page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+        }
     }
 
     /// <summary>
@@ -75,7 +65,8 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{nameof(CachingProcessingJob)} started. CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: started, CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: routes for caching: {_paths.Count}.");
         return base.StartAsync(cancellationToken);
     }
 
@@ -86,7 +77,7 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{nameof(CachingProcessingJob)} is stopped.");
+        _loggerService.LogInformation($"{DateTime.Now:T} {nameof(CachingProcessingJob)} is stopped.");
         return base.StopAsync(cancellationToken);
     }
 }

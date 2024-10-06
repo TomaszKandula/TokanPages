@@ -18,4 +18,9 @@ public class CachingProcessingConfig : ICachingProcessingConfig
     /// Time zone information. Local is default value.
     /// </summary>
     public TimeZoneInfo TimeZoneInfo { get; set; } = TimeZoneInfo.Local;
+
+    /// <summary>
+    /// List of URLs of web pages to be cached.
+    /// </summary>
+    public List<RoutePath> RoutePaths { get; set; } = new();
 }

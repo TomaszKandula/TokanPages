@@ -15,6 +15,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TokanPages.HostedServices.Services.Abstractions;
 using TokanPages.HostedServices.Services.CronJobs;
 using TokanPages.HostedServices.Services.Models;
@@ -22,6 +23,7 @@ using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.SpaCachingService;
+using JsonSerializer = TokanPages.Backend.Core.Utilities.JsonSerializer.JsonSerializer;
 
 namespace TokanPages.HostedServices;
 
@@ -111,6 +113,7 @@ public static class Dependencies
     {
         var batchInvoicingCron = configuration.GetValue<string>("BatchInvoicing_Cron");
         var cachingServiceCron = configuration.GetValue<string>("CachingService_Cron");
+        var cachingServicePaths = configuration.GetValue<string>("CachingService_Paths");
 
         var batchProcessingConfig = new BatchProcessingConfig
         {
@@ -121,7 +124,8 @@ public static class Dependencies
         var cachingProcessingConfig = new CachingProcessingConfig
         {
             TimeZoneInfo = TimeZoneInfo.Local,
-            CronExpression = cachingServiceCron ?? string.Empty
+            CronExpression = cachingServiceCron ?? string.Empty,
+            RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths)
         };
 
         services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
@@ -129,5 +133,20 @@ public static class Dependencies
 
         services.AddSingleton<ICachingProcessingConfig>(cachingProcessingConfig);
         services.AddHostedService<CachingProcessingJob>();
+    }
+
+    /// <summary>
+    /// We process configuration string from Azure Key Vault.
+    /// Because Azure Key Vault keeps only strings, we must deserialize given value.
+    /// </summary>
+    /// <param name="source">Serialized value.</param>
+    /// <returns>Deserialized object.</returns>
+    private static List<T> GetSerializedList<T>(string? source)
+    {
+        if (source is null)
+            return new List<T>();
+
+        var result = JsonConvert.DeserializeObject<List<T>>(source);
+        return result ?? new List<T>();
     }
 }
