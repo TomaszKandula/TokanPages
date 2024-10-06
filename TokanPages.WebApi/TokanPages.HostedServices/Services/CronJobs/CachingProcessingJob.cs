@@ -2,7 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Services.Abstractions;
 using TokanPages.HostedServices.Services.Base;
-using TokanPages.Services.BatchService;
+using TokanPages.HostedServices.Services.Models;
+using TokanPages.Services.SpaCachingService;
 
 namespace TokanPages.HostedServices.Services.CronJobs;
 
@@ -10,38 +11,51 @@ namespace TokanPages.HostedServices.Services.CronJobs;
 /// CRON job implementation.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class BatchProcessingJob : CronJob
+public class CachingProcessingJob : CronJob
 {
-    private readonly IBatchService _batchService;
+    private readonly ICachingService _cachingService;
 
     private readonly ILoggerService _loggerService;
 
     private readonly string _cronExpression;
 
+    private readonly List<RoutePath> _paths;
+
     /// <summary>
     /// CRON job implementation.
     /// </summary>
     /// <param name="config"></param>
-    /// <param name="batchService"></param>
+    /// <param name="cachingService"></param>
     /// <param name="loggerService"></param>
-    public BatchProcessingJob(IBatchProcessingConfig config, 
-        IBatchService batchService, ILoggerService loggerService)
+    public CachingProcessingJob(ICachingProcessingConfig config, 
+        ICachingService cachingService, ILoggerService loggerService)
         : base(config.CronExpression, config.TimeZoneInfo)
     {
-        _batchService = batchService;
+        _cachingService = cachingService;
         _loggerService = loggerService;
         _cronExpression = config.CronExpression;
+        _paths = config.RoutePaths;
     }
 
     /// <summary>
-    /// Execute payment for subscriptions.
+    /// Execute caching of the SPA.
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: working...");
-        await _batchService.ProcessOutstandingInvoices(cancellationToken);
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: working...");
+        if (_paths.Count == 0)
+        {
+            _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: no routes registered for caching..., quitting the job...");
+            return;
+        }
+
+        foreach (var path in _paths)
+        {
+            await _cachingService.RenderStaticPage(path.Url, path.Name);
+            _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+        }
     }
 
     /// <summary>
@@ -51,7 +65,8 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: started, CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: started, CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: routes for caching: {_paths.Count}.");
         return base.StartAsync(cancellationToken);
     }
 
@@ -62,7 +77,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: stopped.");
+        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }
