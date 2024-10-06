@@ -224,5 +224,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("ISO_VALUE_TOO_LONG", resourceCulture);
             }
         }
+        
+        public static string LIST_EMPTY {
+            get {
+                return ResourceManager.GetString("LIST_EMPTY", resourceCulture);
+            }
+        }
     }
 }
