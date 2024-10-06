@@ -8,6 +8,11 @@ public class GetPageContentQueryValidator : AbstractValidator<GetPageContentQuer
 {
     public GetPageContentQueryValidator()
     {
+        RuleFor(query => query.Components)
+            .Must(content => content.Count != 0)
+            .WithErrorCode(nameof(ValidationCodes.LIST_EMPTY))
+            .WithMessage(ValidationCodes.LIST_EMPTY);
+
         RuleForEach(query => query.Components)
             .SetValidator(new ContentModelValidator());
     }
