@@ -8,6 +8,8 @@ namespace TokanPages.Backend.Application.Content.Components.Queries;
 
 public class GetPageContentQueryHandler : RequestHandler<GetPageContentQuery, GetPageContentQueryResult>
 {
+    private const string DefaultLanguage = "eng";
+
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IJsonSerializer _jsonSerializer;
@@ -23,6 +25,10 @@ public class GetPageContentQueryHandler : RequestHandler<GetPageContentQuery, Ge
     public override async Task<GetPageContentQueryResult> Handle(GetPageContentQuery request, CancellationToken cancellationToken)
     {
         var count = request.Components.Count;
+        var selectedLanguage = string.IsNullOrEmpty(request.Language) 
+            ? DefaultLanguage
+            : request.Language;
+
         ParallelOptions parallelOptions = new() { MaxDegreeOfParallelism = count > 20 ? 20 : count };
 
         var range = Enumerable.Range(0, count);
@@ -30,13 +36,14 @@ public class GetPageContentQueryHandler : RequestHandler<GetPageContentQuery, Ge
 
         await Parallel.ForEachAsync(range, parallelOptions, async (index, _) =>
         {
-            var result = await RequestComponent(request.Components[index], request.Language, cancellationToken);
+            var result = await RequestComponent(request.Components[index], selectedLanguage, cancellationToken);
             content.Add(result);
         });
 
         return new GetPageContentQueryResult
         {
-            Components = content
+            Components = content,
+            Language = selectedLanguage
         };
     }
 
