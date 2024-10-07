@@ -47,6 +47,7 @@ import {
     ContentArticle,
     ApplicationNavbar,
     ContentBusinessForm,
+    ContentPageData,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -58,6 +59,7 @@ export const ApplicationReducer = {
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,
+    contentPageData: ContentPageData,
     contentTemplates: ContentTemplates,
     contentAccount: ContentAccount,
     contentActivateAccount: ContentActivateAccount,

@@ -8,6 +8,7 @@ export type { ArticleListingState } from "./Articles/articleListing";
 export type { ArticleSelectionState } from "./Articles/articleSelection";
 export type { ArticleUpdateState } from "./Articles/articleUpdate";
 
+export type { ContentPageDataState } from "./Content/contentPageData";
 export type { ContentTemplatesState } from "./Content/contentTemplates";
 export type { ContentAccountState } from "./Content/contentAccount";
 export type { ContentActivateAccountState } from "./Content/contentActivateAccount";

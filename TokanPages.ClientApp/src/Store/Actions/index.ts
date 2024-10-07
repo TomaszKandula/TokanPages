@@ -8,6 +8,7 @@ export { ArticleListingAction } from "./Articles/articleListing";
 export { ArticleSelectionAction } from "./Articles/articleSelection";
 export { ArticleUpdateAction } from "./Articles/articleUpdate";
 
+export { ContentPageDataAction } from "./Content/contentPageData";
 export { ContentTemplatesAction } from "./Content/contentTemplates";
 export { ContentAccountAction } from "./Content/contentAccount";
 export { ContentActivateAccountAction } from "./Content/contentActivateAccount";

@@ -48,6 +48,7 @@ import {
     ContentArticle,
     ApplicationNavbar,
     ContentBusinessForm,
+    ContentPageData,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -59,6 +60,7 @@ export const ApplicationDefault: ApplicationState = {
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,
+    contentPageData: ContentPageData,
     contentTemplates: ContentTemplates,
     contentAccount: ContentAccount,
     contentActivateAccount: ContentActivateAccount,
