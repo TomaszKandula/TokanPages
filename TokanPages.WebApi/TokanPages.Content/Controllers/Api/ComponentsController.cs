@@ -52,7 +52,7 @@ public class ComponentsController : ApiBaseController
     /// <summary>
     /// Returns component's content.
     /// </summary>
-    /// <param name="request">Language and list of requested components.</param>
+    /// <param name="request">List of requested component's content for given language.</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpPost]
