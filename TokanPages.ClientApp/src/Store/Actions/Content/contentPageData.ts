@@ -1,4 +1,5 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
+import { GetPageContentResultDto } from "../../../Api/Models";
 import {
     Execute,
     ExecuteContract,
@@ -6,7 +7,6 @@ import {
     REQUEST_PAGE_DATA,
     RequestContract,
 } from "../../../Api/Request";
-import { ContentModelDto, GetPageContentResultDto } from "../../../Api/Models";
 
 export const CLEAR = "CLEAR_PAGE_CONTENT";
 export const REQUEST = "REQUEST_PAGE_CONTENT";
@@ -28,7 +28,7 @@ export const ContentPageDataAction = {
         dispatch({ type: CLEAR });
     },
     request:
-        (components: ContentModelDto[]): ApplicationAction<TKnownActions> =>
+        (components: string[]): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             const content = getState().contentPageData;
             const languageId = getState().applicationLanguage.id;
