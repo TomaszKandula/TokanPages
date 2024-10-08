@@ -1,5 +1,6 @@
+export type ContentType = "component" | "document";
 export interface ContentModelDto {
-    contentType: string;
-    contentName: string;
-    content?: string;
+    contentType?: ContentType;
+    contentName?: string;
+    content?: object;
 }

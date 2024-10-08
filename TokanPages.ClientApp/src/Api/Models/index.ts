@@ -39,9 +39,11 @@ export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
 
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
-export type { ContentModelDto } from "./Content/Items/contentModelDto";
+export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
 export type { GetPageContentDto } from "./Content/getPageContentDto";
 export type { GetPageContentResultDto } from "./Content/getPageContentResultDto";
+
+export type { ComponentsDto, ContentDocumentDto } from "./Components/State";
 
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
