@@ -86,7 +86,7 @@ export const GetContent = (props: GetContentContract) => {
 
 export const Execute = (props: ExecuteContract): void => {
     const state = props.state();
-    const content = state.contentTemplates.content.templates.application;
+    const content = state.contentPageData.components.templates.templates.application;
 
     axios(props.configuration)
         .then(response => {

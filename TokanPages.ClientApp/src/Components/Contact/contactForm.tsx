@@ -1,15 +1,14 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { OperationStatus } from "../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
-import { ContactFormView } from "./View/contactFormView";
-import Validate from "validate.js";
-
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { OperationStatus } from "../../Shared/enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
+import { ContactFormView } from "./View/contactFormView";
+import Validate from "validate.js";
 
 const formDefault: ContactFormInput = {
     firstName: "",
@@ -34,11 +33,9 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
 
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
-    const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
-
-    const isLoading = contentPageData?.isLoading;
-    const content = contentPageData?.components?.templates?.content;
-    const contactForm = contentPageData?.components?.contactForm;
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const templates = data?.components?.templates;
+    const contactForm = data?.components?.contactForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
@@ -48,9 +45,9 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(content.forms.textContactForm, text)));
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(templates.forms.textContactForm, text)));
     const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textContactForm, text)));
+        dispatch(ApplicationDialogAction.raise(WarningMessage(templates.forms.textContactForm, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -83,9 +80,9 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
-            showSuccess(content.templates.messageOut.success);
+            showSuccess(templates.templates.messageOut.success);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, content]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -123,14 +120,14 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
-    }, [form, content]);
+        showWarning(GetTextWarning({ object: result, template: templates.templates.messageOut.warning }));
+    }, [form, templates]);
 
     return (
         <ContactFormView
-            isLoading={isLoading}
-            caption={contactForm?.content?.caption}
-            text={contactForm?.content?.text}
+            isLoading={data?.isLoading}
+            caption={contactForm?.caption}
+            text={contactForm?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             firstName={form.firstName}
@@ -141,13 +138,13 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             terms={form.terms}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={contactForm?.content?.button}
-            consent={contactForm?.content?.consent}
-            labelFirstName={contactForm?.content?.labelFirstName}
-            labelLastName={contactForm?.content?.labelLastName}
-            labelEmail={contactForm?.content?.labelEmail}
-            labelSubject={contactForm?.content?.labelSubject}
-            labelMessage={contactForm?.content?.labelMessage}
+            buttonText={contactForm?.button}
+            consent={contactForm?.consent}
+            labelFirstName={contactForm?.labelFirstName}
+            labelLastName={contactForm?.labelLastName}
+            labelEmail={contactForm?.labelEmail}
+            labelSubject={contactForm?.labelSubject}
+            labelMessage={contactForm?.labelMessage}
             multiline={true}
             minRows={6}
             pt={props.pt}

@@ -10,8 +10,8 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentArticleFeaturesState } from "../../../../Store/States";
 import { RenderCardMedia } from "../../../../Shared/Components";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
 import { ArticleFeatureStyle } from "./articleFeatureStyle";
@@ -21,21 +21,25 @@ interface ArticleFeatureViewProps {
     background?: React.CSSProperties;
 }
 
-const ActiveButton = (props: ContentArticleFeaturesState): React.ReactElement => {
+interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
+    isLoading: boolean;
+}
+
+const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
     const classes = ArticleFeatureStyle();
 
-    if (Validate.isEmpty(props?.content?.action?.href)) {
+    if (Validate.isEmpty(props?.action?.href)) {
         return (
             <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                {props?.isLoading ? <Skeleton variant="text" /> : props?.content?.action?.text}
+                {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>
         );
     }
 
     return (
-        <Link to={props?.content?.action?.href ?? ""} className={classes.link}>
+        <Link to={props?.action?.href ?? ""} className={classes.link}>
             <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
-                {props?.isLoading ? <Skeleton variant="text" /> : props?.content?.action?.text}
+                {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>
         </Link>
     );
@@ -43,7 +47,8 @@ const ActiveButton = (props: ContentArticleFeaturesState): React.ReactElement =>
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const classes = ArticleFeatureStyle();
-    const features = useSelector((state: ApplicationState) => state.contentArticleFeatures);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const features = data.components.articleFeatures;
 
     return (
         <section className={classes.section} style={props.background}>
@@ -51,7 +56,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
                         <Typography className={classes.title}>
-                            {features?.isLoading ? <Skeleton variant="text" /> : features?.content?.title.toUpperCase()}
+                            {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
                         </Typography>
                     </Box>
                     <div data-aos="fade-up">
@@ -61,26 +66,26 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     <CardContent className={classes.card_content}>
                                         <Box display="flex" flexDirection="column" pt={2} px={2}>
                                             <Typography className={classes.text1}>
-                                                {features?.isLoading ? (
+                                                {data?.isLoading ? (
                                                     <Skeleton variant="text" />
                                                 ) : (
-                                                    features?.content?.text1
+                                                    features?.text1
                                                 )}
                                             </Typography>
                                             <Box mt={2} mb={5}>
                                                 <Typography className={classes.text2}>
-                                                    {features?.isLoading ? (
+                                                    {data?.isLoading ? (
                                                         <Skeleton variant="text" />
                                                     ) : (
-                                                        features?.content?.text2
+                                                        features?.text2
                                                     )}
                                                 </Typography>
                                             </Box>
                                             <Box pt={0} textAlign="right">
-                                                {features?.isLoading ? (
+                                                {data?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
                                                 ) : (
-                                                    <ActiveButton {...features} />
+                                                    <ActiveButton isLoading={data?.isLoading} {...features} />
                                                 )}
                                             </Box>
                                         </Box>
@@ -91,12 +96,12 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={8}>
                                         <Card elevation={0} className={classes.card_image}>
-                                            {features?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
                                                 RenderCardMedia(
                                                     GET_ARTICLE_IMAGE_URL,
-                                                    features?.content?.image1,
+                                                    features?.image1,
                                                     classes.media
                                                 )
                                             )}
@@ -104,12 +109,12 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={0} className={classes.card_image}>
-                                            {features?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
                                                 RenderCardMedia(
                                                     GET_ARTICLE_IMAGE_URL,
-                                                    features?.content?.image2,
+                                                    features?.image2,
                                                     classes.media
                                                 )
                                             )}
@@ -117,12 +122,12 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={0} className={classes.card_image}>
-                                            {features?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
                                                 RenderCardMedia(
                                                     GET_ARTICLE_IMAGE_URL,
-                                                    features?.content?.image3,
+                                                    features?.image3,
                                                     classes.media
                                                 )
                                             )}
@@ -130,12 +135,12 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </Grid>
                                     <Grid item xs={12} md={8}>
                                         <Card elevation={0} className={classes.card_image}>
-                                            {features?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
                                                 RenderCardMedia(
                                                     GET_ARTICLE_IMAGE_URL,
-                                                    features?.content?.image4,
+                                                    features?.image4,
                                                     classes.media
                                                 )
                                             )}

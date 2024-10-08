@@ -4,16 +4,12 @@ import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
+import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UpdatePasswordView } from "./View/updatePasswordView";
 import Validate from "validate.js";
-
-import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
-
-import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
-
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -45,18 +41,19 @@ export const UpdatePassword = (props: UpdatePasswordProps): React.ReactElement =
     const queryParam = useQuery();
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const password = useSelector((state: ApplicationState) => state.contentUpdatePassword);
-    const data = useSelector((state: ApplicationState) => state.userDataStore);
+    const store = useSelector((state: ApplicationState) => state.userDataStore);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates;
+    const password = data.components.updatePassword;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const resetId = queryParam.get("id");
-    const userId = data?.userData.userId;
+    const userId = store?.userData.userId;
     const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
     const showSuccess = (text: string) =>
@@ -141,18 +138,18 @@ export const UpdatePassword = (props: UpdatePasswordProps): React.ReactElement =
 
     return (
         <UpdatePasswordView
-            isLoading={password?.isLoading}
+            isLoading={data?.isLoading}
             progress={hasProgress}
-            caption={password?.content?.caption}
-            button={password?.content?.button}
+            caption={password?.caption}
+            button={password?.button}
             newPassword={form.newPassword}
             verifyPassword={form.verifyPassword}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             disableForm={canDisableForm}
-            labelNewPassword={password?.content?.labelNewPassword}
-            labelVerifyPassword={password?.content?.labelVerifyPassword}
+            labelNewPassword={password?.labelNewPassword}
+            labelVerifyPassword={password?.labelVerifyPassword}
             pt={props.pt}
             pb={props.pb}
             background={props.background}

@@ -2,12 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentTemplatesAction,
-    ContentArticleAction,
-} from "../../Store/Actions";
+import { ContentPageDataAction } from "../../Store/Actions";
 import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
@@ -25,10 +20,12 @@ export const ArticlesPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentNavigationAction.get());
-        dispatch(ContentArticleAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "footer", 
+            "templates", 
+            "article"
+        ]));
     }, [language?.id]);
 
     return (

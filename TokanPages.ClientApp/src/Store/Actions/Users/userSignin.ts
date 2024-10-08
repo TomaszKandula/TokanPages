@@ -30,7 +30,7 @@ export const UserSigninAction = {
         (dispatch, getState) => {
             dispatch({ type: SIGNIN });
 
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             const nullError = content.nullError;
             const unexpectedStatus = content.unexpectedStatus;
 

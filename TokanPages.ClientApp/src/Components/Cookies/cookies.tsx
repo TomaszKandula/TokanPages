@@ -6,7 +6,8 @@ import { CookiesView } from "./View/cookiesView";
 import Validate from "validate.js";
 
 export const Cookies = (): React.ReactElement => {
-    const cookies = useSelector((state: ApplicationState) => state.contentCookiesPrompt);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const cookies = data.components.cookiesPrompt;
 
     const [isOpen, setIsOpen] = React.useState(false);
     const currentCookie = GetCookie({ cookieName: "cookieConsent" });
@@ -15,21 +16,21 @@ export const Cookies = (): React.ReactElement => {
         SetCookie({
             cookieName: "cookieConsent",
             value: "granted",
-            days: cookies.content?.days,
+            days: cookies.days,
             sameSite: "Strict",
             secure: false,
         });
-    }, [cookies?.content?.days]);
+    }, [cookies?.days]);
 
     return (
         <CookiesView
-            isLoading={cookies?.isLoading}
+            isLoading={data?.isLoading}
             modalClose={isOpen}
             shouldShow={Validate.isEmpty(currentCookie)}
-            caption={cookies?.content?.caption}
-            text={cookies?.content?.text}
+            caption={cookies?.caption}
+            text={cookies?.text}
             onClickEvent={onClickEvent}
-            buttonText={cookies?.content?.button}
+            buttonText={cookies?.button}
         />
     );
 };

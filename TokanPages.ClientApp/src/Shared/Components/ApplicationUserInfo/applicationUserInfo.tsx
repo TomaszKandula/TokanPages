@@ -8,7 +8,7 @@ import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 export const ApplicationUserInfo = (): React.ReactElement => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const navigation = useSelector((state: ApplicationState) => state.contentPageData.components.navigation);
 
     const onClickHandler = React.useCallback(() => {
         dispatch(UserDataStoreAction.show(false));
@@ -22,7 +22,7 @@ export const ApplicationUserInfo = (): React.ReactElement => {
     return (
         <ApplicationUserInfoView
             state={store?.isShown ?? false}
-            content={navigation?.content?.userInfo}
+            content={navigation?.userInfo}
             data={data}
             closeHandler={onClickHandler}
         />

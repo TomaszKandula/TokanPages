@@ -4,14 +4,11 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ApplicationState } from "../../Store/Configuration";
 import { OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
+import { NewsletterAddAction, ApplicationDialogAction } from "../../Store/Actions";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
-
-import { NewsletterAddAction, ApplicationDialogAction } from "../../Store/Actions";
-
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
 interface NewsletterProps {
     background?: React.CSSProperties;
@@ -20,10 +17,11 @@ interface NewsletterProps {
 export const Newsletter = (props: NewsletterProps): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const newsletter = useSelector((state: ApplicationState) => state.contentNewsletter);
     const add = useSelector((state: ApplicationState) => state.newsletterAdd);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates;
+    const newsletter = data.components.newsletter;
 
     const hasNotStarted = add?.status === OperationStatus.notStarted;
     const hasFinished = add?.status === OperationStatus.hasFinished;
@@ -90,16 +88,16 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
 
     return (
         <NewsletterView
-            isLoading={newsletter?.isLoading}
-            caption={newsletter?.content?.caption}
-            text={newsletter?.content?.text}
+            isLoading={data?.isLoading}
+            caption={newsletter?.caption}
+            text={newsletter?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             buttonHandler={buttonHandler}
             progress={hasProgress}
-            buttonText={newsletter?.content?.button}
-            labelEmail={newsletter?.content?.labelEmail}
+            buttonText={newsletter?.button}
+            labelEmail={newsletter?.labelEmail}
             background={props.background}
         />
     );

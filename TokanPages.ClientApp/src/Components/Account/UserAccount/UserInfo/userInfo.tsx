@@ -35,13 +35,14 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const history = useHistory();
     const socket = useWebSockets();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const media = useSelector((state: ApplicationState) => state.userMediaUpload);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const verification = useSelector((state: ApplicationState) => state.userEmailVerification);
+    const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = contentPageData.components.templates;
+    const account = contentPageData.components.account;
 
     const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
     const hasUpdateFinished = update?.status === OperationStatus.hasFinished;
@@ -262,7 +263,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
 
     return (
         <UserInfoView
-            isLoading={account.isLoading}
+            isLoading={contentPageData.isLoading}
             userStore={store}
             accountForm={form}
             userImageName={avatarName}
@@ -274,7 +275,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             switchHandler={switchHandler}
             saveButtonHandler={saveButtonHandler}
             verifyButtonHandler={verifyButtonHandler}
-            sectionAccountInformation={account.content?.sectionAccountInformation}
+            sectionAccountInformation={account.sectionAccountInformation}
             background={props.background}
         />
     );

@@ -1,14 +1,12 @@
 import { Item } from "../../../Shared/Components/RenderMenu/Models";
 
 export interface NavigationContentDto {
-    content: {
-        language: string;
-        logo: string;
-        userInfo: UserInfoProps;
-        menu: {
-            image: string;
-            items: Item[];
-        };
+    language: string;
+    logo: string;
+    userInfo: UserInfoProps;
+    menu: {
+        image: string;
+        items: Item[];
     };
 }
 

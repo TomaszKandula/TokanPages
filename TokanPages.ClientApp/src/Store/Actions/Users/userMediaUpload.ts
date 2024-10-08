@@ -31,7 +31,7 @@ export const UserMediaUploadAction = {
         (dispatch, getState) => {
             dispatch({ type: UPLOAD });
 
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             const nullError = content.nullError;
             const unexpectedStatus = content.unexpectedStatus;
             const hasBase64Data = !Validate.isEmpty(payload.base64Data);

@@ -17,10 +17,11 @@ export interface UserPasswordProps {
 export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates;
+    const account = data.components.account;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
@@ -120,7 +121,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
 
     return (
         <UserPasswordView
-            isLoading={account.isLoading}
+            isLoading={data.isLoading}
             oldPassword={form.oldPassword}
             newPassword={form.newPassword}
             confirmPassword={form.confirmPassword}
@@ -128,7 +129,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
             formProgress={hasProgress}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            sectionAccountPassword={account.content?.sectionAccountPassword}
+            sectionAccountPassword={account.sectionAccountPassword}
             background={props.background}
         />
     );

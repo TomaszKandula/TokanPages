@@ -4,16 +4,12 @@ import { useHistory } from "react-router";
 import { ApplicationState } from "../../../Store/Configuration";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
+import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utilities";
+import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSigninView } from "./View/userSigninView";
 import Validate from "validate.js";
-
-import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
-
-import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utilities";
-
-import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const formDefault: SigninFormInput = {
     email: "",
@@ -34,10 +30,11 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const content = useSelector((state: ApplicationState) => state.contentUserSignin);
     const signin = useSelector((state: ApplicationState) => state.userSignin);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates;
+    const content = data.components.userSignin;
 
     const hasNotStarted = signin?.status === OperationStatus.notStarted;
     const hasFinished = signin?.status === OperationStatus.hasFinished;
@@ -115,19 +112,19 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
 
     return (
         <UserSigninView
-            isLoading={content?.isLoading}
-            caption={content?.content?.caption}
-            button={content?.content?.button}
-            link1={content?.content?.link1}
-            link2={content?.content?.link2}
+            isLoading={data?.isLoading}
+            caption={content?.caption}
+            button={content?.button}
+            link1={content?.link1}
+            link2={content?.link2}
             buttonHandler={buttonHandler}
             progress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}
             email={form.email}
             password={form.password}
-            labelEmail={content?.content?.labelEmail}
-            labelPassword={content?.content?.labelPassword}
+            labelEmail={content?.labelEmail}
+            labelPassword={content?.labelPassword}
             pt={props.pt}
             pb={props.pb}
             background={props.background}

@@ -20,11 +20,9 @@ interface SuccessData extends BaseData {
 }
 
 export interface ActivateAccountContentDto {
-    content: {
-        language: string;
-        onVerifying: TextData;
-        onProcessing: TextData;
-        onSuccess: SuccessData;
-        onError: TextData;
-    };
+    language: string;
+    onVerifying: TextData;
+    onProcessing: TextData;
+    onSuccess: SuccessData;
+    onError: TextData;
 }

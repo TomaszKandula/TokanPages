@@ -24,10 +24,11 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates;
+    const account = data.components.account;
 
     const hasNotStarted = remove?.status === OperationStatus.notStarted;
     const hasFinished = remove?.status === OperationStatus.hasFinished;
@@ -78,10 +79,10 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
 
     return (
         <UserRemovalView
-            isLoading={account.isLoading}
+            isLoading={data.isLoading}
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
-            sectionAccountRemoval={account.content?.sectionAccountRemoval}
+            sectionAccountRemoval={account.sectionAccountRemoval}
             background={props.background}
         />
     );

@@ -3,26 +3,6 @@ import {
     NewsletterAddState,
     ArticleSelectionState,
     ArticleListingState,
-    ContentAccountState,
-    ContentActivateAccountState,
-    ContentArticleFeaturesState,
-    ContentClientsState,
-    ContentContactFormState,
-    ContentCookiesPromptState,
-    ContentFeaturedState,
-    ContentTechnologiesState,
-    ContentFooterState,
-    ContentHeaderState,
-    ContentNavigationState,
-    ContentNewsletterState,
-    ContentResetPasswordState,
-    ContentTestimonialsState,
-    ContentNewsletterRemoveState,
-    ContentUpdatePasswordState,
-    ContentNewsletterUpdateState,
-    ContentUserSigninState,
-    ContentUserSignoutState,
-    ContentUserSignupState,
     ApplicationDialogState,
     ApplicationErrorState,
     UserReAuthenticateState,
@@ -38,15 +18,11 @@ import {
     ArticleUpdateState,
     UserPasswordUpdateState,
     ApplicationLanguageState,
-    ContentDocumentState,
     UserMediaUploadState,
     UserSignoutState,
     UserNotificationState,
-    ContentTemplatesState,
     UserEmailVerificationState,
-    ContentArticleState,
     ApplicationNavbarState,
-    ContentBusinessFormState,
     ContentPageDataState,
 } from "../States";
 
@@ -60,30 +36,6 @@ export interface ApplicationState {
     articleSelection: ArticleSelectionState;
     articleUpdate: ArticleUpdateState;
     contentPageData: ContentPageDataState;
-    contentTemplates: ContentTemplatesState;
-    contentAccount: ContentAccountState;
-    contentActivateAccount: ContentActivateAccountState;
-    contentArticle: ContentArticleState;
-    contentArticleFeatures: ContentArticleFeaturesState;
-    contentClients: ContentClientsState;
-    contentBusinessForm: ContentBusinessFormState;
-    contentContactForm: ContentContactFormState;
-    contentCookiesPrompt: ContentCookiesPromptState;
-    contentFeatured: ContentFeaturedState;
-    contentTechnologies: ContentTechnologiesState;
-    contentFooter: ContentFooterState;
-    contentHeader: ContentHeaderState;
-    contentNavigation: ContentNavigationState;
-    contentNewsletter: ContentNewsletterState;
-    contentDocument: ContentDocumentState;
-    contentResetPassword: ContentResetPasswordState;
-    contentTestimonials: ContentTestimonialsState;
-    contentNewsletterRemove: ContentNewsletterRemoveState;
-    contentUpdatePassword: ContentUpdatePasswordState;
-    contentNewsletterUpdate: ContentNewsletterUpdateState;
-    contentUserSignin: ContentUserSigninState;
-    contentUserSignout: ContentUserSignoutState;
-    contentUserSignup: ContentUserSignupState;
     newsletterAdd: NewsletterAddState;
     newsletterRemove: NewsletterRemoveState;
     newsletterUpdate: NewsletterUpdateState;

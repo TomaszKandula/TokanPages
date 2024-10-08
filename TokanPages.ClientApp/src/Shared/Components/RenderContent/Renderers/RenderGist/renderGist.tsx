@@ -13,7 +13,7 @@ import validate from "validate.js";
 export const RenderGist = (props: TextItem): React.ReactElement => {
     const classes = RenderGistStyle();
     const dispatch = useDispatch();
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content?.templates);
+    const template = useSelector((state: ApplicationState) => state.contentPageData.components.templates.templates);
 
     let gistUrl: string = props.value as string;
     if (!gistUrl.includes("https://")) {

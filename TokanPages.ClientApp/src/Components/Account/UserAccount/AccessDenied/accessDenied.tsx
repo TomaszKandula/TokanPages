@@ -8,14 +8,14 @@ export interface AccessDeniedProps {
 }
 
 export const AccessDenied = (props: AccessDeniedProps): React.ReactElement => {
-    const account = useSelector((state: ApplicationState) => state.contentAccount);
-    const accessDeniedCaption = account.content?.sectionAccessDenied?.accessDeniedCaption;
-    const accessDeniedPrompt = account.content?.sectionAccessDenied?.accessDeniedPrompt;
-    const homeButtonText = account.content?.sectionAccessDenied?.homeButtonText;
+    const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+    const accessDeniedCaption = contentPageData.components.account?.sectionAccessDenied?.accessDeniedCaption;
+    const accessDeniedPrompt = contentPageData.components.account?.sectionAccessDenied?.accessDeniedPrompt;
+    const homeButtonText = contentPageData.components.account?.sectionAccessDenied?.homeButtonText;
 
     return (
         <AccessDeniedView
-            isLoading={account.isLoading}
+            isLoading={contentPageData.isLoading}
             accessDeniedCaption={accessDeniedCaption}
             accessDeniedPrompt={accessDeniedPrompt}
             homeButtonText={homeButtonText}

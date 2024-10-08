@@ -27,12 +27,13 @@ export interface ActivateAccountProps extends ExtendedViewProps {
 
 export const ActivateAccount = (props: ActivateAccountProps): React.ReactElement => {
     const dispatch = useDispatch();
-    const contentData = useSelector((state: ApplicationState) => state.contentActivateAccount);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const contentData = data.components.activateAccount;
 
-    const onSuccess = contentData?.content?.onSuccess;
-    const onVerifying = contentData?.content?.onVerifying;
-    const onProcessing = contentData?.content?.onProcessing;
-    const onError = contentData?.content?.onError;
+    const onSuccess = contentData?.onSuccess;
+    const onVerifying = contentData?.onVerifying;
+    const onProcessing = contentData?.onProcessing;
+    const onError = contentData?.onError;
 
     const onSuccessWithoutLock = {
         ...onSuccess,
@@ -122,7 +123,7 @@ export const ActivateAccount = (props: ActivateAccountProps): React.ReactElement
 
     return (
         <ActivateAccountView
-            isLoading={contentData?.isLoading}
+            isLoading={data?.isLoading}
             caption={content?.caption}
             text1={content?.text1}
             text2={content?.text2}
