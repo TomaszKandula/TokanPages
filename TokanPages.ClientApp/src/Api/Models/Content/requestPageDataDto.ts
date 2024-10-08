@@ -1,4 +1,4 @@
-export interface GetPageContentDto {
+export interface RequestPageDataDto {
     components: string[];
     language?: string;
 }

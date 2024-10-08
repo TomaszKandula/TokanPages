@@ -1,5 +1,5 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GetPageContentResultDto } from "../../../Api/Models";
+import { RequestPageDataResultDto } from "../../../Api/Models";
 import {
     Execute,
     ExecuteContract,
@@ -8,9 +8,9 @@ import {
     RequestContract,
 } from "../../../Api/Request";
 
-export const CLEAR = "CLEAR_PAGE_CONTENT";
-export const REQUEST = "REQUEST_PAGE_CONTENT";
-export const RECEIVE = "RECEIVE_PAGE_CONTENT";
+export const CLEAR = "CLEAR_PAGE_DATA";
+export const REQUEST = "REQUEST_PAGE_DATA";
+export const RECEIVE = "RECEIVE_PAGE_DATA";
 interface Clear {
     type: typeof CLEAR;
 }
@@ -19,7 +19,7 @@ interface Request {
 }
 interface Receive {
     type: typeof RECEIVE;
-    payload: GetPageContentResultDto;
+    payload: RequestPageDataResultDto;
 }
 export type TKnownActions = Clear | Request | Receive;
 

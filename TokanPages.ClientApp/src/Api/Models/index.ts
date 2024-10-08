@@ -40,8 +40,8 @@ export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
-export type { GetPageContentDto } from "./Content/getPageContentDto";
-export type { GetPageContentResultDto } from "./Content/getPageContentResultDto";
+export type { RequestPageDataDto } from "./Content/requestPageDataDto";
+export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";
 
 export type { ComponentsDto, ContentDocumentDto } from "./Components/State";
 

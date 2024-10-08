@@ -1,6 +1,6 @@
 import { ContentModelDto } from "./Items/contentModelDto";
 
-export interface GetPageContentResultDto {
+export interface RequestPageDataResultDto {
     components: ContentModelDto[];
     language?: string;
 }
