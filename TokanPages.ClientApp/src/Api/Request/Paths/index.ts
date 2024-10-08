@@ -54,7 +54,7 @@ export const GET_NON_VIDEO_ASSET = `${API_ASSETS_URI}/getNonVideoAsset?blobName=
 export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset?blobName={name}`;
 
 export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getManifest`;
-export const REQUEST_PAGE_CONTENT = `${API_CONTENT_URI}/requestPageContent`;
+export const REQUEST_PAGE_DATA = `${API_CONTENT_URI}/requestPageData`;
 export const GET_CONTENT_TEMPLATES = `${API_CONTENT_URI}/getContent?name=templates&type=component`;
 export const GET_NAVIGATION_CONTENT = `${API_CONTENT_URI}/getContent?name=navigation&type=component`;
 export const GET_HEADER_CONTENT = `${API_CONTENT_URI}/getContent?name=header&type=component`;

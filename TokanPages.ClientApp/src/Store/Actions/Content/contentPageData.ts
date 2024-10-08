@@ -3,7 +3,7 @@ import {
     Execute,
     ExecuteContract,
     GetConfiguration,
-    REQUEST_PAGE_CONTENT,
+    REQUEST_PAGE_DATA,
     RequestContract,
 } from "../../../Api/Request";
 import { ContentModelDto, GetPageContentResultDto } from "../../../Api/Models";
@@ -44,7 +44,7 @@ export const ContentPageDataAction = {
             const request: RequestContract = {
                 configuration: {
                     method: "POST",
-                    url: REQUEST_PAGE_CONTENT,
+                    url: REQUEST_PAGE_DATA,
                     data: {
                         components: components,
                         language: languageId,
