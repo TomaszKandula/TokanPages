@@ -111,12 +111,8 @@ export const Execute = (props: ExecuteContract): void => {
             }
 
             if (props.responseType !== undefined) {
-                if (props.onSuccessCallback === undefined) {
-                    props.dispatch({ type: props.responseType, payload: response.data });
-                    return;
-                }
-
-                props.onSuccessCallback();
+                const input = { type: props.responseType, payload: response.data };
+                props.dispatch(input);
                 return;
             }
         })
