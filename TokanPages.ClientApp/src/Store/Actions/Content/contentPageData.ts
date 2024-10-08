@@ -1,6 +1,6 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
-import { GetContent, REQUEST_PAGE_CONTENT } from "../../../Api/Request";
-import { GetPageContentResultDto } from "../../../Api/Models";
+import { Execute, ExecuteContract, GetConfiguration, REQUEST_PAGE_CONTENT, RequestContract } from "../../../Api/Request";
+import { ContentModelDto, GetPageContentResultDto } from "../../../Api/Models";
 
 export const CLEAR = "CLEAR_PAGE_CONTENT";
 export const REQUEST = "REQUEST_PAGE_CONTENT";
@@ -18,22 +18,39 @@ interface Receive {
 export type TKnownActions = Clear | Request | Receive;
 
 export const ContentPageDataAction = {
-    request: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        const content = getState().contentPageData.response;
+    clear: (): ApplicationAction<TKnownActions> => dispatch => {
+        dispatch({ type: CLEAR });
+    },
+    request: (components: ContentModelDto[]): ApplicationAction<TKnownActions> => (dispatch, getState) => {
+        const content = getState().contentPageData;
         const languageId = getState().applicationLanguage.id;
-        const isContentChanged = content !== ApplicationDefault.contentPageData.response;
-        const isLanguageChanged = languageId !== content.language;
+        const isContentChanged = content !== ApplicationDefault.contentPageData;
+        const isLanguageChanged = languageId !== content.languageId;
 
         if (isContentChanged && !isLanguageChanged) {
             return;
         }
 
-        GetContent({
+        dispatch({ type: REQUEST });
+
+        const request: RequestContract = {
+            configuration: {
+                method: "POST",
+                url: REQUEST_PAGE_CONTENT,
+                data: {
+                    components: components,
+                    language: languageId
+                },
+            },
+        };
+
+        const input: ExecuteContract = {
+            configuration: GetConfiguration(request),
             dispatch: dispatch,
             state: getState,
-            request: REQUEST,
-            receive: RECEIVE,
-            url: REQUEST_PAGE_CONTENT,
-        });
+            responseType: RECEIVE,
+        };
+
+        Execute(input);
     },
 };
