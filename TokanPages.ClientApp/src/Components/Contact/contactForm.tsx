@@ -36,9 +36,9 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
 
-    const isLoading = contentPageData.isLoading;
-    const content = contentPageData.components.templates.content;
-    const contactForm = contentPageData.components.contactForm;
+    const isLoading = contentPageData?.isLoading;
+    const content = contentPageData?.components?.templates?.content;
+    const contactForm = contentPageData?.components?.contactForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
