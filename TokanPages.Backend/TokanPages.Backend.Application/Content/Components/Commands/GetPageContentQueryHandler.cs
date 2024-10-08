@@ -1,10 +1,11 @@
 using TokanPages.Backend.Application.Content.Components.Models;
+using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
-namespace TokanPages.Backend.Application.Content.Components.Queries;
+namespace TokanPages.Backend.Application.Content.Components.Commands;
 
 public class GetPageContentQueryHandler : RequestHandler<GetPageContentQuery, GetPageContentQueryResult>
 {

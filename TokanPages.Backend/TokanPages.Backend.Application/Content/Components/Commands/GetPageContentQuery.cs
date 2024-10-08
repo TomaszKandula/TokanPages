@@ -1,7 +1,7 @@
 using MediatR;
 using TokanPages.Backend.Application.Content.Components.Models;
 
-namespace TokanPages.Backend.Application.Content.Components.Queries;
+namespace TokanPages.Backend.Application.Content.Components.Commands;
 
 public class GetPageContentQuery : IRequest<GetPageContentQueryResult>
 {

@@ -2,7 +2,7 @@ using FluentValidation;
 using TokanPages.Backend.Application.Content.Components.Models;
 using TokanPages.Backend.Shared.Resources;
 
-namespace TokanPages.Backend.Application.Content.Components.Queries;
+namespace TokanPages.Backend.Application.Content.Components.Commands;
 
 public class GetPageContentQueryValidator : AbstractValidator<GetPageContentQuery>
 {

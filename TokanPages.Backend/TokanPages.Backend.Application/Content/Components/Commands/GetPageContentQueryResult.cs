@@ -1,4 +1,6 @@
-namespace TokanPages.Backend.Application.Content.Components.Queries;
+using TokanPages.Backend.Application.Content.Components.Queries;
+
+namespace TokanPages.Backend.Application.Content.Components.Commands;
 
 public class GetPageContentQueryResult
 {
