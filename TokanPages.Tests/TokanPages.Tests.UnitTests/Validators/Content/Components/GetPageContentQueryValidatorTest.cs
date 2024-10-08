@@ -12,7 +12,7 @@ public class GetPageContentQueryValidatorTest : TestBase
     public void GivenValidInputs_WhenGetPageContent_ShouldSucceed()
     {
         // Arrange
-        var query = new GetPageContentQuery
+        var query = new GetPageContentCommand
         {
             Language = "eng",
             Components = new List<ContentModel>
@@ -31,7 +31,7 @@ public class GetPageContentQueryValidatorTest : TestBase
         };
 
         // Act
-        var validator = new GetPageContentQueryValidator();
+        var validator = new GetPageContentCommandValidator();
         var result = validator.Validate(query);
 
         // Assert
@@ -42,7 +42,7 @@ public class GetPageContentQueryValidatorTest : TestBase
     public void GivenEmptyInputs_WhenGetPageContent_ShouldThrowError()
     {
         // Arrange
-        var query = new GetPageContentQuery
+        var query = new GetPageContentCommand
         {
             Language = "eng",
             Components = new List<ContentModel>
@@ -61,7 +61,7 @@ public class GetPageContentQueryValidatorTest : TestBase
         };
 
         // Act
-        var validator = new GetPageContentQueryValidator();
+        var validator = new GetPageContentCommandValidator();
         var result = validator.Validate(query);
 
         // Assert
@@ -76,14 +76,14 @@ public class GetPageContentQueryValidatorTest : TestBase
     public void GivenNoInput_WhenGetPageContent_ShouldThrowError()
     {
         // Arrange
-        var query = new GetPageContentQuery
+        var query = new GetPageContentCommand
         {
             Language = "eng",
             Components = new List<ContentModel>()
         };
 
         // Act
-        var validator = new GetPageContentQueryValidator();
+        var validator = new GetPageContentCommandValidator();
         var result = validator.Validate(query);
 
         // Assert
