@@ -1,26 +1,29 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
+import { ContentPageDataAction } from "../../Store/Actions";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
-
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentContactFormAction,
-    ContentTemplatesAction,
-} from "../../Store/Actions";
 
 export const ContactPage = () => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentNavigationAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentContactFormAction.get());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request([
+        {
+            contentType: "component",
+            contentName: "navigation",
+        },
+        {
+            contentType: "component",
+            contentName: "templates",
+        },
+        {
+            contentType: "component",
+            contentName: "contactForm",
+        }]));
     }, [language?.id]);
 
     return (

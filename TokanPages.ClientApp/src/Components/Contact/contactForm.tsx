@@ -7,11 +7,8 @@ import { ContactFormView } from "./View/contactFormView";
 import Validate from "validate.js";
 
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
-
 import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
-
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
-
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 
 const formDefault: ContactFormInput = {
@@ -35,10 +32,13 @@ export interface ContactFormProps {
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const contactForm = useSelector((state: ApplicationState) => state.contentContactForm);
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+
+    const isLoading = contentPageData.isLoading;
+    const content = contentPageData.components.templates.content;
+    const contactForm = contentPageData.components.contactForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
@@ -128,7 +128,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
 
     return (
         <ContactFormView
-            isLoading={contactForm?.isLoading}
+            isLoading={isLoading}
             caption={contactForm?.content?.caption}
             text={contactForm?.content?.text}
             keyHandler={keyHandler}
