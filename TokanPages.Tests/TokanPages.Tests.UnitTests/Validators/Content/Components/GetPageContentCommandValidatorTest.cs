@@ -6,7 +6,7 @@ using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Validators.Content.Components;
 
-public class GetPageContentQueryValidatorTest : TestBase
+public class GetPageContentCommandValidatorTest : TestBase
 {
     [Fact]
     public void GivenValidInputs_WhenGetPageContent_ShouldSucceed()
