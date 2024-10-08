@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using TokanPages.Backend.Application.Content.Components.Commands;
 using TokanPages.Backend.Application.Content.Components.Queries;
+using TokanPages.Content.Controllers.Mappers;
+using TokanPages.Content.Dto.Components;
 using TokanPages.Persistence.Caching.Abstractions;
 
 namespace TokanPages.Content.Controllers.Api;
@@ -58,6 +60,6 @@ public class ComponentsController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(GetPageContentCommandResult), StatusCodes.Status200OK)]
-    public async Task<GetPageContentCommandResult> RequestPageContent([FromBody] GetPageContentCommand request, [FromQuery] bool noCache = false) 
-        => await _contentCache.GetPageContent(request, noCache);
+    public async Task<GetPageContentCommandResult> RequestPageData([FromBody] RequestPageContentDto request, [FromQuery] bool noCache = false) 
+        => await _contentCache.GetPageContent(ComponentsMapper.MapToGetPageContentCommand(request), noCache);
 }
