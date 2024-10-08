@@ -1,5 +1,11 @@
 import { ApplicationAction, ApplicationDefault } from "../../Configuration";
-import { Execute, ExecuteContract, GetConfiguration, REQUEST_PAGE_CONTENT, RequestContract } from "../../../Api/Request";
+import {
+    Execute,
+    ExecuteContract,
+    GetConfiguration,
+    REQUEST_PAGE_CONTENT,
+    RequestContract,
+} from "../../../Api/Request";
 import { ContentModelDto, GetPageContentResultDto } from "../../../Api/Models";
 
 export const CLEAR = "CLEAR_PAGE_CONTENT";
@@ -21,36 +27,38 @@ export const ContentPageDataAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
     },
-    request: (components: ContentModelDto[]): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        const content = getState().contentPageData;
-        const languageId = getState().applicationLanguage.id;
-        const isContentChanged = content !== ApplicationDefault.contentPageData;
-        const isLanguageChanged = languageId !== content.languageId;
+    request:
+        (components: ContentModelDto[]): ApplicationAction<TKnownActions> =>
+        (dispatch, getState) => {
+            const content = getState().contentPageData;
+            const languageId = getState().applicationLanguage.id;
+            const isContentChanged = content !== ApplicationDefault.contentPageData;
+            const isLanguageChanged = languageId !== content.languageId;
 
-        if (isContentChanged && !isLanguageChanged) {
-            return;
-        }
+            if (isContentChanged && !isLanguageChanged) {
+                return;
+            }
 
-        dispatch({ type: REQUEST });
+            dispatch({ type: REQUEST });
 
-        const request: RequestContract = {
-            configuration: {
-                method: "POST",
-                url: REQUEST_PAGE_CONTENT,
-                data: {
-                    components: components,
-                    language: languageId
+            const request: RequestContract = {
+                configuration: {
+                    method: "POST",
+                    url: REQUEST_PAGE_CONTENT,
+                    data: {
+                        components: components,
+                        language: languageId,
+                    },
                 },
-            },
-        };
+            };
 
-        const input: ExecuteContract = {
-            configuration: GetConfiguration(request),
-            dispatch: dispatch,
-            state: getState,
-            responseType: RECEIVE,
-        };
+            const input: ExecuteContract = {
+                configuration: GetConfiguration(request),
+                dispatch: dispatch,
+                state: getState,
+                responseType: RECEIVE,
+            };
 
-        Execute(input);
-    },
+            Execute(input);
+        },
 };

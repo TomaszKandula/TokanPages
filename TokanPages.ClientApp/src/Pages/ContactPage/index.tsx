@@ -11,19 +11,22 @@ export const ContactPage = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-        {
-            contentType: "component",
-            contentName: "navigation",
-        },
-        {
-            contentType: "component",
-            contentName: "templates",
-        },
-        {
-            contentType: "component",
-            contentName: "contactForm",
-        }]));
+        dispatch(
+            ContentPageDataAction.request([
+                {
+                    contentType: "component",
+                    contentName: "navigation",
+                },
+                {
+                    contentType: "component",
+                    contentName: "templates",
+                },
+                {
+                    contentType: "component",
+                    contentName: "contactForm",
+                },
+            ])
+        );
     }, [language?.id]);
 
     return (

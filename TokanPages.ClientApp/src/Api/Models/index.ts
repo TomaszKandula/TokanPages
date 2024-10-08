@@ -101,7 +101,6 @@ export type {
     ServiceItemDto,
 } from "./Components/Common/";
 
-
 export type { NotificationData } from "./NotificationsWeb/notificationData";
 export type { NotificationRequest } from "./NotificationsWeb/notificationRequest";
 export type { NotificationResponse } from "./NotificationsWeb/notificationResponse";

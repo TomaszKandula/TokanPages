@@ -12,7 +12,7 @@ export const ContentPageData: ContentPageDataState = {
                 sectionAccessDenied: {
                     accessDeniedCaption: "",
                     accessDeniedPrompt: "",
-                    homeButtonText: ""
+                    homeButtonText: "",
                 },
                 sectionAccountInformation: {
                     caption: "",
@@ -20,7 +20,7 @@ export const ContentPageData: ContentPageDataState = {
                     labelEmailStatus: {
                         label: "",
                         negative: "",
-                        positive: ""
+                        positive: "",
                     },
                     labelUserAlias: "",
                     labelFirstName: "",
@@ -29,26 +29,26 @@ export const ContentPageData: ContentPageDataState = {
                     labelShortBio: "",
                     labelUserAvatar: "",
                     updateButtonText: "",
-                    uploadAvatarButtonText: ""
+                    uploadAvatarButtonText: "",
                 },
                 sectionAccountPassword: {
                     caption: "",
                     labelOldPassword: "",
                     labelNewPassword: "",
                     labelConfirmPassword: "",
-                    updateButtonText: ""
+                    updateButtonText: "",
                 },
                 sectionAccountDeactivation: {
                     caption: "",
                     warningText: "",
-                    deactivateButtonText: ""
+                    deactivateButtonText: "",
                 },
                 sectionAccountRemoval: {
                     caption: "",
                     warningText: "",
-                    deleteButtonText: ""
+                    deleteButtonText: "",
                 },
-            }
+            },
         },
         activateAccount: {
             content: {
@@ -58,36 +58,36 @@ export const ContentPageData: ContentPageDataState = {
                     text2: "",
                     type: "",
                     caption: "",
-                    button: ""
+                    button: "",
                 },
                 onProcessing: {
                     text1: "",
                     text2: "",
                     type: "",
                     caption: "",
-                    button: ""
+                    button: "",
                 },
                 onSuccess: {
                     noBusinessLock: {
                         text1: "",
-                        text2: ""
+                        text2: "",
                     },
                     businessLock: {
                         text1: "",
-                        text2: ""
+                        text2: "",
                     },
                     type: "",
                     caption: "",
-                    button: ""
+                    button: "",
                 },
                 onError: {
                     text1: "",
                     text2: "",
                     type: "",
                     caption: "",
-                    button: ""
+                    button: "",
                 },
-            }
+            },
         },
         article: {
             content: {
@@ -102,8 +102,8 @@ export const ContentPageData: ContentPageDataState = {
                 textPublished: "",
                 textUpdated: "",
                 textWritten: "",
-                textAbout: ""
-            }
+                textAbout: "",
+            },
         },
         articleFeatures: {
             content: {
@@ -114,13 +114,13 @@ export const ContentPageData: ContentPageDataState = {
                 text2: "",
                 action: {
                     text: "",
-                    href: ""
+                    href: "",
                 },
                 image1: "",
                 image2: "",
                 image3: "",
-                image4: ""
-            }
+                image4: "",
+            },
         },
         businessForm: {
             content: {
@@ -138,21 +138,21 @@ export const ContentPageData: ContentPageDataState = {
                     label: "",
                     multiline: false,
                     rows: 0,
-                    required: false
+                    required: false,
                 },
                 pricing: {
                     caption: "",
                     disclaimer: "",
-                    services: []
-                }
-            }
+                    services: [],
+                },
+            },
         },
         clients: {
             content: {
                 language: "",
                 caption: "",
-                images: []
-            }
+                images: [],
+            },
         },
         contactForm: {
             content: {
@@ -165,8 +165,8 @@ export const ContentPageData: ContentPageDataState = {
                 labelLastName: "",
                 labelEmail: "",
                 labelSubject: "",
-                labelMessage: ""
-            }
+                labelMessage: "",
+            },
         },
         cookiesPrompt: {
             content: {
@@ -174,14 +174,14 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 text: "",
                 button: "",
-                days: 0
-            }
+                days: 0,
+            },
         },
         document: {
             content: {
                 language: "",
-                items: []
-            }
+                items: [],
+            },
         },
         featured: {
             content: {
@@ -199,24 +199,24 @@ export const ContentPageData: ContentPageDataState = {
                 title3: "",
                 subtitle3: "",
                 link3: "",
-                image3: ""
-            }
+                image3: "",
+            },
         },
         footer: {
             content: {
                 language: "",
                 terms: {
                     text: "",
-                    href: ""
+                    href: "",
                 },
                 policy: {
                     text: "",
-                    href: ""
+                    href: "",
                 },
                 copyright: "",
                 reserved: "",
-                icons: []
-            }
+                icons: [],
+            },
         },
         header: {
             content: {
@@ -227,13 +227,13 @@ export const ContentPageData: ContentPageDataState = {
                 description: "",
                 action: {
                     text: "",
-                    href: ""
+                    href: "",
                 },
                 resume: {
                     text: "",
-                    href: ""
-                }
-            }
+                    href: "",
+                },
+            },
         },
         navigation: {
             content: {
@@ -244,13 +244,13 @@ export const ContentPageData: ContentPageDataState = {
                     textRegistered: "",
                     textRoles: "",
                     textPermissions: "",
-                    textButton: ""
+                    textButton: "",
                 },
                 menu: {
                     image: "",
-                    items: []
-                }
-            }
+                    items: [],
+                },
+            },
         },
         newsletter: {
             content: {
@@ -258,8 +258,8 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 text: "",
                 button: "",
-                labelEmail: ""
-            }
+                labelEmail: "",
+            },
         },
         newsletterRemove: {
             content: {
@@ -269,32 +269,32 @@ export const ContentPageData: ContentPageDataState = {
                     text1: "",
                     text2: "",
                     text3: "",
-                    button: ""
+                    button: "",
                 },
                 contentPost: {
                     caption: "",
                     text1: "",
                     text2: "",
                     text3: "",
-                    button: ""
-                }
-            }
+                    button: "",
+                },
+            },
         },
         newsletterUpdate: {
             content: {
                 language: "",
                 caption: "",
                 button: "",
-                labelEmail: ""
-            }
+                labelEmail: "",
+            },
         },
         resetPassword: {
             content: {
                 language: "",
                 caption: "",
                 button: "",
-                labelEmail: ""
-            }
+                labelEmail: "",
+            },
         },
         technologies: {
             content: {
@@ -308,8 +308,8 @@ export const ContentPageData: ContentPageDataState = {
                 title3: "",
                 text3: "",
                 title4: "",
-                text4: ""
-            }
+                text4: "",
+            },
         },
         templates: {
             content: {
@@ -323,14 +323,14 @@ export const ContentPageData: ContentPageDataState = {
                     textContactForm: "",
                     textCheckoutForm: "",
                     textNewsletter: "",
-                    textAccountSettings: ""
+                    textAccountSettings: "",
                 },
                 templates: {
                     application: {
                         unexpectedStatus: "",
                         unexpectedError: "",
                         validationError: "",
-                        nullError: ""
+                        nullError: "",
                     },
                     password: {
                         emailInvalid: "",
@@ -345,7 +345,7 @@ export const ContentPageData: ContentPageDataState = {
                         resetSuccess: "",
                         resetWarning: "",
                         updateSuccess: "",
-                        updateWarning: ""
+                        updateWarning: "",
                     },
                     articles: {
                         success: "",
@@ -353,18 +353,18 @@ export const ContentPageData: ContentPageDataState = {
                         error: "",
                         likesHintAnonym: "",
                         likesHintUser: "",
-                        maxLikesReached: ""
+                        maxLikesReached: "",
                     },
                     newsletter: {
                         success: "",
                         warning: "",
                         generalError: "",
-                        removalError: ""
+                        removalError: "",
                     },
                     messageOut: {
                         success: "",
                         warning: "",
-                        error: ""
+                        error: "",
                     },
                     user: {
                         deactivation: "",
@@ -374,13 +374,13 @@ export const ContentPageData: ContentPageDataState = {
                         emailVerification: "",
                         signingWarning: "",
                         signupSuccess: "",
-                        signupWarning: ""
+                        signupWarning: "",
                     },
                     payments: {
-                        checkoutWarning: ""
-                    }
-                }
-            }
+                        checkoutWarning: "",
+                    },
+                },
+            },
         },
         testimonials: {
             content: {
@@ -398,8 +398,8 @@ export const ContentPageData: ContentPageDataState = {
                 photo3: "",
                 name3: "",
                 occupation3: "",
-                text3: ""
-            }
+                text3: "",
+            },
         },
         updatePassword: {
             content: {
@@ -407,8 +407,8 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 button: "",
                 labelNewPassword: "",
-                labelVerifyPassword: ""
-            }
+                labelVerifyPassword: "",
+            },
         },
         userSignin: {
             content: {
@@ -418,8 +418,8 @@ export const ContentPageData: ContentPageDataState = {
                 link1: "",
                 link2: "",
                 labelEmail: "",
-                labelPassword: ""
-            }
+                labelPassword: "",
+            },
         },
         userSignout: {
             content: {
@@ -427,8 +427,8 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 onProcessing: "",
                 onFinish: "",
-                buttonText: ""
-            }
+                buttonText: "",
+            },
         },
         userSignup: {
             content: {
@@ -441,8 +441,8 @@ export const ContentPageData: ContentPageDataState = {
                 labelFirstName: "",
                 labelLastName: "",
                 labelEmail: "",
-                labelPassword: ""
-            }
+                labelPassword: "",
+            },
         },
     },
-}
+};

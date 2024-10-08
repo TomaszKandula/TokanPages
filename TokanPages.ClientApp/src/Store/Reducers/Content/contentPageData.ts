@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ContentPageDataState } from "../../States";
-import { ContentPageData as ContentPageDataDefault } from "../../Defaults"; 
+import { ContentPageData as ContentPageDataDefault } from "../../Defaults";
 import { OperationStatus } from "../../../Shared/enums";
 import { UpdateComponents } from "../../../Shared/Services/Utilities";
 import { TKnownActions, CLEAR, RECEIVE, REQUEST } from "../../Actions/Content/contentPageData";
@@ -30,7 +30,7 @@ export const ContentPageData: Reducer<ContentPageDataState> = (
                 status: OperationStatus.hasFinished,
                 isLoading: false,
                 languageId: action.payload.language,
-                components: UpdateComponents(state, action.payload.components)
+                components: UpdateComponents(state, action.payload.components),
             };
         default:
             return state;

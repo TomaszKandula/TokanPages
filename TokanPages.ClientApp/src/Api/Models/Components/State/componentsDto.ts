@@ -1,15 +1,15 @@
-import { 
-    AccountContentDto, 
-    ActivateAccountContentDto, 
-    ArticleContentDto, 
-    ArticleFeaturesContentDto, 
-    BusinessFormContentDto, 
-    ClientsContentDto, 
-    ContactFormContentDto, 
-    CookiesPromptContentDto, 
-    DocumentContentDto, 
-    FeaturedContentDto, 
-    FooterContentDto, 
+import {
+    AccountContentDto,
+    ActivateAccountContentDto,
+    ArticleContentDto,
+    ArticleFeaturesContentDto,
+    BusinessFormContentDto,
+    ClientsContentDto,
+    ContactFormContentDto,
+    CookiesPromptContentDto,
+    DocumentContentDto,
+    FeaturedContentDto,
+    FooterContentDto,
     HeaderContentDto,
     NavigationContentDto,
     NewsletterContentDto,
@@ -22,7 +22,7 @@ import {
     UpdatePasswordContentDto,
     UserSigninContentDto,
     UserSignoutContentDto,
-    UserSignupContentDto
+    UserSignupContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
@@ -44,7 +44,7 @@ export interface ComponentsDto {
     newsletterUpdate: NewsletterUpdateContentDto;
     resetPassword: ResetPasswordContentDto;
     technologies: TechnologiesContentDto;
-    templates: TemplatesContent;//TODO: rename
+    templates: TemplatesContent; //TODO: rename
     testimonials: TestimonialsContentDto;
     updatePassword: UpdatePasswordContentDto;
     userSignin: UserSigninContentDto;
