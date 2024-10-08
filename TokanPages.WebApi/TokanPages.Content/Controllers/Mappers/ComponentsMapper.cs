@@ -16,7 +16,7 @@ public static class ComponentsMapper
     /// </summary>
     /// <param name="model">Assets object.</param>
     /// <returns>Command object.</returns>
-    public static GetPageContentCommand MapToGetPageContentCommand(RequestPageContentDto model) => new()
+    public static RequestPageDataCommand MapToRequestPageDataCommand(RequestPageDataDto model) => new()
     {
         Components = model.Components.Select(item => new ContentModel
             {

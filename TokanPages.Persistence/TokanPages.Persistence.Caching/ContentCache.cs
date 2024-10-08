@@ -66,16 +66,16 @@ public class ContentCache : IContentCache
     }
 
     /// <inheritdoc />
-    public async Task<GetPageContentCommandResult> GetPageContent(GetPageContentCommand request, bool noCache = false)
+    public async Task<RequestPageDataCommandResult> GetPageContent(RequestPageDataCommand request, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetPageContentCommand { Components = request.Components, Language = request.Language });
+            return await _mediator.Send(new RequestPageDataCommand { Components = request.Components, Language = request.Language });
 
         var key = $"{_environment.EnvironmentName}:content:{request.Components}:{request.Language}";
-        var value = await _redisDistributedCache.GetObjectAsync<GetPageContentCommandResult>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<RequestPageDataCommandResult>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetPageContentCommand { Components = request.Components, Language = request.Language });
+        value = await _mediator.Send(new RequestPageDataCommand { Components = request.Components, Language = request.Language });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

@@ -4,9 +4,9 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Content.Components.Commands;
 
-public class GetPageContentCommandValidator : AbstractValidator<GetPageContentCommand>
+public class RequestPageDataCommandValidator : AbstractValidator<RequestPageDataCommand>
 {
-    public GetPageContentCommandValidator()
+    public RequestPageDataCommandValidator()
     {
         RuleFor(query => query.Components)
             .Must(content => content.Count != 0)

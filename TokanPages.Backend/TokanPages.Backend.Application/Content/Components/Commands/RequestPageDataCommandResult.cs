@@ -2,7 +2,7 @@ using TokanPages.Backend.Application.Content.Components.Queries;
 
 namespace TokanPages.Backend.Application.Content.Components.Commands;
 
-public class GetPageContentCommandResult
+public class RequestPageDataCommandResult
 {
     public List<GetContentQueryResult> Components { get; set; } = new();
 

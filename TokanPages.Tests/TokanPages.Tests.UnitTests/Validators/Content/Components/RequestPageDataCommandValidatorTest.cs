@@ -6,13 +6,13 @@ using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Validators.Content.Components;
 
-public class GetPageContentCommandValidatorTest : TestBase
+public class RequestPageDataCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenValidInputs_WhenGetPageContent_ShouldSucceed()
+    public void GivenValidInputs_WhenRequestPageData_ShouldSucceed()
     {
         // Arrange
-        var query = new GetPageContentCommand
+        var query = new RequestPageDataCommand
         {
             Language = "eng",
             Components = new List<ContentModel>
@@ -31,7 +31,7 @@ public class GetPageContentCommandValidatorTest : TestBase
         };
 
         // Act
-        var validator = new GetPageContentCommandValidator();
+        var validator = new RequestPageDataCommandValidator();
         var result = validator.Validate(query);
 
         // Assert
@@ -39,10 +39,10 @@ public class GetPageContentCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenEmptyInputs_WhenGetPageContent_ShouldThrowError()
+    public void GivenEmptyInputs_WhenRequestPageData_ShouldThrowError()
     {
         // Arrange
-        var query = new GetPageContentCommand
+        var query = new RequestPageDataCommand
         {
             Language = "eng",
             Components = new List<ContentModel>
@@ -61,7 +61,7 @@ public class GetPageContentCommandValidatorTest : TestBase
         };
 
         // Act
-        var validator = new GetPageContentCommandValidator();
+        var validator = new RequestPageDataCommandValidator();
         var result = validator.Validate(query);
 
         // Assert
@@ -73,17 +73,17 @@ public class GetPageContentCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenNoInput_WhenGetPageContent_ShouldThrowError()
+    public void GivenNoInput_WhenRequestPageData_ShouldThrowError()
     {
         // Arrange
-        var query = new GetPageContentCommand
+        var query = new RequestPageDataCommand
         {
             Language = "eng",
             Components = new List<ContentModel>()
         };
 
         // Act
-        var validator = new GetPageContentCommandValidator();
+        var validator = new RequestPageDataCommandValidator();
         var result = validator.Validate(query);
 
         // Assert

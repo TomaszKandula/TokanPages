@@ -7,7 +7,7 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Components.Commands;
 
-public class GetPageContentCommandHandler : RequestHandler<GetPageContentCommand, GetPageContentCommandResult>
+public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataCommand, RequestPageDataCommandResult>
 {
     private const string DefaultLanguage = "eng";
 
@@ -15,7 +15,7 @@ public class GetPageContentCommandHandler : RequestHandler<GetPageContentCommand
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public GetPageContentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public RequestPageDataCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) 
         : base(databaseContext, loggerService)
     {
@@ -23,7 +23,7 @@ public class GetPageContentCommandHandler : RequestHandler<GetPageContentCommand
         _jsonSerializer = jsonSerializer;
     }
 
-    public override async Task<GetPageContentCommandResult> Handle(GetPageContentCommand request, CancellationToken cancellationToken)
+    public override async Task<RequestPageDataCommandResult> Handle(RequestPageDataCommand request, CancellationToken cancellationToken)
     {
         var count = request.Components.Count;
         var selectedLanguage = string.IsNullOrEmpty(request.Language) 
@@ -41,7 +41,7 @@ public class GetPageContentCommandHandler : RequestHandler<GetPageContentCommand
             content.Add(result);
         });
 
-        return new GetPageContentCommandResult
+        return new RequestPageDataCommandResult
         {
             Components = content,
             Language = selectedLanguage

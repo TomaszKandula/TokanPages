@@ -59,7 +59,7 @@ public class ComponentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(GetPageContentCommandResult), StatusCodes.Status200OK)]
-    public async Task<GetPageContentCommandResult> RequestPageData([FromBody] RequestPageContentDto request, [FromQuery] bool noCache = false) 
-        => await _contentCache.GetPageContent(ComponentsMapper.MapToGetPageContentCommand(request), noCache);
+    [ProducesResponseType(typeof(RequestPageDataCommandResult), StatusCodes.Status200OK)]
+    public async Task<RequestPageDataCommandResult> RequestPageData([FromBody] RequestPageDataDto request, [FromQuery] bool noCache = false) 
+        => await _contentCache.GetPageContent(ComponentsMapper.MapToRequestPageDataCommand(request), noCache);
 }

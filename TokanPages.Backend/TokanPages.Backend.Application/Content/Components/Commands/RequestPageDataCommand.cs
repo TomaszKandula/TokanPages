@@ -3,7 +3,7 @@ using TokanPages.Backend.Application.Content.Components.Models;
 
 namespace TokanPages.Backend.Application.Content.Components.Commands;
 
-public class GetPageContentCommand : IRequest<GetPageContentCommandResult>
+public class RequestPageDataCommand : IRequest<RequestPageDataCommandResult>
 {
     public List<ContentModel> Components { get; set; } = new();
 

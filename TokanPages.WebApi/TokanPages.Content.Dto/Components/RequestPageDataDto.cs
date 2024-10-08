@@ -6,7 +6,7 @@ namespace TokanPages.Content.Dto.Components;
 /// Use it when you want to request page content.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class RequestPageContentDto
+public class RequestPageDataDto
 {
     /// <summary>
     /// List of requested components.
