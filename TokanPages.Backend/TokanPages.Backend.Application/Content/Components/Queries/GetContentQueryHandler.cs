@@ -28,11 +28,8 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
         var selectedLanguage = string.IsNullOrEmpty(request.Language) 
             ? DefaultLanguage
             : request.Language;
-
-        if (request.ContentType is not ("component" or "document"))
-            throw new BusinessException(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED), ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED);
         
-        var componentRequestUrl = $"content/{request.ContentType}s/{request.ContentName}.json";
+        var componentRequestUrl = $"content/data/{request.ContentName}.json";
         var azureBob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBob.OpenRead(componentRequestUrl, cancellationToken);
 
