@@ -1,1 +1,1 @@
-export type { ComponentsDto, ContentDocumentDto } from "./componentsDto";
+export type { ComponentsDto } from "./componentsDto";

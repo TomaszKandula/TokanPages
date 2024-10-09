@@ -43,8 +43,7 @@ export type { ContentModelDto, ContentType } from "./Content/Items/contentModelD
 export type { RequestPageDataDto } from "./Content/requestPageDataDto";
 export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";
 
-export type { ComponentsDto, ContentDocumentDto } from "./Components/State";
-
+export type { ComponentsDto } from "./Components/State";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
 export type { HeaderContentDto } from "./Components/headerContentDto";

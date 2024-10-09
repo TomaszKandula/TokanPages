@@ -8,9 +8,9 @@ import {
     ClientsContentDto,
     ComponentsDto,
     ContactFormContentDto,
-    ContentDocumentDto,
     ContentModelDto,
     CookiesPromptContentDto,
+    DocumentContentDto,
     FeaturedContentDto,
     FooterContentDto,
     HeaderContentDto,
@@ -55,15 +55,15 @@ export const UpdateComponents = (state: ContentPageDataState, source: ContentMod
         result.userSignin = item.contentName === "userSignin" ? (item.content as UserSigninContentDto) : result.userSignin;
         result.userSignout = item.contentName === "userSignout" ? (item.content as UserSignoutContentDto) : result.userSignout;
         result.userSignup = item.contentName === "userSignup" ? (item.content as UserSignupContentDto) : result.userSignup;
-        result.policy = item.contentName === "policy" ? (item.content as ContentDocumentDto) : result.policy;
-        result.terms = item.contentName === "terms" ? (item.content as ContentDocumentDto) : result.terms;
-        result.about = item.contentName === "about" ? (item.content as ContentDocumentDto) : result.about;
-        result.story = item.contentName === "story" ? (item.content as ContentDocumentDto) : result.story;
-        result.showcase = item.contentName === "showcase" ? (item.content as ContentDocumentDto) : result.showcase;
-        result.bicycle = item.contentName === "bicycle" ? (item.content as ContentDocumentDto) : result.bicycle;
-        result.electronics = item.contentName === "electronics" ? (item.content as ContentDocumentDto) : result.electronics;
-        result.guitar = item.contentName === "guitar" ? (item.content as ContentDocumentDto) : result.guitar;
-        result.photography = item.contentName === "photography" ? (item.content as ContentDocumentDto) : result.photography;
+        result.policy = item.contentName === "policy" ? (item.content as DocumentContentDto) : result.policy;
+        result.terms = item.contentName === "terms" ? (item.content as DocumentContentDto) : result.terms;
+        result.about = item.contentName === "about" ? (item.content as DocumentContentDto) : result.about;
+        result.story = item.contentName === "story" ? (item.content as DocumentContentDto) : result.story;
+        result.showcase = item.contentName === "showcase" ? (item.content as DocumentContentDto) : result.showcase;
+        result.bicycle = item.contentName === "bicycle" ? (item.content as DocumentContentDto) : result.bicycle;
+        result.electronics = item.contentName === "electronics" ? (item.content as DocumentContentDto) : result.electronics;
+        result.guitar = item.contentName === "guitar" ? (item.content as DocumentContentDto) : result.guitar;
+        result.photography = item.contentName === "photography" ? (item.content as DocumentContentDto) : result.photography;
     });
 
     return result;
