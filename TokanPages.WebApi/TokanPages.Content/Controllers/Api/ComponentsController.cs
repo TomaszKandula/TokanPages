@@ -38,7 +38,6 @@ public class ComponentsController : ApiBaseController
     /// <summary>
     /// Returns component/document content.
     /// </summary>
-    /// <param name="type">Content type (component, document).</param>
     /// <param name="name">Content name.</param>
     /// <param name="language">Language code (eng, pol, etc.).</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
@@ -47,10 +46,9 @@ public class ComponentsController : ApiBaseController
     [ProducesResponseType(typeof(GetContentQueryResult), StatusCodes.Status200OK)]
     public async Task<GetContentQueryResult> GetContent(
         [FromQuery] string? language,
-        [FromQuery] string type = "",
         [FromQuery] string name = "",
         [FromQuery] bool noCache = false)
-        => await _contentCache.GetContent(language, type, name, noCache);
+        => await _contentCache.GetContent(language, name, noCache);
 
     /// <summary>
     /// Returns component's content.

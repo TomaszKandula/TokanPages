@@ -57,7 +57,6 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
 
         return new GetContentQueryResult
         {
-            ContentType = request.ContentType,
             ContentName = request.ContentName,
             Content = content
         };

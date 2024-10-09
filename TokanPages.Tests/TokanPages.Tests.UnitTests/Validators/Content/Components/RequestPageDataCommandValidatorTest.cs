@@ -19,13 +19,11 @@ public class RequestPageDataCommandValidatorTest : TestBase
             {
                 new()
                 {
-                    ContentName = DataUtilityService.GetRandomString(),
-                    ContentType = DataUtilityService.GetRandomString()
+                    ContentName = DataUtilityService.GetRandomString()
                 },
                 new()
                 {
-                    ContentName = DataUtilityService.GetRandomString(),
-                    ContentType = DataUtilityService.GetRandomString()
+                    ContentName = DataUtilityService.GetRandomString()
                 }
             }
         };
@@ -49,13 +47,11 @@ public class RequestPageDataCommandValidatorTest : TestBase
             {
                 new()
                 {
-                    ContentName = string.Empty,
-                    ContentType = string.Empty
+                    ContentName = string.Empty
                 },
                 new()
                 {
-                    ContentName = string.Empty,
-                    ContentType = string.Empty
+                    ContentName = string.Empty
                 }
             }
         };
@@ -65,11 +61,9 @@ public class RequestPageDataCommandValidatorTest : TestBase
         var result = validator.Validate(query);
 
         // Assert
-        result.Errors.Count.Should().Be(4);
+        result.Errors.Count.Should().Be(2);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 
     [Fact]

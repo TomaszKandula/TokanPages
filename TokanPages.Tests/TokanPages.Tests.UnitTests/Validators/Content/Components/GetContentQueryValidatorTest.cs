@@ -13,7 +13,6 @@ public class GetContentQueryValidatorTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            ContentType = DataUtilityService.GetRandomString(),
             ContentName = DataUtilityService.GetRandomString()
         };
 
@@ -31,7 +30,6 @@ public class GetContentQueryValidatorTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            ContentType = string.Empty,
             ContentName = string.Empty
         };
 
@@ -40,8 +38,7 @@ public class GetContentQueryValidatorTest : TestBase
         var result = validator.Validate(query);
 
         // Assert
-        result.Errors.Count.Should().Be(2);
+        result.Errors.Count.Should().Be(1);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 }

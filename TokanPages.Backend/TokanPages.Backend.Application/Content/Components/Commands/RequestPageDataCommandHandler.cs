@@ -52,7 +52,6 @@ public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataComma
     {
         var query = new GetContentQuery
         {
-            ContentType = content.ContentType,
             ContentName = content.ContentName,
             Language = language
         };

@@ -20,8 +20,7 @@ public static class ComponentsMapper
     {
         Components = model.Components.Select(item => new ContentModel
             {
-                ContentName = item,
-                ContentType = "component"
+                ContentName = item
             })
             .ToList(),
         Language = model.Language
