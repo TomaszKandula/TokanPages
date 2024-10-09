@@ -59,10 +59,11 @@ const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
 export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const content = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const businessForm = useSelector((state: ApplicationState) => state.contentBusinessForm);
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const templates = data.components.templates;
+    const businessForm = data.components.businessForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
@@ -74,9 +75,9 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(content.forms.textBusinessForm, text)));
+        dispatch(ApplicationDialogAction.raise(SuccessMessage(templates.forms.textBusinessForm, text)));
     const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(content.forms.textBusinessForm, text)));
+        dispatch(ApplicationDialogAction.raise(WarningMessage(templates.forms.textBusinessForm, text)));
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) {
@@ -91,10 +92,10 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     }, [hasProgress, techStackItems]);
 
     React.useEffect(() => {
-        if (!techStackItems && businessForm.content.techItems.length > 0) {
-            setTechStackItems(businessForm.content.techItems);
+        if (!techStackItems && businessForm.techItems.length > 0) {
+            setTechStackItems(businessForm.techItems);
         }
-    }, [businessForm.content.techItems]);
+    }, [businessForm.techItems]);
 
     React.useEffect(() => {
         if (hasError) {
@@ -128,9 +129,9 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
         if (hasFinished) {
             clearForm();
-            showSuccess(content.templates.messageOut.success);
+            showSuccess(templates.templates.messageOut.success);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, content, techStackItems, services]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, services]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -223,15 +224,15 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: content.templates.messageOut.warning }));
-    }, [form, content, services, techStackItems]);
+        showWarning(GetTextWarning({ object: result, template: templates.templates.messageOut.warning }));
+    }, [form, templates, services, techStackItems]);
 
     return (
         <BusinessFormView
-            isLoading={businessForm.isLoading}
-            caption={businessForm.content.caption}
+            isLoading={data.isLoading}
+            caption={businessForm.caption}
             progress={hasProgress}
-            buttonText={businessForm.content.buttonText}
+            buttonText={businessForm.buttonText}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
@@ -239,28 +240,28 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             serviceHandler={serviceHandler}
             serviceSelection={services}
             companyText={form.company}
-            companyLabel={businessForm.content.companyLabel}
+            companyLabel={businessForm.companyLabel}
             firstNameText={form.firstName}
-            firstNameLabel={businessForm.content.firstNameLabel}
+            firstNameLabel={businessForm.firstNameLabel}
             lastNameText={form.lastName}
-            lastNameLabel={businessForm.content.lastNameLabel}
+            lastNameLabel={businessForm.lastNameLabel}
             emailText={form.email}
-            emailLabel={businessForm.content.emailLabel}
+            emailLabel={businessForm.emailLabel}
             phoneText={form.phone}
-            phoneLabel={businessForm.content.phoneLabel}
-            techLabel={businessForm.content.techLabel}
+            phoneLabel={businessForm.phoneLabel}
+            techLabel={businessForm.techLabel}
             techItems={techStackItems ?? []}
             description={{
                 text: form.description,
-                label: businessForm.content.description.label,
-                multiline: businessForm.content.description.multiline,
-                rows: businessForm.content.description.rows,
-                required: businessForm.content.description.required,
+                label: businessForm.description.label,
+                multiline: businessForm.description.multiline,
+                rows: businessForm.description.rows,
+                required: businessForm.description.required,
             }}
             pricing={{
-                caption: businessForm.content.pricing.caption,
-                disclaimer: businessForm.content.pricing.disclaimer,
-                services: businessForm.content.pricing.services,
+                caption: businessForm.pricing.caption,
+                disclaimer: businessForm.pricing.disclaimer,
+                services: businessForm.pricing.services,
             }}
             pt={props.pt}
             pb={props.pb}

@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
+import { ContentPageDataAction } from "../../Store/Actions";
 import { ActivateAccount } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
-
-import { ContentActivateAccountAction, ContentFooterAction, ContentTemplatesAction } from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -30,9 +29,7 @@ export const ActivationPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentActivateAccountAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "activateAccount"]));
     }, [language?.id]);
 
     return (

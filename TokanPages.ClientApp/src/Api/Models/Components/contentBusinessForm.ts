@@ -3,18 +3,16 @@ import { PricingDto } from "./Common/pricingDto";
 import { TechItemsDto } from "./Common/techItemsDto";
 
 export interface BusinessFormContentDto {
-    content: {
-        language: string;
-        caption: string;
-        buttonText: string;
-        companyLabel: string;
-        firstNameLabel: string;
-        lastNameLabel: string;
-        emailLabel: string;
-        phoneLabel: string;
-        techLabel: string;
-        techItems: TechItemsDto[];
-        description: DescriptionItemDto;
-        pricing: PricingDto;
-    };
+    language: string;
+    caption: string;
+    buttonText: string;
+    companyLabel: string;
+    firstNameLabel: string;
+    lastNameLabel: string;
+    emailLabel: string;
+    phoneLabel: string;
+    techLabel: string;
+    techItems: TechItemsDto[];
+    description: DescriptionItemDto;
+    pricing: PricingDto;
 }

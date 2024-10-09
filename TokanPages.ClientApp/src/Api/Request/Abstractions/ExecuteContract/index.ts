@@ -6,5 +6,4 @@ export interface ExecuteContract {
     dispatch: (action: any) => void;
     state: () => ApplicationState;
     responseType?: string;
-    onSuccessCallback?: () => void;
 }

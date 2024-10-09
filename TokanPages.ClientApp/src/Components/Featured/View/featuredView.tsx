@@ -19,43 +19,39 @@ interface FeaturedViewProps {
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const classes = FeaturedStyle();
-    const featured = useSelector((state: ApplicationState) => state.contentFeatured);
-
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const featured = data?.components?.featured;
     return (
         <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={5} textAlign="center">
                     <Typography className={classes.caption_text} data-aos="fade-down">
-                        {featured?.isLoading ? <Skeleton variant="text" /> : featured?.content?.caption?.toUpperCase()}
+                        {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
                     </Typography>
                 </Box>
                 <Box pb={15} textAlign="center">
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className={classes.card}>
-                                <CardActionArea href={featured?.content?.link1} target="_blank" rel="noopener">
-                                    {featured?.isLoading ? (
+                                <CardActionArea href={featured?.link1} target="_blank" rel="noopener">
+                                    {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(
-                                            GET_FEATURED_IMAGE_URL,
-                                            featured?.content?.image1,
-                                            classes.card_media
-                                        )
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image1, classes.card_media)
                                     )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
-                                            {featured?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
-                                                featured?.content?.title1
+                                                featured?.title1
                                             )}
                                         </Typography>
                                         <Typography className={classes.card_subtitle}>
-                                            {featured?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
-                                                featured?.content?.subtitle1
+                                                featured?.subtitle1
                                             )}
                                         </Typography>
                                     </CardContent>
@@ -64,29 +60,25 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="150">
                             <Card elevation={0} className={classes.card}>
-                                <CardActionArea href={featured?.content?.link2} target="_blank" rel="noopener">
-                                    {featured?.isLoading ? (
+                                <CardActionArea href={featured?.link2} target="_blank" rel="noopener">
+                                    {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(
-                                            GET_FEATURED_IMAGE_URL,
-                                            featured?.content?.image2,
-                                            classes.card_media
-                                        )
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image2, classes.card_media)
                                     )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
-                                            {featured?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
-                                                featured?.content?.title2
+                                                featured?.title2
                                             )}
                                         </Typography>
                                         <Typography className={classes.card_subtitle}>
-                                            {featured?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
-                                                featured?.content?.subtitle2
+                                                featured?.subtitle2
                                             )}
                                         </Typography>
                                     </CardContent>
@@ -95,29 +87,25 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="550">
                             <Card elevation={0} className={classes.card}>
-                                <CardActionArea href={featured?.content?.link3} target="_blank" rel="noopener">
-                                    {featured?.isLoading ? (
+                                <CardActionArea href={featured?.link3} target="_blank" rel="noopener">
+                                    {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(
-                                            GET_FEATURED_IMAGE_URL,
-                                            featured?.content?.image3,
-                                            classes.card_media
-                                        )
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image3, classes.card_media)
                                     )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
-                                            {featured?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
-                                                featured?.content?.title3
+                                                featured?.title3
                                             )}
                                         </Typography>
                                         <Typography className={classes.card_subtitle}>
-                                            {featured?.isLoading ? (
+                                            {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
-                                                featured?.content?.subtitle3
+                                                featured?.subtitle3
                                             )}
                                         </Typography>
                                     </CardContent>

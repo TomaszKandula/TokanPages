@@ -1,7 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
+using TokanPages.Backend.Application.Content.Components.Commands;
+using TokanPages.Backend.Application.Content.Components.Models;
 using TokanPages.Backend.Application.Content.Components.Queries;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 
@@ -49,18 +52,41 @@ public class ContentCache : IContentCache
     }
 
     /// <inheritdoc />
-    public async Task<GetContentQueryResult> GetContent(string? language, string type = "", string name = "", bool noCache = false)
+    public async Task<GetContentQueryResult> GetContent(string? language,  string name = "", bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
+            return await _mediator.Send(new GetContentQuery { ContentName = name, Language = language });
 
-        var key = $"{_environment.EnvironmentName}:content:{type}:{name}:{language}";
+        var key = $"{_environment.EnvironmentName}:content:{name}:{language}";
         var value = await _redisDistributedCache.GetObjectAsync<GetContentQueryResult>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetContentQuery { Type = type, Name = name, Language = language });
+        value = await _mediator.Send(new GetContentQuery { ContentName = name, Language = language });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;
+    }
+
+    /// <inheritdoc />
+    public async Task<RequestPageDataCommandResult> GetPageContent(RequestPageDataCommand request, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new RequestPageDataCommand { Components = request.Components, Language = request.Language });
+
+        var componentKey = GetUniqueKey(request.Components);
+        var key = $"{_environment.EnvironmentName}:content:{componentKey}:{request.Language}";
+        var value = await _redisDistributedCache.GetObjectAsync<RequestPageDataCommandResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new RequestPageDataCommand { Components = request.Components, Language = request.Language });
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    private static string GetUniqueKey(IEnumerable<ContentModel> components)
+    {
+        var data = components.Aggregate(string.Empty, (current, item) => $"{current}{item.ContentName}");
+        return data.ToBase64Encode();
     }
 }

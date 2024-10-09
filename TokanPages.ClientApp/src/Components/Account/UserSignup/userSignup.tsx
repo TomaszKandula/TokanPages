@@ -3,16 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
+import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
-
-import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
-
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
-
-import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const defaultForm: SignupFormInput = {
     firstName: "",
@@ -42,10 +38,11 @@ export interface UserSignupProps {
 export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const content = useSelector((state: ApplicationState) => state.contentUserSignup);
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data?.components.templates;
+    const content = data?.components.userSignup;
 
     const hasNotStarted = signup?.status === OperationStatus.notStarted;
     const hasFinished = signup?.status === OperationStatus.hasFinished;
@@ -144,12 +141,12 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
 
     return (
         <UserSignupView
-            isLoading={content?.isLoading}
-            caption={content?.content?.caption}
-            warning={content?.content?.warning}
-            consent={content?.content?.consent}
-            button={content?.content?.button}
-            link={content?.content?.link}
+            isLoading={data?.isLoading}
+            caption={content?.caption}
+            warning={content?.warning}
+            consent={content?.consent}
+            button={content?.button}
+            link={content?.link}
             buttonHandler={buttonHandler}
             keyHandler={keyHandler}
             formHandler={formHandler}
@@ -159,10 +156,10 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
             email={form.email}
             password={form.password}
             terms={form.terms}
-            labelFirstName={content?.content?.labelFirstName}
-            labelLastName={content?.content?.labelLastName}
-            labelEmail={content?.content?.labelEmail}
-            labelPassword={content?.content?.labelPassword}
+            labelFirstName={content?.labelFirstName}
+            labelLastName={content?.labelLastName}
+            labelEmail={content?.labelEmail}
+            labelPassword={content?.labelPassword}
             pt={props.pt}
             pb={props.pb}
             background={props.background}

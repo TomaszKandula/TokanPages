@@ -2,8 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { ContentDocumentState } from "../../../Store/States";
-import { TextItemDto } from "../../../Api/Models";
+import { DocumentContentDto, TextItemDto } from "../../../Api/Models";
 import { DocumentView } from "./documentView";
 
 describe("test component: documentView", () => {
@@ -16,21 +15,15 @@ describe("test component: documentView", () => {
             text: "",
         };
 
-        const document: ContentDocumentState = {
-            contentPolicy: {
-                isLoading: false,
-                content: {
-                    language: "eng",
-                    items: [textItem],
-                },
-            },
+        const document: DocumentContentDto = {
+            language: "eng",
+            items: [textItem],
         };
 
-        const isLoading = document.contentPolicy?.isLoading ?? false;
-        const items = document.contentPolicy?.content.items ?? [];
+        const items = document.items ?? [];
         const html = render(
             <Router>
-                <DocumentView isLoading={isLoading} items={items} />
+                <DocumentView isLoading={false} items={items} />
             </Router>
         );
         expect(html).toMatchSnapshot();
@@ -45,21 +38,15 @@ describe("test component: documentView", () => {
             text: "",
         };
 
-        const document: ContentDocumentState = {
-            contentTerms: {
-                isLoading: false,
-                content: {
-                    language: "eng",
-                    items: [textItem],
-                },
-            },
+        const document: DocumentContentDto = {
+            language: "eng",
+            items: [textItem],
         };
 
-        const isLoading = document.contentTerms?.isLoading ?? false;
-        const items = document.contentTerms?.content.items ?? [];
+        const items = document.items ?? [];
         const html = render(
             <Router>
-                <DocumentView isLoading={isLoading} items={items} />
+                <DocumentView isLoading={false} items={items} />
             </Router>
         );
         expect(html).toMatchSnapshot();
@@ -74,21 +61,15 @@ describe("test component: documentView", () => {
             text: "",
         };
 
-        const document: ContentDocumentState = {
-            contentStory: {
-                isLoading: false,
-                content: {
-                    language: "eng",
-                    items: [textItem],
-                },
-            },
+        const document: DocumentContentDto = {
+            language: "eng",
+            items: [textItem],
         };
 
-        const isLoading = document.contentStory?.isLoading ?? false;
-        const items = document.contentStory?.content.items ?? [];
+        const items = document.items ?? [];
         const html = render(
             <Router>
-                <DocumentView isLoading={isLoading} items={items} />
+                <DocumentView isLoading={false} items={items} />
             </Router>
         );
         expect(html).toMatchSnapshot();
@@ -103,21 +84,15 @@ describe("test component: documentView", () => {
             text: "",
         };
 
-        const document: ContentDocumentState = {
-            contentShowcase: {
-                isLoading: false,
-                content: {
-                    language: "eng",
-                    items: [textItem],
-                },
-            },
+        const document: DocumentContentDto = {
+            language: "eng",
+            items: [textItem],
         };
 
-        const isLoading = document.contentShowcase?.isLoading ?? false;
-        const items = document.contentShowcase?.content.items ?? [];
+        const items = document.items ?? [];
         const html = render(
             <Router>
-                <DocumentView isLoading={isLoading} items={items} />
+                <DocumentView isLoading={false} items={items} />
             </Router>
         );
         expect(html).toMatchSnapshot();

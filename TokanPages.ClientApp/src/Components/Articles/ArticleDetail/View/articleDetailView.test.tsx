@@ -7,20 +7,18 @@ import { ArticleDetailView } from "./articleDetailView";
 describe("test articles group component: ArticleDetailView", () => {
     it("should render correctly '<ArticleDetailView />' when content is loaded.", () => {
         const testContent: ArticleContentDto = {
-            content: {
-                language: "eng",
-                button: "Read now",
-                textReadCount: "Read count:",
-                textFirstName: "First name:",
-                textSurname: "Last name:",
-                textRegistered: "Registered at:",
-                textLanguage: "Article language:",
-                textReadTime: "Read time:",
-                textPublished: "Published at:",
-                textUpdated: "Updated at:",
-                textWritten: "Written by",
-                textAbout: "About the author:",
-            },
+            language: "eng",
+            button: "Read now",
+            textReadCount: "Read count:",
+            textFirstName: "First name:",
+            textSurname: "Last name:",
+            textRegistered: "Registered at:",
+            textLanguage: "Article language:",
+            textReadTime: "Read time:",
+            textPublished: "Published at:",
+            textUpdated: "Updated at:",
+            textWritten: "Written by",
+            textAbout: "About the author:",
         };
 
         const html = render(

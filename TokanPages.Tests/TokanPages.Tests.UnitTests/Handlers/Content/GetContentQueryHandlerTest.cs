@@ -21,8 +21,7 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component"
+            ContentName = "activateAccount"
         };
     
         var databaseContext = GetTestDatabaseContext();
@@ -68,7 +67,6 @@ public class GetContentQueryHandlerTest : TestBase
     
         // Assert
         result.ContentName.Should().Be("activateAccount");
-        result.ContentType.Should().Be("component");
 
         var content = result.Content as JObject;
         content.Should().NotBeNull();
@@ -101,8 +99,7 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component",
+            ContentName = "activateAccount",
             Language = "pol" 
         };
 
@@ -151,67 +148,12 @@ public class GetContentQueryHandlerTest : TestBase
     }
 
     [Fact]
-    public async Task GivenInvalidComponentType_WhenGetContent_ShouldThrowError()
-    {
-        // Arrange
-        var query = new GetContentQuery
-        {
-            Name = "activateAccount",
-            Type = DataUtilityService.GetRandomString()
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedJsonSerializer = new Mock<IJsonSerializer>();
-        var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
-        var mockedAzureBlob = new Mock<IAzureBlobStorage>();
-
-        var streamContent = new StorageStreamContent
-        {
-            Content = DataUtilityService.GetRandomStream(),
-            ContentType = "application/json"
-        };
-
-        mockedAzureBlob
-            .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(streamContent);
-
-        mockedAzureStorage
-            .Setup(factory => factory.Create(mockedLogger.Object))
-            .Returns(mockedAzureBlob.Object);
-
-        var testObject = GetActivateAccountContent();
-        var activateAccountObject = new ValidActivateAccountObject { Eng = testObject };
-        var testJObject = JObject.FromObject(activateAccountObject);
-
-        mockedJsonSerializer
-            .Setup(serializer => serializer.Parse(It.IsAny<string>()))
-            .Returns(testJObject);
-
-        mockedJsonSerializer
-            .Setup(serializer => serializer.MapObject<ActivateAccountDto>(It.IsAny<JToken>()))
-            .Returns(testObject);
-
-        var handler = new GetContentQueryHandler(
-            databaseContext,
-            mockedLogger.Object,
-            mockedJsonSerializer.Object,
-            mockedAzureStorage.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.COMPONENT_TYPE_NOT_SUPPORTED));
-    }
-
-    [Fact]
     public async Task GivenEmptyContentFromRemoteService_WhenGetContent_ShouldThrowError()
     {
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component"
+            ContentName = "activateAccount"
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -258,8 +200,7 @@ public class GetContentQueryHandlerTest : TestBase
         // Arrange
         var query = new GetContentQuery
         {
-            Name = "activateAccount",
-            Type = "component"
+            ContentName = "activateAccount"
         };
 
         var databaseContext = GetTestDatabaseContext();

@@ -20,7 +20,9 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
 
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const navigation = useSelector((state: ApplicationState) => state.contentNavigation);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const isLoading = data?.isLoading;
+    const navigation = data?.components.navigation;
 
     const avatarSource = GET_USER_IMAGE.replace("{id}", store?.userData?.userId).replace(
         "{name}",
@@ -50,7 +52,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
 
     return (
         <NavigationView
-            isLoading={navigation?.isLoading}
+            isLoading={isLoading}
             drawerState={drawer}
             openHandler={toggleDrawer(true)}
             closeHandler={toggleDrawer(false)}
@@ -59,11 +61,11 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             userAliasText={store?.userData?.aliasName}
             avatarName={store?.userData?.avatarName}
             avatarSource={avatarSource}
-            logoImgName={navigation?.content?.logo}
+            logoImgName={navigation?.logo}
             languages={language}
             languageId={language?.id}
             languageHandler={languageHandler}
-            menu={navigation?.content?.menu}
+            menu={navigation?.menu}
             backNavigationOnly={props.backNavigationOnly}
             backPathFragment={props.backPathFragment}
         />

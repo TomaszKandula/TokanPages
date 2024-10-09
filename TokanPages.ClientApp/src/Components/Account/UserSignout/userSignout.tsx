@@ -16,16 +16,17 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const dispatch = useDispatch();
     const [hasProgress, setHasProgress] = React.useState(true);
 
-    const contentData = useSelector((state: ApplicationState) => state.contentUserSignout);
     const signout = useSelector((state: ApplicationState) => state.userSignout);
     const store = useSelector((state: ApplicationState) => state.userDataStore);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const contentData = data.components.userSignout;
 
     const isUserTokenRevoked = signout.userTokenStatus === OperationStatus.hasFinished;
     const isRefreshTokenRevoked = signout.refreshTokenStatus === OperationStatus.hasFinished;
     const isAnonymous = Validate.isEmpty(store?.userData?.userId);
 
-    const status = hasProgress ? contentData?.content.onProcessing : contentData?.content.onFinish;
-    const hasContent = !contentData?.isLoading && contentData?.content.buttonText !== "";
+    const status = hasProgress ? contentData?.onProcessing : contentData?.onFinish;
+    const hasContent = !data?.isLoading && contentData?.buttonText !== "";
 
     React.useEffect(() => {
         if (!isUserTokenRevoked || !isRefreshTokenRevoked) return;
@@ -46,10 +47,10 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
 
     return (
         <UserSignoutView
-            isLoading={contentData?.isLoading}
-            caption={contentData?.content.caption}
+            isLoading={data?.isLoading}
+            caption={contentData?.caption}
             status={status}
-            buttonText={contentData?.content.buttonText}
+            buttonText={contentData?.buttonText}
             isAnonymous={isAnonymous}
             pt={props.pt}
             pb={props.pb}

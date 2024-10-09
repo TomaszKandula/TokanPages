@@ -79,25 +79,25 @@ export const ArticleUpdateAction = {
     updateContent:
         (payload: UpdateArticleContentDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload, content);
         },
     updateCount:
         (payload: UpdateArticleCountDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload, content);
         },
     updateLikes:
         (payload: UpdateArticleLikesDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload, content);
         },
     updateVisibility:
         (payload: UpdateArticleVisibilityDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload, content);
         },
 };

@@ -24,10 +24,12 @@ export interface ArticleDetailProps extends ExtendedViewProps {
 
 export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => {
     const dispatch = useDispatch();
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.articles);
-    const content = useSelector((state: ApplicationState) => state.contentArticle);
+
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates.templates.articles;
+    const content = data.components.article;
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading) {
         dispatch(ArticleSelectionAction.select({ title: props.title }));

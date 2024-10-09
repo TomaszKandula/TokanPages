@@ -1,30 +1,21 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
+import { ContentPageDataAction } from "../../../../Store/Actions";
 import { Navigation, Footer } from "../../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
-
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentDocumentAction,
-    ContentTemplatesAction,
-} from "../../../../Store/Actions";
 
 export const FootballPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const document = useSelector((state: ApplicationState) => state.contentDocument);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentNavigationAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentDocumentAction.getFootball());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "football"]));
     }, [language?.id]);
 
-    const isLoading = document?.contentFootball?.isLoading ?? false;
-    const items = document?.contentFootball?.content.items ?? [];
+    const isLoading = data?.isLoading ?? false;
+    const items = data?.components.football.items ?? [];
 
     return (
         <>

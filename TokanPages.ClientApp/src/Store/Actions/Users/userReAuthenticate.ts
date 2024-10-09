@@ -30,7 +30,7 @@ export const UserReAuthenticateAction = {
         (dispatch, getState) => {
             dispatch({ type: REAUTHENTICATE });
 
-            const content = getState().contentTemplates.content.templates.application;
+            const content = getState().contentPageData.components.templates.templates.application;
             const nullError = content.nullError;
             const unexpectedStatus = content.unexpectedStatus;
 
