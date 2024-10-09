@@ -47,7 +47,7 @@ export const ContentPageData: ContentPageDataState = {
                 warningText: "",
                 deleteButtonText: "",
             },
-    },
+        },
         activateAccount: {
             language: "",
             onVerifying: {
@@ -84,7 +84,7 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 button: "",
             },
-    },
+        },
         article: {
             language: "",
             button: "",
@@ -98,7 +98,7 @@ export const ContentPageData: ContentPageDataState = {
             textUpdated: "",
             textWritten: "",
             textAbout: "",
-    },
+        },
         articleFeatures: {
             language: "",
             title: "",
@@ -113,7 +113,7 @@ export const ContentPageData: ContentPageDataState = {
             image2: "",
             image3: "",
             image4: "",
-    },
+        },
         businessForm: {
             language: "",
             caption: "",
@@ -136,12 +136,12 @@ export const ContentPageData: ContentPageDataState = {
                 disclaimer: "",
                 services: [],
             },
-    },
+        },
         clients: {
             language: "",
             caption: "",
             images: [],
-    },
+        },
         contactForm: {
             language: "",
             caption: "",
@@ -153,18 +153,14 @@ export const ContentPageData: ContentPageDataState = {
             labelEmail: "",
             labelSubject: "",
             labelMessage: "",
-    },
+        },
         cookiesPrompt: {
             language: "",
             caption: "",
             text: "",
             button: "",
             days: 0,
-    },
-        document: {
-            language: "",
-            items: [],
-    },
+        },
         featured: {
             language: "",
             caption: "",
@@ -181,7 +177,7 @@ export const ContentPageData: ContentPageDataState = {
             subtitle3: "",
             link3: "",
             image3: "",
-    },
+        },
         footer: {
             language: "",
             terms: {
@@ -195,7 +191,7 @@ export const ContentPageData: ContentPageDataState = {
             copyright: "",
             reserved: "",
             icons: [],
-    },
+        },
         header: {
             language: "",
             photo: "",
@@ -210,7 +206,7 @@ export const ContentPageData: ContentPageDataState = {
                 text: "",
                 href: "",
             },
-    },
+        },
         navigation: {
             language: "",
             logo: "",
@@ -225,14 +221,14 @@ export const ContentPageData: ContentPageDataState = {
                 image: "",
                 items: [],
             },
-    },
+        },
         newsletter: {
             language: "",
             caption: "",
             text: "",
             button: "",
             labelEmail: "",
-    },
+        },
         newsletterRemove: {
             language: "",
             contentPre: {
@@ -249,19 +245,19 @@ export const ContentPageData: ContentPageDataState = {
                 text3: "",
                 button: "",
             },
-    },
+        },
         newsletterUpdate: {
             language: "",
             caption: "",
             button: "",
             labelEmail: "",
-    },
+        },
         resetPassword: {
             language: "",
             caption: "",
             button: "",
             labelEmail: "",
-    },
+        },
         technologies: {
             language: "",
             caption: "",
@@ -274,7 +270,7 @@ export const ContentPageData: ContentPageDataState = {
             text3: "",
             title4: "",
             text4: "",
-    },
+        },
         templates: {
             language: "",
             forms: {
@@ -343,7 +339,7 @@ export const ContentPageData: ContentPageDataState = {
                     checkoutWarning: "",
                 },
             },
-    },
+        },
         testimonials: {
             language: "",
             caption: "",
@@ -360,14 +356,14 @@ export const ContentPageData: ContentPageDataState = {
             name3: "",
             occupation3: "",
             text3: "",
-    },
+        },
         updatePassword: {
             language: "",
             caption: "",
             button: "",
             labelNewPassword: "",
             labelVerifyPassword: "",
-    },
+        },
         userSignin: {
             language: "",
             caption: "",
@@ -376,14 +372,14 @@ export const ContentPageData: ContentPageDataState = {
             link2: "",
             labelEmail: "",
             labelPassword: "",
-    },
+        },
         userSignout: {
             language: "",
             caption: "",
             onProcessing: "",
             onFinish: "",
             buttonText: "",
-    },
+        },
         userSignup: {
             language: "",
             caption: "",
@@ -395,6 +391,46 @@ export const ContentPageData: ContentPageDataState = {
             labelLastName: "",
             labelEmail: "",
             labelPassword: "",
-    },
+        },
+        policy: {
+            language: "",
+            items: []
+        },
+        terms: {
+            language: "",
+            items: []
+        },
+        about: {
+            language: "",
+            items: []
+        },
+        story: {
+            language: "",
+            items: []
+        },
+        showcase: {
+            language: "",
+            items: []
+        },
+        bicycle: {
+            language: "",
+            items: []
+        },
+        electronics: {
+            language: "",
+            items: []
+        },
+        football: {
+            language: "",
+            items: []
+        },
+        guitar: {
+            language: "",
+            items: []
+        },
+        photography: {
+            language: "",
+            items: []
+        },
     },
 };

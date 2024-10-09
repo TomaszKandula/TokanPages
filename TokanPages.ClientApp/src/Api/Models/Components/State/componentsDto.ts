@@ -34,7 +34,6 @@ export interface ComponentsDto {
     clients: ClientsContentDto;
     contactForm: ContactFormContentDto;
     cookiesPrompt: CookiesPromptContentDto;
-    document: DocumentContentDto;
     featured: FeaturedContentDto;
     footer: FooterContentDto;
     header: HeaderContentDto;
@@ -50,17 +49,14 @@ export interface ComponentsDto {
     userSignin: UserSigninContentDto;
     userSignout: UserSignoutContentDto;
     userSignup: UserSignupContentDto;
-}
-
-export interface ContentDocumentDto {
-    contentPolicy?: DocumentContentDto;
-    contentTerms?: DocumentContentDto;
-    contentAbout?: DocumentContentDto;
-    contentStory?: DocumentContentDto;
-    contentShowcase?: DocumentContentDto;
-    contentBicycle?: DocumentContentDto;
-    contentElectronics?: DocumentContentDto;
-    contentFootball?: DocumentContentDto;
-    contentGuitar?: DocumentContentDto;
-    contentPhotography?: DocumentContentDto;
+    policy: DocumentContentDto;
+    terms: DocumentContentDto;
+    about: DocumentContentDto;
+    story: DocumentContentDto;
+    showcase: DocumentContentDto;
+    bicycle: DocumentContentDto;
+    electronics: DocumentContentDto;
+    football: DocumentContentDto;
+    guitar: DocumentContentDto;
+    photography: DocumentContentDto;
 }

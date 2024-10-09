@@ -31,9 +31,9 @@ export const ContentPageDataAction = {
     request:
         (components: string[]): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentPageData;
+            const state = getState().contentPageData;
             const languageId = getState().applicationLanguage.id;
-            const hasComponent = ComponentsCheck(components, content, languageId);
+            const hasComponent = ComponentsCheck({ components, state, languageId });
             if (!hasComponent) {
                 return;
             }

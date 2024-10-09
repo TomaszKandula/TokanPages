@@ -1,13 +1,19 @@
 import { ContentPageDataState } from "../../../../Store/States";
 
-export const ComponentsCheck = (components: string[], state: ContentPageDataState, languageId: string): string[] | undefined => {
+interface ComponentsCheckProps {
+    components: string[];
+    state: ContentPageDataState;
+    languageId: string;
+}
+
+export const ComponentsCheck = (props: ComponentsCheckProps): string[] | undefined => {
     let result: string[] = [];
 
-    components.forEach(item => {
-        if (Object.hasOwn(state.components, item)){
-            const key = item as keyof typeof state.components
-            const componentLanguage = state.components[key].language;
-            const isLanguageChanged = componentLanguage != languageId;
+    props.components.forEach(item => {
+        if (Object.hasOwn(props.state.components, item)){
+            const key = item as keyof typeof props.state.components
+            const componentLanguage = props.state.components[key].language;
+            const isLanguageChanged = componentLanguage != props.languageId;
             if (isLanguageChanged) {
                 result.push(item)
             }
