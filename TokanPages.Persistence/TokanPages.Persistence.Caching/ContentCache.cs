@@ -2,7 +2,9 @@ using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Content.Components.Commands;
+using TokanPages.Backend.Application.Content.Components.Models;
 using TokanPages.Backend.Application.Content.Components.Queries;
+using TokanPages.Backend.Core.Extensions;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 
@@ -71,7 +73,8 @@ public class ContentCache : IContentCache
         if (noCache)
             return await _mediator.Send(new RequestPageDataCommand { Components = request.Components, Language = request.Language });
 
-        var key = $"{_environment.EnvironmentName}:content:{request.Components}:{request.Language}";
+        var componentKey = GetUniqueKey(request.Components);
+        var key = $"{_environment.EnvironmentName}:content:{componentKey}:{request.Language}";
         var value = await _redisDistributedCache.GetObjectAsync<RequestPageDataCommandResult>(key);
         if (value is not null) return value;
 
@@ -79,5 +82,11 @@ public class ContentCache : IContentCache
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;
+    }
+
+    private static string GetUniqueKey(IEnumerable<ContentModel> components)
+    {
+        var data = components.Aggregate(string.Empty, (current, item) => $"{current}{item.ContentName}");
+        return data.ToBase64Encode();
     }
 }
