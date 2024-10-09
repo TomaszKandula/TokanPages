@@ -1,5 +1,6 @@
-import { ApplicationAction, ApplicationDefault } from "../../Configuration";
+import { ApplicationAction } from "../../Configuration";
 import { RequestPageDataResultDto } from "../../../Api/Models";
+import { ComponentsCheck } from "../../../Shared/Services/Utilities";
 import {
     Execute,
     ExecuteContract,
@@ -32,10 +33,8 @@ export const ContentPageDataAction = {
         (dispatch, getState) => {
             const content = getState().contentPageData;
             const languageId = getState().applicationLanguage.id;
-            const isContentChanged = content !== ApplicationDefault.contentPageData;
-            const isLanguageChanged = languageId !== content.languageId;
-
-            if (isContentChanged && !isLanguageChanged) {
+            const hasComponent = ComponentsCheck(components, content, languageId);
+            if (!hasComponent) {
                 return;
             }
 
@@ -46,7 +45,7 @@ export const ContentPageDataAction = {
                     method: "POST",
                     url: REQUEST_PAGE_DATA,
                     data: {
-                        components: components,
+                        components: hasComponent,
                         language: languageId,
                     },
                 },
