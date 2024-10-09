@@ -1,30 +1,25 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
+import { ContentPageDataAction } from "../../../../Store/Actions";
 import { Navigation, Footer } from "../../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
-
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentDocumentAction,
-    ContentTemplatesAction,
-} from "../../../../Store/Actions";
 
 export const StoryPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const document = useSelector((state: ApplicationState) => state.contentDocument);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentNavigationAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentDocumentAction.getStory());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request([
+            "navigation",
+            "footer",
+            "story"
+        ]));
     }, [language?.id]);
 
-    const isLoading = document?.contentStory?.isLoading ?? false;
-    const items = document?.contentStory?.content.items ?? [];
+    const isLoading = data?.isLoading ?? false;
+    const items = data?.components.story.items ?? [];
 
     return (
         <>
