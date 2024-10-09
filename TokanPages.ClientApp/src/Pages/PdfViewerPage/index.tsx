@@ -20,11 +20,7 @@ export const PdfViewerPage = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation",
-            "footer",
-            "templates"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates"]));
     }, [language?.id]);
 
     return (

@@ -6,17 +6,12 @@ import { UserSignup } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
-
 export const SignupPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "userSignup", 
-            "templates"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "userSignup", "templates"]));
     }, [language?.id]);
 
     return (

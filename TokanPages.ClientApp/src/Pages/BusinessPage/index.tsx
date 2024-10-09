@@ -11,11 +11,7 @@ export const BusinessPage = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates",
-            "businessForm"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "businessForm"]));
     }, [language?.id]);
 
     return (

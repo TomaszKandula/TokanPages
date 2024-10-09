@@ -123,4 +123,4 @@
 //         expect(html).toMatchSnapshot();
 //     });
 // });
-export {}
+export {};

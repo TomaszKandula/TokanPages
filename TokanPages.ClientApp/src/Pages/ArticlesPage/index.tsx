@@ -20,12 +20,7 @@ export const ArticlesPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "templates", 
-            "article"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "article"]));
     }, [language?.id]);
 
     return (

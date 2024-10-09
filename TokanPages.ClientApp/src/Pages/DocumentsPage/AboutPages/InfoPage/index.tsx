@@ -11,11 +11,7 @@ export const InfoPage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation",
-            "footer",
-            "about"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "about"]));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

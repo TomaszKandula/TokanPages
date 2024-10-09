@@ -6,17 +6,12 @@ import { UserSignout } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
-
 export const SignoutPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation",
-            "templates",
-            "userSignout"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "userSignout"]));
     }, [language?.id]);
 
     return (

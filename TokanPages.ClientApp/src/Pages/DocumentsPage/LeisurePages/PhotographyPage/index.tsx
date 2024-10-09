@@ -11,11 +11,7 @@ export const PhotographyPage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "photography"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "photography"]));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

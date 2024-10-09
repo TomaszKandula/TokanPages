@@ -11,11 +11,7 @@ export const GuitarPage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "guitar"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "guitar"]));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

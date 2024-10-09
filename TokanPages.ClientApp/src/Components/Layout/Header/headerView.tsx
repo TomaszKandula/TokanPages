@@ -77,11 +77,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                 <Grid item xs={12} md={5} className={classes.section_container}>
                     <Box className={classes.content_box}>
                         <Typography component="span" className={classes.content_caption}>
-                            {data?.isLoading ? (
-                                <Skeleton variant="text" />
-                            ) : (
-                                <ReactHtmlParser html={header?.caption} />
-                            )}
+                            {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} />}
                         </Typography>
                         <Typography component="span" className={classes.content_subtitle}>
                             {data?.isLoading ? (

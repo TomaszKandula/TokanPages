@@ -17,21 +17,22 @@ export const MainPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation",
-            "header",
-            "clients",
-            "technologies",
-            "articleFeatures",
-            "featured",
-            "testimonials",
-            "newsletter",
-            "contactForm",
-            "cookiesPrompt",
-            "footer",
-            "templates",
-        ]));
-
+        dispatch(
+            ContentPageDataAction.request([
+                "navigation",
+                "header",
+                "clients",
+                "technologies",
+                "articleFeatures",
+                "featured",
+                "testimonials",
+                "newsletter",
+                "contactForm",
+                "cookiesPrompt",
+                "footer",
+                "templates",
+            ])
+        );
     }, [language?.id]);
 
     return (

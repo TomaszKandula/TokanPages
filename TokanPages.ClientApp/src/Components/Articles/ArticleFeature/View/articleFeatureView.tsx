@@ -66,19 +66,11 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     <CardContent className={classes.card_content}>
                                         <Box display="flex" flexDirection="column" pt={2} px={2}>
                                             <Typography className={classes.text1}>
-                                                {data?.isLoading ? (
-                                                    <Skeleton variant="text" />
-                                                ) : (
-                                                    features?.text1
-                                                )}
+                                                {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                             </Typography>
                                             <Box mt={2} mb={5}>
                                                 <Typography className={classes.text2}>
-                                                    {data?.isLoading ? (
-                                                        <Skeleton variant="text" />
-                                                    ) : (
-                                                        features?.text2
-                                                    )}
+                                                    {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
                                                 </Typography>
                                             </Box>
                                             <Box pt={0} textAlign="right">
@@ -99,11 +91,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image1,
-                                                    classes.media
-                                                )
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image1, classes.media)
                                             )}
                                         </Card>
                                     </Grid>
@@ -112,11 +100,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image2,
-                                                    classes.media
-                                                )
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image2, classes.media)
                                             )}
                                         </Card>
                                     </Grid>
@@ -125,11 +109,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image3,
-                                                    classes.media
-                                                )
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image3, classes.media)
                                             )}
                                         </Card>
                                     </Grid>
@@ -138,11 +118,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image4,
-                                                    classes.media
-                                                )
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image4, classes.media)
                                             )}
                                         </Card>
                                     </Grid>

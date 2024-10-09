@@ -19,7 +19,7 @@ describe("test articles group component: ArticleDetailView", () => {
             textUpdated: "Updated at:",
             textWritten: "Written by",
             textAbout: "About the author:",
-    };
+        };
 
         const html = render(
             <ArticleDetailView

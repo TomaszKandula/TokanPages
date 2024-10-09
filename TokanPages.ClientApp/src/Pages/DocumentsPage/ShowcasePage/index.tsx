@@ -11,11 +11,7 @@ export const ShowcasePage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "showcase"
-        ]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "showcase"]));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

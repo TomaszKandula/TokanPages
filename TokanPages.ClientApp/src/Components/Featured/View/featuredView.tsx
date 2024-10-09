@@ -37,11 +37,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(
-                                            GET_FEATURED_IMAGE_URL,
-                                            featured?.image1,
-                                            classes.card_media
-                                        )
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image1, classes.card_media)
                                     )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
@@ -68,11 +64,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(
-                                            GET_FEATURED_IMAGE_URL,
-                                            featured?.image2,
-                                            classes.card_media
-                                        )
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image2, classes.card_media)
                                     )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>
@@ -99,11 +91,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(
-                                            GET_FEATURED_IMAGE_URL,
-                                            featured?.image3,
-                                            classes.card_media
-                                        )
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image3, classes.card_media)
                                     )}
                                     <CardContent className={classes.card_content}>
                                         <Typography className={classes.card_title}>

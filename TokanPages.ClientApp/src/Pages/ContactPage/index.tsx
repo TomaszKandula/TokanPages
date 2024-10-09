@@ -11,13 +11,7 @@ export const ContactPage = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request([
-                "navigation",
-                "templates",
-                "contactForm",
-            ])
-        );
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "contactForm"]));
     }, [language?.id]);
 
     return (

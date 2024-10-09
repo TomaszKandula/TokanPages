@@ -29,11 +29,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                     <Box mb={8}>
                         <div data-aos="fade-down">
                             <Typography className={classes.caption_text}>
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    technology?.caption?.toUpperCase()
-                                )}
+                                {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
                             </Typography>
                         </div>
                     </Box>
@@ -46,11 +42,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <CodeIcon className={classes.icon} />
                                 )}
                                 <Typography className={classes.feature_title}>
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" width="250px" />
-                                    ) : (
-                                        technology?.title1
-                                    )}
+                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title1}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
@@ -69,11 +61,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <LibraryBooksIcon className={classes.icon} />
                                 )}
                                 <Typography className={classes.feature_title}>
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" width="250px" />
-                                    ) : (
-                                        technology?.title2
-                                    )}
+                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title2}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
@@ -92,11 +80,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <StorageIcon className={classes.icon} />
                                 )}
                                 <Typography className={classes.feature_title}>
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" width="250px" />
-                                    ) : (
-                                        technology?.title3
-                                    )}
+                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title3}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">
@@ -115,11 +99,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <CloudIcon color="primary" className={classes.icon} />
                                 )}
                                 <Typography className={classes.feature_title}>
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" width="250px" />
-                                    ) : (
-                                        technology?.title4
-                                    )}
+                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title4}
                                 </Typography>
                             </Box>
                             <Typography component="span" className={classes.feature_text} data-aos="fade-up">

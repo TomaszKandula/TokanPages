@@ -394,43 +394,43 @@ export const ContentPageData: ContentPageDataState = {
         },
         policy: {
             language: "",
-            items: []
+            items: [],
         },
         terms: {
             language: "",
-            items: []
+            items: [],
         },
         about: {
             language: "",
-            items: []
+            items: [],
         },
         story: {
             language: "",
-            items: []
+            items: [],
         },
         showcase: {
             language: "",
-            items: []
+            items: [],
         },
         bicycle: {
             language: "",
-            items: []
+            items: [],
         },
         electronics: {
             language: "",
-            items: []
+            items: [],
         },
         football: {
             language: "",
-            items: []
+            items: [],
         },
         guitar: {
             language: "",
-            items: []
+            items: [],
         },
         photography: {
             language: "",
-            items: []
+            items: [],
         },
     },
 };
