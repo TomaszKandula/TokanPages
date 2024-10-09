@@ -41,8 +41,8 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const template = data.components.templates;
-    const content = data.components.userSignup;
+    const template = data?.components.templates;
+    const content = data?.components.userSignup;
 
     const hasNotStarted = signup?.status === OperationStatus.notStarted;
     const hasFinished = signup?.status === OperationStatus.hasFinished;

@@ -31,7 +31,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
         <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
-            {props?.images.map((item: string, _index: number) => (
+            {props?.images?.map((item: string, _index: number) => (
                 <img key={uuidv4()} src={getImagePath(item)} alt={`image of ${item}`} className={classes.logo} />
             ))}
         </Box>
@@ -41,7 +41,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
 export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
     const classes = ClientsStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const clients = data.components.clients;
+    const clients = data?.components.clients;
 
     return (
         <>

@@ -45,15 +45,15 @@ export const UpdatePassword = (props: UpdatePasswordProps): React.ReactElement =
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const template = data.components.templates;
-    const password = data.components.updatePassword;
+    const template = data?.components.templates;
+    const password = data?.components.updatePassword;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const resetId = queryParam.get("id");
-    const userId = store?.userData.userId;
+    const userId = store?.userData?.userId;
     const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
     const showSuccess = (text: string) =>

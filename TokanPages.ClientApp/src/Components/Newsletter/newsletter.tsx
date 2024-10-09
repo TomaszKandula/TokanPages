@@ -20,8 +20,8 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
     const add = useSelector((state: ApplicationState) => state.newsletterAdd);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const template = data.components.templates;
-    const newsletter = data.components.newsletter;
+    const template = data?.components?.templates;
+    const newsletter = data?.components?.newsletter;
 
     const hasNotStarted = add?.status === OperationStatus.notStarted;
     const hasFinished = add?.status === OperationStatus.hasFinished;

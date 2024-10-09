@@ -48,7 +48,7 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const classes = ArticleFeatureStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const features = data.components.articleFeatures;
+    const features = data?.components?.articleFeatures;
 
     return (
         <section className={classes.section} style={props.background}>

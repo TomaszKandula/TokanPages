@@ -7,7 +7,7 @@ import Validate from "validate.js";
 
 export const Cookies = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const cookies = data.components.cookiesPrompt;
+    const cookies = data?.components?.cookiesPrompt;
 
     const [isOpen, setIsOpen] = React.useState(false);
     const currentCookie = GetCookie({ cookieName: "cookieConsent" });

@@ -33,8 +33,8 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     const signin = useSelector((state: ApplicationState) => state.userSignin);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const template = data.components.templates;
-    const content = data.components.userSignin;
+    const template = data?.components.templates;
+    const content = data?.components.userSignin;
 
     const hasNotStarted = signin?.status === OperationStatus.notStarted;
     const hasFinished = signin?.status === OperationStatus.hasFinished;

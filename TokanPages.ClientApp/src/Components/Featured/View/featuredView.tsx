@@ -20,7 +20,7 @@ interface FeaturedViewProps {
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const classes = FeaturedStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const featured = data.components.featured;
+    const featured = data?.components?.featured;
     return (
         <section className={classes.section} style={props.background}>
             <Container maxWidth="lg">

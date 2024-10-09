@@ -20,7 +20,7 @@ interface TechnologiesViewProps {
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
     const classes = TechnologiesStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const technology = data.components.technologies;
+    const technology = data?.components?.technologies;
 
     return (
         <section className={classes.section} style={props.background}>

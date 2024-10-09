@@ -53,7 +53,7 @@ const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const classes = HeaderStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const header = data.components.header;
+    const header = data?.components?.header;
     const imageUrl = (name: string) => {
         if (name === "") return " ";
         return `${GET_IMAGES_URL}/${name}`;

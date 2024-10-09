@@ -26,8 +26,8 @@ export const ResetPassword = (props: ResetPasswordProps): React.ReactElement => 
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const template = data.components.templates;
-    const content = data.components.resetPassword;
+    const template = data?.components.templates;
+    const content = data?.components.resetPassword;
 
     const hasNotStarted = reset?.status === OperationStatus.notStarted;
     const hasFinished = reset?.status === OperationStatus.hasFinished;

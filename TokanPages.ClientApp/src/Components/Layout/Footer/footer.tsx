@@ -15,7 +15,8 @@ export const Footer = (props: Properties): React.ReactElement => {
     const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;
     const hasVersionInfo = validate.isEmpty(versionNumber) && validate.isEmpty(versionDateTime);
     const backgroundColor: string = !props.backgroundColor ? Colours.colours.lightGray1 : props.backgroundColor;
-    const footer = useSelector((state: ApplicationState) => state.contentPageData.components.footer);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const footer = data?.components?.footer;
 
     return (
         <FooterView

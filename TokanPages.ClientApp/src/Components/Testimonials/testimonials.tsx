@@ -9,7 +9,7 @@ interface TestimonialsProps {
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const testimonials = data.components.testimonials;
+    const testimonials = data?.components?.testimonials;
 
     const [hasTestimonialOne, setTestimonialOne] = React.useState(false);
     const [hasTestimonialTwo, setTestimonialTwo] = React.useState(false);
@@ -29,7 +29,7 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
 
     return (
         <TestimonialsView
-            isLoading={data.isLoading}
+            isLoading={data?.isLoading}
             hasTestimonialOne={hasTestimonialOne}
             hasTestimonialTwo={hasTestimonialTwo}
             hasTestimonialThree={hasTestimonialThree}

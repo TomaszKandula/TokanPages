@@ -8,13 +8,14 @@ import { ApplicationUserInfoView } from "./View/applicationUserInfoView";
 export const ApplicationUserInfo = (): React.ReactElement => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
-    const navigation = useSelector((state: ApplicationState) => state.contentPageData.components.navigation);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const navigation = data?.components?.navigation;
 
     const onClickHandler = React.useCallback(() => {
         dispatch(UserDataStoreAction.show(false));
     }, []);
 
-    const data: AuthenticateUserResultDto = {
+    const dto: AuthenticateUserResultDto = {
         ...store?.userData,
         avatarName: store?.userData.avatarName,
     };
@@ -23,7 +24,7 @@ export const ApplicationUserInfo = (): React.ReactElement => {
         <ApplicationUserInfoView
             state={store?.isShown ?? false}
             content={navigation?.userInfo}
-            data={data}
+            data={dto}
             closeHandler={onClickHandler}
         />
     );
