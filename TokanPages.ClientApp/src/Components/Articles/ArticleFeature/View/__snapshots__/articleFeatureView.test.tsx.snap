@@ -20,7 +20,9 @@ Object {
             >
               <p
                 class="MuiTypography-root makeStyles-title-5 MuiTypography-body1"
-              />
+              >
+                ARTICLES
+              </p>
             </div>
             <div
               data-aos="fade-up"
@@ -42,44 +44,54 @@ Object {
                       >
                         <p
                           class="MuiTypography-root makeStyles-text1-6 MuiTypography-body1"
-                        />
+                        >
+                          .NET Core, Azure, databases and others.
+                        </p>
                         <div
                           class="MuiBox-root MuiBox-root-15"
                         >
                           <p
                             class="MuiTypography-root makeStyles-text2-7 MuiTypography-body1"
-                          />
+                          >
+                            Let's dive into Microsoft technology...
+                          </p>
                         </div>
                         <div
                           class="MuiBox-root MuiBox-root-16"
                         >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
-                            tabindex="0"
-                            type="button"
+                          <a
+                            class="makeStyles-link-26"
+                            href="/action-link"
                           >
-                            <span
-                              class="MuiButton-label"
+                            <button
+                              class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
+                              tabindex="0"
+                              type="button"
                             >
                               <span
-                                class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                                class="MuiButton-label"
                               >
-                                <svg
-                                  aria-hidden="true"
-                                  class="MuiSvgIcon-root"
-                                  focusable="false"
-                                  viewBox="0 0 24 24"
+                                View list of articles
+                                <span
+                                  class="MuiButton-endIcon MuiButton-iconSizeMedium"
                                 >
-                                  <path
-                                    d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                  />
-                                </svg>
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                                    />
+                                  </svg>
+                                </span>
                               </span>
-                            </span>
-                            <span
-                              class="MuiTouchRipple-root"
-                            />
-                          </button>
+                              <span
+                                class="MuiTouchRipple-root"
+                              />
+                            </button>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -97,7 +109,10 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div />
+                        <div
+                          class="MuiCardMedia-root makeStyles-media-8"
+                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg);"
+                        />
                       </div>
                     </div>
                     <div
@@ -106,7 +121,10 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div />
+                        <div
+                          class="MuiCardMedia-root makeStyles-media-8"
+                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg);"
+                        />
                       </div>
                     </div>
                     <div
@@ -115,7 +133,10 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div />
+                        <div
+                          class="MuiCardMedia-root makeStyles-media-8"
+                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg);"
+                        />
                       </div>
                     </div>
                     <div
@@ -124,7 +145,10 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div />
+                        <div
+                          class="MuiCardMedia-root makeStyles-media-8"
+                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg);"
+                        />
                       </div>
                     </div>
                   </div>
@@ -152,7 +176,9 @@ Object {
           >
             <p
               class="MuiTypography-root makeStyles-title-5 MuiTypography-body1"
-            />
+            >
+              ARTICLES
+            </p>
           </div>
           <div
             data-aos="fade-up"
@@ -174,44 +200,54 @@ Object {
                     >
                       <p
                         class="MuiTypography-root makeStyles-text1-6 MuiTypography-body1"
-                      />
+                      >
+                        .NET Core, Azure, databases and others.
+                      </p>
                       <div
                         class="MuiBox-root MuiBox-root-15"
                       >
                         <p
                           class="MuiTypography-root makeStyles-text2-7 MuiTypography-body1"
-                        />
+                        >
+                          Let's dive into Microsoft technology...
+                        </p>
                       </div>
                       <div
                         class="MuiBox-root MuiBox-root-16"
                       >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
-                          tabindex="0"
-                          type="button"
+                        <a
+                          class="makeStyles-link-26"
+                          href="/action-link"
                         >
-                          <span
-                            class="MuiButton-label"
+                          <button
+                            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
+                            tabindex="0"
+                            type="button"
                           >
                             <span
-                              class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                              class="MuiButton-label"
                             >
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root"
-                                focusable="false"
-                                viewBox="0 0 24 24"
+                              View list of articles
+                              <span
+                                class="MuiButton-endIcon MuiButton-iconSizeMedium"
                               >
-                                <path
-                                  d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                />
-                              </svg>
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                                  />
+                                </svg>
+                              </span>
                             </span>
-                          </span>
-                          <span
-                            class="MuiTouchRipple-root"
-                          />
-                        </button>
+                            <span
+                              class="MuiTouchRipple-root"
+                            />
+                          </button>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -229,7 +265,10 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div />
+                      <div
+                        class="MuiCardMedia-root makeStyles-media-8"
+                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg);"
+                      />
                     </div>
                   </div>
                   <div
@@ -238,7 +277,10 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div />
+                      <div
+                        class="MuiCardMedia-root makeStyles-media-8"
+                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg);"
+                      />
                     </div>
                   </div>
                   <div
@@ -247,7 +289,10 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div />
+                      <div
+                        class="MuiCardMedia-root makeStyles-media-8"
+                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg);"
+                      />
                     </div>
                   </div>
                   <div
@@ -256,7 +301,10 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div />
+                      <div
+                        class="MuiCardMedia-root makeStyles-media-8"
+                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg);"
+                      />
                     </div>
                   </div>
                 </div>

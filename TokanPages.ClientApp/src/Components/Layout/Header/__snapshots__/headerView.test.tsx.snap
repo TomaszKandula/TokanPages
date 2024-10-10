@@ -15,9 +15,9 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
           >
             <img
-              alt="photo of undefined"
+              alt="photo of ester-exposito.webp"
               class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/undefined"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/ester-exposito.webp"
             />
           </div>
           <div
@@ -29,36 +29,49 @@ Object {
               <span
                 class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
               >
-                <div />
+                <div>
+                  Welcome to my web page
+                </div>
               </span>
               <span
                 class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
               >
-                <div />
+                <div>
+                  For years...
+                </div>
               </span>
               <span
                 class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
               >
-                <div />
+                <div>
+                  I do programming for a living...
+                </div>
               </span>
               <div
                 class="MuiBox-root MuiBox-root-14"
               >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
-                  tabindex="0"
-                  type="button"
+                <a
+                  class="makeStyles-action_link-25"
+                  href="/action-link"
                 >
-                  <span
-                    class="MuiButton-label"
-                  />
-                  <span
-                    class="MuiTouchRipple-root"
-                  />
-                </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Read the story
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root"
+                    />
+                  </button>
+                </a>
                 <a
                   class="makeStyles-action_link-37"
-                  href="/"
+                  href="/download-link"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
@@ -67,7 +80,9 @@ Object {
                   >
                     <span
                       class="MuiButton-label"
-                    />
+                    >
+                      Get the CV
+                    </span>
                   </button>
                 </a>
               </div>
@@ -88,9 +103,9 @@ Object {
           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
         >
           <img
-            alt="photo of undefined"
+            alt="photo of ester-exposito.webp"
             class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
-            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/undefined"
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/ester-exposito.webp"
           />
         </div>
         <div
@@ -102,36 +117,49 @@ Object {
             <span
               class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
             >
-              <div />
+              <div>
+                Welcome to my web page
+              </div>
             </span>
             <span
               class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
             >
-              <div />
+              <div>
+                For years...
+              </div>
             </span>
             <span
               class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
             >
-              <div />
+              <div>
+                I do programming for a living...
+              </div>
             </span>
             <div
               class="MuiBox-root MuiBox-root-14"
             >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
-                tabindex="0"
-                type="button"
+              <a
+                class="makeStyles-action_link-25"
+                href="/action-link"
               >
-                <span
-                  class="MuiButton-label"
-                />
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </button>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    Read the story
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </a>
               <a
                 class="makeStyles-action_link-37"
-                href="/"
+                href="/download-link"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
@@ -140,7 +168,9 @@ Object {
                 >
                   <span
                     class="MuiButton-label"
-                  />
+                  >
+                    Get the CV
+                  </span>
                 </button>
               </a>
             </div>

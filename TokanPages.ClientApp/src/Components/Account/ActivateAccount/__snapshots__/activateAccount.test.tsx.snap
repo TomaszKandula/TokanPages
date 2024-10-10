@@ -28,7 +28,9 @@ Object {
                   >
                     <div
                       class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
-                    />
+                    >
+                      Account Activation
+                    </div>
                   </div>
                   <div
                     class="MuiBox-root MuiBox-root-12"
@@ -36,7 +38,9 @@ Object {
                     <div
                       class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
                     >
-                      <div />
+                      <div>
+                        Processing your account..., please wait.
+                      </div>
                     </div>
                   </div>
                   <div
@@ -80,7 +84,9 @@ Object {
                 >
                   <div
                     class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
-                  />
+                  >
+                    Account Activation
+                  </div>
                 </div>
                 <div
                   class="MuiBox-root MuiBox-root-12"
@@ -88,7 +94,9 @@ Object {
                   <div
                     class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
                   >
-                    <div />
+                    <div>
+                      Processing your account..., please wait.
+                    </div>
                   </div>
                 </div>
                 <div

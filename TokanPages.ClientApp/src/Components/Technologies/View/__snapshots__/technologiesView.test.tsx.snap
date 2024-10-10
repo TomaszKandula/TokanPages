@@ -22,7 +22,9 @@ Object {
               >
                 <p
                   class="MuiTypography-root makeStyles-caption_text-4 MuiTypography-body1"
-                />
+                >
+                  TECHNOLOGIES
+                </p>
               </div>
             </div>
             <div
@@ -47,13 +49,17 @@ Object {
                   </svg>
                   <p
                     class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                  />
+                  >
+                    Languages
+                  </p>
                 </div>
                 <span
                   class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                   data-aos="fade-up"
                 >
-                  <div />
+                  <div>
+                    Today in my daily job, I use...
+                  </div>
                 </span>
               </div>
               <div
@@ -75,13 +81,17 @@ Object {
                   </svg>
                   <p
                     class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                  />
+                  >
+                    Frameworks/Libraries
+                  </p>
                 </div>
                 <span
                   class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                   data-aos="fade-up"
                 >
-                  <div />
+                  <div>
+                    Back-End: NET Framework 4.5 (for one project)...
+                  </div>
                 </span>
               </div>
               <div
@@ -103,13 +113,17 @@ Object {
                   </svg>
                   <p
                     class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                  />
+                  >
+                    OR/M
+                  </p>
                 </div>
                 <span
                   class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                   data-aos="fade-up"
                 >
-                  <div />
+                  <div>
+                    I have started with Entity Framework...
+                  </div>
                 </span>
               </div>
               <div
@@ -131,13 +145,17 @@ Object {
                   </svg>
                   <p
                     class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                  />
+                  >
+                    Cloud Services
+                  </p>
                 </div>
                 <span
                   class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                   data-aos="fade-up"
                 >
-                  <div />
+                  <div>
+                    I have experience with...
+                  </div>
                 </span>
               </div>
             </div>
@@ -164,7 +182,9 @@ Object {
             >
               <p
                 class="MuiTypography-root makeStyles-caption_text-4 MuiTypography-body1"
-              />
+              >
+                TECHNOLOGIES
+              </p>
             </div>
           </div>
           <div
@@ -189,13 +209,17 @@ Object {
                 </svg>
                 <p
                   class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                />
+                >
+                  Languages
+                </p>
               </div>
               <span
                 class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                 data-aos="fade-up"
               >
-                <div />
+                <div>
+                  Today in my daily job, I use...
+                </div>
               </span>
             </div>
             <div
@@ -217,13 +241,17 @@ Object {
                 </svg>
                 <p
                   class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                />
+                >
+                  Frameworks/Libraries
+                </p>
               </div>
               <span
                 class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                 data-aos="fade-up"
               >
-                <div />
+                <div>
+                  Back-End: NET Framework 4.5 (for one project)...
+                </div>
               </span>
             </div>
             <div
@@ -245,13 +273,17 @@ Object {
                 </svg>
                 <p
                   class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                />
+                >
+                  OR/M
+                </p>
               </div>
               <span
                 class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                 data-aos="fade-up"
               >
-                <div />
+                <div>
+                  I have started with Entity Framework...
+                </div>
               </span>
             </div>
             <div
@@ -273,13 +305,17 @@ Object {
                 </svg>
                 <p
                   class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
-                />
+                >
+                  Cloud Services
+                </p>
               </div>
               <span
                 class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
                 data-aos="fade-up"
               >
-                <div />
+                <div>
+                  I have experience with...
+                </div>
               </span>
             </div>
           </div>
