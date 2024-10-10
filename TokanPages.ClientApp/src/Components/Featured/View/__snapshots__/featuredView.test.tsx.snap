@@ -17,7 +17,9 @@ Object {
             <p
               class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
               data-aos="fade-down"
-            />
+            >
+              FEATURED
+            </p>
           </div>
           <div
             class="MuiBox-root MuiBox-root-9"
@@ -33,23 +35,31 @@ Object {
                 <div
                   class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
                 >
-                  <button
+                  <a
+                    aria-disabled="false"
                     class="MuiButtonBase-root MuiCardActionArea-root"
+                    href="https://.../net-memory-management-64389b01f642"
                     rel="noopener"
                     tabindex="0"
                     target="_blank"
-                    type="button"
                   >
-                    <div />
+                    <div
+                      class="MuiCardMedia-root makeStyles-card_media-7"
+                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg);"
+                    />
                     <div
                       class="MuiCardContent-root makeStyles-card_content-4"
                     >
                       <p
                         class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
-                      />
+                      >
+                        Memory Management
+                      </p>
                       <p
                         class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
-                      />
+                      >
+                        The basics you should know, when writing an application...
+                      </p>
                     </div>
                     <span
                       class="MuiCardActionArea-focusHighlight"
@@ -57,7 +67,7 @@ Object {
                     <span
                       class="MuiTouchRipple-root"
                     />
-                  </button>
+                  </a>
                 </div>
               </div>
               <div
@@ -68,28 +78,36 @@ Object {
                 <div
                   class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
                 >
-                  <button
+                  <a
+                    aria-disabled="false"
                     class="MuiButtonBase-root MuiCardActionArea-root"
+                    href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
                     rel="noopener"
                     tabindex="0"
                     target="_blank"
-                    type="button"
                   >
-                    <div />
+                    <div
+                      class="MuiCardMedia-root makeStyles-card_media-7"
+                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg);"
+                    />
                     <div
                       class="MuiCardContent-root makeStyles-card_content-4"
                     >
                       <p
                         class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
-                      />
+                      >
+                        Stored Procedures
+                      </p>
                       <p
                         class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
-                      />
+                      >
+                        I explain why I do not need them that much...
+                      </p>
                     </div>
                     <span
                       class="MuiCardActionArea-focusHighlight"
                     />
-                  </button>
+                  </a>
                 </div>
               </div>
               <div
@@ -100,28 +118,36 @@ Object {
                 <div
                   class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
                 >
-                  <button
+                  <a
+                    aria-disabled="false"
                     class="MuiButtonBase-root MuiCardActionArea-root"
+                    href="https://.../sql-injection-1bde8bb76ebc"
                     rel="noopener"
                     tabindex="0"
                     target="_blank"
-                    type="button"
                   >
-                    <div />
+                    <div
+                      class="MuiCardMedia-root makeStyles-card_media-7"
+                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg);"
+                    />
                     <div
                       class="MuiCardContent-root makeStyles-card_content-4"
                     >
                       <p
                         class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
-                      />
+                      >
+                        SQL Injection
+                      </p>
                       <p
                         class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
-                      />
+                      >
+                        This article will explore the issue in greater detail...
+                      </p>
                     </div>
                     <span
                       class="MuiCardActionArea-focusHighlight"
                     />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -143,7 +169,9 @@ Object {
           <p
             class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
             data-aos="fade-down"
-          />
+          >
+            FEATURED
+          </p>
         </div>
         <div
           class="MuiBox-root MuiBox-root-9"
@@ -159,23 +187,31 @@ Object {
               <div
                 class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
               >
-                <button
+                <a
+                  aria-disabled="false"
                   class="MuiButtonBase-root MuiCardActionArea-root"
+                  href="https://.../net-memory-management-64389b01f642"
                   rel="noopener"
                   tabindex="0"
                   target="_blank"
-                  type="button"
                 >
-                  <div />
+                  <div
+                    class="MuiCardMedia-root makeStyles-card_media-7"
+                    style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg);"
+                  />
                   <div
                     class="MuiCardContent-root makeStyles-card_content-4"
                   >
                     <p
                       class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
-                    />
+                    >
+                      Memory Management
+                    </p>
                     <p
                       class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
-                    />
+                    >
+                      The basics you should know, when writing an application...
+                    </p>
                   </div>
                   <span
                     class="MuiCardActionArea-focusHighlight"
@@ -183,7 +219,7 @@ Object {
                   <span
                     class="MuiTouchRipple-root"
                   />
-                </button>
+                </a>
               </div>
             </div>
             <div
@@ -194,28 +230,36 @@ Object {
               <div
                 class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
               >
-                <button
+                <a
+                  aria-disabled="false"
                   class="MuiButtonBase-root MuiCardActionArea-root"
+                  href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
                   rel="noopener"
                   tabindex="0"
                   target="_blank"
-                  type="button"
                 >
-                  <div />
+                  <div
+                    class="MuiCardMedia-root makeStyles-card_media-7"
+                    style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg);"
+                  />
                   <div
                     class="MuiCardContent-root makeStyles-card_content-4"
                   >
                     <p
                       class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
-                    />
+                    >
+                      Stored Procedures
+                    </p>
                     <p
                       class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
-                    />
+                    >
+                      I explain why I do not need them that much...
+                    </p>
                   </div>
                   <span
                     class="MuiCardActionArea-focusHighlight"
                   />
-                </button>
+                </a>
               </div>
             </div>
             <div
@@ -226,28 +270,36 @@ Object {
               <div
                 class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
               >
-                <button
+                <a
+                  aria-disabled="false"
                   class="MuiButtonBase-root MuiCardActionArea-root"
+                  href="https://.../sql-injection-1bde8bb76ebc"
                   rel="noopener"
                   tabindex="0"
                   target="_blank"
-                  type="button"
                 >
-                  <div />
+                  <div
+                    class="MuiCardMedia-root makeStyles-card_media-7"
+                    style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg);"
+                  />
                   <div
                     class="MuiCardContent-root makeStyles-card_content-4"
                   >
                     <p
                       class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
-                    />
+                    >
+                      SQL Injection
+                    </p>
                     <p
                       class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
-                    />
+                    >
+                      This article will explore the issue in greater detail...
+                    </p>
                   </div>
                   <span
                     class="MuiCardActionArea-focusHighlight"
                   />
-                </button>
+                </a>
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
 import { FeaturedView } from "./featuredView";
+import { ContentPageData } from "../../../Store/Defaults";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -28,11 +29,11 @@ describe("test component: featuredView", () => {
         image3: "article2.jpg",
     };
 
+    const pageData = ContentPageData;
+    pageData.components.featured = testContent;
+
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
     });
 
     it("should render correctly '<FeaturedView />' when content is loaded.", () => {
