@@ -25,7 +25,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
 
     public override async Task<GetContentManifestQueryResult> Handle(GetContentManifestQuery request, CancellationToken cancellationToken)
     {
-        const string requestUrl = "content/components/__manifest.json";
+        const string requestUrl = "content/data/__manifest.json";
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBlob.OpenRead(requestUrl, cancellationToken);
 
