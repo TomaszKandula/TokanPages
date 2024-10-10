@@ -18,11 +18,12 @@ public static class ComponentsMapper
     /// <returns>Command object.</returns>
     public static RequestPageDataCommand MapToRequestPageDataCommand(RequestPageDataDto model) => new()
     {
+        PageName = model.PageName,
+        Language = model.Language,
         Components = model.Components.Select(item => new ContentModel
             {
                 ContentName = item
             })
-            .ToList(),
-        Language = model.Language
+            .ToList()
     };
 }

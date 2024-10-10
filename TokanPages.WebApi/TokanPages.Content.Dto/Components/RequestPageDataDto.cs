@@ -14,6 +14,11 @@ public class RequestPageDataDto
     public List<string> Components { get; set; } = new();
 
     /// <summary>
+    /// Page name using given components.
+    /// </summary>
+    public string? PageName { get; set; }
+    
+    /// <summary>
     /// Selected language.
     /// </summary>
     public string? Language { get; set; }
