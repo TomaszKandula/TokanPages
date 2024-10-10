@@ -88,6 +88,7 @@ export const UpdateComponents = (state: ContentPageDataState, source: ContentMod
         result.electronics =
             item.contentName === "electronics" ? (item.content as DocumentContentDto) : result.electronics;
         result.guitar = item.contentName === "guitar" ? (item.content as DocumentContentDto) : result.guitar;
+        result.football = item.contentName === "football" ? (item.content as DocumentContentDto) : result.football;
         result.photography =
             item.contentName === "photography" ? (item.content as DocumentContentDto) : result.photography;
     });
