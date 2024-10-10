@@ -31,7 +31,7 @@ export const MainPage = (): React.ReactElement => {
                 "cookiesPrompt",
                 "footer",
                 "templates",
-            ])
+            ], "MainPage")
         );
     }, [language?.id]);
 

@@ -11,7 +11,7 @@ export const BicyclePage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "bicycle"]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "bicycle"], "BicyclePage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

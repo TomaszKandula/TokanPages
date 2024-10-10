@@ -11,7 +11,7 @@ export const PasswordResetPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "resetPassword"]));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "resetPassword"], "ResetPassword"));
     }, [language?.id]);
 
     return (

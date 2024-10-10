@@ -11,7 +11,7 @@ export const PolicyPage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "policy", "footer"]));
+        dispatch(ContentPageDataAction.request(["navigation", "policy", "footer"], "PolicyPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

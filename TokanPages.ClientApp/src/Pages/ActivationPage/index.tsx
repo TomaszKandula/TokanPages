@@ -29,7 +29,7 @@ export const ActivationPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "activateAccount"]));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "activateAccount"], "ActivationPage"));
     }, [language?.id]);
 
     return (
