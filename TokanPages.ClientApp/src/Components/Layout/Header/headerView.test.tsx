@@ -25,7 +25,7 @@ describe("test component: headerView", () => {
         resume: {
             text: "Get the CV",
             href: "/download-link",
-        },    
+        },
     };
 
     const pageData = ContentPageData;
