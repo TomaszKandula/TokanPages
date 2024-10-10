@@ -2,16 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
+import { ContentPageDataAction } from "../../Store/Actions";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
-
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentNewsletterRemoveAction,
-    ContentTemplatesAction,
-} from "../../Store/Actions";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -24,10 +18,7 @@ export const NewsletterRemovePage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentNavigationAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentNewsletterRemoveAction.get());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "newsletterRemove"], "NewsletterRemove"));
     }, [language?.id]);
 
     return (

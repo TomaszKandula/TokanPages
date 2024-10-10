@@ -3,16 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
+import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
+import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { ResetPasswordView } from "./View/resetPasswordView";
 import Validate from "validate.js";
-
-import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
-
-import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
-
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 
 const formDefaultValues: ResetFormInput = {
     email: "",
@@ -27,10 +23,11 @@ export interface ResetPasswordProps {
 export const ResetPassword = (props: ResetPasswordProps): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const content = useSelector((state: ApplicationState) => state.contentResetPassword);
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data?.components.templates;
+    const content = data?.components.resetPassword;
 
     const hasNotStarted = reset?.status === OperationStatus.notStarted;
     const hasFinished = reset?.status === OperationStatus.hasFinished;
@@ -99,15 +96,15 @@ export const ResetPassword = (props: ResetPasswordProps): React.ReactElement => 
 
     return (
         <ResetPasswordView
-            isLoading={content?.isLoading}
+            isLoading={data?.isLoading}
             progress={hasProgress}
-            caption={content?.content?.caption}
-            button={content?.content?.button}
+            caption={content?.caption}
+            button={content?.button}
             email={form.email}
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-            labelEmail={content?.content?.labelEmail}
+            labelEmail={content?.labelEmail}
             pt={props.pt}
             pb={props.pb}
             background={props.background}

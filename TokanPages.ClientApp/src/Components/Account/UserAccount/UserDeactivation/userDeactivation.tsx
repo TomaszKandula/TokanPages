@@ -16,11 +16,12 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content);
-    const account = useSelector((state: ApplicationState) => state.contentAccount);
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data.components.templates;
+    const account = data.components.account;
 
     const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
     const hasUpdateFinished = update?.status === OperationStatus.hasFinished;
@@ -75,10 +76,10 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
 
     return (
         <UserDeactivationView
-            isLoading={account.isLoading}
+            isLoading={data.isLoading}
             buttonHandler={deactivateButtonHandler}
             progress={hasProgress}
-            section={account.content?.sectionAccountDeactivation}
+            section={account.sectionAccountDeactivation}
             background={props.background}
         />
     );

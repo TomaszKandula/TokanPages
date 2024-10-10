@@ -3,6 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
 import { TechnologiesView } from "./technologiesView";
+import { ContentPageData } from "../../../Store/Defaults";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -24,11 +25,11 @@ describe("test component: technologiesView", () => {
         text4: "I have experience with...",
     };
 
+    const pageData = ContentPageData;
+    pageData.components.technologies = testContent;
+
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
     });
 
     it("should render correctly '<TechnologiesView />' when content is loaded.", () => {

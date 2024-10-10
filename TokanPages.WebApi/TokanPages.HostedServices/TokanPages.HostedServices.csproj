@@ -30,6 +30,7 @@
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BatchService\TokanPages.Services.BatchService.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.SpaCachingService\TokanPages.Services.SpaCachingService.csproj" />
       <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VideoProcessingService\TokanPages.Services.VideoProcessingService.csproj" />
     </ItemGroup>
 

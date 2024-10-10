@@ -1,7 +1,5 @@
 export interface ClientsContentDto {
-    content: {
-        language: string;
-        caption: string;
-        images: string[];
-    };
+    language: string;
+    caption: string;
+    images: string[];
 }

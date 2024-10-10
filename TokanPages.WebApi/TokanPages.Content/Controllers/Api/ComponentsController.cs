@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using TokanPages.Backend.Application.Content.Components.Commands;
 using TokanPages.Backend.Application.Content.Components.Queries;
+using TokanPages.Content.Controllers.Mappers;
+using TokanPages.Content.Dto.Components;
 using TokanPages.Persistence.Caching.Abstractions;
 
 namespace TokanPages.Content.Controllers.Api;
@@ -35,7 +38,6 @@ public class ComponentsController : ApiBaseController
     /// <summary>
     /// Returns component/document content.
     /// </summary>
-    /// <param name="type">Content type (component, document).</param>
     /// <param name="name">Content name.</param>
     /// <param name="language">Language code (eng, pol, etc.).</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
@@ -44,8 +46,18 @@ public class ComponentsController : ApiBaseController
     [ProducesResponseType(typeof(GetContentQueryResult), StatusCodes.Status200OK)]
     public async Task<GetContentQueryResult> GetContent(
         [FromQuery] string? language,
-        [FromQuery] string type = "",
         [FromQuery] string name = "",
         [FromQuery] bool noCache = false)
-        => await _contentCache.GetContent(language, type, name, noCache);
+        => await _contentCache.GetContent(language, name, noCache);
+
+    /// <summary>
+    /// Returns component's content.
+    /// </summary>
+    /// <param name="request">List of requested component's content for given language.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>Object.</returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(RequestPageDataCommandResult), StatusCodes.Status200OK)]
+    public async Task<RequestPageDataCommandResult> RequestPageData([FromBody] RequestPageDataDto request, [FromQuery] bool noCache = false) 
+        => await _contentCache.GetPageContent(ComponentsMapper.MapToRequestPageDataCommand(request), noCache);
 }

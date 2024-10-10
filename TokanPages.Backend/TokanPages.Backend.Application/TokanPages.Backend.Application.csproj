@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Content\Components\" />
     <Folder Include="Notifications\" />
     <Folder Include="Sender\" />
   </ItemGroup>

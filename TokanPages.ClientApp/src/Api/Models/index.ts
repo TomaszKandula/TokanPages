@@ -39,7 +39,11 @@ export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
 
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
+export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
+export type { RequestPageDataDto } from "./Content/requestPageDataDto";
+export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";
 
+export type { ComponentsDto } from "./Components/State";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
 export type { HeaderContentDto } from "./Components/headerContentDto";
@@ -70,6 +74,7 @@ export type {
     SectionAccountDeactivation,
     SectionAccountRemoval,
 } from "./Components/accountContentDto";
+
 export type {
     TemplatesContent,
     ApplicationProps,
@@ -83,12 +88,6 @@ export type {
     NewsletterProps,
 } from "./Components/Templates";
 
-export type { NotificationData } from "./NotificationsWeb/notificationData";
-export type { NotificationRequest } from "./NotificationsWeb/notificationRequest";
-export type { NotificationResponse } from "./NotificationsWeb/notificationResponse";
-export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
-export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
-
 export type {
     IconDto,
     LinkDto,
@@ -100,5 +99,11 @@ export type {
     TechItemsDto,
     ServiceItemDto,
 } from "./Components/Common/";
+
+export type { NotificationData } from "./NotificationsWeb/notificationData";
+export type { NotificationRequest } from "./NotificationsWeb/notificationRequest";
+export type { NotificationResponse } from "./NotificationsWeb/notificationResponse";
+export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
+export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
 
 export type { JWT } from "./Jwt";

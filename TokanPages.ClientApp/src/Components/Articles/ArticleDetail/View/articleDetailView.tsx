@@ -40,7 +40,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
     const classes = ArticleDetailStyle();
-    const readTime = props.content.content.textReadTime.replace("{TIME}", props.articleReadTime);
+    const readTime = props.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
@@ -73,13 +73,13 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 >
                                     <Box mt={2} mb={2} ml={3} mr={3}>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            {props.content.content.textFirstName}&nbsp;{props.authorFirstName}
+                                            {props.content.textFirstName}&nbsp;{props.authorFirstName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            {props.content.content.textSurname}&nbsp;{props.authorLastName}
+                                            {props.content.textSurname}&nbsp;{props.authorLastName}
                                         </Typography>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            {props.content.content.textRegistered}&nbsp;{props.authorRegistered}
+                                            {props.content.textRegistered}&nbsp;{props.authorRegistered}
                                         </Typography>
                                     </Box>
                                 </Popover>
@@ -88,7 +88,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         <Box mt={1} mb={5}>
                             <div className={classes.text_block}>
                                 <Typography component="p" variant="subtitle1">
-                                    {props.content.content.textLanguage}&nbsp;
+                                    {props.content.textLanguage}&nbsp;
                                 </Typography>
                                 {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
                             </div>
@@ -97,7 +97,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Typography>
                             <div className={classes.text_block}>
                                 <Typography component="p" variant="subtitle1">
-                                    {props.content.content.textPublished}
+                                    {props.content.textPublished}
                                 </Typography>
                                 <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
                                     {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
@@ -105,7 +105,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </div>
                             <div className={classes.text_block}>
                                 <Typography component="p" variant="subtitle1">
-                                    {props.content.content.textUpdated}
+                                    {props.content.textUpdated}
                                 </Typography>
                                 <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
                                     {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
@@ -113,7 +113,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </div>
                             <div className={classes.text_block}>
                                 <Typography component="p" variant="subtitle1">
-                                    {props.content.content.textReadCount}
+                                    {props.content.textReadCount}
                                 </Typography>
                                 <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
                                     {props.articleReadCount}
@@ -154,7 +154,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 align="left"
                                 color="textSecondary"
                             >
-                                {props.content.content.textWritten}
+                                {props.content.textWritten}
                             </Typography>
                             <Box fontWeight="fontWeightBold">
                                 <Typography className={classes.aliasName} component="span" variant="h6" align="left">
@@ -168,7 +168,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 align="left"
                                 color="textSecondary"
                             >
-                                {props.content.content.textAbout}&nbsp;{props.authorShortBio}
+                                {props.content.textAbout}&nbsp;{props.authorShortBio}
                             </Typography>
                         </Grid>
                     </Grid>

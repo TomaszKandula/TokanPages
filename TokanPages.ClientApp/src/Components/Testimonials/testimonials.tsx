@@ -8,7 +8,8 @@ interface TestimonialsProps {
 }
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
-    const testimonials = useSelector((state: ApplicationState) => state.contentTestimonials);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const testimonials = data?.components?.testimonials;
 
     const [hasTestimonialOne, setTestimonialOne] = React.useState(false);
     const [hasTestimonialTwo, setTestimonialTwo] = React.useState(false);
@@ -28,27 +29,27 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
 
     return (
         <TestimonialsView
-            isLoading={testimonials?.isLoading}
+            isLoading={data?.isLoading}
             hasTestimonialOne={hasTestimonialOne}
             hasTestimonialTwo={hasTestimonialTwo}
             hasTestimonialThree={hasTestimonialThree}
             buttonTestimonialOne={buttonTestimonialOne}
             buttonTestimonialTwo={buttonTestimonialTwo}
             buttonTestimonialThree={buttonTestimonialThree}
-            caption={testimonials?.content?.caption}
-            subtitle={testimonials?.content?.subtitle}
-            photo1={testimonials?.content?.photo1}
-            name1={testimonials?.content?.name1}
-            occupation1={testimonials?.content?.occupation1}
-            text1={testimonials?.content?.text1}
-            photo2={testimonials?.content?.photo2}
-            name2={testimonials?.content?.name2}
-            occupation2={testimonials?.content?.occupation2}
-            text2={testimonials?.content?.text2}
-            photo3={testimonials?.content?.photo3}
-            name3={testimonials?.content?.name3}
-            occupation3={testimonials?.content?.occupation3}
-            text3={testimonials?.content?.text3}
+            caption={testimonials?.caption}
+            subtitle={testimonials?.subtitle}
+            photo1={testimonials?.photo1}
+            name1={testimonials?.name1}
+            occupation1={testimonials?.occupation1}
+            text1={testimonials?.text1}
+            photo2={testimonials?.photo2}
+            name2={testimonials?.name2}
+            occupation2={testimonials?.occupation2}
+            text2={testimonials?.text2}
+            photo3={testimonials?.photo3}
+            name3={testimonials?.name3}
+            occupation3={testimonials?.occupation3}
+            text3={testimonials?.text3}
             background={props.background}
         />
     );

@@ -15,7 +15,7 @@ interface ArticleCardProps {
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
-    const content = useSelector((state: ApplicationState) => state.contentArticle);
+    const content = useSelector((state: ApplicationState) => state.contentPageData.components.article);
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);
     const imageUrl = GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id);
@@ -58,7 +58,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
             title={GetShortText({ value: props.title, limit: 6 })}
             description={GetShortText({ value: props.description, limit: 12 })}
             onClickEvent={onClickEvent}
-            buttonText={content?.content?.button}
+            buttonText={content?.button}
             flagImage={flagImage}
         />
     );

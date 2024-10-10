@@ -3,6 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
 import { Testimonials } from "./testimonials";
+import { ContentPageData } from "../../Store/Defaults";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -28,11 +29,11 @@ describe("test component: testimonials", () => {
         text3: "Joe is one of those rare talents...",
     };
 
+    const pageData = ContentPageData;
+    pageData.components.testimonials = testContent;
+
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
     });
 
     it("should render correctly '<Testimonials />' when content is loaded.", () => {

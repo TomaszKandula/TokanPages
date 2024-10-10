@@ -4,6 +4,7 @@ import * as Redux from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { ArticleFeatureView } from "./articleFeatureView";
+import { ContentPageData } from "../../../../Store/Defaults";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -27,11 +28,11 @@ describe("test articles group component: ArticleFeatureView", () => {
         image4: "image4.jpg",
     };
 
+    const pageData = ContentPageData;
+    pageData.components.articleFeatures = testContent;
+
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
     });
 
     it("should render correctly '<ArticleFeatureView />' when content is loaded.", () => {

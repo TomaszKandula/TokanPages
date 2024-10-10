@@ -4,6 +4,7 @@ import * as Redux from "react-redux";
 import * as Dom from "react-router-dom";
 import { render } from "@testing-library/react";
 import { ActivateAccount } from "./activateAccount";
+import { ContentPageData } from "../../../Store/Defaults";
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof Dom),
@@ -57,13 +58,12 @@ describe("Test account group component: activateAccount", () => {
         },
     };
 
+    const pageData = ContentPageData;
+    pageData.components.activateAccount = testContent;
+
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
-
+        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
         useDispatchMock.mockReturnValue(jest.fn());
     });
 

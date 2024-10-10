@@ -40,7 +40,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{DateTime.Now:T} {nameof(BatchProcessingJob)} is working...");
+        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: working...");
         await _batchService.ProcessOutstandingInvoices(cancellationToken);
     }
 
@@ -51,7 +51,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{nameof(BatchProcessingJob)} started. CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: started, CRON expression is '{_cronExpression}'.");
         return base.StartAsync(cancellationToken);
     }
 
@@ -62,7 +62,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{nameof(BatchProcessingJob)} is stopped.");
+        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }

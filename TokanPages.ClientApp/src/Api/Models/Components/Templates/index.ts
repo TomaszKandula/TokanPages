@@ -81,9 +81,7 @@ export interface TemplatesProps {
 }
 
 export interface TemplatesContent {
-    content: {
-        language: string;
-        forms: FormsProps;
-        templates: TemplatesProps;
-    };
+    language: string;
+    forms: FormsProps;
+    templates: TemplatesProps;
 }

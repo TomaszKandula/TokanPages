@@ -1,12 +1,10 @@
 export interface AccountContentDto {
-    content: {
-        language: string;
-        sectionAccessDenied: SectionAccessDenied;
-        sectionAccountInformation: SectionAccountInformation;
-        sectionAccountPassword: SectionAccountPassword;
-        sectionAccountDeactivation: SectionAccountDeactivation;
-        sectionAccountRemoval: SectionAccountRemoval;
-    };
+    language: string;
+    sectionAccessDenied: SectionAccessDenied;
+    sectionAccountInformation: SectionAccountInformation;
+    sectionAccountPassword: SectionAccountPassword;
+    sectionAccountDeactivation: SectionAccountDeactivation;
+    sectionAccountRemoval: SectionAccountRemoval;
 }
 
 export interface SectionAccessDenied {

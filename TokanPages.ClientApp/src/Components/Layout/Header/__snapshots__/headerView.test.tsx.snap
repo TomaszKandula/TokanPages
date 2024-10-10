@@ -36,7 +36,9 @@ Object {
               <span
                 class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
               >
-                <div />
+                <div>
+                  For years...
+                </div>
               </span>
               <span
                 class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
@@ -69,7 +71,7 @@ Object {
                 </a>
                 <a
                   class="makeStyles-action_link-37"
-                  href="/"
+                  href="/download-link"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
@@ -78,7 +80,9 @@ Object {
                   >
                     <span
                       class="MuiButton-label"
-                    />
+                    >
+                      Get the CV
+                    </span>
                   </button>
                 </a>
               </div>
@@ -120,7 +124,9 @@ Object {
             <span
               class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
             >
-              <div />
+              <div>
+                For years...
+              </div>
             </span>
             <span
               class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
@@ -153,7 +159,7 @@ Object {
               </a>
               <a
                 class="makeStyles-action_link-37"
-                href="/"
+                href="/download-link"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
@@ -162,7 +168,9 @@ Object {
                 >
                   <span
                     class="MuiButton-label"
-                  />
+                  >
+                    Get the CV
+                  </span>
                 </button>
               </a>
             </div>

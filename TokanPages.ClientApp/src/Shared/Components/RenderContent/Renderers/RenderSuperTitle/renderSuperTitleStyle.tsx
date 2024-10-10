@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import { Colours } from "../../../../../Theme";
 
-export const RenderSuperTitleStyle = makeStyles((theme) => ({
+export const RenderSuperTitleStyle = makeStyles(theme => ({
     container: {
         display: "flex",
         flexDirection: "row",

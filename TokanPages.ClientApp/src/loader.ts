@@ -1,5 +1,6 @@
 import { GetContentManifestDto } from "./Api/Models";
 import { RequestContract, ExecuteAsync, GetConfiguration, GET_CONTENT_MANIFEST } from "./Api/Request";
+import { HasPageContentLoaded } from "./Shared/Services/Utilities";
 
 const requestManifest: RequestContract = {
     configuration: {
@@ -15,6 +16,8 @@ const hidePreloader = (): void => {
 };
 
 export const Initialize = async (callback: any): Promise<void> => {
+    if (HasPageContentLoaded()) return;
+
     const manifest = await ExecuteAsync(GetConfiguration(requestManifest));
     const manifestDto: GetContentManifestDto = manifest.content as GetContentManifestDto;
 

@@ -95,17 +95,17 @@ Despite mainly focusing on software development and Microsoft technologies, this
 </p>
 
 1. React w/Redux (TypeScript).
-1. Material-UI.
-1. JEST.
-1. Axios.
-1. AOS.
-1. Validate.js.
-1. Syntax Highlighter.
-1. Emoji Render.
-1. HTML Parser.
-1. Husky.
-1. Semantic-Release.
-1. NGINX.
+2. Material-UI.
+3. JEST.
+4. Axios.
+5. AOS.
+6. Validate.js.
+7. Syntax Highlighter.
+8. Emoji Render.
+9. HTML Parser.
+10. Husky.
+11. Semantic-Release.
+12. NGINX.
 
 The client app uses React Hooks. Tests are provided using JEST, but there has yet to be full coverage.
 
@@ -122,19 +122,21 @@ The project is dockerized and deployed via GitHub Actions to VPS. The web server
 </p>
 
 1. WebApi (NET 6, C#).
-1. Microsoft Windows Server 2022 w/SQL Database.
-1. Entity Framework Core.
-1. Azure Blob Storage.
-1. Azure Redis Cache.
-1. Azure Key Vault. 
-1. Azure Service Bus.
-1. MediatR library.
-1. CQRS pattern (with no event sourcing).
-1. FluentValidation.
-1. SeriLog.
-1. Swagger-UI.
-1. Polly.
-1. SignalR.
+2. MS Windows Server 2022 w/SQL Database (deployed to the separate VPS).
+3. Redis Cache (deployed to the separate VPS).
+4. Entity Framework Core.
+5. Azure Blob Storage.
+6. Azure Key Vault. 
+7. Azure Service Bus.
+8. MediatR library.
+9. CQRS pattern.
+10. FluentValidation.
+11. SeriLog.
+12. Swagger-UI.
+13. Polly.
+14. SignalR.
+15. PuppeteerSharp (Headless Chrome).
+16. PayU API (to be changed to Revolut API).
 
 Tests are provided using [XUnit](https://github.com/xunit/xunit) and [FluentAssertions](https://github.com/fluentassertions/fluentassertions).
 

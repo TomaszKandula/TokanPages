@@ -1,17 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
+import { ContentPageDataAction } from "../../Store/Actions";
 import { Navigation, Footer } from "../../Components/Layout";
-import Validate from "validate.js";
-
 import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../Components/Account";
-
-import {
-    ContentNavigationAction,
-    ContentFooterAction,
-    ContentAccountAction,
-    ContentTemplatesAction,
-} from "../../Store/Actions";
+import Validate from "validate.js";
 
 export const AccountPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -21,10 +14,7 @@ export const AccountPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentNavigationAction.get());
-        dispatch(ContentAccountAction.get());
-        dispatch(ContentFooterAction.get());
-        dispatch(ContentTemplatesAction.get());
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "account"], "AccountPage"));
     }, [language?.id]);
 
     return (

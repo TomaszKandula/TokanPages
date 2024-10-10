@@ -20,7 +20,9 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
 
     const dispatch = useDispatch();
 
-    const template = useSelector((state: ApplicationState) => state.contentTemplates?.content.templates.application);
+    const template = useSelector(
+        (state: ApplicationState) => state.contentPageData.components.templates.templates.application
+    );
     const hasTemplates =
         template.nullError !== "" &&
         template.unexpectedError !== "" &&
