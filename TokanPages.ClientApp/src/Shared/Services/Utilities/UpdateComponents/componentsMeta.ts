@@ -7,7 +7,7 @@ export const GetComponentMeta = (): string => {
 
 export const SetComponentMeta = (pageName?: string, languageId?: string): void => {
     const meta = document.querySelector(QUERY_SELECTOR);
-    meta?.setAttribute(META_ATTRIBUTE, `${pageName}-${languageId}`.toLowerCase());
+    meta?.setAttribute(META_ATTRIBUTE, `last-cache: ${pageName}; language: ${languageId};`.toLowerCase());
 };
 
 export const HasPageContentLoaded = (pageName?: string): boolean => {
