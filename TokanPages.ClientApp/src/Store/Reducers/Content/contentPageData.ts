@@ -3,7 +3,7 @@ import { ApplicationDefault } from "../../Configuration";
 import { ContentPageDataState } from "../../States";
 import { ContentPageData as ContentPageDataDefault } from "../../Defaults";
 import { OperationStatus } from "../../../Shared/enums";
-import { UpdateComponents } from "../../../Shared/Services/Utilities";
+import { UpdateComponents, SetComponentMeta } from "../../../Shared/Services/Utilities";
 import { TKnownActions, CLEAR, RECEIVE, REQUEST } from "../../Actions/Content/contentPageData";
 
 export const ContentPageData: Reducer<ContentPageDataState> = (
@@ -26,7 +26,7 @@ export const ContentPageData: Reducer<ContentPageDataState> = (
                 components: state.components,
             };
         case RECEIVE:
-            SetMetaContent(action.payload.language);
+            SetComponentMeta(action.payload.pageName, action.payload.language);
             return {
                 status: OperationStatus.hasFinished,
                 isLoading: false,
@@ -37,8 +37,3 @@ export const ContentPageData: Reducer<ContentPageDataState> = (
             return state;
     }
 };
-
-const SetMetaContent = (languageId?: string) => {
-    const meta = document.querySelector("meta[name=\"content-api\"]");
-    meta?.setAttribute("content", `page-content-loaded-${languageId}`);
-}

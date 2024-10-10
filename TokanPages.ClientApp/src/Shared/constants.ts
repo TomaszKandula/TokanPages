@@ -13,4 +13,6 @@ export const SELECTED_LANGUAGE: string = "SELECTED_LANGUAGE";
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
 export const USER_DATA: string = "USER_DATA";
-export const PDF_WORKER_URL = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+export const PDF_WORKER_URL = "pdf.worker.min.js";
+export const QUERY_SELECTOR = "meta[name=\"cache-content-info\"]";
+export const META_ATTRIBUTE = "content";

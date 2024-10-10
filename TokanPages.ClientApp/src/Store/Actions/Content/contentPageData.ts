@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RequestPageDataResultDto } from "../../../Api/Models";
-import { ComponentsCheck } from "../../../Shared/Services/Utilities";
+import { ComponentsCheck, HasPageContentLoaded } from "../../../Shared/Services/Utilities";
 import { Execute, ExecuteContract, GetConfiguration, REQUEST_PAGE_DATA, RequestContract } from "../../../Api/Request";
 
 export const CLEAR = "CLEAR_PAGE_DATA";
@@ -23,8 +23,10 @@ export const ContentPageDataAction = {
         dispatch({ type: CLEAR });
     },
     request:
-        (components: string[]): ApplicationAction<TKnownActions> =>
+        (components: string[], pageName: string): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
+            if (HasPageContentLoaded(pageName)) return;
+
             const state = getState().contentPageData;
             const languageId = getState().applicationLanguage.id;
             const hasComponent = ComponentsCheck({ components, state, languageId });
@@ -41,6 +43,7 @@ export const ContentPageDataAction = {
                     data: {
                         components: hasComponent,
                         language: languageId,
+                        pageName: pageName,
                     },
                 },
             };
