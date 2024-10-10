@@ -18,7 +18,7 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "newsletterUpdate"]));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "newsletterUpdate"], "NewsletterUpdate"));
     }, [language?.id]);
 
     return (

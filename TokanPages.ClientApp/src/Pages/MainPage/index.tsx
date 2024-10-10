@@ -18,20 +18,23 @@ export const MainPage = (): React.ReactElement => {
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request([
-                "navigation",
-                "header",
-                "clients",
-                "technologies",
-                "articleFeatures",
-                "featured",
-                "testimonials",
-                "newsletter",
-                "contactForm",
-                "cookiesPrompt",
-                "footer",
-                "templates",
-            ])
+            ContentPageDataAction.request(
+                [
+                    "navigation",
+                    "header",
+                    "clients",
+                    "technologies",
+                    "articleFeatures",
+                    "featured",
+                    "testimonials",
+                    "newsletter",
+                    "contactForm",
+                    "cookiesPrompt",
+                    "footer",
+                    "templates",
+                ],
+                "MainPage"
+            )
         );
     }, [language?.id]);
 

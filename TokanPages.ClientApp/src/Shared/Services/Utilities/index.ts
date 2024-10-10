@@ -1,4 +1,10 @@
-export { UpdateComponents, ComponentsCheck } from "./UpdateComponents";
+export {
+    UpdateComponents,
+    ComponentsCheck,
+    SetComponentMeta,
+    GetComponentMeta,
+    HasPageContentLoaded,
+} from "./UpdateComponents";
 
 export { CountWords } from "./CountWords/countWords";
 export { GetReadTime } from "./GetReadTime/getReadTime";

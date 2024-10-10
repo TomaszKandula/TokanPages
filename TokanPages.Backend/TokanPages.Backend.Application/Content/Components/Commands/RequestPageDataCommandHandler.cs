@@ -44,6 +44,7 @@ public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataComma
         return new RequestPageDataCommandResult
         {
             Components = content,
+            PageName = request.PageName,
             Language = selectedLanguage
         };
     }

@@ -11,7 +11,7 @@ export const StoryPage = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "story"]));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "story"], "StoryPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

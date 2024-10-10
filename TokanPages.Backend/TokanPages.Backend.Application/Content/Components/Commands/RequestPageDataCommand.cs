@@ -7,5 +7,7 @@ public class RequestPageDataCommand : IRequest<RequestPageDataCommandResult>
 {
     public List<ContentModel> Components { get; set; } = new();
 
+    public string? PageName { get; set; }
+
     public string? Language { get; set; }
 }
