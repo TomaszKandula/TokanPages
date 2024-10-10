@@ -26,6 +26,7 @@ export const ContentPageData: Reducer<ContentPageDataState> = (
                 components: state.components,
             };
         case RECEIVE:
+            SetMetaContent(action.payload.language);
             return {
                 status: OperationStatus.hasFinished,
                 isLoading: false,
@@ -36,3 +37,8 @@ export const ContentPageData: Reducer<ContentPageDataState> = (
             return state;
     }
 };
+
+const SetMetaContent = (languageId?: string) => {
+    const meta = document.querySelector("meta[name=\"content-api\"]");
+    meta?.setAttribute("content", `page-content-loaded-${languageId}`);
+}
