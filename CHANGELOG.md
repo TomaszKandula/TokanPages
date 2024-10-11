@@ -1,3 +1,10 @@
+## [0.109.1](https://github.com/TomaszKandula/TokanPages/compare/v0.109.0...v0.109.1) (2024-10-11)
+
+
+### Bug Fixes
+
+* remove redirect, to be done differently ([328ffe3](https://github.com/TomaszKandula/TokanPages/commit/328ffe39b40211c1a6bdc800a546698639e3ea64))
+
 # [0.109.0](https://github.com/TomaszKandula/TokanPages/compare/v0.108.1...v0.109.0) (2024-10-10)
 
 
