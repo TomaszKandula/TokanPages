@@ -1,4 +1,5 @@
 using PuppeteerSharp;
+using PuppeteerSharp.BrowserData;
 
 namespace TokanPages.Services.SpaCachingService;
 
@@ -12,6 +13,20 @@ public class CachingService : ICachingService
     private const string CacheDirName = "CacheDir";
 
     private const string DocumentFontReady = "document.fonts.ready";
+
+    private static LaunchOptions _launchOptions = new()
+    {
+        Headless = true,
+        HeadlessMode = HeadlessMode.True,
+        LogProcess = true,
+        Args = new []
+        {
+            "--disable-gpu",
+            "--disable-dev-shm-usage",
+            "--disable-setuid-sandbox",
+            "--no-sandbox"
+        }
+    };
 
     private static readonly WaitUntilNavigation[] WaitUntilOptions = {
         WaitUntilNavigation.Load,
@@ -42,14 +57,8 @@ public class CachingService : ICachingService
     /// <inheritdoc />
     public async Task<string> GeneratePdf(string sourceUrl)
     {
-        var browserFetcher = new BrowserFetcher();
-        var launchOptions = new LaunchOptions
-        {
-            Headless = true
-        };
-
-        await browserFetcher.DownloadAsync();
-        await using var browser = await Puppeteer.LaunchAsync(launchOptions);
+        await GetBrowser();
+        await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
         await using var page = await browser.NewPageAsync();
 
         await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
@@ -67,14 +76,8 @@ public class CachingService : ICachingService
     /// <inheritdoc />
     public async Task<string> RenderStaticPage(string sourceUrl, string pageName)
     {
-        var browserFetcher = new BrowserFetcher();
-        var launchOptions = new LaunchOptions
-        {
-            Headless = true
-        };
-
-        await browserFetcher.DownloadAsync();
-        await using var browser = await Puppeteer.LaunchAsync(launchOptions);
+        await GetBrowser();
+        await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
         await using var page = await browser.NewPageAsync();
 
         await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
@@ -84,5 +87,21 @@ public class CachingService : ICachingService
         var outputPath = Path.Combine(CacheDir, $"{pageName}.html");
         await File.WriteAllTextAsync(outputPath, htmlContent);
         return outputPath;
+    }
+
+    private static async Task GetBrowser()
+    {
+        var browserFetcher = new BrowserFetcher
+        {
+            Browser = SupportedBrowser.Chrome
+        };
+
+        await browserFetcher.DownloadAsync();
+        var path = browserFetcher
+            .GetInstalledBrowsers()
+            .First(browser => browser.BuildId == Chrome.DefaultBuildId)
+            .GetExecutablePath();
+
+        _launchOptions.ExecutablePath = path;
     }
 }
