@@ -1,3 +1,13 @@
+# [0.110.0](https://github.com/TomaszKandula/TokanPages/compare/v0.109.1...v0.110.0) (2024-10-13)
+
+
+### Features
+
+* change launch options ([f9d6f85](https://github.com/TomaszKandula/TokanPages/commit/f9d6f85056897a2cfdbf3a0218b1ce18f6fc21b9))
+* do not process empty CRONs ([78cca92](https://github.com/TomaszKandula/TokanPages/commit/78cca92b21890686e92a8b3be6db011d13a1dadd))
+* remove icu, install chrome deps ([0e14b94](https://github.com/TomaszKandula/TokanPages/commit/0e14b947339a07503db4828ac059848f5a3aeb5c))
+* switch to debian ([33e8d8f](https://github.com/TomaszKandula/TokanPages/commit/33e8d8f33750dbb0ac7b1197969c7ab904b9e57d))
+
 ## [0.109.1](https://github.com/TomaszKandula/TokanPages/compare/v0.109.0...v0.109.1) (2024-10-11)
 
 
