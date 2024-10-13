@@ -115,24 +115,30 @@ public static class Dependencies
         var cachingServiceCron = configuration.GetValue<string>("CachingService_Cron");
         var cachingServicePaths = configuration.GetValue<string>("CachingService_Paths");
 
-        var batchProcessingConfig = new BatchProcessingConfig
+        if (!string.IsNullOrWhiteSpace(batchInvoicingCron))
         {
-            TimeZoneInfo = TimeZoneInfo.Local,
-            CronExpression = batchInvoicingCron ?? string.Empty
-        };
+            var batchProcessingConfig = new BatchProcessingConfig
+            {
+                TimeZoneInfo = TimeZoneInfo.Local,
+                CronExpression = batchInvoicingCron
+            };
 
-        var cachingProcessingConfig = new CachingProcessingConfig
+            services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
+            services.AddHostedService<BatchProcessingJob>();
+        }
+
+        if (!string.IsNullOrWhiteSpace(cachingServiceCron))
         {
-            TimeZoneInfo = TimeZoneInfo.Local,
-            CronExpression = cachingServiceCron ?? string.Empty,
-            RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths)
-        };
+            var cachingProcessingConfig = new CachingProcessingConfig
+            {
+                TimeZoneInfo = TimeZoneInfo.Local,
+                CronExpression = cachingServiceCron,
+                RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths)
+            };
 
-        services.AddSingleton<IBatchProcessingConfig>(batchProcessingConfig);
-        services.AddHostedService<BatchProcessingJob>();
-
-        services.AddSingleton<ICachingProcessingConfig>(cachingProcessingConfig);
-        services.AddHostedService<CachingProcessingJob>();
+            services.AddSingleton<ICachingProcessingConfig>(cachingProcessingConfig);
+            services.AddHostedService<CachingProcessingJob>();
+        }
     }
 
     /// <summary>
