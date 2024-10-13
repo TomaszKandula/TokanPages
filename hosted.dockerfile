@@ -1,7 +1,7 @@
 # ======================================================================================================================
 # 1 - BUILD PROJECTS AND RUN TESTS
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18 AS projects
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS projects
 
 WORKDIR /app
 COPY . ./
@@ -12,7 +12,7 @@ RUN dotnet build -c Release --force
 # ======================================================================================================================
 # 2 - BUILD DOCKER IMAGE
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine3.18
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 
 # INSTALL FFMPEG FOR ALPINE
