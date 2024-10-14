@@ -55,39 +55,6 @@ export const GET_VIDEO_ASSET = `${API_ASSETS_URI}/getVideoAsset?blobName={name}`
 
 export const GET_CONTENT_MANIFEST = `${API_CONTENT_URI}/getManifest`;
 export const REQUEST_PAGE_DATA = `${API_CONTENT_URI}/requestPageData`;
-export const GET_CONTENT_TEMPLATES = `${API_CONTENT_URI}/getContent?name=templates&type=component`;
-export const GET_NAVIGATION_CONTENT = `${API_CONTENT_URI}/getContent?name=navigation&type=component`;
-export const GET_HEADER_CONTENT = `${API_CONTENT_URI}/getContent?name=header&type=component`;
-export const GET_FOOTER_CONTENT = `${API_CONTENT_URI}/getContent?name=footer&type=component`;
-export const GET_ARTICLE_FEAT_CONTENT = `${API_CONTENT_URI}/getContent?name=articleFeatures&type=component`;
-export const GET_CONTACT_FORM_CONTENT = `${API_CONTENT_URI}/getContent?name=contactForm&type=component`;
-export const GET_COOKIES_PROMPT_CONTENT = `${API_CONTENT_URI}/getContent?name=cookiesPrompt&type=component`;
-export const GET_CLIENTS_CONTENT = `${API_CONTENT_URI}/getContent?name=clients&type=component`;
-export const GET_FEATURED_CONTENT = `${API_CONTENT_URI}/getContent?name=featured&type=component`;
-export const GET_TECHNOLOGIES_CONTENT = `${API_CONTENT_URI}/getContent?name=technologies&type=component`;
-export const GET_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent?name=newsletter&type=component`;
-export const GET_RESET_PASSWORD_CONTENT = `${API_CONTENT_URI}/getContent?name=resetPassword&type=component`;
-export const GET_UPDATE_PASSWORD_CONTENT = `${API_CONTENT_URI}/getContent?name=updatePassword&type=component`;
-export const GET_SIGNIN_CONTENT = `${API_CONTENT_URI}/getContent?name=userSignin&type=component`;
-export const GET_SIGNUP_CONTENT = `${API_CONTENT_URI}/getContent?name=userSignup&type=component`;
-export const GET_SIGNOUT_CONTENT = `${API_CONTENT_URI}/getContent?name=userSignout&type=component`;
-export const GET_TESTIMONIALS_CONTENT = `${API_CONTENT_URI}/getContent?name=testimonials&type=component`;
-export const GET_UNSUBSCRIBE_CONTENT = `${API_CONTENT_URI}/getContent?name=unsubscribe&type=component`;
-export const GET_ACTIVATE_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent?name=activateAccount&type=component`;
-export const GET_UPDATE_NEWSLETTER_CONTENT = `${API_CONTENT_URI}/getContent?name=updateNewsletter&type=component`;
-export const GET_ACCOUNT_CONTENT = `${API_CONTENT_URI}/getContent?name=account&type=component`;
-export const GET_ARTICLE_CONTENT = `${API_CONTENT_URI}/getContent?name=article&type=component`;
-export const GET_BUSINESS_FORM_CONTENT = `${API_CONTENT_URI}/getContent?name=businessForm&type=component`;
-export const GET_ABOUT_CONTENT = `${API_CONTENT_URI}/getContent?name=about&type=document`;
-export const GET_STORY_CONTENT = `${API_CONTENT_URI}/getContent?name=story&type=document`;
-export const GET_TERMS_CONTENT = `${API_CONTENT_URI}/getContent?name=terms&type=document`;
-export const GET_POLICY_CONTENT = `${API_CONTENT_URI}/getContent?name=policy&type=document`;
-export const GET_SHOWCASE_CONTENT = `${API_CONTENT_URI}/getContent?name=showcase&type=document`;
-export const GET_BICYCLE_CONTENT = `${API_CONTENT_URI}/getContent?name=bicycle&type=document`;
-export const GET_ELECTRONICS_CONTENT = `${API_CONTENT_URI}/getContent?name=electronics&type=document`;
-export const GET_FOOTBALL_CONTENT = `${API_CONTENT_URI}/getContent?name=football&type=document`;
-export const GET_GUITAR_CONTENT = `${API_CONTENT_URI}/getContent?name=guitar&type=document`;
-export const GET_PHOTOGRAPHY_CONTENT = `${API_CONTENT_URI}/getContent?name=photography&type=document`;
 
 export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset?id={id}&assetName=image.webp`;
 
