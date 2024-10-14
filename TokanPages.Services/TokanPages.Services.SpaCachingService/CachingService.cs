@@ -3,6 +3,7 @@ using PuppeteerSharp.BrowserData;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.SpaCachingService;
 
@@ -18,6 +19,8 @@ public class CachingService : ICachingService
     private const string DocumentFontReady = "document.fonts.ready";
 
     private const string ServiceName = $"[{nameof(CachingService)}]";
+
+    private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly ILoggerService _loggerService;
 
@@ -41,13 +44,15 @@ public class CachingService : ICachingService
         WaitUntilNavigation.Networkidle0
     };
 
-    public string PdfDir { get; }
+    private string PdfDir { get; }
 
-    public string CacheDir { get; }
+    private string CacheDir { get; }
 
-    public CachingService(ILoggerService loggerService)
+    public CachingService(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory)
     {
         _loggerService = loggerService;
+        _azureBlobStorageFactory = azureBlobStorageFactory;
+
         PdfDir = GetPdfDir();
         CacheDir = GetCacheDir();
         EnsureWorkingDirectories();
@@ -66,12 +71,14 @@ public class CachingService : ICachingService
             await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
 
-            var outputPath = Path.Combine(PdfDir, $"{Guid.NewGuid()}.pdf");
+            var pdfName = $"{Guid.NewGuid()}.pdf";
+            var outputPath = Path.Combine(PdfDir, pdfName);
             var fileInfo = new FileInfo(outputPath);
             if (fileInfo.Exists)
                 fileInfo.Delete();
 
             await page.PdfAsync(outputPath);
+            await SaveToAzureStorage(outputPath, $"documents/{pdfName}");
 
             _loggerService.LogInformation($"{ServiceName}: PDF has been generated.");
             return outputPath;
@@ -96,8 +103,10 @@ public class CachingService : ICachingService
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
             var htmlContent = await page.GetContentAsync();
 
-            var outputPath = Path.Combine(CacheDir, $"{pageName}.html");
+            var fileName = $"{pageName}.html";
+            var outputPath = Path.Combine(CacheDir, fileName);
             await File.WriteAllTextAsync(outputPath, htmlContent);
+            await SaveToAzureStorage(outputPath, $"cache/{fileName}");
 
             _loggerService.LogInformation($"{ServiceName}: Page has been rendered. Content length '{htmlContent.Length}'.");
             return outputPath;
@@ -106,6 +115,14 @@ public class CachingService : ICachingService
         {
             throw FatalError(exception);
         }
+    }
+
+    private async Task SaveToAzureStorage(string sourcePath, string destination)
+    {
+        var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
+        var fileToUpload = await File.ReadAllBytesAsync(sourcePath);
+        using var fileStream = new MemoryStream(fileToUpload);
+        await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
     }
 
     private static string GetPdfDir()
