@@ -6,7 +6,7 @@ export const AccessDeniedStyle = makeStyles(() => ({
         backgroundColor: Colours.colours.white,
     },
     container: {
-        maxWidth: 700,
+        maxWidth: 900,
     },
     divider: {
         width: "100%",
