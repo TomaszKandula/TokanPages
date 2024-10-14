@@ -131,7 +131,7 @@ public class CachingService : ICachingService
         if (!Directory.Exists(CacheDir))
         {
             Directory.CreateDirectory(CacheDir);
-            _loggerService.LogInformation($"[{ServiceName}: Directory '{CacheDir}' has been created.");
+            _loggerService.LogInformation($"{ServiceName}: Directory '{CacheDir}' has been created.");
         }
     }
 
@@ -139,7 +139,7 @@ public class CachingService : ICachingService
     {
         try
         {
-            _loggerService.LogInformation($"[{ServiceName}: Getting Chrome browser (ver. {Chrome.DefaultBuildId})...");
+            _loggerService.LogInformation($"{ServiceName}: Getting Chrome browser (ver. {Chrome.DefaultBuildId})...");
 
             var browserFetcher = new BrowserFetcher { Browser = SupportedBrowser.Chrome };
             await browserFetcher.DownloadAsync();
@@ -149,7 +149,7 @@ public class CachingService : ICachingService
                 .GetExecutablePath();
 
             _launchOptions.ExecutablePath = path;
-            _loggerService.LogInformation($"[{ServiceName}: Browser downloaded, path '{path}'.");
+            _loggerService.LogInformation($"{ServiceName}: Browser downloaded, path '{path}'.");
         }
         catch (Exception exception)
         {
@@ -159,7 +159,7 @@ public class CachingService : ICachingService
 
     private Exception FatalError(Exception exception)
     {
-        _loggerService.LogError($"[{ServiceName}: Error message: {exception.Message}. Details: {exception.InnerException?.Message ?? "n/a"}.");
+        _loggerService.LogError($"{ServiceName}: Error message: {exception.Message}. Details: {exception.InnerException?.Message ?? "n/a"}.");
         return new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
     }
 }
