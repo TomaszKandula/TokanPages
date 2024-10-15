@@ -14,4 +14,9 @@
       <PackageReference Include="PuppeteerSharp" Version="18.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+      <ProjectReference Include="..\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -44,8 +44,8 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
         <section className={classes.section} style={props.background}>
             <Container className={classes.container}>
                 <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
-                    <Card elevation={4}>
-                        <CardContent className={classes.card}>
+                    <Card elevation={0} className={classes.card}>
+                        <CardContent className={classes.card_content}>
                             <Box textAlign="center" mb={3}>
                                 <Box mt={2} mb={2}>
                                     <Typography className={classes.caption}>

@@ -47,8 +47,8 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
         <section className={classes.section}>
             <Container className={classes.container}>
                 <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
-                    <Card elevation={4}>
-                        <CardContent className={classes.card}>
+                    <Card elevation={0} className={classes.card}>
+                        <CardContent className={classes.card_content}>
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className={classes.account} />
                                 <Typography className={classes.caption}>
