@@ -1,3 +1,18 @@
+# [0.111.0](https://github.com/TomaszKandula/TokanPages/compare/v0.110.0...v0.111.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* remove unnecessary char ([f89a6d9](https://github.com/TomaszKandula/TokanPages/commit/f89a6d9d79186f09b0a786b684e26c144c4e8c04))
+
+
+### Features
+
+* add logger ([3be50ea](https://github.com/TomaszKandula/TokanPages/commit/3be50ea78a85273069a21c765f2c3340498556ca))
+* restyle newsletter components ([41e8dd2](https://github.com/TomaszKandula/TokanPages/commit/41e8dd2360b7a650fc083329bdbdb10ad61e4a55))
+* save to azure storage ([d6baa91](https://github.com/TomaszKandula/TokanPages/commit/d6baa917edeb5bcf90263b81483a92aa22f7fcba))
+* update and add new tests ([edc3ad0](https://github.com/TomaszKandula/TokanPages/commit/edc3ad0b9b70961598dce259842490cf437db02c))
+
 # [0.110.0](https://github.com/TomaszKandula/TokanPages/compare/v0.109.1...v0.110.0) (2024-10-13)
 
 
