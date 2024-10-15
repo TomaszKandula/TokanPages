@@ -12,16 +12,16 @@ Object {
           class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-7"
+            class="MuiBox-root MuiBox-root-8"
           >
             <div
-              class="MuiPaper-root MuiCard-root MuiPaper-elevation4 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card-5"
+                class="MuiCardContent-root makeStyles-card_content-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-8"
+                  class="MuiBox-root MuiBox-root-9"
                 >
                   <svg
                     aria-hidden="true"
@@ -40,7 +40,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-9"
+                  class="MuiBox-root MuiBox-root-10"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -81,10 +81,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-10 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-12"
+                              class="PrivateNotchedOutline-legendLabelled-13"
                             >
                               <span>
                                 Email address
@@ -97,10 +97,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-14"
+                    class="MuiBox-root MuiBox-root-15"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-20 Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-22 Mui-disabled MuiButton-fullWidth Mui-disabled"
                       disabled=""
                       tabindex="-1"
                       type="button"
@@ -128,16 +128,16 @@ Object {
         class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-7"
+          class="MuiBox-root MuiBox-root-8"
         >
           <div
-            class="MuiPaper-root MuiCard-root MuiPaper-elevation4 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card-5"
+              class="MuiCardContent-root makeStyles-card_content-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-8"
+                class="MuiBox-root MuiBox-root-9"
               >
                 <svg
                   aria-hidden="true"
@@ -156,7 +156,7 @@ Object {
                 </p>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-9"
+                class="MuiBox-root MuiBox-root-10"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -197,10 +197,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-10 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-12"
+                            class="PrivateNotchedOutline-legendLabelled-13"
                           >
                             <span>
                               Email address
@@ -213,10 +213,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-14"
+                  class="MuiBox-root MuiBox-root-15"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-20 Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-22 Mui-disabled MuiButton-fullWidth Mui-disabled"
                     disabled=""
                     tabindex="-1"
                     type="button"
