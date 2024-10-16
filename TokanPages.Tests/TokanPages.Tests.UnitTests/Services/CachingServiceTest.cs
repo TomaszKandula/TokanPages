@@ -1,9 +1,13 @@
+using System.Net;
+using System.Net.Http.Headers;
 using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
+using TokanPages.Services.HttpClientService.Abstractions;
+using TokanPages.Services.HttpClientService.Models;
 using TokanPages.Services.SpaCachingService;
 using Xunit;
 
@@ -11,11 +15,21 @@ namespace TokanPages.Tests.UnitTests.Services;
 
 public class CachingServiceTest : TestBase
 {
-    private readonly Mock<IAzureBlobStorageFactory> _mockedFactory = new ();
+    private readonly Mock<IAzureBlobStorageFactory> _mockedStorageFactory = new ();
 
+    private readonly Mock<IHttpClientServiceFactory> _mockedHttpFactory = new();
+    
     public CachingServiceTest()
     {
         var mockedStorage = new Mock<IAzureBlobStorage>();
+        var mockedHttp = new Mock<IHttpClientService>();
+        var testContent = new ExecutionResult
+        {
+            StatusCode = HttpStatusCode.OK,
+            ContentType = new MediaTypeHeaderValue("text/html"),
+            Content = new byte[1024]
+        };
+
         mockedStorage
             .Setup(storage => storage.UploadFile(
                 It.IsAny<Stream>(), 
@@ -25,9 +39,22 @@ public class CachingServiceTest : TestBase
             )
             .Returns(Task.CompletedTask);
 
-        _mockedFactory
-            .Setup(factory => factory.Create(It.IsAny<ILoggerService>()))
+        mockedHttp
+            .Setup(service => service.Execute(
+                It.IsAny<Configuration>(), 
+                It.IsAny<CancellationToken>()))
+            .Returns(Task.FromResult(testContent));
+
+        _mockedStorageFactory
+            .Setup(factory => factory.Create(
+                It.IsAny<ILoggerService>()))
             .Returns(mockedStorage.Object);
+
+        _mockedHttpFactory
+            .Setup(factory => factory.Create(
+                It.IsAny<bool>(), 
+                It.IsAny<ILoggerService>()))
+            .Returns(mockedHttp.Object);
     }
 
     [Fact]
@@ -36,7 +63,10 @@ public class CachingServiceTest : TestBase
         // Arrange
         const string url = "https://www.google.com";
         var mockedLogger = new Mock<ILoggerService>();
-        var cachingService = new CachingService(mockedLogger.Object, _mockedFactory.Object);
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
 
         // Act
         var result = await cachingService.GeneratePdf(url);
@@ -55,7 +85,10 @@ public class CachingServiceTest : TestBase
         const string expectedFileName = $"{pageName}.html";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var cachingService = new CachingService(mockedLogger.Object, _mockedFactory.Object);
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
 
         // Act
         var result = await cachingService.RenderStaticPage(url, pageName);
@@ -72,7 +105,10 @@ public class CachingServiceTest : TestBase
         const string url = "wrong url. com";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var cachingService = new CachingService(mockedLogger.Object, _mockedFactory.Object);
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
 
         // Act
         // Assert
@@ -90,7 +126,10 @@ public class CachingServiceTest : TestBase
         const string pageName = "test";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var cachingService = new CachingService(mockedLogger.Object, _mockedFactory.Object);
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
 
         // Act
         // Assert
@@ -98,5 +137,30 @@ public class CachingServiceTest : TestBase
 
         result.Message.Should().Be(ErrorCodes.ERROR_UNEXPECTED);
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+    }
+
+    [Fact]
+    public async Task GivenFilesAndBaseUrl_WhenSaveStaticFiles_ShouldSucceed()
+    {
+        // Arrange
+        const string baseUrl = "https://test.com";
+        var files = new[]
+        {
+            "main.05734.js",
+            "aos.css",
+            "robots.txt"
+        };
+
+        var mockedLogger = new Mock<ILoggerService>();
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
+
+        // Act
+        var result = await cachingService.SaveStaticFiles(files, baseUrl);
+
+        // Assert
+        result.Should().Be(files.Length);
     }
 }
