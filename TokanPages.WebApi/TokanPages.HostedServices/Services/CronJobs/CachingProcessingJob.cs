@@ -19,6 +19,10 @@ public class CachingProcessingJob : CronJob
 
     private readonly string _cronExpression;
 
+    private readonly string? _baseUrl;
+
+    private readonly string[]? _filesToCache;
+    
     private readonly List<RoutePath> _paths;
 
     /// <summary>
@@ -34,6 +38,8 @@ public class CachingProcessingJob : CronJob
         _cachingService = cachingService;
         _loggerService = loggerService;
         _cronExpression = config.CronExpression;
+        _baseUrl = config.BaseUrl;
+        _filesToCache = config.FilesToCache;
         _paths = config.RoutePaths;
     }
 
@@ -51,6 +57,7 @@ public class CachingProcessingJob : CronJob
             return;
         }
 
+        await _cachingService.SaveStaticFiles(_filesToCache, _baseUrl);
         foreach (var path in _paths)
         {
             await _cachingService.RenderStaticPage(path.Url, path.Name);
