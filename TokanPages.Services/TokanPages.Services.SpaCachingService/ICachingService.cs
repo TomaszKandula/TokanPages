@@ -26,5 +26,5 @@ public interface ICachingService
     /// <param name="source">File list to be cached.</param>
     /// <param name="baseUrl">Base URL of a file host.</param>
     /// <returns>Number of processed files.</returns>
-    Task<int> SaveStaticFiles(IEnumerable<string> source, string baseUrl);
+    Task<int> SaveStaticFiles(IEnumerable<string>? source, string? baseUrl);
 }

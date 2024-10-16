@@ -123,8 +123,20 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<int> SaveStaticFiles(IEnumerable<string> source, string baseUrl)
+    public async Task<int> SaveStaticFiles(IEnumerable<string>? source, string? baseUrl)
     {
+        if (source is null)
+        {
+            _loggerService.LogInformation($"{ServiceName}: No source files found...");
+            return 0;
+        }
+
+        if (string.IsNullOrWhiteSpace(baseUrl))
+        {
+            _loggerService.LogInformation($"{ServiceName}: No base URL found...");
+            return 0;
+        }
+
         var processed = 0;
         var files = source as string[] ?? source.ToArray();
         _loggerService.LogInformation($"{ServiceName}: Saving {files.Length} file(s) to cache...");
