@@ -163,4 +163,49 @@ public class CachingServiceTest : TestBase
         // Assert
         result.Should().Be(files.Length);
     }
+
+    [Fact]
+    public async Task GivenNoFilesAndBaseUrl_WhenSaveStaticFiles_ShouldNotProcessed()
+    {
+        // Arrange
+        const string baseUrl = "https://test.com";
+        var files = Array.Empty<string>();
+
+        var mockedLogger = new Mock<ILoggerService>();
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
+
+        // Act
+        var result = await cachingService.SaveStaticFiles(files, baseUrl);
+
+        // Assert
+        result.Should().Be(0);
+    }
+
+    [Fact]
+    public async Task GivenFilesAndNoBaseUrl_WhenSaveStaticFiles_ShouldNotProcessed()
+    {
+        // Arrange
+        const string baseUrl = "";
+        var files = new[]
+        {
+            "main.05734.js",
+            "aos.css",
+            "robots.txt"
+        };
+
+        var mockedLogger = new Mock<ILoggerService>();
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
+
+        // Act
+        var result = await cachingService.SaveStaticFiles(files, baseUrl);
+
+        // Assert
+        result.Should().Be(0);
+    }
 }
