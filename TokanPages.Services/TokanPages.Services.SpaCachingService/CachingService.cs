@@ -4,6 +4,8 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
+using TokanPages.Services.HttpClientService.Abstractions;
+using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.SpaCachingService;
 
@@ -20,9 +22,11 @@ public class CachingService : ICachingService
 
     private const string ServiceName = $"[{nameof(CachingService)}]";
 
+    private readonly ILoggerService _loggerService;
+
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    private readonly ILoggerService _loggerService;
+    private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
     private static LaunchOptions _launchOptions = new()
     {
@@ -48,10 +52,11 @@ public class CachingService : ICachingService
 
     private string CacheDir { get; }
 
-    public CachingService(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory)
+    public CachingService(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, IHttpClientServiceFactory httpClientServiceFactory)
     {
         _loggerService = loggerService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
+        _httpClientServiceFactory = httpClientServiceFactory;
 
         PdfDir = GetPdfDir();
         CacheDir = GetCacheDir();
@@ -117,11 +122,48 @@ public class CachingService : ICachingService
         }
     }
 
+    /// <inheritdoc />
+    public async Task<int> SaveStaticFiles(IEnumerable<string> source, string baseUrl)
+    {
+        var processed = 0;
+        var files = source as string[] ?? source.ToArray();
+        _loggerService.LogInformation($"{ServiceName}: Saving {files.Length} file(s) to cache...");
+        foreach (var fileName in files)
+        {
+            var url = $"{baseUrl}/{fileName}";
+            var fileContent = await GetFileFromUrl(url);
+            _loggerService.LogInformation($"{ServiceName}: Received content from '{url}'...");
+            if (fileContent is not null)
+            {
+                await SaveToAzureStorage(fileContent, $"cache/{fileName}");
+                processed += 1;
+                _loggerService.LogInformation($"{ServiceName}: File '{fileName}' has been saved.");
+            }
+        }
+
+        return processed;
+    }
+
+    private async Task<byte[]?> GetFileFromUrl(string url)
+    {
+        var configuration = new Configuration { Url = url, Method = "GET" };
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute(configuration);
+        return result.Content;
+    }
+
     private async Task SaveToAzureStorage(string sourcePath, string destination)
     {
         var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
         var fileToUpload = await File.ReadAllBytesAsync(sourcePath);
         using var fileStream = new MemoryStream(fileToUpload);
+        await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
+    }
+
+    private async Task SaveToAzureStorage(byte[] sourceFile, string destination)
+    {
+        var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
+        using var fileStream = new MemoryStream(sourceFile);
         await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
     }
 

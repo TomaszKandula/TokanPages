@@ -17,6 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
       <ProjectReference Include="..\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
+      <ProjectReference Include="..\TokanPages.Services.HttpClientService\TokanPages.Services.HttpClientService.csproj" />
     </ItemGroup>
 
 </Project>
