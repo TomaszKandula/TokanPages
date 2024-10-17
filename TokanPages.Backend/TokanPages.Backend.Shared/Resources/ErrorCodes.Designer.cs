@@ -386,5 +386,17 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("INVALID_ARGUMENT", resourceCulture);
             }
         }
+        
+        public static string MISSING_CACHE_FOLDER {
+            get {
+                return ResourceManager.GetString("MISSING_CACHE_FOLDER", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_CACHE_FILE {
+            get {
+                return ResourceManager.GetString("MISSING_CACHE_FILE", resourceCulture);
+            }
+        }
     }
 }

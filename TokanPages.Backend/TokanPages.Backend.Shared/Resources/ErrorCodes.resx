@@ -288,4 +288,10 @@
   <data name="INVALID_ARGUMENT" xml:space="preserve">
     <value>Cannot accept given argument</value>
   </data>
+  <data name="MISSING_CACHE_FOLDER" xml:space="preserve">
+    <value>Missing cache directory</value>
+  </data>
+  <data name="MISSING_CACHE_FILE" xml:space="preserve">
+    <value>Missing cache file</value>
+  </data>
 </root>
