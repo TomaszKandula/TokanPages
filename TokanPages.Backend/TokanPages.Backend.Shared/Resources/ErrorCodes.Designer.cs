@@ -398,5 +398,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("MISSING_CACHE_FILE", resourceCulture);
             }
         }
+        
+        public static string NO_FREE_SPACE {
+            get {
+                return ResourceManager.GetString("NO_FREE_SPACE", resourceCulture);
+            }
+        }
     }
 }

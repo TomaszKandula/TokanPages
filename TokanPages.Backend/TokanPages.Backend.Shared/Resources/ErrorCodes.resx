@@ -294,4 +294,7 @@
   <data name="MISSING_CACHE_FILE" xml:space="preserve">
     <value>Missing cache file</value>
   </data>
+  <data name="NO_FREE_SPACE" xml:space="preserve">
+    <value>There is no enough free space to save the file</value>
+  </data>
 </root>
