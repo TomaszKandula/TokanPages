@@ -9,18 +9,21 @@ namespace TokanPages.HostedServices.Services.Models;
 [ExcludeFromCodeCoverage]
 public class CachingProcessingConfig : ICachingProcessingConfig
 {
-    /// <summary>
-    /// CRON expression.
-    /// </summary>
+    /// <inheritdoc />
     public string CronExpression { get; set; } = "";
 
-    /// <summary>
-    /// Time zone information. Local is default value.
-    /// </summary>
+    /// <inheritdoc />
     public TimeZoneInfo TimeZoneInfo { get; set; } = TimeZoneInfo.Local;
 
-    /// <summary>
-    /// List of URLs of web pages to be cached.
-    /// </summary>
+    /// <inheritdoc />
+    public string? GetActionUrl { get; set; }
+
+    /// <inheritdoc />
+    public string? PostActionUrl { get; set; }
+
+    /// <inheritdoc />
+    public string[]? FilesToCache { get; set; }
+
+    /// <inheritdoc />
     public List<RoutePath> RoutePaths { get; set; } = new();
 }

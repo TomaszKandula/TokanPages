@@ -288,4 +288,13 @@
   <data name="INVALID_ARGUMENT" xml:space="preserve">
     <value>Cannot accept given argument</value>
   </data>
+  <data name="MISSING_CACHE_FOLDER" xml:space="preserve">
+    <value>Missing cache directory</value>
+  </data>
+  <data name="MISSING_CACHE_FILE" xml:space="preserve">
+    <value>Missing cache file</value>
+  </data>
+  <data name="NO_FREE_SPACE" xml:space="preserve">
+    <value>There is no enough free space to save the file</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: articles.dockerfile
     hostname: articles
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -22,6 +23,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: content.dockerfile
     hostname: content
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -36,6 +38,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: sender.dockerfile
     hostname: sender
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -50,6 +53,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: revenue.dockerfile
     hostname: revenue
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -64,6 +68,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: users.dockerfile
     hostname: users
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -78,6 +83,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: invoicing.dockerfile
     hostname: invoicing
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -92,6 +98,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: notifications.dockerfile
     hostname: notifications
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -106,6 +113,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: chat.dockerfile
     hostname: chat
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -120,6 +128,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: gateway.dockerfile
     hostname: gateway
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -134,6 +143,7 @@ services:
         - ENV_VALUE=Testing
       dockerfile: hosted.dockerfile
     hostname: hosted-services
+    restart: on-failure
     networks:
       - xnet
     expose:
@@ -156,6 +166,7 @@ services:
         - SONAR_HOST=${SONAR_HOST}
       dockerfile: clientapp.dockerfile
     hostname: frontend
+    restart: on-failure
     networks:
       - xnet
     ports:
