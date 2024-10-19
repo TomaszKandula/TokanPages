@@ -113,7 +113,8 @@ public static class Dependencies
     {
         var batchInvoicingCron = configuration.GetValue<string>("BatchInvoicing_Cron");
         var cachingServiceCron = configuration.GetValue<string>("CachingService_Cron");
-        var cachingServiceBaseUrl = configuration.GetValue<string>("CachingService_BaseUrl");
+        var cachingServiceGetUrl = configuration.GetValue<string>("CachingService_GetUrl");
+        var cachingServicePostUrl = configuration.GetValue<string>("CachingService_PostUrl");
         var cachingServiceFiles = configuration.GetValue<string>("CachingService_Files");
         var cachingServicePaths = configuration.GetValue<string>("CachingService_Paths");
 
@@ -135,7 +136,8 @@ public static class Dependencies
             {
                 TimeZoneInfo = TimeZoneInfo.Local,
                 CronExpression = cachingServiceCron,
-                BaseUrl = cachingServiceBaseUrl,
+                GetActionUrl = cachingServiceGetUrl ?? "",
+                PostActionUrl = cachingServicePostUrl ?? "",
                 FilesToCache = cachingServiceFiles?.Split(";"),
                 RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths)
             };
