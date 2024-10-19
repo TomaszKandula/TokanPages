@@ -1,3 +1,4 @@
+using System.Text;
 using PuppeteerSharp;
 using PuppeteerSharp.BrowserData;
 using TokanPages.Backend.Core.Exceptions;
@@ -6,6 +7,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.SpaCachingService.Models;
 
 namespace TokanPages.Services.SpaCachingService;
 
@@ -66,6 +68,12 @@ public class CachingService : ICachingService
     /// <inheritdoc />
     public async Task<string> GeneratePdf(string sourceUrl)
     {
+        if (string.IsNullOrWhiteSpace(sourceUrl))
+        {
+            _loggerService.LogWarning($"{ServiceName}: No source URL found...");
+            return string.Empty;
+        }
+
         await GetBrowser();
 
         try
@@ -95,8 +103,26 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<string> RenderStaticPage(string sourceUrl, string pageName)
+    public async Task<string> RenderStaticPage(string sourceUrl, string serviceUrl, string pageName)
     {
+        if (string.IsNullOrWhiteSpace(sourceUrl))
+        {
+            _loggerService.LogWarning($"{ServiceName}: No source URL found...");
+            return string.Empty;
+        }
+
+        if (string.IsNullOrWhiteSpace(serviceUrl))
+        {
+            _loggerService.LogWarning($"{ServiceName}: No service URL found...");
+            return string.Empty;
+        }
+
+        if (string.IsNullOrWhiteSpace(pageName))
+        {
+            _loggerService.LogWarning($"{ServiceName}: No page name found...");
+            return string.Empty;
+        }
+
         await GetBrowser();
 
         try
@@ -107,14 +133,13 @@ public class CachingService : ICachingService
             await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
             var htmlContent = await page.GetContentAsync();
+            var binary = Encoding.ASCII.GetBytes(htmlContent);
 
             var fileName = $"{pageName}.html";
-            var outputPath = Path.Combine(CacheDir, fileName);
-            await File.WriteAllTextAsync(outputPath, htmlContent);
-            await SaveToAzureStorage(outputPath, $"cache/{fileName}");
+            await UploadFile(binary, fileName, serviceUrl);
 
             _loggerService.LogInformation($"{ServiceName}: Page has been rendered. Content length '{htmlContent.Length}'.");
-            return outputPath;
+            return fileName;
         }
         catch (Exception exception)
         {
@@ -123,17 +148,23 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<int> SaveStaticFiles(IEnumerable<string>? source, string? baseUrl)
+    public async Task<int> SaveStaticFiles(IEnumerable<string>? source, string sourceUrl, string serviceUrl)
     {
         if (source is null)
         {
-            _loggerService.LogInformation($"{ServiceName}: No source files found...");
+            _loggerService.LogWarning($"{ServiceName}: No source files found...");
             return 0;
         }
 
-        if (string.IsNullOrWhiteSpace(baseUrl))
+        if (string.IsNullOrWhiteSpace(sourceUrl))
         {
-            _loggerService.LogInformation($"{ServiceName}: No base URL found...");
+            _loggerService.LogWarning($"{ServiceName}: No source URL found...");
+            return 0;
+        }
+
+        if (string.IsNullOrWhiteSpace(serviceUrl))
+        {
+            _loggerService.LogWarning($"{ServiceName}: No service URL found...");
             return 0;
         }
 
@@ -142,12 +173,14 @@ public class CachingService : ICachingService
         _loggerService.LogInformation($"{ServiceName}: Saving {files.Length} file(s) to cache...");
         foreach (var fileName in files)
         {
-            var url = $"{baseUrl}/{fileName}";
+            var url = $"{sourceUrl}/{fileName}"; // we may have fileName: static/js/bundle.js
             var fileContent = await GetFileFromUrl(url);
             _loggerService.LogInformation($"{ServiceName}: Received content from '{url}'...");
+
             if (fileContent is not null)
             {
-                await SaveToAzureStorage(fileContent, $"cache/{fileName}");
+                var name = Path.GetFileName(fileName); // only name w/extension here
+                await UploadFile(fileContent, name, serviceUrl);
                 processed += 1;
                 _loggerService.LogInformation($"{ServiceName}: File '{fileName}' has been saved.");
             }
@@ -164,18 +197,27 @@ public class CachingService : ICachingService
         return result.Content;
     }
 
+    private async Task UploadFile(byte[] fileData, string fileName, string requestUrl)
+    {
+        var configuration = new Configuration 
+        { 
+            Url = requestUrl, 
+            Method = "POST",
+            FieldName = "BinaryData",
+            FileName = fileName,
+            FileData = fileData
+        };
+
+        var client = _httpClientServiceFactory.Create(true, _loggerService);
+        var result = await client.Execute<UploadFileOutputDto>(configuration);
+        _loggerService.LogInformation($"{ServiceName}: File saved to local cache storage. Uploaded: {result.UploadedFileSize}. Left: {result.FreeSpace}.");
+    }
+
     private async Task SaveToAzureStorage(string sourcePath, string destination)
     {
         var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
         var fileToUpload = await File.ReadAllBytesAsync(sourcePath);
         using var fileStream = new MemoryStream(fileToUpload);
-        await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
-    }
-
-    private async Task SaveToAzureStorage(byte[] sourceFile, string destination)
-    {
-        var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
-        using var fileStream = new MemoryStream(sourceFile);
         await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
     }
 
