@@ -16,7 +16,10 @@ public class CachingProcessingConfig : ICachingProcessingConfig
     public TimeZoneInfo TimeZoneInfo { get; set; } = TimeZoneInfo.Local;
 
     /// <inheritdoc />
-    public string? BaseUrl { get; set; }
+    public string? GetActionUrl { get; set; }
+
+    /// <inheritdoc />
+    public string? PostActionUrl { get; set; }
 
     /// <inheritdoc />
     public string[]? FilesToCache { get; set; }

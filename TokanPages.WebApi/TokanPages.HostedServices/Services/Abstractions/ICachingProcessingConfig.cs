@@ -8,7 +8,12 @@ public interface ICachingProcessingConfig : IBaseConfig
     /// <summary>
     /// Base URL of the source.
     /// </summary>
-    public string? BaseUrl { get; set; }
+    public string GetActionUrl { get; set; }
+
+    /// <summary>
+    /// URL path to POST endpoint.
+    /// </summary>
+    public string PostActionUrl { get; set; }
 
     /// <summary>
     /// List of files to be cached.
