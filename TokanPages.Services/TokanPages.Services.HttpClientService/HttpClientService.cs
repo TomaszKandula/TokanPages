@@ -104,7 +104,7 @@ public class HttpClientService : IHttpClientService
         {
             using var formData = new MultipartFormDataContent();
             var content = new StreamContent(new MemoryStream(configuration.FileData));
-            formData.Add(content, configuration.FileName, configuration.FileName);
+            formData.Add(content, configuration.FieldName, configuration.FileName);
             return await _httpClient.PostAsync(requestUri, formData, cancellationToken);
         }
 
