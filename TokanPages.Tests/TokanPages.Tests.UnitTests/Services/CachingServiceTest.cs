@@ -9,6 +9,7 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 using TokanPages.Services.SpaCachingService;
+using TokanPages.Services.SpaCachingService.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Services;
@@ -18,7 +19,7 @@ public class CachingServiceTest : TestBase
     private readonly Mock<IAzureBlobStorageFactory> _mockedStorageFactory = new ();
 
     private readonly Mock<IHttpClientServiceFactory> _mockedHttpFactory = new();
-    
+
     public CachingServiceTest()
     {
         var mockedStorage = new Mock<IAzureBlobStorage>();
@@ -44,6 +45,16 @@ public class CachingServiceTest : TestBase
                 It.IsAny<Configuration>(), 
                 It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(testContent));
+
+        mockedHttp
+            .Setup(service => service.Execute<UploadFileOutputDto>(
+                It.IsAny<Configuration>(), 
+                It.IsAny<CancellationToken>()))
+            .Returns(Task.FromResult(new UploadFileOutputDto
+            {
+                UploadedFileSize = "105 kB",
+                FreeSpace = "476 kB"
+            }));
 
         _mockedStorageFactory
             .Setup(factory => factory.Create(
@@ -77,28 +88,6 @@ public class CachingServiceTest : TestBase
     }
 
     [Fact]
-    public async Task GivenPageUrlAndName_WhenRenderStaticPage_ShouldSucceed()
-    {
-        // Arrange
-        const string url = "https://www.google.com";
-        const string pageName = "google";
-        const string expectedFileName = $"{pageName}.html";
-
-        var mockedLogger = new Mock<ILoggerService>();
-        var cachingService = new CachingService(
-            mockedLogger.Object, 
-            _mockedStorageFactory.Object, 
-            _mockedHttpFactory.Object);
-
-        // Act
-        var result = await cachingService.RenderStaticPage(url, pageName);
-
-        // Assert
-        result.Should().NotBeEmpty();
-        result.Should().Contain(expectedFileName);
-    }
-
-    [Fact]
     public async Task GivenWrongUrl_WhenGeneratePdf_ShouldThrowError()
     {
         // Arrange
@@ -119,10 +108,34 @@ public class CachingServiceTest : TestBase
     }
 
     [Fact]
+    public async Task GivenPageUrlAndName_WhenRenderStaticPage_ShouldSucceed()
+    {
+        // Arrange
+        const string sourceUrl = "https://www.google.com";
+        const string serviceUrl = "/cache";
+        const string pageName = "google";
+        const string expectedFileName = $"{pageName}.html";
+
+        var mockedLogger = new Mock<ILoggerService>();
+        var cachingService = new CachingService(
+            mockedLogger.Object, 
+            _mockedStorageFactory.Object, 
+            _mockedHttpFactory.Object);
+
+        // Act
+        var result = await cachingService.RenderStaticPage(sourceUrl, serviceUrl, pageName);
+
+        // Assert
+        result.Should().NotBeEmpty();
+        result.Should().Contain(expectedFileName);
+    }
+
+    [Fact]
     public async Task GivenWrongUrl_WhenRenderStaticPage_ShouldThrowError()
     {
         // Arrange
-        const string url = "wrong url. com";
+        const string sourceUrl = "wrong url. com";
+        const string serviceUrl = "/cache";
         const string pageName = "test";
 
         var mockedLogger = new Mock<ILoggerService>();
@@ -133,7 +146,7 @@ public class CachingServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<GeneralException>(() => cachingService.RenderStaticPage(url, pageName));
+        var result = await Assert.ThrowsAsync<GeneralException>(() => cachingService.RenderStaticPage(sourceUrl, serviceUrl, pageName));
 
         result.Message.Should().Be(ErrorCodes.ERROR_UNEXPECTED);
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
@@ -143,7 +156,8 @@ public class CachingServiceTest : TestBase
     public async Task GivenFilesAndBaseUrl_WhenSaveStaticFiles_ShouldSucceed()
     {
         // Arrange
-        const string baseUrl = "https://test.com";
+        const string sourceUrl = "https://test.com";
+        const string serviceUrl = "/cache";
         var files = new[]
         {
             "main.05734.js",
@@ -158,7 +172,7 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
-        var result = await cachingService.SaveStaticFiles(files, baseUrl);
+        var result = await cachingService.SaveStaticFiles(files, sourceUrl, serviceUrl);
 
         // Assert
         result.Should().Be(files.Length);
@@ -168,7 +182,8 @@ public class CachingServiceTest : TestBase
     public async Task GivenNoFilesAndBaseUrl_WhenSaveStaticFiles_ShouldNotProcessed()
     {
         // Arrange
-        const string baseUrl = "https://test.com";
+        const string sourceUrl = "https://test.com";
+        const string serviceUrl = "/cache";
         var files = Array.Empty<string>();
 
         var mockedLogger = new Mock<ILoggerService>();
@@ -178,7 +193,7 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
-        var result = await cachingService.SaveStaticFiles(files, baseUrl);
+        var result = await cachingService.SaveStaticFiles(files, sourceUrl, serviceUrl);
 
         // Assert
         result.Should().Be(0);
@@ -188,7 +203,8 @@ public class CachingServiceTest : TestBase
     public async Task GivenFilesAndNoBaseUrl_WhenSaveStaticFiles_ShouldNotProcessed()
     {
         // Arrange
-        const string baseUrl = "";
+        const string sourceUrl = "";
+        const string serviceUrl = "/cache";
         var files = new[]
         {
             "main.05734.js",
@@ -203,7 +219,7 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
-        var result = await cachingService.SaveStaticFiles(files, baseUrl);
+        var result = await cachingService.SaveStaticFiles(files, sourceUrl, serviceUrl);
 
         // Assert
         result.Should().Be(0);
