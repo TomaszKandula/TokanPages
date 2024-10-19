@@ -20,4 +20,10 @@ public class Configuration
     public IAuthentication? Authentication { get; set; }
 
     public IPayloadContent? PayloadContent { get; set; }
+
+    public string FieldName { get; set; } = "";
+
+    public string FileName { get; set; } = "";
+
+    public byte[] FileData { get; set; } = Array.Empty<byte>();
 }

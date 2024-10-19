@@ -100,6 +100,14 @@ public class HttpClientService : IHttpClientService
     private async Task<HttpResponseMessage> GetResponse(Configuration configuration, CancellationToken cancellationToken = default)
     {
         var requestUri = configuration.Url;
+        if (configuration.FileData.Length > 0)
+        {
+            using var formData = new MultipartFormDataContent();
+            var content = new StreamContent(new MemoryStream(configuration.FileData));
+            formData.Add(content, configuration.FileName, configuration.FileName);
+            return await _httpClient.PostAsync(requestUri, formData, cancellationToken);
+        }
+
         if (configuration.QueryParameters is not null && configuration.QueryParameters.Any())
             requestUri = QueryHelpers.AddQueryString(configuration.Url, configuration.QueryParameters);
 
