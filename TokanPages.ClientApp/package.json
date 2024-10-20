@@ -90,7 +90,7 @@
         "build-stage-1": "find . -name \\*.map -type f -delete && find . -name \\*.LICENSE.txt -type f -delete",
         "build-stage-2": "cp ./build/static/css/* ./build && cp ./build/static/js/* ./build",
         "build-stage-3": "rm ./build/static/**/* && rmdir ./build/static/** && rmdir ./build/static && rm ./build/asset-manifest.json",
-        "build-stage-4": "sed -i '' -e 's@/static/js@''@g' ./build/index.html && sed -i '' -e 's@/static/css@''@g' ./build/index.html",
+        "build-stage-4": "sed -i -e 's@/static/js@''@g' ./build/index.html && sed -i -e 's@/static/css@''@g' ./build/index.html",
         "build-final": "gzip --keep --best -v ./build/*.*",
         "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
         "lint-fix": "eslint --fix",
