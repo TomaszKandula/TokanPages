@@ -16,6 +16,8 @@ namespace TokanPages.Services.SpaCachingService;
 /// </summary>
 public class CachingService : ICachingService
 {
+    private const int FiveMinutesTimeout = 300;
+
     private const string PdfDirName = "PdfDir";
 
     private const string CacheDirName = "CacheDir";
@@ -81,7 +83,7 @@ public class CachingService : ICachingService
             await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
             await using var page = await browser.NewPageAsync();
 
-            await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
+            await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
 
             var pdfName = $"{Guid.NewGuid()}.pdf";
@@ -130,7 +132,7 @@ public class CachingService : ICachingService
             await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
             await using var page = await browser.NewPageAsync();
 
-            await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
+            await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
             var htmlContent = await page.GetContentAsync();
             var binary = Encoding.ASCII.GetBytes(htmlContent);
