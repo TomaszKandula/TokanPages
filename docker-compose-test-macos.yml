@@ -5,7 +5,7 @@ services:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: articles.dockerfile
     hostname: articles
     restart: on-failure
@@ -14,13 +14,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   content-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: content.dockerfile
     hostname: content
     restart: on-failure
@@ -29,13 +29,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   sender-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: sender.dockerfile
     hostname: sender
     restart: on-failure
@@ -44,13 +44,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   revenue-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: revenue.dockerfile
     hostname: revenue
     restart: on-failure
@@ -59,13 +59,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   users-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: users.dockerfile
     hostname: users
     restart: on-failure
@@ -74,13 +74,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   invoicing-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: invoicing.dockerfile
     hostname: invoicing
     restart: on-failure
@@ -89,13 +89,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   notifications-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: notifications.dockerfile
     hostname: notifications
     restart: on-failure
@@ -104,13 +104,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   chat-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: chat.dockerfile
     hostname: chat
     restart: on-failure
@@ -119,13 +119,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   gateway-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: gateway.dockerfile
     hostname: gateway
     restart: on-failure
@@ -134,13 +134,13 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-gw-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets-docker.json:/app/appsettings.Testing.json:ro
 
   hosted-services-api:
     build:
       context: .
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
       dockerfile: hosted.dockerfile
     hostname: hosted-services
     restart: on-failure
@@ -149,18 +149,18 @@ services:
     expose:
       - "80"
     volumes:
-      - /opt/configs/tokanpages-apis-prod.json:/app/appsettings.Production.json:ro
+      - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
 
   frontend-app:
     build:
       context: TokanPages.ClientApp
       args:
-        - ENV_VALUE=Production
+        - ENV_VALUE=Testing
         - API_VERSION=${API_VERSION}
         - APP_VERSION=${APP_VERSION}
         - APP_BUILD_TEST=${APP_BUILD_TEST}
         - APP_DATE_TIME=${APP_DATE_TIME}
-        - APP_BACKEND=https://${APP_BACKEND}
+        - APP_BACKEND=http://${APP_BACKEND}
         - SONAR_TOKEN=${SONAR_TOKEN}
         - SONAR_KEY=${SONAR_KEY}
         - SONAR_HOST=${SONAR_HOST}
@@ -170,17 +170,12 @@ services:
     networks:
       - xnet
     ports:
-      - "443:443"
+      - "3000:80"
     volumes:
       - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-base.conf:/etc/nginx/nginx-base.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-proxy.conf:/etc/nginx/nginx-proxy.conf:ro
-      - ./TokanPages.ClientApp/nginx/nginx-ssl.conf:/etc/nginx/nginx-ssl.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-ui-paths.conf:/etc/nginx/nginx-ui-paths.conf:ro
-      - /opt/certs/wildcard-tomkandula.com.chain:/etc/nginx/wildcard-tomkandula.com.chain:ro
-      - /opt/certs/wildcard-tomkandula.com.key:/etc/nginx/wildcard-tomkandula.com.key:ro
-      - /opt/certs/wildcard-tomkandula.com.ca:/etc/nginx/wildcard-tomkandula.com.ca:ro
-      - /opt/certs/ffdhe2048.txt:/etc/nginx/ffdhe2048.txt:ro
 
 networks:
   xnet:

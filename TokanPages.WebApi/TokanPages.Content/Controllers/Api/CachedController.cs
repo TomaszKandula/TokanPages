@@ -1,0 +1,48 @@
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using TokanPages.Backend.Application.Content.Cached.Commands;
+using TokanPages.Backend.Application.Content.Cached.Queries;
+using TokanPages.Backend.Shared.Attributes;
+using TokanPages.Content.Controllers.Mappers;
+using TokanPages.Content.Dto.Cached;
+
+namespace TokanPages.Content.Controllers.Api;
+
+/// <summary>
+/// API endpoints definitions for cached files by SpaCachingService.
+/// </summary>
+///<remarks>
+/// It uses Microsoft 'ResponseCache' for caching content.
+/// </remarks>
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/content/[controller]")]
+public class CachedController : ApiBaseController
+{
+    /// <summary>
+    /// Cached controller.
+    /// </summary>
+    /// <param name="mediator">Mediator instance.</param>
+    public CachedController(IMediator mediator) : base(mediator) { }
+
+    /// <summary>
+    /// Returns requested file.
+    /// </summary>
+    /// <param name="fileName">Requested file name. If empty, then it fallbacks to 'index.html'.</param>
+    /// <returns>File.</returns>
+    [HttpGet]
+    [ETagFilter]
+    [Route("{fileName?}")]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new[] { "fileName" })]
+    public async Task<FileContentResult> Get([FromRoute] string? fileName = null)
+        => await Mediator.Send(new GetFileByNameQuery { FileName = fileName });
+
+    /// <summary>
+    /// Allows to upload a file to a container (local directory).
+    /// </summary>
+    /// <param name="payload">Binary file.</param>
+    /// <returns>Empty object.</returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(UploadFileToLocalStorageCommandResult), StatusCodes.Status200OK)]
+    public async Task<UploadFileToLocalStorageCommandResult> Upload([FromForm] UploadFileToLocalStorageDto payload) 
+        => await Mediator.Send(CachedMapper.MapToUploadFileToLocalStorageCommand(payload));
+}

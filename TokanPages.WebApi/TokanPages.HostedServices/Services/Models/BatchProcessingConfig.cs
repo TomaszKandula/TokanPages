@@ -9,13 +9,9 @@ namespace TokanPages.HostedServices.Services.Models;
 [ExcludeFromCodeCoverage]
 public class BatchProcessingConfig : IBatchProcessingConfig
 {
-    /// <summary>
-    /// CRON expression.
-    /// </summary>
+    /// <inheritdoc />
     public string CronExpression { get; set; } = "";
 
-    /// <summary>
-    /// Time zone information. Local is default value.
-    /// </summary>
+    /// <inheritdoc />
     public TimeZoneInfo TimeZoneInfo { get; set; } = TimeZoneInfo.Local;
 }
