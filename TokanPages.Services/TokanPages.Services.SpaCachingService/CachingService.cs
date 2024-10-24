@@ -53,10 +53,29 @@ public class CachingService : ICachingService
         _loggerService = loggerService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _httpClientServiceFactory = httpClientServiceFactory;
+    }
 
-        PdfDir = GetPdfDir();
-        CacheDir = GetCacheDir();
-        EnsureWorkingDirectories();
+    /// <inheritdoc />
+    public async Task GetBrowser()
+    {
+        try
+        {
+            _loggerService.LogInformation($"{ServiceName}: Getting Chrome browser (ver. {Chrome.DefaultBuildId})...");
+
+            var browserFetcher = new BrowserFetcher { Browser = SupportedBrowser.Chrome };
+            await browserFetcher.DownloadAsync();
+            var path = browserFetcher
+                .GetInstalledBrowsers()
+                .First(browser => browser.BuildId == Chrome.DefaultBuildId)
+                .GetExecutablePath();
+
+            _launchOptions.ExecutablePath = path;
+            _loggerService.LogInformation($"{ServiceName}: Browser downloaded, path '{path}'.");
+        }
+        catch (Exception exception)
+        {
+            throw FatalError(exception);
+        }
     }
 
     /// <inheritdoc />
@@ -67,8 +86,6 @@ public class CachingService : ICachingService
             _loggerService.LogWarning($"{ServiceName}: No source URL found...");
             return string.Empty;
         }
-
-        await GetBrowser();
 
         try
         {
@@ -123,8 +140,6 @@ public class CachingService : ICachingService
             _loggerService.LogWarning($"{ServiceName}: No page name found...");
             return string.Empty;
         }
-
-        await GetBrowser();
 
         try
         {

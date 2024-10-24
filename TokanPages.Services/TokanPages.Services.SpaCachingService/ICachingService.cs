@@ -6,8 +6,17 @@ namespace TokanPages.Services.SpaCachingService;
 public interface ICachingService
 {
     /// <summary>
+    /// Downloads OS specific browser for page rendering.
+    /// </summary>
+    /// <returns></returns>
+    Task GetBrowser();
+
+    /// <summary>
     /// Generates PDF file of given web page URL.
     /// </summary>
+    /// <remarks>
+    /// It requires browser to be already downloaded.
+    /// </remarks>
     /// <param name="sourceUrl">Web page URL.</param>
     /// <returns>Returns full path to a PDF file.</returns>
     Task<string> GeneratePdf(string sourceUrl);
@@ -15,6 +24,9 @@ public interface ICachingService
     /// <summary>
     /// Renders static page.
     /// </summary>
+    /// <remarks>
+    /// It requires browser to be already downloaded.
+    /// </remarks>
     /// <param name="sourceUrl">Web page URL - to be rendered.</param>
     /// <param name="serviceUrl">Upload service URL (POST action).</param>
     /// <param name="pageName">Rendered HTML page name.</param>
