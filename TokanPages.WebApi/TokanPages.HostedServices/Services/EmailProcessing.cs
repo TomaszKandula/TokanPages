@@ -24,6 +24,8 @@ public class EmailProcessing : Processing
     /// </summary>
     protected override string QueueName { get; set; } = "email_queue";
 
+    private const string ServiceName = $"[{nameof(EmailProcessing)}]";
+
     private readonly IEmailSenderService _emailSenderService;
 
     private readonly DatabaseContext _databaseContext;
@@ -53,22 +55,21 @@ public class EmailProcessing : Processing
         if (request is null)
             throw new GeneralException(ErrorNoRequestBody);
 
-        LoggerService.LogInformation($"{nameof(EmailProcessing)} has been called");
-        LoggerService.LogInformation($"Received message with ID: {args.Message.MessageId}");
+        LoggerService.LogInformation($"{ServiceName}: Received message with ID: {args.Message.MessageId}");
 
         var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
         if (currentEnv != request.TargetEnv)
         {
-            LoggerService.LogInformation($"Current environment: {currentEnv}");
-            LoggerService.LogInformation($"Target environment: {request.TargetEnv}");
-            LoggerService.LogInformation("Different target environment, quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: Current environment: {currentEnv}");
+            LoggerService.LogInformation($"{ServiceName}: Target environment: {request.TargetEnv}");
+            LoggerService.LogInformation($"{ServiceName}: Different target environment, quitting the job...");
             return;
         }
 
         var timer = new Stopwatch();
         timer.Start();
 
-        LoggerService.LogInformation("Email processing started...");
+        LoggerService.LogInformation($"{ServiceName}: Email processing started...");
         if (request.CreateUserConfiguration is not null)
         {
             await NotificationForConfiguration(request.CreateUserConfiguration);
@@ -87,13 +88,13 @@ public class EmailProcessing : Processing
         }
         else
         {
-            LoggerService.LogInformation("No configuration have been found...");
+            LoggerService.LogInformation($"{ServiceName}: No configuration have been found...");
         }
 
         await args.CompleteMessageAsync(args.Message).ConfigureAwait(false);
 
         timer.Stop();
-        LoggerService.LogInformation($"Email processed within: {timer.Elapsed}");
+        LoggerService.LogInformation($"{ServiceName}: Email processed within: {timer.Elapsed}");
     }
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
@@ -116,12 +117,12 @@ public class EmailProcessing : Processing
         var canContinue = await CanContinue(messageId, CancellationToken.None);
         if (canContinue)
         {
-            LoggerService.LogInformation($"Received: {nameof(configuration)}..., using: SendNotification method...");
+            LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendNotification method...");
             await _emailSenderService.SendNotification(configuration, CancellationToken.None).ConfigureAwait(false);
         }
         else
         {
-            LoggerService.LogInformation($"Message ID ({messageId}) has been already processed, quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: Message ID ({messageId}) has been already processed, quitting the job...");
         }
     }
 
@@ -131,12 +132,12 @@ public class EmailProcessing : Processing
         var canContinue = await CanContinue(messageId, CancellationToken.None);
         if (canContinue)
         {
-            LoggerService.LogInformation($"Received: {nameof(configuration)}..., using: SendEmail method...");
+            LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendEmail method...");
             await _emailSenderService.SendEmail(configuration, CancellationToken.None).ConfigureAwait(false);
         }
         else
         {
-            LoggerService.LogInformation($"Message ID ({messageId}) has been already processed, quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: Message ID ({messageId}) has been already processed, quitting the job...");
         }
     }
 }
