@@ -24,6 +24,8 @@ public class VideoProcessing : Processing
     /// </summary>
     protected override string QueueName { get; set; } = "video_queue";
 
+    private const string ServiceName = $"[{nameof(VideoProcessing)}]";
+
     private readonly IVideoProcessor _videoProcessor;
 
     private readonly DatabaseContext _databaseContext;
@@ -53,34 +55,33 @@ public class VideoProcessing : Processing
         if (request is null)
             throw new GeneralException(ErrorNoRequestBody);
 
-        LoggerService.LogInformation($"{nameof(VideoProcessing)} has been called");
-        LoggerService.LogInformation($"Received message with ID: {args.Message.MessageId}");
+        LoggerService.LogInformation($"{ServiceName}: Received message with ID: {args.Message.MessageId}");
 
         var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
         if (currentEnv != request.TargetEnv)
         {
-            LoggerService.LogInformation($"Current environment: {currentEnv}");
-            LoggerService.LogInformation($"Target environment: {request.TargetEnv}");
-            LoggerService.LogInformation("Different target environment, quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: Current environment: {currentEnv}");
+            LoggerService.LogInformation($"{ServiceName}: Target environment: {request.TargetEnv}");
+            LoggerService.LogInformation($"{ServiceName}: Different target environment, quitting the job...");
             return;
         }
 
         var canContinue = await CanContinue(request.MessageId, CancellationToken.None);
         if (!canContinue)
         {
-            LoggerService.LogInformation($"Message ID ({request.MessageId}) has been already processed, quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: Message ID ({request.MessageId}) has been already processed, quitting the job...");
             return;
         }
 
         var timer = new Stopwatch();
         timer.Start();
-        LoggerService.LogInformation("Video processing started...");
+        LoggerService.LogInformation($"{ServiceName}: Video processing started...");
 
         await _videoProcessor.Process(request).ConfigureAwait(false);
         await args.CompleteMessageAsync(args.Message).ConfigureAwait(false);
 
         timer.Stop();
-        LoggerService.LogInformation($"Video processed within: {timer.Elapsed}");
+        LoggerService.LogInformation($"{ServiceName}: Video processed within: {timer.Elapsed}");
     }
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)

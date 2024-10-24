@@ -13,6 +13,8 @@ namespace TokanPages.HostedServices.Services.CronJobs;
 [ExcludeFromCodeCoverage]
 public class CachingProcessingJob : CronJob
 {
+    private const string ServiceName = $"[{nameof(CachingProcessingJob)}]";
+
     private readonly ICachingService _cachingService;
 
     private readonly ILoggerService _loggerService;
@@ -53,10 +55,10 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: working...");
+        _loggerService.LogInformation($"{ServiceName}: working...");
         if (_paths.Count == 0)
         {
-            _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: no routes registered for caching..., quitting the job...");
+            _loggerService.LogInformation($"{ServiceName}: no routes registered for caching..., quitting the job...");
             return;
         }
 
@@ -64,7 +66,7 @@ public class CachingProcessingJob : CronJob
         foreach (var path in _paths)
         {
             await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
-            _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+            _loggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
         }
     }
 
@@ -75,8 +77,9 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: started, CRON expression is '{_cronExpression}'.");
-        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: routes for caching: {_paths.Count}.");
+        _loggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"{ServiceName}: routes for caching: {_paths.Count}.");
+        Task.Run(async () => await _cachingService.GetBrowser(), cancellationToken);
         return base.StartAsync(cancellationToken);
     }
 
@@ -87,7 +90,7 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(CachingProcessingJob)}]: stopped.");
+        _loggerService.LogInformation($"{ServiceName}: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }

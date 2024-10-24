@@ -1,0 +1,182 @@
+version: "3.8"
+
+services:
+  articles-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: articles.dockerfile
+    hostname: articles
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  content-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: content.dockerfile
+    hostname: content
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  sender-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: sender.dockerfile
+    hostname: sender
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  revenue-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: revenue.dockerfile
+    hostname: revenue
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  users-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: users.dockerfile
+    hostname: users
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  invoicing-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: invoicing.dockerfile
+    hostname: invoicing
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  notifications-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: notifications.dockerfile
+    hostname: notifications
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  chat-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: chat.dockerfile
+    hostname: chat
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  gateway-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: gateway.dockerfile
+    hostname: gateway
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets2.json:/app/appsettings.Testing.json:ro
+
+  hosted-services-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: hosted.dockerfile
+    hostname: hosted-services
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
+  frontend-app:
+    build:
+      context: TokanPages.ClientApp
+      args:
+        - ENV_VALUE=Testing
+        - API_VERSION=${API_VERSION}
+        - APP_VERSION=${APP_VERSION}
+        - APP_BUILD_TEST=${APP_BUILD_TEST}
+        - APP_DATE_TIME=${APP_DATE_TIME}
+        - APP_BACKEND=http://${APP_BACKEND}
+        - SONAR_TOKEN=${SONAR_TOKEN}
+        - SONAR_KEY=${SONAR_KEY}
+        - SONAR_HOST=${SONAR_HOST}
+      dockerfile: clientapp.dockerfile
+    hostname: frontend
+    restart: on-failure
+    networks:
+      - xnet
+    ports:
+      - "3000:80"
+    volumes:
+      - ./TokanPages.ClientApp/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-base.conf:/etc/nginx/nginx-base.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-proxy.conf:/etc/nginx/nginx-proxy.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-ui-paths.conf:/etc/nginx/nginx-ui-paths.conf:ro
+
+networks:
+  xnet:
+    driver: bridge

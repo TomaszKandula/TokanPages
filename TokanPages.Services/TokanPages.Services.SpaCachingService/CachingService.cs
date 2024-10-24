@@ -16,9 +16,7 @@ namespace TokanPages.Services.SpaCachingService;
 /// </summary>
 public class CachingService : ICachingService
 {
-    private const string PdfDirName = "PdfDir";
-
-    private const string CacheDirName = "CacheDir";
+    private const int FiveMinutesTimeout = 3000;
 
     private const string DocumentFontReady = "document.fonts.ready";
 
@@ -50,19 +48,34 @@ public class CachingService : ICachingService
         WaitUntilNavigation.Networkidle0
     };
 
-    private string PdfDir { get; }
-
-    private string CacheDir { get; }
-
     public CachingService(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, IHttpClientServiceFactory httpClientServiceFactory)
     {
         _loggerService = loggerService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _httpClientServiceFactory = httpClientServiceFactory;
+    }
 
-        PdfDir = GetPdfDir();
-        CacheDir = GetCacheDir();
-        EnsureWorkingDirectories();
+    /// <inheritdoc />
+    public async Task GetBrowser()
+    {
+        try
+        {
+            _loggerService.LogInformation($"{ServiceName}: Getting Chrome browser (ver. {Chrome.DefaultBuildId})...");
+
+            var browserFetcher = new BrowserFetcher { Browser = SupportedBrowser.Chrome };
+            await browserFetcher.DownloadAsync();
+            var path = browserFetcher
+                .GetInstalledBrowsers()
+                .First(browser => browser.BuildId == Chrome.DefaultBuildId)
+                .GetExecutablePath();
+
+            _launchOptions.ExecutablePath = path;
+            _loggerService.LogInformation($"{ServiceName}: Browser downloaded, path '{path}'.");
+        }
+        catch (Exception exception)
+        {
+            throw FatalError(exception);
+        }
     }
 
     /// <inheritdoc />
@@ -74,18 +87,23 @@ public class CachingService : ICachingService
             return string.Empty;
         }
 
-        await GetBrowser();
-
         try
         {
             await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
             await using var page = await browser.NewPageAsync();
 
-            await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
+            await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
 
             var pdfName = $"{Guid.NewGuid()}.pdf";
-            var outputPath = Path.Combine(PdfDir, pdfName);
+            var tempDir = $"{AppDomain.CurrentDomain.BaseDirectory}{Path.PathSeparator}temp";
+            if (!Directory.Exists(tempDir))
+            {
+                Directory.CreateDirectory(tempDir);
+                _loggerService.LogInformation($"{ServiceName}: Directory '{tempDir}' has been created.");
+            }
+
+            var outputPath = Path.Combine(tempDir, pdfName);
             var fileInfo = new FileInfo(outputPath);
             if (fileInfo.Exists)
                 fileInfo.Delete();
@@ -123,14 +141,12 @@ public class CachingService : ICachingService
             return string.Empty;
         }
 
-        await GetBrowser();
-
         try
         {
             await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
             await using var page = await browser.NewPageAsync();
 
-            await page.GoToAsync(sourceUrl, waitUntil: WaitUntilOptions);
+            await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
             var htmlContent = await page.GetContentAsync();
             var binary = Encoding.ASCII.GetBytes(htmlContent);
@@ -219,55 +235,6 @@ public class CachingService : ICachingService
         var fileToUpload = await File.ReadAllBytesAsync(sourcePath);
         using var fileStream = new MemoryStream(fileToUpload);
         await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
-    }
-
-    private static string GetPdfDir()
-    {
-        var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        return Path.Combine(baseDirectory, PdfDirName);
-    }
-
-    private static string GetCacheDir()
-    {
-        var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        return Path.Combine(baseDirectory, CacheDirName);
-    }
-
-    private void EnsureWorkingDirectories()
-    {
-        if (!Directory.Exists(PdfDir))
-        {
-            Directory.CreateDirectory(PdfDir);
-            _loggerService.LogInformation($"{ServiceName}: Directory '{PdfDir}' has been created.");
-        }
-
-        if (!Directory.Exists(CacheDir))
-        {
-            Directory.CreateDirectory(CacheDir);
-            _loggerService.LogInformation($"{ServiceName}: Directory '{CacheDir}' has been created.");
-        }
-    }
-
-    private async Task GetBrowser()
-    {
-        try
-        {
-            _loggerService.LogInformation($"{ServiceName}: Getting Chrome browser (ver. {Chrome.DefaultBuildId})...");
-
-            var browserFetcher = new BrowserFetcher { Browser = SupportedBrowser.Chrome };
-            await browserFetcher.DownloadAsync();
-            var path = browserFetcher
-                .GetInstalledBrowsers()
-                .First(browser => browser.BuildId == Chrome.DefaultBuildId)
-                .GetExecutablePath();
-
-            _launchOptions.ExecutablePath = path;
-            _loggerService.LogInformation($"{ServiceName}: Browser downloaded, path '{path}'.");
-        }
-        catch (Exception exception)
-        {
-            throw FatalError(exception);
-        }
     }
 
     private Exception FatalError(Exception exception)

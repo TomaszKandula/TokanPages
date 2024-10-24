@@ -12,6 +12,8 @@ namespace TokanPages.HostedServices.Services.CronJobs;
 [ExcludeFromCodeCoverage]
 public class BatchProcessingJob : CronJob
 {
+    private const string ServiceName = $"[{nameof(BatchProcessingJob)}]";
+
     private readonly IBatchService _batchService;
 
     private readonly ILoggerService _loggerService;
@@ -40,7 +42,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: working...");
+        _loggerService.LogInformation($"{ServiceName}: working...");
         await _batchService.ProcessOutstandingInvoices(cancellationToken);
     }
 
@@ -51,7 +53,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: started, CRON expression is '{_cronExpression}'.");
+        _loggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
         return base.StartAsync(cancellationToken);
     }
 
@@ -62,7 +64,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"[{nameof(BatchProcessingJob)}]: stopped.");
+        _loggerService.LogInformation($"{ServiceName}: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }
