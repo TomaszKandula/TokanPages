@@ -1,3 +1,45 @@
+# [0.112.0](https://github.com/TomaszKandula/TokanPages/compare/v0.111.0...v0.112.0) (2024-10-24)
+
+
+### Bug Fixes
+
+* correct timeout ([b207d82](https://github.com/TomaszKandula/TokanPages/commit/b207d82c0876aa84555299af2d1a874d2b4f3a8a))
+* remove MacOs specific treatment ([59bf0ed](https://github.com/TomaszKandula/TokanPages/commit/59bf0ed74cd613446c0a8f3d2d7719fd93afc693))
+* resolve typo ([69134ba](https://github.com/TomaszKandula/TokanPages/commit/69134ba173e0afa338f5938c6c86fa250736d6af))
+
+
+### Features
+
+* add 502 custom error ([c9600a7](https://github.com/TomaszKandula/TokanPages/commit/c9600a768290f95518a5a2c28849f29ffe35b7bc))
+* add cache controller ([5142f1f](https://github.com/TomaszKandula/TokanPages/commit/5142f1fe1386f8d6e135cf557d967622cfa980a1))
+* add command w/validator ([4529beb](https://github.com/TomaszKandula/TokanPages/commit/4529bebbbe56505add888e4ecd3e51a0e250af54))
+* add mapper ([a4191ef](https://github.com/TomaszKandula/TokanPages/commit/a4191ef43c1e9ff97cb20992ff4464d28dfe47fc))
+* add model ([707d40c](https://github.com/TomaszKandula/TokanPages/commit/707d40c2e1f7afbb5884681fc3e99cdcab047eb2))
+* add models ([03987e3](https://github.com/TomaszKandula/TokanPages/commit/03987e30afbf0a70432f19e0b137fd29228f3b93))
+* add new config props ([724e63e](https://github.com/TomaszKandula/TokanPages/commit/724e63e0970e9ed6ad2e0a0ef971217e571293f4))
+* add new error code ([6d39bc8](https://github.com/TomaszKandula/TokanPages/commit/6d39bc8a29aec965475755056df7388106637b95))
+* add new error codes ([cf54837](https://github.com/TomaszKandula/TokanPages/commit/cf5483737094313fea9feb40906e238f57a1f7eb))
+* add query handler ([5f754f2](https://github.com/TomaszKandula/TokanPages/commit/5f754f27b343b69b768465dbf0006609434fe0a9))
+* add/update endpoints ([d398b58](https://github.com/TomaszKandula/TokanPages/commit/d398b586813593dfb078d6c430dd32ea0cd1b2fc))
+* allow nulls, check inout arguments ([ceb876a](https://github.com/TomaszKandula/TokanPages/commit/ceb876ab12da1a77916747783f0fe31d310031e4))
+* allow to send a binary file ([3af127c](https://github.com/TomaszKandula/TokanPages/commit/3af127c10272289b132fa94e2838b75664072e43))
+* cache given files ([55039d9](https://github.com/TomaszKandula/TokanPages/commit/55039d93b4c845fa0a834bc819f424e85098344b))
+* change contract ([afac552](https://github.com/TomaszKandula/TokanPages/commit/afac55267e7e9387d0ade2f25faee6831075fe7d))
+* change SPA building process ([30b211a](https://github.com/TomaszKandula/TokanPages/commit/30b211a4ddce6750faf9eaaccec8b7fe73e23e31))
+* download browser on start ([51007d2](https://github.com/TomaszKandula/TokanPages/commit/51007d20d4d4ae8e75bdf567201bfef2b9f939d3))
+* make GetBrowser public for external use ([92453b0](https://github.com/TomaszKandula/TokanPages/commit/92453b0326923590aacc288794642f947502bfca))
+* remove unused code ([c1efc84](https://github.com/TomaszKandula/TokanPages/commit/c1efc84b3824a302670d6dc8594908393199f911))
+* restart container on failure ([024fa2c](https://github.com/TomaszKandula/TokanPages/commit/024fa2c44e44f1d1cc0f64bdd5daa9b7aac78653))
+* save files to cache folder ([447f9f5](https://github.com/TomaszKandula/TokanPages/commit/447f9f5a4ee8c684f7b5595ab9786100ab80a930))
+* serve css directly ([44dbdb8](https://github.com/TomaszKandula/TokanPages/commit/44dbdb8f95cd58cc9c992e443db60c27ae034ef2))
+* set larger timout for very slow networks ([565b3cf](https://github.com/TomaszKandula/TokanPages/commit/565b3cf555495fceefa75edfb4cc448af5b48042))
+* split test config (OS specific) ([38f918a](https://github.com/TomaszKandula/TokanPages/commit/38f918a9878517e4849bbd1d8294f7d87a72c2c7))
+* update gw routes ([879dbeb](https://github.com/TomaszKandula/TokanPages/commit/879dbebb3a9cced7d31ab6ca4767227218b33c30))
+* update models ([5e3a2d0](https://github.com/TomaszKandula/TokanPages/commit/5e3a2d048c96e1f7786303a0ef62ce9536ed4080))
+* update processing, use new URL from config ([63f2876](https://github.com/TomaszKandula/TokanPages/commit/63f2876c02fd4f27b8a7dbbb5d5b6c7d9f73b798))
+* update settings ([2d1f4e1](https://github.com/TomaszKandula/TokanPages/commit/2d1f4e1e0cfdcdbf7baa066a8739e430c7f332a4))
+* update spa caching service, upload to local container saved page ([8a8baa1](https://github.com/TomaszKandula/TokanPages/commit/8a8baa122cb8f4aef509544cab8b5bcad22d3492))
+
 # [0.111.0](https://github.com/TomaszKandula/TokanPages/compare/v0.110.0...v0.111.0) (2024-10-15)
 
 
