@@ -80,6 +80,7 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
+        await cachingService.GetBrowser();
         var result = await cachingService.GeneratePdf(url);
 
         // Assert
@@ -123,6 +124,7 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
+        await cachingService.GetBrowser();
         var result = await cachingService.RenderStaticPage(sourceUrl, serviceUrl, pageName);
 
         // Assert
