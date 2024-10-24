@@ -66,7 +66,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Docu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
 	ProjectSection(SolutionItems) = preProject
-		docker-compose-test.yml = docker-compose-test.yml
+		docker-compose-test-macos.yml = docker-compose-test-macos.yml
+		docker-compose-test-linux.yml = docker-compose-test-linux.yml
 		docker-compose-prod.yml = docker-compose-prod.yml
 		articles.dockerfile = articles.dockerfile
 		chat.dockerfile = chat.dockerfile
@@ -79,7 +80,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{
 		gateway.dockerfile = gateway.dockerfile
 		hosted.dockerfile = hosted.dockerfile
 		TokanPages.ClientApp\clientapp.dockerfile = TokanPages.ClientApp\clientapp.dockerfile
-		docker-compose-up-test.sh = docker-compose-up-test.sh
+		docker-compose-up-test-linux.sh = docker-compose-up-test-linux.sh
+		docker-compose-up-test-macos.sh = docker-compose-up-test-macos.sh
 		docker-compose-up-prod.sh = docker-compose-up-prod.sh
 	EndProjectSection
 EndProject
