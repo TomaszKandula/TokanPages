@@ -1,4 +1,4 @@
-namespace TokanPages.HostedServices.Services.Abstractions;
+namespace TokanPages.HostedServices.Abstractions;
 
 /// <summary>
 /// Contract for processing hosted service. 

@@ -1,6 +1,7 @@
-using TokanPages.HostedServices.Services.Models;
+using TokanPages.HostedServices.Base.Abstractions;
+using TokanPages.HostedServices.Models;
 
-namespace TokanPages.HostedServices.Services.Abstractions;
+namespace TokanPages.HostedServices.CronJobs.Abstractions;
 
 /// <inheritdoc />
 public interface ICachingProcessingConfig : IBaseConfig

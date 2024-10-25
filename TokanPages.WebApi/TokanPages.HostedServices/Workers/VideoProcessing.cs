@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.HostedServices.Services.Base;
+using TokanPages.HostedServices.Base;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Abstractions;
@@ -11,7 +11,7 @@ using TokanPages.Services.VideoProcessingService.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace TokanPages.HostedServices.Services;
+namespace TokanPages.HostedServices.Workers;
 
 /// <summary>
 /// Implementation of video processing hosted service.

@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.HostedServices.Services.Abstractions;
-using TokanPages.HostedServices.Services.Base;
-using TokanPages.HostedServices.Services.Models;
+using TokanPages.HostedServices.Base;
+using TokanPages.HostedServices.CronJobs.Abstractions;
+using TokanPages.HostedServices.Models;
 using TokanPages.Services.SpaCachingService;
 
-namespace TokanPages.HostedServices.Services.CronJobs;
+namespace TokanPages.HostedServices.CronJobs;
 
 /// <summary>
 /// CRON job implementation.

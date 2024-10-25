@@ -1,8 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 
-namespace TokanPages.HostedServices.Services;
+namespace TokanPages.HostedServices.Workers;
 
 /// <summary>
 /// Video Processing Worker using Hosted Service.

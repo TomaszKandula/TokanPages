@@ -1,7 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.HostedServices.Services.Abstractions;
+using TokanPages.HostedServices.CronJobs.Abstractions;
+using TokanPages.HostedServices.Models;
 
-namespace TokanPages.HostedServices.Services.Models;
+namespace TokanPages.HostedServices.CronJobs;
 
 /// <summary>
 /// Caching processing configuration.
