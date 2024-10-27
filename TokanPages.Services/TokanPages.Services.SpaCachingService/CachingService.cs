@@ -16,7 +16,7 @@ namespace TokanPages.Services.SpaCachingService;
 /// </summary>
 public class CachingService : ICachingService
 {
-    private const int FiveMinutesTimeout = 3000;
+    private const int FiveMinutesTimeout = 300000;
 
     private const string DocumentFontReady = "document.fonts.ready";
 
