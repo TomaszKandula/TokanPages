@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.HostedServices.Services.Abstractions;
+using TokanPages.HostedServices.CronJobs.Abstractions;
 
-namespace TokanPages.HostedServices.Services.Models;
+namespace TokanPages.HostedServices.CronJobs;
 
 /// <summary>
 /// Batch processing configuration.

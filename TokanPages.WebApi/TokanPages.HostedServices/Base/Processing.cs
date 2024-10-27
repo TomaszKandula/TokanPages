@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.HostedServices.Services.Abstractions;
+using TokanPages.HostedServices.Base.Abstractions;
 using TokanPages.Services.AzureBusService.Abstractions;
 
-namespace TokanPages.HostedServices.Services.Base;
+namespace TokanPages.HostedServices.Base;
 
 /// <summary>
 /// Processing contract implementation.

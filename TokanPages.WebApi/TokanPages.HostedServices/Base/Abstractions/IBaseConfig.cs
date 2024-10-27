@@ -1,4 +1,4 @@
-namespace TokanPages.HostedServices.Services.Abstractions;
+namespace TokanPages.HostedServices.Base.Abstractions;
 
 /// <summary>
 /// Schedule configuration contract.

@@ -1,4 +1,4 @@
-namespace TokanPages.HostedServices.Services.Models;
+namespace TokanPages.HostedServices.Models;
 
 /// <summary>
 /// Route path definition.

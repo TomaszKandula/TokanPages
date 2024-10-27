@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.HostedServices.Services.Abstractions;
-using TokanPages.HostedServices.Services.Base;
-using TokanPages.HostedServices.Services.Models;
+using TokanPages.HostedServices.Base;
+using TokanPages.HostedServices.CronJobs.Abstractions;
+using TokanPages.HostedServices.Models;
 using TokanPages.Services.SpaCachingService;
 
-namespace TokanPages.HostedServices.Services.CronJobs;
+namespace TokanPages.HostedServices.CronJobs;
 
 /// <summary>
 /// CRON job implementation.
@@ -65,8 +65,9 @@ public class CachingProcessingJob : CronJob
         await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
         foreach (var path in _paths)
         {
-            await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
-            _loggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+            var page = await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
+            if (!string.IsNullOrWhiteSpace(page))
+                _loggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
         }
     }
 
@@ -77,9 +78,13 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
+        var staticFileToCache = _filesToCache?.Length ?? 0;
         _loggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
-        _loggerService.LogInformation($"{ServiceName}: routes for caching: {_paths.Count}.");
+        _loggerService.LogInformation($"{ServiceName}: static files to cache: {staticFileToCache}.");
+        _loggerService.LogInformation($"{ServiceName}: SPA pages to cache: {_paths.Count}.");
+
         Task.Run(async () => await _cachingService.GetBrowser(), cancellationToken);
+
         return base.StartAsync(cancellationToken);
     }
 

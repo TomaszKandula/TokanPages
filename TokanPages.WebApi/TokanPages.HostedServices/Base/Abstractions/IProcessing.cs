@@ -1,6 +1,7 @@
 using Azure.Messaging.ServiceBus;
+using TokanPages.HostedServices.Abstractions;
 
-namespace TokanPages.HostedServices.Services.Abstractions;
+namespace TokanPages.HostedServices.Base.Abstractions;
 
 /// <summary>
 /// Processing contract.
