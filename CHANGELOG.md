@@ -1,3 +1,16 @@
+# [0.113.0](https://github.com/TomaszKandula/TokanPages/compare/v0.112.0...v0.113.0) (2024-10-27)
+
+
+### Bug Fixes
+
+* incorrect free space calculation ([3f7f845](https://github.com/TomaszKandula/TokanPages/commit/3f7f8453d9a3f7dd1fbd55015e2ab0c272469235))
+
+
+### Features
+
+* log info when rendered ([6eb24ad](https://github.com/TomaszKandula/TokanPages/commit/6eb24adc047e4179923aa7440c3de7f7e3938b3c))
+* log more info ([4f3ff15](https://github.com/TomaszKandula/TokanPages/commit/4f3ff1500ec71085c011c83a461493f29f66110d))
+
 # [0.112.0](https://github.com/TomaszKandula/TokanPages/compare/v0.111.0...v0.112.0) (2024-10-24)
 
 
