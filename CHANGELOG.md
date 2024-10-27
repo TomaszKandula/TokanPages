@@ -1,3 +1,10 @@
+## [0.113.1](https://github.com/TomaszKandula/TokanPages/compare/v0.113.0...v0.113.1) (2024-10-27)
+
+
+### Bug Fixes
+
+* correct wrong timeout value in milliseconds ([546179b](https://github.com/TomaszKandula/TokanPages/commit/546179b7c569c309acf056f917a6156bd2bbfd9b))
+
 # [0.113.0](https://github.com/TomaszKandula/TokanPages/compare/v0.112.0...v0.113.0) (2024-10-27)
 
 
