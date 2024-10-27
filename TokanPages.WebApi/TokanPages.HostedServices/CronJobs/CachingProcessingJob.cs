@@ -65,8 +65,9 @@ public class CachingProcessingJob : CronJob
         await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
         foreach (var path in _paths)
         {
-            await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
-            _loggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+            var page = await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
+            if (!string.IsNullOrWhiteSpace(page))
+                _loggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
         }
     }
 
