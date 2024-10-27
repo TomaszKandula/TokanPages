@@ -77,9 +77,13 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
+        var staticFileToCache = _filesToCache?.Length ?? 0;
         _loggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
-        _loggerService.LogInformation($"{ServiceName}: routes for caching: {_paths.Count}.");
+        _loggerService.LogInformation($"{ServiceName}: static files to cache: {staticFileToCache}.");
+        _loggerService.LogInformation($"{ServiceName}: SPA pages to cache: {_paths.Count}.");
+
         Task.Run(async () => await _cachingService.GetBrowser(), cancellationToken);
+
         return base.StartAsync(cancellationToken);
     }
 
