@@ -35,7 +35,7 @@ public class UploadFileToLocalStorageCommandHandler : RequestHandler<UploadFileT
         LoggerService.LogInformation($"File '{fileName}' has been saved to local directory. Content type: '{contentType}'.");
 
         var directorySize = await GetDirSizeInBytes(pathToFolder) / 1024M;
-        var freeSpaceKb = MaxDirectorySizeKb - fileSizeKb;
+        var freeSpaceKb = MaxDirectorySizeKb - directorySize;
         var freeSpaceMb = freeSpaceKb / 1024M;
         const decimal maxDirectorySizeMb = MaxDirectorySizeKb / 1024M;
 

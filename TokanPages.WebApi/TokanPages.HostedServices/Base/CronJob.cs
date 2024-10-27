@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Cronos;
 
-namespace TokanPages.HostedServices.Services.Base;
+namespace TokanPages.HostedServices.Base;
 
 /// <summary>
 /// Cron job base implementation using threading timer.
