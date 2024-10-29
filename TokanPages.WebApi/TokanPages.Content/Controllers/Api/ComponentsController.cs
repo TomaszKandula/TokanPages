@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using TokanPages.Backend.Application.Content.Components.Commands;
 using TokanPages.Backend.Application.Content.Components.Queries;
+using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Content.Controllers.Mappers;
 using TokanPages.Content.Dto.Components;
 using TokanPages.Persistence.Caching.Abstractions;
@@ -43,6 +44,8 @@ public class ComponentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpGet]
+    [ETagFilter]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "name", "language", "noCache" })]
     [ProducesResponseType(typeof(GetContentQueryResult), StatusCodes.Status200OK)]
     public async Task<GetContentQueryResult> GetContent(
         [FromQuery] string? language,
@@ -57,6 +60,8 @@ public class ComponentsController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object.</returns>
     [HttpPost]
+    [ETagFilter]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400)]
     [ProducesResponseType(typeof(RequestPageDataCommandResult), StatusCodes.Status200OK)]
     public async Task<RequestPageDataCommandResult> RequestPageData([FromBody] RequestPageDataDto request, [FromQuery] bool noCache = false) 
         => await _contentCache.GetPageContent(ComponentsMapper.MapToRequestPageDataCommand(request), noCache);
