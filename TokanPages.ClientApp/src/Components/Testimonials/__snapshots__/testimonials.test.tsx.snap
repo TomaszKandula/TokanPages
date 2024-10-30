@@ -28,12 +28,12 @@ Object {
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 data-aos="fade-up"
                 data-aos-delay="350"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <img
                     alt="photo of joanna.webp"
@@ -100,12 +100,12 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 data-aos="fade-up"
                 data-aos-delay="150"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
                     alt="photo of adama.webp"
@@ -169,12 +169,12 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 data-aos="fade-up"
-                data-aos-delay="550"
+                data-aos-delay="250"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
                     alt="photo of scott.webp"
@@ -267,12 +267,12 @@ Object {
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
               data-aos="fade-up"
               data-aos-delay="350"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <img
                   alt="photo of joanna.webp"
@@ -339,12 +339,12 @@ Object {
               </div>
             </div>
             <div
-              class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
               data-aos="fade-up"
               data-aos-delay="150"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
                   alt="photo of adama.webp"
@@ -408,12 +408,12 @@ Object {
               </div>
             </div>
             <div
-              class="MuiGrid-root makeStyles-card_space-4 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
               data-aos="fade-up"
-              data-aos-delay="550"
+              data-aos-delay="250"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation3 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
                   alt="photo of scott.webp"

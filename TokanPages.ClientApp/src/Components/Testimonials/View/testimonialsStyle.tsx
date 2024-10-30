@@ -10,12 +10,8 @@ export const TestimonialsStyle = makeStyles(theme => ({
         fontSize: "2.0rem",
         color: Colours.colours.violet,
     },
-    card: {
-        minHeight: 340,
-        borderRadius: 15,
-        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
-    },
-    card_space: {
+    card_holder: {
+        position: "relative",
         [theme.breakpoints.down("md")]: {
             marginTop: 45,
         },
@@ -23,17 +19,22 @@ export const TestimonialsStyle = makeStyles(theme => ({
             marginTop: 0,
         },
     },
+    card: {
+        minHeight: 340,
+        borderRadius: 15,
+        boxShadow: "0 2px 20px 0 rgb(0 0 0 / 20%)",
+    },
     card_image: {
         height: "140px",
         width: "140px",
         borderRadius: "50%",
+        margin: 0,
         top: 0,
         left: "50%",
-        margin: 0,
         transform: "translate(-50%, -33%)",
         overflow: "hidden",
         position: "absolute",
-        verticalAlign: "middle",
+        zIndex: 999
     },
     card_content: {
         marginTop: 70,
