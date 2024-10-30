@@ -55,7 +55,14 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                 </Box>
                 <Box pb={15} textAlign="center">
                     <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
+                        <Grid 
+                            item 
+                            xs={12} 
+                            md={4} 
+                            data-aos="fade-up"
+                            data-aos-delay="350"
+                            className={classes.card_holder}
+                        >
                             <Card elevation={0} className={classes.card}>
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" className={classes.card_image} />
@@ -96,9 +103,9 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             item
                             xs={12}
                             md={4}
-                            className={classes.card_space}
                             data-aos="fade-up"
                             data-aos-delay="150"
+                            className={classes.card_holder}
                         >
                             <Card elevation={3} className={classes.card}>
                                 {props.isLoading ? (
@@ -140,9 +147,9 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             item
                             xs={12}
                             md={4}
-                            className={classes.card_space}
                             data-aos="fade-up"
-                            data-aos-delay="550"
+                            data-aos-delay="250"
+                            className={classes.card_holder}
                         >
                             <Card elevation={3} className={classes.card}>
                                 {props.isLoading ? (
