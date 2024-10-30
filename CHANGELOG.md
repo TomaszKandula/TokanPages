@@ -1,3 +1,19 @@
+# [0.114.0](https://github.com/TomaszKandula/TokanPages/compare/v0.113.1...v0.114.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* image positioning ([1d103da](https://github.com/TomaszKandula/TokanPages/commit/1d103da3602a473fd1031e44b5115a40393a3462))
+* remove unnecessary css loading ([4f5b6e7](https://github.com/TomaszKandula/TokanPages/commit/4f5b6e72cb50e9e15addeab0fe2149702a2aad43))
+* resolve image position without AOS enabled ([514b820](https://github.com/TomaszKandula/TokanPages/commit/514b820b5256a42078edff325a6b1a0ca522ef3f))
+
+
+### Features
+
+* allow to request page without animations ([7b894f1](https://github.com/TomaszKandula/TokanPages/commit/7b894f12f5a7d9dbc3309579eae070cc359f80a5))
+* do not require cache from page content ([eea22c5](https://github.com/TomaszKandula/TokanPages/commit/eea22c53120825a719e03b478e49e03f72ac4cca))
+* use ETag filter for component data ([4797bcf](https://github.com/TomaszKandula/TokanPages/commit/4797bcfd272ddd9b8f2a071699c3e9fb52484d6c))
+
 ## [0.113.1](https://github.com/TomaszKandula/TokanPages/compare/v0.113.0...v0.113.1) (2024-10-27)
 
 
