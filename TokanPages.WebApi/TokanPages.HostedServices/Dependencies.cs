@@ -132,13 +132,14 @@ public static class Dependencies
 
         if (!string.IsNullOrWhiteSpace(cachingServiceCron))
         {
+            var hasFiles = !string.IsNullOrWhiteSpace(cachingServiceFiles);
             var cachingProcessingConfig = new CachingProcessingConfig
             {
                 TimeZoneInfo = TimeZoneInfo.Local,
                 CronExpression = cachingServiceCron,
                 GetActionUrl = cachingServiceGetUrl ?? "",
                 PostActionUrl = cachingServicePostUrl ?? "",
-                FilesToCache = cachingServiceFiles?.Split(";"),
+                FilesToCache = hasFiles ? cachingServiceFiles?.Split(";") : null,
                 RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths)
             };
 
