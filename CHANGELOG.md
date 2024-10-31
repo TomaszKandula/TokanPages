@@ -1,3 +1,10 @@
+# [0.115.0](https://github.com/TomaszKandula/TokanPages/compare/v0.114.0...v0.115.0) (2024-10-31)
+
+
+### Features
+
+* log more detailed info ([b053703](https://github.com/TomaszKandula/TokanPages/commit/b0537033e960c41f27978a880896109c39a0dcd8))
+
 # [0.114.0](https://github.com/TomaszKandula/TokanPages/compare/v0.113.1...v0.114.0) (2024-10-30)
 
 
