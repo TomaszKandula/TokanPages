@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -23,15 +22,11 @@ interface Properties {
     manifest: GetContentManifestDto;
 }
 
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
-
 const App = (props: Properties): React.ReactElement => {
     const classes = AppStyle();
-    const queryParam = useQuery();
+    const queryParam = new URLSearchParams(window.location.search);
     const mode = queryParam.get("mode");
-    const isStatic = mode === "static"; 
+    const isStatic = mode === "static";
 
     UpdateUserData();
     UpdateUserLanguage(props.manifest);
