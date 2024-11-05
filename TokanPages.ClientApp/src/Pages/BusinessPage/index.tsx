@@ -2,17 +2,26 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
+import { TryAttachState } from "../../Shared/Services/initializeService";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
 
 export const BusinessPage = () => {
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const businessForm = state.contentPageData.components.businessForm;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "templates", "businessForm"], "BusinessPage"));
     }, [language?.id]);
+
+    React.useEffect(() => {
+        if (businessForm.language !== "") {
+            TryAttachState(state);
+        }
+    }, [state]);
 
     return (
         <>
