@@ -25,7 +25,7 @@ export const UpdateUserData = (): void => {
     }
 };
 
-export const AttachState = (state: ApplicationState): void => {
+export const TryAttachState = (state: ApplicationState): void => {
     const queryParam = new URLSearchParams(window.location.search);
     const param = queryParam.get("mode");
 
