@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TrySnapshotState } from "../../Shared/Services/initializeService";
+import { TrySnapshotState } from "../../Shared/Services/SpaCaching";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";

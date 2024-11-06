@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
 import { UserDataStoreAction } from "../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../Api/Models";
 import { GetDataFromStorage } from "./StorageServices";
@@ -25,17 +24,3 @@ export const UpdateUserData = (): void => {
     }
 };
 
-export const TrySnapshotState = (state: ApplicationState): void => {
-    const queryParam = new URLSearchParams(window.location.search);
-    const param = queryParam.get("mode");
-
-    if (param === "snapshot") {
-        const serialized = JSON.stringify(state);
-        const meta = document.createElement("meta");
-
-        meta.name = "snapshot-state";
-        meta.content = serialized;
-
-        document.head.appendChild(meta);
-    }
-}

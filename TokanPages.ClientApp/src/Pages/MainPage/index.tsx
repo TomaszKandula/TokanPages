@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TrySnapshotState } from "../../Shared/Services/initializeService";
+import { TrySnapshotState } from "../../Shared/Services/SpaCaching";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";

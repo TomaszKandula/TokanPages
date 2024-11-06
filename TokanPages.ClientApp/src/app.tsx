@@ -4,6 +4,7 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { GetContentManifestDto } from "./Api/Models";
 import { UpdateUserData } from "./Shared/Services/initializeService";
+import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
 import { UpdateUserLanguage } from "./Shared/Services/languageService";
 import { AppStyle } from "./app.style";
 import { Routes } from "./routes";
@@ -24,9 +25,7 @@ interface Properties {
 
 const App = (props: Properties): React.ReactElement => {
     const classes = AppStyle();
-    const queryParam = new URLSearchParams(window.location.search);
-    const mode = queryParam.get("mode");
-    const hasSnapshotMode = mode === "snapshot";
+    const hasSnapshotMode = HasSnapshotMode();
 
     UpdateUserData();
     UpdateUserLanguage(props.manifest);
