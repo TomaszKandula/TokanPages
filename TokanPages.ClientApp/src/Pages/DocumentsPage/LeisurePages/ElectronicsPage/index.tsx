@@ -2,13 +2,16 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../../Store/Actions";
+import { TryAttachState } from "../../../../Shared/Services/initializeService";
 import { Navigation, Footer } from "../../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 
 export const ElectronicsPage = (): React.ReactElement => {
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const data = state.contentPageData;
+    const electronics = state.contentPageData.components.electronics;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "electronics"], "ElectronicsPage"));
@@ -16,6 +19,12 @@ export const ElectronicsPage = (): React.ReactElement => {
 
     const isLoading = data?.isLoading ?? false;
     const items = data?.components.electronics.items ?? [];
+
+    React.useEffect(() => {
+        if (electronics.language !== "") {
+            TryAttachState(state);
+        }
+    }, [state]);
 
     return (
         <>
