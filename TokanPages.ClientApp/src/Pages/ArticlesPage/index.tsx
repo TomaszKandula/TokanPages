@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
-import { TryAttachState } from "../../Shared/Services/initializeService";
+import { TrySnapshotState } from "../../Shared/Services/initializeService";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
 import { Colours } from "../../Theme";
@@ -28,7 +28,7 @@ export const ArticlesPage = (): React.ReactElement => {
 
     React.useEffect(() => {
         if (articles.language !== "") {
-            TryAttachState(state);
+            TrySnapshotState(state);
         }
     }, [state]);
 

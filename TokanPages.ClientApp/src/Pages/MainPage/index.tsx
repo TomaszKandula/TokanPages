@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TryAttachState } from "../../Shared/Services/initializeService";
+import { TrySnapshotState } from "../../Shared/Services/initializeService";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
@@ -44,7 +44,7 @@ export const MainPage = (): React.ReactElement => {
 
     React.useEffect(() => {
         if (header.language !== "") {
-            TryAttachState(state);
+            TrySnapshotState(state);
         }
     }, [state]);
 

@@ -25,15 +25,15 @@ export const UpdateUserData = (): void => {
     }
 };
 
-export const TryAttachState = (state: ApplicationState): void => {
+export const TrySnapshotState = (state: ApplicationState): void => {
     const queryParam = new URLSearchParams(window.location.search);
     const param = queryParam.get("mode");
 
-    if (param === "static") {
+    if (param === "snapshot") {
         const serialized = JSON.stringify(state);
         const meta = document.createElement("meta");
 
-        meta.name = "attached-state";
+        meta.name = "snapshot-state";
         meta.content = serialized;
 
         document.head.appendChild(meta);

@@ -26,16 +26,16 @@ const App = (props: Properties): React.ReactElement => {
     const classes = AppStyle();
     const queryParam = new URLSearchParams(window.location.search);
     const mode = queryParam.get("mode");
-    const isStatic = mode === "static";
+    const hasSnapshotMode = mode === "snapshot";
 
     UpdateUserData();
     UpdateUserLanguage(props.manifest);
 
     React.useEffect(() => {
-        AOS.init({ once: !isStatic, disable: isStatic });
+        AOS.init({ once: !hasSnapshotMode, disable: hasSnapshotMode });
         const intervalId = setInterval(() => AOS.refresh(), 900);
         return () => clearInterval(intervalId);
-    }, [isStatic]);
+    }, [hasSnapshotMode]);
 
     return (
         <ApplicationSession>

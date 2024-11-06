@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
-import { TryAttachState } from "../../../Shared/Services/initializeService";
+import { TrySnapshotState } from "../../../Shared/Services/initializeService";
 import { Navigation, Footer } from "../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../Shared/Components";
 
@@ -22,7 +22,7 @@ export const ShowcasePage = (): React.ReactElement => {
 
     React.useEffect(() => {
         if (showcase.language !== "") {
-            TryAttachState(state);
+            TrySnapshotState(state);
         }
     }, [state]);
 

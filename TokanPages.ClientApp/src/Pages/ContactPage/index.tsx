@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TryAttachState } from "../../Shared/Services/initializeService";
+import { TrySnapshotState } from "../../Shared/Services/initializeService";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
 import { Colours } from "../../Theme";
@@ -20,7 +20,7 @@ export const ContactPage = () => {
 
     React.useEffect(() => {
         if (contact.language !== "") {
-            TryAttachState(state);
+            TrySnapshotState(state);
         }
     }, [state]);
 
