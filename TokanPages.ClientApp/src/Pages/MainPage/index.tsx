@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
+import { TrySnapshotState } from "../../Shared/Services/SpaCaching";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
@@ -14,7 +15,10 @@ import { Navigation, Header, Footer } from "../../Components/Layout";
 
 export const MainPage = (): React.ReactElement => {
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const header = state?.contentPageData?.components?.header;
 
     React.useEffect(() => {
         dispatch(
@@ -37,6 +41,12 @@ export const MainPage = (): React.ReactElement => {
             )
         );
     }, [language?.id]);
+
+    React.useEffect(() => {
+        if (header?.language !== "") {
+            TrySnapshotState(state);
+        }
+    }, [state]);
 
     return (
         <>

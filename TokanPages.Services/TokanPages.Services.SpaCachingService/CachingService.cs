@@ -74,7 +74,7 @@ public class CachingService : ICachingService
         }
         catch (Exception exception)
         {
-            throw FatalError(exception);
+            FatalError(exception);
         }
     }
 
@@ -116,7 +116,8 @@ public class CachingService : ICachingService
         }
         catch (Exception exception)
         {
-            throw FatalError(exception);
+            FatalError(exception);
+            return string.Empty;
         }
     }
 
@@ -159,7 +160,8 @@ public class CachingService : ICachingService
         }
         catch (Exception exception)
         {
-            throw FatalError(exception);
+            FatalError(exception);
+            return string.Empty;
         }
     }
 
@@ -237,9 +239,9 @@ public class CachingService : ICachingService
         await azureBlob.UploadFile(fileStream, $"content/assets/{destination}", "text/html");
     }
 
-    private Exception FatalError(Exception exception)
+    private void FatalError(Exception exception)
     {
+        _loggerService.LogError($"{ServiceName}: Critical error occured but will try to execute next time. Details follows...");
         _loggerService.LogError($"{ServiceName}: Error message: {exception.Message}. Details: {exception.InnerException?.Message ?? "n/a"}.");
-        return new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
     }
 }

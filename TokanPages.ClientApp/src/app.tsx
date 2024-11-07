@@ -1,10 +1,10 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { GetContentManifestDto } from "./Api/Models";
 import { UpdateUserData } from "./Shared/Services/initializeService";
+import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
 import { UpdateUserLanguage } from "./Shared/Services/languageService";
 import { AppStyle } from "./app.style";
 import { Routes } from "./routes";
@@ -23,24 +23,18 @@ interface Properties {
     manifest: GetContentManifestDto;
 }
 
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
-
 const App = (props: Properties): React.ReactElement => {
     const classes = AppStyle();
-    const queryParam = useQuery();
-    const mode = queryParam.get("mode");
-    const isStatic = mode === "static"; 
+    const hasSnapshotMode = HasSnapshotMode();
 
     UpdateUserData();
     UpdateUserLanguage(props.manifest);
 
     React.useEffect(() => {
-        AOS.init({ once: !isStatic, disable: isStatic });
+        AOS.init({ once: !hasSnapshotMode, disable: hasSnapshotMode });
         const intervalId = setInterval(() => AOS.refresh(), 900);
         return () => clearInterval(intervalId);
-    }, [isStatic]);
+    }, [hasSnapshotMode]);
 
     return (
         <ApplicationSession>

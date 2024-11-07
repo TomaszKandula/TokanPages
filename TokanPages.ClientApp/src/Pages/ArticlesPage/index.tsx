@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
+import { TrySnapshotState } from "../../Shared/Services/SpaCaching";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
 import { Colours } from "../../Theme";
@@ -17,11 +18,19 @@ export const ArticlesPage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const title = queryParam.get("title");
 
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const articles = state?.contentPageData?.components?.article;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "article"], "ArticlesPage"));
     }, [language?.id]);
+
+    React.useEffect(() => {
+        if (articles?.language !== "") {
+            TrySnapshotState(state);
+        }
+    }, [state]);
 
     return (
         <>

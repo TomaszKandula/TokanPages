@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { USER_DATA } from "../constants";
-import { GetDataFromStorage } from "./StorageServices";
 import { UserDataStoreAction } from "../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../Api/Models";
+import { GetDataFromStorage } from "./StorageServices";
+import { USER_DATA } from "../constants";
 import Validate from "validate.js";
 import base64 from "base-64";
 import utf8 from "utf8";
@@ -23,3 +23,4 @@ export const UpdateUserData = (): void => {
         dispatch(UserDataStoreAction.update(data));
     }
 };
+

@@ -15,6 +15,7 @@ export const HasPageContentLoaded = (pageName?: string): boolean => {
         return false;
     }
 
-    const meta = GetComponentMeta();
-    return meta.includes(pageName);
+    const page = pageName.toLocaleLowerCase();
+    const meta = GetComponentMeta().toLocaleLowerCase();
+    return meta.includes(page);
 };

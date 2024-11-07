@@ -2,13 +2,16 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
+import { TrySnapshotState } from "../../../Shared/Services/SpaCaching";
 import { Navigation, Footer } from "../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../Shared/Components";
 
 export const ShowcasePage = (): React.ReactElement => {
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const data = state.contentPageData;
+    const showcase = state?.contentPageData?.components?.showcase;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "showcase"], "ShowcasePage"));
@@ -16,6 +19,12 @@ export const ShowcasePage = (): React.ReactElement => {
 
     const isLoading = data?.isLoading ?? false;
     const items = data?.components.showcase.items ?? [];
+
+    React.useEffect(() => {
+        if (showcase?.language !== "") {
+            TrySnapshotState(state);
+        }
+    }, [state]);
 
     return (
         <>

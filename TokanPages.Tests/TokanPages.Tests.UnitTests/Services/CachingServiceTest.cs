@@ -2,9 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using FluentAssertions;
 using Moq;
-using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
@@ -89,7 +87,7 @@ public class CachingServiceTest : TestBase
     }
 
     [Fact]
-    public async Task GivenWrongUrl_WhenGeneratePdf_ShouldThrowError()
+    public async Task GivenWrongUrl_WhenGeneratePdf_ShouldLogError()
     {
         // Arrange
         const string url = "wrong url. com";
@@ -101,11 +99,10 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<GeneralException>(() => cachingService.GeneratePdf(url));
+        await cachingService.GeneratePdf(url);
 
-        result.Message.Should().Be(ErrorCodes.ERROR_UNEXPECTED);
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+        // Assert
+        mockedLogger.Verify(service => service.LogError(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Fact]
@@ -133,7 +130,7 @@ public class CachingServiceTest : TestBase
     }
 
     [Fact]
-    public async Task GivenWrongUrl_WhenRenderStaticPage_ShouldThrowError()
+    public async Task GivenWrongUrl_WhenRenderStaticPage_ShouldLogError()
     {
         // Arrange
         const string sourceUrl = "wrong url. com";
@@ -147,11 +144,10 @@ public class CachingServiceTest : TestBase
             _mockedHttpFactory.Object);
 
         // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<GeneralException>(() => cachingService.RenderStaticPage(sourceUrl, serviceUrl, pageName));
+        await cachingService.RenderStaticPage(sourceUrl, serviceUrl, pageName);
 
-        result.Message.Should().Be(ErrorCodes.ERROR_UNEXPECTED);
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+        // Assert
+        mockedLogger.Verify(service => service.LogError(It.IsAny<string>()), Times.Exactly(2));
     }
 
     [Fact]
