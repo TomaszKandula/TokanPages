@@ -11,14 +11,14 @@ export const BusinessPage = () => {
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const businessForm = state.contentPageData.components.businessForm;
+    const businessForm = state?.contentPageData?.components?.businessForm;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "templates", "businessForm"], "BusinessPage"));
     }, [language?.id]);
 
     React.useEffect(() => {
-        if (businessForm.language !== "") {
+        if (businessForm?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

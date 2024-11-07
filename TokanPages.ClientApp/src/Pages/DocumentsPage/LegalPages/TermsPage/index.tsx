@@ -11,7 +11,7 @@ export const TermsPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const terms = state.contentPageData.components.terms;
+    const terms = state?.contentPageData?.components?.terms;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "terms"], "TermsPage"));
@@ -21,7 +21,7 @@ export const TermsPage = (): React.ReactElement => {
     const items = data?.components.terms.items ?? [];
 
     React.useEffect(() => {
-        if (terms.language !== "") {
+        if (terms?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

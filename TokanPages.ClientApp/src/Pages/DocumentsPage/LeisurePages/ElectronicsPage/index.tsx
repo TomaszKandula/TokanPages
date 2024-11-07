@@ -11,7 +11,7 @@ export const ElectronicsPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const electronics = state.contentPageData.components.electronics;
+    const electronics = state?.contentPageData?.components?.electronics;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "electronics"], "ElectronicsPage"));
@@ -21,7 +21,7 @@ export const ElectronicsPage = (): React.ReactElement => {
     const items = data?.components.electronics.items ?? [];
 
     React.useEffect(() => {
-        if (electronics.language !== "") {
+        if (electronics?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

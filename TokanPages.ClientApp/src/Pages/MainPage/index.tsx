@@ -18,7 +18,7 @@ export const MainPage = (): React.ReactElement => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const header = state.contentPageData.components.header;
+    const header = state?.contentPageData?.components?.header;
 
     React.useEffect(() => {
         dispatch(
@@ -43,7 +43,7 @@ export const MainPage = (): React.ReactElement => {
     }, [language?.id]);
 
     React.useEffect(() => {
-        if (header.language !== "") {
+        if (header?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

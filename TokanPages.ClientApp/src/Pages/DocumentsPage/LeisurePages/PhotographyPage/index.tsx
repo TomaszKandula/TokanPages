@@ -11,7 +11,7 @@ export const PhotographyPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const photography = state.contentPageData.components.photography;
+    const photography = state?.contentPageData?.components?.photography;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "photography"], "PhotographyPage"));
@@ -21,7 +21,7 @@ export const PhotographyPage = (): React.ReactElement => {
     const items = data?.components.photography.items ?? [];
 
     React.useEffect(() => {
-        if (photography.language !== "") {
+        if (photography?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

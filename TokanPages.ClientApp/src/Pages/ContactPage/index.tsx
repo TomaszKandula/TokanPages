@@ -12,14 +12,14 @@ export const ContactPage = () => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const contact = state.contentPageData.components.contactForm;
+    const contact = state?.contentPageData?.components?.contactForm;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "templates", "contactForm"], "ContactPage"));
     }, [language?.id]);
 
     React.useEffect(() => {
-        if (contact.language !== "") {
+        if (contact?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

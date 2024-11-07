@@ -11,7 +11,7 @@ export const BicyclePage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const bicycle = state.contentPageData.components.bicycle;
+    const bicycle = state?.contentPageData?.components?.bicycle;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "bicycle"], "BicyclePage"));
@@ -21,7 +21,7 @@ export const BicyclePage = (): React.ReactElement => {
     const items = data?.components.bicycle.items ?? [];
 
     React.useEffect(() => {
-        if (bicycle.language !== "") {
+        if (bicycle?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

@@ -11,7 +11,7 @@ export const InfoPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const about = state.contentPageData.components.about;
+    const about = state?.contentPageData?.components?.about;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "about"], "InfoPage"));
@@ -21,7 +21,7 @@ export const InfoPage = (): React.ReactElement => {
     const items = data?.components.about.items ?? [];
 
     React.useEffect(() => {
-        if (about.language !== "") {
+        if (about?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

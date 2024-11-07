@@ -11,7 +11,7 @@ export const GuitarPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const guitar = state.contentPageData.components.guitar;
+    const guitar = state?.contentPageData?.components?.guitar;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "guitar"], "GuitarPage"));
@@ -21,7 +21,7 @@ export const GuitarPage = (): React.ReactElement => {
     const items = data?.components.guitar.items ?? [];
 
     React.useEffect(() => {
-        if (guitar.language !== "") {
+        if (guitar?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

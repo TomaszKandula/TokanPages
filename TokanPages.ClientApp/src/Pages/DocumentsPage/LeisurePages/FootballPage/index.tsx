@@ -11,7 +11,7 @@ export const FootballPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const football = state.contentPageData.components.football;
+    const football = state?.contentPageData?.components?.football;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "football"], "FootballPage"));
@@ -21,7 +21,7 @@ export const FootballPage = (): React.ReactElement => {
     const items = data?.components.football.items ?? [];
 
     React.useEffect(() => {
-        if (football.language !== "") {
+        if (football?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

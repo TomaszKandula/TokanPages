@@ -11,7 +11,7 @@ export const ShowcasePage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const showcase = state.contentPageData.components.showcase;
+    const showcase = state?.contentPageData?.components?.showcase;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "showcase"], "ShowcasePage"));
@@ -21,7 +21,7 @@ export const ShowcasePage = (): React.ReactElement => {
     const items = data?.components.showcase.items ?? [];
 
     React.useEffect(() => {
-        if (showcase.language !== "") {
+        if (showcase?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);
