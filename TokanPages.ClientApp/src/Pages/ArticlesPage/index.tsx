@@ -20,14 +20,14 @@ export const ArticlesPage = (): React.ReactElement => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const articles = state.contentPageData.components.article;
+    const articles = state?.contentPageData?.components?.article;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "article"], "ArticlesPage"));
     }, [language?.id]);
 
     React.useEffect(() => {
-        if (articles.language !== "") {
+        if (articles?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

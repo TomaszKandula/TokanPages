@@ -11,7 +11,7 @@ export const StoryPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const story = state.contentPageData.components.story;
+    const story = state?.contentPageData?.components?.story;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "story"], "StoryPage"));
@@ -21,7 +21,7 @@ export const StoryPage = (): React.ReactElement => {
     const items = data?.components.story.items ?? [];
 
     React.useEffect(() => {
-        if (story.language !== "") {
+        if (story?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);

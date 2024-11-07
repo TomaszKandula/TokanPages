@@ -11,7 +11,7 @@ export const PolicyPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const policy = state.contentPageData.components.policy;
+    const policy = state?.contentPageData?.components?.policy;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "policy", "footer"], "PolicyPage"));
@@ -21,7 +21,7 @@ export const PolicyPage = (): React.ReactElement => {
     const items = data?.components.policy.items ?? [];
 
     React.useEffect(() => {
-        if (policy.language !== "") {
+        if (policy?.language !== "") {
             TrySnapshotState(state);
         }
     }, [state]);
