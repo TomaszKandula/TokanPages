@@ -2,13 +2,16 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../../Store/Actions";
+import { TrySnapshotState } from "../../../../Shared/Services/SpaCaching";
 import { Navigation, Footer } from "../../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 
 export const GuitarPage = (): React.ReactElement => {
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const data = state.contentPageData;
+    const guitar = state.contentPageData.components.guitar;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "guitar"], "GuitarPage"));
@@ -16,6 +19,12 @@ export const GuitarPage = (): React.ReactElement => {
 
     const isLoading = data?.isLoading ?? false;
     const items = data?.components.guitar.items ?? [];
+
+    React.useEffect(() => {
+        if (guitar.language !== "") {
+            TrySnapshotState(state);
+        }
+    }, [state]);
 
     return (
         <>

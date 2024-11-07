@@ -9,13 +9,15 @@ import { AppTheme } from "./Theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
+import { GetSnapshotState } from "./Shared/Services/SpaCaching";
 import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
-const store = ConfigureStore(history);
+const initialState = GetSnapshotState();
+const store = ConfigureStore(history, initialState);
 
 const ReactApp = (manifest: GetContentManifestDto): void => {
     ReactDOM.render(
