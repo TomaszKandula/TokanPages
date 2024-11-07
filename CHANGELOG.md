@@ -1,3 +1,22 @@
+# [0.116.0](https://github.com/TomaszKandula/TokanPages/compare/v0.115.0...v0.116.0) (2024-11-07)
+
+
+### Bug Fixes
+
+* comparision ([cf01aff](https://github.com/TomaszKandula/TokanPages/commit/cf01affbff9d91d0ced84f03482e95c088ec0402))
+* nullable ([41b33b7](https://github.com/TomaszKandula/TokanPages/commit/41b33b7e26c95885e9e00d5050c914bdc84668df))
+
+
+### Features
+
+* attach current state if render for cache ([8ff210e](https://github.com/TomaszKandula/TokanPages/commit/8ff210ea573a4640231dc63b2c22bde44a0a213e))
+* do not throw exception, log error only ([fc6150f](https://github.com/TomaszKandula/TokanPages/commit/fc6150f749bbf3c42fce6899bdb511d19b99a812))
+* get embedded state for pre-rendered page ([44d91ee](https://github.com/TomaszKandula/TokanPages/commit/44d91ee54a9e2020b0157ff9a738f83b454cdfa1))
+* preserve state after page is rendered for cache ([427e993](https://github.com/TomaszKandula/TokanPages/commit/427e993447a615264c7c2c554c128b1a45f8909d))
+* preserve state after page is rendered for cache ([80ea5cd](https://github.com/TomaszKandula/TokanPages/commit/80ea5cd897dab0b515e237403eb221cb04547396))
+* relocate and rename for clarity ([05c89d4](https://github.com/TomaszKandula/TokanPages/commit/05c89d40f12799efebef6a632d96ebfeacc9b0eb))
+* update meta attribute if already exists ([938c138](https://github.com/TomaszKandula/TokanPages/commit/938c13890d038f4000e01db981c65d97d988ac6f))
+
 # [0.115.0](https://github.com/TomaszKandula/TokanPages/compare/v0.114.0...v0.115.0) (2024-10-31)
 
 
