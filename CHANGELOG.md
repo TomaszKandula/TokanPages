@@ -1,3 +1,10 @@
+## [0.116.1](https://github.com/TomaszKandula/TokanPages/compare/v0.116.0...v0.116.1) (2024-11-10)
+
+
+### Bug Fixes
+
+* avoid '&quote;' replacement ([13f745c](https://github.com/TomaszKandula/TokanPages/commit/13f745cb44c9b0bbfc934eaf9ac33e8a0e375880))
+
 # [0.116.0](https://github.com/TomaszKandula/TokanPages/compare/v0.115.0...v0.116.0) (2024-11-07)
 
 
