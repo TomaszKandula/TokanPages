@@ -28,7 +28,7 @@ export const GetSnapshotState = (): ApplicationState | undefined => {
 export const TrySnapshotState = (state: ApplicationState): void => {
     const hasSnapshotMode = HasSnapshotMode();
     if (hasSnapshotMode) {
-        const serialized = JSON.stringify(state);
+        const serialized = JSON.stringify(state).replaceAll("\"", "'");
         const current = document.querySelector(HANDLER);
         if (current !== null) {
             current.setAttribute("content", serialized);
