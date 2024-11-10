@@ -52,7 +52,7 @@ const SetPolicyLink = (props: Properties): React.ReactElement => {
 const RenderIconButtons = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
     const icons = (
-        <Box ml="auto" className={classes.icon_box} data-aos="zoom-in">
+        <Box className={classes.icon_box} data-aos="zoom-in">
             {props?.icons?.map((item: IconDto, _index: number) => (
                 <IconButton
                     className={classes.icon}
@@ -75,7 +75,7 @@ const RenderIconButtons = (props: Properties): React.ReactElement => {
 const RenderCopyrightBar = (props: Properties): React.ReactElement => {
     const classes = FooterStyle();
     return (
-        <Box pt={6} pb={1} className={classes.copyright_box}>
+        <Box className={classes.copyright_box}>
             <Typography className={classes.copyright} data-aos="zoom-in">
                 {props?.copyright} | {props?.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
             </Typography>
@@ -102,7 +102,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
             <Container maxWidth="lg">
                 <RenderCopyrightBar {...props} />
                 <RenderVersionInfo {...props} />
-                <Box pb={15}></Box>
+                <Box style={{ paddingBottom: 120 }}></Box>
             </Container>
         </footer>
     );

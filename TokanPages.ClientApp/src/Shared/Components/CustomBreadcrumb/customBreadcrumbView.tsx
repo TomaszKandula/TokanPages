@@ -175,7 +175,12 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <Box mt={props.mt} mb={props.mb} mr={props.mr} ml={props.ml}>
+        <Box style={{ 
+            marginTop: props.mt, 
+            marginBottom: props.mb, 
+            marginRight: props.mr, 
+            marginLeft: props.ml 
+        }}>
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
                 <StyledBreadcrumb
                     component="div"
@@ -186,7 +191,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                 {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
                 {hasParam ? <StyledBreadcrumb component="div" label={toUpper(paramValue)} /> : null}
             </Breadcrumbs>
-            <Box mt={props.mtDivider} mb={props.mbDivider}>
+            <Box style={{ marginTop: props.mtDivider, marginBottom: props.mbDivider }}>
                 <Divider />
             </Box>
         </Box>

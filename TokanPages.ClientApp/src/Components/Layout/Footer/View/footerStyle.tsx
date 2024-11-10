@@ -13,6 +13,7 @@ export const FooterStyle = makeStyles(theme => ({
             width: "100%",
             marginBottom: theme.spacing(0),
         },
+        marginLeft: "auto"
     },
     icon: {
         color: Colours.colours.white,
@@ -21,6 +22,8 @@ export const FooterStyle = makeStyles(theme => ({
         display: "flex",
         flexWrap: "wrap",
         alignItems: "center",
+        paddingTop: 48,
+        paddingBottom: 8,
     },
     copyright: {
         fontSize: "1.2rem",

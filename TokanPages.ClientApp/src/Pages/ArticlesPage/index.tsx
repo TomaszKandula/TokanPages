@@ -35,7 +35,7 @@ export const ArticlesPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} watchparam="title" />
+            <CustomBreadcrumb mt={96} mb={16} mr={40} ml={40} mtDivider={32} mbDivider={32} watchparam="title" />
             {title ? <ProgressOnScroll height={3} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
             {title ? <ArticleDetail title={title} /> : <ArticleList />}
             <Footer />

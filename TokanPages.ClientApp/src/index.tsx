@@ -14,25 +14,30 @@ import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
+const root = document.getElementById("root");
+const isPreRendered = root?.hasChildNodes();
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
-const initialState = GetSnapshotState();
-const store = ConfigureStore(history, initialState);
 
 const ReactApp = (manifest: GetContentManifestDto): void => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <ConnectedRouter history={history}>
-                <ThemeProvider theme={AppTheme}>
-                    <CssBaseline />
-                    <ErrorBoundary>
-                        <App manifest={manifest} />
-                    </ErrorBoundary>
-                </ThemeProvider>
-            </ConnectedRouter>
-        </Provider>,
-        document.getElementById("root")
-    );
+    const initialState = isPreRendered ? GetSnapshotState() : undefined;
+    const store = ConfigureStore(history, initialState);
+    const AppWrapper = () => { 
+        return (
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <ThemeProvider theme={AppTheme}>
+                        <CssBaseline />
+                        <ErrorBoundary>
+                            <App manifest={manifest} />
+                        </ErrorBoundary>
+                    </ThemeProvider>
+                </ConnectedRouter>
+            </Provider>
+        )
+    };
+
+    isPreRendered ? ReactDOM.hydrate(<AppWrapper />, root) : ReactDOM.render(<AppWrapper />, root);
 };
 
 Loader.Initialize(ReactApp);
