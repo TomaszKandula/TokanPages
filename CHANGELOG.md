@@ -1,3 +1,10 @@
+## [0.116.2](https://github.com/TomaszKandula/TokanPages/compare/v0.116.1...v0.116.2) (2024-11-10)
+
+
+### Bug Fixes
+
+* resolve issue with parsing and encoding ([0fbf33e](https://github.com/TomaszKandula/TokanPages/commit/0fbf33e2e2ff5d8e18441ff33ea59ffc1fdb2676))
+
 ## [0.116.1](https://github.com/TomaszKandula/TokanPages/compare/v0.116.0...v0.116.1) (2024-11-10)
 
 
