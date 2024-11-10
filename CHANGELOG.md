@@ -1,3 +1,18 @@
+# [0.117.0](https://github.com/TomaszKandula/TokanPages/compare/v0.116.2...v0.117.0) (2024-11-10)
+
+
+### Bug Fixes
+
+* correct attribute name ([2aa6e1e](https://github.com/TomaszKandula/TokanPages/commit/2aa6e1e056c2c19b2f5a3b27050e8874638a6751))
+
+
+### Features
+
+* hydrate if pre-rendered ([047fa73](https://github.com/TomaszKandula/TokanPages/commit/047fa73330118c8ef8d3dcb6ed57436920421b98))
+* pass margins to style directly, for pre-rendering ([24ed4e9](https://github.com/TomaszKandula/TokanPages/commit/24ed4e9910d9becb8ede9b085c10908f450a7360))
+* remove unused css ([f7746f1](https://github.com/TomaszKandula/TokanPages/commit/f7746f16f96dc9366765eab8fd8946e3b19084aa))
+* use styles for pre-rendering ([0942df3](https://github.com/TomaszKandula/TokanPages/commit/0942df3c7cebc3109957feeed4023c3f9579ca09))
+
 ## [0.116.2](https://github.com/TomaszKandula/TokanPages/compare/v0.116.1...v0.116.2) (2024-11-10)
 
 
