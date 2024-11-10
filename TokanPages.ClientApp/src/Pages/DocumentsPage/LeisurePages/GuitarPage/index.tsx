@@ -29,7 +29,7 @@ export const GuitarPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb mt={12} mb={2} mr={5} ml={5} mtDivider={4} mbDivider={4} />
+            <CustomBreadcrumb mt={96} mb={16} mr={40} ml={40} mtDivider={32} mbDivider={32} />
             <DocumentContentWrapper isLoading={isLoading} items={items} />
             <Footer />
         </>
