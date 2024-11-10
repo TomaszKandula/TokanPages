@@ -22,7 +22,7 @@ export const GetSnapshotState = (): ApplicationState | undefined => {
         const decoded = base64.decode(content);
         const text = utf8.decode(decoded);
         const state = JSON.parse(text) as ApplicationState;
-        meta.removeAttribute(HANDLER);
+        meta.removeAttribute(SNAPSHOT_STATE);
         return state;
     }
 
