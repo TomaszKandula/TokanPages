@@ -6,7 +6,6 @@ import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
 import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
 import { GetSnapshotState } from "./Shared/Services/SpaCaching";
@@ -18,16 +17,15 @@ const root = document.getElementById("root");
 const isPreRendered = root?.hasChildNodes();
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
+const initialState = GetSnapshotState();
+const store = ConfigureStore(history, initialState);
 
 const ReactApp = (manifest: GetContentManifestDto): void => {
-    const initialState = isPreRendered ? GetSnapshotState() : undefined;
-    const store = ConfigureStore(history, initialState);
     const AppWrapper = () => { 
         return (
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <ThemeProvider theme={AppTheme}>
-                        <CssBaseline />
                         <ErrorBoundary>
                             <App manifest={manifest} />
                         </ErrorBoundary>
