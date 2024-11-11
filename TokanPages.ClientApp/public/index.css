@@ -101,7 +101,7 @@ body::backdrop {
     margin-bottom: -0.15em;
 }
 
-/* COMMON */
+/* SHARED STYLES BY COMPONENTS */
 
 .section {
     background-color: white;
@@ -173,6 +173,12 @@ body::backdrop {
 .divider {
     width: 100%;
     height: 1px;
+}
+
+.label-centered {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .label {
