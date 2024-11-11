@@ -8,7 +8,7 @@ import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
-import { GetSnapshotState } from "./Shared/Services/SpaCaching";
+import { TryGetStateSnapshot } from "./Shared/Services/SpaCaching";
 import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
@@ -17,7 +17,7 @@ const root = document.getElementById("root");
 const isPreRendered = root?.hasChildNodes();
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href") as string;
 const history = createBrowserHistory({ basename: baseUrl });
-const initialState = GetSnapshotState();
+const initialState = TryGetStateSnapshot();
 const store = ConfigureStore(history, initialState);
 
 const ReactApp = (manifest: GetContentManifestDto): void => {
