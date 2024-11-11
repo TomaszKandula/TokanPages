@@ -4,7 +4,7 @@ import * as Loader from "loader";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
-import { CssBaseline, ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
@@ -26,7 +26,6 @@ const ReactApp = (manifest: GetContentManifestDto): void => {
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <ThemeProvider theme={AppTheme}>
-                        <CssBaseline />
                         <ErrorBoundary>
                             <App manifest={manifest} />
                         </ErrorBoundary>

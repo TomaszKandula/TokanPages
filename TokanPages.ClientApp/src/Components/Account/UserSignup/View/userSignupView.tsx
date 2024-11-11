@@ -17,7 +17,6 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupProps } from "../userSignup";
-import { UserSignupStyle } from "./userSignupStyle";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     caption: string;
@@ -41,14 +40,13 @@ interface UserSignupViewProps extends ViewProperties, UserSignupProps {
 }
 
 const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
-    const classes = UserSignupStyle();
     return (
         <Button
             fullWidth
             type="submit"
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className="button"
             disabled={props.progress}
         >
             {!props.progress ? props.button : <CircularProgress size={20} />}
@@ -61,16 +59,15 @@ const RedirectTo = (args: { path: string; name: string }): React.ReactElement =>
 };
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => {
-    const classes = UserSignupStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card_content">
                             <Box mb={3} textAlign="center">
-                                <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>
+                                <AccountCircle className="account" />
+                                <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>

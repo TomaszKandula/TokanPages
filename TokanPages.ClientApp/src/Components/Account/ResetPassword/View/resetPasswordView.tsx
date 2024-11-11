@@ -11,7 +11,6 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { ResetPasswordProps } from "../resetPassword";
-import { ResetPasswordStyle } from "./resetPasswordStyle";
 
 interface Properties extends ViewProperties, ResetPasswordProps {
     progress: boolean;
@@ -25,14 +24,13 @@ interface Properties extends ViewProperties, ResetPasswordProps {
 }
 
 const ActiveButton = (props: Properties): React.ReactElement => {
-    const classes = ResetPasswordStyle();
     return (
         <Button
             fullWidth
             type="submit"
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className="button"
             disabled={props.progress}
         >
             {!props.progress ? props.button : <CircularProgress size={20} />}
@@ -41,16 +39,15 @@ const ActiveButton = (props: Properties): React.ReactElement => {
 };
 
 export const ResetPasswordView = (props: Properties): React.ReactElement => {
-    const classes = ResetPasswordStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card_content">
                             <Box mb={3} textAlign="center">
-                                <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>
+                                <AccountCircle className="account" />
+                                <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>

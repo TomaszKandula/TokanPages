@@ -13,7 +13,6 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
-import { UserSigninStyle } from "./userSigninStyle";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     caption: string;
@@ -31,14 +30,13 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
 }
 
 const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
-    const classes = UserSigninStyle();
     return (
         <Button
             fullWidth
             type="submit"
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className="button"
             disabled={props.progress}
         >
             {!props.progress ? props.button : <CircularProgress size={20} />}
@@ -51,16 +49,15 @@ const RedirectTo = (args: { path: string; name: string }): React.ReactElement =>
 };
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
-    const classes = UserSigninStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card_content">
                             <Box mb={3} textAlign="center">
-                                <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>
+                                <AccountCircle className="account" />
+                                <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>
@@ -108,7 +105,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                         <ActiveButton {...props} />
                                     )}
                                 </Box>
-                                <Grid container spacing={2} className={classes.actions}>
+                                <Grid container spacing={2} className="actions">
                                     <Grid item xs={12} sm={6}>
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
@@ -116,7 +113,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                             <RedirectTo path="/signup" name={props.link1} />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={6} className={classes.tertiaryAction}>
+                                    <Grid item xs={12} sm={6} className="secondaryAction">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (

@@ -1,3 +1,48 @@
+/*
+  Master stylesheet file for MUI components
+  -----------------------------------------
+  Because SPA is pre-rendered on the backend side, 
+  JSS has been abandoned; the styles generated on the fly 
+  that are typically included in the HTML head are not
+  optimal for pre-rendered React applications.
+*/
+
+/* BASELINE */
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+strong, b {
+    font-weight: 700;
+}
+
+body {
+    color: rgba(0, 0, 0, 0.87);
+    margin: 0;
+    font-size: 0.875rem;
+    font-family: Ubuntu,sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    background-color: #FFFFFF;
+}
+
+@media print {
+    body {
+      background-color: #FFFFFF;
+    }
+}
+
+body::backdrop {
+    background-color: #FFFFFF;
+}
+
 /* PRE-LOADER SPINNER */
 
 .preloader {
@@ -54,5 +99,93 @@
 
 .dropcap:after {
     margin-bottom: -0.15em;
+}
+
+/* COMMON */
+
+.section {
+    background-color: white;
+}
+
+.container {
+    max-width: 700px;
+}
+
+.card {
+    border-radius: 15px !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
+}
+
+.card_content {
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+.button {
+    color: white !important;
+    background: #6367EF !important;
+}
+
+.button:hover {
+    color: white !important;
+    background: #4649C3 !important;
+}
+
+.caption {
+    font-size: 1.8rem !important;
+    color: #9E9E9E;
+}
+
+.account {
+    font-size: 72px !important;
+    color: #6367EF;
+}
+
+.actions {
+    margin-top: 24px !important;
+}
+
+@media (min-width: 600px) {
+    .actions {
+        text-align: left;
+    }
+
+    .secondaryAction {
+        text-align: right;
+    }
+}
+
+.status {
+    font-size: 1.0rem;
+    color: #9E9E9E;
+}
+
+.link {
+    text-decoration: "none",
+}
+
+/* ACTIVATE ACCOUNT */
+
+.aa-caption {
+    font-size: 2.125rem !important;
+    font-weight: 400 !important;
+    line-height: 1.235 !important;
+    color: black;
+}
+
+.aa-text1 {
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    line-height: 1.6 !important;
+    color: #9E9E9E;
+}
+
+.aa-text2 {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    color: #9E9E9E;
 }
 

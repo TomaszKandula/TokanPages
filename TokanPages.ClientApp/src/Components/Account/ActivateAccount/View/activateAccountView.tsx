@@ -7,7 +7,6 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { ExtendedViewProps } from "../activateAccount";
-import { ActivateAccountStyle } from "./activateAccountStyle";
 
 interface ActivateAccountViewProps extends ViewProperties, ExtendedViewProps {
     caption: string;
@@ -17,21 +16,20 @@ interface ActivateAccountViewProps extends ViewProperties, ExtendedViewProps {
 }
 
 export const ActivateAccountView = (props: ActivateAccountViewProps): React.ReactElement => {
-    const classes = ActivateAccountStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card_content">
                             <Box textAlign="center" mb={3}>
                                 <Box mt={2} mb={2}>
-                                    <Typography variant="h4" component="div" gutterBottom={true}>
+                                    <Typography component="div" className="aa-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                     </Typography>
                                 </Box>
                                 <Box mt={5} mb={2}>
-                                    <Typography variant="h6" component="div" color="textSecondary">
+                                    <Typography component="span" className="aa-text1">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (
@@ -40,7 +38,7 @@ export const ActivateAccountView = (props: ActivateAccountViewProps): React.Reac
                                     </Typography>
                                 </Box>
                                 <Box mt={2} mb={5}>
-                                    <Typography variant="body1" component="div" color="textSecondary">
+                                    <Typography component="span" className="aa-text2">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (

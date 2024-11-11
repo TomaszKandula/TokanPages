@@ -11,7 +11,6 @@ import Grid from "@material-ui/core/Grid";
 import { AccountCircle } from "@material-ui/icons";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UserSignoutProps } from "../userSignout";
-import { UserSignoutStyle } from "./userSignoutStyle";
 
 interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
     caption: string;
@@ -21,34 +20,33 @@ interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
 }
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => {
-    const classes = UserSignoutStyle();
     return (
-        <section className={classes.section} style={props.background}>
+        <section className="section" style={props.background}>
             <Container maxWidth="sm">
                 <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card_content">
                             <Box mb={3} textAlign="center">
-                                <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>
+                                <AccountCircle className="account" />
+                                <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>
                             <Box>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
-                                        <Typography className={classes.status}>
+                                        <Typography className="status">
                                             {props.isLoading ? <Skeleton variant="text" /> : props.status}
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </Box>
                             <Box mt={4}>
-                                <Link to="/" className={classes.link}>
+                                <Link to="/" className="link">
                                     <Button
                                         fullWidth
                                         variant="contained"
-                                        className={classes.button}
+                                        className="button"
                                         disabled={props.isLoading || !props.isAnonymous}
                                     >
                                         {props.buttonText}
