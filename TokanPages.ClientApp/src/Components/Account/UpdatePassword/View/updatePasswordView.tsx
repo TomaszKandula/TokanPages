@@ -47,7 +47,7 @@ export const UpdatePasswordView = (props: Properties): React.ReactElement => {
             <Container className="container">
                 <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
                     <Card elevation={0} className="card">
-                        <CardContent className="card_content">
+                        <CardContent className="card-content">
                             <Box mb={3} textAlign="center">
                                 <AccountCircle className="account" />
                                 <Typography className="caption">

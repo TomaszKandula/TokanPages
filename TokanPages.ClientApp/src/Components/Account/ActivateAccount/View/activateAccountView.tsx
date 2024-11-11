@@ -21,7 +21,7 @@ export const ActivateAccountView = (props: ActivateAccountViewProps): React.Reac
             <Container className="container">
                 <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
                     <Card elevation={0} className="card">
-                        <CardContent className="card_content">
+                        <CardContent className="card-content">
                             <Box textAlign="center" mb={3}>
                                 <Box mt={2} mb={2}>
                                     <Typography component="div" className="aa-caption">

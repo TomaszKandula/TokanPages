@@ -111,12 +111,16 @@ body::backdrop {
     max-width: 700px;
 }
 
+.container-wide {
+    max-width: 900px;
+}
+
 .card {
     border-radius: 15px !important;
     box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
 }
 
-.card_content {
+.card-content {
     margin-top: 10px;
     margin-left: 15px;
     margin-right: 15px;
@@ -166,7 +170,20 @@ body::backdrop {
     text-decoration: "none",
 }
 
-/* ACTIVATE ACCOUNT */
+.divider {
+    width: 100%;
+    height: 1px;
+}
+
+.label {
+    color: #9E9E9E;
+}
+
+.black {
+    color: black;
+}
+
+/* ACTIVATE ACCOUNT COMPONENT */
 
 .aa-caption {
     font-size: 2.125rem !important;
@@ -189,3 +206,37 @@ body::backdrop {
     color: #9E9E9E;
 }
 
+/* USER DEACTIVATION & USER REMOVAL COMPONENTS */
+
+.delete-update {
+    width: 150px !important;
+    color: white !important;
+    background: #E53935 !important;
+}
+
+.delete-update:hover {
+    color: white !important;
+    background: #F44336 !important;
+}
+
+@media (max-width: 599.95px) {
+    .delete-update {
+        width: 100% !important;
+    }
+}
+
+.button-container-update {
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: flex-end;
+}
+
+@media (max-width: 599.95px) {
+    .button-container-update {
+        margin-top: 30px;
+        display: block;
+        justify-content: normal;
+    }
+}
