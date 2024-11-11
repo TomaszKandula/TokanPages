@@ -1,0 +1,58 @@
+/* PRE-LOADER SPINNER */
+
+.preloader {
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+        radial-gradient(farthest-side, #6367ef 94%, #0000) top/8px 8px no-repeat,
+        conic-gradient(#0000 30%, #6367ef);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+    animation: l13 1s infinite linear;
+}
+
+@keyframes l13 {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+/* DROP CAP */
+
+.custom-drop-cap:first-letter {
+    float: left;
+    font-size: 5.2rem;
+    line-height: 0.65;
+    margin: 0.1em 0.1em 0.2em 0;
+}
+
+.dropcap {
+    background: #303030;
+    color: #fdf9f2;
+    float: left;
+    font-size: 5.2rem;
+    line-height: 1;
+    margin: 0.1em 0.1em 0.2em 0;
+    padding: 0.1em;
+}
+
+.dropcap:before,
+.dropcap:after {
+    content: "";
+    display: block;
+}
+
+.dropcap:before {
+    margin-top: -0.2em;
+}
+
+.dropcap:after {
+    margin-bottom: -0.15em;
+}
+

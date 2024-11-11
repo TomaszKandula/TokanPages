@@ -5,7 +5,6 @@ import { TextItem } from "../../Models/TextModel";
 import { RenderTextStyle } from "./renderTextStyle";
 import { useHash } from "../../../../../Shared/Hooks";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import "../../../../../Theme/Css/customDropCap.css";
 
 interface DataProps {
     data?: string;
