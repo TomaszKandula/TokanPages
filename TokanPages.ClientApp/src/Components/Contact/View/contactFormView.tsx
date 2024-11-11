@@ -13,7 +13,7 @@ import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormProps } from "../contactForm";
-import { ContactFormStyle } from "./contactFormStyle";
+import { classes } from "./contactFormStyle";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     caption: string;
@@ -40,7 +40,6 @@ interface ContactFormViewProps extends ViewProperties, ContactFormProps {
 }
 
 const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
-    const classes = ContactFormStyle();
     return (
         <Button
             fullWidth
@@ -48,7 +47,7 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className={classes.button}
+            style={classes.button}
         >
             {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
@@ -56,23 +55,22 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
 };
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
-    const classes = ContactFormStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section style={props.background ? props.background : classes.section}>
+            <Container style={classes.container}>
                 <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
                     <Box textAlign="center" data-aos="fade-down">
-                        <Typography gutterBottom={true} className={classes.caption}>
+                        <Typography style={classes.caption}>
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
                     </Box>
-                    <Card elevation={0} className={props.hasShadow ? classes.card : undefined}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} style={props.hasShadow ? classes.card : undefined}>
+                        <CardContent style={classes.card_content}>
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <>
-                                        <ContactMailIcon className={classes.icon} />
-                                        <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                        <ContactMailIcon style={classes.icon} />
+                                        <Typography style={classes.small_caption}>{props.caption}</Typography>
                                     </>
                                 ) : (
                                     <></>

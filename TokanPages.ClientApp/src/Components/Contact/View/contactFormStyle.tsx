@@ -1,7 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
 import { Colours } from "../../../Theme";
 
-export const ContactFormStyle = makeStyles(() => ({
+export const classes = {
     section: {
         backgroundColor: Colours.colours.white,
     },
@@ -9,7 +8,6 @@ export const ContactFormStyle = makeStyles(() => ({
         maxWidth: 700,
     },
     caption: {
-        textAlign: "center",
         fontSize: "2.0rem",
         color: Colours.colours.violet,
     },
@@ -39,4 +37,4 @@ export const ContactFormStyle = makeStyles(() => ({
         marginRight: 15,
         marginBottom: 10,
     },
-}));
+};
