@@ -5,6 +5,8 @@
   JSS has been abandoned; the styles generated on the fly 
   that are typically included in the HTML head are not
   optimal for pre-rendered React applications.
+  Historically MUI styling mechnism has been changed few times,
+  therefore, it is much more convenient to stick with the plain CSS.
 */
 
 /* BASELINE */
@@ -108,11 +110,11 @@ body::backdrop {
 }
 
 .container {
-    max-width: 700px;
+    max-width: 700px !important;
 }
 
 .container-wide {
-    max-width: 900px;
+    max-width: 900px !important;
 }
 
 .card {
@@ -135,6 +137,23 @@ body::backdrop {
 .button:hover {
     color: white !important;
     background: #4649C3 !important;
+}
+
+.button-update {
+    width: 150px !important;
+    color: white !important;
+    background: #6367EF !important;
+}
+
+.button-update:hover {
+    color: white !important;
+    background: #4649C3 !important;
+}
+
+@media (max-width: 599.95px) {
+    .button-update {
+        width: 100% !important;
+    }
 }
 
 .caption {
@@ -212,7 +231,7 @@ body::backdrop {
     color: #9E9E9E;
 }
 
-/* USER DEACTIVATION & USER REMOVAL COMPONENTS */
+/* UPDATE PASSWORD & USER DEACTIVATION & USER REMOVAL COMPONENTS */
 
 .delete-update {
     width: 150px !important;
@@ -245,4 +264,51 @@ body::backdrop {
         display: block;
         justify-content: normal;
     }
+}
+
+/* USER INFO COMPONENT */
+
+.backdrop {
+    z-index: 999;
+    color: #FFFFFF;
+}
+
+.user-id {
+    margin-bottom: 30;
+}
+
+@media (max-width: 599.95px) {
+    .user-id {
+        margin-bottom: 15;
+    }
+}
+
+.user-alias {
+    margin-bottom: 30;
+}
+
+@media (max-width: 599.95px) {
+    .user-alias {
+        margin-bottom: 15;
+    }
+}
+
+.user-email-status {
+    margin-bottom: 4;
+}
+
+@media (max-width: 599.95px) {
+    .user-email-status {
+        margin-bottom: 0;
+    }
+}
+
+.user_email_verification {
+    cursor: pointer;
+    color: red;
+    text-decoration: underline;
+}
+
+.user-avatar-text {
+    margin-left: 15;
 }

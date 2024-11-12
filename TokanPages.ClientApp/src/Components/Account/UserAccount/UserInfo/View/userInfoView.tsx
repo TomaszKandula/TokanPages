@@ -12,7 +12,6 @@ import { AccountFormInput } from "../../../../../Shared/Services/FormValidation"
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoProps } from "../userInfo";
-import { UserInfoStyle } from "./userInfoStyle";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     fileUploadingCustomHandle?: string;
@@ -48,10 +47,9 @@ const ReturnFileName = (value: string): string => {
 };
 
 const CustomDivider = (args: { marginTop: number; marginBottom: number }): React.ReactElement => {
-    const classes = UserInfoStyle();
     return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
-            <Divider className={classes.divider} />
+            <Divider className="divider" />
         </Box>
     );
 };
@@ -61,7 +59,6 @@ const RenderText = (props: Properties): React.ReactElement => {
 };
 
 const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
-    const classes = UserInfoStyle();
     return (
         <Button
             fullWidth
@@ -69,7 +66,7 @@ const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
             variant="contained"
             onClick={props.saveButtonHandler}
             disabled={props.formProgress}
-            className={classes.button_update}
+            className="button-update"
         >
             {!props.formProgress ? props.sectionAccountInformation?.updateButtonText : <CircularProgress size={20} />}
         </Button>
@@ -77,9 +74,8 @@ const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
 };
 
 const RequestVerificationButton = (props: UserInfoViewProps): React.ReactElement => {
-    const classes = UserInfoStyle();
     const clickable = (
-        <Typography component="span" onClick={props.verifyButtonHandler} className={classes.user_email_verification}>
+        <Typography component="span" onClick={props.verifyButtonHandler} className="user-email-verification">
             request verification
         </Typography>
     );
@@ -108,18 +104,17 @@ const RenderLoadingOrStatus = (props: UserInfoViewProps): React.ReactElement => 
 };
 
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
-    const classes = UserInfoStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Backdrop className={classes.backdrop} open={props.isRequestingVerification}>
+        <section className="section" style={props.background}>
+            <Backdrop className="backdrop" open={props.isRequestingVerification}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <Container className={classes.container}>
+            <Container className="container-wide">
                 <Box pt={15} pb={5}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box pt={0} pb={0}>
-                                <Typography component="span" className={classes.caption}>
+                                <Typography component="span" className="caption black">
                                     <RenderText {...props} value={props.sectionAccountInformation?.caption} />
                                 </Typography>
                             </Box>
@@ -127,7 +122,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             <Box pt={5} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className={classes.label}>
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelUserId}
@@ -135,12 +130,12 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        <Typography component="span" className={classes.user_id}>
+                                        <Typography component="span" className="user-id">
                                             <RenderText {...props} value={props.userStore?.userId} />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className={classes.label}>
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelEmailStatus?.label}
@@ -148,13 +143,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        <Typography className={classes.user_email_status}>
+                                        <Typography className="user-email-status">
                                             <RenderLoadingOrStatus {...props} />
                                             <RequestVerificationButton {...props} />
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className={classes.label}>
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelUserAlias}
@@ -162,12 +157,12 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={9}>
-                                        <Typography component="span" className={classes.user_alias}>
+                                        <Typography component="span" className="user-alias">
                                             <RenderText {...props} value={props.userStore?.aliasName} />
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelUserAvatar}
@@ -183,7 +178,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             />
                                         )}
                                         {props.isLoading ? null : (
-                                            <Typography component="span" className={classes.user_avatar_text}>
+                                            <Typography component="span" className="user-avatar-text">
                                                 {ReturnFileName(props.userImageName)}
                                             </Typography>
                                         )}
@@ -191,8 +186,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                 </Grid>
                                 <CustomDivider marginTop={4} marginBottom={4} />
                                 <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelFirstName}
@@ -215,8 +210,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelLastName}
@@ -239,8 +234,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelEmail}
@@ -263,8 +258,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             <RenderText
                                                 {...props}
                                                 value={props.sectionAccountInformation?.labelShortBio}
@@ -290,7 +285,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
-                                <Grid className={classes.button_container_update}>
+                                <Grid className="button-container-update">
                                     <Box my={2}>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />
