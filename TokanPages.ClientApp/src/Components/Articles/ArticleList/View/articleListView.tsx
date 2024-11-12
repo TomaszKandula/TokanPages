@@ -6,7 +6,6 @@ import { ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleCard } from "../../../Articles";
 import { ArticleListProps } from "../articleList";
-import { ArticleListStyle } from "./articleListStyle";
 
 interface ArticleListViewProps extends ViewProperties, ArticleListProps {
     articles: ArticleItem[];
@@ -29,10 +28,9 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
 };
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
-    const classes = ArticleListStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={0} pb={8}>
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>

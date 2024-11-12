@@ -274,32 +274,32 @@ body::backdrop {
 }
 
 .user-id {
-    margin-bottom: 30;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 599.95px) {
     .user-id {
-        margin-bottom: 15;
+        margin-bottom: 15px;
     }
 }
 
 .user-alias {
-    margin-bottom: 30;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 599.95px) {
     .user-alias {
-        margin-bottom: 15;
+        margin-bottom: 15px;
     }
 }
 
 .user-email-status {
-    margin-bottom: 4;
+    margin-bottom: 4px;
 }
 
 @media (max-width: 599.95px) {
     .user-email-status {
-        margin-bottom: 0;
+        margin-bottom: 0px;
     }
 }
 
@@ -310,5 +310,48 @@ body::backdrop {
 }
 
 .user-avatar-text {
-    margin-left: 15;
+    margin-left: 15px;
+}
+
+/* ARTICLES COMPONENT */
+
+.divider-bottom {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.text-block {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.text-padding-left {
+    padding-left: 5;
+}
+
+.flag-image {
+    height: 18px;
+    width: 18px;
+    display: flex;
+    align-self: center;
+}
+
+.alias-name {
+    padding-top: 10px;
+}
+
+.thumbs-medium {
+    color: #9E9E9E;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.likes-tip {
+    font-size: 1.5em;
+}
+
+.popover {
+    pointer-events: none;
 }
