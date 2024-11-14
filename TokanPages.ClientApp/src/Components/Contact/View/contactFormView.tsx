@@ -13,7 +13,6 @@ import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormProps } from "../contactForm";
-import { classes } from "./contactFormStyle";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     caption: string;
@@ -47,7 +46,7 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            style={classes.button}
+            className="button"
         >
             {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
@@ -56,21 +55,21 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
     return (
-        <section style={props.background ? props.background : classes.section}>
-            <Container style={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
                     <Box textAlign="center" data-aos="fade-down">
-                        <Typography style={classes.caption}>
+                        <Typography className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
                     </Box>
-                    <Card elevation={0} style={props.hasShadow ? classes.card : undefined}>
-                        <CardContent style={classes.card_content}>
+                    <Card elevation={0} className={props.hasShadow ? "card" : undefined}>
+                        <CardContent className="card-content">
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <>
-                                        <ContactMailIcon style={classes.icon} />
-                                        <Typography style={classes.small_caption}>{props.caption}</Typography>
+                                        <ContactMailIcon className="contact-icon" />
+                                        <Typography className="contact-small-caption">{props.caption}</Typography>
                                     </>
                                 ) : (
                                     <></>

@@ -24,7 +24,6 @@ import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { VioletCheckbox } from "../../../Theme";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
-import { BusinessFormStyle } from "./businessFormStyle";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
     caption: string;
@@ -72,7 +71,6 @@ interface RenderElementProps {
 }
 
 const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
-    const classes = BusinessFormStyle();
     return (
         <Button
             fullWidth
@@ -80,7 +78,7 @@ const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className={classes.button}
+            className="button"
         >
             {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
@@ -88,7 +86,6 @@ const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
 };
 
 const TechStackList = (props: TechStackListProps): React.ReactElement => {
-    const classes = BusinessFormStyle();
     return (
         <List>
             {props.list.map((value: TechItemsDto, index: number) => (
@@ -97,7 +94,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                     key={value.key}
                     role={undefined}
                     button
-                    className={classes.list_item}
+                    className="business-list-item"
                 >
                     <ListItemIcon>
                         <VioletCheckbox
@@ -119,24 +116,23 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
 };
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
-    const classes = BusinessFormStyle();
     const isSelected = props.services.includes(props.value.id) ?? false;
-    const style = isSelected ? classes.selected : classes.unselected;
-    const disabled = props.isDisabled ? classes.disabled : classes.enabled;
+    const style = isSelected ? "business-selected" : "business-unselected";
+    const disabled = props.isDisabled ? "business-disabled" : "business-enabled";
     return (
         <Grid item xs={12} sm={4}>
             <Paper
                 id={props.value.id}
                 data-disabled={props.isDisabled}
                 elevation={0}
-                className={`${classes.paper} ${style} ${disabled}`}
+                className={`business-paper ${style} ${disabled}`}
                 onClick={props.handler}
             >
-                <Typography component="span" className={classes.pricing_text}>
+                <Typography component="span" className="business-pricing-text">
                     <ReactHtmlParser html={props.value.text} />
                 </Typography>
                 <Box mt={2}>
-                    <Typography component="span" className={classes.pricing_text}>
+                    <Typography component="span" className="business-pricing-text">
                         <ReactHtmlParser html={props.value.price} />
                     </Typography>
                 </Box>
@@ -158,13 +154,12 @@ const RenderElement = (props: RenderElementProps): React.ReactElement => {
 };
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
-    const classes = BusinessFormStyle();
     return (
-        <section className={classes.section}>
-            <Container className={classes.container}>
+        <section className="section">
+            <Container className="container-wide">
                 <Box pt={15} pb={30}>
                     <Box textAlign="center">
-                        <Typography gutterBottom={true} className={classes.large_caption}>
+                        <Typography gutterBottom={true} className="business-large-caption">
                             {props.hasCaption ? (
                                 <RenderText
                                     isLoading={props.isLoading}
@@ -176,16 +171,16 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                             )}
                         </Typography>
                     </Box>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <RenderElement
                                         isLoading={props.isLoading}
                                         element={
                                             <>
-                                                <BusinessCenterIcon className={classes.main_icon} />
-                                                <Typography className={classes.small_caption}>
+                                                <BusinessCenterIcon className="business-main-icon" />
+                                                <Typography className="business-small-caption">
                                                     {props.caption}
                                                 </Typography>
                                             </>
@@ -330,7 +325,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             isLoading={props.isLoading}
                                             height={45}
                                             element={
-                                                <Typography className={classes.header}>{props.techLabel}</Typography>
+                                                <Typography className="business-header">{props.techLabel}</Typography>
                                             }
                                         />
                                     </Box>
@@ -353,7 +348,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         isLoading={props.isLoading}
                                         height={45}
                                         element={
-                                            <Typography component="span" className={classes.header}>
+                                            <Typography component="span" className="business-header">
                                                 <ReactHtmlParser html={props.pricing.caption} />
                                             </Typography>
                                         }
@@ -375,13 +370,13 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                             </Box>
-                            <Box mb={10} className={classes.info_box}>
+                            <Box mb={10} className="business-info-box">
                                 <RenderElement
                                     isLoading={props.isLoading}
                                     height={45}
                                     element={
                                         <>
-                                            <InfoIcon className={classes.info_icon} />
+                                            <InfoIcon className="business-info-icon" />
                                             <Typography component="span">
                                                 <ReactHtmlParser html={props.pricing.disclaimer} />
                                             </Typography>
