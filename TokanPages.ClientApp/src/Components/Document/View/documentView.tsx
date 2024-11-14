@@ -1,6 +1,5 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import { DocumentStyle } from "./documentStyle";
 import { ProgressBar, RenderContent } from "../../../Shared/Components";
 import { TextItem } from "../../../Shared/Components/RenderContent/Models";
 import { useHash } from "../../../Shared/Hooks";
@@ -13,7 +12,6 @@ interface DocumentViewProps {
 
 export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     const hash = useHash();
-    const classes = DocumentStyle();
 
     React.useEffect(() => {
         if (props.isLoading) {
@@ -38,8 +36,8 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     }, [hash, props.isLoading]);
 
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 {props.isLoading ? (
                     <ProgressBar styleObject={{ marginTop: 30, marginBottom: 30 }} />
                 ) : (

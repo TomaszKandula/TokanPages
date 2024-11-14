@@ -4,7 +4,6 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import { DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
-import { PdfViewerStyle } from "./pdfViewerStyle";
 
 interface PdfViewerViewProps {
     isLoading: boolean;
@@ -34,32 +33,31 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 };
 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
-    const classes = PdfViewerStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container-super-wide">
                 <Box pt={10} pb={6}>
                     <Grid container justifyContent="center" direction="column">
-                        <Box pt={2} pb={2} className={classes.header}>
+                        <Box pt={2} pb={2} className="pdf-header">
                             <RenderIconOrLoading
                                 isLoading={props.isLoading}
                                 hasError={props.hasError}
                                 pdfUrl={props.pdfUrl}
                             />
-                            <div className={classes.header_pages}>
+                            <div className="pdf-header-pages">
                                 {props.currentPage} / {props.numPages}
                             </div>
                             <div>
-                                <NavigateBeforeIcon className={classes.header_buttons} onClick={props.onPreviousPage} />
-                                <NavigateNextIcon className={classes.header_buttons} onClick={props.onNextPage} />
+                                <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
+                                <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
                             </div>
                         </Box>
-                        <Box className={classes.canvasWrapper}>
+                        <Box className="pdf-canvas-wrapper">
                             <PdfCanvas
                                 pdfDocument={props.pdfDocument}
                                 pageNumber={props.currentPage}
                                 scale={props.scale ?? 1.5}
-                                htmlAttributes={{ className: classes.canvas }}
+                                htmlAttributes={{ className: "pdf-canvas" }}
                             />
                         </Box>
                     </Grid>

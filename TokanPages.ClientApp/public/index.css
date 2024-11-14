@@ -109,6 +109,10 @@ body::backdrop {
     background-color: white;
 }
 
+.section-grey {
+    background-color: #FCFCFC;
+}
+
 .container {
     max-width: 700px !important;
 }
@@ -594,4 +598,238 @@ body::backdrop {
 .contact-icon {
     font-size: 72px !important;
     color: #6367EF;
+}
+
+/* COOKIES COMPONENT */
+
+.cookies-caption {
+    font-size: 1.5rem !important;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    color: black;
+}
+
+.cookies-text {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    color: #757575;
+}
+
+.cookies-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cookies-close {
+    opacity: 0;
+    transition: 0.3s all ease;
+    visibility: hidden;
+}
+
+.cookies-card {
+    border-radius: 15px !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
+    padding: 8px;
+    background: white;
+}
+
+.cookies-button {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+/* FEATURED COMPONENT */
+
+.featured-caption-text {
+    text-align: center;
+    font-size: 2.0rem !important;
+    color: #6367EF;
+}
+
+.featured-card-content {
+    min-height: 150px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-card-title {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: black;
+}
+
+.featured-card-subtitle {
+    font-size: 1.0rem !important;
+    font-weight: 400 !important;
+    color: #9E9E9E;
+}
+
+.featured-card-media {
+    height: 256px !important;
+}
+
+/* NEWSLETTER COMPONENT */
+
+.newsletter-caption {
+    font-size: 2.0rem !important;
+}
+
+.newsletter-text {
+    font-size: 1.2rem !important;
+    color: #757575;
+}
+
+/* PDF VIEWER COMPONENT */
+
+.pdf-header {
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+    background: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #9E9E9E;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pdf-header-pages {
+    font-size: 16px;
+    align-self: center;
+}
+
+.pdf-header-buttons {
+    font-size: 26px;
+    align-self: center;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.pdf-canvas {
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 900px;
+    height: 100%;
+    width: 100%;
+}
+
+.pdf-canvas-wrapper {
+    background-color: #9E9E9E;
+    margin-bottom: 60px;
+}
+
+/* TECHNOLOGIES COMPONENT */
+
+.technology-icon {
+    width: 32px;
+    height: 32px;
+    color: #6367EF;
+    margin-right: 8px;
+}
+
+.technology-skeleton-circle {
+    width: 42px;
+    height: 42px;
+    margin: 0px 15px 0px 0px;
+}
+
+.technology-caption-text {
+    text-align: center;
+    font-size: 2.0rem !important;
+    color: #6367EF;
+}
+
+.technology-feature-title {
+    font-size: 1.5rem !important;
+    color: black;
+}
+
+.technology-feature-text {
+    font-size: 1.0rem !important;
+    line-height: 1.8;
+    color: #757575;
+}
+
+/* TESTIMONIALS COMPONENT */
+
+.testimonials-caption-text {
+    text-align: center;
+    font-size: 2.0rem !important;
+    color: #6367EF;
+}
+
+.testimonials-card {
+    min-height: 340px;
+    border-radius: 15px !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
+}
+
+.testimonials-card-holder {
+    position: relative;
+    margin-top: 0px !important;
+}
+
+@media (max-width: 699.95px) {
+    .testimonials-card-holder {
+        margin-top: 45px !important;
+    }
+}
+
+.testimonials-card-image {
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 50%;
+    margin: 0px;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, -33%);
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+}
+
+.testimonials-card-content {
+    margin-top: 70px;
+}
+
+.testimonials-card_title {
+    text-align: center;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    line-height: 2.2 !important;
+    color: black;
+}
+
+.testimonials-card-subheader {
+    text-align: center;
+    font-size: 1.0rem !important;
+    line-height: 2.0 !important;
+    color: #6367EF;
+}
+
+.testimonials-card-text {
+    text-align: left;
+    line-height: 1.8 !important;
+    margin-top: 15px !important;
+    color: #9E9E9E;
+}
+
+.testimonials-expand {
+    transform: rotate(0deg);
+    margin-top: 10px;
+    margin-left: auto;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.testimonials-expand-open {
+    transform: rotate(180deg);
 }
