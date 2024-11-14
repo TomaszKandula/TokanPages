@@ -4,7 +4,7 @@ import * as Loader from "loader";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
-import { ThemeProvider } from "@material-ui/core";
+import { StylesProvider, ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
@@ -21,13 +21,15 @@ const initialState = TryGetStateSnapshot();
 const store = ConfigureStore(history, initialState);
 
 const ReactApp = (manifest: GetContentManifestDto): void => {
-    const AppWrapper = () => { 
+    const AppWrapper = (props: { disableGeneration?: boolean }) => { 
         return (
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <ThemeProvider theme={AppTheme}>
                         <ErrorBoundary>
-                            <App manifest={manifest} />
+                            <StylesProvider disableGeneration={props.disableGeneration}>
+                                <App manifest={manifest} />
+                            </StylesProvider>
                         </ErrorBoundary>
                     </ThemeProvider>
                 </ConnectedRouter>
@@ -35,7 +37,9 @@ const ReactApp = (manifest: GetContentManifestDto): void => {
         )
     };
 
-    isPreRendered ? ReactDOM.hydrate(<AppWrapper />, root) : ReactDOM.render(<AppWrapper />, root);
+    isPreRendered 
+    ? ReactDOM.hydrate(<AppWrapper disableGeneration={true} />, root) 
+    : ReactDOM.render(<AppWrapper />, root);
 };
 
 Loader.Initialize(ReactApp);
