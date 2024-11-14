@@ -117,6 +117,10 @@ body::backdrop {
     max-width: 900px !important;
 }
 
+.container-super-wide {
+    max-width: 1280px !important;
+}
+
 .card {
     border-radius: 15px !important;
     box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
@@ -127,6 +131,11 @@ body::backdrop {
     margin-left: 15px;
     margin-right: 15px;
     margin-bottom: 10px;
+}
+
+.card-image {
+    border-radius: 15px !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
 }
 
 .button {
@@ -355,3 +364,108 @@ body::backdrop {
 .popover {
     pointer-events: none;
 }
+
+.article-flag-image {
+    height: 32px;
+    width: 32px;
+}
+
+.article-card-button {
+    margin-left: 0 !important;
+}
+
+@media (max-width: 699.95px) {
+    .article-card-button {
+        margin-left: auto !important;
+    }
+}
+
+.article-card {
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
+}
+
+@media (max-width: 699.95px) {
+    .article-card {
+        display: block;
+    }
+}
+
+.article-card-title {
+    font-size: 1.5rem !important;
+    color: black;
+}
+
+.article-card-description {
+    font-size: 1.0rem !important;
+    color: #9E9E9E;
+}
+
+.article-card-action {
+    margin-top: 25px;
+}
+
+.article-card-image {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    height: auto;
+    width: 180px;
+    margin-right: 0px;
+}
+
+@media (max-width: 699.95px) {
+    .article-card-image {
+        height: 180px;
+        width: auto;
+        margin-right: 10px;
+    }    
+}
+
+.article-features-title {
+    text-align: center;
+    font-size: 2.0rem !important;
+    color: #6367EF !important;
+}
+
+.article-features-text1 {
+    font-size: 1.5rem !important;
+}
+
+.article-features-text2 {
+    font-size: 1.0rem !important;
+    line-height: 1.8 !important;
+    color: #757575 !important;
+}
+
+.article-features-media {
+    height: 128px;
+}
+
+.article-features-card {
+    height: 100%;
+    border-radius: 15px !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
+}
+
+.article-features-card-content {
+    height: 100%;
+}
+
+.article-features-content {
+    padding-right: 16px !important;
+}
+
+@media (max-width: 1279.95px) {
+    .article-features-content {
+        padding-right: 0px !important;
+        padding-bottom: 16px !important;
+    }
+}
+
+

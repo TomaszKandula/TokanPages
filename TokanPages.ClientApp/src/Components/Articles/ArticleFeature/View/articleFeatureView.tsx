@@ -14,7 +14,6 @@ import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { RenderCardMedia } from "../../../../Shared/Components";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
-import { ArticleFeatureStyle } from "./articleFeatureStyle";
 import Validate from "validate.js";
 
 interface ArticleFeatureViewProps {
@@ -26,19 +25,17 @@ interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
 }
 
 const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
-    const classes = ArticleFeatureStyle();
-
     if (Validate.isEmpty(props?.action?.href)) {
         return (
-            <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+            <Button endIcon={<ArrowRightAltIcon />} className="button">
                 {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>
         );
     }
 
     return (
-        <Link to={props?.action?.href ?? ""} className={classes.link}>
-            <Button endIcon={<ArrowRightAltIcon />} className={classes.button}>
+        <Link to={props?.action?.href ?? ""} className="link">
+            <Button endIcon={<ArrowRightAltIcon />} className="button">
                 {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>
         </Link>
@@ -46,30 +43,28 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
 };
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
-    const classes = ArticleFeatureStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const features = data?.components?.articleFeatures;
-
     return (
-        <section className={classes.section} style={props.background}>
-            <Container maxWidth="lg">
+        <section className="section" style={props.background}>
+            <Container className="container-super-wide">
                 <Box pt={8} pb={12}>
                     <Box textAlign="center" mb={6} data-aos="fade-down">
-                        <Typography className={classes.title}>
+                        <Typography className="article-features-title">
                             {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
                         </Typography>
                     </Box>
                     <div data-aos="fade-up">
                         <Grid container>
-                            <Grid item xs={12} lg={6} className={classes.content}>
-                                <Card elevation={0} className={classes.card}>
-                                    <CardContent className={classes.card_content}>
+                            <Grid item xs={12} lg={6} className="article-features-content">
+                                <Card elevation={0} className="article-features-card">
+                                    <CardContent className="article-features-card-content">
                                         <Box display="flex" flexDirection="column" pt={2} px={2}>
-                                            <Typography className={classes.text1}>
+                                            <Typography className="article-features-text1">
                                                 {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                             </Typography>
                                             <Box mt={2} mb={5}>
-                                                <Typography className={classes.text2}>
+                                                <Typography className="article-features-text2">
                                                     {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
                                                 </Typography>
                                             </Box>
@@ -87,38 +82,38 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                             <Grid item xs={12} lg={6}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={8}>
-                                        <Card elevation={0} className={classes.card_image}>
+                                        <Card elevation={0} className="card-image">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image1, classes.media)
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image1, "article-features-media")
                                             )}
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
-                                        <Card elevation={0} className={classes.card_image}>
+                                        <Card elevation={0} className="card-image">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image2, classes.media)
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image2, "article-features-media")
                                             )}
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
-                                        <Card elevation={0} className={classes.card_image}>
+                                        <Card elevation={0} className="card-image">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image3, classes.media)
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image3, "article-features-media")
                                             )}
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12} md={8}>
-                                        <Card elevation={0} className={classes.card_image}>
+                                        <Card elevation={0} className="card-image">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image4, classes.media)
+                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image4, "article-features-media")
                                             )}
                                         </Card>
                                     </Grid>
