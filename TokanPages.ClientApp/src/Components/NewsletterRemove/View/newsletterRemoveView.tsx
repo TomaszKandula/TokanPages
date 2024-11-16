@@ -9,7 +9,6 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ContentDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ExtendedViewProps } from "../newsletterRemove";
-import { NewsletterRemoveStyle } from "./newsletterRemoveStyle";
 
 interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
     contentPre: ContentDto;
@@ -21,7 +20,6 @@ interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
 }
 
 const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
-    const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <Button
@@ -29,7 +27,7 @@ const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
             type="submit"
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className={props.buttonState ? "button" : ""}
             disabled={props.progress || !props.buttonState}
         >
             {!props.progress ? content.button : <CircularProgress size={20} />}
@@ -38,32 +36,31 @@ const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
 };
 
 export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.ReactElement => {
-    const classes = NewsletterRemoveStyle();
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box textAlign="center" mb={3}>
                                 <Box mt={2} mb={2}>
-                                    <Typography className={classes.caption}>
+                                    <Typography className="newsletter-remove-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.caption}
                                     </Typography>
                                 </Box>
                                 <Box mt={5} mb={2}>
-                                    <Typography className={classes.text1}>
+                                    <Typography className="newsletter-remove-text1">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text1}
                                     </Typography>
                                 </Box>
                                 <Box mt={5} mb={2}>
-                                    <Typography className={classes.text2}>
+                                    <Typography className="newsletter-remove-text2">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text2}
                                     </Typography>
                                 </Box>
                                 <Box mt={5} mb={7}>
-                                    <Typography className={classes.text3}>
+                                    <Typography className="newsletter-remove-text3">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text3}
                                     </Typography>
                                 </Box>

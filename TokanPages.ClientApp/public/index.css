@@ -1147,3 +1147,61 @@ body::backdrop {
     }    
 }
 
+/* SIDE MENU COMPONENT */
+
+.sidemenu-drawer-container {
+    width: 300px;
+}
+
+.sidemenu-drawer-hero {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EBECFB;
+}
+
+.sidemenu-logo {
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+/* NEWSLETTER REMOVE COMPONENT  */
+
+.newsletter-remove-caption {
+    font-size: 2.0rem !important;
+    font-weight: 400 !important;
+    color: black,
+}
+
+.newsletter-remove-text1 {
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    color: #9E9E9E;
+}
+
+.newsletter-remove-text2 {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    color: #9E9E9E;
+}
+
+.newsletter-remove-text3 {
+    font-size: 1.2rem !important;
+    font-weight: 400 !important;
+    color: #9E9E9E;
+}
+
+/* NEWSLETTER UPDATE COMPONENT  */
+
+.newsletter-update-account {
+    font-size: 72px !important;
+    color: #6367EF;
+}
+
+.newsletter-update-caption {
+    font-size: 1.8rem !important;
+    color: #9E9E9E;
+}
