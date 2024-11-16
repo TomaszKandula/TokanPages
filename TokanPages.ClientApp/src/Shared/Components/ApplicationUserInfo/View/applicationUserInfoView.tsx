@@ -14,7 +14,6 @@ import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { AuthenticateUserResultDto, UserInfoProps, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
-import { ApplicationUserInfoStyle } from "./applicationUserInfoStyle";
 import { v4 as uuidv4 } from "uuid";
 
 interface ApplicationUserInfoViewProps {
@@ -45,7 +44,6 @@ const CustomListItem = (props: ItemsProps): React.ReactElement => {
 };
 
 export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): React.ReactElement => {
-    const classes = ApplicationUserInfoStyle();
     const registered = GetDateTime({
         value: props.data.registered,
         hasTimeVisible: true,
@@ -75,7 +73,7 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
                         </Box>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography className={classes.fullname}>
+                        <Typography className="user-info-fullname">
                             {props.data?.firstName} {props.data?.lastName}
                         </Typography>
                     </Grid>
@@ -83,34 +81,34 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
             </DialogTitle>
             <Divider />
             <DialogContent>
-                <Typography className={classes.item}>
+                <Typography className="user-info-item">
                     {props.content?.textUserAlias}:&nbsp;
-                    <Typography component="span" className={classes.value}>
+                    <Typography component="span" className="user-info-value">
                         {props.data?.aliasName}
                     </Typography>
                 </Typography>
-                <Typography className={classes.item}>
+                <Typography className="user-info-item">
                     {props.content?.textRegistered}:&nbsp;
-                    <Typography component="span" className={classes.value}>
+                    <Typography component="span" className="user-info-value">
                         {registered}
                     </Typography>
                 </Typography>
-                <Typography className={classes.item}>{props.content?.textRoles}:&nbsp;</Typography>
+                <Typography className="user-info-item">{props.content?.textRoles}:&nbsp;</Typography>
                 <List dense={true}>
                     {props.data.roles?.map((item: UserRoleDto, _index: number) => (
-                        <CustomListItem item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
+                        <CustomListItem item={item.name} key={item.id ?? uuidv4()} className="user-info-value" />
                     ))}
                 </List>
-                <Typography className={classes.item}>{props.content?.textPermissions}:&nbsp;</Typography>
+                <Typography className="user-info-item">{props.content?.textPermissions}:&nbsp;</Typography>
                 <List dense={true}>
                     {props.data.permissions?.map((item: UserPermissionDto, _index: number) => (
-                        <CustomListItem item={item.name} key={item.id ?? uuidv4()} className={classes.value} />
+                        <CustomListItem item={item.name} key={item.id ?? uuidv4()} className="user-info-value" />
                     ))}
                 </List>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.closeHandler} className={classes.button} autoFocus>
+                <Button onClick={props.closeHandler} className="button" autoFocus>
                     OK
                 </Button>
             </DialogActions>

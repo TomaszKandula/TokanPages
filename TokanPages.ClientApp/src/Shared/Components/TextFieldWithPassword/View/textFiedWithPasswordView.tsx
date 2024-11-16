@@ -1,9 +1,6 @@
 import * as React from "react";
-import { TextFiedWithPasswordStyle } from "./textFiedWithPasswordStyle";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-
 import { FormControl, IconButton, OutlinedInput, InputAdornment, InputLabel } from "@material-ui/core";
-
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../../Shared/types";
 
 interface Properties {
@@ -20,10 +17,9 @@ interface Properties {
 }
 
 export const TextFiedWithPasswordView = (props: Properties): React.ReactElement => {
-    const classes = TextFiedWithPasswordStyle();
     return (
         <>
-            <FormControl fullWidth={props.fullWidth} className={classes.textField} variant="outlined">
+            <FormControl fullWidth={props.fullWidth} variant="outlined" style={{ margin: 0 }}>
                 <InputLabel htmlFor={props.uuid}>{props.inputLabel}</InputLabel>
                 <OutlinedInput
                     id={props.uuid}

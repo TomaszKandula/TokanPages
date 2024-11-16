@@ -152,6 +152,26 @@ body::backdrop {
     background: #4649C3 !important;
 }
 
+.button-upload {
+    color: white !important;
+    background: #EBECFB !important;
+}
+
+.button-upload:hover {
+    color: white !important;
+    background: #6367EF !important;
+}
+
+.button-up {
+    color: #4649C3 !important;
+    background: #EBECFB !important;
+}
+
+.button-up:hover {
+    color: #EBECFB !important;
+    background: #4649C3 !important;
+}
+
 .button-update {
     width: 150px !important;
     color: white !important;
@@ -1204,4 +1224,111 @@ body::backdrop {
 .newsletter-update-caption {
     font-size: 1.8rem !important;
     color: #9E9E9E;
+}
+
+/* APPLICATION DIALOG BOX  */
+
+.dialog-box-icon-holder {
+    display: flex;
+    align-items: center;
+}
+
+.dialog-box-info-icon {
+    color: #2196F3;
+    margin-right: 15px;
+}
+
+.dialog-box-warning-icon {
+    color: #FFC107;
+    margin-right: 15px;
+}
+
+.dialog-box-error-icon {
+    color: #F50057;
+    margin-right: 15px;
+}
+
+.dialog-box-title {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.dialog-box-description {
+    font-size: 1.0rem;
+    color: #9E9E9E;
+}
+
+/* APPLICATION USER INFO COMPONENT */
+
+.user-info-fullname {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.user-info-item {
+    font-size: 1.1rem;
+    color: black;
+}
+
+.user-info-value {
+    font-size: 1.1rem;
+    line-height: 0.9 !important;
+    color: gray2;
+}
+
+/* CUSTOM BREADCRUMB COMPONENT */
+
+.custom-chip {
+    background-color: #F5F5F5 !important;
+    height: 24px !important;
+    color: #424242 !important;
+    font-weight: 400;
+}
+
+.custom-chip:hover {
+    background-color: #E0E0E0 !important;
+}
+
+.custom-chip:focus {
+    background-color: #E0E0E0 !important;
+}
+
+/* PROGRESS BAR COMPONENT */
+
+.progress-bar-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar-progress {
+    color: #6367EF !important;
+}
+
+/* SCROLL TO TOP COMPONENT */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
+
+/* TOAST VIEW COMPONENT */
+
+.toast-view {
+    width: 100%;
+}
+
+/* USER AVATAR COMPONENT */
+
+.user-avatar-avatar-small {
+    color: white;
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.user-avatar-avatar-large {
+    color: white;
+    width: 96px !important;
+    height: 96px !important;
 }
