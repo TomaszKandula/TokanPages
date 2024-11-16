@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-15"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
               data-aos="fade-down"
@@ -24,7 +24,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-16"
+                    class="MuiBox-root MuiBox-root-2"
                   >
                     <div>
                       renderSmallAvatar
@@ -35,10 +35,10 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
                 >
                   <div
-                    class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-alignLeft"
+                    class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-alignLeft"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-17"
+                      class="MuiBox-root MuiBox-root-3"
                     >
                       Ester
                     </div>
@@ -46,10 +46,10 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-18"
+                class="MuiBox-root MuiBox-root-4"
               >
                 <div
-                  class="makeStyles-text_block-6"
+                  class="text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -59,7 +59,7 @@ Object {
                   </p>
                   <img
                     alt="image of eng.png"
-                    class="makeStyles-flag_image-8"
+                    class="flag-image"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
                 </div>
@@ -69,7 +69,7 @@ Object {
                   Read time:
                 </p>
                 <div
-                  class="makeStyles-text_block-6"
+                  class="text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -77,13 +77,13 @@ Object {
                     Published at:
                   </p>
                   <p
-                    class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                    class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
                   >
                     01/10/2020, 12:15 PM
                   </p>
                 </div>
                 <div
-                  class="makeStyles-text_block-6"
+                  class="text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -91,13 +91,13 @@ Object {
                     Updated at:
                   </p>
                   <p
-                    class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                    class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
                   >
                     01/10/2020, 12:15 PM
                   </p>
                 </div>
                 <div
-                  class="makeStyles-text_block-6"
+                  class="text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -105,7 +105,7 @@ Object {
                     Read count:
                   </p>
                   <p
-                    class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                    class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
                   >
                     0
                   </p>
@@ -120,7 +120,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-19"
+              class="MuiBox-root MuiBox-root-5"
             >
               <div
                 class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -130,7 +130,7 @@ Object {
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-thumbsMedium-12"
+                    class="MuiSvgIcon-root thumbs-medium"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -151,7 +151,7 @@ Object {
               </div>
             </div>
             <hr
-              class="MuiDivider-root makeStyles-dividerBottom-5"
+              class="MuiDivider-root divider-bottom"
             />
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -167,21 +167,21 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
               >
                 <span
-                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                  class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
                 >
                   Written by
                 </span>
                 <div
-                  class="MuiBox-root MuiBox-root-20"
+                  class="MuiBox-root MuiBox-root-6"
                 >
                   <span
-                    class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-alignLeft"
+                    class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-alignLeft"
                   >
                     Ester Exposito
                   </span>
                 </div>
                 <span
-                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                  class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
                 >
                   About the author:
                    
@@ -196,13 +196,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-15"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
             data-aos="fade-down"
@@ -214,7 +214,7 @@ Object {
                 class="MuiGrid-root MuiGrid-item"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-16"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <div>
                     renderSmallAvatar
@@ -225,10 +225,10 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
               >
                 <div
-                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-alignLeft"
+                  class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-alignLeft"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-17"
+                    class="MuiBox-root MuiBox-root-3"
                   >
                     Ester
                   </div>
@@ -236,10 +236,10 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-18"
+              class="MuiBox-root MuiBox-root-4"
             >
               <div
-                class="makeStyles-text_block-6"
+                class="text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -249,7 +249,7 @@ Object {
                 </p>
                 <img
                   alt="image of eng.png"
-                  class="makeStyles-flag_image-8"
+                  class="flag-image"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                 />
               </div>
@@ -259,7 +259,7 @@ Object {
                 Read time:
               </p>
               <div
-                class="makeStyles-text_block-6"
+                class="text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -267,13 +267,13 @@ Object {
                   Published at:
                 </p>
                 <p
-                  class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                  class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
                 >
                   01/10/2020, 12:15 PM
                 </p>
               </div>
               <div
-                class="makeStyles-text_block-6"
+                class="text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -281,13 +281,13 @@ Object {
                   Updated at:
                 </p>
                 <p
-                  class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                  class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
                 >
                   01/10/2020, 12:15 PM
                 </p>
               </div>
               <div
-                class="makeStyles-text_block-6"
+                class="text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -295,7 +295,7 @@ Object {
                   Read count:
                 </p>
                 <p
-                  class="MuiTypography-root makeStyles-text_padding_left-7 MuiTypography-subtitle1"
+                  class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
                 >
                   0
                 </p>
@@ -310,7 +310,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-19"
+            class="MuiBox-root MuiBox-root-5"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -320,7 +320,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-thumbsMedium-12"
+                  class="MuiSvgIcon-root thumbs-medium"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -341,7 +341,7 @@ Object {
             </div>
           </div>
           <hr
-            class="MuiDivider-root makeStyles-dividerBottom-5"
+            class="MuiDivider-root divider-bottom"
           />
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -357,21 +357,21 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
             >
               <span
-                class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
               >
                 Written by
               </span>
               <div
-                class="MuiBox-root MuiBox-root-20"
+                class="MuiBox-root MuiBox-root-6"
               >
                 <span
-                  class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-h6 MuiTypography-alignLeft"
+                  class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-alignLeft"
                 >
                   Ester Exposito
                 </span>
               </div>
               <span
-                class="MuiTypography-root makeStyles-aliasName-9 MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
               >
                 About the author:
                  

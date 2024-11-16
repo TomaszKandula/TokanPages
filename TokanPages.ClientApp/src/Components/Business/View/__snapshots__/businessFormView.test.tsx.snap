@@ -6,35 +6,35 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-19"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiBox-root MuiBox-root-20"
+              class="MuiBox-root MuiBox-root-2"
             >
               <p
-                class="MuiTypography-root makeStyles-large_caption-3 MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root business-large-caption MuiTypography-body1 MuiTypography-gutterBottom"
               >
                 BUSINESS INQUIRY
               </p>
             </div>
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-8"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-21"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-main_icon-6"
+                    class="MuiSvgIcon-root business-main-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -43,7 +43,7 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+                    class="MuiTypography-root business-small-caption MuiTypography-body1"
                   >
                     Business Inquiry
                   </p>
@@ -87,10 +87,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-22 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-24"
+                            class="PrivateNotchedOutline-legendLabelled-6"
                           >
                             <span>
                               Company name
@@ -137,10 +137,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-26 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-28"
+                            class="PrivateNotchedOutline-legendLabelled-10"
                           >
                             <span>
                               First name
@@ -187,10 +187,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-30 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-32"
+                            class="PrivateNotchedOutline-legendLabelled-14"
                           >
                             <span>
                               Last name
@@ -237,10 +237,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-34 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-36"
+                            class="PrivateNotchedOutline-legendLabelled-18"
                           >
                             <span>
                               Email
@@ -287,10 +287,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-38 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-40"
+                            class="PrivateNotchedOutline-legendLabelled-22"
                           >
                             <span>
                               Business phone
@@ -322,11 +322,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-42 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-43"
+                            class="PrivateNotchedOutline-legend-25"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -341,10 +341,10 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-46"
+                      class="MuiBox-root MuiBox-root-28"
                     >
                       <p
-                        class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                        class="MuiTypography-root business-header MuiTypography-body1"
                       >
                         Which technologies are you interested in?
                       </p>
@@ -354,7 +354,7 @@ Object {
                     >
                       <div
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                        class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
                         tabindex="0"
                       >
                         <div
@@ -362,14 +362,14 @@ Object {
                         >
                           <span
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-67 MuiCheckbox-root Component-root-65 MuiIconButton-edgeStart"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiCheckbox-root Component-root-29 MuiIconButton-edgeStart"
                           >
                             <span
                               class="MuiIconButton-label"
                             >
                               <input
                                 aria-labelledby="key-0"
-                                class="PrivateSwitchBase-input-70"
+                                class="PrivateSwitchBase-input-34"
                                 data-indeterminate="false"
                                 id="0"
                                 name="tech-0"
@@ -406,7 +406,7 @@ Object {
                       </div>
                       <div
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                        class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
                         tabindex="0"
                       >
                         <div
@@ -414,14 +414,14 @@ Object {
                         >
                           <span
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-73 MuiCheckbox-root Component-root-71 MuiIconButton-edgeStart"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-37 MuiCheckbox-root Component-root-35 MuiIconButton-edgeStart"
                           >
                             <span
                               class="MuiIconButton-label"
                             >
                               <input
                                 aria-labelledby="key-1"
-                                class="PrivateSwitchBase-input-76"
+                                class="PrivateSwitchBase-input-40"
                                 data-indeterminate="false"
                                 id="1"
                                 name="tech-1"
@@ -457,13 +457,13 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-77"
+                  class="MuiBox-root MuiBox-root-41"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-78"
+                    class="MuiBox-root MuiBox-root-42"
                   >
                     <span
-                      class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                      class="MuiTypography-root business-header MuiTypography-body1"
                     >
                       <div />
                     </span>
@@ -475,22 +475,22 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
                     >
                       <div
-                        class="MuiPaper-root makeStyles-paper-93 makeStyles-unselected-89 makeStyles-enabled-92 MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
                         data-disabled="false"
                         id="web"
                       >
                         <span
-                          class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
                         >
                           <div>
                             Web Development
                           </div>
                         </span>
                         <div
-                          class="MuiBox-root MuiBox-root-97"
+                          class="MuiBox-root MuiBox-root-43"
                         >
                           <span
-                            class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                            class="MuiTypography-root business-pricing-text MuiTypography-body1"
                           >
                             <div>
                               30 USD/h
@@ -503,22 +503,22 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
                     >
                       <div
-                        class="MuiPaper-root makeStyles-paper-112 makeStyles-unselected-108 makeStyles-enabled-111 MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
                         data-disabled="false"
                         id="mobile"
                       >
                         <span
-                          class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
                         >
                           <div>
                             Mobile Development
                           </div>
                         </span>
                         <div
-                          class="MuiBox-root MuiBox-root-116"
+                          class="MuiBox-root MuiBox-root-44"
                         >
                           <span
-                            class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                            class="MuiTypography-root business-pricing-text MuiTypography-body1"
                           >
                             <div>
                               45 USD/h
@@ -530,11 +530,11 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-117 makeStyles-info_box-17"
+                  class="MuiBox-root MuiBox-root-45 business-info-box"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-info_icon-18"
+                    class="MuiSvgIcon-root business-info-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -549,10 +549,10 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-118"
+                  class="MuiBox-root MuiBox-root-46"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-123 MuiButton-fullWidth"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                     tabindex="0"
                     type="submit"
                   >
@@ -572,35 +572,35 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-19"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiBox-root MuiBox-root-20"
+            class="MuiBox-root MuiBox-root-2"
           >
             <p
-              class="MuiTypography-root makeStyles-large_caption-3 MuiTypography-body1 MuiTypography-gutterBottom"
+              class="MuiTypography-root business-large-caption MuiTypography-body1 MuiTypography-gutterBottom"
             >
               BUSINESS INQUIRY
             </p>
           </div>
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-8"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-21"
+                class="MuiBox-root MuiBox-root-3"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-main_icon-6"
+                  class="MuiSvgIcon-root business-main-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -609,7 +609,7 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+                  class="MuiTypography-root business-small-caption MuiTypography-body1"
                 >
                   Business Inquiry
                 </p>
@@ -653,10 +653,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-22 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-24"
+                          class="PrivateNotchedOutline-legendLabelled-6"
                         >
                           <span>
                             Company name
@@ -703,10 +703,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-26 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-28"
+                          class="PrivateNotchedOutline-legendLabelled-10"
                         >
                           <span>
                             First name
@@ -753,10 +753,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-30 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-32"
+                          class="PrivateNotchedOutline-legendLabelled-14"
                         >
                           <span>
                             Last name
@@ -803,10 +803,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-34 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-36"
+                          class="PrivateNotchedOutline-legendLabelled-18"
                         >
                           <span>
                             Email
@@ -853,10 +853,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-38 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-40"
+                          class="PrivateNotchedOutline-legendLabelled-22"
                         >
                           <span>
                             Business phone
@@ -888,11 +888,11 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-42 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
                         style="padding-left: 8px;"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legend-43"
+                          class="PrivateNotchedOutline-legend-25"
                           style="width: 0.01px;"
                         >
                           <span>
@@ -907,10 +907,10 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-46"
+                    class="MuiBox-root MuiBox-root-28"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                      class="MuiTypography-root business-header MuiTypography-body1"
                     >
                       Which technologies are you interested in?
                     </p>
@@ -920,7 +920,7 @@ Object {
                   >
                     <div
                       aria-disabled="false"
-                      class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                      class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
                       tabindex="0"
                     >
                       <div
@@ -928,14 +928,14 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-67 MuiCheckbox-root Component-root-65 MuiIconButton-edgeStart"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiCheckbox-root Component-root-29 MuiIconButton-edgeStart"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
                               aria-labelledby="key-0"
-                              class="PrivateSwitchBase-input-70"
+                              class="PrivateSwitchBase-input-34"
                               data-indeterminate="false"
                               id="0"
                               name="tech-0"
@@ -972,7 +972,7 @@ Object {
                     </div>
                     <div
                       aria-disabled="false"
-                      class="MuiButtonBase-root MuiListItem-root makeStyles-list_item-56 MuiListItem-gutters MuiListItem-button"
+                      class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
                       tabindex="0"
                     >
                       <div
@@ -980,14 +980,14 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-73 MuiCheckbox-root Component-root-71 MuiIconButton-edgeStart"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-37 MuiCheckbox-root Component-root-35 MuiIconButton-edgeStart"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
                               aria-labelledby="key-1"
-                              class="PrivateSwitchBase-input-76"
+                              class="PrivateSwitchBase-input-40"
                               data-indeterminate="false"
                               id="1"
                               name="tech-1"
@@ -1023,13 +1023,13 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-77"
+                class="MuiBox-root MuiBox-root-41"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-78"
+                  class="MuiBox-root MuiBox-root-42"
                 >
                   <span
-                    class="MuiTypography-root makeStyles-header-9 MuiTypography-body1"
+                    class="MuiTypography-root business-header MuiTypography-body1"
                   >
                     <div />
                   </span>
@@ -1041,22 +1041,22 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
                   >
                     <div
-                      class="MuiPaper-root makeStyles-paper-93 makeStyles-unselected-89 makeStyles-enabled-92 MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
                       data-disabled="false"
                       id="web"
                     >
                       <span
-                        class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                        class="MuiTypography-root business-pricing-text MuiTypography-body1"
                       >
                         <div>
                           Web Development
                         </div>
                       </span>
                       <div
-                        class="MuiBox-root MuiBox-root-97"
+                        class="MuiBox-root MuiBox-root-43"
                       >
                         <span
-                          class="MuiTypography-root makeStyles-pricing_text-94 MuiTypography-body1"
+                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
                         >
                           <div>
                             30 USD/h
@@ -1069,22 +1069,22 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
                   >
                     <div
-                      class="MuiPaper-root makeStyles-paper-112 makeStyles-unselected-108 makeStyles-enabled-111 MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
                       data-disabled="false"
                       id="mobile"
                     >
                       <span
-                        class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                        class="MuiTypography-root business-pricing-text MuiTypography-body1"
                       >
                         <div>
                           Mobile Development
                         </div>
                       </span>
                       <div
-                        class="MuiBox-root MuiBox-root-116"
+                        class="MuiBox-root MuiBox-root-44"
                       >
                         <span
-                          class="MuiTypography-root makeStyles-pricing_text-113 MuiTypography-body1"
+                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
                         >
                           <div>
                             45 USD/h
@@ -1096,11 +1096,11 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-117 makeStyles-info_box-17"
+                class="MuiBox-root MuiBox-root-45 business-info-box"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-info_icon-18"
+                  class="MuiSvgIcon-root business-info-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -1115,10 +1115,10 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-118"
+                class="MuiBox-root MuiBox-root-46"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-123 MuiButton-fullWidth"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                   tabindex="0"
                   type="submit"
                 >

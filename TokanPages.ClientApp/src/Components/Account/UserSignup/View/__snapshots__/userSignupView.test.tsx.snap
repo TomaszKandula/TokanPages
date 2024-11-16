@@ -6,26 +6,26 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-8"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-6"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-9"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-account-3"
+                    class="MuiSvgIcon-root account"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -34,13 +34,13 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-caption-4 MuiTypography-body1"
+                    class="MuiTypography-root caption MuiTypography-body1"
                   >
                     Create a new account
                   </p>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-10"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -81,10 +81,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                              class="PrivateNotchedOutline-legendLabelled-6 PrivateNotchedOutline-legendNotched-7"
                             >
                               <span>
                                 First name
@@ -131,10 +131,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-15 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-17 PrivateNotchedOutline-legendNotched-18"
+                              class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
                             >
                               <span>
                                 Last name
@@ -181,10 +181,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-19 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-21 PrivateNotchedOutline-legendNotched-22"
+                              class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
                             >
                               <span>
                                 Email address
@@ -199,7 +199,8 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                     >
                       <div
-                        class="MuiFormControl-root makeStyles-textField-23 MuiFormControl-fullWidth"
+                        class="MuiFormControl-root MuiFormControl-fullWidth"
+                        style="margin: 0px;"
                       >
                         <label
                           class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
@@ -249,11 +250,11 @@ Object {
                           </div>
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-25"
+                              class="PrivateNotchedOutline-legend-17"
                               style="width: 60.5px;"
                             >
                               <span>
@@ -302,13 +303,13 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-30 MuiCheckbox-root Component-root-28"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-22 MuiCheckbox-root Component-root-20"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
-                              class="PrivateSwitchBase-input-33"
+                              class="PrivateSwitchBase-input-25"
                               data-indeterminate="false"
                               id="terms"
                               name="terms"
@@ -336,10 +337,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-34"
+                    class="MuiBox-root MuiBox-root-26"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-41 MuiButton-fullWidth"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                       tabindex="0"
                       type="submit"
                     >
@@ -351,7 +352,7 @@ Object {
                     </button>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-42"
+                    class="MuiBox-root MuiBox-root-27"
                   >
                     <a
                       href="/signin"
@@ -369,26 +370,26 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-8"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-6"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-9"
+                class="MuiBox-root MuiBox-root-2"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-account-3"
+                  class="MuiSvgIcon-root account"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -397,13 +398,13 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-caption-4 MuiTypography-body1"
+                  class="MuiTypography-root caption MuiTypography-body1"
                 >
                   Create a new account
                 </p>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-10"
+                class="MuiBox-root MuiBox-root-3"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -444,10 +445,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                            class="PrivateNotchedOutline-legendLabelled-6 PrivateNotchedOutline-legendNotched-7"
                           >
                             <span>
                               First name
@@ -494,10 +495,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-15 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-17 PrivateNotchedOutline-legendNotched-18"
+                            class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
                           >
                             <span>
                               Last name
@@ -544,10 +545,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-19 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-21 PrivateNotchedOutline-legendNotched-22"
+                            class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
                           >
                             <span>
                               Email address
@@ -562,7 +563,8 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiFormControl-root makeStyles-textField-23 MuiFormControl-fullWidth"
+                      class="MuiFormControl-root MuiFormControl-fullWidth"
+                      style="margin: 0px;"
                     >
                       <label
                         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-filled"
@@ -612,11 +614,11 @@ Object {
                         </div>
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-25"
+                            class="PrivateNotchedOutline-legend-17"
                             style="width: 60.5px;"
                           >
                             <span>
@@ -665,13 +667,13 @@ Object {
                     >
                       <span
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-30 MuiCheckbox-root Component-root-28"
+                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-22 MuiCheckbox-root Component-root-20"
                       >
                         <span
                           class="MuiIconButton-label"
                         >
                           <input
-                            class="PrivateSwitchBase-input-33"
+                            class="PrivateSwitchBase-input-25"
                             data-indeterminate="false"
                             id="terms"
                             name="terms"
@@ -699,10 +701,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-34"
+                  class="MuiBox-root MuiBox-root-26"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-41 MuiButton-fullWidth"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                     tabindex="0"
                     type="submit"
                   >
@@ -714,7 +716,7 @@ Object {
                   </button>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-42"
+                  class="MuiBox-root MuiBox-root-27"
                 >
                   <a
                     href="/signin"

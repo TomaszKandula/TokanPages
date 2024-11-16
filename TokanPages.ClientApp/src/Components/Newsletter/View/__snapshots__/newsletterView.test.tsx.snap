@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section-grey"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-5"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -21,7 +21,7 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
               >
                 <p
-                  class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1"
+                  class="MuiTypography-root newsletter-caption MuiTypography-body1"
                   data-aos="fade-down"
                 >
                   Join the newsletter!
@@ -30,7 +30,7 @@ Object {
                   data-aos="zoom-in"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-text-3 MuiTypography-body1"
+                    class="MuiTypography-root newsletter-text MuiTypography-body1"
                   >
                     We will never share your email address.
                   </p>
@@ -43,10 +43,10 @@ Object {
                   data-aos="zoom-in"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-6"
+                    class="MuiBox-root MuiBox-root-2"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-7"
+                      class="MuiBox-root MuiBox-root-3"
                     >
                       <div
                         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -87,10 +87,10 @@ Object {
                               />
                               <fieldset
                                 aria-hidden="true"
-                                class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                                class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                               >
                                 <legend
-                                  class="PrivateNotchedOutline-legendLabelled-10"
+                                  class="PrivateNotchedOutline-legendLabelled-6"
                                 >
                                   <span>
                                     Email address
@@ -105,7 +105,7 @@ Object {
                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-5"
                         >
                           <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-15 MuiButton-fullWidth"
+                            class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                             tabindex="0"
                             type="submit"
                           >
@@ -132,13 +132,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section-grey"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-5"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -147,7 +147,7 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
             >
               <p
-                class="MuiTypography-root makeStyles-caption-2 MuiTypography-body1"
+                class="MuiTypography-root newsletter-caption MuiTypography-body1"
                 data-aos="fade-down"
               >
                 Join the newsletter!
@@ -156,7 +156,7 @@ Object {
                 data-aos="zoom-in"
               >
                 <p
-                  class="MuiTypography-root makeStyles-text-3 MuiTypography-body1"
+                  class="MuiTypography-root newsletter-text MuiTypography-body1"
                 >
                   We will never share your email address.
                 </p>
@@ -169,10 +169,10 @@ Object {
                 data-aos="zoom-in"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-6"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-7"
+                    class="MuiBox-root MuiBox-root-3"
                   >
                     <div
                       class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -213,10 +213,10 @@ Object {
                             />
                             <fieldset
                               aria-hidden="true"
-                              class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                              class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                             >
                               <legend
-                                class="PrivateNotchedOutline-legendLabelled-10"
+                                class="PrivateNotchedOutline-legendLabelled-6"
                               >
                                 <span>
                                   Email address
@@ -231,7 +231,7 @@ Object {
                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-5"
                       >
                         <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-15 MuiButton-fullWidth"
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                           tabindex="0"
                           type="submit"
                         >

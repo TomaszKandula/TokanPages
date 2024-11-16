@@ -6,46 +6,46 @@ Object {
   "baseElement": <body>
     <div>
       <header
-        class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-3 mui-fixed MuiPaper-elevation0"
+        class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary navigation-app-bar mui-fixed MuiPaper-elevation0"
       >
         <div
-          class="makeStyles-nav_large_screen-9"
+          class="navigation-nav-large-screen"
         >
           <div
-            class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-32 MuiToolbar-gutters"
+            class="MuiToolbar-root MuiToolbar-regular navigation-tool-bar MuiToolbar-gutters"
           >
             <div
-              class="MuiBox-root MuiBox-root-49 makeStyles-nav_menu-35 makeStyles-nav_left-38"
+              class="MuiBox-root MuiBox-root-1 navigation-nav-menu navigation-nav-left"
             >
               <a
-                class="makeStyles-app_logo_small-25"
+                class="navigation-app-logo-small"
                 href="/"
               >
                 <img
                   alt="image of logo.svg"
-                  class="makeStyles-app_left_logo-28"
+                  class="navigation-app-left-logo"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
               </a>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-50 makeStyles-nav_items-37 makeStyles-nav_centre-40"
+              class="MuiBox-root MuiBox-root-2 navigation-nav-items navigation-nav-centre"
             >
               <ul
-                class="MuiList-root makeStyles-list-51 MuiList-padding"
+                class="MuiList-root makeStyles-list-3 MuiList-padding"
               />
             </div>
             <div
-              class="MuiBox-root MuiBox-root-53 makeStyles-nav_items-37 makeStyles-nav_right-39"
+              class="MuiBox-root MuiBox-root-5 navigation-nav-items navigation-nav-right"
             >
               <div
-                class="MuiBox-root MuiBox-root-78 makeStyles-languagesBox-72"
+                class="MuiBox-root MuiBox-root-6 navigation-languages-box"
               >
                 <div
-                  class="MuiFormControl-root makeStyles-languages_control-73"
+                  class="MuiFormControl-root"
                 >
                   <div
-                    class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-74 MuiInputBase-formControl MuiInput-formControl"
+                    class="MuiInputBase-root MuiInput-root navigation-languages-selection MuiInputBase-formControl MuiInput-formControl"
                   >
                     <div
                       aria-haspopup="listbox"
@@ -54,11 +54,11 @@ Object {
                       tabindex="0"
                     >
                       <div
-                        class="makeStyles-languages_wrapper-96"
+                        class="navigation-languages-wrapper"
                       >
                         <img
                           alt="image of eng.png"
-                          class="makeStyles-flag_image-102"
+                          class="navigation-flag-image"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                         />
                         <div>
@@ -86,7 +86,7 @@ Object {
                 </div>
               </div>
               <div
-                class="makeStyles-user_avatar-125"
+                class="navigation-user-avatar"
               >
                 <button
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
@@ -109,20 +109,20 @@ Object {
           </div>
         </div>
         <div
-          class="makeStyles-nav_small_screen-10"
+          class="navigation-nav-small-screen"
         >
           <div
-            class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-134 MuiToolbar-gutters"
+            class="MuiToolbar-root MuiToolbar-regular navigation-tool-bar MuiToolbar-gutters"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
             >
               <div
-                class="MuiGrid-root makeStyles-nav_menu-137 makeStyles-nav_left-140 MuiGrid-item MuiGrid-grid-xs-true"
+                class="MuiGrid-root navigation-nav-menu navigation-nav-left MuiGrid-item MuiGrid-grid-xs-true"
               >
                 <button
                   aria-label="menu"
-                  class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-162 MuiIconButton-colorInherit"
+                  class="MuiButtonBase-root MuiIconButton-root navigation-nav-icon MuiIconButton-colorInherit"
                   tabindex="0"
                   type="button"
                 >
@@ -143,34 +143,34 @@ Object {
                 </button>
               </div>
               <div
-                class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_centre-142 MuiGrid-item MuiGrid-grid-xs-true"
+                class="MuiGrid-root navigation-nav-items navigation-nav-centre MuiGrid-item MuiGrid-grid-xs-true"
               >
                 <a
-                  class="makeStyles-app_logo_small-127"
+                  class="navigation-app-logo-small"
                   href="/"
                 >
                   <img
                     alt="image of logo.svg"
-                    class="makeStyles-app_full_logo-131"
+                    class="navigation-app-full-logo"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                   />
                 </a>
                 <a
-                  class="makeStyles-app_logo_large-128"
+                  class="navigation-app-logo-large"
                   href="/"
                 />
               </div>
               <div
-                class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_right-141 MuiGrid-item MuiGrid-grid-xs-true"
+                class="MuiGrid-root navigation-nav-items navigation-nav-right MuiGrid-item MuiGrid-grid-xs-true"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-199 makeStyles-languagesBox-193"
+                  class="MuiBox-root MuiBox-root-7 navigation-languages-box"
                 >
                   <div
-                    class="MuiFormControl-root makeStyles-languages_control-194"
+                    class="MuiFormControl-root"
                   >
                     <div
-                      class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-195 MuiInputBase-formControl MuiInput-formControl"
+                      class="MuiInputBase-root MuiInput-root navigation-languages-selection MuiInputBase-formControl MuiInput-formControl"
                     >
                       <div
                         aria-haspopup="listbox"
@@ -179,11 +179,11 @@ Object {
                         tabindex="0"
                       >
                         <div
-                          class="makeStyles-languages_wrapper-217"
+                          class="navigation-languages-wrapper"
                         >
                           <img
                             alt="image of eng.png"
-                            class="makeStyles-flag_image-223"
+                            class="navigation-flag-image"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                           />
                           <div>
@@ -211,7 +211,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="makeStyles-user_avatar-246"
+                  class="navigation-user-avatar"
                 >
                   <button
                     class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
@@ -236,46 +236,46 @@ Object {
   </body>,
   "container": <div>
     <header
-      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary makeStyles-app_bar-3 mui-fixed MuiPaper-elevation0"
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary navigation-app-bar mui-fixed MuiPaper-elevation0"
     >
       <div
-        class="makeStyles-nav_large_screen-9"
+        class="navigation-nav-large-screen"
       >
         <div
-          class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-32 MuiToolbar-gutters"
+          class="MuiToolbar-root MuiToolbar-regular navigation-tool-bar MuiToolbar-gutters"
         >
           <div
-            class="MuiBox-root MuiBox-root-49 makeStyles-nav_menu-35 makeStyles-nav_left-38"
+            class="MuiBox-root MuiBox-root-1 navigation-nav-menu navigation-nav-left"
           >
             <a
-              class="makeStyles-app_logo_small-25"
+              class="navigation-app-logo-small"
               href="/"
             >
               <img
                 alt="image of logo.svg"
-                class="makeStyles-app_left_logo-28"
+                class="navigation-app-left-logo"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
               />
             </a>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-50 makeStyles-nav_items-37 makeStyles-nav_centre-40"
+            class="MuiBox-root MuiBox-root-2 navigation-nav-items navigation-nav-centre"
           >
             <ul
-              class="MuiList-root makeStyles-list-51 MuiList-padding"
+              class="MuiList-root makeStyles-list-3 MuiList-padding"
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-53 makeStyles-nav_items-37 makeStyles-nav_right-39"
+            class="MuiBox-root MuiBox-root-5 navigation-nav-items navigation-nav-right"
           >
             <div
-              class="MuiBox-root MuiBox-root-78 makeStyles-languagesBox-72"
+              class="MuiBox-root MuiBox-root-6 navigation-languages-box"
             >
               <div
-                class="MuiFormControl-root makeStyles-languages_control-73"
+                class="MuiFormControl-root"
               >
                 <div
-                  class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-74 MuiInputBase-formControl MuiInput-formControl"
+                  class="MuiInputBase-root MuiInput-root navigation-languages-selection MuiInputBase-formControl MuiInput-formControl"
                 >
                   <div
                     aria-haspopup="listbox"
@@ -284,11 +284,11 @@ Object {
                     tabindex="0"
                   >
                     <div
-                      class="makeStyles-languages_wrapper-96"
+                      class="navigation-languages-wrapper"
                     >
                       <img
                         alt="image of eng.png"
-                        class="makeStyles-flag_image-102"
+                        class="navigation-flag-image"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                       />
                       <div>
@@ -316,7 +316,7 @@ Object {
               </div>
             </div>
             <div
-              class="makeStyles-user_avatar-125"
+              class="navigation-user-avatar"
             >
               <button
                 class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
@@ -339,20 +339,20 @@ Object {
         </div>
       </div>
       <div
-        class="makeStyles-nav_small_screen-10"
+        class="navigation-nav-small-screen"
       >
         <div
-          class="MuiToolbar-root MuiToolbar-regular makeStyles-tool_bar-134 MuiToolbar-gutters"
+          class="MuiToolbar-root MuiToolbar-regular navigation-tool-bar MuiToolbar-gutters"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 MuiGrid-item MuiGrid-grid-xs-12"
           >
             <div
-              class="MuiGrid-root makeStyles-nav_menu-137 makeStyles-nav_left-140 MuiGrid-item MuiGrid-grid-xs-true"
+              class="MuiGrid-root navigation-nav-menu navigation-nav-left MuiGrid-item MuiGrid-grid-xs-true"
             >
               <button
                 aria-label="menu"
-                class="MuiButtonBase-root MuiIconButton-root makeStyles-nav_icon-162 MuiIconButton-colorInherit"
+                class="MuiButtonBase-root MuiIconButton-root navigation-nav-icon MuiIconButton-colorInherit"
                 tabindex="0"
                 type="button"
               >
@@ -373,34 +373,34 @@ Object {
               </button>
             </div>
             <div
-              class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_centre-142 MuiGrid-item MuiGrid-grid-xs-true"
+              class="MuiGrid-root navigation-nav-items navigation-nav-centre MuiGrid-item MuiGrid-grid-xs-true"
             >
               <a
-                class="makeStyles-app_logo_small-127"
+                class="navigation-app-logo-small"
                 href="/"
               >
                 <img
                   alt="image of logo.svg"
-                  class="makeStyles-app_full_logo-131"
+                  class="navigation-app-full-logo"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
               </a>
               <a
-                class="makeStyles-app_logo_large-128"
+                class="navigation-app-logo-large"
                 href="/"
               />
             </div>
             <div
-              class="MuiGrid-root makeStyles-nav_items-139 makeStyles-nav_right-141 MuiGrid-item MuiGrid-grid-xs-true"
+              class="MuiGrid-root navigation-nav-items navigation-nav-right MuiGrid-item MuiGrid-grid-xs-true"
             >
               <div
-                class="MuiBox-root MuiBox-root-199 makeStyles-languagesBox-193"
+                class="MuiBox-root MuiBox-root-7 navigation-languages-box"
               >
                 <div
-                  class="MuiFormControl-root makeStyles-languages_control-194"
+                  class="MuiFormControl-root"
                 >
                   <div
-                    class="MuiInputBase-root MuiInput-root makeStyles-languages_selection-195 MuiInputBase-formControl MuiInput-formControl"
+                    class="MuiInputBase-root MuiInput-root navigation-languages-selection MuiInputBase-formControl MuiInput-formControl"
                   >
                     <div
                       aria-haspopup="listbox"
@@ -409,11 +409,11 @@ Object {
                       tabindex="0"
                     >
                       <div
-                        class="makeStyles-languages_wrapper-217"
+                        class="navigation-languages-wrapper"
                       >
                         <img
                           alt="image of eng.png"
-                          class="makeStyles-flag_image-223"
+                          class="navigation-flag-image"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                         />
                         <div>
@@ -441,7 +441,7 @@ Object {
                 </div>
               </div>
               <div
-                class="makeStyles-user_avatar-246"
+                class="navigation-user-avatar"
               >
                 <button
                   class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"

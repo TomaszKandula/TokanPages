@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-11 MuiTypography-body1"
+            class="MuiTypography-root makeStyles-common-1 makeStyles-paragraph-7 MuiTypography-body1"
           >
             <div>
               <p>
@@ -26,13 +26,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-5 makeStyles-paragraph-11 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-1 makeStyles-paragraph-7 MuiTypography-body1"
         >
           <div>
             <p>
@@ -103,13 +103,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-34"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-38 makeStyles-paragraph-44 MuiTypography-body1"
+            class="MuiTypography-root makeStyles-common-22 makeStyles-paragraph-28 MuiTypography-body1"
           >
             <div>
               <p>
@@ -123,13 +123,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-34"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-35 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-38 makeStyles-paragraph-44 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-22 makeStyles-paragraph-28 MuiTypography-body1"
         >
           <div>
             <p>
@@ -200,13 +200,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-23"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-27 makeStyles-paragraph-33 MuiTypography-body1"
+            class="MuiTypography-root makeStyles-common-15 makeStyles-paragraph-21 MuiTypography-body1"
           >
             <div>
               <p>
@@ -220,13 +220,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-23"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-24 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-27 makeStyles-paragraph-33 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-15 makeStyles-paragraph-21 MuiTypography-body1"
         >
           <div>
             <p>
@@ -297,13 +297,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-12"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-16 makeStyles-paragraph-22 MuiTypography-body1"
+            class="MuiTypography-root makeStyles-common-8 makeStyles-paragraph-14 MuiTypography-body1"
           >
             <div>
               <p>
@@ -317,13 +317,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-12"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-13 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-16 makeStyles-paragraph-22 MuiTypography-body1"
+          class="MuiTypography-root makeStyles-common-8 makeStyles-paragraph-14 MuiTypography-body1"
         >
           <div>
             <p>

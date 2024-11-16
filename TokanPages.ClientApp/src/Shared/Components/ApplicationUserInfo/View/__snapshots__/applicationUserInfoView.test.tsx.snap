@@ -44,10 +44,10 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-5"
+                      class="MuiBox-root MuiBox-root-1"
                     >
                       <div
-                        class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-7"
+                        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
                       >
                         <img
                           alt="Avatar"
@@ -61,7 +61,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-fullname-1 MuiTypography-body1"
+                      class="MuiTypography-root user-info-fullname MuiTypography-body1"
                     >
                       Tester
                        
@@ -78,29 +78,29 @@ Object {
               class="MuiDialogContent-root"
             >
               <p
-                class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+                class="MuiTypography-root user-info-item MuiTypography-body1"
               >
                 User alias
                 : 
                 <span
-                  class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                  class="MuiTypography-root user-info-value MuiTypography-body1"
                 >
                   tester
                 </span>
               </p>
               <p
-                class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+                class="MuiTypography-root user-info-item MuiTypography-body1"
               >
                 Registered
                 : 
                 <span
-                  class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                  class="MuiTypography-root user-info-value MuiTypography-body1"
                 >
                   01/01/2020, 03:02 PM
                 </span>
               </p>
               <p
-                class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+                class="MuiTypography-root user-info-item MuiTypography-body1"
               >
                 Assigned roles
                 : 
@@ -130,7 +130,7 @@ Object {
                     class="MuiListItemText-root MuiListItemText-dense"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                      class="MuiTypography-root user-info-value MuiTypography-body1"
                     >
                       EverydayUser
                     </p>
@@ -158,7 +158,7 @@ Object {
                     class="MuiListItemText-root MuiListItemText-dense"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                      class="MuiTypography-root user-info-value MuiTypography-body1"
                     >
                       Tester
                     </p>
@@ -166,7 +166,7 @@ Object {
                 </li>
               </ul>
               <p
-                class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+                class="MuiTypography-root user-info-item MuiTypography-body1"
               >
                 Assigned permissions
                 : 
@@ -196,7 +196,7 @@ Object {
                     class="MuiListItemText-root MuiListItemText-dense"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                      class="MuiTypography-root user-info-value MuiTypography-body1"
                     >
                       CanTestEverything
                     </p>
@@ -224,7 +224,7 @@ Object {
                     class="MuiListItemText-root MuiListItemText-dense"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                      class="MuiTypography-root user-info-value MuiTypography-body1"
                     >
                       CanOrderPizza
                     </p>
@@ -239,7 +239,7 @@ Object {
               class="MuiDialogActions-root MuiDialogActions-spacing"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-4 Mui-focusVisible Mui-focusVisible"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
                 tabindex="0"
                 type="button"
               >
@@ -309,10 +309,10 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-5"
+                    class="MuiBox-root MuiBox-root-1"
                   >
                     <div
-                      class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-7"
+                      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
                     >
                       <img
                         alt="Avatar"
@@ -326,7 +326,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-fullname-1 MuiTypography-body1"
+                    class="MuiTypography-root user-info-fullname MuiTypography-body1"
                   >
                     Tester
                      
@@ -343,29 +343,29 @@ Object {
             class="MuiDialogContent-root"
           >
             <p
-              class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+              class="MuiTypography-root user-info-item MuiTypography-body1"
             >
               User alias
               : 
               <span
-                class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                class="MuiTypography-root user-info-value MuiTypography-body1"
               >
                 tester
               </span>
             </p>
             <p
-              class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+              class="MuiTypography-root user-info-item MuiTypography-body1"
             >
               Registered
               : 
               <span
-                class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                class="MuiTypography-root user-info-value MuiTypography-body1"
               >
                 01/01/2020, 03:02 PM
               </span>
             </p>
             <p
-              class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+              class="MuiTypography-root user-info-item MuiTypography-body1"
             >
               Assigned roles
               : 
@@ -395,7 +395,7 @@ Object {
                   class="MuiListItemText-root MuiListItemText-dense"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                    class="MuiTypography-root user-info-value MuiTypography-body1"
                   >
                     EverydayUser
                   </p>
@@ -423,7 +423,7 @@ Object {
                   class="MuiListItemText-root MuiListItemText-dense"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                    class="MuiTypography-root user-info-value MuiTypography-body1"
                   >
                     Tester
                   </p>
@@ -431,7 +431,7 @@ Object {
               </li>
             </ul>
             <p
-              class="MuiTypography-root makeStyles-item-2 MuiTypography-body1"
+              class="MuiTypography-root user-info-item MuiTypography-body1"
             >
               Assigned permissions
               : 
@@ -461,7 +461,7 @@ Object {
                   class="MuiListItemText-root MuiListItemText-dense"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                    class="MuiTypography-root user-info-value MuiTypography-body1"
                   >
                     CanTestEverything
                   </p>
@@ -489,7 +489,7 @@ Object {
                   class="MuiListItemText-root MuiListItemText-dense"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-value-3 MuiTypography-body1"
+                    class="MuiTypography-root user-info-value MuiTypography-body1"
                   >
                     CanOrderPizza
                   </p>
@@ -504,7 +504,7 @@ Object {
             class="MuiDialogActions-root MuiDialogActions-spacing"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-4 Mui-focusVisible Mui-focusVisible"
+              class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
               tabindex="0"
               type="button"
             >

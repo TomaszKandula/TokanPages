@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section margin-top-60"
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -16,46 +16,46 @@ Object {
           >
             <img
               alt="photo of ester-exposito.webp"
-              class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
+              class="MuiCardMedia-root header-image-card MuiCardMedia-media MuiCardMedia-img"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/ester-exposito.webp"
             />
           </div>
           <div
-            class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+            class="MuiGrid-root header-section-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
           >
             <div
-              class="MuiBox-root MuiBox-root-13 makeStyles-content_box-3"
+              class="MuiBox-root MuiBox-root-1 header-content-box"
             >
               <span
-                class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
+                class="MuiTypography-root header-content-caption MuiTypography-body1"
               >
                 <div>
                   Welcome to my web page
                 </div>
               </span>
               <span
-                class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
+                class="MuiTypography-root header-content-subtitle MuiTypography-body1"
               >
                 <div>
                   For years...
                 </div>
               </span>
               <span
-                class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
+                class="MuiTypography-root header-content-description MuiTypography-body1"
               >
                 <div>
                   I do programming for a living...
                 </div>
               </span>
               <div
-                class="MuiBox-root MuiBox-root-14"
+                class="MuiBox-root MuiBox-root-2"
               >
                 <a
-                  class="makeStyles-action_link-25"
+                  class="link"
                   href="/action-link"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button"
                     tabindex="0"
                     type="button"
                   >
@@ -70,11 +70,11 @@ Object {
                   </button>
                 </a>
                 <a
-                  class="makeStyles-action_link-37"
+                  class="link"
                   href="/download-link"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-resume"
                     tabindex="0"
                     type="button"
                   >
@@ -94,7 +94,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section margin-top-60"
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -104,46 +104,46 @@ Object {
         >
           <img
             alt="photo of ester-exposito.webp"
-            class="MuiCardMedia-root makeStyles-image_card-9 MuiCardMedia-media MuiCardMedia-img"
+            class="MuiCardMedia-root header-image-card MuiCardMedia-media MuiCardMedia-img"
             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/ester-exposito.webp"
           />
         </div>
         <div
-          class="MuiGrid-root makeStyles-section_container-2 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+          class="MuiGrid-root header-section-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
         >
           <div
-            class="MuiBox-root MuiBox-root-13 makeStyles-content_box-3"
+            class="MuiBox-root MuiBox-root-1 header-content-box"
           >
             <span
-              class="MuiTypography-root makeStyles-content_caption-4 MuiTypography-body1"
+              class="MuiTypography-root header-content-caption MuiTypography-body1"
             >
               <div>
                 Welcome to my web page
               </div>
             </span>
             <span
-              class="MuiTypography-root makeStyles-content_subtitle-5 MuiTypography-body1"
+              class="MuiTypography-root header-content-subtitle MuiTypography-body1"
             >
               <div>
                 For years...
               </div>
             </span>
             <span
-              class="MuiTypography-root makeStyles-content_description-6 MuiTypography-body1"
+              class="MuiTypography-root header-content-description MuiTypography-body1"
             >
               <div>
                 I do programming for a living...
               </div>
             </span>
             <div
-              class="MuiBox-root MuiBox-root-14"
+              class="MuiBox-root MuiBox-root-2"
             >
               <a
-                class="makeStyles-action_link-25"
+                class="link"
                 href="/action-link"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-action_button-24"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button"
                   tabindex="0"
                   type="button"
                 >
@@ -158,11 +158,11 @@ Object {
                 </button>
               </a>
               <a
-                class="makeStyles-action_link-37"
+                class="link"
                 href="/download-link"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-resume_button-38"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-resume"
                   tabindex="0"
                   type="button"
                 >

@@ -6,36 +6,36 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-9"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiBox-root MuiBox-root-10"
+              class="MuiBox-root MuiBox-root-2"
               data-aos="fade-down"
             >
               <p
-                class="MuiTypography-root makeStyles-caption-3 MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root contact-caption MuiTypography-body1"
               >
                 CONTACT ME
               </p>
             </div>
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-8"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-11"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-icon-6"
+                    class="MuiSvgIcon-root contact-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -44,7 +44,7 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+                    class="MuiTypography-root contact-small-caption MuiTypography-body1"
                   >
                     Contact me
                   </p>
@@ -91,10 +91,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
+                              class="PrivateNotchedOutline-legendLabelled-6 PrivateNotchedOutline-legendNotched-7"
                             >
                               <span>
                                 First name
@@ -145,10 +145,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-18 PrivateNotchedOutline-legendNotched-19"
+                              class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
                             >
                               <span>
                                 Last name
@@ -199,10 +199,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-22 PrivateNotchedOutline-legendNotched-23"
+                              class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
                             >
                               <span>
                                 Email address
@@ -253,10 +253,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-26 PrivateNotchedOutline-legendNotched-27"
+                              class="PrivateNotchedOutline-legendLabelled-18 PrivateNotchedOutline-legendNotched-19"
                             >
                               <span>
                                 Subject
@@ -307,10 +307,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-28 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-30 PrivateNotchedOutline-legendNotched-31"
+                              class="PrivateNotchedOutline-legendLabelled-22 PrivateNotchedOutline-legendNotched-23"
                             >
                               <span>
                                 Message
@@ -333,13 +333,13 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-34 MuiCheckbox-root Component-root-32"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-26 MuiCheckbox-root Component-root-24"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
-                              class="PrivateSwitchBase-input-37"
+                              class="PrivateSwitchBase-input-29"
                               data-indeterminate="false"
                               id="terms"
                               name="terms"
@@ -371,11 +371,11 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-38"
+                  class="MuiBox-root MuiBox-root-30"
                   data-aos="fade-up"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-43 MuiButton-fullWidth"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                     tabindex="0"
                     type="submit"
                   >
@@ -395,36 +395,36 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-9"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiBox-root MuiBox-root-10"
+            class="MuiBox-root MuiBox-root-2"
             data-aos="fade-down"
           >
             <p
-              class="MuiTypography-root makeStyles-caption-3 MuiTypography-body1 MuiTypography-gutterBottom"
+              class="MuiTypography-root contact-caption MuiTypography-body1"
             >
               CONTACT ME
             </p>
           </div>
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-8"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-11"
+                class="MuiBox-root MuiBox-root-3"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-icon-6"
+                  class="MuiSvgIcon-root contact-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -433,7 +433,7 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-small_caption-4 MuiTypography-body1"
+                  class="MuiTypography-root contact-small-caption MuiTypography-body1"
                 >
                   Contact me
                 </p>
@@ -480,10 +480,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
+                            class="PrivateNotchedOutline-legendLabelled-6 PrivateNotchedOutline-legendNotched-7"
                           >
                             <span>
                               First name
@@ -534,10 +534,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-18 PrivateNotchedOutline-legendNotched-19"
+                            class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
                           >
                             <span>
                               Last name
@@ -588,10 +588,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-22 PrivateNotchedOutline-legendNotched-23"
+                            class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
                           >
                             <span>
                               Email address
@@ -642,10 +642,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-26 PrivateNotchedOutline-legendNotched-27"
+                            class="PrivateNotchedOutline-legendLabelled-18 PrivateNotchedOutline-legendNotched-19"
                           >
                             <span>
                               Subject
@@ -696,10 +696,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-28 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-30 PrivateNotchedOutline-legendNotched-31"
+                            class="PrivateNotchedOutline-legendLabelled-22 PrivateNotchedOutline-legendNotched-23"
                           >
                             <span>
                               Message
@@ -722,13 +722,13 @@ Object {
                     >
                       <span
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-34 MuiCheckbox-root Component-root-32"
+                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-26 MuiCheckbox-root Component-root-24"
                       >
                         <span
                           class="MuiIconButton-label"
                         >
                           <input
-                            class="PrivateSwitchBase-input-37"
+                            class="PrivateSwitchBase-input-29"
                             data-indeterminate="false"
                             id="terms"
                             name="terms"
@@ -760,11 +760,11 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-38"
+                class="MuiBox-root MuiBox-root-30"
                 data-aos="fade-up"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-43 MuiButton-fullWidth"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                   tabindex="0"
                   type="submit"
                 >

@@ -6,20 +6,20 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
         style="background-color: white;"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-8"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-justify-content-xs-center"
             >
               <div
-                class="MuiBox-root MuiBox-root-9 makeStyles-header-3"
+                class="MuiBox-root MuiBox-root-2 pdf-header"
               >
                 <a
                   href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -37,7 +37,7 @@ Object {
                   </svg>
                 </a>
                 <div
-                  class="makeStyles-header_pages-4"
+                  class="pdf-header-pages"
                 >
                   1
                    / 
@@ -46,7 +46,7 @@ Object {
                 <div>
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-header_buttons-5"
+                    class="MuiSvgIcon-root pdf-header-buttons"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -56,7 +56,7 @@ Object {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-header_buttons-5"
+                    class="MuiSvgIcon-root pdf-header-buttons"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -67,10 +67,10 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-10 makeStyles-canvasWrapper-7"
+                class="MuiBox-root MuiBox-root-3 pdf-canvas-wrapper"
               >
                 <canvas
-                  class="makeStyles-canvas-6"
+                  class="pdf-canvas"
                 />
               </div>
             </div>
@@ -81,20 +81,20 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
       style="background-color: white;"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-8"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-justify-content-xs-center"
           >
             <div
-              class="MuiBox-root MuiBox-root-9 makeStyles-header-3"
+              class="MuiBox-root MuiBox-root-2 pdf-header"
             >
               <a
                 href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -112,7 +112,7 @@ Object {
                 </svg>
               </a>
               <div
-                class="makeStyles-header_pages-4"
+                class="pdf-header-pages"
               >
                 1
                  / 
@@ -121,7 +121,7 @@ Object {
               <div>
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-header_buttons-5"
+                  class="MuiSvgIcon-root pdf-header-buttons"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -131,7 +131,7 @@ Object {
                 </svg>
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-header_buttons-5"
+                  class="MuiSvgIcon-root pdf-header-buttons"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -142,10 +142,10 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-10 makeStyles-canvasWrapper-7"
+              class="MuiBox-root MuiBox-root-3 pdf-canvas-wrapper"
             >
               <canvas
-                class="makeStyles-canvas-6"
+                class="pdf-canvas"
               />
             </div>
           </div>
