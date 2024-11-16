@@ -11,7 +11,6 @@ import { GET_IMAGES_URL } from "../../../Api/Request";
 import { HeaderContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
-import { HeaderStyle } from "./headerStyle";
 import Validate from "validate.js";
 
 interface HeaderViewProps {
@@ -19,11 +18,9 @@ interface HeaderViewProps {
 }
 
 const OpenLinkButton = (props: HeaderContentDto): React.ReactElement => {
-    const classes = HeaderStyle();
-
     return (
-        <Link to={props?.resume?.href ?? ""} className={classes.action_link}>
-            <Button variant="contained" className={classes.resume_button}>
+        <Link to={props?.resume?.href ?? ""} className="link">
+            <Button variant="contained" className="header-button-resume">
                 {props?.resume?.text}
             </Button>
         </Link>
@@ -31,19 +28,17 @@ const OpenLinkButton = (props: HeaderContentDto): React.ReactElement => {
 };
 
 const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
-    const classes = HeaderStyle();
-
     if (Validate.isEmpty(props?.action?.href)) {
         return (
-            <Button variant="contained" className={classes.action_button}>
+            <Button variant="contained" className="header-button">
                 {props?.action?.text}
             </Button>
         );
     }
 
     return (
-        <Link to={props?.action?.href ?? ""} className={classes.action_link}>
-            <Button variant="contained" className={classes.action_button}>
+        <Link to={props?.action?.href ?? ""} className="link">
+            <Button variant="contained" className="header-button">
                 {props?.action?.text}
             </Button>
         </Link>
@@ -51,7 +46,6 @@ const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
 };
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
-    const classes = HeaderStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.header;
     const imageUrl = (name: string) => {
@@ -60,33 +54,33 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     };
 
     return (
-        <section className={classes.section} style={props.background}>
+        <section className="section margin-top-60" style={props.background}>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={7}>
                     {data?.isLoading ? (
-                        <Skeleton variant="rect" className={classes.image_skeleton} />
+                        <Skeleton variant="rect" className="header-image-skeleton" />
                     ) : (
                         <CardMedia
                             image={imageUrl(header?.photo)}
                             component="img"
-                            className={classes.image_card}
+                            className="header-image-card"
                             alt={`photo of ${header?.photo}`}
                         />
                     )}
                 </Grid>
-                <Grid item xs={12} md={5} className={classes.section_container}>
-                    <Box className={classes.content_box}>
-                        <Typography component="span" className={classes.content_caption}>
+                <Grid item xs={12} md={5} className="header-section-container">
+                    <Box className="header-content-box">
+                        <Typography component="span" className="header-content-caption">
                             {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} />}
                         </Typography>
-                        <Typography component="span" className={classes.content_subtitle}>
+                        <Typography component="span" className="header-content-subtitle">
                             {data?.isLoading ? (
                                 <Skeleton variant="text" />
                             ) : (
                                 <ReactHtmlParser html={header?.subtitle} />
                             )}
                         </Typography>
-                        <Typography component="span" className={classes.content_description}>
+                        <Typography component="span" className="header-content-description">
                             {data?.isLoading ? (
                                 <Skeleton variant="text" />
                             ) : (
