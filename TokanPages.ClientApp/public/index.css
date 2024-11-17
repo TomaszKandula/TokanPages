@@ -153,6 +153,10 @@ body::backdrop {
     background: #4649C3 !important;
 }
 
+.button:disabled {
+    background: #E0E0E0 !important;
+}
+
 .button-upload {
     color: white !important;
     background: #EBECFB !important;
@@ -161,6 +165,10 @@ body::backdrop {
 .button-upload:hover {
     color: white !important;
     background: #6367EF !important;
+}
+
+.button-upload:disabled {
+    background: #E0E0E0 !important;
 }
 
 .button-up {
@@ -173,6 +181,10 @@ body::backdrop {
     background: #4649C3 !important;
 }
 
+.button-up:disabled {
+    background: #E0E0E0 !important;
+}
+
 .button-update {
     width: 150px !important;
     color: white !important;
@@ -182,6 +194,10 @@ body::backdrop {
 .button-update:hover {
     color: white !important;
     background: #4649C3 !important;
+}
+
+.button-update:disabled {
+    background: #E0E0E0 !important;
 }
 
 @media (max-width: 599.95px) {
@@ -1097,9 +1113,9 @@ body::backdrop {
 }
 
 .navigation-nav-back {
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-left: 8px;
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+    margin-left: 8px !important;
 }
 
 .navigation-languages-wrapper {
@@ -1533,8 +1549,8 @@ body::backdrop {
 }
 
 .render-video-text {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 14px !important;
+    line-height: 1.8 !important;
     color: #9E9E9E;
 }
 
@@ -1598,13 +1614,13 @@ body::backdrop {
 }
 
 .render-navbar-list-item-text:hover {
-    color: #4649C3;
+    color: #4649C3 !important;
     transform: scale(1.1);
     transition: transform 0.3s ease 0s;
 }
 
 .render-navbar-list-item-text-selected {
-    color: #4649C3;
+    color: #4649C3 !important;
     transform: scale(1.1);
 }
 
