@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-1 makeStyles-paragraph-7 MuiTypography-body1"
+            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
           >
             <div>
               <p>
@@ -32,7 +32,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-1 makeStyles-paragraph-7 MuiTypography-body1"
+          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
         >
           <div>
             <p>
@@ -109,7 +109,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-22 makeStyles-paragraph-28 MuiTypography-body1"
+            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
           >
             <div>
               <p>
@@ -129,7 +129,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-22 makeStyles-paragraph-28 MuiTypography-body1"
+          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
         >
           <div>
             <p>
@@ -206,7 +206,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-15 makeStyles-paragraph-21 MuiTypography-body1"
+            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
           >
             <div>
               <p>
@@ -226,7 +226,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-15 makeStyles-paragraph-21 MuiTypography-body1"
+          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
         >
           <div>
             <p>
@@ -303,7 +303,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <span
-            class="MuiTypography-root makeStyles-common-8 makeStyles-paragraph-14 MuiTypography-body1"
+            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
           >
             <div>
               <p>
@@ -323,7 +323,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <span
-          class="MuiTypography-root makeStyles-common-8 makeStyles-paragraph-14 MuiTypography-body1"
+          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
         >
           <div>
             <p>

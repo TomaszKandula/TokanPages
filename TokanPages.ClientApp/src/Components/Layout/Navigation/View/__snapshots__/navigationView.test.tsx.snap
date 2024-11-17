@@ -32,14 +32,14 @@ Object {
               class="MuiBox-root MuiBox-root-2 navigation-nav-items navigation-nav-centre"
             >
               <ul
-                class="MuiList-root makeStyles-list-3 MuiList-padding"
+                class="MuiList-root render-menu-list MuiList-padding"
               />
             </div>
             <div
-              class="MuiBox-root MuiBox-root-5 navigation-nav-items navigation-nav-right"
+              class="MuiBox-root MuiBox-root-3 navigation-nav-items navigation-nav-right"
             >
               <div
-                class="MuiBox-root MuiBox-root-6 navigation-languages-box"
+                class="MuiBox-root MuiBox-root-4 navigation-languages-box"
               >
                 <div
                   class="MuiFormControl-root"
@@ -164,7 +164,7 @@ Object {
                 class="MuiGrid-root navigation-nav-items navigation-nav-right MuiGrid-item MuiGrid-grid-xs-true"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-7 navigation-languages-box"
+                  class="MuiBox-root MuiBox-root-5 navigation-languages-box"
                 >
                   <div
                     class="MuiFormControl-root"
@@ -262,14 +262,14 @@ Object {
             class="MuiBox-root MuiBox-root-2 navigation-nav-items navigation-nav-centre"
           >
             <ul
-              class="MuiList-root makeStyles-list-3 MuiList-padding"
+              class="MuiList-root render-menu-list MuiList-padding"
             />
           </div>
           <div
-            class="MuiBox-root MuiBox-root-5 navigation-nav-items navigation-nav-right"
+            class="MuiBox-root MuiBox-root-3 navigation-nav-items navigation-nav-right"
           >
             <div
-              class="MuiBox-root MuiBox-root-6 navigation-languages-box"
+              class="MuiBox-root MuiBox-root-4 navigation-languages-box"
             >
               <div
                 class="MuiFormControl-root"
@@ -394,7 +394,7 @@ Object {
               class="MuiGrid-root navigation-nav-items navigation-nav-right MuiGrid-item MuiGrid-grid-xs-true"
             >
               <div
-                class="MuiBox-root MuiBox-root-7 navigation-languages-box"
+                class="MuiBox-root MuiBox-root-5 navigation-languages-box"
               >
                 <div
                   class="MuiFormControl-root"
