@@ -31,18 +31,18 @@ Object {
             role="dialog"
           >
             <div
-              class="MuiDialogTitle-root makeStyles-title-5"
+              class="MuiDialogTitle-root dialog-box-title"
               id="alert-dialog-title"
             >
               <h2
                 class="MuiTypography-root MuiTypography-h6"
               >
                 <div
-                  class="makeStyles-icon_holder-1"
+                  class="dialog-box-icon-holder"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-info_icon-9"
+                    class="MuiSvgIcon-root dialog-box-info-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -63,7 +63,7 @@ Object {
               class="MuiDialogContent-root"
             >
               <span
-                class="MuiTypography-root makeStyles-description-6 MuiTypography-body1"
+                class="MuiTypography-root dialog-box-description MuiTypography-body1"
                 id="alert-dialog-description"
               >
                 <div>
@@ -78,7 +78,7 @@ Object {
               class="MuiDialogActions-root MuiDialogActions-spacing"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-7 Mui-focusVisible Mui-focusVisible"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
                 tabindex="0"
                 type="button"
               >
@@ -135,18 +135,18 @@ Object {
           role="dialog"
         >
           <div
-            class="MuiDialogTitle-root makeStyles-title-5"
+            class="MuiDialogTitle-root dialog-box-title"
             id="alert-dialog-title"
           >
             <h2
               class="MuiTypography-root MuiTypography-h6"
             >
               <div
-                class="makeStyles-icon_holder-1"
+                class="dialog-box-icon-holder"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-info_icon-9"
+                  class="MuiSvgIcon-root dialog-box-info-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -167,7 +167,7 @@ Object {
             class="MuiDialogContent-root"
           >
             <span
-              class="MuiTypography-root makeStyles-description-6 MuiTypography-body1"
+              class="MuiTypography-root dialog-box-description MuiTypography-body1"
               id="alert-dialog-description"
             >
               <div>
@@ -182,7 +182,7 @@ Object {
             class="MuiDialogActions-root MuiDialogActions-spacing"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-7 Mui-focusVisible Mui-focusVisible"
+              class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
               tabindex="0"
               type="button"
             >

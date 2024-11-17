@@ -2,7 +2,6 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import { ScrollToTopStyle } from "./scrollToTopStyle";
 
 export interface Properties {
     children: React.ReactElement;
@@ -19,7 +18,6 @@ export const ClearPageStart = (props: Properties): React.ReactElement => {
 };
 
 export const ScrollToTop = (props: Properties): React.ReactElement => {
-    const classes = ScrollToTopStyle();
     const hasTrigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 100,
@@ -40,7 +38,7 @@ export const ScrollToTop = (props: Properties): React.ReactElement => {
 
     return (
         <Zoom in={hasTrigger}>
-            <div onClick={handleClick} role="presentation" className={classes.scrollToTop}>
+            <div onClick={handleClick} role="presentation" className="scroll-to-top">
                 {props.children}
             </div>
         </Zoom>

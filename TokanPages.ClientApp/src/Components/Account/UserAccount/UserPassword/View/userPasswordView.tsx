@@ -10,7 +10,6 @@ import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordProps } from "../userPassword";
-import { UserPasswordStyle } from "./userPasswordStyle";
 
 interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
     oldPassword: string;
@@ -24,7 +23,6 @@ interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
 }
 
 const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement => {
-    const classes = UserPasswordStyle();
     return (
         <Button
             fullWidth
@@ -32,7 +30,7 @@ const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement 
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.formProgress}
-            className={classes.button_update}
+            className="button-update"
         >
             {!props.formProgress ? props.sectionAccountPassword?.updateButtonText : <CircularProgress size={20} />}
         </Button>
@@ -40,24 +38,22 @@ const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement 
 };
 
 const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
-    const classes = UserPasswordStyle();
     return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
-            <Divider className={classes.divider} />
+            <Divider className="divider" />
         </Box>
     );
 };
 
 export const UserPasswordView = (props: UserPasswordViewProps): React.ReactElement => {
-    const classes = UserPasswordStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container-wide">
                 <Box pb={5}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box pt={0} pb={0}>
-                                <Typography component="span" className={classes.caption}>
+                                <Typography component="span" className="caption black">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
@@ -68,8 +64,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                             <CustomDivider marginTop={2} marginBottom={1} />
                             <Box pt={5} pb={1}>
                                 <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" />
                                             ) : (
@@ -90,8 +86,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" />
                                             ) : (
@@ -112,8 +108,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                             />
                                         )}
                                     </Grid>
-                                    <Grid item xs={12} sm={3} className={classes.label_centered}>
-                                        <Typography component="span" className={classes.label}>
+                                    <Grid item xs={12} sm={3} className="label-centered">
+                                        <Typography component="span" className="label">
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" />
                                             ) : (
@@ -136,7 +132,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={5} marginBottom={2} />
-                                <Grid className={classes.button_container_update}>
+                                <Grid className="button-container-update">
                                     <Box my={2}>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />

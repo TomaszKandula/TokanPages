@@ -9,15 +9,15 @@ Object {
         data-aos="fade-up"
       >
         <div
-          class="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation0 MuiPaper-rounded"
+          class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
         >
           <div
-            class="MuiCardMedia-root makeStyles-card_image-3"
+            class="MuiCardMedia-root article-card-image"
             style="background-image: url(/images/card.jpg);"
           >
             <img
               alt="image of eng.png"
-              class="makeStyles-flag_image-7"
+              class="article-flag-image"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
             />
           </div>
@@ -25,20 +25,20 @@ Object {
             class="MuiCardContent-root"
           >
             <p
-              class="MuiTypography-root makeStyles-card_title-4 MuiTypography-body1 MuiTypography-gutterBottom"
+              class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
             >
               Article title
             </p>
             <p
-              class="MuiTypography-root makeStyles-card_description-5 MuiTypography-body1"
+              class="MuiTypography-root article-card-description MuiTypography-body1"
             >
               Article short description
             </p>
             <div
-              class="MuiCardActions-root makeStyles-card_action-6 MuiCardActions-spacing"
+              class="MuiCardActions-root article-card-action MuiCardActions-spacing"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8 MuiButton-textSizeSmall MuiButton-sizeSmall"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
                 tabindex="0"
                 type="button"
               >
@@ -62,15 +62,15 @@ Object {
       data-aos="fade-up"
     >
       <div
-        class="MuiPaper-root MuiCard-root makeStyles-card-1 MuiPaper-elevation0 MuiPaper-rounded"
+        class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
       >
         <div
-          class="MuiCardMedia-root makeStyles-card_image-3"
+          class="MuiCardMedia-root article-card-image"
           style="background-image: url(/images/card.jpg);"
         >
           <img
             alt="image of eng.png"
-            class="makeStyles-flag_image-7"
+            class="article-flag-image"
             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
           />
         </div>
@@ -78,20 +78,20 @@ Object {
           class="MuiCardContent-root"
         >
           <p
-            class="MuiTypography-root makeStyles-card_title-4 MuiTypography-body1 MuiTypography-gutterBottom"
+            class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
           >
             Article title
           </p>
           <p
-            class="MuiTypography-root makeStyles-card_description-5 MuiTypography-body1"
+            class="MuiTypography-root article-card-description MuiTypography-body1"
           >
             Article short description
           </p>
           <div
-            class="MuiCardActions-root makeStyles-card_action-6 MuiCardActions-spacing"
+            class="MuiCardActions-root article-card-action MuiCardActions-spacing"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-8 MuiButton-textSizeSmall MuiButton-sizeSmall"
+              class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
               tabindex="0"
               type="button"
             >

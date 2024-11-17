@@ -6,19 +6,16 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Item } from "../../Models";
 import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
-import { RenderSidemenuItemStyle } from "./renderSidemenuItemStyle";
 
 export const RenderSidemenuItem = (props: Item): React.ReactElement => {
-    const classes = RenderSidemenuItemStyle();
-
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
     const RenderItemWithHref = (): React.ReactElement => {
         return (
-            <Href href={link} className={classes.href} underline="none" target="_blank" rel="noopener">
+            <Href href={link} className="render-navbar-href" underline="none" target="_blank" rel="noopener">
                 <ListItem button key={props.id} disabled={!props.enabled}>
-                    <ListItemIcon className={classes.list_icon}>
+                    <ListItemIcon className="render-navbar-list-icon">
                         {GetIcon({ iconName: props.icon as string })}
                     </ListItemIcon>
                     <ListItemText primary={props.value} />
@@ -30,7 +27,7 @@ export const RenderSidemenuItem = (props: Item): React.ReactElement => {
     const RenderItemWithLink = (): React.ReactElement => {
         return (
             <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
-                <ListItemIcon className={classes.list_icon}>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className="render-navbar-list-icon">{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} />
             </ListItem>
         );

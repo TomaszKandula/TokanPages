@@ -1,16 +1,14 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { TextItem } from "../../Models/TextModel";
-import { RenderVideoStyle } from "./renderVideoStyle";
 import { API_BASE_URI } from "../../../../../Api/Request";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import Validate from "validate.js";
 
 const RenderDescription = (props: { text: string }): React.ReactElement => {
-    const classes = RenderVideoStyle();
     return (
         <CardContent>
-            <Typography component="span" className={classes.text}>
+            <Typography component="span" className="render-video-text">
                 <ReactHtmlParser html={props.text} />
             </Typography>
         </CardContent>
@@ -18,8 +16,6 @@ const RenderDescription = (props: { text: string }): React.ReactElement => {
 };
 
 export const RenderVideo = (props: TextItem): React.ReactElement => {
-    const classes = RenderVideoStyle();
-
     let valueUrl = props.value as string;
     if (!valueUrl.includes("https://")) {
         valueUrl = `${API_BASE_URI}${valueUrl}`;
@@ -34,13 +30,13 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
     const onClickEvent = React.useCallback(() => setHasImage(false), []);
 
     return (
-        <Card elevation={3} classes={{ root: classes.card }}>
+        <Card elevation={3} className="render-video-card">
             {hasImage ? (
                 <CardMedia
                     component="img"
                     image={propUrl}
                     onClick={onClickEvent}
-                    className={classes.image}
+                    className="render-video-image"
                     style={{
                         maxWidth: props.constraint?.maxWidth,
                         maxHeight: props.constraint?.maxHeight,

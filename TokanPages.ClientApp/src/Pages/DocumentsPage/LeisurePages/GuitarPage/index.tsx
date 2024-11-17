@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../../Store/Actions";
-import { TrySnapshotState } from "../../../../Shared/Services/SpaCaching";
+import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
 import { Navigation, Footer } from "../../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 
@@ -22,7 +22,7 @@ export const GuitarPage = (): React.ReactElement => {
 
     React.useEffect(() => {
         if (guitar?.language !== "") {
-            TrySnapshotState(state);
+            TryPostStateSnapshot(state);
         }
     }, [state]);
 

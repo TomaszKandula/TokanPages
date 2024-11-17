@@ -10,7 +10,6 @@ import ErrorIcon from "@material-ui/icons/Error";
 import { Divider, Typography } from "@material-ui/core";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
-import { ApplicationDialogBoxStyle } from "./applicationDialogBoxStyle";
 
 interface Properties {
     state: boolean;
@@ -23,21 +22,19 @@ interface Properties {
 }
 
 const RenderIcon = (props: Properties): React.ReactElement => {
-    const classes = ApplicationDialogBoxStyle();
     switch (props.icon) {
         case IconType.info:
-            return <InfoIcon className={classes.info_icon} />;
+            return <InfoIcon className="dialog-box-info-icon" />;
         case IconType.warning:
-            return <WarningIcon className={classes.warning_icon} />;
+            return <WarningIcon className="dialog-box-warning-icon" />;
         case IconType.error:
-            return <ErrorIcon className={classes.error_icon} />;
+            return <ErrorIcon className="dialog-box-error-icon" />;
         default:
-            return <InfoIcon className={classes.info_icon} />;
+            return <InfoIcon className="dialog-box-info-icon" />;
     }
 };
 
 export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
-    const classes = ApplicationDialogBoxStyle();
     return (
         <Dialog
             open={props.state}
@@ -47,21 +44,21 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title" className={classes.title}>
-                <div className={classes.icon_holder}>
+            <DialogTitle id="alert-dialog-title" className="dialog-box-title">
+                <div className="dialog-box-icon-holder">
                     <RenderIcon {...props} />
                     <ReactHtmlParser html={props.title} />
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
-                <Typography component="span" className={classes.description} id="alert-dialog-description">
+                <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
                     <ReactHtmlParser html={props.message} />
                 </Typography>
             </DialogContent>
             <Divider />
             <DialogActions>
-                <Button onClick={props.closeHandler} className={classes.button} autoFocus>
+                <Button onClick={props.closeHandler} className="button" autoFocus>
                     OK
                 </Button>
             </DialogActions>

@@ -2,7 +2,6 @@ import * as React from "react";
 import List from "@material-ui/core/List";
 import { Item } from "./Models";
 import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
-import { RenderNavbarMenuStyle } from "./renderNavbarMenuStyle";
 
 interface Properties {
     isAnonymous: boolean;
@@ -10,8 +9,6 @@ interface Properties {
 }
 
 export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
-    const classes = RenderNavbarMenuStyle();
-
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
@@ -69,7 +66,7 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
 
             case "itempipe": {
                 renderBuffer.push(
-                    <div key={item.id} className={classes.list_item_pipe}>
+                    <div key={item.id} className="render-menu-list-item-pipe">
                         &nbsp;
                     </div>
                 );
@@ -78,5 +75,5 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
         }
     });
 
-    return <List className={classes.list}>{renderBuffer}</List>;
+    return <List className="render-menu-list">{renderBuffer}</List>;
 };

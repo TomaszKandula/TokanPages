@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { RenderImage } from "../../../../Shared/Components";
-import { ArticleCardStyle } from "./articleCardStyle";
 
 interface Properties {
     imageUrl: string;
@@ -19,20 +18,19 @@ interface Properties {
 }
 
 export const ArticleCardView = (props: Properties): React.ReactElement => {
-    const classes = ArticleCardStyle();
     return (
         <div data-aos="fade-up">
-            <Card elevation={0} className={classes.card}>
-                <CardMedia image={props.imageUrl} className={classes.card_image}>
-                    {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
+            <Card elevation={0} className="article-card">
+                <CardMedia image={props.imageUrl} className="article-card-image">
+                    {RenderImage(GET_FLAG_URL, props.flagImage, "article-flag-image")}
                 </CardMedia>
                 <CardContent>
-                    <Typography gutterBottom={true} className={classes.card_title}>
+                    <Typography gutterBottom={true} className="article-card-title">
                         {props.title}
                     </Typography>
-                    <Typography className={classes.card_description}>{props.description}</Typography>
-                    <CardActions className={classes.card_action}>
-                        <Button onClick={props.onClickEvent} size="small" className={classes.button}>
+                    <Typography className="article-card-description">{props.description}</Typography>
+                    <CardActions className="article-card-action">
+                        <Button onClick={props.onClickEvent} size="small" className="button article-button article-card-button">
                             {props.buttonText}
                         </Button>
                     </CardActions>

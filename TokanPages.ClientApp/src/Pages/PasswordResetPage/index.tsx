@@ -4,7 +4,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { ResetPassword } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 export const PasswordResetPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -17,7 +16,7 @@ export const PasswordResetPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <ResetPassword pt={15} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+            <ResetPassword pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

@@ -6,38 +6,38 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-10"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-7"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-11"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <span
-                    class="MuiTypography-root makeStyles-caption-5 MuiTypography-body1"
+                    class="MuiTypography-root caption black MuiTypography-body1"
                   >
                     Account Removal
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-21"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <hr
-                    class="MuiDivider-root makeStyles-divider-15"
+                    class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-22"
+                  class="MuiBox-root MuiBox-root-4"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -46,7 +46,7 @@ Object {
                       class="MuiGrid-root MuiGrid-item"
                     >
                       <span
-                        class="MuiTypography-root makeStyles-label-3 MuiTypography-body1"
+                        class="MuiTypography-root label MuiTypography-body1"
                       >
                         <div>
                           <p>
@@ -60,20 +60,20 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-32"
+                    class="MuiBox-root MuiBox-root-5"
                   >
                     <hr
-                      class="MuiDivider-root makeStyles-divider-26"
+                      class="MuiDivider-root divider"
                     />
                   </div>
                   <div
-                    class="MuiGrid-root makeStyles-button_container_update-9"
+                    class="MuiGrid-root button-container-update"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-33"
+                      class="MuiBox-root MuiBox-root-6"
                     >
                       <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-delete_update-41 Mui-disabled MuiButton-fullWidth Mui-disabled"
+                        class="MuiButtonBase-root MuiButton-root MuiButton-contained delete-update Mui-disabled MuiButton-fullWidth Mui-disabled"
                         disabled=""
                         tabindex="-1"
                         type="submit"
@@ -114,38 +114,38 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-10"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-7"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-11"
+                class="MuiBox-root MuiBox-root-2"
               >
                 <span
-                  class="MuiTypography-root makeStyles-caption-5 MuiTypography-body1"
+                  class="MuiTypography-root caption black MuiTypography-body1"
                 >
                   Account Removal
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-21"
+                class="MuiBox-root MuiBox-root-3"
               >
                 <hr
-                  class="MuiDivider-root makeStyles-divider-15"
+                  class="MuiDivider-root divider"
                 />
               </div>
               <div
-                class="MuiBox-root MuiBox-root-22"
+                class="MuiBox-root MuiBox-root-4"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -154,7 +154,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item"
                   >
                     <span
-                      class="MuiTypography-root makeStyles-label-3 MuiTypography-body1"
+                      class="MuiTypography-root label MuiTypography-body1"
                     >
                       <div>
                         <p>
@@ -168,20 +168,20 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-32"
+                  class="MuiBox-root MuiBox-root-5"
                 >
                   <hr
-                    class="MuiDivider-root makeStyles-divider-26"
+                    class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  class="MuiGrid-root makeStyles-button_container_update-9"
+                  class="MuiGrid-root button-container-update"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-33"
+                    class="MuiBox-root MuiBox-root-6"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-delete_update-41 Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained delete-update Mui-disabled MuiButton-fullWidth Mui-disabled"
                       disabled=""
                       tabindex="-1"
                       type="submit"

@@ -6,123 +6,43 @@ Object {
   "baseElement": <body>
     <div>
       <footer
-        class="makeStyles-page_footer-1"
+        class="footer-page-footer"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-15 makeStyles-copyright_box-11"
+            class="MuiBox-root MuiBox-root-1 footer-copyright-box footer-centred"
           >
             <p
-              class="MuiTypography-root makeStyles-copyright-12 MuiTypography-body1"
-              data-aos="zoom-in"
+              class="MuiTypography-root footer-copyright MuiTypography-body1"
             >
-              © 2020 - 2023 Tomasz Kandula
+              © Tomasz Kandula
                | 
               All rights reserved
                | 
               <a
-                class="makeStyles-links-21"
+                class="footer-links"
                 href="/terms"
               >
                 Terms of use
               </a>
                | 
               <a
-                class="makeStyles-links-21"
+                class="footer-links"
                 href="/policy"
               >
                 Privacy policy
               </a>
             </p>
-            <div
-              class="MuiBox-root MuiBox-root-23 makeStyles-icon_box-17"
-              data-aos="zoom-in"
-            >
-              <a
-                aria-disabled="false"
-                aria-label="LinkedInIcon"
-                class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
-                href="https://www.linkedin.com/"
-                rel="noopener"
-                tabindex="0"
-                target="_blank"
-              >
-                <span
-                  class="MuiIconButton-label"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="material-icons MuiIcon-root"
-                  >
-                    linkedinicon
-                  </span>
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </a>
-            </div>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-31"
-            data-aos="zoom-in"
-          >
-            <p
-              class="MuiTypography-root makeStyles-version-30 MuiTypography-body1"
-            >
-              1.0
-            </p>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-32"
-            style="padding-bottom: 120px;"
-          />
-        </div>
-      </footer>
-    </div>
-  </body>,
-  "container": <div>
-    <footer
-      class="makeStyles-page_footer-1"
-    >
-      <div
-        class="MuiContainer-root MuiContainer-maxWidthLg"
-      >
-        <div
-          class="MuiBox-root MuiBox-root-15 makeStyles-copyright_box-11"
-        >
-          <p
-            class="MuiTypography-root makeStyles-copyright-12 MuiTypography-body1"
-            data-aos="zoom-in"
-          >
-            © 2020 - 2023 Tomasz Kandula
-             | 
-            All rights reserved
-             | 
-            <a
-              class="makeStyles-links-21"
-              href="/terms"
-            >
-              Terms of use
-            </a>
-             | 
-            <a
-              class="makeStyles-links-21"
-              href="/policy"
-            >
-              Privacy policy
-            </a>
-          </p>
-          <div
-            class="MuiBox-root MuiBox-root-23 makeStyles-icon_box-17"
-            data-aos="zoom-in"
+            class="MuiBox-root MuiBox-root-2 footer-icon-box footer-centred"
           >
             <a
               aria-disabled="false"
               aria-label="LinkedInIcon"
-              class="MuiButtonBase-root MuiIconButton-root makeStyles-icon-18"
+              class="MuiButtonBase-root MuiIconButton-root footer-icon"
               href="https://www.linkedin.com/"
               rel="noopener"
               tabindex="0"
@@ -143,20 +63,74 @@ Object {
               />
             </a>
           </div>
+          <div
+            style="padding-bottom: 60px;"
+          />
         </div>
+      </footer>
+    </div>
+  </body>,
+  "container": <div>
+    <footer
+      class="footer-page-footer"
+    >
+      <div
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+      >
         <div
-          class="MuiBox-root MuiBox-root-31"
-          data-aos="zoom-in"
+          class="MuiBox-root MuiBox-root-1 footer-copyright-box footer-centred"
         >
           <p
-            class="MuiTypography-root makeStyles-version-30 MuiTypography-body1"
+            class="MuiTypography-root footer-copyright MuiTypography-body1"
           >
-            1.0
+            © Tomasz Kandula
+             | 
+            All rights reserved
+             | 
+            <a
+              class="footer-links"
+              href="/terms"
+            >
+              Terms of use
+            </a>
+             | 
+            <a
+              class="footer-links"
+              href="/policy"
+            >
+              Privacy policy
+            </a>
           </p>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-32"
-          style="padding-bottom: 120px;"
+          class="MuiBox-root MuiBox-root-2 footer-icon-box footer-centred"
+        >
+          <a
+            aria-disabled="false"
+            aria-label="LinkedInIcon"
+            class="MuiButtonBase-root MuiIconButton-root footer-icon"
+            href="https://www.linkedin.com/"
+            rel="noopener"
+            tabindex="0"
+            target="_blank"
+          >
+            <span
+              class="MuiIconButton-label"
+            >
+              <span
+                aria-hidden="true"
+                class="material-icons MuiIcon-root"
+              >
+                linkedinicon
+              </span>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </a>
+        </div>
+        <div
+          style="padding-bottom: 60px;"
         />
       </div>
     </footer>

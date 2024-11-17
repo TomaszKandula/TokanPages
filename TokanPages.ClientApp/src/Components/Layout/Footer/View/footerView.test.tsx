@@ -19,10 +19,14 @@ describe("test component: footerView", () => {
                     policy={{ text: "Privacy policy", href: "/policy" }}
                     versionInfo="1.0"
                     hasVersionInfo={false}
-                    backgroundColor="#FFFFFF"
-                    copyright="© 2020 - 2023 Tomasz Kandula"
-                    reserved="All rights reserved"
+                    legalInfo={{
+                        copyright: "© Tomasz Kandula",
+                        reserved: "All rights reserved"
+                    }}
+                    hasLegalInfo={true}
                     icons={[icons]}
+                    hasIcons={true}
+                    backgroundColor="#FFFFFF"
                 />
             </BrowserRouter>
         );

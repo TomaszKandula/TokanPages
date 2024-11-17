@@ -7,11 +7,9 @@ import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { RaiseError } from "../../../../../Shared/Services/ErrorServices";
 import { ApplicationState } from "../../../../../Store/Configuration";
 import { API_BASE_URI, ExecuteAsync } from "../../../../../Api/Request";
-import { RenderGistStyle } from "./renderGistStyle";
 import validate from "validate.js";
 
 export const RenderGist = (props: TextItem): React.ReactElement => {
-    const classes = RenderGistStyle();
     const dispatch = useDispatch();
     const template = useSelector((state: ApplicationState) => state.contentPageData.components.templates.templates);
 
@@ -46,9 +44,9 @@ export const RenderGist = (props: TextItem): React.ReactElement => {
     }, [updateContent]);
 
     return (
-        <Card elevation={3} classes={{ root: classes.card }}>
+        <Card elevation={3} className="render-gist-card">
             <SyntaxHighlighter
-                className={classes.syntaxHighlighter}
+                className="render-gist-syntax-highlighter"
                 style={github}
                 language={props.type}
                 showLineNumbers={true}

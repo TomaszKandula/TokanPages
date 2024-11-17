@@ -9,7 +9,6 @@ import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
 import { UserDeactivationProps } from "../userDeactivation";
-import { UserDeactivationStyle } from "./userDeactivationStyle";
 
 interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
     buttonHandler: () => void;
@@ -18,7 +17,6 @@ interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProp
 }
 
 const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElement => {
-    const classes = UserDeactivationStyle();
     return (
         <Button
             fullWidth
@@ -26,7 +24,7 @@ const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElemen
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className={classes.delete_update}
+            className="delete-update"
         >
             {!props.progress ? props.section?.deactivateButtonText : <CircularProgress size={20} />}
         </Button>
@@ -34,24 +32,22 @@ const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElemen
 };
 
 const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
-    const classes = UserDeactivationStyle();
     return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
-            <Divider className={classes.divider} />
+            <Divider className="divider" />
         </Box>
     );
 };
 
 export const UserDeactivationView = (props: UserDeactivationViewProps): React.ReactElement => {
-    const classes = UserDeactivationStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container-wide">
                 <Box pb={5}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box pt={0} pb={0}>
-                                <Typography component="span" className={classes.caption}>
+                                <Typography component="span" className="caption black">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.section?.caption}
                                 </Typography>
                             </Box>
@@ -59,7 +55,7 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                             <Box pt={1} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item>
-                                        <Typography component="span" className={classes.label}>
+                                        <Typography component="span" className="label">
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" width="200px" />
                                             ) : (
@@ -69,7 +65,7 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={2} marginBottom={2} />
-                                <Grid className={classes.button_container_update}>
+                                <Grid className="button-container-update">
                                     <Box my={2}>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />

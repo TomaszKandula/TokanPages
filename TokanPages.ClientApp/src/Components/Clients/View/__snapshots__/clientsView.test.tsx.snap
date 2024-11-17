@@ -6,14 +6,14 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-2"
+        class="clients-section"
         style="background-color: white;"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-7"
+            class="MuiBox-root MuiBox-root-1"
           />
         </div>
       </section>
@@ -21,14 +21,14 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-2"
+      class="clients-section"
       style="background-color: white;"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-7"
+          class="MuiBox-root MuiBox-root-1"
         />
       </div>
     </section>

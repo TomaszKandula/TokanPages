@@ -6,23 +6,23 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section-grey"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-8"
+            class="MuiBox-root MuiBox-root-1"
           >
             <p
-              class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
+              class="MuiTypography-root featured-caption-text MuiTypography-body1"
               data-aos="fade-down"
             >
               FEATURED
             </p>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-9"
+            class="MuiBox-root MuiBox-root-2"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -33,7 +33,7 @@ Object {
                 data-aos-delay="350"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <a
                     aria-disabled="false"
@@ -44,19 +44,19 @@ Object {
                     target="_blank"
                   >
                     <div
-                      class="MuiCardMedia-root makeStyles-card_media-7"
+                      class="MuiCardMedia-root featured-card-media"
                       style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg);"
                     />
                     <div
-                      class="MuiCardContent-root makeStyles-card_content-4"
+                      class="MuiCardContent-root featured-card-content"
                     >
                       <p
-                        class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
+                        class="MuiTypography-root featured-card-title MuiTypography-body1"
                       >
                         Memory Management
                       </p>
                       <p
-                        class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
+                        class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                       >
                         The basics you should know, when writing an application...
                       </p>
@@ -76,7 +76,7 @@ Object {
                 data-aos-delay="150"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <a
                     aria-disabled="false"
@@ -87,19 +87,19 @@ Object {
                     target="_blank"
                   >
                     <div
-                      class="MuiCardMedia-root makeStyles-card_media-7"
+                      class="MuiCardMedia-root featured-card-media"
                       style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg);"
                     />
                     <div
-                      class="MuiCardContent-root makeStyles-card_content-4"
+                      class="MuiCardContent-root featured-card-content"
                     >
                       <p
-                        class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
+                        class="MuiTypography-root featured-card-title MuiTypography-body1"
                       >
                         Stored Procedures
                       </p>
                       <p
-                        class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
+                        class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                       >
                         I explain why I do not need them that much...
                       </p>
@@ -116,7 +116,7 @@ Object {
                 data-aos-delay="550"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <a
                     aria-disabled="false"
@@ -127,19 +127,19 @@ Object {
                     target="_blank"
                   >
                     <div
-                      class="MuiCardMedia-root makeStyles-card_media-7"
+                      class="MuiCardMedia-root featured-card-media"
                       style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg);"
                     />
                     <div
-                      class="MuiCardContent-root makeStyles-card_content-4"
+                      class="MuiCardContent-root featured-card-content"
                     >
                       <p
-                        class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
+                        class="MuiTypography-root featured-card-title MuiTypography-body1"
                       >
                         SQL Injection
                       </p>
                       <p
-                        class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
+                        class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                       >
                         This article will explore the issue in greater detail...
                       </p>
@@ -158,23 +158,23 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section-grey"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-8"
+          class="MuiBox-root MuiBox-root-1"
         >
           <p
-            class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
+            class="MuiTypography-root featured-caption-text MuiTypography-body1"
             data-aos="fade-down"
           >
             FEATURED
           </p>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-9"
+          class="MuiBox-root MuiBox-root-2"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -185,7 +185,7 @@ Object {
               data-aos-delay="350"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <a
                   aria-disabled="false"
@@ -196,19 +196,19 @@ Object {
                   target="_blank"
                 >
                   <div
-                    class="MuiCardMedia-root makeStyles-card_media-7"
+                    class="MuiCardMedia-root featured-card-media"
                     style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg);"
                   />
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-4"
+                    class="MuiCardContent-root featured-card-content"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
+                      class="MuiTypography-root featured-card-title MuiTypography-body1"
                     >
                       Memory Management
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
+                      class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                     >
                       The basics you should know, when writing an application...
                     </p>
@@ -228,7 +228,7 @@ Object {
               data-aos-delay="150"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <a
                   aria-disabled="false"
@@ -239,19 +239,19 @@ Object {
                   target="_blank"
                 >
                   <div
-                    class="MuiCardMedia-root makeStyles-card_media-7"
+                    class="MuiCardMedia-root featured-card-media"
                     style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg);"
                   />
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-4"
+                    class="MuiCardContent-root featured-card-content"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
+                      class="MuiTypography-root featured-card-title MuiTypography-body1"
                     >
                       Stored Procedures
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
+                      class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                     >
                       I explain why I do not need them that much...
                     </p>
@@ -268,7 +268,7 @@ Object {
               data-aos-delay="550"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-3 MuiPaper-elevation0 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <a
                   aria-disabled="false"
@@ -279,19 +279,19 @@ Object {
                   target="_blank"
                 >
                   <div
-                    class="MuiCardMedia-root makeStyles-card_media-7"
+                    class="MuiCardMedia-root featured-card-media"
                     style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg);"
                   />
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-4"
+                    class="MuiCardContent-root featured-card-content"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-5 MuiTypography-body1"
+                      class="MuiTypography-root featured-card-title MuiTypography-body1"
                     >
                       SQL Injection
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_subtitle-6 MuiTypography-body1"
+                      class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                     >
                       This article will explore the issue in greater detail...
                     </p>

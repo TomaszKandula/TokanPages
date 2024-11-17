@@ -6,7 +6,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Subitem } from "../../Models";
 import { GetIcon } from "../../..";
 import { EnsureDefined } from "../EnsureDefined";
-import { RenderSubitemsStyle } from "./renderSubitemsStyle";
 
 interface RenderSubitemProps extends Subitem {
     indent?: boolean;
@@ -15,14 +14,12 @@ interface RenderSubitemProps extends Subitem {
 }
 
 export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => {
-    const classes = RenderSubitemsStyle();
-
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 
-    const listItemStyle = props.indent ? classes.list_item_indent : classes.list_item;
-    const listItemTextIdentStyle = props.indent ? undefined : classes.list_item_text;
-    const listItemTextBaseStyle = props.navbar ? classes.list_item_text : classes.list_item_base;
+    const listItemStyle = props.indent ? "render-navbar-list-item-indent" : "render-navbar-list-item";
+    const listItemTextIdentStyle = props.indent ? undefined : "render-navbar-list-item-text";
+    const listItemTextBaseStyle = props.navbar ? "render-navbar-list-item-text" : "render-navbar-list-item-base";
     const listItemTextStyle = `${listItemTextIdentStyle} ${listItemTextBaseStyle}`;
 
     const RenderItemWithHref = (): React.ReactElement => {
@@ -30,13 +27,13 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
             <Href
                 href={link}
                 onClick={props.onClickEvent}
-                className={classes.href}
+                className="render-navbar-href"
                 underline="none"
                 target="_blank"
                 rel="noopener"
             >
                 <ListItem button key={props.id} className={listItemStyle} disabled={!props.enabled}>
-                    <ListItemIcon className={classes.list_icon}>
+                    <ListItemIcon className="render-navbar-list-icon">
                         {GetIcon({ iconName: props.icon as string })}
                     </ListItemIcon>
                     <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
@@ -56,7 +53,7 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
                 component={Link}
                 to={props.link as string}
             >
-                <ListItemIcon className={classes.list_icon}>{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className="render-navbar-list-icon">{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
                 <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
             </ListItem>
         );

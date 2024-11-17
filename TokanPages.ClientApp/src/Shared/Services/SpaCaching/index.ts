@@ -11,7 +11,7 @@ export const HasSnapshotMode = (): boolean => {
     return param === "snapshot";
 }
 
-export const GetSnapshotState = (): ApplicationState | undefined => {
+export const TryGetStateSnapshot = (): ApplicationState | undefined => {
     const meta = document.querySelector(HANDLER);
     if (meta !== null) {
         const content = meta.getAttribute("content");
@@ -29,7 +29,7 @@ export const GetSnapshotState = (): ApplicationState | undefined => {
     return undefined;
 }
 
-export const TrySnapshotState = (state: ApplicationState): void => {
+export const TryPostStateSnapshot = (state: ApplicationState): void => {
     const hasSnapshotMode = HasSnapshotMode();
     if (hasSnapshotMode) {
         const serialized = JSON.stringify(state);

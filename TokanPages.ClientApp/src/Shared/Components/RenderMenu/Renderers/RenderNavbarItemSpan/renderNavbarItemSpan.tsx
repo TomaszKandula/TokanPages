@@ -3,7 +3,6 @@ import { Box, Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } 
 import { Item } from "../../Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
-import { RenderNavbarItemSpanStyle } from "./renderNavbarItemSpanStyle";
 
 interface ItemsProps extends Item {
     onClickEvent?: () => void;
@@ -29,14 +28,12 @@ const Items = (props: ItemsProps): React.ReactElement => {
 };
 
 export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
-    const classes = RenderNavbarItemSpanStyle();
-
     const [isOpen, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
     const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
-    const selectionClass = `${classes.list_item_text} ${classes.list_item_text_selected}`;
-    const selectionStyle = isSelected ? selectionClass : classes.list_item_text;
+    const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
+    const selectionStyle = isSelected ? selectionClass : "render-navbar-list-item-text";
 
     const handleToggle = React.useCallback((): void => {
         setOpen(prevOpen => !prevOpen);
@@ -93,7 +90,7 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                 ref={anchorRef}
                 disabled={!props.enabled}
                 onClick={handleToggle}
-                className={classes.button}
+                className="render-navbar-button"
                 disableRipple={true}
             >
                 <ListItemText
@@ -109,13 +106,13 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom" }}
                     >
-                        <Box className={classes.menu_box}>
+                        <Box className="render-navbar-menu-box">
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList
                                     autoFocusItem={isOpen}
                                     id="menu-list-grow"
                                     onKeyDown={handleListKeyDown}
-                                    className={classes.menu_list}
+                                    className="render-navbar-menu-list"
                                 >
                                     <Items {...props} />
                                 </MenuList>

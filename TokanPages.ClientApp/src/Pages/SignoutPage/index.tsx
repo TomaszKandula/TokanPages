@@ -4,7 +4,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { UserSignout } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 export const SignoutPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -17,7 +16,7 @@ export const SignoutPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignout pt={15} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+            <UserSignout pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

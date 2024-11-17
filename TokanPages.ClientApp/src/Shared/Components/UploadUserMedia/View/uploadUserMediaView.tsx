@@ -1,7 +1,6 @@
 import * as React from "react";
 import BackupIcon from "@material-ui/icons/Backup";
 import { IconButton } from "@material-ui/core";
-import { UploadUserMediaStyle } from "./uploadUserMediaStyle";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 
@@ -13,7 +12,6 @@ interface Properties {
 }
 
 export const UploadUserMediaView = (props: Properties): React.ReactElement => {
-    const classes = UploadUserMediaStyle();
     const uuid = uuidv4();
     return (
         <label htmlFor={props.customHandle ? props.customHandle : `userFile-${uuid}`}>
@@ -26,7 +24,7 @@ export const UploadUserMediaView = (props: Properties): React.ReactElement => {
                 multiple={false}
                 onChange={props.inputHandler}
             />
-            <IconButton component="span" size="small" disabled={!props.buttonState} className={classes.button_upload}>
+            <IconButton component="span" size="small" disabled={!props.buttonState} className="button-upload">
                 <BackupIcon />
             </IconButton>
         </label>
