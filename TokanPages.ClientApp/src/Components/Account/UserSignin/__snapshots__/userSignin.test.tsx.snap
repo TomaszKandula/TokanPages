@@ -6,26 +6,26 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-10"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-8"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-11"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-account-5"
+                    class="MuiSvgIcon-root account"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -34,11 +34,11 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-caption-6 MuiTypography-body1"
+                    class="MuiTypography-root caption MuiTypography-body1"
                   />
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-12"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -64,11 +64,11 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-14"
+                              class="PrivateNotchedOutline-legend-5"
                               style="width: 0.01px;"
                             >
                               <span>
@@ -83,7 +83,8 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                     >
                       <div
-                        class="MuiFormControl-root makeStyles-textField-17 MuiFormControl-fullWidth"
+                        class="MuiFormControl-root MuiFormControl-fullWidth"
+                        style="margin: 0px;"
                       >
                         <label
                           class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
@@ -133,11 +134,11 @@ Object {
                           </div>
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-18 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-19"
+                              class="PrivateNotchedOutline-legend-9"
                               style="width: 0.01px;"
                             >
                               <span>
@@ -150,10 +151,10 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-22"
+                    class="MuiBox-root MuiBox-root-12"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-31 MuiButton-fullWidth"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                       tabindex="0"
                       type="submit"
                     >
@@ -163,7 +164,7 @@ Object {
                     </button>
                   </div>
                   <div
-                    class="MuiGrid-root makeStyles-actions-4 MuiGrid-container MuiGrid-spacing-xs-2"
+                    class="MuiGrid-root actions MuiGrid-container MuiGrid-spacing-xs-2"
                   >
                     <div
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
@@ -173,7 +174,7 @@ Object {
                       />
                     </div>
                     <div
-                      class="MuiGrid-root makeStyles-tertiaryAction-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                      class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                     >
                       <a
                         href="/resetpassword"
@@ -190,26 +191,26 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-10"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-7 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-8"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-11"
+                class="MuiBox-root MuiBox-root-2"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-account-5"
+                  class="MuiSvgIcon-root account"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -218,11 +219,11 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-caption-6 MuiTypography-body1"
+                  class="MuiTypography-root caption MuiTypography-body1"
                 />
               </div>
               <div
-                class="MuiBox-root MuiBox-root-12"
+                class="MuiBox-root MuiBox-root-3"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -248,11 +249,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-14"
+                            class="PrivateNotchedOutline-legend-5"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -267,7 +268,8 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiFormControl-root makeStyles-textField-17 MuiFormControl-fullWidth"
+                      class="MuiFormControl-root MuiFormControl-fullWidth"
+                      style="margin: 0px;"
                     >
                       <label
                         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
@@ -317,11 +319,11 @@ Object {
                         </div>
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-18 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-19"
+                            class="PrivateNotchedOutline-legend-9"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -334,10 +336,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-22"
+                  class="MuiBox-root MuiBox-root-12"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-31 MuiButton-fullWidth"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                     tabindex="0"
                     type="submit"
                   >
@@ -347,7 +349,7 @@ Object {
                   </button>
                 </div>
                 <div
-                  class="MuiGrid-root makeStyles-actions-4 MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="MuiGrid-root actions MuiGrid-container MuiGrid-spacing-xs-2"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
@@ -357,7 +359,7 @@ Object {
                     />
                   </div>
                   <div
-                    class="MuiGrid-root makeStyles-tertiaryAction-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                    class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
                       href="/resetpassword"

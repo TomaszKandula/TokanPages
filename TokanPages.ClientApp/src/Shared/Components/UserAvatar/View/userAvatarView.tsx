@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Avatar } from "@material-ui/core";
-import { UserAvatarStyle } from "./userAvatarViewStyle";
 import Validate from "validate.js";
 
 interface Properties {
@@ -10,8 +9,7 @@ interface Properties {
 }
 
 export const UserAvatarView = (props: Properties): React.ReactElement => {
-    const classes = UserAvatarStyle();
-    const className = props.isLarge ? classes.avatarLarge : classes.avatarSmall;
+    const className = props.isLarge ? "user-avatar-avatar-large" : "user-avatar-avatar-small";
 
     if (Validate.isEmpty(props.avatarSource)) {
         return <Avatar className={className}>{props.userLetter}</Avatar>;

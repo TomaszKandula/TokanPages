@@ -9,7 +9,6 @@ import { SectionAccountRemoval } from "../../../../../Api/Models";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { UserRemovalProps } from "../userRemoval";
-import { UserRemovalStyle } from "./userRemovalStyle";
 
 interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
     deleteButtonHandler: () => void;
@@ -18,7 +17,6 @@ interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
 }
 
 const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement => {
-    const classes = UserRemovalStyle();
     return (
         <Button
             fullWidth
@@ -26,7 +24,7 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
             variant="contained"
             onClick={props.deleteButtonHandler}
             disabled={props.deleteAccountProgress}
-            className={classes.delete_update}
+            className="delete-update"
         >
             {!props.deleteAccountProgress ? (
                 props.sectionAccountRemoval?.deleteButtonText
@@ -38,24 +36,22 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
 };
 
 const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
-    const classes = UserRemovalStyle();
     return (
         <Box mt={args.marginTop} mb={args.marginBottom}>
-            <Divider className={classes.divider} />
+            <Divider className="divider" />
         </Box>
     );
 };
 
 export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement => {
-    const classes = UserRemovalStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container-wide">
                 <Box pb={5}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box pt={0} pb={0}>
-                                <Typography component="span" className={classes.caption}>
+                                <Typography component="span" className="caption black">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
@@ -67,7 +63,7 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                             <Box pt={1} pb={1}>
                                 <Grid container spacing={2}>
                                     <Grid item>
-                                        <Typography component="span" className={classes.label}>
+                                        <Typography component="span" className="label">
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" width="200px" />
                                             ) : (
@@ -77,7 +73,7 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                                     </Grid>
                                 </Grid>
                                 <CustomDivider marginTop={2} marginBottom={2} />
-                                <Grid className={classes.button_container_update}>
+                                <Grid className="button-container-update">
                                     <Box my={2}>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />

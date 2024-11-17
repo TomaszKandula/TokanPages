@@ -8,7 +8,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { CookiesStyle } from "./cookiesStyle";
 
 interface Properties extends ViewProperties {
     modalClose: boolean;
@@ -20,16 +19,14 @@ interface Properties extends ViewProperties {
 }
 
 const ActiveButton = (props: Properties): React.ReactElement => {
-    const classes = CookiesStyle();
     return (
-        <Button onClick={props.onClickEvent} className={classes.button}>
+        <Button onClick={props.onClickEvent} className="button cookies-button">
             {props.buttonText}
         </Button>
     );
 };
 
 export const CookiesView = (props: Properties): React.ReactElement => {
-    const classes = CookiesStyle();
     const renderConsent = (): React.ReactElement => {
         return (
             <Box
@@ -38,15 +35,15 @@ export const CookiesView = (props: Properties): React.ReactElement => {
                 bottom={0}
                 p={3}
                 zIndex="modal"
-                className={props.modalClose ? classes.close : classes.open}
+                className={props.modalClose ? "cookies-close" : "cookies-open"}
             >
-                <Container maxWidth="md">
-                    <Card elevation={0} className={classes.container}>
+                <Container className="container-wide">
+                    <Card elevation={0} className="cookies-card">
                         <CardContent>
-                            <Typography className={classes.caption}>
+                            <Typography className="cookies-caption">
                                 {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                             </Typography>
-                            <Typography className={classes.text}>
+                            <Typography className="cookies-text">
                                 {props.isLoading ? <Skeleton variant="text" /> : props.text}
                             </Typography>
                         </CardContent>

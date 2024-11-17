@@ -5,7 +5,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -24,7 +23,7 @@ export const NewsletterRemovePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <NewsletterRemove id={id} pt={15} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+            <NewsletterRemove id={id} pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

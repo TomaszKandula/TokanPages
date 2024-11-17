@@ -6,20 +6,20 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-12"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiBox-root MuiBox-root-13"
+              class="MuiBox-root MuiBox-root-2"
               data-aos="fade-down"
             >
               <p
-                class="MuiTypography-root makeStyles-title-5 MuiTypography-body1"
+                class="MuiTypography-root article-features-title MuiTypography-body1"
               >
                 ARTICLES
               </p>
@@ -31,40 +31,40 @@ Object {
                 class="MuiGrid-root MuiGrid-container"
               >
                 <div
-                  class="MuiGrid-root makeStyles-content-9 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
+                  class="MuiGrid-root article-features-content MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root makeStyles-card-2 MuiPaper-elevation0 MuiPaper-rounded"
+                    class="MuiPaper-root MuiCard-root article-features-card MuiPaper-elevation0 MuiPaper-rounded"
                   >
                     <div
-                      class="MuiCardContent-root makeStyles-card_content-3"
+                      class="MuiCardContent-root article-features-card-content"
                     >
                       <div
-                        class="MuiBox-root MuiBox-root-14"
+                        class="MuiBox-root MuiBox-root-3"
                       >
                         <p
-                          class="MuiTypography-root makeStyles-text1-6 MuiTypography-body1"
+                          class="MuiTypography-root article-features-text1 MuiTypography-body1"
                         >
                           .NET Core, Azure, databases and others.
                         </p>
                         <div
-                          class="MuiBox-root MuiBox-root-15"
+                          class="MuiBox-root MuiBox-root-4"
                         >
                           <p
-                            class="MuiTypography-root makeStyles-text2-7 MuiTypography-body1"
+                            class="MuiTypography-root article-features-text2 MuiTypography-body1"
                           >
                             Let's dive into Microsoft technology...
                           </p>
                         </div>
                         <div
-                          class="MuiBox-root MuiBox-root-16"
+                          class="MuiBox-root MuiBox-root-5"
                         >
                           <a
-                            class="makeStyles-link-26"
+                            class="link"
                             href="/action-link"
                           >
                             <button
-                              class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
+                              class="MuiButtonBase-root MuiButton-root MuiButton-text button"
                               tabindex="0"
                               type="button"
                             >
@@ -107,10 +107,10 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
                         <div
-                          class="MuiCardMedia-root makeStyles-media-8"
+                          class="MuiCardMedia-root article-features-media"
                           style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg);"
                         />
                       </div>
@@ -119,10 +119,10 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
                         <div
-                          class="MuiCardMedia-root makeStyles-media-8"
+                          class="MuiCardMedia-root article-features-media"
                           style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg);"
                         />
                       </div>
@@ -131,10 +131,10 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
                         <div
-                          class="MuiCardMedia-root makeStyles-media-8"
+                          class="MuiCardMedia-root article-features-media"
                           style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg);"
                         />
                       </div>
@@ -143,10 +143,10 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
                         <div
-                          class="MuiCardMedia-root makeStyles-media-8"
+                          class="MuiCardMedia-root article-features-media"
                           style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg);"
                         />
                       </div>
@@ -162,20 +162,20 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-12"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiBox-root MuiBox-root-13"
+            class="MuiBox-root MuiBox-root-2"
             data-aos="fade-down"
           >
             <p
-              class="MuiTypography-root makeStyles-title-5 MuiTypography-body1"
+              class="MuiTypography-root article-features-title MuiTypography-body1"
             >
               ARTICLES
             </p>
@@ -187,40 +187,40 @@ Object {
               class="MuiGrid-root MuiGrid-container"
             >
               <div
-                class="MuiGrid-root makeStyles-content-9 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
+                class="MuiGrid-root article-features-content MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-2 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root article-features-card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-3"
+                    class="MuiCardContent-root article-features-card-content"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-14"
+                      class="MuiBox-root MuiBox-root-3"
                     >
                       <p
-                        class="MuiTypography-root makeStyles-text1-6 MuiTypography-body1"
+                        class="MuiTypography-root article-features-text1 MuiTypography-body1"
                       >
                         .NET Core, Azure, databases and others.
                       </p>
                       <div
-                        class="MuiBox-root MuiBox-root-15"
+                        class="MuiBox-root MuiBox-root-4"
                       >
                         <p
-                          class="MuiTypography-root makeStyles-text2-7 MuiTypography-body1"
+                          class="MuiTypography-root article-features-text2 MuiTypography-body1"
                         >
                           Let's dive into Microsoft technology...
                         </p>
                       </div>
                       <div
-                        class="MuiBox-root MuiBox-root-16"
+                        class="MuiBox-root MuiBox-root-5"
                       >
                         <a
-                          class="makeStyles-link-26"
+                          class="link"
                           href="/action-link"
                         >
                           <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-27"
+                            class="MuiButtonBase-root MuiButton-root MuiButton-text button"
                             tabindex="0"
                             type="button"
                           >
@@ -263,10 +263,10 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
                       <div
-                        class="MuiCardMedia-root makeStyles-media-8"
+                        class="MuiCardMedia-root article-features-media"
                         style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg);"
                       />
                     </div>
@@ -275,10 +275,10 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
                       <div
-                        class="MuiCardMedia-root makeStyles-media-8"
+                        class="MuiCardMedia-root article-features-media"
                         style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg);"
                       />
                     </div>
@@ -287,10 +287,10 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
                       <div
-                        class="MuiCardMedia-root makeStyles-media-8"
+                        class="MuiCardMedia-root article-features-media"
                         style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg);"
                       />
                     </div>
@@ -299,10 +299,10 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root makeStyles-card_image-4 MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
                       <div
-                        class="MuiCardMedia-root makeStyles-media-8"
+                        class="MuiCardMedia-root article-features-media"
                         style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg);"
                       />
                     </div>

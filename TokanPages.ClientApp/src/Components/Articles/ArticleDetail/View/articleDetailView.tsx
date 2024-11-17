@@ -10,7 +10,6 @@ import { RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ExtendedViewProps } from "../articleDetail";
-import { ArticleDetailStyle } from "./articleDetailStyle";
 
 interface ArticleDetailViewProps extends ExtendedViewProps {
     backButtonHandler: () => void;
@@ -39,11 +38,10 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 }
 
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
-    const classes = ArticleDetailStyle();
     const readTime = props.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pb={12}>
                     <div data-aos="fade-down">
                         <Grid container spacing={2}>
@@ -54,7 +52,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography
-                                    className={classes.aliasName}
+                                    className="alias-name"
                                     component="div"
                                     variant="subtitle1"
                                     align="left"
@@ -63,7 +61,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 </Typography>
                                 <Popover
                                     id="mouse-over-popover"
-                                    className={classes.popover}
+                                    className="popover"
                                     open={props.popoverOpen}
                                     anchorEl={props.popoverElement}
                                     anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
@@ -86,36 +84,36 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Grid>
                         </Grid>
                         <Box mt={1} mb={5}>
-                            <div className={classes.text_block}>
+                            <div className="text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textLanguage}&nbsp;
                                 </Typography>
-                                {RenderImage(GET_FLAG_URL, props.flagImage, classes.flag_image)}
+                                {RenderImage(GET_FLAG_URL, props.flagImage, "flag-image")}
                             </div>
                             <Typography component="p" variant="subtitle1">
                                 {readTime}
                             </Typography>
-                            <div className={classes.text_block}>
+                            <div className="text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textPublished}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
+                                <Typography component="p" variant="subtitle1" className="text-padding-left">
                                     {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
                                 </Typography>
                             </div>
-                            <div className={classes.text_block}>
+                            <div className="text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textUpdated}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
+                                <Typography component="p" variant="subtitle1" className="text-padding-left">
                                     {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
                                 </Typography>
                             </div>
-                            <div className={classes.text_block}>
+                            <div className="text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textReadCount}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className={classes.text_padding_left}>
+                                <Typography component="p" variant="subtitle1" className="text-padding-left">
                                     {props.articleReadCount}
                                 </Typography>
                             </div>
@@ -127,13 +125,13 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             <Grid item>
                                 <Tooltip
                                     title={
-                                        <span className={classes.likesTip}>
+                                        <span className="likes-tip">
                                             {<Emoji text={props.renderLikesLeft} />}
                                         </span>
                                     }
                                     arrow
                                 >
-                                    <ThumbUpIcon className={classes.thumbsMedium} onClick={props.thumbsHandler} />
+                                    <ThumbUpIcon className="thumbs-medium" onClick={props.thumbsHandler} />
                                 </Tooltip>
                             </Grid>
                             <Grid item xs zeroMinWidth>
@@ -143,12 +141,12 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Grid>
                         </Grid>
                     </Box>
-                    <Divider className={classes.dividerBottom} />
+                    <Divider className="divider-bottom" />
                     <Grid container spacing={2}>
                         <Grid item>{props.renderLargeAvatar}</Grid>
                         <Grid item xs zeroMinWidth>
                             <Typography
-                                className={classes.aliasName}
+                                className="alias-name"
                                 component="span"
                                 variant="h6"
                                 align="left"
@@ -157,12 +155,12 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 {props.content.textWritten}
                             </Typography>
                             <Box fontWeight="fontWeightBold">
-                                <Typography className={classes.aliasName} component="span" variant="h6" align="left">
+                                <Typography className="alias-name" component="span" variant="h6" align="left">
                                     {props.renderAuthorName}
                                 </Typography>
                             </Box>
                             <Typography
-                                className={classes.aliasName}
+                                className="alias-name"
                                 component="span"
                                 variant="subtitle1"
                                 align="left"

@@ -4,7 +4,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { UpdatePassword } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -17,7 +16,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UpdatePassword pt={15} pb={30} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+            <UpdatePassword pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

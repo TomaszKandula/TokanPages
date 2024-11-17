@@ -3,14 +3,12 @@ import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api/Request";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { TextItem } from "../../Models/TextModel";
-import { RenderImageStyle } from "./renderImageStyle";
 import Validate from "validate.js";
 
 const RenderDescription = (props: { text: string }): React.ReactElement => {
-    const classes = RenderImageStyle();
     return (
         <CardContent>
-            <Typography component="span" className={classes.text}>
+            <Typography component="span" className="render-image-text">
                 <ReactHtmlParser html={props.text} />
             </Typography>
         </CardContent>
@@ -18,8 +16,6 @@ const RenderDescription = (props: { text: string }): React.ReactElement => {
 };
 
 export const RenderImage = (props: TextItem): React.ReactElement => {
-    const classes = RenderImageStyle();
-
     const hasProp = !Validate.isEmpty(props.prop);
     const hasValue = !Validate.isEmpty(props.value);
     const hasText = !Validate.isEmpty(props.text);
@@ -41,13 +37,13 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
     }, [valueUrl]);
 
     return (
-        <Card elevation={3} classes={{ root: classes.card }}>
+        <Card elevation={3} className="render-image-card">
             {hasPropAndValue ? (
                 <CardMedia
                     component="img"
                     image={propUrl}
                     alt="image"
-                    className={classes.image}
+                    className="render-image-image"
                     onClick={onClickEvent}
                     style={{
                         maxWidth: props.constraint?.maxWidth,

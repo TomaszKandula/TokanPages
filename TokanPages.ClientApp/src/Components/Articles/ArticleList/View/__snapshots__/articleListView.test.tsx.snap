@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-3"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
@@ -24,15 +24,15 @@ Object {
                   data-aos="fade-up"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation0 MuiPaper-rounded"
+                    class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
                   >
                     <div
-                      class="MuiCardMedia-root makeStyles-card_image-6"
+                      class="MuiCardMedia-root article-card-image"
                       style="background-image: url(http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp);"
                     >
                       <img
                         alt="image of eng.png"
-                        class="makeStyles-flag_image-10"
+                        class="article-flag-image"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                       />
                     </div>
@@ -40,20 +40,20 @@ Object {
                       class="MuiCardContent-root"
                     >
                       <p
-                        class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1 MuiTypography-gutterBottom"
+                        class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
                       >
                         Test article
                       </p>
                       <p
-                        class="MuiTypography-root makeStyles-card_description-8 MuiTypography-body1"
+                        class="MuiTypography-root article-card-description MuiTypography-body1"
                       >
                         Some article
                       </p>
                       <div
-                        class="MuiCardActions-root makeStyles-card_action-9 MuiCardActions-spacing"
+                        class="MuiCardActions-root article-card-action MuiCardActions-spacing"
                       >
                         <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-11 MuiButton-textSizeSmall MuiButton-sizeSmall"
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
                           tabindex="0"
                           type="button"
                         >
@@ -77,13 +77,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-3"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
@@ -95,15 +95,15 @@ Object {
                 data-aos="fade-up"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <div
-                    class="MuiCardMedia-root makeStyles-card_image-6"
+                    class="MuiCardMedia-root article-card-image"
                     style="background-image: url(http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp);"
                   >
                     <img
                       alt="image of eng.png"
-                      class="makeStyles-flag_image-10"
+                      class="article-flag-image"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                     />
                   </div>
@@ -111,20 +111,20 @@ Object {
                     class="MuiCardContent-root"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1 MuiTypography-gutterBottom"
+                      class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
                     >
                       Test article
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_description-8 MuiTypography-body1"
+                      class="MuiTypography-root article-card-description MuiTypography-body1"
                     >
                       Some article
                     </p>
                     <div
-                      class="MuiCardActions-root makeStyles-card_action-9 MuiCardActions-spacing"
+                      class="MuiCardActions-root article-card-action MuiCardActions-spacing"
                     >
                       <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-11 MuiButton-textSizeSmall MuiButton-sizeSmall"
+                        class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
                         tabindex="0"
                         type="button"
                       >

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-2 MuiAvatar-colorDefault"
+        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large MuiAvatar-colorDefault"
       >
         T
       </div>
@@ -14,7 +14,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-2 MuiAvatar-colorDefault"
+      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large MuiAvatar-colorDefault"
     >
       T
     </div>
@@ -79,7 +79,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-6"
+        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
       >
         <img
           alt="Avatar"
@@ -91,7 +91,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarLarge-6"
+      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
     >
       <img
         alt="Avatar"
@@ -160,7 +160,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarSmall-3 MuiAvatar-colorDefault"
+        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small MuiAvatar-colorDefault"
       >
         T
       </div>
@@ -168,7 +168,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarSmall-3 MuiAvatar-colorDefault"
+      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small MuiAvatar-colorDefault"
     >
       T
     </div>
@@ -233,7 +233,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarSmall-7"
+        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small"
       >
         <img
           alt="Avatar"
@@ -245,7 +245,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular makeStyles-avatarSmall-7"
+      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small"
     >
       <img
         alt="Avatar"

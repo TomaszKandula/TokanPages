@@ -1,5 +1,4 @@
 import * as React from "react";
-import clsx from "clsx";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -12,7 +11,6 @@ import { Collapse, IconButton } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GET_TESTIMONIALS_URL } from "../../../Api/Request";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { TestimonialsStyle } from "./testimonialsStyle";
 
 interface TestimonialsViewProps extends ViewProperties {
     hasTestimonialOne: boolean;
@@ -39,17 +37,16 @@ interface TestimonialsViewProps extends ViewProperties {
 }
 
 export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => {
-    const classes = TestimonialsStyle();
     const imageUrl = (name: string) => {
         if (name === "") return " ";
         return `${GET_TESTIMONIALS_URL}/${name}`;
     };
 
     return (
-        <section className={classes.section} style={props.background}>
-            <Container maxWidth="lg">
+        <section className="section" style={props.background}>
+            <Container className="container-super-wide">
                 <Box pt={8} pb={10} textAlign="center" mb={5}>
-                    <Typography className={classes.caption_text} data-aos="fade-down">
+                    <Typography className="testimonials-caption-text" data-aos="fade-down">
                         {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
                     </Typography>
                 </Box>
@@ -61,35 +58,33 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             md={4} 
                             data-aos="fade-up"
                             data-aos-delay="350"
-                            className={classes.card_holder}
+                            className="testimonials-card-holder"
                         >
-                            <Card elevation={0} className={classes.card}>
+                            <Card elevation={0} className="testimonials-card">
                                 {props.isLoading ? (
-                                    <Skeleton variant="rect" className={classes.card_image} />
+                                    <Skeleton variant="rect" className="testimonials-card-image" />
                                 ) : (
                                     <CardMedia
                                         image={imageUrl(props.photo1)}
                                         component="img"
-                                        className={classes.card_image}
+                                        className="testimonials-card-image"
                                         alt={`photo of ${props.photo1}`}
                                     />
                                 )}
-                                <CardContent className={classes.card_content}>
-                                    <Typography className={classes.card_title}>
+                                <CardContent className="testimonials-card-content">
+                                    <Typography className="testimonials-card-title">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.name1}
                                     </Typography>
-                                    <Typography className={classes.card_subheader}>
+                                    <Typography className="testimonials-card-subheader">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.occupation1}
                                     </Typography>
                                     <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
-                                        <Typography className={classes.card_text}>
+                                        <Typography className="testimonials-card-text">
                                             {props.isLoading ? <Skeleton variant="text" /> : props.text1}
                                         </Typography>
                                     </Collapse>
                                     <IconButton
-                                        className={clsx(classes.expand, {
-                                            [classes.expand_open]: props.hasTestimonialOne,
-                                        })}
+                                        className={props.hasTestimonialOne ? "testimonials-expand testimonials-expand-open" : "testimonials-expand"}
                                         onClick={props.buttonTestimonialOne}
                                         aria-expanded={props.hasTestimonialOne}
                                         aria-label="show more"
@@ -105,35 +100,33 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             md={4}
                             data-aos="fade-up"
                             data-aos-delay="150"
-                            className={classes.card_holder}
+                            className="testimonials-card-holder"
                         >
-                            <Card elevation={3} className={classes.card}>
+                            <Card elevation={3} className="testimonials-card">
                                 {props.isLoading ? (
-                                    <Skeleton variant="rect" className={classes.card_image} />
+                                    <Skeleton variant="rect" className="testimonials-card-image" />
                                 ) : (
                                     <CardMedia
                                         image={imageUrl(props.photo2)}
                                         component="img"
-                                        className={classes.card_image}
+                                        className="testimonials-card-image"
                                         alt={`photo of ${props.photo2}`}
                                     />
                                 )}
-                                <CardContent className={classes.card_content}>
-                                    <Typography className={classes.card_title}>
+                                <CardContent className="testimonials-card-content">
+                                    <Typography className="testimonials-card-title">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.name2}
                                     </Typography>
-                                    <Typography className={classes.card_subheader}>
+                                    <Typography className="testimonials-card-subheader">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.occupation2}
                                     </Typography>
                                     <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
-                                        <Typography className={classes.card_text}>
+                                        <Typography className="testimonials-card-text">
                                             {props.isLoading ? <Skeleton variant="text" /> : props.text2}
                                         </Typography>
                                     </Collapse>
                                     <IconButton
-                                        className={clsx(classes.expand, {
-                                            [classes.expand_open]: props.hasTestimonialTwo,
-                                        })}
+                                        className={props.hasTestimonialTwo ? "testimonials-expand testimonials-expand-open" : "testimonials-expand"}
                                         onClick={props.buttonTestimonialTwo}
                                         aria-expanded={props.hasTestimonialTwo}
                                         aria-label="show more"
@@ -149,35 +142,33 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             md={4}
                             data-aos="fade-up"
                             data-aos-delay="250"
-                            className={classes.card_holder}
+                            className="testimonials-card-holder"
                         >
-                            <Card elevation={3} className={classes.card}>
+                            <Card elevation={3} className="testimonials-card">
                                 {props.isLoading ? (
-                                    <Skeleton variant="rect" className={classes.card_image} />
+                                    <Skeleton variant="rect" className="testimonials-card-image" />
                                 ) : (
                                     <CardMedia
                                         image={imageUrl(props.photo3)}
                                         component="img"
-                                        className={classes.card_image}
+                                        className="testimonials-card-image"
                                         alt={`photo of ${props.photo3}`}
                                     />
                                 )}
-                                <CardContent className={classes.card_content}>
-                                    <Typography className={classes.card_title}>
+                                <CardContent className="testimonials-card-content">
+                                    <Typography className="testimonials-card-title">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.name3}
                                     </Typography>
-                                    <Typography className={classes.card_subheader}>
+                                    <Typography className="testimonials-card-subheader">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.occupation3}
                                     </Typography>
                                     <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
-                                        <Typography className={classes.card_text}>
+                                        <Typography className="testimonials-card-text">
                                             {props.isLoading ? <Skeleton variant="text" /> : props.text3}
                                         </Typography>
                                     </Collapse>
                                     <IconButton
-                                        className={clsx(classes.expand, {
-                                            [classes.expand_open]: props.hasTestimonialThree,
-                                        })}
+                                        className={props.hasTestimonialThree ? "testimonials-expand testimonials-expand-open" : "testimonials-expand"}
                                         onClick={props.buttonTestimonialThree}
                                         aria-expanded={props.hasTestimonialThree}
                                         aria-label="show more"

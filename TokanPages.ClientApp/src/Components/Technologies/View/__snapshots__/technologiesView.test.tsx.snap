@@ -6,22 +6,22 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section-grey"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthLg"
+          class="MuiContainer-root contaoner-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-7"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiBox-root MuiBox-root-8"
+              class="MuiBox-root MuiBox-root-2"
             >
               <div
                 data-aos="fade-down"
               >
                 <p
-                  class="MuiTypography-root makeStyles-caption_text-4 MuiTypography-body1"
+                  class="MuiTypography-root technology-caption-text MuiTypography-body1"
                 >
                   TECHNOLOGIES
                 </p>
@@ -34,12 +34,12 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-9"
+                  class="MuiBox-root MuiBox-root-3"
                   data-aos="fade-up"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-icon-2"
+                    class="MuiSvgIcon-root technology-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -48,13 +48,13 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                    class="MuiTypography-root technology-feature-title MuiTypography-body1"
                   >
                     Languages
                   </p>
                 </div>
                 <span
-                  class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
                   data-aos="fade-up"
                 >
                   <div>
@@ -66,12 +66,12 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-10"
+                  class="MuiBox-root MuiBox-root-4"
                   data-aos="fade-up"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-icon-2"
+                    class="MuiSvgIcon-root technology-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -80,13 +80,13 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                    class="MuiTypography-root technology-feature-title MuiTypography-body1"
                   >
                     Frameworks/Libraries
                   </p>
                 </div>
                 <span
-                  class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
                   data-aos="fade-up"
                 >
                   <div>
@@ -98,12 +98,12 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-11"
+                  class="MuiBox-root MuiBox-root-5"
                   data-aos="fade-up"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-icon-2"
+                    class="MuiSvgIcon-root technology-icon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -112,13 +112,13 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                    class="MuiTypography-root technology-feature-title MuiTypography-body1"
                   >
                     OR/M
                   </p>
                 </div>
                 <span
-                  class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
                   data-aos="fade-up"
                 >
                   <div>
@@ -130,12 +130,12 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-12"
+                  class="MuiBox-root MuiBox-root-6"
                   data-aos="fade-up"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root makeStyles-icon-2 MuiSvgIcon-colorPrimary"
+                    class="MuiSvgIcon-root technology-icon MuiSvgIcon-colorPrimary"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -144,13 +144,13 @@ Object {
                     />
                   </svg>
                   <p
-                    class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                    class="MuiTypography-root technology-feature-title MuiTypography-body1"
                   >
                     Cloud Services
                   </p>
                 </div>
                 <span
-                  class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
                   data-aos="fade-up"
                 >
                   <div>
@@ -166,22 +166,22 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section-grey"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg"
+        class="MuiContainer-root contaoner-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-7"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiBox-root MuiBox-root-8"
+            class="MuiBox-root MuiBox-root-2"
           >
             <div
               data-aos="fade-down"
             >
               <p
-                class="MuiTypography-root makeStyles-caption_text-4 MuiTypography-body1"
+                class="MuiTypography-root technology-caption-text MuiTypography-body1"
               >
                 TECHNOLOGIES
               </p>
@@ -194,12 +194,12 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-9"
+                class="MuiBox-root MuiBox-root-3"
                 data-aos="fade-up"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-icon-2"
+                  class="MuiSvgIcon-root technology-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -208,13 +208,13 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-title MuiTypography-body1"
                 >
                   Languages
                 </p>
               </div>
               <span
-                class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                class="MuiTypography-root technology-feature-text MuiTypography-body1"
                 data-aos="fade-up"
               >
                 <div>
@@ -226,12 +226,12 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-10"
+                class="MuiBox-root MuiBox-root-4"
                 data-aos="fade-up"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-icon-2"
+                  class="MuiSvgIcon-root technology-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -240,13 +240,13 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-title MuiTypography-body1"
                 >
                   Frameworks/Libraries
                 </p>
               </div>
               <span
-                class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                class="MuiTypography-root technology-feature-text MuiTypography-body1"
                 data-aos="fade-up"
               >
                 <div>
@@ -258,12 +258,12 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-11"
+                class="MuiBox-root MuiBox-root-5"
                 data-aos="fade-up"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-icon-2"
+                  class="MuiSvgIcon-root technology-icon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -272,13 +272,13 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-title MuiTypography-body1"
                 >
                   OR/M
                 </p>
               </div>
               <span
-                class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                class="MuiTypography-root technology-feature-text MuiTypography-body1"
                 data-aos="fade-up"
               >
                 <div>
@@ -290,12 +290,12 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-12"
+                class="MuiBox-root MuiBox-root-6"
                 data-aos="fade-up"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root makeStyles-icon-2 MuiSvgIcon-colorPrimary"
+                  class="MuiSvgIcon-root technology-icon MuiSvgIcon-colorPrimary"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -304,13 +304,13 @@ Object {
                   />
                 </svg>
                 <p
-                  class="MuiTypography-root makeStyles-feature_title-5 MuiTypography-body1"
+                  class="MuiTypography-root technology-feature-title MuiTypography-body1"
                 >
                   Cloud Services
                 </p>
               </div>
               <span
-                class="MuiTypography-root makeStyles-feature_text-6 MuiTypography-body1"
+                class="MuiTypography-root technology-feature-text MuiTypography-body1"
                 data-aos="fade-up"
               >
                 <div>

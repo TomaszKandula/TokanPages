@@ -17,7 +17,6 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
 import { RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
-import { NavigationStyle } from "./navigationStyle";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
@@ -59,9 +58,8 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
-    const classes = NavigationStyle();
     return (
-        <div className={classes.user_avatar}>
+        <div className="navigation-user-avatar">
             <IconButton color="inherit" onClick={props.infoHandler}>
                 <RenderAvatar {...props} />
             </IconButton>
@@ -70,14 +68,12 @@ const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
 };
 
 const RenderContent = (props: BaseProperties): React.ReactElement => {
-    const classes = NavigationStyle();
     return (
         <>
-            <Box className={classes.languagesBox}>
+            <Box className="navigation-languages-box">
                 <RenderLanguageSelection
                     {...props}
-                    styleControl={classes.languages_control}
-                    styleSelect={classes.languages_selection}
+                    styleSelect="navigation-languages-selection"
                 />
             </Box>
             {props.isAnonymous ? <></> : <RenderAvatarIconButton {...props} />}
@@ -86,16 +82,14 @@ const RenderContent = (props: BaseProperties): React.ReactElement => {
 };
 
 const RenderMenuIcon = (props: Properties): React.ReactElement => {
-    const classes = NavigationStyle();
     return (
-        <IconButton color="inherit" aria-label="menu" onClick={props.openHandler} className={classes.nav_icon}>
+        <IconButton color="inherit" aria-label="menu" onClick={props.openHandler} className="navigation-nav-icon">
             <MenuIcon />
         </IconButton>
     );
 };
 
 const RenderLanguageSelection = (props: Properties): React.ReactElement => {
-    const classes = NavigationStyle();
     const toUpper = (value?: any): string | undefined => {
         if (value !== undefined) {
             return (value as string).toUpperCase();
@@ -106,7 +100,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 
     const renderIcon = (selection: string): React.ReactElement | null => {
         if (props.languageId === selection) {
-            return <CheckIcon className={classes.languages_check} />;
+            return <CheckIcon className="navigation-languages-check" />;
         }
 
         return null;
@@ -114,8 +108,8 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 
     const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
         return (
-            <div className={classes.languages_wrapper}>
-                {RenderImage(GET_FLAG_URL, `${value}.png`, classes.flag_image)}
+            <div className="navigation-languages-wrapper">
+                {RenderImage(GET_FLAG_URL, `${value}.png`, "navigation-flag-image")}
                 <div>{toUpper(value)}</div>
             </div>
         );
@@ -133,8 +127,8 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
             >
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
-                        <div className={classes.languages_wrapper}>
-                            {RenderImage(GET_FLAG_URL, `${item.id}.png`, classes.flag_image)}
+                        <div className="navigation-languages-wrapper">
+                            {RenderImage(GET_FLAG_URL, `${item.id}.png`, "navigation-flag-image")}
                             <div>{item.name}</div>
                             {renderIcon(item.id)}
                         </div>
@@ -146,18 +140,17 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 };
 
 const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
-    const classes = NavigationStyle();
     return (
-        <Toolbar className={classes.tool_bar}>
-            <Box className={`${classes.nav_menu} ${classes.nav_left}`}>
-                <Link to="/" className={classes.app_logo_small}>
-                    {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_left_logo)}
+        <Toolbar className="navigation-tool-bar">
+            <Box className="navigation-nav-menu navigation-nav-left">
+                <Link to="/" className="navigation-app-logo-small">
+                    {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-left-logo")}
                 </Link>
             </Box>
-            <Box className={`${classes.nav_items} ${classes.nav_centre}`}>
+            <Box className="navigation-nav-items navigation-nav-centre">
                 <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu?.items} />
             </Box>
-            <Box className={`${classes.nav_items} ${classes.nav_right}`}>
+            <Box className="navigation-nav-items navigation-nav-right">
                 {props.isLoading ? null : <RenderContent {...props} />}
             </Box>
         </Toolbar>
@@ -165,22 +158,21 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
 };
 
 const RenderToolbarSmallScreen = (props: Properties) => {
-    const classes = NavigationStyle();
     return (
-        <Toolbar className={classes.tool_bar}>
+        <Toolbar className="navigation-tool-bar">
             <Grid container item xs={12} spacing={3}>
-                <Grid item xs className={`${classes.nav_menu} ${classes.nav_left}`}>
+                <Grid item xs className="navigation-nav-menu navigation-nav-left">
                     {props.isLoading ? null : <RenderMenuIcon {...props} />}
                 </Grid>
-                <Grid item xs className={`${classes.nav_items} ${classes.nav_centre}`}>
-                    <Link to="/" className={classes.app_logo_small}>
-                        {RenderImage(GET_ICONS_URL, props?.logoImgName, classes.app_full_logo)}
+                <Grid item xs className="navigation-nav-items navigation-nav-centre">
+                    <Link to="/" className="navigation-app-logo-small">
+                        {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-full-logo")}
                     </Link>
-                    <Link to="/" className={classes.app_logo_large}>
-                        {RenderImage(GET_ICONS_URL, props?.menu?.image, classes.app_just_logo)}
+                    <Link to="/" className="navigation-app-logo-large">
+                        {RenderImage(GET_ICONS_URL, props?.menu?.image, "navigation-app-just-logo")}
                     </Link>
                 </Grid>
-                <Grid item xs className={`${classes.nav_items} ${classes.nav_right}`}>
+                <Grid item xs className="navigation-nav-items navigation-nav-right">
                     {props.isLoading ? null : <RenderContent {...props} />}
                 </Grid>
             </Grid>
@@ -189,25 +181,24 @@ const RenderToolbarSmallScreen = (props: Properties) => {
 };
 
 export const NavigationView = (props: Properties): React.ReactElement => {
-    const classes = NavigationStyle();
     return (
         <HideOnScroll {...props}>
             {props.backNavigationOnly ? (
-                <AppBar className={classes.app_bar} elevation={0}>
+                <AppBar className="navigation-app-bar" elevation={0}>
                     <div>
                         <Link to={props.backPathFragment ?? "/"}>
-                            <IconButton className={classes.nav_back}>
+                            <IconButton className="navigation-nav-back">
                                 <ArrowBack />
                             </IconButton>
                         </Link>
                     </div>
                 </AppBar>
             ) : (
-                <AppBar className={classes.app_bar} elevation={0}>
-                    <div className={classes.nav_large_screen}>
+                <AppBar className="navigation-app-bar" elevation={0}>
+                    <div className="navigation-nav-large-screen">
                         <RenderToolbarLargeScreen {...props} />
                     </div>
-                    <div className={classes.nav_small_screen}>
+                    <div className="navigation-nav-small-screen">
                         <RenderToolbarSmallScreen {...props} />
                     </div>
                     <SideMenuView

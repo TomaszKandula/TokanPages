@@ -134,10 +134,10 @@ Object {
     </div>
     <div>
       <div
-        class="MuiBox-root MuiBox-root-8"
+        class="MuiBox-root MuiBox-root-1"
       >
         <span
-          class="MuiTypography-root makeStyles-common-1 makeStyles-title-4 MuiTypography-body1"
+          class="MuiTypography-root render-text-common render-text-title MuiTypography-body1"
         >
           <div>
             <p>
@@ -147,10 +147,10 @@ Object {
         </span>
       </div>
       <div
-        class="MuiBox-root MuiBox-root-9"
+        class="MuiBox-root MuiBox-root-2"
       >
         <span
-          class="MuiTypography-root makeStyles-common-1 makeStyles-subTitle-5 MuiTypography-body1"
+          class="MuiTypography-root render-text-common render-text-sub-title MuiTypography-body1"
         >
           <div>
             <p>
@@ -160,7 +160,7 @@ Object {
         </span>
       </div>
       <div
-        class="MuiPaper-root MuiCard-root makeStyles-card-10 MuiPaper-elevation3 MuiPaper-rounded"
+        class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
       >
         <img
           alt="image"
@@ -169,7 +169,7 @@ Object {
         />
       </div>
       <span
-        class="MuiTypography-root makeStyles-common-1 makeStyles-paragraph-7 MuiTypography-body1"
+        class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
       >
         <div>
           <p
@@ -180,7 +180,7 @@ Object {
         </div>
       </span>
       <span
-        class="MuiTypography-root makeStyles-common-1 makeStyles-paragraph-7 MuiTypography-body1"
+        class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
       >
         <div>
           <p>
@@ -189,16 +189,16 @@ Object {
         </div>
       </span>
       <div
-        class="makeStyles-separator-13"
+        class="render-separator"
       >
         <span
-          class="makeStyles-span-14"
+          class="render-separator-span"
         />
         <span
-          class="makeStyles-span-14"
+          class="render-separator-span"
         />
         <span
-          class="makeStyles-span-14"
+          class="render-separator-span"
         />
       </div>
       <div
@@ -206,7 +206,7 @@ Object {
       >
         <table
           aria-label="table"
-          class="MuiTable-root makeStyles-table-15"
+          class="MuiTable-root render-table"
         >
           <thead
             class="MuiTableHead-root"
@@ -215,17 +215,17 @@ Object {
               class="MuiTableRow-root MuiTableRow-head"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-18"
+                class="MuiTableCell-root MuiTableCell-head render-table-head"
                 scope="col"
               />
               <th
-                class="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-18"
+                class="MuiTableCell-root MuiTableCell-head render-table-head"
                 scope="col"
               >
                 Header line
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-18"
+                class="MuiTableCell-root MuiTableCell-head render-table-head"
                 scope="col"
               >
                 Header line
@@ -236,24 +236,24 @@ Object {
             class="MuiTableBody-root"
           >
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-20"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-header-16"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 1
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -261,24 +261,24 @@ Object {
               </td>
             </tr>
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-20"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-header-16"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 2
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -286,24 +286,24 @@ Object {
               </td>
             </tr>
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-20"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-header-16"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 3
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -311,24 +311,24 @@ Object {
               </td>
             </tr>
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-20"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-header-16"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 4
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-19 makeStyles-row-17"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -339,17 +339,17 @@ Object {
         </table>
       </div>
       <div
-        class="MuiPaper-root MuiCard-root makeStyles-card-21 MuiPaper-elevation3 MuiPaper-rounded"
+        class="MuiPaper-root MuiCard-root render-video-card MuiPaper-elevation3 MuiPaper-rounded"
       >
         <img
-          class="MuiCardMedia-root makeStyles-image-22 MuiCardMedia-media MuiCardMedia-img"
+          class="MuiCardMedia-root render-video-image MuiCardMedia-media MuiCardMedia-img"
           src="http://localhost:5000/api/v1cheers-commercial.png"
         />
         <div
           class="MuiCardContent-root"
         >
           <span
-            class="MuiTypography-root makeStyles-text-23 MuiTypography-body1"
+            class="MuiTypography-root render-video-text MuiTypography-body1"
           >
             <div>
               Video

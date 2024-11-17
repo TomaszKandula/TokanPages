@@ -11,24 +11,22 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
-import { TechnologiesStyle } from "./technologiesStyle";
 
 interface TechnologiesViewProps {
     background?: React.CSSProperties;
 }
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
-    const classes = TechnologiesStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const technology = data?.components?.technologies;
 
     return (
-        <section className={classes.section} style={props.background}>
-            <Container maxWidth="lg">
+        <section className="section-grey" style={props.background}>
+            <Container className="contaoner-super-wide">
                 <Box py={8}>
                     <Box mb={8}>
                         <div data-aos="fade-down">
-                            <Typography className={classes.caption_text}>
+                            <Typography className="technology-caption-text">
                                 {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
                             </Typography>
                         </div>
@@ -37,15 +35,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {data?.isLoading ? (
-                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
-                                    <CodeIcon className={classes.icon} />
+                                    <CodeIcon className="technology-icon" />
                                 )}
-                                <Typography className={classes.feature_title}>
+                                <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title1}
                                 </Typography>
                             </Box>
-                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
@@ -56,15 +54,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {data?.isLoading ? (
-                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
-                                    <LibraryBooksIcon className={classes.icon} />
+                                    <LibraryBooksIcon className="technology-icon" />
                                 )}
-                                <Typography className={classes.feature_title}>
+                                <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title2}
                                 </Typography>
                             </Box>
-                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
@@ -75,15 +73,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {data?.isLoading ? (
-                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
-                                    <StorageIcon className={classes.icon} />
+                                    <StorageIcon className="technology-icon" />
                                 )}
-                                <Typography className={classes.feature_title}>
+                                <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title3}
                                 </Typography>
                             </Box>
-                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
@@ -94,15 +92,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                         <Grid item xs={12} sm={6}>
                             <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
                                 {data?.isLoading ? (
-                                    <Skeleton variant="circle" className={classes.skeleton_circle} />
+                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
-                                    <CloudIcon color="primary" className={classes.icon} />
+                                    <CloudIcon color="primary" className="technology-icon" />
                                 )}
-                                <Typography className={classes.feature_title}>
+                                <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title4}
                                 </Typography>
                             </Box>
-                            <Typography component="span" className={classes.feature_text} data-aos="fade-up">
+                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (

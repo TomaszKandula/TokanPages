@@ -11,43 +11,41 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ApplicationState } from "../../../Store/Configuration";
 import { RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
-import { FeaturedStyle } from "./featuredStyle";
 
 interface FeaturedViewProps {
     background?: React.CSSProperties;
 }
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
-    const classes = FeaturedStyle();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const featured = data?.components?.featured;
     return (
-        <section className={classes.section} style={props.background}>
+        <section className="section-grey" style={props.background}>
             <Container maxWidth="lg">
                 <Box pt={8} pb={5} textAlign="center">
-                    <Typography className={classes.caption_text} data-aos="fade-down">
+                    <Typography className="featured-caption-text" data-aos="fade-down">
                         {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
                     </Typography>
                 </Box>
                 <Box pb={15} textAlign="center">
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
-                            <Card elevation={0} className={classes.card}>
+                            <Card elevation={0} className="card">
                                 <CardActionArea href={featured?.link1} target="_blank" rel="noopener">
                                     {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image1, classes.card_media)
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image1, "featured-card-media")
                                     )}
-                                    <CardContent className={classes.card_content}>
-                                        <Typography className={classes.card_title}>
+                                    <CardContent className="featured-card-content">
+                                        <Typography className="featured-card-title">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
                                                 featured?.title1
                                             )}
                                         </Typography>
-                                        <Typography className={classes.card_subtitle}>
+                                        <Typography className="featured-card-subtitle">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
@@ -59,22 +57,22 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="150">
-                            <Card elevation={0} className={classes.card}>
+                            <Card elevation={0} className="card">
                                 <CardActionArea href={featured?.link2} target="_blank" rel="noopener">
                                     {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image2, classes.card_media)
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image2, "featured-card-media")
                                     )}
-                                    <CardContent className={classes.card_content}>
-                                        <Typography className={classes.card_title}>
+                                    <CardContent className="featured-card-content">
+                                        <Typography className="featured-card-title">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
                                                 featured?.title2
                                             )}
                                         </Typography>
-                                        <Typography className={classes.card_subtitle}>
+                                        <Typography className="featured-card-subtitle">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
@@ -86,22 +84,22 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                             </Card>
                         </Grid>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="550">
-                            <Card elevation={0} className={classes.card}>
+                            <Card elevation={0} className="card">
                                 <CardActionArea href={featured?.link3} target="_blank" rel="noopener">
                                     {data?.isLoading ? (
                                         <Skeleton variant="rect" height="256px" />
                                     ) : (
-                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image3, classes.card_media)
+                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image3, "featured-card-media")
                                     )}
-                                    <CardContent className={classes.card_content}>
-                                        <Typography className={classes.card_title}>
+                                    <CardContent className="featured-card-content">
+                                        <Typography className="featured-card-title">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (
                                                 featured?.title3
                                             )}
                                         </Typography>
-                                        <Typography className={classes.card_subtitle}>
+                                        <Typography className="featured-card-subtitle">
                                             {data?.isLoading ? (
                                                 <Skeleton variant="text" width="250px" />
                                             ) : (

@@ -7,13 +7,11 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
-import { Card, CardContent, CircularProgress } from "@material-ui/core";
+import { Card, CardContent, CircularProgress, Checkbox } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormProps } from "../contactForm";
-import { ContactFormStyle } from "./contactFormStyle";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     caption: string;
@@ -40,7 +38,6 @@ interface ContactFormViewProps extends ViewProperties, ContactFormProps {
 }
 
 const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
-    const classes = ContactFormStyle();
     return (
         <Button
             fullWidth
@@ -48,7 +45,7 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className={classes.button}
+            className="button"
         >
             {!props.progress ? props.buttonText : <CircularProgress size={20} />}
         </Button>
@@ -56,23 +53,22 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
 };
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
-    const classes = ContactFormStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
                     <Box textAlign="center" data-aos="fade-down">
-                        <Typography gutterBottom={true} className={classes.caption}>
+                        <Typography className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
                     </Box>
-                    <Card elevation={0} className={props.hasShadow ? classes.card : undefined}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className={props.hasShadow ? "card" : undefined}>
+                        <CardContent className="card-content">
                             <Box mb={3} textAlign="center">
                                 {props.hasIcon ? (
                                     <>
-                                        <ContactMailIcon className={classes.icon} />
-                                        <Typography className={classes.small_caption}>{props.caption}</Typography>
+                                        <ContactMailIcon className="contact-icon" />
+                                        <Typography className="contact-small-caption">{props.caption}</Typography>
                                     </>
                                 ) : (
                                     <></>
@@ -187,11 +183,13 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                         ) : (
                                             <FormControlLabel
                                                 control={
-                                                    <VioletCheckbox
+                                                    <Checkbox
+                                                        disabled={props.progress}
                                                         onChange={props.formHandler}
                                                         checked={props.terms}
                                                         name="terms"
                                                         id="terms"
+                                                        className="violet-check-box"
                                                     />
                                                 }
                                                 label={props.consent}

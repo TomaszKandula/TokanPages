@@ -6,7 +6,6 @@ import { GetContentManifestDto } from "./Api/Models";
 import { UpdateUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
 import { UpdateUserLanguage } from "./Shared/Services/languageService";
-import { AppStyle } from "./app.style";
 import { Routes } from "./routes";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -24,7 +23,6 @@ interface Properties {
 }
 
 const App = (props: Properties): React.ReactElement => {
-    const classes = AppStyle();
     const hasSnapshotMode = HasSnapshotMode();
 
     UpdateUserData();
@@ -49,7 +47,7 @@ const App = (props: Properties): React.ReactElement => {
             <ApplicationDialogBox />
             <ApplicationUserInfo />
             <ScrollToTop>
-                <Fab size="small" aria-label="scroll back to top" className={classes.button}>
+                <Fab size="small" aria-label="scroll back to top" className="button-up">
                     <KeyboardArrowUpIcon />
                 </Fab>
             </ScrollToTop>

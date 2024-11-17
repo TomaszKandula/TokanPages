@@ -6,41 +6,41 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-10"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-6"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-11"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <span
-                    class="MuiTypography-root makeStyles-caption-4 MuiTypography-body1"
+                    class="MuiTypography-root access-denied-caption MuiTypography-body1"
                   >
                     Access Denied
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-21"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <hr
-                    class="MuiDivider-root makeStyles-divider-14"
+                    class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-22"
+                  class="MuiBox-root MuiBox-root-4"
                 >
                   <span
-                    class="MuiTypography-root makeStyles-access_denied_prompt-7 MuiTypography-body1"
+                    class="MuiTypography-root access-denied-prompt MuiTypography-body1"
                   >
                     <div>
                       <p>
@@ -53,11 +53,11 @@ Object {
                   </span>
                 </div>
                 <a
-                  class="makeStyles-home_link-30"
+                  class="link"
                   href="/"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-home_button-31 MuiButton-fullWidth"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                     tabindex="0"
                     type="button"
                   >
@@ -80,41 +80,41 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-10"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-5 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-6"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-11"
+                class="MuiBox-root MuiBox-root-2"
               >
                 <span
-                  class="MuiTypography-root makeStyles-caption-4 MuiTypography-body1"
+                  class="MuiTypography-root access-denied-caption MuiTypography-body1"
                 >
                   Access Denied
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-21"
+                class="MuiBox-root MuiBox-root-3"
               >
                 <hr
-                  class="MuiDivider-root makeStyles-divider-14"
+                  class="MuiDivider-root divider"
                 />
               </div>
               <div
-                class="MuiBox-root MuiBox-root-22"
+                class="MuiBox-root MuiBox-root-4"
               >
                 <span
-                  class="MuiTypography-root makeStyles-access_denied_prompt-7 MuiTypography-body1"
+                  class="MuiTypography-root access-denied-prompt MuiTypography-body1"
                 >
                   <div>
                     <p>
@@ -127,11 +127,11 @@ Object {
                 </span>
               </div>
               <a
-                class="makeStyles-home_link-30"
+                class="link"
                 href="/"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-home_button-31 MuiButton-fullWidth"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
                   tabindex="0"
                   type="button"
                 >

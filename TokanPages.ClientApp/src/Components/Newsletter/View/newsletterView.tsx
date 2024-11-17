@@ -9,7 +9,6 @@ import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { NewsletterStyle } from "./newsletterStyle";
 
 interface NewsletterViewProps extends ViewProperties {
     caption: string;
@@ -25,14 +24,13 @@ interface NewsletterViewProps extends ViewProperties {
 }
 
 const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
-    const classes = NewsletterStyle();
     return (
         <Button
             fullWidth
             type="submit"
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className="button"
             disabled={props.progress}
         >
             {!props.progress ? props.buttonText : <CircularProgress size={20} />}
@@ -41,18 +39,17 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
 };
 
 export const NewsletterView = (props: NewsletterViewProps): React.ReactElement => {
-    const classes = NewsletterStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container maxWidth="lg">
+        <section className="section-grey" style={props.background}>
+            <Container className="container-super-wide">
                 <Box py={8} textAlign="center">
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
-                            <Typography className={classes.caption} data-aos="fade-down">
+                            <Typography className="newsletter-caption" data-aos="fade-down">
                                 {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                             </Typography>
                             <div data-aos="zoom-in">
-                                <Typography className={classes.text}>
+                                <Typography className="newsletter-text">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.text}
                                 </Typography>
                             </div>

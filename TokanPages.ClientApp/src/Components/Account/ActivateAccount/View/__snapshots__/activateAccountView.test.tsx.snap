@@ -6,53 +6,53 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+          class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-9"
+            class="MuiBox-root MuiBox-root-1"
           >
             <div
-              class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root makeStyles-card_content-7"
+                class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-10"
+                  class="MuiBox-root MuiBox-root-2"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-11"
+                    class="MuiBox-root MuiBox-root-3"
                   >
                     <div
-                      class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+                      class="MuiTypography-root aa-caption MuiTypography-body1"
                     >
                       Account Activation
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-12"
+                    class="MuiBox-root MuiBox-root-4"
                   >
-                    <div
-                      class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
+                    <span
+                      class="MuiTypography-root aa-text1 MuiTypography-body1"
                     >
                       <div>
                         Your account has been successfully activated!
                       </div>
-                    </div>
+                    </span>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-13"
+                    class="MuiBox-root MuiBox-root-5"
                   >
-                    <div
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                    <span
+                      class="MuiTypography-root aa-text2 MuiTypography-body1"
                     >
                       <div>
                         You can now sign in.
                       </div>
-                    </div>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -64,53 +64,53 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root makeStyles-container-2 MuiContainer-maxWidthLg"
+        class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-9"
+          class="MuiBox-root MuiBox-root-1"
         >
           <div
-            class="MuiPaper-root MuiCard-root makeStyles-card-6 MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root makeStyles-card_content-7"
+              class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-10"
+                class="MuiBox-root MuiBox-root-2"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-11"
+                  class="MuiBox-root MuiBox-root-3"
                 >
                   <div
-                    class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom"
+                    class="MuiTypography-root aa-caption MuiTypography-body1"
                   >
                     Account Activation
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-12"
+                  class="MuiBox-root MuiBox-root-4"
                 >
-                  <div
-                    class="MuiTypography-root MuiTypography-h6 MuiTypography-colorTextSecondary"
+                  <span
+                    class="MuiTypography-root aa-text1 MuiTypography-body1"
                   >
                     <div>
                       Your account has been successfully activated!
                     </div>
-                  </div>
+                  </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-13"
+                  class="MuiBox-root MuiBox-root-5"
                 >
-                  <div
-                    class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                  <span
+                    class="MuiTypography-root aa-text2 MuiTypography-body1"
                   >
                     <div>
                       You can now sign in.
                     </div>
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>

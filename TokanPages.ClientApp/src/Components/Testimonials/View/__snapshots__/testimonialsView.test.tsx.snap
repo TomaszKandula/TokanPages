@@ -6,50 +6,50 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="makeStyles-section-1"
+        class="section"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-12"
+            class="MuiBox-root MuiBox-root-1"
           >
             <p
-              class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
+              class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
               data-aos="fade-down"
             >
               TESTIMONIALS
             </p>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-13"
+            class="MuiBox-root MuiBox-root-2"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
             >
               <div
-                class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 data-aos="fade-up"
                 data-aos-delay="350"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation0 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <img
                     alt="photo of joanna.webp"
-                    class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                   />
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-6"
+                    class="MuiCardContent-root testimonials-card-content"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+                      class="MuiTypography-root testimonials-card-title MuiTypography-body1"
                     >
                       Joanna
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+                      class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
                     >
                       Senior Digital Tax Specialist
                     </p>
@@ -64,7 +64,7 @@ Object {
                           class="MuiCollapse-wrapperInner"
                         >
                           <p
-                            class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                            class="MuiTypography-root testimonials-card-text MuiTypography-body1"
                           >
                             Joe is very motivated...
                           </p>
@@ -74,7 +74,7 @@ Object {
                     <button
                       aria-expanded="true"
                       aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                      class="MuiButtonBase-root MuiIconButton-root testimonials-expand testimonials-expand-open"
                       tabindex="0"
                       type="button"
                     >
@@ -100,28 +100,28 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 data-aos="fade-up"
                 data-aos-delay="150"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
                     alt="photo of adama.webp"
-                    class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                   />
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-6"
+                    class="MuiCardContent-root testimonials-card-content"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+                      class="MuiTypography-root testimonials-card-title MuiTypography-body1"
                     >
                       Adama
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+                      class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
                     >
                       Full-stack Developer chez DFDS POLSKA
                     </p>
@@ -136,7 +136,7 @@ Object {
                           class="MuiCollapse-wrapperInner"
                         >
                           <p
-                            class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                            class="MuiTypography-root testimonials-card-text MuiTypography-body1"
                           >
                             Joe have done very good work...
                           </p>
@@ -146,7 +146,7 @@ Object {
                     <button
                       aria-expanded="true"
                       aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                      class="MuiButtonBase-root MuiIconButton-root testimonials-expand testimonials-expand-open"
                       tabindex="0"
                       type="button"
                     >
@@ -169,28 +169,28 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                 data-aos="fade-up"
                 data-aos-delay="250"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
+                  class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
                     alt="photo of Scott"
-                    class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
                   />
                   <div
-                    class="MuiCardContent-root makeStyles-card_content-6"
+                    class="MuiCardContent-root testimonials-card-content"
                   >
                     <p
-                      class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+                      class="MuiTypography-root testimonials-card-title MuiTypography-body1"
                     >
                       Scott
                     </p>
                     <p
-                      class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+                      class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
                     >
                       BPO
                     </p>
@@ -205,7 +205,7 @@ Object {
                           class="MuiCollapse-wrapperInner"
                         >
                           <p
-                            class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                            class="MuiTypography-root testimonials-card-text MuiTypography-body1"
                           >
                             Joe is one of those rare talents...
                           </p>
@@ -215,7 +215,7 @@ Object {
                     <button
                       aria-expanded="true"
                       aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                      class="MuiButtonBase-root MuiIconButton-root testimonials-expand testimonials-expand-open"
                       tabindex="0"
                       type="button"
                     >
@@ -245,50 +245,50 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="makeStyles-section-1"
+      class="section"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-12"
+          class="MuiBox-root MuiBox-root-1"
         >
           <p
-            class="MuiTypography-root makeStyles-caption_text-2 MuiTypography-body1"
+            class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
             data-aos="fade-down"
           >
             TESTIMONIALS
           </p>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-13"
+          class="MuiBox-root MuiBox-root-2"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
           >
             <div
-              class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
               data-aos="fade-up"
               data-aos-delay="350"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation0 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <img
                   alt="photo of joanna.webp"
-                  class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+                  class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                 />
                 <div
-                  class="MuiCardContent-root makeStyles-card_content-6"
+                  class="MuiCardContent-root testimonials-card-content"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+                    class="MuiTypography-root testimonials-card-title MuiTypography-body1"
                   >
                     Joanna
                   </p>
                   <p
-                    class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+                    class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
                   >
                     Senior Digital Tax Specialist
                   </p>
@@ -303,7 +303,7 @@ Object {
                         class="MuiCollapse-wrapperInner"
                       >
                         <p
-                          class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                          class="MuiTypography-root testimonials-card-text MuiTypography-body1"
                         >
                           Joe is very motivated...
                         </p>
@@ -313,7 +313,7 @@ Object {
                   <button
                     aria-expanded="true"
                     aria-label="show more"
-                    class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                    class="MuiButtonBase-root MuiIconButton-root testimonials-expand testimonials-expand-open"
                     tabindex="0"
                     type="button"
                   >
@@ -339,28 +339,28 @@ Object {
               </div>
             </div>
             <div
-              class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
               data-aos="fade-up"
               data-aos-delay="150"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
                   alt="photo of adama.webp"
-                  class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+                  class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                 />
                 <div
-                  class="MuiCardContent-root makeStyles-card_content-6"
+                  class="MuiCardContent-root testimonials-card-content"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+                    class="MuiTypography-root testimonials-card-title MuiTypography-body1"
                   >
                     Adama
                   </p>
                   <p
-                    class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+                    class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
                   >
                     Full-stack Developer chez DFDS POLSKA
                   </p>
@@ -375,7 +375,7 @@ Object {
                         class="MuiCollapse-wrapperInner"
                       >
                         <p
-                          class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                          class="MuiTypography-root testimonials-card-text MuiTypography-body1"
                         >
                           Joe have done very good work...
                         </p>
@@ -385,7 +385,7 @@ Object {
                   <button
                     aria-expanded="true"
                     aria-label="show more"
-                    class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                    class="MuiButtonBase-root MuiIconButton-root testimonials-expand testimonials-expand-open"
                     tabindex="0"
                     type="button"
                   >
@@ -408,28 +408,28 @@ Object {
               </div>
             </div>
             <div
-              class="MuiGrid-root makeStyles-card_holder-3 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
               data-aos="fade-up"
               data-aos-delay="250"
             >
               <div
-                class="MuiPaper-root MuiCard-root makeStyles-card-4 MuiPaper-elevation3 MuiPaper-rounded"
+                class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
                   alt="photo of Scott"
-                  class="MuiCardMedia-root makeStyles-card_image-5 MuiCardMedia-media MuiCardMedia-img"
+                  class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
                 />
                 <div
-                  class="MuiCardContent-root makeStyles-card_content-6"
+                  class="MuiCardContent-root testimonials-card-content"
                 >
                   <p
-                    class="MuiTypography-root makeStyles-card_title-7 MuiTypography-body1"
+                    class="MuiTypography-root testimonials-card-title MuiTypography-body1"
                   >
                     Scott
                   </p>
                   <p
-                    class="MuiTypography-root makeStyles-card_subheader-8 MuiTypography-body1"
+                    class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
                   >
                     BPO
                   </p>
@@ -444,7 +444,7 @@ Object {
                         class="MuiCollapse-wrapperInner"
                       >
                         <p
-                          class="MuiTypography-root makeStyles-card_text-9 MuiTypography-body1"
+                          class="MuiTypography-root testimonials-card-text MuiTypography-body1"
                         >
                           Joe is one of those rare talents...
                         </p>
@@ -454,7 +454,7 @@ Object {
                   <button
                     aria-expanded="true"
                     aria-label="show more"
-                    class="MuiButtonBase-root MuiIconButton-root makeStyles-expand-10 makeStyles-expand_open-11"
+                    class="MuiButtonBase-root MuiIconButton-root testimonials-expand testimonials-expand-open"
                     tabindex="0"
                     type="button"
                   >

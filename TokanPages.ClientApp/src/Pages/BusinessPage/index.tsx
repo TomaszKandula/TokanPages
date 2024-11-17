@@ -2,10 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TrySnapshotState } from "../../Shared/Services/SpaCaching";
+import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 export const BusinessPage = () => {
     const dispatch = useDispatch();
@@ -19,7 +18,7 @@ export const BusinessPage = () => {
 
     React.useEffect(() => {
         if (businessForm?.language !== "") {
-            TrySnapshotState(state);
+            TryPostStateSnapshot(state);
         }
     }, [state]);
 
@@ -32,7 +31,7 @@ export const BusinessPage = () => {
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
-                background={{ backgroundColor: Colours.colours.lightGray3 }}
+                background={{ backgroundColor: "#FCFCFC" }}
             />
         </>
     );

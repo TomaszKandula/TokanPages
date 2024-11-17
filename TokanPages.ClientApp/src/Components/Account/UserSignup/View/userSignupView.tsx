@@ -5,19 +5,17 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { Card, CardContent, CircularProgress } from "@material-ui/core";
+import { Card, CardContent, CircularProgress, Checkbox } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { VioletCheckbox } from "../../../../Theme";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupProps } from "../userSignup";
-import { UserSignupStyle } from "./userSignupStyle";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     caption: string;
@@ -41,14 +39,13 @@ interface UserSignupViewProps extends ViewProperties, UserSignupProps {
 }
 
 const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
-    const classes = UserSignupStyle();
     return (
         <Button
             fullWidth
             type="submit"
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className="button"
             disabled={props.progress}
         >
             {!props.progress ? props.button : <CircularProgress size={20} />}
@@ -61,16 +58,15 @@ const RedirectTo = (args: { path: string; name: string }): React.ReactElement =>
 };
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => {
-    const classes = UserSignupStyle();
     return (
-        <section className={classes.section} style={props.background}>
-            <Container className={classes.container}>
+        <section className="section" style={props.background}>
+            <Container className="container">
                 <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box mb={3} textAlign="center">
-                                <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>
+                                <AccountCircle className="account" />
+                                <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>
@@ -164,12 +160,13 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         ) : (
                                             <FormControlLabel
                                                 control={
-                                                    <VioletCheckbox
+                                                    <Checkbox
                                                         id="terms"
                                                         name="terms"
                                                         onChange={props.formHandler}
                                                         checked={props.terms}
                                                         disabled={props.progress}
+                                                        className="violet-check-box"
                                                     />
                                                 }
                                                 label={props.consent}

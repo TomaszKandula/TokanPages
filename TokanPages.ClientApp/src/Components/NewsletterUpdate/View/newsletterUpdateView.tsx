@@ -13,7 +13,6 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent } from "../../../Shared/types";
 import { ExtendedViewProps } from "../newsletterUpdate";
-import { NewsletterUpdateStyle } from "./newsletterUpdateStyle";
 
 interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
     caption: string;
@@ -27,13 +26,12 @@ interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
 }
 
 const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => {
-    const classes = NewsletterUpdateStyle();
     return (
         <Button
             fullWidth
             variant="contained"
             onClick={props.buttonHandler}
-            className={classes.button}
+            className={props.buttonState ? "button" : ""}
             disabled={props.progress || !props.buttonState}
         >
             {!props.progress ? props.buttonText : <CircularProgress size={20} />}
@@ -42,16 +40,15 @@ const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => {
 };
 
 export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.ReactElement => {
-    const classes = NewsletterUpdateStyle();
     return (
-        <section className={classes.section}>
-            <Container className={classes.container}>
+        <section className="section">
+            <Container className="container">
                 <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
-                    <Card elevation={0} className={classes.card}>
-                        <CardContent className={classes.card_content}>
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
                             <Box mb={3} textAlign="center">
-                                <AccountCircle className={classes.account} />
-                                <Typography className={classes.caption}>
+                                <AccountCircle className="newsletter-update-account" />
+                                <Typography className="newsletter-update-caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </Box>

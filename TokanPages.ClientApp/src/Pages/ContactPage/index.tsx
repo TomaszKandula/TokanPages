@@ -2,10 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TrySnapshotState } from "../../Shared/Services/SpaCaching";
+import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 export const ContactPage = () => {
     const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export const ContactPage = () => {
 
     React.useEffect(() => {
         if (contact?.language !== "") {
-            TrySnapshotState(state);
+            TryPostStateSnapshot(state);
         }
     }, [state]);
 
@@ -33,7 +32,7 @@ export const ContactPage = () => {
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
-                background={{ backgroundColor: Colours.colours.lightGray3 }}
+                background={{ backgroundColor: "#FCFCFC" }}
             />
         </>
     );

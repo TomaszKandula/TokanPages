@@ -1,13 +1,10 @@
 import * as React from "react";
 import Paper from "@material-ui/core/Paper";
-import { Table, TableBody, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Table, TableBody, TableContainer, TableHead, TableRow, TableCell } from "@material-ui/core";
 import { RowItem, TextItem } from "../../Models/TextModel";
-import { CustomTableCell, CustomTableRow } from "../../CustomTable/customTable";
-import { RenderTableStyle } from "./renderTableStyle";
 
 export const RenderTable = (props: TextItem): React.ReactElement => {
     const tableData: RowItem[] = props.value as RowItem[];
-    const classes = RenderTableStyle();
 
     const renderHeader = () => {
         let renderBuffer: React.ReactElement[] = [];
@@ -15,9 +12,9 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
             if (item.column0 === "") {
                 renderBuffer.push(
                     <TableRow key={item.column0}>
-                        <CustomTableCell>{item.column0}</CustomTableCell>
-                        <CustomTableCell>{item.column1}</CustomTableCell>
-                        <CustomTableCell>{item.column2}</CustomTableCell>
+                        <TableCell className="render-table-head">{item.column0}</TableCell>
+                        <TableCell className="render-table-head">{item.column1}</TableCell>
+                        <TableCell className="render-table-head">{item.column2}</TableCell>
                     </TableRow>
                 );
             }
@@ -31,17 +28,17 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
         tableData.forEach(item => {
             if (item.column0 !== "") {
                 renderBuffer.push(
-                    <CustomTableRow key={item.column0}>
-                        <CustomTableCell component="th" scope="row" className={classes.header}>
+                    <TableRow key={item.column0} className="render-table-row">
+                        <TableCell component="th" scope="row" className="render-table-header">
                             {item.column0}
-                        </CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className={classes.row}>
+                        </TableCell>
+                        <TableCell component="td" scope="row" className="render-table-cell">
                             {item.column1}
-                        </CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className={classes.row}>
+                        </TableCell>
+                        <TableCell component="td" scope="row" className="render-table-cell">
                             {item.column2}
-                        </CustomTableCell>
-                    </CustomTableRow>
+                        </TableCell>
+                    </TableRow>
                 );
             }
         });
@@ -51,7 +48,7 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
 
     return (
         <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="table">
+            <Table className="render-table" aria-label="table">
                 <TableHead>{renderHeader()}</TableHead>
                 <TableBody>{renderRows()}</TableBody>
             </Table>

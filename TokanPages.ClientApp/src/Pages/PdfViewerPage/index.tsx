@@ -6,7 +6,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -27,7 +26,7 @@ export const PdfViewerPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <Box mt={6}>
-                <PdfViewer pdfFile={name} background={{ backgroundColor: Colours.colours.lightGray3 }} />
+                <PdfViewer pdfFile={name} background={{ backgroundColor: "#FCFCFC" }} />
             </Box>
         </>
     );
