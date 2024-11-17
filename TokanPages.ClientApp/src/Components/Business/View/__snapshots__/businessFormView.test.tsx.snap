@@ -7,6 +7,7 @@ Object {
     <div>
       <section
         class="section"
+        style="background-color: white;"
       >
         <div
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
@@ -362,14 +363,14 @@ Object {
                         >
                           <span
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiCheckbox-root Component-root-29 MuiIconButton-edgeStart"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                           >
                             <span
                               class="MuiIconButton-label"
                             >
                               <input
                                 aria-labelledby="key-0"
-                                class="PrivateSwitchBase-input-34"
+                                class="PrivateSwitchBase-input-32"
                                 data-indeterminate="false"
                                 id="0"
                                 name="tech-0"
@@ -414,14 +415,14 @@ Object {
                         >
                           <span
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-37 MuiCheckbox-root Component-root-35 MuiIconButton-edgeStart"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-33 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                           >
                             <span
                               class="MuiIconButton-label"
                             >
                               <input
                                 aria-labelledby="key-1"
-                                class="PrivateSwitchBase-input-40"
+                                class="PrivateSwitchBase-input-36"
                                 data-indeterminate="false"
                                 id="1"
                                 name="tech-1"
@@ -457,10 +458,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-41"
+                  class="MuiBox-root MuiBox-root-37"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-42"
+                    class="MuiBox-root MuiBox-root-38"
                   >
                     <span
                       class="MuiTypography-root business-header MuiTypography-body1"
@@ -487,7 +488,7 @@ Object {
                           </div>
                         </span>
                         <div
-                          class="MuiBox-root MuiBox-root-43"
+                          class="MuiBox-root MuiBox-root-39"
                         >
                           <span
                             class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -515,7 +516,7 @@ Object {
                           </div>
                         </span>
                         <div
-                          class="MuiBox-root MuiBox-root-44"
+                          class="MuiBox-root MuiBox-root-40"
                         >
                           <span
                             class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -530,7 +531,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-45 business-info-box"
+                  class="MuiBox-root MuiBox-root-41 business-info-box"
                 >
                   <svg
                     aria-hidden="true"
@@ -549,7 +550,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-46"
+                  class="MuiBox-root MuiBox-root-42"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -573,6 +574,7 @@ Object {
   "container": <div>
     <section
       class="section"
+      style="background-color: white;"
     >
       <div
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
@@ -928,14 +930,14 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-31 MuiCheckbox-root Component-root-29 MuiIconButton-edgeStart"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
                               aria-labelledby="key-0"
-                              class="PrivateSwitchBase-input-34"
+                              class="PrivateSwitchBase-input-32"
                               data-indeterminate="false"
                               id="0"
                               name="tech-0"
@@ -980,14 +982,14 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-37 MuiCheckbox-root Component-root-35 MuiIconButton-edgeStart"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-33 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
                               aria-labelledby="key-1"
-                              class="PrivateSwitchBase-input-40"
+                              class="PrivateSwitchBase-input-36"
                               data-indeterminate="false"
                               id="1"
                               name="tech-1"
@@ -1023,10 +1025,10 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-41"
+                class="MuiBox-root MuiBox-root-37"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-42"
+                  class="MuiBox-root MuiBox-root-38"
                 >
                   <span
                     class="MuiTypography-root business-header MuiTypography-body1"
@@ -1053,7 +1055,7 @@ Object {
                         </div>
                       </span>
                       <div
-                        class="MuiBox-root MuiBox-root-43"
+                        class="MuiBox-root MuiBox-root-39"
                       >
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -1081,7 +1083,7 @@ Object {
                         </div>
                       </span>
                       <div
-                        class="MuiBox-root MuiBox-root-44"
+                        class="MuiBox-root MuiBox-root-40"
                       >
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -1096,7 +1098,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-45 business-info-box"
+                class="MuiBox-root MuiBox-root-41 business-info-box"
               >
                 <svg
                   aria-hidden="true"
@@ -1115,7 +1117,7 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-46"
+                class="MuiBox-root MuiBox-root-42"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"

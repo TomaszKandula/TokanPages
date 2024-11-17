@@ -333,13 +333,13 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-26 MuiCheckbox-root Component-root-24"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-24 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
-                              class="PrivateSwitchBase-input-29"
+                              class="PrivateSwitchBase-input-27"
                               data-indeterminate="false"
                               id="terms"
                               name="terms"
@@ -371,7 +371,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-30"
+                  class="MuiBox-root MuiBox-root-28"
                   data-aos="fade-up"
                 >
                   <button
@@ -722,13 +722,13 @@ Object {
                     >
                       <span
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-26 MuiCheckbox-root Component-root-24"
+                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-24 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
                       >
                         <span
                           class="MuiIconButton-label"
                         >
                           <input
-                            class="PrivateSwitchBase-input-29"
+                            class="PrivateSwitchBase-input-27"
                             data-indeterminate="false"
                             id="terms"
                             name="terms"
@@ -760,7 +760,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-30"
+                class="MuiBox-root MuiBox-root-28"
                 data-aos="fade-up"
               >
                 <button

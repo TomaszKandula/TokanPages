@@ -23,7 +23,7 @@ Object {
               >
                 <a
                   href="https://test.com/documents/some_document.pdf&canDownload=true"
-                  style="color: rgb(0, 0, 0);"
+                  style="color: black;"
                 >
                   <svg
                     aria-hidden="true"
@@ -98,7 +98,7 @@ Object {
             >
               <a
                 href="https://test.com/documents/some_document.pdf&canDownload=true"
-                style="color: rgb(0, 0, 0);"
+                style="color: black;"
               >
                 <svg
                   aria-hidden="true"

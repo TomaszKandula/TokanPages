@@ -215,17 +215,17 @@ Object {
               class="MuiTableRow-root MuiTableRow-head"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-3"
+                class="MuiTableCell-root MuiTableCell-head render-table-head"
                 scope="col"
               />
               <th
-                class="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-3"
+                class="MuiTableCell-root MuiTableCell-head render-table-head"
                 scope="col"
               >
                 Header line
               </th>
               <th
-                class="MuiTableCell-root MuiTableCell-head WithStyles(ForwardRef(TableCell))-head-3"
+                class="MuiTableCell-root MuiTableCell-head render-table-head"
                 scope="col"
               >
                 Header line
@@ -236,24 +236,24 @@ Object {
             class="MuiTableBody-root"
           >
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-5"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-header"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 1
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -261,24 +261,24 @@ Object {
               </td>
             </tr>
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-5"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-header"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 2
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -286,24 +286,24 @@ Object {
               </td>
             </tr>
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-5"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-header"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 3
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
@@ -311,24 +311,24 @@ Object {
               </td>
             </tr>
             <tr
-              class="MuiTableRow-root WithStyles(ForwardRef(TableRow))-root-5"
+              class="MuiTableRow-root render-table-row"
             >
               <th
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-header"
+                class="MuiTableCell-root MuiTableCell-body render-table-header"
                 role="cell"
                 scope="row"
               >
                 4
               </th>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body WithStyles(ForwardRef(TableCell))-body-4 render-table-row"
+                class="MuiTableCell-root MuiTableCell-body render-table-cell"
                 role="cell"
                 scope="row"
               >

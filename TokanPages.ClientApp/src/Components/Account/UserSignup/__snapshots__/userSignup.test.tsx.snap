@@ -257,13 +257,13 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-22 MuiCheckbox-root Component-root-20"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-20 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
-                              class="PrivateSwitchBase-input-25"
+                              class="PrivateSwitchBase-input-23"
                               data-indeterminate="false"
                               id="terms"
                               name="terms"
@@ -289,7 +289,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-26"
+                    class="MuiBox-root MuiBox-root-24"
                   >
                     <button
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -302,7 +302,7 @@ Object {
                     </button>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-27"
+                    class="MuiBox-root MuiBox-root-25"
                   >
                     <a
                       href="/signin"
@@ -569,13 +569,13 @@ Object {
                     >
                       <span
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-22 MuiCheckbox-root Component-root-20"
+                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-20 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
                       >
                         <span
                           class="MuiIconButton-label"
                         >
                           <input
-                            class="PrivateSwitchBase-input-25"
+                            class="PrivateSwitchBase-input-23"
                             data-indeterminate="false"
                             id="terms"
                             name="terms"
@@ -601,7 +601,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-26"
+                  class="MuiBox-root MuiBox-root-24"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -614,7 +614,7 @@ Object {
                   </button>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-27"
+                  class="MuiBox-root MuiBox-root-25"
                 >
                   <a
                     href="/signin"
