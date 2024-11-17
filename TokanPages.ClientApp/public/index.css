@@ -246,6 +246,30 @@ body::backdrop {
     margin-top: 60px;
 }
 
+.violet-check-box {
+    color: #6367EF !important;
+}
+
+.violet-check-box:checked {
+    color: #6367EF !important;
+}
+
+.violet-check-box:hover {
+    background-color: #EBECFB !important;
+}
+
+/* ACCESS DENIED COMPONENT */
+
+.access-denied-caption {
+    font-size: 2.0rem !important;
+    font-weight: 400 !important;
+    color: black;
+}
+
+.access-denied-prompt {
+    color: #9E9E9E;
+}
+
 /* ACTIVATE ACCOUNT COMPONENT */
 
 .aa-caption {
@@ -1441,8 +1465,19 @@ body::backdrop {
     text-align: left;
 }
 
-.render-table-row {
+.render-table-cell {
     text-align: left;
+}
+
+.render-table-row:nth-of-type(odd) {
+    background-color: #EFEFEF;
+}
+
+.render-table-head {
+    background-color: #9E9E9E !important;
+    color: white !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
 }
 
 .render-text-common {

@@ -1,6 +1,5 @@
 import * as React from "react";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import { Colours } from "../../../Theme";
 
 interface DownloadAssetProps {
     url: string;
@@ -9,7 +8,7 @@ interface DownloadAssetProps {
 export const DownloadAsset = (props: DownloadAssetProps): React.ReactElement => {
     const url = `${props.url}&canDownload=true`;
     return (
-        <a href={url} style={{ color: Colours.colours.black }}>
+        <a href={url} style={{ color: "black" }}>
             <GetAppIcon />
         </a>
     );

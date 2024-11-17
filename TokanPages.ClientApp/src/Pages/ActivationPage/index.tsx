@@ -6,7 +6,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { ActivateAccount } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -41,7 +40,7 @@ export const ActivationPage = (): React.ReactElement => {
                     type={type}
                     pt={15}
                     pb={30}
-                    background={{ backgroundColor: Colours.colours.lightGray3 }}
+                    background={{ backgroundColor: "#FCFCFC" }}
                 />
             ) : (
                 <ErrorMessage />

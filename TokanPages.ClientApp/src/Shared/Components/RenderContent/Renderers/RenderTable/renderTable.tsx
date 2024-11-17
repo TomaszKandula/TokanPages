@@ -1,8 +1,7 @@
 import * as React from "react";
 import Paper from "@material-ui/core/Paper";
-import { Table, TableBody, TableContainer, TableHead, TableRow } from "@material-ui/core";
+import { Table, TableBody, TableContainer, TableHead, TableRow, TableCell } from "@material-ui/core";
 import { RowItem, TextItem } from "../../Models/TextModel";
-import { CustomTableCell, CustomTableRow } from "../../CustomTable/customTable";
 
 export const RenderTable = (props: TextItem): React.ReactElement => {
     const tableData: RowItem[] = props.value as RowItem[];
@@ -13,9 +12,9 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
             if (item.column0 === "") {
                 renderBuffer.push(
                     <TableRow key={item.column0}>
-                        <CustomTableCell>{item.column0}</CustomTableCell>
-                        <CustomTableCell>{item.column1}</CustomTableCell>
-                        <CustomTableCell>{item.column2}</CustomTableCell>
+                        <TableCell className="render-table-head">{item.column0}</TableCell>
+                        <TableCell className="render-table-head">{item.column1}</TableCell>
+                        <TableCell className="render-table-head">{item.column2}</TableCell>
                     </TableRow>
                 );
             }
@@ -29,17 +28,17 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
         tableData.forEach(item => {
             if (item.column0 !== "") {
                 renderBuffer.push(
-                    <CustomTableRow key={item.column0}>
-                        <CustomTableCell component="th" scope="row" className="render-table-header">
+                    <TableRow key={item.column0} className="render-table-row">
+                        <TableCell component="th" scope="row" className="render-table-header">
                             {item.column0}
-                        </CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className="render-table-row">
+                        </TableCell>
+                        <TableCell component="td" scope="row" className="render-table-cell">
                             {item.column1}
-                        </CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className="render-table-row">
+                        </TableCell>
+                        <TableCell component="td" scope="row" className="render-table-cell">
                             {item.column2}
-                        </CustomTableCell>
-                    </CustomTableRow>
+                        </TableCell>
+                    </TableRow>
                 );
             }
         });

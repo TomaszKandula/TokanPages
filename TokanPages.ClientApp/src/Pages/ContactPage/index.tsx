@@ -5,7 +5,6 @@ import { ContentPageDataAction } from "../../Store/Actions";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
-import { Colours } from "../../Theme";
 
 export const ContactPage = () => {
     const dispatch = useDispatch();
@@ -33,7 +32,7 @@ export const ContactPage = () => {
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
-                background={{ backgroundColor: Colours.colours.lightGray3 }}
+                background={{ backgroundColor: "#FCFCFC" }}
             />
         </>
     );

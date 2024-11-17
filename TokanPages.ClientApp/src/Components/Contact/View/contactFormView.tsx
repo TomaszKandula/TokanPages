@@ -7,9 +7,8 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
-import { Card, CardContent, CircularProgress } from "@material-ui/core";
+import { Card, CardContent, CircularProgress, Checkbox } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { VioletCheckbox } from "../../../Theme";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ContactFormProps } from "../contactForm";
@@ -184,11 +183,13 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                         ) : (
                                             <FormControlLabel
                                                 control={
-                                                    <VioletCheckbox
+                                                    <Checkbox
+                                                        disabled={props.progress}
                                                         onChange={props.formHandler}
                                                         checked={props.terms}
                                                         name="terms"
                                                         id="terms"
+                                                        className="violet-check-box"
                                                     />
                                                 }
                                                 label={props.consent}

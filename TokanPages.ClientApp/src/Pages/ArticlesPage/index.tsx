@@ -7,7 +7,6 @@ import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
-import { Colours } from "../../Theme";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -36,7 +35,7 @@ export const ArticlesPage = (): React.ReactElement => {
         <>
             <Navigation />
             <CustomBreadcrumb mt={96} mb={16} mr={40} ml={40} mtDivider={32} mbDivider={32} watchparam="title" />
-            {title ? <ProgressOnScroll height={3} bgcolor={Colours.application.navigation} duration={0.1} /> : null}
+            {title ? <ProgressOnScroll height={3} bgcolor="#6367EF" duration={0.1} /> : null}
             {title ? <ArticleDetail title={title} /> : <ArticleList />}
             <Footer />
         </>

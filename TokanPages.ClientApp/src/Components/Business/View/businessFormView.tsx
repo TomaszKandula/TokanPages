@@ -17,12 +17,12 @@ import {
     ListItemIcon,
     ListItemText,
     Paper,
+    Checkbox,
 } from "@material-ui/core";
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
-import { VioletCheckbox } from "../../../Theme";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
@@ -97,7 +97,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                     className="business-list-item"
                 >
                     <ListItemIcon>
-                        <VioletCheckbox
+                        <Checkbox
                             id={`${index}`}
                             name={`tech-${index}`}
                             edge="start"
@@ -106,6 +106,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                             tabIndex={-1}
                             disableRipple={true}
                             inputProps={{ "aria-labelledby": `key-${index}` }}
+                            className="violet-check-box"
                         />
                     </ListItemIcon>
                     <ListItemText id={`${value.key}`} primary={value.value} />
@@ -155,7 +156,7 @@ const RenderElement = (props: RenderElementProps): React.ReactElement => {
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
     return (
-        <section className="section">
+        <section className="section" style={props.background}>
             <Container className="container-wide">
                 <Box pt={15} pb={30}>
                     <Box textAlign="center">
