@@ -9,15 +9,21 @@ import { IconDto, LinkDto } from "../../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
+interface LegalInfoProps {
+    copyright: string;
+    reserved: string;
+}
+
 interface Properties {
     terms: LinkDto;
     policy: LinkDto;
     versionInfo: string;
     hasVersionInfo: boolean;
-    backgroundColor: string;
-    copyright: string;
-    reserved: string;
+    legalInfo: LegalInfoProps;
+    hasLegalInfo: boolean;
     icons: IconDto[];
+    hasIcons: boolean;
+    backgroundColor: string;
 }
 
 const SetTermsLink = (props: Properties): React.ReactElement => {
@@ -44,7 +50,7 @@ const SetPolicyLink = (props: Properties): React.ReactElement => {
     );
 };
 
-const RenderIconButtons = (props: Properties): React.ReactElement => {
+const RenderIconButtons = (props: Properties): React.ReactElement | null => {
     const icons = (
         <Box className="footer-icon-box footer-centred">
             {props?.icons?.map((item: IconDto, _index: number) => (
@@ -63,17 +69,19 @@ const RenderIconButtons = (props: Properties): React.ReactElement => {
         </Box>
     );
 
-    return icons;
+    return props.hasIcons ? icons : null;
 };
 
-const RenderCopyrightBar = (props: Properties): React.ReactElement => {
-    return (
+const RenderCopyrightBar = (props: Properties): React.ReactElement | null => {
+    const legalInformation = (
         <Box className="footer-copyright-box footer-centred">
             <Typography className="footer-copyright">
-                {props?.copyright} | {props?.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
+                {props?.legalInfo.copyright} | {props?.legalInfo.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
             </Typography>
         </Box>
     );
+
+    return props.hasLegalInfo ? legalInformation : null;
 };
 
 const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
@@ -83,7 +91,7 @@ const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
         </Box>
     );
 
-    return props.hasVersionInfo ? null : applicationVersionInfo;
+    return props.hasVersionInfo ? applicationVersionInfo : null;
 };
 
 export const FooterView = (props: Properties): React.ReactElement => {
