@@ -17,7 +17,7 @@ Object {
             <p
               class="MuiTypography-root footer-copyright MuiTypography-body1"
             >
-              © 2020 - 2023 Tomasz Kandula
+              © Tomasz Kandula
                | 
               All rights reserved
                | 
@@ -37,16 +37,7 @@ Object {
             </p>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-2 footer-centred"
-          >
-            <p
-              class="MuiTypography-root footer-version MuiTypography-body1"
-            >
-              1.0
-            </p>
-          </div>
-          <div
-            class="MuiBox-root MuiBox-root-3 footer-icon-box footer-centred"
+            class="MuiBox-root MuiBox-root-2 footer-icon-box footer-centred"
           >
             <a
               aria-disabled="false"
@@ -92,7 +83,7 @@ Object {
           <p
             class="MuiTypography-root footer-copyright MuiTypography-body1"
           >
-            © 2020 - 2023 Tomasz Kandula
+            © Tomasz Kandula
              | 
             All rights reserved
              | 
@@ -112,16 +103,7 @@ Object {
           </p>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-2 footer-centred"
-        >
-          <p
-            class="MuiTypography-root footer-version MuiTypography-body1"
-          >
-            1.0
-          </p>
-        </div>
-        <div
-          class="MuiBox-root MuiBox-root-3 footer-icon-box footer-centred"
+          class="MuiBox-root MuiBox-root-2 footer-icon-box footer-centred"
         >
           <a
             aria-disabled="false"
