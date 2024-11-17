@@ -5,8 +5,9 @@
   JSS has been abandoned; the styles generated on the fly 
   that are typically included in the HTML head are not
   optimal for pre-rendered React applications.
-  Historically MUI styling mechnism has been changed few times,
-  therefore, it is much more convenient to stick with the plain CSS.
+  In addition to that, historically MUI styling mechnism 
+  has been changed few times, therefore, it is much more 
+  convenient to stick with the plain CSS.
 */
 
 /* BASELINE */
@@ -1331,4 +1332,274 @@ body::backdrop {
     color: white;
     width: 96px !important;
     height: 96px !important;
+}
+
+/* RENDER CONTENT (RENDERERS) COMPONENT */
+
+.render-gist-card {
+    border-radius: 0px;
+}
+
+.render-gist-syntax-highlighter {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    background-color: white !important;
+    font-size: 12px;
+}
+
+.render-image-card {
+    border-radius: 0px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.render-image-image {
+    cursor: pointer;
+}
+
+.render-image-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #9E9E9E;
+}
+
+.render-separator {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.render-separator-span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #9E9E9E;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.render-super-title-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.render-super-title-content-text {
+    align-content: center;
+}
+
+.render-super-title-content-image {
+    align-content: center;
+}
+
+.render-super-title-common {
+    font-size: 19px !important;
+    text-align: left;
+    color: #616161;
+}
+
+.render-super-title-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.render-super-title-card {
+    border-radius: 0px !important;
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+.render-super-title-image {
+    display: block !important;
+    cursor: none;
+    max-width: 300px !important;
+    max-height: 60px !important;
+}
+
+@media (max-width: 499.95px) {
+    .render-super-title-image {
+        display: none !important;
+    }
+}
+
+.render-super-title-title {
+    font-size: 28px !important;
+    font-weight: bold;
+    line-Height: 1.0;
+}
+
+.render-super-title-sub-title {
+    line-height: 1.0 !important;
+}
+
+.render-table {
+    min-width: 650px !important;
+}
+
+.render-table-header {
+    text-align: left;
+}
+
+.render-table-row {
+    text-align: left;
+}
+
+.render-text-common {
+    font-size: 19px !important;
+    text-align: left;
+    color: #616161;
+}
+
+.render-text-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.render-text-link {
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 400;
+}
+
+.render-text-link:hover {
+    color: #171E33;
+}
+
+.render-text-title {
+    font-size: 28px !important;
+    font-weight: bold !important;
+    line-height: 1.0 !important;
+}
+
+.render-text-sub-title {
+    line-height: 1.0 !important;
+}
+
+.render-text-header {
+    font-size: 25px !important;
+    font-weight: bold !important;
+    line-height: 1.0 !important;
+}
+
+.render-text-paragraph {
+    line-height: 2.2 !important;
+}
+
+.render-video-card {
+    border-radius: 0px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.render-video-image {
+    cursor: pointer;
+}
+
+.render-video-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #9E9E9E;
+}
+
+/* RENDER MENU COMPONENT */
+
+.render-menu-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.render-menu-list-item-pipe {
+    display: flex;
+    width: 1.5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    cursor: default;
+    background-color: #616161;
+}
+
+@media (min-width: 1100px) {
+    .render-menu-list-item-pipe {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .render-menu-list-item-pipe {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}
+
+.render-navbar-href {
+    color: black !important;
+}
+
+.render-navbar-list-item:hover {
+    background-color: white !important;
+}
+
+.render-navbar-list-item-text {
+    color: black !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 1100px) {
+    .render-navbar-list-item-text {
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 1100px) {
+    .render-navbar-list-item-text {
+        font-size: 14px !important;
+    }
+}
+
+.render-navbar-list-item-text:hover {
+    color: #4649C3;
+    transform: scale(1.1);
+    transition: transform 0.3s ease 0s;
+}
+
+.render-navbar-list-item-text-selected {
+    color: #4649C3;
+    transform: scale(1.1);
+}
+
+.render-navbar-menu-box {
+    background-color: white;
+}
+
+.render-navbar-menu-list {
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%);
+}
+
+.render-navbar-button {
+    text-transform: none !important;
+    font-weight: 400 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+.render-navbar-button:hover {
+    background-color: white !important;
+}
+
+.render-navbar-list-icon {
+    min-width: 40px !important;
+}
+
+.render-navbar-list-item-indent {
+    padding-left: 32px !important;
+}
+
+.render-navbar-list-item-base {
+    font-size: 16px !important;
 }

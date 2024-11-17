@@ -3,11 +3,9 @@ import Paper from "@material-ui/core/Paper";
 import { Table, TableBody, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { RowItem, TextItem } from "../../Models/TextModel";
 import { CustomTableCell, CustomTableRow } from "../../CustomTable/customTable";
-import { RenderTableStyle } from "./renderTableStyle";
 
 export const RenderTable = (props: TextItem): React.ReactElement => {
     const tableData: RowItem[] = props.value as RowItem[];
-    const classes = RenderTableStyle();
 
     const renderHeader = () => {
         let renderBuffer: React.ReactElement[] = [];
@@ -32,13 +30,13 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
             if (item.column0 !== "") {
                 renderBuffer.push(
                     <CustomTableRow key={item.column0}>
-                        <CustomTableCell component="th" scope="row" className={classes.header}>
+                        <CustomTableCell component="th" scope="row" className="render-table-header">
                             {item.column0}
                         </CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className={classes.row}>
+                        <CustomTableCell component="td" scope="row" className="render-table-row">
                             {item.column1}
                         </CustomTableCell>
-                        <CustomTableCell component="td" scope="row" className={classes.row}>
+                        <CustomTableCell component="td" scope="row" className="render-table-row">
                             {item.column2}
                         </CustomTableCell>
                     </CustomTableRow>
@@ -51,7 +49,7 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
 
     return (
         <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="table">
+            <Table className="render-table" aria-label="table">
                 <TableHead>{renderHeader()}</TableHead>
                 <TableBody>{renderRows()}</TableBody>
             </Table>
