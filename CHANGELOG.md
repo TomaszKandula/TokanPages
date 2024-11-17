@@ -1,3 +1,39 @@
+# [0.118.0](https://github.com/TomaszKandula/TokanPages/compare/v0.117.0...v0.118.0) (2024-11-17)
+
+
+### Bug Fixes
+
+* correct renderer ([72ed1b3](https://github.com/TomaszKandula/TokanPages/commit/72ed1b30030669ab265b7633e367e23c473c95ff))
+
+
+### Features
+
+* add base line ([17ea64d](https://github.com/TomaszKandula/TokanPages/commit/17ea64d697b151dc3aadaf2afb6207ad8985f1dc))
+* add custom colours ([3b4d671](https://github.com/TomaszKandula/TokanPages/commit/3b4d671158c66b0a6749049a815a4bae4969d50f))
+* change colours, use important for overriding ([a887bab](https://github.com/TomaszKandula/TokanPages/commit/a887bab3a7c1fa16516854f8ff6144609ff177ea))
+* cleanup old colours, remove 'withStyles' ([313177c](https://github.com/TomaszKandula/TokanPages/commit/313177cf30e27775135e7163b6dad53887ee96fa))
+* disable jss on react hydrate, styles are already provided by pre-rendering ([ee22faf](https://github.com/TomaszKandula/TokanPages/commit/ee22faf2191815ebe45f5bcb93f5df0a711274f4))
+* relocate custom CSS to main style file ([63d6ddf](https://github.com/TomaszKandula/TokanPages/commit/63d6ddf23ec7cf09298834dadf2f5e4999d801c8))
+* remove 'makeStyle', use plain CSS ([df0858d](https://github.com/TomaszKandula/TokanPages/commit/df0858dc4540eaa053030dfa13654f7b1e6235ca))
+* remove 'makeStyle', use plain CSS ([36084c6](https://github.com/TomaszKandula/TokanPages/commit/36084c6ed6e1d63c3c9cf33ce5e7b8c971d2a354))
+* remove 'makeStyle', use plain CSS ([1373bf2](https://github.com/TomaszKandula/TokanPages/commit/1373bf2a92ecdb82a357cb51f5144533007f9bca))
+* remove 'makeStyle', use plain CSS ([9b7db97](https://github.com/TomaszKandula/TokanPages/commit/9b7db972a225b025303517b60c7e86402375d2ed))
+* remove 'makeStyle', use plain CSS ([7e51003](https://github.com/TomaszKandula/TokanPages/commit/7e51003766c72495b6285e36fc5d02f9e587a9c6))
+* remove 'makeStyle', use plain CSS ([84dc76b](https://github.com/TomaszKandula/TokanPages/commit/84dc76ba59e69cdf61044af61375d41c8227a82a))
+* remove 'makeStyle', use plain CSS ([5cf6cae](https://github.com/TomaszKandula/TokanPages/commit/5cf6caebab2a2e550254b0dbfe068b768978785c))
+* remove 'makeStyle', use plain CSS ([9dbe420](https://github.com/TomaszKandula/TokanPages/commit/9dbe420d2a51d99c5f0db69ad50e02b2dce1863f))
+* remove 'makeStyle', use plain CSS ([c2b7c17](https://github.com/TomaszKandula/TokanPages/commit/c2b7c1745b34ad4746618b11911c4ac7665c8efc))
+* remove 'makeStyle', use plain CSS ([8dd094f](https://github.com/TomaszKandula/TokanPages/commit/8dd094f8732a90e88d05a93e294bc5d2d808255b))
+* remove 'makeStyles', use CSS ([aa6c387](https://github.com/TomaszKandula/TokanPages/commit/aa6c38743840d30089e137b6d78dcad341faa16f))
+* remove buggy makeStyles ([29b510b](https://github.com/TomaszKandula/TokanPages/commit/29b510ba0e8d614499664cea9eb962555b8bf246))
+* remove CssBaseline, simplify ([f64b723](https://github.com/TomaszKandula/TokanPages/commit/f64b7230d79e6728c28868dfca5d2b0e4d82632d))
+* remove StylesProvider ([ac88d30](https://github.com/TomaszKandula/TokanPages/commit/ac88d306843586211a52cebb9e1b80dd31d3e683))
+* rename for clarity ([d74f250](https://github.com/TomaszKandula/TokanPages/commit/d74f250ecad045c174bd14de4cb3e4c2b9278121))
+* replace problematic 'makeStyle' with custom CSS ([073854b](https://github.com/TomaszKandula/TokanPages/commit/073854bf77989e3c9c53ea1bfd0578eecc4861a3))
+* update margin ([87ae2c6](https://github.com/TomaszKandula/TokanPages/commit/87ae2c6997d5db84a2e3694dd1016312708ffeac))
+* update styles, use css, remove makeStyles ([e1084c8](https://github.com/TomaszKandula/TokanPages/commit/e1084c8b65476b90dce9597953433aaca89a079b))
+* upgrade footer ([af61e46](https://github.com/TomaszKandula/TokanPages/commit/af61e462c3b44e6d024c257b68e8f5aa6a320422))
+
 # [0.117.0](https://github.com/TomaszKandula/TokanPages/compare/v0.116.2...v0.117.0) (2024-11-10)
 
 
