@@ -1465,8 +1465,8 @@ body::backdrop {
 
 .render-super-title-title {
     font-size: 28px !important;
-    font-weight: bold;
-    line-Height: 1.0;
+    font-weight: bold !important;
+    line-Height: 1.0 !important;
 }
 
 .render-super-title-sub-title {
