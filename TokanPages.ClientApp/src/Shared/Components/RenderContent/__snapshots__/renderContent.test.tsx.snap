@@ -134,7 +134,7 @@ Object {
     </div>
     <div>
       <div
-        class="MuiBox-root MuiBox-root-1"
+        style="margin-top: 56px; margin-bottom: 0px;"
       >
         <span
           class="MuiTypography-root render-text-common render-text-title MuiTypography-body1"
@@ -147,7 +147,7 @@ Object {
         </span>
       </div>
       <div
-        class="MuiBox-root MuiBox-root-2"
+        style="margin-top: 8px; margin-bottom: 40px;"
       >
         <span
           class="MuiTypography-root render-text-common render-text-sub-title MuiTypography-body1"

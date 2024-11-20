@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-bottom: 96px;"
           >
             <div
               data-aos="fade-down"
@@ -23,9 +23,7 @@ Object {
                 <div
                   class="MuiGrid-root MuiGrid-item"
                 >
-                  <div
-                    class="MuiBox-root MuiBox-root-2"
-                  >
+                  <div>
                     <div>
                       renderSmallAvatar
                     </div>
@@ -38,7 +36,7 @@ Object {
                     class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-alignLeft"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-3"
+                      style="font-weight: bold;"
                     >
                       Ester
                     </div>
@@ -46,7 +44,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-4"
+                style="margin-top: 8px; margin-bottom: 40px;"
               >
                 <div
                   class="text-block"
@@ -120,7 +118,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-5"
+              style="margin-top: 40px;"
             >
               <div
                 class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -167,21 +165,18 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
               >
                 <span
-                  class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                  class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-colorTextSecondary"
                 >
                   Written by
                 </span>
-                <div
-                  class="MuiBox-root MuiBox-root-6"
+                <p
+                  class="MuiTypography-root MuiTypography-h6"
+                  style="font-weight: 500;"
                 >
-                  <span
-                    class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-alignLeft"
-                  >
-                    Ester Exposito
-                  </span>
-                </div>
+                  Ester Exposito
+                </p>
                 <span
-                  class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                  class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-colorTextSecondary"
                 >
                   About the author:
                    
@@ -202,7 +197,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-bottom: 96px;"
         >
           <div
             data-aos="fade-down"
@@ -213,9 +208,7 @@ Object {
               <div
                 class="MuiGrid-root MuiGrid-item"
               >
-                <div
-                  class="MuiBox-root MuiBox-root-2"
-                >
+                <div>
                   <div>
                     renderSmallAvatar
                   </div>
@@ -228,7 +221,7 @@ Object {
                   class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-alignLeft"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-3"
+                    style="font-weight: bold;"
                   >
                     Ester
                   </div>
@@ -236,7 +229,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-4"
+              style="margin-top: 8px; margin-bottom: 40px;"
             >
               <div
                 class="text-block"
@@ -310,7 +303,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-5"
+            style="margin-top: 40px;"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -357,21 +350,18 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
             >
               <span
-                class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-colorTextSecondary"
               >
                 Written by
               </span>
-              <div
-                class="MuiBox-root MuiBox-root-6"
+              <p
+                class="MuiTypography-root MuiTypography-h6"
+                style="font-weight: 500;"
               >
-                <span
-                  class="MuiTypography-root alias-name MuiTypography-h6 MuiTypography-alignLeft"
-                >
-                  Ester Exposito
-                </span>
-              </div>
+                Ester Exposito
+              </p>
               <span
-                class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-colorTextSecondary MuiTypography-alignLeft"
+                class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-colorTextSecondary"
               >
                 About the author:
                  
