@@ -19,7 +19,7 @@ import {
 } from "./Shared/Components";
 
 interface Properties {
-    manifest: GetContentManifestDto;
+    manifest: GetContentManifestDto | undefined;
 }
 
 const App = (props: Properties): React.ReactElement => {
