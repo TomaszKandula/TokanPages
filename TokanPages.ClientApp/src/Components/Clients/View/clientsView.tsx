@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Box, Container, Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../../Store/Configuration";
 import { GET_ICONS_URL } from "../../../Api/Request";
 import { ClientsContentDto } from "../../../Api/Models";
@@ -15,9 +15,9 @@ interface ClientsViewProps {
 const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
     if (!Validate.isEmpty(props?.caption)) {
         return (
-            <Box mb={8}>
+            <div style={{ marginBottom: 64 }}>
                 <Typography className="clients-caption">{props?.caption?.toUpperCase()}</Typography>
-            </Box>
+            </div>
         );
     }
 
@@ -27,11 +27,11 @@ const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
 const RenderImages = (props: ClientsContentDto): React.ReactElement => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
-        <Box pt={4} display="flex" flexWrap="wrap" justifyContent="center">
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", paddingTop: 32 }}>
             {props?.images?.map((item: string, _index: number) => (
                 <img key={uuidv4()} src={getImagePath(item)} alt={`image of ${item}`} className="clients-logo" />
             ))}
-        </Box>
+        </div>
     );
 };
 

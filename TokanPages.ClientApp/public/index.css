@@ -388,7 +388,7 @@ body::backdrop {
 }
 
 .user-avatar-text {
-    margin-left: 15px;
+    margin-left: 15px !important;
 }
 
 /* ARTICLES COMPONENT */
@@ -666,6 +666,14 @@ body::backdrop {
 }
 
 /* COOKIES COMPONENT */
+
+.cookies-box {
+    width: 100%;
+    bottom: 0px;
+    padding: 24px;
+    z-index: 1300;
+    position: fixed;
+}
 
 .cookies-caption {
     font-size: 1.5rem !important;
