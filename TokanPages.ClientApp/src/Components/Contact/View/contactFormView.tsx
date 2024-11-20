@@ -55,7 +55,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <div style={{ paddingTop: 32, paddingBottom: 80 }}>
+                <div style={{ paddingTop: props.pt ?? 64, paddingBottom: props.pb ?? 96 }}>
                     <div data-aos="fade-down" style={{ textAlign: "center" }}>
                         <Typography className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}

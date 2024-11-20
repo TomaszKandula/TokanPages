@@ -22,7 +22,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
     return (
         <section className="section-grey" style={props.background}>
             <Container className="contaoner-super-wide">
-                <div style={{ marginTop: 64, marginBottom: 64 }}>
+                <div style={{ paddingTop: 64, paddingBottom: 64 }}>
                     <div data-aos="fade-down" style={{ marginBottom: 64 }}>
                         <Typography className="technology-caption-text">
                             {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
