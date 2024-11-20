@@ -16,7 +16,7 @@ export const PasswordResetPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <ResetPassword pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
+            <ResetPassword pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

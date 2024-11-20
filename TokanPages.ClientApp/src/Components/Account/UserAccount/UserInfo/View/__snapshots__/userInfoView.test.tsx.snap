@@ -38,7 +38,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 120px; padding-bottom: 40px;"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -47,7 +47,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-2"
+                  style="padding-top: 0px; padding-bottom: 0px;"
                 >
                   <span
                     class="MuiTypography-root caption black MuiTypography-body1"
@@ -56,14 +56,14 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-3"
+                  style="margin-top: 16px; margin-bottom: 8px;"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-4"
+                  style="padding-top: 40px; padding-bottom: 8px;"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -190,7 +190,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-5"
+                    style="margin-top: 32px; margin-bottom: 32px;"
                   >
                     <hr
                       class="MuiDivider-root divider"
@@ -228,11 +228,11 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-6 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-7"
+                              class="PrivateNotchedOutline-legend-2"
                               style="width: 0.01px;"
                             >
                               <span>
@@ -272,11 +272,11 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-10 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-11"
+                              class="PrivateNotchedOutline-legend-6"
                               style="width: 0.01px;"
                             >
                               <span>
@@ -316,11 +316,11 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-14 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-15"
+                              class="PrivateNotchedOutline-legend-10"
                               style="width: 0.01px;"
                             >
                               <span>
@@ -360,11 +360,11 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-18 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
                             style="padding-left: 8px;"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legend-19"
+                              class="PrivateNotchedOutline-legend-14"
                               style="width: 0.01px;"
                             >
                               <span>
@@ -377,7 +377,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-22"
+                    style="margin-top: 40px; margin-bottom: 16px;"
                   >
                     <hr
                       class="MuiDivider-root divider"
@@ -387,7 +387,7 @@ Object {
                     class="MuiGrid-root button-container-update"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-23"
+                      style="margin-top: 16px; margin-bottom: 16px;"
                     >
                       <button
                         class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update MuiButton-fullWidth"
@@ -444,7 +444,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 120px; padding-bottom: 40px;"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -453,7 +453,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-2"
+                style="padding-top: 0px; padding-bottom: 0px;"
               >
                 <span
                   class="MuiTypography-root caption black MuiTypography-body1"
@@ -462,14 +462,14 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-3"
+                style="margin-top: 16px; margin-bottom: 8px;"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                class="MuiBox-root MuiBox-root-4"
+                style="padding-top: 40px; padding-bottom: 8px;"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -596,7 +596,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-5"
+                  style="margin-top: 32px; margin-bottom: 32px;"
                 >
                   <hr
                     class="MuiDivider-root divider"
@@ -634,11 +634,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-6 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-7"
+                            class="PrivateNotchedOutline-legend-2"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -678,11 +678,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-10 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-11"
+                            class="PrivateNotchedOutline-legend-6"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -722,11 +722,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-14 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-15"
+                            class="PrivateNotchedOutline-legend-10"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -766,11 +766,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-18 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-19"
+                            class="PrivateNotchedOutline-legend-14"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -783,7 +783,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-22"
+                  style="margin-top: 40px; margin-bottom: 16px;"
                 >
                   <hr
                     class="MuiDivider-root divider"
@@ -793,7 +793,7 @@ Object {
                   class="MuiGrid-root button-container-update"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-23"
+                    style="margin-top: 16px; margin-bottom: 16px;"
                   >
                     <button
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update MuiButton-fullWidth"

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
@@ -48,34 +47,40 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
     return (
         <section className="section" style={props.background}>
             <Container className="container-super-wide">
-                <Box pt={8} pb={12}>
-                    <Box textAlign="center" mb={6} data-aos="fade-down">
+                <div style={{ paddingTop: 64, paddingBottom: 96 }}>
+                    <div data-aos="fade-down" style={{ textAlign: "center", marginBottom: 48 }}>
                         <Typography className="article-features-title">
                             {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
                         </Typography>
-                    </Box>
+                    </div>
                     <div data-aos="fade-up">
                         <Grid container>
                             <Grid item xs={12} lg={6} className="article-features-content">
                                 <Card elevation={0} className="article-features-card">
                                     <CardContent className="article-features-card-content">
-                                        <Box display="flex" flexDirection="column" pt={2} px={2}>
+                                        <div style={{ 
+                                            display: "flex", 
+                                            flexDirection: "column", 
+                                            paddingTop: 16, 
+                                            paddingLeft: 16, 
+                                            paddingRight: 16 
+                                        }}>
                                             <Typography className="article-features-text1">
                                                 {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                             </Typography>
-                                            <Box mt={2} mb={5}>
+                                            <div style={{ marginTop: 16, marginBottom: 40 }}>
                                                 <Typography className="article-features-text2">
                                                     {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
                                                 </Typography>
-                                            </Box>
-                                            <Box pt={0} textAlign="right">
+                                            </div>
+                                            <div style={{ paddingTop: 0, textAlign:"right" }}>
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
                                                 ) : (
                                                     <ActiveButton isLoading={data?.isLoading} {...features} />
                                                 )}
-                                            </Box>
-                                        </Box>
+                                            </div>
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </Grid>
@@ -121,7 +126,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                             </Grid>
                         </Grid>
                     </div>
-                </Box>
+                </div>
             </Container>
         </section>
     );

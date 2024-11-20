@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="text-align: center; padding-top: 64px; padding-bottom: 40px;"
           >
             <p
               class="MuiTypography-root featured-caption-text MuiTypography-body1"
@@ -22,7 +22,7 @@ Object {
             </p>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-2"
+            style="text-align: center; padding-bottom: 120px;"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -164,7 +164,7 @@ Object {
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="text-align: center; padding-top: 64px; padding-bottom: 40px;"
         >
           <p
             class="MuiTypography-root featured-caption-text MuiTypography-body1"
@@ -174,7 +174,7 @@ Object {
           </p>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-2"
+          style="text-align: center; padding-bottom: 120px;"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"

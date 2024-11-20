@@ -13,7 +13,7 @@ Object {
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="display: flex; flex-wrap: wrap; justify-content: center; padding-top: 32px;"
           />
         </div>
       </section>
@@ -28,7 +28,7 @@ Object {
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="display: flex; flex-wrap: wrap; justify-content: center; padding-top: 32px;"
         />
       </div>
     </section>

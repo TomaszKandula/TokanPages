@@ -12,20 +12,17 @@ Object {
           class="MuiContainer-root contaoner-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="margin-top: 64px; margin-bottom: 64px;"
           >
             <div
-              class="MuiBox-root MuiBox-root-2"
+              data-aos="fade-down"
+              style="margin-bottom: 64px;"
             >
-              <div
-                data-aos="fade-down"
+              <p
+                class="MuiTypography-root technology-caption-text MuiTypography-body1"
               >
-                <p
-                  class="MuiTypography-root technology-caption-text MuiTypography-body1"
-                >
-                  TECHNOLOGIES
-                </p>
-              </div>
+                TECHNOLOGIES
+              </p>
             </div>
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -34,8 +31,8 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-3"
                   data-aos="fade-up"
+                  style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -66,8 +63,8 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-4"
                   data-aos="fade-up"
+                  style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -98,8 +95,8 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-5"
                   data-aos="fade-up"
+                  style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -130,8 +127,8 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-6"
                   data-aos="fade-up"
+                  style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -172,20 +169,17 @@ Object {
         class="MuiContainer-root contaoner-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="margin-top: 64px; margin-bottom: 64px;"
         >
           <div
-            class="MuiBox-root MuiBox-root-2"
+            data-aos="fade-down"
+            style="margin-bottom: 64px;"
           >
-            <div
-              data-aos="fade-down"
+            <p
+              class="MuiTypography-root technology-caption-text MuiTypography-body1"
             >
-              <p
-                class="MuiTypography-root technology-caption-text MuiTypography-body1"
-              >
-                TECHNOLOGIES
-              </p>
-            </div>
+              TECHNOLOGIES
+            </p>
           </div>
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -194,8 +188,8 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-3"
                 data-aos="fade-up"
+                style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
                   aria-hidden="true"
@@ -226,8 +220,8 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-4"
                 data-aos="fade-up"
+                style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
                   aria-hidden="true"
@@ -258,8 +252,8 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-5"
                 data-aos="fade-up"
+                style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
                   aria-hidden="true"
@@ -290,8 +284,8 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
-                class="MuiBox-root MuiBox-root-6"
                 data-aos="fade-up"
+                style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
                   aria-hidden="true"

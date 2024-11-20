@@ -44,7 +44,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-1"
+                      style="margin-top: 8px;"
                     >
                       <div
                         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
@@ -309,7 +309,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-1"
+                    style="margin-top: 8px;"
                   >
                     <div
                       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"

@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
-import Box from "@material-ui/core/Box";
 import { green } from "@material-ui/core/colors";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
@@ -63,14 +62,14 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
             <DialogTitle id="dialog-title">
                 <Grid container spacing={2} direction="column" alignItems="center">
                     <Grid item xs={12}>
-                        <Box mt={1}>
+                        <div style={{ marginTop: 8 }}>
                             <UserAvatar
                                 userId={props.data?.userId}
                                 isLarge={true}
                                 avatarName={props.data?.avatarName}
                                 userLetter={props.data?.aliasName?.charAt(0).toUpperCase()}
                             />
-                        </Box>
+                        </div>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography className="user-info-fullname">

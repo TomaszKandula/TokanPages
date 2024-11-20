@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import CodeIcon from "@material-ui/icons/Code";
@@ -23,17 +22,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
     return (
         <section className="section-grey" style={props.background}>
             <Container className="contaoner-super-wide">
-                <Box py={8}>
-                    <Box mb={8}>
-                        <div data-aos="fade-down">
-                            <Typography className="technology-caption-text">
-                                {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
-                            </Typography>
-                        </div>
-                    </Box>
+                <div style={{ marginTop: 64, marginBottom: 64 }}>
+                    <div data-aos="fade-down" style={{ marginBottom: 64 }}>
+                        <Typography className="technology-caption-text">
+                            {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
+                        </Typography>
+                    </div>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
+                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -42,7 +39,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title1}
                                 </Typography>
-                            </Box>
+                            </div>
                             <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
@@ -52,7 +49,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
+                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -61,7 +58,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title2}
                                 </Typography>
-                            </Box>
+                            </div>
                             <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
@@ -71,7 +68,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
+                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -80,7 +77,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title3}
                                 </Typography>
-                            </Box>
+                            </div>
                             <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
@@ -90,7 +87,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Box mb={2} display="flex" alignItems="center" data-aos="fade-up">
+                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -99,7 +96,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title4}
                                 </Typography>
-                            </Box>
+                            </div>
                             <Typography component="span" className="technology-feature-text" data-aos="fade-up">
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
@@ -109,7 +106,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Typography>
                         </Grid>
                     </Grid>
-                </Box>
+                </div>
             </Container>
         </section>
     );

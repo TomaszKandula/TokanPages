@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 0px; padding-bottom: 15px;"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -21,10 +21,10 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-2"
+                  style="text-align: center; margin-bottom: 24px;"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-3"
+                    style="margin-top: 16px; margin-bottom: 16px;"
                   >
                     <div
                       class="MuiTypography-root aa-caption MuiTypography-body1"
@@ -33,7 +33,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-4"
+                    style="margin-top: 40px; margin-bottom: 16px;"
                   >
                     <span
                       class="MuiTypography-root aa-text1 MuiTypography-body1"
@@ -44,7 +44,7 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-5"
+                    style="margin-top: 16px; margin-bottom: 40px;"
                   >
                     <span
                       class="MuiTypography-root aa-text2 MuiTypography-body1"
@@ -68,7 +68,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 0px; padding-bottom: 15px;"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -77,10 +77,10 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-2"
+                style="text-align: center; margin-bottom: 24px;"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-3"
+                  style="margin-top: 16px; margin-bottom: 16px;"
                 >
                   <div
                     class="MuiTypography-root aa-caption MuiTypography-body1"
@@ -89,7 +89,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-4"
+                  style="margin-top: 40px; margin-bottom: 16px;"
                 >
                   <span
                     class="MuiTypography-root aa-text1 MuiTypography-body1"
@@ -100,7 +100,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-5"
+                  style="margin-top: 16px; margin-bottom: 40px;"
                 >
                   <span
                     class="MuiTypography-root aa-text2 MuiTypography-body1"

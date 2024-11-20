@@ -1,6 +1,5 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -56,15 +55,15 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
-                    <Box textAlign="center" data-aos="fade-down">
+                <div style={{ paddingTop: 32, paddingBottom: 80 }}>
+                    <div data-aos="fade-down" style={{ textAlign: "center" }}>
                         <Typography className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
-                    </Box>
+                    </div>
                     <Card elevation={0} className={props.hasShadow ? "card" : undefined}>
                         <CardContent className="card-content">
-                            <Box mb={3} textAlign="center">
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
                                 {props.hasIcon ? (
                                     <>
                                         <ContactMailIcon className="contact-icon" />
@@ -73,7 +72,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                 ) : (
                                     <></>
                                 )}
-                            </Box>
+                            </div>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <div data-aos="zoom-in">
@@ -198,16 +197,16 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                     </div>
                                 </Grid>
                             </Grid>
-                            <Box my={2} data-aos="fade-up">
+                            <div data-aos="fade-up" style={{ marginTop: 16, marginBottom: 16 }}>
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
                                     <ActiveButton {...props} />
                                 )}
-                            </Box>
+                            </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

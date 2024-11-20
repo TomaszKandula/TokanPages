@@ -1,7 +1,6 @@
 import * as React from "react";
 import { AccountCircle } from "@material-ui/icons";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -43,16 +42,15 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
     return (
         <section className="section">
             <Container className="container">
-                <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
+                <div style={{ paddingTop: props.pt ?? 144, paddingBottom: props.pb ?? 80 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box mb={3} textAlign="center">
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
                                 <AccountCircle className="newsletter-update-account" />
                                 <Typography className="newsletter-update-caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
-                            </Box>
-                            <Box>
+                            </div>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <TextField
@@ -68,13 +66,12 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
                                         />
                                     </Grid>
                                 </Grid>
-                                <Box my={2}>
+                                <div style={{ marginTop: 16, marginBottom: 16 }}>
                                     {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
-                                </Box>
-                            </Box>
+                                </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

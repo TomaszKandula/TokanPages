@@ -12,11 +12,11 @@ Object {
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 64px; padding-bottom: 96px;"
           >
             <div
-              class="MuiBox-root MuiBox-root-2"
               data-aos="fade-down"
+              style="text-align: center; margin-bottom: 48px;"
             >
               <p
                 class="MuiTypography-root article-features-title MuiTypography-body1"
@@ -40,7 +40,7 @@ Object {
                       class="MuiCardContent-root article-features-card-content"
                     >
                       <div
-                        class="MuiBox-root MuiBox-root-3"
+                        style="display: flex; flex-direction: column; padding-top: 16px; padding-left: 16px; padding-right: 16px;"
                       >
                         <p
                           class="MuiTypography-root article-features-text1 MuiTypography-body1"
@@ -48,7 +48,7 @@ Object {
                           .NET Core, Azure, databases and others.
                         </p>
                         <div
-                          class="MuiBox-root MuiBox-root-4"
+                          style="margin-top: 16px; margin-bottom: 40px;"
                         >
                           <p
                             class="MuiTypography-root article-features-text2 MuiTypography-body1"
@@ -57,7 +57,7 @@ Object {
                           </p>
                         </div>
                         <div
-                          class="MuiBox-root MuiBox-root-5"
+                          style="padding-top: 0px; text-align: right;"
                         >
                           <a
                             class="link"
@@ -168,11 +168,11 @@ Object {
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 64px; padding-bottom: 96px;"
         >
           <div
-            class="MuiBox-root MuiBox-root-2"
             data-aos="fade-down"
+            style="text-align: center; margin-bottom: 48px;"
           >
             <p
               class="MuiTypography-root article-features-title MuiTypography-body1"
@@ -196,7 +196,7 @@ Object {
                     class="MuiCardContent-root article-features-card-content"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-3"
+                      style="display: flex; flex-direction: column; padding-top: 16px; padding-left: 16px; padding-right: 16px;"
                     >
                       <p
                         class="MuiTypography-root article-features-text1 MuiTypography-body1"
@@ -204,7 +204,7 @@ Object {
                         .NET Core, Azure, databases and others.
                       </p>
                       <div
-                        class="MuiBox-root MuiBox-root-4"
+                        style="margin-top: 16px; margin-bottom: 40px;"
                       >
                         <p
                           class="MuiTypography-root article-features-text2 MuiTypography-body1"
@@ -213,7 +213,7 @@ Object {
                         </p>
                       </div>
                       <div
-                        class="MuiBox-root MuiBox-root-5"
+                        style="padding-top: 0px; text-align: right;"
                       >
                         <a
                           class="link"

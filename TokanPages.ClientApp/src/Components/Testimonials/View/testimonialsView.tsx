@@ -1,6 +1,5 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -45,12 +44,12 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
     return (
         <section className="section" style={props.background}>
             <Container className="container-super-wide">
-                <Box pt={8} pb={10} textAlign="center" mb={5}>
+                <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 120 }}>
                     <Typography className="testimonials-caption-text" data-aos="fade-down">
                         {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
                     </Typography>
-                </Box>
-                <Box pb={15} textAlign="center">
+                </div>
+                <div style={{ textAlign: "center", paddingBottom: 120 }}>
                     <Grid container spacing={6}>
                         <Grid 
                             item 
@@ -179,7 +178,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             </Card>
                         </Grid>
                     </Grid>
-                </Box>
+                </div>
             </Container>
         </section>
     );

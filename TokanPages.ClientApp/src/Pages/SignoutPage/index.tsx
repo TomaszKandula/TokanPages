@@ -16,7 +16,7 @@ export const SignoutPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignout pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
+            <UserSignout pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

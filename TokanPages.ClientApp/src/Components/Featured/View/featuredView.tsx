@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -22,12 +21,12 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     return (
         <section className="section-grey" style={props.background}>
             <Container maxWidth="lg">
-                <Box pt={8} pb={5} textAlign="center">
+                <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 40 }}>
                     <Typography className="featured-caption-text" data-aos="fade-down">
                         {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
                     </Typography>
-                </Box>
-                <Box pb={15} textAlign="center">
+                </div>
+                <div style={{ textAlign: "center", paddingBottom: 120 }}>
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
                             <Card elevation={0} className="card">
@@ -111,7 +110,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                             </Card>
                         </Grid>
                     </Grid>
-                </Box>
+                </div>
             </Container>
         </section>
     );

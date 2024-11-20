@@ -24,7 +24,7 @@ Object {
             class="MuiGrid-root header-section-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
           >
             <div
-              class="MuiBox-root MuiBox-root-1 header-content-box"
+              class="header-content-box"
             >
               <span
                 class="MuiTypography-root header-content-caption MuiTypography-body1"
@@ -48,7 +48,7 @@ Object {
                 </div>
               </span>
               <div
-                class="MuiBox-root MuiBox-root-2"
+                style="margin-top: 32px;"
               >
                 <a
                   class="link"
@@ -112,7 +112,7 @@ Object {
           class="MuiGrid-root header-section-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
         >
           <div
-            class="MuiBox-root MuiBox-root-1 header-content-box"
+            class="header-content-box"
           >
             <span
               class="MuiTypography-root header-content-caption MuiTypography-body1"
@@ -136,7 +136,7 @@ Object {
               </div>
             </span>
             <div
-              class="MuiBox-root MuiBox-root-2"
+              style="margin-top: 32px;"
             >
               <a
                 class="link"

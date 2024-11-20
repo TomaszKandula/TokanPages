@@ -16,7 +16,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UpdatePassword pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
+            <UpdatePassword pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
@@ -69,7 +68,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                     )}
                 </Grid>
                 <Grid item xs={12} md={5} className="header-section-container">
-                    <Box className="header-content-box">
+                    <div className="header-content-box">
                         <Typography component="span" className="header-content-caption">
                             {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} />}
                         </Typography>
@@ -87,7 +86,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                                 <ReactHtmlParser html={header?.description} />
                             )}
                         </Typography>
-                        <Box mt={4}>
+                        <div style={{ marginTop: 32 }}>
                             {data?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />
                             ) : (
@@ -96,8 +95,8 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                                     <OpenLinkButton {...header} />
                                 </>
                             )}
-                        </Box>
-                    </Box>
+                        </div>
+                    </div>
                 </Grid>
             </Grid>
         </section>

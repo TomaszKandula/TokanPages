@@ -1,6 +1,6 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import { Box, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
@@ -31,13 +31,13 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <Box pt={0} pb={8}>
+                <div style={{ paddingTop: 0, paddingBottom: 64 }}>
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
                             {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
                         </Grid>
                     </Grid>
-                </Box>
+                </div>
             </Container>
         </section>
     );

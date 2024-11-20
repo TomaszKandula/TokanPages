@@ -1,6 +1,5 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import { Divider, Grid, Popover, Tooltip, Typography } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
@@ -42,13 +41,13 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <Box pb={12}>
+                <div style={{ paddingBottom: 96 }}>
                     <div data-aos="fade-down">
                         <Grid container spacing={2}>
                             <Grid item>
-                                <Box onMouseEnter={props.openPopoverHandler} onMouseLeave={props.closePopoverHandler}>
+                                <div onMouseEnter={props.openPopoverHandler} onMouseLeave={props.closePopoverHandler}>
                                     {props.renderSmallAvatar}
-                                </Box>
+                                </div>
                             </Grid>
                             <Grid item xs zeroMinWidth>
                                 <Typography
@@ -57,7 +56,9 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                     variant="subtitle1"
                                     align="left"
                                 >
-                                    <Box fontWeight="fontWeightBold">{props.authorAliasName}</Box>
+                                    <div style={{ fontWeight: "bold" }}>
+                                        {props.authorAliasName}
+                                    </div>
                                 </Typography>
                                 <Popover
                                     id="mouse-over-popover"
@@ -69,7 +70,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                     onClose={props.closePopoverHandler}
                                     disableRestoreFocus
                                 >
-                                    <Box mt={2} mb={2} ml={3} mr={3}>
+                                    <div style={{ marginTop: 16, marginBottom: 16, marginLeft: 24, marginRight: 24 }}>
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
                                             {props.content.textFirstName}&nbsp;{props.authorFirstName}
                                         </Typography>
@@ -79,11 +80,11 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
                                             {props.content.textRegistered}&nbsp;{props.authorRegistered}
                                         </Typography>
-                                    </Box>
+                                    </div>
                                 </Popover>
                             </Grid>
                         </Grid>
-                        <Box mt={1} mb={5}>
+                        <div style={{ marginTop: 8, marginBottom: 40 }}>
                             <div className="text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textLanguage}&nbsp;
@@ -117,10 +118,10 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                     {props.articleReadCount}
                                 </Typography>
                             </div>
-                        </Box>
+                        </div>
                     </div>
                     <div data-aos="fade-up">{props.articleContent}</div>
-                    <Box mt={5}>
+                    <div style={{ marginTop: 40 }}>
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Tooltip
@@ -140,7 +141,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 </Typography>
                             </Grid>
                         </Grid>
-                    </Box>
+                    </div>
                     <Divider className="divider-bottom" />
                     <Grid container spacing={2}>
                         <Grid item>{props.renderLargeAvatar}</Grid>
@@ -149,28 +150,24 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 className="alias-name"
                                 component="span"
                                 variant="h6"
-                                align="left"
                                 color="textSecondary"
                             >
                                 {props.content.textWritten}
                             </Typography>
-                            <Box fontWeight="fontWeightBold">
-                                <Typography className="alias-name" component="span" variant="h6" align="left">
-                                    {props.renderAuthorName}
-                                </Typography>
-                            </Box>
+                            <Typography style={{ fontWeight: 500 }} component="p" variant="h6">
+                                {props.renderAuthorName}
+                            </Typography>
                             <Typography
                                 className="alias-name"
                                 component="span"
                                 variant="subtitle1"
-                                align="left"
                                 color="textSecondary"
                             >
                                 {props.content.textAbout}&nbsp;{props.authorShortBio}
                             </Typography>
                         </Grid>
                     </Grid>
-                </Box>
+                </div>
             </Container>
         </section>
     );

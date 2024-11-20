@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
@@ -37,6 +36,11 @@ interface Properties extends UserInfoViewProps {
     value: string;
 }
 
+interface CustomDividerProps {
+    marginTop: number; 
+    marginBottom: number;
+}
+
 const ReturnFileName = (value: string): string => {
     const maxFileNameLength: number = 8;
     const fileNameLength = value.length;
@@ -46,11 +50,11 @@ const ReturnFileName = (value: string): string => {
     return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
 };
 
-const CustomDivider = (args: { marginTop: number; marginBottom: number }): React.ReactElement => {
+const CustomDivider = (props: CustomDividerProps): React.ReactElement => {
     return (
-        <Box mt={args.marginTop} mb={args.marginBottom}>
+        <div style={{ marginTop: props.marginTop, marginBottom: props.marginBottom }}>
             <Divider className="divider" />
-        </Box>
+        </div>
     );
 };
 
@@ -110,16 +114,16 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                 <CircularProgress color="inherit" />
             </Backdrop>
             <Container className="container-wide">
-                <Box pt={15} pb={5}>
+                <div style={{ paddingTop: 120, paddingBottom: 40 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box pt={0} pb={0}>
+                            <div style={{ paddingTop: 0, paddingBottom: 0 }}>
                                 <Typography component="span" className="caption black">
                                     <RenderText {...props} value={props.sectionAccountInformation?.caption} />
                                 </Typography>
-                            </Box>
-                            <CustomDivider marginTop={2} marginBottom={1} />
-                            <Box pt={5} pb={1}>
+                            </div>
+                            <CustomDivider marginTop={16} marginBottom={8} />
+                            <div style={{ paddingTop: 40, paddingBottom: 8 }}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className="label">
@@ -184,7 +188,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         )}
                                     </Grid>
                                 </Grid>
-                                <CustomDivider marginTop={4} marginBottom={4} />
+                                <CustomDivider marginTop={32} marginBottom={32} />
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3} className="label-centered">
                                         <Typography component="span" className="label">
@@ -284,20 +288,20 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         )}
                                     </Grid>
                                 </Grid>
-                                <CustomDivider marginTop={5} marginBottom={2} />
+                                <CustomDivider marginTop={40} marginBottom={16} />
                                 <Grid className="button-container-update">
-                                    <Box my={2}>
+                                    <div style={{ marginTop: 16, marginBottom: 16 }}>
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />
                                         ) : (
                                             <UpdateAccountButton {...props} />
                                         )}
-                                    </Box>
+                                    </div>
                                 </Grid>
-                            </Box>
+                            </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, CircularProgress } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 
 interface ProgressBarViewProps {
     styleObject?: object;
@@ -9,10 +9,10 @@ interface ProgressBarViewProps {
 export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement => {
     const externalStyle = props.styleObject !== undefined ? props.styleObject : {};
     return (
-        <Box className="progress-bar-box" style={externalStyle}>
-            <Box m="auto">
+        <div className="progress-bar-box" style={externalStyle}>
+            <div style={{ margin: "auto" }}>
                 <CircularProgress className="progress-bar-progress" size={props.size} />
-            </Box>
-        </Box>
+            </div>
+        </div>
     );
 };

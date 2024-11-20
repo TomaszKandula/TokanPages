@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
@@ -52,7 +51,7 @@ const SetPolicyLink = (props: Properties): React.ReactElement => {
 
 const RenderIconButtons = (props: Properties): React.ReactElement | null => {
     const icons = (
-        <Box className="footer-icon-box footer-centred">
+        <div className="footer-icon-box footer-centred">
             {props?.icons?.map((item: IconDto, _index: number) => (
                 <IconButton
                     className="footer-icon"
@@ -66,7 +65,7 @@ const RenderIconButtons = (props: Properties): React.ReactElement | null => {
                     <GetIcon iconName={item.name} />
                 </IconButton>
             ))}
-        </Box>
+        </div>
     );
 
     return props.hasIcons ? icons : null;
@@ -74,11 +73,11 @@ const RenderIconButtons = (props: Properties): React.ReactElement | null => {
 
 const RenderCopyrightBar = (props: Properties): React.ReactElement | null => {
     const legalInformation = (
-        <Box className="footer-copyright-box footer-centred">
+        <div className="footer-copyright-box footer-centred">
             <Typography className="footer-copyright">
                 {props?.legalInfo.copyright} | {props?.legalInfo.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
             </Typography>
-        </Box>
+        </div>
     );
 
     return props.hasLegalInfo ? legalInformation : null;
@@ -86,9 +85,9 @@ const RenderCopyrightBar = (props: Properties): React.ReactElement | null => {
 
 const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
     const applicationVersionInfo = (
-        <Box className="footer-centred">
+        <div className="footer-centred">
             <Typography className="footer-version">{props?.versionInfo}</Typography>
-        </Box>
+        </div>
     );
 
     return props.hasVersionInfo ? applicationVersionInfo : null;
