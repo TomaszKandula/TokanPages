@@ -21,7 +21,7 @@ export const ActivateAccountView = (props: ActivateAccountViewProps): React.Reac
                 <div style={{ paddingTop: props.pt ?? 0, paddingBottom: props.pb ?? 15 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }} >
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
                                 <div style={{ marginTop: 16, marginBottom: 16 }}>
                                     <Typography component="div" className="aa-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.caption}

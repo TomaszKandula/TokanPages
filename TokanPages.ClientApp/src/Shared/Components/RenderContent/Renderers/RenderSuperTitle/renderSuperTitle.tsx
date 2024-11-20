@@ -16,12 +16,20 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
         <div className="render-super-title-container">
             <div className="render-super-title-content-text">
                 <div style={{ marginTop: 56, marginBottom: 0 }}>
-                    <Typography variant="body1" component="span" className="render-super-title-common render-super-title-title">
+                    <Typography
+                        variant="body1"
+                        component="span"
+                        className="render-super-title-common render-super-title-title"
+                    >
                         <ReactHtmlParser html={props.propTitle ?? NO_CONTENT} />
                     </Typography>
                 </div>
                 <div style={{ marginTop: 8, marginBottom: 40 }}>
-                    <Typography variant="body1" component="span" className="render-super-title-common render-super-title-sub-title">
+                    <Typography
+                        variant="body1"
+                        component="span"
+                        className="render-super-title-common render-super-title-sub-title"
+                    >
                         <ReactHtmlParser html={props.propSubtitle ?? NO_CONTENT} />
                     </Typography>
                 </div>

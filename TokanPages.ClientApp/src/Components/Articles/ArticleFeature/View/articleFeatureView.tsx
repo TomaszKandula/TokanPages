@@ -58,13 +58,15 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                             <Grid item xs={12} lg={6} className="article-features-content">
                                 <Card elevation={0} className="article-features-card">
                                     <CardContent className="article-features-card-content">
-                                        <div style={{ 
-                                            display: "flex", 
-                                            flexDirection: "column", 
-                                            paddingTop: 16, 
-                                            paddingLeft: 16, 
-                                            paddingRight: 16 
-                                        }}>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                paddingTop: 16,
+                                                paddingLeft: 16,
+                                                paddingRight: 16,
+                                            }}
+                                        >
                                             <Typography className="article-features-text1">
                                                 {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                             </Typography>
@@ -73,7 +75,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                     {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
                                                 </Typography>
                                             </div>
-                                            <div style={{ paddingTop: 0, textAlign:"right" }}>
+                                            <div style={{ paddingTop: 0, textAlign: "right" }}>
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
                                                 ) : (
@@ -91,7 +93,11 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image1, "article-features-media")
+                                                RenderCardMedia(
+                                                    GET_ARTICLE_IMAGE_URL,
+                                                    features?.image1,
+                                                    "article-features-media"
+                                                )
                                             )}
                                         </Card>
                                     </Grid>
@@ -100,7 +106,11 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image2, "article-features-media")
+                                                RenderCardMedia(
+                                                    GET_ARTICLE_IMAGE_URL,
+                                                    features?.image2,
+                                                    "article-features-media"
+                                                )
                                             )}
                                         </Card>
                                     </Grid>
@@ -109,7 +119,11 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image3, "article-features-media")
+                                                RenderCardMedia(
+                                                    GET_ARTICLE_IMAGE_URL,
+                                                    features?.image3,
+                                                    "article-features-media"
+                                                )
                                             )}
                                         </Card>
                                     </Grid>
@@ -118,7 +132,11 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(GET_ARTICLE_IMAGE_URL, features?.image4, "article-features-media")
+                                                RenderCardMedia(
+                                                    GET_ARTICLE_IMAGE_URL,
+                                                    features?.image4,
+                                                    "article-features-media"
+                                                )
                                             )}
                                         </Card>
                                     </Grid>

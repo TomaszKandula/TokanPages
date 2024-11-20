@@ -27,7 +27,9 @@ export const RenderSidemenuItem = (props: Item): React.ReactElement => {
     const RenderItemWithLink = (): React.ReactElement => {
         return (
             <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
-                <ListItemIcon className="render-navbar-list-icon">{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className="render-navbar-list-icon">
+                    {GetIcon({ iconName: props.icon as string })}
+                </ListItemIcon>
                 <ListItemText primary={props.value} />
             </ListItem>
         );

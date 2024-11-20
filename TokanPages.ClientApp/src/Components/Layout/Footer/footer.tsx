@@ -25,9 +25,9 @@ export const Footer = (props: Properties): React.ReactElement => {
             policy={footer?.policy}
             versionInfo={versionInfo}
             hasVersionInfo={hasVersionInfo}
-            legalInfo={{ 
+            legalInfo={{
                 copyright: footer?.copyright,
-                reserved: footer?.reserved
+                reserved: footer?.reserved,
             }}
             hasLegalInfo={hasLegalInfo}
             icons={footer?.icons}

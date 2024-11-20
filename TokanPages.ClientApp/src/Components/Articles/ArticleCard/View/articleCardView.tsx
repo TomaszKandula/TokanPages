@@ -30,7 +30,11 @@ export const ArticleCardView = (props: Properties): React.ReactElement => {
                     </Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
                     <CardActions className="article-card-action">
-                        <Button onClick={props.onClickEvent} size="small" className="button article-button article-card-button">
+                        <Button
+                            onClick={props.onClickEvent}
+                            size="small"
+                            className="button article-button article-card-button"
+                        >
                             {props.buttonText}
                         </Button>
                     </CardActions>

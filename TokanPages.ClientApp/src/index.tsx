@@ -20,7 +20,7 @@ const initialState = TryGetStateSnapshot();
 const store = ConfigureStore(history, initialState);
 
 const ReactApp = (manifest: GetContentManifestDto | undefined): void => {
-    const AppWrapper = () => { 
+    const AppWrapper = () => {
         return (
             <Provider store={store}>
                 <ConnectedRouter history={history}>
@@ -31,12 +31,10 @@ const ReactApp = (manifest: GetContentManifestDto | undefined): void => {
                     </ThemeProvider>
                 </ConnectedRouter>
             </Provider>
-        )
+        );
     };
 
-    IsPreRendered() 
-    ? ReactDOM.hydrate(<AppWrapper />, root) 
-    : ReactDOM.render(<AppWrapper />, root);
+    IsPreRendered() ? ReactDOM.hydrate(<AppWrapper />, root) : ReactDOM.render(<AppWrapper />, root);
 };
 
 Loader.Initialize(ReactApp);

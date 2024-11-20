@@ -16,7 +16,7 @@ interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProp
 }
 
 interface CustomDividerProps {
-    marginTop: number; 
+    marginTop: number;
     marginBottom: number;
 }
 
