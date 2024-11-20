@@ -810,9 +810,9 @@ body::backdrop {
 }
 
 .technology-skeleton-circle {
-    width: 42px;
-    height: 42px;
-    margin: 0px 15px 0px 0px;
+    width: 42px !important;
+    height: 42px !important;
+    margin: 0px 15px 0px 0px !important;
 }
 
 .technology-caption-text {
