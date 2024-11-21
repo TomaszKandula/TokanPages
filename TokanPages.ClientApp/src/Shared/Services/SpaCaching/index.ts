@@ -1,4 +1,5 @@
 import { ApplicationState } from "../../../Store/Configuration";
+import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
 import base64 from "base-64";
 import utf8 from "utf8";
 
@@ -11,9 +12,9 @@ export const IsPreRendered = (): boolean => {
 };
 
 export const HasSnapshotMode = (): boolean => {
-    const queryParam = new URLSearchParams(window.location.search);
-    const param = queryParam.get("mode");
-    return param === "snapshot";
+    const location = window.location.href;
+    const normalized = location.toLocaleLowerCase();
+    return normalized.includes(PRERENDER_PATH_PREFIX);
 };
 
 export const TryGetStateSnapshot = (): ApplicationState | undefined => {

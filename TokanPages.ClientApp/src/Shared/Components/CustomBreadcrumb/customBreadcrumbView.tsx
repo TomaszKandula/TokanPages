@@ -5,6 +5,7 @@ import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
 import { UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
+import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
 import { Item, Subitem } from "../RenderMenu/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
@@ -128,11 +129,12 @@ const makeStyledBreadcrumb = (
     onClick: () => void,
     navigation: NavigationProps
 ): React.ReactElement[] | null => {
-    let fragments = pathname.split("/");
+    const path = pathname.replace(PRERENDER_PATH_PREFIX, "");
+    let fragments = path.split("/");
     fragments = fragments.filter(e => String(e).trim());
 
-    const rootName = pathToRootText({ pathname, navigation });
-    const itemName = pathToSubitemText({ pathname, navigation });
+    const rootName = pathToRootText({ pathname: path, navigation });
+    const itemName = pathToSubitemText({ pathname: path, navigation });
 
     const setValue = (index: number): string => {
         if (index === 0) {
