@@ -16,3 +16,4 @@ export const USER_DATA: string = "USER_DATA";
 export const PDF_WORKER_URL = "pdf.worker.min.js";
 export const QUERY_SELECTOR = "meta[name=\"cache-content-info\"]";
 export const META_ATTRIBUTE = "content";
+export const PRERENDER_PATH_PREFIX = "/snapshot";
