@@ -1,3 +1,19 @@
+# [0.119.0](https://github.com/TomaszKandula/TokanPages/compare/v0.118.0...v0.119.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* margins and paddings ([003aba3](https://github.com/TomaszKandula/TokanPages/commit/003aba3a6fccfd53cb3bfcb8a7893a7bf3a73e8d))
+* overwrite size ([d6227f8](https://github.com/TomaszKandula/TokanPages/commit/d6227f870c778a82522a8b7c3b70d2d6a3b7a200))
+
+
+### Features
+
+* do not load manifest for pre-rendered app ([4124b59](https://github.com/TomaszKandula/TokanPages/commit/4124b5953ac97ae5bc73eaac8bef2d55e94557ca))
+* replace buggy BOX component with DIV ([17fc0ac](https://github.com/TomaszKandula/TokanPages/commit/17fc0acee6b1995843f5a99a02ae364358c9eb93))
+* replace buggy BOX with DIV ([b6b6251](https://github.com/TomaszKandula/TokanPages/commit/b6b6251f808621ce6a13ba5aa61afb5c7e6e8e95))
+* replace buggy BOX with DIV ([dc24fc6](https://github.com/TomaszKandula/TokanPages/commit/dc24fc62ef4f2d9dcb9d86e8094d356dae4e2d1d))
+
 # [0.118.0](https://github.com/TomaszKandula/TokanPages/compare/v0.117.0...v0.118.0) (2024-11-17)
 
 
