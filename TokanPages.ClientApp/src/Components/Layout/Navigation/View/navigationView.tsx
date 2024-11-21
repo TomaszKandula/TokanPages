@@ -71,10 +71,7 @@ const RenderContent = (props: BaseProperties): React.ReactElement => {
     return (
         <>
             <div className="navigation-languages-box">
-                <RenderLanguageSelection
-                    {...props}
-                    styleSelect="navigation-languages-selection"
-                />
+                <RenderLanguageSelection {...props} styleSelect="navigation-languages-selection" />
             </div>
             {props.isAnonymous ? <></> : <RenderAvatarIconButton {...props} />}
         </>

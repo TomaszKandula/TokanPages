@@ -27,8 +27,8 @@ export const ContactPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <ContactForm
-                pt={15}
-                pb={30}
+                pt={120}
+                pb={240}
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}

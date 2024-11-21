@@ -175,12 +175,14 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <div style={{ 
-            marginTop: props.mt, 
-            marginBottom: props.mb, 
-            marginRight: props.mr, 
-            marginLeft: props.ml 
-        }}>
+        <div
+            style={{
+                marginTop: props.mt,
+                marginBottom: props.mb,
+                marginRight: props.mr,
+                marginLeft: props.ml,
+            }}
+        >
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
                 <Chip
                     component="div"

@@ -22,7 +22,7 @@ interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
 }
 
 interface CustomDividerProps {
-    marginTop: number; 
+    marginTop: number;
     marginBottom: number;
 }
 

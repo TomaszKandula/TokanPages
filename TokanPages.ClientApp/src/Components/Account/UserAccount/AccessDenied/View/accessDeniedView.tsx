@@ -16,7 +16,7 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
 }
 
 interface CustomDividerProps {
-    marginTop: number; 
+    marginTop: number;
     marginBottom: number;
 }
 

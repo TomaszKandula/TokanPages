@@ -51,10 +51,10 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                 </div>
                 <div style={{ textAlign: "center", paddingBottom: 120 }}>
                     <Grid container spacing={6}>
-                        <Grid 
-                            item 
-                            xs={12} 
-                            md={4} 
+                        <Grid
+                            item
+                            xs={12}
+                            md={4}
                             data-aos="fade-up"
                             data-aos-delay="350"
                             className="testimonials-card-holder"
@@ -83,7 +83,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         </Typography>
                                     </Collapse>
                                     <IconButton
-                                        className={props.hasTestimonialOne ? "testimonials-expand testimonials-expand-open" : "testimonials-expand"}
+                                        className={
+                                            props.hasTestimonialOne
+                                                ? "testimonials-expand testimonials-expand-open"
+                                                : "testimonials-expand"
+                                        }
                                         onClick={props.buttonTestimonialOne}
                                         aria-expanded={props.hasTestimonialOne}
                                         aria-label="show more"
@@ -125,7 +129,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         </Typography>
                                     </Collapse>
                                     <IconButton
-                                        className={props.hasTestimonialTwo ? "testimonials-expand testimonials-expand-open" : "testimonials-expand"}
+                                        className={
+                                            props.hasTestimonialTwo
+                                                ? "testimonials-expand testimonials-expand-open"
+                                                : "testimonials-expand"
+                                        }
                                         onClick={props.buttonTestimonialTwo}
                                         aria-expanded={props.hasTestimonialTwo}
                                         aria-label="show more"
@@ -167,7 +175,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         </Typography>
                                     </Collapse>
                                     <IconButton
-                                        className={props.hasTestimonialThree ? "testimonials-expand testimonials-expand-open" : "testimonials-expand"}
+                                        className={
+                                            props.hasTestimonialThree
+                                                ? "testimonials-expand testimonials-expand-open"
+                                                : "testimonials-expand"
+                                        }
                                         onClick={props.buttonTestimonialThree}
                                         aria-expanded={props.hasTestimonialThree}
                                         aria-label="show more"

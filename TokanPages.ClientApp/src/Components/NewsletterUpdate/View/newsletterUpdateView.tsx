@@ -51,24 +51,24 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
                             </div>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <TextField
-                                            required
-                                            fullWidth
-                                            id="email"
-                                            name="email"
-                                            variant="outlined"
-                                            autoComplete="email"
-                                            onChange={props.formHandler}
-                                            value={props.email}
-                                            label={props.labelEmail}
-                                        />
-                                    </Grid>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        fullWidth
+                                        id="email"
+                                        name="email"
+                                        variant="outlined"
+                                        autoComplete="email"
+                                        onChange={props.formHandler}
+                                        value={props.email}
+                                        label={props.labelEmail}
+                                    />
                                 </Grid>
-                                <div style={{ marginTop: 16, marginBottom: 16 }}>
-                                    {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
-                                </div>
+                            </Grid>
+                            <div style={{ marginTop: 16, marginBottom: 16 }}>
+                                {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

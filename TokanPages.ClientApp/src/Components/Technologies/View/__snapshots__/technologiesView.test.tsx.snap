@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root contaoner-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="margin-top: 64px; margin-bottom: 64px;"
+            style="padding-top: 64px; padding-bottom: 64px;"
           >
             <div
               data-aos="fade-down"
@@ -169,7 +169,7 @@ Object {
         class="MuiContainer-root contaoner-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="margin-top: 64px; margin-bottom: 64px;"
+          style="padding-top: 64px; padding-bottom: 64px;"
         >
           <div
             data-aos="fade-down"

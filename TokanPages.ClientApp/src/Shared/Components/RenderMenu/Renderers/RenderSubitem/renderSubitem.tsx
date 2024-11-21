@@ -53,7 +53,9 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
                 component={Link}
                 to={props.link as string}
             >
-                <ListItemIcon className="render-navbar-list-icon">{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className="render-navbar-list-icon">
+                    {GetIcon({ iconName: props.icon as string })}
+                </ListItemIcon>
                 <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
             </ListItem>
         );

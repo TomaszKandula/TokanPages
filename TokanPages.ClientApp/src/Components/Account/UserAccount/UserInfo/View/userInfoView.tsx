@@ -37,7 +37,7 @@ interface Properties extends UserInfoViewProps {
 }
 
 interface CustomDividerProps {
-    marginTop: number; 
+    marginTop: number;
     marginBottom: number;
 }
 

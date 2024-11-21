@@ -75,7 +75,8 @@ const RenderCopyrightBar = (props: Properties): React.ReactElement | null => {
     const legalInformation = (
         <div className="footer-copyright-box footer-centred">
             <Typography className="footer-copyright">
-                {props?.legalInfo.copyright} | {props?.legalInfo.reserved} | <SetTermsLink {...props} /> | <SetPolicyLink {...props} />
+                {props?.legalInfo.copyright} | {props?.legalInfo.reserved} | <SetTermsLink {...props} /> |{" "}
+                <SetPolicyLink {...props} />
             </Typography>
         </div>
     );
@@ -100,7 +101,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
                 <RenderCopyrightBar {...props} />
                 <RenderVersionInfo {...props} />
                 <RenderIconButtons {...props} />
-                <div style={{ paddingBottom: 60 }} ></div>
+                <div style={{ paddingBottom: 60 }}></div>
             </Container>
         </footer>
     );

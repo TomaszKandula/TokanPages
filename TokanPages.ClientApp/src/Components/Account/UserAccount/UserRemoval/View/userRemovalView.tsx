@@ -16,7 +16,7 @@ interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
 }
 
 interface CustomDividerProps {
-    marginTop: number; 
+    marginTop: number;
     marginBottom: number;
 }
 

@@ -50,15 +50,8 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 </div>
                             </Grid>
                             <Grid item xs zeroMinWidth>
-                                <Typography
-                                    className="alias-name"
-                                    component="div"
-                                    variant="subtitle1"
-                                    align="left"
-                                >
-                                    <div style={{ fontWeight: "bold" }}>
-                                        {props.authorAliasName}
-                                    </div>
+                                <Typography className="alias-name" component="div" variant="subtitle1" align="left">
+                                    <div style={{ fontWeight: "bold" }}>{props.authorAliasName}</div>
                                 </Typography>
                                 <Popover
                                     id="mouse-over-popover"
@@ -125,11 +118,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Tooltip
-                                    title={
-                                        <span className="likes-tip">
-                                            {<Emoji text={props.renderLikesLeft} />}
-                                        </span>
-                                    }
+                                    title={<span className="likes-tip">{<Emoji text={props.renderLikesLeft} />}</span>}
                                     arrow
                                 >
                                     <ThumbUpIcon className="thumbs-medium" onClick={props.thumbsHandler} />
@@ -146,12 +135,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                     <Grid container spacing={2}>
                         <Grid item>{props.renderLargeAvatar}</Grid>
                         <Grid item xs zeroMinWidth>
-                            <Typography
-                                className="alias-name"
-                                component="span"
-                                variant="h6"
-                                color="textSecondary"
-                            >
+                            <Typography className="alias-name" component="span" variant="h6" color="textSecondary">
                                 {props.content.textWritten}
                             </Typography>
                             <Typography style={{ fontWeight: 500 }} component="p" variant="h6">

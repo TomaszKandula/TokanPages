@@ -21,7 +21,7 @@ describe("test component: footerView", () => {
                     hasVersionInfo={false}
                     legalInfo={{
                         copyright: "© Tomasz Kandula",
-                        reserved: "All rights reserved"
+                        reserved: "All rights reserved",
                     }}
                     hasLegalInfo={true}
                     icons={[icons]}

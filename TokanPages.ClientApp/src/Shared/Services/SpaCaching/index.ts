@@ -8,13 +8,13 @@ const HANDLER = `meta[name=\"${SNAPSHOT_STATE}\"]`;
 export const IsPreRendered = (): boolean => {
     const root = document.getElementById("root");
     return root?.hasChildNodes() ?? false;
-}
+};
 
 export const HasSnapshotMode = (): boolean => {
     const queryParam = new URLSearchParams(window.location.search);
     const param = queryParam.get("mode");
     return param === "snapshot";
-}
+};
 
 export const TryGetStateSnapshot = (): ApplicationState | undefined => {
     const meta = document.querySelector(HANDLER);
@@ -32,7 +32,7 @@ export const TryGetStateSnapshot = (): ApplicationState | undefined => {
     }
 
     return undefined;
-}
+};
 
 export const TryPostStateSnapshot = (state: ApplicationState): void => {
     const hasSnapshotMode = HasSnapshotMode();
@@ -50,4 +50,4 @@ export const TryPostStateSnapshot = (state: ApplicationState): void => {
             document.head.appendChild(meta);
         }
     }
-}
+};
