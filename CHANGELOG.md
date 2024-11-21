@@ -1,3 +1,15 @@
+# [0.120.0](https://github.com/TomaszKandula/TokanPages/compare/v0.119.0...v0.120.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* correct path ([6fb6397](https://github.com/TomaszKandula/TokanPages/commit/6fb639794cee0f53d07013592468fa2bbbb577b7))
+
+
+### Features
+
+* change pre-rendering mechanism ([b63744f](https://github.com/TomaszKandula/TokanPages/commit/b63744f6113767e96d74846f2ca29234d7900644))
+
 # [0.119.0](https://github.com/TomaszKandula/TokanPages/compare/v0.118.0...v0.119.0) (2024-11-21)
 
 
