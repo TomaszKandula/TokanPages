@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TextItem } from "../../Models";
-import { Box, Card, CardMedia, Typography } from "@material-ui/core";
+import { Card, CardMedia, Typography } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api/Request";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 
@@ -13,22 +13,30 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     }
 
     return (
-        <Box className="render-super-title-container">
-            <Box className="render-super-title-content-text">
-                <Box mt={7} mb={0}>
-                    <Typography variant="body1" component="span" className="render-super-title-common render-super-title-title">
+        <div className="render-super-title-container">
+            <div className="render-super-title-content-text">
+                <div style={{ marginTop: 56, marginBottom: 0 }}>
+                    <Typography
+                        variant="body1"
+                        component="span"
+                        className="render-super-title-common render-super-title-title"
+                    >
                         <ReactHtmlParser html={props.propTitle ?? NO_CONTENT} />
                     </Typography>
-                </Box>
-                <Box mt={1} mb={5}>
-                    <Typography variant="body1" component="span" className="render-super-title-common render-super-title-sub-title">
+                </div>
+                <div style={{ marginTop: 8, marginBottom: 40 }}>
+                    <Typography
+                        variant="body1"
+                        component="span"
+                        className="render-super-title-common render-super-title-sub-title"
+                    >
                         <ReactHtmlParser html={props.propSubtitle ?? NO_CONTENT} />
                     </Typography>
-                </Box>
-            </Box>
+                </div>
+            </div>
             <Card elevation={0} className="render-super-title-card render-super-title-content-image">
                 <CardMedia component="img" image={propUrl} alt="image" className="render-super-title-image" />
             </Card>
-        </Box>
+        </div>
     );
 };

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Skeleton } from "@material-ui/lab";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
@@ -27,16 +26,10 @@ const ActiveButton = (props: Properties): React.ReactElement => {
 };
 
 export const CookiesView = (props: Properties): React.ReactElement => {
+    const style = props.modalClose ? "cookies-close" : "cookies-open";
     const renderConsent = (): React.ReactElement => {
         return (
-            <Box
-                position="fixed"
-                width="100%"
-                bottom={0}
-                p={3}
-                zIndex="modal"
-                className={props.modalClose ? "cookies-close" : "cookies-open"}
-            >
+            <div className={`cookies-box ${style}`}>
                 <Container className="container-wide">
                     <Card elevation={0} className="cookies-card">
                         <CardContent>
@@ -52,7 +45,7 @@ export const CookiesView = (props: Properties): React.ReactElement => {
                         </CardActions>
                     </Card>
                 </Container>
-            </Box>
+            </div>
         );
     };
 

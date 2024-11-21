@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Container, Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
@@ -36,9 +36,9 @@ export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => 
     return (
         <section className="section" style={props.background}>
             <Container className="container-super-wide">
-                <Box pt={10} pb={6}>
+                <div style={{ paddingTop: 80, paddingBottom: 48 }}>
                     <Grid container justifyContent="center" direction="column">
-                        <Box pt={2} pb={2} className="pdf-header">
+                        <div className="pdf-header" style={{ paddingTop: 16, paddingBottom: 16 }}>
                             <RenderIconOrLoading
                                 isLoading={props.isLoading}
                                 hasError={props.hasError}
@@ -51,17 +51,17 @@ export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => 
                                 <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
                                 <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
                             </div>
-                        </Box>
-                        <Box className="pdf-canvas-wrapper">
+                        </div>
+                        <div className="pdf-canvas-wrapper">
                             <PdfCanvas
                                 pdfDocument={props.pdfDocument}
                                 pageNumber={props.currentPage}
                                 scale={props.scale ?? 1.5}
                                 htmlAttributes={{ className: "pdf-canvas" }}
                             />
-                        </Box>
+                        </div>
                     </Grid>
-                </Box>
+                </div>
             </Container>
         </section>
     );

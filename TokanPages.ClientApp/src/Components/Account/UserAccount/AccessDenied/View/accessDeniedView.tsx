@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
@@ -16,6 +15,11 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
     homeButtonText: string;
 }
 
+interface CustomDividerProps {
+    marginTop: number;
+    marginBottom: number;
+}
+
 const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
         <Link to="/" className="link">
@@ -26,11 +30,11 @@ const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
     );
 };
 
-const CustomDivider = (args: { marginTop: number; marginBottom: number }) => {
+const CustomDivider = (props: CustomDividerProps) => {
     return (
-        <Box mt={args.marginTop} mb={args.marginBottom}>
+        <div style={{ marginTop: props.marginTop, marginBottom: props.marginBottom }}>
             <Divider className="divider" />
-        </Box>
+        </div>
     );
 };
 
@@ -38,16 +42,16 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
     return (
         <section className="section" style={props.background}>
             <Container className="container-wide">
-                <Box pt={15} pb={8}>
+                <div style={{ paddingTop: 120, paddingBottom: 64 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box pt={0} pb={0}>
+                            <div style={{ paddingTop: 0, paddingBottom: 0 }}>
                                 <Typography component="span" className="access-denied-caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.accessDeniedCaption}
                                 </Typography>
-                            </Box>
+                            </div>
                             <CustomDivider marginTop={2} marginBottom={1} />
-                            <Box pt={3} pb={3}>
+                            <div style={{ paddingTop: 24, paddingBottom: 24 }}>
                                 <Typography component="span" className="access-denied-prompt">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />
@@ -55,7 +59,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
                                         <ReactHtmlParser html={props.accessDeniedPrompt} />
                                     )}
                                 </Typography>
-                            </Box>
+                            </div>
                             {props.isLoading ? (
                                 <Skeleton variant="rect" width="100%" height="40px" />
                             ) : (
@@ -63,7 +67,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
                             )}
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

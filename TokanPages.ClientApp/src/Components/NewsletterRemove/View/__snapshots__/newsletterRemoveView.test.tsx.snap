@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 0px; padding-bottom: 120px;"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -21,10 +21,10 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-2"
+                  style="text-align: center; margin-bottom: 24px;"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-3"
+                    style="margin-top: 16px; margin-bottom: 16px;"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-caption MuiTypography-body1"
@@ -33,7 +33,7 @@ Object {
                     </p>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-4"
+                    style="margin-top: 40px; margin-bottom: 16px;"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-text1 MuiTypography-body1"
@@ -42,7 +42,7 @@ Object {
                     </p>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-5"
+                    style="margin-top: 40px; margin-bottom: 16px;"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-text2 MuiTypography-body1"
@@ -51,7 +51,7 @@ Object {
                     </p>
                   </div>
                   <div
-                    class="MuiBox-root MuiBox-root-6"
+                    style="margin-top: 40px; margin-bottom: 56px;"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-text3 MuiTypography-body1"
@@ -87,7 +87,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 0px; padding-bottom: 120px;"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -96,10 +96,10 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-2"
+                style="text-align: center; margin-bottom: 24px;"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-3"
+                  style="margin-top: 16px; margin-bottom: 16px;"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-caption MuiTypography-body1"
@@ -108,7 +108,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-4"
+                  style="margin-top: 40px; margin-bottom: 16px;"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-text1 MuiTypography-body1"
@@ -117,7 +117,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-5"
+                  style="margin-top: 40px; margin-bottom: 16px;"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-text2 MuiTypography-body1"
@@ -126,7 +126,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-6"
+                  style="margin-top: 40px; margin-bottom: 56px;"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-text3 MuiTypography-body1"

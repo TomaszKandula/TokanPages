@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
+import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
 import { Item } from "../../Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
@@ -106,7 +106,7 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                         {...TransitionProps}
                         style={{ transformOrigin: placement === "bottom" ? "center top" : "center bottom" }}
                     >
-                        <Box className="render-navbar-menu-box">
+                        <div className="render-navbar-menu-box">
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList
                                     autoFocusItem={isOpen}
@@ -117,7 +117,7 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                                     <Items {...props} />
                                 </MenuList>
                             </ClickAwayListener>
-                        </Box>
+                        </div>
                     </Grow>
                 )}
             </Popper>

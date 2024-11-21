@@ -16,7 +16,7 @@ export const SignupPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignup pt={15} pb={30} background={{ backgroundColor: "#FCFCFC" }} />
+            <UserSignup pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
         </>
     );
 };

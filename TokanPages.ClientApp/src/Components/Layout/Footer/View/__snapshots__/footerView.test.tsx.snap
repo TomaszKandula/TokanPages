@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1 footer-copyright-box footer-centred"
+            class="footer-copyright-box footer-centred"
           >
             <p
               class="MuiTypography-root footer-copyright MuiTypography-body1"
@@ -27,7 +27,8 @@ Object {
               >
                 Terms of use
               </a>
-               | 
+               |
+               
               <a
                 class="footer-links"
                 href="/policy"
@@ -37,7 +38,7 @@ Object {
             </p>
           </div>
           <div
-            class="MuiBox-root MuiBox-root-2 footer-icon-box footer-centred"
+            class="footer-icon-box footer-centred"
           >
             <a
               aria-disabled="false"
@@ -78,7 +79,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1 footer-copyright-box footer-centred"
+          class="footer-copyright-box footer-centred"
         >
           <p
             class="MuiTypography-root footer-copyright MuiTypography-body1"
@@ -93,7 +94,8 @@ Object {
             >
               Terms of use
             </a>
-             | 
+             |
+             
             <a
               class="footer-links"
               href="/policy"
@@ -103,7 +105,7 @@ Object {
           </p>
         </div>
         <div
-          class="MuiBox-root MuiBox-root-2 footer-icon-box footer-centred"
+          class="footer-icon-box footer-centred"
         >
           <a
             aria-disabled="false"

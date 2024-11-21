@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="text-align: center; padding-top: 64px; padding-bottom: 64px;"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -43,10 +43,10 @@ Object {
                   data-aos="zoom-in"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-2"
+                    style="display: flex; height: 100%;"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-3"
+                      style="margin-top: auto; margin-bottom: auto; width: 100%;"
                     >
                       <div
                         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -87,10 +87,10 @@ Object {
                               />
                               <fieldset
                                 aria-hidden="true"
-                                class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
+                                class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                               >
                                 <legend
-                                  class="PrivateNotchedOutline-legendLabelled-6"
+                                  class="PrivateNotchedOutline-legendLabelled-3"
                                 >
                                   <span>
                                     Email address
@@ -138,7 +138,7 @@ Object {
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="text-align: center; padding-top: 64px; padding-bottom: 64px;"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -169,10 +169,10 @@ Object {
                 data-aos="zoom-in"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-2"
+                  style="display: flex; height: 100%;"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-3"
+                    style="margin-top: auto; margin-bottom: auto; width: 100%;"
                   >
                     <div
                       class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -213,10 +213,10 @@ Object {
                             />
                             <fieldset
                               aria-hidden="true"
-                              class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
+                              class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                             >
                               <legend
-                                class="PrivateNotchedOutline-legendLabelled-6"
+                                class="PrivateNotchedOutline-legendLabelled-3"
                               >
                                 <span>
                                   Email address

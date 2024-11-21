@@ -23,4 +23,3 @@ export const UpdateUserData = (): void => {
         dispatch(UserDataStoreAction.update(data));
     }
 };
-

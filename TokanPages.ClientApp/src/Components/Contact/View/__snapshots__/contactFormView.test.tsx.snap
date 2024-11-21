@@ -12,11 +12,11 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 64px; padding-bottom: 96px;"
           >
             <div
-              class="MuiBox-root MuiBox-root-2"
               data-aos="fade-down"
+              style="text-align: center;"
             >
               <p
                 class="MuiTypography-root contact-caption MuiTypography-body1"
@@ -31,7 +31,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-3"
+                  style="text-align: center; margin-bottom: 24px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -91,10 +91,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-6 PrivateNotchedOutline-legendNotched-7"
+                              class="PrivateNotchedOutline-legendLabelled-3 PrivateNotchedOutline-legendNotched-4"
                             >
                               <span>
                                 First name
@@ -145,10 +145,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
+                              class="PrivateNotchedOutline-legendLabelled-7 PrivateNotchedOutline-legendNotched-8"
                             >
                               <span>
                                 Last name
@@ -199,10 +199,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
+                              class="PrivateNotchedOutline-legendLabelled-11 PrivateNotchedOutline-legendNotched-12"
                             >
                               <span>
                                 Email address
@@ -253,10 +253,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-18 PrivateNotchedOutline-legendNotched-19"
+                              class="PrivateNotchedOutline-legendLabelled-15 PrivateNotchedOutline-legendNotched-16"
                             >
                               <span>
                                 Subject
@@ -307,10 +307,10 @@ Object {
                           />
                           <fieldset
                             aria-hidden="true"
-                            class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
+                            class="PrivateNotchedOutline-root-17 MuiOutlinedInput-notchedOutline"
                           >
                             <legend
-                              class="PrivateNotchedOutline-legendLabelled-22 PrivateNotchedOutline-legendNotched-23"
+                              class="PrivateNotchedOutline-legendLabelled-19 PrivateNotchedOutline-legendNotched-20"
                             >
                               <span>
                                 Message
@@ -333,13 +333,13 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-24 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-21 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
-                              class="PrivateSwitchBase-input-27"
+                              class="PrivateSwitchBase-input-24"
                               data-indeterminate="false"
                               id="terms"
                               name="terms"
@@ -371,8 +371,8 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-28"
                   data-aos="fade-up"
+                  style="margin-top: 16px; margin-bottom: 16px;"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -401,11 +401,11 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 64px; padding-bottom: 96px;"
         >
           <div
-            class="MuiBox-root MuiBox-root-2"
             data-aos="fade-down"
+            style="text-align: center;"
           >
             <p
               class="MuiTypography-root contact-caption MuiTypography-body1"
@@ -420,7 +420,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-3"
+                style="text-align: center; margin-bottom: 24px;"
               >
                 <svg
                   aria-hidden="true"
@@ -480,10 +480,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-6 PrivateNotchedOutline-legendNotched-7"
+                            class="PrivateNotchedOutline-legendLabelled-3 PrivateNotchedOutline-legendNotched-4"
                           >
                             <span>
                               First name
@@ -534,10 +534,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-10 PrivateNotchedOutline-legendNotched-11"
+                            class="PrivateNotchedOutline-legendLabelled-7 PrivateNotchedOutline-legendNotched-8"
                           >
                             <span>
                               Last name
@@ -588,10 +588,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-14 PrivateNotchedOutline-legendNotched-15"
+                            class="PrivateNotchedOutline-legendLabelled-11 PrivateNotchedOutline-legendNotched-12"
                           >
                             <span>
                               Email address
@@ -642,10 +642,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-18 PrivateNotchedOutline-legendNotched-19"
+                            class="PrivateNotchedOutline-legendLabelled-15 PrivateNotchedOutline-legendNotched-16"
                           >
                             <span>
                               Subject
@@ -696,10 +696,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-17 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-22 PrivateNotchedOutline-legendNotched-23"
+                            class="PrivateNotchedOutline-legendLabelled-19 PrivateNotchedOutline-legendNotched-20"
                           >
                             <span>
                               Message
@@ -722,13 +722,13 @@ Object {
                     >
                       <span
                         aria-disabled="false"
-                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-24 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
+                        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-21 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary"
                       >
                         <span
                           class="MuiIconButton-label"
                         >
                           <input
-                            class="PrivateSwitchBase-input-27"
+                            class="PrivateSwitchBase-input-24"
                             data-indeterminate="false"
                             id="terms"
                             name="terms"
@@ -760,8 +760,8 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-28"
                 data-aos="fade-up"
+                style="margin-top: 16px; margin-bottom: 16px;"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"

@@ -7,7 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
 import CheckIcon from "@material-ui/icons/Check";
 import ArrowBack from "@material-ui/icons/ArrowBack";
-import { FormControl, Grid, MenuItem, Select, Box, SelectProps } from "@material-ui/core";
+import { FormControl, Grid, MenuItem, Select, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
 import { ApplicationLanguageState } from "../../../../Store/States/";
@@ -70,12 +70,9 @@ const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
 const RenderContent = (props: BaseProperties): React.ReactElement => {
     return (
         <>
-            <Box className="navigation-languages-box">
-                <RenderLanguageSelection
-                    {...props}
-                    styleSelect="navigation-languages-selection"
-                />
-            </Box>
+            <div className="navigation-languages-box">
+                <RenderLanguageSelection {...props} styleSelect="navigation-languages-selection" />
+            </div>
             {props.isAnonymous ? <></> : <RenderAvatarIconButton {...props} />}
         </>
     );
@@ -142,17 +139,17 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
     return (
         <Toolbar className="navigation-tool-bar">
-            <Box className="navigation-nav-menu navigation-nav-left">
+            <div className="navigation-nav-menu navigation-nav-left">
                 <Link to="/" className="navigation-app-logo-small">
                     {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-left-logo")}
                 </Link>
-            </Box>
-            <Box className="navigation-nav-items navigation-nav-centre">
+            </div>
+            <div className="navigation-nav-items navigation-nav-centre">
                 <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu?.items} />
-            </Box>
-            <Box className="navigation-nav-items navigation-nav-right">
+            </div>
+            <div className="navigation-nav-items navigation-nav-right">
                 {props.isLoading ? null : <RenderContent {...props} />}
-            </Box>
+            </div>
         </Toolbar>
     );
 };

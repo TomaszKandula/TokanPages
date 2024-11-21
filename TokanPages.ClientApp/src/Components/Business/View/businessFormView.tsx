@@ -1,6 +1,5 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -132,11 +131,11 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
                 <Typography component="span" className="business-pricing-text">
                     <ReactHtmlParser html={props.value.text} />
                 </Typography>
-                <Box mt={2}>
+                <div style={{ marginTop: 16 }}>
                     <Typography component="span" className="business-pricing-text">
                         <ReactHtmlParser html={props.value.price} />
                     </Typography>
-                </Box>
+                </div>
             </Paper>
         </Grid>
     );
@@ -158,9 +157,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
     return (
         <section className="section" style={props.background}>
             <Container className="container-wide">
-                <Box pt={15} pb={30}>
-                    <Box textAlign="center">
-                        <Typography gutterBottom={true} className="business-large-caption">
+                <div style={{ paddingTop: 120, paddingBottom: 240 }}>
+                    <div style={{ textAlign: "center" }}>
+                        <Typography className="business-large-caption">
                             {props.hasCaption ? (
                                 <RenderText
                                     isLoading={props.isLoading}
@@ -171,10 +170,10 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 <></>
                             )}
                         </Typography>
-                    </Box>
+                    </div>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box mb={3} textAlign="center">
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
                                 {props.hasIcon ? (
                                     <RenderElement
                                         isLoading={props.isLoading}
@@ -191,7 +190,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 ) : (
                                     <></>
                                 )}
-                            </Box>
+                            </div>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
                                     <RenderElement
@@ -321,7 +320,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Box mt={2} mb={1}>
+                                    <div style={{ marginTop: 16, marginBottom: 8 }}>
                                         <RenderElement
                                             isLoading={props.isLoading}
                                             height={45}
@@ -329,7 +328,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 <Typography className="business-header">{props.techLabel}</Typography>
                                             }
                                         />
-                                    </Box>
+                                    </div>
                                     <RenderElement
                                         isLoading={props.isLoading}
                                         height={100}
@@ -343,8 +342,8 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                             </Grid>
-                            <Box mt={2} mb={4}>
-                                <Box mt={1} mb={4}>
+                            <div style={{ marginTop: 16, marginBottom: 32 }}>
+                                <div style={{ marginTop: 8, marginBottom: 32 }}>
                                     <RenderElement
                                         isLoading={props.isLoading}
                                         height={45}
@@ -354,7 +353,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             </Typography>
                                         }
                                     />
-                                </Box>
+                                </div>
                                 <Grid container spacing={3}>
                                     <RenderElement
                                         isLoading={props.isLoading}
@@ -370,8 +369,8 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         ))}
                                     />
                                 </Grid>
-                            </Box>
-                            <Box mb={10} className="business-info-box">
+                            </div>
+                            <div className="business-info-box" style={{ marginBottom: 80 }}>
                                 <RenderElement
                                     isLoading={props.isLoading}
                                     height={45}
@@ -384,17 +383,17 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         </>
                                     }
                                 />
-                            </Box>
-                            <Box my={5}>
+                            </div>
+                            <div style={{ marginTop: 40, marginBottom: 40 }}>
                                 <RenderElement
                                     isLoading={props.isLoading}
                                     height={40}
                                     element={<ActiveButton {...props} />}
                                 />
-                            </Box>
+                            </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

@@ -32,4 +32,4 @@ export const AppColours = {
     black: "#000000",
     red: "#f44336",
     redDark: "#e53935",
-}
+};

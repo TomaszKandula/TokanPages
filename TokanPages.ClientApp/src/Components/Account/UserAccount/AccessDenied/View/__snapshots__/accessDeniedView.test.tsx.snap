@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 120px; padding-bottom: 64px;"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -21,7 +21,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-2"
+                  style="padding-top: 0px; padding-bottom: 0px;"
                 >
                   <span
                     class="MuiTypography-root access-denied-caption MuiTypography-body1"
@@ -30,14 +30,14 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-3"
+                  style="margin-top: 2px; margin-bottom: 1px;"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-4"
+                  style="padding-top: 24px; padding-bottom: 24px;"
                 >
                   <span
                     class="MuiTypography-root access-denied-prompt MuiTypography-body1"
@@ -86,7 +86,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 120px; padding-bottom: 64px;"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -95,7 +95,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-2"
+                style="padding-top: 0px; padding-bottom: 0px;"
               >
                 <span
                   class="MuiTypography-root access-denied-caption MuiTypography-body1"
@@ -104,14 +104,14 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-3"
+                style="margin-top: 2px; margin-bottom: 1px;"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                class="MuiBox-root MuiBox-root-4"
+                style="padding-top: 24px; padding-bottom: 24px;"
               >
                 <span
                   class="MuiTypography-root access-denied-prompt MuiTypography-body1"

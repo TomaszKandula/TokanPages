@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { Box, Breadcrumbs, Divider, Chip } from "@material-ui/core";
+import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
 import { UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
@@ -175,12 +175,14 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <Box style={{ 
-            marginTop: props.mt, 
-            marginBottom: props.mb, 
-            marginRight: props.mr, 
-            marginLeft: props.ml 
-        }}>
+        <div
+            style={{
+                marginTop: props.mt,
+                marginBottom: props.mb,
+                marginRight: props.mr,
+                marginLeft: props.ml,
+            }}
+        >
             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
                 <Chip
                     component="div"
@@ -192,9 +194,9 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                 {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
                 {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
             </Breadcrumbs>
-            <Box style={{ marginTop: props.mtDivider, marginBottom: props.mbDivider }}>
+            <div style={{ marginTop: props.mtDivider, marginBottom: props.mbDivider }}>
                 <Divider />
-            </Box>
-        </Box>
+            </div>
+        </div>
     );
 };

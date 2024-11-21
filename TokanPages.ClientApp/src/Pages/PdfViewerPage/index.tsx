@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Box } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { PdfViewer } from "../../Components/PdfViewer";
@@ -25,9 +24,9 @@ export const PdfViewerPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <Box mt={6}>
+            <div style={{ marginTop: 48 }}>
                 <PdfViewer pdfFile={name} background={{ backgroundColor: "#FCFCFC" }} />
-            </Box>
+            </div>
         </>
     );
 };

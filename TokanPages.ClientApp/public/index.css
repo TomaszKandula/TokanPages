@@ -388,7 +388,7 @@ body::backdrop {
 }
 
 .user-avatar-text {
-    margin-left: 15px;
+    margin-left: 15px !important;
 }
 
 /* ARTICLES COMPONENT */
@@ -667,6 +667,14 @@ body::backdrop {
 
 /* COOKIES COMPONENT */
 
+.cookies-box {
+    width: 100%;
+    bottom: 0px;
+    padding: 24px;
+    z-index: 1300;
+    position: fixed;
+}
+
 .cookies-caption {
     font-size: 1.5rem !important;
     padding-top: 5px;
@@ -802,9 +810,9 @@ body::backdrop {
 }
 
 .technology-skeleton-circle {
-    width: 42px;
-    height: 42px;
-    margin: 0px 15px 0px 0px;
+    width: 42px !important;
+    height: 42px !important;
+    margin: 0px 15px 0px 0px !important;
 }
 
 .technology-caption-text {

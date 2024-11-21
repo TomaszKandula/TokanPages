@@ -58,7 +58,7 @@ export const MainPage = (): React.ReactElement => {
             <Featured />
             <Testimonials />
             <Newsletter />
-            <ContactForm pt={6} hasCaption={true} />
+            <ContactForm hasCaption={true} />
             <Cookies />
             <Footer />
         </>

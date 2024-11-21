@@ -13,13 +13,14 @@ Object {
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 80px; padding-bottom: 48px;"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-justify-content-xs-center"
             >
               <div
-                class="MuiBox-root MuiBox-root-2 pdf-header"
+                class="pdf-header"
+                style="padding-top: 16px; padding-bottom: 16px;"
               >
                 <a
                   href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -67,7 +68,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-3 pdf-canvas-wrapper"
+                class="pdf-canvas-wrapper"
               >
                 <canvas
                   class="pdf-canvas"
@@ -88,13 +89,14 @@ Object {
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 80px; padding-bottom: 48px;"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-justify-content-xs-center"
           >
             <div
-              class="MuiBox-root MuiBox-root-2 pdf-header"
+              class="pdf-header"
+              style="padding-top: 16px; padding-bottom: 16px;"
             >
               <a
                 href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -142,7 +144,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root MuiBox-root-3 pdf-canvas-wrapper"
+              class="pdf-canvas-wrapper"
             >
               <canvas
                 class="pdf-canvas"

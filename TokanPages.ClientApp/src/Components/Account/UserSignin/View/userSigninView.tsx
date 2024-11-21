@@ -1,7 +1,6 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -52,79 +51,77 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <Box pt={props.pt ?? 4} pb={props.pb ?? 10}>
+                <div style={{ paddingTop: props.pt ?? 32, paddingBottom: props.pb ?? 80 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box mb={3} textAlign="center">
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
                                 <AccountCircle className="account" />
                                 <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
-                            </Box>
-                            <Box>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="email"
-                                                name="email"
-                                                variant="outlined"
-                                                autoComplete="email"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.email}
-                                                label={props.labelEmail}
-                                                disabled={props.progress}
-                                            />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextFiedWithPassword
-                                                uuid="password"
-                                                fullWidth={true}
-                                                value={props.password}
-                                                label={props.labelPassword}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                isDisabled={props.progress}
-                                            />
-                                        )}
-                                    </Grid>
-                                </Grid>
-                                <Box my={2}>
+                            </div>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
                                     {props.isLoading ? (
-                                        <Skeleton variant="rect" width="100%" height="40px" />
+                                        <Skeleton variant="rect" width="100%" height="45px" />
                                     ) : (
-                                        <ActiveButton {...props} />
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            id="email"
+                                            name="email"
+                                            variant="outlined"
+                                            autoComplete="email"
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            value={props.email}
+                                            label={props.labelEmail}
+                                            disabled={props.progress}
+                                        />
                                     )}
-                                </Box>
-                                <Grid container spacing={2} className="actions">
-                                    <Grid item xs={12} sm={6}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            <RedirectTo path="/signup" name={props.link1} />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12} sm={6} className="secondaryAction">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            <RedirectTo path="/resetpassword" name={props.link2} />
-                                        )}
-                                    </Grid>
                                 </Grid>
-                            </Box>
+                                <Grid item xs={12}>
+                                    {props.isLoading ? (
+                                        <Skeleton variant="rect" width="100%" height="45px" />
+                                    ) : (
+                                        <TextFiedWithPassword
+                                            uuid="password"
+                                            fullWidth={true}
+                                            value={props.password}
+                                            label={props.labelPassword}
+                                            onKeyUp={props.keyHandler}
+                                            onChange={props.formHandler}
+                                            isDisabled={props.progress}
+                                        />
+                                    )}
+                                </Grid>
+                            </Grid>
+                            <div style={{ marginTop: 16, marginBottom: 16 }}>
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" width="100%" height="40px" />
+                                ) : (
+                                    <ActiveButton {...props} />
+                                )}
+                            </div>
+                            <Grid container spacing={2} className="actions">
+                                <Grid item xs={12} sm={6}>
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        <RedirectTo path="/signup" name={props.link1} />
+                                    )}
+                                </Grid>
+                                <Grid item xs={12} sm={6} className="secondaryAction">
+                                    {props.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        <RedirectTo path="/resetpassword" name={props.link2} />
+                                    )}
+                                </Grid>
+                            </Grid>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

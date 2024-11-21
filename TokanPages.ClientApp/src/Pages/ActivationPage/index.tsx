@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Box, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { ActivateAccount } from "../../Components/Account";
@@ -13,9 +13,9 @@ const useQuery = () => {
 
 const ErrorMessage = (): React.ReactElement => {
     return (
-        <Box mt={10} mb={15}>
+        <div style={{ marginTop: 80, marginBottom: 40 }}>
             <Typography>Uuuppss..., there is a missing ID...</Typography>
-        </Box>
+        </div>
     );
 };
 
@@ -35,13 +35,7 @@ export const ActivationPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             {id ? (
-                <ActivateAccount
-                    id={id}
-                    type={type}
-                    pt={15}
-                    pb={30}
-                    background={{ backgroundColor: "#FCFCFC" }}
-                />
+                <ActivateAccount id={id} type={type} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
             ) : (
                 <ErrorMessage />
             )}

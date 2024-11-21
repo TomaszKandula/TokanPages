@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Container from "@material-ui/core/Container";
@@ -40,35 +39,35 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
+                <div style={{ paddingTop: props.pt ?? 0, paddingBottom: props.pb ?? 120 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box textAlign="center" mb={3}>
-                                <Box mt={2} mb={2}>
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                                <div style={{ marginTop: 16, marginBottom: 16 }}>
                                     <Typography className="newsletter-remove-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.caption}
                                     </Typography>
-                                </Box>
-                                <Box mt={5} mb={2}>
+                                </div>
+                                <div style={{ marginTop: 40, marginBottom: 16 }}>
                                     <Typography className="newsletter-remove-text1">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text1}
                                     </Typography>
-                                </Box>
-                                <Box mt={5} mb={2}>
+                                </div>
+                                <div style={{ marginTop: 40, marginBottom: 16 }}>
                                     <Typography className="newsletter-remove-text2">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text2}
                                     </Typography>
-                                </Box>
-                                <Box mt={5} mb={7}>
+                                </div>
+                                <div style={{ marginTop: 40, marginBottom: 56 }}>
                                     <Typography className="newsletter-remove-text3">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text3}
                                     </Typography>
-                                </Box>
+                                </div>
                                 {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
-                            </Box>
+                            </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

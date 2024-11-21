@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
@@ -19,16 +18,16 @@ export const ActivateAccountView = (props: ActivateAccountViewProps): React.Reac
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <Box pt={props.pt ?? 0} pb={props.pb ?? 15}>
+                <div style={{ paddingTop: props.pt ?? 0, paddingBottom: props.pb ?? 15 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box textAlign="center" mb={3}>
-                                <Box mt={2} mb={2}>
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                                <div style={{ marginTop: 16, marginBottom: 16 }}>
                                     <Typography component="div" className="aa-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                     </Typography>
-                                </Box>
-                                <Box mt={5} mb={2}>
+                                </div>
+                                <div style={{ marginTop: 40, marginBottom: 16 }}>
                                     <Typography component="span" className="aa-text1">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
@@ -36,8 +35,8 @@ export const ActivateAccountView = (props: ActivateAccountViewProps): React.Reac
                                             <ReactHtmlParser html={props.text1} />
                                         )}
                                     </Typography>
-                                </Box>
-                                <Box mt={2} mb={5}>
+                                </div>
+                                <div style={{ marginTop: 16, marginBottom: 40 }}>
                                     <Typography component="span" className="aa-text2">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
@@ -45,11 +44,11 @@ export const ActivateAccountView = (props: ActivateAccountViewProps): React.Reac
                                             <ReactHtmlParser html={props.text2} />
                                         )}
                                     </Typography>
-                                </Box>
-                            </Box>
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

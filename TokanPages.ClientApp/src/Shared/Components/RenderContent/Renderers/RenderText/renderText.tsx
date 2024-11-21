@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
@@ -27,7 +27,6 @@ const RenderItemLink = (props: DataProps): React.ReactElement => {
 
     return (
         <Typography
-            variant="body1"
             component="span"
             className="render-text-common render-text-paragraph render-text-link"
             onClick={onClickHandler}
@@ -42,37 +41,37 @@ const RenderItemLink = (props: DataProps): React.ReactElement => {
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <Box mt={7} mb={0}>
-            <Typography variant="body1" component="span" className="render-text-common render-text-title">
+        <div style={{ marginTop: 56, marginBottom: 0 }}>
+            <Typography component="span" className="render-text-common render-text-title">
                 <ReactHtmlParser html={props.data ?? NO_CONTENT} />
             </Typography>
-        </Box>
+        </div>
     );
 };
 
 const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <Box mt={1} mb={5}>
-            <Typography variant="body1" component="span" className="render-text-common render-text-sub-title">
+        <div style={{ marginTop: 8, marginBottom: 40 }}>
+            <Typography component="span" className="render-text-common render-text-sub-title">
                 <ReactHtmlParser html={props.data ?? NO_CONTENT} />
             </Typography>
-        </Box>
+        </div>
     );
 };
 
 const RenderHeader = (props: DataProps): React.ReactElement => {
     return (
-        <Box mt={7} mb={2}>
-            <Typography variant="body1" component="span" className="render-text-common render-text-header">
+        <div style={{ marginTop: 56, marginBottom: 16 }}>
+            <Typography component="span" className="render-text-common render-text-header">
                 <ReactHtmlParser html={props.data ?? NO_CONTENT} />
             </Typography>
-        </Box>
+        </div>
     );
 };
 
 const RenderParagraph = (props: DataProps): React.ReactElement => {
     return (
-        <Typography variant="body1" component="span" className="render-text-common render-text-paragraph">
+        <Typography component="span" className="render-text-common render-text-paragraph">
             <ReactHtmlParser html={props.data ?? NO_CONTENT} />
         </Typography>
     );
@@ -81,7 +80,7 @@ const RenderParagraph = (props: DataProps): React.ReactElement => {
 const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     const replaced = props.data?.replace("<p>", "<p class='custom-drop-cap'>");
     return (
-        <Typography variant="body1" component="span" className="render-text-common render-text-paragraph">
+        <Typography component="span" className="render-text-common render-text-paragraph">
             <ReactHtmlParser html={replaced ?? NO_CONTENT} />
         </Typography>
     );

@@ -1,6 +1,6 @@
 import { GetContentManifestDto } from "./Api/Models";
 import { RequestContract, ExecuteAsync, GetConfiguration, GET_CONTENT_MANIFEST } from "./Api/Request";
-import { HasPageContentLoaded } from "./Shared/Services/Utilities";
+import { IsPreRendered } from "./Shared/Services/SpaCaching";
 
 const requestManifest: RequestContract = {
     configuration: {
@@ -15,8 +15,11 @@ const hidePreloader = (): void => {
     if (preloader !== null) preloader.style.display = "none";
 };
 
-export const Initialize = async (callback: any): Promise<void> => {
-    if (HasPageContentLoaded()) return;
+export const Initialize = async (callback: (manifest: GetContentManifestDto | undefined) => void): Promise<void> => {
+    if (IsPreRendered()) {
+        callback(undefined);
+        return;
+    }
 
     const manifest = await ExecuteAsync(GetConfiguration(requestManifest));
     const manifestDto: GetContentManifestDto = manifest.content as GetContentManifestDto;

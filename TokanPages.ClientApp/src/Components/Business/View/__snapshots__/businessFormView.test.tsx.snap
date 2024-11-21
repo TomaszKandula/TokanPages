@@ -13,13 +13,13 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="MuiBox-root MuiBox-root-1"
+            style="padding-top: 120px; padding-bottom: 240px;"
           >
             <div
-              class="MuiBox-root MuiBox-root-2"
+              style="text-align: center;"
             >
               <p
-                class="MuiTypography-root business-large-caption MuiTypography-body1 MuiTypography-gutterBottom"
+                class="MuiTypography-root business-large-caption MuiTypography-body1"
               >
                 BUSINESS INQUIRY
               </p>
@@ -31,7 +31,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-3"
+                  style="text-align: center; margin-bottom: 24px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -88,10 +88,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-6"
+                            class="PrivateNotchedOutline-legendLabelled-3"
                           >
                             <span>
                               Company name
@@ -138,10 +138,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-10"
+                            class="PrivateNotchedOutline-legendLabelled-7"
                           >
                             <span>
                               First name
@@ -188,10 +188,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-14"
+                            class="PrivateNotchedOutline-legendLabelled-11"
                           >
                             <span>
                               Last name
@@ -238,10 +238,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-18"
+                            class="PrivateNotchedOutline-legendLabelled-15"
                           >
                             <span>
                               Email
@@ -288,10 +288,10 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-17 MuiOutlinedInput-notchedOutline"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legendLabelled-22"
+                            class="PrivateNotchedOutline-legendLabelled-19"
                           >
                             <span>
                               Business phone
@@ -323,11 +323,11 @@ Object {
                         />
                         <fieldset
                           aria-hidden="true"
-                          class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
+                          class="PrivateNotchedOutline-root-21 MuiOutlinedInput-notchedOutline"
                           style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-25"
+                            class="PrivateNotchedOutline-legend-22"
                             style="width: 0.01px;"
                           >
                             <span>
@@ -342,7 +342,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiBox-root MuiBox-root-28"
+                      style="margin-top: 16px; margin-bottom: 8px;"
                     >
                       <p
                         class="MuiTypography-root business-header MuiTypography-body1"
@@ -363,14 +363,14 @@ Object {
                         >
                           <span
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                           >
                             <span
                               class="MuiIconButton-label"
                             >
                               <input
                                 aria-labelledby="key-0"
-                                class="PrivateSwitchBase-input-32"
+                                class="PrivateSwitchBase-input-28"
                                 data-indeterminate="false"
                                 id="0"
                                 name="tech-0"
@@ -415,14 +415,14 @@ Object {
                         >
                           <span
                             aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-33 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
+                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                           >
                             <span
                               class="MuiIconButton-label"
                             >
                               <input
                                 aria-labelledby="key-1"
-                                class="PrivateSwitchBase-input-36"
+                                class="PrivateSwitchBase-input-32"
                                 data-indeterminate="false"
                                 id="1"
                                 name="tech-1"
@@ -458,10 +458,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-37"
+                  style="margin-top: 16px; margin-bottom: 32px;"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-38"
+                    style="margin-top: 8px; margin-bottom: 32px;"
                   >
                     <span
                       class="MuiTypography-root business-header MuiTypography-body1"
@@ -488,7 +488,7 @@ Object {
                           </div>
                         </span>
                         <div
-                          class="MuiBox-root MuiBox-root-39"
+                          style="margin-top: 16px;"
                         >
                           <span
                             class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -516,7 +516,7 @@ Object {
                           </div>
                         </span>
                         <div
-                          class="MuiBox-root MuiBox-root-40"
+                          style="margin-top: 16px;"
                         >
                           <span
                             class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -531,7 +531,8 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-41 business-info-box"
+                  class="business-info-box"
+                  style="margin-bottom: 80px;"
                 >
                   <svg
                     aria-hidden="true"
@@ -550,7 +551,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiBox-root MuiBox-root-42"
+                  style="margin-top: 40px; margin-bottom: 40px;"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -580,13 +581,13 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="MuiBox-root MuiBox-root-1"
+          style="padding-top: 120px; padding-bottom: 240px;"
         >
           <div
-            class="MuiBox-root MuiBox-root-2"
+            style="text-align: center;"
           >
             <p
-              class="MuiTypography-root business-large-caption MuiTypography-body1 MuiTypography-gutterBottom"
+              class="MuiTypography-root business-large-caption MuiTypography-body1"
             >
               BUSINESS INQUIRY
             </p>
@@ -598,7 +599,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="MuiBox-root MuiBox-root-3"
+                style="text-align: center; margin-bottom: 24px;"
               >
                 <svg
                   aria-hidden="true"
@@ -655,10 +656,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-4 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-6"
+                          class="PrivateNotchedOutline-legendLabelled-3"
                         >
                           <span>
                             Company name
@@ -705,10 +706,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-8 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-10"
+                          class="PrivateNotchedOutline-legendLabelled-7"
                         >
                           <span>
                             First name
@@ -755,10 +756,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-12 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-14"
+                          class="PrivateNotchedOutline-legendLabelled-11"
                         >
                           <span>
                             Last name
@@ -805,10 +806,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-16 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-18"
+                          class="PrivateNotchedOutline-legendLabelled-15"
                         >
                           <span>
                             Email
@@ -855,10 +856,10 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-20 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-17 MuiOutlinedInput-notchedOutline"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legendLabelled-22"
+                          class="PrivateNotchedOutline-legendLabelled-19"
                         >
                           <span>
                             Business phone
@@ -890,11 +891,11 @@ Object {
                       />
                       <fieldset
                         aria-hidden="true"
-                        class="PrivateNotchedOutline-root-24 MuiOutlinedInput-notchedOutline"
+                        class="PrivateNotchedOutline-root-21 MuiOutlinedInput-notchedOutline"
                         style="padding-left: 8px;"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legend-25"
+                          class="PrivateNotchedOutline-legend-22"
                           style="width: 0.01px;"
                         >
                           <span>
@@ -909,7 +910,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    class="MuiBox-root MuiBox-root-28"
+                    style="margin-top: 16px; margin-bottom: 8px;"
                   >
                     <p
                       class="MuiTypography-root business-header MuiTypography-body1"
@@ -930,14 +931,14 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
                               aria-labelledby="key-0"
-                              class="PrivateSwitchBase-input-32"
+                              class="PrivateSwitchBase-input-28"
                               data-indeterminate="false"
                               id="0"
                               name="tech-0"
@@ -982,14 +983,14 @@ Object {
                       >
                         <span
                           aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-33 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
+                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
                         >
                           <span
                             class="MuiIconButton-label"
                           >
                             <input
                               aria-labelledby="key-1"
-                              class="PrivateSwitchBase-input-36"
+                              class="PrivateSwitchBase-input-32"
                               data-indeterminate="false"
                               id="1"
                               name="tech-1"
@@ -1025,10 +1026,10 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-37"
+                style="margin-top: 16px; margin-bottom: 32px;"
               >
                 <div
-                  class="MuiBox-root MuiBox-root-38"
+                  style="margin-top: 8px; margin-bottom: 32px;"
                 >
                   <span
                     class="MuiTypography-root business-header MuiTypography-body1"
@@ -1055,7 +1056,7 @@ Object {
                         </div>
                       </span>
                       <div
-                        class="MuiBox-root MuiBox-root-39"
+                        style="margin-top: 16px;"
                       >
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -1083,7 +1084,7 @@ Object {
                         </div>
                       </span>
                       <div
-                        class="MuiBox-root MuiBox-root-40"
+                        style="margin-top: 16px;"
                       >
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -1098,7 +1099,8 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-41 business-info-box"
+                class="business-info-box"
+                style="margin-bottom: 80px;"
               >
                 <svg
                   aria-hidden="true"
@@ -1117,7 +1119,7 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiBox-root MuiBox-root-42"
+                style="margin-top: 40px; margin-bottom: 40px;"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"

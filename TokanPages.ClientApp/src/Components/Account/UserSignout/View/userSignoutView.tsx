@@ -2,7 +2,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@material-ui/lab";
 import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -23,16 +22,16 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
     return (
         <section className="section" style={props.background}>
             <Container maxWidth="sm">
-                <Box pt={props.pt ?? 18} pb={props.pb ?? 10}>
+                <div style={{ paddingTop: props.pt ?? 32, paddingBottom: props.pb ?? 80 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <Box mb={3} textAlign="center">
+                            <div style={{ textAlign: "center", marginBottom: 24 }}>
                                 <AccountCircle className="account" />
                                 <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                 </Typography>
-                            </Box>
-                            <Box>
+                            </div>
+                            <div>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <Typography className="status">
@@ -40,8 +39,8 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                                         </Typography>
                                     </Grid>
                                 </Grid>
-                            </Box>
-                            <Box mt={4}>
+                            </div>
+                            <div style={{ marginTop: 32 }}>
                                 <Link to="/" className="link">
                                     <Button
                                         fullWidth
@@ -52,10 +51,10 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                                         {props.buttonText}
                                     </Button>
                                 </Link>
-                            </Box>
+                            </div>
                         </CardContent>
                     </Card>
-                </Box>
+                </div>
             </Container>
         </section>
     );

@@ -26,7 +26,9 @@ export const RenderSidemenuItemSpan = (props: Item): React.ReactElement => {
         },
         <>
             <ListItem button key={props.id} onClick={onListItemClickEvent} disabled={!props.enabled}>
-                <ListItemIcon className="render-navbar-list-icon">{GetIcon({ iconName: props.icon as string })}</ListItemIcon>
+                <ListItemIcon className="render-navbar-list-icon">
+                    {GetIcon({ iconName: props.icon as string })}
+                </ListItemIcon>
                 <ListItemText primary={props.value} />
                 {isOpen ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
