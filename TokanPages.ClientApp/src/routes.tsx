@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 import { PRERENDER_PATH_PREFIX } from "./Shared/constants";
+import { LanguageItemDto } from "./Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,
@@ -36,6 +37,10 @@ interface PageProps {
     canPrerender?: boolean;
 }
 
+interface RoutesProps {
+    languages: LanguageItemDto[] | undefined;
+}
+
 const pages: PageProps[] = [
     { path: "/", page: <MainPage />, canPrerender: true },
     { path: "/showcase", page: <ShowcasePage />, canPrerender: true },
@@ -63,7 +68,7 @@ const pages: PageProps[] = [
     { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
 ];
 
-export const Routes = (): React.ReactElement => {
+export const Routes = (props: RoutesProps): React.ReactElement => {
     const renderRoute = (props: PageProps) => {
         return (
             <Route exact={props.exact ?? true} path={props.path} key={uuidv4()}>
@@ -74,9 +79,16 @@ export const Routes = (): React.ReactElement => {
 
     let buffer: React.ReactElement[] = [];
     pages.forEach(item => {
-        buffer.push(renderRoute({ path: item.path, page: item.page }));
-        if (item.canPrerender) {
-            buffer.push(renderRoute({ path: `${PRERENDER_PATH_PREFIX}${item.path}`, page: item.page }));
+        if (props.languages && props.languages.length > 0) {
+            props.languages.forEach(language => {
+                const registerPath = `/${language.id}${item.path}`;
+                buffer.push(renderRoute({ path: registerPath, page: item.page }));
+
+                if (item.canPrerender) {
+                    const snapshotPath = `${PRERENDER_PATH_PREFIX}${registerPath}`;
+                    buffer.push(renderRoute({ path: snapshotPath, page: item.page }));
+                }
+            });
         }
     });
 

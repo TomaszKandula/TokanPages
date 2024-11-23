@@ -9,7 +9,6 @@ export const LIKES_LIMIT_FOR_USER: number = 50;
 export const WORDS_PER_MINUTE: number = 265;
 export const INTERNAL_SUBJECT_TEXT = "Incoming Business Inquiry";
 export const INTERNAL_MESSAGE_TEXT = "Please check the internal payload for more details.";
-export const SELECTED_LANGUAGE: string = "SELECTED_LANGUAGE";
 export const RECEIVED_ERROR_MESSAGE: string = "RECEIVED_ERROR_MESSAGE";
 export const NO_ERRORS: string = "NO_ERRORS";
 export const USER_DATA: string = "USER_DATA";
