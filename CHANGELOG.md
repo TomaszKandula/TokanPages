@@ -1,3 +1,10 @@
+## [0.121.1](https://github.com/TomaszKandula/TokanPages/compare/v0.121.0...v0.121.1) (2024-11-24)
+
+
+### Bug Fixes
+
+* resolve pre-rendering issues ([c81bca8](https://github.com/TomaszKandula/TokanPages/commit/c81bca8227a744cf6b9cdfd7c4033f6e290712d9))
+
 # [0.121.0](https://github.com/TomaszKandula/TokanPages/compare/v0.120.0...v0.121.0) (2024-11-24)
 
 
