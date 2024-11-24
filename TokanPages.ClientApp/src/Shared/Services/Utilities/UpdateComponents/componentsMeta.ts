@@ -10,6 +10,12 @@ export const SetComponentMeta = (pageName?: string, languageId?: string): void =
     meta?.setAttribute(META_ATTRIBUTE, `last-cache: ${pageName}; language: ${languageId};`.toLowerCase());
 };
 
+export const UpdateHtmlLang = (languageId?: string): void => {
+    if (!languageId) return;
+    const html = document.querySelector("html");
+    html?.setAttribute("lang", languageId);
+}
+
 export const HasPageContentLoaded = (pageName?: string, languageId?: string): boolean => {
     if (!pageName || !languageId) {
         return false;
