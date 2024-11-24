@@ -19,7 +19,7 @@ Object {
             >
               <a
                 class="navigation-app-logo-small"
-                href="/"
+                href="/eng"
               >
                 <img
                   alt="image of logo.svg"
@@ -147,7 +147,7 @@ Object {
               >
                 <a
                   class="navigation-app-logo-small"
-                  href="/"
+                  href="/eng"
                 >
                   <img
                     alt="image of logo.svg"
@@ -157,7 +157,7 @@ Object {
                 </a>
                 <a
                   class="navigation-app-logo-large"
-                  href="/"
+                  href="/eng"
                 />
               </div>
               <div
@@ -249,7 +249,7 @@ Object {
           >
             <a
               class="navigation-app-logo-small"
-              href="/"
+              href="/eng"
             >
               <img
                 alt="image of logo.svg"
@@ -377,7 +377,7 @@ Object {
             >
               <a
                 class="navigation-app-logo-small"
-                href="/"
+                href="/eng"
               >
                 <img
                   alt="image of logo.svg"
@@ -387,7 +387,7 @@ Object {
               </a>
               <a
                 class="navigation-app-logo-large"
-                href="/"
+                href="/eng"
               />
             </div>
             <div

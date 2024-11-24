@@ -60,7 +60,7 @@ Object {
                 >
                   <a
                     class="link"
-                    href="/"
+                    href="/en"
                   >
                     <button
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained button Mui-disabled MuiButton-fullWidth Mui-disabled"
@@ -139,7 +139,7 @@ Object {
               >
                 <a
                   class="link"
-                  href="/"
+                  href="/en"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button Mui-disabled MuiButton-fullWidth Mui-disabled"
