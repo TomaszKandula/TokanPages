@@ -8,7 +8,7 @@ import { Item } from "./Models";
 describe("test render function 'RenderSideMenu'", () => {
     const noItems = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} items={undefined}></RenderSideMenu>
+            <RenderSideMenu isAnonymous={true} languageId="en" items={undefined}></RenderSideMenu>
         </BrowserRouter>
     );
 
@@ -18,7 +18,7 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const emptyItems = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} items={[]}></RenderSideMenu>
+            <RenderSideMenu isAnonymous={true} languageId="en" items={[]}></RenderSideMenu>
         </BrowserRouter>
     );
 
@@ -31,7 +31,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "c44bb2cd-ee75-470c-942e-5560e3589102",
             type: "item",
             value: "Home",
-            link: "/",
+            link: "/en",
             icon: "Home",
             enabled: true,
             sideMenu: {
@@ -73,7 +73,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "5d762733-6724-4b4f-bc8c-7ede6baf77d5",
             type: "item",
             value: "Sign in",
-            link: "/signin",
+            link: "/en/signin",
             icon: "Vpn_Key",
             enabled: true,
             sideMenu: {
@@ -89,7 +89,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "bdd33e5c-f942-4b14-96c7-16523f693c1c",
             type: "item",
             value: "Sign up",
-            link: "/signup",
+            link: "/en/signup",
             icon: "Person_Add",
             enabled: true,
             sideMenu: {
@@ -105,7 +105,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "e8284fe7-5ced-46a5-b779-2fe516fe88c2",
             type: "itemspan",
             value: "Account",
-            link: "/account",
+            link: "/en/account",
             icon: "Person",
             enabled: true,
             sideMenu: {
@@ -121,7 +121,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "c4314ddd-4519-4951-92ff-160744b27fec",
                     type: "subitem",
                     value: "User articles",
-                    link: "/userarticles",
+                    link: "/en/userarticles",
                     icon: "Menu_Book",
                     enabled: false,
                     sideMenu: {
@@ -137,7 +137,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "f30d37d8-8c65-4610-a6e5-d9477445788d",
                     type: "subitem",
                     value: "User notes",
-                    link: "/usernotes",
+                    link: "/en/usernotes",
                     icon: "Notes",
                     enabled: false,
                     sideMenu: {
@@ -153,7 +153,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "dfc55ebf-7180-462d-9509-34ca7f87f5b9",
                     type: "subitem",
                     value: "User files",
-                    link: "/userfiles",
+                    link: "/en/userfiles",
                     icon: "File_Copy",
                     enabled: false,
                     sideMenu: {
@@ -169,7 +169,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "20f31599-5bb2-40d0-83b3-ab3aae4e15b2",
                     type: "subitem",
                     value: "User settings",
-                    link: "/account",
+                    link: "/en/account",
                     icon: "Settings",
                     enabled: true,
                     sideMenu: {
@@ -185,7 +185,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "d3ada751-012d-4c58-a4dd-a89c89928338",
                     type: "subitem",
                     value: "Sign out",
-                    link: "/signout",
+                    link: "/en/signout",
                     icon: "Lock",
                     enabled: true,
                     sideMenu: {
@@ -216,7 +216,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "a90bc6a8-237b-40c2-9865-68829e8df1a4",
             type: "item",
             value: "Showcase",
-            link: "/showcase",
+            link: "/en/showcase",
             icon: "Video_Library",
             enabled: true,
             sideMenu: {
@@ -311,7 +311,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "7c3f3893-2ac1-4ee8-94dc-baa44b668ec7",
             type: "item",
             value: "Tech Articles",
-            link: "/articles",
+            link: "/en/articles",
             icon: "Menu_Book",
             enabled: true,
             sideMenu: {
@@ -343,7 +343,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "eb7b1155-04c3-4dfe-b648-5f3e2432e6cc",
                     type: "subitem",
                     value: "Photography",
-                    link: "/photography",
+                    link: "/en/photography",
                     icon: "Photo_Camera",
                     enabled: true,
                     sideMenu: {
@@ -359,7 +359,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "0b349f9f-2c69-446e-9861-314706a0d88f",
                     type: "subitem",
                     value: "Football",
-                    link: "/football",
+                    link: "/en/football",
                     icon: "Sports_Soccer",
                     enabled: true,
                     sideMenu: {
@@ -375,7 +375,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "827994a1-ce3b-4ff7-9452-e48fd4ccedae",
                     type: "subitem",
                     value: "Guitar",
-                    link: "/guitar",
+                    link: "/en/guitar",
                     icon: "Music_Note",
                     enabled: true,
                     sideMenu: {
@@ -391,7 +391,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "7a37afa9-a3a8-48f9-9694-95208f0e683a",
                     type: "subitem",
                     value: "Bicycle",
-                    link: "/bicycle",
+                    link: "/en/bicycle",
                     icon: "Directions_Bike",
                     enabled: true,
                     sideMenu: {
@@ -407,7 +407,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "c3f5a67d-265b-4b86-98d3-2f4b2cc33083",
                     type: "subitem",
                     value: "Electronics",
-                    link: "/electronics",
+                    link: "/en/electronics",
                     icon: "Electrical_Services",
                     enabled: true,
                     sideMenu: {
@@ -438,7 +438,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "8495adf7-2b49-417e-83aa-6dcef4201ac4",
             type: "item",
             value: "Contact",
-            link: "/contact",
+            link: "/en/contact",
             icon: "Contact_Mail",
             enabled: true,
             sideMenu: {
@@ -454,7 +454,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "925cc29a-e0ad-4178-8492-813dedbcc563",
             type: "item",
             value: "About",
-            link: "/about",
+            link: "/en/about",
             icon: "Information_Circle",
             enabled: true,
             sideMenu: {
@@ -483,7 +483,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "eb48d59c-a6a2-4526-914a-21caeb63ca1a",
             type: "item",
             value: "Terms of use",
-            link: "/terms",
+            link: "/en/terms",
             icon: "Gavel",
             enabled: true,
             sideMenu: {
@@ -499,7 +499,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "3b54919c-837e-4efb-afd2-abd1c1d8b53b",
             type: "item",
             value: "Privacy policy",
-            link: "/policy",
+            link: "/en/policy",
             icon: "Policy",
             enabled: true,
             sideMenu: {
@@ -515,7 +515,7 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const menuItemsLogged = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={false} items={items}></RenderSideMenu>
+            <RenderSideMenu isAnonymous={false} languageId="en" items={items}></RenderSideMenu>
         </BrowserRouter>
     );
 
@@ -525,7 +525,7 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const menuItemsAnonymous = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} items={items}></RenderSideMenu>
+            <RenderSideMenu isAnonymous={true} languageId="en" items={items}></RenderSideMenu>
         </BrowserRouter>
     );
 

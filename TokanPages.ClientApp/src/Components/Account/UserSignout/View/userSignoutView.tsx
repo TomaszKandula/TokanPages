@@ -12,6 +12,7 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UserSignoutProps } from "../userSignout";
 
 interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
+    languageId: string;
     caption: string;
     status: string;
     buttonText: string;
@@ -41,7 +42,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                                 </Grid>
                             </div>
                             <div style={{ marginTop: 32 }}>
-                                <Link to="/" className="link">
+                                <Link to={`/${props.languageId}`} className="link">
                                     <Button
                                         fullWidth
                                         variant="contained"

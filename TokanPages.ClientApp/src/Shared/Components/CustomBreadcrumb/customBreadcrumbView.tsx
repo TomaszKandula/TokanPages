@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
 import { UserInfoProps } from "../../../Api/Models";
@@ -60,7 +60,7 @@ const toUpper = (value: string | undefined): string => {
 
 const getHomeText = (navigation: NavigationProps): string => {
     const text = navigation.menu.items.find((item: Item) => {
-        if (item.link === "/") {
+        if (item.link === `/${navigation.language}`) {
             return item;
         }
 
@@ -78,12 +78,12 @@ const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
     let hasHash: boolean = false;
 
     const text = props.navigation.menu.items.find((item: Item) => {
-        if (item.link?.toUpperCase() === rootWithHash.toUpperCase()) {
+        if (item.link?.toUpperCase().includes(rootWithHash.toUpperCase())) {
             hasHash = true;
             return item;
         }
 
-        if (item.link?.toUpperCase() === rootWithSlash.toUpperCase()) {
+        if (item.link?.toUpperCase().includes(rootWithSlash.toUpperCase())) {
             return item;
         }
 
@@ -102,7 +102,7 @@ const pathToSubitemText = (props: PathProps): string => {
     const root = `#${fragments[0]}`;
 
     const itemWithSubitem = props.navigation.menu.items.find((item: Item) => {
-        if (item.link?.toUpperCase() === root.toUpperCase() && item.subitems !== undefined) {
+        if (item.link?.toUpperCase().includes(root.toUpperCase())  && item.subitems !== undefined) {
             return item;
         }
 
@@ -111,7 +111,7 @@ const pathToSubitemText = (props: PathProps): string => {
 
     if (itemWithSubitem?.subitems) {
         const text = itemWithSubitem?.subitems.find((subitem: Subitem) => {
-            if (subitem.link?.toUpperCase() === props.pathname.toUpperCase()) {
+            if (subitem.link?.toUpperCase().includes(props.pathname.toUpperCase())) {
                 return subitem;
             }
 
@@ -129,10 +129,10 @@ const makeStyledBreadcrumb = (
     onClick: () => void,
     navigation: NavigationProps
 ): React.ReactElement[] | null => {
-    const path = pathname.replace(PRERENDER_PATH_PREFIX, "");
-    let fragments = path.split("/");
-    fragments = fragments.filter(e => String(e).trim());
+    const basePathWithLanguageId = `/${navigation.language}`;
+    const path = pathname.replace(PRERENDER_PATH_PREFIX, "").replace(basePathWithLanguageId, "");
 
+    const fragments = path.split("/").filter(e => String(e).trim());
     const rootName = pathToRootText({ pathname: path, navigation });
     const itemName = pathToSubitemText({ pathname: path, navigation });
 
@@ -169,8 +169,8 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     let paramValue = param?.replaceAll("-", " ");
 
     const onBackToRoot = React.useCallback(() => {
-        history.push("/");
-    }, []);
+        history.push(`/${navigation.language}`);
+    }, [navigation.language]);
 
     const onBackToPrevious = React.useCallback(() => {
         history.push(window.location.pathname);

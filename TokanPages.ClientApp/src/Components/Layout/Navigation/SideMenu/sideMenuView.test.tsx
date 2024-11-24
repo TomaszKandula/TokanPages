@@ -10,7 +10,7 @@ describe("test component: menuView", () => {
             id: "8c678e9e-699e-41c7-a93a-587c6a4f41e7",
             type: "item",
             value: "Sign in",
-            link: "/signin",
+            link: "/en/signin",
             icon: "VpnKey",
             enabled: true,
         };
@@ -20,6 +20,7 @@ describe("test component: menuView", () => {
                 drawerState={{ open: false }}
                 closeHandler={jest.fn()}
                 isAnonymous={true}
+                languageId="en"
                 menu={{ image: "", items: [item] }}
             />
         );

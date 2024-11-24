@@ -7,6 +7,7 @@ import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { ReactMouseEvent } from "../../../Shared/types";
+import { MapLanguageId } from "../../../Shared/Services/languageService";
 import { ArticleContent } from "./Helpers/articleContent";
 import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
@@ -28,6 +29,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data.components.templates.templates.articles;
     const content = data.components.article;
 
@@ -47,29 +49,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    let flagImage = "";
-    switch (selection.article.languageIso.toLowerCase()) {
-        case "eng":
-            flagImage = "eng.png";
-            break;
-        case "fra":
-            flagImage = "fra.png";
-            break;
-        case "ger":
-            flagImage = "ger.png";
-            break;
-        case "pol":
-            flagImage = "pol.png";
-            break;
-        case "esp":
-            flagImage = "esp.png";
-            break;
-        case "ukr":
-            flagImage = "ukr.png";
-            break;
-        default:
-            flagImage = "eng.png";
-    }
+    const flagImage = MapLanguageId(selection.article.languageIso);
 
     React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
@@ -124,8 +104,8 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
 
     const backButtonHandler = React.useCallback(() => {
         dispatch(ArticleSelectionAction.reset());
-        history.push("/articles");
-    }, []);
+        history.push(`/${languageId}/articles`);
+    }, [languageId]);
 
     const openPopoverHandler = React.useCallback((event: ReactMouseEvent) => {
         setPopover(event.currentTarget);

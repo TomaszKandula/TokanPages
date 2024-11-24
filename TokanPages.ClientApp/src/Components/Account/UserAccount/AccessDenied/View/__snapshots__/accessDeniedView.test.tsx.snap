@@ -54,7 +54,7 @@ Object {
                 </div>
                 <a
                   class="link"
-                  href="/"
+                  href="/en"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -128,7 +128,7 @@ Object {
               </div>
               <a
                 class="link"
-                href="/"
+                href="/en"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"

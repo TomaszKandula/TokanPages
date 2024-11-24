@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { GetContentManifestDto } from "./Api/Models";
@@ -36,13 +36,13 @@ const App = (props: Properties): React.ReactElement => {
 
     return (
         <ApplicationSession>
-            <Router>
+            <BrowserRouter>
                 <ClearPageStart>
                     <Switch>
-                        <Routes />
+                        <Routes languages={props.manifest?.languages} />
                     </Switch>
                 </ClearPageStart>
-            </Router>
+            </BrowserRouter>
             <ApplicationToast />
             <ApplicationDialogBox />
             <ApplicationUserInfo />

@@ -1,6 +1,7 @@
 export {
+    UpdateHtmlLang,
     UpdateComponents,
-    ComponentsCheck,
+    GetVerifiedComponents,
     SetComponentMeta,
     GetComponentMeta,
     HasPageContentLoaded,

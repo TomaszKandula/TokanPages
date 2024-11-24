@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText } from "../../../Shared/Services/Utilities";
+import { MapLanguageId } from "../../../Shared/Services/languageService";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api/Request";
 import { ArticleCardView } from "./View/articleCardView";
 
@@ -16,6 +17,7 @@ interface ArticleCardProps {
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.article);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);
     const imageUrl = GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id);
@@ -25,32 +27,10 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
 
     const onClickEvent = React.useCallback(() => {
         dispatch(ArticleSelectionAction.select({ id: props.id }));
-        history.push(articleUrl);
-    }, [props.id, articleUrl]);
+        history.push(`/${languageId}${articleUrl}`);
+    }, [props.id, languageId, articleUrl]);
 
-    let flagImage = "";
-    switch (props.languageIso.toLowerCase()) {
-        case "eng":
-            flagImage = "eng.png";
-            break;
-        case "fra":
-            flagImage = "fra.png";
-            break;
-        case "ger":
-            flagImage = "ger.png";
-            break;
-        case "pol":
-            flagImage = "pol.png";
-            break;
-        case "esp":
-            flagImage = "esp.png";
-            break;
-        case "ukr":
-            flagImage = "ukr.png";
-            break;
-        default:
-            flagImage = "eng.png";
-    }
+    const flagImage = MapLanguageId(props.languageIso);
 
     return (
         <ArticleCardView
