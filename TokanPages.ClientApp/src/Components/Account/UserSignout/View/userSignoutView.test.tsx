@@ -10,6 +10,7 @@ describe("test account group component: userSignoutView", () => {
             <BrowserRouter>
                 <UserSignoutView
                     isLoading={false}
+                    languageId="en"
                     caption="Sign out"
                     status="Signing out current user..., please wait."
                     buttonText={"Go back to main"}
