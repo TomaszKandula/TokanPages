@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
 import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
+import Validate from "validate.js";
 
 export const MapLanguageId = (input: string): string => {
     switch (input.toLowerCase()) {
@@ -21,6 +22,20 @@ export const MapLanguageId = (input: string): string => {
     }
 }
 
+export const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
+    if (Validate.isEmpty(id)) {
+        return false;
+    }
+
+    for (let index in items) {
+        if (items[index].id === id) {
+            return true;
+        }
+    }
+
+    return false;
+};
+
 export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     for (let index in items) {
         if (items[index].isDefault) {
@@ -34,11 +49,17 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
 export const UpdateUserLanguage = (manifest: GetContentManifestDto | undefined): void => {
     if (manifest === undefined) return;
 
+    const dispatch = useDispatch();
     const languages = manifest.languages;
     const defaultId = GetDefaultId(languages);
+    const pathname = window.location.pathname;
+    const paths = pathname.split("/").filter(e => String(e).trim());
 
-    if (defaultId !== undefined) {
-        const dispatch = useDispatch();
+    if (paths.length > 0 && IsLanguageIdValid(paths[0], languages)) {
+        dispatch(ApplicationLanguageAction.set({ id: paths[0], languages: languages }));
+    } else if (defaultId) {
+        const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
+        window.history.pushState({}, "", urlWithDefaultLanguageId);
         dispatch(ApplicationLanguageAction.set({ id: defaultId, languages: languages }));
     }
 };
