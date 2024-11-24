@@ -10,12 +10,14 @@ export const SetComponentMeta = (pageName?: string, languageId?: string): void =
     meta?.setAttribute(META_ATTRIBUTE, `last-cache: ${pageName}; language: ${languageId};`.toLowerCase());
 };
 
-export const HasPageContentLoaded = (pageName?: string): boolean => {
-    if (!pageName) {
+export const HasPageContentLoaded = (pageName?: string, languageId?: string): boolean => {
+    if (!pageName || !languageId) {
         return false;
     }
 
     const page = pageName.toLocaleLowerCase();
+    const lang = languageId.toLocaleLowerCase();
     const meta = GetComponentMeta().toLocaleLowerCase();
-    return meta.includes(page);
+
+    return meta.includes(page) && meta.includes(lang);
 };
