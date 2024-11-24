@@ -55,8 +55,12 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto | undefined):
     const pathname = window.location.pathname;
     const paths = pathname.split("/").filter(e => String(e).trim());
 
-    if (paths.length > 0 && IsLanguageIdValid(paths[0], languages)) {
-        dispatch(ApplicationLanguageAction.set({ id: paths[0], languages: languages }));
+    if (paths.length > 0) {
+        if (paths[0] === "snapshot") {
+            dispatch(ApplicationLanguageAction.set({ id: paths[1], languages: languages }));
+        } else if (IsLanguageIdValid(paths[0], languages)) {
+            dispatch(ApplicationLanguageAction.set({ id: paths[0], languages: languages }));
+        }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
         window.history.pushState({}, "", urlWithDefaultLanguageId);
