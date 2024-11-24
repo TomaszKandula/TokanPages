@@ -1,6 +1,6 @@
 export {
     UpdateComponents,
-    ComponentsCheck,
+    GetVerifiedComponents,
     SetComponentMeta,
     GetComponentMeta,
     HasPageContentLoaded,
