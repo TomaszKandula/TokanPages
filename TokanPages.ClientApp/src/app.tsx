@@ -1,14 +1,13 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { GetContentManifestDto } from "./Api/Models";
-import { UpdateUserData } from "./Shared/Services/initializeService";
-import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
-import { UpdateUserLanguage } from "./Shared/Services/languageService";
+import { ApplicationState } from "./Store/Configuration";
+import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
+import { EnsureDefaultLanguageRoot, UpdateUserLanguage } from "./Shared/Services/languageService";
+import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
 import { Routes } from "./routes";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import {
     ClearPageStart,
     ScrollToTop,
@@ -22,24 +21,18 @@ interface Properties {
     manifest: GetContentManifestDto | undefined;
 }
 
-const App = (props: Properties): React.ReactElement => {
-    const hasSnapshotMode = HasSnapshotMode();
+interface RenderApplicationProps {
+    languages: LanguageItemDto[] | undefined;
+}
 
-    UpdateUserData();
-    UpdateUserLanguage(props.manifest);
-
-    React.useEffect(() => {
-        AOS.init({ once: !hasSnapshotMode, disable: hasSnapshotMode });
-        const intervalId = setInterval(() => AOS.refresh(), 900);
-        return () => clearInterval(intervalId);
-    }, [hasSnapshotMode]);
-
+const RenderApplication = (props: RenderApplicationProps) => {
+    console.log(props);
     return (
         <ApplicationSession>
             <BrowserRouter>
                 <ClearPageStart>
                     <Switch>
-                        <Routes languages={props.manifest?.languages} />
+                        <Routes languages={props.languages} />
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
@@ -53,6 +46,32 @@ const App = (props: Properties): React.ReactElement => {
             </ScrollToTop>
         </ApplicationSession>
     );
+}
+
+const App = (props: Properties): React.ReactElement => {
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        EnsureUserData(dispatch);
+    }, []);
+
+    React.useEffect(() => {
+        const intervalId = InitializeAnimations();
+        return () => clearInterval(intervalId);
+    }, []);
+
+    if (!props.manifest) {
+        /* Pre-rendered SPA */
+        const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+        EnsureDefaultLanguageRoot(language.id);
+
+        return <RenderApplication languages={language.languages} />
+    } else {
+        /* Normal mode */
+        UpdateUserLanguage(props.manifest, dispatch);
+    }
+
+    return <RenderApplication languages={props.manifest?.languages} />
 };
 
 export default App;
