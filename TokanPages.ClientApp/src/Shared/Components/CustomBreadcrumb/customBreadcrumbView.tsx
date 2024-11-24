@@ -132,9 +132,7 @@ const makeStyledBreadcrumb = (
     const basePathWithLanguageId = `/${navigation.language}`;
     const path = pathname.replace(PRERENDER_PATH_PREFIX, "").replace(basePathWithLanguageId, "");
 
-    let fragments = path.split("/");
-    fragments = fragments.filter(e => String(e).trim());
-
+    const fragments = path.split("/").filter(e => String(e).trim());
     const rootName = pathToRootText({ pathname: path, navigation });
     const itemName = pathToSubitemText({ pathname: path, navigation });
 
