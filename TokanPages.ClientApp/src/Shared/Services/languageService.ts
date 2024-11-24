@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
 import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
 import Validate from "validate.js";
@@ -46,10 +46,15 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     return undefined;
 };
 
-export const UpdateUserLanguage = (manifest: GetContentManifestDto | undefined): void => {
-    if (manifest === undefined) return;
+export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
+    const pathname = window.location.pathname;
+    if (pathname === "/") {
+        const urlWithLanguageId = `${window.location.href}${preloadedLanguageId}`;
+        window.history.pushState({}, "", urlWithLanguageId);
+    }
+}
 
-    const dispatch = useDispatch();
+export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
     const defaultId = GetDefaultId(languages);
     const pathname = window.location.pathname;
