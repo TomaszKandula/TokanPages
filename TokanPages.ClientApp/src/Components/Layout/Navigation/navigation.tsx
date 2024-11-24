@@ -37,6 +37,11 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const languageHandler = React.useCallback(
         (event: LanguageChangeEvent) => {
             const value = event.target.value as string;
+            const pathname = window.location.pathname;
+            const paths = pathname.split("/").filter(e => String(e).trim());
+            const newUrl = window.location.href.replace(`/${paths[0]}`, `/${value}`);
+
+            window.history.pushState({}, "", newUrl);
             dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
         },
         [language?.languages]
