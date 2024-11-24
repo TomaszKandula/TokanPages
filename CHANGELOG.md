@@ -1,3 +1,20 @@
+# [0.121.0](https://github.com/TomaszKandula/TokanPages/compare/v0.120.0...v0.121.0) (2024-11-24)
+
+
+### Features
+
+* account snapshot mode ([6fcc047](https://github.com/TomaszKandula/TokanPages/commit/6fcc047ff8a6786d61f3366437220af4c6fe916e))
+* add language mapper ([7e03ad3](https://github.com/TomaszKandula/TokanPages/commit/7e03ad3e8e1a62643f0b51653dfd8894c97c4037))
+* check language ID ([c8fd388](https://github.com/TomaszKandula/TokanPages/commit/c8fd3881ad1c2d4a1e9df859e37291f76fc97b8d))
+* consolidate functionality in main language method ([9d982d1](https://github.com/TomaszKandula/TokanPages/commit/9d982d1c132e54039a07643457eeabe946b82911))
+* take into account language id in the route path ([6624f44](https://github.com/TomaszKandula/TokanPages/commit/6624f44c671d618777a21dd0f2dcba656310291b))
+* update allowed paths ([b765879](https://github.com/TomaszKandula/TokanPages/commit/b7658797c55b5401a60eed1e84b406a45664d03e))
+* update filenames ([51c1a5f](https://github.com/TomaszKandula/TokanPages/commit/51c1a5f6e4120f0e958b3cc22bee810945430e94))
+* update html tag on language change ([2957359](https://github.com/TomaszKandula/TokanPages/commit/29573596656aea8b030a84fce8dc22a7dc05c345))
+* update nginx paths ([808016c](https://github.com/TomaszKandula/TokanPages/commit/808016c45577690ae6bdbf34541f1488889da6ce))
+* update url when language is changed ([2e46c04](https://github.com/TomaszKandula/TokanPages/commit/2e46c04026b519c3053d0a34efd57eee81b16af2))
+* use language prefix in route paths ([32ba836](https://github.com/TomaszKandula/TokanPages/commit/32ba83678ce84d297f7f6b40822194b5abdcb592))
+
 # [0.120.0](https://github.com/TomaszKandula/TokanPages/compare/v0.119.0...v0.120.0) (2024-11-21)
 
 
