@@ -3,7 +3,7 @@ import { ApplicationDefault } from "../../Configuration";
 import { ContentPageDataState } from "../../States";
 import { ContentPageData as ContentPageDataDefault } from "../../Defaults";
 import { OperationStatus } from "../../../Shared/enums";
-import { UpdateComponents, SetComponentMeta } from "../../../Shared/Services/Utilities";
+import { UpdateComponents, SetComponentMeta, UpdateHtmlLang } from "../../../Shared/Services/Utilities";
 import { TKnownActions, CLEAR, RECEIVE, REQUEST } from "../../Actions/Content/contentPageData";
 
 export const ContentPageData: Reducer<ContentPageDataState> = (
@@ -27,6 +27,7 @@ export const ContentPageData: Reducer<ContentPageDataState> = (
             };
         case RECEIVE:
             SetComponentMeta(action.payload.pageName, action.payload.language);
+            UpdateHtmlLang(action.payload.language);
             return {
                 status: OperationStatus.hasFinished,
                 isLoading: false,

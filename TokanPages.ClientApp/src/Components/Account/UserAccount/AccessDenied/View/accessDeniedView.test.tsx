@@ -10,6 +10,7 @@ describe("test account group component: accessDeniedView", () => {
             <BrowserRouter>
                 <AccessDeniedView
                     isLoading={false}
+                    languageId="en"
                     accessDeniedCaption={"Access Denied"}
                     accessDeniedPrompt={
                         "<p>You do not have access to this page.</p><p>If you believe this is an error, please contact IT support.</p>"

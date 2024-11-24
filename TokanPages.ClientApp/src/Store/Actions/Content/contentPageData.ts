@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RequestPageDataResultDto } from "../../../Api/Models";
-import { ComponentsCheck, HasPageContentLoaded } from "../../../Shared/Services/Utilities";
+import { GetVerifiedComponents, HasPageContentLoaded } from "../../../Shared/Services/Utilities";
 import { Execute, ExecuteContract, GetConfiguration, REQUEST_PAGE_DATA, RequestContract } from "../../../Api/Request";
 
 export const CLEAR = "CLEAR_PAGE_DATA";
@@ -29,8 +29,8 @@ export const ContentPageDataAction = {
 
             const state = getState().contentPageData;
             const languageId = getState().applicationLanguage.id;
-            const hasComponent = ComponentsCheck({ components, state, languageId });
-            if (!hasComponent) {
+            const verifiedComponents = GetVerifiedComponents({ components, state, languageId });
+            if (!verifiedComponents) {
                 return;
             }
 
@@ -41,7 +41,7 @@ export const ContentPageDataAction = {
                     method: "POST",
                     url: REQUEST_PAGE_DATA,
                     data: {
-                        components: hasComponent,
+                        components: verifiedComponents,
                         language: languageId,
                         pageName: pageName,
                     },

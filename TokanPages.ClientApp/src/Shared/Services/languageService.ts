@@ -1,21 +1,28 @@
 import { useDispatch } from "react-redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
 import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
-import { SELECTED_LANGUAGE } from "../constants";
-import { GetDataFromStorage } from "./StorageServices";
 import Validate from "validate.js";
 
-const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
-    for (let index in items) {
-        if (items[index].isDefault) {
-            return items[index].id;
-        }
+export const MapLanguageId = (input: string): string => {
+    switch (input.toLowerCase()) {
+        case "eng":
+            return "en.png";
+        case "fra":
+            return "fr.png";
+        case "ger":
+            return "de.png";
+        case "pol":
+            return "pl.png";
+        case "esp":
+            return "es.png";
+        case "ukr":
+            return "uk.png";
+        default: 
+            return "en.png";
     }
+}
 
-    return undefined;
-};
-
-const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
+export const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
     if (Validate.isEmpty(id)) {
         return false;
     }
@@ -29,40 +36,34 @@ const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
     return false;
 };
 
-export const MapToPayULanguageId = (iso: string): string => {
-    const currencyIso = iso.toLowerCase();
-    switch (currencyIso) {
-        case "pol":
-            return "pl";
-        case "ukr":
-            return "uk";
-        case "eng":
-            return "en";
-        case "fra":
-            return "fr";
-        case "spa":
-            return "es";
-        case "ger":
-            return "de";
-
-        default:
-            return "pl";
+export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
+    for (let index in items) {
+        if (items[index].isDefault) {
+            return items[index].id;
+        }
     }
+
+    return undefined;
 };
 
 export const UpdateUserLanguage = (manifest: GetContentManifestDto | undefined): void => {
     if (manifest === undefined) return;
 
+    const dispatch = useDispatch();
     const languages = manifest.languages;
     const defaultId = GetDefaultId(languages);
+    const pathname = window.location.pathname;
+    const paths = pathname.split("/").filter(e => String(e).trim());
 
-    if (defaultId === undefined) {
-        throw new Error("Cannot find the default language ID.");
+    if (paths.length > 0) {
+        if (paths[0] === "snapshot") {
+            dispatch(ApplicationLanguageAction.set({ id: paths[1], languages: languages }));
+        } else if (IsLanguageIdValid(paths[0], languages)) {
+            dispatch(ApplicationLanguageAction.set({ id: paths[0], languages: languages }));
+        }
+    } else if (defaultId) {
+        const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
+        window.history.pushState({}, "", urlWithDefaultLanguageId);
+        dispatch(ApplicationLanguageAction.set({ id: defaultId, languages: languages }));
     }
-
-    const preservedId = GetDataFromStorage({ key: SELECTED_LANGUAGE }) as string;
-    const languageId = IsLanguageIdValid(preservedId, languages) ? preservedId : defaultId;
-
-    const dispatch = useDispatch();
-    dispatch(ApplicationLanguageAction.set({ id: languageId, languages: languages }));
 };

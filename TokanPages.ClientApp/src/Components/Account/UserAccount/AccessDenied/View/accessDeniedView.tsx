@@ -10,6 +10,7 @@ import { AccessDeniedProps } from "../accessDenied";
 
 interface AccessDeniedViewProps extends AccessDeniedProps {
     isLoading: boolean;
+    languageId: string;
     accessDeniedCaption: string;
     accessDeniedPrompt: string;
     homeButtonText: string;
@@ -22,7 +23,7 @@ interface CustomDividerProps {
 
 const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
-        <Link to="/" className="link">
+        <Link to={`/${props.languageId}`} className="link">
             <Button fullWidth variant="contained" className="button" disabled={props.isLoading}>
                 {props.homeButtonText}
             </Button>

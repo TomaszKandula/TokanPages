@@ -6,7 +6,7 @@ interface ComponentsCheckProps {
     languageId: string;
 }
 
-export const ComponentsCheck = (props: ComponentsCheckProps): string[] | undefined => {
+export const GetVerifiedComponents = (props: ComponentsCheckProps): string[] | undefined => {
     let result: string[] = [];
 
     props.components.forEach(item => {

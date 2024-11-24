@@ -81,7 +81,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/"
+          href="/en"
           role="button"
           tabindex="0"
         >
@@ -150,7 +150,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/showcase"
+          href="/en/showcase"
           role="button"
           tabindex="0"
         >
@@ -220,7 +220,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/articles"
+          href="/en/articles"
           role="button"
           tabindex="0"
         >
@@ -286,7 +286,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/contact"
+          href="/en/contact"
           role="button"
           tabindex="0"
         >
@@ -313,7 +313,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/about"
+          href="/en/about"
           role="button"
           tabindex="0"
         >
@@ -343,7 +343,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/terms"
+          href="/en/terms"
           role="button"
           tabindex="0"
         >
@@ -370,7 +370,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/policy"
+          href="/en/policy"
           role="button"
           tabindex="0"
         >
@@ -404,7 +404,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/"
+          href="/en"
           role="button"
           tabindex="0"
         >
@@ -434,7 +434,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/signin"
+          href="/en/signin"
           role="button"
           tabindex="0"
         >
@@ -461,7 +461,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/signup"
+          href="/en/signup"
           role="button"
           tabindex="0"
         >
@@ -491,7 +491,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/showcase"
+          href="/en/showcase"
           role="button"
           tabindex="0"
         >
@@ -561,7 +561,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/articles"
+          href="/en/articles"
           role="button"
           tabindex="0"
         >
@@ -627,7 +627,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/contact"
+          href="/en/contact"
           role="button"
           tabindex="0"
         >
@@ -654,7 +654,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/about"
+          href="/en/about"
           role="button"
           tabindex="0"
         >
@@ -684,7 +684,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/terms"
+          href="/en/terms"
           role="button"
           tabindex="0"
         >
@@ -711,7 +711,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/policy"
+          href="/en/policy"
           role="button"
           tabindex="0"
         >

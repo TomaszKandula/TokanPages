@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_IMAGE } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
 import { LanguageChangeEvent } from "../../../Shared/types";
-import { SetDataInStorage } from "../../../Shared/Services/StorageServices";
-import { SELECTED_LANGUAGE } from "../../../Shared/constants";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
@@ -39,7 +37,11 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const languageHandler = React.useCallback(
         (event: LanguageChangeEvent) => {
             const value = event.target.value as string;
-            SetDataInStorage({ selection: value, key: SELECTED_LANGUAGE });
+            const pathname = window.location.pathname;
+            const paths = pathname.split("/").filter(e => String(e).trim());
+            const newUrl = window.location.href.replace(`/${paths[0]}`, `/${value}`);
+
+            window.history.pushState({}, "", newUrl);
             dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
         },
         [language?.languages]

@@ -1,7 +1,3 @@
-import { GetDataFromStorage } from "./Shared/Services/StorageServices";
-import { SELECTED_LANGUAGE } from "./Shared/constants";
-import Validate from "validate.js";
-
 const selfXssWarnignConfig = {
     banner: {
         color: "#ec0000",
@@ -33,8 +29,9 @@ const selfXssWarningContent = {
 };
 
 export const printSelfXssWarning = (): void => {
-    const id = GetDataFromStorage({ key: SELECTED_LANGUAGE });
-    const languageId = !Validate.isString(id) ? "eng" : (id as "eng" | "pol");
+    const url = window.location.href;
+    const isPolishSelected = url.includes("/pl");
+    const languageId = isPolishSelected ? "pol" : ("eng");
     const translations = selfXssWarningContent[languageId];
 
     setTimeout(() => {
