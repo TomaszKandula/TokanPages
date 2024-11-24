@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { OperationStatus } from "../../../../Shared/enums";
 import { ApplicationDialogAction, UserDataStoreAction, UserUpdateAction } from "../../../../Store/Actions";
@@ -20,6 +20,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data.components.templates;
     const account = data.components.account;
 
@@ -60,7 +61,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
             showSuccess(template.templates.user.deactivation);
             dispatch(UserDataStoreAction.clear());
             dispatch(UserUpdateAction.clear());
-            history.push("/");
+            history.push(`/${languageId}`);
         }
     }, [store, template, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
 

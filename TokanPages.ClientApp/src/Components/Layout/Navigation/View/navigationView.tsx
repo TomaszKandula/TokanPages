@@ -140,12 +140,12 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
     return (
         <Toolbar className="navigation-tool-bar">
             <div className="navigation-nav-menu navigation-nav-left">
-                <Link to="/" className="navigation-app-logo-small">
+                <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
                     {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-left-logo")}
                 </Link>
             </div>
             <div className="navigation-nav-items navigation-nav-centre">
-                <RenderNavbarMenu isAnonymous={props.isAnonymous} items={props.menu?.items} />
+                <RenderNavbarMenu isAnonymous={props.isAnonymous} languageId={props.languageId} items={props.menu?.items} />
             </div>
             <div className="navigation-nav-items navigation-nav-right">
                 {props.isLoading ? null : <RenderContent {...props} />}
@@ -162,10 +162,10 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                     {props.isLoading ? null : <RenderMenuIcon {...props} />}
                 </Grid>
                 <Grid item xs className="navigation-nav-items navigation-nav-centre">
-                    <Link to="/" className="navigation-app-logo-small">
+                    <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
                         {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-full-logo")}
                     </Link>
-                    <Link to="/" className="navigation-app-logo-large">
+                    <Link to={`/${props.languageId}`} className="navigation-app-logo-large">
                         {RenderImage(GET_ICONS_URL, props?.menu?.image, "navigation-app-just-logo")}
                     </Link>
                 </Grid>
@@ -178,12 +178,14 @@ const RenderToolbarSmallScreen = (props: Properties) => {
 };
 
 export const NavigationView = (props: Properties): React.ReactElement => {
+    const mainPath = `/${props.languageId}`;
+    const navigationPath = props.backPathFragment === undefined ? mainPath : `${mainPath}${props.backPathFragment}`;
     return (
         <HideOnScroll {...props}>
             {props.backNavigationOnly ? (
                 <AppBar className="navigation-app-bar" elevation={0}>
                     <div>
-                        <Link to={props.backPathFragment ?? "/"}>
+                        <Link to={navigationPath}>
                             <IconButton className="navigation-nav-back">
                                 <ArrowBack />
                             </IconButton>
@@ -202,6 +204,7 @@ export const NavigationView = (props: Properties): React.ReactElement => {
                         drawerState={props.drawerState}
                         closeHandler={props.closeHandler}
                         isAnonymous={props.isAnonymous}
+                        languageId={props.languageId}
                         menu={props.menu}
                     />
                 </AppBar>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { OperationStatus } from "../../../../Shared/enums";
@@ -27,6 +27,7 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data.components.templates;
     const account = data.components.account;
 
@@ -47,8 +48,8 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
         dispatch(UserDataStoreAction.clear());
 
         setHasProgress(false);
-        history.push("/");
-    }, [hasProgress]);
+        history.push(`/${languageId}`);
+    }, [hasProgress, languageId]);
 
     React.useEffect(() => {
         if (hasError) {

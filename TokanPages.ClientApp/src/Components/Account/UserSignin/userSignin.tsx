@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
@@ -33,6 +33,7 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     const signin = useSelector((state: ApplicationState) => state.userSignin);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data?.components.templates;
     const content = data?.components.userSignin;
 
@@ -72,9 +73,9 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
 
         if (hasFinished) {
             clearForm();
-            history.push("/");
+            history.push(`/${languageId}`);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, languageId]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {

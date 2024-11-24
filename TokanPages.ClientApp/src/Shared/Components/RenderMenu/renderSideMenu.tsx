@@ -6,6 +6,7 @@ import { Divider } from "@material-ui/core";
 
 interface Properties {
     isAnonymous: boolean;
+    languageId: string;
     items: Item[] | undefined;
 }
 
@@ -24,8 +25,8 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
 
     let renderBuffer: React.ReactElement[] = [];
     props.items.forEach(item => {
-        const isAnonymous = props.isAnonymous && item.link === "/account";
-        const isNotAnonymous = !props.isAnonymous && (item.link === "/signin" || item.link === "/signup");
+        const isAnonymous = props.isAnonymous && item.link === `/${props.languageId}/account`;
+        const isNotAnonymous = !props.isAnonymous && (item.link === `/${props.languageId}/signin` || item.link === `/${props.languageId}/signup`);
 
         switch (item.type) {
             case "item": {

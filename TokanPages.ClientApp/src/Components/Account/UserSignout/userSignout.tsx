@@ -19,6 +19,7 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const signout = useSelector((state: ApplicationState) => state.userSignout);
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const contentData = data.components.userSignout;
 
     const isUserTokenRevoked = signout.userTokenStatus === OperationStatus.hasFinished;
@@ -48,6 +49,7 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     return (
         <UserSignoutView
             isLoading={data?.isLoading}
+            languageId={languageId}
             caption={contentData?.caption}
             status={status}
             buttonText={contentData?.buttonText}

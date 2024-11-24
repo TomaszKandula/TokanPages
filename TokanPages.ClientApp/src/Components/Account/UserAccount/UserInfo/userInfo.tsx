@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import {
@@ -41,6 +41,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const verification = useSelector((state: ApplicationState) => state.userEmailVerification);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = contentPageData.components.templates;
     const account = contentPageData.components.account;
 
@@ -78,9 +79,9 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         if (!isUserActivated.checked) {
             dispatch(UserSigninAction.clear());
             dispatch(UserDataStoreAction.clear());
-            history.push("/");
+            history.push(`/${languageId}`);
         }
-    }, [hasProgress]);
+    }, [hasProgress, languageId]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
