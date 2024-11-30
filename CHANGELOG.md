@@ -1,3 +1,10 @@
+## [0.122.1](https://github.com/TomaszKandula/TokanPages/compare/v0.122.0...v0.122.1) (2024-11-30)
+
+
+### Bug Fixes
+
+* relocate key ([0b02af8](https://github.com/TomaszKandula/TokanPages/commit/0b02af855bf507c472d94c2f074749fd67a73fc2))
+
 # [0.122.0](https://github.com/TomaszKandula/TokanPages/compare/v0.121.1...v0.122.0) (2024-11-30)
 
 
