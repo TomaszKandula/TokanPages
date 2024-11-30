@@ -1,3 +1,20 @@
+# [0.122.0](https://github.com/TomaszKandula/TokanPages/compare/v0.121.1...v0.122.0) (2024-11-30)
+
+
+### Bug Fixes
+
+* remove console.log ([f00fbd0](https://github.com/TomaszKandula/TokanPages/commit/f00fbd01d9fc85825fba3b6a2f13f375f587aee4))
+
+
+### Features
+
+* add fonts, skip external calls ([07e8dbf](https://github.com/TomaszKandula/TokanPages/commit/07e8dbf928789ce8763c0bc9ab6c95795f26df38))
+* add meta data ([cdda900](https://github.com/TomaszKandula/TokanPages/commit/cdda900572455a1725ce7daa2168e31a4b87abea))
+* change cache params ([d6d8e99](https://github.com/TomaszKandula/TokanPages/commit/d6d8e9914f96ef1fc119767214dfbdd862c4c0e1))
+* improve render image ([4427a0c](https://github.com/TomaszKandula/TokanPages/commit/4427a0c81da66f31371429632cca180368f7b51f))
+* nginx config upgrade for performance ([0fe137d](https://github.com/TomaszKandula/TokanPages/commit/0fe137d7eb96b71f32cff2fa8e68491fab0d9eec))
+* update paths ([fda7191](https://github.com/TomaszKandula/TokanPages/commit/fda7191d6c5acb16899507a524173b0f397eeb54))
+
 ## [0.121.1](https://github.com/TomaszKandula/TokanPages/compare/v0.121.0...v0.121.1) (2024-11-24)
 
 
