@@ -22,7 +22,7 @@ export const ArticleCardView = (props: Properties): React.ReactElement => {
         <div data-aos="fade-up">
             <Card elevation={0} className="article-card">
                 <CardMedia image={props.imageUrl} className="article-card-image">
-                    {RenderImage(GET_FLAG_URL, props.flagImage, "article-flag-image")}
+                    <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
                 </CardMedia>
                 <CardContent>
                     <Typography gutterBottom={true} className="article-card-title">

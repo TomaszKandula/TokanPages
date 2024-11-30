@@ -106,7 +106,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
     const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
         return (
             <div className="navigation-languages-wrapper">
-                {RenderImage(GET_FLAG_URL, `${value}.png`, "navigation-flag-image")}
+                <RenderImage basePath={GET_FLAG_URL} imageSource={`${value}.png`} className="navigation-flag-image" />
                 <div>{toUpper(value)}</div>
             </div>
         );
@@ -125,7 +125,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         <div className="navigation-languages-wrapper">
-                            {RenderImage(GET_FLAG_URL, `${item.id}.png`, "navigation-flag-image")}
+                            <RenderImage basePath={GET_FLAG_URL} imageSource={`${item.id}.png`} className="navigation-flag-image" />
                             <div>{item.name}</div>
                             {renderIcon(item.id)}
                         </div>
@@ -141,7 +141,7 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
         <Toolbar className="navigation-tool-bar">
             <div className="navigation-nav-menu navigation-nav-left">
                 <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
-                    {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-left-logo")}
+                    <RenderImage basePath={GET_ICONS_URL} imageSource={props?.logoImgName} className="navigation-app-left-logo"/>
                 </Link>
             </div>
             <div className="navigation-nav-items navigation-nav-centre">
@@ -163,10 +163,10 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                 </Grid>
                 <Grid item xs className="navigation-nav-items navigation-nav-centre">
                     <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
-                        {RenderImage(GET_ICONS_URL, props?.logoImgName, "navigation-app-full-logo")}
+                        <RenderImage basePath={GET_ICONS_URL} imageSource={props?.logoImgName} className="navigation-app-full-logo" />
                     </Link>
                     <Link to={`/${props.languageId}`} className="navigation-app-logo-large">
-                        {RenderImage(GET_ICONS_URL, props?.menu?.image, "navigation-app-just-logo")}
+                        <RenderImage basePath={GET_ICONS_URL} imageSource={props?.menu?.image} className="navigation-app-just-logo" />
                     </Link>
                 </Grid>
                 <Grid item xs className="navigation-nav-items navigation-nav-right">
