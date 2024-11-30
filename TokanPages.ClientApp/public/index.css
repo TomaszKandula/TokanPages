@@ -634,11 +634,9 @@ body::backdrop {
 }
 
 .clients-logo {
-    height: 50px;
     padding-left: 5%;
     padding-right: 5%;
     margin-bottom: 32px;
-    color: #9E9E9E;
 }
 
 @media (max-width: 899.95px) {
@@ -1082,6 +1080,7 @@ body::backdrop {
 
 .navigation-app-left-logo {
     height: 30px !important;
+    width: 181px !important;
     align-self: center !important;
 }
 

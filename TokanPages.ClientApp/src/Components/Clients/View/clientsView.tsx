@@ -4,7 +4,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { Container, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../../Store/Configuration";
 import { GET_ICONS_URL } from "../../../Api/Request";
-import { ClientsContentDto } from "../../../Api/Models";
+import { ClientImageDto, ClientsContentDto } from "../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
@@ -28,8 +28,16 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", paddingTop: 32 }}>
-            {props?.images?.map((item: string, _index: number) => (
-                <img key={uuidv4()} src={getImagePath(item)} alt={`image of ${item}`} className="clients-logo" />
+            {props?.images?.map((item: ClientImageDto, _index: number) => (
+                <div className="clients-logo">
+                    <img 
+                        key={uuidv4()}
+                        src={getImagePath(item.path)}
+                        alt={`image of ${item.path}`}
+                        height={item.heigh}
+                        width={item.width}
+                    />
+                </div>
             ))}
         </div>
     );

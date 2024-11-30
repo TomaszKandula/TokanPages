@@ -1,9 +1,7 @@
 using System.Text;
 using PuppeteerSharp;
 using PuppeteerSharp.BrowserData;
-using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
