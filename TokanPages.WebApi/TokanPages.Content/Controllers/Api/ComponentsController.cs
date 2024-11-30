@@ -45,7 +45,7 @@ public class ComponentsController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpGet]
     [ETagFilter]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "name", "language", "noCache" })]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 31536000, VaryByQueryKeys = new [] { "name", "language", "noCache" })]
     [ProducesResponseType(typeof(GetContentQueryResult), StatusCodes.Status200OK)]
     public async Task<GetContentQueryResult> GetContent(
         [FromQuery] string? language,

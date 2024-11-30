@@ -35,7 +35,7 @@ public class AssetsController : ApiBaseController
     /// <returns>File</returns>
     [HttpGet]
     [ETagFilter]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new [] { "id", "assetName" })]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 31536000, VaryByQueryKeys = new [] { "id", "assetName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetArticleAsset([FromQuery] string id = "", string assetName = "")
         => await Mediator.Send(new GetArticleAssetQuery { Id = id, AssetName = assetName });
@@ -51,7 +51,7 @@ public class AssetsController : ApiBaseController
     /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 86400, VaryByQueryKeys = new[] { "blobName" })]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 31536000, VaryByQueryKeys = new[] { "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetNonVideoAsset([FromQuery] string blobName, [FromQuery] bool? canDownload = default)
     {
