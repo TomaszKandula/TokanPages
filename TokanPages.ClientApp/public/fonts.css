@@ -4,7 +4,7 @@
     font-family: "Material Icons";
     font-style: normal;
     font-weight: 400;
-    src: url(font_mui.woff2) format('woff2');
+    src: url(fonts/font-material-ui.woff2) format('woff2');
 }
 
 .material-icons {
