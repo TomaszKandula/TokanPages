@@ -26,7 +26,6 @@ interface RenderApplicationProps {
 }
 
 const RenderApplication = (props: RenderApplicationProps) => {
-    console.log(props);
     return (
         <ApplicationSession>
             <BrowserRouter>

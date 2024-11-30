@@ -1,8 +1,22 @@
 import * as React from "react";
 import validate from "validate.js";
 
-export const RenderImage = (basePath: string, imageSource: string, className: string): React.ReactElement | null => {
-    return validate.isEmpty(imageSource) || validate.isEmpty(basePath) ? null : (
-        <img src={`${basePath}/${imageSource}`} className={className} alt={`image of ${imageSource}`} />
+interface RenderImageProps {
+    basePath: string;
+    imageSource: string;
+    className: string;
+    width?: number;
+    height?: number;
+}
+
+export const RenderImage = (props: RenderImageProps): React.ReactElement | null => {
+    return validate.isEmpty(props.imageSource) || validate.isEmpty(props.basePath) ? null : (
+        <img 
+            src={`${props.basePath}/${props.imageSource}`} 
+            width={props.width}
+            height={props.height}
+            className={props.className} 
+            alt={`image of ${props.imageSource}`} 
+        />
     );
 };

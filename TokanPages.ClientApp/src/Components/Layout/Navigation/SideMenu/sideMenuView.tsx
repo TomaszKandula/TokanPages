@@ -17,7 +17,7 @@ export const SideMenuView = (props: Properties): React.ReactElement => {
         <Drawer anchor="left" open={props.drawerState.open} onClose={props.closeHandler}>
             <div className="sidemenu-drawer-container">
                 <div className="sidemenu-drawer-hero">
-                    {RenderImage(GET_ICONS_URL, props?.menu?.image, "sidemenu-logo")}
+                    <RenderImage basePath={GET_ICONS_URL} imageSource={props?.menu?.image} className="sidemenu-logo" />
                 </div>
                 <RenderSideMenu isAnonymous={props.isAnonymous} languageId={props.languageId} items={props.menu?.items} />
             </div>
