@@ -181,7 +181,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         (event: ReactMouseEvent) => {
             event.preventDefault();
             const data = event.currentTarget.getAttribute("data-disabled") as string;
-            const isDisabled = JSON.parse(data as string);
+            const isDisabled = JSON.parse(data);
             if (isDisabled) {
                 return;
             }
