@@ -4,76 +4,296 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<!-- ENGLISH -->
 	<url>
-		<loc>https://tomkandula.com/</loc>
+		<loc>https://tomkandula.com/en</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/about/info</loc>
+		<loc>https://tomkandula.com/en/about/info</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/about/story</loc>
+		<loc>https://tomkandula.com/en/about/story</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/articles</loc>
+		<loc>https://tomkandula.com/en/articles</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/showcase</loc>
+		<loc>https://tomkandula.com/en/showcase</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/document</loc>
+		<loc>https://tomkandula.com/en/document</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/business</loc>
+		<loc>https://tomkandula.com/en/business</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/leisure/bicycle</loc>
+		<loc>https://tomkandula.com/en/leisure/bicycle</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/leisure/electronics</loc>
+		<loc>https://tomkandula.com/en/leisure/electronics</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/leisure/football</loc>
+		<loc>https://tomkandula.com/en/leisure/football</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/leisure/guitar</loc>
+		<loc>https://tomkandula.com/en/leisure/guitar</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/leisure/photography</loc>
+		<loc>https://tomkandula.com/en/leisure/photography</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/terms</loc>
+		<loc>https://tomkandula.com/en/terms</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/policy</loc>
+		<loc>https://tomkandula.com/en/policy</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/contact</loc>
+		<loc>https://tomkandula.com/en/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/signin</loc>
+		<loc>https://tomkandula.com/en/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/signup</loc>
+		<loc>https://tomkandula.com/en/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/signout</loc>
+		<loc>https://tomkandula.com/en/signout</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/account</loc>
+		<loc>https://tomkandula.com/en/account</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/accountactivation</loc>
+		<loc>https://tomkandula.com/en/accountactivation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/updatepassword</loc>
+		<loc>https://tomkandula.com/en/updatepassword</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/resetpassword</loc>
+		<loc>https://tomkandula.com/en/resetpassword</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/update-newsletter</loc>
+		<loc>https://tomkandula.com/en/update-newsletter</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/remove-newsletter</loc>
+		<loc>https://tomkandula.com/en/remove-newsletter</loc>
+	</url>
+	<!-- POLISH -->
+	<url>
+		<loc>https://tomkandula.com/pl</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/about/info</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/about/story</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/articles</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/showcase</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/document</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/business</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/leisure/bicycle</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/leisure/electronics</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/leisure/football</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/leisure/guitar</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/leisure/photography</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/terms</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/policy</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/contact</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/signin</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/signup</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/signout</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/account</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/accountactivation</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/updatepassword</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/resetpassword</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/update-newsletter</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/remove-newsletter</loc>
+	</url>
+	<!-- SPANISH -->
+	<url>
+		<loc>https://tomkandula.com/es</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/about/info</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/about/story</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/articles</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/showcase</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/document</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/business</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/leisure/bicycle</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/leisure/electronics</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/leisure/football</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/leisure/guitar</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/leisure/photography</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/terms</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/policy</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/contact</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/signin</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/signup</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/signout</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/account</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/accountactivation</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/updatepassword</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/resetpassword</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/update-newsletter</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/remove-newsletter</loc>
+	</url>
+	<!-- UKRAINIAN -->
+	<url>
+		<loc>https://tomkandula.com/uk</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/about/info</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/about/story</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/articles</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/showcase</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/document</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/business</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/leisure/bicycle</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/leisure/electronics</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/leisure/football</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/leisure/guitar</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/leisure/photography</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/terms</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/policy</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/contact</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/signin</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/signup</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/signout</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/account</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/accountactivation</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/updatepassword</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/resetpassword</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/update-newsletter</loc>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/remove-newsletter</loc>
 	</url>
 </urlset>
