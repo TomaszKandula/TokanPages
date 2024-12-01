@@ -2,12 +2,12 @@ import * as React from "react";
 import { CircularProgress } from "@material-ui/core";
 
 interface ProgressBarViewProps {
-    styleObject?: object;
+    style?: React.CSSProperties;
     size?: number;
 }
 
 export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement => {
-    const externalStyle = props.styleObject !== undefined ? props.styleObject : {};
+    const externalStyle = props.style !== undefined ? props.style : {};
     return (
         <div className="progress-bar-box" style={externalStyle}>
             <div style={{ margin: "auto" }}>

@@ -39,7 +39,7 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
         <section className="section" style={props.background}>
             <Container className="container">
                 {props.isLoading ? (
-                    <ProgressBar styleObject={{ marginTop: 30, marginBottom: 30 }} />
+                    <ProgressBar style={{ marginTop: 30, marginBottom: 30 }} />
                 ) : (
                     <RenderContent items={props.items} />
                 )}
