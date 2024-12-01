@@ -1,3 +1,21 @@
+# [0.123.0](https://github.com/TomaszKandula/TokanPages/compare/v0.122.1...v0.123.0) (2024-12-01)
+
+
+### Bug Fixes
+
+* do not call React Hook "useSelector" conditionally directly ([d568e34](https://github.com/TomaszKandula/TokanPages/commit/d568e3438d85206b592388fe56089e14c62a7833))
+* reduce cognitive complexity ([3190518](https://github.com/TomaszKandula/TokanPages/commit/3190518d7ce53977a1a1415c0b45cc88cb92b7f7))
+* reduce its cognitive complexity ([a2f5efa](https://github.com/TomaszKandula/TokanPages/commit/a2f5efa106613f5daba2a8898201318e8d17f087))
+* remove unnecessary assertion ([c82fc1f](https://github.com/TomaszKandula/TokanPages/commit/c82fc1fbd226ebd4535aa9e16dbf721977e4d0f3))
+* resolve issues in CSS file ([db46727](https://github.com/TomaszKandula/TokanPages/commit/db46727e1e384ef8df718726fa0f82adb8810740))
+
+
+### Features
+
+* improve header photo, use different sizes ([813d88c](https://github.com/TomaszKandula/TokanPages/commit/813d88c9e26e050df765b54589860ece9dd108af))
+* lazy load pdf.min.js module ([1c0dce9](https://github.com/TomaszKandula/TokanPages/commit/1c0dce9849d1813f831796322135103c8c440ad2))
+* update sitemap and robots.txt ([8ffbfd0](https://github.com/TomaszKandula/TokanPages/commit/8ffbfd0d4d7ccfaf5760250dbddd5027fa8782f3))
+
 ## [0.122.1](https://github.com/TomaszKandula/TokanPages/compare/v0.122.0...v0.122.1) (2024-11-30)
 
 
