@@ -36,7 +36,7 @@ Object {
                   class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <img
-                    alt="photo of joanna.webp"
+                    alt="Testimonail photo 1 of 3"
                     class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                   />
@@ -108,7 +108,7 @@ Object {
                   class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
-                    alt="photo of adama.webp"
+                    alt="Testimonail photo 2 of 3"
                     class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                   />
@@ -177,7 +177,7 @@ Object {
                   class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
-                    alt="photo of scott.webp"
+                    alt="Testimonail photo 3 of 3"
                     class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
                   />
@@ -275,7 +275,7 @@ Object {
                 class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
               >
                 <img
-                  alt="photo of joanna.webp"
+                  alt="Testimonail photo 1 of 3"
                   class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                 />
@@ -347,7 +347,7 @@ Object {
                 class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
-                  alt="photo of adama.webp"
+                  alt="Testimonail photo 2 of 3"
                   class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                 />
@@ -416,7 +416,7 @@ Object {
                 class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
               >
                 <img
-                  alt="photo of scott.webp"
+                  alt="Testimonail photo 3 of 3"
                   class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
                 />

@@ -46,7 +46,7 @@ export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDt
 export type { ComponentsDto } from "./Components/State";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
-export type { HeaderContentDto } from "./Components/headerContentDto";
+export type { HeaderContentDto, HeaderPhotoDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto, ClientImageDto } from "./Components/clientsContentDto";
 export type { ArticleContentDto } from "./Components/articleContentDto";

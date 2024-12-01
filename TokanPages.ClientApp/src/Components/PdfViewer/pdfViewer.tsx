@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { GET_DOCUMENTS_URL } from "../../Api/Request";
 import { RaiseError } from "../../Shared/Services/ErrorServices";
-import { PDF_WORKER_URL } from "../../Shared/constants";
+import { ProgressBar } from "../../Shared/Components";
+import { PDF_JS_MIN_URL, PDF_WORKER_URL } from "../../Shared/constants";
 import { PdfViewerView } from "./View/pdfViewerView";
 
 interface PdfViewerProps {
@@ -13,22 +14,19 @@ interface PdfViewerProps {
 }
 
 export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
-    //@ts-expect-error
-    let { pdfjsLib } = globalThis;
-    pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
-    const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
-
     const dispatch = useDispatch();
-
+    const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
     const template = useSelector(
         (state: ApplicationState) => state.contentPageData.components.templates.templates.application
     );
+
     const hasTemplates =
         template.nullError !== "" &&
         template.unexpectedError !== "" &&
         template.unexpectedStatus !== "" &&
         template.validationError !== "";
 
+    const [isPdfMounted, setIsPdfMounted] = React.useState(false);
     const [isLoading, setLoading] = React.useState(true);
     const [hasError, setError] = React.useState(false);
     const [pdfDocument, setPdfDocument] = React.useState<any>(null);
@@ -36,7 +34,16 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const [currentPage, setCurrentPage] = React.useState(0);
 
     const getDocument = React.useCallback(async () => {
+        // @ts-expect-error
+        // NOTE: pdf.min.js must be already loaded to use pdfjsLib object.
+        let { pdfjsLib } = globalThis;
+        if (!pdfjsLib) {
+            return;
+        }
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
         let doc;
+
         try {
             doc = await pdfjsLib.getDocument(url).promise;
         } catch (error: any) {
@@ -76,13 +83,33 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     }, [numPages, currentPage]);
 
     React.useEffect(() => {
-        if (isLoading && hasTemplates) {
+        if (isPdfMounted && isLoading && hasTemplates) {
             getDocument();
         }
-    }, [isLoading, hasTemplates]);
+    }, [isPdfMounted, isLoading, hasTemplates]);
 
-    return (
-        <PdfViewerView
+    // NOTE: Load pdf.min.js an internally placed JS library 
+    // from Mozilla Foundation before rendering PdfViewer.
+    React.useEffect(() => {
+        const script = document.createElement("script");
+        script.src = PDF_JS_MIN_URL;
+        script.async = true;
+
+        document.body.appendChild(script);
+
+        setTimeout(() => {
+            setIsPdfMounted(true);
+        }, 500);
+
+        return () => {
+            document.body.removeChild(script);
+        }
+
+    }, []);
+
+    return !isPdfMounted 
+        ? <ProgressBar style={{ paddingTop: 100 }} /> 
+        : <PdfViewerView
             isLoading={isLoading}
             hasError={hasError}
             currentPage={currentPage}
@@ -94,5 +121,5 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
             onPreviousPage={onPreviousPageHandler}
             onNextPage={onNextPageHandler}
         />
-    );
+    ;
 };
