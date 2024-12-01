@@ -194,7 +194,12 @@ export const ContentPageData: ContentPageDataState = {
         },
         header: {
             language: "",
-            photo: "",
+            photo: {
+                w360: "",
+                w720: "",
+                w1440: "",
+                w2880: ""
+            },
             caption: "",
             subtitle: "",
             description: "",

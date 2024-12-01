@@ -5,15 +5,18 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { CardMedia } from "@material-ui/core";
 import { GET_IMAGES_URL } from "../../../Api/Request";
-import { HeaderContentDto } from "../../../Api/Models";
+import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import Validate from "validate.js";
 
 interface HeaderViewProps {
     background?: React.CSSProperties;
+}
+
+interface RenderPictureProps {
+    sources: HeaderPhotoDto | undefined;
 }
 
 const OpenLinkButton = (props: HeaderContentDto): React.ReactElement => {
@@ -44,14 +47,34 @@ const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
     );
 };
 
+const RenderPicture = (props: RenderPictureProps): React.ReactElement | null  => {
+    if (!props.sources) {
+        return null;
+    }
+
+    if (props.sources.w360 === "" || props.sources.w720 === "" || props.sources.w1440 === "" || props.sources.w2880 === "") {
+        return null;
+    }
+
+    const photo1 = `${GET_IMAGES_URL}/${props.sources.w360}`;
+    const photo2 = `${GET_IMAGES_URL}/${props.sources.w720}`;
+    const photo3 = `${GET_IMAGES_URL}/${props.sources.w1440}`;
+    const photo4 = `${GET_IMAGES_URL}/${props.sources.w2880}`;
+    const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
+
+    return ( 
+        <img
+            src={photo1}
+            srcSet={set}
+            className="header-image-card lazyloaded"
+            alt="Your Software Developer"
+        />
+    );
+}
+
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.header;
-    const imageUrl = (name: string) => {
-        if (name === "") return " ";
-        return `${GET_IMAGES_URL}/${name}`;
-    };
-
     return (
         <section className="section margin-top-60" style={props.background}>
             <Grid container spacing={3}>
@@ -59,12 +82,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                     {data?.isLoading ? (
                         <Skeleton variant="rect" className="header-image-skeleton" />
                     ) : (
-                        <CardMedia
-                            image={imageUrl(header?.photo)}
-                            component="img"
-                            className="header-image-card"
-                            alt={`photo of ${header?.photo}`}
-                        />
+                        <RenderPicture sources={header?.photo} />
                     )}
                 </Grid>
                 <Grid item xs={12} md={5} className="header-section-container">
