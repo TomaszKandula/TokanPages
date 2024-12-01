@@ -25,7 +25,7 @@ interface RenderApplicationProps {
     languages: LanguageItemDto[] | undefined;
 }
 
-const RenderApplication = (props: RenderApplicationProps) => {
+const RenderApplication = (props: RenderApplicationProps): React.ReactElement => {
     return (
         <ApplicationSession>
             <BrowserRouter>
@@ -47,6 +47,12 @@ const RenderApplication = (props: RenderApplicationProps) => {
     );
 }
 
+const PrerenderedWrapper = (): React.ReactElement => {
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    EnsureDefaultLanguageRoot(language.id);
+    return <RenderApplication languages={language.languages} />
+}
+
 const App = (props: Properties): React.ReactElement => {
     const dispatch = useDispatch();
 
@@ -61,10 +67,7 @@ const App = (props: Properties): React.ReactElement => {
 
     if (!props.manifest) {
         /* Pre-rendered SPA */
-        const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-        EnsureDefaultLanguageRoot(language.id);
-
-        return <RenderApplication languages={language.languages} />
+        return <PrerenderedWrapper />
     } else {
         /* Normal mode */
         UpdateUserLanguage(props.manifest, dispatch);
