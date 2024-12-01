@@ -35,6 +35,16 @@ interface TestimonialsViewProps extends ViewProperties {
     background?: React.CSSProperties;
 }
 
+interface RenderSkeletonOrElementProps extends TestimonialsViewProps {
+    className?: string;
+    variant: "rect" | "text";
+    object: React.ReactElement | string;
+}
+
+const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.ReactElement => {
+    return props.isLoading ? <Skeleton variant={props.variant} className={props.className} /> : <>{props.object}</>;
+}
+
 export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => {
     const imageUrl = (name: string) => {
         if (name === "") return " ";
@@ -46,7 +56,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
             <Container className="container-super-wide">
                 <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 120 }}>
                     <Typography className="testimonials-caption-text" data-aos="fade-down">
-                        {props.isLoading ? <Skeleton variant="text" /> : props.caption?.toUpperCase()}
+                        <RenderSkeletonOrElement {...props} variant="text" object={props.caption?.toUpperCase()} />
                     </Typography>
                 </div>
                 <div style={{ textAlign: "center", paddingBottom: 120 }}>
@@ -60,26 +70,23 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             className="testimonials-card-holder"
                         >
                             <Card elevation={0} className="testimonials-card">
-                                {props.isLoading ? (
-                                    <Skeleton variant="rect" className="testimonials-card-image" />
-                                ) : (
-                                    <CardMedia
+                                <RenderSkeletonOrElement {...props} variant="rect" object={<CardMedia
                                         image={imageUrl(props.photo1)}
                                         component="img"
                                         className="testimonials-card-image"
-                                        alt={`photo of ${props.photo1}`}
-                                    />
-                                )}
+                                        alt="Testimonail photo 1 of 3"
+                                    />} className="testimonials-card-image" 
+                                />
                                 <CardContent className="testimonials-card-content">
                                     <Typography className="testimonials-card-title">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.name1}
+                                        <RenderSkeletonOrElement {...props} variant="text" object={props.name1} />
                                     </Typography>
                                     <Typography className="testimonials-card-subheader">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.occupation1}
+                                        <RenderSkeletonOrElement {...props} variant="text" object={props.occupation1} />
                                     </Typography>
                                     <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
                                         <Typography className="testimonials-card-text">
-                                            {props.isLoading ? <Skeleton variant="text" /> : props.text1}
+                                            <RenderSkeletonOrElement {...props} variant="text" object={props.text1} />
                                         </Typography>
                                     </Collapse>
                                     <IconButton
@@ -106,26 +113,23 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             className="testimonials-card-holder"
                         >
                             <Card elevation={3} className="testimonials-card">
-                                {props.isLoading ? (
-                                    <Skeleton variant="rect" className="testimonials-card-image" />
-                                ) : (
-                                    <CardMedia
+                                <RenderSkeletonOrElement {...props} variant="rect" object={<CardMedia
                                         image={imageUrl(props.photo2)}
                                         component="img"
                                         className="testimonials-card-image"
-                                        alt={`photo of ${props.photo2}`}
-                                    />
-                                )}
+                                        alt="Testimonail photo 2 of 3"
+                                    />} className="testimonials-card-image" 
+                                />
                                 <CardContent className="testimonials-card-content">
                                     <Typography className="testimonials-card-title">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.name2}
+                                        <RenderSkeletonOrElement {...props} variant="text" object={props.name2} />
                                     </Typography>
                                     <Typography className="testimonials-card-subheader">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.occupation2}
+                                        <RenderSkeletonOrElement {...props} variant="text" object={props.occupation2} />
                                     </Typography>
                                     <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
                                         <Typography className="testimonials-card-text">
-                                            {props.isLoading ? <Skeleton variant="text" /> : props.text2}
+                                            <RenderSkeletonOrElement {...props} variant="text" object={props.text2} />
                                         </Typography>
                                     </Collapse>
                                     <IconButton
@@ -152,26 +156,23 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             className="testimonials-card-holder"
                         >
                             <Card elevation={3} className="testimonials-card">
-                                {props.isLoading ? (
-                                    <Skeleton variant="rect" className="testimonials-card-image" />
-                                ) : (
-                                    <CardMedia
+                                <RenderSkeletonOrElement {...props} variant="rect" object={<CardMedia
                                         image={imageUrl(props.photo3)}
                                         component="img"
                                         className="testimonials-card-image"
-                                        alt={`photo of ${props.photo3}`}
-                                    />
-                                )}
+                                        alt="Testimonail photo 3 of 3"
+                                    />} className="testimonials-card-image" 
+                                />
                                 <CardContent className="testimonials-card-content">
                                     <Typography className="testimonials-card-title">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.name3}
+                                        <RenderSkeletonOrElement {...props} variant="text" object={props.name3} />
                                     </Typography>
                                     <Typography className="testimonials-card-subheader">
-                                        {props.isLoading ? <Skeleton variant="text" /> : props.occupation3}
+                                        <RenderSkeletonOrElement {...props} variant="text" object={props.occupation3} />
                                     </Typography>
                                     <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
                                         <Typography className="testimonials-card-text">
-                                            {props.isLoading ? <Skeleton variant="text" /> : props.text3}
+                                            <RenderSkeletonOrElement {...props} variant="text" object={props.text3} />
                                         </Typography>
                                     </Collapse>
                                     <IconButton
