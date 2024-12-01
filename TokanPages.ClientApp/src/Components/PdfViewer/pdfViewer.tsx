@@ -88,7 +88,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
         }
     }, [isPdfMounted, isLoading, hasTemplates]);
 
-    // Load pdf.min.js an internally placed JS library 
+    // NOTE: Load pdf.min.js an internally placed JS library 
     // from Mozilla Foundation before rendering PdfViewer.
     React.useEffect(() => {
         const script = document.createElement("script");
