@@ -1,8 +1,15 @@
 import { LinkDto } from "./Common/linkDto";
 
+export interface HeaderPhotoDto {
+    w360: string;
+    w720: string;
+    w1440: string;
+    w2880: string;
+}
+
 export interface HeaderContentDto {
     language: string;
-    photo: string;
+    photo: HeaderPhotoDto;
     caption: string;
     subtitle: string;
     description: string;
