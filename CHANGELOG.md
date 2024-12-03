@@ -1,3 +1,10 @@
+# [0.124.0](https://github.com/TomaszKandula/TokanPages/compare/v0.123.0...v0.124.0) (2024-12-03)
+
+
+### Features
+
+* allow WWW, redirect HTTP to HTTPS ([3a35ed4](https://github.com/TomaszKandula/TokanPages/commit/3a35ed4208e92c2285b0b71b1df29c4fdff9dc97))
+
 # [0.123.0](https://github.com/TomaszKandula/TokanPages/compare/v0.122.1...v0.123.0) (2024-12-01)
 
 
