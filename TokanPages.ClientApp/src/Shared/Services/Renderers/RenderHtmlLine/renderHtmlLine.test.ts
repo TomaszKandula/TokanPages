@@ -46,7 +46,7 @@ describe("verify RenderHtmlLine method", () => {
         // Assert
         expect(result).toBe(expectation);
     });
-    
+
     it("should render HTML line, when '<ol>' tag provided.", () => {
         // Arrange
         const expectation: string = "<ol>This is test item</ol>";

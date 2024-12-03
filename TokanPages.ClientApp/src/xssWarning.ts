@@ -31,7 +31,7 @@ const selfXssWarningContent = {
 export const printSelfXssWarning = (): void => {
     const url = window.location.href;
     const isPolishSelected = url.includes("/pl");
-    const languageId = isPolishSelected ? "pol" : ("eng");
+    const languageId = isPolishSelected ? "pol" : "eng";
     const translations = selfXssWarningContent[languageId];
 
     setTimeout(() => {

@@ -82,7 +82,11 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textLanguage}&nbsp;
                                 </Typography>
-                                <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="flag-image" />
+                                <RenderImage
+                                    basePath={GET_FLAG_URL}
+                                    imageSource={props.flagImage}
+                                    className="flag-image"
+                                />
                             </div>
                             <Typography component="p" variant="subtitle1">
                                 {readTime}

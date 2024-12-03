@@ -19,7 +19,11 @@ export const SideMenuView = (props: Properties): React.ReactElement => {
                 <div className="sidemenu-drawer-hero">
                     <RenderImage basePath={GET_ICONS_URL} imageSource={props?.menu?.image} className="sidemenu-logo" />
                 </div>
-                <RenderSideMenu isAnonymous={props.isAnonymous} languageId={props.languageId} items={props.menu?.items} />
+                <RenderSideMenu
+                    isAnonymous={props.isAnonymous}
+                    languageId={props.languageId}
+                    items={props.menu?.items}
+                />
             </div>
         </Drawer>
     );

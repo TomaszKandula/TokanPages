@@ -61,9 +61,9 @@ const pages: PageProps[] = [
     { path: "/signup", page: <SignupPage /> },
     { path: "/signout", page: <SignoutPage /> },
     { path: "/account", page: <AccountPage /> },
-    { path: "/accountactivation", page: <ActivationPage /> },//TODO: rename to 'account-activation'
-    { path: "/updatepassword", page: <PasswordUpdatePage /> },//TODO: rename to 'update-password'
-    { path: "/resetpassword", page: <PasswordResetPage /> },//TODO: rename to 'reset-password'
+    { path: "/accountactivation", page: <ActivationPage /> }, //TODO: rename to 'account-activation'
+    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to 'update-password'
+    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to 'reset-password'
     { path: "/update-newsletter", page: <NewsletterUpdatePage /> },
     { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
 ];

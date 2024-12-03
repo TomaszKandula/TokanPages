@@ -43,7 +43,7 @@ interface RenderSkeletonOrElementProps extends TestimonialsViewProps {
 
 const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.ReactElement => {
     return props.isLoading ? <Skeleton variant={props.variant} className={props.className} /> : <>{props.object}</>;
-}
+};
 
 export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => {
     const imageUrl = (name: string) => {
@@ -70,12 +70,18 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             className="testimonials-card-holder"
                         >
                             <Card elevation={0} className="testimonials-card">
-                                <RenderSkeletonOrElement {...props} variant="rect" object={<CardMedia
-                                        image={imageUrl(props.photo1)}
-                                        component="img"
-                                        className="testimonials-card-image"
-                                        alt="Testimonail photo 1 of 3"
-                                    />} className="testimonials-card-image" 
+                                <RenderSkeletonOrElement
+                                    {...props}
+                                    variant="rect"
+                                    object={
+                                        <CardMedia
+                                            image={imageUrl(props.photo1)}
+                                            component="img"
+                                            className="testimonials-card-image"
+                                            alt="Testimonail photo 1 of 3"
+                                        />
+                                    }
+                                    className="testimonials-card-image"
                                 />
                                 <CardContent className="testimonials-card-content">
                                     <Typography className="testimonials-card-title">
@@ -113,12 +119,18 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             className="testimonials-card-holder"
                         >
                             <Card elevation={3} className="testimonials-card">
-                                <RenderSkeletonOrElement {...props} variant="rect" object={<CardMedia
-                                        image={imageUrl(props.photo2)}
-                                        component="img"
-                                        className="testimonials-card-image"
-                                        alt="Testimonail photo 2 of 3"
-                                    />} className="testimonials-card-image" 
+                                <RenderSkeletonOrElement
+                                    {...props}
+                                    variant="rect"
+                                    object={
+                                        <CardMedia
+                                            image={imageUrl(props.photo2)}
+                                            component="img"
+                                            className="testimonials-card-image"
+                                            alt="Testimonail photo 2 of 3"
+                                        />
+                                    }
+                                    className="testimonials-card-image"
                                 />
                                 <CardContent className="testimonials-card-content">
                                     <Typography className="testimonials-card-title">
@@ -156,12 +168,18 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             className="testimonials-card-holder"
                         >
                             <Card elevation={3} className="testimonials-card">
-                                <RenderSkeletonOrElement {...props} variant="rect" object={<CardMedia
-                                        image={imageUrl(props.photo3)}
-                                        component="img"
-                                        className="testimonials-card-image"
-                                        alt="Testimonail photo 3 of 3"
-                                    />} className="testimonials-card-image" 
+                                <RenderSkeletonOrElement
+                                    {...props}
+                                    variant="rect"
+                                    object={
+                                        <CardMedia
+                                            image={imageUrl(props.photo3)}
+                                            component="img"
+                                            className="testimonials-card-image"
+                                            alt="Testimonail photo 3 of 3"
+                                        />
+                                    }
+                                    className="testimonials-card-image"
                                 />
                                 <CardContent className="testimonials-card-content">
                                     <Typography className="testimonials-card-title">
