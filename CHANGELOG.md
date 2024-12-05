@@ -1,3 +1,14 @@
+# [0.125.0](https://github.com/TomaszKandula/TokanPages/compare/v0.124.0...v0.125.0) (2024-12-05)
+
+
+### Features
+
+* add text link ([27378bf](https://github.com/TomaszKandula/TokanPages/commit/27378bff3ff0ed806afcfb56913ec71637ecb095))
+* change HTML parser ([a68421d](https://github.com/TomaszKandula/TokanPages/commit/a68421d6e6e868f1f5b19c4ff25acfd143fcd590))
+* do not display cookie prompt when snapshot mode ([3a749fd](https://github.com/TomaszKandula/TokanPages/commit/3a749fdaa958f5f744f9203590734d729cfb64cf))
+* restyle PDF viewer ([649051d](https://github.com/TomaszKandula/TokanPages/commit/649051d5e770c898d7442ba753050314bf878666))
+* update HTML parser ([d36bd60](https://github.com/TomaszKandula/TokanPages/commit/d36bd60928c13a7df10ebbab78aac44bbbd9a7e7))
+
 # [0.124.0](https://github.com/TomaszKandula/TokanPages/compare/v0.123.0...v0.124.0) (2024-12-03)
 
 
