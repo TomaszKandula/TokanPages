@@ -102,7 +102,7 @@ const pathToSubitemText = (props: PathProps): string => {
     const root = `#${fragments[0]}`;
 
     const itemWithSubitem = props.navigation.menu.items.find((item: Item) => {
-        if (item.link?.toUpperCase().includes(root.toUpperCase())  && item.subitems !== undefined) {
+        if (item.link?.toUpperCase().includes(root.toUpperCase()) && item.subitems !== undefined) {
             return item;
         }
 

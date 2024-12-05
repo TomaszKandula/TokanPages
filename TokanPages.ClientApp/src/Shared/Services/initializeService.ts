@@ -30,4 +30,4 @@ export const InitializeAnimations = (): NodeJS.Timer => {
     const hasSnapshotMode = HasSnapshotMode();
     AOS.init({ once: !hasSnapshotMode, disable: hasSnapshotMode });
     return setInterval(() => AOS.refresh(), 900);
-}
+};

@@ -17,10 +17,10 @@ export const MapLanguageId = (input: string): string => {
             return "es.png";
         case "ukr":
             return "uk.png";
-        default: 
+        default:
             return "en.png";
     }
-}
+};
 
 export const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
     if (Validate.isEmpty(id)) {
@@ -52,7 +52,7 @@ export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
         const urlWithLanguageId = `${window.location.href}${preloadedLanguageId}`;
         window.history.pushState({}, "", urlWithLanguageId);
     }
-}
+};
 
 export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;

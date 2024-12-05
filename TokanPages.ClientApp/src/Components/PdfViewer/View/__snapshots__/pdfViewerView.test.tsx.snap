@@ -10,17 +10,98 @@ Object {
         style="background-color: white;"
       >
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide-1000 MuiContainer-maxWidthLg"
         >
           <div
             style="padding-top: 80px; padding-bottom: 48px;"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-justify-content-xs-center"
+              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            >
+              <div
+                class="MuiCardContent-root card-content"
+              >
+                <div
+                  class="pdf-header"
+                >
+                  <a
+                    href="https://test.com/documents/some_document.pdf&canDownload=true"
+                    style="color: black;"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+                      />
+                    </svg>
+                  </a>
+                  <div
+                    class="pdf-header-pages"
+                  >
+                    1
+                     / 
+                    1
+                  </div>
+                  <div>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root pdf-header-buttons"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                      />
+                    </svg>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root pdf-header-buttons"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="pdf-canvas-wrapper"
+                >
+                  <canvas
+                    class="pdf-canvas"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="section"
+      style="background-color: white;"
+    >
+      <div
+        class="MuiContainer-root container-wide-1000 MuiContainer-maxWidthLg"
+      >
+        <div
+          style="padding-top: 80px; padding-bottom: 48px;"
+        >
+          <div
+            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+          >
+            <div
+              class="MuiCardContent-root card-content"
             >
               <div
                 class="pdf-header"
-                style="padding-top: 16px; padding-bottom: 16px;"
               >
                 <a
                   href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -74,81 +155,6 @@ Object {
                   class="pdf-canvas"
                 />
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section
-      class="section"
-      style="background-color: white;"
-    >
-      <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
-      >
-        <div
-          style="padding-top: 80px; padding-bottom: 48px;"
-        >
-          <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column MuiGrid-justify-content-xs-center"
-          >
-            <div
-              class="pdf-header"
-              style="padding-top: 16px; padding-bottom: 16px;"
-            >
-              <a
-                href="https://test.com/documents/some_document.pdf&canDownload=true"
-                style="color: black;"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
-                  />
-                </svg>
-              </a>
-              <div
-                class="pdf-header-pages"
-              >
-                1
-                 / 
-                1
-              </div>
-              <div>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root pdf-header-buttons"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
-                  />
-                </svg>
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root pdf-header-buttons"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div
-              class="pdf-canvas-wrapper"
-            >
-              <canvas
-                class="pdf-canvas"
-              />
             </div>
           </div>
         </div>

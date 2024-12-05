@@ -8,14 +8,14 @@ const UpdateComponent = (state: ComponentsDto, data: ContentModelDto): Component
         const key = contentName as keyof typeof result;
         if (data.content) {
             // @ts-expect-error
-            // NOTE: We expect object content to match 
+            // NOTE: We expect object content to match
             // content DTO model, but we do not cast it.
             result[key] = data.content;
         }
     }
 
     return result;
-}
+};
 
 export const UpdateComponents = (state: ContentPageDataState, source: ContentModelDto[]): ComponentsDto => {
     let result: ComponentsDto = { ...state.components };

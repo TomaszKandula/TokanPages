@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Grid } from "@material-ui/core";
+import { Card, CardContent, Container } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
@@ -35,32 +35,34 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     return (
         <section className="section" style={props.background}>
-            <Container className="container-super-wide">
+            <Container className="container-wide-1000">
                 <div style={{ paddingTop: 80, paddingBottom: 48 }}>
-                    <Grid container justifyContent="center" direction="column">
-                        <div className="pdf-header" style={{ paddingTop: 16, paddingBottom: 16 }}>
-                            <RenderIconOrLoading
-                                isLoading={props.isLoading}
-                                hasError={props.hasError}
-                                pdfUrl={props.pdfUrl}
-                            />
-                            <div className="pdf-header-pages">
-                                {props.currentPage} / {props.numPages}
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
+                            <div className="pdf-header">
+                                <RenderIconOrLoading
+                                    isLoading={props.isLoading}
+                                    hasError={props.hasError}
+                                    pdfUrl={props.pdfUrl}
+                                />
+                                <div className="pdf-header-pages">
+                                    {props.currentPage} / {props.numPages}
+                                </div>
+                                <div>
+                                    <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
+                                    <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
+                                </div>
                             </div>
-                            <div>
-                                <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
-                                <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
+                            <div className="pdf-canvas-wrapper">
+                                <PdfCanvas
+                                    pdfDocument={props.pdfDocument}
+                                    pageNumber={props.currentPage}
+                                    scale={props.scale ?? 1.5}
+                                    htmlAttributes={{ className: "pdf-canvas" }}
+                                />
                             </div>
-                        </div>
-                        <div className="pdf-canvas-wrapper">
-                            <PdfCanvas
-                                pdfDocument={props.pdfDocument}
-                                pageNumber={props.currentPage}
-                                scale={props.scale ?? 1.5}
-                                htmlAttributes={{ className: "pdf-canvas" }}
-                            />
-                        </div>
-                    </Grid>
+                        </CardContent>
+                    </Card>
                 </div>
             </Container>
         </section>
