@@ -30,7 +30,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", paddingTop: 32 }}>
             {props?.images?.map((item: ClientImageDto, _index: number) => (
                 <div className="clients-logo" key={uuidv4()}>
-                    <img 
+                    <img
                         src={getImagePath(item.path)}
                         alt={`image of ${item.path}`}
                         height={item.heigh}

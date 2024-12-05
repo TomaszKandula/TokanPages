@@ -198,7 +198,7 @@ export const ContentPageData: ContentPageDataState = {
                 w360: "",
                 w720: "",
                 w1440: "",
-                w2880: ""
+                w2880: "",
             },
             caption: "",
             subtitle: "",

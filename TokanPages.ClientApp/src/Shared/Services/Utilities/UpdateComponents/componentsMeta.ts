@@ -14,7 +14,7 @@ export const UpdateHtmlLang = (languageId?: string): void => {
     if (!languageId) return;
     const html = document.querySelector("html");
     html?.setAttribute("lang", languageId);
-}
+};
 
 export const HasPageContentLoaded = (pageName?: string, languageId?: string): boolean => {
     if (!pageName || !languageId) {

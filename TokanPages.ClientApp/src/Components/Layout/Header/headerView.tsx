@@ -47,12 +47,17 @@ const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
     );
 };
 
-const RenderPicture = (props: RenderPictureProps): React.ReactElement | null  => {
+const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => {
     if (!props.sources) {
         return null;
     }
 
-    if (props.sources.w360 === "" || props.sources.w720 === "" || props.sources.w1440 === "" || props.sources.w2880 === "") {
+    if (
+        props.sources.w360 === "" ||
+        props.sources.w720 === "" ||
+        props.sources.w1440 === "" ||
+        props.sources.w2880 === ""
+    ) {
         return null;
     }
 
@@ -62,15 +67,8 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null  =>
     const photo4 = `${GET_IMAGES_URL}/${props.sources.w2880}`;
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
-    return ( 
-        <img
-            src={photo1}
-            srcSet={set}
-            className="header-image-card lazyloaded"
-            alt="Your Software Developer"
-        />
-    );
-}
+    return <img src={photo1} srcSet={set} className="header-image-card lazyloaded" alt="Your Software Developer" />;
+};
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);

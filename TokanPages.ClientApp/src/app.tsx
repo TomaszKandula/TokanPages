@@ -45,13 +45,13 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
             </ScrollToTop>
         </ApplicationSession>
     );
-}
+};
 
 const PrerenderedWrapper = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     EnsureDefaultLanguageRoot(language.id);
-    return <RenderApplication languages={language.languages} />
-}
+    return <RenderApplication languages={language.languages} />;
+};
 
 const App = (props: Properties): React.ReactElement => {
     const dispatch = useDispatch();
@@ -67,13 +67,13 @@ const App = (props: Properties): React.ReactElement => {
 
     if (!props.manifest) {
         /* Pre-rendered SPA */
-        return <PrerenderedWrapper />
+        return <PrerenderedWrapper />;
     } else {
         /* Normal mode */
         UpdateUserLanguage(props.manifest, dispatch);
     }
 
-    return <RenderApplication languages={props.manifest?.languages} />
+    return <RenderApplication languages={props.manifest?.languages} />;
 };
 
 export default App;

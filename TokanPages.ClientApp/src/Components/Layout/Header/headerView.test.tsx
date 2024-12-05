@@ -18,7 +18,7 @@ describe("test component: headerView", () => {
             w360: "image1-360w.webp",
             w720: "image1-720w.webp",
             w1440: "image1-1440w.webp",
-            w2880: "image1-2880w.webp"
+            w2880: "image1-2880w.webp",
         },
         caption: "Welcome to my web page",
         description: "I do programming for a living...",
