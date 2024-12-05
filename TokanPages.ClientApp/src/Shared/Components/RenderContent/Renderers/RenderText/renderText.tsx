@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
 import { TextItem } from "../../Models/TextModel";
@@ -38,6 +39,14 @@ const RenderItemLink = (props: DataProps): React.ReactElement => {
         </Typography>
     );
 };
+
+const RenderTextLink = (props: DataProps): React.ReactElement => {
+    return (
+        <Typography component="span" className="render-text-common render-text-paragraph">
+            <Link to={props.data ?? ""}>{props.text}</Link>
+        </Typography>
+    );
+}
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
@@ -91,6 +100,8 @@ export const RenderText = (props: TextItem): React.ReactElement => {
     switch (props.prop) {
         case "item-link":
             return <RenderItemLink data={data} text={props.text} />;
+        case "text-link":
+            return <RenderTextLink data={data} text={props.text} />;    
         case "title":
             return <RenderTitle data={data} />;
         case "subtitle":
