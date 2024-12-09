@@ -71,9 +71,9 @@ const RenderRedirectLink = (props: DataProps): React.ReactElement => {
 
     return (
         <Typography component="span" className="render-text-common render-text-paragraph">
-            <u onClick={handler} style={{ cursor: "pointer" }}>
+            <div onClick={handler} className="render-text-redirect">
                 {props.text}
-            </u>
+            </div>
         </Typography>
     );
 }
