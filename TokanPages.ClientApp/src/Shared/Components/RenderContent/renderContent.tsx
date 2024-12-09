@@ -32,6 +32,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        textId={item.textId}
                     />
                 );
                 break;

@@ -32,4 +32,9 @@ public class ArticleSectionDto
     /// Text.
     /// </summary>
     public string Text { get; set; } = "";
+
+    /// <summary>
+    /// Text Id.
+    /// </summary>
+    public string TextId { get; set; } = "";
 }
