@@ -13,6 +13,7 @@ export interface TextItem {
     value: string | RowItem[];
     prop: string;
     text: string;
+    textId?: string;
     propTitle?: string;
     propSubtitle?: string;
     propImg?: string;
