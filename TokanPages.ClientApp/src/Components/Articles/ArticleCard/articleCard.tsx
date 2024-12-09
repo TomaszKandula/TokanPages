@@ -13,6 +13,7 @@ interface ArticleCardProps {
     title: string;
     description: string;
     languageIso: string;
+    canAnimate: boolean;
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
@@ -40,6 +41,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
             onClickEvent={onClickEvent}
             buttonText={content?.button}
             flagImage={flagImage}
+            canAnimate={props.canAnimate}
         />
     );
 };
