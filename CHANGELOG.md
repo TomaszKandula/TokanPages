@@ -1,3 +1,16 @@
+# [0.126.0](https://github.com/TomaszKandula/TokanPages/compare/v0.125.0...v0.126.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* allow to add link article, redirect to another existing article ([8954fc4](https://github.com/TomaszKandula/TokanPages/commit/8954fc4ae253ac8b393cda770ef943a9ab4d661b))
+* correct import ([21d650c](https://github.com/TomaszKandula/TokanPages/commit/21d650c31066bcfa081d2e00355a0c2fb3e6ef7e))
+
+
+### Features
+
+* restyle internal link ([fa613f5](https://github.com/TomaszKandula/TokanPages/commit/fa613f59746e891d2a7349424ca969c57d964c3d))
+
 # [0.125.0](https://github.com/TomaszKandula/TokanPages/compare/v0.124.0...v0.125.0) (2024-12-05)
 
 
