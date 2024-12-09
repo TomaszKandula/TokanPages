@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
+import { ArticleSelectionAction } from "../../../../../Store/Actions";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { ArticleSelectionAction } from "Store/Actions";
 
 interface DataProps {
     value?: string;
