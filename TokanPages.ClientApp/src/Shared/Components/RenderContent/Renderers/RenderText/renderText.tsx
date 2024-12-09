@@ -1,12 +1,11 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
-import { ArticleSelectionAction } from "../../../../../Store/Actions";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { ArticleCard } from "Components/Articles";
 
 interface DataProps {
     value?: string;
@@ -52,30 +51,7 @@ const RenderTextLink = (props: DataProps): React.ReactElement => {
 }
 
 const RenderRedirectLink = (props: DataProps): React.ReactElement => {
-    const dispatch = useDispatch();
-    const history = useHistory();
-
-    const handler = React.useCallback(() => {
-        if (!props.value || props.value === "") {
-            return;
-        }
-
-        if (!props.textId || props.textId === "") {
-            return;
-        }
- 
-        dispatch(ArticleSelectionAction.select({ id: props.textId }));
-        history.push(props.value);
-
-    }, [props.textId, props.value]);
-
-    return (
-        <Typography component="span" className="render-text-common render-text-paragraph">
-            <div onClick={handler} className="render-text-redirect">
-                {props.text}
-            </div>
-        </Typography>
-    );
+    return <ArticleCard id={props.textId ?? ""} title={props.text ?? ""} description={""} languageIso={""} canAnimate={false} />
 }
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
