@@ -1,16 +1,20 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
+import { ArticleInfoAction } from "../../../../../Store/Actions";
+import { ApplicationState } from "../../../../../Store/Configuration";
+import { ArticleItemBase } from "../../Models";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
+import { ProgressBar } from "../../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { ArticleCard } from "Components/Articles";
+import { ArticleCard } from "../../../../../Components/Articles";
 
 interface DataProps {
     value?: string;
     text?: string;
-    textId?: string;
 }
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
@@ -50,8 +54,35 @@ const RenderTextLink = (props: DataProps): React.ReactElement => {
     );
 }
 
-const RenderRedirectLink = (props: DataProps): React.ReactElement => {
-    return <ArticleCard id={props.textId ?? ""} title={props.text ?? ""} description={""} languageIso={""} canAnimate={false} />
+const RenderArticleLink = (props: DataProps): React.ReactElement => {
+    const dispatch = useDispatch();
+    const selection = useSelector((state: ApplicationState) => state.articleInfo);
+
+    const hasCollection = selection.collectedInfo && selection.collectedInfo?.length > 0;
+    const collectedInfo = selection.collectedInfo?.filter((value: ArticleItemBase) => value.id === props.value);
+    const hasInfo = collectedInfo !== undefined && collectedInfo.length === 1;
+
+    const [info, setInfo] = React.useState<ArticleItemBase | undefined>(undefined);
+
+    React.useEffect(() => {
+        if (props.value && props.value !== "" && !hasInfo) {
+            dispatch(ArticleInfoAction.get(props.value));
+        }
+    }, [props.value, hasInfo]);
+
+    React.useEffect(() => {
+        if (!selection.isLoading && hasCollection && hasInfo) {
+            setInfo(collectedInfo[0]);
+        }
+    }, [props.value, selection.isLoading,  hasCollection, hasInfo, collectedInfo]);
+
+    return selection.isLoading ? <ProgressBar /> : <ArticleCard 
+        id={info?.id ?? ""}
+        title={info?.title ?? ""}
+        description={info?.description ?? ""}
+        languageIso={info?.languageIso ?? ""}
+        canAnimate={false}
+    />
 }
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
@@ -109,7 +140,7 @@ export const RenderText = (props: TextItem): React.ReactElement => {
         case "text-link":
             return <RenderTextLink value={value} text={props.text} />;    
         case "redirect-link":
-            return <RenderRedirectLink textId={props.textId} value={value} text={props.text} />;    
+            return <RenderArticleLink value={value} text={props.text} />;    
         case "title":
             return <RenderTitle value={value} />;
         case "subtitle":
