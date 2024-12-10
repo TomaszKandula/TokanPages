@@ -1,7 +1,7 @@
 import { TextItem } from "../TextModel";
 import { Author } from "../AuthorModel";
 
-export interface ArticleItem {
+export interface ArticleItemBase {
     id: string;
     title: string;
     description: string;
@@ -12,6 +12,9 @@ export interface ArticleItem {
     createdAt: string;
     updatedAt: string;
     languageIso: string;
+}
+
+export interface ArticleItem extends ArticleItemBase {
     author: Author;
     text: TextItem[];
 }

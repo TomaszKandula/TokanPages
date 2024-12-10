@@ -4,6 +4,7 @@ export type { ApplicationLanguageState } from "./Application/applicationLanguage
 export type { ApplicationEmailState } from "./Application/applicationEmail";
 export type { ApplicationNavbarState } from "./Application/applicationNavbar";
 
+export type { ArticleInfoState } from "./Articles/articleInfo";
 export type { ArticleListingState } from "./Articles/articleListing";
 export type { ArticleSelectionState } from "./Articles/articleSelection";
 export type { ArticleUpdateState } from "./Articles/articleUpdate";

@@ -24,6 +24,7 @@ import {
     UserEmailVerificationState,
     ApplicationNavbarState,
     ContentPageDataState,
+    ArticleInfoState,
 } from "../States";
 
 export interface ApplicationState {
@@ -32,6 +33,7 @@ export interface ApplicationState {
     applicationDialog: ApplicationDialogState;
     applicationLanguage: ApplicationLanguageState;
     applicationNavbar: ApplicationNavbarState;
+    articleInfo: ArticleInfoState;
     articleListing: ArticleListingState;
     articleSelection: ArticleSelectionState;
     articleUpdate: ArticleUpdateState;

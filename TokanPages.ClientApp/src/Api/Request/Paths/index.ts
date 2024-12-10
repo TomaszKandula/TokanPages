@@ -10,6 +10,7 @@ const API_CONTENT_URI = `${API_BASE_URI}/content/components`;
 const API_ASSETS_URI = `${API_BASE_URI}/content/assets`;
 const API_NON_VIDEO_ASSETS_URI = `${API_ASSETS_URI}/getNonVideoAsset`;
 
+export const GET_ARTICLE_INFO = `${API_ARTICLES_URI}/{id}/getArticleInfo`;
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;
 export const GET_ARTICLE = `${API_ARTICLES_URI}/{id}/getArticle`;
 export const GET_ARTICLE_BY_TITLE = `${API_ARTICLES_URI}/{title}/getArticle`;

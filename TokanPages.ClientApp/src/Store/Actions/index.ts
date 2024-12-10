@@ -4,6 +4,7 @@ export { ApplicationLanguageAction } from "./Application/applicationLanguage";
 export { ApplicationMessageAction } from "./Application/applicationMessage";
 export { ApplicationNavbarAction } from "./Application/applicationNavbar";
 
+export { ArticleInfoAction } from "./Articles/articleInfo";
 export { ArticleListingAction } from "./Articles/articleListing";
 export { ArticleSelectionAction } from "./Articles/articleSelection";
 export { ArticleUpdateAction } from "./Articles/articleUpdate";

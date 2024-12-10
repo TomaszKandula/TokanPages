@@ -24,6 +24,7 @@ import {
     UserEmailVerification,
     ApplicationNavbar,
     ContentPageData,
+    ArticleInfo,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -32,6 +33,7 @@ export const ApplicationReducer = {
     applicationDialog: ApplicationDialog,
     applicationLanguage: ApplicationLanguage,
     applicationNavbar: ApplicationNavbar,
+    articleInfo: ArticleInfo,
     articleListing: ArticleListing,
     articleSelection: ArticleSelection,
     articleUpdate: ArticleUpdate,
