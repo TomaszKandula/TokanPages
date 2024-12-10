@@ -20,16 +20,16 @@ interface ArticleCardViewProps {
 
 interface DivAnimatedProps {
     canAnimate: boolean;
-    component: React.ReactElement;
+    children: React.ReactNode;
 }
 
-const DivAnimated = (props: DivAnimatedProps): React.ReactElement => {
-    return props.canAnimate ? <div data-aos="fade-up">{props.component}</div> : <>{props.component}</>;
+const Animated = (props: DivAnimatedProps): React.ReactElement => {
+    return props.canAnimate ? <div data-aos="fade-up">{props.children}</div> : <>{props.children}</>;
 }
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     return (
-        <DivAnimated canAnimate={props.canAnimate} component={
+        <Animated canAnimate={props.canAnimate}>
             <Card elevation={0} className="article-card">
                 <CardMedia image={props.imageUrl} className="article-card-image">
                     <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
@@ -49,7 +49,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                         </Button>
                     </CardActions>
                 </CardContent>
-            </Card>}
-        />
+            </Card>
+        </Animated>
     );
 };
