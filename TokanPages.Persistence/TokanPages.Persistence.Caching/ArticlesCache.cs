@@ -49,6 +49,22 @@ public class ArticlesCache : IArticlesCache
     }
 
     /// <inheritdoc />
+    public async Task<GetArticleInfoQueryResult> GetArticleInfo(Guid id, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetArticleInfoQuery { Id = id });
+
+        var key = $"{_environment.EnvironmentName}:article:info:{id}";
+        var value = await _redisDistributedCache.GetObjectAsync<GetArticleInfoQueryResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetArticleInfoQuery { Id = id });
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
     public async Task<GetArticleQueryResult> GetArticle(Guid id, bool noCache = false)
     {
         if (noCache)
