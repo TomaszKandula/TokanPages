@@ -41,6 +41,18 @@ public class ArticlesController : ApiBaseController
         => await _articlesCache.GetArticles(isPublished, noCache);
 
     /// <summary>
+    /// Returns information for given article ID.
+    /// </summary>
+    /// <param name="id">Article ID.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns>Object.</returns>
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
+    [ProducesResponseType(typeof(GetArticleInfoQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetArticleInfoQueryResult> GetArticleInfo([FromRoute] Guid id, [FromQuery] bool noCache = false)
+        => await _articlesCache.GetArticleInfo(id, noCache);
+
+    /// <summary>
     /// Returns single article.
     /// </summary>
     /// <param name="id">Article ID.</param>
