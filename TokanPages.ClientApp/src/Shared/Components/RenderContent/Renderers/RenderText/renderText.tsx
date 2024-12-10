@@ -19,7 +19,7 @@ interface DataProps {
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
-const RenderItemLink = (props: DataProps): React.ReactElement => {
+const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     const hash = useHash();
     const data = props.value;
     const onClickHandler = React.useCallback(() => {
@@ -46,7 +46,7 @@ const RenderItemLink = (props: DataProps): React.ReactElement => {
     );
 };
 
-const RenderTextLink = (props: DataProps): React.ReactElement => {
+const RenderInternalLink = (props: DataProps): React.ReactElement => {
     return (
         <Typography component="span" className="render-text-common render-text-paragraph">
             <Link to={props.value ?? ""}>{props.text}</Link>
@@ -136,9 +136,9 @@ export const RenderText = (props: TextItem): React.ReactElement => {
     const value: string = props.value as string;
     switch (props.prop) {
         case "item-link":
-            return <RenderItemLink value={value} text={props.text} />;
+            return <RenderAnchorLink value={value} text={props.text} />;
         case "text-link":
-            return <RenderTextLink value={value} text={props.text} />;    
+            return <RenderInternalLink value={value} text={props.text} />;    
         case "redirect-link":
             return <RenderArticleLink value={value} text={props.text} />;    
         case "title":
