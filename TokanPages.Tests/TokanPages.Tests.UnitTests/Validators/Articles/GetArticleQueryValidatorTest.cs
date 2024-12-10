@@ -35,8 +35,8 @@ public class GetArticleQueryValidatorTest
         result.Errors.Count.Should().Be(1);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_GUID_VALUE));
     }
-    [Fact]
 
+    [Fact]
     public void GivenNoId_WhenGetArticle_ShouldSucceed()
     {
         // Arrange
@@ -49,7 +49,6 @@ public class GetArticleQueryValidatorTest
         // Assert
         result.Errors.Should().BeEmpty();
     }
-    
     
     [Fact]
     public void GivenValidTitle_WhenGetArticle_ShouldSucceed()
@@ -79,8 +78,8 @@ public class GetArticleQueryValidatorTest
         result.Errors.Count.Should().Be(1);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
-    [Fact]
 
+    [Fact]
     public void GivenNoTitle_WhenGetArticle_ShouldSucceed()
     {
         // Arrange
@@ -93,5 +92,4 @@ public class GetArticleQueryValidatorTest
         // Assert
         result.Errors.Should().BeEmpty();
     }
-    
 }

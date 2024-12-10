@@ -3,6 +3,7 @@ export { GetConfiguration, GetContent, Execute, ExecuteAsync } from "./Services"
 export {
     API_BASE_URI,
     GET_ARTICLES,
+    GET_ARTICLE_INFO,
     GET_ARTICLE,
     GET_ARTICLE_BY_TITLE,
     ADD_ARTICLE,

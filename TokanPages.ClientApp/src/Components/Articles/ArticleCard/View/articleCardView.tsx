@@ -8,24 +8,34 @@ import Typography from "@material-ui/core/Typography";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { RenderImage } from "../../../../Shared/Components";
 
-interface Properties {
+interface ArticleCardViewProps {
     imageUrl: string;
     title: string;
     description: string;
     onClickEvent: () => void;
     buttonText: string;
     flagImage: string;
+    canAnimate: boolean;
 }
 
-export const ArticleCardView = (props: Properties): React.ReactElement => {
+interface DivAnimatedProps {
+    canAnimate: boolean;
+    children: React.ReactNode;
+}
+
+const Animated = (props: DivAnimatedProps): React.ReactElement => {
+    return props.canAnimate ? <div data-aos="fade-up">{props.children}</div> : <>{props.children}</>;
+}
+
+export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     return (
-        <div data-aos="fade-up">
+        <Animated canAnimate={props.canAnimate}>
             <Card elevation={0} className="article-card">
                 <CardMedia image={props.imageUrl} className="article-card-image">
                     <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
                 </CardMedia>
                 <CardContent>
-                    <Typography gutterBottom={true} className="article-card-title">
+                    <Typography className="article-card-title">
                         {props.title}
                     </Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
@@ -40,6 +50,6 @@ export const ArticleCardView = (props: Properties): React.ReactElement => {
                     </CardActions>
                 </CardContent>
             </Card>
-        </div>
+        </Animated>
     );
 };

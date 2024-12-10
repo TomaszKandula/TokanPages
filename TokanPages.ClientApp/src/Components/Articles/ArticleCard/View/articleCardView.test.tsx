@@ -13,6 +13,7 @@ describe("test articles group component: ArticleCardView", () => {
                 onClickEvent={jest.fn()}
                 buttonText="READ"
                 flagImage="eng.png"
+                canAnimate={false}
             />
         );
 

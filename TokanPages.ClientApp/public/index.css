@@ -1555,12 +1555,6 @@ body::backdrop {
     line-height: 2.2 !important;
 }
 
-.render-text-redirect {
-    cursor: pointer; 
-    color: -webkit-link; 
-    text-decoration: underline;
-}
-
 .render-video-card {
     border-radius: 0;
     margin-top: 40px;

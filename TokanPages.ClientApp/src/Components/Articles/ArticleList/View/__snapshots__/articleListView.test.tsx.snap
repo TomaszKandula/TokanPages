@@ -40,7 +40,7 @@ Object {
                       class="MuiCardContent-root"
                     >
                       <p
-                        class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
+                        class="MuiTypography-root article-card-title MuiTypography-body1"
                       >
                         Test article
                       </p>
@@ -111,7 +111,7 @@ Object {
                     class="MuiCardContent-root"
                   >
                     <p
-                      class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
+                      class="MuiTypography-root article-card-title MuiTypography-body1"
                     >
                       Test article
                     </p>
