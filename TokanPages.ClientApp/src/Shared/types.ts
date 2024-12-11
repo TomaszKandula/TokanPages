@@ -2,6 +2,7 @@ export type LanguageChangeEvent = React.ChangeEvent<{ name?: string; value: unkn
 export type ReactSyntheticEvent = React.SyntheticEvent;
 
 export type ReactMouseEvent = React.MouseEvent<HTMLElement, MouseEvent>;
+export type ReactMouseEventButton = React.MouseEvent<HTMLButtonElement, MouseEvent>
 export type ReactMouseEventHandler = React.MouseEventHandler<HTMLButtonElement>;
 
 export type ReactKeyboardEvent = React.KeyboardEvent<HTMLInputElement>;
