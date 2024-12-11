@@ -1,3 +1,27 @@
+# [0.127.0](https://github.com/TomaszKandula/TokanPages/compare/v0.126.0...v0.127.0) (2024-12-11)
+
+
+### Bug Fixes
+
+* menu highlight ([235c287](https://github.com/TomaszKandula/TokanPages/commit/235c287449f078985742a760c3789772f21a504d))
+* resolve issues spot on Safari ([6f1e445](https://github.com/TomaszKandula/TokanPages/commit/6f1e4453b9421f8a3e112534f5ce60e8dd19ab20))
+
+
+### Features
+
+* add article info to redux store ([3e4a10c](https://github.com/TomaszKandula/TokanPages/commit/3e4a10c9c0f7716440209a55ddf9db93971bb436))
+* add new event type ([87abcfb](https://github.com/TomaszKandula/TokanPages/commit/87abcfbc2798ce7355684fc3c404c287be34abc0))
+* add redis cache ([543fdc7](https://github.com/TomaszKandula/TokanPages/commit/543fdc73b0b37b93150b48fd8ffe47f947cd9858))
+* enable/disable component animation ([4008fbe](https://github.com/TomaszKandula/TokanPages/commit/4008fbe5e5260d432407a6dbc526a8d4117c7ae9))
+* expose endpoint for getting article info ([ead4e9d](https://github.com/TomaszKandula/TokanPages/commit/ead4e9d47ac1714269008a3db539cd0928dcda58))
+* get article information ([bd5698e](https://github.com/TomaszKandula/TokanPages/commit/bd5698e86a655237a4c7e470b4fe8ad3640e2423))
+* hide submenu when mouse leaves main category ([0c97fb1](https://github.com/TomaszKandula/TokanPages/commit/0c97fb1884e9548b37ed2bbcea682f9c5af550a2))
+* implement article link as a card ([7652c02](https://github.com/TomaszKandula/TokanPages/commit/7652c023d67dda5b9d0e6db360af76e968037e09))
+* remove unused css ([bfc9d92](https://github.com/TomaszKandula/TokanPages/commit/bfc9d92fe877a9887ffcb8367d07f255b934839e))
+* remove unused property ([67a0aa8](https://github.com/TomaszKandula/TokanPages/commit/67a0aa8984c6e43ea6e17bfbd25174f34bb4f54a))
+* simplify, reuse component ([ffe57c0](https://github.com/TomaszKandula/TokanPages/commit/ffe57c0263645207408efef8e6d22e348e796bbc))
+* tackle empty id issue ([afa87fc](https://github.com/TomaszKandula/TokanPages/commit/afa87fcf58d5f191fe1491625fe5f3405f4b9aed))
+
 # [0.126.0](https://github.com/TomaszKandula/TokanPages/compare/v0.125.0...v0.126.0) (2024-12-09)
 
 
