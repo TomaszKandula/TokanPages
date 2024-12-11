@@ -31,7 +31,7 @@ export const ArticleInfo: Reducer<ArticleInfoState> = (
 
             return {
                 isLoading: false,
-                collectedInfo: data
+                collectedInfo: data,
             };
 
         default:

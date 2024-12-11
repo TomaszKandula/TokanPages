@@ -46,8 +46,8 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                     className="render-image-image"
                     onClick={onClickEvent}
                     style={{
-                        maxWidth: props.constraint?.maxWidth,
-                        maxHeight: props.constraint?.maxHeight,
+                        width: props.constraint?.width,
+                        height: props.constraint?.height,
                     }}
                 />
             ) : null}
@@ -57,8 +57,8 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                     image={valueUrl}
                     alt="image"
                     style={{
-                        maxWidth: props.constraint?.maxWidth,
-                        maxHeight: props.constraint?.maxHeight,
+                        width: props.constraint?.width,
+                        height: props.constraint?.height,
                     }}
                 />
             ) : null}

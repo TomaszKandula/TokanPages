@@ -1470,8 +1470,6 @@ body::backdrop {
 .render-super-title-image {
     display: block !important;
     cursor: none;
-    max-width: 300px !important;
-    max-height: 60px !important;
 }
 
 @media (max-width: 500px) {
