@@ -4,6 +4,7 @@ export { ApplicationLanguage } from "./Application/applicationLanguage";
 export { ApplicationEmail } from "./Application/applicationEmail";
 export { ApplicationNavbar } from "./Application/applicationNavbar";
 
+export { ArticleInfo } from "./Articles/articleInfo";
 export { ArticleListing } from "./Articles/articleListing";
 export { ArticleSelection } from "./Articles/articleSelection";
 export { ArticleUpdate } from "./Articles/articleUpdate";

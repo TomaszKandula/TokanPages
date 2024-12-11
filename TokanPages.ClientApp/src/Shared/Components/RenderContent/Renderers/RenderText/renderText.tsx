@@ -1,22 +1,25 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
-import { ArticleSelectionAction } from "../../../../../Store/Actions";
+import { ArticleInfoAction } from "../../../../../Store/Actions";
+import { ApplicationState } from "../../../../../Store/Configuration";
+import { ArticleItemBase } from "../../Models";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
+import { ProgressBar } from "../../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { ArticleCard } from "../../../../../Components/Articles";
 
 interface DataProps {
     value?: string;
     text?: string;
-    textId?: string;
 }
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
-const RenderItemLink = (props: DataProps): React.ReactElement => {
+const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     const hash = useHash();
     const data = props.value;
     const onClickHandler = React.useCallback(() => {
@@ -43,40 +46,48 @@ const RenderItemLink = (props: DataProps): React.ReactElement => {
     );
 };
 
-const RenderTextLink = (props: DataProps): React.ReactElement => {
+const RenderInternalLink = (props: DataProps): React.ReactElement => {
     return (
         <Typography component="span" className="render-text-common render-text-paragraph">
             <Link to={props.value ?? ""}>{props.text}</Link>
         </Typography>
     );
-}
+};
 
-const RenderRedirectLink = (props: DataProps): React.ReactElement => {
+const RenderArticleLink = (props: DataProps): React.ReactElement => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const selection = useSelector((state: ApplicationState) => state.articleInfo);
 
-    const handler = React.useCallback(() => {
-        if (!props.value || props.value === "") {
-            return;
+    const hasCollection = selection.collectedInfo && selection.collectedInfo?.length > 0;
+    const collectedInfo = selection.collectedInfo?.filter((value: ArticleItemBase) => value.id === props.value);
+    const hasInfo = collectedInfo !== undefined && collectedInfo.length === 1;
+
+    const [info, setInfo] = React.useState<ArticleItemBase | undefined>(undefined);
+
+    React.useEffect(() => {
+        if (props.value && props.value !== "" && !hasInfo) {
+            dispatch(ArticleInfoAction.get(props.value));
         }
+    }, [props.value, hasInfo]);
 
-        if (!props.textId || props.textId === "") {
-            return;
+    React.useEffect(() => {
+        if (!selection.isLoading && hasCollection && hasInfo) {
+            setInfo(collectedInfo[0]);
         }
- 
-        dispatch(ArticleSelectionAction.select({ id: props.textId }));
-        history.push(props.value);
+    }, [props.value, selection.isLoading, hasCollection, hasInfo, collectedInfo]);
 
-    }, [props.textId, props.value]);
-
-    return (
-        <Typography component="span" className="render-text-common render-text-paragraph">
-            <div onClick={handler} className="render-text-redirect">
-                {props.text}
-            </div>
-        </Typography>
+    return selection.isLoading ? (
+        <ProgressBar />
+    ) : (
+        <ArticleCard
+            id={info?.id ?? ""}
+            title={info?.title ?? ""}
+            description={info?.description ?? ""}
+            languageIso={info?.languageIso ?? ""}
+            canAnimate={false}
+        />
     );
-}
+};
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
@@ -129,11 +140,11 @@ export const RenderText = (props: TextItem): React.ReactElement => {
     const value: string = props.value as string;
     switch (props.prop) {
         case "item-link":
-            return <RenderItemLink value={value} text={props.text} />;
+            return <RenderAnchorLink value={value} text={props.text} />;
         case "text-link":
-            return <RenderTextLink value={value} text={props.text} />;    
+            return <RenderInternalLink value={value} text={props.text} />;
         case "redirect-link":
-            return <RenderRedirectLink textId={props.textId} value={value} text={props.text} />;    
+            return <RenderArticleLink value={value} text={props.text} />;
         case "title":
             return <RenderTitle value={value} />;
         case "subtitle":

@@ -1470,8 +1470,6 @@ body::backdrop {
 .render-super-title-image {
     display: block !important;
     cursor: none;
-    max-width: 300px !important;
-    max-height: 60px !important;
 }
 
 @media (max-width: 500px) {
@@ -1553,12 +1551,6 @@ body::backdrop {
 
 .render-text-paragraph {
     line-height: 2.2 !important;
-}
-
-.render-text-redirect {
-    cursor: pointer; 
-    color: -webkit-link; 
-    text-decoration: underline;
 }
 
 .render-video-card {

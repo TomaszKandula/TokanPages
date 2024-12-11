@@ -3,8 +3,8 @@ export interface TextObject {
 }
 
 export interface ConstraintProps {
-    maxWidth?: number;
-    maxHeight?: number;
+    width?: number;
+    height?: number;
 }
 
 export interface TextItem {
@@ -13,7 +13,6 @@ export interface TextItem {
     value: string | RowItem[];
     prop: string;
     text: string;
-    textId?: string;
     propTitle?: string;
     propSubtitle?: string;
     propImg?: string;

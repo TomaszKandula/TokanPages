@@ -13,6 +13,7 @@ interface ArticleCardProps {
     title: string;
     description: string;
     languageIso: string;
+    canAnimate: boolean;
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
@@ -20,7 +21,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);
-    const imageUrl = GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id);
+    const imageUrl = props.id !== "" ? GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id) : "";
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -40,6 +41,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
             onClickEvent={onClickEvent}
             buttonText={content?.button}
             flagImage={flagImage}
+            canAnimate={props.canAnimate}
         />
     );
 };

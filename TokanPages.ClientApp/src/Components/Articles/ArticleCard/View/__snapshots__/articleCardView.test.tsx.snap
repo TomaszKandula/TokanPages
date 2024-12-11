@@ -6,62 +6,6 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        data-aos="fade-up"
-      >
-        <div
-          class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
-        >
-          <div
-            class="MuiCardMedia-root article-card-image"
-            style="background-image: url(/images/card.jpg);"
-          >
-            <img
-              alt="image of eng.png"
-              class="article-flag-image"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
-            />
-          </div>
-          <div
-            class="MuiCardContent-root"
-          >
-            <p
-              class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
-            >
-              Article title
-            </p>
-            <p
-              class="MuiTypography-root article-card-description MuiTypography-body1"
-            >
-              Article short description
-            </p>
-            <div
-              class="MuiCardActions-root article-card-action MuiCardActions-spacing"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-                tabindex="0"
-                type="button"
-              >
-                <span
-                  class="MuiButton-label"
-                >
-                  READ
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      data-aos="fade-up"
-    >
-      <div
         class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
       >
         <div
@@ -78,7 +22,7 @@ Object {
           class="MuiCardContent-root"
         >
           <p
-            class="MuiTypography-root article-card-title MuiTypography-body1 MuiTypography-gutterBottom"
+            class="MuiTypography-root article-card-title MuiTypography-body1"
           >
             Article title
           </p>
@@ -105,6 +49,54 @@ Object {
               />
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
+    >
+      <div
+        class="MuiCardMedia-root article-card-image"
+        style="background-image: url(/images/card.jpg);"
+      >
+        <img
+          alt="image of eng.png"
+          class="article-flag-image"
+          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+        />
+      </div>
+      <div
+        class="MuiCardContent-root"
+      >
+        <p
+          class="MuiTypography-root article-card-title MuiTypography-body1"
+        >
+          Article title
+        </p>
+        <p
+          class="MuiTypography-root article-card-description MuiTypography-body1"
+        >
+          Article short description
+        </p>
+        <div
+          class="MuiCardActions-root article-card-action MuiCardActions-spacing"
+        >
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              READ
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
         </div>
       </div>
     </div>

@@ -16,6 +16,14 @@ public interface IArticlesCache
     Task<List<GetArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false);
 
     /// <summary>
+    /// Returns information for given article ID.
+    /// </summary>
+    /// <param name="id">Article ID</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>Object</returns>
+    Task<GetArticleInfoQueryResult> GetArticleInfo(Guid id, bool noCache = false);
+
+    /// <summary>
     /// Returns single article
     /// </summary>
     /// <param name="id">Article ID</param>
