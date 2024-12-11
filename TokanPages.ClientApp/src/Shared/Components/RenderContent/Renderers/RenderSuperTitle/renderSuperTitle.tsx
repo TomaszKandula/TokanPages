@@ -35,7 +35,16 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                 </div>
             </div>
             <Card elevation={0} className="render-super-title-card render-super-title-content-image">
-                <CardMedia component="img" image={propUrl} alt="image" className="render-super-title-image" />
+                <CardMedia 
+                    component="img" 
+                    image={propUrl} 
+                    alt="image" 
+                    className="render-super-title-image" 
+                    style={{
+                        width: props.constraint?.width,
+                        height: props.constraint?.height,
+                    }}
+                />
             </Card>
         </div>
     );

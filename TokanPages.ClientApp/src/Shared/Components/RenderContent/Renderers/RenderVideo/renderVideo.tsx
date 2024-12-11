@@ -38,8 +38,8 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                     onClick={onClickEvent}
                     className="render-video-image"
                     style={{
-                        maxWidth: props.constraint?.maxWidth,
-                        maxHeight: props.constraint?.maxHeight,
+                        width: props.constraint?.width,
+                        height: props.constraint?.height,
                     }}
                 />
             ) : (
