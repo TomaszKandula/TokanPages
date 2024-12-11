@@ -52,7 +52,7 @@ const RenderInternalLink = (props: DataProps): React.ReactElement => {
             <Link to={props.value ?? ""}>{props.text}</Link>
         </Typography>
     );
-}
+};
 
 const RenderArticleLink = (props: DataProps): React.ReactElement => {
     const dispatch = useDispatch();
@@ -74,16 +74,20 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
         if (!selection.isLoading && hasCollection && hasInfo) {
             setInfo(collectedInfo[0]);
         }
-    }, [props.value, selection.isLoading,  hasCollection, hasInfo, collectedInfo]);
+    }, [props.value, selection.isLoading, hasCollection, hasInfo, collectedInfo]);
 
-    return selection.isLoading ? <ProgressBar /> : <ArticleCard 
-        id={info?.id ?? ""}
-        title={info?.title ?? ""}
-        description={info?.description ?? ""}
-        languageIso={info?.languageIso ?? ""}
-        canAnimate={false}
-    />
-}
+    return selection.isLoading ? (
+        <ProgressBar />
+    ) : (
+        <ArticleCard
+            id={info?.id ?? ""}
+            title={info?.title ?? ""}
+            description={info?.description ?? ""}
+            languageIso={info?.languageIso ?? ""}
+            canAnimate={false}
+        />
+    );
+};
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
@@ -138,9 +142,9 @@ export const RenderText = (props: TextItem): React.ReactElement => {
         case "item-link":
             return <RenderAnchorLink value={value} text={props.text} />;
         case "text-link":
-            return <RenderInternalLink value={value} text={props.text} />;    
+            return <RenderInternalLink value={value} text={props.text} />;
         case "redirect-link":
-            return <RenderArticleLink value={value} text={props.text} />;    
+            return <RenderArticleLink value={value} text={props.text} />;
         case "title":
             return <RenderTitle value={value} />;
         case "subtitle":

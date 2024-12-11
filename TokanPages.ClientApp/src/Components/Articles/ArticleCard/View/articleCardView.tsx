@@ -25,7 +25,7 @@ interface DivAnimatedProps {
 
 const Animated = (props: DivAnimatedProps): React.ReactElement => {
     return props.canAnimate ? <div data-aos="fade-up">{props.children}</div> : <>{props.children}</>;
-}
+};
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     return (
@@ -35,9 +35,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                     <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
                 </CardMedia>
                 <CardContent>
-                    <Typography className="article-card-title">
-                        {props.title}
-                    </Typography>
+                    <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
                     <CardActions className="article-card-action">
                         <Button

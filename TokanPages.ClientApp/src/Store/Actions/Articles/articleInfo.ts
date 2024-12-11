@@ -14,24 +14,26 @@ interface Receive {
 export type TKnownActions = Request | Receive;
 
 export const ArticleInfoAction = {
-    get: (id: string): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        dispatch({ type: REQUEST });
+    get:
+        (id: string): ApplicationAction<TKnownActions> =>
+        (dispatch, getState) => {
+            dispatch({ type: REQUEST });
 
-        const request: RequestContract = {
-            configuration: {
-                method: "GET",
-                url: GET_ARTICLE_INFO.replace("{id}", id),
-                responseType: "json",
-            },
-        };
+            const request: RequestContract = {
+                configuration: {
+                    method: "GET",
+                    url: GET_ARTICLE_INFO.replace("{id}", id),
+                    responseType: "json",
+                },
+            };
 
-        const input: ExecuteContract = {
-            configuration: GetConfiguration(request),
-            dispatch: dispatch,
-            state: getState,
-            responseType: RECEIVE,
-        };
+            const input: ExecuteContract = {
+                configuration: GetConfiguration(request),
+                dispatch: dispatch,
+                state: getState,
+                responseType: RECEIVE,
+            };
 
-        Execute(input);
-    },
+            Execute(input);
+        },
 };
