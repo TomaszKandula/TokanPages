@@ -49,7 +49,8 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
     const [movement, setMovement] = React.useState<MouseMovement | undefined>(undefined);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-    const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
+    const nomilized = props.value.toLowerCase();
+    const isSelected = window.location.pathname !== "/" && window.location.pathname.includes(nomilized);
     const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
     const selectionStyle = isSelected ? selectionClass : "render-navbar-list-item-text";
 
