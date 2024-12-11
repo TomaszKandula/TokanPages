@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
+import { ReactMouseEventButton } from "../../../../../Shared/types";
 import { Item } from "../../Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
+
+type MouseMovement = "down" | "up" | "right" | "left";
 
 interface ItemsProps extends Item {
     onClickEvent?: () => void;
@@ -27,8 +30,23 @@ const Items = (props: ItemsProps): React.ReactElement => {
     return <>{data}</>;
 };
 
+const GetMouseMovement = (event: ReactMouseEventButton): MouseMovement | undefined => {
+    if (event.movementY > 0 && event.movementX == 0) {
+        return "down";
+    } else if (event.movementY < 0 && event.movementX == 0) {
+        return "up";
+    } else if (event.movementX > 0 && event.movementY == 0) {
+        return "right";
+    } else if (event.movementX < 0 && event.movementY == 0) {
+        return "left";
+    }
+
+    return undefined;
+}
+
 export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
     const [isOpen, setOpen] = React.useState(false);
+    const [movement, setMovement] = React.useState<MouseMovement | undefined>(undefined);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
 
     const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
@@ -36,8 +54,19 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
     const selectionStyle = isSelected ? selectionClass : "render-navbar-list-item-text";
 
     const handleToggle = React.useCallback((): void => {
-        setOpen(prevOpen => !prevOpen);
+        setOpen(!isOpen);
     }, []);
+
+    const movementHandler = React.useCallback((event: ReactMouseEventButton): void => {
+        const direction = GetMouseMovement(event);
+        setMovement(direction);
+    }, []);
+
+    const leaveHandler = React.useCallback(() => {
+        if (movement === "left" || movement === "right") {
+            setOpen(false);
+        }
+    }, [movement]);
 
     const handleClose = React.useCallback(
         (event: React.MouseEvent<EventTarget>): void => {
@@ -56,16 +85,6 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
             setOpen(false);
         }
     }, []);
-
-    /* Return focus to the button when we transitioned from "!open" to "open" */
-    const prevOpen = React.useRef(isOpen);
-    React.useEffect(() => {
-        if (prevOpen.current === true && isOpen === false) {
-            anchorRef.current!.focus();
-        }
-
-        prevOpen.current = isOpen;
-    }, [isOpen]);
 
     const checkItems = EnsureDefinedExt(
         {
@@ -89,7 +108,9 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                 key={props.id}
                 ref={anchorRef}
                 disabled={!props.enabled}
-                onClick={handleToggle}
+                onMouseOver={handleToggle}
+                onMouseLeave={leaveHandler}
+                onMouseMove={movementHandler}
                 className="render-navbar-button"
                 disableRipple={true}
             >
@@ -100,7 +121,14 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                     disableTypography={true}
                 />
             </Button>
-            <Popper open={isOpen} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+            <Popper 
+                open={isOpen} 
+                anchorEl={anchorRef.current} 
+                role={undefined} 
+                onMouseLeave={handleClose}
+                transition 
+                disablePortal 
+            >
                 {({ TransitionProps, placement }) => (
                     <Grow
                         {...TransitionProps}
