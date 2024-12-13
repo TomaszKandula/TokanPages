@@ -11,5 +11,5 @@ public class OrderSpaCachingCommand : IRequest<Unit>
 
     public string[] Files { get; set; } = Array.Empty<string>();
 
-    public List<RoutePath> Paths { get; set; } = new();
+    public IEnumerable<RoutePath>? Paths { get; set; }
 }

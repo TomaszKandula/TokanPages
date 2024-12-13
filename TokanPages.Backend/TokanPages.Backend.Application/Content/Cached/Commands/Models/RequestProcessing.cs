@@ -12,5 +12,5 @@ public class RequestProcessing
 
     public string[]? Files { get; set; }
 
-    public List<RoutePath> Paths { get; set; } = new();
+    public IEnumerable<RoutePath>? Paths { get; set; }
 }
