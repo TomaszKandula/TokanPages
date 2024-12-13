@@ -11,6 +11,7 @@ import { ErrorBoundary } from "./Shared/Components";
 import { IsPreRendered, TryGetStateSnapshot } from "./Shared/Services/SpaCaching";
 import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
+import "./Theme/styles.css";
 import App from "./app";
 
 const root = document.getElementById("root");
