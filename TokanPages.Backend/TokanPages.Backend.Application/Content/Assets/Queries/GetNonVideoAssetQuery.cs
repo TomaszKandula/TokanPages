@@ -1,5 +1,5 @@
 using MediatR;
-using TokanPages.Backend.Application.Content.Assets.Models;
+using TokanPages.Backend.Application.Content.Assets.Queries.Models;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
 

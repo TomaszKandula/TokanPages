@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace TokanPages.Backend.Application.Content.Assets.Models;
+namespace TokanPages.Backend.Application.Content.Assets.Queries.Models;
 
 public class ContentOutput
 {
