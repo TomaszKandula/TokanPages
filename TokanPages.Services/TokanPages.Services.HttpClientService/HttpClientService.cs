@@ -43,18 +43,19 @@ public class HttpClientService : IHttpClientService
 
         var response = await GetResponse(configuration, cancellationToken);
         var contentType = response.Content.Headers.ContentType;
-        var content = await response.Content.ReadAsByteArrayAsync(cancellationToken);
+        var byteContent = await response.Content.ReadAsByteArrayAsync(cancellationToken);
 
         if (response.IsSuccessStatusCode || response.StatusCode == HttpStatusCode.Redirect)
             return new ExecutionResult
             {
                 StatusCode = response.StatusCode,
                 ContentType = contentType,
-                Content = content
+                Content = byteContent
             };
 
-        var stringContent = Encoding.ASCII.GetString(content);
-        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
+        var stringContent = Encoding.ASCII.GetString(byteContent);
+        var content = string.IsNullOrWhiteSpace(stringContent) ? "n/a" : stringContent;
+        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Url: '{configuration.Url}'. Response: {content}.");
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
@@ -63,8 +64,9 @@ public class HttpClientService : IHttpClientService
         VerifyConfigurationArgument(configuration);
 
         var response = await GetResponse(configuration, cancellationToken);
-        var content = await response.Content.ReadAsByteArrayAsync(cancellationToken);
-        var stringContent = Encoding.ASCII.GetString(content);
+        var byteContent = await response.Content.ReadAsByteArrayAsync(cancellationToken);
+        var stringContent = Encoding.ASCII.GetString(byteContent);
+        var content = string.IsNullOrWhiteSpace(stringContent) ? "n/a" : stringContent;
 
         try
         {
@@ -73,11 +75,11 @@ public class HttpClientService : IHttpClientService
         }
         catch (Exception exception)
         {
-            _loggerService.LogError($"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Full response: {stringContent}.");
+            _loggerService.LogError($"{ErrorCodes.CANNOT_PARSE}. Exception: {exception}. Url: '{configuration.Url}'. Response: {content}.");
             throw new BusinessException(nameof(ErrorCodes.CANNOT_PARSE), ErrorCodes.CANNOT_PARSE);
         }
 
-        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Full response: {stringContent}.");
+        _loggerService.LogError($"{ErrorCodes.HTTP_REQUEST_FAILED}. Url: '{configuration.Url}'. Response: {content}.");
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
