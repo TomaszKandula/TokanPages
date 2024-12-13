@@ -52,6 +52,7 @@ public class CachedController : ApiBaseController
     /// <param name="payload">Urls.</param>
     /// <returns>Empty object.</returns>
     [HttpPost]
+    [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status201Created)]
     public async Task<Unit> OrderCache([FromBody] RequestProcessingDto payload) 
         => await Mediator.Send(CachedMapper.MapToOrderSpaCachingCommand(payload));
