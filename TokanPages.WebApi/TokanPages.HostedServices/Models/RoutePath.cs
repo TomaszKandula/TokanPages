@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.HostedServices.Models;
 
 /// <summary>
 /// Route path definition.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class RoutePath
 {
     /// <summary>
