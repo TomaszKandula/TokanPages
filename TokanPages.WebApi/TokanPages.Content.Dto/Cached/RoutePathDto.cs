@@ -1,20 +1,20 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.HostedServices.Models;
+namespace TokanPages.Content.Dto.Cached;
 
 /// <summary>
-/// Route path definition.
+/// Use it when you want to perform SPA snapshotting.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class RoutePath
+public class RoutePathDto
 {
     /// <summary>
-    /// Fully qualified path.
+    /// URL address.
     /// </summary>
     public string Url { get; set; } = "";
 
     /// <summary>
-    /// Page name (ie. main, about etc).
+    /// Page name.
     /// </summary>
     public string Name { get; set; } = "";
 }

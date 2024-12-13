@@ -45,4 +45,14 @@ public class CachedController : ApiBaseController
     [ProducesResponseType(typeof(UploadFileToLocalStorageCommandResult), StatusCodes.Status200OK)]
     public async Task<UploadFileToLocalStorageCommandResult> Upload([FromForm] UploadFileToLocalStorageDto payload) 
         => await Mediator.Send(CachedMapper.MapToUploadFileToLocalStorageCommand(payload));
+
+    /// <summary>
+    /// Allows to perform SPA caching for given URLs.
+    /// </summary>
+    /// <param name="payload">Urls.</param>
+    /// <returns>Empty object.</returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status201Created)]
+    public async Task<Unit> OrderCache([FromBody] RequestProcessingDto payload) 
+        => await Mediator.Send(CachedMapper.MapToOrderSpaCachingCommand(payload));
 }

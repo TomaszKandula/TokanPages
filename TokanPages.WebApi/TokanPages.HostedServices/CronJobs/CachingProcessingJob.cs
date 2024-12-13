@@ -56,13 +56,14 @@ public class CachingProcessingJob : CronJob
     public override async Task DoWork(CancellationToken cancellationToken)
     {
         _loggerService.LogInformation($"{ServiceName}: working...");
+        await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
+
         if (_paths.Count == 0)
         {
             _loggerService.LogInformation($"{ServiceName}: no routes registered for caching..., quitting the job...");
             return;
         }
 
-        await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
         foreach (var path in _paths)
         {
             var page = await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
