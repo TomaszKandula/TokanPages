@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Application.Content.Cached.Commands;
 using TokanPages.Backend.Application.Content.Cached.Queries;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using TokanPages.Content.Controllers.Mappers;
 using TokanPages.Content.Dto.Cached;
@@ -53,6 +54,7 @@ public class CachedController : ApiBaseController
     /// <returns>Empty object.</returns>
     [HttpPost]
     [Route("[action]")]
+    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status201Created)]
     public async Task<Unit> OrderCache([FromBody] RequestProcessingDto payload) 
         => await Mediator.Send(CachedMapper.MapToOrderSpaCachingCommand(payload));
