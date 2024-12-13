@@ -86,7 +86,7 @@ public class CacheProcessing : Processing
         {
             foreach (var path in request.Paths)
             {
-                var page = await _cachingService.RenderStaticPage(path.Url, request.GetUrl, path.Name).ConfigureAwait(false);
+                var page = await _cachingService.RenderStaticPage(path.Url, request.PostUrl, path.Name).ConfigureAwait(false);
                 if (!string.IsNullOrWhiteSpace(page))
                     LoggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
             }
