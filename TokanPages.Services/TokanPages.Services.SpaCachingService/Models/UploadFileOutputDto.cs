@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Services.SpaCachingService.Models;
 
+[ExcludeFromCodeCoverage]
 public class UploadFileOutputDto
 {
     public string UploadedFileSize { get; set; } = "";
