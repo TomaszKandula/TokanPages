@@ -84,8 +84,10 @@ public static class Dependencies
         services.AddScoped<IEmailSenderService, EmailSenderService>();
         services.AddScoped<ICachingService, CachingService>();
 
+        services.AddScoped<CacheProcessing>();
         services.AddScoped<VideoProcessing>();
         services.AddScoped<EmailProcessing>();
+        services.AddHostedService<CacheProcessingWorker>();
         services.AddHostedService<VideoProcessingWorker>();
         services.AddHostedService<EmailProcessingWorker>();
 

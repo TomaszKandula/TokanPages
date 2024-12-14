@@ -6,8 +6,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS projects
 WORKDIR /app
 COPY . ./
 
-RUN dotnet restore --disable-parallel
-RUN dotnet build -c Release --force
+RUN dotnet restore
+RUN dotnet build -c Release
 
 # ======================================================================================================================
 # 2 - BUILD DOCKER IMAGE
