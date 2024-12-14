@@ -105,13 +105,13 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                     disableTypography={true}
                 />
             </Button>
-            <Popper 
-                open={isOpen} 
-                anchorEl={anchorRef.current} 
-                role={undefined} 
+            <Popper
+                open={isOpen}
+                anchorEl={anchorRef.current}
+                role={undefined}
                 onMouseLeave={handleClose}
-                transition 
-                disablePortal 
+                transition
+                disablePortal
             >
                 {({ TransitionProps, placement }) => (
                     <Grow

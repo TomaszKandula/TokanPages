@@ -997,8 +997,8 @@ body::backdrop {
 }
 
 .header-image-skeleton {
-    height: 300px !important;
-    width: 300px !important;
+    height: 550px !important;
+    width: 550px !important;
 }
 
 .header-image-box {
@@ -1442,6 +1442,13 @@ body::backdrop {
     justify-content: space-between;
 }
 
+@media (max-width: 600px) {
+    .render-super-title-container {
+        flex-direction: column;
+        justify-content: start;
+    }
+}
+
 .render-super-title-content-text {
     align-content: center;
 }
@@ -1467,15 +1474,16 @@ body::backdrop {
     margin-bottom: 40px !important;
 }
 
+@media (max-width: 600px) {
+    .render-super-title-card {
+        margin-top: 0 !important;
+        margin-bottom: 20px !important;
+    }
+}
+
 .render-super-title-image {
     display: block !important;
     cursor: none;
-}
-
-@media (max-width: 500px) {
-    .render-super-title-image {
-        display: none !important;
-    }
 }
 
 .render-super-title-title {
