@@ -1,3 +1,30 @@
+# [0.128.0](https://github.com/TomaszKandula/TokanPages/compare/v0.127.0...v0.128.0) (2024-12-14)
+
+
+### Bug Fixes
+
+* add missing action attribute ([769548c](https://github.com/TomaszKandula/TokanPages/commit/769548c29702990679b5fd4b431c5b49ddc89d04))
+* correct url ([a76c929](https://github.com/TomaszKandula/TokanPages/commit/a76c92977da0e8e9f41de7b2593f6502c31e9eca))
+* resolve issues with menu behaviour ([4b338c4](https://github.com/TomaszKandula/TokanPages/commit/4b338c489618a511b42fb6908291cb8da4b6824e))
+
+
+### Features
+
+* add DTOs ([d38302b](https://github.com/TomaszKandula/TokanPages/commit/d38302b12d03e58f650ed9420a45cdb69e570237))
+* add endpoint w/mapper ([b01d7d0](https://github.com/TomaszKandula/TokanPages/commit/b01d7d03187946ddf22e4a6db5c33032deb60424))
+* add models ([19f37fd](https://github.com/TomaszKandula/TokanPages/commit/19f37fd0dbcb3c3608b018f83e3c25e2cfd7284d))
+* add spa cache processing job ([98262e1](https://github.com/TomaszKandula/TokanPages/commit/98262e1586fa97c910e45dc38204ec19a9e713b2))
+* add validator w/tests ([39fa78f](https://github.com/TomaszKandula/TokanPages/commit/39fa78f16c4b85fea457650a3edbd940b47971cf))
+* allow parallel, remove '--force' ([6b1c475](https://github.com/TomaszKandula/TokanPages/commit/6b1c475ba6bd4a8f2100c3a1d4d5bd6a383d7e23))
+* call method first ([45be8d3](https://github.com/TomaszKandula/TokanPages/commit/45be8d3387b943366cd50f8b8667ce7c02e3db36))
+* change build, remove from CSS and JS generated comments by build process ([2a5c559](https://github.com/TomaszKandula/TokanPages/commit/2a5c559167242da5779978324cd7ee11afa750a7))
+* enable etag ([c12e7c2](https://github.com/TomaszKandula/TokanPages/commit/c12e7c25e50ff201f0768c7ddce32058cb148fc2))
+* log failing URL ([1ccf9d7](https://github.com/TomaszKandula/TokanPages/commit/1ccf9d7d667671cfc0eb3954fabff40bf13ff4b4))
+* make scripts smaller ([faa2083](https://github.com/TomaszKandula/TokanPages/commit/faa2083bfcabf983f75149d5c745e060f2d5fad1))
+* order spa caching ([f8a2760](https://github.com/TomaszKandula/TokanPages/commit/f8a2760f5c9767b2a5eb316cae2ac875d0490526))
+* relocate main CSS file ([2382f2e](https://github.com/TomaszKandula/TokanPages/commit/2382f2e4c89b4fd3708f7462c1ec92c55cb05a91))
+* require admin for cache ordering ([957ab00](https://github.com/TomaszKandula/TokanPages/commit/957ab005cf7c21bd844f453eb6dd25552c507343))
+
 # [0.127.0](https://github.com/TomaszKandula/TokanPages/compare/v0.126.0...v0.127.0) (2024-12-11)
 
 
