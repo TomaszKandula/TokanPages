@@ -1,11 +1,11 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
-import { ReactMouseEventButton } from "../../../../../Shared/types";
+import { ApplicationNavbarAction } from "../../../../../Store/Actions";
+import { ApplicationState } from "../../../../../Store/Configuration";
 import { Item } from "../../Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
-
-type MouseMovement = "down" | "up" | "right" | "left";
 
 interface ItemsProps extends Item {
     onClickEvent?: () => void;
@@ -30,44 +30,29 @@ const Items = (props: ItemsProps): React.ReactElement => {
     return <>{data}</>;
 };
 
-const GetMouseMovement = (event: ReactMouseEventButton): MouseMovement | undefined => {
-    if (event.movementY > 0 && event.movementX == 0) {
-        return "down";
-    } else if (event.movementY < 0 && event.movementX == 0) {
-        return "up";
-    } else if (event.movementX > 0 && event.movementY == 0) {
-        return "right";
-    } else if (event.movementX < 0 && event.movementY == 0) {
-        return "left";
-    }
-
-    return undefined;
-}
-
 export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
+    const dispatch = useDispatch();
+
     const [isOpen, setOpen] = React.useState(false);
-    const [movement, setMovement] = React.useState<MouseMovement | undefined>(undefined);
     const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+    const selection = useSelector((state: ApplicationState) => state.applicationNavbar.selection);
 
     const nomilized = props.value.toLowerCase();
     const isSelected = window.location.pathname !== "/" && window.location.pathname.includes(nomilized);
     const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
     const selectionStyle = isSelected ? selectionClass : "render-navbar-list-item-text";
 
-    const handleToggle = React.useCallback((): void => {
-        setOpen(!isOpen);
-    }, []);
-
-    const movementHandler = React.useCallback((event: ReactMouseEventButton): void => {
-        const direction = GetMouseMovement(event);
-        setMovement(direction);
-    }, []);
-
-    const leaveHandler = React.useCallback(() => {
-        if (movement === "left" || movement === "right") {
+    React.useEffect(() => {
+        if (selection !== props.value) {
             setOpen(false);
         }
-    }, [movement]);
+    }, [selection, props.value]);
+
+    const handleToggle = React.useCallback((): void => {
+        setOpen(!isOpen);
+        dispatch(ApplicationNavbarAction.set({ selection: props.value }));
+    }, [props.value]);
 
     const handleClose = React.useCallback(
         (event: React.MouseEvent<EventTarget>): void => {
@@ -109,9 +94,7 @@ export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
                 key={props.id}
                 ref={anchorRef}
                 disabled={!props.enabled}
-                onMouseOver={handleToggle}
-                onMouseLeave={leaveHandler}
-                onMouseMove={movementHandler}
+                onMouseEnter={handleToggle}
                 className="render-navbar-button"
                 disableRipple={true}
             >
