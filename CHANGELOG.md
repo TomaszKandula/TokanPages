@@ -1,3 +1,13 @@
+# [0.129.0](https://github.com/TomaszKandula/TokanPages/compare/v0.128.0...v0.129.0) (2024-12-14)
+
+
+### Features
+
+* apply prettier ([c3411fe](https://github.com/TomaszKandula/TokanPages/commit/c3411fef642dbd5f784377127eb4020888e01bf5))
+* change skeleton size for main image ([615f946](https://github.com/TomaszKandula/TokanPages/commit/615f94640416fc88288b1a1bb10d83cc7b8d14e4))
+* display logo on small screens ([f7b2054](https://github.com/TomaszKandula/TokanPages/commit/f7b20545f487dd1fbdccd5de99a9afe772e41c7a))
+* display skeleton for breadcrumb ([d8aa0d3](https://github.com/TomaszKandula/TokanPages/commit/d8aa0d308c12fe21a7f51007b8ec33c3625dd7b8))
+
 # [0.128.0](https://github.com/TomaszKandula/TokanPages/compare/v0.127.0...v0.128.0) (2024-12-14)
 
 
