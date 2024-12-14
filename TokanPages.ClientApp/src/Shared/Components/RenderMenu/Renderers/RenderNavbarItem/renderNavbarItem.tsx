@@ -23,11 +23,11 @@ export const RenderNavbarItem = (props: Item): React.ReactElement => {
 
     const RenderItemWithHref = (): React.ReactElement => {
         return (
-            <Href 
-                href={link} 
-                className="render-navbar-href" 
-                underline="none" 
-                target="_blank" 
+            <Href
+                href={link}
+                className="render-navbar-href"
+                underline="none"
+                target="_blank"
                 rel="noopener"
                 onMouseEnter={onMouseEnter}
             >

@@ -1446,7 +1446,7 @@ body::backdrop {
     .render-super-title-container {
         flex-direction: column;
         justify-content: start;
-    }    
+    }
 }
 
 .render-super-title-content-text {

@@ -187,20 +187,21 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                 marginLeft: props.ml,
             }}
         >
-            {props.isLoading 
-            ? <Skeleton variant="rect" width={220} height={20} /> 
-            :             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
-            <Chip
-                component="div"
-                label={getHomeText(navigation)}
-                icon={<Home fontSize="small" />}
-                onClick={onBackToRoot}
-                className="custom-chip"
-            />
-            {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-            {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
-        </Breadcrumbs>
-}
+            {props.isLoading ? (
+                <Skeleton variant="rect" width={220} height={20} />
+            ) : (
+                <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
+                    <Chip
+                        component="div"
+                        label={getHomeText(navigation)}
+                        icon={<Home fontSize="small" />}
+                        onClick={onBackToRoot}
+                        className="custom-chip"
+                    />
+                    {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
+                    {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
+                </Breadcrumbs>
+            )}
             <div style={{ marginTop: props.mtDivider, marginBottom: props.mbDivider }}>
                 <Divider />
             </div>
