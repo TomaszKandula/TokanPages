@@ -19,7 +19,9 @@ export const ArticlesPage = (): React.ReactElement => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
+    const data = state.contentPageData;
     const articles = state?.contentPageData?.components?.article;
+    const isLoading = data?.isLoading ?? false;
 
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "article"], "ArticlesPage"));
@@ -34,7 +36,16 @@ export const ArticlesPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb mt={96} mb={16} mr={40} ml={40} mtDivider={32} mbDivider={32} watchparam="title" />
+            <CustomBreadcrumb
+                mt={96}
+                mb={16}
+                mr={40}
+                ml={40}
+                mtDivider={32}
+                mbDivider={32}
+                watchparam="title"
+                isLoading={isLoading}
+            />
             {title ? <ProgressOnScroll height={3} bgcolor="#6367EF" duration={0.1} /> : null}
             {title ? <ArticleDetail title={title} /> : <ArticleList />}
             <Footer />
