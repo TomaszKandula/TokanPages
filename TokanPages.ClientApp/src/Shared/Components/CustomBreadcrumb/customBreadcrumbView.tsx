@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { Skeleton } from "@material-ui/lab";
 import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
 import { UserInfoProps } from "../../../Api/Models";
@@ -11,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface CustomBreadcrumbProps {
+    isLoading: boolean;
     mt?: number;
     mb?: number;
     mr?: number;
@@ -185,17 +187,20 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                 marginLeft: props.ml,
             }}
         >
-            <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
-                <Chip
-                    component="div"
-                    label={getHomeText(navigation)}
-                    icon={<Home fontSize="small" />}
-                    onClick={onBackToRoot}
-                    className="custom-chip"
-                />
-                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-                {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
-            </Breadcrumbs>
+            {props.isLoading 
+            ? <Skeleton variant="rect" width={220} height={20} /> 
+            :             <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
+            <Chip
+                component="div"
+                label={getHomeText(navigation)}
+                icon={<Home fontSize="small" />}
+                onClick={onBackToRoot}
+                className="custom-chip"
+            />
+            {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
+            {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
+        </Breadcrumbs>
+}
             <div style={{ marginTop: props.mtDivider, marginBottom: props.mbDivider }}>
                 <Divider />
             </div>
