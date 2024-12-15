@@ -19,7 +19,7 @@ Object {
           />
         </div>
         <div
-          class="MuiCardContent-root"
+          class="MuiCardContent-root article-card-content"
         >
           <p
             class="MuiTypography-root article-card-title MuiTypography-body1"
@@ -34,20 +34,43 @@ Object {
           <div
             class="MuiCardActions-root article-card-action MuiCardActions-spacing"
           >
-            <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-              tabindex="0"
-              type="button"
+            <div
+              class="article-card-details"
             >
-              <span
-                class="MuiButton-label"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root article-card-read-icon"
+                focusable="false"
+                viewBox="0 0 24 24"
               >
-                READ
-              </span>
-              <span
-                class="MuiTouchRipple-root"
-              />
-            </button>
+                <path
+                  d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                />
+              </svg>
+              <div
+                class="article-card-read-count"
+              >
+                1000
+              </div>
+            </div>
+            <div
+              class="article-card-button-holder"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button MuiButton-textSizeSmall MuiButton-sizeSmall"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  READ
+                </span>
+                <span
+                  class="MuiTouchRipple-root"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -68,7 +91,7 @@ Object {
         />
       </div>
       <div
-        class="MuiCardContent-root"
+        class="MuiCardContent-root article-card-content"
       >
         <p
           class="MuiTypography-root article-card-title MuiTypography-body1"
@@ -83,20 +106,43 @@ Object {
         <div
           class="MuiCardActions-root article-card-action MuiCardActions-spacing"
         >
-          <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-            tabindex="0"
-            type="button"
+          <div
+            class="article-card-details"
           >
-            <span
-              class="MuiButton-label"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root article-card-read-icon"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              READ
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+              />
+            </svg>
+            <div
+              class="article-card-read-count"
+            >
+              1000
+            </div>
+          </div>
+          <div
+            class="article-card-button-holder"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button MuiButton-textSizeSmall MuiButton-sizeSmall"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                READ
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>

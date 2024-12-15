@@ -37,7 +37,7 @@ Object {
                       />
                     </div>
                     <div
-                      class="MuiCardContent-root"
+                      class="MuiCardContent-root article-card-content"
                     >
                       <p
                         class="MuiTypography-root article-card-title MuiTypography-body1"
@@ -52,18 +52,22 @@ Object {
                       <div
                         class="MuiCardActions-root article-card-action MuiCardActions-spacing"
                       >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-                          tabindex="0"
-                          type="button"
+                        <div
+                          class="article-card-button-holder"
                         >
-                          <span
-                            class="MuiButton-label"
-                          />
-                          <span
-                            class="MuiTouchRipple-root"
-                          />
-                        </button>
+                          <button
+                            class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button MuiButton-textSizeSmall MuiButton-sizeSmall"
+                            tabindex="0"
+                            type="button"
+                          >
+                            <span
+                              class="MuiButton-label"
+                            />
+                            <span
+                              class="MuiTouchRipple-root"
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -108,7 +112,7 @@ Object {
                     />
                   </div>
                   <div
-                    class="MuiCardContent-root"
+                    class="MuiCardContent-root article-card-content"
                   >
                     <p
                       class="MuiTypography-root article-card-title MuiTypography-body1"
@@ -123,18 +127,22 @@ Object {
                     <div
                       class="MuiCardActions-root article-card-action MuiCardActions-spacing"
                     >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button article-card-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-                        tabindex="0"
-                        type="button"
+                      <div
+                        class="article-card-button-holder"
                       >
-                        <span
-                          class="MuiButton-label"
-                        />
-                        <span
-                          class="MuiTouchRipple-root"
-                        />
-                      </button>
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button MuiButton-textSizeSmall MuiButton-sizeSmall"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          />
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
