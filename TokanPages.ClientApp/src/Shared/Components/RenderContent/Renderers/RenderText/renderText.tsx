@@ -65,6 +65,7 @@ const RenderInternalLink = (props: TextItem): React.ReactElement => {
         buttonText={props.text}
         flagImage={""}
         canAnimate={false}
+        readCount={0}
     />);
 };
 
@@ -99,6 +100,7 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
             description={info?.description ?? ""}
             languageIso={info?.languageIso ?? ""}
             canAnimate={false}
+            readCount={info?.readCount ?? 0}
         />
     );
 };

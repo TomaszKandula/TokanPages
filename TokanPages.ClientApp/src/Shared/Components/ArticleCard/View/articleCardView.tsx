@@ -5,6 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { RenderImage } from "../../../../Shared/Components";
 
@@ -16,6 +17,7 @@ interface ArticleCardViewProps {
     buttonText: string;
     flagImage: string;
     canAnimate: boolean;
+    readCount: number;
 }
 
 interface DivAnimatedProps {
@@ -34,17 +36,25 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                 <CardMedia image={props.imageUrl} className="article-card-image">
                     <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
                 </CardMedia>
-                <CardContent>
+                <CardContent className="article-card-content">
                     <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
                     <CardActions className="article-card-action">
-                        <Button
-                            onClick={props.onClickEvent}
-                            size="small"
-                            className="button article-button article-card-button"
-                        >
-                            {props.buttonText}
-                        </Button>
+                        {props.readCount === 0 
+                        ? <></> 
+                        : <div className="article-card-details">
+                            <VisibilityIcon className="article-card-read-icon" />
+                            <div className="article-card-read-count">{props.readCount}</div>
+                        </div>}
+                        <div className="article-card-button-holder">
+                            <Button
+                                onClick={props.onClickEvent}
+                                size="small"
+                                className="button article-button"
+                            >
+                                {props.buttonText}
+                            </Button>
+                        </div>
                     </CardActions>
                 </CardContent>
             </Card>

@@ -450,14 +450,9 @@ body::backdrop {
     width: 32px;
 }
 
-.article-card-button {
-    margin-left: 0 !important;
-}
-
-@media (max-width: 700px) {
-    .article-card-button {
-        margin-left: auto !important;
-    }
+.article-card-button-holder {
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 .article-card {
@@ -474,6 +469,10 @@ body::backdrop {
     }
 }
 
+.article-card-content {
+    width: 100%;
+}
+
 .article-card-title {
     font-size: 1.5rem !important;
     color: black;
@@ -485,7 +484,26 @@ body::backdrop {
 }
 
 .article-card-action {
-    margin-top: 25px;
+    margin-top: 60px;
+    width: 100%;
+    padding: 0 !important;
+}
+
+.article-card-details {
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.article-card-read-icon {
+    color: #757575;
+    align-self: center;
+}
+
+.article-card-read-count {
+    padding: 5px;
+    align-self: center;
 }
 
 .article-card-image {
@@ -493,7 +511,8 @@ body::backdrop {
     padding: 10px;
     border-radius: 15px;
     height: auto;
-    width: 180px;
+    min-width: 180px;
+    min-height: 180px;
 }
 
 @media (max-width: 700px) {

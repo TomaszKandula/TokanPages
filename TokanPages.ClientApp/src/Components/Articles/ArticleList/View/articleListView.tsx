@@ -21,6 +21,7 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
                     key={item.id}
                     languageIso={item.languageIso}
                     canAnimate={true}
+                    readCount={item.readCount}
                 />
             ))}
         </>
