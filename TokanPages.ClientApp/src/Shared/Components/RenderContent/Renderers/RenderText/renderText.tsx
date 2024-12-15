@@ -9,10 +9,8 @@ import { ApplicationState } from "../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../Models";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
-import { ProgressBar } from "../../../../../Shared/Components";
+import { ArticleCard, ArticleCardView, ProgressBar } from "../../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { ArticleCard } from "../../../../../Components/Articles";
-import { ArticleCardView } from "../../../../../Components/Articles/ArticleCard/View/articleCardView";
 import Validate from "validate.js";
 
 interface DataProps {
