@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
+import { GET_NON_VIDEO_ASSET } from "../../../../../Api/Request/Paths";
 import { ArticleInfoAction } from "../../../../../Store/Actions";
 import { ApplicationState } from "../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../Models";
@@ -11,8 +12,8 @@ import { useHash } from "../../../../../Shared/Hooks";
 import { ProgressBar } from "../../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ArticleCard } from "../../../../../Components/Articles";
-import { ArticleCardView } from "Components/Articles/ArticleCard/View/articleCardView";
-import { GET_IMAGES_URL } from "Api/Request";
+import { ArticleCardView } from "../../../../../Components/Articles/ArticleCard/View/articleCardView";
+import Validate from "validate.js";
 
 interface DataProps {
     value?: string;
@@ -51,7 +52,8 @@ const RenderAnchorLink = (props: DataProps): React.ReactElement => {
 const RenderInternalLink = (props: TextItem): React.ReactElement => {
     const history = useHistory();
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
-    const imageUrl = `${GET_IMAGES_URL}/${props.propImg}`;
+    const hasImage = !Validate.isEmpty(props.propImg);
+    const imageUrl = hasImage ? GET_NON_VIDEO_ASSET.replace("{name}", props.propImg!) : "";
 
     const onClickEvent = React.useCallback(() => {
         history.push(`/${languageId}${props.value}`);
