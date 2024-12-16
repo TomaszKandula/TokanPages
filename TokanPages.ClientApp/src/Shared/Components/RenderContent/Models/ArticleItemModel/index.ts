@@ -6,7 +6,7 @@ export interface ArticleItemBase {
     title: string;
     description: string;
     isPublished: boolean;
-    likeCount: number;
+    totalLikes: number;
     userLikes: number;
     readCount: number;
     createdAt: string;
