@@ -17,7 +17,7 @@ interface ArticleCardViewProps {
     buttonText: string;
     flagImage: string;
     canAnimate: boolean;
-    readCount: number;
+    readCount?: number;
 }
 
 interface DivAnimatedProps {
@@ -40,7 +40,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                     <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
                     <CardActions className="article-card-action">
-                        {props.readCount === 0 
+                        {props.readCount === undefined
                         ? <></> 
                         : <div className="article-card-details">
                             <VisibilityIcon className="article-card-read-icon" />

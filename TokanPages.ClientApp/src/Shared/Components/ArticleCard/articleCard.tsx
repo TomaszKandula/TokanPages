@@ -14,7 +14,7 @@ interface ArticleCardProps {
     description: string;
     languageIso: string;
     canAnimate: boolean;
-    readCount: number;
+    readCount?: number;
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
