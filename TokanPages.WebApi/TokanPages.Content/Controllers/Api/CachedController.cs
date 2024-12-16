@@ -33,7 +33,7 @@ public class CachedController : ApiBaseController
     [HttpGet]
     [ETagFilter]
     [Route("{fileName?}")]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 31536000, VaryByQueryKeys = new[] { "fileName" })]
+    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 0, VaryByQueryKeys = new[] { "fileName" })]
     public async Task<FileContentResult> Get([FromRoute] string? fileName = null)
         => await Mediator.Send(new GetFileByNameQuery { FileName = fileName });
 
