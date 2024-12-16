@@ -15,6 +15,7 @@ public class Articles : Entity<Guid>
     public string Description { get; set; }
     public bool IsPublished { get; set; }
     public int ReadCount { get; set; }
+    public int TotalLikes { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public Guid? UserId { get; set; }

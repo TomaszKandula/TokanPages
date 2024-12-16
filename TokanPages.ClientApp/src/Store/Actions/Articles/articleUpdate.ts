@@ -1,8 +1,10 @@
-import { ApplicationAction } from "../../Configuration";
-import { RaiseError } from "../../../Shared/Services/ErrorServices";
+import { ApplicationAction, ApplicationState } from "../../Configuration";
 
 import {
-    ExecuteAsync,
+    Execute,
+    ExecuteContract,
+    GetConfiguration,
+    RequestContract,
     UPDATE_ARTICLE_CONTENT,
     UPDATE_ARTICLE_COUNT,
     UPDATE_ARTICLE_LIKES,
@@ -10,7 +12,6 @@ import {
 } from "../../../Api/Request";
 
 import {
-    ApplicationProps,
     UpdateArticleContentDto,
     UpdateArticleCountDto,
     UpdateArticleLikesDto,
@@ -36,40 +37,26 @@ const DispatchCall = async (
     dispatch: (action: TKnownActions) => void,
     url: string,
     data: object,
-    content: ApplicationProps
+    getState: () => ApplicationState
 ) => {
     dispatch({ type: UPDATE });
 
-    let result = await ExecuteAsync({
-        url: url,
-        method: "POST",
-        responseType: "json",
-        data: data,
-    });
+    const request: RequestContract = {
+        configuration: {
+            method: "POST",
+            url: url,
+            data: data,
+        },
+    };
 
-    if (result.error !== null) {
-        RaiseError({
-            dispatch: dispatch,
-            errorObject: result.error,
-            content: content,
-        });
-
-        return;
-    }
-
-    if (result.status === 200) {
-        dispatch({ type: RESPONSE, payload: result.content });
-        dispatch({ type: CLEAR });
-        return;
-    }
-
-    const statusCode = result.status as number;
-    const statusText = content.unexpectedStatus.replace("{STATUS_CODE}", statusCode.toString());
-    RaiseError({
+    const input: ExecuteContract = {
+        configuration: GetConfiguration(request),
         dispatch: dispatch,
-        errorObject: statusText,
-        content: content,
-    });
+        state: getState,
+        responseType: RESPONSE,
+    };
+
+    Execute(input);
 };
 
 export const ArticleUpdateAction = {
@@ -79,25 +66,21 @@ export const ArticleUpdateAction = {
     updateContent:
         (payload: UpdateArticleContentDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentPageData.components.templates.templates.application;
-            DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload, content);
+            DispatchCall(dispatch, UPDATE_ARTICLE_CONTENT, payload, getState);
         },
     updateCount:
         (payload: UpdateArticleCountDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentPageData.components.templates.templates.application;
-            DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload, content);
+            DispatchCall(dispatch, UPDATE_ARTICLE_COUNT, payload, getState);
         },
     updateLikes:
         (payload: UpdateArticleLikesDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentPageData.components.templates.templates.application;
-            DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload, content);
+            DispatchCall(dispatch, UPDATE_ARTICLE_LIKES, payload, getState);
         },
     updateVisibility:
         (payload: UpdateArticleVisibilityDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const content = getState().contentPageData.components.templates.templates.application;
-            DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload, content);
+            DispatchCall(dispatch, UPDATE_ARTICLE_VISIBILITY, payload, getState);
         },
 };

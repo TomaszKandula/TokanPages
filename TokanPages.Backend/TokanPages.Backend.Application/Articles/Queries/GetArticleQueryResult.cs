@@ -4,8 +4,6 @@ namespace TokanPages.Backend.Application.Articles.Queries;
 
 public class GetArticleQueryResult : GetArticlesQueryResult
 {
-    public int LikeCount { get; set; }
-
     public int UserLikes { get; set; }
 
     public GetUserDto? Author { get; set; }
