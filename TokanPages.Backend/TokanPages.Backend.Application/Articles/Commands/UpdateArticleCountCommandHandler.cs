@@ -1,7 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Article;
@@ -34,16 +33,14 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var user = await _userService.GetUser(cancellationToken);
+        var ipAddress = _userService.GetRequestIpAddress();
         var articleCount = await DatabaseContext.ArticleCounts
             .Where(counts => counts.ArticleId == request.Id)
-            .WhereIfElse(user == null,
-                counts => counts.IpAddress == _userService.GetRequestIpAddress(),
-                counts => counts.UserId == user!.UserId)
+            .Where(counts => counts.IpAddress == ipAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (articleCount is null)
         {
-            var ipAddress = _userService.GetRequestIpAddress();
             var newArticleCount = new ArticleCounts
             {
                 UserId = article.UserId,

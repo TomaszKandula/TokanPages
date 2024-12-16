@@ -33,6 +33,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetUser(cancellationToken);
+        var ipAddress = _userService.GetRequestIpAddress();
         var isAnonymousUser = user == null;
 
         var requestId = Guid.Empty;
@@ -49,8 +50,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var userLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
             .Where(likes => likes.ArticleId == requestId)
-            .WhereIfElse(isAnonymousUser,
-                likes => likes.IpAddress == _userService.GetRequestIpAddress(),
+            .WhereIfElse(isAnonymousUser, 
+                likes => likes.IpAddress == ipAddress && likes.UserId == null, 
                 likes => likes.UserId == user!.UserId)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
@@ -77,7 +78,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
                 UpdatedAt = articles.UpdatedAt,
                 ReadCount = articles.ReadCount,
                 LanguageIso = articles.LanguageIso,
-                LikeCount = totalLikes,
+                TotalLikes = totalLikes,
                 UserLikes = userLikes,
                 Author = new GetUserDto
                 {
