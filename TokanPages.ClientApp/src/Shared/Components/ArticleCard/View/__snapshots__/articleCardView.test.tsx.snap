@@ -39,7 +39,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root article-card-read-icon"
+                class="MuiSvgIcon-root article-card-item-icon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
@@ -48,10 +48,13 @@ Object {
                 />
               </svg>
               <div
-                class="article-card-read-count"
+                class="article-card-item-value"
               >
                 1000
               </div>
+              <div
+                class="article-card-details-separator"
+              />
             </div>
             <div
               class="article-card-button-holder"
@@ -111,7 +114,7 @@ Object {
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root article-card-read-icon"
+              class="MuiSvgIcon-root article-card-item-icon"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -120,10 +123,13 @@ Object {
               />
             </svg>
             <div
-              class="article-card-read-count"
+              class="article-card-item-value"
             >
               1000
             </div>
+            <div
+              class="article-card-details-separator"
+            />
           </div>
           <div
             class="article-card-button-holder"
