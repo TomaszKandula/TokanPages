@@ -94,8 +94,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
 
     [Theory]
     [InlineData(10, 10, 20)]
-    [InlineData(50, 10, 25)]
-    [InlineData(70, 10, 25)]
+    [InlineData(15, 10, 25)]
+    [InlineData(20, 5, 25)]
     public async Task GivenExistingLikesUpdatedAsAnonymousUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
@@ -267,8 +267,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
 
     [Theory]
     [InlineData(10, 10, 20)]
-    [InlineData(50, 10, 50)]
-    [InlineData(70, 10, 50)]
+    [InlineData(25, 25, 50)]
+    [InlineData(45, 5, 50)]
     public async Task GivenExistingLikesUpdatedAsLoggedUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
