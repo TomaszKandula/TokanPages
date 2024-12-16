@@ -1,3 +1,25 @@
+# [0.130.0](https://github.com/TomaszKandula/TokanPages/compare/v0.129.0...v0.130.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* allow read count to be undefined ([fb4df3e](https://github.com/TomaszKandula/TokanPages/commit/fb4df3e99f41fe5c55cec3c403bc26e0c57ff38a))
+* replace obsolete code ([cd12893](https://github.com/TomaszKandula/TokanPages/commit/cd12893a4c992a237107cfc405f3a54674cf2518))
+
+
+### Features
+
+* add aggregate for total likes ([c6e4267](https://github.com/TomaszKandula/TokanPages/commit/c6e4267db2c4c95f308f0083a511dc4570cc853d))
+* add and use total likes value ([9ab3d39](https://github.com/TomaszKandula/TokanPages/commit/9ab3d396070186bb22113a483f5ae0a6714a6ed2))
+* align property name w/updated contract ([a3cdd2c](https://github.com/TomaszKandula/TokanPages/commit/a3cdd2cfc9ae8561531124e4c7fb0c9181e5deb2))
+* display article likes ([41f95e1](https://github.com/TomaszKandula/TokanPages/commit/41f95e11e32dc784e10a2be415b3eb4578ce0573))
+* relocate to shared components ([4c998a5](https://github.com/TomaszKandula/TokanPages/commit/4c998a511174cef866c45fe3c00dd20885d66082))
+* remove unused property ([4466d14](https://github.com/TomaszKandula/TokanPages/commit/4466d147c17df7ace3ec8a0f1d963bfc926071d0))
+* restyle article card, show read count ([38e3881](https://github.com/TomaszKandula/TokanPages/commit/38e38814068fde4585503a6624120a49bcea2aaf))
+* restyle internal link, reuse component ([73d900b](https://github.com/TomaszKandula/TokanPages/commit/73d900b10cd2868640ad685ce18c36b11bba8adf))
+* update implementation for article likes ([9186467](https://github.com/TomaszKandula/TokanPages/commit/9186467e39f4978848e537cfa9e49480805226e6))
+* use validate.js, change base link ([59d40c7](https://github.com/TomaszKandula/TokanPages/commit/59d40c73028373b7818ff5721fe2d0d0d11a7593))
+
 # [0.129.0](https://github.com/TomaszKandula/TokanPages/compare/v0.128.0...v0.129.0) (2024-12-14)
 
 
