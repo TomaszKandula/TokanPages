@@ -1,3 +1,10 @@
+## [0.130.1](https://github.com/TomaszKandula/TokanPages/compare/v0.130.0...v0.130.1) (2024-12-16)
+
+
+### Bug Fixes
+
+* do not cache returned html files ([5a8bf26](https://github.com/TomaszKandula/TokanPages/commit/5a8bf263c4b8b5fd5e90e29caeaa5c4bc60da41a))
+
 # [0.130.0](https://github.com/TomaszKandula/TokanPages/compare/v0.129.0...v0.130.0) (2024-12-16)
 
 
