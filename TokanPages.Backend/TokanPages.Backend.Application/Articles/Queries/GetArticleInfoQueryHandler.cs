@@ -55,7 +55,7 @@ public class GetArticleInfoQueryHandler : RequestHandler<GetArticleInfoQuery, Ge
                 UpdatedAt = articles.UpdatedAt,
                 ReadCount = articles.ReadCount,
                 LanguageIso = articles.LanguageIso,
-                LikeCount = totalLikes,
+                TotalLikes = totalLikes,
                 UserLikes = userLikes
             })
             .AsNoTracking()
@@ -74,7 +74,7 @@ public class GetArticleInfoQueryHandler : RequestHandler<GetArticleInfoQuery, Ge
             UpdatedAt = query.UpdatedAt,
             ReadCount = query.ReadCount,
             LanguageIso = query.LanguageIso,
-            LikeCount = query.LikeCount,
+            TotalLikes = query.TotalLikes,
             UserLikes = query.UserLikes
         };
     }
