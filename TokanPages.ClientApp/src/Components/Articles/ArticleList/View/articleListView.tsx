@@ -22,6 +22,7 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
                     languageIso={item.languageIso}
                     canAnimate={true}
                     readCount={item.readCount}
+                    totalLikes={item.totalLikes}
                 />
             ))}
         </>

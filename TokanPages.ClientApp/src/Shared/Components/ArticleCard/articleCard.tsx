@@ -15,6 +15,7 @@ interface ArticleCardProps {
     languageIso: string;
     canAnimate: boolean;
     readCount?: number;
+    totalLikes?: number;
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
@@ -44,6 +45,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
             flagImage={flagImage}
             canAnimate={props.canAnimate}
             readCount={props.readCount}
+            totalLikes={props.totalLikes}
         />
     );
 };

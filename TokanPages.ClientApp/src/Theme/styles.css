@@ -496,14 +496,18 @@ body::backdrop {
     flex-direction: row;
 }
 
-.article-card-read-icon {
+.article-card-item-icon {
     color: #757575;
     align-self: center;
 }
 
-.article-card-read-count {
+.article-card-item-value {
     padding: 5px;
     align-self: center;
+}
+
+.article-card-details-separator {
+    margin: 5px;
 }
 
 .article-card-image {

@@ -100,6 +100,7 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
             languageIso={info?.languageIso ?? ""}
             canAnimate={false}
             readCount={info?.readCount}
+            totalLikes={info?.totalLikes}
         />
     );
 };
