@@ -58,8 +58,8 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     }, [selection.article.userLikes, isAnonymous, totalThumbs]);
 
     React.useEffect(() => {
-        setTotalLikes(selection.article.likeCount);
-    }, [selection.article.likeCount]);
+        setTotalLikes(selection.article.totalLikes);
+    }, [selection.article.totalLikes]);
 
     React.useEffect(() => {
         if (selection.isLoading) return;

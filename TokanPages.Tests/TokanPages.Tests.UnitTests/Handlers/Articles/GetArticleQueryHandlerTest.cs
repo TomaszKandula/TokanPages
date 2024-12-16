@@ -130,7 +130,7 @@ public class GetArticleQueryHandlerTest : TestBase
         result.UserLikes.Should().Be(10);
         result.UpdatedAt.Should().BeNull();
         result.CreatedAt.Should().Be(testDate);
-        result.LikeCount.Should().Be(25);
+        result.TotalLikes.Should().Be(25);
         result.Author.Should().NotBeNull();
         result.Author?.AliasName.Should().Be(UserAlias);
         result.Author?.AvatarName.Should().BeNull();

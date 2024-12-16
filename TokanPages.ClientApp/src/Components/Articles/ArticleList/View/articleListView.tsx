@@ -2,9 +2,8 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import { Grid } from "@material-ui/core";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
-import { ProgressBar } from "../../../../Shared/Components";
+import { ArticleCard, ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { ArticleCard } from "../../../Articles";
 import { ArticleListProps } from "../articleList";
 
 interface ArticleListViewProps extends ViewProperties, ArticleListProps {
@@ -22,6 +21,8 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
                     key={item.id}
                     languageIso={item.languageIso}
                     canAnimate={true}
+                    readCount={item.readCount}
+                    totalLikes={item.totalLikes}
                 />
             ))}
         </>

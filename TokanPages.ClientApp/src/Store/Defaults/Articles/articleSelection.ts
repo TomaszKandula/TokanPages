@@ -7,7 +7,7 @@ export const ArticleSelection: ArticleSelectionState = {
         title: "",
         description: "",
         isPublished: false,
-        likeCount: 0,
+        totalLikes: 0,
         userLikes: 0,
         readCount: 0,
         createdAt: "",

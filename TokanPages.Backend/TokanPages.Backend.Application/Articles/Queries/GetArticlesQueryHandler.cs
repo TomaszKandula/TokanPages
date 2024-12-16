@@ -20,6 +20,7 @@ public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, List<Get
                 Description = articles.Description,
                 IsPublished = articles.IsPublished,
                 ReadCount = articles.ReadCount,
+                TotalLikes = articles.TotalLikes, 
                 CreatedAt = articles.CreatedAt,
                 UpdatedAt = articles.UpdatedAt,
                 LanguageIso = articles.LanguageIso

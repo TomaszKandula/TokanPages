@@ -32,7 +32,7 @@ describe("test articles group component: ArticleListView", () => {
             title: "Test article",
             description: "Some article",
             isPublished: false,
-            likeCount: 0,
+            totalLikes: 0,
             userLikes: 0,
             readCount: 0,
             createdAt: "2020-09-21",

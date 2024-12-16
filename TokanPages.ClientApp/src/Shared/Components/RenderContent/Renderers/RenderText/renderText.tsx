@@ -1,16 +1,17 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
+import { GET_NON_VIDEO_ASSET } from "../../../../../Api/Request/Paths";
 import { ArticleInfoAction } from "../../../../../Store/Actions";
 import { ApplicationState } from "../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../Models";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
-import { ProgressBar } from "../../../../../Shared/Components";
+import { ArticleCard, ArticleCardView, ProgressBar } from "../../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { ArticleCard } from "../../../../../Components/Articles";
+import Validate from "validate.js";
 
 interface DataProps {
     value?: string;
@@ -46,12 +47,25 @@ const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     );
 };
 
-const RenderInternalLink = (props: DataProps): React.ReactElement => {
-    return (
-        <Typography component="span" className="render-text-common render-text-paragraph">
-            <Link to={props.value ?? ""}>{props.text}</Link>
-        </Typography>
-    );
+const RenderInternalLink = (props: TextItem): React.ReactElement => {
+    const history = useHistory();
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const hasImage = !Validate.isEmpty(props.propImg);
+    const imageUrl = hasImage ? GET_NON_VIDEO_ASSET.replace("{name}", props.propImg!) : "";
+
+    const onClickEvent = React.useCallback(() => {
+        history.push(`/${languageId}${props.value}`);
+    }, [props.value, languageId]);
+
+    return (<ArticleCardView 
+        imageUrl={imageUrl}
+        title={props.propTitle ?? ""}
+        description={props.propSubtitle ?? ""}
+        onClickEvent={onClickEvent}
+        buttonText={props.text}
+        flagImage={""}
+        canAnimate={false}
+    />);
 };
 
 const RenderArticleLink = (props: DataProps): React.ReactElement => {
@@ -85,6 +99,8 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
             description={info?.description ?? ""}
             languageIso={info?.languageIso ?? ""}
             canAnimate={false}
+            readCount={info?.readCount}
+            totalLikes={info?.totalLikes}
         />
     );
 };
@@ -142,7 +158,7 @@ export const RenderText = (props: TextItem): React.ReactElement => {
         case "item-link":
             return <RenderAnchorLink value={value} text={props.text} />;
         case "text-link":
-            return <RenderInternalLink value={value} text={props.text} />;
+            return <RenderInternalLink {...props} />;
         case "redirect-link":
             return <RenderArticleLink value={value} text={props.text} />;
         case "title":

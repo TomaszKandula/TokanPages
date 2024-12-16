@@ -12,6 +12,8 @@ public class GetArticlesQueryResult
 
     public int ReadCount { get; set; }
 
+    public int TotalLikes { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
