@@ -1,3 +1,10 @@
+## [0.130.2](https://github.com/TomaszKandula/TokanPages/compare/v0.130.1...v0.130.2) (2024-12-16)
+
+
+### Bug Fixes
+
+* remove attribute ([dc83ab3](https://github.com/TomaszKandula/TokanPages/commit/dc83ab3761a8719b5397b2ab0dc107af2697ae12))
+
 ## [0.130.1](https://github.com/TomaszKandula/TokanPages/compare/v0.130.0...v0.130.1) (2024-12-16)
 
 
