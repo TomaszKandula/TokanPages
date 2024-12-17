@@ -16,11 +16,13 @@ export const Footer = (props: Properties): React.ReactElement => {
     const backgroundColor: string = !props.backgroundColor ? "#FAFAFA" : props.backgroundColor;
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const isLoading = data?.isLoading ?? false;
     const footer = data?.components?.footer;
     const hasLegalInfo = !validate.isEmpty(footer?.copyright) && !validate.isEmpty(footer?.reserved);
 
     return (
         <FooterView
+            isLoading={isLoading}
             terms={footer?.terms}
             policy={footer?.policy}
             versionInfo={versionInfo}

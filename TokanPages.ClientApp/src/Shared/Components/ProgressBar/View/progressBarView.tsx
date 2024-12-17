@@ -4,6 +4,7 @@ import { CircularProgress } from "@material-ui/core";
 interface ProgressBarViewProps {
     style?: React.CSSProperties;
     size?: number;
+    colour?: string;
 }
 
 export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement => {
@@ -11,7 +12,7 @@ export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement
     return (
         <div className="progress-bar-box" style={externalStyle}>
             <div style={{ margin: "auto" }}>
-                <CircularProgress className="progress-bar-progress" size={props.size} />
+                <CircularProgress className="progress-bar-progress" size={props.size} style={{ color: props.colour }} />
             </div>
         </div>
     );

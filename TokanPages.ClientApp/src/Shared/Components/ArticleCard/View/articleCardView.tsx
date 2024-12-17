@@ -18,8 +18,8 @@ interface ArticleCardViewProps {
     buttonText: string;
     flagImage: string;
     canAnimate: boolean;
-    readCount?: number;
-    totalLikes?: number;
+    readCount?: string;
+    totalLikes?: string;
 }
 
 interface DivAnimatedProps {

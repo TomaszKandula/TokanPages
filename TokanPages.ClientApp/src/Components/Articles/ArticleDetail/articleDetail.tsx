@@ -136,7 +136,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     return (
         <ArticleDetailView
             backButtonHandler={backButtonHandler}
-            articleReadCount={selection.article.readCount}
+            articleReadCount={selection.article.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })}
             openPopoverHandler={openPopoverHandler}
             closePopoverHandler={closePopoverHandler}
             renderSmallAvatar={smallAvatar}
@@ -153,7 +153,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             articleContent={ArticleContent(selection.article.id, selection.isLoading, selection.article.text)}
             renderLikesLeft={LikesLeft(isAnonymous, likesLeft, template)}
             thumbsHandler={thumbsHandler}
-            totalLikes={totalLikes}
+            totalLikes={totalLikes.toLocaleString(undefined, { minimumFractionDigits: 0 })}
             renderAuthorName={AuthorName(
                 selection.article.author.firstName,
                 selection.article.author.lastName,

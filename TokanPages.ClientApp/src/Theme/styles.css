@@ -1383,7 +1383,7 @@ body::backdrop {
 }
 
 .progress-bar-progress {
-    color: #6367ef !important;
+    color: #6367ef;
 }
 
 /* SCROLL TO TOP COMPONENT */
