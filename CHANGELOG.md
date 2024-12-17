@@ -1,3 +1,18 @@
+# [0.131.0](https://github.com/TomaszKandula/TokanPages/compare/v0.130.2...v0.131.0) (2024-12-17)
+
+
+### Bug Fixes
+
+* add missing audit columns ([865e68c](https://github.com/TomaszKandula/TokanPages/commit/865e68cd247d03ec7c25dfd6a7a3fdcb0764ae3d))
+* add missing user id ([b9b557e](https://github.com/TomaszKandula/TokanPages/commit/b9b557ed8e08e31a863a4a05a837bd06248852f6))
+* save modify info to audit columns ([034e0f1](https://github.com/TomaszKandula/TokanPages/commit/034e0f175904a1ca0d1262a5ef4405827117dc6f))
+
+
+### Features
+
+* format count numbers (read/likes) ([d739879](https://github.com/TomaszKandula/TokanPages/commit/d73987932f45eeb3cc974122c4f6c749d8887267))
+* show loader on footer content loading ([e8d8ab2](https://github.com/TomaszKandula/TokanPages/commit/e8d8ab291a1905707e16a86d7d8e51278e518164))
+
 ## [0.130.2](https://github.com/TomaszKandula/TokanPages/compare/v0.130.1...v0.130.2) (2024-12-16)
 
 
