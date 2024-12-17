@@ -2,6 +2,7 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
@@ -70,6 +71,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
+        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
@@ -89,7 +91,8 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var handler = new UpdateArticleVisibilityCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedUserService.Object);
+            mockedUserService.Object, 
+            mockedDateTime.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -98,6 +101,9 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var articlesEntity = await databaseContext.Articles.FindAsync(articles.Id);
 
         articlesEntity.Should().NotBeNull();
+        articlesEntity?.UpdatedAt.Should().BeNull();
+        articlesEntity?.ModifiedBy.Should().NotBeNull();
+        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
         articlesEntity?.IsPublished.Should().Be(shouldBeVisible);
     }
 
@@ -151,6 +157,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
+        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
@@ -176,7 +183,8 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var handler = new UpdateArticleVisibilityCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedUserService.Object);
+            mockedUserService.Object, 
+            mockedDateTime.Object);
 
         // Act
         // Assert
@@ -234,6 +242,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.SaveChangesAsync();
 
+        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
@@ -259,7 +268,8 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var handler = new UpdateArticleVisibilityCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedUserService.Object);
+            mockedUserService.Object, 
+            mockedDateTime.Object);
 
         // Act
         // Assert

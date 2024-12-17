@@ -86,6 +86,10 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
+        articlesEntity?.UpdatedAt.Should().BeNull();
+        articlesEntity?.ModifiedBy.Should().NotBeNull();
+        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+
         articleLikesEntity.Should().HaveCount(1);
         articleLikesEntity[0].IpAddress.Should().Be(IpAddress);
         articleLikesEntity[0].UserId.Should().BeNull();
@@ -170,6 +174,10 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
+        articlesEntity?.UpdatedAt.Should().BeNull();
+        articlesEntity?.ModifiedBy.Should().NotBeNull();
+        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+
         articleLikesEntity.Should().HaveCount(1);
         articleLikesEntity[0].IpAddress.Should().Be(IpAddress);
         articleLikesEntity[0].UserId.Should().BeNull();
@@ -260,6 +268,10 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
+        articlesEntity?.UpdatedAt.Should().BeNull();
+        articlesEntity?.ModifiedBy.Should().NotBeNull();
+        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+
         articleLikes.Should().HaveCount(1);
         articleLikes[0].UserId.Should().NotBeNull();
         articleLikes[0].LikeCount.Should().Be(expectedLikes);
@@ -359,6 +371,10 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
+        articlesEntity?.UpdatedAt.Should().BeNull();
+        articlesEntity?.ModifiedBy.Should().NotBeNull();
+        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+
         articleLikes.Should().HaveCount(1);
         articleLikes[0].UserId.Should().NotBeNull();
         articleLikes[0].LikeCount.Should().Be(expectedLikes);
