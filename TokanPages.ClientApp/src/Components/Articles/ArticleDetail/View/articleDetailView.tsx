@@ -12,7 +12,7 @@ import { ExtendedViewProps } from "../articleDetail";
 
 interface ArticleDetailViewProps extends ExtendedViewProps {
     backButtonHandler: () => void;
-    articleReadCount: number;
+    articleReadCount: string;
     openPopoverHandler: (event: ReactMouseEvent) => void;
     closePopoverHandler: () => void;
     renderSmallAvatar: React.ReactElement;
@@ -29,7 +29,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     articleContent: React.ReactElement;
     renderLikesLeft: string;
     thumbsHandler: any;
-    totalLikes: number;
+    totalLikes: string;
     renderAuthorName: string;
     authorShortBio: string;
     flagImage: string;
