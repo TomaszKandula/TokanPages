@@ -15,6 +15,7 @@ describe("test component: footerView", () => {
         const html = render(
             <BrowserRouter>
                 <FooterView
+                    isLoading={false}
                     terms={{ text: "Terms of use", href: "/terms" }}
                     policy={{ text: "Privacy policy", href: "/policy" }}
                     versionInfo="1.0"
