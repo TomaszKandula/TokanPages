@@ -54,9 +54,12 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
         article.Title = request.Title ?? article.Title;
         article.Description = request.Description ?? article.Description;
         article.LanguageIso = request.LanguageIso ?? article.LanguageIso;
-        article.UpdatedAt = request.Title != null && request.Description != null
+        article.UpdatedAt = request is { Title: not null, Description: not null }
             ? _dateTimeService.Now
             : article.UpdatedAt;
+
+        article.ModifiedAt = _dateTimeService.Now;
+        article.ModifiedBy = user.Id;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

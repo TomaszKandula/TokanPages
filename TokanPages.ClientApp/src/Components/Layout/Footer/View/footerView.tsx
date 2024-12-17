@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
 import { IconDto, LinkDto } from "../../../../Api/Models";
+import { ProgressBar } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
@@ -14,6 +15,7 @@ interface LegalInfoProps {
 }
 
 interface Properties {
+    isLoading: boolean;
     terms: LinkDto;
     policy: LinkDto;
     versionInfo: string;
@@ -97,12 +99,14 @@ const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
 export const FooterView = (props: Properties): React.ReactElement => {
     return (
         <footer className="footer-page-footer">
-            <Container className="container-wide">
+            {props.isLoading 
+            ? <ProgressBar style={{ padding: 25 }} colour="white" size={32} /> 
+            : <Container className="container-wide">
                 <RenderCopyrightBar {...props} />
                 <RenderVersionInfo {...props} />
                 <RenderIconButtons {...props} />
                 <div style={{ paddingBottom: 60 }}></div>
-            </Container>
+            </Container>}
         </footer>
     );
 };

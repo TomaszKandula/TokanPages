@@ -97,6 +97,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         articlesEntity?.Title.Should().Be(command.Title);
         articlesEntity?.Description.Should().Be(command.Description); 
         articlesEntity?.IsPublished.Should().BeFalse();
+        articlesEntity?.UpdatedAt.Should().NotBeNull();
+        articlesEntity?.UpdatedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]

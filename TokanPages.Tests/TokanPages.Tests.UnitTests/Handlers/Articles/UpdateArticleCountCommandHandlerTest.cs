@@ -78,6 +78,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
+        entity?.ModifiedBy.Should().NotBeNull();
+        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
         entity?.ReadCount.Should().Be(expectedTotalReadCount);
 
         var counts = await databaseContext.ArticleCounts.SingleOrDefaultAsync(x => x.ArticleId == articleId);
@@ -170,6 +172,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
+        entity?.UpdatedAt.Should().BeNull();
+        entity?.ModifiedBy.Should().NotBeNull();
+        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
         entity?.ReadCount.Should().Be(expectedTotalReadCount);
 
         var counts = await databaseContext.ArticleCounts.SingleOrDefaultAsync(x => x.ArticleId == articleId);
@@ -269,6 +274,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
+        entity?.UpdatedAt.Should().BeNull();
+        entity?.ModifiedBy.Should().NotBeNull();
+        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
         entity?.ReadCount.Should().Be(expectedTotalReadCount);
 
         var count = await databaseContext.ArticleCounts.SingleOrDefaultAsync(counts => counts.ArticleId == article.Id);

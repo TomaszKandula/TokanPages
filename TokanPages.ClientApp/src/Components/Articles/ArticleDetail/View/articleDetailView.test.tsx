@@ -24,7 +24,7 @@ describe("test articles group component: ArticleDetailView", () => {
         const html = render(
             <ArticleDetailView
                 backButtonHandler={jest.fn()}
-                articleReadCount={0}
+                articleReadCount={"1.000.000"}
                 openPopoverHandler={jest.fn()}
                 closePopoverHandler={jest.fn()}
                 renderSmallAvatar={<div>renderSmallAvatar</div>}
@@ -41,7 +41,7 @@ describe("test articles group component: ArticleDetailView", () => {
                 articleContent={<div>articleContent</div>}
                 renderLikesLeft="25"
                 thumbsHandler={jest.fn()}
-                totalLikes={50}
+                totalLikes={"1.150"}
                 renderAuthorName="Ester Exposito"
                 authorShortBio="Happy developer"
                 flagImage="eng.png"
