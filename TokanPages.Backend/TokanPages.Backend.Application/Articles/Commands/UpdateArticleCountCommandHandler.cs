@@ -65,6 +65,9 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         }
 
         article.ReadCount += 1;
+        article.ModifiedAt = _dateTimeService.Now;
+        article.ModifiedBy = user?.UserId ?? Guid.Empty;
+
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }

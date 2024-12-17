@@ -31,8 +31,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             Description = request.Description,
             IsPublished = false,
             ReadCount = 0,
+            CreatedBy = user.Id,
             CreatedAt = _dateTimeService.Now,
-            UpdatedAt = null,
             UserId = user.Id,
             LanguageIso = "ENG"
         };
