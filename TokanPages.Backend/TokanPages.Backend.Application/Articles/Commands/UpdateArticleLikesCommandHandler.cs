@@ -97,7 +97,8 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         };
 
         articles.TotalLikes += likes;
-        articles.UpdatedAt = _dateTimeService.Now;
+        articles.ModifiedAt = _dateTimeService.Now;
+        articles.ModifiedBy = userId ?? Guid.Empty;
         await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
     }
 
@@ -110,10 +111,11 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         var likes = likesToBeAdded > likesLimit ? likesLimit : likesToBeAdded;
         articleLikes.LikeCount += likes;
         articleLikes.ModifiedAt = _dateTimeService.Now;
-        articleLikes.ModifiedBy = userId;
+        articleLikes.ModifiedBy = userId ?? Guid.Empty;
 
         articles.TotalLikes += likes;
-        articles.UpdatedAt = _dateTimeService.Now;
+        articles.ModifiedAt = _dateTimeService.Now;
+        articles.ModifiedBy = userId ?? Guid.Empty;
         DatabaseContext.ArticleLikes.Update(articleLikes);
     }
 }

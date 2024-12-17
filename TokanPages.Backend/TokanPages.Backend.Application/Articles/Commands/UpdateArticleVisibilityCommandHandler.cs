@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
@@ -12,9 +13,15 @@ namespace TokanPages.Backend.Application.Articles.Commands;
 public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticleVisibilityCommand, Unit>
 {
     private readonly IUserService _userService;
-        
+
+    private readonly IDateTimeService _dateTimeService;
+
     public UpdateArticleVisibilityCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService) : base(databaseContext, loggerService) => _userService = userService;
+        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    {
+        _userService = userService;
+        _dateTimeService = dateTimeService;
+    }
 
     public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
     {
@@ -34,6 +41,9 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         articles.IsPublished = request.IsPublished;
+        articles.ModifiedAt = _dateTimeService.Now;
+        articles.ModifiedBy = user.Id;
+
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
