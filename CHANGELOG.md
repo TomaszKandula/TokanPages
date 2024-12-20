@@ -1,3 +1,15 @@
+# [0.132.0](https://github.com/TomaszKandula/TokanPages/compare/v0.131.0...v0.132.0) (2024-12-20)
+
+
+### Bug Fixes
+
+* should route via gateway ([1181d98](https://github.com/TomaszKandula/TokanPages/commit/1181d98eb61c0c64882d4c843009e3c83981359a))
+
+
+### Features
+
+* allow FR and DE languages ([ea2d104](https://github.com/TomaszKandula/TokanPages/commit/ea2d1042f138727ea6e20a3a935ee9086d5b425a))
+
 # [0.131.0](https://github.com/TomaszKandula/TokanPages/compare/v0.130.2...v0.131.0) (2024-12-17)
 
 
