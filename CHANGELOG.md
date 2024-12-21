@@ -1,3 +1,10 @@
+## [0.132.1](https://github.com/TomaszKandula/TokanPages/compare/v0.132.0...v0.132.1) (2024-12-21)
+
+
+### Bug Fixes
+
+* add missing paths ([bfec831](https://github.com/TomaszKandula/TokanPages/commit/bfec831b844383627bd3a0a8376e5ed2cd94482e))
+
 # [0.132.0](https://github.com/TomaszKandula/TokanPages/compare/v0.131.0...v0.132.0) (2024-12-20)
 
 
