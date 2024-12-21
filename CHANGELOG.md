@@ -1,3 +1,10 @@
+## [0.132.2](https://github.com/TomaszKandula/TokanPages/compare/v0.132.1...v0.132.2) (2024-12-21)
+
+
+### Bug Fixes
+
+* replace fancy chars with dots ([1b94265](https://github.com/TomaszKandula/TokanPages/commit/1b94265070ca4476489ebb1baa1a58bf39fecb15))
+
 ## [0.132.1](https://github.com/TomaszKandula/TokanPages/compare/v0.132.0...v0.132.1) (2024-12-21)
 
 
