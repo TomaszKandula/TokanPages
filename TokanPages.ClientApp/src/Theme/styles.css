@@ -460,7 +460,7 @@ body::backdrop {
     }
 }
 
-.user_email_verification {
+.user-email-verification {
     cursor: pointer;
     color: red;
     text-decoration: underline;
