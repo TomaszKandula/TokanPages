@@ -4,8 +4,9 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Button, Divider, Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { CustomDivider } from "../../../../../Shared/Components";
 import { AccessDeniedProps } from "../accessDenied";
 
 interface AccessDeniedViewProps extends AccessDeniedProps {
@@ -16,11 +17,6 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
     homeButtonText: string;
 }
 
-interface CustomDividerProps {
-    marginTop: number;
-    marginBottom: number;
-}
-
 const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
         <Link to={`/${props.languageId}`} className="link">
@@ -28,14 +24,6 @@ const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
                 {props.homeButtonText}
             </Button>
         </Link>
-    );
-};
-
-const CustomDivider = (props: CustomDividerProps) => {
-    return (
-        <div style={{ marginTop: props.marginTop, marginBottom: props.marginBottom }}>
-            <Divider className="divider" />
-        </div>
     );
 };
 

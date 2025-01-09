@@ -3,10 +3,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Button, CircularProgress, Divider, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
+import { Button, CircularProgress, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { UserMedia } from "../../../../../Shared/enums";
-import { UploadUserMedia } from "../../../../../Shared/Components";
+import { CustomDivider, UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
@@ -36,11 +36,6 @@ interface Properties extends UserInfoViewProps {
     value: string;
 }
 
-interface CustomDividerProps {
-    marginTop: number;
-    marginBottom: number;
-}
-
 const ReturnFileName = (value: string): string => {
     const maxFileNameLength: number = 8;
     const fileNameLength = value.length;
@@ -48,14 +43,6 @@ const ReturnFileName = (value: string): string => {
     const shortFileName = value.substring(0, maxFileNameLength);
 
     return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
-};
-
-const CustomDivider = (props: CustomDividerProps): React.ReactElement => {
-    return (
-        <div style={{ marginTop: props.marginTop, marginBottom: props.marginBottom }}>
-            <Divider className="divider" />
-        </div>
-    );
 };
 
 const RenderText = (props: Properties): React.ReactElement => {
