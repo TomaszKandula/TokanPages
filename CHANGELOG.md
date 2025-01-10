@@ -1,3 +1,23 @@
+# [0.133.0](https://github.com/TomaszKandula/TokanPages/compare/v0.132.2...v0.133.0) (2025-01-10)
+
+
+### Bug Fixes
+
+* register default language ([5c87bba](https://github.com/TomaszKandula/TokanPages/commit/5c87bba35ab188c867805f2efdccb76dd03bb2dd))
+* resolve wrong class name ([2f093fe](https://github.com/TomaszKandula/TokanPages/commit/2f093fe023606ce1bdb8b5d119a3432ad8ab0fd6))
+* use older version for net6 ([08e1d59](https://github.com/TomaszKandula/TokanPages/commit/08e1d59e0b63223b66eb7a87b57bc483b7497c70))
+
+
+### Features
+
+* add divider component ([837ac18](https://github.com/TomaszKandula/TokanPages/commit/837ac18d97207092d32b7bb1186e0b068a286406))
+* change animation settings ([e304e3d](https://github.com/TomaszKandula/TokanPages/commit/e304e3d4041aa55fd4bd9b36cd49b05dc7c35c01))
+* disable REDUX_DEVTOOLS on PROD ([a5435c5](https://github.com/TomaszKandula/TokanPages/commit/a5435c5b316611d5ad609fe7bc741dbea9fb230a))
+* keep attribute ([23e3f0f](https://github.com/TomaszKandula/TokanPages/commit/23e3f0fa38ff633612b49c1f608dd3404e94adef))
+* restyle error boundry component ([205103c](https://github.com/TomaszKandula/TokanPages/commit/205103ce44a01289b652c43d89cf7b468b790769))
+* update styles ([45242dd](https://github.com/TomaszKandula/TokanPages/commit/45242dd054494e829280ceeda668ee8da17ae231))
+* use divider component ([131fdf1](https://github.com/TomaszKandula/TokanPages/commit/131fdf18f0c64d10b41de2293b1bf3b18f657424))
+
 ## [0.132.2](https://github.com/TomaszKandula/TokanPages/compare/v0.132.1...v0.132.2) (2024-12-21)
 
 
