@@ -34,22 +34,26 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                     <Typography className="article-card-description">{props.description}</Typography>
                     <CardActions className="article-card-action">
                         <div className="article-card-details">
-                            {props.readCount === undefined
-                            ? <></>
-                            : <><VisibilityIcon className="article-card-item-icon" />
-                            <div className="article-card-item-value">{props.readCount}</div></>}
+                            {props.readCount === undefined ? (
+                                <></>
+                            ) : (
+                                <>
+                                    <VisibilityIcon className="article-card-item-icon" />
+                                    <div className="article-card-item-value">{props.readCount}</div>
+                                </>
+                            )}
                             <div className="article-card-details-separator"></div>
-                            {props.totalLikes === undefined
-                            ? <></>
-                            : <><ThumbUpIcon className="article-card-item-icon" />
-                            <div className="article-card-item-value">{props.totalLikes}</div></>}
+                            {props.totalLikes === undefined ? (
+                                <></>
+                            ) : (
+                                <>
+                                    <ThumbUpIcon className="article-card-item-icon" />
+                                    <div className="article-card-item-value">{props.totalLikes}</div>
+                                </>
+                            )}
                         </div>
                         <div className="article-card-button-holder">
-                            <Button
-                                onClick={props.onClickEvent}
-                                size="small"
-                                className="button article-button"
-                            >
+                            <Button onClick={props.onClickEvent} size="small" className="button article-button">
                                 {props.buttonText}
                             </Button>
                         </div>

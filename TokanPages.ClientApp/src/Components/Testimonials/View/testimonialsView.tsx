@@ -64,157 +64,164 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                 </div>
                 <div style={{ textAlign: "center", paddingBottom: 120 }}>
                     <Grid container spacing={6}>
-
-                        <Grid
-                            item
-                            xs={12}
-                            md={4}
-                            className="testimonials-card-holder"
-                        >
-                        <Animated dataAos="fade-up" dataAosDelay={350}>
-                        <Card elevation={0} className="testimonials-card">
-                                <RenderSkeletonOrElement
-                                    {...props}
-                                    variant="rect"
-                                    object={
-                                        <CardMedia
-                                            image={imageUrl(props.photo1)}
-                                            component="img"
-                                            className="testimonials-card-image"
-                                            alt="Testimonail photo 1 of 3"
-                                        />
-                                    }
-                                    className="testimonials-card-image"
-                                />
-                                <CardContent className="testimonials-card-content">
-                                    <Typography className="testimonials-card-title">
-                                        <RenderSkeletonOrElement {...props} variant="text" object={props.name1} />
-                                    </Typography>
-                                    <Typography className="testimonials-card-subheader">
-                                        <RenderSkeletonOrElement {...props} variant="text" object={props.occupation1} />
-                                    </Typography>
-                                    <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
-                                        <Typography className="testimonials-card-text">
-                                            <RenderSkeletonOrElement {...props} variant="text" object={props.text1} />
-                                        </Typography>
-                                    </Collapse>
-                                    <IconButton
-                                        className={
-                                            props.hasTestimonialOne
-                                                ? "testimonials-expand testimonials-expand-open"
-                                                : "testimonials-expand"
+                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                            <Animated dataAos="fade-up" dataAosDelay={350}>
+                                <Card elevation={0} className="testimonials-card">
+                                    <RenderSkeletonOrElement
+                                        {...props}
+                                        variant="rect"
+                                        object={
+                                            <CardMedia
+                                                image={imageUrl(props.photo1)}
+                                                component="img"
+                                                className="testimonials-card-image"
+                                                alt="Testimonail photo 1 of 3"
+                                            />
                                         }
-                                        onClick={props.buttonTestimonialOne}
-                                        aria-expanded={props.hasTestimonialOne}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </IconButton>
-                                </CardContent>
-                            </Card>
-                            </Animated>
-                            </Grid>
-
-                        <Grid
-                            item
-                            xs={12}
-                            md={4}
-                            className="testimonials-card-holder"
-                        >
-                        <Animated dataAos="fade-up" dataAosDelay={150}>
-                        <Card elevation={3} className="testimonials-card">
-                                <RenderSkeletonOrElement
-                                    {...props}
-                                    variant="rect"
-                                    object={
-                                        <CardMedia
-                                            image={imageUrl(props.photo2)}
-                                            component="img"
-                                            className="testimonials-card-image"
-                                            alt="Testimonail photo 2 of 3"
-                                        />
-                                    }
-                                    className="testimonials-card-image"
-                                />
-                                <CardContent className="testimonials-card-content">
-                                    <Typography className="testimonials-card-title">
-                                        <RenderSkeletonOrElement {...props} variant="text" object={props.name2} />
-                                    </Typography>
-                                    <Typography className="testimonials-card-subheader">
-                                        <RenderSkeletonOrElement {...props} variant="text" object={props.occupation2} />
-                                    </Typography>
-                                    <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
-                                        <Typography className="testimonials-card-text">
-                                            <RenderSkeletonOrElement {...props} variant="text" object={props.text2} />
+                                        className="testimonials-card-image"
+                                    />
+                                    <CardContent className="testimonials-card-content">
+                                        <Typography className="testimonials-card-title">
+                                            <RenderSkeletonOrElement {...props} variant="text" object={props.name1} />
                                         </Typography>
-                                    </Collapse>
-                                    <IconButton
-                                        className={
-                                            props.hasTestimonialTwo
-                                                ? "testimonials-expand testimonials-expand-open"
-                                                : "testimonials-expand"
-                                        }
-                                        onClick={props.buttonTestimonialTwo}
-                                        aria-expanded={props.hasTestimonialTwo}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </IconButton>
-                                </CardContent>
-                            </Card>
-                            </Animated>
-                            </Grid>
-
-                        <Grid
-                            item
-                            xs={12}
-                            md={4}
-                            className="testimonials-card-holder"
-                        >
-                        <Animated dataAos="fade-up" dataAosDelay={250}>
-                        <Card elevation={3} className="testimonials-card">
-                                <RenderSkeletonOrElement
-                                    {...props}
-                                    variant="rect"
-                                    object={
-                                        <CardMedia
-                                            image={imageUrl(props.photo3)}
-                                            component="img"
-                                            className="testimonials-card-image"
-                                            alt="Testimonail photo 3 of 3"
-                                        />
-                                    }
-                                    className="testimonials-card-image"
-                                />
-                                <CardContent className="testimonials-card-content">
-                                    <Typography className="testimonials-card-title">
-                                        <RenderSkeletonOrElement {...props} variant="text" object={props.name3} />
-                                    </Typography>
-                                    <Typography className="testimonials-card-subheader">
-                                        <RenderSkeletonOrElement {...props} variant="text" object={props.occupation3} />
-                                    </Typography>
-                                    <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
-                                        <Typography className="testimonials-card-text">
-                                            <RenderSkeletonOrElement {...props} variant="text" object={props.text3} />
+                                        <Typography className="testimonials-card-subheader">
+                                            <RenderSkeletonOrElement
+                                                {...props}
+                                                variant="text"
+                                                object={props.occupation1}
+                                            />
                                         </Typography>
-                                    </Collapse>
-                                    <IconButton
-                                        className={
-                                            props.hasTestimonialThree
-                                                ? "testimonials-expand testimonials-expand-open"
-                                                : "testimonials-expand"
-                                        }
-                                        onClick={props.buttonTestimonialThree}
-                                        aria-expanded={props.hasTestimonialThree}
-                                        aria-label="show more"
-                                    >
-                                        <ExpandMoreIcon />
-                                    </IconButton>
-                                </CardContent>
-                            </Card>
+                                        <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
+                                            <Typography className="testimonials-card-text">
+                                                <RenderSkeletonOrElement
+                                                    {...props}
+                                                    variant="text"
+                                                    object={props.text1}
+                                                />
+                                            </Typography>
+                                        </Collapse>
+                                        <IconButton
+                                            className={
+                                                props.hasTestimonialOne
+                                                    ? "testimonials-expand testimonials-expand-open"
+                                                    : "testimonials-expand"
+                                            }
+                                            onClick={props.buttonTestimonialOne}
+                                            aria-expanded={props.hasTestimonialOne}
+                                            aria-label="show more"
+                                        >
+                                            <ExpandMoreIcon />
+                                        </IconButton>
+                                    </CardContent>
+                                </Card>
                             </Animated>
-                            </Grid>
+                        </Grid>
 
+                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                            <Animated dataAos="fade-up" dataAosDelay={150}>
+                                <Card elevation={3} className="testimonials-card">
+                                    <RenderSkeletonOrElement
+                                        {...props}
+                                        variant="rect"
+                                        object={
+                                            <CardMedia
+                                                image={imageUrl(props.photo2)}
+                                                component="img"
+                                                className="testimonials-card-image"
+                                                alt="Testimonail photo 2 of 3"
+                                            />
+                                        }
+                                        className="testimonials-card-image"
+                                    />
+                                    <CardContent className="testimonials-card-content">
+                                        <Typography className="testimonials-card-title">
+                                            <RenderSkeletonOrElement {...props} variant="text" object={props.name2} />
+                                        </Typography>
+                                        <Typography className="testimonials-card-subheader">
+                                            <RenderSkeletonOrElement
+                                                {...props}
+                                                variant="text"
+                                                object={props.occupation2}
+                                            />
+                                        </Typography>
+                                        <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
+                                            <Typography className="testimonials-card-text">
+                                                <RenderSkeletonOrElement
+                                                    {...props}
+                                                    variant="text"
+                                                    object={props.text2}
+                                                />
+                                            </Typography>
+                                        </Collapse>
+                                        <IconButton
+                                            className={
+                                                props.hasTestimonialTwo
+                                                    ? "testimonials-expand testimonials-expand-open"
+                                                    : "testimonials-expand"
+                                            }
+                                            onClick={props.buttonTestimonialTwo}
+                                            aria-expanded={props.hasTestimonialTwo}
+                                            aria-label="show more"
+                                        >
+                                            <ExpandMoreIcon />
+                                        </IconButton>
+                                    </CardContent>
+                                </Card>
+                            </Animated>
+                        </Grid>
+
+                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                            <Animated dataAos="fade-up" dataAosDelay={250}>
+                                <Card elevation={3} className="testimonials-card">
+                                    <RenderSkeletonOrElement
+                                        {...props}
+                                        variant="rect"
+                                        object={
+                                            <CardMedia
+                                                image={imageUrl(props.photo3)}
+                                                component="img"
+                                                className="testimonials-card-image"
+                                                alt="Testimonail photo 3 of 3"
+                                            />
+                                        }
+                                        className="testimonials-card-image"
+                                    />
+                                    <CardContent className="testimonials-card-content">
+                                        <Typography className="testimonials-card-title">
+                                            <RenderSkeletonOrElement {...props} variant="text" object={props.name3} />
+                                        </Typography>
+                                        <Typography className="testimonials-card-subheader">
+                                            <RenderSkeletonOrElement
+                                                {...props}
+                                                variant="text"
+                                                object={props.occupation3}
+                                            />
+                                        </Typography>
+                                        <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
+                                            <Typography className="testimonials-card-text">
+                                                <RenderSkeletonOrElement
+                                                    {...props}
+                                                    variant="text"
+                                                    object={props.text3}
+                                                />
+                                            </Typography>
+                                        </Collapse>
+                                        <IconButton
+                                            className={
+                                                props.hasTestimonialThree
+                                                    ? "testimonials-expand testimonials-expand-open"
+                                                    : "testimonials-expand"
+                                            }
+                                            onClick={props.buttonTestimonialThree}
+                                            aria-expanded={props.hasTestimonialThree}
+                                            aria-label="show more"
+                                        >
+                                            <ExpandMoreIcon />
+                                        </IconButton>
+                                    </CardContent>
+                                </Card>
+                            </Animated>
+                        </Grid>
                     </Grid>
                 </div>
             </Container>

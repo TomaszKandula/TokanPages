@@ -31,7 +31,10 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                     </Animated>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated
+                                dataAos="fade-up"
+                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
+                            >
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -42,7 +45,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </Typography>
                             </Animated>
                             <Animated dataAos="fade-up">
-                                <Typography component="span" className="technology-feature-text" >
+                                <Typography component="span" className="technology-feature-text">
                                     {data?.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
@@ -52,7 +55,10 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated
+                                dataAos="fade-up"
+                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
+                            >
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -73,7 +79,10 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated
+                                dataAos="fade-up"
+                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
+                            >
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -94,7 +103,10 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated
+                                dataAos="fade-up"
+                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
+                            >
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
