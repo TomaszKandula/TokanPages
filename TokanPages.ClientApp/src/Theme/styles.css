@@ -954,7 +954,7 @@ body::backdrop {
     margin: 0;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -33%);
+    transform: translate(-50%, -50%);
     overflow: hidden;
     position: absolute;
     z-index: 999;
