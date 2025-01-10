@@ -20,14 +20,19 @@ Object {
               <div
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
               >
-                <p
-                  class="MuiTypography-root newsletter-caption MuiTypography-body1"
+                <div
                   data-aos="fade-down"
+                  data-aos-delay="0"
                 >
-                  Join the newsletter!
-                </p>
+                  <p
+                    class="MuiTypography-root newsletter-caption MuiTypography-body1"
+                  >
+                    Join the newsletter!
+                  </p>
+                </div>
                 <div
                   data-aos="zoom-in"
+                  data-aos-delay="0"
                 >
                   <p
                     class="MuiTypography-root newsletter-text MuiTypography-body1"
@@ -41,6 +46,7 @@ Object {
               >
                 <div
                   data-aos="zoom-in"
+                  data-aos-delay="0"
                 >
                   <div
                     style="display: flex; height: 100%;"
@@ -146,14 +152,19 @@ Object {
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
             >
-              <p
-                class="MuiTypography-root newsletter-caption MuiTypography-body1"
+              <div
                 data-aos="fade-down"
+                data-aos-delay="0"
               >
-                Join the newsletter!
-              </p>
+                <p
+                  class="MuiTypography-root newsletter-caption MuiTypography-body1"
+                >
+                  Join the newsletter!
+                </p>
+              </div>
               <div
                 data-aos="zoom-in"
+                data-aos-delay="0"
               >
                 <p
                   class="MuiTypography-root newsletter-text MuiTypography-body1"
@@ -167,6 +178,7 @@ Object {
             >
               <div
                 data-aos="zoom-in"
+                data-aos-delay="0"
               >
                 <div
                   style="display: flex; height: 100%;"

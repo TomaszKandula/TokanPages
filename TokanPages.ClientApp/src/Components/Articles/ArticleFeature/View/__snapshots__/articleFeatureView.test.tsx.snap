@@ -16,6 +16,7 @@ Object {
           >
             <div
               data-aos="fade-down"
+              data-aos-delay="0"
               style="text-align: center; margin-bottom: 48px;"
             >
               <p
@@ -26,6 +27,7 @@ Object {
             </div>
             <div
               data-aos="fade-up"
+              data-aos-delay="0"
             >
               <div
                 class="MuiGrid-root MuiGrid-container"
@@ -172,6 +174,7 @@ Object {
         >
           <div
             data-aos="fade-down"
+            data-aos-delay="0"
             style="text-align: center; margin-bottom: 48px;"
           >
             <p
@@ -182,6 +185,7 @@ Object {
           </div>
           <div
             data-aos="fade-up"
+            data-aos-delay="0"
           >
             <div
               class="MuiGrid-root MuiGrid-container"
