@@ -99,14 +99,16 @@ const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
 export const FooterView = (props: Properties): React.ReactElement => {
     return (
         <footer className="footer-page-footer">
-            {props.isLoading 
-            ? <ProgressBar style={{ padding: 25 }} colour="white" size={32} /> 
-            : <Container className="container-wide">
-                <RenderCopyrightBar {...props} />
-                <RenderVersionInfo {...props} />
-                <RenderIconButtons {...props} />
-                <div style={{ paddingBottom: 60 }}></div>
-            </Container>}
+            {props.isLoading ? (
+                <ProgressBar style={{ padding: 25 }} colour="white" size={32} />
+            ) : (
+                <Container className="container-wide">
+                    <RenderCopyrightBar {...props} />
+                    <RenderVersionInfo {...props} />
+                    <RenderIconButtons {...props} />
+                    <div style={{ paddingBottom: 60 }}></div>
+                </Container>
+            )}
         </footer>
     );
 };

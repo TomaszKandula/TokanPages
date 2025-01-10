@@ -8,6 +8,7 @@ import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { Animated } from "../../../Shared/Components";
 
 interface NewsletterViewProps extends ViewProperties {
     caption: string;
@@ -44,17 +45,19 @@ export const NewsletterView = (props: NewsletterViewProps): React.ReactElement =
                 <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 64 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
-                            <Typography className="newsletter-caption" data-aos="fade-down">
-                                {props.isLoading ? <Skeleton variant="text" /> : props.caption}
-                            </Typography>
-                            <div data-aos="zoom-in">
+                            <Animated dataAos="fade-down">
+                                <Typography className="newsletter-caption">
+                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
+                                </Typography>
+                            </Animated>
+                            <Animated dataAos="zoom-in">
                                 <Typography className="newsletter-text">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.text}
                                 </Typography>
-                            </div>
+                            </Animated>
                         </Grid>
                         <Grid item xs={12} md={7}>
-                            <div data-aos="zoom-in">
+                            <Animated dataAos="zoom-in">
                                 <div style={{ display: "flex", height: "100%" }}>
                                     <div style={{ marginTop: "auto", marginBottom: "auto", width: "100%" }}>
                                         <Grid container spacing={2}>
@@ -87,7 +90,7 @@ export const NewsletterView = (props: NewsletterViewProps): React.ReactElement =
                                         </Grid>
                                     </div>
                                 </div>
-                            </div>
+                            </Animated>
                         </Grid>
                     </Grid>
                 </div>

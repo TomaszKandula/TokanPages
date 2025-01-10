@@ -65,6 +65,8 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
             dispatch(ApplicationLanguageAction.set({ id: paths[1], languages: languages }));
         } else if (IsLanguageIdValid(paths[0], languages)) {
             dispatch(ApplicationLanguageAction.set({ id: paths[0], languages: languages }));
+        } else if (defaultId) {
+            dispatch(ApplicationLanguageAction.set({ id: defaultId, languages: languages }));
         }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;

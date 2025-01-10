@@ -1,5 +1,5 @@
 #!/bin/bash
-# SET ENVIRONMENT VARIABLES
+# PREPARE CONFIGURATION
 cp docker-compose-test.yml docker-compose-run.yml
 cp TokanPages.ClientApp/nginx/nginx-http.conf TokanPages.ClientApp/nginx/nginx.conf
 

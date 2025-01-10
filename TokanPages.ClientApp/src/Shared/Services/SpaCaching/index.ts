@@ -28,7 +28,6 @@ export const TryGetStateSnapshot = (): ApplicationState | undefined => {
         const decoded = base64.decode(content);
         const text = utf8.decode(decoded);
         const state = JSON.parse(text) as ApplicationState;
-        meta.removeAttribute(SNAPSHOT_STATE);
         return state;
     }
 
@@ -43,7 +42,7 @@ export const TryPostStateSnapshot = (state: ApplicationState): void => {
         const data = base64.encode(encoded);
         const current = document.querySelector(HANDLER);
         if (current !== null) {
-            current.setAttribute("content", serialized);
+            current.setAttribute("content", data);
         } else {
             const meta = document.createElement("meta");
             meta.name = SNAPSHOT_STATE;

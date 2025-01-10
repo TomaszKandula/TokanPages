@@ -14,7 +14,6 @@ export class ErrorBoundary extends Component<Props, State> {
     };
 
     public static getDerivedStateFromError(_: Error): State {
-        // Update state so the next render will show the fallback UI.
         return { hasError: true };
     }
 
@@ -25,12 +24,17 @@ export class ErrorBoundary extends Component<Props, State> {
     public render() {
         if (this.state.hasError) {
             return (
-                <div>
-                    <h2>Something went wrong...</h2>
-                    <p>
-                        Please try again, if problem persists contact:{" "}
-                        <a href="mailto:admin@tomkandula.com">IT support</a>.
-                    </p>
+                <div id="error">
+                    <div className="error">
+                        <h1>Critical Error</h1>
+                        <h2>Something went wrong...</h2>
+                        <div className="error-text">
+                            <p>Contact the site's administrator or support for assistance.</p>
+                            <a href="mailto:admin@tomkandula.com">IT support</a>
+                            <hr />
+                            <p>tomkandula.com</p>
+                        </div>
+                    </div>
                 </div>
             );
         }

@@ -10,6 +10,7 @@ import { Card, CardContent, CircularProgress, Checkbox } from "@material-ui/core
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { Animated } from "../../../Shared/Components";
 import { ContactFormProps } from "../contactForm";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
@@ -56,11 +57,11 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
         <section className="section" style={props.background}>
             <Container className="container">
                 <div style={{ paddingTop: props.pt ?? 64, paddingBottom: props.pb ?? 96 }}>
-                    <div data-aos="fade-down" style={{ textAlign: "center" }}>
+                    <Animated dataAos="fade-down" style={{ textAlign: "center" }}>
                         <Typography className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </Typography>
-                    </div>
+                    </Animated>
                     <Card elevation={0} className={props.hasShadow ? "card" : undefined}>
                         <CardContent className="card-content">
                             <div style={{ textAlign: "center", marginBottom: 24 }}>
@@ -75,7 +76,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                             </div>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="zoom-in">
+                                    <Animated dataAos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -92,10 +93,10 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                 label={props.labelFirstName}
                                             />
                                         )}
-                                    </div>
+                                    </Animated>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <div data-aos="zoom-in">
+                                    <Animated dataAos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -112,10 +113,10 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                 label={props.labelLastName}
                                             />
                                         )}
-                                    </div>
+                                    </Animated>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
+                                    <Animated dataAos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -132,10 +133,10 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                 label={props.labelEmail}
                                             />
                                         )}
-                                    </div>
+                                    </Animated>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
+                                    <Animated dataAos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -152,10 +153,10 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                 label={props.labelSubject}
                                             />
                                         )}
-                                    </div>
+                                    </Animated>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
+                                    <Animated dataAos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
@@ -173,10 +174,10 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                 label={props.labelMessage}
                                             />
                                         )}
-                                    </div>
+                                    </Animated>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div data-aos="zoom-in">
+                                    <Animated dataAos="zoom-in">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="30px" />
                                         ) : (
@@ -194,16 +195,16 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                 label={props.consent}
                                             />
                                         )}
-                                    </div>
+                                    </Animated>
                                 </Grid>
                             </Grid>
-                            <div data-aos="fade-up" style={{ marginTop: 16, marginBottom: 16 }}>
+                            <Animated dataAos="fade-up" style={{ marginTop: 16, marginBottom: 16 }}>
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
                                     <ActiveButton {...props} />
                                 )}
-                            </div>
+                            </Animated>
                         </CardContent>
                     </Card>
                 </div>

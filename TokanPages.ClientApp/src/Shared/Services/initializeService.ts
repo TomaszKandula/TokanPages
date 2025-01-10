@@ -2,7 +2,6 @@ import { Dispatch } from "redux";
 import { UserDataStoreAction } from "../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../Api/Models";
 import { GetDataFromStorage } from "./StorageServices";
-import { HasSnapshotMode } from "./SpaCaching";
 import { USER_DATA } from "../constants";
 import Validate from "validate.js";
 import base64 from "base-64";
@@ -27,7 +26,6 @@ export const EnsureUserData = (dispatch: Dispatch<any>): void => {
 };
 
 export const InitializeAnimations = (): NodeJS.Timer => {
-    const hasSnapshotMode = HasSnapshotMode();
-    AOS.init({ once: !hasSnapshotMode, disable: hasSnapshotMode });
+    AOS.init({ once: false, disable: false });
     return setInterval(() => AOS.refresh(), 900);
 };

@@ -8,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ApplicationState } from "../../../Store/Configuration";
-import { RenderCardMedia } from "../../../Shared/Components";
+import { Animated, RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
 
 interface FeaturedViewProps {
@@ -22,92 +22,115 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
         <section className="section-grey" style={props.background}>
             <Container maxWidth="lg">
                 <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 40 }}>
-                    <Typography className="featured-caption-text" data-aos="fade-down">
-                        {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
-                    </Typography>
+                    <Animated dataAos="fade-down">
+                        <Typography className="featured-caption-text">
+                            {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
+                        </Typography>
+                    </Animated>
                 </div>
+
                 <div style={{ textAlign: "center", paddingBottom: 120 }}>
                     <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="350">
-                            <Card elevation={0} className="card">
-                                <CardActionArea href={featured?.link1} target="_blank" rel="noopener">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="rect" height="256px" />
-                                    ) : (
-                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image1, "featured-card-media")
-                                    )}
-                                    <CardContent className="featured-card-content">
-                                        <Typography className="featured-card-title">
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="text" width="250px" />
-                                            ) : (
-                                                featured?.title1
-                                            )}
-                                        </Typography>
-                                        <Typography className="featured-card-subtitle">
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="text" width="250px" />
-                                            ) : (
-                                                featured?.subtitle1
-                                            )}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+                        <Grid item xs={12} md={4}>
+                            <Animated dataAos="fade-up" dataAosDelay={350}>
+                                <Card elevation={0} className="card">
+                                    <CardActionArea href={featured?.link1} target="_blank" rel="noopener">
+                                        {data?.isLoading ? (
+                                            <Skeleton variant="rect" height="256px" />
+                                        ) : (
+                                            RenderCardMedia(
+                                                GET_FEATURED_IMAGE_URL,
+                                                featured?.image1,
+                                                "featured-card-media"
+                                            )
+                                        )}
+                                        <CardContent className="featured-card-content">
+                                            <Typography className="featured-card-title">
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="text" width="250px" />
+                                                ) : (
+                                                    featured?.title1
+                                                )}
+                                            </Typography>
+                                            <Typography className="featured-card-subtitle">
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="text" width="250px" />
+                                                ) : (
+                                                    featured?.subtitle1
+                                                )}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Animated>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="150">
-                            <Card elevation={0} className="card">
-                                <CardActionArea href={featured?.link2} target="_blank" rel="noopener">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="rect" height="256px" />
-                                    ) : (
-                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image2, "featured-card-media")
-                                    )}
-                                    <CardContent className="featured-card-content">
-                                        <Typography className="featured-card-title">
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="text" width="250px" />
-                                            ) : (
-                                                featured?.title2
-                                            )}
-                                        </Typography>
-                                        <Typography className="featured-card-subtitle">
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="text" width="250px" />
-                                            ) : (
-                                                featured?.subtitle2
-                                            )}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+
+                        <Grid item xs={12} md={4}>
+                            <Animated dataAos="fade-up" dataAosDelay={150}>
+                                <Card elevation={0} className="card">
+                                    <CardActionArea href={featured?.link2} target="_blank" rel="noopener">
+                                        {data?.isLoading ? (
+                                            <Skeleton variant="rect" height="256px" />
+                                        ) : (
+                                            RenderCardMedia(
+                                                GET_FEATURED_IMAGE_URL,
+                                                featured?.image2,
+                                                "featured-card-media"
+                                            )
+                                        )}
+                                        <CardContent className="featured-card-content">
+                                            <Typography className="featured-card-title">
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="text" width="250px" />
+                                                ) : (
+                                                    featured?.title2
+                                                )}
+                                            </Typography>
+                                            <Typography className="featured-card-subtitle">
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="text" width="250px" />
+                                                ) : (
+                                                    featured?.subtitle2
+                                                )}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Animated>
                         </Grid>
-                        <Grid item xs={12} md={4} data-aos="fade-up" data-aos-delay="550">
-                            <Card elevation={0} className="card">
-                                <CardActionArea href={featured?.link3} target="_blank" rel="noopener">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="rect" height="256px" />
-                                    ) : (
-                                        RenderCardMedia(GET_FEATURED_IMAGE_URL, featured?.image3, "featured-card-media")
-                                    )}
-                                    <CardContent className="featured-card-content">
-                                        <Typography className="featured-card-title">
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="text" width="250px" />
-                                            ) : (
-                                                featured?.title3
-                                            )}
-                                        </Typography>
-                                        <Typography className="featured-card-subtitle">
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="text" width="250px" />
-                                            ) : (
-                                                featured?.subtitle3
-                                            )}
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
+
+                        <Grid item xs={12} md={4}>
+                            <Animated dataAos="fade-up" dataAosDelay={550}>
+                                <Card elevation={0} className="card">
+                                    <CardActionArea href={featured?.link3} target="_blank" rel="noopener">
+                                        {data?.isLoading ? (
+                                            <Skeleton variant="rect" height="256px" />
+                                        ) : (
+                                            RenderCardMedia(
+                                                GET_FEATURED_IMAGE_URL,
+                                                featured?.image3,
+                                                "featured-card-media"
+                                            )
+                                        )}
+                                        <CardContent className="featured-card-content">
+                                            <Typography className="featured-card-title">
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="text" width="250px" />
+                                                ) : (
+                                                    featured?.title3
+                                                )}
+                                            </Typography>
+                                            <Typography className="featured-card-subtitle">
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="text" width="250px" />
+                                                ) : (
+                                                    featured?.subtitle3
+                                                )}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Animated>
                         </Grid>
                     </Grid>
                 </div>
