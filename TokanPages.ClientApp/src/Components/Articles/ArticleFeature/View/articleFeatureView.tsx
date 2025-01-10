@@ -11,7 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { RenderCardMedia } from "../../../../Shared/Components";
+import { Animated, RenderCardMedia } from "../../../../Shared/Components";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
 import Validate from "validate.js";
 
@@ -48,12 +48,12 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
         <section className="section" style={props.background}>
             <Container className="container-super-wide">
                 <div style={{ paddingTop: 64, paddingBottom: 96 }}>
-                    <div data-aos="fade-down" style={{ textAlign: "center", marginBottom: 48 }}>
+                    <Animated dataAos="fade-down" style={{ textAlign: "center", marginBottom: 48 }}>
                         <Typography className="article-features-title">
                             {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
                         </Typography>
-                    </div>
-                    <div data-aos="fade-up">
+                    </Animated>
+                    <Animated dataAos="fade-up">
                         <Grid container>
                             <Grid item xs={12} lg={6} className="article-features-content">
                                 <Card elevation={0} className="article-features-card">
@@ -143,7 +143,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </div>
+                    </Animated>
                 </div>
             </Container>
         </section>

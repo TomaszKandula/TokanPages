@@ -5,7 +5,7 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { RenderImage } from "../../../../Shared/Components";
+import { Animated, RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ExtendedViewProps } from "../articleDetail";
@@ -42,7 +42,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
         <section className="section" style={props.background}>
             <Container className="container">
                 <div style={{ paddingBottom: 96 }}>
-                    <div data-aos="fade-down">
+                    <Animated dataAos="fade-down">
                         <Grid container spacing={2}>
                             <Grid item>
                                 <div onMouseEnter={props.openPopoverHandler} onMouseLeave={props.closePopoverHandler}>
@@ -116,8 +116,8 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 </Typography>
                             </div>
                         </div>
-                    </div>
-                    <div data-aos="fade-up">{props.articleContent}</div>
+                    </Animated>
+                    <Animated dataAos="fade-up">{props.articleContent}</Animated>
                     <div style={{ marginTop: 40 }}>
                         <Grid container spacing={2}>
                             <Grid item>

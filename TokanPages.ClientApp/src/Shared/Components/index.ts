@@ -1,3 +1,4 @@
+export { Animated } from "./Animated";
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
 export { ArticleCard, ArticleCardView } from "./ArticleCard";

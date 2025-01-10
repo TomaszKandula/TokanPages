@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import { GET_FLAG_URL } from "../../../../Api/Request";
-import { RenderImage } from "../../../../Shared/Components";
+import { Animated, RenderImage } from "../../../../Shared/Components";
 
 interface ArticleCardViewProps {
     imageUrl: string;
@@ -22,18 +22,9 @@ interface ArticleCardViewProps {
     totalLikes?: string;
 }
 
-interface DivAnimatedProps {
-    canAnimate: boolean;
-    children: React.ReactNode;
-}
-
-const Animated = (props: DivAnimatedProps): React.ReactElement => {
-    return props.canAnimate ? <div data-aos="fade-up">{props.children}</div> : <>{props.children}</>;
-};
-
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     return (
-        <Animated canAnimate={props.canAnimate}>
+        <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <Card elevation={0} className="article-card">
                 <CardMedia image={props.imageUrl} className="article-card-image">
                     <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />

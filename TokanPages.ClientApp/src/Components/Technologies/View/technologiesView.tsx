@@ -10,6 +10,7 @@ import CloudIcon from "@material-ui/icons/Cloud";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
+import { Animated } from "../../../Shared/Components";
 
 interface TechnologiesViewProps {
     background?: React.CSSProperties;
@@ -23,14 +24,14 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
         <section className="section-grey" style={props.background}>
             <Container className="contaoner-super-wide">
                 <div style={{ paddingTop: 64, paddingBottom: 64 }}>
-                    <div data-aos="fade-down" style={{ marginBottom: 64 }}>
+                    <Animated dataAos="fade-down" style={{ marginBottom: 64 }}>
                         <Typography className="technology-caption-text">
                             {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
                         </Typography>
-                    </div>
+                    </Animated>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
-                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -39,17 +40,19 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title1}
                                 </Typography>
-                            </div>
-                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <ReactHtmlParser html={technology?.text1} />
-                                )}
-                            </Typography>
+                            </Animated>
+                            <Animated dataAos="fade-up">
+                                <Typography component="span" className="technology-feature-text" >
+                                    {data?.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        <ReactHtmlParser html={technology?.text1} />
+                                    )}
+                                </Typography>
+                            </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -58,17 +61,19 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title2}
                                 </Typography>
-                            </div>
-                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <ReactHtmlParser html={technology?.text2} />
-                                )}
-                            </Typography>
+                            </Animated>
+                            <Animated dataAos="fade-up">
+                                <Typography component="span" className="technology-feature-text">
+                                    {data?.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        <ReactHtmlParser html={technology?.text2} />
+                                    )}
+                                </Typography>
+                            </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -77,17 +82,19 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title3}
                                 </Typography>
-                            </div>
-                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <ReactHtmlParser html={technology?.text3} />
-                                )}
-                            </Typography>
+                            </Animated>
+                            <Animated dataAos="fade-up">
+                                <Typography component="span" className="technology-feature-text">
+                                    {data?.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        <ReactHtmlParser html={technology?.text3} />
+                                    )}
+                                </Typography>
+                            </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <div data-aos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+                            <Animated dataAos="fade-up" style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
@@ -96,14 +103,16 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 <Typography className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title4}
                                 </Typography>
-                            </div>
-                            <Typography component="span" className="technology-feature-text" data-aos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <ReactHtmlParser html={technology?.text4} />
-                                )}
-                            </Typography>
+                            </Animated>
+                            <Animated dataAos="fade-up">
+                                <Typography component="span" className="technology-feature-text">
+                                    {data?.isLoading ? (
+                                        <Skeleton variant="text" />
+                                    ) : (
+                                        <ReactHtmlParser html={technology?.text4} />
+                                    )}
+                                </Typography>
+                            </Animated>
                         </Grid>
                     </Grid>
                 </div>
