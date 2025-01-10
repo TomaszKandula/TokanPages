@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, CircularProgress, Divider, Grid, Typography } from "@material-ui/core";
+import { Button, CircularProgress, Grid, Typography } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
@@ -7,17 +7,13 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
+import { CustomDivider } from "../../../../../Shared/Components";
 import { UserDeactivationProps } from "../userDeactivation";
 
 interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
     buttonHandler: () => void;
     progress: boolean;
     section: SectionAccountDeactivation;
-}
-
-interface CustomDividerProps {
-    marginTop: number;
-    marginBottom: number;
 }
 
 const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElement => {
@@ -32,14 +28,6 @@ const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElemen
         >
             {!props.progress ? props.section?.deactivateButtonText : <CircularProgress size={20} />}
         </Button>
-    );
-};
-
-const CustomDivider = (props: CustomDividerProps): React.ReactElement => {
-    return (
-        <div style={{ marginTop: props.marginTop, marginBottom: props.marginBottom }}>
-            <Divider className="divider" />
-        </div>
     );
 };
 

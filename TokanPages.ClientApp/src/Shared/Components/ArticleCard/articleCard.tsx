@@ -35,13 +35,15 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
 
     const flagImage = MapLanguageId(props.languageIso);
 
-    const readCount = props.readCount !== undefined 
-    ? props.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 }) 
-    : undefined; 
+    const readCount =
+        props.readCount !== undefined
+            ? props.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })
+            : undefined;
 
-    const totalLikes = props.totalLikes !== undefined 
-    ? props.totalLikes.toLocaleString(undefined, { minimumFractionDigits: 0 }) 
-    : undefined;
+    const totalLikes =
+        props.totalLikes !== undefined
+            ? props.totalLikes.toLocaleString(undefined, { minimumFractionDigits: 0 })
+            : undefined;
 
     return (
         <ArticleCardView

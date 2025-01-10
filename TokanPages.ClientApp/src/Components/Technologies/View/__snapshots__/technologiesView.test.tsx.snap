@@ -16,6 +16,7 @@ Object {
           >
             <div
               data-aos="fade-down"
+              data-aos-delay="0"
               style="margin-bottom: 64px;"
             >
               <p
@@ -32,6 +33,7 @@ Object {
               >
                 <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                   style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
@@ -50,20 +52,25 @@ Object {
                     Languages
                   </p>
                 </div>
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <div>
-                    Today in my daily job, I use...
-                  </div>
-                </span>
+                  <span
+                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  >
+                    <div>
+                      Today in my daily job, I use...
+                    </div>
+                  </span>
+                </div>
               </div>
               <div
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                   style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
@@ -82,20 +89,25 @@ Object {
                     Frameworks/Libraries
                   </p>
                 </div>
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <div>
-                    Back-End: NET Framework 4.5 (for one project)...
-                  </div>
-                </span>
+                  <span
+                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  >
+                    <div>
+                      Back-End: NET Framework 4.5 (for one project)...
+                    </div>
+                  </span>
+                </div>
               </div>
               <div
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                   style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
@@ -114,20 +126,25 @@ Object {
                     OR/M
                   </p>
                 </div>
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <div>
-                    I have started with Entity Framework...
-                  </div>
-                </span>
+                  <span
+                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  >
+                    <div>
+                      I have started with Entity Framework...
+                    </div>
+                  </span>
+                </div>
               </div>
               <div
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
               >
                 <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                   style="display: flex; align-items: center; margin-bottom: 16px;"
                 >
                   <svg
@@ -146,14 +163,18 @@ Object {
                     Cloud Services
                   </p>
                 </div>
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <div
                   data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <div>
-                    I have experience with...
-                  </div>
-                </span>
+                  <span
+                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  >
+                    <div>
+                      I have experience with...
+                    </div>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -173,6 +194,7 @@ Object {
         >
           <div
             data-aos="fade-down"
+            data-aos-delay="0"
             style="margin-bottom: 64px;"
           >
             <p
@@ -189,6 +211,7 @@ Object {
             >
               <div
                 data-aos="fade-up"
+                data-aos-delay="0"
                 style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
@@ -207,20 +230,25 @@ Object {
                   Languages
                 </p>
               </div>
-              <span
-                class="MuiTypography-root technology-feature-text MuiTypography-body1"
+              <div
                 data-aos="fade-up"
+                data-aos-delay="0"
               >
-                <div>
-                  Today in my daily job, I use...
-                </div>
-              </span>
+                <span
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                >
+                  <div>
+                    Today in my daily job, I use...
+                  </div>
+                </span>
+              </div>
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
                 data-aos="fade-up"
+                data-aos-delay="0"
                 style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
@@ -239,20 +267,25 @@ Object {
                   Frameworks/Libraries
                 </p>
               </div>
-              <span
-                class="MuiTypography-root technology-feature-text MuiTypography-body1"
+              <div
                 data-aos="fade-up"
+                data-aos-delay="0"
               >
-                <div>
-                  Back-End: NET Framework 4.5 (for one project)...
-                </div>
-              </span>
+                <span
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                >
+                  <div>
+                    Back-End: NET Framework 4.5 (for one project)...
+                  </div>
+                </span>
+              </div>
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
                 data-aos="fade-up"
+                data-aos-delay="0"
                 style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
@@ -271,20 +304,25 @@ Object {
                   OR/M
                 </p>
               </div>
-              <span
-                class="MuiTypography-root technology-feature-text MuiTypography-body1"
+              <div
                 data-aos="fade-up"
+                data-aos-delay="0"
               >
-                <div>
-                  I have started with Entity Framework...
-                </div>
-              </span>
+                <span
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                >
+                  <div>
+                    I have started with Entity Framework...
+                  </div>
+                </span>
+              </div>
             </div>
             <div
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
             >
               <div
                 data-aos="fade-up"
+                data-aos-delay="0"
                 style="display: flex; align-items: center; margin-bottom: 16px;"
               >
                 <svg
@@ -303,14 +341,18 @@ Object {
                   Cloud Services
                 </p>
               </div>
-              <span
-                class="MuiTypography-root technology-feature-text MuiTypography-body1"
+              <div
                 data-aos="fade-up"
+                data-aos-delay="0"
               >
-                <div>
-                  I have experience with...
-                </div>
-              </span>
+                <span
+                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                >
+                  <div>
+                    I have experience with...
+                  </div>
+                </span>
+              </div>
             </div>
           </div>
         </div>

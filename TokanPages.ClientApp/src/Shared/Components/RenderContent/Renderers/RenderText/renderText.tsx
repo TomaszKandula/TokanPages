@@ -57,15 +57,17 @@ const RenderInternalLink = (props: TextItem): React.ReactElement => {
         history.push(`/${languageId}${props.value}`);
     }, [props.value, languageId]);
 
-    return (<ArticleCardView 
-        imageUrl={imageUrl}
-        title={props.propTitle ?? ""}
-        description={props.propSubtitle ?? ""}
-        onClickEvent={onClickEvent}
-        buttonText={props.text}
-        flagImage={""}
-        canAnimate={false}
-    />);
+    return (
+        <ArticleCardView
+            imageUrl={imageUrl}
+            title={props.propTitle ?? ""}
+            description={props.propSubtitle ?? ""}
+            onClickEvent={onClickEvent}
+            buttonText={props.text}
+            flagImage={""}
+            canAnimate={false}
+        />
+    );
 };
 
 const RenderArticleLink = (props: DataProps): React.ReactElement => {
