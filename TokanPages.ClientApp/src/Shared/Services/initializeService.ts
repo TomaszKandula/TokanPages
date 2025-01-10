@@ -26,6 +26,6 @@ export const EnsureUserData = (dispatch: Dispatch<any>): void => {
 };
 
 export const InitializeAnimations = (): NodeJS.Timer => {
-    AOS.init({ once: true, disable: false });
-    return setInterval(() => AOS.refresh(), 250);
+    AOS.init({ once: false, disable: false });
+    return setInterval(() => AOS.refresh(), 900);
 };
