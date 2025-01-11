@@ -57,6 +57,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserPayment> UserPayments { get; set; }
     public virtual DbSet<UserPaymentHistory> UserPaymentsHistory { get; set; }
     public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
+    public virtual DbSet<UserNote> UserNotes { get; set; }
 
     /* Category: Other */
     public virtual DbSet<Newsletters> Newsletters { get; set; }
@@ -64,7 +65,6 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }
     public virtual DbSet<ServiceBusMessage> ServiceBusMessages { get; set; }
     public virtual DbSet<SubscriptionPricing> SubscriptionPricing { get; set; }
-
     public virtual DbSet<BusinessInquiry> BusinessInquiry { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
