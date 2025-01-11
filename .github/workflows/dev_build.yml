@@ -35,6 +35,7 @@ jobs:
         yarn app-test --ci --coverage
         yarn sonar \
         -Dsonar.login=${{ secrets.SONARQUBE_TOKEN_FE }} \
+        -Dsonar.projectName=${{ secrets.SONARQUBE_PROJECT_NAME_FE }} \
         -Dsonar.projectKey=${{ secrets.SONARQUBE_PROJECT_KEY_FE }} \
         -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}
 
@@ -122,6 +123,7 @@ jobs:
         dotnet tool update dotnet-reportgenerator-globaltool -g --version 5.3.11
         dotnet sonarscanner begin \
         /k:${{ secrets.SONARQUBE_PROJECT_KEY_BE }} \
+        /n:${{ secrets.SONARQUBE_PROJECT_NAME_BE }} \
         /d:sonar.login=${{ secrets.SONARQUBE_TOKEN_BE }} \
         /d:sonar.host.url=${{ secrets.SONARQUBE_HOST }} \
         /d:sonar.coverageReportPaths="${{ env.TARGET_DIRECTORY }}/${{ env.SONAR_REPORT }}"
