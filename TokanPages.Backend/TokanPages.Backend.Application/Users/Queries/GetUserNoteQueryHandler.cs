@@ -32,7 +32,7 @@ public class GetUserNoteQueryHandler : RequestHandler<GetUserNoteQuery, GetUserN
         if (note is null)
             return new GetUserNoteQueryResult();
 
-        note.Note.DecompressFromBase64();
+        note.Note = note.Note.DecompressFromBase64();
         return note;
     }
 }
