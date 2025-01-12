@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Application.Users.Queries;
 public class GetUserNoteQueryHandler : RequestHandler<GetUserNoteQuery, GetUserNoteQueryResult>
 {
     private readonly IUserService _userService;
-    
+
     public GetUserNoteQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
         : base(databaseContext, loggerService) => _userService = userService;
 
