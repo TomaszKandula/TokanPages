@@ -15,7 +15,7 @@ public static class CompressionExtensions
         return Encoding.UTF8.GetString(Convert.FromBase64String(data).Decompress());
     }
 
-    public static byte[] Compress(this byte[] data)
+    private static byte[] Compress(this byte[] data)
     {
         using var sourceStream = new MemoryStream(data);
         using var destinationStream = new MemoryStream();
@@ -24,7 +24,7 @@ public static class CompressionExtensions
         return destinationStream.ToArray();
     }
 
-    public static byte[] Decompress(this byte[] data)
+    private static byte[] Decompress(this byte[] data)
     {
         using var sourceStream = new MemoryStream(data);
         using var destinationStream = new MemoryStream();
@@ -33,14 +33,14 @@ public static class CompressionExtensions
         return destinationStream.ToArray();
     }
 
-    public static void CompressTo(this Stream stream, Stream outputStream)
+    private static void CompressTo(this Stream stream, Stream outputStream)
     {
         using var gZipStream = new GZipStream(outputStream, CompressionMode.Compress);
         stream.CopyTo(gZipStream);
         gZipStream.Flush();
     }
 
-    public static void DecompressTo(this Stream stream, Stream outputStream)
+    private static void DecompressTo(this Stream stream, Stream outputStream)
     {
         using var gZipStream = new GZipStream(stream, CompressionMode.Decompress);
         gZipStream.CopyTo(outputStream);
