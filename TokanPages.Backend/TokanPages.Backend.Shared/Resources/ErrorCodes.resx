@@ -297,4 +297,7 @@
   <data name="NO_FREE_SPACE" xml:space="preserve">
     <value>There is no enough free space to save the file</value>
   </data>
+  <data name="CANNOT_FIND_USER_NOTE" xml:space="preserve">
+    <value>Cannot find given user note</value>
+  </data>
 </root>
