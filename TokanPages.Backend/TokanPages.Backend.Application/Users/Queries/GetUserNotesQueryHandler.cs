@@ -6,14 +6,14 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetAllUserNotesQueryHandler : RequestHandler<GetAllUserNotesQuery, GetAllUserNotesQueryResult>
+public class GetUserNotesQueryHandler : RequestHandler<GetUserNotesQuery, GetUserNotesQueryResult>
 {
     private readonly IUserService _userService;
 
-    public GetAllUserNotesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
+    public GetUserNotesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
         : base(databaseContext, loggerService) => _userService = userService;
 
-    public override async Task<GetAllUserNotesQueryResult> Handle(GetAllUserNotesQuery request, CancellationToken cancellationToken)
+    public override async Task<GetUserNotesQueryResult> Handle(GetUserNotesQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
         var notes = await DatabaseContext.UserNotes
@@ -22,7 +22,7 @@ public class GetAllUserNotesQueryHandler : RequestHandler<GetAllUserNotesQuery, 
             .ToListAsync(cancellationToken);
 
         if (notes.Count == 0)
-            return new GetAllUserNotesQueryResult();
+            return new GetUserNotesQueryResult();
 
         var result = new List<GetUserNoteQueryResult>();
         foreach (var note in notes)
@@ -37,7 +37,7 @@ public class GetAllUserNotesQueryHandler : RequestHandler<GetAllUserNotesQuery, 
             });
         }
 
-        return new GetAllUserNotesQueryResult
+        return new GetUserNotesQueryResult
         {
             UserNotes = result
         };
