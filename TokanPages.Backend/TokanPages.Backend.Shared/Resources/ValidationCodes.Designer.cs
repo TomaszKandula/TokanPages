@@ -230,5 +230,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("LIST_EMPTY", resourceCulture);
             }
         }
+        
+        public static string TOO_LONG_USER_NOTE {
+            get {
+                return ResourceManager.GetString("TOO_LONG_USER_NOTE", resourceCulture);
+            }
+        }
     }
 }
