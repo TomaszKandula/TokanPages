@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
@@ -10,7 +9,7 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
-public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, Unit>
+public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddUserNoteCommandResult>
 {
     private readonly IUserService _userService;
 
@@ -26,7 +25,7 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, Unit
         _configuration = configuration;
     }
 
-    public override async Task<Unit> Handle(AddUserNoteCommand request, CancellationToken cancellationToken)
+    public override async Task<AddUserNoteCommandResult> Handle(AddUserNoteCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
         var notes = await DatabaseContext.UserNotes
@@ -36,7 +35,11 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, Unit
 
         var maxCount = _configuration.GetValue<int>("UserNote_MaxCount");
         if (notes == maxCount)
-            return Unit.Value;
+            return new AddUserNoteCommandResult
+            {
+                CurrentNotes = notes,
+                Result = Domain.Enums.UserNote.NoteRejected
+            };
 
         var compressedNote = request.Note.CompressToBase64();
         var userNote = new UserNote
@@ -49,6 +52,10 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, Unit
         await DatabaseContext.UserNotes.AddAsync(userNote, cancellationToken);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-        return Unit.Value;
+        return new AddUserNoteCommandResult
+        {
+            CurrentNotes = notes + 1,
+            Result = Domain.Enums.UserNote.NoteAdded
+        };
     }
 }
