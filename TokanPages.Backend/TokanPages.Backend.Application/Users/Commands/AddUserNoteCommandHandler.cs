@@ -28,16 +28,16 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
     public override async Task<AddUserNoteCommandResult> Handle(AddUserNoteCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
-        var notes = await DatabaseContext.UserNotes
+        var notesCount = await DatabaseContext.UserNotes
             .AsNoTracking()
             .Where(note => note.UserId == user.Id)
             .CountAsync(cancellationToken);
 
         var maxCount = _configuration.GetValue<int>("UserNote_MaxCount");
-        if (notes == maxCount)
+        if (notesCount == maxCount)
             return new AddUserNoteCommandResult
             {
-                CurrentNotes = notes,
+                CurrentNotes = notesCount,
                 Result = Domain.Enums.UserNote.NoteRejected
             };
 
@@ -54,7 +54,7 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
         return new AddUserNoteCommandResult
         {
-            CurrentNotes = notes + 1,
+            CurrentNotes = notesCount + 1,
             Result = Domain.Enums.UserNote.NoteAdded
         };
     }
