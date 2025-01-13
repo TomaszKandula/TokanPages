@@ -17,6 +17,7 @@ public class GetUserNoteQueryHandler : RequestHandler<GetUserNoteQuery, GetUserN
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
         var note = await DatabaseContext.UserNotes
+            .AsNoTracking()
             .Where(userNote => userNote.UserId == user.Id)
             .Where(userNote => userNote.Id == request.UserNoteId)
             .Select(userNote => new GetUserNoteQueryResult
