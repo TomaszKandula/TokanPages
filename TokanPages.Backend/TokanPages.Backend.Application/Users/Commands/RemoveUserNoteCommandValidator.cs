@@ -7,7 +7,7 @@ public class RemoveUserNoteCommandValidator : AbstractValidator<RemoveUserNoteCo
 { 
     public RemoveUserNoteCommandValidator()
     {
-        RuleFor(command => command.UserNoteId)
+        RuleFor(command => command.Id)
             .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
             .WithMessage(ValidationCodes.REQUIRED)

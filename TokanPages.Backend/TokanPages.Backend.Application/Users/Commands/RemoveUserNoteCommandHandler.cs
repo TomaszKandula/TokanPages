@@ -19,7 +19,7 @@ public class RemoveUserNoteCommandHandler : RequestHandler<RemoveUserNoteCommand
     {
         var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
         var userNote = await DatabaseContext.UserNotes
-            .Where(note => note.Id == request.UserNoteId)
+            .Where(note => note.Id == request.Id)
             .Where(note => note.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 

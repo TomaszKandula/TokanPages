@@ -57,7 +57,7 @@ public class RemoveUserNoteCommandHandlerTest : TestBase
 
         var command = new RemoveUserNoteCommand
         {
-            UserNoteId = userNoteId
+            Id = userNoteId
         };
 
         var handler = new RemoveUserNoteCommandHandler(
@@ -102,7 +102,7 @@ public class RemoveUserNoteCommandHandlerTest : TestBase
 
         var command = new RemoveUserNoteCommand
         {
-            UserNoteId = Guid.NewGuid()
+            Id = Guid.NewGuid()
         };
 
         var handler = new RemoveUserNoteCommandHandler(

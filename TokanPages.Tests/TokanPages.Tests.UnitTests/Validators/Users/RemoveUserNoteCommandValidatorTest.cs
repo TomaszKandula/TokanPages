@@ -13,7 +13,7 @@ public class RemoveUserNoteCommandValidatorTest : TestBase
         // Arrange
         var query = new RemoveUserNoteCommand
         {
-            UserNoteId = Guid.NewGuid()
+            Id = Guid.NewGuid()
         };
 
         // Act
@@ -30,7 +30,7 @@ public class RemoveUserNoteCommandValidatorTest : TestBase
         // Arrange
         var query = new RemoveUserNoteCommand
         {
-            UserNoteId = Guid.Empty
+            Id = Guid.Empty
         };
 
         // Act
