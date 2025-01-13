@@ -44,6 +44,7 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
         var compressedNote = request.Note.CompressToBase64();
         var userNote = new UserNote
         {
+            UserId = user.Id,
             Note = compressedNote,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = user.Id
