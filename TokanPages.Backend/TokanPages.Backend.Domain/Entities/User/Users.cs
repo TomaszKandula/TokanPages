@@ -50,4 +50,5 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<UserPayment> UserPayment { get; set; } = new HashSet<UserPayment>();
     public ICollection<UserPaymentHistory> UserPaymentHistory { get; set; } = new HashSet<UserPaymentHistory>();
     public ICollection<UserSubscription> UserSubscription { get; set; } = new HashSet<UserSubscription>();
+    public ICollection<UserNote> UserNote { get; set; } = new HashSet<UserNote>();
 }

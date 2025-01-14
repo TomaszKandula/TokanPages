@@ -404,5 +404,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("NO_FREE_SPACE", resourceCulture);
             }
         }
+        
+        public static string CANNOT_FIND_USER_NOTE {
+            get {
+                return ResourceManager.GetString("CANNOT_FIND_USER_NOTE", resourceCulture);
+            }
+        }
     }
 }
