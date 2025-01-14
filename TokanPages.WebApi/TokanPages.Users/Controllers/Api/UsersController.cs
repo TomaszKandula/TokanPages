@@ -199,6 +199,37 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payload));
 
     /// <summary>
+    /// Returns user notes for given user ID (taken from authorization header).
+    /// </summary>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
+    /// <returns>Object with list of notes.</returns>
+    [HttpGet]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(GetUserNotesQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetUserNotesQueryResult> GetUserNotes([FromQuery] bool noCache = false) 
+        => await _usersCache.GetUserNotes(noCache);
+
+    /// <summary>
+    /// Returns user note for given ID.
+    /// </summary>
+    /// <param name="id">User Note ID.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
+    /// <returns>Object.</returns>
+    [HttpGet]
+    [Route("{id:guid}/[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(GetUserNoteQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetUserNoteQueryResult> GetUserNote([FromRoute] Guid id, [FromQuery] bool noCache = false) 
+        => await _usersCache.GetUserNote(id, noCache);
+
+    /// <summary>
     /// Returns user image file by its name.
     /// </summary>
     /// <param name="id">User ID.</param>
