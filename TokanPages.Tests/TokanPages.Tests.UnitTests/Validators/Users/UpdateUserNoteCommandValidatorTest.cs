@@ -10,7 +10,7 @@ namespace TokanPages.Tests.UnitTests.Validators.Users;
 public class UpdateUserNoteCommandValidatorTest : TestBase
 {
     [Fact]
-    public void GivenUserNote_WhenUserNoteCommand_ShouldSucceed()
+    public void GivenUserNote_WhenUpdateUserNoteCommand_ShouldSucceed()
     {
         // Arrange
         const int noteLength = 50;
@@ -36,7 +36,7 @@ public class UpdateUserNoteCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenTooLargeUserNote_WhenUserNoteCommand_ShouldFail()
+    public void GivenTooLargeUserNote_WhenUpdateUserNoteCommand_ShouldThrowError()
     {
         // Arrange
         const int noteLength = 200;
@@ -63,7 +63,7 @@ public class UpdateUserNoteCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenEmptyLargeUserNote_WhenUserNoteCommand_ShouldFail()
+    public void GivenEmptyLargeUserNote_WhenUpdateUserNoteCommand_ShouldThrowError()
     {
         // Arrange
         var noteMaxSize = SetReturnValue("100");
