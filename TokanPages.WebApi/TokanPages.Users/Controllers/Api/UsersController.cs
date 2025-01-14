@@ -230,6 +230,42 @@ public class UsersController : ApiBaseController
         => await _usersCache.GetUserNote(id, noCache);
 
     /// <summary>
+    /// Adds new user note.
+    /// </summary>
+    /// <param name="payload">New note details.</param>
+    /// <returns>Object with details.</returns>
+    [HttpPost]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(AddUserNoteCommandResult), StatusCodes.Status200OK)]
+    public async Task<AddUserNoteCommandResult> AddUserNote([FromBody] AddUserNoteDto payload) 
+        => await Mediator.Send(UsersMapper.MapToAddUserNoteCommand(payload));
+
+    /// <summary>
+    /// Updates existing user note.
+    /// </summary>
+    /// <param name="payload">New note details.</param>
+    /// <returns>MediatR unit value.</returns>
+    [HttpPost]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> UpdateUserNote([FromBody] UpdateUserNoteDto payload) 
+        => await Mediator.Send(UsersMapper.MapToUpdateUserNoteCommand(payload));
+
+    /// <summary>
+    /// Removes existing user note.
+    /// </summary>
+    /// <param name="payload">New note details.</param>
+    /// <returns>MediatR unit value.</returns>
+    [HttpDelete]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> RemoveUserNote([FromBody] RemoveUserNoteDto payload) 
+        => await Mediator.Send(UsersMapper.MapToRemoveUserNoteCommand(payload));
+
+    /// <summary>
     /// Returns user image file by its name.
     /// </summary>
     /// <param name="id">User ID.</param>
