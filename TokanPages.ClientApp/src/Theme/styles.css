@@ -238,12 +238,12 @@ body::backdrop {
 
 .button-upload {
     color: white !important;
-    background: #ebecfb !important;
+    background: #6367ef !important;
 }
 
 .button-upload:hover {
     color: white !important;
-    background: #6367ef !important;
+    background: #4649C3 !important;
 }
 
 .button-upload:disabled {
