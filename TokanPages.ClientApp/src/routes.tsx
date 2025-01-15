@@ -60,12 +60,12 @@ const pages: PageProps[] = [
     { path: "/signin", page: <SigninPage /> },
     { path: "/signup", page: <SignupPage /> },
     { path: "/signout", page: <SignoutPage /> },
-    { path: "/account", page: <AccountPage /> },
-    { path: "/accountactivation", page: <ActivationPage /> }, //TODO: rename to 'account-activation'
-    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to 'update-password'
-    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to 'reset-password'
-    { path: "/update-newsletter", page: <NewsletterUpdatePage /> },
-    { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
+    { path: "/account/settings", page: <AccountPage /> },
+    { path: "/account/activation", page: <ActivationPage /> },
+    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to 'password/update'
+    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to 'password/reset'
+    { path: "/update-newsletter", page: <NewsletterUpdatePage /> }, //TODO: newsletter/update
+    { path: "/remove-newsletter", page: <NewsletterRemovePage /> }, //TODO: newsletter/remove
 ];
 
 export const Routes = (props: RoutesProps): React.ReactElement => {
