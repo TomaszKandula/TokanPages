@@ -1410,7 +1410,7 @@ body::backdrop {
 /* APPLICATION USER INFO COMPONENT */
 
 .user-info-fullname {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     color: black;
 }
 
