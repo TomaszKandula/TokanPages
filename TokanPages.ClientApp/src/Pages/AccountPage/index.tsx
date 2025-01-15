@@ -24,12 +24,12 @@ export const AccountPage = (): React.ReactElement => {
             {isAnonymous ? (
                 <AccessDenied />
             ) : (
-                <>
+                <div style={{ paddingBottom: 40 }}>
                     <UserInfo />
                     <UserPassword />
                     <UserDeactivation />
                     <UserRemoval />
-                </>
+                </div>
             )}
 
             <Footer />
