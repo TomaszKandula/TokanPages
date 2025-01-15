@@ -12,6 +12,7 @@ interface Properties {
     handle?: string;
     skipDb?: boolean;
     mediaTarget: UserMedia;
+    previewImage?: string;
 }
 
 const GetAcceptedType = (media: UserMedia): string => {
@@ -87,6 +88,7 @@ export const UploadUserMedia = (props: Properties): React.ReactElement => {
             buttonState={!isUploading}
             inputHandler={inputHandler}
             accepting={accepting}
+            previewImage={props.previewImage}
         />
     );
 };

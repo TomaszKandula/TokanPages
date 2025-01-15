@@ -4,20 +4,35 @@ import { UserAvatarView } from "./View/userAvatarView";
 import Validate from "validate.js";
 
 export interface Properties {
-    userId: string;
     isLarge: boolean;
-    userLetter: string;
-    avatarName: string;
+    userId?: string;
+    userLetter?: string;
+    avatarName?: string;
+    altSource?: string;
+    className?: string;
 }
 
 export const UserAvatar = (props: Properties): React.ReactElement => {
     let baseUrl = "";
     let source = "";
 
-    if (!Validate.isEmpty(props.userId) && !Validate.isEmpty(props.avatarName)) {
-        baseUrl = GET_USER_IMAGE.replace("{id}", props.userId);
-        source = baseUrl.replace("{name}", props.avatarName);
+    const hasAltSource = !Validate.isEmpty(props.altSource);
+    const hasUserId = !Validate.isEmpty(props.userId);
+    const hasAvatarName = !Validate.isEmpty(props.avatarName);
+
+    if (!hasAltSource && hasUserId && hasAvatarName) {
+        baseUrl = GET_USER_IMAGE.replace("{id}", props.userId ?? "");
+        source = baseUrl.replace("{name}", props.avatarName ?? "");
     }
 
-    return <UserAvatarView isLarge={props.isLarge} userLetter={props.userLetter} avatarSource={source} />;
+    if (hasAltSource) {
+        source = props.altSource ?? "";
+    }
+
+    return <UserAvatarView 
+        isLarge={props.isLarge} 
+        userLetter={props.userLetter ?? "A"} 
+        avatarSource={source}
+        className={props.className}
+    />;
 };

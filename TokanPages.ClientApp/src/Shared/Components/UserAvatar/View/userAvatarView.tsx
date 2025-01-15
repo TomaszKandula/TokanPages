@@ -6,10 +6,13 @@ interface Properties {
     isLarge: boolean;
     userLetter: string;
     avatarSource: string;
+    className?: string;
 }
 
 export const UserAvatarView = (props: Properties): React.ReactElement => {
-    const className = props.isLarge ? "user-avatar-avatar-large" : "user-avatar-avatar-small";
+    const className = props.isLarge 
+    ? `user-avatar-avatar-large ${props.className}` 
+    : `user-avatar-avatar-small ${props.className}`;
 
     if (Validate.isEmpty(props.avatarSource)) {
         return <Avatar className={className}>{props.userLetter}</Avatar>;
