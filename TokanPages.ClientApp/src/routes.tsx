@@ -28,6 +28,7 @@ import {
     PhotographyPage,
     PdfViewerPage,
     BusinessPage,
+    UserNotesPage,
 } from "./Pages";
 
 interface PageProps {
@@ -57,13 +58,14 @@ const pages: PageProps[] = [
     { path: "/terms", page: <TermsPage />, canPrerender: true },
     { path: "/policy", page: <PolicyPage />, canPrerender: true },
     { path: "/document", page: <PdfViewerPage /> },
-    { path: "/signin", page: <SigninPage /> },
-    { path: "/signup", page: <SignupPage /> },
-    { path: "/signout", page: <SignoutPage /> },
+    { path: "/signin", page: <SigninPage /> }, //TODO: rename to '/account/signin'
+    { path: "/signup", page: <SignupPage /> }, //TODO: rename to '/account/signup'
+    { path: "/signout", page: <SignoutPage /> }, //TODO: rename to '/account/signout'
     { path: "/account/settings", page: <AccountPage /> },
+    { path: "/account/user-notes", page: <UserNotesPage /> },
     { path: "/account/activation", page: <ActivationPage /> },
-    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to 'password/update'
-    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to 'password/reset'
+    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to '/account/password-update'
+    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to '/account/password-reset'
     { path: "/update-newsletter", page: <NewsletterUpdatePage /> }, //TODO: newsletter/update
     { path: "/remove-newsletter", page: <NewsletterRemovePage /> }, //TODO: newsletter/remove
 ];

@@ -1,4 +1,5 @@
 export { AccountPage } from "./AccountPage";
+export { UserNotesPage } from "./AccountPage/UserNotesPage";
 export { ActivationPage } from "./ActivationPage";
 export { ArticlesPage } from "./ArticlesPage";
 export { BusinessPage } from "./BusinessPage";
