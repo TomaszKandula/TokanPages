@@ -28,7 +28,7 @@ export const UserNoteAction = {
             const request: RequestContract = {
                 configuration: {
                     method: "GET",
-                    url: `${baseUrl}?noCache=${payload.noCache}`,
+                    url: `${baseUrl}?noCache=${payload.noCache ?? false}`,
                 },
             };
 
