@@ -1,22 +1,18 @@
 import * as React from "react";
-import { FixedSizeList, ListChildComponentProps } from "react-window";
 import { Button, Card, CardContent, Container, ListItem, ListItemText, TextField, Typography } from "@material-ui/core";
 import { CustomDivider } from "../../../../../Shared/Components";
 
-const renderRow = (props: ListChildComponentProps<UserNotesProps[] | undefined>): React.ReactElement => {
-    if (!props.data) {
-        return <></>;
-    }
+interface RenderRowProps {
+    index: string;
+    note: string;
+    style?: React.CSSProperties | undefined;
+    onClick: (id: string) => void | undefined;
+}
 
-    if (props.data && props.data.length === 0) {
-        return <></>;
-    }
-
-    const data = props.data[props.index];
-
+const RenderRow = (props: RenderRowProps): React.ReactElement => {
     return (
         <ListItem button style={props.style} key={props.index}>
-            <ListItemText primary={data.note} />
+            <ListItemText primary={props.note} onClick={() => props.onClick(props.index) } />
         </ListItem>
     );
 }
@@ -32,6 +28,7 @@ interface UserNotesViewProps {
     userNotes?: UserNotesProps[] | undefined;
     captionText: string;
     descriptionText: string;
+    onRowClick: (id: string) => void;
     removeButtonText: string;
     removeButtonHandler: () => void;
     saveButtonText: string;
@@ -41,7 +38,6 @@ interface UserNotesViewProps {
 }
 
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
-
     return(
         <section>
             <Container className="container-wide">
@@ -64,16 +60,16 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                 </div>
 
                                 <div className="user-notes-box">
-                                    <FixedSizeList 
-                                        height={400}
-                                        width={"60%"}
-                                        itemData={props.userNotes}
-                                        itemSize={46}
-                                        itemCount={2}
-                                        className="user-notes-fixed-list"
-                                    >
-                                        {renderRow}
-                                    </FixedSizeList>
+                                    <div className="user-notes-fixed-list">
+                                        {props.userNotes?.map((value: UserNotesProps) => (
+                                            <RenderRow 
+                                                key={value.id} 
+                                                index={value.id} 
+                                                note={value.note} 
+                                                onClick={props.onRowClick} 
+                                            />
+                                        ))}
+                                    </div>
 
                                     <div className="user-notes-message-box">
                                         <div className="user-notes-text-box">

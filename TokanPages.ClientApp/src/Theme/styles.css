@@ -1439,6 +1439,12 @@ body::backdrop {
 .user-notes-fixed-list {
     border: 1px solid #dfdfdf;
     border-radius: 4px;
+    position: relative;
+    height: 400px;
+    width: 60%;
+    overflow: auto;
+    will-change: transform; 
+    direction: ltr;
 }
 
 @media (max-width: 900px) {

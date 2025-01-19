@@ -10,12 +10,13 @@ export const UserNotes = (): React.ReactElement => {
             userNotes={[{ id: "abcd", note: "note 1" }, { id: "efgh", note: "note 2" }]}
             captionText="User Notes"
             descriptionText="Some text"
+            onRowClick={(id: string) => { console.log(id) }}
             removeButtonText="Remove"
-            removeButtonHandler={() => {}}
+            removeButtonHandler={() => { console.log("removeButtonHandler") }}
             saveButtonText="Save"
-            saveButtonHandler={() => {}}
+            saveButtonHandler={() => { console.log("saveButtonHandler") }}
             messageValue=""
-            messageHandler={() => {}}
+            messageHandler={() => { console.log("messageHandler") }}
         />
     );
 }
