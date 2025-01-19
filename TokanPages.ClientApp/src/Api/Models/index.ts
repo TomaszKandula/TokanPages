@@ -33,6 +33,11 @@ export type { UserPermissionDto } from "./Users/userPermissionDto";
 export type { UserRoleDto } from "./Users/userRoleDto";
 export type { UploadUserMediaDto } from "./Users/uploadUserMediaDto";
 export type { UploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto";
+export type { AddUserNoteDto } from "./Users/addUserNoteDto";
+export type { UserNoteDto } from "./Users/getUserNoteDto";
+export type { UserNotesDto } from "./Users/getUserNotesDto";
+export type { RemoveUserNoteDto } from "./Users/removeUserNoteDto";
+export type { UpdateUserNoteDto } from "./Users/updateUserNoteDto";
 
 export type { ErrorDto } from "./Error/errorDto";
 export type { ValidationErrorsDto } from "./Error/validationErrorsDto";

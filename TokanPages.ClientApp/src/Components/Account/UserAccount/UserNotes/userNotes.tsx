@@ -1,7 +1,26 @@
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
+import { ApplicationState } from "../../../../Store/Configuration";
+import { RECEIVED_ERROR_MESSAGE } from "Shared/constants";
 
-export const UserNotes = (): React.ReactElement => {
+export interface UserNotesProps {
+    background?: React.CSSProperties;
+}
+
+export const UserNotes = (props: UserNotesProps): React.ReactElement => {
+    const dispatch = useDispatch();
+
+    const error = useSelector((state: ApplicationState) => state.applicationError);
+    const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+
+    
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
+
+    console.log(props);
+    console.log(dispatch);
+    console.log(contentPageData);
+    console.log(hasError);
 
     return(
         <UserNotesView 
