@@ -35,7 +35,8 @@ export type { UploadUserMediaDto } from "./Users/uploadUserMediaDto";
 export type { UploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto";
 export type { AddUserNoteDto } from "./Users/addUserNoteDto";
 export type { UserNoteDto } from "./Users/getUserNoteDto";
-export type { UserNotesDto } from "./Users/getUserNotesDto";
+export type { UserNoteResultDto } from "./Users/getUserNoteResultDto";
+export type { UserNotesResultDto } from "./Users/getUserNotesResultDto";
 export type { RemoveUserNoteDto } from "./Users/removeUserNoteDto";
 export type { UpdateUserNoteDto } from "./Users/updateUserNoteDto";
 
