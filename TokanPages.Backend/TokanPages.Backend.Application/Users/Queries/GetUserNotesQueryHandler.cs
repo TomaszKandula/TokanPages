@@ -39,7 +39,7 @@ public class GetUserNotesQueryHandler : RequestHandler<GetUserNotesQuery, GetUse
 
         return new GetUserNotesQueryResult
         {
-            UserNotes = result
+            Notes = result
         };
     }
 }

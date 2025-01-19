@@ -73,8 +73,8 @@ public class GetUserNotesQueryHandlerTest : TestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.UserNotes.Count.Should().Be(2);
-        result.UserNotes[0].Note.Should().Be(plainNote1);
-        result.UserNotes[1].Note.Should().Be(plainNote2);
+        result.Notes.Count.Should().Be(2);
+        result.Notes[0].Note.Should().Be(plainNote1);
+        result.Notes[1].Note.Should().Be(plainNote2);
     }
 }
