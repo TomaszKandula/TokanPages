@@ -27,6 +27,7 @@ import {
     ContentPageData,
     ArticleInfo,
     UserNote,
+    UserNotes,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -49,6 +50,7 @@ export const ApplicationDefault: ApplicationState = {
     userMediaUpload: UserMediaUpload,
     userNotification: UserNotification,
     userNote: UserNote,
+    userNotes: UserNotes,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

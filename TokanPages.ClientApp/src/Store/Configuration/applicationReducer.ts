@@ -26,6 +26,7 @@ import {
     ContentPageData,
     ArticleInfo,
     UserNote,
+    UserNotes,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -48,6 +49,7 @@ export const ApplicationReducer = {
     userMediaUpload: UserMediaUpload,
     userNotification: UserNotification,
     userNote: UserNote,
+    userNotes: UserNotes,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,
