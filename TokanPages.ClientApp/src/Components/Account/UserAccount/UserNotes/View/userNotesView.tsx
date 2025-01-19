@@ -3,15 +3,44 @@ import { FixedSizeList, ListChildComponentProps } from "react-window";
 import { Button, Card, CardContent, Container, ListItem, ListItemText, TextField, Typography } from "@material-ui/core";
 import { CustomDivider } from "../../../../../Shared/Components";
 
-const renderRow = (props: ListChildComponentProps) => {
+const renderRow = (props: ListChildComponentProps<UserNotesProps[] | undefined>): React.ReactElement => {
+    if (!props.data) {
+        return <></>;
+    }
+
+    if (props.data && props.data.length === 0) {
+        return <></>;
+    }
+
+    const data = props.data[props.index];
+
     return (
         <ListItem button style={props.style} key={props.index}>
-            <ListItemText primary={`Item ${props.index + 1}`} />
+            <ListItemText primary={data.note} />
         </ListItem>
     );
 }
 
-export const UserNotesView = (): React.ReactElement => {
+interface UserNotesProps {
+    id: string;
+    note: string;
+}
+
+interface UserNotesViewProps {
+    isLoading: boolean;
+    hasProgress: boolean;
+    userNotes?: UserNotesProps[] | undefined;
+    captionText: string;
+    descriptionText: string;
+    removeButtonText: string;
+    removeButtonHandler: () => void;
+    saveButtonText: string;
+    saveButtonHandler: () => void;
+    messageValue: string;
+    messageHandler: () => void;
+}
+
+export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
 
     return(
         <section>
@@ -21,7 +50,7 @@ export const UserNotesView = (): React.ReactElement => {
                         <CardContent className="card-content">
                             <div style={{ paddingTop: 0, paddingBottom: 0 }}>
                                 <Typography component="span" className="caption black">
-                                    User Notes
+                                    {props.captionText}
                                 </Typography>
                             </div>
 
@@ -30,7 +59,7 @@ export const UserNotesView = (): React.ReactElement => {
                             <div style={{ paddingTop: 24, paddingBottom: 8 }}>
                                 <div style={{ marginBottom: 24 }}>
                                     <Typography component="span" className="label">
-                                        Some text
+                                        {props.descriptionText}
                                     </Typography>
                                 </div>
 
@@ -38,8 +67,9 @@ export const UserNotesView = (): React.ReactElement => {
                                     <FixedSizeList 
                                         height={400}
                                         width={"60%"}
+                                        itemData={props.userNotes}
                                         itemSize={46}
-                                        itemCount={20}
+                                        itemCount={2}
                                         className="user-notes-fixed-list"
                                     >
                                         {renderRow}
@@ -56,9 +86,8 @@ export const UserNotesView = (): React.ReactElement => {
                                                 name="message"
                                                 autoComplete="message"
                                                 variant="outlined"
-                                                //onChange={props.formHandler}
-                                                //value={props.message}
-                                                //label={props.labelMessage}
+                                                onChange={props.messageHandler}
+                                                value={props.messageValue}
                                             />
                                         </div>
 
@@ -68,16 +97,18 @@ export const UserNotesView = (): React.ReactElement => {
                                                 type="submit"
                                                 variant="contained"
                                                 className="button-delete button-delete-margin-right"
+                                                onClick={props.removeButtonHandler}
                                             >
-                                                Remove
+                                                {props.removeButtonText}
                                             </Button>
                                             <Button
                                                 fullWidth
                                                 type="submit"
                                                 variant="contained"
                                                 className="button-update"
+                                                onClick={props.saveButtonHandler}
                                             >
-                                                Save
+                                                {props.saveButtonText}
                                             </Button>
                                         </div>
 
