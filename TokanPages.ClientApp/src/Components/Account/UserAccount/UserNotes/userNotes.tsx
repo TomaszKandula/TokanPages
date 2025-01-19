@@ -17,6 +17,7 @@ export const UserNotes = (): React.ReactElement => {
             saveButtonHandler={() => { console.log("saveButtonHandler") }}
             messageValue=""
             messageHandler={() => { console.log("messageHandler") }}
+            messageMultiline={true}
         />
     );
 }

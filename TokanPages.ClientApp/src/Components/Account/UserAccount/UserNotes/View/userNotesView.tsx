@@ -1,12 +1,33 @@
 import * as React from "react";
-import { Button, Card, CardContent, Container, ListItem, ListItemText, TextField, Typography } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import { CustomDivider } from "../../../../../Shared/Components";
+import { 
+    Backdrop, 
+    Button, 
+    Card, 
+    CardContent, 
+    CircularProgress, 
+    Container, 
+    ListItem, 
+    ListItemText, 
+    TextField, 
+    Typography 
+} from "@material-ui/core";
 
 interface RenderRowProps {
     index: string;
     note: string;
     style?: React.CSSProperties | undefined;
     onClick: (id: string) => void | undefined;
+}
+
+interface RenderTextProps extends UserNotesViewProps {
+    value: string;
+}
+
+interface UserNotesProps {
+    id: string;
+    note: string;
 }
 
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
@@ -17,10 +38,9 @@ const RenderRow = (props: RenderRowProps): React.ReactElement => {
     );
 }
 
-interface UserNotesProps {
-    id: string;
-    note: string;
-}
+const RenderText = (props: RenderTextProps): React.ReactElement => {
+    return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
+};
 
 interface UserNotesViewProps {
     isLoading: boolean;
@@ -35,18 +55,22 @@ interface UserNotesViewProps {
     saveButtonHandler: () => void;
     messageValue: string;
     messageHandler: () => void;
+    messageMultiline: boolean;
 }
 
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
     return(
         <section>
+            <Backdrop className="backdrop" open={props.hasProgress}>
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <Container className="container-wide">
                 <div style={{ paddingTop: 120, paddingBottom: 40 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
                             <div style={{ paddingTop: 0, paddingBottom: 0 }}>
                                 <Typography component="span" className="caption black">
-                                    {props.captionText}
+                                    <RenderText {...props} value={props.captionText} />
                                 </Typography>
                             </div>
 
@@ -55,13 +79,13 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                             <div style={{ paddingTop: 24, paddingBottom: 8 }}>
                                 <div style={{ marginBottom: 24 }}>
                                     <Typography component="span" className="label">
-                                        {props.descriptionText}
+                                        <RenderText {...props} value={props.descriptionText} />
                                     </Typography>
                                 </div>
 
                                 <div className="user-notes-box">
-                                    <div className="user-notes-fixed-list">
-                                        {props.userNotes?.map((value: UserNotesProps) => (
+                                    <div className={`user-notes-fixed-list ${props.isLoading ? "loading-indicator" : ""}`}>
+                                        {!props.isLoading && props.userNotes?.map((value: UserNotesProps) => (
                                             <RenderRow 
                                                 key={value.id} 
                                                 index={value.id} 
@@ -72,11 +96,11 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                     </div>
 
                                     <div className="user-notes-message-box">
-                                        <div className="user-notes-text-box">
+                                        <div className={"user-notes-text-box"}>
                                             <TextField
                                                 required
                                                 fullWidth
-                                                multiline={true}
+                                                multiline={props.messageMultiline}
                                                 minRows={12}
                                                 id="message"
                                                 name="message"
@@ -84,6 +108,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 variant="outlined"
                                                 onChange={props.messageHandler}
                                                 value={props.messageValue}
+                                                disabled={props.isLoading}
                                             />
                                         </div>
 
@@ -93,6 +118,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 type="submit"
                                                 variant="contained"
                                                 className="button-delete button-delete-margin-right"
+                                                disabled={props.isLoading}
                                                 onClick={props.removeButtonHandler}
                                             >
                                                 {props.removeButtonText}
@@ -102,6 +128,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 type="submit"
                                                 variant="contained"
                                                 className="button-update"
+                                                disabled={props.isLoading}
                                                 onClick={props.saveButtonHandler}
                                             >
                                                 {props.saveButtonText}

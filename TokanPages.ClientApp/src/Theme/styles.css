@@ -177,6 +177,10 @@ body::backdrop {
 
 /* SHARED STYLES BY COMPONENTS */
 
+.loading-indicator {
+    cursor: progress !important;
+}
+
 .lazyloaded {
     opacity: 1;
     transition-property: opacity;
@@ -294,6 +298,10 @@ body::backdrop {
 .button-delete:hover {
     color: white !important;
     background: #f44336 !important;
+}
+
+.button-delete:disabled {
+    background: #e0e0e0 !important;
 }
 
 @media (max-width: 600px) {
@@ -426,7 +434,7 @@ body::backdrop {
 /* USER INFO COMPONENT */
 
 .backdrop {
-    z-index: 999;
+    z-index: 9999 !important;
     color: #ffffff;
 }
 
