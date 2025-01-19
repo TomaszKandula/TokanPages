@@ -38,6 +38,11 @@ export const RESET_USER_PASSWORD = `${API_USERS_URI}/resetUserPassword`;
 export const UPDATE_USER_PASSWORD = `${API_USERS_URI}/updateUserPassword`;
 export const UPLOAD_USER_IMAGE = `${API_USERS_URI}/uploadImage`;
 export const UPLOAD_USER_VIDEO = `${API_USERS_URI}/uploadVideo`;
+export const GET_USER_NOTE = `${API_USERS_URI}/{id}/getUserNote`;
+export const GET_USER_NOTES = `${API_USERS_URI}/getUserNotes`;
+export const ADD_USER_NOTE = `${API_USERS_URI}/addUserNote`;
+export const UPDATE_USER_NOTE  = `${API_USERS_URI}/updateUserNote`;
+export const REMOVE_USER_NOTE = `${API_USERS_URI}/removeUserNote`;
 
 export const GET_NEWSLETTERS = `${API_NEWSLETTERS_URI}/getNewsletters`;
 export const GET_NEWSLETTER = `${API_NEWSLETTERS_URI}/{id}/getNewsletter`;
