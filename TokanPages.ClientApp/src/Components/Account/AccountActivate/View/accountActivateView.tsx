@@ -5,16 +5,16 @@ import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
-import { ExtendedViewProps } from "../activateAccount";
+import { ExtendedViewProps } from "../accountActivate";
 
-interface ActivateAccountViewProps extends ViewProperties, ExtendedViewProps {
+interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
     caption: string;
     text1: string;
     text2: string;
     progress: boolean;
 }
 
-export const ActivateAccountView = (props: ActivateAccountViewProps): React.ReactElement => {
+export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
     return (
         <section className="section" style={props.background}>
             <Container className="container">

@@ -19,7 +19,7 @@ interface SuccessData extends BaseData {
     businessLock: BaseText;
 }
 
-export interface ActivateAccountContentDto {
+export interface AccountActivateContentDto {
     language: string;
     onVerifying: TextData;
     onProcessing: TextData;

@@ -1,4 +1,4 @@
-export { ActivateAccount } from "./ActivateAccount/activateAccount";
+export { AccountActivate } from "./AccountActivate/accountActivate";
 export { ResetPassword } from "./ResetPassword/resetPassword";
 export { UpdatePassword } from "./UpdatePassword/updatePassword";
 export { UserSignin } from "./UserSignin/userSignin";

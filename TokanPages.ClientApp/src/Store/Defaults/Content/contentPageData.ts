@@ -6,7 +6,7 @@ export const ContentPageData: ContentPageDataState = {
     isLoading: false,
     languageId: undefined,
     components: {
-        account: {
+        accountSettings: {
             language: "",
             sectionAccessDenied: {
                 accessDeniedCaption: "",
@@ -48,7 +48,7 @@ export const ContentPageData: ContentPageDataState = {
                 deleteButtonText: "",
             },
         },
-        activateAccount: {
+        accountActivate: {
             language: "",
             onVerifying: {
                 text1: "",
@@ -257,7 +257,7 @@ export const ContentPageData: ContentPageDataState = {
             button: "",
             labelEmail: "",
         },
-        resetPassword: {
+        passwordReset: {
             language: "",
             caption: "",
             button: "",
@@ -362,14 +362,14 @@ export const ContentPageData: ContentPageDataState = {
             occupation3: "",
             text3: "",
         },
-        updatePassword: {
+        passwordUpdate: {
             language: "",
             caption: "",
             button: "",
             labelNewPassword: "",
             labelVerifyPassword: "",
         },
-        userSignin: {
+        accountUserSignin: {
             language: "",
             caption: "",
             button: "",
@@ -378,14 +378,14 @@ export const ContentPageData: ContentPageDataState = {
             labelEmail: "",
             labelPassword: "",
         },
-        userSignout: {
+        accountUserSignout: {
             language: "",
             caption: "",
             onProcessing: "",
             onFinish: "",
             buttonText: "",
         },
-        userSignup: {
+        accountUserSignup: {
             language: "",
             caption: "",
             button: "",

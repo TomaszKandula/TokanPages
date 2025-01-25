@@ -10,7 +10,7 @@ export const SigninPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "userSignin"], "UserSignin"));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "accountUserSignin"], "UserSignin"));
     }, [language?.id]);
 
     return (

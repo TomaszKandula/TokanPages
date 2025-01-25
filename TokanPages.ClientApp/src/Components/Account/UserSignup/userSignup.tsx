@@ -42,7 +42,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data?.components.templates;
-    const content = data?.components.userSignup;
+    const content = data?.components.accountUserSignup;
 
     const hasNotStarted = signup?.status === OperationStatus.notStarted;
     const hasFinished = signup?.status === OperationStatus.hasFinished;

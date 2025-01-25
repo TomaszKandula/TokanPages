@@ -1,6 +1,6 @@
 import {
-    AccountContentDto,
-    ActivateAccountContentDto,
+    AccountSettingsContentDto,
+    AccountActivateContentDto,
     ArticleContentDto,
     ArticleFeaturesContentDto,
     BusinessFormContentDto,
@@ -26,8 +26,11 @@ import {
 } from "../../../Models";
 
 export interface ComponentsDto {
-    account: AccountContentDto;
-    activateAccount: ActivateAccountContentDto;
+    accountSettings: AccountSettingsContentDto;
+    accountActivate: AccountActivateContentDto;
+    accountUserSignin: UserSigninContentDto;
+    accountUserSignout: UserSignoutContentDto;
+    accountUserSignup: UserSignupContentDto;
     article: ArticleContentDto;
     articleFeatures: ArticleFeaturesContentDto;
     businessForm: BusinessFormContentDto;
@@ -41,14 +44,11 @@ export interface ComponentsDto {
     newsletter: NewsletterContentDto;
     newsletterRemove: NewsletterRemoveContentDto;
     newsletterUpdate: NewsletterUpdateContentDto;
-    resetPassword: ResetPasswordContentDto;
+    passwordReset: ResetPasswordContentDto;
+    passwordUpdate: UpdatePasswordContentDto;
     technologies: TechnologiesContentDto;
     templates: TemplatesContent; //TODO: rename
     testimonials: TestimonialsContentDto;
-    updatePassword: UpdatePasswordContentDto;
-    userSignin: UserSigninContentDto;
-    userSignout: UserSignoutContentDto;
-    userSignup: UserSignupContentDto;
     policy: DocumentContentDto;
     terms: DocumentContentDto;
     about: DocumentContentDto;

@@ -3,7 +3,7 @@ import React from "react";
 import * as Redux from "react-redux";
 import * as Dom from "react-router-dom";
 import { render } from "@testing-library/react";
-import { ActivateAccount } from "./activateAccount";
+import { AccountActivate } from "./accountActivate";
 import { ContentPageData } from "../../../Store/Defaults";
 
 jest.mock("react-router-dom", () => ({
@@ -18,7 +18,7 @@ jest.mock("react-redux", () => ({
     useSelector: jest.fn(),
 }));
 
-describe("Test account group component: activateAccount", () => {
+describe("Test account group component: accountActivate", () => {
     const testId = "dba4043c-7428-4f72-ba13-fe782c7a88fa";
     const testContent = {
         language: "eng",
@@ -59,7 +59,7 @@ describe("Test account group component: activateAccount", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.activateAccount = testContent;
+    pageData.components.accountActivate = testContent;
 
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
@@ -67,8 +67,8 @@ describe("Test account group component: activateAccount", () => {
         useDispatchMock.mockReturnValue(jest.fn());
     });
 
-    it("should render correctly '<ActivateAccount />' when content is loaded.", () => {
-        const html = render(<ActivateAccount id={testId} type="" />);
+    it("should render correctly '<AccountActivate />' when content is loaded.", () => {
+        const html = render(<AccountActivate id={testId} type="" />);
         expect(useDispatchMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });

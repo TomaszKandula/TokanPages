@@ -1,12 +1,12 @@
 import "../../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
-import { ActivateAccountView } from "./activateAccountView";
+import { AccountActivateView } from "./accountActivateView";
 
-describe("test account group component: activateAccountView", () => {
-    it("should render correctly '<ActivateAccountView />' when content is loaded.", () => {
+describe("test account group component: accountActivateView", () => {
+    it("should render correctly '<AccountActivateView />' when content is loaded.", () => {
         const html = render(
-            <ActivateAccountView
+            <AccountActivateView
                 isLoading={false}
                 caption={"Account Activation"}
                 text1={"Your account has been successfully activated!"}

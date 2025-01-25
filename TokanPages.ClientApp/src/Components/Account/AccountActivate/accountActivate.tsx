@@ -4,7 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { UserActivateAction, UserNotificationAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
-import { ActivateAccountView } from "./View/activateAccountView";
+import { AccountActivateView } from "./View/accountActivateView";
 
 const DefaultValues = {
     type: "Unset",
@@ -20,15 +20,15 @@ export interface ExtendedViewProps {
     background?: React.CSSProperties;
 }
 
-export interface ActivateAccountProps extends ExtendedViewProps {
+export interface AccountActivateProps extends ExtendedViewProps {
     id: string;
     type: string;
 }
 
-export const ActivateAccount = (props: ActivateAccountProps): React.ReactElement => {
+export const AccountActivate = (props: AccountActivateProps): React.ReactElement => {
     const dispatch = useDispatch();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const contentData = data?.components?.activateAccount;
+    const contentData = data?.components?.accountActivate;
 
     const onSuccess = contentData?.onSuccess;
     const onVerifying = contentData?.onVerifying;
@@ -122,7 +122,7 @@ export const ActivateAccount = (props: ActivateAccountProps): React.ReactElement
     ]);
 
     return (
-        <ActivateAccountView
+        <AccountActivateView
             isLoading={data?.isLoading}
             caption={content?.caption}
             text1={content?.text1}

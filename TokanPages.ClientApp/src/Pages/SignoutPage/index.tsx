@@ -10,7 +10,7 @@ export const SignoutPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "userSignout"], "UserSignout"));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "accountUserSignout"], "UserSignout"));
     }, [language?.id]);
 
     return (

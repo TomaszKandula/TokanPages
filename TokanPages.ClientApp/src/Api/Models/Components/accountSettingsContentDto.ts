@@ -1,4 +1,4 @@
-export interface AccountContentDto {
+export interface AccountSettingsContentDto {
     language: string;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;

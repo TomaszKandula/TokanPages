@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { ActivateAccount } from "../../Components/Account";
+import { AccountActivate } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 
 const useQuery = () => {
@@ -28,14 +28,14 @@ export const ActivationPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "activateAccount"], "ActivationPage"));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "accountActivate"], "ActivationPage"));
     }, [language?.id]);
 
     return (
         <>
             <Navigation backNavigationOnly={true} />
             {id ? (
-                <ActivateAccount id={id} type={type} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+                <AccountActivate id={id} type={type} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
             ) : (
                 <ErrorMessage />
             )}
