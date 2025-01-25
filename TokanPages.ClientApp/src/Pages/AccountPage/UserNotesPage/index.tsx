@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { Navigation, Footer } from "../../../Components/Layout";
-import { AccessDenied } from "../../../Components/Account";
+import { AccessDenied, UserNotes } from "../../../Components/Account";
 import Validate from "validate.js";
-import { UserNotes } from "Components/Account/UserAccount";
 
 export const UserNotesPage = (): React.ReactElement => {
     const dispatch = useDispatch();

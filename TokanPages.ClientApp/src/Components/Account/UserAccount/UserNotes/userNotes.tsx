@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { RECEIVED_ERROR_MESSAGE } from "Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export interface UserNotesProps {
     background?: React.CSSProperties;
