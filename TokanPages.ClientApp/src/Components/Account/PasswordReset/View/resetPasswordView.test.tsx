@@ -2,13 +2,13 @@ import "../../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { ResetPasswordView } from "./resetPasswordView";
+import { PasswordResetView } from "./resetPasswordView";
 
 describe("test account group component: resetPasswordView", () => {
     it("should render correctly '<ResetPasswordView />' when content is loaded.", () => {
         const html = render(
             <BrowserRouter>
-                <ResetPasswordView
+                <PasswordResetView
                     isLoading={false}
                     progress={false}
                     caption="Reset Password"

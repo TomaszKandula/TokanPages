@@ -8,7 +8,7 @@ import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Stor
 import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { UpdatePasswordView } from "./View/updatePasswordView";
+import { PasswordUpdateView } from "./View/passwordUpdateView";
 import Validate from "validate.js";
 
 const useQuery = () => {
@@ -31,13 +31,13 @@ const formDefaultValues: UpdateFormInput = {
     },
 };
 
-export interface UpdatePasswordProps {
+export interface PasswordUpdateProps {
     pt?: number;
     pb?: number;
     background?: React.CSSProperties;
 }
 
-export const UpdatePassword = (props: UpdatePasswordProps): React.ReactElement => {
+export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
 
@@ -137,7 +137,7 @@ export const UpdatePassword = (props: UpdatePasswordProps): React.ReactElement =
     }, [form, template]);
 
     return (
-        <UpdatePasswordView
+        <PasswordUpdateView
             isLoading={data?.isLoading}
             progress={hasProgress}
             caption={password?.caption}

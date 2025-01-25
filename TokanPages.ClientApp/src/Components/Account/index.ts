@@ -1,6 +1,6 @@
 export { AccountActivate } from "./AccountActivate/accountActivate";
-export { ResetPassword } from "./ResetPassword/resetPassword";
-export { UpdatePassword } from "./UpdatePassword/updatePassword";
+export { PasswordReset } from "./PasswordReset/passwordReset";
+export { PasswordUpdate } from "./PasswordUpdate/passwordUpdate";
 export { UserSignin } from "./UserSignin/userSignin";
 export { UserSignout } from "./UserSignout/userSignout";
 export { UserSignup } from "./UserSignup/userSignup";

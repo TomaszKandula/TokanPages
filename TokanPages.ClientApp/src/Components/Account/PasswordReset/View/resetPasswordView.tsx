@@ -3,26 +3,23 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { TextFiedWithPassword } from "../../../../Shared/Components";
-import { UpdatePasswordProps } from "../updatePassword";
+import { PasswordResetProps } from "../passwordReset";
 
-interface Properties extends ViewProperties, UpdatePasswordProps {
+interface Properties extends ViewProperties, PasswordResetProps {
     progress: boolean;
     caption: string;
     button: string;
-    newPassword: string;
-    verifyPassword: string;
+    email: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     buttonHandler: () => void;
-    disableForm: boolean;
-    labelNewPassword: string;
-    labelVerifyPassword: string;
+    labelEmail: string;
 }
 
 const ActiveButton = (props: Properties): React.ReactElement => {
@@ -33,14 +30,14 @@ const ActiveButton = (props: Properties): React.ReactElement => {
             variant="contained"
             onClick={props.buttonHandler}
             className="button"
-            disabled={props.progress || props.disableForm}
+            disabled={props.progress}
         >
             {!props.progress ? props.button : <CircularProgress size={20} />}
         </Button>
     );
 };
 
-export const UpdatePasswordView = (props: Properties): React.ReactElement => {
+export const PasswordResetView = (props: Properties): React.ReactElement => {
     return (
         <section className="section" style={props.background}>
             <Container className="container">
@@ -59,29 +56,17 @@ export const UpdatePasswordView = (props: Properties): React.ReactElement => {
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="45px" />
                                         ) : (
-                                            <TextFiedWithPassword
-                                                uuid="newPassword"
-                                                fullWidth={true}
-                                                value={props.newPassword}
-                                                label={props.labelNewPassword}
+                                            <TextField
+                                                required
+                                                fullWidth
+                                                id="email"
+                                                name="email"
+                                                variant="outlined"
+                                                autoComplete="email"
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
-                                                isDisabled={props.disableForm || props.progress}
-                                            />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextFiedWithPassword
-                                                uuid="verifyPassword"
-                                                fullWidth={true}
-                                                value={props.verifyPassword}
-                                                label={props.labelVerifyPassword}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                isDisabled={props.disableForm || props.progress}
+                                                value={props.email}
+                                                label={props.labelEmail}
                                             />
                                         )}
                                     </Grid>

@@ -2,13 +2,13 @@ import "../../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { UpdatePasswordView } from "./updatePasswordView";
+import { PasswordUpdateView } from "./passwordUpdateView";
 
 describe("test account group component: updatePasswordView", () => {
-    it("should render correctly '<UpdatePasswordView />' when content is loaded.", () => {
+    it("should render correctly '<PasswordUpdateView />' when content is loaded.", () => {
         const html = render(
             <BrowserRouter>
-                <UpdatePasswordView
+                <PasswordUpdateView
                     isLoading={false}
                     progress={false}
                     caption="Update password"

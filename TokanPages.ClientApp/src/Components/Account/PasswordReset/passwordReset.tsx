@@ -7,20 +7,20 @@ import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store
 import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
 import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { ResetPasswordView } from "./View/resetPasswordView";
+import { PasswordResetView } from "./View/resetPasswordView";
 import Validate from "validate.js";
 
 const formDefaultValues: ResetFormInput = {
     email: "",
 };
 
-export interface ResetPasswordProps {
+export interface PasswordResetProps {
     pt?: number;
     pb?: number;
     background?: React.CSSProperties;
 }
 
-export const ResetPassword = (props: ResetPasswordProps): React.ReactElement => {
+export const PasswordReset = (props: PasswordResetProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
@@ -95,7 +95,7 @@ export const ResetPassword = (props: ResetPasswordProps): React.ReactElement => 
     }, [form, template]);
 
     return (
-        <ResetPasswordView
+        <PasswordResetView
             isLoading={data?.isLoading}
             progress={hasProgress}
             caption={content?.caption}
