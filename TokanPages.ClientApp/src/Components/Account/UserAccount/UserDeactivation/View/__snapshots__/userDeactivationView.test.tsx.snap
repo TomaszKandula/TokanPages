@@ -70,7 +70,7 @@ Object {
                       style="margin-top: 16px; margin-bottom: 16px;"
                     >
                       <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained delete-update MuiButton-fullWidth"
+                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete MuiButton-fullWidth"
                         tabindex="0"
                         type="submit"
                       >
@@ -159,7 +159,7 @@ Object {
                     style="margin-top: 16px; margin-bottom: 16px;"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained delete-update MuiButton-fullWidth"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete MuiButton-fullWidth"
                       tabindex="0"
                       type="submit"
                     >
