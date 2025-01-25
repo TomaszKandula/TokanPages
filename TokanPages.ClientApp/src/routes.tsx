@@ -10,7 +10,7 @@ import {
     SigninPage,
     SignupPage,
     SignoutPage,
-    AccountPage,
+    SettingsPage,
     PasswordResetPage,
     PasswordUpdatePage,
     NewsletterRemovePage,
@@ -61,7 +61,7 @@ const pages: PageProps[] = [
     { path: "/signin", page: <SigninPage /> }, //TODO: rename to '/account/signin'
     { path: "/signup", page: <SignupPage /> }, //TODO: rename to '/account/signup'
     { path: "/signout", page: <SignoutPage /> }, //TODO: rename to '/account/signout'
-    { path: "/account/settings", page: <AccountPage /> },
+    { path: "/account/settings", page: <SettingsPage /> },
     { path: "/account/user-notes", page: <UserNotesPage /> },
     { path: "/account/activation", page: <ActivationPage /> },
     { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to '/account/password-update'

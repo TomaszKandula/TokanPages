@@ -2,10 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import { ApplicationState } from "../../Store/Configuration";
-import { ContentPageDataAction } from "../../Store/Actions";
-import { AccountActivate } from "../../Components/Account";
-import { Navigation } from "../../Components/Layout";
+import { ApplicationState } from "../../../Store/Configuration";
+import { ContentPageDataAction } from "../../../Store/Actions";
+import { AccountActivate } from "../../../Components/Account";
+import { Navigation } from "../../../Components/Layout";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
