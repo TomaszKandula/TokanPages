@@ -1,4 +1,4 @@
-export interface UpdatePasswordContentDto {
+export interface PasswordUpdateContentDto {
     language: string;
     caption: string;
     button: string;

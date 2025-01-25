@@ -68,28 +68,28 @@ export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDt
 
 /* COMPONENTS */
 export type { ComponentsDto } from "./Components/State";
+export type { AccountActivateContentDto } from "./Components/accountActivateContentDto";
+export type { AccountUserSigninContentDto } from "./Components/accountUserSigninContentDto";
+export type { AccountUserSignoutContentDto } from "./Components/accountUserSignoutContentDto";
+export type { AccountUserSignupContentDto } from "./Components/accountUserSignupContentDto";
+export type { ArticleContentDto } from "./Components/articleContentDto";
+export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
 export type { HeaderContentDto, HeaderPhotoDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto, ClientImageDto } from "./Components/clientsContentDto";
-export type { ArticleContentDto } from "./Components/articleContentDto";
-export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { BusinessFormContentDto } from "./Components/contentBusinessForm";
 export type { ContactFormContentDto } from "./Components/contactFormContentDto";
 export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
 export type { FeaturedContentDto } from "./Components/featuredContentDto";
 export type { TechnologiesContentDto } from "./Components/technologiesContentDto";
+export type { PasswordResetContentDto } from "./Components/passwordResetContentDto";
+export type { PasswordUpdateContentDto } from "./Components/passwordUpdateContentDto";
 export type { NewsletterContentDto } from "./Components/newsletterContentDto";
-export type { ResetPasswordContentDto } from "./Components/resetPasswordContentDto";
-export type { UpdatePasswordContentDto } from "./Components/updatePasswordContentDto";
-export type { UserSigninContentDto } from "./Components/userSigninContentDto";
-export type { UserSignoutContentDto } from "./Components/userSignoutContentDto";
-export type { UserSignupContentDto } from "./Components/userSignupContentDto";
-export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveContentDto";
-export type { AccountActivateContentDto } from "./Components/accountActivateContentDto";
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
+export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type {
     AccountSettingsContentDto,
     SectionAccessDenied,

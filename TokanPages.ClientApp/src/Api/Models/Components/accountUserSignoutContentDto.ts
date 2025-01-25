@@ -1,4 +1,4 @@
-export interface UserSignoutContentDto {
+export interface AccountUserSignoutContentDto {
     language: string;
     caption: string;
     onProcessing: string;

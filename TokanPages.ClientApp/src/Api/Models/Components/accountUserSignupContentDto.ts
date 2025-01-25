@@ -1,4 +1,4 @@
-export interface UserSignupContentDto {
+export interface AccountUserSignupContentDto {
     language: string;
     caption: string;
     button: string;

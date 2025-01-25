@@ -1,4 +1,4 @@
-export interface ResetPasswordContentDto {
+export interface PasswordResetContentDto {
     language: string;
     caption: string;
     button: string;
