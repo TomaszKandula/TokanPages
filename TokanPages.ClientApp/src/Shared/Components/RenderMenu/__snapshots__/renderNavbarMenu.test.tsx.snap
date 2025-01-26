@@ -151,6 +151,32 @@ Object {
         >
            
         </div>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root render-navbar-list-item MuiListItem-gutters MuiListItem-button"
+          href="/en/signin"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root render-navbar-list-item-text"
+          >
+            Sign in
+          </div>
+        </a>
+        <a
+          aria-disabled="false"
+          class="MuiButtonBase-root MuiListItem-root render-navbar-list-item MuiListItem-gutters MuiListItem-button"
+          href="/en/signup"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiListItemText-root render-navbar-list-item-text"
+          >
+            Sign up
+          </div>
+        </a>
         <div>
           <button
             class="MuiButtonBase-root MuiButton-root MuiButton-text render-navbar-button"
