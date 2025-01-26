@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
 import { ApplicationState } from "../../../../Store/Configuration";
+import { UserNotesAction } from "../../../../Store/Actions/Users/userNotes";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export interface UserNotesProps {
@@ -12,6 +13,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const error = useSelector((state: ApplicationState) => state.applicationError);
+    const userNotes = useSelector((state: ApplicationState) => state.userNotes);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
     const template = contentPageData?.components?.templates;
     const content = contentPageData?.components?.accountUserNotes;
@@ -23,11 +25,15 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     console.log(contentPageData);
     console.log(hasError);
 
+    React.useEffect(() => {
+        dispatch(UserNotesAction.get({ noCache: true }));
+    }, []);
+
     return(
         <UserNotesView 
             isLoading={false}
             hasProgress={false}
-            userNotes={[{ id: "abcd", note: "note 1" }, { id: "efgh", note: "note 2" }]}
+            userNotes={userNotes.response.notes}
             captionText={content?.caption}
             descriptionText={content?.header}
             onRowClick={(id: string) => { console.log(id) }}
