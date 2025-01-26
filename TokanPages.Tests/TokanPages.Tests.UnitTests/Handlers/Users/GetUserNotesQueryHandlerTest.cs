@@ -30,11 +30,13 @@ public class GetUserNotesQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
+        var noteId1 = Guid.NewGuid();
+        var noteId2 = Guid.NewGuid();
         var notes = new List<UserNote>
         {
             new()
             {
-                Id = Guid.NewGuid(),
+                Id = noteId1,
                 UserId = userId,
                 Note = compressedNote1,
                 CreatedBy = userId,
@@ -42,7 +44,7 @@ public class GetUserNotesQueryHandlerTest : TestBase
             },
             new()
             {
-                Id = Guid.NewGuid(),
+                Id = noteId2,
                 UserId = userId,
                 Note = compressedNote2,
                 CreatedBy = userId,
@@ -74,7 +76,21 @@ public class GetUserNotesQueryHandlerTest : TestBase
         // Assert
         result.Should().NotBeNull();
         result.Notes.Count.Should().Be(2);
-        result.Notes[0].Note.Should().Be(plainNote1);
-        result.Notes[1].Note.Should().Be(plainNote2);
+
+        var note1 = result.Notes
+            .Where(queryResult => queryResult.Id == noteId1)
+            .Select(queryResult => queryResult.Note)
+            .SingleOrDefault();
+
+        var note2 = result.Notes
+            .Where(queryResult => queryResult.Id == noteId2)
+            .Select(queryResult => queryResult.Note)
+            .SingleOrDefault();
+
+        note1.Should().NotBeNull();
+        note2.Should().NotBeNull();
+
+        note1.Should().Be(plainNote1);
+        note2.Should().Be(plainNote2);
     }
 }
