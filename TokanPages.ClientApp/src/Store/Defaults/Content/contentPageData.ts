@@ -6,6 +6,15 @@ export const ContentPageData: ContentPageDataState = {
     isLoading: false,
     languageId: undefined,
     components: {
+        accountUserNotes: {
+            language: "",
+            caption: "",
+            header: "",
+            buttons: {
+                removeText: "",
+                saveText: ""
+            }
+        },
         accountSettings: {
             language: "",
             sectionAccessDenied: {

@@ -14,6 +14,23 @@ import {
     Typography 
 } from "@material-ui/core";
 
+interface UserNotesViewProps {
+    isLoading: boolean;
+    hasProgress: boolean;
+    userNotes?: UserNotesProps[] | undefined;
+    captionText: string;
+    descriptionText: string;
+    onRowClick: (id: string) => void;
+    removeButtonText: string;
+    removeButtonHandler: () => void;
+    saveButtonText: string;
+    saveButtonHandler: () => void;
+    messageValue: string;
+    messageHandler: () => void;
+    messageMultiline: boolean;
+    background?: React.CSSProperties;
+}
+
 interface RenderRowProps {
     index: string;
     note: string;
@@ -41,22 +58,6 @@ const RenderRow = (props: RenderRowProps): React.ReactElement => {
 const RenderText = (props: RenderTextProps): React.ReactElement => {
     return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
 };
-
-interface UserNotesViewProps {
-    isLoading: boolean;
-    hasProgress: boolean;
-    userNotes?: UserNotesProps[] | undefined;
-    captionText: string;
-    descriptionText: string;
-    onRowClick: (id: string) => void;
-    removeButtonText: string;
-    removeButtonHandler: () => void;
-    saveButtonText: string;
-    saveButtonHandler: () => void;
-    messageValue: string;
-    messageHandler: () => void;
-    messageMultiline: boolean;
-}
 
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
     return(

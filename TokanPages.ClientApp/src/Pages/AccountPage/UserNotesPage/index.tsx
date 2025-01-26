@@ -14,7 +14,7 @@ export const UserNotesPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "accountSettings"], "UserNotesPage"));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "accountUserNotes"], "UserNotesPage"));
     }, [language?.id]);
 
     return (

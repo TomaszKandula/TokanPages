@@ -13,11 +13,12 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = contentPageData?.components?.templates;
+    const content = contentPageData?.components?.accountUserNotes;
 
-    
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    console.log(props);
+    console.log(template);
     console.log(dispatch);
     console.log(contentPageData);
     console.log(hasError);
@@ -27,16 +28,17 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             isLoading={false}
             hasProgress={false}
             userNotes={[{ id: "abcd", note: "note 1" }, { id: "efgh", note: "note 2" }]}
-            captionText="User Notes"
-            descriptionText="Some text"
+            captionText={content?.caption}
+            descriptionText={content?.header}
             onRowClick={(id: string) => { console.log(id) }}
-            removeButtonText="Remove"
+            removeButtonText={content?.buttons?.removeText}
             removeButtonHandler={() => { console.log("removeButtonHandler") }}
-            saveButtonText="Save"
+            saveButtonText={content?.buttons?.saveText}
             saveButtonHandler={() => { console.log("saveButtonHandler") }}
             messageValue=""
             messageHandler={() => { console.log("messageHandler") }}
             messageMultiline={true}
+            background={props.background}
         />
     );
 }

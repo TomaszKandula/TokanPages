@@ -23,22 +23,29 @@ import {
     TechnologiesContentDto,
     TemplatesContent,
     TestimonialsContentDto,
+    AccountUserNotesContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
-    accountSettings: AccountSettingsContentDto;
+    about: DocumentContentDto;
     accountActivate: AccountActivateContentDto;
+    accountSettings: AccountSettingsContentDto;
+    accountUserNotes: AccountUserNotesContentDto;
     accountUserSignin: AccountUserSigninContentDto;
     accountUserSignout: AccountUserSignoutContentDto;
     accountUserSignup: AccountUserSignupContentDto;
     article: ArticleContentDto;
     articleFeatures: ArticleFeaturesContentDto;
+    bicycle: DocumentContentDto;
     businessForm: BusinessFormContentDto;
     clients: ClientsContentDto;
     contactForm: ContactFormContentDto;
     cookiesPrompt: CookiesPromptContentDto;
+    electronics: DocumentContentDto;
     featured: FeaturedContentDto;
+    football: DocumentContentDto;
     footer: FooterContentDto;
+    guitar: DocumentContentDto;
     header: HeaderContentDto;
     navigation: NavigationContentDto;
     newsletter: NewsletterContentDto;
@@ -46,17 +53,12 @@ export interface ComponentsDto {
     newsletterUpdate: NewsletterUpdateContentDto;
     passwordReset: PasswordResetContentDto;
     passwordUpdate: PasswordUpdateContentDto;
+    photography: DocumentContentDto;
+    policy: DocumentContentDto;
+    showcase: DocumentContentDto;
+    story: DocumentContentDto;
     technologies: TechnologiesContentDto;
     templates: TemplatesContent; //TODO: rename
-    testimonials: TestimonialsContentDto;
-    policy: DocumentContentDto;
     terms: DocumentContentDto;
-    about: DocumentContentDto;
-    story: DocumentContentDto;
-    showcase: DocumentContentDto;
-    bicycle: DocumentContentDto;
-    electronics: DocumentContentDto;
-    football: DocumentContentDto;
-    guitar: DocumentContentDto;
-    photography: DocumentContentDto;
+    testimonials: TestimonialsContentDto;
 }
