@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Skeleton } from "@material-ui/lab";
 import { CustomDivider } from "../../../../../Shared/Components";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { 
     Backdrop, 
     Button, 
@@ -25,8 +26,9 @@ interface UserNotesViewProps {
     removeButtonHandler: () => void;
     saveButtonText: string;
     saveButtonHandler: () => void;
-    messageValue: string;
-    messageHandler: () => void;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    messageForm: { note: string };
+    messageHandler: (event: ReactChangeEvent) => void;
     messageMultiline: boolean;
     background?: React.CSSProperties;
 }
@@ -108,12 +110,13 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 fullWidth
                                                 multiline={props.messageMultiline}
                                                 minRows={12}
-                                                id="message"
-                                                name="message"
-                                                autoComplete="message"
+                                                id="note"
+                                                name="note"
+                                                autoComplete="note"
                                                 variant="outlined"
+                                                onKeyUp={props.keyHandler}
                                                 onChange={props.messageHandler}
-                                                value={props.messageValue}
+                                                value={props.messageForm.note}
                                                 disabled={props.isLoading}
                                             />
                                         </div>

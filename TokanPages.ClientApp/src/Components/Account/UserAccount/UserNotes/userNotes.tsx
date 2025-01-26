@@ -4,6 +4,7 @@ import { UserNotesView } from "./View/userNotesView";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { UserNotesAction } from "../../../../Store/Actions/Users/userNotes";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 
 export interface UserNotesProps {
     background?: React.CSSProperties;
@@ -20,14 +21,34 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    console.log(template);
-    console.log(dispatch);
-    console.log(contentPageData);
-    console.log(hasError);
+    const [form, setForm] = React.useState({ note: "" });
+    const [selectedNote, setSelectedNote] = React.useState("");
+
+    const keyHandler = React.useCallback(
+        (event: ReactKeyboardEvent) => {
+            if (event.code === "Enter") {
+                //saveButtonHandler();
+            }
+        },
+        [form.note]
+    );
+    
+    const formHandler = React.useCallback(
+        (event: ReactChangeEvent) => {
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [form]
+    );
 
     React.useEffect(() => {
         dispatch(UserNotesAction.get({ noCache: true }));
     }, []);
+
+    console.log(template);
+    console.log(dispatch);
+    console.log(contentPageData);
+    console.log(hasError);
+    console.log(selectedNote);
 
     return(
         <UserNotesView 
@@ -36,13 +57,14 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             userNotes={userNotes.response.notes}
             captionText={content?.caption}
             descriptionText={content?.header}
-            onRowClick={(id: string) => { console.log(id) }}
+            onRowClick={(id: string) => { setSelectedNote(id) }}
             removeButtonText={content?.buttons?.removeText}
             removeButtonHandler={() => { console.log("removeButtonHandler") }}
             saveButtonText={content?.buttons?.saveText}
             saveButtonHandler={() => { console.log("saveButtonHandler") }}
-            messageValue=""
-            messageHandler={() => { console.log("messageHandler") }}
+            keyHandler={keyHandler}
+            messageForm={form}
+            messageHandler={formHandler}
             messageMultiline={true}
             background={props.background}
         />
