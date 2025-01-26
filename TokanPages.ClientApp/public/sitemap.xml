@@ -51,13 +51,13 @@
 		<loc>https://tomkandula.com/en/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/signin</loc>
+		<loc>https://tomkandula.com/en/account/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/signup</loc>
+		<loc>https://tomkandula.com/en/account/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/signout</loc>
+		<loc>https://tomkandula.com/en/account/signout</loc>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/settings</loc>
@@ -69,16 +69,16 @@
 		<loc>https://tomkandula.com/en/account/activation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/updatepassword</loc>
+		<loc>https://tomkandula.com/en/account/password-update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/resetpassword</loc>
+		<loc>https://tomkandula.com/en/account/password-reset</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/update-newsletter</loc>
+		<loc>https://tomkandula.com/en/newsletter/update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/remove-newsletter</loc>
+		<loc>https://tomkandula.com/en/newsletter/remove</loc>
 	</url>
 	<!-- POLISH -->
 	<url>
@@ -127,13 +127,13 @@
 		<loc>https://tomkandula.com/pl/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/signin</loc>
+		<loc>https://tomkandula.com/pl/account/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/signup</loc>
+		<loc>https://tomkandula.com/pl/account/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/signout</loc>
+		<loc>https://tomkandula.com/pl/account/signout</loc>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/settings</loc>
@@ -145,16 +145,16 @@
 		<loc>https://tomkandula.com/pl/account/activation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/updatepassword</loc>
+		<loc>https://tomkandula.com/pl/account/password-update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/resetpassword</loc>
+		<loc>https://tomkandula.com/pl/account/password-reset</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/update-newsletter</loc>
+		<loc>https://tomkandula.com/pl/newsletter/update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/remove-newsletter</loc>
+		<loc>https://tomkandula.com/pl/newsletter/remove</loc>
 	</url>
 	<!-- SPANISH -->
 	<url>
@@ -203,13 +203,13 @@
 		<loc>https://tomkandula.com/es/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/signin</loc>
+		<loc>https://tomkandula.com/es/account/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/signup</loc>
+		<loc>https://tomkandula.com/es/account/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/signout</loc>
+		<loc>https://tomkandula.com/es/account/signout</loc>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/settings</loc>
@@ -221,16 +221,16 @@
 		<loc>https://tomkandula.com/es/account/activation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/updatepassword</loc>
+		<loc>https://tomkandula.com/es/account/password-update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/resetpassword</loc>
+		<loc>https://tomkandula.com/es/account/password-reset</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/update-newsletter</loc>
+		<loc>https://tomkandula.com/es/newsletter/update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/remove-newsletter</loc>
+		<loc>https://tomkandula.com/es/newsletter/remove</loc>
 	</url>
 	<!-- UKRAINIAN -->
 	<url>
@@ -279,13 +279,13 @@
 		<loc>https://tomkandula.com/uk/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/signin</loc>
+		<loc>https://tomkandula.com/uk/account/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/signup</loc>
+		<loc>https://tomkandula.com/uk/account/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/signout</loc>
+		<loc>https://tomkandula.com/uk/account/signout</loc>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/settings</loc>
@@ -297,16 +297,16 @@
 		<loc>https://tomkandula.com/uk/account/activation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/updatepassword</loc>
+		<loc>https://tomkandula.com/uk/account/password-update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/resetpassword</loc>
+		<loc>https://tomkandula.com/uk/account/password-reset</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/update-newsletter</loc>
+		<loc>https://tomkandula.com/uk/newsletter/update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/remove-newsletter</loc>
+		<loc>https://tomkandula.com/uk/newsletter/remove</loc>
 	</url>
 	<!-- GERMAN -->
 	<url>
@@ -355,13 +355,13 @@
 		<loc>https://tomkandula.com/de/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/signin</loc>
+		<loc>https://tomkandula.com/de/account/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/signup</loc>
+		<loc>https://tomkandula.com/de/account/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/signout</loc>
+		<loc>https://tomkandula.com/de/account/signout</loc>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/settings</loc>
@@ -373,16 +373,16 @@
 		<loc>https://tomkandula.com/de/account/activation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/updatepassword</loc>
+		<loc>https://tomkandula.com/de/account/password-update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/resetpassword</loc>
+		<loc>https://tomkandula.com/de/account/password-reset</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/update-newsletter</loc>
+		<loc>https://tomkandula.com/de/newsletter/update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/remove-newsletter</loc>
+		<loc>https://tomkandula.com/de/newsletter/remove</loc>
 	</url>
 	<!-- FRENCH -->
 	<url>
@@ -431,13 +431,13 @@
 		<loc>https://tomkandula.com/fr/contact</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/signin</loc>
+		<loc>https://tomkandula.com/fr/account/signin</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/signup</loc>
+		<loc>https://tomkandula.com/fr/account/signup</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/signout</loc>
+		<loc>https://tomkandula.com/fr/account/signout</loc>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/settings</loc>
@@ -449,15 +449,15 @@
 		<loc>https://tomkandula.com/fr/account/activation</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/updatepassword</loc>
+		<loc>https://tomkandula.com/fr/account/password-update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/resetpassword</loc>
+		<loc>https://tomkandula.com/fr/account/password-reset</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/update-newsletter</loc>
+		<loc>https://tomkandula.com/fr/newsletter/update</loc>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/remove-newsletter</loc>
+		<loc>https://tomkandula.com/fr/newsletter/remove</loc>
 	</url>
 </urlset>

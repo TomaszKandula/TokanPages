@@ -58,16 +58,16 @@ const pages: PageProps[] = [
     { path: "/terms", page: <TermsPage />, canPrerender: true },
     { path: "/policy", page: <PolicyPage />, canPrerender: true },
     { path: "/document", page: <PdfViewerPage /> },
-    { path: "/signin", page: <SigninPage /> }, //TODO: rename to '/account/signin'
-    { path: "/signup", page: <SignupPage /> }, //TODO: rename to '/account/signup'
-    { path: "/signout", page: <SignoutPage /> }, //TODO: rename to '/account/signout'
+    { path: "/newsletter/update", page: <NewsletterUpdatePage /> },
+    { path: "/newsletter/remove", page: <NewsletterRemovePage /> },
+    { path: "/account/signin", page: <SigninPage /> },
+    { path: "/account/signup", page: <SignupPage /> },
+    { path: "/account/signout", page: <SignoutPage /> },
     { path: "/account/settings", page: <SettingsPage /> },
     { path: "/account/user-notes", page: <UserNotesPage /> },
     { path: "/account/activation", page: <ActivationPage /> },
-    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to '/account/password-update'
-    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to '/account/password-reset'
-    { path: "/update-newsletter", page: <NewsletterUpdatePage /> }, //TODO: newsletter/update
-    { path: "/remove-newsletter", page: <NewsletterRemovePage /> }, //TODO: newsletter/remove
+    { path: "/account/password-update", page: <PasswordUpdatePage /> },
+    { path: "/account/password-reset", page: <PasswordResetPage /> },
 ];
 
 export const Routes = (props: RoutesProps): React.ReactElement => {
