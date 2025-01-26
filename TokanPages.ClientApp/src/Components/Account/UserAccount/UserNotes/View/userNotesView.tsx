@@ -45,6 +45,10 @@ interface RenderTextProps extends UserNotesViewProps {
 interface UserNotesProps {
     id: string;
     note: string;
+    createdBy: string;
+    createdAt: string;
+    modifiedBy: string;
+    modifiedAt: string;
 }
 
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
@@ -60,6 +64,7 @@ const RenderText = (props: RenderTextProps): React.ReactElement => {
 };
 
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
+    const hasNotes = props.userNotes && props.userNotes.length > 0;
     return(
         <section>
             <Backdrop className="backdrop" open={props.hasProgress}>
@@ -119,7 +124,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 type="submit"
                                                 variant="contained"
                                                 className="button-delete button-delete-margin-right"
-                                                disabled={props.isLoading}
+                                                disabled={props.isLoading || !hasNotes}
                                                 onClick={props.removeButtonHandler}
                                             >
                                                 {props.removeButtonText}

@@ -17,6 +17,7 @@ export const UserNote: Reducer<UserNoteState> = (
             return {
                 status: OperationStatus.notStarted,
                 response: {
+                    id: "",
                     note: "",
                     createdBy: "",
                     createdAt: "",
@@ -29,6 +30,7 @@ export const UserNote: Reducer<UserNoteState> = (
             return {
                 status: OperationStatus.inProgress,
                 response: {
+                    id: state.response.id,
                     note: state.response.note,
                     createdBy: state.response.createdBy,
                     createdAt: state.response.createdAt,

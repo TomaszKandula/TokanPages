@@ -1,4 +1,5 @@
 export interface UserNoteResultDto {
+    id: string;
     note: string;
     createdBy: string;
     createdAt: string;
