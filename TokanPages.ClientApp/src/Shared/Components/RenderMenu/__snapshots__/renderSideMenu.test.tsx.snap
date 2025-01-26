@@ -108,60 +108,6 @@ Object {
         <hr
           class="MuiDivider-root MuiDivider-middle"
         />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/signin"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              vpn_key
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Sign in
-            </span>
-          </div>
-        </a>
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/signup"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              person_add
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Sign up
-            </span>
-          </div>
-        </a>
         <div
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
@@ -488,7 +434,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/signin"
+          href="/en/account/signin"
           role="button"
           tabindex="0"
         >
@@ -515,7 +461,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/signup"
+          href="/en/account/signup"
           role="button"
           tabindex="0"
         >

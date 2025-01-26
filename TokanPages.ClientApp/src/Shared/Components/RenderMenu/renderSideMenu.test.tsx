@@ -73,7 +73,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "5d762733-6724-4b4f-bc8c-7ede6baf77d5",
             type: "item",
             value: "Sign in",
-            link: "/en/signin",
+            link: "/en/account/signin",
             icon: "Vpn_Key",
             enabled: true,
             sideMenu: {
@@ -89,7 +89,7 @@ describe("test render function 'RenderSideMenu'", () => {
             id: "bdd33e5c-f942-4b14-96c7-16523f693c1c",
             type: "item",
             value: "Sign up",
-            link: "/en/signup",
+            link: "/en/account/signup",
             icon: "Person_Add",
             enabled: true,
             sideMenu: {
