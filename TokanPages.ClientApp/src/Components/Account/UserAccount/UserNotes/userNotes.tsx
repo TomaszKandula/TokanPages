@@ -27,7 +27,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
             if (event.code === "Enter") {
-                //saveButtonHandler();
+                saveButtonHandler();
             }
         },
         [form.note]
@@ -39,6 +39,14 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         },
         [form]
     );
+
+    const saveButtonHandler = React.useCallback(() => {
+
+    }, []);
+
+    const removeButtonHandler = React.useCallback(() => {
+
+    }, []);
 
     React.useEffect(() => {
         dispatch(UserNotesAction.get({ noCache: true }));
@@ -59,9 +67,9 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             descriptionText={content?.header}
             onRowClick={(id: string) => { setSelectedNote(id) }}
             removeButtonText={content?.buttons?.removeText}
-            removeButtonHandler={() => { console.log("removeButtonHandler") }}
+            removeButtonHandler={removeButtonHandler}
             saveButtonText={content?.buttons?.saveText}
-            saveButtonHandler={() => { console.log("saveButtonHandler") }}
+            saveButtonHandler={saveButtonHandler}
             keyHandler={keyHandler}
             messageForm={form}
             messageHandler={formHandler}
