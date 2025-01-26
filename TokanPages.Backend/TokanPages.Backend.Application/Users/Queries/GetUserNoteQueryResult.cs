@@ -4,6 +4,8 @@ namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserNoteQueryResult : IAuditable
 {
+    public Guid Id { get; set; }
+
     public string Note { get; set; } = "";
 
     public Guid CreatedBy { get; set; }
