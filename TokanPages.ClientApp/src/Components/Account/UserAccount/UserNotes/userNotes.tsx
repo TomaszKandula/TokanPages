@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
 import { UserNoteResultDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { UserNotesReadAction, UserNoteCreateAction } from "../../../../Store/Actions";
+import { UserNotesReadAction, UserNoteCreateAction, UserNoteUpdateAction } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
@@ -18,12 +18,15 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const userNotes = useSelector((state: ApplicationState) => state.userNotesRead);
     const userNoteCreate = useSelector((state: ApplicationState) => state.userNoteCreate);
+    const userNoteUpdate = useSelector((state: ApplicationState) => state.userNoteUpdate);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
     const content = contentPageData?.components?.accountUserNotes;
+    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const hasUserNoteCreateNotStarted = userNoteCreate.status === OperationStatus.notStarted;
     const hasUserNoteCreateFinished = userNoteCreate.status === OperationStatus.hasFinished;
-    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
+    const hasUserNoteUpdateNotStarted = userNoteUpdate.status === OperationStatus.notStarted;
+    const hasUserNoteUpdateFinished = userNoteUpdate.status === OperationStatus.hasFinished;
 
     const [form, setForm] = React.useState({ note: "" });
     const [selection, setSelection] = React.useState<UserNoteResultDto | undefined>(undefined);
@@ -49,7 +52,12 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
     }, []);
 
+    /* ADD NEW USER NOTE */
     React.useEffect(() => {
+        if (selection) {
+            return;
+        }
+
         if (hasError) {
             setProgress(false);
             dispatch(UserNoteCreateAction.clear());
@@ -64,7 +72,29 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setProgress(false);
             dispatch(UserNoteCreateAction.clear());
         }
-    }, [hasError, hasProgress, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
+    }, [selection, hasError, hasProgress, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
+
+    /* UPDATE SELECTED USER NOTE */
+    React.useEffect(() => {
+        if (!selection) {
+            return;
+        }
+
+        if (hasError) {
+            setProgress(false);
+            dispatch(UserNoteUpdateAction.clear());
+            return;
+        }
+
+        if (hasUserNoteUpdateNotStarted && hasProgress) {
+            dispatch(UserNoteUpdateAction.update({ id: selection.id,  note: form.note }));
+        }
+
+        if (hasUserNoteUpdateFinished) {
+            setProgress(false);
+            dispatch(UserNoteUpdateAction.clear());
+        }
+    }, [selection, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
 
     React.useEffect(() => {
         dispatch(UserNotesReadAction.get({ noCache: true }));
