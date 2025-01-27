@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Skeleton } from "@material-ui/lab";
 import { CustomDivider } from "../../../../../Shared/Components";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { ReactChangeEvent } from "../../../../../Shared/types";
 import { 
     Backdrop, 
     Button, 
@@ -21,12 +21,13 @@ interface UserNotesViewProps {
     userNotes?: UserNotesProps[] | undefined;
     captionText: string;
     descriptionText: string;
+    listLabel: string;
+    noteLabel: string;
     onRowClick: (id: string) => void;
     removeButtonText: string;
     removeButtonHandler: () => void;
     saveButtonText: string;
     saveButtonHandler: () => void;
-    keyHandler: (event: ReactKeyboardEvent) => void;
     messageForm: { note: string };
     messageHandler: (event: ReactChangeEvent) => void;
     messageMultiline: boolean;
@@ -93,18 +94,26 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
 
                                 <div className="user-notes-box">
                                     <div className={`user-notes-fixed-list ${props.isLoading ? "loading-indicator" : ""}`}>
-                                        {!props.isLoading && props.userNotes?.map((value: UserNotesProps) => (
-                                            <RenderRow 
-                                                key={value.id} 
-                                                index={value.id} 
-                                                note={value.note} 
-                                                onClick={props.onRowClick} 
-                                            />
-                                        ))}
+                                        <Typography component="span" className="label">
+                                            <RenderText {...props} value={props.listLabel} />
+                                        </Typography>
+                                        <div className="user-notes-border" style={{ marginTop: 10 }}>
+                                            {!props.isLoading && props.userNotes?.map((value: UserNotesProps) => (
+                                                <RenderRow 
+                                                    key={value.id} 
+                                                    index={value.id} 
+                                                    note={value.id.substring(0, 8)} 
+                                                    onClick={props.onRowClick} 
+                                                />
+                                            ))}
+                                        </div>
                                     </div>
 
                                     <div className="user-notes-message-box">
-                                        <div className={"user-notes-text-box"}>
+                                        <Typography component="span" className="label">
+                                            <RenderText {...props} value={props.noteLabel} />
+                                        </Typography>
+                                        <div className={"user-notes-text-box"} style={{ marginTop: 10 }}>
                                             <TextField
                                                 required
                                                 fullWidth
@@ -114,7 +123,6 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 name="note"
                                                 autoComplete="note"
                                                 variant="outlined"
-                                                onKeyUp={props.keyHandler}
                                                 onChange={props.messageHandler}
                                                 value={props.messageForm.note}
                                                 disabled={props.isLoading}
@@ -143,7 +151,6 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 {props.saveButtonText}
                                             </Button>
                                         </div>
-
                                     </div>
 
                                 </div>
