@@ -21,3 +21,8 @@ export enum UserMedia {
     userImage,
     userVideo,
 }
+
+export enum UserNoteActionResult {
+    noteAdded,
+    noteRejected
+}

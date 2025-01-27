@@ -52,6 +52,7 @@ export type { UserRoleDto } from "./Users/userRoleDto";
 export type { UploadUserMediaDto } from "./Users/uploadUserMediaDto";
 export type { UploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto";
 export type { AddUserNoteDto } from "./Users/addUserNoteDto";
+export type { AddUserNoteResultDto } from "./Users/addUserNoteResultDto";
 export type { UserNoteDto } from "./Users/getUserNoteDto";
 export type { UserNoteResultDto } from "./Users/getUserNoteResultDto";
 export type { UserNotesDto } from "./Users/getUserNotesDto";

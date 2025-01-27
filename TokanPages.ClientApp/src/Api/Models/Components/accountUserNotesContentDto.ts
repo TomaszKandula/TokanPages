@@ -1,7 +1,9 @@
 export interface AccountUserNotesContentDto {
     language: string;
     caption: string;
-    header: string;
+    description: string;
+    listLabel: string;
+    noteLabel: string;
 	buttons: {
 		removeText: string;
 		saveText: string;
