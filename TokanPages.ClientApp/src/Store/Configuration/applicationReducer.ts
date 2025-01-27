@@ -28,6 +28,7 @@ import {
     UserNoteRead,
     UserNotesRead,
     UserNoteCreate,
+    UserNoteUpdate,
 } from "../Reducers";
 
 export const ApplicationReducer = {
@@ -52,6 +53,7 @@ export const ApplicationReducer = {
     userNoteRead: UserNoteRead,
     userNotesRead: UserNotesRead,
     userNoteCreate: UserNoteCreate,
+    userNoteUpdate: UserNoteUpdate,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

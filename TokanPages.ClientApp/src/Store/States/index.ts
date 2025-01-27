@@ -31,3 +31,4 @@ export type { UserEmailVerificationState } from "./Users/userEmailVerification";
 export type { UserNoteReadState } from "./Users/Crud/userNoteRead";
 export type { UserNotesReadState } from "./Users/Crud/userNotesRead";
 export type { UserNoteCreateState } from "./Users/Crud/userNoteCreate";
+export type { UserNoteUpdateState } from "./Users/Crud/userNoteUpdate";

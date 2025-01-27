@@ -29,6 +29,7 @@ import {
     UserNoteRead,
     UserNotesRead,
     UserNoteCreate,
+    UserNoteUpdate,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -53,6 +54,7 @@ export const ApplicationDefault: ApplicationState = {
     userNoteRead: UserNoteRead,
     userNotesRead: UserNotesRead,
     userNoteCreate: UserNoteCreate,
+    userNoteUpdate: UserNoteUpdate,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,
