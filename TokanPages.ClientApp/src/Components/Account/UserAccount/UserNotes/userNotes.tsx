@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
+import { UserNoteResultDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { UserNotesReadAction, UserNoteCreateAction } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
@@ -18,7 +19,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const userNotes = useSelector((state: ApplicationState) => state.userNotesRead);
     const userNoteCreate = useSelector((state: ApplicationState) => state.userNoteCreate);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
-    const template = contentPageData?.components?.templates;
+    //const template = contentPageData?.components?.templates;
     const content = contentPageData?.components?.accountUserNotes;
 
     const hasUserNoteCreateNotStarted = userNoteCreate.status === OperationStatus.notStarted;
@@ -26,15 +27,18 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState({ note: "" });
-    const [selection, setSelection] = React.useState("");
+    const [selection, setSelection] = React.useState<UserNoteResultDto | undefined>(undefined);
     const [hasProgress, setProgress] = React.useState(false);
 
-    const formHandler = React.useCallback(
-        (event: ReactChangeEvent) => {
-            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
-        },
-        [form]
-    );
+    const selectionHandler = React.useCallback((index: number) => {
+        const data = userNotes.response.notes[index];
+        setSelection(data);
+        setForm({ note: data.note });
+    }, [selection, userNotes]);
+
+    const formHandler = React.useCallback((event: ReactChangeEvent) => {
+        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+    }, [form]);
 
     const saveButtonHandler = React.useCallback(() => {
         if (!hasProgress) {
@@ -67,9 +71,6 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         dispatch(UserNotesReadAction.get({ noCache: true }));
     }, []);
 
-    console.log(template);
-    console.log(selection);
-
     return(
         <UserNotesView 
             isLoading={false}
@@ -79,7 +80,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             descriptionText={content?.description}
             listLabel={content?.listLabel}
             noteLabel={content?.noteLabel}
-            onRowClick={(id: string) => { setSelection(id) }}
+            onRowClick={(index: number) => selectionHandler(index)}
             removeButtonText={content?.buttons?.removeText}
             removeButtonHandler={removeButtonHandler}
             saveButtonText={content?.buttons?.saveText}

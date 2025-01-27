@@ -18,12 +18,12 @@ import {
 interface UserNotesViewProps {
     isLoading: boolean;
     hasProgress: boolean;
-    userNotes?: UserNotesProps[] | undefined;
+    userNotes?: UserNoteProps[] | undefined;
     captionText: string;
     descriptionText: string;
     listLabel: string;
     noteLabel: string;
-    onRowClick: (id: string) => void;
+    onRowClick: (index: number) => void;
     removeButtonText: string;
     removeButtonHandler: () => void;
     saveButtonText: string;
@@ -34,18 +34,7 @@ interface UserNotesViewProps {
     background?: React.CSSProperties;
 }
 
-interface RenderRowProps {
-    index: string;
-    note: string;
-    style?: React.CSSProperties | undefined;
-    onClick: (id: string) => void | undefined;
-}
-
-interface RenderTextProps extends UserNotesViewProps {
-    value: string;
-}
-
-interface UserNotesProps {
+interface UserNoteProps {
     id: string;
     note: string;
     createdBy: string;
@@ -54,9 +43,21 @@ interface UserNotesProps {
     modifiedAt: string;
 }
 
+interface RenderRowProps {
+    id: string;
+    note: string;
+    index: number;
+    style?: React.CSSProperties | undefined;
+    onClick: (index: number) => void | undefined;
+}
+
+interface RenderTextProps extends UserNotesViewProps {
+    value: string;
+}
+
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
     return (
-        <ListItem button style={props.style} key={props.index}>
+        <ListItem button style={props.style} key={props.id}>
             <ListItemText primary={props.note} onClick={() => props.onClick(props.index) } />
         </ListItem>
     );
@@ -95,14 +96,15 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                 <div className="user-notes-box">
                                     <div className={`user-notes-fixed-list ${props.isLoading ? "loading-indicator" : ""}`}>
                                         <Typography component="span" className="label">
-                                            <RenderText {...props} value={props.listLabel} />
+                                            <RenderText {...props} value={`${props.listLabel}:`} />
                                         </Typography>
                                         <div className="user-notes-border" style={{ marginTop: 10 }}>
-                                            {!props.isLoading && props.userNotes?.map((value: UserNotesProps) => (
+                                            {!props.isLoading && props.userNotes?.map((value: UserNoteProps, index: number) => (
                                                 <RenderRow 
                                                     key={value.id} 
-                                                    index={value.id} 
+                                                    id={value.id} 
                                                     note={value.id.substring(0, 8)} 
+                                                    index={index}
                                                     onClick={props.onRowClick} 
                                                 />
                                             ))}
@@ -111,7 +113,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
 
                                     <div className="user-notes-message-box">
                                         <Typography component="span" className="label">
-                                            <RenderText {...props} value={props.noteLabel} />
+                                            <RenderText {...props} value={`${props.noteLabel}:`} />
                                         </Typography>
                                         <div className={"user-notes-text-box"} style={{ marginTop: 10 }}>
                                             <TextField
