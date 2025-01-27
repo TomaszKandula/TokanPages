@@ -1,6 +1,6 @@
-import { ApplicationAction } from "../../Configuration";
-import { UserNoteDto, UserNoteResultDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, GET_USER_NOTE } from "../../../Api/Request";
+import { ApplicationAction } from "../../../Configuration";
+import { UserNoteDto, UserNoteResultDto } from "../../../../Api/Models";
+import { Execute, GetConfiguration, ExecuteContract, RequestContract, GET_USER_NOTE } from "../../../../Api/Request";
 
 export const RECEIVE = "GET_USER_NOTE_RECEIVE";
 export const RESPONSE = "GET_USER_NOTE_RESPONSE";
@@ -17,7 +17,7 @@ interface Clear {
 }
 export type TKnownActions = Receive | Response | Clear;
 
-export const UserNoteAction = {
+export const UserNoteReadAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
     },

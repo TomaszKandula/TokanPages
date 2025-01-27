@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { UserNotesAction, UserNoteCreateAction } from "../../../../Store/Actions";
+import { UserNotesReadAction, UserNoteCreateAction } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
@@ -15,7 +15,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const error = useSelector((state: ApplicationState) => state.applicationError);
-    const userNotes = useSelector((state: ApplicationState) => state.userNotes);
+    const userNotes = useSelector((state: ApplicationState) => state.userNotesRead);
     const userNoteCreate = useSelector((state: ApplicationState) => state.userNoteCreate);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
     const template = contentPageData?.components?.templates;
@@ -64,7 +64,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     }, [hasError, hasProgress, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
 
     React.useEffect(() => {
-        dispatch(UserNotesAction.get({ noCache: true }));
+        dispatch(UserNotesReadAction.get({ noCache: true }));
     }, []);
 
     console.log(template);

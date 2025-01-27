@@ -1,15 +1,15 @@
 import { Action, Reducer } from "redux";
-import { ApplicationDefault } from "../../Configuration";
-import { UserNotesState } from "../../States";
-import { OperationStatus } from "../../../Shared/enums";
+import { ApplicationDefault } from "../../../Configuration";
+import { UserNotesReadState } from "../../../States";
+import { OperationStatus } from "../../../../Shared/enums";
 
-import { TKnownActions, RECEIVE, CLEAR, RESPONSE } from "../../Actions/Users/userNotes";
+import { TKnownActions, RECEIVE, CLEAR, RESPONSE } from "../../../Actions/Users/Crud/userNotesRead";
 
-export const UserNotes: Reducer<UserNotesState> = (
-    state: UserNotesState | undefined,
+export const UserNotesRead: Reducer<UserNotesReadState> = (
+    state: UserNotesReadState | undefined,
     incomingAction: Action
-): UserNotesState => {
-    if (state === undefined) return ApplicationDefault.userNotes;
+): UserNotesReadState => {
+    if (state === undefined) return ApplicationDefault.userNotesRead;
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {

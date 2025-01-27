@@ -1,7 +1,7 @@
-import { OperationStatus } from "../../../Shared/enums";
-import { UserNoteState } from "../../../Store/States";
+import { OperationStatus } from "../../../../Shared/enums";
+import { UserNoteReadState } from "../../../States";
 
-export const UserNote: UserNoteState = {
+export const UserNoteRead: UserNoteReadState = {
     status: OperationStatus.notStarted,
     response: {
         id: "",

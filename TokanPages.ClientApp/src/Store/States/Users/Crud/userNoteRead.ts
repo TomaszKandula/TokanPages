@@ -1,7 +1,7 @@
 import { UserNoteResultDto } from "Api/Models";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../../Shared/enums";
 
-export interface UserNoteState {
+export interface UserNoteReadState {
     status: OperationStatus;
     response: UserNoteResultDto;
 }

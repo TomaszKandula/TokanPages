@@ -28,6 +28,6 @@ export { UserMediaUploadAction } from "./Users/userMediaUpload";
 export { UserSignoutAction } from "./Users/userSignout";
 export { UserNotificationAction } from "./Users/userNotification";
 export { UserEmailVerificationAction } from "./Users/userEmailVerification";
-export { UserNoteAction } from "./Users/userNote";
-export { UserNotesAction } from "./Users/userNotes";
+export { UserNoteReadAction } from "./Users/Crud/userNoteRead";
+export { UserNotesReadAction } from "./Users/Crud/userNotesRead";
 export { UserNoteCreateAction } from "./Users/Crud/userNoteCreate";

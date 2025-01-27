@@ -28,6 +28,6 @@ export type { UserMediaUploadState } from "./Users/userMediaUpload";
 export type { UserSignoutState } from "./Users/userSignout";
 export type { UserNotificationState } from "./Users/userNotification";
 export type { UserEmailVerificationState } from "./Users/userEmailVerification";
-export type { UserNoteState } from "./Users/userNote";
-export type { UserNotesState } from "./Users/userNotes";
+export type { UserNoteReadState } from "./Users/Crud/userNoteRead";
+export type { UserNotesReadState } from "./Users/Crud/userNotesRead";
 export type { UserNoteCreateState } from "./Users/Crud/userNoteCreate";
