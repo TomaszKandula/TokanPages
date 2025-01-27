@@ -28,6 +28,7 @@ import {
     ArticleInfo,
     UserNote,
     UserNotes,
+    UserNoteCreate,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -51,6 +52,7 @@ export const ApplicationDefault: ApplicationState = {
     userNotification: UserNotification,
     userNote: UserNote,
     userNotes: UserNotes,
+    userNoteCreate: UserNoteCreate,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,

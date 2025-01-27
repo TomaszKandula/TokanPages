@@ -27,6 +27,7 @@ import {
     ArticleInfoState,
     UserNoteState,
     UserNotesState,
+    UserNoteCreateState,
 } from "../States";
 
 export interface ApplicationState {
@@ -50,6 +51,7 @@ export interface ApplicationState {
     userNotification: UserNotificationState;
     userNote: UserNoteState;
     userNotes: UserNotesState;
+    userNoteCreate: UserNoteCreateState;
     userPasswordReset: UserPasswordResetState;
     userPasswordUpdate: UserPasswordUpdateState;
     userReAuthenticate: UserReAuthenticateState;

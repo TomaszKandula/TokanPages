@@ -30,3 +30,4 @@ export { UserNotification } from "./Users/userNotification";
 export { UserEmailVerification } from "./Users/userEmailVerification";
 export { UserNote } from "./Users/userNote";
 export { UserNotes } from "./Users/userNotes";
+export { UserNoteCreate } from "./Users/Crud/userNoteCreate";

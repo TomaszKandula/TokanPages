@@ -9,7 +9,9 @@ export const ContentPageData: ContentPageDataState = {
         accountUserNotes: {
             language: "",
             caption: "",
-            header: "",
+            description: "",
+            listLabel: "",
+            noteLabel: "",
             buttons: {
                 removeText: "",
                 saveText: ""
