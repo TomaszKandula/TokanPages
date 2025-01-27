@@ -19,7 +19,6 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const userNotes = useSelector((state: ApplicationState) => state.userNotesRead);
     const userNoteCreate = useSelector((state: ApplicationState) => state.userNoteCreate);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
-    //const template = contentPageData?.components?.templates;
     const content = contentPageData?.components?.accountUserNotes;
 
     const hasUserNoteCreateNotStarted = userNoteCreate.status === OperationStatus.notStarted;
@@ -73,7 +72,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
     return(
         <UserNotesView 
-            isLoading={false}
+            isLoading={contentPageData?.isLoading}
             hasProgress={hasProgress}
             userNotes={userNotes.response.notes}
             captionText={content?.caption}
