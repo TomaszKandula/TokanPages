@@ -110,11 +110,11 @@ public abstract class TestBase
             .Returns(mockedSection);
 
         mockedConfig
-            .Setup(configuration => configuration.GetSection("Paths_UpdateSubscriber"))
+            .Setup(configuration => configuration.GetSection("Paths_NewsletterUpdate"))
             .Returns(mockedSection);
 
         mockedConfig
-            .Setup(configuration => configuration.GetSection("Paths_Unsubscribe"))
+            .Setup(configuration => configuration.GetSection("Paths_NewsletterRemove"))
             .Returns(mockedSection);
 
         mockedConfig

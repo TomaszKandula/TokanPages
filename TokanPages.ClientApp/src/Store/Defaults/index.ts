@@ -28,3 +28,8 @@ export { UserMediaUpload } from "./Users/userMediaUpload";
 export { UserSignout } from "./Users/userSignout";
 export { UserNotification } from "./Users/userNotification";
 export { UserEmailVerification } from "./Users/userEmailVerification";
+export { UserNoteRead } from "./Users/Crud/userNoteRead";
+export { UserNotesRead } from "./Users/Crud/userNotesRead";
+export { UserNoteCreate } from "./Users/Crud/userNoteCreate";
+export { UserNoteUpdate } from "./Users/Crud/userNoteUpdate";
+export { UserNoteDelete } from "./Users/Crud/userNoteDelete";

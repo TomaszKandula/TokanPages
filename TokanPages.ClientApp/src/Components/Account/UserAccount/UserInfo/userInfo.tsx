@@ -43,7 +43,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = contentPageData.components.templates;
-    const account = contentPageData.components.account;
+    const account = contentPageData.components.accountSettings;
 
     const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
     const hasUpdateFinished = update?.status === OperationStatus.hasFinished;

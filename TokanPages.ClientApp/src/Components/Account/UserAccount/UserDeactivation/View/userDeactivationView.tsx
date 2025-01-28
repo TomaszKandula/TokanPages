@@ -24,7 +24,7 @@ const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElemen
             variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className="delete-update"
+            className="button-delete"
         >
             {!props.progress ? props.section?.deactivateButtonText : <CircularProgress size={20} />}
         </Button>

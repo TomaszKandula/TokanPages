@@ -73,7 +73,7 @@ Object {
                       style="margin-top: 16px; margin-bottom: 16px;"
                     >
                       <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained delete-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete Mui-disabled MuiButton-fullWidth Mui-disabled"
                         disabled=""
                         tabindex="-1"
                         type="submit"
@@ -181,7 +181,7 @@ Object {
                     style="margin-top: 16px; margin-bottom: 16px;"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained delete-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete Mui-disabled MuiButton-fullWidth Mui-disabled"
                       disabled=""
                       tabindex="-1"
                       type="submit"

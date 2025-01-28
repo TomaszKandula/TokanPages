@@ -1,6 +1,9 @@
 import {
-    AccountContentDto,
-    ActivateAccountContentDto,
+    AccountSettingsContentDto,
+    AccountActivateContentDto,
+    AccountUserSigninContentDto,
+    AccountUserSignoutContentDto,
+    AccountUserSignupContentDto,
     ArticleContentDto,
     ArticleFeaturesContentDto,
     BusinessFormContentDto,
@@ -15,48 +18,47 @@ import {
     NewsletterContentDto,
     NewsletterRemoveContentDto,
     NewsletterUpdateContentDto,
-    ResetPasswordContentDto,
+    PasswordResetContentDto,
+    PasswordUpdateContentDto,
     TechnologiesContentDto,
     TemplatesContent,
     TestimonialsContentDto,
-    UpdatePasswordContentDto,
-    UserSigninContentDto,
-    UserSignoutContentDto,
-    UserSignupContentDto,
+    AccountUserNotesContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
-    account: AccountContentDto;
-    activateAccount: ActivateAccountContentDto;
+    about: DocumentContentDto;
+    accountActivate: AccountActivateContentDto;
+    accountSettings: AccountSettingsContentDto;
+    accountUserNotes: AccountUserNotesContentDto;
+    accountUserSignin: AccountUserSigninContentDto;
+    accountUserSignout: AccountUserSignoutContentDto;
+    accountUserSignup: AccountUserSignupContentDto;
     article: ArticleContentDto;
     articleFeatures: ArticleFeaturesContentDto;
+    bicycle: DocumentContentDto;
     businessForm: BusinessFormContentDto;
     clients: ClientsContentDto;
     contactForm: ContactFormContentDto;
     cookiesPrompt: CookiesPromptContentDto;
+    electronics: DocumentContentDto;
     featured: FeaturedContentDto;
+    football: DocumentContentDto;
     footer: FooterContentDto;
+    guitar: DocumentContentDto;
     header: HeaderContentDto;
     navigation: NavigationContentDto;
     newsletter: NewsletterContentDto;
     newsletterRemove: NewsletterRemoveContentDto;
     newsletterUpdate: NewsletterUpdateContentDto;
-    resetPassword: ResetPasswordContentDto;
+    passwordReset: PasswordResetContentDto;
+    passwordUpdate: PasswordUpdateContentDto;
+    photography: DocumentContentDto;
+    policy: DocumentContentDto;
+    showcase: DocumentContentDto;
+    story: DocumentContentDto;
     technologies: TechnologiesContentDto;
     templates: TemplatesContent; //TODO: rename
-    testimonials: TestimonialsContentDto;
-    updatePassword: UpdatePasswordContentDto;
-    userSignin: UserSigninContentDto;
-    userSignout: UserSignoutContentDto;
-    userSignup: UserSignupContentDto;
-    policy: DocumentContentDto;
     terms: DocumentContentDto;
-    about: DocumentContentDto;
-    story: DocumentContentDto;
-    showcase: DocumentContentDto;
-    bicycle: DocumentContentDto;
-    electronics: DocumentContentDto;
-    football: DocumentContentDto;
-    guitar: DocumentContentDto;
-    photography: DocumentContentDto;
+    testimonials: TestimonialsContentDto;
 }

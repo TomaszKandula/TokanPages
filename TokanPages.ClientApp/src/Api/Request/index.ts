@@ -49,4 +49,9 @@ export {
     GET_FLAG_URL,
     GET_USER_VIDEO,
     GET_VIDEO_ASSET,
+    GET_USER_NOTES,
+    GET_USER_NOTE,
+    ADD_USER_NOTE,
+    UPDATE_USER_NOTE,
+    REMOVE_USER_NOTE,
 } from "./Paths";

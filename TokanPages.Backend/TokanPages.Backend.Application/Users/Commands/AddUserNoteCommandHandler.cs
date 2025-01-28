@@ -42,8 +42,10 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
             };
 
         var compressedNote = request.Note.CompressToBase64();
+        var noteId = Guid.NewGuid();
         var userNote = new UserNote
         {
+            Id = noteId,
             UserId = user.Id,
             Note = compressedNote,
             CreatedAt = _dateTimeService.Now,
@@ -55,6 +57,9 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
         return new AddUserNoteCommandResult
         {
+            Id = noteId,
+            CreatedAt = userNote.CreatedAt,
+            CreatedBy = userNote.CreatedBy,
             CurrentNotes = notesCount + 1,
             Result = Domain.Enums.UserNote.NoteAdded
         };

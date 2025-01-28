@@ -35,7 +35,7 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data?.components.templates;
-    const content = data?.components.userSignin;
+    const content = data?.components.accountUserSignin;
 
     const hasNotStarted = signin?.status === OperationStatus.notStarted;
     const hasFinished = signin?.status === OperationStatus.hasFinished;

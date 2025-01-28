@@ -1,38 +1,6 @@
-import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { ContentPageDataAction } from "../../Store/Actions";
-import { Navigation, Footer } from "../../Components/Layout";
-import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../Components/Account";
-import Validate from "validate.js";
-
-export const AccountPage = (): React.ReactElement => {
-    const dispatch = useDispatch();
-
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const userStore = useSelector((state: ApplicationState) => state.userDataStore.userData);
-    const isAnonymous = Validate.isEmpty(userStore.userId);
-
-    React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "account"], "AccountPage"));
-    }, [language?.id]);
-
-    return (
-        <>
-            <Navigation />
-
-            {isAnonymous ? (
-                <AccessDenied />
-            ) : (
-                <>
-                    <UserInfo />
-                    <UserPassword />
-                    <UserDeactivation />
-                    <UserRemoval />
-                </>
-            )}
-
-            <Footer />
-        </>
-    );
-};
+export { UserNotesPage } from "./UserNotesPage";
+export { SettingsPage } from "./SettingsPage";
+export { ActivationPage } from "./ActivationPage";
+export { SigninPage } from "./SigninPage";
+export { SignoutPage } from "./SignoutPage";
+export { SignupPage } from "./SignupPage";

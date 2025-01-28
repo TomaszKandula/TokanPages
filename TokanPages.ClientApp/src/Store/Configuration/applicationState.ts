@@ -25,6 +25,11 @@ import {
     ApplicationNavbarState,
     ContentPageDataState,
     ArticleInfoState,
+    UserNoteReadState,
+    UserNotesReadState,
+    UserNoteCreateState,
+    UserNoteUpdateState,
+    UserNoteDeleteState,
 } from "../States";
 
 export interface ApplicationState {
@@ -46,6 +51,11 @@ export interface ApplicationState {
     userDataStore: UserDataStoreState;
     userMediaUpload: UserMediaUploadState;
     userNotification: UserNotificationState;
+    userNoteRead: UserNoteReadState;
+    userNotesRead: UserNotesReadState;
+    userNoteCreate: UserNoteCreateState;
+    userNoteUpdate: UserNoteUpdateState;
+    userNoteDelete: UserNoteDeleteState;
     userPasswordReset: UserPasswordResetState;
     userPasswordUpdate: UserPasswordUpdateState;
     userReAuthenticate: UserReAuthenticateState;

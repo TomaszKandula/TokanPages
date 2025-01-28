@@ -29,6 +29,7 @@ public class GetUserNotesQueryHandler : RequestHandler<GetUserNotesQuery, GetUse
         {
             result.Add(new GetUserNoteQueryResult
             {
+                Id = note.Id,
                 Note = note.Note.DecompressFromBase64(),
                 CreatedAt = note.CreatedAt,
                 CreatedBy = note.CreatedBy,
@@ -39,7 +40,7 @@ public class GetUserNotesQueryHandler : RequestHandler<GetUserNotesQuery, GetUse
 
         return new GetUserNotesQueryResult
         {
-            UserNotes = result
+            Notes = result
         };
     }
 }
