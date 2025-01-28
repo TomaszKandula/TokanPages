@@ -14,6 +14,7 @@ export const ContentPageData: ContentPageDataState = {
             noteLabel: "",
             buttons: {
                 removeText: "",
+                clearText: "",
                 saveText: ""
             }
         },

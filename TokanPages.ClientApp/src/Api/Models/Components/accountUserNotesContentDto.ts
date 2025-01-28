@@ -6,6 +6,7 @@ export interface AccountUserNotesContentDto {
     noteLabel: string;
 	buttons: {
 		removeText: string;
+        clearText: string;
 		saveText: string;
 	}
 }

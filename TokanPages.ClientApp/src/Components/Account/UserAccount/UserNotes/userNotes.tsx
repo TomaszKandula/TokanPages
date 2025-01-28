@@ -47,6 +47,11 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
     }, [form]);
 
+    const clearButtonHandler = React.useCallback(() => {
+        setSelection(undefined);
+        setForm({ note: "" });
+    }, [selection, form]);
+
     const saveButtonHandler = React.useCallback(() => {
         if (!hasProgress) {
             setProgress(true);
@@ -93,6 +98,10 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             return;
         }
 
+        if (canDelete) {
+            return;
+        }
+
         if (hasError) {
             setProgress(false);
             dispatch(UserNoteUpdateAction.clear());
@@ -107,11 +116,15 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setProgress(false);
             dispatch(UserNoteUpdateAction.clear());
         }
-    }, [selection, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
+    }, [selection, canDelete, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
 
     /* REMOVE SELECTED USER NOTE */
     React.useEffect(() => {
         if (!selection) {
+            return;
+        }
+
+        if (!canDelete) {
             return;
         }
 
@@ -134,7 +147,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setForm({ note: "" });
             dispatch(UserNoteDeleteAction.clear());
         }
-    }, [selection, hasError, hasProgress, hasUserNoteDeleteNotStarted, hasUserNoteDeleteFinished]);
+    }, [selection, canDelete, hasError, hasProgress, hasUserNoteDeleteNotStarted, hasUserNoteDeleteFinished]);
 
     /* ON REFRESH EVENT */
     React.useEffect(() => {
@@ -144,9 +157,9 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
     }, [canRefresh]);
 
-    /* ON MOUNT */
+    /* GET USER NOTES */
     React.useEffect(() => {
-        dispatch(UserNotesReadAction.get({ noCache: false }));
+        setTimeout(() => dispatch(UserNotesReadAction.get({ noCache: false })), 1500);
     }, []);
 
     return(
@@ -160,6 +173,8 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             noteLabel={content?.noteLabel}
             onRowClick={(index: number) => selectionHandler(index)}
             selection={selection}
+            clearButtonText={content?.buttons?.clearText}
+            clearButtonHandler={clearButtonHandler}
             removeButtonText={content?.buttons?.removeText}
             removeButtonHandler={removeButtonHandler}
             saveButtonText={content?.buttons?.saveText}

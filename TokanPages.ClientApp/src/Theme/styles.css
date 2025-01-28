@@ -1486,12 +1486,12 @@ body::backdrop {
     }
 }
 
-.button-delete-margin-right {
+.button-margin-right {
     margin-right: 15px !important;
 }
 
 @media (max-width: 600px) {
-    .button-delete-margin-right {
+    .button-margin-right {
         margin-right: 0 !important;
         margin-bottom: 15px !important;
     }

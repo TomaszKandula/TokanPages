@@ -3,6 +3,7 @@ import { Skeleton } from "@material-ui/lab";
 import { UserNoteResultDto } from "../../../../../Api/Models";
 import { CustomDivider } from "../../../../../Shared/Components";
 import { ReactChangeEvent } from "../../../../../Shared/types";
+import Validate from "validate.js";
 import { 
     Backdrop, 
     Button, 
@@ -26,6 +27,8 @@ interface UserNotesViewProps {
     noteLabel: string;
     onRowClick: (index: number) => void;
     selection?: UserNoteResultDto | undefined;
+    clearButtonText: string;
+    clearButtonHandler: () => void;
     removeButtonText: string;
     removeButtonHandler: () => void;
     saveButtonText: string;
@@ -71,6 +74,9 @@ const RenderText = (props: RenderTextProps): React.ReactElement => {
 
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
     const hasNotes = props.userNotes && props.userNotes.length > 0;
+    const noteUid = props.selection ? ` (${props.selection.id.substring(0, 8)}):` : ":";
+    const isEmpty = Validate.isEmpty(props.messageForm.note);
+
     return(
         <section>
             <Backdrop className="backdrop" open={props.hasProgress}>
@@ -115,7 +121,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
 
                                     <div className="user-notes-message-box">
                                         <Typography component="span" className="label">
-                                            <RenderText {...props} value={`${props.noteLabel}:`} />
+                                            <RenderText {...props} value={`${props.noteLabel}${noteUid}`} />
                                         </Typography>
                                         <div className={"user-notes-text-box"} style={{ marginTop: 10 }}>
                                             <TextField
@@ -138,7 +144,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 fullWidth
                                                 type="submit"
                                                 variant="contained"
-                                                className="button-delete button-delete-margin-right"
+                                                className="button-delete button-margin-right"
                                                 disabled={props.isLoading || !hasNotes || !props.selection}
                                                 onClick={props.removeButtonHandler}
                                             >
@@ -148,8 +154,18 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 fullWidth
                                                 type="submit"
                                                 variant="contained"
-                                                className="button-update"
+                                                className="button-update button-margin-right"
                                                 disabled={props.isLoading}
+                                                onClick={props.clearButtonHandler}
+                                            >
+                                                {props.clearButtonText}
+                                            </Button>
+                                            <Button
+                                                fullWidth
+                                                type="submit"
+                                                variant="contained"
+                                                className="button-update"
+                                                disabled={props.isLoading || isEmpty}
                                                 onClick={props.saveButtonHandler}
                                             >
                                                 {props.saveButtonText}
