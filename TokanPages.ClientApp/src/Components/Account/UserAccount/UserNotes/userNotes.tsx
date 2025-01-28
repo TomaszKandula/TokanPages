@@ -110,6 +110,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             listLabel={content?.listLabel}
             noteLabel={content?.noteLabel}
             onRowClick={(index: number) => selectionHandler(index)}
+            selection={selection}
             removeButtonText={content?.buttons?.removeText}
             removeButtonHandler={removeButtonHandler}
             saveButtonText={content?.buttons?.saveText}

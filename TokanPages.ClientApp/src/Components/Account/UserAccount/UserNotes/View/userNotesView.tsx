@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Skeleton } from "@material-ui/lab";
+import { UserNoteResultDto } from "../../../../../Api/Models";
 import { CustomDivider } from "../../../../../Shared/Components";
 import { ReactChangeEvent } from "../../../../../Shared/types";
 import { 
@@ -24,6 +25,7 @@ interface UserNotesViewProps {
     listLabel: string;
     noteLabel: string;
     onRowClick: (index: number) => void;
+    selection?: UserNoteResultDto | undefined;
     removeButtonText: string;
     removeButtonHandler: () => void;
     saveButtonText: string;
@@ -137,7 +139,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 type="submit"
                                                 variant="contained"
                                                 className="button-delete button-delete-margin-right"
-                                                disabled={props.isLoading || !hasNotes}
+                                                disabled={props.isLoading || !hasNotes || !props.selection}
                                                 onClick={props.removeButtonHandler}
                                             >
                                                 {props.removeButtonText}
