@@ -129,9 +129,9 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 fullWidth
                                                 multiline={props.messageMultiline}
                                                 minRows={12}
+                                                maxRows={12}
                                                 id="note"
                                                 name="note"
-                                                autoComplete="note"
                                                 variant="outlined"
                                                 onChange={props.messageHandler}
                                                 value={props.messageForm.note}
