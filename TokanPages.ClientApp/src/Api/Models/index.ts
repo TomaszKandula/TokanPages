@@ -58,6 +58,7 @@ export type { UserNoteResultDto } from "./Users/getUserNoteResultDto";
 export type { UserNotesDto } from "./Users/getUserNotesDto";
 export type { UserNotesResultDto } from "./Users/getUserNotesResultDto";
 export type { RemoveUserNoteDto } from "./Users/removeUserNoteDto";
+export type { RemoveUserNoteResultDto } from "./Users/removeUserNoteResultDto";
 export type { UpdateUserNoteDto } from "./Users/updateUserNoteDto";
 export type { UpdateUserNoteResultDto } from "./Users/updateUserNoteResultDto";
 
