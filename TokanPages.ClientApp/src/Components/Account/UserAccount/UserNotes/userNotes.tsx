@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
 import { UserNoteResultDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { UserNotesReadAction, UserNoteCreateAction, UserNoteUpdateAction } from "../../../../Store/Actions";
+import { UserNotesReadAction, UserNoteCreateAction, UserNoteUpdateAction, UserNoteDeleteAction } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
@@ -19,6 +19,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const userNotes = useSelector((state: ApplicationState) => state.userNotesRead);
     const userNoteCreate = useSelector((state: ApplicationState) => state.userNoteCreate);
     const userNoteUpdate = useSelector((state: ApplicationState) => state.userNoteUpdate);
+    const userNoteDelete = useSelector((state: ApplicationState) => state.userNoteDelete);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
     const content = contentPageData?.components?.accountUserNotes;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
@@ -27,10 +28,14 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const hasUserNoteCreateFinished = userNoteCreate.status === OperationStatus.hasFinished;
     const hasUserNoteUpdateNotStarted = userNoteUpdate.status === OperationStatus.notStarted;
     const hasUserNoteUpdateFinished = userNoteUpdate.status === OperationStatus.hasFinished;
+    const hasUserNoteDeleteNotStarted = userNoteDelete.status === OperationStatus.notStarted;
+    const hasUserNoteDeleteFinished = userNoteDelete.status === OperationStatus.hasFinished;
 
     const [form, setForm] = React.useState({ note: "" });
     const [selection, setSelection] = React.useState<UserNoteResultDto | undefined>(undefined);
     const [hasProgress, setProgress] = React.useState(false);
+    const [canDelete, setDelete] = React.useState(false);
+    const [canRefresh, setRefresh] = React.useState(false);
 
     const selectionHandler = React.useCallback((index: number) => {
         const data = userNotes.response.notes[index];
@@ -49,8 +54,15 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     }, [hasProgress]);
 
     const removeButtonHandler = React.useCallback(() => {
+        if (!selection) {
+            return;
+        }
 
-    }, []);
+        if (!canDelete) {
+            setDelete(true);
+            setProgress(true);
+        }
+    }, [selection, canDelete, hasProgress]);
 
     /* ADD NEW USER NOTE */
     React.useEffect(() => {
@@ -69,6 +81,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
 
         if (hasUserNoteCreateFinished) {
+            setRefresh(true);
             setProgress(false);
             dispatch(UserNoteCreateAction.clear());
         }
@@ -96,8 +109,44 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
     }, [selection, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
 
+    /* REMOVE SELECTED USER NOTE */
     React.useEffect(() => {
-        dispatch(UserNotesReadAction.get({ noCache: true }));
+        if (!selection) {
+            return;
+        }
+
+        if (hasError) {
+            setProgress(false);
+            setDelete(false);
+            dispatch(UserNoteDeleteAction.clear());
+            return;
+        }
+
+        if (hasUserNoteDeleteNotStarted && hasProgress) {
+            dispatch(UserNoteDeleteAction.delete({ id: selection.id }));
+        }
+
+        if (hasUserNoteDeleteFinished) {
+            setProgress(false);
+            setDelete(false);
+            setRefresh(true);
+            setSelection(undefined);
+            setForm({ note: "" });
+            dispatch(UserNoteDeleteAction.clear());
+        }
+    }, [selection, hasError, hasProgress, hasUserNoteDeleteNotStarted, hasUserNoteDeleteFinished]);
+
+    /* ON REFRESH EVENT */
+    React.useEffect(() => {
+        if (canRefresh) {
+            dispatch(UserNotesReadAction.get({ noCache: true }));
+            setRefresh(false);
+        }
+    }, [canRefresh]);
+
+    /* ON MOUNT */
+    React.useEffect(() => {
+        dispatch(UserNotesReadAction.get({ noCache: false }));
     }, []);
 
     return(
