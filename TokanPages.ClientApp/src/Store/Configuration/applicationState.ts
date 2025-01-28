@@ -29,6 +29,7 @@ import {
     UserNotesReadState,
     UserNoteCreateState,
     UserNoteUpdateState,
+    UserNoteDeleteState,
 } from "../States";
 
 export interface ApplicationState {
@@ -54,6 +55,7 @@ export interface ApplicationState {
     userNotesRead: UserNotesReadState;
     userNoteCreate: UserNoteCreateState;
     userNoteUpdate: UserNoteUpdateState;
+    userNoteDelete: UserNoteDeleteState;
     userPasswordReset: UserPasswordResetState;
     userPasswordUpdate: UserPasswordUpdateState;
     userReAuthenticate: UserReAuthenticateState;

@@ -32,3 +32,4 @@ export { UserNoteRead } from "./Users/Crud/userNoteRead";
 export { UserNotesRead } from "./Users/Crud/userNotesRead";
 export { UserNoteCreate } from "./Users/Crud/userNoteCreate";
 export { UserNoteUpdate } from "./Users/Crud/userNoteUpdate";
+export { UserNoteDelete } from "./Users/Crud/userNoteDelete";
