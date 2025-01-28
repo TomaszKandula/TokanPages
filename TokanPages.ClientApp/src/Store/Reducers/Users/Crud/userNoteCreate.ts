@@ -17,6 +17,9 @@ export const UserNoteCreate: Reducer<UserNoteCreateState> = (
             return {
                 status: OperationStatus.notStarted,
                 response: {
+                    id: "",
+                    createdAt: "",
+                    createdBy: "",
                     currentNotes: 0
                 },
             };

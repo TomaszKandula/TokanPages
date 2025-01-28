@@ -1465,6 +1465,10 @@ body::backdrop {
     }
 }
 
+.user-notes-highlight-row {
+    background-color: #EBECFB !important;
+}
+
 .user-notes-text-box {
     width: 100%;
 }

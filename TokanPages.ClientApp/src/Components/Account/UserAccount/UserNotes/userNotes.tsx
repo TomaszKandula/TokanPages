@@ -88,9 +88,17 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         if (hasUserNoteCreateFinished) {
             setRefresh(true);
             setProgress(false);
+            setSelection({ 
+                note: form.note,
+                id: userNoteCreate.response.id,
+                createdAt: userNoteCreate.response.createdAt,
+                createdBy: userNoteCreate.response.createdBy,
+            });
+
             dispatch(UserNoteCreateAction.clear());
         }
-    }, [selection, hasError, hasProgress, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
+
+    }, [selection, hasError, hasProgress, userNoteCreate, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
 
     /* UPDATE SELECTED USER NOTE */
     React.useEffect(() => {
@@ -114,6 +122,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
         if (hasUserNoteUpdateFinished) {
             setProgress(false);
+            setRefresh(true);
             dispatch(UserNoteUpdateAction.clear());
         }
     }, [selection, canDelete, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);

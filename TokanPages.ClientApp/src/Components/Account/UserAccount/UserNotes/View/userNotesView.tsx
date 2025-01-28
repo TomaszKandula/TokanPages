@@ -44,14 +44,15 @@ interface UserNoteProps {
     note: string;
     createdBy: string;
     createdAt: string;
-    modifiedBy: string;
-    modifiedAt: string;
+    modifiedBy?: string;
+    modifiedAt?: string;
 }
 
 interface RenderRowProps {
     id: string;
     note: string;
     index: number;
+    selection?: string;
     style?: React.CSSProperties | undefined;
     onClick: (index: number) => void | undefined;
 }
@@ -61,8 +62,9 @@ interface RenderTextProps extends UserNotesViewProps {
 }
 
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
+    const highlightClass = props.selection === props.id ? "user-notes-highlight-row" : "";
     return (
-        <ListItem button style={props.style} key={props.id}>
+        <ListItem button className={highlightClass} style={props.style} key={props.id}>
             <ListItemText primary={props.note} onClick={() => props.onClick(props.index) } />
         </ListItem>
     );
@@ -113,6 +115,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                     id={value.id} 
                                                     note={value.id.substring(0, 8)} 
                                                     index={index}
+                                                    selection={props.selection?.id}
                                                     onClick={props.onRowClick} 
                                                 />
                                             ))}
