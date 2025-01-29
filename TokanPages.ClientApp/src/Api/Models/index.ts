@@ -1,3 +1,29 @@
+/*  JWT  */
+export type { JWT } from "./Jwt";
+
+/* ERROR */
+export type { ErrorDto } from "./Error/errorDto";
+export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
+
+/* MAILER */
+export type { SendMessageDto } from "./Mailer/sendMessageDto";
+export type { SendNewsletterDto } from "./Mailer/sendNewsletterDto";
+export type { SubscriberInfoDto } from "./Mailer/subscriberInfoDto";
+export type { VerifyEmailAddressDto } from "./Mailer/verifyEmailAddressDto";
+
+/* NEWSLETTER */
+export type { AddNewsletterDto } from "./Newsletters/addNewsletterDto";
+export type { UpdateNewsletterDto } from "./Newsletters/updateNewsletterDto";
+export type { RemoveNewsletterDto } from "./Newsletters/removeNewsletterDto";
+
+/* NOTIFICATION */
+export type { NotificationData } from "./NotificationsWeb/notificationData";
+export type { NotificationRequest } from "./NotificationsWeb/notificationRequest";
+export type { NotificationResponse } from "./NotificationsWeb/notificationResponse";
+export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
+export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
+
+/* ARTICLES */
 export type { AddArticleDto } from "./Articles/addArticleDto";
 export type { UpdateArticleContentDto } from "./Articles/updateArticleContentDto";
 export type { UpdateArticleCountDto } from "./Articles/updateArticleCountDto";
@@ -5,15 +31,7 @@ export type { UpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
 export type { UpdateArticleVisibilityDto } from "./Articles/updateArticleVisibilityDto";
 export type { RemoveArticleDto } from "./Articles/removeArticleDto";
 
-export type { SendMessageDto } from "./Mailer/sendMessageDto";
-export type { SendNewsletterDto } from "./Mailer/sendNewsletterDto";
-export type { SubscriberInfoDto } from "./Mailer/subscriberInfoDto";
-export type { VerifyEmailAddressDto } from "./Mailer/verifyEmailAddressDto";
-
-export type { AddNewsletterDto } from "./Newsletters/addNewsletterDto";
-export type { UpdateNewsletterDto } from "./Newsletters/updateNewsletterDto";
-export type { RemoveNewsletterDto } from "./Newsletters/removeNewsletterDto";
-
+/* USERS */
 export type { UserDataDto } from "./Users/userDataDto";
 export type { ActivateUserDto } from "./Users/activateUserDto";
 export type { ActivateUserResultDto } from "./Users/activateUserResultDto";
@@ -33,47 +51,57 @@ export type { UserPermissionDto } from "./Users/userPermissionDto";
 export type { UserRoleDto } from "./Users/userRoleDto";
 export type { UploadUserMediaDto } from "./Users/uploadUserMediaDto";
 export type { UploadUserMediaResultDto } from "./Users/uploadUserMediaResultDto";
+export type { AddUserNoteDto } from "./Users/addUserNoteDto";
+export type { AddUserNoteResultDto } from "./Users/addUserNoteResultDto";
+export type { UserNoteDto } from "./Users/getUserNoteDto";
+export type { UserNoteResultDto } from "./Users/getUserNoteResultDto";
+export type { UserNotesDto } from "./Users/getUserNotesDto";
+export type { UserNotesResultDto } from "./Users/getUserNotesResultDto";
+export type { RemoveUserNoteDto } from "./Users/removeUserNoteDto";
+export type { RemoveUserNoteResultDto } from "./Users/removeUserNoteResultDto";
+export type { UpdateUserNoteDto } from "./Users/updateUserNoteDto";
+export type { UpdateUserNoteResultDto } from "./Users/updateUserNoteResultDto";
 
-export type { ErrorDto } from "./Error/errorDto";
-export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
-
+/* CONTENT */
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
 export type { RequestPageDataDto } from "./Content/requestPageDataDto";
 export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";
 
+/* COMPONENTS */
 export type { ComponentsDto } from "./Components/State";
+export type { AccountUserNotesContentDto } from "./Components/accountUserNotesContentDto";
+export type { AccountActivateContentDto } from "./Components/accountActivateContentDto";
+export type { AccountUserSigninContentDto } from "./Components/accountUserSigninContentDto";
+export type { AccountUserSignoutContentDto } from "./Components/accountUserSignoutContentDto";
+export type { AccountUserSignupContentDto } from "./Components/accountUserSignupContentDto";
+export type { ArticleContentDto } from "./Components/articleContentDto";
+export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
 export type { HeaderContentDto, HeaderPhotoDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto, ClientImageDto } from "./Components/clientsContentDto";
-export type { ArticleContentDto } from "./Components/articleContentDto";
-export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { BusinessFormContentDto } from "./Components/contentBusinessForm";
 export type { ContactFormContentDto } from "./Components/contactFormContentDto";
 export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
 export type { FeaturedContentDto } from "./Components/featuredContentDto";
 export type { TechnologiesContentDto } from "./Components/technologiesContentDto";
+export type { PasswordResetContentDto } from "./Components/passwordResetContentDto";
+export type { PasswordUpdateContentDto } from "./Components/passwordUpdateContentDto";
 export type { NewsletterContentDto } from "./Components/newsletterContentDto";
-export type { ResetPasswordContentDto } from "./Components/resetPasswordContentDto";
-export type { UpdatePasswordContentDto } from "./Components/updatePasswordContentDto";
-export type { UserSigninContentDto } from "./Components/userSigninContentDto";
-export type { UserSignoutContentDto } from "./Components/userSignoutContentDto";
-export type { UserSignupContentDto } from "./Components/userSignupContentDto";
-export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveContentDto";
-export type { ActivateAccountContentDto } from "./Components/activateAccountContentDto";
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
+export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type {
-    AccountContentDto,
+    AccountSettingsContentDto,
     SectionAccessDenied,
     SectionAccountInformation,
     SectionAccountPassword,
     SectionAccountDeactivation,
     SectionAccountRemoval,
-} from "./Components/accountContentDto";
+} from "./Components/accountSettingsContentDto";
 
 export type {
     TemplatesContent,
@@ -99,11 +127,3 @@ export type {
     TechItemsDto,
     ServiceItemDto,
 } from "./Components/Common/";
-
-export type { NotificationData } from "./NotificationsWeb/notificationData";
-export type { NotificationRequest } from "./NotificationsWeb/notificationRequest";
-export type { NotificationResponse } from "./NotificationsWeb/notificationResponse";
-export type { PaymentStatusData } from "./NotificationsWeb/Data/paymentStatusData";
-export type { UserActivationData } from "./NotificationsWeb/Data/userActivationData";
-
-export type { JWT } from "./Jwt";

@@ -120,6 +120,37 @@ public static class UsersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
+    public static AddUserNoteCommand MapToAddUserNoteCommand(AddUserNoteDto model) => new()
+    {
+        Note = model.Note
+    };
+
+    /// <summary>
+    /// Maps request DTO to given command.
+    /// </summary>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
+    public static UpdateUserNoteCommand MapToUpdateUserNoteCommand(UpdateUserNoteDto model) => new()
+    {
+        Id = model.Id,
+        Note = model.Note
+    };
+
+    /// <summary>
+    /// Maps request DTO to given command.
+    /// </summary>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
+    public static RemoveUserNoteCommand MapToRemoveUserNoteCommand(RemoveUserNoteDto model) => new()
+    {
+        Id = model.Id
+    };
+
+    /// <summary>
+    /// Maps request DTO to given command.
+    /// </summary>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static RemoveUserCommand MapToRemoveUserCommand(RemoveUserDto model) => new()
     {
         Id = model.Id

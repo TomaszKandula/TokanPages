@@ -1203,6 +1203,38 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("UserMessagesCache");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserNote", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserNotes");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPayment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1775,6 +1807,17 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserNote", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                        .WithMany("UserNote")
+                        .HasForeignKey("UserId")
+                        .IsRequired()
+                        .HasConstraintName("FK_UserNote_Users");
+
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPayment", b =>
                 {
                     b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
@@ -1948,6 +1991,8 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("UserCompanies");
 
                     b.Navigation("UserInfo");
+
+                    b.Navigation("UserNote");
 
                     b.Navigation("UserPayment");
 

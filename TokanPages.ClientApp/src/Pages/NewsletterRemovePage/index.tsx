@@ -17,7 +17,7 @@ export const NewsletterRemovePage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "newsletterRemove"], "NewsletterRemove"));
+        dispatch(ContentPageDataAction.request(["navigation", "templates", "newsletterRemove"], "NewsletterRemovePage"));
     }, [language?.id]);
 
     return (

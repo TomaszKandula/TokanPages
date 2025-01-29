@@ -210,4 +210,7 @@
   <data name="LIST_EMPTY" xml:space="preserve">
     <value>The list cannot be empty</value>
   </data>
+  <data name="TOO_LONG_USER_NOTE" xml:space="preserve">
+    <value>The user note is too long</value>
+  </data>
 </root>

@@ -31,14 +31,14 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
         var developmentOrigin = _configuration.GetValue<string>("Paths_DevelopmentOrigin");
 
         var origin = isProduction ? deploymentOrigin : developmentOrigin;
-        var updateSubscriberPath = _configuration.GetValue<string>("Paths_UpdateSubscriber");
-        var unsubscribePath = _configuration.GetValue<string>("Paths_Unsubscribe");
+        var newsletterUpdatePath = _configuration.GetValue<string>("Paths_NewsletterUpdate");
+        var newsletterRemovePath = _configuration.GetValue<string>("Paths_NewsletterRemove");
 
-        var updateSubscriberBaseLink = $"{origin}{updateSubscriberPath}";
-        var unsubscribeBaseLink = $"{origin}{unsubscribePath}";
+        var newsletterUpdateLink = $"{origin}{newsletterUpdatePath}";
+        var newsletterRemoveLink = $"{origin}{newsletterRemovePath}";
 
-        LoggerService.LogInformation($"Update subscriber base URL: {updateSubscriberBaseLink}.");
-        LoggerService.LogInformation($"Unsubscribe base URL: {unsubscribeBaseLink}.");
+        LoggerService.LogInformation($"Update subscriber base URL: {newsletterUpdateLink}.");
+        LoggerService.LogInformation($"Unsubscribe base URL: {newsletterRemoveLink}.");
 
         if (request.SubscriberInfo is null)
         {
@@ -49,8 +49,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 
         foreach (var subscriber in request.SubscriberInfo)
         {
-            var updateSubscriberLink = $"{updateSubscriberBaseLink}{subscriber.Id}";
-            var unsubscribeLink = $"{unsubscribeBaseLink}{subscriber.Id}";
+            var updateSubscriberLink = $"{newsletterUpdateLink}{subscriber.Id}";
+            var unsubscribeLink = $"{newsletterRemoveLink}{subscriber.Id}";
             var newValues = new Dictionary<string, string>
             {
                 { "{CONTENT}", request.Message },

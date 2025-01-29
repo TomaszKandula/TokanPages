@@ -5,6 +5,7 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Button, CircularProgress, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
+import { GET_USER_IMAGE } from "../../../../../Api/Request";
 import { UserMedia } from "../../../../../Shared/enums";
 import { CustomDivider, UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
@@ -35,15 +36,6 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
 interface Properties extends UserInfoViewProps {
     value: string;
 }
-
-const ReturnFileName = (value: string): string => {
-    const maxFileNameLength: number = 8;
-    const fileNameLength = value.length;
-    const fileNameExtension = value.substring(fileNameLength - 3, fileNameLength);
-    const shortFileName = value.substring(0, maxFileNameLength);
-
-    return fileNameLength > maxFileNameLength ? `${shortFileName}~1.${fileNameExtension}` : value;
-};
 
 const RenderText = (props: Properties): React.ReactElement => {
     return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
@@ -95,6 +87,10 @@ const RenderLoadingOrStatus = (props: UserInfoViewProps): React.ReactElement => 
 };
 
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
+    const previewImage = GET_USER_IMAGE
+    .replace("{id}", props.userStore.userId)
+    .replace("{name}", props.userImageName ?? "");
+
     return (
         <section className="section" style={props.background}>
             <Backdrop className="backdrop" open={props.isRequestingVerification}>
@@ -104,13 +100,16 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                 <div style={{ paddingTop: 120, paddingBottom: 40 }}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
+
                             <div style={{ paddingTop: 0, paddingBottom: 0 }}>
                                 <Typography component="span" className="caption black">
                                     <RenderText {...props} value={props.sectionAccountInformation?.caption} />
                                 </Typography>
                             </div>
+
                             <CustomDivider marginTop={16} marginBottom={8} />
-                            <div style={{ paddingTop: 40, paddingBottom: 8 }}>
+
+                            <div style={{ paddingTop: 24, paddingBottom: 8 }}>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className="label">
@@ -152,6 +151,11 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             <RenderText {...props} value={props.userStore?.aliasName} />
                                         </Typography>
                                     </Grid>
+                                </Grid>
+
+                                <CustomDivider marginTop={24} marginBottom={24} />
+
+                                <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3} className="label-centered">
                                         <Typography component="span" className="label">
                                             <RenderText
@@ -166,16 +170,14 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                                 customHandle={props.fileUploadingCustomHandle}
                                                 mediaTarget={UserMedia.userImage}
                                                 handle="userInfoSection_userImage"
+                                                previewImage={previewImage}
                                             />
-                                        )}
-                                        {props.isLoading ? null : (
-                                            <Typography component="span" className="user-avatar-text">
-                                                {ReturnFileName(props.userImageName)}
-                                            </Typography>
                                         )}
                                     </Grid>
                                 </Grid>
-                                <CustomDivider marginTop={32} marginBottom={32} />
+
+                                <CustomDivider marginTop={24} marginBottom={32} />
+
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3} className="label-centered">
                                         <Typography component="span" className="label">
@@ -275,7 +277,9 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         )}
                                     </Grid>
                                 </Grid>
+
                                 <CustomDivider marginTop={40} marginBottom={16} />
+
                                 <Grid className="button-container-update">
                                     <div style={{ marginTop: 16, marginBottom: 16 }}>
                                         {props.isLoading ? (
@@ -285,6 +289,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         )}
                                     </div>
                                 </Grid>
+
                             </div>
                         </CardContent>
                     </Card>

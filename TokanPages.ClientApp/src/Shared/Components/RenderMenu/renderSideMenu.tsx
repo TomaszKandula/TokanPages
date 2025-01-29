@@ -23,12 +23,14 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
         return item1 < item2 ? -1 : isGreater;
     });
 
+    const accountPath = `/${props.languageId}/account`;
+    const signinPath = `/${props.languageId}/account/signin`;
+    const signupPath = `/${props.languageId}/account/signup`;
+
     let renderBuffer: React.ReactElement[] = [];
     props.items.forEach(item => {
-        const isAnonymous = props.isAnonymous && item.link === `/${props.languageId}/account`;
-        const isNotAnonymous =
-            !props.isAnonymous &&
-            (item.link === `/${props.languageId}/signin` || item.link === `/${props.languageId}/signup`);
+        const isAnonymous = props.isAnonymous && item.link === accountPath;
+        const isNotAnonymous = !props.isAnonymous && (item.link === signinPath || item.link === signupPath);
 
         switch (item.type) {
             case "item": {

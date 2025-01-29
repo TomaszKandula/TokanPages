@@ -24,7 +24,7 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
             variant="contained"
             onClick={props.deleteButtonHandler}
             disabled={props.deleteAccountProgress}
-            className="delete-update"
+            className="button-delete"
         >
             {!props.deleteAccountProgress ? (
                 props.sectionAccountRemoval?.deleteButtonText

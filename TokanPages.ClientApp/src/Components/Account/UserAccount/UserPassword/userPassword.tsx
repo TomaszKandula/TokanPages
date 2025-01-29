@@ -21,7 +21,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data.components.templates;
-    const account = data.components.account;
+    const account = data.components.accountSettings;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;

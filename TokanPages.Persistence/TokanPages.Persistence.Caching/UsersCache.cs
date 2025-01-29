@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Persistence.Caching;
 
@@ -17,6 +18,8 @@ public class UsersCache : IUsersCache
 
     private readonly IHostEnvironment _environment;
 
+    private readonly IUserService _userService;
+
     private readonly IMediator _mediator;
 
     /// <summary>
@@ -25,11 +28,14 @@ public class UsersCache : IUsersCache
     /// <param name="redisDistributedCache">Redis distributed cache instance</param>
     /// <param name="environment">Host environment instance</param>
     /// <param name="mediator">Mediator instance</param>
-    public UsersCache(IRedisDistributedCache redisDistributedCache, IMediator mediator, IHostEnvironment environment)
+    /// <param name="userService">User service instance</param>
+    public UsersCache(IRedisDistributedCache redisDistributedCache, IMediator mediator, 
+        IHostEnvironment environment, IUserService userService)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
         _environment = environment;
+        _userService = userService;
     }
 
     /// <inheritdoc />
@@ -59,6 +65,39 @@ public class UsersCache : IUsersCache
         if (value is not null) return value;
 
         value = await _mediator.Send(new GetUserQuery { Id = id });
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
+    public async Task<GetUserNotesQueryResult> GetUserNotes(bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetUserNotesQuery());
+
+        var userId = _userService.GetActiveUser();
+        var key = $"{_environment.EnvironmentName}:user:notes:{userId}";
+        var value = await _redisDistributedCache.GetObjectAsync<GetUserNotesQueryResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetUserNotesQuery());
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
+    public async Task<GetUserNoteQueryResult> GetUserNote(Guid id, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetUserNoteQuery { UserNoteId = id });
+
+        var key = $"{_environment.EnvironmentName}:user:note:{id}";
+        var value = await _redisDistributedCache.GetObjectAsync<GetUserNoteQueryResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetUserNoteQuery { UserNoteId = id });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

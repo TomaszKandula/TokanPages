@@ -47,7 +47,7 @@ Object {
                       style="margin-top: 8px;"
                     >
                       <div
-                        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
+                        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
                       >
                         <img
                           alt="Avatar"
@@ -312,7 +312,7 @@ Object {
                     style="margin-top: 8px;"
                   >
                     <div
-                      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large"
+                      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
                     >
                       <img
                         alt="Avatar"

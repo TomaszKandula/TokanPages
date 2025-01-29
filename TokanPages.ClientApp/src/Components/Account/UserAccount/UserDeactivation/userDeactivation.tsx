@@ -22,7 +22,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data.components.templates;
-    const account = data.components.account;
+    const account = data.components.accountSettings;
 
     const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
     const hasUpdateFinished = update?.status === OperationStatus.hasFinished;

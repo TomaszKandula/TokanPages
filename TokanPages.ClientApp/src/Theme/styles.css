@@ -177,6 +177,10 @@ body::backdrop {
 
 /* SHARED STYLES BY COMPONENTS */
 
+.loading-indicator {
+    cursor: progress !important;
+}
+
 .lazyloaded {
     opacity: 1;
     transition-property: opacity;
@@ -238,12 +242,12 @@ body::backdrop {
 
 .button-upload {
     color: white !important;
-    background: #ebecfb !important;
+    background: #6367ef !important;
 }
 
 .button-upload:hover {
     color: white !important;
-    background: #6367ef !important;
+    background: #4649C3 !important;
 }
 
 .button-upload:disabled {
@@ -281,6 +285,27 @@ body::backdrop {
 
 @media (max-width: 600px) {
     .button-update {
+        width: 100% !important;
+    }
+}
+
+.button-delete {
+    width: 150px !important;
+    color: white !important;
+    background: #e53935 !important;
+}
+
+.button-delete:hover {
+    color: white !important;
+    background: #f44336 !important;
+}
+
+.button-delete:disabled {
+    background: #e0e0e0 !important;
+}
+
+@media (max-width: 600px) {
+    .button-delete {
         width: 100% !important;
     }
 }
@@ -390,23 +415,6 @@ body::backdrop {
 
 /* UPDATE PASSWORD & USER DEACTIVATION & USER REMOVAL COMPONENTS */
 
-.delete-update {
-    width: 150px !important;
-    color: white !important;
-    background: #e53935 !important;
-}
-
-.delete-update:hover {
-    color: white !important;
-    background: #f44336 !important;
-}
-
-@media (max-width: 600px) {
-    .delete-update {
-        width: 100% !important;
-    }
-}
-
 .button-container-update {
     width: 100% !important;
     display: flex;
@@ -426,7 +434,7 @@ body::backdrop {
 /* USER INFO COMPONENT */
 
 .backdrop {
-    z-index: 999;
+    z-index: 9999 !important;
     color: #ffffff;
 }
 
@@ -1407,10 +1415,98 @@ body::backdrop {
     color: #9e9e9e;
 }
 
+/* APPLICATION USER NOTES COMPONENT */
+
+.user-notes-box {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: left;
+}
+
+@media (max-width: 900px) {
+    .user-notes-box {
+        flex-direction: column;
+    }    
+}
+
+.user-notes-message-box {
+    margin-left: 30px;
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+
+@media (max-width: 900px) {
+    .user-notes-message-box {
+        margin-left: 0;
+        margin-top: 30px;
+    }    
+}
+.user-notes-container {
+    width: 60%;
+}
+
+@media (max-width: 900px) {
+    .user-notes-container {
+        width: 100%;
+    }
+}
+
+.user-notes-border {
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    height: 90%;
+}
+
+.user-notes-fixed-list {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+    will-change: transform; 
+    direction: ltr;
+}
+
+.user-notes-highlight-row {
+    background-color: #EBECFB !important;
+}
+
+.user-notes-text-box {
+    width: 100%;
+}
+
+.user-notes-button-box {
+    width: 100%;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: right;
+    position: absolute;
+    bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .user-notes-button-box {
+        display: block;
+    }
+}
+
+.button-margin-right {
+    margin-right: 15px !important;
+}
+
+@media (max-width: 600px) {
+    .button-margin-right {
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
+    }
+}
+
 /* APPLICATION USER INFO COMPONENT */
 
 .user-info-fullname {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
     color: black;
 }
 

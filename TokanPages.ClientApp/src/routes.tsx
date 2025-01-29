@@ -10,7 +10,7 @@ import {
     SigninPage,
     SignupPage,
     SignoutPage,
-    AccountPage,
+    SettingsPage,
     PasswordResetPage,
     PasswordUpdatePage,
     NewsletterRemovePage,
@@ -28,6 +28,7 @@ import {
     PhotographyPage,
     PdfViewerPage,
     BusinessPage,
+    UserNotesPage,
 } from "./Pages";
 
 interface PageProps {
@@ -57,15 +58,16 @@ const pages: PageProps[] = [
     { path: "/terms", page: <TermsPage />, canPrerender: true },
     { path: "/policy", page: <PolicyPage />, canPrerender: true },
     { path: "/document", page: <PdfViewerPage /> },
-    { path: "/signin", page: <SigninPage /> },
-    { path: "/signup", page: <SignupPage /> },
-    { path: "/signout", page: <SignoutPage /> },
-    { path: "/account", page: <AccountPage /> },
-    { path: "/accountactivation", page: <ActivationPage /> }, //TODO: rename to 'account-activation'
-    { path: "/updatepassword", page: <PasswordUpdatePage /> }, //TODO: rename to 'update-password'
-    { path: "/resetpassword", page: <PasswordResetPage /> }, //TODO: rename to 'reset-password'
-    { path: "/update-newsletter", page: <NewsletterUpdatePage /> },
-    { path: "/remove-newsletter", page: <NewsletterRemovePage /> },
+    { path: "/newsletter/update", page: <NewsletterUpdatePage /> },
+    { path: "/newsletter/remove", page: <NewsletterRemovePage /> },
+    { path: "/account/signin", page: <SigninPage /> },
+    { path: "/account/signup", page: <SignupPage /> },
+    { path: "/account/signout", page: <SignoutPage /> },
+    { path: "/account/settings", page: <SettingsPage /> },
+    { path: "/account/user-notes", page: <UserNotesPage /> },
+    { path: "/account/activation", page: <ActivationPage /> },
+    { path: "/account/password-update", page: <PasswordUpdatePage /> },
+    { path: "/account/password-reset", page: <PasswordResetPage /> },
 ];
 
 export const Routes = (props: RoutesProps): React.ReactElement => {

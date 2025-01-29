@@ -29,7 +29,7 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data.components.templates;
-    const account = data.components.account;
+    const account = data.components.accountSettings;
 
     const hasNotStarted = remove?.status === OperationStatus.notStarted;
     const hasFinished = remove?.status === OperationStatus.hasFinished;

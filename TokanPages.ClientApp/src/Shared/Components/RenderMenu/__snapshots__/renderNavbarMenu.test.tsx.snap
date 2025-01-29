@@ -251,7 +251,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root render-navbar-list-item MuiListItem-gutters MuiListItem-button"
-          href="/en/signin"
+          href="/en/account/signin"
           role="button"
           tabindex="0"
         >
@@ -264,7 +264,7 @@ Object {
         <a
           aria-disabled="false"
           class="MuiButtonBase-root MuiListItem-root render-navbar-list-item MuiListItem-gutters MuiListItem-button"
-          href="/en/signup"
+          href="/en/account/signup"
           role="button"
           tabindex="0"
         >

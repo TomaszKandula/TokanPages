@@ -26,6 +26,11 @@ import {
     ApplicationNavbar,
     ContentPageData,
     ArticleInfo,
+    UserNoteRead,
+    UserNotesRead,
+    UserNoteCreate,
+    UserNoteUpdate,
+    UserNoteDelete,
 } from "../Defaults";
 
 export const ApplicationDefault: ApplicationState = {
@@ -47,6 +52,11 @@ export const ApplicationDefault: ApplicationState = {
     userDataStore: UserDataStore,
     userMediaUpload: UserMediaUpload,
     userNotification: UserNotification,
+    userNoteRead: UserNoteRead,
+    userNotesRead: UserNotesRead,
+    userNoteCreate: UserNoteCreate,
+    userNoteUpdate: UserNoteUpdate,
+    userNoteDelete: UserNoteDelete,
     userPasswordReset: UserPasswordReset,
     userPasswordUpdate: UserPasswordUpdate,
     userReAuthenticate: UserReAuthenticate,
