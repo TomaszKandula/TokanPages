@@ -104,11 +104,11 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                 </div>
 
                                 <div className="user-notes-box">
-                                    <div className={`user-notes-fixed-list ${props.isLoading ? "loading-indicator" : ""}`}>
+                                    <div className="user-notes-container">
                                         <Typography component="span" className="label">
                                             <RenderText {...props} value={`${props.listLabel}:`} />
                                         </Typography>
-                                        <div className="user-notes-border" style={{ marginTop: 10 }}>
+                                        <div className={`user-notes-fixed-list user-notes-border ${props.isLoading ? "loading-indicator" : ""}`} style={{ marginTop: 10 }}>
                                             {!props.isLoading && props.userNotes?.map((value: UserNoteProps, index: number) => (
                                                 <RenderRow 
                                                     key={value.id} 
