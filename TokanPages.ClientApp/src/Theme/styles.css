@@ -1443,6 +1443,15 @@ body::backdrop {
         margin-top: 30px;
     }    
 }
+.user-notes-container {
+    width: 60%;
+}
+
+@media (max-width: 900px) {
+    .user-notes-container {
+        width: 100%;
+    }
+}
 
 .user-notes-border {
     border: 1px solid #dfdfdf;
@@ -1453,16 +1462,9 @@ body::backdrop {
 .user-notes-fixed-list {
     position: relative;
     height: 400px;
-    width: 60%;
     overflow: auto;
     will-change: transform; 
     direction: ltr;
-}
-
-@media (max-width: 900px) {
-    .user-notes-fixed-list {
-        width: 100% !important;
-    }
 }
 
 .user-notes-highlight-row {
