@@ -47,6 +47,33 @@ const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     );
 };
 
+const RenderExternalLink = (props: TextItem): React.ReactElement => {
+    const hasImage = !Validate.isEmpty(props.propImg);
+    const imageUrl = hasImage ? GET_NON_VIDEO_ASSET.replace("{name}", props.propImg!) : "";
+
+    const onClickEvent = React.useCallback(() => {
+        if (!props.value) {
+            return;
+        }
+
+        window.open(props.value as string, "_blank");
+
+    }, [props.value]);
+
+    return (
+        <ArticleCardView
+            imageUrl={imageUrl}
+            title={props.propTitle ?? ""}
+            description={props.propSubtitle ?? ""}
+            onClickEvent={onClickEvent}
+            buttonText={props.text}
+            flagImage={""}
+            canAnimate={false}
+            styleSmallCard={true}
+        />
+    );
+};
+
 const RenderInternalLink = (props: TextItem): React.ReactElement => {
     const history = useHistory();
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
@@ -161,6 +188,8 @@ export const RenderText = (props: TextItem): React.ReactElement => {
             return <RenderAnchorLink value={value} text={props.text} />;
         case "text-link":
             return <RenderInternalLink {...props} />;
+        case "external-link":
+            return <RenderExternalLink {...props} />;
         case "redirect-link":
             return <RenderArticleLink value={value} text={props.text} />;
         case "title":

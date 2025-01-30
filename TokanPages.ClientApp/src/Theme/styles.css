@@ -188,6 +188,14 @@ body::backdrop {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.download-asset {
+    color: #171E33;
+}
+
+.download-asset:hover {
+    color: #4649C3;
+}
+
 .section {
     background-color: white;
 }
@@ -559,10 +567,16 @@ body::backdrop {
     color: #9e9e9e;
 }
 
+.article-card-action-container {
+    height: 100px;
+    position: relative;
+}
+
 .article-card-action {
-    margin-top: 60px;
     width: 100%;
     padding: 0 !important;
+    position: absolute;
+    bottom: 0;
 }
 
 .article-card-details {
@@ -863,11 +877,12 @@ body::backdrop {
     color: black;
     font-size: 14px;
     font-weight: 500;
-    background: white;
+    background: #efefef;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .pdf-header-pages {
@@ -876,12 +891,17 @@ body::backdrop {
 }
 
 .pdf-header-buttons {
-    font-size: 26px;
+    font-size: 28px !important;
     align-self: center;
     vertical-align: middle;
     margin-left: 5px;
     margin-right: 5px;
     cursor: pointer;
+    color: #171E33;
+}
+
+.pdf-header-buttons:hover {
+    color: #4649C3;
 }
 
 .pdf-canvas {
@@ -895,7 +915,6 @@ body::backdrop {
 
 .pdf-canvas-wrapper {
     background-color: #efefef;
-    padding: 30px;
 }
 
 /* TECHNOLOGIES COMPONENT */

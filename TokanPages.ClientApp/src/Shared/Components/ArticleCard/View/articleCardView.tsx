@@ -20,6 +20,7 @@ interface ArticleCardViewProps {
     canAnimate: boolean;
     readCount?: string;
     totalLikes?: string;
+    styleSmallCard?: boolean;
 }
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
@@ -32,32 +33,34 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                 <CardContent className="article-card-content">
                     <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
-                    <CardActions className="article-card-action">
-                        <div className="article-card-details">
-                            {props.readCount === undefined ? (
-                                <></>
-                            ) : (
-                                <>
-                                    <VisibilityIcon className="article-card-item-icon" />
-                                    <div className="article-card-item-value">{props.readCount}</div>
-                                </>
-                            )}
-                            <div className="article-card-details-separator"></div>
-                            {props.totalLikes === undefined ? (
-                                <></>
-                            ) : (
-                                <>
-                                    <ThumbUpIcon className="article-card-item-icon" />
-                                    <div className="article-card-item-value">{props.totalLikes}</div>
-                                </>
-                            )}
-                        </div>
-                        <div className="article-card-button-holder">
-                            <Button onClick={props.onClickEvent} size="small" className="button article-button">
-                                {props.buttonText}
-                            </Button>
-                        </div>
-                    </CardActions>
+                    <div className="article-card-action-container" style={{ height: props.styleSmallCard ? 50 : 100 }}>
+                        <CardActions className="article-card-action">
+                            <div className="article-card-details">
+                                {props.readCount === undefined ? (
+                                    <></>
+                                ) : (
+                                    <>
+                                        <VisibilityIcon className="article-card-item-icon" />
+                                        <div className="article-card-item-value">{props.readCount}</div>
+                                    </>
+                                )}
+                                <div className="article-card-details-separator"></div>
+                                {props.totalLikes === undefined ? (
+                                    <></>
+                                ) : (
+                                    <>
+                                        <ThumbUpIcon className="article-card-item-icon" />
+                                        <div className="article-card-item-value">{props.totalLikes}</div>
+                                    </>
+                                )}
+                            </div>
+                            <div className="article-card-button-holder">
+                                <Button onClick={props.onClickEvent} size="small" className="button article-button">
+                                    {props.buttonText}
+                                </Button>
+                            </div>
+                        </CardActions>
+                    </div>
                 </CardContent>
             </Card>
         </Animated>
