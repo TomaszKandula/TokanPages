@@ -1,3 +1,11 @@
+# [0.135.0](https://github.com/TomaszKandula/TokanPages/compare/v0.134.0...v0.135.0) (2025-01-30)
+
+
+### Features
+
+* external link, reuse component ([ab31e45](https://github.com/TomaszKandula/TokanPages/commit/ab31e45ed619aebdea2710d364d43e1df16f14e0))
+* update style ([7b8e105](https://github.com/TomaszKandula/TokanPages/commit/7b8e1058068c958f801adc30f059266c0401151a))
+
 # [0.134.0](https://github.com/TomaszKandula/TokanPages/compare/v0.133.0...v0.134.0) (2025-01-29)
 
 
