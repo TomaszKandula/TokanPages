@@ -567,10 +567,16 @@ body::backdrop {
     color: #9e9e9e;
 }
 
+.article-card-action-container {
+    height: 100px;
+    position: relative;
+}
+
 .article-card-action {
-    margin-top: 60px;
     width: 100%;
     padding: 0 !important;
+    position: absolute;
+    bottom: 0;
 }
 
 .article-card-details {
