@@ -25,8 +25,8 @@ Object {
                   class="pdf-header"
                 >
                   <a
+                    class="download-asset"
                     href="https://test.com/documents/some_document.pdf&canDownload=true"
-                    style="color: black;"
                   >
                     <svg
                       aria-hidden="true"
@@ -104,8 +104,8 @@ Object {
                 class="pdf-header"
               >
                 <a
+                  class="download-asset"
                   href="https://test.com/documents/some_document.pdf&canDownload=true"
-                  style="color: black;"
                 >
                   <svg
                     aria-hidden="true"

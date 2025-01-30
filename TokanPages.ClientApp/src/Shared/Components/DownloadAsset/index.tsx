@@ -8,7 +8,7 @@ interface DownloadAssetProps {
 export const DownloadAsset = (props: DownloadAssetProps): React.ReactElement => {
     const url = `${props.url}&canDownload=true`;
     return (
-        <a href={url} style={{ color: "black" }}>
+        <a href={url} className="download-asset">
             <GetAppIcon />
         </a>
     );
