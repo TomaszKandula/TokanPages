@@ -601,9 +601,7 @@ body::backdrop {
 }
 
 .article-card-image {
-    margin: 10px 0 10px 10px;
     padding: 10px;
-    border-radius: 15px;
     height: auto;
     min-width: 180px;
     min-height: 180px;
@@ -880,7 +878,7 @@ body::backdrop {
     background: #efefef;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 5px;
 }
@@ -888,6 +886,14 @@ body::backdrop {
 .pdf-header-pages {
     font-size: 16px;
     align-self: center;
+}
+
+.pdf-header-download-icon {
+    padding-left: 24px;
+}
+
+.pdf-header-buttons-container {
+    padding-right: 24px;
 }
 
 .pdf-header-buttons {
