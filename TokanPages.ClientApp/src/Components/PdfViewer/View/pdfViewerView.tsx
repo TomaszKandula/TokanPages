@@ -40,15 +40,17 @@ export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => 
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
                             <div className="pdf-header">
-                                <RenderIconOrLoading
-                                    isLoading={props.isLoading}
-                                    hasError={props.hasError}
-                                    pdfUrl={props.pdfUrl}
-                                />
+                                <div className="pdf-header-download-icon">
+                                    <RenderIconOrLoading
+                                        isLoading={props.isLoading}
+                                        hasError={props.hasError}
+                                        pdfUrl={props.pdfUrl}
+                                    />
+                                </div>
                                 <div className="pdf-header-pages">
                                     {props.currentPage} / {props.numPages}
                                 </div>
-                                <div>
+                                <div className="pdf-header-buttons-container">
                                     <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
                                     <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
                                 </div>

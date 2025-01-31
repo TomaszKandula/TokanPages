@@ -24,21 +24,25 @@ Object {
                 <div
                   class="pdf-header"
                 >
-                  <a
-                    class="download-asset"
-                    href="https://test.com/documents/some_document.pdf&canDownload=true"
+                  <div
+                    class="pdf-header-download-icon"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
+                    <a
+                      class="download-asset"
+                      href="https://test.com/documents/some_document.pdf&canDownload=true"
                     >
-                      <path
-                        d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
-                      />
-                    </svg>
-                  </a>
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                   <div
                     class="pdf-header-pages"
                   >
@@ -46,7 +50,9 @@ Object {
                      / 
                     1
                   </div>
-                  <div>
+                  <div
+                    class="pdf-header-buttons-container"
+                  >
                     <svg
                       aria-hidden="true"
                       class="MuiSvgIcon-root pdf-header-buttons"
@@ -103,21 +109,25 @@ Object {
               <div
                 class="pdf-header"
               >
-                <a
-                  class="download-asset"
-                  href="https://test.com/documents/some_document.pdf&canDownload=true"
+                <div
+                  class="pdf-header-download-icon"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 24 24"
+                  <a
+                    class="download-asset"
+                    href="https://test.com/documents/some_document.pdf&canDownload=true"
                   >
-                    <path
-                      d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
-                    />
-                  </svg>
-                </a>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"
+                      />
+                    </svg>
+                  </a>
+                </div>
                 <div
                   class="pdf-header-pages"
                 >
@@ -125,7 +135,9 @@ Object {
                    / 
                   1
                 </div>
-                <div>
+                <div
+                  class="pdf-header-buttons-container"
+                >
                   <svg
                     aria-hidden="true"
                     class="MuiSvgIcon-root pdf-header-buttons"
