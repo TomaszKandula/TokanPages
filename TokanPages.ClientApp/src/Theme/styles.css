@@ -611,7 +611,6 @@ body::backdrop {
     .article-card-image {
         height: 180px;
         width: auto;
-        margin-right: 10px;
     }
 }
 
