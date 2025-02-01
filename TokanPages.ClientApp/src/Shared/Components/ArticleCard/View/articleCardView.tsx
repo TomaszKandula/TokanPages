@@ -6,9 +6,11 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import LanguageIcon from "@material-ui/icons/Language";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { Animated, RenderImage } from "../../../../Shared/Components";
+import Validate from "validate.js";
 
 interface ArticleCardViewProps {
     imageUrl: string;
@@ -24,6 +26,8 @@ interface ArticleCardViewProps {
 }
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
+    const hasFlag = !Validate.isEmpty(props.flagImage);
+
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <Card elevation={0} className="article-card">
@@ -51,8 +55,16 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                         <div className="article-card-item-value">{props.totalLikes}</div>
                                     </>
                                 )}
-                                <div className="article-card-details-separator"></div>
-                                <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
+                                {hasFlag ? (
+                                    <>
+                                        <div className="article-card-details-separator"></div>
+                                        <LanguageIcon className="article-card-item-icon" />
+                                        <div className="article-card-details-separator"></div>
+                                        <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
+                                    </> 
+                                ) : (
+                                    <></>
+                                )}
                             </div>
                             <div className="article-card-button-holder">
                                 <Button onClick={props.onClickEvent} size="small" className="button article-button">
