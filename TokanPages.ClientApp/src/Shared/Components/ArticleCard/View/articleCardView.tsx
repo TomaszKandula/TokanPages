@@ -27,9 +27,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <Card elevation={0} className="article-card">
-                <CardMedia image={props.imageUrl} className="article-card-image">
-                    <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
-                </CardMedia>
+                <CardMedia image={props.imageUrl} className="article-card-image" />
                 <CardContent className="article-card-content">
                     <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
@@ -53,6 +51,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                         <div className="article-card-item-value">{props.totalLikes}</div>
                                     </>
                                 )}
+                                <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
                             </div>
                             <div className="article-card-button-holder">
                                 <Button onClick={props.onClickEvent} size="small" className="button article-button">

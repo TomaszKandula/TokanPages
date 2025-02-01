@@ -530,8 +530,8 @@ body::backdrop {
 }
 
 .article-flag-image {
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
 }
 
 .article-card-button-holder {
