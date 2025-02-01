@@ -51,6 +51,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                         <div className="article-card-item-value">{props.totalLikes}</div>
                                     </>
                                 )}
+                                <div className="article-card-details-separator"></div>
                                 <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
                             </div>
                             <div className="article-card-button-holder">
