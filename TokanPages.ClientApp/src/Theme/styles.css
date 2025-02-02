@@ -530,8 +530,10 @@ body::backdrop {
 }
 
 .article-flag-image {
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
+    padding: 1px;
+    align-self: center;
 }
 
 .article-card-button-holder {
@@ -611,7 +613,6 @@ body::backdrop {
     .article-card-image {
         height: 180px;
         width: auto;
-        margin-right: 10px;
     }
 }
 
@@ -1836,15 +1837,15 @@ body::backdrop {
     text-overflow: ellipsis;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1280px) {
     .render-navbar-list-item-text {
         font-size: 16px !important;
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
     .render-navbar-list-item-text {
-        font-size: 14px !important;
+        font-size: 13px !important;
     }
 }
 
