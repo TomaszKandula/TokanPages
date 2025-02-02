@@ -1,3 +1,19 @@
+# [0.137.0](https://github.com/TomaszKandula/TokanPages/compare/v0.136.0...v0.137.0) (2025-02-02)
+
+
+### Bug Fixes
+
+* remove unnecessary margin ([4a821ff](https://github.com/TomaszKandula/TokanPages/commit/4a821ff742d54de708ad7125671a8ad6ee3d0d92))
+
+
+### Features
+
+* align center ([f84e832](https://github.com/TomaszKandula/TokanPages/commit/f84e83282dc400a31c7ce19ee0da709dce04bed6))
+* change navbar font size ([1350b2e](https://github.com/TomaszKandula/TokanPages/commit/1350b2ebbf24f5b7e16d0b21aea894bba2d92894))
+* display language icon ([263bafa](https://github.com/TomaszKandula/TokanPages/commit/263bafaed9a468c1d711397b1c3d93abb8216817))
+* relocate language flag ([27cca88](https://github.com/TomaszKandula/TokanPages/commit/27cca8856ba739d81ae8e7da91ec9debb94cc05c))
+* use separator ([351a4be](https://github.com/TomaszKandula/TokanPages/commit/351a4bed18d5664ab30a29eb79de481c14a303e9))
+
 # [0.136.0](https://github.com/TomaszKandula/TokanPages/compare/v0.135.0...v0.136.0) (2025-01-31)
 
 
