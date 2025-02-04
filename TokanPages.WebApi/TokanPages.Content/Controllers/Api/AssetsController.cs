@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using TokanPages.Backend.Application.Content.Assets.Commands;
 using TokanPages.Backend.Application.Content.Assets.Queries;
 using TokanPages.Backend.Core.Exceptions;
@@ -21,11 +22,17 @@ namespace TokanPages.Content.Controllers.Api;
 [Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class AssetsController : ApiBaseController
 {
+    private readonly IConfiguration _configuration;
+
     /// <summary>
     /// Assets controller.
     /// </summary>
     /// <param name="mediator">Mediator instance.</param>
-    public AssetsController(IMediator mediator) : base(mediator) { }
+    /// <param name="configuration"></param>
+    public AssetsController(IMediator mediator, IConfiguration configuration) : base(mediator)
+    {
+        _configuration = configuration;
+    }
 
     /// <summary>
     /// Returns article asset (file associated with an article).
@@ -35,11 +42,19 @@ public class AssetsController : ApiBaseController
     /// <returns>File</returns>
     [HttpGet]
     [ETagFilter]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 31536000, VaryByQueryKeys = new [] { "id", "assetName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetArticleAsset([FromQuery] string id = "", string assetName = "")
-        => await Mediator.Send(new GetArticleAssetQuery { Id = id, AssetName = assetName });
+    {
+        AddCacheControl(assetName);
 
+        var result = await Mediator.Send(new GetArticleAssetQuery
+        {
+            Id = id,
+            AssetName = assetName
+        });
+
+        return result;
+    }
     /// <summary>
     /// Returns file from storage by its full name.
     /// </summary>
@@ -51,10 +66,11 @@ public class AssetsController : ApiBaseController
     /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]
-    [ResponseCache(Location = ResponseCacheLocation.Any, NoStore = false, Duration = 31536000, VaryByQueryKeys = new[] { "blobName" })]
     [ProducesResponseType(typeof(IActionResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetNonVideoAsset([FromQuery] string blobName, [FromQuery] bool? canDownload = default)
     {
+        AddCacheControl(blobName);
+
         var result = await Mediator.Send(new GetNonVideoAssetQuery
         {
             BlobName = blobName,
@@ -121,4 +137,24 @@ public class AssetsController : ApiBaseController
     [ProducesResponseType(typeof(GetVideoStatusQueryResult), StatusCodes.Status200OK)]
     public async Task<GetVideoStatusQueryResult> GetProcessingStatus([FromRoute] Guid id)
         => await Mediator.Send(new GetVideoStatusQuery { TicketId = id });
+
+    /// <summary>
+    /// Add cache control to the HTTP response so the browser can cache given file.
+    /// We include only pre-defined media (like images) and non-media files (like scripts).
+    /// </summary>
+    /// <param name="fileName"></param>
+    private void AddCacheControl(string fileName)
+    {
+        var cacheMediaFiles = _configuration.GetValue<string>("CacheMediaFiles");
+        var cacheNonMediaFiles = _configuration.GetValue<string>("CacheNonMediaFiles");
+        var cacheConfiguration = _configuration.GetValue<string>("CacheConfiguration");
+        var cacheList = $"{cacheMediaFiles};{cacheNonMediaFiles}".Split(";");
+
+        var fileExtension = Path.GetExtension(fileName).Replace(".", "");
+        if (!cacheList.Contains(fileExtension))
+            return;
+
+        HttpContext.Response.Headers.CacheControl = new StringValues(new [] { cacheConfiguration });
+        HttpContext.Response.Headers.Pragma = new StringValues(new [] { cacheConfiguration });
+    }
 }
