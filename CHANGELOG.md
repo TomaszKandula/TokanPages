@@ -1,3 +1,10 @@
+## [0.137.1](https://github.com/TomaszKandula/TokanPages/compare/v0.137.0...v0.137.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* resolve found issues w/cache-control for selected file types only ([3052baa](https://github.com/TomaszKandula/TokanPages/commit/3052baac9e97310ff4f1b63a7850b418ee820df1))
+
 # [0.137.0](https://github.com/TomaszKandula/TokanPages/compare/v0.136.0...v0.137.0) (2025-02-02)
 
 
