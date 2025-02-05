@@ -6,6 +6,9 @@ import { Navigation, Footer } from "../../../Components/Layout";
 import { AccessDenied, UserNotes } from "../../../Components/Account";
 import Validate from "validate.js";
 
+const baseComponents = ["navigation", "footer", "templates"];
+const noteComponents = ["navigation", "footer", "templates", "accountUserNotes"];
+
 export const UserNotesPage = (): React.ReactElement => {
     const dispatch = useDispatch();
 
@@ -14,8 +17,14 @@ export const UserNotesPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "accountUserNotes"], "UserNotesPage"));
-    }, [language?.id]);
+        if (isAnonymous) {
+            dispatch(ContentPageDataAction.request(baseComponents, "UserNotesPage"));
+            return;
+        }
+
+        dispatch(ContentPageDataAction.request(noteComponents, "UserNotesPage"));
+
+    }, [language?.id, isAnonymous]);
 
     return (
         <>
