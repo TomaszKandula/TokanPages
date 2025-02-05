@@ -8,6 +8,8 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
 
+type ActionType = "ADD" | "UPDATE" | "REMOVE";
+
 export interface UserNotesProps {
     background?: React.CSSProperties;
 }
@@ -32,6 +34,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const hasUserNoteDeleteFinished = userNoteDelete.status === OperationStatus.hasFinished;
 
     const [form, setForm] = React.useState({ note: "" });
+    const [actionType, setActionType] = React.useState<ActionType | undefined>(undefined);
     const [selection, setSelection] = React.useState<UserNoteResultDto | undefined>(undefined);
     const [hasProgress, setProgress] = React.useState(false);
     const [canDelete, setDelete] = React.useState(false);
@@ -48,32 +51,36 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     }, [form]);
 
     const clearButtonHandler = React.useCallback(() => {
-        setSelection(undefined);
         setForm({ note: "" });
-    }, [selection, form]);
+        setSelection(undefined);
+        setActionType(undefined);
+    }, [form, selection, actionType]);
 
     const saveButtonHandler = React.useCallback(() => {
         if (!hasProgress) {
             setProgress(true);
         }
-    }, [hasProgress]);
+
+        if (!selection) {
+            setActionType("ADD");
+        } else {
+            setActionType("UPDATE");
+        }
+    }, [hasProgress, selection, actionType]);
 
     const removeButtonHandler = React.useCallback(() => {
-        if (!selection) {
-            return;
-        }
-
+        if (!selection) { return; }
         if (!canDelete) {
             setDelete(true);
             setProgress(true);
+            setActionType("REMOVE");
         }
     }, [selection, canDelete, hasProgress]);
 
     /* ADD NEW USER NOTE */
     React.useEffect(() => {
-        if (selection) {
-            return;
-        }
+        if (actionType !== "ADD") { return; }
+        if (selection) { return; }
 
         if (hasError) {
             setProgress(false);
@@ -98,17 +105,13 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             dispatch(UserNoteCreateAction.clear());
         }
 
-    }, [selection, hasError, hasProgress, userNoteCreate, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
+    }, [actionType, selection, hasError, hasProgress, userNoteCreate, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
 
     /* UPDATE SELECTED USER NOTE */
     React.useEffect(() => {
-        if (!selection) {
-            return;
-        }
-
-        if (canDelete) {
-            return;
-        }
+        if (actionType !== "UPDATE" ) { return; }
+        if (!selection) { return; }
+        if (canDelete) { return; }
 
         if (hasError) {
             setProgress(false);
@@ -125,17 +128,13 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setRefresh(true);
             dispatch(UserNoteUpdateAction.clear());
         }
-    }, [selection, canDelete, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
+    }, [actionType, selection, canDelete, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
 
     /* REMOVE SELECTED USER NOTE */
     React.useEffect(() => {
-        if (!selection) {
-            return;
-        }
-
-        if (!canDelete) {
-            return;
-        }
+        if (actionType !== "REMOVE" ) { return; }
+        if (!selection) { return; }
+        if (!canDelete) { return; }
 
         if (hasError) {
             setProgress(false);
@@ -156,7 +155,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setForm({ note: "" });
             dispatch(UserNoteDeleteAction.clear());
         }
-    }, [selection, canDelete, hasError, hasProgress, hasUserNoteDeleteNotStarted, hasUserNoteDeleteFinished]);
+    }, [actionType, selection, canDelete, hasError, hasProgress, hasUserNoteDeleteNotStarted, hasUserNoteDeleteFinished]);
 
     /* ON REFRESH EVENT */
     React.useEffect(() => {
@@ -166,9 +165,9 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
     }, [canRefresh]);
 
-    /* GET USER NOTES */
+    /* GET USER NOTES ON MOUNT EVENT */
     React.useEffect(() => {
-        setTimeout(() => dispatch(UserNotesReadAction.get({ noCache: false })), 1500);
+        dispatch(UserNotesReadAction.get({ noCache: false }));
     }, []);
 
     return(
