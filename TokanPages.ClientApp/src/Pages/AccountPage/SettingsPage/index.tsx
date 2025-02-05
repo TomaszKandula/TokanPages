@@ -6,9 +6,6 @@ import { Navigation, Footer } from "../../../Components/Layout";
 import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../../Components/Account";
 import Validate from "validate.js";
 
-const baseComponents = ["navigation", "footer", "templates"];
-const settingsComponents = ["navigation", "footer", "templates", "accountSettings"];
-
 export const SettingsPage = (): React.ReactElement => {
     const dispatch = useDispatch();
 
@@ -17,14 +14,8 @@ export const SettingsPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        if (isAnonymous) {
-            dispatch(ContentPageDataAction.request(baseComponents, "SettingsPage"));
-            return;
-        }
-
-        dispatch(ContentPageDataAction.request(settingsComponents, "SettingsPage"));
-
-    }, [language?.id, isAnonymous]);
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "accountSettings"], "SettingsPage"));
+    }, [language?.id]);
 
     return (
         <>
