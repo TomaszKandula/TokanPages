@@ -165,10 +165,16 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
     }, [canRefresh]);
 
-    /* GET USER NOTES ON MOUNT EVENT */
+    /* GET USER NOTES */
     React.useEffect(() => {
-        dispatch(UserNotesReadAction.get({ noCache: false }));
-    }, []);
+        if (contentPageData?.isLoading) {
+            return;
+        }
+
+        if (userNotes.response.notes.length === 0) {
+            dispatch(UserNotesReadAction.get({ noCache: false }));
+        }
+    }, [contentPageData?.isLoading, userNotes.response.notes]);
 
     return(
         <UserNotesView 
