@@ -986,7 +986,6 @@ body::backdrop {
     width: 140px !important;
     border-radius: 50%;
     margin: 0;
-    top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;

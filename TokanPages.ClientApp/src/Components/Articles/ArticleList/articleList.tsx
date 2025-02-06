@@ -13,8 +13,14 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const article = useSelector((state: ApplicationState) => state.articleListing);
 
     React.useEffect(() => {
-        dispatch(ArticleListingAction.get());
-    }, []);
+        if (article.isLoading) {
+            return;
+        }
+
+        if (article.articles.length === 0) {
+            dispatch(ArticleListingAction.get());
+        }
+    }, [article.isLoading, article.articles]);
 
     return <ArticleListView isLoading={article.isLoading} articles={article.articles} background={props.background} />;
 };
