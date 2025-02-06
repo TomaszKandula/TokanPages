@@ -34,8 +34,8 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
         var userId = request.Id;
         if (request.Id == null && request.ResetId == null)
         {
-            var activeUser = await _userService.GetActiveUser(cancellationToken: cancellationToken);
-            userId = activeUser.Id;
+            var activeUserId = _userService.GetLoggedUserId();
+            userId = activeUserId;
         }
 
         var hasResetId = request.ResetId != null;

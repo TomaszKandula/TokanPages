@@ -30,7 +30,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
     public override async Task<Unit> Handle(RevokeUserTokenCommand request, CancellationToken cancellationToken)
     {
         var token = _webTokenValidation.GetWebTokenFromHeader();
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var tokens = await DatabaseContext.UserTokens
             .Where(userTokens => userTokens.Token == token)
             .FirstOrDefaultAsync(cancellationToken);
@@ -39,7 +39,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
             throw new AuthorizationException(nameof(ErrorCodes.INVALID_USER_TOKEN), ErrorCodes.INVALID_USER_TOKEN);
 
         var requestIpAddress = _userService.GetRequestIpAddress();
-        var reason = $"Revoked by user ID: {user.Id}";
+        var reason = $"Revoked by user ID: {userId}";
 
         tokens.Revoked = _dateTimeService.Now;
         tokens.RevokedByIp = requestIpAddress; 

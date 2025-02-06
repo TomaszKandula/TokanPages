@@ -15,10 +15,10 @@ public class GetUserNoteQueryHandler : RequestHandler<GetUserNoteQuery, GetUserN
 
     public override async Task<GetUserNoteQueryResult> Handle(GetUserNoteQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var note = await DatabaseContext.UserNotes
             .AsNoTracking()
-            .Where(userNote => userNote.UserId == user.Id)
+            .Where(userNote => userNote.UserId == userId)
             .Where(userNote => userNote.Id == request.UserNoteId)
             .Select(userNote => new GetUserNoteQueryResult
             {

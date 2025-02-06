@@ -100,9 +100,13 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
-    public Guid? GetLoggedUserId()
+    public Guid GetLoggedUserId()
     {
-        return UserIdFromClaim();
+        var userId = UserIdFromClaim();
+        if (userId is null)
+            throw new AccessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+
+        return (Guid)userId;
     }
 
     public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
