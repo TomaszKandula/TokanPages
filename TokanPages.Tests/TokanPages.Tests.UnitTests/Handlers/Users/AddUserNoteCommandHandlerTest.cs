@@ -57,6 +57,10 @@ public class AddUserNoteCommandHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(user.Id);
+
         mockedConfiguration
             .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
             .Returns(limitNotes);
@@ -124,6 +128,10 @@ public class AddUserNoteCommandHandlerTest : TestBase
                 It.IsAny<bool>(), 
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
+
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(user.Id);
 
         mockedConfiguration
             .Setup(configuration => configuration.GetSection(It.IsAny<string>()))

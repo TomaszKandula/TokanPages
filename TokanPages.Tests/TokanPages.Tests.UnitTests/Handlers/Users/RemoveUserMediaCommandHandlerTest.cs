@@ -68,6 +68,10 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(user.Id);
+
         var handler = new RemoveUserMediaCommandHandler(
             databaseContext,
             mockedLogger.Object, 
