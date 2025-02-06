@@ -21,11 +21,11 @@ public class GetOrderDetailsQueryHandler : RequestHandler<GetOrderDetailsQuery, 
 
     public override async Task<GetOrderDetailsQueryResult> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var output = await _payUService.GetOrderDetails(request.OrderId, cancellationToken);
 
         const string info = "Order details have been returned from payment provider. Active user ID:";
-        LoggerService.LogInformation($"{info} {user.Id}.");
+        LoggerService.LogInformation($"{info} {userId}.");
 
         return new GetOrderDetailsQueryResult
         {

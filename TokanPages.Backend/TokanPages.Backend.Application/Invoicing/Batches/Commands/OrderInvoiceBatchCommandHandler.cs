@@ -33,8 +33,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
-        var userId = user.Id;
+        var userId = _userService.GetLoggedUserId();
         LoggerService.LogInformation($"Request to process {request.OrderDetails.Count()} orders. User ID: {userId}");
 
         var vatOptions = new PolishVatNumberOptions(true, true);

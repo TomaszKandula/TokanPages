@@ -21,11 +21,11 @@ public class GetPaymentMethodsQueryHandler : RequestHandler<GetPaymentMethodsQue
 
     public override async Task<GetPaymentMethodsQueryResults> Handle(GetPaymentMethodsQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var output = await _payUService.GetPaymentMethods(cancellationToken);
 
         const string info = "Available payment methods has been returned from payment provider. Active user ID:";
-        LoggerService.LogInformation($"{info} {user.Id}.");
+        LoggerService.LogInformation($"{info} {userId}.");
 
         return new GetPaymentMethodsQueryResults
         {

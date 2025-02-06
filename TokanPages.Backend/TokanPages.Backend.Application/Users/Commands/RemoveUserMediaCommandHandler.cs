@@ -24,13 +24,13 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
     public override async Task<Unit> Handle(RemoveUserMediaCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
 
-        var destinationPath = $"content/users/{user.Id}/{request.UniqueBlobName}";
+        var destinationPath = $"content/users/{userId}/{request.UniqueBlobName}";
 
         var userInfo = await DatabaseContext.UserInfo
-            .Where(userInfo => userInfo.UserId == user.Id)
+            .Where(userInfo => userInfo.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (userInfo is null)

@@ -14,7 +14,7 @@ public interface IUserService
 
     Task LogHttpRequest(string handlerName);
 
-    Guid? GetLoggedUserId();
+    Guid GetLoggedUserId();
 
     Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default);
 
