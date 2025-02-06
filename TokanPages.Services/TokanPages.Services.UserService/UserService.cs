@@ -100,6 +100,11 @@ public sealed class UserService : IUserService
         await _databaseContext.SaveChangesAsync();
     }
 
+    public Guid? GetLoggedUserId()
+    {
+        return UserIdFromClaim();
+    }
+
     public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
     {
         await EnsureUserData(cancellationToken);
