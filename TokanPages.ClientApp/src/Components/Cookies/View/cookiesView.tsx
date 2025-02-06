@@ -36,52 +36,52 @@ export const CookiesView = (props: Properties): React.ReactElement => {
 			                <p className="cookie-window-section-detail">
                                 {props.detail}
                             </p>
-                            {props.options.enabled 
+                            {props.options?.enabled 
                             ? <div className="cookie-window-options-list">
                                 <label className="cookie-window-checkbox">
                                     <input type="checkbox" className="cookie-window-checkbox-input" disabled={true} checked={true} />
                                     <span className="cookie-window-checkbox-visual-input"></span>
                                     <span className="cookie-window-checkbox-label">
-                                        {props.options.necessaryLabel}
+                                        {props.options?.necessaryLabel}
                                     </span>
                                 </label>
                                 <label className="cookie-window-checkbox">
                                     <input type="checkbox" className="cookie-window-checkbox-input" />
                                     <span className="cookie-window-checkbox-visual-input"></span>
                                     <span className="cookie-window-checkbox-label">
-                                        {props.options.statisticsLabel}
+                                        {props.options?.statisticsLabel}
                                     </span>
                                 </label>
                                 <label className="cookie-window-checkbox">
                                     <input type="checkbox" className="cookie-window-checkbox-input" />
                                     <span className="cookie-window-checkbox-visual-input"></span>
                                     <span className="cookie-window-checkbox-label">
-                                        {props.options.marketingLabel}
+                                        {props.options?.marketingLabel}
                                     </span>
                                 </label>
                                 <label className="cookie-window-checkbox">
                                     <input type="checkbox" className="cookie-window-checkbox-input" />
                                     <span className="cookie-window-checkbox-visual-input"></span>
                                     <span className="cookie-window-checkbox-label">
-                                        {props.options.personalizationLabel}
+                                        {props.options?.personalizationLabel}
                                     </span>
                                 </label>
                             </div> 
                             : null}
 			                <div className="cookie-window-actions">
-                                {props.buttons.acceptButton.enabled 
+                                {props.buttons?.acceptButton.enabled 
                                 ? <button className="cookie-window-button cookie-window-button-accent cookie-window-action" onClick={props.onClickEvent}>
-                                    {props.buttons.acceptButton.label}
+                                    {props.buttons?.acceptButton.label}
                                 </button> 
                                 : <></>}
-                                {props.buttons.manageButton.enabled 
+                                {props.buttons?.manageButton.enabled 
                                 ? <button className="cookie-window-button cookie-window-action">
-                                    {props.buttons.manageButton.label}
+                                    {props.buttons?.manageButton.label}
                                 </button> 
                                 : <></>}
-                                {props.buttons.closeButton.enabled 
+                                {props.buttons?.closeButton.enabled 
                                 ? <button className="cookie-window-button cookie-window__close">
-                                    {props.buttons.closeButton.label}
+                                    {props.buttons?.closeButton.label}
                                 </button> 
                                 : null}
                             </div>
