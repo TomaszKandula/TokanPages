@@ -9,7 +9,7 @@ describe("test component: cookiesView", () => {
             <CookiesView
                 isLoading={false}
                 modalClose={false}
-                shouldShow={false}
+                shouldShow={true}
                 caption="Cookie Policy"
                 text="We use cookies to personalise content..."
                 detail="With your consent, we may also..."
