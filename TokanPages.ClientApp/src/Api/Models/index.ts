@@ -85,7 +85,7 @@ export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto, ClientImageDto } from "./Components/clientsContentDto";
 export type { BusinessFormContentDto } from "./Components/contentBusinessForm";
 export type { ContactFormContentDto } from "./Components/contactFormContentDto";
-export type { CookiesPromptContentDto } from "./Components/cookiesPromptContentDto";
+export type { CookiesPromptContentDto, ButtonsDto, OptionsDto } from "./Components/cookiesPromptContentDto";
 export type { FeaturedContentDto } from "./Components/featuredContentDto";
 export type { TechnologiesContentDto } from "./Components/technologiesContentDto";
 export type { PasswordResetContentDto } from "./Components/passwordResetContentDto";

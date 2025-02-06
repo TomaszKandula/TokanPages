@@ -31,8 +31,10 @@ export const Cookies = (): React.ReactElement => {
             shouldShow={Validate.isEmpty(currentCookie)}
             caption={cookies?.caption}
             text={cookies?.text}
+            detail={cookies?.detail}
+            options={cookies?.options}
+            buttons={cookies?.buttons}
             onClickEvent={onClickEvent}
-            buttonText={cookies?.button}
         />
     );
 };
