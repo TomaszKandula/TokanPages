@@ -794,7 +794,7 @@ body::backdrop {
 
 .cookie-window-button {
     position: relative;
-    background: #fff;
+    background: #e8e8e8;
     border: none;
     padding: 0 16px;
     margin: 0;
@@ -839,7 +839,7 @@ body::backdrop {
 
 .cookie-window-checkbox {
     position: relative;
-    color: #000;
+    color: #e8e8e8;
     font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
 }
@@ -901,7 +901,7 @@ body::backdrop {
 
 .cookie-window-checkbox-input:disabled ~ .cookie-window-checkbox-label,
 .cookie-window-checkbox-input:disabled ~ .cookie-window-checkbox-visual-input {
-    color: #626262;
+    color: #8a8a8a;
 }
 
 .cookie-window {
@@ -914,8 +914,8 @@ body::backdrop {
     box-sizing: border-box;
     width: 570px;
     padding: 7px 5px 5px;
-    background-color: #01a7a8;
-    color: #000;
+    background-color: #0550c0;
+    color: #e8e8e8;
     font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
     opacity: 1;
@@ -924,8 +924,8 @@ body::backdrop {
 
 .cookie-window-caption {
     display: block;
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     position: absolute;
     padding: 0 5px;
     left: 50%;
@@ -939,7 +939,7 @@ body::backdrop {
 
 .cookie-window-box {
     position: relative;
-    border: 1px solid #000;
+    border: 1px solid #e8e8e8;
     padding: 2px;
 }
 
@@ -954,7 +954,7 @@ body::backdrop {
 .cookie-window-section {
     text-align: center;
     padding: 20px 18px;
-    border: 1px solid #000;
+    border: 1px solid #e8e8e8;
     margin-top: 2px;
     font-weight: 700;
 }
@@ -971,7 +971,7 @@ body::backdrop {
 
 .cookie-window-section a,
 .cookie-window-section p {
-    color: #000;
+    color: #e8e8e8;
     font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
 }
