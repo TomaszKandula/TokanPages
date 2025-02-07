@@ -51,6 +51,10 @@ public class GetUserNoteQueryHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(user.Id);
+
         var query = new GetUserNoteQuery
         {
             UserNoteId = note.Id

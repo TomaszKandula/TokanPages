@@ -20,11 +20,11 @@ public class GetAuthorizationQueryHandler : RequestHandler<GetAuthorizationQuery
 
     public override async Task<GetAuthorizationQueryResult> Handle(GetAuthorizationQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var output = await _payUService.GetAuthorization(cancellationToken);
         
         const string info = "New authorization bearer token has been returned from payment provider. Active user ID:";
-        LoggerService.LogInformation($"{info} {user.Id}.");
+        LoggerService.LogInformation($"{info} {userId}.");
 
         return new GetAuthorizationQueryResult
         {

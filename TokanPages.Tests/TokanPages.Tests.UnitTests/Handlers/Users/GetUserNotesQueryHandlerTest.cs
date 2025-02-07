@@ -61,11 +61,8 @@ public class GetUserNotesQueryHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(user);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
 
         var query = new GetUserNotesQuery();
         var handler = new GetUserNotesQueryHandler(databaseContext, mockedLogger.Object, mockedUserService.Object);

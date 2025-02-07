@@ -55,6 +55,10 @@ public class RemoveUserNoteCommandHandlerTest : TestBase
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(user.Id);
+
         var command = new RemoveUserNoteCommand
         {
             Id = userNoteId

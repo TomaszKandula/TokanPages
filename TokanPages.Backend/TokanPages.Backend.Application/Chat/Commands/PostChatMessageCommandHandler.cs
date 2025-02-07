@@ -37,7 +37,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
 
     public override async Task<PostChatMessageCommandResult> Handle(PostChatMessageCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var chat = await DatabaseContext.UserMessages
             .Where(messages => messages.ChatKey == request.ChatKey)
             .Where(messages => !messages.IsArchived)
@@ -52,14 +52,14 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             data.Add(new AddChatItem
             {
                 Id = chatItemId,
-                UserId = user.Id,
+                UserId = userId,
                 DateTime = chatDateTime,
                 Text = request.Message,
                 ChatKey = request.ChatKey
             });
 
             chat.ModifiedAt = chatDateTime;
-            chat.ModifiedBy = user.Id;
+            chat.ModifiedBy = userId;
             chat.ChatData = _jsonSerializer.Serialize(data, Formatting.None, Settings);
         }
         else
@@ -69,7 +69,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
                 new()
                 {
                     Id = chatItemId,
-                    UserId = user.Id,
+                    UserId = userId,
                     DateTime = chatDateTime,
                     Text = request.Message,
                     ChatKey = request.ChatKey
@@ -79,7 +79,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             var newChat = new UserMessage
             {
                 CreatedAt = chatDateTime,
-                CreatedBy = user.Id,
+                CreatedBy = userId,
                 ChatKey = request.ChatKey,
                 ChatData = _jsonSerializer.Serialize(items, Formatting.None, Settings)
             };
@@ -87,12 +87,12 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             await DatabaseContext.UserMessages.AddAsync(newChat, cancellationToken);
         }
 
-        var initials = await GetUserInitials(user.Id, cancellationToken);
-        var avatarName = await GetUserAvatarName(user.Id, cancellationToken);
+        var initials = await GetUserInitials(userId, cancellationToken);
+        var avatarName = await GetUserAvatarName(userId, cancellationToken);
         var chatData = new NotifyChatItem
         {
             Id = chatItemId,
-            UserId = user.Id,
+            UserId = userId,
             Initials = initials,
             AvatarName = avatarName,
             DateTime = chatDateTime,

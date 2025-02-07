@@ -18,6 +18,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
     public async Task GivenChatKeyAndMessage_WhenPostChatMessage_ShouldSucceed()
     {
         // Arrange
+        var userId0 = Guid.NewGuid();
         var userId1 = Guid.NewGuid();
         var userId2 = Guid.NewGuid();
         var chatKey = $"{userId1}:{userId2}".ToBase64Encode();
@@ -29,7 +30,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
 
         var users0 = new Backend.Domain.Entities.User.Users
         {
-            Id = Guid.NewGuid(),
+            Id = userId0,
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -127,6 +128,10 @@ public class PostChatMessageCommandHandlerTest : TestBase
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()))
             .ReturnsAsync(users0);
+
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId0);
 
         var dateTime = DateTime.UtcNow;
         mockedDateTime

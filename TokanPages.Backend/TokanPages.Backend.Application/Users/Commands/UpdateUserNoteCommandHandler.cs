@@ -25,7 +25,7 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
 
     public override async Task<Unit> Handle(UpdateUserNoteCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var note = await DatabaseContext.UserNotes
             .Where(userNote => userNote.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
@@ -35,7 +35,7 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
 
         note.Note = request.Note.CompressToBase64();
         note.ModifiedAt = _dateTimeService.Now;
-        note.ModifiedBy = user.Id;
+        note.ModifiedBy = userId;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

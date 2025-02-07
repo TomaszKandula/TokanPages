@@ -17,10 +17,10 @@ public class RemoveUserNoteCommandHandler : RequestHandler<RemoveUserNoteCommand
 
     public override async Task<Unit> Handle(RemoveUserNoteCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var userNote = await DatabaseContext.UserNotes
             .Where(note => note.Id == request.Id)
-            .Where(note => note.UserId == user.Id)
+            .Where(note => note.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (userNote is null)

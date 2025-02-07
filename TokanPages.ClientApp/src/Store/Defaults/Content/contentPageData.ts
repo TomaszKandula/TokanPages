@@ -170,7 +170,29 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             caption: "",
             text: "",
-            button: "",
+            detail: "",
+            loading: [],
+            options: {
+                enabled: false,
+                necessaryLabel: "",
+                statisticsLabel: "",
+                marketingLabel: "",
+                personalizationLabel: ""
+            },
+            buttons: {
+                acceptButton: {
+                    label: "",
+                    enabled: false
+                },
+                manageButton: {
+                    label: "",
+                    enabled: false
+                },
+                closeButton: {
+                    label: "",
+                    enabled: false
+                }
+            },
             days: 0,
         },
         featured: {

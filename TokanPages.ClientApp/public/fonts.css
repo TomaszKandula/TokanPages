@@ -1,6 +1,11 @@
 /* BASELINE */
 
 @font-face {
+    font-family: JetSites Cookie Banner JetBrains Mono;
+    src: url(fonts/font-mono-bold.woff2) format("woff2");
+}
+
+@font-face {
     font-family: "Material Icons";
     font-style: normal;
     font-weight: 400;
@@ -19,7 +24,7 @@
     white-space: nowrap;
     word-wrap: normal;
     direction: ltr;
-    -webkit-font-feature-settings: "liga";
+    font-feature-settings: "liga";
     -webkit-font-smoothing: antialiased;
 }
 
