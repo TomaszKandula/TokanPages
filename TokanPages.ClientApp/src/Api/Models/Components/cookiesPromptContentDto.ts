@@ -3,6 +3,7 @@ export interface CookiesPromptContentDto {
     caption: string;
     text: string;
     detail: string;
+    loading: string[];
     options: OptionsDto;
     buttons: ButtonsDto;
     days: number;
