@@ -1,3 +1,28 @@
+# [0.138.0](https://github.com/TomaszKandula/TokanPages/compare/v0.137.1...v0.138.0) (2025-02-07)
+
+
+### Bug Fixes
+
+* fallback to undefined ([9602a32](https://github.com/TomaszKandula/TokanPages/commit/9602a327f962568c38359afe82db58ad6609cdba))
+* get user ID from validated JWT ([c490ebe](https://github.com/TomaszKandula/TokanPages/commit/c490ebee6f115e65bdc1252cbac470633830968f))
+* load only necessary components ([642b1a8](https://github.com/TomaszKandula/TokanPages/commit/642b1a89f9dd9dab8e1877c00f71849ef3e0c7cd))
+* resolve found issues ([9795634](https://github.com/TomaszKandula/TokanPages/commit/97956343e50f49c40a51e184c75acb9298d8dbd5))
+* resolve found issues after logging ([86887d8](https://github.com/TomaszKandula/TokanPages/commit/86887d87d58f71779244cd4acd89fe0963da4ff6))
+* resolve found UI issue ([7c1a9aa](https://github.com/TomaszKandula/TokanPages/commit/7c1a9aaac421115b3ba430dd111df946a2f21342))
+
+
+### Features
+
+* add loading property ([3bbf289](https://github.com/TomaszKandula/TokanPages/commit/3bbf28907f8ec0539b4c72799770b8eb8014037b))
+* allow to retrieve user ID from valid claim ([9e0a1a3](https://github.com/TomaszKandula/TokanPages/commit/9e0a1a37a19eaaacd9af7ca1592dd7467235253e))
+* change colours ([db3d229](https://github.com/TomaszKandula/TokanPages/commit/db3d229230080f48b1182eab5e51eb6317803926))
+* get user ID from validated JWT claim ([f67fafa](https://github.com/TomaszKandula/TokanPages/commit/f67fafa8b9050b0f46e2449e61c8fe3e3e5da198))
+* implement new cookie prompt window ([2b9ff08](https://github.com/TomaszKandula/TokanPages/commit/2b9ff0861695ac598dfc7097c5cbb08e06c9b8de))
+* load when empty ([a722f79](https://github.com/TomaszKandula/TokanPages/commit/a722f79840b0dcc25bfbfc904ba3c302bb479cc6))
+* restyle, change font, add caret animation ([b2f0032](https://github.com/TomaszKandula/TokanPages/commit/b2f003234cd6e7680599b14aa7d3fb840a525c39))
+* show intermedient window ([cdcf783](https://github.com/TomaszKandula/TokanPages/commit/cdcf783a69269c851f8c2d117d67d2b0909f387e))
+* take into account pre-rendered SPA, rename for clarity ([4862a82](https://github.com/TomaszKandula/TokanPages/commit/4862a821e8a2dfba944235033aa25c40a2cd9c23))
+
 ## [0.137.1](https://github.com/TomaszKandula/TokanPages/compare/v0.137.0...v0.137.1) (2025-02-04)
 
 
