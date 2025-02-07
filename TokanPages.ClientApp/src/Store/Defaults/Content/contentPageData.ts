@@ -171,6 +171,7 @@ export const ContentPageData: ContentPageDataState = {
             caption: "",
             text: "",
             detail: "",
+            loading: [],
             options: {
                 enabled: false,
                 necessaryLabel: "",

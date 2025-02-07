@@ -781,12 +781,29 @@ body::backdrop {
 
 /* COOKIES COMPONENT */
 
-.cookies-open {
+@keyframes blink {
+    0%, 100% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #fff;
+    }
+}
+
+.cookie-window-caret {
+    display: inline-block;
+    background-color: #fff;
+    width: 10px;
+    height: 14px;
+    animation: blink 1s infinite;
+}
+
+.cookie-window-open {
     opacity: 1;
     visibility: visible;
 }
 
-.cookies-close {
+.cookie-window-close {
     opacity: 0;
     transition: 0.3s all ease;
     visibility: hidden;
@@ -799,7 +816,7 @@ body::backdrop {
     padding: 0 16px;
     margin: 0;
     color: #aaaaad;
-    font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font: 14px/18px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
     box-shadow: 6px 6px 0 0 #000;
 }
@@ -840,7 +857,7 @@ body::backdrop {
 .cookie-window-checkbox {
     position: relative;
     color: #e8e8e8;
-    font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font: 14px/18px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
 }
 
@@ -913,10 +930,11 @@ body::backdrop {
     box-shadow: 20px 20px 0 0 rgba(0, 0, 0, 0.682);
     box-sizing: border-box;
     width: 570px;
+    min-height: 300px;
     padding: 7px 5px 5px;
     background-color: #0550c0;
     color: #e8e8e8;
-    font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font: 14px/18px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
     opacity: 1;
     transition: opacity 0.3s;
@@ -933,7 +951,7 @@ body::backdrop {
     z-index: 1;
     top: 0;
     white-space: nowrap;
-    font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font: 14px/18px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
 }
 
@@ -972,7 +990,7 @@ body::backdrop {
 .cookie-window-section a,
 .cookie-window-section p {
     color: #e8e8e8;
-    font: 12px/16px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font: 14px/18px JetSites Cookie Banner JetBrains Mono, Menlo, Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
     font-weight: 900;
 }
 
