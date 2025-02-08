@@ -18,23 +18,81 @@ export const Cookies = (): React.ReactElement => {
 
     const [isClose, setClose] = React.useState(false);
     const [isLoading, setLoading] = React.useState(true);
+    const [canShowOptions, setShowOptions] = React.useState(false);
+    const [hasNecessaryOnly, setNecessaryOnly] = React.useState(false);
+    const [hasStatistics, setStatistics] = React.useState(true);
+    const [hasMarketing, setMarketing] = React.useState(true);
+    const [hasPersonalization, setPersonalization] = React.useState(true);
 
-    const onClickEvent = React.useCallback(() => {
+    const onStatisticsCheckboxEvent = React.useCallback(() => {
+        setStatistics(!hasStatistics);
+    }, [hasStatistics]);
+
+    const onMarketingCheckboxEvent = React.useCallback(() => {
+        setMarketing(!hasMarketing);
+    }, [hasMarketing]);
+
+    const onPersonalizationCheckboxEvent = React.useCallback(() => {
+        setPersonalization(!hasPersonalization);
+    }, [hasPersonalization]);
+
+    /* ACCEPT COOKIES AND ALLOW TO COLLECT DATA */
+    const onAcceptButtonEvent = React.useCallback(() => {
         setClose(true);
+
+        const grantSelected = JSON.stringify({ 
+            granted: {
+                necessary: true,
+                statistics: hasStatistics,
+                marketing: hasMarketing,
+                personalization: hasPersonalization
+            }
+        });
+
+        const grantBasic = JSON.stringify({ 
+            granted: {
+                necessary: true,
+                statistics: false,
+                marketing: false,
+                personalization: false
+            }
+        });
+
         SetCookie({
             cookieName: "cookieConsent",
-            value: "granted",
+            value: hasNecessaryOnly ? grantBasic : grantSelected,
             days: cookies.days,
             sameSite: "Strict",
             secure: false,
         });
-    }, [cookies?.days]);
+    }, [cookies?.days, hasNecessaryOnly, hasStatistics, hasMarketing, hasPersonalization]);
 
+    /* DISPLAY COOKIE SETTINGS */
+    const onManageButtonEvent = React.useCallback(() => {
+        setShowOptions(!canShowOptions);
+    }, [canShowOptions]);
+
+    /* CLOSE WINDOW AND DO NOT COLLECT DATA */
+    const onCloseButtonEvent = React.useCallback(() => {
+        if (!hasNecessaryOnly) {
+            setNecessaryOnly(true);
+        }
+        onAcceptButtonEvent();
+    }, [hasNecessaryOnly]);
+
+    /* SWITCH FROM LOADING SCREEN TO MAIN SCREEN */
     React.useEffect(() => {
         if (isLoading && hasContentLoadingFinished) {
             setTimeout(() => setLoading(false), 3000);
         }
     }, [isLoading, hasContentLoadingFinished]);
+
+    /* CLOSE WINDOW AND ACCEPT NECESSARY CONSENT */
+    React.useEffect(() => {
+        if (hasNecessaryOnly) {
+            onAcceptButtonEvent();
+        }
+    }, [hasNecessaryOnly]);
 
     return (
         <CookiesView
@@ -48,7 +106,16 @@ export const Cookies = (): React.ReactElement => {
             options={cookies?.options}
             loading={cookies?.loading}
             buttons={cookies?.buttons}
-            onClickEvent={onClickEvent}
+            canShowOptions={canShowOptions}
+            onAcceptButtonEvent={onAcceptButtonEvent}
+            onManageButtonEvent={onManageButtonEvent}
+            onCloseButtonEvent={onCloseButtonEvent}
+            onStatisticsCheckboxEvent={onStatisticsCheckboxEvent}
+            onMarketingCheckboxEvent={onMarketingCheckboxEvent}
+            onPersonalizationCheckboxEvent={onPersonalizationCheckboxEvent}
+            hasStatistics={hasStatistics}
+            hasMarketing={hasMarketing}
+            hasPersonalization={hasPersonalization}
         />
     );
 };
