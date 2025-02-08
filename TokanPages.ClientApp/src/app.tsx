@@ -7,6 +7,7 @@ import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
 import { EnsureDefaultLanguageRoot, UpdateUserLanguage } from "./Shared/Services/languageService";
 import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
+import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
 import { Routes } from "./routes";
 import {
     ClearPageStart,
@@ -26,6 +27,7 @@ interface RenderApplicationProps {
 }
 
 const RenderApplication = (props: RenderApplicationProps): React.ReactElement => {
+    const hasSnapshotMode = HasSnapshotMode();
     return (
         <ApplicationSession>
             <BrowserRouter>
@@ -35,14 +37,18 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
-            <ApplicationToast />
-            <ApplicationDialogBox />
-            <ApplicationUserInfo />
-            <ScrollToTop>
-                <Fab size="small" aria-label="scroll back to top" className="button-up">
-                    <KeyboardArrowUpIcon />
-                </Fab>
-            </ScrollToTop>
+            {hasSnapshotMode 
+            ? null
+            : <>
+                <ApplicationToast />
+                <ApplicationDialogBox />
+                <ApplicationUserInfo />
+                <ScrollToTop>
+                    <Fab size="small" aria-label="scroll back to top" className="button-up">
+                        <KeyboardArrowUpIcon />
+                    </Fab>
+                </ScrollToTop>
+            </>}
         </ApplicationSession>
     );
 };

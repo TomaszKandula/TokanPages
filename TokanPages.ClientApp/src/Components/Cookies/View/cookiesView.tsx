@@ -5,8 +5,9 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 
 interface Properties extends ViewProperties {
-    modalClose: boolean;
-    shouldShow: boolean;
+    isClose: boolean;
+    hasSnapshotMode: boolean;
+    hasCookieConsent: boolean;
     caption: string;
     text: string;
     detail: string;
@@ -16,7 +17,64 @@ interface Properties extends ViewProperties {
     onClickEvent: () => void;
 }
 
-const CookieWindow = (props: Properties): React.ReactElement => {
+const CookieWindowOptions = (props: Properties): React.ReactElement => {
+    return (
+        <div className="cookie-window-options-list">
+            <label className="cookie-window-checkbox">
+                <input type="checkbox" className="cookie-window-checkbox-input" disabled={true} checked={true} />
+                <span className="cookie-window-checkbox-visual-input"></span>
+                <span className="cookie-window-checkbox-label">
+                    {props.options?.necessaryLabel}
+                </span>
+            </label>
+            <label className="cookie-window-checkbox">
+                <input type="checkbox" className="cookie-window-checkbox-input" />
+                <span className="cookie-window-checkbox-visual-input"></span>
+                <span className="cookie-window-checkbox-label">
+                    {props.options?.statisticsLabel}
+                </span>
+            </label>
+            <label className="cookie-window-checkbox">
+                <input type="checkbox" className="cookie-window-checkbox-input" />
+                <span className="cookie-window-checkbox-visual-input"></span>
+                <span className="cookie-window-checkbox-label">
+                    {props.options?.marketingLabel}
+                </span>
+            </label>
+            <label className="cookie-window-checkbox">
+                <input type="checkbox" className="cookie-window-checkbox-input" />
+                <span className="cookie-window-checkbox-visual-input"></span>
+                <span className="cookie-window-checkbox-label">
+                    {props.options?.personalizationLabel}
+                </span>
+            </label>
+        </div>
+    );
+}
+
+const CookieWindowActions = (props: Properties): React.ReactElement => {
+    return (
+        <div className="cookie-window-actions">
+            {props.buttons?.acceptButton.enabled 
+            ? <button className="cookie-window-button cookie-window-button-accent cookie-window-action" onClick={props.onClickEvent}>
+                {props.buttons?.acceptButton.label}
+            </button>
+            : <></>}
+            {props.buttons?.manageButton.enabled 
+            ? <button className="cookie-window-button cookie-window-action">
+                {props.buttons?.manageButton.label}
+            </button>
+            : <></>}
+            {props.buttons?.closeButton.enabled 
+            ? <button className="cookie-window-button cookie-window__close">
+                {props.buttons?.closeButton.label}
+            </button>
+            : null}
+        </div>
+    );
+}
+
+const CookieWindowPrompt = (props: Properties): React.ReactElement => {
     return (
         <div className="cookie-window">
             <div className="cookie-window-caption">
@@ -32,62 +90,15 @@ const CookieWindow = (props: Properties): React.ReactElement => {
                     <p className="cookie-window-section-detail">
                         {props.detail}
                     </p>
-                    {props.options?.enabled 
-                    ? <div className="cookie-window-options-list">
-                        <label className="cookie-window-checkbox">
-                            <input type="checkbox" className="cookie-window-checkbox-input" disabled={true} checked={true} />
-                            <span className="cookie-window-checkbox-visual-input"></span>
-                            <span className="cookie-window-checkbox-label">
-                                {props.options?.necessaryLabel}
-                            </span>
-                        </label>
-                        <label className="cookie-window-checkbox">
-                            <input type="checkbox" className="cookie-window-checkbox-input" />
-                            <span className="cookie-window-checkbox-visual-input"></span>
-                            <span className="cookie-window-checkbox-label">
-                                {props.options?.statisticsLabel}
-                            </span>
-                        </label>
-                        <label className="cookie-window-checkbox">
-                            <input type="checkbox" className="cookie-window-checkbox-input" />
-                            <span className="cookie-window-checkbox-visual-input"></span>
-                            <span className="cookie-window-checkbox-label">
-                                {props.options?.marketingLabel}
-                            </span>
-                        </label>
-                        <label className="cookie-window-checkbox">
-                            <input type="checkbox" className="cookie-window-checkbox-input" />
-                            <span className="cookie-window-checkbox-visual-input"></span>
-                            <span className="cookie-window-checkbox-label">
-                                {props.options?.personalizationLabel}
-                            </span>
-                        </label>
-                    </div> 
-                    : null}
-                    <div className="cookie-window-actions">
-                        {props.buttons?.acceptButton.enabled 
-                        ? <button className="cookie-window-button cookie-window-button-accent cookie-window-action" onClick={props.onClickEvent}>
-                            {props.buttons?.acceptButton.label}
-                        </button> 
-                        : <></>}
-                        {props.buttons?.manageButton.enabled 
-                        ? <button className="cookie-window-button cookie-window-action">
-                            {props.buttons?.manageButton.label}
-                        </button> 
-                        : <></>}
-                        {props.buttons?.closeButton.enabled 
-                        ? <button className="cookie-window-button cookie-window__close">
-                            {props.buttons?.closeButton.label}
-                        </button> 
-                        : null}
-                    </div>
+                    {props.options?.enabled ? <CookieWindowOptions {...props} /> : null}
+                    <CookieWindowActions {...props} />
                 </div>
             </div>
         </div>
     );
 }
 
-const RenderCookieLoading = (props: Properties): React.ReactElement => {
+const CookieWindowLoading = (props: Properties): React.ReactElement => {
     const maxLength = props.loading?.length-1;
     const dateTime = new Date().toString();
     const formattedDateTime = GetDateTime({ value: dateTime, hasTimeVisible: true });
@@ -110,25 +121,30 @@ const RenderCookieLoading = (props: Properties): React.ReactElement => {
     );
 }
 
-const RenderCookieWindow = (props: Properties): React.ReactElement => {
-    const style = props.modalClose ? "cookie-window-close" : "cookie-window-open";
-    const Result = (): React.ReactElement => { 
-        return (
-            <div className={style}>
-                <Backdrop 
-                    className="backdrop" 
-                    open={props.shouldShow} 
-                    transitionDuration={props.isLoading ? undefined : 0}
-                >
-                    {props.isLoading ? <RenderCookieLoading {...props} /> : <CookieWindow {...props} />}
-                </Backdrop>
-            </div>
-        )
-    };
-
-    return props.loading?.length === 0 ? <></> : <Result />;
-}
+const CookieWindowContainer = (props: Properties): React.ReactElement => { 
+    const style = props.isClose ? "cookie-window-close" : "cookie-window-open";
+    const transition = props.isLoading ? undefined : 0;
+    return (
+        <div className={style}>
+            <Backdrop className="backdrop" open={true} transitionDuration={transition}>
+                {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
+            </Backdrop>
+        </div>
+    )
+};
 
 export const CookiesView = (props: Properties): React.ReactElement => {
-    return <>{props.shouldShow ? <RenderCookieWindow {...props} /> : null}</>;
-};
+    if (props.hasSnapshotMode) {
+        return <div className="cookie-window-open"></div>;
+    }
+
+    if (props.hasCookieConsent) {
+        return <></>;
+    }
+
+    if (props.loading?.length === 0) {
+        return <></>;
+    }
+
+    return <CookieWindowContainer {...props} />;
+}
