@@ -1,3 +1,13 @@
+# [0.139.0](https://github.com/TomaszKandula/TokanPages/compare/v0.138.0...v0.139.0) (2025-02-08)
+
+
+### Features
+
+* re-do cookie window, simplify ([a41c96e](https://github.com/TomaszKandula/TokanPages/commit/a41c96ed20c20213e91f1674466ff3ba83589a78))
+* render div as handler for pre-rendered SPA ([c746b43](https://github.com/TomaszKandula/TokanPages/commit/c746b4394d1be6aece1c20a42f841b54e600bb12))
+* skip unnecessary components for snapshots ([9cee237](https://github.com/TomaszKandula/TokanPages/commit/9cee2375d14ade9c3a968474820261635eff6457))
+* wrap backdrop, rename for clarity ([45541e8](https://github.com/TomaszKandula/TokanPages/commit/45541e8247295504155878443fd9d19fc829ed77))
+
 # [0.138.0](https://github.com/TomaszKandula/TokanPages/compare/v0.137.1...v0.138.0) (2025-02-07)
 
 
