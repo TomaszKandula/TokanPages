@@ -1004,7 +1004,7 @@ body::backdrop {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: flex-start;
-    width: 291px;
+    width: 350px;
     margin-inline: auto;
 }
 
@@ -1013,8 +1013,9 @@ body::backdrop {
     width: -moz-fit-content;
     width: fit-content;
     margin-inline: auto;
-    margin-top: 16px;
-    gap: 16px;
+    margin-top: 28px;
+    margin-bottom: 8px;
+    gap: 28px;
 }
 
 @media (max-width: 560px) {
