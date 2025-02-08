@@ -17,7 +17,7 @@ interface Properties extends ViewProperties {
     onClickEvent: () => void;
 }
 
-const Options = (props: Properties): React.ReactElement => {
+const CookieWindowOptions = (props: Properties): React.ReactElement => {
     return (
         <div className="cookie-window-options-list">
             <label className="cookie-window-checkbox">
@@ -52,7 +52,7 @@ const Options = (props: Properties): React.ReactElement => {
     );
 }
 
-const Actions = (props: Properties): React.ReactElement => {
+const CookieWindowActions = (props: Properties): React.ReactElement => {
     return (
         <div className="cookie-window-actions">
             {props.buttons?.acceptButton.enabled 
@@ -90,15 +90,15 @@ const CookieWindow = (props: Properties): React.ReactElement => {
                     <p className="cookie-window-section-detail">
                         {props.detail}
                     </p>
-                    {props.options?.enabled ? <Options {...props} /> : null}
-                    <Actions {...props} />
+                    {props.options?.enabled ? <CookieWindowOptions {...props} /> : null}
+                    <CookieWindowActions {...props} />
                 </div>
             </div>
         </div>
     );
 }
 
-const RenderCookieLoading = (props: Properties): React.ReactElement => {
+const CookieWindowLoading = (props: Properties): React.ReactElement => {
     const maxLength = props.loading?.length-1;
     const dateTime = new Date().toString();
     const formattedDateTime = GetDateTime({ value: dateTime, hasTimeVisible: true });
@@ -121,19 +121,19 @@ const RenderCookieLoading = (props: Properties): React.ReactElement => {
     );
 }
 
-export const CookiesView = (props: Properties): React.ReactElement => {
-    const ModalCookieWindow = (): React.ReactElement => { 
-        return (
-            <Backdrop 
-                className="backdrop" 
-                open={!props.isClose}
-                transitionDuration={props.isLoading ? undefined : 0}
-            >
-                {props.isLoading ? <RenderCookieLoading {...props} /> : <CookieWindow {...props} />}
+const CookieWindowContainer = (props: Properties): React.ReactElement => { 
+    const style = props.isClose ? "cookie-window-close" : "cookie-window-open";
+    const transition = props.isLoading ? undefined : 0;
+    return (
+        <div className={style}>
+            <Backdrop className="backdrop" open={true} transitionDuration={transition}>
+                {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindow {...props} />}
             </Backdrop>
-        )
-    };
+        </div>
+    )
+};
 
+export const CookiesView = (props: Properties): React.ReactElement => {
     if (props.hasSnapshotMode) {
         return <></>;
     }
@@ -146,5 +146,5 @@ export const CookiesView = (props: Properties): React.ReactElement => {
         return <></>;
     }
 
-    return <ModalCookieWindow />;
+    return <CookieWindowContainer {...props} />;
 }

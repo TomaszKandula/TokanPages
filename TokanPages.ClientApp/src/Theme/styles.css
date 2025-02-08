@@ -798,6 +798,17 @@ body::backdrop {
     animation: blink 1s infinite;
 }
 
+.cookie-window-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cookie-window-close {
+    opacity: 0;
+    transition: 0.3s all ease;
+    visibility: hidden;
+}
+
 .cookie-window-button {
     position: relative;
     background: #e8e8e8;
