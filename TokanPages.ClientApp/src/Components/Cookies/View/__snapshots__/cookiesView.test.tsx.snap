@@ -6,6 +6,142 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        class="cookie-window-open"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBackdrop-root backdrop"
+          style="opacity: 1; webkit-transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        >
+          <div
+            class="cookie-window"
+          >
+            <div
+              class="cookie-window-caption"
+            >
+              Cookie Policy
+            </div>
+            <div
+              class="cookie-window-box"
+            >
+              <div
+                class="cookie-window-section"
+              >
+                <p
+                  class="cookie-window-section-text"
+                >
+                  We use cookies to personalise content...
+                </p>
+              </div>
+              <div
+                class="cookie-window-section"
+              >
+                <p
+                  class="cookie-window-section-detail"
+                >
+                  With your consent, we may also...
+                </p>
+                <div
+                  class="cookie-window-options-list"
+                >
+                  <label
+                    class="cookie-window-checkbox"
+                  >
+                    <input
+                      checked=""
+                      class="cookie-window-checkbox-input"
+                      disabled=""
+                      type="checkbox"
+                    />
+                    <span
+                      class="cookie-window-checkbox-visual-input"
+                    />
+                    <span
+                      class="cookie-window-checkbox-label"
+                    >
+                      Necessary
+                    </span>
+                  </label>
+                  <label
+                    class="cookie-window-checkbox"
+                  >
+                    <input
+                      class="cookie-window-checkbox-input"
+                      type="checkbox"
+                    />
+                    <span
+                      class="cookie-window-checkbox-visual-input"
+                    />
+                    <span
+                      class="cookie-window-checkbox-label"
+                    >
+                      Statistics
+                    </span>
+                  </label>
+                  <label
+                    class="cookie-window-checkbox"
+                  >
+                    <input
+                      class="cookie-window-checkbox-input"
+                      type="checkbox"
+                    />
+                    <span
+                      class="cookie-window-checkbox-visual-input"
+                    />
+                    <span
+                      class="cookie-window-checkbox-label"
+                    >
+                      Marketing
+                    </span>
+                  </label>
+                  <label
+                    class="cookie-window-checkbox"
+                  >
+                    <input
+                      class="cookie-window-checkbox-input"
+                      type="checkbox"
+                    />
+                    <span
+                      class="cookie-window-checkbox-visual-input"
+                    />
+                    <span
+                      class="cookie-window-checkbox-label"
+                    >
+                      Personalization
+                    </span>
+                  </label>
+                </div>
+                <div
+                  class="cookie-window-actions"
+                >
+                  <button
+                    class="cookie-window-button cookie-window-button-accent cookie-window-action"
+                  >
+                    Accept All
+                  </button>
+                  <button
+                    class="cookie-window-button cookie-window-action"
+                  >
+                    Manage Settings
+                  </button>
+                  <button
+                    class="cookie-window-button cookie-window__close"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="cookie-window-open"
+    >
+      <div
         aria-hidden="true"
         class="MuiBackdrop-root backdrop"
         style="opacity: 1; webkit-transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
@@ -132,134 +268,6 @@ Object {
         </div>
       </div>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      aria-hidden="true"
-      class="MuiBackdrop-root backdrop"
-      style="opacity: 1; webkit-transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 0ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    >
-      <div
-        class="cookie-window"
-      >
-        <div
-          class="cookie-window-caption"
-        >
-          Cookie Policy
-        </div>
-        <div
-          class="cookie-window-box"
-        >
-          <div
-            class="cookie-window-section"
-          >
-            <p
-              class="cookie-window-section-text"
-            >
-              We use cookies to personalise content...
-            </p>
-          </div>
-          <div
-            class="cookie-window-section"
-          >
-            <p
-              class="cookie-window-section-detail"
-            >
-              With your consent, we may also...
-            </p>
-            <div
-              class="cookie-window-options-list"
-            >
-              <label
-                class="cookie-window-checkbox"
-              >
-                <input
-                  checked=""
-                  class="cookie-window-checkbox-input"
-                  disabled=""
-                  type="checkbox"
-                />
-                <span
-                  class="cookie-window-checkbox-visual-input"
-                />
-                <span
-                  class="cookie-window-checkbox-label"
-                >
-                  Necessary
-                </span>
-              </label>
-              <label
-                class="cookie-window-checkbox"
-              >
-                <input
-                  class="cookie-window-checkbox-input"
-                  type="checkbox"
-                />
-                <span
-                  class="cookie-window-checkbox-visual-input"
-                />
-                <span
-                  class="cookie-window-checkbox-label"
-                >
-                  Statistics
-                </span>
-              </label>
-              <label
-                class="cookie-window-checkbox"
-              >
-                <input
-                  class="cookie-window-checkbox-input"
-                  type="checkbox"
-                />
-                <span
-                  class="cookie-window-checkbox-visual-input"
-                />
-                <span
-                  class="cookie-window-checkbox-label"
-                >
-                  Marketing
-                </span>
-              </label>
-              <label
-                class="cookie-window-checkbox"
-              >
-                <input
-                  class="cookie-window-checkbox-input"
-                  type="checkbox"
-                />
-                <span
-                  class="cookie-window-checkbox-visual-input"
-                />
-                <span
-                  class="cookie-window-checkbox-label"
-                >
-                  Personalization
-                </span>
-              </label>
-            </div>
-            <div
-              class="cookie-window-actions"
-            >
-              <button
-                class="cookie-window-button cookie-window-button-accent cookie-window-action"
-              >
-                Accept All
-              </button>
-              <button
-                class="cookie-window-button cookie-window-action"
-              >
-                Manage Settings
-              </button>
-              <button
-                class="cookie-window-button cookie-window__close"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -321,6 +329,55 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        class="cookie-window-open"
+      >
+        <div
+          aria-hidden="true"
+          class="MuiBackdrop-root backdrop"
+          style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        >
+          <div
+            class="cookie-window"
+          >
+            <div
+              class="cookie-window-caption"
+            >
+              Cookie Policy
+            </div>
+            <div
+              class="cookie-window-box"
+            >
+              <div
+                class="cookie-window-section"
+                style="height: 300px; text-align: left;"
+              >
+                <p
+                  class="cookie-window-section-text"
+                  style="text-align: left;"
+                >
+                  Loading...
+                </p>
+                <p
+                  class="cookie-window-section-text"
+                  style="text-align: left;"
+                >
+                  Please wait...
+                  <span
+                    class="cookie-window-caret"
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="cookie-window-open"
+    >
+      <div
         aria-hidden="true"
         class="MuiBackdrop-root backdrop"
         style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
@@ -356,47 +413,6 @@ Object {
                 />
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      aria-hidden="true"
-      class="MuiBackdrop-root backdrop"
-      style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    >
-      <div
-        class="cookie-window"
-      >
-        <div
-          class="cookie-window-caption"
-        >
-          Cookie Policy
-        </div>
-        <div
-          class="cookie-window-box"
-        >
-          <div
-            class="cookie-window-section"
-            style="height: 300px; text-align: left;"
-          >
-            <p
-              class="cookie-window-section-text"
-              style="text-align: left;"
-            >
-              Loading...
-            </p>
-            <p
-              class="cookie-window-section-text"
-              style="text-align: left;"
-            >
-              Please wait...
-              <span
-                class="cookie-window-caret"
-              />
-            </p>
           </div>
         </div>
       </div>
