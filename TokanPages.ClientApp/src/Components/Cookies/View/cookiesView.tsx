@@ -74,7 +74,7 @@ const CookieWindowActions = (props: Properties): React.ReactElement => {
     );
 }
 
-const CookieWindow = (props: Properties): React.ReactElement => {
+const CookieWindowPrompt = (props: Properties): React.ReactElement => {
     return (
         <div className="cookie-window">
             <div className="cookie-window-caption">
@@ -127,7 +127,7 @@ const CookieWindowContainer = (props: Properties): React.ReactElement => {
     return (
         <div className={style}>
             <Backdrop className="backdrop" open={true} transitionDuration={transition}>
-                {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindow {...props} />}
+                {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
             </Backdrop>
         </div>
     )
