@@ -19,7 +19,8 @@ export const Cookies = (): React.ReactElement => {
     const [isClose, setClose] = React.useState(false);
     const [isLoading, setLoading] = React.useState(true);
 
-    const onClickEvent = React.useCallback(() => {
+    /* ACCEPT COOKIES AND ALLOW TO COLLECT DATA */
+    const onAcceptButtonEvent = React.useCallback(() => {
         setClose(true);
         SetCookie({
             cookieName: "cookieConsent",
@@ -30,6 +31,17 @@ export const Cookies = (): React.ReactElement => {
         });
     }, [cookies?.days]);
 
+    /* DISPLAY COOKIE SETTINGS */
+    const onManageButtonEvent = React.useCallback(() => {
+        //TODO: add implementation.
+    }, []);
+
+    /* CLOSE WINDOW AND DO NOT COLLECT DATA */
+    const onCloseButtonEvent = React.useCallback(() => {
+        //TODO: add implementation.
+    }, []);
+
+    /* SWITCH FROM LOADING SCREEN TO MAIN SCREEN */
     React.useEffect(() => {
         if (isLoading && hasContentLoadingFinished) {
             setTimeout(() => setLoading(false), 3000);
@@ -48,7 +60,9 @@ export const Cookies = (): React.ReactElement => {
             options={cookies?.options}
             loading={cookies?.loading}
             buttons={cookies?.buttons}
-            onClickEvent={onClickEvent}
+            onAcceptButtonEvent={onAcceptButtonEvent}
+            onManageButtonEvent={onManageButtonEvent}
+            onCloseButtonEvent={onCloseButtonEvent}
         />
     );
 };

@@ -14,7 +14,9 @@ interface Properties extends ViewProperties {
     loading: string[];
     options: OptionsDto;
     buttons: ButtonsDto;
-    onClickEvent: () => void;
+    onAcceptButtonEvent: () => void;
+    onManageButtonEvent: () => void;
+    onCloseButtonEvent: () => void;
 }
 
 const CookieWindowOptions = (props: Properties): React.ReactElement => {
@@ -56,17 +58,26 @@ const CookieWindowActions = (props: Properties): React.ReactElement => {
     return (
         <div className="cookie-window-actions">
             {props.buttons?.acceptButton.enabled 
-            ? <button className="cookie-window-button cookie-window-button-accent cookie-window-action" onClick={props.onClickEvent}>
+            ? <button 
+                className="cookie-window-button cookie-window-button-accent cookie-window-action" 
+                onClick={props.onAcceptButtonEvent}
+            >
                 {props.buttons?.acceptButton.label}
             </button>
             : <></>}
             {props.buttons?.manageButton.enabled 
-            ? <button className="cookie-window-button cookie-window-action">
+            ? <button 
+                className="cookie-window-button cookie-window-action"
+                onClick={props.onManageButtonEvent}
+            >
                 {props.buttons?.manageButton.label}
             </button>
             : <></>}
             {props.buttons?.closeButton.enabled 
-            ? <button className="cookie-window-button cookie-window__close">
+            ? <button 
+                className="cookie-window-button cookie-window__close"
+                onClick={props.onCloseButtonEvent}
+            >
                 {props.buttons?.closeButton.label}
             </button>
             : null}
