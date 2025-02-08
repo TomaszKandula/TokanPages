@@ -8,8 +8,9 @@ describe("test component: cookiesView", () => {
         const html = render(
             <CookiesView
                 isLoading={false}
-                modalClose={false}
-                shouldShow={true}
+                isClose={false}
+                hasSnapshotMode={false}
+                hasCookieConsent={false}
                 caption="Cookie Policy"
                 text="We use cookies to personalise content..."
                 detail="With your consent, we may also..."
@@ -46,8 +47,9 @@ describe("test component: cookiesView", () => {
         const html = render(
             <CookiesView
                 isLoading={true}
-                modalClose={false}
-                shouldShow={true}
+                isClose={false}
+                hasSnapshotMode={false}
+                hasCookieConsent={false}
                 caption="Cookie Policy"
                 text="We use cookies to personalise content..."
                 detail="With your consent, we may also..."
