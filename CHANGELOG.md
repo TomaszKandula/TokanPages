@@ -1,3 +1,12 @@
+# [0.140.0](https://github.com/TomaszKandula/TokanPages/compare/v0.139.0...v0.140.0) (2025-02-08)
+
+
+### Features
+
+* add button handlers ([9c309a0](https://github.com/TomaszKandula/TokanPages/commit/9c309a0c15a82c26138940456a985b758b9ab25b))
+* implement extended functionality ([20ed7c8](https://github.com/TomaszKandula/TokanPages/commit/20ed7c8bcbf4f556ee01a48b0c3b573e8a485616))
+* restyle ([6c70cc7](https://github.com/TomaszKandula/TokanPages/commit/6c70cc7ec7a2df7279ca6c2f7e29fe21957d6564))
+
 # [0.139.0](https://github.com/TomaszKandula/TokanPages/compare/v0.138.0...v0.139.0) (2025-02-08)
 
 
