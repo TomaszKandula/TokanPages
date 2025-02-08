@@ -135,7 +135,7 @@ const CookieWindowContainer = (props: Properties): React.ReactElement => {
 
 export const CookiesView = (props: Properties): React.ReactElement => {
     if (props.hasSnapshotMode) {
-        return <></>;
+        return <div className="cookie-window-open"></div>;
     }
 
     if (props.hasCookieConsent) {
