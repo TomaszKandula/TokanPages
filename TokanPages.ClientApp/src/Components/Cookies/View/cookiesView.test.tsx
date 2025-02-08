@@ -15,7 +15,9 @@ describe("test component: cookiesView", () => {
                 text="We use cookies to personalise content..."
                 detail="With your consent, we may also..."
                 loading={["Loading...", "Please wait..."]}
-                onClickEvent={jest.fn()}
+                onAcceptButtonEvent={jest.fn()}
+                onManageButtonEvent={jest.fn()}
+                onCloseButtonEvent={jest.fn()}
                 options={{
                     enabled: true,
                     necessaryLabel: "Necessary",
@@ -54,7 +56,9 @@ describe("test component: cookiesView", () => {
                 text="We use cookies to personalise content..."
                 detail="With your consent, we may also..."
                 loading={["Loading...", "Please wait..."]}
-                onClickEvent={jest.fn()}
+                onAcceptButtonEvent={jest.fn()}
+                onManageButtonEvent={jest.fn()}
+                onCloseButtonEvent={jest.fn()}
                 options={{
                     enabled: true,
                     necessaryLabel: "Necessary",
