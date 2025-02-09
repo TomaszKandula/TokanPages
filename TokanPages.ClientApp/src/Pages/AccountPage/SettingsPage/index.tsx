@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { Navigation, Footer } from "../../../Components/Layout";
+import { Cookies } from "../../../Components/Cookies";
 import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../../Components/Account";
 import Validate from "validate.js";
 
@@ -14,7 +15,13 @@ export const SettingsPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "accountSettings"], "SettingsPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "footer", 
+            "templates", 
+            "cookiesPrompt", 
+            "accountSettings"
+        ], "SettingsPage"));
     }, [language?.id]);
 
     return (
@@ -32,6 +39,7 @@ export const SettingsPage = (): React.ReactElement => {
                 </div>
             )}
 
+            <Cookies />
             <Footer />
         </>
     );

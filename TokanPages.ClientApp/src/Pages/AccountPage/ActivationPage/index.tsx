@@ -6,6 +6,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { AccountActivate } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
+import { Cookies } from "../../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -28,7 +29,12 @@ export const ActivationPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "accountActivate"], "ActivationPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation",
+            "templates",
+            "cookiesPrompt",
+            "accountActivate"
+        ], "ActivationPage"));
     }, [language?.id]);
 
     return (
@@ -39,6 +45,7 @@ export const ActivationPage = (): React.ReactElement => {
             ) : (
                 <ErrorMessage />
             )}
+            <Cookies />
         </>
     );
 };

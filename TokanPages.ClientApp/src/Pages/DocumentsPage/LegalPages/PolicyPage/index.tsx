@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../../Store/Actions";
 import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
-import { Navigation, Footer } from "../../../../Components/Layout";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
+import { Navigation, Footer } from "../../../../Components/Layout";
+import { Cookies } from "../../../../Components/Cookies";
 
 export const PolicyPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -14,7 +15,12 @@ export const PolicyPage = (): React.ReactElement => {
     const policy = state?.contentPageData?.components?.policy;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "policy", "footer"], "PolicyPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "policy", 
+            "footer",
+            "cookiesPrompt", 
+        ], "PolicyPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
@@ -31,6 +37,7 @@ export const PolicyPage = (): React.ReactElement => {
             <Navigation />
             <CustomBreadcrumb mt={96} mb={16} mr={40} ml={40} mtDivider={32} mbDivider={32} isLoading={isLoading} />
             <DocumentContentWrapper isLoading={isLoading} items={items} />
+            <Cookies />
             <Footer />
         </>
     );
