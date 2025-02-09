@@ -5,8 +5,8 @@
   JSS has been abandoned; the styles generated on the fly 
   that are typically included in the HTML head are not
   optimal for pre-rendered React applications.
-  In addition to that, historically MUI styling mechnism 
-  has been changed few times, therefore, it is much more 
+  In addition to that, historically MUI styling mechanism 
+  has been changed a few times, therefore, it is much more 
   convenient to stick with the plain CSS.
 */
 
