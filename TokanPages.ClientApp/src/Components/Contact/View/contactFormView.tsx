@@ -56,15 +56,15 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
     return (
         <section className="section" style={props.background}>
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 64, paddingBottom: props.pb ?? 96 }}>
-                    <Animated dataAos="fade-down" style={{ textAlign: "center" }}>
-                        <Typography className="contact-caption">
+                <div className={!props.className ? "pt-64 pb-96" : props.className}>
+                    <Animated dataAos="fade-down" className="text-centre">
+                        <h1 className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
-                        </Typography>
+                        </h1>
                     </Animated>
                     <Card elevation={0} className={props.hasShadow ? "card" : undefined}>
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 {props.hasIcon ? (
                                     <>
                                         <ContactMailIcon className="contact-icon" />
@@ -198,7 +198,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                     </Animated>
                                 </Grid>
                             </Grid>
-                            <Animated dataAos="fade-up" style={{ marginTop: 16, marginBottom: 16 }}>
+                            <Animated dataAos="fade-up" className="mt-15 mb-15">
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (

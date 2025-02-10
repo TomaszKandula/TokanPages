@@ -47,35 +47,27 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
     return (
         <section className="section" style={props.background}>
             <Container className="container-super-wide">
-                <div style={{ paddingTop: 64, paddingBottom: 96 }}>
-                    <Animated dataAos="fade-down" style={{ textAlign: "center", marginBottom: 48 }}>
-                        <Typography className="article-features-title">
+                <div className="pt-64 pb-96">
+                    <Animated dataAos="fade-down" className="text-centre mb-48">
+                        <h1 className="article-features-title">
                             {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
-                        </Typography>
+                        </h1>
                     </Animated>
                     <Animated dataAos="fade-up">
                         <Grid container>
                             <Grid item xs={12} lg={6} className="article-features-content">
                                 <Card elevation={0} className="article-features-card">
                                     <CardContent className="article-features-card-content">
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                paddingTop: 16,
-                                                paddingLeft: 16,
-                                                paddingRight: 16,
-                                            }}
-                                        >
-                                            <Typography className="article-features-text1">
+                                        <div className="article-features-card-box">
+                                            <h2 className="article-features-text1">
                                                 {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
-                                            </Typography>
-                                            <div style={{ marginTop: 16, marginBottom: 40 }}>
+                                            </h2>
+                                            <div className="mt-15 mb-40">
                                                 <Typography className="article-features-text2">
                                                     {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
                                                 </Typography>
                                             </div>
-                                            <div style={{ paddingTop: 0, textAlign: "right" }}>
+                                            <div className="text-right">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
                                                 ) : (

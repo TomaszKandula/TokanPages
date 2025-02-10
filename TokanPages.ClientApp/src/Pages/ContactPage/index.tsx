@@ -33,12 +33,11 @@ export const ContactPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <ContactForm
-                pt={120}
-                pb={240}
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
                 background={{ backgroundColor: "#FCFCFC" }}
+                className="pt-120 pb-240"
             />
             <Cookies />
         </>

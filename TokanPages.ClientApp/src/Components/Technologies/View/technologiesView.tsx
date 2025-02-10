@@ -22,27 +22,24 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
 
     return (
         <section className="section-grey" style={props.background}>
-            <Container className="contaoner-super-wide">
-                <div style={{ paddingTop: 64, paddingBottom: 64 }}>
-                    <Animated dataAos="fade-down" style={{ marginBottom: 64 }}>
-                        <Typography className="technology-caption-text">
+            <Container className="container-super-wide">
+                <div className="technology-box">
+                    <Animated dataAos="fade-down" className="mb-64">
+                        <h1 className="technology-caption-text">
                             {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
-                        </Typography>
+                        </h1>
                     </Animated>
                     <Grid container spacing={6}>
                         <Grid item xs={12} sm={6}>
-                            <Animated
-                                dataAos="fade-up"
-                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
-                            >
+                            <Animated dataAos="fade-up" className="flex-centre mb-15">
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
                                     <CodeIcon className="technology-icon" />
                                 )}
-                                <Typography className="technology-feature-title">
+                                <h2 className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title1}
-                                </Typography>
+                                </h2>
                             </Animated>
                             <Animated dataAos="fade-up">
                                 <Typography component="span" className="technology-feature-text">
@@ -55,18 +52,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Animated
-                                dataAos="fade-up"
-                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
-                            >
+                            <Animated dataAos="fade-up" className="flex-centre mb-15">
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
                                     <LibraryBooksIcon className="technology-icon" />
                                 )}
-                                <Typography className="technology-feature-title">
+                                <h2 className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title2}
-                                </Typography>
+                                </h2>
                             </Animated>
                             <Animated dataAos="fade-up">
                                 <Typography component="span" className="technology-feature-text">
@@ -79,18 +73,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Animated
-                                dataAos="fade-up"
-                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
-                            >
+                            <Animated dataAos="fade-up" className="flex-centre mb-15">
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
                                     <StorageIcon className="technology-icon" />
                                 )}
-                                <Typography className="technology-feature-title">
+                                <h2 className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title3}
-                                </Typography>
+                                </h2>
                             </Animated>
                             <Animated dataAos="fade-up">
                                 <Typography component="span" className="technology-feature-text">
@@ -103,18 +94,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <Animated
-                                dataAos="fade-up"
-                                style={{ display: "flex", alignItems: "center", marginBottom: 16 }}
-                            >
+                            <Animated dataAos="fade-up" className="flex-centre mb-15">
                                 {data?.isLoading ? (
                                     <Skeleton variant="circle" className="technology-skeleton-circle" />
                                 ) : (
                                     <CloudIcon color="primary" className="technology-icon" />
                                 )}
-                                <Typography className="technology-feature-title">
+                                <h2 className="technology-feature-title">
                                     {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title4}
-                                </Typography>
+                                </h2>
                             </Animated>
                             <Animated dataAos="fade-up">
                                 <Typography component="span" className="technology-feature-text">

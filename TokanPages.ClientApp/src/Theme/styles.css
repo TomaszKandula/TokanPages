@@ -177,6 +177,18 @@ body::backdrop {
 
 /* SHARED STYLES BY COMPONENTS */
 
+.text-centre {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .loading-indicator {
     cursor: progress !important;
 }
@@ -384,6 +396,67 @@ body::backdrop {
 
 .violet-check-box:hover {
     background-color: #ebecfb !important;
+}
+
+.flex-centre {
+    display: flex; 
+    align-items: center;
+}
+
+/* MARGINS TOP */
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+/* MARGINS BOTTOM */
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-25 {
+    margin-bottom: 25px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mb-48 {
+    margin-bottom: 48px;   
+}
+
+.mb-64 {
+    margin-bottom: 64px;
+}
+
+/* PADDING TOP */
+
+.pt-64 {
+    padding-top: 64px;
+}
+
+.pt-120 {
+    padding-top: 120px;
+}
+
+/* PADDING BOTTOM */
+
+.pb-40 {
+    padding-bottom: 40px;
+}
+
+.pb-96 {
+    padding-bottom: 96px;
+}
+
+.pb-120 {
+    padding-bottom: 120px;
+}
+
+.pb-240 {
+    padding-bottom: 240px;
 }
 
 /* ACCESS DENIED COMPONENT */
@@ -616,14 +689,25 @@ body::backdrop {
     }
 }
 
+.article-features-card-box {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
 .article-features-title {
     text-align: center;
     font-size: 2rem !important;
+    font-weight: 500 !important;
     color: #6367ef !important;
 }
 
 .article-features-text1 {
     font-size: 1.5rem !important;
+    font-weight: 400 !important;
+    margin: 0;
 }
 
 .article-features-text2 {
@@ -766,6 +850,8 @@ body::backdrop {
 
 .contact-caption {
     font-size: 2rem !important;
+    font-weight: 500 !important;
+    margin: 0;
     color: #6367ef;
 }
 
@@ -1044,6 +1130,7 @@ body::backdrop {
 .featured-caption-text {
     text-align: center;
     font-size: 2rem !important;
+    font-weight: 500 !important;
     color: #6367ef;
 }
 
@@ -1058,6 +1145,7 @@ body::backdrop {
 .featured-card-title {
     font-size: 1.5rem !important;
     font-weight: 700 !important;
+    margin: 0;
     color: black;
 }
 
@@ -1138,6 +1226,11 @@ body::backdrop {
 
 /* TECHNOLOGIES COMPONENT */
 
+.technology-box {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
 .technology-icon {
     width: 32px;
     height: 32px;
@@ -1154,11 +1247,14 @@ body::backdrop {
 .technology-caption-text {
     text-align: center;
     font-size: 2rem !important;
+    font-weight: 500 !important;
     color: #6367ef;
 }
 
 .technology-feature-title {
     font-size: 1.5rem !important;
+    font-weight: 400 !important;
+    margin: 0;
     color: black;
 }
 
@@ -1173,6 +1269,7 @@ body::backdrop {
 .testimonials-caption-text {
     text-align: center;
     font-size: 2rem !important;
+    font-weight: 500 !important;
     color: #6367ef;
 }
 
@@ -1320,8 +1417,6 @@ body::backdrop {
 
 .header-content-subtitle {
     color: #616161;
-    font-size: 1.4rem !important;
-    font-weight: 700 !important;
     line-height: 1.5;
 }
 

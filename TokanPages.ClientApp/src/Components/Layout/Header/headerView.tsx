@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
@@ -85,23 +84,23 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                 </Grid>
                 <Grid item xs={12} md={5} className="header-section-container">
                     <div className="header-content-box">
-                        <Typography component="span" className="header-content-caption">
+                        <h1 className="header-content-caption">
                             {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} />}
-                        </Typography>
-                        <Typography component="span" className="header-content-subtitle">
+                        </h1>
+                        <h2 className="header-content-subtitle">
                             {data?.isLoading ? (
                                 <Skeleton variant="text" />
                             ) : (
                                 <ReactHtmlParser html={header?.subtitle} />
                             )}
-                        </Typography>
-                        <Typography component="span" className="header-content-description">
+                        </h2>
+                        <div className="header-content-description">
                             {data?.isLoading ? (
                                 <Skeleton variant="text" />
                             ) : (
                                 <ReactHtmlParser html={header?.description} />
                             )}
-                        </Typography>
+                        </div>
                         <div style={{ marginTop: 32 }}>
                             {data?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />
