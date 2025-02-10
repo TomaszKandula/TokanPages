@@ -403,10 +403,18 @@ body::backdrop {
     align-items: center;
 }
 
+.background-colour-light-grey {
+    background: #FCFCFC;
+}
+
 /* MARGINS TOP */
 
 .mt-15 {
     margin-top: 15px;
+}
+
+.mt-40 {
+    margin-top: 40px;
 }
 
 /* MARGINS BOTTOM */

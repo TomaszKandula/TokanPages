@@ -41,7 +41,12 @@ export const ActivationPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             {id ? (
-                <AccountActivate id={id} type={type} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+                <AccountActivate 
+                    id={id} 
+                    type={type} 
+                    className="pt-120 pb-240" 
+                    background="background-colour-light-grey"
+                />
             ) : (
                 <ErrorMessage />
             )}
