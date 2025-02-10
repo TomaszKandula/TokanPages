@@ -27,27 +27,27 @@ Object {
             <div
               class="header-content-box"
             >
-              <span
-                class="MuiTypography-root header-content-caption MuiTypography-body1"
+              <h1
+                class="header-content-caption"
               >
                 <div>
                   Welcome to my web page
                 </div>
-              </span>
-              <span
-                class="MuiTypography-root header-content-subtitle MuiTypography-body1"
+              </h1>
+              <h2
+                class="header-content-subtitle"
               >
                 <div>
                   For years...
                 </div>
-              </span>
-              <span
-                class="MuiTypography-root header-content-description MuiTypography-body1"
+              </h2>
+              <div
+                class="header-content-description"
               >
                 <div>
                   I do programming for a living...
                 </div>
-              </span>
+              </div>
               <div
                 style="margin-top: 32px;"
               >
@@ -116,27 +116,27 @@ Object {
           <div
             class="header-content-box"
           >
-            <span
-              class="MuiTypography-root header-content-caption MuiTypography-body1"
+            <h1
+              class="header-content-caption"
             >
               <div>
                 Welcome to my web page
               </div>
-            </span>
-            <span
-              class="MuiTypography-root header-content-subtitle MuiTypography-body1"
+            </h1>
+            <h2
+              class="header-content-subtitle"
             >
               <div>
                 For years...
               </div>
-            </span>
-            <span
-              class="MuiTypography-root header-content-description MuiTypography-body1"
+            </h2>
+            <div
+              class="header-content-description"
             >
               <div>
                 I do programming for a living...
               </div>
-            </span>
+            </div>
             <div
               style="margin-top: 32px;"
             >

@@ -12,21 +12,21 @@ Object {
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            style="text-align: center; padding-top: 64px; padding-bottom: 40px;"
+            class="text-centre pt-64 pb-40"
           >
             <div
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <p
-                class="MuiTypography-root featured-caption-text MuiTypography-body1"
+              <h1
+                class="featured-caption-text"
               >
                 FEATURED
-              </p>
+              </h1>
             </div>
           </div>
           <div
-            style="text-align: center; padding-bottom: 120px;"
+            class="text-centre pb-120"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -56,11 +56,11 @@ Object {
                       <div
                         class="MuiCardContent-root featured-card-content"
                       >
-                        <p
-                          class="MuiTypography-root featured-card-title MuiTypography-body1"
+                        <h2
+                          class="featured-card-title"
                         >
                           Memory Management
-                        </p>
+                        </h2>
                         <p
                           class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                         >
@@ -102,11 +102,11 @@ Object {
                       <div
                         class="MuiCardContent-root featured-card-content"
                       >
-                        <p
-                          class="MuiTypography-root featured-card-title MuiTypography-body1"
+                        <h2
+                          class="featured-card-title"
                         >
                           Stored Procedures
-                        </p>
+                        </h2>
                         <p
                           class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                         >
@@ -145,11 +145,11 @@ Object {
                       <div
                         class="MuiCardContent-root featured-card-content"
                       >
-                        <p
-                          class="MuiTypography-root featured-card-title MuiTypography-body1"
+                        <h2
+                          class="featured-card-title"
                         >
                           SQL Injection
-                        </p>
+                        </h2>
                         <p
                           class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                         >
@@ -177,21 +177,21 @@ Object {
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          style="text-align: center; padding-top: 64px; padding-bottom: 40px;"
+          class="text-centre pt-64 pb-40"
         >
           <div
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <p
-              class="MuiTypography-root featured-caption-text MuiTypography-body1"
+            <h1
+              class="featured-caption-text"
             >
               FEATURED
-            </p>
+            </h1>
           </div>
         </div>
         <div
-          style="text-align: center; padding-bottom: 120px;"
+          class="text-centre pb-120"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -221,11 +221,11 @@ Object {
                     <div
                       class="MuiCardContent-root featured-card-content"
                     >
-                      <p
-                        class="MuiTypography-root featured-card-title MuiTypography-body1"
+                      <h2
+                        class="featured-card-title"
                       >
                         Memory Management
-                      </p>
+                      </h2>
                       <p
                         class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                       >
@@ -267,11 +267,11 @@ Object {
                     <div
                       class="MuiCardContent-root featured-card-content"
                     >
-                      <p
-                        class="MuiTypography-root featured-card-title MuiTypography-body1"
+                      <h2
+                        class="featured-card-title"
                       >
                         Stored Procedures
-                      </p>
+                      </h2>
                       <p
                         class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                       >
@@ -310,11 +310,11 @@ Object {
                     <div
                       class="MuiCardContent-root featured-card-content"
                     >
-                      <p
-                        class="MuiTypography-root featured-card-title MuiTypography-body1"
+                      <h2
+                        class="featured-card-title"
                       >
                         SQL Injection
-                      </p>
+                      </h2>
                       <p
                         class="MuiTypography-root featured-card-subtitle MuiTypography-body1"
                       >
