@@ -54,12 +54,12 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 32, paddingBottom: props.pb ?? 80 }}>
+                <div className={!props.className ? "pt-32 pb-80" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 <AccountCircle className="account" />
                                 <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
@@ -168,14 +168,14 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     )}
                                 </Grid>
                             </Grid>
-                            <div style={{ marginTop: 16, marginBottom: 16 }}>
+                            <div className="mt-15 mb-15">
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
                                     <ActiveButton {...props} />
                                 )}
                             </div>
-                            <div style={{ textAlign: "right" }}>
+                            <div className="text-right">
                                 {props.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (

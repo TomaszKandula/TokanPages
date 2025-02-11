@@ -30,9 +30,8 @@ const defaultForm: SignupFormInput = {
 };
 
 export interface UserSignupProps {
-    pt?: number;
-    pb?: number;
-    background?: React.CSSProperties;
+    className?: string;
+    background?: string;
 }
 
 export const UserSignup = (props: UserSignupProps): React.ReactElement => {
@@ -160,8 +159,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
             labelLastName={content?.labelLastName}
             labelEmail={content?.labelEmail}
             labelPassword={content?.labelPassword}
-            pt={props.pt}
-            pb={props.pb}
+            className={props.className}
             background={props.background}
         />
     );

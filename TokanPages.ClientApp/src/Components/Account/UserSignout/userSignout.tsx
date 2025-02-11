@@ -7,9 +7,8 @@ import { UserSignoutView } from "./View/userSignoutView";
 import Validate from "validate.js";
 
 export interface UserSignoutProps {
-    pt?: number;
-    pb?: number;
-    background?: React.CSSProperties;
+    className?: string;
+    background?: string;
 }
 
 export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
@@ -54,8 +53,7 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
             status={status}
             buttonText={contentData?.buttonText}
             isAnonymous={isAnonymous}
-            pt={props.pt}
-            pb={props.pb}
+            className={props.className}
             background={props.background}
         />
     );

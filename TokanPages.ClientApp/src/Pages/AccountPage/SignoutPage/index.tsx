@@ -22,7 +22,7 @@ export const SignoutPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignout pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <UserSignout className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

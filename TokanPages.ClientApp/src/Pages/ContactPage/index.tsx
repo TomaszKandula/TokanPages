@@ -36,7 +36,7 @@ export const ContactPage = () => {
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
-                background={{ backgroundColor: "#FCFCFC" }}
+                background="background-colour-light-grey"
                 className="pt-120 pb-240"
             />
             <Cookies />

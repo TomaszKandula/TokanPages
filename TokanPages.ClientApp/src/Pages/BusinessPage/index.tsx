@@ -32,12 +32,11 @@ export const BusinessPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <BusinessForm
-                pt={15}
-                pb={30}
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
-                background={{ backgroundColor: "#FCFCFC" }}
+                className="pt-120 pb-240"
+                background="background-colour-light-grey"
             />
             <Cookies />
         </>

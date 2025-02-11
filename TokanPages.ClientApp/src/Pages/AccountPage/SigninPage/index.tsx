@@ -22,7 +22,7 @@ export const SigninPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignin pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <UserSignin className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

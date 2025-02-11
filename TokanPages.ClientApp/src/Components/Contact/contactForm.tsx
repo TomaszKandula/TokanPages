@@ -23,7 +23,7 @@ export interface ContactFormProps {
     hasCaption?: boolean;
     hasIcon?: boolean;
     hasShadow?: boolean;
-    background?: React.CSSProperties;
+    background?: string;
     className?: string;
 }
 

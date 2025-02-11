@@ -31,7 +31,7 @@ export const SettingsPage = (): React.ReactElement => {
             {isAnonymous ? (
                 <AccessDenied />
             ) : (
-                <div style={{ paddingBottom: 40 }}>
+                <div className="pb-40">
                     <UserInfo />
                     <UserPassword />
                     <UserDeactivation />

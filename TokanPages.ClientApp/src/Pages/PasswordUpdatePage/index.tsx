@@ -22,7 +22,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <PasswordUpdate pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <PasswordUpdate className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

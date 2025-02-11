@@ -27,7 +27,7 @@ interface UpdateStoreProps {
 }
 
 export interface UserInfoProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const UserInfo = (props: UserInfoProps): React.ReactElement => {

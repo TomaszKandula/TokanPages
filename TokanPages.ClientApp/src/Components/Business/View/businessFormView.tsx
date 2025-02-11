@@ -131,7 +131,7 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
                 <Typography component="span" className="business-pricing-text">
                     <ReactHtmlParser html={props.value.text} />
                 </Typography>
-                <div style={{ marginTop: 16 }}>
+                <div className="mt-15">
                     <Typography component="span" className="business-pricing-text">
                         <ReactHtmlParser html={props.value.price} />
                     </Typography>
@@ -155,10 +155,10 @@ const RenderElement = (props: RenderElementProps): React.ReactElement => {
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background} ?? ""`}>
             <Container className="container-wide">
-                <div style={{ paddingTop: 120, paddingBottom: 240 }}>
-                    <div style={{ textAlign: "center" }}>
+                <div className={!props.className ? "pt-120 pb-240" : props.className}>
+                    <div className="text-centre">
                         <Typography className="business-large-caption">
                             {props.hasCaption ? (
                                 <RenderText
@@ -173,7 +173,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                     </div>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 {props.hasIcon ? (
                                     <RenderElement
                                         isLoading={props.isLoading}
@@ -320,7 +320,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <div style={{ marginTop: 16, marginBottom: 8 }}>
+                                    <div className="mt-15 mb-8">
                                         <RenderElement
                                             isLoading={props.isLoading}
                                             height={45}
@@ -342,8 +342,8 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                             </Grid>
-                            <div style={{ marginTop: 16, marginBottom: 32 }}>
-                                <div style={{ marginTop: 8, marginBottom: 32 }}>
+                            <div style={{ marginTop: 16, marginBottom: 32 }} className="mt-15 mb-32">
+                                <div style={{ marginTop: 8, marginBottom: 32 }} className="mt-8 mb-32">
                                     <RenderElement
                                         isLoading={props.isLoading}
                                         height={45}
@@ -370,7 +370,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                             </div>
-                            <div className="business-info-box" style={{ marginBottom: 80 }}>
+                            <div className="business-info-box mb-80">
                                 <RenderElement
                                     isLoading={props.isLoading}
                                     height={45}
@@ -384,7 +384,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     }
                                 />
                             </div>
-                            <div style={{ marginTop: 40, marginBottom: 40 }}>
+                            <div className="mt-40 mb-40">
                                 <RenderElement
                                     isLoading={props.isLoading}
                                     height={40}

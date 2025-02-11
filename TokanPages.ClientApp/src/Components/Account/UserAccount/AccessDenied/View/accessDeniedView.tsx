@@ -29,18 +29,16 @@ const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
 
 export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
-                <div style={{ paddingTop: 120, paddingBottom: 64 }}>
+                <div className="pt-120 pb-64">
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                <Typography component="span" className="access-denied-caption">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.accessDeniedCaption}
-                                </Typography>
-                            </div>
-                            <CustomDivider marginTop={2} marginBottom={1} />
-                            <div style={{ paddingTop: 24, paddingBottom: 24 }}>
+                            <Typography component="span" className="access-denied-caption">
+                                {props.isLoading ? <Skeleton variant="text" /> : props.accessDeniedCaption}
+                            </Typography>
+                            <CustomDivider mt={2} mb={1} />
+                            <div className="pt-25 pb-25">
                                 <Typography component="span" className="access-denied-prompt">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />

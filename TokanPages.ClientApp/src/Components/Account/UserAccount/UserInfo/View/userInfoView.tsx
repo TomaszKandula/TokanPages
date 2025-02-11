@@ -92,24 +92,22 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     .replace("{name}", props.userImageName ?? "");
 
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Backdrop className="backdrop" open={props.isRequestingVerification}>
                 <CircularProgress color="inherit" />
             </Backdrop>
             <Container className="container-wide">
-                <div style={{ paddingTop: 120, paddingBottom: 40 }}>
+                <div className="pt-120 pb-40">
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
 
-                            <div style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                <Typography component="span" className="caption black">
-                                    <RenderText {...props} value={props.sectionAccountInformation?.caption} />
-                                </Typography>
-                            </div>
+                            <Typography component="span" className="caption black">
+                                <RenderText {...props} value={props.sectionAccountInformation?.caption} />
+                            </Typography>
 
-                            <CustomDivider marginTop={16} marginBottom={8} />
+                            <CustomDivider mt={15} mb={8} />
 
-                            <div style={{ paddingTop: 24, paddingBottom: 8 }}>
+                            <div className="pt-25 pb-8">
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3}>
                                         <Typography component="span" className="label">
@@ -153,7 +151,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     </Grid>
                                 </Grid>
 
-                                <CustomDivider marginTop={24} marginBottom={24} />
+                                <CustomDivider mt={25} mb={25} />
 
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3} className="label-centered">
@@ -176,7 +174,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     </Grid>
                                 </Grid>
 
-                                <CustomDivider marginTop={24} marginBottom={32} />
+                                <CustomDivider mt={25} mb={32} />
 
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} sm={3} className="label-centered">
@@ -278,10 +276,10 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     </Grid>
                                 </Grid>
 
-                                <CustomDivider marginTop={40} marginBottom={16} />
+                                <CustomDivider mt={40} mb={15} />
 
                                 <Grid className="button-container-update">
-                                    <div style={{ marginTop: 16, marginBottom: 16 }}>
+                                    <div className="mt-15 mb-15">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />
                                         ) : (

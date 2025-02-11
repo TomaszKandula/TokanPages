@@ -54,7 +54,7 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
                 <div className={!props.className ? "pt-64 pb-96" : props.className}>
                     <Animated dataAos="fade-down" className="text-centre">

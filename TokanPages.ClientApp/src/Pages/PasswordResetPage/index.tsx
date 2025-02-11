@@ -22,7 +22,7 @@ export const PasswordResetPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <PasswordReset pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <PasswordReset className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

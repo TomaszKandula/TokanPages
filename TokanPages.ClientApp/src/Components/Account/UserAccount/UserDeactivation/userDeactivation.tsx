@@ -9,7 +9,7 @@ import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 import { UserDeactivationView } from "./View/userDeactivationView";
 
 export interface UserDeactivationProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const UserDeactivation = (props: UserDeactivationProps): React.ReactElement => {

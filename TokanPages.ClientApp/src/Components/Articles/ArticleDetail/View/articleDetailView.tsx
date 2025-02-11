@@ -1,11 +1,11 @@
 import * as React from "react";
 import Container from "@material-ui/core/Container";
-import { Divider, Grid, Popover, Tooltip, Typography } from "@material-ui/core";
+import { Grid, Popover, Tooltip, Typography } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
 import { GET_FLAG_URL } from "../../../../Api/Request";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { Animated, RenderImage } from "../../../../Shared/Components";
+import { Animated, CustomDivider, RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ExtendedViewProps } from "../articleDetail";
@@ -39,9 +39,9 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
     const readTime = props.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingBottom: 96 }}>
+                <div className="pb-96">
                     <Animated dataAos="fade-down">
                         <Grid container spacing={2}>
                             <Grid item>
@@ -50,12 +50,12 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 </div>
                             </Grid>
                             <Grid item xs zeroMinWidth>
-                                <Typography className="alias-name" component="div" variant="subtitle1" align="left">
-                                    <div style={{ fontWeight: "bold" }}>{props.authorAliasName}</div>
+                                <Typography className="article-details-alias-name" component="div" align="left">
+                                    {props.authorAliasName}
                                 </Typography>
                                 <Popover
                                     id="mouse-over-popover"
-                                    className="popover"
+                                    className="article-details-popover"
                                     open={props.popoverOpen}
                                     anchorEl={props.popoverElement}
                                     anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
@@ -63,7 +63,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                     onClose={props.closePopoverHandler}
                                     disableRestoreFocus
                                 >
-                                    <div style={{ marginTop: 16, marginBottom: 16, marginLeft: 24, marginRight: 24 }}>
+                                    <div className="article-details-user">
                                         <Typography component="p" variant="subtitle2" color="textSecondary">
                                             {props.content.textFirstName}&nbsp;{props.authorFirstName}
                                         </Typography>
@@ -77,55 +77,55 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 </Popover>
                             </Grid>
                         </Grid>
-                        <div style={{ marginTop: 8, marginBottom: 40 }}>
-                            <div className="text-block">
+                        <div className="mt-8 mb-40">
+                            <div className="article-details-text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textLanguage}&nbsp;
                                 </Typography>
                                 <RenderImage
                                     basePath={GET_FLAG_URL}
                                     imageSource={props.flagImage}
-                                    className="flag-image"
+                                    className="article-details-flag-image"
                                 />
                             </div>
                             <Typography component="p" variant="subtitle1">
                                 {readTime}
                             </Typography>
-                            <div className="text-block">
+                            <div className="article-details-text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textPublished}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className="text-padding-left">
+                                <Typography component="p" variant="subtitle1" className="article-details-text-padding-left">
                                     {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
                                 </Typography>
                             </div>
-                            <div className="text-block">
+                            <div className="article-details-text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textUpdated}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className="text-padding-left">
+                                <Typography component="p" variant="subtitle1" className="article-details-text-padding-left">
                                     {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
                                 </Typography>
                             </div>
-                            <div className="text-block">
+                            <div className="article-details-text-block">
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textReadCount}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className="text-padding-left">
+                                <Typography component="p" variant="subtitle1" className="article-details-text-padding-left">
                                     {props.articleReadCount}
                                 </Typography>
                             </div>
                         </div>
                     </Animated>
                     <Animated dataAos="fade-up">{props.articleContent}</Animated>
-                    <div style={{ marginTop: 40 }}>
+                    <div className="mt-40">
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Tooltip
-                                    title={<span className="likes-tip">{<Emoji text={props.renderLikesLeft} />}</span>}
+                                    title={<span className="article-details-likes-tip">{<Emoji text={props.renderLikesLeft} />}</span>}
                                     arrow
                                 >
-                                    <ThumbUpIcon className="thumbs-medium" onClick={props.thumbsHandler} />
+                                    <ThumbUpIcon className="article-details-thumbs-medium" onClick={props.thumbsHandler} />
                                 </Tooltip>
                             </Grid>
                             <Grid item xs zeroMinWidth>
@@ -135,14 +135,16 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Grid>
                         </Grid>
                     </div>
-                    <Divider className="divider-bottom" />
+
+                    <CustomDivider mt={32} mb={32} />
+
                     <Grid container spacing={2}>
                         <Grid item>{props.renderLargeAvatar}</Grid>
                         <Grid item xs zeroMinWidth>
                             <Typography className="alias-name" component="span" variant="h6" color="textSecondary">
                                 {props.content.textWritten}
                             </Typography>
-                            <Typography style={{ fontWeight: 500 }} component="p" variant="h6">
+                            <Typography component="p" variant="h6" className="article-details-text-500">
                                 {props.renderAuthorName}
                             </Typography>
                             <Typography

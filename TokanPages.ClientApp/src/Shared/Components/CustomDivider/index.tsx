@@ -2,13 +2,13 @@ import * as React from "react";
 import { Divider } from "@material-ui/core";
 
 interface CustomDividerProps {
-    marginTop?: number;
-    marginBottom?: number;
+    mt?: number;
+    mb?: number;
 }
 
 export const CustomDivider = (props: CustomDividerProps): React.ReactElement => {
     return (
-        <div style={{ marginTop: props.marginTop ?? 0, marginBottom: props.marginBottom ?? 0 }}>
+        <div className={`mt-${props.mt ?? 0} mb-${props.mb ?? 0}`}>
             <Divider className="divider" />
         </div>
     );

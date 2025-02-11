@@ -31,7 +31,7 @@ export const UserNotesPage = (): React.ReactElement => {
             {isAnonymous ? (
                 <AccessDenied />
             ) : (
-                <div style={{ paddingBottom: 40 }}>
+                <div className="pb-40">
                     <UserNotes />
                 </div>
             )}

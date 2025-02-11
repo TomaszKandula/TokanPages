@@ -53,7 +53,6 @@ interface RenderRowProps {
     note: string;
     index: number;
     selection?: string;
-    style?: React.CSSProperties | undefined;
     onClick: (index: number) => void | undefined;
 }
 
@@ -64,7 +63,7 @@ interface RenderTextProps extends UserNotesViewProps {
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
     const highlightClass = props.selection === props.id ? "user-notes-highlight-row" : "";
     return (
-        <ListItem button className={highlightClass} style={props.style} key={props.id}>
+        <ListItem button className={highlightClass} key={props.id}>
             <ListItemText primary={props.note} onClick={() => props.onClick(props.index) } />
         </ListItem>
     );
@@ -85,19 +84,17 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                 <CircularProgress color="inherit" />
             </Backdrop>
             <Container className="container-wide">
-                <div style={{ paddingTop: 120, paddingBottom: 40 }}>
+                <div className="pt-120 pb-40">
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                <Typography component="span" className="caption black">
-                                    <RenderText {...props} value={props.captionText} />
-                                </Typography>
-                            </div>
+                            <Typography component="span" className="caption black">
+                                <RenderText {...props} value={props.captionText} />
+                            </Typography>
 
-                            <CustomDivider marginTop={16} marginBottom={8} />
+                            <CustomDivider mt={15} mb={8} />
 
-                            <div style={{ paddingTop: 24, paddingBottom: 8 }}>
-                                <div style={{ marginBottom: 24 }}>
+                            <div className="pt-25 pb-8">
+                                <div className="mb-25">
                                     <Typography component="span" className="label">
                                         <RenderText {...props} value={props.descriptionText} />
                                     </Typography>
@@ -108,7 +105,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         <Typography component="span" className="label">
                                             <RenderText {...props} value={`${props.listLabel}:`} />
                                         </Typography>
-                                        <div className={`user-notes-fixed-list user-notes-border ${props.isLoading ? "loading-indicator" : ""}`} style={{ marginTop: 10 }}>
+                                        <div className={`user-notes-fixed-list user-notes-border mt-10 ${props.isLoading ? "loading-indicator" : ""}`}>
                                             {!props.isLoading && props.userNotes?.map((value: UserNoteProps, index: number) => (
                                                 <RenderRow 
                                                     key={value.id} 
@@ -126,7 +123,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         <Typography component="span" className="label">
                                             <RenderText {...props} value={`${props.noteLabel}${noteUid}`} />
                                         </Typography>
-                                        <div className={"user-notes-text-box"} style={{ marginTop: 10 }}>
+                                        <div className="user-notes-text-box mt-10">
                                             <TextField
                                                 required
                                                 fullWidth

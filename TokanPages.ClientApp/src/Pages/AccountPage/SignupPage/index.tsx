@@ -22,7 +22,7 @@ export const SignupPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignup pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <UserSignup className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

@@ -21,12 +21,12 @@ interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background} ?? ""`}>
             <Container maxWidth="sm">
-                <div style={{ paddingTop: props.pt ?? 32, paddingBottom: props.pb ?? 80 }}>
+                <div className={!props.className ? "pt-32 pb-80" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 <AccountCircle className="account" />
                                 <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
@@ -41,7 +41,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                                     </Grid>
                                 </Grid>
                             </div>
-                            <div style={{ marginTop: 32 }}>
+                            <div className="mt-32">
                                 <Link to={`/${props.languageId}`} className="link">
                                     <Button
                                         fullWidth
