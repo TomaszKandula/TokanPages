@@ -302,7 +302,7 @@ Object {
                   style="text-align: right;"
                 >
                   <a
-                    href="/signin"
+                    href="/undefinedundefined"
                   />
                 </div>
               </div>
@@ -610,7 +610,7 @@ Object {
                 style="text-align: right;"
               >
                 <a
-                  href="/signin"
+                  href="/undefinedundefined"
                 />
               </div>
             </div>

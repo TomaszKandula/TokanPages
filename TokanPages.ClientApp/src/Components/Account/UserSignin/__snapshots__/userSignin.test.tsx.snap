@@ -167,14 +167,14 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/signup"
+                      href="/undefinedundefined"
                     />
                   </div>
                   <div
                     class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/resetpassword"
+                      href="/undefinedundefined"
                     />
                   </div>
                 </div>
@@ -348,14 +348,14 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/signup"
+                    href="/undefinedundefined"
                   />
                 </div>
                 <div
                   class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/resetpassword"
+                    href="/undefinedundefined"
                   />
                 </div>
               </div>

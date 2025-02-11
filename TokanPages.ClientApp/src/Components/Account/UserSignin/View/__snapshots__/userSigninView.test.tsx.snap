@@ -185,7 +185,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/signup"
+                      href="/en/signup"
                     >
                       Don't have an account?
                     </a>
@@ -194,7 +194,7 @@ Object {
                     class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/resetpassword"
+                      href="/en/reset"
                     >
                       Forgot password?
                     </a>
@@ -388,7 +388,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/signup"
+                    href="/en/signup"
                   >
                     Don't have an account?
                   </a>
@@ -397,7 +397,7 @@ Object {
                   class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/resetpassword"
+                    href="/en/reset"
                   >
                     Forgot password?
                   </a>
