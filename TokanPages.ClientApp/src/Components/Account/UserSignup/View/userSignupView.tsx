@@ -10,6 +10,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
@@ -17,11 +18,12 @@ import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupProps } from "../userSignup";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
+    languageId: string;
     caption: string;
     warning: string;
     consent: string;
     button: string;
-    link: string;
+    link: LinkDto;
     buttonHandler: () => void;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
@@ -35,6 +37,11 @@ interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     labelLastName: string;
     labelEmail: string;
     labelPassword: string;
+}
+
+interface RedirectToProps {
+    path: string; 
+    name: string;
 }
 
 const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
@@ -52,8 +59,8 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
     );
 };
 
-const RedirectTo = (args: { path: string; name: string }): React.ReactElement => {
-    return <Link to={args.path}>{args.name}</Link>;
+const RedirectTo = (props: RedirectToProps): React.ReactElement => {
+    return <Link to={props.path}>{props.name}</Link>;
 };
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => {
@@ -183,7 +190,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                 {props.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <RedirectTo path="/signin" name={props.link} />
+                                    <RedirectTo path={`/${props.languageId}${props.link.href}`} name={props.link.text} />
                                 )}
                             </div>
                         </CardContent>

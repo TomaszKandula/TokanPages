@@ -429,7 +429,10 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             caption: "",
             button: "",
-            link: "",
+            link: {
+                text: "",
+                href: ""
+            },
             warning: "",
             consent: "",
             labelFirstName: "",
