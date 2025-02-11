@@ -8,16 +8,18 @@ import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { LinkPropsDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
+    languageId: string;
     caption: string;
     button: string;
-    link1: string;
-    link2: string;
+    link1: LinkPropsDto;
+    link2: LinkPropsDto;
     buttonHandler: () => void;
     progress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -26,6 +28,11 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     password: string;
     labelEmail: string;
     labelPassword: string;
+}
+
+interface RedirectToProps {
+    path: string; 
+    name: string;
 }
 
 const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
@@ -43,8 +50,8 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
     );
 };
 
-const RedirectTo = (args: { path: string; name: string }): React.ReactElement => {
-    return <Link to={args.path}>{args.name}</Link>;
+const RedirectTo = (props: RedirectToProps): React.ReactElement => {
+    return <Link to={props.path}>{props.name}</Link>;
 };
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
@@ -108,14 +115,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path="/signup" name={props.link1} />
+                                        <RedirectTo path={`/${props.languageId}${props.link1.href}`} name={props.link1.text} />
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6} className="secondaryAction">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path="/resetpassword" name={props.link2} />
+                                        <RedirectTo path={`/${props.languageId}${props.link2.href}`} name={props.link2.text} />
                                     )}
                                 </Grid>
                             </Grid>

@@ -114,6 +114,7 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     return (
         <UserSigninView
             isLoading={data?.isLoading}
+            languageId={languageId}
             caption={content?.caption}
             button={content?.button}
             link1={content?.link1}
