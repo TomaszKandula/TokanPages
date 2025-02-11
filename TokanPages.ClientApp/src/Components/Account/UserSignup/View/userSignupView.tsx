@@ -190,7 +190,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                 {props.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <RedirectTo path={`/${props.languageId}${props.link.href}`} name={props.link.text} />
+                                    <RedirectTo path={`/${props.languageId}${props.link?.href}`} name={props.link?.text} />
                                 )}
                             </div>
                         </CardContent>

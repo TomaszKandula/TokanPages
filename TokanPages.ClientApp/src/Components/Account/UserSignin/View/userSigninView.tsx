@@ -115,14 +115,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path={`/${props.languageId}${props.link1.href}`} name={props.link1.text} />
+                                        <RedirectTo path={`/${props.languageId}${props.link1?.href}`} name={props.link1?.text} />
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6} className="secondaryAction">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path={`/${props.languageId}${props.link2.href}`} name={props.link2.text} />
+                                        <RedirectTo path={`/${props.languageId}${props.link2?.href}`} name={props.link2?.text} />
                                     )}
                                 </Grid>
                             </Grid>
