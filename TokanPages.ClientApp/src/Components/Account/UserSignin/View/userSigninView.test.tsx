@@ -10,7 +10,6 @@ describe("test account group component: userSigninView", () => {
             <BrowserRouter>
                 <UserSigninView
                     isLoading={false}
-                    languageId="en"
                     caption="Sign in"
                     button="Sign in"
                     link1={{ 

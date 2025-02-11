@@ -10,7 +10,6 @@ describe("test account group component: userSignupView", () => {
             <BrowserRouter>
                 <UserSignupView
                     isLoading={false}
-                    languageId="en"
                     caption="Create a new account"
                     warning="Please use..."
                     consent="I agree to the terms of use and privacy policy."
