@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 32px; padding-bottom: 80px;"
+            class="pt-32 pb-80"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -21,7 +21,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  style="text-align: center; margin-bottom: 24px;"
+                  class="text-centre mb-25"
                 >
                   <svg
                     aria-hidden="true"
@@ -286,7 +286,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 16px; margin-bottom: 16px;"
+                  class="mt-15 mb-15"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -299,7 +299,7 @@ Object {
                   </button>
                 </div>
                 <div
-                  style="text-align: right;"
+                  class="text-right"
                 >
                   <a
                     href="/undefinedundefined"
@@ -314,13 +314,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 32px; padding-bottom: 80px;"
+          class="pt-32 pb-80"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -329,7 +329,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                style="text-align: center; margin-bottom: 24px;"
+                class="text-centre mb-25"
               >
                 <svg
                   aria-hidden="true"
@@ -594,7 +594,7 @@ Object {
                 </div>
               </div>
               <div
-                style="margin-top: 16px; margin-bottom: 16px;"
+                class="mt-15 mb-15"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -607,7 +607,7 @@ Object {
                 </button>
               </div>
               <div
-                style="text-align: right;"
+                class="text-right"
               >
                 <a
                   href="/undefinedundefined"

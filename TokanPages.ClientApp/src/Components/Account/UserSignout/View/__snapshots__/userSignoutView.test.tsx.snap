@@ -6,14 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
-        style="background-color: white;"
+        class="section class-colour-white ?? \\"\\""
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthSm"
         >
           <div
-            style="padding-top: 15px; padding-bottom: 15px;"
+            class="mt-15"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -22,7 +21,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  style="text-align: center; margin-bottom: 24px;"
+                  class="text-centre mb-25"
                 >
                   <svg
                     aria-hidden="true"
@@ -56,7 +55,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 32px;"
+                  class="mt-32"
                 >
                   <a
                     class="link"
@@ -85,14 +84,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
-      style="background-color: white;"
+      class="section class-colour-white ?? \\"\\""
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthSm"
       >
         <div
-          style="padding-top: 15px; padding-bottom: 15px;"
+          class="mt-15"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -101,7 +99,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                style="text-align: center; margin-bottom: 24px;"
+                class="text-centre mb-25"
               >
                 <svg
                   aria-hidden="true"
@@ -135,7 +133,7 @@ Object {
                 </div>
               </div>
               <div
-                style="margin-top: 32px;"
+                class="mt-32"
               >
                 <a
                   class="link"

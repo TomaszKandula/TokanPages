@@ -6,14 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="clients-section"
-        style="background-color: white;"
+        class="clients-section class-colour-white ?? \\"\\""
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            style="display: flex; flex-wrap: wrap; justify-content: center; padding-top: 32px;"
+            class="clients-render-images"
           />
         </div>
       </section>
@@ -21,14 +20,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="clients-section"
-      style="background-color: white;"
+      class="clients-section class-colour-white ?? \\"\\""
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          style="display: flex; flex-wrap: wrap; justify-content: center; padding-top: 32px;"
+          class="clients-render-images"
         />
       </div>
     </section>

@@ -45,8 +45,7 @@ Object {
                   class="cookie-window-options-list"
                 >
                   <label
-                    class="cookie-window-checkbox"
-                    style="cursor: not-allowed;"
+                    class="cookie-window-checkbox pointer-not-allowed"
                   >
                     <input
                       checked=""
@@ -179,8 +178,7 @@ Object {
                 class="cookie-window-options-list"
               >
                 <label
-                  class="cookie-window-checkbox"
-                  style="cursor: not-allowed;"
+                  class="cookie-window-checkbox pointer-not-allowed"
                 >
                   <input
                     checked=""
@@ -533,18 +531,15 @@ Object {
               class="cookie-window-box"
             >
               <div
-                class="cookie-window-section"
-                style="height: 300px; text-align: left;"
+                class="cookie-window-section cookie-window-section-fixed-height cookie-window-section-left"
               >
                 <p
-                  class="cookie-window-section-text"
-                  style="text-align: left;"
+                  class="cookie-window-section-text cookie-window-section-left"
                 >
                   Loading...
                 </p>
                 <p
-                  class="cookie-window-section-text"
-                  style="text-align: left;"
+                  class="cookie-window-section-text cookie-window-section-left"
                 >
                   Please wait...
                   <span
@@ -579,18 +574,15 @@ Object {
             class="cookie-window-box"
           >
             <div
-              class="cookie-window-section"
-              style="height: 300px; text-align: left;"
+              class="cookie-window-section cookie-window-section-fixed-height cookie-window-section-left"
             >
               <p
-                class="cookie-window-section-text"
-                style="text-align: left;"
+                class="cookie-window-section-text cookie-window-section-left"
               >
                 Loading...
               </p>
               <p
-                class="cookie-window-section-text"
-                style="text-align: left;"
+                class="cookie-window-section-text cookie-window-section-left"
               >
                 Please wait...
                 <span
