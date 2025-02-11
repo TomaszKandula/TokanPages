@@ -68,7 +68,7 @@ describe("test account group component: userInfoView", () => {
                         updateButtonText: "Update",
                         uploadAvatarButtonText: "Upload",
                     }}
-                    background={{ backgroundColor: "white" }}
+                    background="class-colour-white"
                     userAbout={{
                         multiline: undefined,
                         minRows: undefined,
