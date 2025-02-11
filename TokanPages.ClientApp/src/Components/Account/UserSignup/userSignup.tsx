@@ -41,7 +41,6 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data?.components.templates;
     const content = data?.components.accountUserSignup;
 
@@ -143,7 +142,6 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     return (
         <UserSignupView
             isLoading={data?.isLoading}
-            languageId={languageId}
             caption={content?.caption}
             warning={content?.warning}
             consent={content?.consent}

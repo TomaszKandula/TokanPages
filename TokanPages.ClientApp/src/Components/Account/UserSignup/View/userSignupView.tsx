@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -13,12 +12,11 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupProps } from "../userSignup";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
-    languageId: string;
     caption: string;
     warning: string;
     consent: string;
@@ -39,11 +37,6 @@ interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     labelPassword: string;
 }
 
-interface RedirectToProps {
-    path: string; 
-    name: string;
-}
-
 const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
     return (
         <Button
@@ -57,10 +50,6 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
             {!props.progress ? props.button : <CircularProgress size={20} />}
         </Button>
     );
-};
-
-const RedirectTo = (props: RedirectToProps): React.ReactElement => {
-    return <Link to={props.path}>{props.name}</Link>;
 };
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => {
@@ -190,7 +179,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                 {props.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <RedirectTo path={`/${props.languageId}${props.link?.href}`} name={props.link?.text} />
+                                    <RedirectTo path={props.link?.href} name={props.link?.text} />
                                 )}
                             </div>
                         </CardContent>

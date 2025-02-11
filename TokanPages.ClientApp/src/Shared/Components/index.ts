@@ -12,6 +12,7 @@ export { RenderImage } from "./CustomImage/customImage";
 export { GetIcon } from "./GetIcon/getIcon";
 export { RenderSideMenu } from "./RenderMenu/renderSideMenu";
 export { RenderNavbarMenu } from "./RenderMenu/renderNavbarMenu";
+export { RedirectTo } from "./RedirectWrapper";
 export { ProgressBarView as ProgressBar } from "./ProgressBar";
 export { PdfCanvas } from "./PdfCanvas";
 export { ScrollToTop, HideOnScroll, ProgressOnScroll, ClearPageStart } from "./Scroll";

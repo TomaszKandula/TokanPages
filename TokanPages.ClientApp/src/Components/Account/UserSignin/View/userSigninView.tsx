@@ -2,7 +2,6 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
@@ -11,11 +10,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
-    languageId: string;
     caption: string;
     button: string;
     link1: LinkDto;
@@ -28,11 +26,6 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     password: string;
     labelEmail: string;
     labelPassword: string;
-}
-
-interface RedirectToProps {
-    path: string; 
-    name: string;
 }
 
 const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
@@ -48,10 +41,6 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
             {!props.progress ? props.button : <CircularProgress size={20} />}
         </Button>
     );
-};
-
-const RedirectTo = (props: RedirectToProps): React.ReactElement => {
-    return <Link to={props.path}>{props.name}</Link>;
 };
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
@@ -115,14 +104,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path={`/${props.languageId}${props.link1?.href}`} name={props.link1?.text} />
+                                        <RedirectTo path={props.link1?.href} name={props.link1?.text} />
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6} className="secondaryAction">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path={`/${props.languageId}${props.link2?.href}`} name={props.link2?.text} />
+                                        <RedirectTo path={props.link2?.href} name={props.link2?.text} />
                                     )}
                                 </Grid>
                             </Grid>
