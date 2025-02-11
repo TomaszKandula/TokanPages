@@ -352,7 +352,7 @@ Object {
                   style="text-align: right;"
                 >
                   <a
-                    href="/en/signin"
+                    href="/undefined/signin"
                   >
                     Already have an account? Sign in
                   </a>
@@ -712,7 +712,7 @@ Object {
                 style="text-align: right;"
               >
                 <a
-                  href="/en/signin"
+                  href="/undefined/signin"
                 >
                   Already have an account? Sign in
                 </a>
