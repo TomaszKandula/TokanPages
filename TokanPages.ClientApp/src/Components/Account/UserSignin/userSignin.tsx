@@ -21,9 +21,8 @@ const formDefault: SigninFormInput = {
 };
 
 export interface UserSigninProps {
-    pt?: number;
-    pb?: number;
-    background?: React.CSSProperties;
+    className?: string;
+    background?: string;
 }
 
 export const UserSignin = (props: UserSigninProps): React.ReactElement => {
@@ -126,8 +125,7 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
             password={form.password}
             labelEmail={content?.labelEmail}
             labelPassword={content?.labelPassword}
-            pt={props.pt}
-            pb={props.pb}
+            className={props.className}
             background={props.background}
         />
     );

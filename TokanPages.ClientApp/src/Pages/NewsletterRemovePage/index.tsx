@@ -5,6 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
 import { Navigation } from "../../Components/Layout";
+import { Cookies } from "../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -17,13 +18,19 @@ export const NewsletterRemovePage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "newsletterRemove"], "NewsletterRemovePage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "templates", 
+            "cookiesPrompt", 
+            "newsletterRemove"
+        ], "NewsletterRemovePage"));
     }, [language?.id]);
 
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <NewsletterRemove id={id} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <NewsletterRemove id={id} className="pt-120 pb-240" background="background-colour-light-grey" />
+            <Cookies />
         </>
     );
 };

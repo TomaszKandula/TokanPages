@@ -407,8 +407,14 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             caption: "",
             button: "",
-            link1: "",
-            link2: "",
+            link1: {
+                text: "",
+                href: ""
+            },
+            link2: {
+                text: "",
+                href: ""
+            },
             labelEmail: "",
             labelPassword: "",
         },
@@ -423,7 +429,10 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             caption: "",
             button: "",
-            link: "",
+            link: {
+                text: "",
+                href: ""
+            },
             warning: "",
             consent: "",
             labelFirstName: "",

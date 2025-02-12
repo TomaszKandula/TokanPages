@@ -4,7 +4,7 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { AccessDeniedView } from "./View/accessDeniedView";
 
 export interface AccessDeniedProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const AccessDenied = (props: AccessDeniedProps): React.ReactElement => {

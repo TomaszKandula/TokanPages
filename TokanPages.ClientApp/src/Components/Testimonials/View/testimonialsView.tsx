@@ -33,7 +33,7 @@ interface TestimonialsViewProps extends ViewProperties {
     name3: string;
     occupation3: string;
     text3: string;
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 interface RenderSkeletonOrElementProps extends TestimonialsViewProps {
@@ -53,16 +53,16 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
     };
 
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
-                <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 120 }}>
+                <div className="text-centre pt-64 pb-120">
                     <Animated dataAos="fade-down">
-                        <Typography className="testimonials-caption-text">
+                        <h1 className="testimonials-caption-text">
                             <RenderSkeletonOrElement {...props} variant="text" object={props.caption?.toUpperCase()} />
-                        </Typography>
+                        </h1>
                     </Animated>
                 </div>
-                <div style={{ textAlign: "center", paddingBottom: 120 }}>
+                <div className="text-centre pb-120">
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4} className="testimonials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={350}>

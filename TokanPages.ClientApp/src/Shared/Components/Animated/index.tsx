@@ -6,22 +6,22 @@ interface AnimatedProps {
     isDisabled?: boolean;
     dataAos: Animations;
     dataAosDelay?: number;
-    style?: React.CSSProperties;
+    className?: string;
     children: React.ReactNode;
 }
 
 export const Animated = (props: AnimatedProps): React.ReactElement => {
     const hasSnapshot = HasSnapshotMode();
     if (hasSnapshot) {
-        return <div style={props.style}>{props.children}</div>;
+        return <div className={props.className}>{props.children}</div>;
     }
 
     if (props.isDisabled) {
-        return <div style={props.style}>{props.children}</div>;
+        return <div className={props.className}>{props.children}</div>;
     }
 
     return (
-        <div style={props.style} data-aos={props.dataAos} data-aos-delay={props.dataAosDelay ?? 0}>
+        <div className={props.className} data-aos={props.dataAos} data-aos-delay={props.dataAosDelay ?? 0}>
             {props.children}
         </div>
     );

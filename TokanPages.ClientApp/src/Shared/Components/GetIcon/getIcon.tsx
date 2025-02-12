@@ -2,6 +2,7 @@ import * as React from "react";
 import Icon from "@material-ui/core/Icon";
 import GitHub from "@material-ui/icons/GitHub";
 import LinkedIn from "@material-ui/icons/LinkedIn";
+import Instagram from "@material-ui/icons/Instagram";
 
 interface Properties {
     iconName: string;
@@ -13,6 +14,8 @@ const GetNonMaterialIcon = (name: string): React.ReactElement | undefined => {
             return <GitHub />;
         case "linkedin":
             return <LinkedIn />;
+        case "instagram":
+            return <Instagram />;
         default:
             return undefined;
     }

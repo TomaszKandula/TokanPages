@@ -27,10 +27,9 @@ export interface ServiceItemCardProps {
 }
 
 export interface BusinessFormProps {
-    pt?: number;
-    pb?: number;
     hasCaption?: boolean;
     hasIcon?: boolean;
     hasShadow?: boolean;
-    background?: React.CSSProperties;
+    className?: string;
+    background?: string;
 }

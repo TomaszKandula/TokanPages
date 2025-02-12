@@ -16,7 +16,7 @@ import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
 export interface ExtendedViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export interface ArticleDetailProps extends ExtendedViewProps {

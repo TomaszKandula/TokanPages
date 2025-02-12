@@ -17,7 +17,7 @@ import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export interface UserRemovalProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {

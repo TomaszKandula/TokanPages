@@ -82,10 +82,14 @@ export const Cookies = (): React.ReactElement => {
 
     /* SWITCH FROM LOADING SCREEN TO MAIN SCREEN */
     React.useEffect(() => {
+        if (hasCookieConsent) {
+            return;
+        }
+
         if (isLoading && hasContentLoadingFinished) {
             setTimeout(() => setLoading(false), 3000);
         }
-    }, [isLoading, hasContentLoadingFinished]);
+    }, [hasCookieConsent, isLoading, hasContentLoadingFinished]);
 
     /* CLOSE WINDOW AND ACCEPT NECESSARY CONSENT */
     React.useEffect(() => {

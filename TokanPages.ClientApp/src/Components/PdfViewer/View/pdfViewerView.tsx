@@ -13,7 +13,7 @@ interface PdfViewerViewProps {
     pdfDocument: any;
     scale?: number;
     pdfUrl?: string;
-    background?: React.CSSProperties;
+    background?: string;
     onPreviousPage?: React.MouseEventHandler<SVGSVGElement>;
     onNextPage?: React.MouseEventHandler<SVGSVGElement>;
 }
@@ -34,9 +34,9 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide-1000">
-                <div style={{ paddingTop: 80, paddingBottom: 48 }}>
+                <div className="pt-80 pb-48">
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
                             <div className="pdf-header">

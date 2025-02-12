@@ -42,10 +42,10 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
     return (
         <section className="section">
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 144, paddingBottom: props.pb ?? 80 }}>
+                <div className={!props.className ? "pt-140 pb-80" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 <AccountCircle className="newsletter-update-account" />
                                 <Typography className="newsletter-update-caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
@@ -66,7 +66,7 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
                                     />
                                 </Grid>
                             </Grid>
-                            <div style={{ marginTop: 16, marginBottom: 16 }}>
+                            <div className="mt-15 mb-15">
                                 {props.isLoading ? <Skeleton variant="rect" /> : <ActiveButton {...props} />}
                             </div>
                         </CardContent>

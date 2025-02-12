@@ -13,12 +13,6 @@ import Validate from "validate.js";
 
 interface CustomBreadcrumbProps {
     isLoading: boolean;
-    mt?: number;
-    mb?: number;
-    mr?: number;
-    ml?: number;
-    mtDivider?: number;
-    mbDivider?: number;
     watchparam?: string;
 }
 
@@ -179,14 +173,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <div
-            style={{
-                marginTop: props.mt,
-                marginBottom: props.mb,
-                marginRight: props.mr,
-                marginLeft: props.ml,
-            }}
-        >
+        <div className="custom-breadcrumb-container">
             {props.isLoading ? (
                 <Skeleton variant="rect" width={220} height={20} />
             ) : (
@@ -202,7 +189,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                     {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
                 </Breadcrumbs>
             )}
-            <div style={{ marginTop: props.mtDivider, marginBottom: props.mbDivider }}>
+            <div className="custom-breadcrumb-divider">
                 <Divider />
             </div>
         </div>

@@ -6,24 +6,24 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 64px; padding-bottom: 96px;"
+            class="pt-64 pb-96"
           >
             <div
+              class="text-centre mb-48"
               data-aos="fade-down"
               data-aos-delay="0"
-              style="text-align: center; margin-bottom: 48px;"
             >
-              <p
-                class="MuiTypography-root article-features-title MuiTypography-body1"
+              <h1
+                class="article-features-title"
               >
                 ARTICLES
-              </p>
+              </h1>
             </div>
             <div
               data-aos="fade-up"
@@ -42,15 +42,15 @@ Object {
                       class="MuiCardContent-root article-features-card-content"
                     >
                       <div
-                        style="display: flex; flex-direction: column; padding-top: 16px; padding-left: 16px; padding-right: 16px;"
+                        class="article-features-card-box"
                       >
-                        <p
-                          class="MuiTypography-root article-features-text1 MuiTypography-body1"
+                        <h2
+                          class="article-features-text1"
                         >
                           .NET Core, Azure, databases and others.
-                        </p>
+                        </h2>
                         <div
-                          style="margin-top: 16px; margin-bottom: 40px;"
+                          class="mt-15 mb-40"
                         >
                           <p
                             class="MuiTypography-root article-features-text2 MuiTypography-body1"
@@ -59,7 +59,7 @@ Object {
                           </p>
                         </div>
                         <div
-                          style="padding-top: 0px; text-align: right;"
+                          class="text-right"
                         >
                           <a
                             class="link"
@@ -164,24 +164,24 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 64px; padding-bottom: 96px;"
+          class="pt-64 pb-96"
         >
           <div
+            class="text-centre mb-48"
             data-aos="fade-down"
             data-aos-delay="0"
-            style="text-align: center; margin-bottom: 48px;"
           >
-            <p
-              class="MuiTypography-root article-features-title MuiTypography-body1"
+            <h1
+              class="article-features-title"
             >
               ARTICLES
-            </p>
+            </h1>
           </div>
           <div
             data-aos="fade-up"
@@ -200,15 +200,15 @@ Object {
                     class="MuiCardContent-root article-features-card-content"
                   >
                     <div
-                      style="display: flex; flex-direction: column; padding-top: 16px; padding-left: 16px; padding-right: 16px;"
+                      class="article-features-card-box"
                     >
-                      <p
-                        class="MuiTypography-root article-features-text1 MuiTypography-body1"
+                      <h2
+                        class="article-features-text1"
                       >
                         .NET Core, Azure, databases and others.
-                      </p>
+                      </h2>
                       <div
-                        style="margin-top: 16px; margin-bottom: 40px;"
+                        class="mt-15 mb-40"
                       >
                         <p
                           class="MuiTypography-root article-features-text2 MuiTypography-body1"
@@ -217,7 +217,7 @@ Object {
                         </p>
                       </div>
                       <div
-                        style="padding-top: 0px; text-align: right;"
+                        class="text-right"
                       >
                         <a
                           class="link"

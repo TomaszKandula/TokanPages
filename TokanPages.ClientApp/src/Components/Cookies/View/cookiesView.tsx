@@ -30,7 +30,7 @@ interface Properties extends ViewProperties {
 const CookieWindowOptions = (props: Properties): React.ReactElement => {
     return (
         <div className="cookie-window-options-list">
-            <label className="cookie-window-checkbox" style={{ cursor: "not-allowed" }}>
+            <label className="cookie-window-checkbox pointer-not-allowed">
                 <input 
                     type="checkbox" 
                     className="cookie-window-checkbox-input" 
@@ -147,9 +147,9 @@ const CookieWindowLoading = (props: Properties): React.ReactElement => {
                 {props.caption}
             </div>
             <div className="cookie-window-box">
-                <div className="cookie-window-section" style={{ height: "300px", textAlign: "left" }}>
+                <div className="cookie-window-section cookie-window-section-fixed-height cookie-window-section-left">
                     {props.loading?.map((value: string, index: number) => (
-                    <p className="cookie-window-section-text" style={{ textAlign: "left" }} key={index} >
+                    <p className="cookie-window-section-text cookie-window-section-left" key={index} >
                         {value.replace("{DT}", formattedDateTime)}
                         {maxLength === index ? <span className="cookie-window-caret"></span> : null}
                     </p>
@@ -165,7 +165,7 @@ const CookieWindowContainer = (props: Properties): React.ReactElement => {
     const transition = props.isLoading ? undefined : 0;
     return (
         <div className={style}>
-            <Backdrop className="backdrop" open={true} transitionDuration={transition}>
+            <Backdrop className="backdrop" open={true} transitionDuration={transition} aria-hidden={false}>
                 {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
             </Backdrop>
         </div>
@@ -178,11 +178,11 @@ export const CookiesView = (props: Properties): React.ReactElement => {
     }
 
     if (props.hasCookieConsent) {
-        return <></>;
+        return <div className="cookie-window-open"></div>;
     }
 
     if (props.loading?.length === 0) {
-        return <></>;
+        return <div className="cookie-window-open"></div>;
     }
 
     return <CookieWindowContainer {...props} />;

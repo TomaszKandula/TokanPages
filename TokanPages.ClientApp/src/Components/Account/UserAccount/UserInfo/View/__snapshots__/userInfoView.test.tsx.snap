@@ -6,8 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
-        style="background-color: white;"
+        class="section class-colour-white"
       >
         <div
           aria-hidden="true"
@@ -38,7 +37,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 120px; padding-bottom: 40px;"
+            class="pt-120 pb-40"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -46,24 +45,20 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <div
-                  style="padding-top: 0px; padding-bottom: 0px;"
+                <span
+                  class="MuiTypography-root caption black MuiTypography-body1"
                 >
-                  <span
-                    class="MuiTypography-root caption black MuiTypography-body1"
-                  >
-                    USER DETAILS
-                  </span>
-                </div>
+                  USER DETAILS
+                </span>
                 <div
-                  style="margin-top: 16px; margin-bottom: 8px;"
+                  class="mt-15 mb-8"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  style="padding-top: 24px; padding-bottom: 8px;"
+                  class="pt-25 pb-8"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -139,7 +134,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    style="margin-top: 24px; margin-bottom: 24px;"
+                    class="mt-25 mb-25"
                   >
                     <hr
                       class="MuiDivider-root divider"
@@ -197,7 +192,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    style="margin-top: 24px; margin-bottom: 32px;"
+                    class="mt-25 mb-32"
                   >
                     <hr
                       class="MuiDivider-root divider"
@@ -384,7 +379,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    style="margin-top: 40px; margin-bottom: 16px;"
+                    class="mt-40 mb-15"
                   >
                     <hr
                       class="MuiDivider-root divider"
@@ -394,7 +389,7 @@ Object {
                     class="MuiGrid-root button-container-update"
                   >
                     <div
-                      style="margin-top: 16px; margin-bottom: 16px;"
+                      class="mt-15 mb-15"
                     >
                       <button
                         class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update MuiButton-fullWidth"
@@ -419,8 +414,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
-      style="background-color: white;"
+      class="section class-colour-white"
     >
       <div
         aria-hidden="true"
@@ -451,7 +445,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 120px; padding-bottom: 40px;"
+          class="pt-120 pb-40"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -459,24 +453,20 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <div
-                style="padding-top: 0px; padding-bottom: 0px;"
+              <span
+                class="MuiTypography-root caption black MuiTypography-body1"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
-                >
-                  USER DETAILS
-                </span>
-              </div>
+                USER DETAILS
+              </span>
               <div
-                style="margin-top: 16px; margin-bottom: 8px;"
+                class="mt-15 mb-8"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                style="padding-top: 24px; padding-bottom: 8px;"
+                class="pt-25 pb-8"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -552,7 +542,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 24px; margin-bottom: 24px;"
+                  class="mt-25 mb-25"
                 >
                   <hr
                     class="MuiDivider-root divider"
@@ -610,7 +600,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 24px; margin-bottom: 32px;"
+                  class="mt-25 mb-32"
                 >
                   <hr
                     class="MuiDivider-root divider"
@@ -797,7 +787,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 40px; margin-bottom: 16px;"
+                  class="mt-40 mb-15"
                 >
                   <hr
                     class="MuiDivider-root divider"
@@ -807,7 +797,7 @@ Object {
                   class="MuiGrid-root button-container-update"
                 >
                   <div
-                    style="margin-top: 16px; margin-bottom: 16px;"
+                    class="mt-15 mb-15"
                   >
                     <button
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update MuiButton-fullWidth"

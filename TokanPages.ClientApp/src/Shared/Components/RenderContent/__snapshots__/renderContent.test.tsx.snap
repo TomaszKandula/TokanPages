@@ -134,7 +134,7 @@ Object {
     </div>
     <div>
       <div
-        style="margin-top: 56px; margin-bottom: 0px;"
+        class="mt-56"
       >
         <span
           class="MuiTypography-root render-text-common render-text-title MuiTypography-body1"
@@ -147,7 +147,7 @@ Object {
         </span>
       </div>
       <div
-        style="margin-top: 8px; margin-bottom: 40px;"
+        class="mt-8 mb-40"
       >
         <span
           class="MuiTypography-root render-text-common render-text-sub-title MuiTypography-body1"

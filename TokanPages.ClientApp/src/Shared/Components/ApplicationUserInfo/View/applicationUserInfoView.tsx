@@ -8,7 +8,6 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CheckIcon from "@material-ui/icons/Check";
-import { green } from "@material-ui/core/colors";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { AuthenticateUserResultDto, UserInfoProps, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
@@ -32,7 +31,7 @@ interface ItemsProps {
 const CustomListItem = (props: ItemsProps): React.ReactElement => {
     return (
         <ListItem>
-            <ListItemIcon style={{ color: green[500] }}>
+            <ListItemIcon className="colour-green-2">
                 <CheckIcon />
             </ListItemIcon>
             <ListItemText>
@@ -62,7 +61,7 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
             <DialogTitle id="dialog-title">
                 <Grid container spacing={2} direction="column" alignItems="center">
                     <Grid item xs={12}>
-                        <div style={{ marginTop: 8 }}>
+                        <div className="mt-8">
                             <UserAvatar
                                 userId={props.data?.userId}
                                 isLarge={true}

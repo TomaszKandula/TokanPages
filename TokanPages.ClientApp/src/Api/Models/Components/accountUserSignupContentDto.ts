@@ -1,8 +1,10 @@
+import { LinkDto } from "./Common";
+
 export interface AccountUserSignupContentDto {
     language: string;
     caption: string;
     button: string;
-    link: string;
+    link: LinkDto;
     warning: string;
     consent: string;
     labelFirstName: string;

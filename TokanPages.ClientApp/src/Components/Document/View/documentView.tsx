@@ -7,7 +7,7 @@ import { useHash } from "../../../Shared/Hooks";
 interface DocumentViewProps {
     isLoading: boolean;
     items: TextItem[];
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
@@ -36,10 +36,10 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     }, [hash, props.isLoading]);
 
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
                 {props.isLoading ? (
-                    <ProgressBar style={{ marginTop: 30, marginBottom: 30 }} />
+                    <ProgressBar classNameWrapper="mt-30 mb-30" />
                 ) : (
                     <RenderContent items={props.items} />
                 )}

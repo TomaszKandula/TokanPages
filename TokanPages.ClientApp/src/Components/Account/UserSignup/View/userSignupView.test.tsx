@@ -14,7 +14,10 @@ describe("test account group component: userSignupView", () => {
                     warning="Please use..."
                     consent="I agree to the terms of use and privacy policy."
                     button="Sign up"
-                    link="Already have an account? Sign in"
+                    link={{
+                        text: "Already have an account? Sign in",
+                        href: "/signin"
+                    }}
                     buttonHandler={jest.fn()}
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}

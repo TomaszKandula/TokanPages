@@ -24,7 +24,6 @@ interface Properties {
     hasLegalInfo: boolean;
     icons: IconDto[];
     hasIcons: boolean;
-    backgroundColor: string;
 }
 
 const SetTermsLink = (props: Properties): React.ReactElement => {
@@ -100,13 +99,13 @@ export const FooterView = (props: Properties): React.ReactElement => {
     return (
         <footer className="footer-page-footer">
             {props.isLoading ? (
-                <ProgressBar style={{ padding: 25 }} colour="white" size={32} />
+                <ProgressBar classNameWrapper="p-25" classNameColour="colour-white" size={32} />
             ) : (
                 <Container className="container-wide">
                     <RenderCopyrightBar {...props} />
                     <RenderVersionInfo {...props} />
                     <RenderIconButtons {...props} />
-                    <div style={{ paddingBottom: 60 }}></div>
+                    <div className="pb-64"></div>
                 </Container>
             )}
         </footer>

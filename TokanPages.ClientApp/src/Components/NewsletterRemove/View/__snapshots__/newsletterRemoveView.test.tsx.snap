@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 0px; padding-bottom: 120px;"
+            class="pb-120"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -21,10 +21,10 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  style="text-align: center; margin-bottom: 24px;"
+                  class="text-centre mb-25"
                 >
                   <div
-                    style="margin-top: 16px; margin-bottom: 16px;"
+                    class="mt-15 mb-15"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-caption MuiTypography-body1"
@@ -33,7 +33,7 @@ Object {
                     </p>
                   </div>
                   <div
-                    style="margin-top: 40px; margin-bottom: 16px;"
+                    class="mt-40 mb-15"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-text1 MuiTypography-body1"
@@ -42,7 +42,7 @@ Object {
                     </p>
                   </div>
                   <div
-                    style="margin-top: 40px; margin-bottom: 16px;"
+                    class="mt-40 mb-15"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-text2 MuiTypography-body1"
@@ -51,7 +51,7 @@ Object {
                     </p>
                   </div>
                   <div
-                    style="margin-top: 40px; margin-bottom: 56px;"
+                    class="mt-40 mb-56"
                   >
                     <p
                       class="MuiTypography-root newsletter-remove-text3 MuiTypography-body1"
@@ -81,13 +81,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 0px; padding-bottom: 120px;"
+          class="pb-120"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -96,10 +96,10 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                style="text-align: center; margin-bottom: 24px;"
+                class="text-centre mb-25"
               >
                 <div
-                  style="margin-top: 16px; margin-bottom: 16px;"
+                  class="mt-15 mb-15"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-caption MuiTypography-body1"
@@ -108,7 +108,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  style="margin-top: 40px; margin-bottom: 16px;"
+                  class="mt-40 mb-15"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-text1 MuiTypography-body1"
@@ -117,7 +117,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  style="margin-top: 40px; margin-bottom: 16px;"
+                  class="mt-40 mb-15"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-text2 MuiTypography-body1"
@@ -126,7 +126,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  style="margin-top: 40px; margin-bottom: 56px;"
+                  class="mt-40 mb-56"
                 >
                   <p
                     class="MuiTypography-root newsletter-remove-text3 MuiTypography-body1"

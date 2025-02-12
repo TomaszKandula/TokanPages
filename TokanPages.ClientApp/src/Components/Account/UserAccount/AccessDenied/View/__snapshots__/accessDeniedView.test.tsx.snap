@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 120px; padding-bottom: 64px;"
+            class="pt-120 pb-64"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -20,24 +20,20 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <div
-                  style="padding-top: 0px; padding-bottom: 0px;"
+                <span
+                  class="MuiTypography-root access-denied-caption MuiTypography-body1"
                 >
-                  <span
-                    class="MuiTypography-root access-denied-caption MuiTypography-body1"
-                  >
-                    Access Denied
-                  </span>
-                </div>
+                  Access Denied
+                </span>
                 <div
-                  style="margin-top: 2px; margin-bottom: 1px;"
+                  class="mt-2 mb-1"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  style="padding-top: 24px; padding-bottom: 24px;"
+                  class="pt-25 pb-25"
                 >
                   <span
                     class="MuiTypography-root access-denied-prompt MuiTypography-body1"
@@ -80,13 +76,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 120px; padding-bottom: 64px;"
+          class="pt-120 pb-64"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -94,24 +90,20 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <div
-                style="padding-top: 0px; padding-bottom: 0px;"
+              <span
+                class="MuiTypography-root access-denied-caption MuiTypography-body1"
               >
-                <span
-                  class="MuiTypography-root access-denied-caption MuiTypography-body1"
-                >
-                  Access Denied
-                </span>
-              </div>
+                Access Denied
+              </span>
               <div
-                style="margin-top: 2px; margin-bottom: 1px;"
+                class="mt-2 mb-1"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                style="padding-top: 24px; padding-bottom: 24px;"
+                class="pt-25 pb-25"
               >
                 <span
                   class="MuiTypography-root access-denied-prompt MuiTypography-body1"

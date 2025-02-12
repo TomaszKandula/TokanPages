@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section-grey"
+        class="section-grey "
       >
         <div
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="text-align: center; padding-top: 64px; padding-bottom: 64px;"
+            class="text-centre pt-64 pb-64"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -49,10 +49,10 @@ Object {
                   data-aos-delay="0"
                 >
                   <div
-                    style="display: flex; height: 100%;"
+                    class="newsletter-container"
                   >
                     <div
-                      style="margin-top: auto; margin-bottom: auto; width: 100%;"
+                      class="newsletter-box"
                     >
                       <div
                         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -138,13 +138,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section-grey"
+      class="section-grey "
     >
       <div
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="text-align: center; padding-top: 64px; padding-bottom: 64px;"
+          class="text-centre pt-64 pb-64"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -181,10 +181,10 @@ Object {
                 data-aos-delay="0"
               >
                 <div
-                  style="display: flex; height: 100%;"
+                  class="newsletter-container"
                 >
                   <div
-                    style="margin-top: auto; margin-bottom: auto; width: 100%;"
+                    class="newsletter-box"
                   >
                     <div
                       class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
