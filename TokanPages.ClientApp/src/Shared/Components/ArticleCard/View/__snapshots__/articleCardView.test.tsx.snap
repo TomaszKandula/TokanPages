@@ -27,8 +27,7 @@ Object {
               Article short description
             </p>
             <div
-              class="article-card-action-container"
-              style="height: 100px;"
+              class="article-card-action-container article-card-action-large"
             >
               <div
                 class="MuiCardActions-root article-card-action MuiCardActions-spacing"
@@ -139,8 +138,7 @@ Object {
             Article short description
           </p>
           <div
-            class="article-card-action-container"
-            style="height: 100px;"
+            class="article-card-action-container article-card-action-large"
           >
             <div
               class="MuiCardActions-root article-card-action MuiCardActions-spacing"

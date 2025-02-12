@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section margin-top-60"
+        class="section margin-top-60 "
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -49,7 +49,7 @@ Object {
                 </div>
               </div>
               <div
-                style="margin-top: 32px;"
+                class="mt-32"
               >
                 <a
                   class="link"
@@ -95,7 +95,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section margin-top-60"
+      class="section margin-top-60 "
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -138,7 +138,7 @@ Object {
               </div>
             </div>
             <div
-              style="margin-top: 32px;"
+              class="mt-32"
             >
               <a
                 class="link"

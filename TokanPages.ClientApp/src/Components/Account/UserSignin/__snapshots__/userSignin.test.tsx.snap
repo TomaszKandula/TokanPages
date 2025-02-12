@@ -80,8 +80,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiFormControl-root MuiFormControl-fullWidth"
-                      style="margin: 0px;"
+                      class="MuiFormControl-root m-zero MuiFormControl-fullWidth"
                     >
                       <label
                         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
@@ -261,8 +260,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth"
-                    style="margin: 0px;"
+                    class="MuiFormControl-root m-zero MuiFormControl-fullWidth"
                   >
                     <label
                       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"

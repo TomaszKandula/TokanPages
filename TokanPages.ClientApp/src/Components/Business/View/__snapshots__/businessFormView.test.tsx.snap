@@ -458,11 +458,9 @@ Object {
                 </div>
                 <div
                   class="mt-15 mb-32"
-                  style="margin-top: 16px; margin-bottom: 32px;"
                 >
                   <div
                     class="mt-8 mb-32"
-                    style="margin-top: 8px; margin-bottom: 32px;"
                   >
                     <span
                       class="MuiTypography-root business-header MuiTypography-body1"
@@ -1026,11 +1024,9 @@ Object {
               </div>
               <div
                 class="mt-15 mb-32"
-                style="margin-top: 16px; margin-bottom: 32px;"
               >
                 <div
                   class="mt-8 mb-32"
-                  style="margin-top: 8px; margin-bottom: 32px;"
                 >
                   <span
                     class="MuiTypography-root business-header MuiTypography-body1"
