@@ -27,7 +27,6 @@ describe("test component: footerView", () => {
                     hasLegalInfo={true}
                     icons={[icons]}
                     hasIcons={true}
-                    backgroundColor="#FFFFFF"
                 />
             </BrowserRouter>
         );
