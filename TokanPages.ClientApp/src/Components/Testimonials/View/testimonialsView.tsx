@@ -33,7 +33,7 @@ interface TestimonialsViewProps extends ViewProperties {
     name3: string;
     occupation3: string;
     text3: string;
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 interface RenderSkeletonOrElementProps extends TestimonialsViewProps {
@@ -53,7 +53,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
     };
 
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="text-centre pt-64 pb-120">
                     <Animated dataAos="fade-down">

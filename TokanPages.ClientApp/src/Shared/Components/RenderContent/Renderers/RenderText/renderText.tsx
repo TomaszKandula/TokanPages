@@ -136,7 +136,7 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <div style={{ marginTop: 56, marginBottom: 0 }}>
+        <div className="mt-56">
             <Typography component="span" className="render-text-common render-text-title">
                 <ReactHtmlParser html={props.value ?? NO_CONTENT} />
             </Typography>
@@ -146,7 +146,7 @@ const RenderTitle = (props: DataProps): React.ReactElement => {
 
 const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <div style={{ marginTop: 8, marginBottom: 40 }}>
+        <div className="mt-8 mb-40">
             <Typography component="span" className="render-text-common render-text-sub-title">
                 <ReactHtmlParser html={props.value ?? NO_CONTENT} />
             </Typography>
@@ -156,7 +156,7 @@ const RenderSubtitle = (props: DataProps): React.ReactElement => {
 
 const RenderHeader = (props: DataProps): React.ReactElement => {
     return (
-        <div style={{ marginTop: 56, marginBottom: 16 }}>
+        <div className="mt-56 mb-15">
             <Typography component="span" className="render-text-common render-text-header">
                 <ReactHtmlParser html={props.value ?? NO_CONTENT} />
             </Typography>

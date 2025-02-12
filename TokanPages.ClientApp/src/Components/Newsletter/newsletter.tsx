@@ -11,7 +11,7 @@ import { NewsletterView } from "./View/newsletterView";
 import Validate from "validate.js";
 
 interface NewsletterProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const Newsletter = (props: NewsletterProps): React.ReactElement => {

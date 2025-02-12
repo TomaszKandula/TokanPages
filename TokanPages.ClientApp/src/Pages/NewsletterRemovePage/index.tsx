@@ -29,7 +29,7 @@ export const NewsletterRemovePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <NewsletterRemove id={id} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <NewsletterRemove id={id} className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

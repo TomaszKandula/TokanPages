@@ -31,9 +31,9 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingTop: 0, paddingBottom: 64 }}>
+                <div className="pb-64">
                     <Grid container justifyContent="center">
                         <Grid item xs={12} sm={12}>
                             {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}

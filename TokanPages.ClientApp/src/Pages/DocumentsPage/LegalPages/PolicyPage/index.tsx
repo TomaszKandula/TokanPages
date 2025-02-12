@@ -35,7 +35,7 @@ export const PolicyPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb mt={96} mb={16} mr={40} ml={40} mtDivider={32} mbDivider={32} isLoading={isLoading} />
+            <CustomBreadcrumb isLoading={isLoading} />
             <DocumentContentWrapper isLoading={isLoading} items={items} />
             <Cookies />
             <Footer />

@@ -12,14 +12,14 @@ import { Animated, RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
 
 interface FeaturedViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const featured = data?.components?.featured;
     return (
-        <section className="section-grey" style={props.background}>
+        <section className={`section-grey ${props.background ?? ""}`}>
             <Container maxWidth="lg">
                 <div className="text-centre pt-64 pb-40" >
                     <Animated dataAos="fade-down">

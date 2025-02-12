@@ -342,8 +342,8 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     />
                                 </Grid>
                             </Grid>
-                            <div style={{ marginTop: 16, marginBottom: 32 }} className="mt-15 mb-32">
-                                <div style={{ marginTop: 8, marginBottom: 32 }} className="mt-8 mb-32">
+                            <div className="mt-15 mb-32">
+                                <div className="mt-8 mb-32">
                                     <RenderElement
                                         isLoading={props.isLoading}
                                         height={45}

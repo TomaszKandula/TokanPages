@@ -30,8 +30,8 @@ export const PdfViewerPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <div style={{ marginTop: 48 }}>
-                <PdfViewer pdfFile={name} background={{ backgroundColor: "#FCFCFC" }} />
+            <div className="mt-48">
+                <PdfViewer pdfFile={name} background="background-colour-light-grey" />
             </div>
             <Cookies />
         </>

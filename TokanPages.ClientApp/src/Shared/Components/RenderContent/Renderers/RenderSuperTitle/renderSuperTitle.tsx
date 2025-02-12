@@ -15,7 +15,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     return (
         <div className="render-super-title-container">
             <div className="render-super-title-content-text">
-                <div style={{ marginTop: 56, marginBottom: 0 }}>
+                <div className="mt-56">
                     <Typography
                         variant="body1"
                         component="span"
@@ -24,7 +24,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                         <ReactHtmlParser html={props.propTitle ?? NO_CONTENT} />
                     </Typography>
                 </div>
-                <div style={{ marginTop: 8, marginBottom: 40 }}>
+                <div className="mt-8 mb-40">
                     <Typography
                         variant="body1"
                         component="span"

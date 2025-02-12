@@ -13,7 +13,7 @@ import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { Animated } from "../../../Shared/Components";
 
 interface TechnologiesViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
@@ -21,7 +21,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
     const technology = data?.components?.technologies;
 
     return (
-        <section className="section-grey" style={props.background}>
+        <section className={`section-grey ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="technology-box">
                     <Animated dataAos="fade-down" className="mb-64">

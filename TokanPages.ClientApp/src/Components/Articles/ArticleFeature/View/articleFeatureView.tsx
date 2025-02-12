@@ -16,7 +16,7 @@ import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
 import Validate from "validate.js";
 
 interface ArticleFeatureViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
@@ -45,7 +45,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const features = data?.components?.articleFeatures;
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="pt-64 pb-96">
                     <Animated dataAos="fade-down" className="text-centre mb-48">

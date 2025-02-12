@@ -407,10 +407,36 @@ body::backdrop {
     background: #FCFCFC;
 }
 
+.colour-green-1 {
+    color: #10651E !important;
+}
+
+.colour-green-2 {
+    color: #4caf50 !important;
+}
+
+.colour-green-3 {
+    color: #28BF37 !important;
+}
+
+.colour-white {
+    color: white !important;
+}
+
 /* POINTERS */
 
 .pointer-not-allowed {
     cursor: not-allowed !important;
+}
+
+/* MARGIN */
+
+.m-auto {
+    margin: auto;
+}
+
+.m-zero {
+    margin: 0;
 }
 
 /* MARGINS TOP */
@@ -447,6 +473,18 @@ body::backdrop {
     margin-top: 40px;
 }
 
+.mt-48 {
+    margin-top: 48px;
+}
+
+.mt-56 {
+    margin-top: 56px;
+}
+
+.mt-80 {
+    margin-top: 80px;
+}
+
 /* MARGINS BOTTOM */
 
 .mb-0 {
@@ -477,12 +515,22 @@ body::backdrop {
     margin-bottom: 48px;   
 }
 
+.mb-56 {
+    margin-bottom: 56px;
+}
+
 .mb-64 {
     margin-bottom: 64px;
 }
 
 .mb-80 {
     margin-bottom: 80px;
+}
+
+/* PADDING */
+
+.p-25 {
+    padding: 25px;
 }
 
 /* PADDING TOP */
@@ -507,12 +555,20 @@ body::backdrop {
     padding-top: 64px;
 }
 
+.pt-80 {
+    padding-top: 80px;
+}
+
 .pt-96 {
     padding-top: 96px;
 }
 
 .pt-120 {
     padding-top: 120px;
+}
+
+.pt-140 {
+    padding-top: 140px;
 }
 
 /* PADDING BOTTOM */
@@ -527,6 +583,10 @@ body::backdrop {
 
 .pb-40 {
     padding-bottom: 40px;
+}
+
+.pb-48 {
+    padding-bottom: 48px;
 }
 
 .pb-64 {
@@ -740,8 +800,15 @@ body::backdrop {
 }
 
 .article-card-action-container {
-    height: 100px;
     position: relative;
+}
+
+.article-card-action-small {
+    height: 50px;
+}
+
+.article-card-action-large {
+    height: 100px;
 }
 
 .article-card-action {
@@ -1272,6 +1339,17 @@ body::backdrop {
 }
 
 /* NEWSLETTER COMPONENT */
+
+.newsletter-container {
+    display: flex;
+    height: 100%;
+}
+
+.newsletter-box {
+    margin-top: auto; 
+    margin-bottom: auto; 
+    width: 100%;
+}
 
 .newsletter-caption {
     font-size: 2rem !important;
@@ -1991,7 +2069,7 @@ body::backdrop {
 }
 
 .progress-bar-progress {
-    color: #6367ef;
+    color: #6367ef !important;
 }
 
 /* SCROLL TO TOP COMPONENT */
@@ -2307,4 +2385,18 @@ body::backdrop {
 
 .render-navbar-list-item-base {
     font-size: 16px !important;
+}
+
+/* CUSTOM BREADCRUMB */
+
+.custom-breadcrumb-container {
+    margin-top: 96px;
+    margin-bottom: 16px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.custom-breadcrumb-divider {
+    margin-top: 32px;
+    margin-bottom: 32px;
 }

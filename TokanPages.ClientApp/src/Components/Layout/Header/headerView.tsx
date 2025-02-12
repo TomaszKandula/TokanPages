@@ -11,7 +11,7 @@ import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import Validate from "validate.js";
 
 interface HeaderViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 interface RenderPictureProps {
@@ -73,7 +73,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.header;
     return (
-        <section className="section margin-top-60" style={props.background}>
+        <section className={`section margin-top-60 ${props.background ?? ""}`}>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={7}>
                     {data?.isLoading ? (
@@ -101,7 +101,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                                 <ReactHtmlParser html={header?.description} />
                             )}
                         </div>
-                        <div style={{ marginTop: 32 }}>
+                        <div className="mt-32">
                             {data?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />
                             ) : (

@@ -11,9 +11,8 @@ import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";
 
 export interface ExtendedViewProps {
-    pt?: number;
-    pb?: number;
-    background?: React.CSSProperties;
+    className?: string;
+    background?: string;
 }
 
 export interface NewsletterUpdateProps extends ExtendedViewProps {
@@ -108,8 +107,7 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
             progress={hasProgress}
             buttonText={newsletter.button}
             labelEmail={newsletter.labelEmail}
-            pt={props.pt}
-            pb={props.pb}
+            className={props.className}
             background={props.background}
         />
     );

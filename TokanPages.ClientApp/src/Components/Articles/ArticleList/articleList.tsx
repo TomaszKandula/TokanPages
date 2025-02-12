@@ -5,7 +5,7 @@ import { ArticleListingAction } from "../../../Store/Actions";
 import { ArticleListView } from "./View/articleListView";
 
 export interface ArticleListProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {

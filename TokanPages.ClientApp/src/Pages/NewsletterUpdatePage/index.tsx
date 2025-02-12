@@ -29,7 +29,7 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <NewsletterUpdate id={id} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <NewsletterUpdate id={id} className="pt-120 pb-240" background="background-colour-light-grey" />
             <Cookies />
         </>
     );

@@ -14,7 +14,7 @@ const useQuery = () => {
 
 const ErrorMessage = (): React.ReactElement => {
     return (
-        <div style={{ marginTop: 80, marginBottom: 40 }}>
+        <div className="mt-80 mb-40">
             <Typography>Uuuppss..., there is a missing ID...</Typography>
         </div>
     );
