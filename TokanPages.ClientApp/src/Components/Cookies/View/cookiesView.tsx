@@ -165,7 +165,7 @@ const CookieWindowContainer = (props: Properties): React.ReactElement => {
     const transition = props.isLoading ? undefined : 0;
     return (
         <div className={style}>
-            <Backdrop className="backdrop" open={true} transitionDuration={transition}>
+            <Backdrop className="backdrop" open={true} transitionDuration={transition} aria-hidden={false}>
                 {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
             </Backdrop>
         </div>
@@ -178,11 +178,11 @@ export const CookiesView = (props: Properties): React.ReactElement => {
     }
 
     if (props.hasCookieConsent) {
-        return <></>;
+        return <div className="cookie-window-open"></div>;
     }
 
     if (props.loading?.length === 0) {
-        return <></>;
+        return <div className="cookie-window-open"></div>;
     }
 
     return <CookieWindowContainer {...props} />;
