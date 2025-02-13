@@ -2,6 +2,7 @@ export type { ContentDto } from "./contentDto";
 export type { DescriptionItemDto } from "./descriptionItemDto";
 export type { IconDto } from "./iconDto";
 export type { LinkDto } from "./linkDto";
+export type { ImagesDto } from "./imagesDto";
 export type { PricingDto } from "./pricingDto";
 export type { RowItemDto } from "./rowItemDto";
 export type { ServiceItemDto } from "./serviceItemDto";
