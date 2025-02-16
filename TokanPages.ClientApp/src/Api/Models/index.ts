@@ -94,6 +94,7 @@ export type { NewsletterContentDto } from "./Components/newsletterContentDto";
 export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveContentDto";
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
 export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
+export type { SocialsContentDto } from "./Components/socialsContentDto";
 export type {
     AccountSettingsContentDto,
     SectionAccessDenied,
@@ -119,6 +120,7 @@ export type {
 export type {
     IconDto,
     LinkDto,
+    ImagesDto,
     RowItemDto,
     TextItemDto,
     ContentDto,

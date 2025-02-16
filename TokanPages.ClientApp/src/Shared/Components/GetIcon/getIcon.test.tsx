@@ -28,7 +28,7 @@ describe("test render function 'getIcon'", () => {
     const html = render(
         <div>
             {NameList.map((item, index) => (
-                <GetIcon key={index} iconName={item} />
+                <GetIcon key={index} name={item} />
             ))}
         </div>
     );

@@ -26,10 +26,10 @@ Object {
               </h1>
             </div>
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root background-colour-inherited card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="MuiCardContent-root card-content background-colour-inherited"
               >
                 <div
                   class="text-centre mb-25"
@@ -423,10 +423,10 @@ Object {
             </h1>
           </div>
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root background-colour-inherited card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="MuiCardContent-root card-content background-colour-inherited"
             >
               <div
                 class="text-centre mb-25"

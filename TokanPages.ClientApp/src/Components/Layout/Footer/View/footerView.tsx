@@ -63,7 +63,7 @@ const RenderIconButtons = (props: Properties): React.ReactElement | null => {
                     target="_blank"
                     rel="noopener"
                 >
-                    <GetIcon iconName={item.name} />
+                    <GetIcon name={item.name} />
                 </IconButton>
             ))}
         </div>
