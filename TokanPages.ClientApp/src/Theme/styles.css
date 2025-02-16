@@ -1575,6 +1575,7 @@ body::backdrop {
 }
 
 .socials-card-title {
+    margin: 0 !important;
     text-align: center;
     font-size: 1.5rem !important;
     font-weight: 700 !important;
@@ -1583,17 +1584,21 @@ body::backdrop {
 }
 
 .socials-card-subheader {
+    margin: 0 !important;
     text-align: center;
     font-size: 1.0rem !important;
+    font-weight: 400 !important;
     line-height: 1.8 !important;
     color: #9e9e9e;
 }
 
 .socials-card-subtext {
+    margin: 0 !important;
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
     font-size: 1.1rem !important;
+    font-weight: 400 !important;
     line-height: 1.8 !important;
     color: black;
 }

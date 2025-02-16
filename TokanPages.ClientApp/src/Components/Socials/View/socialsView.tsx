@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from "@material-ui/core";
+import { Card, CardActionArea, CardContent, CardMedia, Container, Grid } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { GET_SOCIALS_URL } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
@@ -72,27 +72,27 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             <div className="socials-card-icon-holder">
                                                 <GetIcon name={socials?.social1?.images?.icon} className="socials-card-icon" />
                                             </div>
-                                            <Typography className="socials-card-title">
+                                            <h2 className="socials-card-title">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text" 
                                                     object={socials?.social1?.textTitle} 
                                                 />
-                                            </Typography>
-                                            <Typography className="socials-card-subheader">
+                                            </h2>
+                                            <h3 className="socials-card-subheader">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
                                                     object={socials?.social1?.textSubtitle}
                                                 />
-                                            </Typography>
-                                            <Typography className="socials-card-subtext">
+                                            </h3>
+                                            <h4 className="socials-card-subtext">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
                                                     object={socials?.social1?.textComment}
                                                 />
-                                            </Typography>
+                                            </h4>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -123,27 +123,27 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             <div className="socials-card-icon-holder">
                                                 <GetIcon name={socials?.social2?.images?.icon} className="socials-card-icon" />
                                             </div>
-                                            <Typography className="socials-card-title">
+                                            <h2 className="socials-card-title">
                                                 <RenderSkeletonOrElement 
                                                     isLoading={isLoading}
                                                     variant="text" 
                                                     object={socials?.social2?.textTitle} 
                                                 />
-                                            </Typography>
-                                            <Typography className="socials-card-subheader">
+                                            </h2>
+                                            <h3 className="socials-card-subheader">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
                                                     object={socials?.social2?.textSubtitle}
                                                 />
-                                            </Typography>
-                                            <Typography className="socials-card-subtext">
+                                            </h3>
+                                            <h4 className="socials-card-subtext">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
                                                     object={socials?.social2?.textComment}
                                                 />
-                                            </Typography>
+                                            </h4>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
@@ -174,27 +174,27 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             <div className="socials-card-icon-holder">
                                                 <GetIcon name={socials?.social3?.images?.icon} className="socials-card-icon" />
                                             </div>
-                                            <Typography className="socials-card-title">
+                                            <h2 className="socials-card-title">
                                                 <RenderSkeletonOrElement 
                                                     isLoading={isLoading}
                                                     variant="text" 
                                                     object={socials?.social3?.textTitle} 
                                                 />
-                                            </Typography>
-                                            <Typography className="socials-card-subheader">
+                                            </h2>
+                                            <h3 className="socials-card-subheader">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
                                                     object={socials?.social3?.textSubtitle} 
                                                 />
-                                            </Typography>
-                                            <Typography className="socials-card-subtext">
+                                            </h3>
+                                            <h4 className="socials-card-subtext">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
                                                     object={socials?.social3?.textComment}
                                                 />
-                                            </Typography>
+                                            </h4>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
