@@ -1551,12 +1551,6 @@ body::backdrop {
     margin-top: 0 !important;
 }
 
-@media (max-width: 700px) {
-    .socials-card-holder {
-        margin-top: 45px !important;
-    }
-}
-
 .socials-card-image-holder {
     margin: 0;
     border-style: solid;
