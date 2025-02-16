@@ -1,3 +1,39 @@
+# [0.141.0](https://github.com/TomaszKandula/TokanPages/compare/v0.140.0...v0.141.0) (2025-02-16)
+
+
+### Bug Fixes
+
+* remove embedded link ([dddda22](https://github.com/TomaszKandula/TokanPages/commit/dddda22bc5a73b0d4233645e46ab8107b4ec4b40))
+* remove embedded link ([84fd40e](https://github.com/TomaszKandula/TokanPages/commit/84fd40e79f47737b3de7e40e1c2da6116374e4a2))
+* resolve found issues ([6ccb7b4](https://github.com/TomaszKandula/TokanPages/commit/6ccb7b4febf17351e9b093f9dbab391367d0da22))
+
+
+### Features
+
+* add content type ([533958b](https://github.com/TomaszKandula/TokanPages/commit/533958bb2059917bfa09a534314b3b147cfc32bb))
+* add cookies component for all pages ([0826a97](https://github.com/TomaszKandula/TokanPages/commit/0826a9775901accac1dcfa422f4ace5e3a829139))
+* add fallbacks ([7c3964b](https://github.com/TomaszKandula/TokanPages/commit/7c3964b8efea3d56955cf36099dd3020212ed57f))
+* add mets tags ([eb2062e](https://github.com/TomaszKandula/TokanPages/commit/eb2062edefe24388cf97308b5f5b6ca70b876e1e))
+* add new component models ([47b62e0](https://github.com/TomaszKandula/TokanPages/commit/47b62e0ff66654bfd8c5bb3c9069f5e83d0aec83))
+* add non-material UI icon, Instagram ([646c93c](https://github.com/TomaszKandula/TokanPages/commit/646c93c8a2da46030a6e38bc7cc1952d536edb58))
+* add socials component ([cae58eb](https://github.com/TomaszKandula/TokanPages/commit/cae58eb03635da831ee4b849b76052955b85d858))
+* add/update styles ([89b1388](https://github.com/TomaszKandula/TokanPages/commit/89b13887a241ee4e27f2bf701a51ed63ed661395))
+* always redirect WWW to NON-WWW for HTTP/HTTPS ([8fc2129](https://github.com/TomaszKandula/TokanPages/commit/8fc212998d2351fc92ad23172667747ea0a79673))
+* change background colours ([1b18b88](https://github.com/TomaszKandula/TokanPages/commit/1b18b8835c7880062f1b7c8a7a3be8e5ba714dd1))
+* change social cards implementation ([ea00609](https://github.com/TomaszKandula/TokanPages/commit/ea00609379fe7d818829f2a7e003c1fed75bf2f8))
+* fallback to undefined ([ad1b6d5](https://github.com/TomaszKandula/TokanPages/commit/ad1b6d5e3ce11f067877bb4acca3b4db50394d66))
+* improve SEO ([011225a](https://github.com/TomaszKandula/TokanPages/commit/011225adb51ddad8d6489644adf4cb1560dfefa2))
+* leave hust icon add apple icon ([7c82622](https://github.com/TomaszKandula/TokanPages/commit/7c8262204b055c3efefd7d22e294ed7a9f93c140))
+* pass the className ([47635a5](https://github.com/TomaszKandula/TokanPages/commit/47635a5c88f4f6adc1cea6c1aa3f79dd642577f0))
+* remove inline css ([b52713f](https://github.com/TomaszKandula/TokanPages/commit/b52713ff304115bb8ec2bac6d68e3c5c3b2d35d9))
+* remove unused style ([93e6fa9](https://github.com/TomaszKandula/TokanPages/commit/93e6fa9757420d9ecd01cfb0583315c3aa932e30))
+* replace incline CSS with classes ([c3f5c85](https://github.com/TomaszKandula/TokanPages/commit/c3f5c857d6b1fa5d930809cdf243ed9fb94b070a))
+* replace inline style with classes ([9005f7f](https://github.com/TomaszKandula/TokanPages/commit/9005f7f301772f9947f751be3400d4f7b48fcb4e))
+* replace typography ([8b23cc5](https://github.com/TomaszKandula/TokanPages/commit/8b23cc5a2849d10d8c603fc77dc995dc6ab0f53b))
+* restyle ([c4379f7](https://github.com/TomaszKandula/TokanPages/commit/c4379f76781d81b2374ad8746dd06e22328a6090))
+* update robots ([d5d09c4](https://github.com/TomaszKandula/TokanPages/commit/d5d09c46b4bf685c5adf147dafa4789373049c69))
+* use H1 and H2, remove style attribute ([1ff35d0](https://github.com/TomaszKandula/TokanPages/commit/1ff35d0d8c1ff6dbd5204d054c7f41d1068c686a))
+
 # [0.140.0](https://github.com/TomaszKandula/TokanPages/compare/v0.139.0...v0.140.0) (2025-02-08)
 
 
