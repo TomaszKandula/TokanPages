@@ -62,8 +62,8 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
                         </h1>
                     </Animated>
-                    <Card elevation={0} className={props.hasShadow ? "card" : undefined}>
-                        <CardContent className="card-content">
+                    <Card elevation={0} className={`background-colour-inherited ${props.hasShadow ? "card" : ""}`}>
+                        <CardContent className="card-content background-colour-inherited">
                             <div className="text-centre mb-25">
                                 {props.hasIcon ? (
                                     <>

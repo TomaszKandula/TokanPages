@@ -60,8 +60,8 @@ export const MainPage = (): React.ReactElement => {
             <Featured />
             <Testimonials />
             <Socials />
-            <Newsletter />
-            <ContactForm hasCaption={true} />
+            <Newsletter background="background-colour-white" />
+            <ContactForm hasCaption={true} background="background-colour-light-grey" />
             <Cookies />
             <Footer />
         </>
