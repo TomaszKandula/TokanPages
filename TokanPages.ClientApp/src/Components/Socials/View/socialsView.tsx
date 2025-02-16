@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Card, CardContent, CardMedia, Container, Grid, Typography } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { GET_SOCIALS_URL } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated } from "../../../Shared/Components";
-import { useSelector } from "react-redux";
+import { Animated, GetIcon, RenderCardMedia } from "../../../Shared/Components";
 
 interface SocialsViewProps {
     background?: string;
@@ -34,9 +34,9 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
         <section className={`section-grey ${props.background ?? ""}`}>
             <Container className="container-super-wide">
 
-                <div className="text-centre pt-64 pb-120">
+                <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">
-                        <h1 className="testimonials-caption-text">
+                        <h1 className="socials-caption-text">
                             <RenderSkeletonOrElement 
                                 isLoading={isLoading}
                                 variant="text" 
@@ -48,110 +48,155 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
 
                 <div className="text-centre pb-120">
                     <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                        <Grid item xs={12} md={4} className="socials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
-                                <Card elevation={0} className="testimonials-card">
-                                    <RenderSkeletonOrElement
-                                        isLoading={isLoading}
-                                        variant="rect"
-                                        object={
-                                            <CardMedia
-                                                image={imageUrl(socials.social1?.images?.avatar)}
-                                                component="img"
-                                                className="testimonials-card-image"
-                                                alt="Testimonail photo 1 of 3"
-                                            />
-                                        }
-                                        className="testimonials-card-image"
-                                    />
-                                    <CardContent className="testimonials-card-content">
-                                        <Typography className="testimonials-card-title">
-                                            <RenderSkeletonOrElement
-                                                isLoading={isLoading}
-                                                variant="text" 
-                                                object={socials.social1?.textTitle} 
-                                            />
-                                        </Typography>
-                                        <Typography className="testimonials-card-subheader">
-                                            <RenderSkeletonOrElement
-                                                isLoading={isLoading}
-                                                variant="text"
-                                                object={socials.social1?.textSubtitle}
-                                            />
-                                        </Typography>
-                                    </CardContent>
+                                <Card elevation={0} className="card">
+                                    <CardActionArea href={socials.social1?.action?.href} target="_blank" rel="noopener">
+                                        {RenderCardMedia(GET_SOCIALS_URL, socials.social1?.images?.header, "socials-card-media")}
+                                        <RenderSkeletonOrElement
+                                            isLoading={isLoading}
+                                            variant="rect"
+                                            object={
+                                                <div className="socials-card-image-holder">
+                                                    <CardMedia
+                                                        image={imageUrl(socials.social1?.images?.avatar)}
+                                                        component="img"
+                                                        className="socials-card-image"
+                                                        alt="Socials photo 1 of 3"
+                                                    />
+                                                </div>
+                                            }
+                                            className="socials-card-image"
+                                        />
+                                        <CardContent className="socials-card-content">
+                                            <div className="socials-card-icon-holder">
+                                                <GetIcon name={socials.social1?.images?.icon} className="socials-card-icon" />
+                                            </div>
+                                            <Typography className="socials-card-title">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text" 
+                                                    object={socials.social1?.textTitle} 
+                                                />
+                                            </Typography>
+                                            <Typography className="socials-card-subheader">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text"
+                                                    object={socials.social1?.textSubtitle}
+                                                />
+                                            </Typography>
+                                            <Typography className="socials-card-subtext">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text"
+                                                    object={socials.social1?.textComment}
+                                                />
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
                                 </Card>
                             </Animated>
                         </Grid>
 
-                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                        <Grid item xs={12} md={4} className="socials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
-                                <Card elevation={3} className="testimonials-card">
-                                    <RenderSkeletonOrElement
-                                        isLoading={isLoading}
-                                        variant="rect"
-                                        object={
-                                            <CardMedia
-                                                image={imageUrl(socials.social2?.images?.avatar)}
-                                                component="img"
-                                                className="testimonials-card-image"
-                                                alt="Testimonail photo 2 of 3"
-                                            />
-                                        }
-                                        className="testimonials-card-image"
-                                    />
-                                    <CardContent className="testimonials-card-content">
-                                        <Typography className="testimonials-card-title">
-                                            <RenderSkeletonOrElement 
-                                                isLoading={isLoading}
-                                                variant="text" 
-                                                object={socials.social2?.textTitle} 
-                                            />
-                                        </Typography>
-                                        <Typography className="testimonials-card-subheader">
-                                            <RenderSkeletonOrElement
-                                                isLoading={isLoading}
-                                                variant="text"
-                                                object={socials.social2?.textSubtitle}
-                                            />
-                                        </Typography>
-                                    </CardContent>
+                                <Card elevation={3} className="card">
+                                    <CardActionArea href={socials.social2?.action?.href} target="_blank" rel="noopener">
+                                        {RenderCardMedia(GET_SOCIALS_URL, socials.social2?.images?.header, "socials-card-media")}
+                                        <RenderSkeletonOrElement
+                                            isLoading={isLoading}
+                                            variant="rect"
+                                            object={
+                                                <div className="socials-card-image-holder">
+                                                    <CardMedia
+                                                        image={imageUrl(socials.social2?.images?.avatar)}
+                                                        component="img"
+                                                        className="socials-card-image"
+                                                        alt="Socials photo 2 of 3"
+                                                    />
+                                                </div>
+                                            }
+                                            className="socials-card-image"
+                                        />
+                                        <CardContent className="socials-card-content">
+                                            <div className="socials-card-icon-holder">
+                                                <GetIcon name={socials.social2?.images?.icon} className="socials-card-icon" />
+                                            </div>
+                                            <Typography className="socials-card-title">
+                                                <RenderSkeletonOrElement 
+                                                    isLoading={isLoading}
+                                                    variant="text" 
+                                                    object={socials.social2?.textTitle} 
+                                                />
+                                            </Typography>
+                                            <Typography className="socials-card-subheader">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text"
+                                                    object={socials.social2?.textSubtitle}
+                                                />
+                                            </Typography>
+                                            <Typography className="socials-card-subtext">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text"
+                                                    object={socials.social2?.textComment}
+                                                />
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
                                 </Card>
                             </Animated>
                         </Grid>
 
-                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                        <Grid item xs={12} md={4} className="socials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={250}>
-                                <Card elevation={3} className="testimonials-card">
-                                    <RenderSkeletonOrElement
-                                        isLoading={isLoading}
-                                        variant="rect"
-                                        object={
-                                            <CardMedia
-                                                image={imageUrl(socials.social3?.images?.avatar)}
-                                                component="img"
-                                                className="testimonials-card-image"
-                                                alt="Testimonail photo 3 of 3"
-                                            />
-                                        }
-                                        className="testimonials-card-image"
-                                    />
-                                    <CardContent className="testimonials-card-content">
-                                        <Typography className="testimonials-card-title">
-                                            <RenderSkeletonOrElement 
-                                                isLoading={isLoading}
-                                                variant="text" 
-                                                object={socials.social3?.textTitle} 
-                                            />
-                                        </Typography>
-                                        <Typography className="testimonials-card-subheader">
-                                            <RenderSkeletonOrElement
-                                                isLoading={isLoading}
-                                                variant="text"
-                                                object={socials.social3?.textSubtitle} 
-                                            />
-                                        </Typography>
-                                    </CardContent>
+                                <Card elevation={3} className="card">
+                                    <CardActionArea href={socials.social3?.action?.href} target="_blank" rel="noopener">
+                                        {RenderCardMedia(GET_SOCIALS_URL, socials.social3?.images?.header, "socials-card-media")}
+                                        <RenderSkeletonOrElement
+                                            isLoading={isLoading}
+                                            variant="rect"
+                                            object={
+                                                <div className="socials-card-image-holder">
+                                                    <CardMedia
+                                                        image={imageUrl(socials.social3?.images?.avatar)}
+                                                        component="img"
+                                                        className="socials-card-image"
+                                                        alt="Socials photo 3 of 3"
+                                                    />
+                                                </div>
+                                            }
+                                            className="socials-card-image"
+                                        />
+                                        <CardContent className="socials-card-content">
+                                            <div className="socials-card-icon-holder">
+                                                <GetIcon name={socials.social3?.images?.icon} className="socials-card-icon" />
+                                            </div>
+                                            <Typography className="socials-card-title">
+                                                <RenderSkeletonOrElement 
+                                                    isLoading={isLoading}
+                                                    variant="text" 
+                                                    object={socials.social3?.textTitle} 
+                                                />
+                                            </Typography>
+                                            <Typography className="socials-card-subheader">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text"
+                                                    object={socials.social3?.textSubtitle} 
+                                                />
+                                            </Typography>
+                                            <Typography className="socials-card-subtext">
+                                                <RenderSkeletonOrElement
+                                                    isLoading={isLoading}
+                                                    variant="text"
+                                                    object={socials.social3?.textComment}
+                                                />
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
                                 </Card>
                             </Animated>
                         </Grid>
