@@ -36,6 +36,6 @@ const DisplayIcon = (props: Properties): React.ReactElement => {
 };
 
 export const GetIcon = (props: Properties): React.ReactElement => {
-    let iconName = props.name !== "" ? props.name.toLowerCase() : "X";
+    let iconName = props.name !== "" ? props.name?.toLowerCase() : "X";
     return <DisplayIcon name={iconName} className={props.className} />;
 };
