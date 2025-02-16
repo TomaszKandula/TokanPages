@@ -5,6 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Navigation } from "../../Components/Layout";
+import { Cookies } from "../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -18,15 +19,21 @@ export const PdfViewerPage = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates"], "PdfViewerPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "footer", 
+            "templates",
+            "cookiesPrompt", 
+        ], "PdfViewerPage"));
     }, [language?.id]);
 
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <div style={{ marginTop: 48 }}>
-                <PdfViewer pdfFile={name} background={{ backgroundColor: "#FCFCFC" }} />
+            <div className="mt-48">
+                <PdfViewer pdfFile={name} background="background-colour-light-grey" />
             </div>
+            <Cookies />
         </>
     );
 };

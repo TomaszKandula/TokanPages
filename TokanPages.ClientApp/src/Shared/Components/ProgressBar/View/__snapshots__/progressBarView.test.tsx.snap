@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="progress-bar-box"
+        class="progress-bar-box "
       >
         <div
-          style="margin: auto;"
+          class="m-auto"
         >
           <div
             class="MuiCircularProgress-root progress-bar-progress MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
@@ -36,10 +36,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="progress-bar-box"
+      class="progress-bar-box "
     >
       <div
-        style="margin: auto;"
+        class="m-auto"
       >
         <div
           class="MuiCircularProgress-root progress-bar-progress MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"

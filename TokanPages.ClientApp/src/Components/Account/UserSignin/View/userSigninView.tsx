@@ -2,22 +2,22 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { Card, CardContent, CircularProgress } from "@material-ui/core";
 import { AccountCircle } from "@material-ui/icons";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     caption: string;
     button: string;
-    link1: string;
-    link2: string;
+    link1: LinkDto;
+    link2: LinkDto;
     buttonHandler: () => void;
     progress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -43,18 +43,14 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
     );
 };
 
-const RedirectTo = (args: { path: string; name: string }): React.ReactElement => {
-    return <Link to={args.path}>{args.name}</Link>;
-};
-
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 32, paddingBottom: props.pb ?? 80 }}>
+                <div className={!props.className ? "pt-32 pb-80" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 <AccountCircle className="account" />
                                 <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
@@ -96,7 +92,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     )}
                                 </Grid>
                             </Grid>
-                            <div style={{ marginTop: 16, marginBottom: 16 }}>
+                            <div className="mt-15 mb-15">
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
@@ -108,14 +104,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path="/signup" name={props.link1} />
+                                        <RedirectTo path={props.link1?.href} name={props.link1?.text} />
                                     )}
                                 </Grid>
                                 <Grid item xs={12} sm={6} className="secondaryAction">
                                     {props.isLoading ? (
                                         <Skeleton variant="text" />
                                     ) : (
-                                        <RedirectTo path="/resetpassword" name={props.link2} />
+                                        <RedirectTo path={props.link2?.href} name={props.link2?.text} />
                                     )}
                                 </Grid>
                             </Grid>

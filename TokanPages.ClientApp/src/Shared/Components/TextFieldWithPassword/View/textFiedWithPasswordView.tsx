@@ -19,7 +19,7 @@ interface Properties {
 export const TextFiedWithPasswordView = (props: Properties): React.ReactElement => {
     return (
         <>
-            <FormControl fullWidth={props.fullWidth} variant="outlined" style={{ margin: 0 }}>
+            <FormControl fullWidth={props.fullWidth} variant="outlined" className="m-zero">
                 <InputLabel htmlFor={props.uuid}>{props.inputLabel}</InputLabel>
                 <OutlinedInput
                     id={props.uuid}

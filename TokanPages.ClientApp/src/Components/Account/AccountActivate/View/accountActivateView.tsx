@@ -16,18 +16,18 @@ interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
 
 export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 0, paddingBottom: props.pb ?? 15 }}>
+                <div className={!props.className ? "pt-0 pb-15" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
-                                <div style={{ marginTop: 16, marginBottom: 16 }}>
+                            <div className="text-centre mb-25">
+                                <div className="mt-15 mb-15">
                                     <Typography component="div" className="aa-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                                     </Typography>
                                 </div>
-                                <div style={{ marginTop: 40, marginBottom: 16 }}>
+                                <div className="mt-40 mb-15">
                                     <Typography component="span" className="aa-text1">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
@@ -36,7 +36,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                                         )}
                                     </Typography>
                                 </div>
-                                <div style={{ marginTop: 16, marginBottom: 40 }}>
+                                <div className="mt-15 mb-40">
                                     <Typography component="span" className="aa-text2">
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />

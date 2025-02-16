@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -10,9 +9,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, TextFiedWithPassword } from "../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupProps } from "../userSignup";
 
@@ -21,7 +21,7 @@ interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     warning: string;
     consent: string;
     button: string;
-    link: string;
+    link: LinkDto;
     buttonHandler: () => void;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
@@ -52,18 +52,14 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => {
     );
 };
 
-const RedirectTo = (args: { path: string; name: string }): React.ReactElement => {
-    return <Link to={args.path}>{args.name}</Link>;
-};
-
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 32, paddingBottom: props.pb ?? 80 }}>
+                <div className={!props.className ? "pt-32 pb-80" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
+                            <div className="text-centre mb-25">
                                 <AccountCircle className="account" />
                                 <Typography className="caption">
                                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
@@ -172,18 +168,18 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     )}
                                 </Grid>
                             </Grid>
-                            <div style={{ marginTop: 16, marginBottom: 16 }}>
+                            <div className="mt-15 mb-15">
                                 {props.isLoading ? (
                                     <Skeleton variant="rect" width="100%" height="40px" />
                                 ) : (
                                     <ActiveButton {...props} />
                                 )}
                             </div>
-                            <div style={{ textAlign: "right" }}>
+                            <div className="text-right">
                                 {props.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <RedirectTo path="/signin" name={props.link} />
+                                    <RedirectTo path={props.link?.href} name={props.link?.text} />
                                 )}
                             </div>
                         </CardContent>

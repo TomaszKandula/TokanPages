@@ -4,6 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { Navigation, Footer } from "../../../Components/Layout";
 import { AccessDenied, UserNotes } from "../../../Components/Account";
+import { Cookies } from "../../../Components/Cookies";
 import Validate from "validate.js";
 
 export const UserNotesPage = (): React.ReactElement => {
@@ -14,7 +15,13 @@ export const UserNotesPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "templates", "accountUserNotes"], "UserNotesPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "footer", 
+            "templates", 
+            "cookiesPrompt", 
+            "accountUserNotes"
+        ], "UserNotesPage"));
     }, [language?.id]);
 
     return (
@@ -24,11 +31,12 @@ export const UserNotesPage = (): React.ReactElement => {
             {isAnonymous ? (
                 <AccessDenied />
             ) : (
-                <div style={{ paddingBottom: 40 }}>
+                <div className="pb-40">
                     <UserNotes />
                 </div>
             )}
 
+            <Cookies />
             <Footer />
         </>
     );

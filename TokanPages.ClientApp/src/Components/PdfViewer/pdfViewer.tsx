@@ -10,7 +10,7 @@ import { PdfViewerView } from "./View/pdfViewerView";
 interface PdfViewerProps {
     pdfFile: string;
     scale?: number;
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
@@ -107,7 +107,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     }, []);
 
     return !isPdfMounted ? (
-        <ProgressBar style={{ paddingTop: 100 }} />
+        <ProgressBar classNameWrapper="pt-96" />
     ) : (
         <PdfViewerView
             isLoading={isLoading}

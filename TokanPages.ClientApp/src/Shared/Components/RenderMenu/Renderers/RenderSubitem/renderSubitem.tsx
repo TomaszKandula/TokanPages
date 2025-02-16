@@ -34,7 +34,7 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
             >
                 <ListItem button key={props.id} className={listItemStyle} disabled={!props.enabled}>
                     <ListItemIcon className="render-navbar-list-icon">
-                        {GetIcon({ iconName: props.icon as string })}
+                        {GetIcon({ name: props.icon as string })}
                     </ListItemIcon>
                     <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
                 </ListItem>
@@ -54,7 +54,7 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
                 to={props.link as string}
             >
                 <ListItemIcon className="render-navbar-list-icon">
-                    {GetIcon({ iconName: props.icon as string })}
+                    {GetIcon({ name: props.icon as string })}
                 </ListItemIcon>
                 <ListItemText primary={props.value} className={listItemTextStyle} disableTypography={true} />
             </ListItem>

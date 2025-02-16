@@ -20,7 +20,7 @@ interface NewsletterViewProps extends ViewProperties {
     progress: boolean;
     buttonText: string;
     labelEmail: string;
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
@@ -40,9 +40,9 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
 
 export const NewsletterView = (props: NewsletterViewProps): React.ReactElement => {
     return (
-        <section className="section-grey" style={props.background}>
+        <section className={`section-grey ${props.background ?? ""}`}>
             <Container className="container-super-wide">
-                <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 64 }}>
+                <div className="text-centre pt-64 pb-64">
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={5}>
                             <Animated dataAos="fade-down">
@@ -58,8 +58,8 @@ export const NewsletterView = (props: NewsletterViewProps): React.ReactElement =
                         </Grid>
                         <Grid item xs={12} md={7}>
                             <Animated dataAos="zoom-in">
-                                <div style={{ display: "flex", height: "100%" }}>
-                                    <div style={{ marginTop: "auto", marginBottom: "auto", width: "100%" }}>
+                                <div className="newsletter-container">
+                                    <div className="newsletter-box">
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={7}>
                                                 {props.isLoading ? (

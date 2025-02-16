@@ -12,8 +12,14 @@ describe("test account group component: userSigninView", () => {
                     isLoading={false}
                     caption="Sign in"
                     button="Sign in"
-                    link1="Don't have an account?"
-                    link2="Forgot password?"
+                    link1={{ 
+                        text: "Don't have an account?", 
+                        href: "/signup" 
+                    }}
+                    link2={{ 
+                        text: "Forgot password?", 
+                        href: "/reset" 
+                    }}
                     buttonHandler={jest.fn()}
                     progress={false}
                     keyHandler={jest.fn()}

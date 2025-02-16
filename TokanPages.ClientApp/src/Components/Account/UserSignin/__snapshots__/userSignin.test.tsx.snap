@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 32px; padding-bottom: 80px;"
+            class="pt-32 pb-80"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -21,7 +21,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  style="text-align: center; margin-bottom: 24px;"
+                  class="text-centre mb-25"
                 >
                   <svg
                     aria-hidden="true"
@@ -80,8 +80,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      class="MuiFormControl-root MuiFormControl-fullWidth"
-                      style="margin: 0px;"
+                      class="MuiFormControl-root m-zero MuiFormControl-fullWidth"
                     >
                       <label
                         class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
@@ -148,7 +147,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 16px; margin-bottom: 16px;"
+                  class="mt-15 mb-15"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -167,14 +166,14 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/signup"
+                      href="/undefinedundefined"
                     />
                   </div>
                   <div
                     class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/resetpassword"
+                      href="/undefinedundefined"
                     />
                   </div>
                 </div>
@@ -187,13 +186,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 32px; padding-bottom: 80px;"
+          class="pt-32 pb-80"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -202,7 +201,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                style="text-align: center; margin-bottom: 24px;"
+                class="text-centre mb-25"
               >
                 <svg
                   aria-hidden="true"
@@ -261,8 +260,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth"
-                    style="margin: 0px;"
+                    class="MuiFormControl-root m-zero MuiFormControl-fullWidth"
                   >
                     <label
                       class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
@@ -329,7 +327,7 @@ Object {
                 </div>
               </div>
               <div
-                style="margin-top: 16px; margin-bottom: 16px;"
+                class="mt-15 mb-15"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -348,14 +346,14 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/signup"
+                    href="/undefinedundefined"
                   />
                 </div>
                 <div
                   class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/resetpassword"
+                    href="/undefinedundefined"
                   />
                 </div>
               </div>

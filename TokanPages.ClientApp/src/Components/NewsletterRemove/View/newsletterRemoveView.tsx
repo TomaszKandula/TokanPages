@@ -37,28 +37,28 @@ const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
 export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div style={{ paddingTop: props.pt ?? 0, paddingBottom: props.pb ?? 120 }}>
+                <div className={!props.className ? "pb-120" : props.className}>
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ textAlign: "center", marginBottom: 24 }}>
-                                <div style={{ marginTop: 16, marginBottom: 16 }}>
+                            <div className="text-centre mb-25">
+                                <div className="mt-15 mb-15">
                                     <Typography className="newsletter-remove-caption">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.caption}
                                     </Typography>
                                 </div>
-                                <div style={{ marginTop: 40, marginBottom: 16 }}>
+                                <div className="mt-40 mb-15">
                                     <Typography className="newsletter-remove-text1">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text1}
                                     </Typography>
                                 </div>
-                                <div style={{ marginTop: 40, marginBottom: 16 }}>
+                                <div className="mt-40 mb-15">
                                     <Typography className="newsletter-remove-text2">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text2}
                                     </Typography>
                                 </div>
-                                <div style={{ marginTop: 40, marginBottom: 56 }}>
+                                <div className="mt-40 mb-56">
                                     <Typography className="newsletter-remove-text3">
                                         {props.isLoading ? <Skeleton variant="text" /> : content.text3}
                                     </Typography>

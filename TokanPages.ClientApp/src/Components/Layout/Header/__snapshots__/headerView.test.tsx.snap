@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section margin-top-60"
+        class="section margin-top-60 "
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -27,29 +27,29 @@ Object {
             <div
               class="header-content-box"
             >
-              <span
-                class="MuiTypography-root header-content-caption MuiTypography-body1"
+              <h1
+                class="header-content-caption"
               >
                 <div>
                   Welcome to my web page
                 </div>
-              </span>
-              <span
-                class="MuiTypography-root header-content-subtitle MuiTypography-body1"
+              </h1>
+              <h2
+                class="header-content-subtitle"
               >
                 <div>
                   For years...
                 </div>
-              </span>
-              <span
-                class="MuiTypography-root header-content-description MuiTypography-body1"
+              </h2>
+              <div
+                class="header-content-description"
               >
                 <div>
                   I do programming for a living...
                 </div>
-              </span>
+              </div>
               <div
-                style="margin-top: 32px;"
+                class="mt-32"
               >
                 <a
                   class="link"
@@ -95,7 +95,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section margin-top-60"
+      class="section margin-top-60 "
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -116,29 +116,29 @@ Object {
           <div
             class="header-content-box"
           >
-            <span
-              class="MuiTypography-root header-content-caption MuiTypography-body1"
+            <h1
+              class="header-content-caption"
             >
               <div>
                 Welcome to my web page
               </div>
-            </span>
-            <span
-              class="MuiTypography-root header-content-subtitle MuiTypography-body1"
+            </h1>
+            <h2
+              class="header-content-subtitle"
             >
               <div>
                 For years...
               </div>
-            </span>
-            <span
-              class="MuiTypography-root header-content-description MuiTypography-body1"
+            </h2>
+            <div
+              class="header-content-description"
             >
               <div>
                 I do programming for a living...
               </div>
-            </span>
+            </div>
             <div
-              style="margin-top: 32px;"
+              class="mt-32"
             >
               <a
                 class="link"

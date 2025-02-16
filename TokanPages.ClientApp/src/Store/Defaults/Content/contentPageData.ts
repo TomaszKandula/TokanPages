@@ -396,6 +396,52 @@ export const ContentPageData: ContentPageDataState = {
             occupation3: "",
             text3: "",
         },
+        socials: {
+            language: "",
+            caption: "",
+            social1: {
+                images: {
+                    header: "",
+                    avatar: "",
+                    icon: ""
+                },
+                textTitle: "",
+                textSubtitle: "",
+                textComment: "",
+                action: {
+                    text: "",
+                    href: ""
+                }
+            },
+            social2: {
+                images: {
+                    header: "",
+                    avatar: "",
+                    icon: ""
+                },
+                textTitle: "",
+                textSubtitle: "",
+                textComment: "",
+                action: {
+                    text: "",
+                    href: ""
+                }
+            },
+            social3: {
+                images: {
+                    header: "",
+                    avatar: "",
+                    icon: ""
+                },
+                textTitle: "",
+                textSubtitle: "",
+                textComment: "",
+                action: {
+                    text: "",
+                    href: ""
+                }
+            }
+        },
         passwordUpdate: {
             language: "",
             caption: "",
@@ -407,8 +453,14 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             caption: "",
             button: "",
-            link1: "",
-            link2: "",
+            link1: {
+                text: "",
+                href: ""
+            },
+            link2: {
+                text: "",
+                href: ""
+            },
             labelEmail: "",
             labelPassword: "",
         },
@@ -423,7 +475,10 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             caption: "",
             button: "",
-            link: "",
+            link: {
+                text: "",
+                href: ""
+            },
             warning: "",
             consent: "",
             labelFirstName: "",

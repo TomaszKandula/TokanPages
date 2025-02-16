@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-bottom: 96px;"
+            class="pb-96"
           >
             <div
               data-aos="fade-down"
@@ -34,21 +34,17 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
                 >
                   <div
-                    class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-alignLeft"
+                    class="MuiTypography-root article-details-alias-name MuiTypography-body1 MuiTypography-alignLeft"
                   >
-                    <div
-                      style="font-weight: bold;"
-                    >
-                      Ester
-                    </div>
+                    Ester
                   </div>
                 </div>
               </div>
               <div
-                style="margin-top: 8px; margin-bottom: 40px;"
+                class="mt-8 mb-40"
               >
                 <div
-                  class="text-block"
+                  class="article-details-text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -58,7 +54,7 @@ Object {
                   </p>
                   <img
                     alt="image of eng.png"
-                    class="flag-image"
+                    class="article-details-flag-image"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
                 </div>
@@ -68,7 +64,7 @@ Object {
                   Read time:
                 </p>
                 <div
-                  class="text-block"
+                  class="article-details-text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -76,13 +72,13 @@ Object {
                     Published at:
                   </p>
                   <p
-                    class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
+                    class="MuiTypography-root article-details-text-padding-left MuiTypography-subtitle1"
                   >
                     01/10/2020, 12:15 PM
                   </p>
                 </div>
                 <div
-                  class="text-block"
+                  class="article-details-text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -90,13 +86,13 @@ Object {
                     Updated at:
                   </p>
                   <p
-                    class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
+                    class="MuiTypography-root article-details-text-padding-left MuiTypography-subtitle1"
                   >
                     01/10/2020, 12:15 PM
                   </p>
                 </div>
                 <div
-                  class="text-block"
+                  class="article-details-text-block"
                 >
                   <p
                     class="MuiTypography-root MuiTypography-subtitle1"
@@ -104,7 +100,7 @@ Object {
                     Read count:
                   </p>
                   <p
-                    class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
+                    class="MuiTypography-root article-details-text-padding-left MuiTypography-subtitle1"
                   >
                     1.000.000
                   </p>
@@ -120,7 +116,7 @@ Object {
               </div>
             </div>
             <div
-              style="margin-top: 40px;"
+              class="mt-40"
             >
               <div
                 class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -130,7 +126,7 @@ Object {
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root thumbs-medium"
+                    class="MuiSvgIcon-root article-details-thumbs-medium"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
@@ -150,9 +146,13 @@ Object {
                 </div>
               </div>
             </div>
-            <hr
-              class="MuiDivider-root divider-bottom"
-            />
+            <div
+              class="mt-32 mb-32"
+            >
+              <hr
+                class="MuiDivider-root divider"
+              />
+            </div>
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
             >
@@ -172,8 +172,7 @@ Object {
                   Written by
                 </span>
                 <p
-                  class="MuiTypography-root MuiTypography-h6"
-                  style="font-weight: 500;"
+                  class="MuiTypography-root article-details-text-500 MuiTypography-h6"
                 >
                   Ester Exposito
                 </p>
@@ -193,13 +192,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-bottom: 96px;"
+          class="pb-96"
         >
           <div
             data-aos="fade-down"
@@ -221,21 +220,17 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-zeroMinWidth MuiGrid-grid-xs-true"
               >
                 <div
-                  class="MuiTypography-root alias-name MuiTypography-subtitle1 MuiTypography-alignLeft"
+                  class="MuiTypography-root article-details-alias-name MuiTypography-body1 MuiTypography-alignLeft"
                 >
-                  <div
-                    style="font-weight: bold;"
-                  >
-                    Ester
-                  </div>
+                  Ester
                 </div>
               </div>
             </div>
             <div
-              style="margin-top: 8px; margin-bottom: 40px;"
+              class="mt-8 mb-40"
             >
               <div
-                class="text-block"
+                class="article-details-text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -245,7 +240,7 @@ Object {
                 </p>
                 <img
                   alt="image of eng.png"
-                  class="flag-image"
+                  class="article-details-flag-image"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                 />
               </div>
@@ -255,7 +250,7 @@ Object {
                 Read time:
               </p>
               <div
-                class="text-block"
+                class="article-details-text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -263,13 +258,13 @@ Object {
                   Published at:
                 </p>
                 <p
-                  class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
+                  class="MuiTypography-root article-details-text-padding-left MuiTypography-subtitle1"
                 >
                   01/10/2020, 12:15 PM
                 </p>
               </div>
               <div
-                class="text-block"
+                class="article-details-text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -277,13 +272,13 @@ Object {
                   Updated at:
                 </p>
                 <p
-                  class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
+                  class="MuiTypography-root article-details-text-padding-left MuiTypography-subtitle1"
                 >
                   01/10/2020, 12:15 PM
                 </p>
               </div>
               <div
-                class="text-block"
+                class="article-details-text-block"
               >
                 <p
                   class="MuiTypography-root MuiTypography-subtitle1"
@@ -291,7 +286,7 @@ Object {
                   Read count:
                 </p>
                 <p
-                  class="MuiTypography-root text-padding-left MuiTypography-subtitle1"
+                  class="MuiTypography-root article-details-text-padding-left MuiTypography-subtitle1"
                 >
                   1.000.000
                 </p>
@@ -307,7 +302,7 @@ Object {
             </div>
           </div>
           <div
-            style="margin-top: 40px;"
+            class="mt-40"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -317,7 +312,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root thumbs-medium"
+                  class="MuiSvgIcon-root article-details-thumbs-medium"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
@@ -337,9 +332,13 @@ Object {
               </div>
             </div>
           </div>
-          <hr
-            class="MuiDivider-root divider-bottom"
-          />
+          <div
+            class="mt-32 mb-32"
+          >
+            <hr
+              class="MuiDivider-root divider"
+            />
+          </div>
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
           >
@@ -359,8 +358,7 @@ Object {
                 Written by
               </span>
               <p
-                class="MuiTypography-root MuiTypography-h6"
-                style="font-weight: 500;"
+                class="MuiTypography-root article-details-text-500 MuiTypography-h6"
               >
                 Ester Exposito
               </p>

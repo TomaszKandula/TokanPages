@@ -37,22 +37,22 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
 
 export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement => {
     return (
-        <section className="section" style={props.background}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
-                <div style={{ paddingBottom: 40 }}>
+                <div className="pb-40">
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-                            <div style={{ paddingTop: 0, paddingBottom: 0 }}>
-                                <Typography component="span" className="caption black">
-                                    {props.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        props.sectionAccountRemoval?.caption
-                                    )}
-                                </Typography>
-                            </div>
-                            <CustomDivider marginTop={16} marginBottom={8} />
-                            <div style={{ paddingTop: 8, paddingBottom: 8 }}>
+                            <Typography component="span" className="caption black">
+                                {props.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    props.sectionAccountRemoval?.caption
+                                )}
+                            </Typography>
+
+                            <CustomDivider mt={15} mb={8} />
+
+                            <div className="pt-8 pb-8">
                                 <Grid container spacing={2}>
                                     <Grid item>
                                         <Typography component="span" className="label">
@@ -64,9 +64,11 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                                         </Typography>
                                     </Grid>
                                 </Grid>
-                                <CustomDivider marginTop={16} marginBottom={16} />
+
+                                <CustomDivider mt={15} mb={15} />
+
                                 <Grid className="button-container-update">
-                                    <div style={{ marginTop: 16, marginBottom: 16 }}>
+                                    <div className="mt-15 mb-15">
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="150px" height="40px" />
                                         ) : (

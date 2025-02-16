@@ -11,7 +11,7 @@ import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
 
 export interface UserPasswordProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const UserPassword = (props: UserPasswordProps): React.ReactElement => {

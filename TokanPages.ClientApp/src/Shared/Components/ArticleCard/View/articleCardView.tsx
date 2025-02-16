@@ -27,6 +27,7 @@ interface ArticleCardViewProps {
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     const hasFlag = !Validate.isEmpty(props.flagImage);
+    const styleCard = props.styleSmallCard ? "article-card-action-small" : "article-card-action-large"
 
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
@@ -35,7 +36,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                 <CardContent className="article-card-content">
                     <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
-                    <div className="article-card-action-container" style={{ height: props.styleSmallCard ? 50 : 100 }}>
+                    <div className={`article-card-action-container ${styleCard}`}>
                         <CardActions className="article-card-action">
                             <div className="article-card-details">
                                 {props.readCount === undefined ? (

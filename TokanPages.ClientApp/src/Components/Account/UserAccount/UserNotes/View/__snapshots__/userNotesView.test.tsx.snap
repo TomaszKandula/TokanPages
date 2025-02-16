@@ -35,7 +35,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 120px; padding-bottom: 40px;"
+            class="pt-120 pb-40"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -43,27 +43,23 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <div
-                  style="padding-top: 0px; padding-bottom: 0px;"
+                <span
+                  class="MuiTypography-root caption black MuiTypography-body1"
                 >
-                  <span
-                    class="MuiTypography-root caption black MuiTypography-body1"
-                  >
-                    User Notes
-                  </span>
-                </div>
+                  User Notes
+                </span>
                 <div
-                  style="margin-top: 16px; margin-bottom: 8px;"
+                  class="mt-15 mb-8"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  style="padding-top: 24px; padding-bottom: 8px;"
+                  class="pt-25 pb-8"
                 >
                   <div
-                    style="margin-bottom: 24px;"
+                    class="mb-25"
                   >
                     <span
                       class="MuiTypography-root label MuiTypography-body1"
@@ -83,8 +79,7 @@ Object {
                         Notes:
                       </span>
                       <div
-                        class="user-notes-fixed-list user-notes-border "
-                        style="margin-top: 10px;"
+                        class="user-notes-fixed-list user-notes-border mt-10 "
                       />
                     </div>
                     <div
@@ -96,8 +91,7 @@ Object {
                         Message:
                       </span>
                       <div
-                        class="user-notes-text-box"
-                        style="margin-top: 10px;"
+                        class="user-notes-text-box mt-10"
                       >
                         <div
                           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -211,7 +205,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 120px; padding-bottom: 40px;"
+          class="pt-120 pb-40"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -219,27 +213,23 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <div
-                style="padding-top: 0px; padding-bottom: 0px;"
+              <span
+                class="MuiTypography-root caption black MuiTypography-body1"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
-                >
-                  User Notes
-                </span>
-              </div>
+                User Notes
+              </span>
               <div
-                style="margin-top: 16px; margin-bottom: 8px;"
+                class="mt-15 mb-8"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                style="padding-top: 24px; padding-bottom: 8px;"
+                class="pt-25 pb-8"
               >
                 <div
-                  style="margin-bottom: 24px;"
+                  class="mb-25"
                 >
                   <span
                     class="MuiTypography-root label MuiTypography-body1"
@@ -259,8 +249,7 @@ Object {
                       Notes:
                     </span>
                     <div
-                      class="user-notes-fixed-list user-notes-border "
-                      style="margin-top: 10px;"
+                      class="user-notes-fixed-list user-notes-border mt-10 "
                     />
                   </div>
                   <div
@@ -272,8 +261,7 @@ Object {
                       Message:
                     </span>
                     <div
-                      class="user-notes-text-box"
-                      style="margin-top: 10px;"
+                      class="user-notes-text-box mt-10"
                     >
                       <div
                         class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -444,7 +432,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 120px; padding-bottom: 40px;"
+            class="pt-120 pb-40"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -452,27 +440,23 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <div
-                  style="padding-top: 0px; padding-bottom: 0px;"
+                <span
+                  class="MuiTypography-root caption black MuiTypography-body1"
                 >
-                  <span
-                    class="MuiTypography-root caption black MuiTypography-body1"
-                  >
-                    User Notes
-                  </span>
-                </div>
+                  User Notes
+                </span>
                 <div
-                  style="margin-top: 16px; margin-bottom: 8px;"
+                  class="mt-15 mb-8"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  style="padding-top: 24px; padding-bottom: 8px;"
+                  class="pt-25 pb-8"
                 >
                   <div
-                    style="margin-bottom: 24px;"
+                    class="mb-25"
                   >
                     <span
                       class="MuiTypography-root label MuiTypography-body1"
@@ -492,8 +476,7 @@ Object {
                         Notes:
                       </span>
                       <div
-                        class="user-notes-fixed-list user-notes-border "
-                        style="margin-top: 10px;"
+                        class="user-notes-fixed-list user-notes-border mt-10 "
                       />
                     </div>
                     <div
@@ -505,8 +488,7 @@ Object {
                         Message:
                       </span>
                       <div
-                        class="user-notes-text-box"
-                        style="margin-top: 10px;"
+                        class="user-notes-text-box mt-10"
                       >
                         <div
                           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -620,7 +602,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 120px; padding-bottom: 40px;"
+          class="pt-120 pb-40"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -628,27 +610,23 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <div
-                style="padding-top: 0px; padding-bottom: 0px;"
+              <span
+                class="MuiTypography-root caption black MuiTypography-body1"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
-                >
-                  User Notes
-                </span>
-              </div>
+                User Notes
+              </span>
               <div
-                style="margin-top: 16px; margin-bottom: 8px;"
+                class="mt-15 mb-8"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                style="padding-top: 24px; padding-bottom: 8px;"
+                class="pt-25 pb-8"
               >
                 <div
-                  style="margin-bottom: 24px;"
+                  class="mb-25"
                 >
                   <span
                     class="MuiTypography-root label MuiTypography-body1"
@@ -668,8 +646,7 @@ Object {
                       Notes:
                     </span>
                     <div
-                      class="user-notes-fixed-list user-notes-border "
-                      style="margin-top: 10px;"
+                      class="user-notes-fixed-list user-notes-border mt-10 "
                     />
                   </div>
                   <div
@@ -681,8 +658,7 @@ Object {
                       Message:
                     </span>
                     <div
-                      class="user-notes-text-box"
-                      style="margin-top: 10px;"
+                      class="user-notes-text-box mt-10"
                     >
                       <div
                         class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -853,7 +829,7 @@ Object {
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 120px; padding-bottom: 40px;"
+            class="pt-120 pb-40"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -861,29 +837,25 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <div
-                  style="padding-top: 0px; padding-bottom: 0px;"
+                <span
+                  class="MuiTypography-root caption black MuiTypography-body1"
                 >
                   <span
-                    class="MuiTypography-root caption black MuiTypography-body1"
-                  >
-                    <span
-                      class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                    />
-                  </span>
-                </div>
+                    class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                  />
+                </span>
                 <div
-                  style="margin-top: 16px; margin-bottom: 8px;"
+                  class="mt-15 mb-8"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  style="padding-top: 24px; padding-bottom: 8px;"
+                  class="pt-25 pb-8"
                 >
                   <div
-                    style="margin-bottom: 24px;"
+                    class="mb-25"
                   >
                     <span
                       class="MuiTypography-root label MuiTypography-body1"
@@ -907,8 +879,7 @@ Object {
                         />
                       </span>
                       <div
-                        class="user-notes-fixed-list user-notes-border loading-indicator"
-                        style="margin-top: 10px;"
+                        class="user-notes-fixed-list user-notes-border mt-10 loading-indicator"
                       />
                     </div>
                     <div
@@ -922,8 +893,7 @@ Object {
                         />
                       </span>
                       <div
-                        class="user-notes-text-box"
-                        style="margin-top: 10px;"
+                        class="user-notes-text-box mt-10"
                       >
                         <div
                           class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
@@ -1039,7 +1009,7 @@ Object {
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 120px; padding-bottom: 40px;"
+          class="pt-120 pb-40"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -1047,29 +1017,25 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <div
-                style="padding-top: 0px; padding-bottom: 0px;"
+              <span
+                class="MuiTypography-root caption black MuiTypography-body1"
               >
                 <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
-                >
-                  <span
-                    class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                  />
-                </span>
-              </div>
+                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                />
+              </span>
               <div
-                style="margin-top: 16px; margin-bottom: 8px;"
+                class="mt-15 mb-8"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                style="padding-top: 24px; padding-bottom: 8px;"
+                class="pt-25 pb-8"
               >
                 <div
-                  style="margin-bottom: 24px;"
+                  class="mb-25"
                 >
                   <span
                     class="MuiTypography-root label MuiTypography-body1"
@@ -1093,8 +1059,7 @@ Object {
                       />
                     </span>
                     <div
-                      class="user-notes-fixed-list user-notes-border loading-indicator"
-                      style="margin-top: 10px;"
+                      class="user-notes-fixed-list user-notes-border mt-10 loading-indicator"
                     />
                   </div>
                   <div
@@ -1108,8 +1073,7 @@ Object {
                       />
                     </span>
                     <div
-                      class="user-notes-text-box"
-                      style="margin-top: 10px;"
+                      class="user-notes-text-box mt-10"
                     >
                       <div
                         class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"

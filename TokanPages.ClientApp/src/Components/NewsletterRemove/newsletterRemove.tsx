@@ -8,9 +8,8 @@ import { ContentDto } from "../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 
 export interface ExtendedViewProps {
-    pt?: number;
-    pb?: number;
-    background?: React.CSSProperties;
+    className?: string;
+    background?: string;
 }
 
 export interface NewsletterRemoveProps extends ExtendedViewProps {
@@ -75,8 +74,7 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
             buttonState={hasButton}
             progress={hasProgress}
             isRemoved={isRemoved}
-            pt={props.pt}
-            pb={props.pb}
+            className={props.className}
             background={props.background}
         />
     );

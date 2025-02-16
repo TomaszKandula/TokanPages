@@ -6,27 +6,27 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="text-align: center; padding-top: 64px; padding-bottom: 120px;"
+            class="text-centre pt-64 pb-120"
           >
             <div
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <p
-                class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
+              <h1
+                class="testimonials-caption-text"
               >
                 TESTIMONIALS
-              </p>
+              </h1>
             </div>
           </div>
           <div
-            style="text-align: center; padding-bottom: 120px;"
+            class="text-centre pb-120"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -258,27 +258,27 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="text-align: center; padding-top: 64px; padding-bottom: 120px;"
+          class="text-centre pt-64 pb-120"
         >
           <div
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <p
-              class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
+            <h1
+              class="testimonials-caption-text"
             >
               TESTIMONIALS
-            </p>
+            </h1>
           </div>
         </div>
         <div
-          style="text-align: center; padding-bottom: 120px;"
+          class="text-centre pb-120"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"

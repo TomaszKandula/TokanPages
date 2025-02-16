@@ -5,6 +5,7 @@ import { ContentPageDataAction } from "../../Store/Actions";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
+import { Cookies } from "../../Components/Cookies";
 
 export const BusinessPage = () => {
     const dispatch = useDispatch();
@@ -13,7 +14,12 @@ export const BusinessPage = () => {
     const businessForm = state?.contentPageData?.components?.businessForm;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "businessForm"], "BusinessPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "templates", 
+            "cookiesPrompt", 
+            "businessForm"
+        ], "BusinessPage"));
     }, [language?.id]);
 
     React.useEffect(() => {
@@ -26,13 +32,13 @@ export const BusinessPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <BusinessForm
-                pt={15}
-                pb={30}
                 hasCaption={false}
                 hasIcon={true}
                 hasShadow={true}
-                background={{ backgroundColor: "#FCFCFC" }}
+                className="pt-120 pb-240"
+                background="background-colour-light-grey"
             />
+            <Cookies />
         </>
     );
 };

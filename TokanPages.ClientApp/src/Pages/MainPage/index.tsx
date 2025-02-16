@@ -7,6 +7,7 @@ import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";
+import { Socials } from "../../Components/Socials";
 import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { Cookies } from "../../Components/Cookies";
@@ -31,6 +32,7 @@ export const MainPage = (): React.ReactElement => {
                     "articleFeatures",
                     "featured",
                     "testimonials",
+                    "socials",
                     "newsletter",
                     "contactForm",
                     "cookiesPrompt",
@@ -57,8 +59,9 @@ export const MainPage = (): React.ReactElement => {
             <ArticleFeature />
             <Featured />
             <Testimonials />
-            <Newsletter />
-            <ContactForm hasCaption={true} />
+            <Socials />
+            <Newsletter background="background-colour-white" />
+            <ContactForm hasCaption={true} background="background-colour-light-grey" />
             <Cookies />
             <Footer />
         </>

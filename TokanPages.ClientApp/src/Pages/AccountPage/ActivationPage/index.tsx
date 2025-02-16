@@ -6,6 +6,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { AccountActivate } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
+import { Cookies } from "../../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -13,7 +14,7 @@ const useQuery = () => {
 
 const ErrorMessage = (): React.ReactElement => {
     return (
-        <div style={{ marginTop: 80, marginBottom: 40 }}>
+        <div className="mt-80 mb-40">
             <Typography>Uuuppss..., there is a missing ID...</Typography>
         </div>
     );
@@ -28,17 +29,28 @@ export const ActivationPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "accountActivate"], "ActivationPage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation",
+            "templates",
+            "cookiesPrompt",
+            "accountActivate"
+        ], "ActivationPage"));
     }, [language?.id]);
 
     return (
         <>
             <Navigation backNavigationOnly={true} />
             {id ? (
-                <AccountActivate id={id} type={type} pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+                <AccountActivate 
+                    id={id} 
+                    type={type} 
+                    className="pt-120 pb-240" 
+                    background="background-colour-light-grey"
+                />
             ) : (
                 <ErrorMessage />
             )}
+            <Cookies />
         </>
     );
 };

@@ -15,9 +15,8 @@ describe("test account group component: userSignoutView", () => {
                     status="Signing out current user..., please wait."
                     buttonText={"Go back to main"}
                     isAnonymous={false}
-                    pt={15}
-                    pb={15}
-                    background={{ backgroundColor: "white" }}
+                    className="mt-15"
+                    background="class-colour-white"
                 />
             </BrowserRouter>
         );

@@ -24,6 +24,7 @@ import {
     TemplatesContent,
     TestimonialsContentDto,
     AccountUserNotesContentDto,
+    SocialsContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
@@ -56,9 +57,10 @@ export interface ComponentsDto {
     photography: DocumentContentDto;
     policy: DocumentContentDto;
     showcase: DocumentContentDto;
+    socials: SocialsContentDto;
     story: DocumentContentDto;
     technologies: TechnologiesContentDto;
-    templates: TemplatesContent; //TODO: rename
+    templates: TemplatesContent;
     terms: DocumentContentDto;
     testimonials: TestimonialsContentDto;
 }

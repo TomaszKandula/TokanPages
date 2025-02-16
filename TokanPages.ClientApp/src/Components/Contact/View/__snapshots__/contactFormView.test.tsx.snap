@@ -6,33 +6,33 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 64px; padding-bottom: 96px;"
+            class="pt-64 pb-96"
           >
             <div
+              class="text-centre"
               data-aos="fade-down"
               data-aos-delay="0"
-              style="text-align: center;"
             >
-              <p
-                class="MuiTypography-root contact-caption MuiTypography-body1"
+              <h1
+                class="contact-caption"
               >
                 CONTACT ME
-              </p>
+              </h1>
             </div>
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="MuiPaper-root MuiCard-root background-colour-inherited card MuiPaper-elevation0 MuiPaper-rounded"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="MuiCardContent-root card-content background-colour-inherited"
               >
                 <div
-                  style="text-align: center; margin-bottom: 24px;"
+                  class="text-centre mb-25"
                 >
                   <svg
                     aria-hidden="true"
@@ -378,9 +378,9 @@ Object {
                   </div>
                 </div>
                 <div
+                  class="mt-15 mb-15"
                   data-aos="fade-up"
                   data-aos-delay="0"
-                  style="margin-top: 16px; margin-bottom: 16px;"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -403,33 +403,33 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 64px; padding-bottom: 96px;"
+          class="pt-64 pb-96"
         >
           <div
+            class="text-centre"
             data-aos="fade-down"
             data-aos-delay="0"
-            style="text-align: center;"
           >
-            <p
-              class="MuiTypography-root contact-caption MuiTypography-body1"
+            <h1
+              class="contact-caption"
             >
               CONTACT ME
-            </p>
+            </h1>
           </div>
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="MuiPaper-root MuiCard-root background-colour-inherited card MuiPaper-elevation0 MuiPaper-rounded"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="MuiCardContent-root card-content background-colour-inherited"
             >
               <div
-                style="text-align: center; margin-bottom: 24px;"
+                class="text-centre mb-25"
               >
                 <svg
                   aria-hidden="true"
@@ -775,9 +775,9 @@ Object {
                 </div>
               </div>
               <div
+                class="mt-15 mb-15"
                 data-aos="fade-up"
                 data-aos-delay="0"
-                style="margin-top: 16px; margin-bottom: 16px;"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"

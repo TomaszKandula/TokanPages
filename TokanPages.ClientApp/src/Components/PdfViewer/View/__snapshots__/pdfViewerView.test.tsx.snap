@@ -6,14 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
-        style="background-color: white;"
+        class="section class-colour-white"
       >
         <div
           class="MuiContainer-root container-wide-1000 MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 80px; padding-bottom: 48px;"
+            class="pt-80 pb-48"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -91,14 +90,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
-      style="background-color: white;"
+      class="section class-colour-white"
     >
       <div
         class="MuiContainer-root container-wide-1000 MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 80px; padding-bottom: 48px;"
+          class="pt-80 pb-48"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"

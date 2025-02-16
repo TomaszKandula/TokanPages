@@ -65,9 +65,8 @@ describe("test component: businessFormView", () => {
                             },
                         ],
                     }}
-                    pt={15}
-                    pb={15}
-                    background={{ backgroundColor: "white" }}
+                    className="mt-15 mb-15"
+                    background="class-colour-white"
                     hasIcon={true}
                     hasCaption={true}
                     hasShadow={true}

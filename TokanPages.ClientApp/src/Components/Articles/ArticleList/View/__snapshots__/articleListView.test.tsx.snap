@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 0px; padding-bottom: 64px;"
+            class="pb-64"
           >
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
@@ -45,8 +45,7 @@ Object {
                         Some article
                       </p>
                       <div
-                        class="article-card-action-container"
-                        style="height: 100px;"
+                        class="article-card-action-container article-card-action-large"
                       >
                         <div
                           class="MuiCardActions-root article-card-action MuiCardActions-spacing"
@@ -139,13 +138,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 0px; padding-bottom: 64px;"
+          class="pb-64"
         >
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
@@ -178,8 +177,7 @@ Object {
                       Some article
                     </p>
                     <div
-                      class="article-card-action-container"
-                      style="height: 100px;"
+                      class="article-card-action-container article-card-action-large"
                     >
                       <div
                         class="MuiCardActions-root article-card-action MuiCardActions-spacing"

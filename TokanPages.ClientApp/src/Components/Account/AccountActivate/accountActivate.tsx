@@ -15,9 +15,8 @@ const DefaultValues = {
 };
 
 export interface ExtendedViewProps {
-    pt?: number;
-    pb?: number;
-    background?: React.CSSProperties;
+    background?: string;
+    className?: string;
 }
 
 export interface AccountActivateProps extends ExtendedViewProps {
@@ -128,9 +127,8 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
             text1={content?.text1}
             text2={content?.text2}
             progress={hasProgress}
-            pt={props.pt}
-            pb={props.pb}
             background={props.background}
+            className={props.className}
         />
     );
 };

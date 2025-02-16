@@ -20,12 +20,11 @@ const formDefault: ContactFormInput = {
 };
 
 export interface ContactFormProps {
-    pt?: number;
-    pb?: number;
     hasCaption?: boolean;
     hasIcon?: boolean;
     hasShadow?: boolean;
-    background?: React.CSSProperties;
+    background?: string;
+    className?: string;
 }
 
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
@@ -147,12 +146,11 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             labelMessage={contactForm?.labelMessage}
             multiline={true}
             minRows={6}
-            pt={props.pt}
-            pb={props.pb}
             background={props.background}
             hasIcon={props.hasIcon}
             hasCaption={props.hasCaption}
             hasShadow={props.hasShadow}
+            className={props.className}
         />
     );
 };

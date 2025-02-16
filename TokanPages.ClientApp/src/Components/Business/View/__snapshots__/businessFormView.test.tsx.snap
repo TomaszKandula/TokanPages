@@ -6,17 +6,16 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
-        style="background-color: white;"
+        class="section class-colour-white ?? \\"\\""
       >
         <div
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-top: 120px; padding-bottom: 240px;"
+            class="mt-15 mb-15"
           >
             <div
-              style="text-align: center;"
+              class="text-centre"
             >
               <p
                 class="MuiTypography-root business-large-caption MuiTypography-body1"
@@ -31,7 +30,7 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  style="text-align: center; margin-bottom: 24px;"
+                  class="text-centre mb-25"
                 >
                   <svg
                     aria-hidden="true"
@@ -342,7 +341,7 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                   >
                     <div
-                      style="margin-top: 16px; margin-bottom: 8px;"
+                      class="mt-15 mb-8"
                     >
                       <p
                         class="MuiTypography-root business-header MuiTypography-body1"
@@ -458,10 +457,10 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 16px; margin-bottom: 32px;"
+                  class="mt-15 mb-32"
                 >
                   <div
-                    style="margin-top: 8px; margin-bottom: 32px;"
+                    class="mt-8 mb-32"
                   >
                     <span
                       class="MuiTypography-root business-header MuiTypography-body1"
@@ -488,7 +487,7 @@ Object {
                           </div>
                         </span>
                         <div
-                          style="margin-top: 16px;"
+                          class="mt-15"
                         >
                           <span
                             class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -516,7 +515,7 @@ Object {
                           </div>
                         </span>
                         <div
-                          style="margin-top: 16px;"
+                          class="mt-15"
                         >
                           <span
                             class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -531,8 +530,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="business-info-box"
-                  style="margin-bottom: 80px;"
+                  class="business-info-box mb-80"
                 >
                   <svg
                     aria-hidden="true"
@@ -551,7 +549,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  style="margin-top: 40px; margin-bottom: 40px;"
+                  class="mt-40 mb-40"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
@@ -574,17 +572,16 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
-      style="background-color: white;"
+      class="section class-colour-white ?? \\"\\""
     >
       <div
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-top: 120px; padding-bottom: 240px;"
+          class="mt-15 mb-15"
         >
           <div
-            style="text-align: center;"
+            class="text-centre"
           >
             <p
               class="MuiTypography-root business-large-caption MuiTypography-body1"
@@ -599,7 +596,7 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                style="text-align: center; margin-bottom: 24px;"
+                class="text-centre mb-25"
               >
                 <svg
                   aria-hidden="true"
@@ -910,7 +907,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
                 >
                   <div
-                    style="margin-top: 16px; margin-bottom: 8px;"
+                    class="mt-15 mb-8"
                   >
                     <p
                       class="MuiTypography-root business-header MuiTypography-body1"
@@ -1026,10 +1023,10 @@ Object {
                 </div>
               </div>
               <div
-                style="margin-top: 16px; margin-bottom: 32px;"
+                class="mt-15 mb-32"
               >
                 <div
-                  style="margin-top: 8px; margin-bottom: 32px;"
+                  class="mt-8 mb-32"
                 >
                   <span
                     class="MuiTypography-root business-header MuiTypography-body1"
@@ -1056,7 +1053,7 @@ Object {
                         </div>
                       </span>
                       <div
-                        style="margin-top: 16px;"
+                        class="mt-15"
                       >
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -1084,7 +1081,7 @@ Object {
                         </div>
                       </span>
                       <div
-                        style="margin-top: 16px;"
+                        class="mt-15"
                       >
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
@@ -1099,8 +1096,7 @@ Object {
                 </div>
               </div>
               <div
-                class="business-info-box"
-                style="margin-bottom: 80px;"
+                class="business-info-box mb-80"
               >
                 <svg
                   aria-hidden="true"
@@ -1119,7 +1115,7 @@ Object {
                 </span>
               </div>
               <div
-                style="margin-top: 40px; margin-bottom: 40px;"
+                class="mt-40 mb-40"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"

@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section"
+        class="section "
       >
         <div
           class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
-            style="padding-bottom: 40px;"
+            class="pb-40"
           >
             <div
               class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -20,24 +20,20 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <div
-                  style="padding-top: 0px; padding-bottom: 0px;"
+                <span
+                  class="MuiTypography-root caption black MuiTypography-body1"
                 >
-                  <span
-                    class="MuiTypography-root caption black MuiTypography-body1"
-                  >
-                    Account Removal
-                  </span>
-                </div>
+                  Account Removal
+                </span>
                 <div
-                  style="margin-top: 16px; margin-bottom: 8px;"
+                  class="mt-15 mb-8"
                 >
                   <hr
                     class="MuiDivider-root divider"
                   />
                 </div>
                 <div
-                  style="padding-top: 8px; padding-bottom: 8px;"
+                  class="pt-8 pb-8"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -60,7 +56,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    style="margin-top: 16px; margin-bottom: 16px;"
+                    class="mt-15 mb-15"
                   >
                     <hr
                       class="MuiDivider-root divider"
@@ -70,7 +66,7 @@ Object {
                     class="MuiGrid-root button-container-update"
                   >
                     <div
-                      style="margin-top: 16px; margin-bottom: 16px;"
+                      class="mt-15 mb-15"
                     >
                       <button
                         class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete Mui-disabled MuiButton-fullWidth Mui-disabled"
@@ -114,13 +110,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section"
+      class="section "
     >
       <div
         class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
-          style="padding-bottom: 40px;"
+          class="pb-40"
         >
           <div
             class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
@@ -128,24 +124,20 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <div
-                style="padding-top: 0px; padding-bottom: 0px;"
+              <span
+                class="MuiTypography-root caption black MuiTypography-body1"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
-                >
-                  Account Removal
-                </span>
-              </div>
+                Account Removal
+              </span>
               <div
-                style="margin-top: 16px; margin-bottom: 8px;"
+                class="mt-15 mb-8"
               >
                 <hr
                   class="MuiDivider-root divider"
                 />
               </div>
               <div
-                style="padding-top: 8px; padding-bottom: 8px;"
+                class="pt-8 pb-8"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -168,7 +160,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  style="margin-top: 16px; margin-bottom: 16px;"
+                  class="mt-15 mb-15"
                 >
                   <hr
                     class="MuiDivider-root divider"
@@ -178,7 +170,7 @@ Object {
                   class="MuiGrid-root button-container-update"
                 >
                   <div
-                    style="margin-top: 16px; margin-bottom: 16px;"
+                    class="mt-15 mb-15"
                   >
                     <button
                       class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete Mui-disabled MuiButton-fullWidth Mui-disabled"

@@ -17,6 +17,9 @@
 
 User-agent: *
 
+# API
+Disallow: */api/*
+
 # ENGLISH
 Allow: /en
 Allow: /en/about/info
@@ -28,10 +31,11 @@ Allow: /en/leisure/electronics/
 Allow: /en/leisure/football/
 Allow: /en/leisure/guitar/
 Allow: /en/leisure/photography/
-Disallow: /en/business/
-Disallow: /en/contact/
-Disallow: /en/terms/
-Disallow: /en/policy/
+Allow: /en/business/
+Allow: /en/contact/
+Allow: /en/terms/
+Allow: /en/policy/
+Disallow: /en/document/
 Disallow: /en/document?name=tomasz-tom-kandula-resume.pdf
 Disallow: /en/newsletter/update/
 Disallow: /en/newsletter/remove
@@ -55,10 +59,11 @@ Allow: /pl/leisure/electronics/
 Allow: /pl/leisure/football/
 Allow: /pl/leisure/guitar/
 Allow: /pl/leisure/photography/
-Disallow: /pl/business/
-Disallow: /pl/contact/
-Disallow: /pl/terms/
-Disallow: /pl/policy/
+Allow: /pl/business/
+Allow: /pl/contact/
+Allow: /pl/terms/
+Allow: /pl/policy/
+Disallow: /pl/document/
 Disallow: /pl/document?name=tomasz-tom-kandula-resume.pdf
 Disallow: /pl/newsletter/update/
 Disallow: /pl/newsletter/remove
@@ -82,10 +87,11 @@ Allow: /es/leisure/electronics/
 Allow: /es/leisure/football/
 Allow: /es/leisure/guitar/
 Allow: /es/leisure/photography/
-Disallow: /es/business/
-Disallow: /es/contact/
-Disallow: /es/terms/
-Disallow: /es/policy/
+Allow: /es/business/
+Allow: /es/contact/
+Allow: /es/terms/
+Allow: /es/policy/
+Disallow: /es/document/
 Disallow: /es/document?name=tomasz-tom-kandula-resume.pdf
 Disallow: /es/newsletter/update/
 Disallow: /es/newsletter/remove
@@ -109,10 +115,11 @@ Allow: /uk/leisure/electronics/
 Allow: /uk/leisure/football/
 Allow: /uk/leisure/guitar/
 Allow: /uk/leisure/photography/
-Disallow: /uk/business/
-Disallow: /uk/contact/
-Disallow: /uk/terms/
-Disallow: /uk/policy/
+Allow: /uk/business/
+Allow: /uk/contact/
+Allow: /uk/terms/
+Allow: /uk/policy/
+Disallow: /uk/document/
 Disallow: /uk/document?name=tomasz-tom-kandula-resume.pdf
 Disallow: /uk/newsletter/update/
 Disallow: /uk/newsletter/remove
@@ -136,10 +143,11 @@ Allow: /de/leisure/electronics/
 Allow: /de/leisure/football/
 Allow: /de/leisure/guitar/
 Allow: /de/leisure/photography/
-Disallow: /de/business/
-Disallow: /de/contact/
-Disallow: /de/terms/
-Disallow: /de/policy/
+Allow: /de/business/
+Allow: /de/contact/
+Allow: /de/terms/
+Allow: /de/policy/
+Disallow: /de/document/
 Disallow: /de/document?name=tomasz-tom-kandula-resume.pdf
 Disallow: /de/newsletter/update/
 Disallow: /de/newsletter/remove
@@ -163,10 +171,11 @@ Allow: /fr/leisure/electronics/
 Allow: /fr/leisure/football/
 Allow: /fr/leisure/guitar/
 Allow: /fr/leisure/photography/
-Disallow: /fr/business/
-Disallow: /fr/contact/
-Disallow: /fr/terms/
-Disallow: /fr/policy/
+Allow: /fr/business/
+Allow: /fr/contact/
+Allow: /fr/terms/
+Allow: /fr/policy/
+Disallow: /fr/document/
 Disallow: /fr/document?name=tomasz-tom-kandula-resume.pdf
 Disallow: /fr/newsletter/update/
 Disallow: /fr/newsletter/remove

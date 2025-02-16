@@ -12,24 +12,24 @@ import { Animated, RenderCardMedia } from "../../../Shared/Components";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
 
 interface FeaturedViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const featured = data?.components?.featured;
     return (
-        <section className="section-grey" style={props.background}>
+        <section className={`section-grey ${props.background ?? ""}`}>
             <Container maxWidth="lg">
-                <div style={{ textAlign: "center", paddingTop: 64, paddingBottom: 40 }}>
+                <div className="text-centre pt-64 pb-40" >
                     <Animated dataAos="fade-down">
-                        <Typography className="featured-caption-text">
+                        <h1 className="featured-caption-text">
                             {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
-                        </Typography>
+                        </h1>
                     </Animated>
                 </div>
 
-                <div style={{ textAlign: "center", paddingBottom: 120 }}>
+                <div className="text-centre pb-120">
                     <Grid container spacing={6}>
                         <Grid item xs={12} md={4}>
                             <Animated dataAos="fade-up" dataAosDelay={350}>
@@ -45,13 +45,13 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                             )
                                         )}
                                         <CardContent className="featured-card-content">
-                                            <Typography className="featured-card-title">
+                                            <h2 className="featured-card-title">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="text" width="250px" />
                                                 ) : (
                                                     featured?.title1
                                                 )}
-                                            </Typography>
+                                            </h2>
                                             <Typography className="featured-card-subtitle">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="text" width="250px" />
@@ -79,13 +79,13 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                             )
                                         )}
                                         <CardContent className="featured-card-content">
-                                            <Typography className="featured-card-title">
+                                            <h2 className="featured-card-title">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="text" width="250px" />
                                                 ) : (
                                                     featured?.title2
                                                 )}
-                                            </Typography>
+                                            </h2>
                                             <Typography className="featured-card-subtitle">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="text" width="250px" />
@@ -113,13 +113,13 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                             )
                                         )}
                                         <CardContent className="featured-card-content">
-                                            <Typography className="featured-card-title">
+                                            <h2 className="featured-card-title">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="text" width="250px" />
                                                 ) : (
                                                     featured?.title3
                                                 )}
-                                            </Typography>
+                                            </h2>
                                             <Typography className="featured-card-subtitle">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="text" width="250px" />

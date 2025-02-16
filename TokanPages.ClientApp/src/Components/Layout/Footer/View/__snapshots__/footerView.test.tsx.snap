@@ -65,7 +65,7 @@ Object {
             </a>
           </div>
           <div
-            style="padding-bottom: 60px;"
+            class="pb-64"
           />
         </div>
       </footer>
@@ -132,7 +132,7 @@ Object {
           </a>
         </div>
         <div
-          style="padding-bottom: 60px;"
+          class="pb-64"
         />
       </div>
     </footer>

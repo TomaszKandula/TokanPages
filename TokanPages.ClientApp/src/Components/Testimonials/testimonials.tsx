@@ -4,7 +4,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { TestimonialsView } from "./View/testimonialsView";
 
 interface TestimonialsProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {

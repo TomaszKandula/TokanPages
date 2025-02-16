@@ -4,19 +4,26 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { PasswordUpdate } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
+import { Cookies } from "../../Components/Cookies";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "templates", "passwordUpdate"], "PasswordUpdatePage"));
+        dispatch(ContentPageDataAction.request([
+            "navigation", 
+            "templates", 
+            "cookiesPrompt", 
+            "passwordUpdate"
+        ], "PasswordUpdatePage"));
     }, [language?.id]);
 
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <PasswordUpdate pt={120} pb={240} background={{ backgroundColor: "#FCFCFC" }} />
+            <PasswordUpdate className="pt-120 pb-240" background="background-colour-light-grey" />
+            <Cookies />
         </>
     );
 };

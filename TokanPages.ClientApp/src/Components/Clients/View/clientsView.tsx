@@ -9,13 +9,13 @@ import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface ClientsViewProps {
-    background?: React.CSSProperties;
+    background?: string;
 }
 
 const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
     if (!Validate.isEmpty(props?.caption)) {
         return (
-            <div style={{ marginBottom: 64 }}>
+            <div className="mb-64">
                 <Typography className="clients-caption">{props?.caption?.toUpperCase()}</Typography>
             </div>
         );
@@ -27,7 +27,7 @@ const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
 const RenderImages = (props: ClientsContentDto): React.ReactElement => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", paddingTop: 32 }}>
+        <div className="clients-render-images">
             {props?.images?.map((item: ClientImageDto, _index: number) => (
                 <div className="clients-logo" key={uuidv4()}>
                     <img
@@ -48,7 +48,7 @@ export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
 
     return (
         <>
-            <section className="clients-section" style={props.background}>
+            <section className={`clients-section ${props.background} ?? ""`}>
                 <Container maxWidth="lg">
                     {data?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
                     {data?.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}
