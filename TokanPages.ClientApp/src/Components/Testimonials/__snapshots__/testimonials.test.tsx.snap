@@ -12,17 +12,17 @@ Object {
           class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
         >
           <div
-            class="text-centre pt-64 pb-120"
+            class="text-centre pt-64 testimonials-bottom-padding"
           >
             <div
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <h1
-                class="testimonials-caption-text"
+              <p
+                class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
               >
                 TESTIMONIALS
-              </h1>
+              </p>
             </div>
           </div>
           <div
@@ -69,11 +69,11 @@ Object {
                           <div
                             class="MuiCollapse-wrapperInner"
                           >
-                            <p
-                              class="MuiTypography-root testimonials-card-text MuiTypography-body1"
+                            <h4
+                              class="testimonials-card-text"
                             >
                               Joe is very motivated...
-                            </p>
+                            </h4>
                           </div>
                         </div>
                       </div>
@@ -144,11 +144,11 @@ Object {
                           <div
                             class="MuiCollapse-wrapperInner"
                           >
-                            <p
-                              class="MuiTypography-root testimonials-card-text MuiTypography-body1"
+                            <h4
+                              class="testimonials-card-text"
                             >
                               Joe have done very good work...
-                            </p>
+                            </h4>
                           </div>
                         </div>
                       </div>
@@ -216,11 +216,11 @@ Object {
                           <div
                             class="MuiCollapse-wrapperInner"
                           >
-                            <p
-                              class="MuiTypography-root testimonials-card-text MuiTypography-body1"
+                            <h4
+                              class="testimonials-card-text"
                             >
                               Joe is one of those rare talents...
-                            </p>
+                            </h4>
                           </div>
                         </div>
                       </div>
@@ -264,17 +264,17 @@ Object {
         class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
       >
         <div
-          class="text-centre pt-64 pb-120"
+          class="text-centre pt-64 testimonials-bottom-padding"
         >
           <div
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <h1
-              class="testimonials-caption-text"
+            <p
+              class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
             >
               TESTIMONIALS
-            </h1>
+            </p>
           </div>
         </div>
         <div
@@ -321,11 +321,11 @@ Object {
                         <div
                           class="MuiCollapse-wrapperInner"
                         >
-                          <p
-                            class="MuiTypography-root testimonials-card-text MuiTypography-body1"
+                          <h4
+                            class="testimonials-card-text"
                           >
                             Joe is very motivated...
-                          </p>
+                          </h4>
                         </div>
                       </div>
                     </div>
@@ -396,11 +396,11 @@ Object {
                         <div
                           class="MuiCollapse-wrapperInner"
                         >
-                          <p
-                            class="MuiTypography-root testimonials-card-text MuiTypography-body1"
+                          <h4
+                            class="testimonials-card-text"
                           >
                             Joe have done very good work...
-                          </p>
+                          </h4>
                         </div>
                       </div>
                     </div>
@@ -468,11 +468,11 @@ Object {
                         <div
                           class="MuiCollapse-wrapperInner"
                         >
-                          <p
-                            class="MuiTypography-root testimonials-card-text MuiTypography-body1"
+                          <h4
+                            class="testimonials-card-text"
                           >
                             Joe is one of those rare talents...
-                          </p>
+                          </h4>
                         </div>
                       </div>
                     </div>

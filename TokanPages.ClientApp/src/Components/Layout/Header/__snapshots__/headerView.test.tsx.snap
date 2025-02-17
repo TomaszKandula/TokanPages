@@ -27,27 +27,27 @@ Object {
             <div
               class="header-content-box"
             >
-              <h1
-                class="header-content-caption"
+              <span
+                class="MuiTypography-root header-content-caption MuiTypography-body1"
               >
                 <div>
                   Welcome to my web page
                 </div>
-              </h1>
-              <h2
+              </span>
+              <h1
                 class="header-content-subtitle"
               >
                 <div>
                   For years...
                 </div>
-              </h2>
-              <div
+              </h1>
+              <h2
                 class="header-content-description"
               >
                 <div>
                   I do programming for a living...
                 </div>
-              </div>
+              </h2>
               <div
                 class="mt-32"
               >
@@ -116,27 +116,27 @@ Object {
           <div
             class="header-content-box"
           >
-            <h1
-              class="header-content-caption"
+            <span
+              class="MuiTypography-root header-content-caption MuiTypography-body1"
             >
               <div>
                 Welcome to my web page
               </div>
-            </h1>
-            <h2
+            </span>
+            <h1
               class="header-content-subtitle"
             >
               <div>
                 For years...
               </div>
-            </h2>
-            <div
+            </h1>
+            <h2
               class="header-content-description"
             >
               <div>
                 I do programming for a living...
               </div>
-            </div>
+            </h2>
             <div
               class="mt-32"
             >
