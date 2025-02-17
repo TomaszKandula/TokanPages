@@ -55,11 +55,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
-                <div className="text-centre pt-64 pb-120">
+                <div className="text-centre pt-64 testimonials-bottom-padding">
                     <Animated dataAos="fade-down">
-                        <h1 className="testimonials-caption-text">
+                        <Typography className="testimonials-caption-text">
                             <RenderSkeletonOrElement {...props} variant="text" object={props.caption?.toUpperCase()} />
-                        </h1>
+                        </Typography>
                     </Animated>
                 </div>
                 <div className="text-centre pb-120">
@@ -92,13 +92,13 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             />
                                         </Typography>
                                         <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
-                                            <Typography className="testimonials-card-text">
+                                            <h4 className="testimonials-card-text">
                                                 <RenderSkeletonOrElement
                                                     {...props}
                                                     variant="text"
                                                     object={props.text1}
                                                 />
-                                            </Typography>
+                                            </h4>
                                         </Collapse>
                                         <IconButton
                                             className={
@@ -145,13 +145,13 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             />
                                         </Typography>
                                         <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
-                                            <Typography className="testimonials-card-text">
+                                            <h4 className="testimonials-card-text">
                                                 <RenderSkeletonOrElement
                                                     {...props}
                                                     variant="text"
                                                     object={props.text2}
                                                 />
-                                            </Typography>
+                                            </h4>
                                         </Collapse>
                                         <IconButton
                                             className={
@@ -198,13 +198,13 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             />
                                         </Typography>
                                         <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
-                                            <Typography className="testimonials-card-text">
+                                            <h4 className="testimonials-card-text">
                                                 <RenderSkeletonOrElement
                                                     {...props}
                                                     variant="text"
                                                     object={props.text3}
                                                 />
-                                            </Typography>
+                                            </h4>
                                         </Collapse>
                                         <IconButton
                                             className={

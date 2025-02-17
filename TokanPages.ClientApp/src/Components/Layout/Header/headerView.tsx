@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
+import { Typography } from "@material-ui/core";
 import { GET_IMAGES_URL } from "../../../Api/Request";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
@@ -84,23 +85,23 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                 </Grid>
                 <Grid item xs={12} md={5} className="header-section-container">
                     <div className="header-content-box">
-                        <h1 className="header-content-caption">
+                        <Typography component="span" className="header-content-caption">
                             {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} />}
-                        </h1>
-                        <h2 className="header-content-subtitle">
+                        </Typography>
+                        <h1 className="header-content-subtitle">
                             {data?.isLoading ? (
                                 <Skeleton variant="text" />
                             ) : (
                                 <ReactHtmlParser html={header?.subtitle} />
                             )}
-                        </h2>
-                        <div className="header-content-description">
+                        </h1>
+                        <h2 className="header-content-description">
                             {data?.isLoading ? (
                                 <Skeleton variant="text" />
                             ) : (
                                 <ReactHtmlParser html={header?.description} />
                             )}
-                        </div>
+                        </h2>
                         <div className="mt-32">
                             {data?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />
