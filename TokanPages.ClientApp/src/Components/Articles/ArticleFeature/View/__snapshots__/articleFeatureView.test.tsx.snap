@@ -19,11 +19,11 @@ Object {
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <h1
-                class="article-features-title"
+              <p
+                class="MuiTypography-root article-features-title MuiTypography-body1"
               >
                 ARTICLES
-              </h1>
+              </p>
             </div>
             <div
               data-aos="fade-up"
@@ -49,15 +49,11 @@ Object {
                         >
                           .NET Core, Azure, databases and others.
                         </h2>
-                        <div
-                          class="mt-15 mb-40"
+                        <h3
+                          class="article-features-text2 mt-15 mb-40"
                         >
-                          <p
-                            class="MuiTypography-root article-features-text2 MuiTypography-body1"
-                          >
-                            Let's dive into Microsoft technology...
-                          </p>
-                        </div>
+                          Let's dive into Microsoft technology...
+                        </h3>
                         <div
                           class="text-right"
                         >
@@ -177,11 +173,11 @@ Object {
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <h1
-              class="article-features-title"
+            <p
+              class="MuiTypography-root article-features-title MuiTypography-body1"
             >
               ARTICLES
-            </h1>
+            </p>
           </div>
           <div
             data-aos="fade-up"
@@ -207,15 +203,11 @@ Object {
                       >
                         .NET Core, Azure, databases and others.
                       </h2>
-                      <div
-                        class="mt-15 mb-40"
+                      <h3
+                        class="article-features-text2 mt-15 mb-40"
                       >
-                        <p
-                          class="MuiTypography-root article-features-text2 MuiTypography-body1"
-                        >
-                          Let's dive into Microsoft technology...
-                        </p>
-                      </div>
+                        Let's dive into Microsoft technology...
+                      </h3>
                       <div
                         class="text-right"
                       >

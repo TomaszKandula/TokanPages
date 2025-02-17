@@ -18,11 +18,11 @@ Object {
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <h1
-                class="featured-caption-text"
+              <p
+                class="MuiTypography-root featured-caption-text MuiTypography-body1"
               >
                 FEATURED
-              </h1>
+              </p>
             </div>
           </div>
           <div
@@ -183,11 +183,11 @@ Object {
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <h1
-              class="featured-caption-text"
+            <p
+              class="MuiTypography-root featured-caption-text MuiTypography-body1"
             >
               FEATURED
-            </h1>
+            </p>
           </div>
         </div>
         <div

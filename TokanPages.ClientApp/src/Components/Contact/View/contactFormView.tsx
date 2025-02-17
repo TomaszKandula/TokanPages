@@ -58,9 +58,9 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
             <Container className="container">
                 <div className={!props.className ? "pt-64 pb-96" : props.className}>
                     <Animated dataAos="fade-down" className="text-centre">
-                        <h1 className="contact-caption">
+                        <Typography className="contact-caption">
                             {props.hasCaption ? props.caption?.toUpperCase() : <></>}
-                        </h1>
+                        </Typography>
                     </Animated>
                     <Card elevation={0} className={`background-colour-inherited ${props.hasShadow ? "card" : ""}`}>
                         <CardContent className="card-content background-colour-inherited">

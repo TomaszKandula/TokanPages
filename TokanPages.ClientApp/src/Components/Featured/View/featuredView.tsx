@@ -23,9 +23,9 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
             <Container maxWidth="lg">
                 <div className="text-centre pt-64 pb-40" >
                     <Animated dataAos="fade-down">
-                        <h1 className="featured-caption-text">
+                        <Typography className="featured-caption-text">
                             {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}
-                        </h1>
+                        </Typography>
                     </Animated>
                 </div>
 

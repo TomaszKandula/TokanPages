@@ -19,11 +19,11 @@ Object {
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <h1
-                class="contact-caption"
+              <p
+                class="MuiTypography-root contact-caption MuiTypography-body1"
               >
                 CONTACT ME
-              </h1>
+              </p>
             </div>
             <div
               class="MuiPaper-root MuiCard-root background-colour-inherited card MuiPaper-elevation0 MuiPaper-rounded"
@@ -416,11 +416,11 @@ Object {
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <h1
-              class="contact-caption"
+            <p
+              class="MuiTypography-root contact-caption MuiTypography-body1"
             >
               CONTACT ME
-            </h1>
+            </p>
           </div>
           <div
             class="MuiPaper-root MuiCard-root background-colour-inherited card MuiPaper-elevation0 MuiPaper-rounded"

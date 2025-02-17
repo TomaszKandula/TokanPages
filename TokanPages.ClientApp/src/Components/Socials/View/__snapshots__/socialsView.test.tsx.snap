@@ -18,11 +18,11 @@ Object {
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <h1
-                class="socials-caption-text"
+              <p
+                class="MuiTypography-root socials-caption-text MuiTypography-body1"
               >
                 SOCIAL MEDIA
-              </h1>
+              </p>
             </div>
           </div>
           <div
@@ -57,7 +57,7 @@ Object {
                         class="socials-card-image-holder"
                       >
                         <img
-                          alt="Socials photo 1 of 3"
+                          alt="Somebody"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
                         />
@@ -79,11 +79,11 @@ Object {
                             />
                           </svg>
                         </div>
-                        <h2
+                        <div
                           class="socials-card-title"
                         >
                           Somebody
-                        </h2>
+                        </div>
                         <h3
                           class="socials-card-subheader"
                         >
@@ -131,7 +131,7 @@ Object {
                         class="socials-card-image-holder"
                       >
                         <img
-                          alt="Socials photo 2 of 3"
+                          alt="Somebody"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
                         />
@@ -153,11 +153,11 @@ Object {
                             />
                           </svg>
                         </div>
-                        <h2
+                        <div
                           class="socials-card-title"
                         >
                           Somebody
-                        </h2>
+                        </div>
                         <h3
                           class="socials-card-subheader"
                         >
@@ -202,7 +202,7 @@ Object {
                         class="socials-card-image-holder"
                       >
                         <img
-                          alt="Socials photo 3 of 3"
+                          alt="TomKandula"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
                         />
@@ -224,11 +224,11 @@ Object {
                             />
                           </svg>
                         </div>
-                        <h2
+                        <div
                           class="socials-card-title"
                         >
                           TomKandula
-                        </h2>
+                        </div>
                         <h3
                           class="socials-card-subheader"
                         >
@@ -267,11 +267,11 @@ Object {
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <h1
-              class="socials-caption-text"
+            <p
+              class="MuiTypography-root socials-caption-text MuiTypography-body1"
             >
               SOCIAL MEDIA
-            </h1>
+            </p>
           </div>
         </div>
         <div
@@ -306,7 +306,7 @@ Object {
                       class="socials-card-image-holder"
                     >
                       <img
-                        alt="Socials photo 1 of 3"
+                        alt="Somebody"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
                       />
@@ -328,11 +328,11 @@ Object {
                           />
                         </svg>
                       </div>
-                      <h2
+                      <div
                         class="socials-card-title"
                       >
                         Somebody
-                      </h2>
+                      </div>
                       <h3
                         class="socials-card-subheader"
                       >
@@ -380,7 +380,7 @@ Object {
                       class="socials-card-image-holder"
                     >
                       <img
-                        alt="Socials photo 2 of 3"
+                        alt="Somebody"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
                       />
@@ -402,11 +402,11 @@ Object {
                           />
                         </svg>
                       </div>
-                      <h2
+                      <div
                         class="socials-card-title"
                       >
                         Somebody
-                      </h2>
+                      </div>
                       <h3
                         class="socials-card-subheader"
                       >
@@ -451,7 +451,7 @@ Object {
                       class="socials-card-image-holder"
                     >
                       <img
-                        alt="Socials photo 3 of 3"
+                        alt="TomKandula"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
                       />
@@ -473,11 +473,11 @@ Object {
                           />
                         </svg>
                       </div>
-                      <h2
+                      <div
                         class="socials-card-title"
                       >
                         TomKandula
-                      </h2>
+                      </div>
                       <h3
                         class="socials-card-subheader"
                       >
