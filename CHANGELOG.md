@@ -1,3 +1,16 @@
+# [0.142.0](https://github.com/TomaszKandula/TokanPages/compare/v0.141.0...v0.142.0) (2025-02-17)
+
+
+### Bug Fixes
+
+* add charset utf-8 ([21b19c2](https://github.com/TomaszKandula/TokanPages/commit/21b19c21b488ae84ba24e0fd442b9919e716a5b4))
+
+
+### Features
+
+* add headers ([b12db3a](https://github.com/TomaszKandula/TokanPages/commit/b12db3a94bfcca03f8ebb80ab0f666405698a0e9))
+* update and fix styles, leave H1 only for header component ([ec8c8b5](https://github.com/TomaszKandula/TokanPages/commit/ec8c8b572d9116c0f8d4abd17bcf302311af2bf7))
+
 # [0.141.0](https://github.com/TomaszKandula/TokanPages/compare/v0.140.0...v0.141.0) (2025-02-16)
 
 
