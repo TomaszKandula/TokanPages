@@ -19,11 +19,11 @@ Object {
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <h1
-                class="technology-caption-text"
+              <p
+                class="MuiTypography-root technology-caption-text MuiTypography-body1"
               >
                 TECHNOLOGIES
-              </h1>
+              </p>
             </div>
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -46,23 +46,23 @@ Object {
                       d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
                     />
                   </svg>
-                  <h2
+                  <h3
                     class="technology-feature-title"
                   >
                     Languages
-                  </h2>
+                  </h3>
                 </div>
                 <div
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <span
-                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  <h4
+                    class="technology-feature-text"
                   >
                     <div>
                       Today in my daily job, I use...
                     </div>
-                  </span>
+                  </h4>
                 </div>
               </div>
               <div
@@ -83,23 +83,23 @@ Object {
                       d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
                     />
                   </svg>
-                  <h2
+                  <h3
                     class="technology-feature-title"
                   >
                     Frameworks/Libraries
-                  </h2>
+                  </h3>
                 </div>
                 <div
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <span
-                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  <h4
+                    class="technology-feature-text"
                   >
                     <div>
                       Back-End: NET Framework 4.5 (for one project)...
                     </div>
-                  </span>
+                  </h4>
                 </div>
               </div>
               <div
@@ -120,23 +120,23 @@ Object {
                       d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"
                     />
                   </svg>
-                  <h2
+                  <h3
                     class="technology-feature-title"
                   >
                     OR/M
-                  </h2>
+                  </h3>
                 </div>
                 <div
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <span
-                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  <h4
+                    class="technology-feature-text"
                   >
                     <div>
                       I have started with Entity Framework...
                     </div>
-                  </span>
+                  </h4>
                 </div>
               </div>
               <div
@@ -157,23 +157,23 @@ Object {
                       d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
                     />
                   </svg>
-                  <h2
+                  <h3
                     class="technology-feature-title"
                   >
                     Cloud Services
-                  </h2>
+                  </h3>
                 </div>
                 <div
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <span
-                    class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                  <h4
+                    class="technology-feature-text"
                   >
                     <div>
                       I have experience with...
                     </div>
-                  </span>
+                  </h4>
                 </div>
               </div>
             </div>
@@ -197,11 +197,11 @@ Object {
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <h1
-              class="technology-caption-text"
+            <p
+              class="MuiTypography-root technology-caption-text MuiTypography-body1"
             >
               TECHNOLOGIES
-            </h1>
+            </p>
           </div>
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
@@ -224,23 +224,23 @@ Object {
                     d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
                   />
                 </svg>
-                <h2
+                <h3
                   class="technology-feature-title"
                 >
                   Languages
-                </h2>
+                </h3>
               </div>
               <div
                 data-aos="fade-up"
                 data-aos-delay="0"
               >
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <h4
+                  class="technology-feature-text"
                 >
                   <div>
                     Today in my daily job, I use...
                   </div>
-                </span>
+                </h4>
               </div>
             </div>
             <div
@@ -261,23 +261,23 @@ Object {
                     d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
                   />
                 </svg>
-                <h2
+                <h3
                   class="technology-feature-title"
                 >
                   Frameworks/Libraries
-                </h2>
+                </h3>
               </div>
               <div
                 data-aos="fade-up"
                 data-aos-delay="0"
               >
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <h4
+                  class="technology-feature-text"
                 >
                   <div>
                     Back-End: NET Framework 4.5 (for one project)...
                   </div>
-                </span>
+                </h4>
               </div>
             </div>
             <div
@@ -298,23 +298,23 @@ Object {
                     d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"
                   />
                 </svg>
-                <h2
+                <h3
                   class="technology-feature-title"
                 >
                   OR/M
-                </h2>
+                </h3>
               </div>
               <div
                 data-aos="fade-up"
                 data-aos-delay="0"
               >
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <h4
+                  class="technology-feature-text"
                 >
                   <div>
                     I have started with Entity Framework...
                   </div>
-                </span>
+                </h4>
               </div>
             </div>
             <div
@@ -335,23 +335,23 @@ Object {
                     d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
                   />
                 </svg>
-                <h2
+                <h3
                   class="technology-feature-title"
                 >
                   Cloud Services
-                </h2>
+                </h3>
               </div>
               <div
                 data-aos="fade-up"
                 data-aos-delay="0"
               >
-                <span
-                  class="MuiTypography-root technology-feature-text MuiTypography-body1"
+                <h4
+                  class="technology-feature-text"
                 >
                   <div>
                     I have experience with...
                   </div>
-                </span>
+                </h4>
               </div>
             </div>
           </div>

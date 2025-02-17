@@ -49,9 +49,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
             <Container className="container-super-wide">
                 <div className="pt-64 pb-96">
                     <Animated dataAos="fade-down" className="text-centre mb-48">
-                        <h1 className="article-features-title">
+                        <Typography className="article-features-title">
                             {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
-                        </h1>
+                        </Typography>
                     </Animated>
                     <Animated dataAos="fade-up">
                         <Grid container>
@@ -62,11 +62,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             <h2 className="article-features-text1">
                                                 {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                             </h2>
-                                            <div className="mt-15 mb-40">
-                                                <Typography className="article-features-text2">
-                                                    {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
-                                                </Typography>
-                                            </div>
+                                            <h3 className="article-features-text2 mt-15 mb-40">
+                                                {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
+                                            </h3>
                                             <div className="text-right">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
