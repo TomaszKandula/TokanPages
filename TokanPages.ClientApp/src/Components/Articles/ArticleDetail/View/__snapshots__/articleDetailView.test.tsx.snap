@@ -53,7 +53,7 @@ Object {
                      
                   </p>
                   <img
-                    alt="Article language flag"
+                    alt="An article language flag"
                     class="article-details-flag-image"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   />
@@ -239,7 +239,7 @@ Object {
                    
                 </p>
                 <img
-                  alt="Article language flag"
+                  alt="An article language flag"
                   class="article-details-flag-image"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                 />

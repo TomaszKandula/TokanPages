@@ -67,6 +67,7 @@ Object {
   "baseElement": <body>
     <div>
       <img
+        alt="An article test image"
         class="style"
         src="http://localhost:5000//test-image.jpg"
       />
@@ -74,6 +75,7 @@ Object {
   </body>,
   "container": <div>
     <img
+      alt="An article test image"
       class="style"
       src="http://localhost:5000//test-image.jpg"
     />
