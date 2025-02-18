@@ -32,7 +32,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
                 <div className="clients-logo" key={uuidv4()}>
                     <img
                         src={getImagePath(item.path)}
-                        alt={`image of ${item.path}`}
+                        alt={`An image of ${item.name}`}
                         height={item.heigh}
                         width={item.width}
                     />

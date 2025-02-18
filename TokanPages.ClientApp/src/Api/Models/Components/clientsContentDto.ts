@@ -1,5 +1,6 @@
 export interface ClientImageDto {
     path: string;
+    name: string;
     width: string;
     heigh: string;
 }
