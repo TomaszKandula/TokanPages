@@ -163,7 +163,7 @@ Object {
         class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
       >
         <img
-          alt="image"
+          alt="An image of presented article text"
           class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
           src="http://localhost:5000/api/v1image.jpg"
         />

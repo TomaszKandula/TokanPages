@@ -82,7 +82,7 @@ Object {
         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
       >
         <img
-          alt="Avatar"
+          alt="User avatar"
           class="MuiAvatar-img"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         />
@@ -94,7 +94,7 @@ Object {
       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
     >
       <img
-        alt="Avatar"
+        alt="User avatar"
         class="MuiAvatar-img"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
       />
@@ -236,7 +236,7 @@ Object {
         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small "
       >
         <img
-          alt="Avatar"
+          alt="User avatar"
           class="MuiAvatar-img"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         />
@@ -248,7 +248,7 @@ Object {
       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small "
     >
       <img
-        alt="Avatar"
+        alt="User avatar"
         class="MuiAvatar-img"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
       />

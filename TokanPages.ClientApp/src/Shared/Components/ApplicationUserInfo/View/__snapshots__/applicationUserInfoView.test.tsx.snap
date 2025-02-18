@@ -50,7 +50,7 @@ Object {
                         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
                       >
                         <img
-                          alt="Avatar"
+                          alt="User avatar"
                           class="MuiAvatar-img"
                           src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
                         />
@@ -311,7 +311,7 @@ Object {
                       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
                     >
                       <img
-                        alt="Avatar"
+                        alt="User avatar"
                         class="MuiAvatar-img"
                         src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
                       />
