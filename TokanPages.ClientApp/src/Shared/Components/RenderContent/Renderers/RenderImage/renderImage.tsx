@@ -42,7 +42,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                 <CardMedia
                     component="img"
                     image={propUrl}
-                    alt="image"
+                    alt="An image of presented article text"
                     className="render-image-image"
                     onClick={onClickEvent}
                     style={{
@@ -55,7 +55,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                 <CardMedia
                     component="img"
                     image={valueUrl}
-                    alt="image"
+                    alt="An image of presented article text"
                     style={{
                         width: props.constraint?.width,
                         height: props.constraint?.height,

@@ -54,7 +54,7 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
         return <Avatar>{userLetter}</Avatar>;
     }
 
-    return <Avatar alt="Avatar" src={props.avatarSource} />;
+    return <Avatar alt="User avatar" src={props.avatarSource} />;
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
