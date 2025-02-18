@@ -11,7 +11,12 @@ describe("test rendering image component", () => {
 
     it("should render an image component.", () => {
         const html = render(
-            <RenderImage base="http://localhost:5000/" source="test-image.jpg" className="style" />
+            <RenderImage 
+                base="http://localhost:5000/" 
+                source="test-image.jpg" 
+                alt="An article test image"
+                className="style"
+            />
         );
 
         expect(html).toMatchSnapshot();
