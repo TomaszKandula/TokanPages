@@ -61,7 +61,12 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                         <div className="article-card-details-separator"></div>
                                         <LanguageIcon className="article-card-item-icon" />
                                         <div className="article-card-details-separator"></div>
-                                        <RenderImage base={GET_FLAG_URL} source={props.flagImage} className="article-flag-image" />
+                                        <RenderImage 
+                                            base={GET_FLAG_URL} 
+                                            source={props.flagImage} 
+                                            alt="An article language flag"
+                                            className="article-flag-image" 
+                                        />
                                     </> 
                                 ) : (
                                     <></>

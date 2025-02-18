@@ -7,6 +7,7 @@ interface RenderImageProps {
     className: string;
     width?: number;
     height?: number;
+    alt?: string;
 }
 
 export const RenderImage = (props: RenderImageProps): React.ReactElement | null => {
@@ -16,7 +17,7 @@ export const RenderImage = (props: RenderImageProps): React.ReactElement | null 
             width={props.width}
             height={props.height}
             className={props.className}
-            alt={`image of ${props.source}`}
+            alt={props.alt}
         />
     );
 };

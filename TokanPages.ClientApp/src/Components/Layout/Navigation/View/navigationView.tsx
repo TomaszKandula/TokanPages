@@ -106,7 +106,12 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
     const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
         return (
             <div className="navigation-languages-wrapper">
-                <RenderImage base={GET_FLAG_URL} source={`${value}.png`} className="navigation-flag-image" />
+                <RenderImage 
+                    base={GET_FLAG_URL} 
+                    source={`${value}.png`} 
+                    alt={`A flag (${value}) for current language selection`}
+                    className="navigation-flag-image"
+                />
                 <div>{toUpper(value)}</div>
             </div>
         );
@@ -128,6 +133,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
                             <RenderImage
                                 base={GET_FLAG_URL}
                                 source={`${item.id}.png`}
+                                alt={`A flag (${item.name}) symbolizing available language`}
                                 className="navigation-flag-image"
                             />
                             <div>{item.name}</div>
@@ -148,6 +154,7 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
                     <RenderImage
                         base={GET_ICONS_URL}
                         source={props?.logoImgName}
+                        alt="An application logo"
                         className="navigation-app-left-logo"
                     />
                 </Link>
@@ -178,6 +185,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                         <RenderImage
                             base={GET_ICONS_URL}
                             source={props?.logoImgName}
+                            alt="An application logo"
                             className="navigation-app-full-logo"
                         />
                     </Link>
@@ -185,6 +193,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                         <RenderImage
                             base={GET_ICONS_URL}
                             source={props?.menu?.image}
+                            alt="An application logo"
                             className="navigation-app-just-logo"
                         />
                     </Link>

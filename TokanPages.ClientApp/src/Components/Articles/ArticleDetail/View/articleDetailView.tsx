@@ -85,6 +85,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <RenderImage
                                     base={GET_FLAG_URL}
                                     source={props.flagImage}
+                                    alt="Article language flag"
                                     className="article-details-flag-image"
                                 />
                             </div>
