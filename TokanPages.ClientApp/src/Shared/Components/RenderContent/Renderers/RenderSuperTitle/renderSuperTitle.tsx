@@ -38,6 +38,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                 <CardMedia
                     component="img"
                     image={propUrl}
+                    title="Illustration"
                     alt="An illustration of a presented article text title"
                     className="render-super-title-image"
                     style={{

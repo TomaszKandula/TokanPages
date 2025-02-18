@@ -42,6 +42,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                 <CardMedia
                     component="img"
                     image={propUrl}
+                    title="Illustration"
                     alt="An image of presented article text"
                     className="render-image-image"
                     onClick={onClickEvent}

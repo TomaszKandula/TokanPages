@@ -33,6 +33,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
                     <img
                         src={getImagePath(item.path)}
                         alt={`An image of ${item.name}`}
+                        title="Clients"
                         height={item.heigh}
                         width={item.width}
                     />

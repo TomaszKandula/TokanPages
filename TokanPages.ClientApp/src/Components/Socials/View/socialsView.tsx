@@ -63,6 +63,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         image={imageUrl(socials?.social1?.images?.avatar)}
                                                         component="img"
                                                         className="socials-card-image"
+                                                        title="Socials"
                                                         alt={socials?.social1?.textTitle}
                                                     />
                                                 </div>
@@ -114,6 +115,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         image={imageUrl(socials?.social2?.images?.avatar)}
                                                         component="img"
                                                         className="socials-card-image"
+                                                        title="Socials"
                                                         alt={socials?.social2?.textTitle}
                                                     />
                                                 </div>
@@ -165,6 +167,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         image={imageUrl(socials?.social3?.images?.avatar)}
                                                         component="img"
                                                         className="socials-card-image"
+                                                        title="Socials"
                                                         alt={socials?.social3?.textTitle}
                                                     />
                                                 </div>

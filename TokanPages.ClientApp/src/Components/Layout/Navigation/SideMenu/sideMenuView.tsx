@@ -20,6 +20,7 @@ export const SideMenuView = (props: Properties): React.ReactElement => {
                     <RenderImage 
                         base={GET_ICONS_URL} 
                         source={props?.menu?.image} 
+                        title="Logo"
                         alt="An application logo"
                         className="sidemenu-logo" 
                     />

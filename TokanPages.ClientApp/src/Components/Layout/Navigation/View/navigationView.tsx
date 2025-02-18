@@ -46,15 +46,15 @@ interface Properties extends BaseProperties {
 
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
-        return <Avatar>A</Avatar>;
+        return <Avatar alt="User avatar" title="Avatar">A</Avatar>;
     }
 
     if (Validate.isEmpty(props.avatarName)) {
         const userLetter = props.userAliasText?.charAt(0).toUpperCase();
-        return <Avatar>{userLetter}</Avatar>;
+        return <Avatar alt="User avatar" title="Avatar">{userLetter}</Avatar>;
     }
 
-    return <Avatar alt="User avatar" src={props.avatarSource} />;
+    return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
