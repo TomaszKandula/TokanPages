@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large  MuiAvatar-colorDefault"
+        title="Avatar"
       >
         T
       </div>
@@ -15,6 +16,7 @@ Object {
   "container": <div>
     <div
       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large  MuiAvatar-colorDefault"
+      title="Avatar"
     >
       T
     </div>
@@ -80,6 +82,7 @@ Object {
     <div>
       <div
         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
+        title="Avatar"
       >
         <img
           alt="User avatar"
@@ -92,6 +95,7 @@ Object {
   "container": <div>
     <div
       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
+      title="Avatar"
     >
       <img
         alt="User avatar"
@@ -161,6 +165,7 @@ Object {
     <div>
       <div
         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small  MuiAvatar-colorDefault"
+        title="Avatar"
       >
         T
       </div>
@@ -169,6 +174,7 @@ Object {
   "container": <div>
     <div
       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small  MuiAvatar-colorDefault"
+      title="Avatar"
     >
       T
     </div>
@@ -234,6 +240,7 @@ Object {
     <div>
       <div
         class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small "
+        title="Avatar"
       >
         <img
           alt="User avatar"
@@ -246,6 +253,7 @@ Object {
   "container": <div>
     <div
       class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small "
+      title="Avatar"
     >
       <img
         alt="User avatar"

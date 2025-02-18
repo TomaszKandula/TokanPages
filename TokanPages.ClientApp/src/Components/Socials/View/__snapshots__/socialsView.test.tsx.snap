@@ -60,6 +60,7 @@ Object {
                           alt="Somebody"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
+                          title="Socials"
                         />
                       </div>
                       <div
@@ -134,6 +135,7 @@ Object {
                           alt="Somebody"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
+                          title="Socials"
                         />
                       </div>
                       <div
@@ -205,6 +207,7 @@ Object {
                           alt="TomKandula"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
+                          title="Socials"
                         />
                       </div>
                       <div
@@ -309,6 +312,7 @@ Object {
                         alt="Somebody"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
+                        title="Socials"
                       />
                     </div>
                     <div
@@ -383,6 +387,7 @@ Object {
                         alt="Somebody"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
+                        title="Socials"
                       />
                     </div>
                     <div
@@ -454,6 +459,7 @@ Object {
                         alt="TomKandula"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
+                        title="Socials"
                       />
                     </div>
                     <div

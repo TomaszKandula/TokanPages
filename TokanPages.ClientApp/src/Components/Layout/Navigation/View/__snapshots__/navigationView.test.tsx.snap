@@ -98,6 +98,7 @@ Object {
                   >
                     <div
                       class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                      title="Avatar"
                     />
                   </span>
                   <span
@@ -223,6 +224,7 @@ Object {
                     >
                       <div
                         class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                        title="Avatar"
                       />
                     </span>
                   </button>
@@ -328,6 +330,7 @@ Object {
                 >
                   <div
                     class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                    title="Avatar"
                   />
                 </span>
                 <span
@@ -453,6 +456,7 @@ Object {
                   >
                     <div
                       class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                      title="Avatar"
                     />
                   </span>
                 </button>
