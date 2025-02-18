@@ -83,8 +83,8 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                     {props.content.textLanguage}&nbsp;
                                 </Typography>
                                 <RenderImage
-                                    basePath={GET_FLAG_URL}
-                                    imageSource={props.flagImage}
+                                    base={GET_FLAG_URL}
+                                    source={props.flagImage}
                                     className="article-details-flag-image"
                                 />
                             </div>
