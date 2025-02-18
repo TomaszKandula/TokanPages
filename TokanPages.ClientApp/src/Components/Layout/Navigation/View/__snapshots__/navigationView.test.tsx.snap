@@ -22,7 +22,7 @@ Object {
                 href="/eng"
               >
                 <img
-                  alt="image of logo.svg"
+                  alt="An application logo"
                   class="navigation-app-left-logo"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
@@ -57,7 +57,7 @@ Object {
                         class="navigation-languages-wrapper"
                       >
                         <img
-                          alt="image of eng.png"
+                          alt="A flag (eng) for current language selection"
                           class="navigation-flag-image"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                         />
@@ -150,7 +150,7 @@ Object {
                   href="/eng"
                 >
                   <img
-                    alt="image of logo.svg"
+                    alt="An application logo"
                     class="navigation-app-full-logo"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                   />
@@ -182,7 +182,7 @@ Object {
                           class="navigation-languages-wrapper"
                         >
                           <img
-                            alt="image of eng.png"
+                            alt="A flag (eng) for current language selection"
                             class="navigation-flag-image"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                           />
@@ -252,7 +252,7 @@ Object {
               href="/eng"
             >
               <img
-                alt="image of logo.svg"
+                alt="An application logo"
                 class="navigation-app-left-logo"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
               />
@@ -287,7 +287,7 @@ Object {
                       class="navigation-languages-wrapper"
                     >
                       <img
-                        alt="image of eng.png"
+                        alt="A flag (eng) for current language selection"
                         class="navigation-flag-image"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                       />
@@ -380,7 +380,7 @@ Object {
                 href="/eng"
               >
                 <img
-                  alt="image of logo.svg"
+                  alt="An application logo"
                   class="navigation-app-full-logo"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
@@ -412,7 +412,7 @@ Object {
                         class="navigation-languages-wrapper"
                       >
                         <img
-                          alt="image of eng.png"
+                          alt="A flag (eng) for current language selection"
                           class="navigation-flag-image"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                         />

@@ -103,7 +103,7 @@ Object {
                               class="article-card-details-separator"
                             />
                             <img
-                              alt="image of en.png"
+                              alt="An article language flag"
                               class="article-flag-image"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                             />
@@ -235,7 +235,7 @@ Object {
                             class="article-card-details-separator"
                           />
                           <img
-                            alt="image of en.png"
+                            alt="An article language flag"
                             class="article-flag-image"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                           />
