@@ -87,9 +87,10 @@ const RenderLoadingOrStatus = (props: UserInfoViewProps): React.ReactElement => 
 };
 
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
-    const previewImage = GET_USER_IMAGE
-    .replace("{id}", props.userStore.userId)
-    .replace("{name}", props.userImageName ?? "");
+    const previewImage = GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace(
+        "{name}",
+        props.userImageName ?? ""
+    );
 
     return (
         <section className={`section ${props.background ?? ""}`}>
@@ -100,7 +101,6 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                 <div className="pt-120 pb-40">
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
-
                             <Typography component="span" className="caption black">
                                 <RenderText {...props} value={props.sectionAccountInformation?.caption} />
                             </Typography>
@@ -287,7 +287,6 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         )}
                                     </div>
                                 </Grid>
-
                             </div>
                         </CardContent>
                     </Card>

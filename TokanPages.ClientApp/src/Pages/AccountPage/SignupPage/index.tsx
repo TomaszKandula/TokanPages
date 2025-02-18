@@ -11,12 +11,12 @@ export const SignupPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "accountUserSignup"
-        ], "SignupPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "templates", "cookiesPrompt", "accountUserSignup"],
+                "SignupPage"
+            )
+        );
     }, [language?.id]);
 
     return (

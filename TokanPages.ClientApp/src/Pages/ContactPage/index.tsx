@@ -15,12 +15,9 @@ export const ContactPage = () => {
     const contact = state?.contentPageData?.components?.contactForm;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "contactForm"
-        ], "ContactPage"));
+        dispatch(
+            ContentPageDataAction.request(["navigation", "templates", "cookiesPrompt", "contactForm"], "ContactPage")
+        );
     }, [language?.id]);
 
     React.useEffect(() => {

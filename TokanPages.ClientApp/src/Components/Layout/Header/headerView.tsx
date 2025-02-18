@@ -67,13 +67,15 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
     const photo4 = `${GET_IMAGES_URL}/${props.sources.w2880}`;
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
-    return <img 
-        src={photo1} 
-        srcSet={set} 
-        title="Illustration"
-        alt="Your Software Developer"
-        className="header-image-card lazyloaded" 
-    />;
+    return (
+        <img
+            src={photo1}
+            srcSet={set}
+            title="Illustration"
+            alt="Your Software Developer"
+            className="header-image-card lazyloaded"
+        />
+    );
 };
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {

@@ -18,12 +18,12 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "newsletterUpdate"
-        ], "NewsletterUpdatePage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "templates", "cookiesPrompt", "newsletterUpdate"],
+                "NewsletterUpdatePage"
+            )
+        );
     }, [language?.id]);
 
     return (

@@ -15,13 +15,12 @@ export const UserNotesPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "templates", 
-            "cookiesPrompt", 
-            "accountUserNotes"
-        ], "UserNotesPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "footer", "templates", "cookiesPrompt", "accountUserNotes"],
+                "UserNotesPage"
+            )
+        );
     }, [language?.id]);
 
     return (

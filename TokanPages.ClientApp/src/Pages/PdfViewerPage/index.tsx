@@ -19,12 +19,9 @@ export const PdfViewerPage = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "templates",
-            "cookiesPrompt", 
-        ], "PdfViewerPage"));
+        dispatch(
+            ContentPageDataAction.request(["navigation", "footer", "templates", "cookiesPrompt"], "PdfViewerPage")
+        );
     }, [language?.id]);
 
     return (

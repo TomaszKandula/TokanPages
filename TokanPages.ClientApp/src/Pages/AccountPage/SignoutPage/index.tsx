@@ -11,12 +11,12 @@ export const SignoutPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "accountUserSignout"
-        ], "SignoutPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "templates", "cookiesPrompt", "accountUserSignout"],
+                "SignoutPage"
+            )
+        );
     }, [language?.id]);
 
     return (

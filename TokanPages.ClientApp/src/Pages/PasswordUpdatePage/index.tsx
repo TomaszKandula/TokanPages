@@ -11,12 +11,12 @@ export const PasswordUpdatePage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "passwordUpdate"
-        ], "PasswordUpdatePage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "templates", "cookiesPrompt", "passwordUpdate"],
+                "PasswordUpdatePage"
+            )
+        );
     }, [language?.id]);
 
     return (

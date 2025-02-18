@@ -21,11 +21,4 @@ export {
     TermsPage,
 } from "./DocumentsPage";
 
-export { 
-    SettingsPage,
-    ActivationPage,
-    UserNotesPage,
-    SigninPage,
-    SignoutPage,
-    SignupPage
-} from "./AccountPage";
+export { SettingsPage, ActivationPage, UserNotesPage, SigninPage, SignoutPage, SignupPage } from "./AccountPage";

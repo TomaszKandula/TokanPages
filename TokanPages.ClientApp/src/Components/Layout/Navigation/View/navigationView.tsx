@@ -46,12 +46,20 @@ interface Properties extends BaseProperties {
 
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
-        return <Avatar alt="User avatar" title="Avatar">A</Avatar>;
+        return (
+            <Avatar alt="User avatar" title="Avatar">
+                A
+            </Avatar>
+        );
     }
 
     if (Validate.isEmpty(props.avatarName)) {
         const userLetter = props.userAliasText?.charAt(0).toUpperCase();
-        return <Avatar alt="User avatar" title="Avatar">{userLetter}</Avatar>;
+        return (
+            <Avatar alt="User avatar" title="Avatar">
+                {userLetter}
+            </Avatar>
+        );
     }
 
     return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
@@ -106,9 +114,9 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
     const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
         return (
             <div className="navigation-languages-wrapper">
-                <RenderImage 
-                    base={GET_FLAG_URL} 
-                    source={`${value}.png`} 
+                <RenderImage
+                    base={GET_FLAG_URL}
+                    source={`${value}.png`}
                     alt={`A flag (${value}) for current language selection`}
                     className="navigation-flag-image"
                 />

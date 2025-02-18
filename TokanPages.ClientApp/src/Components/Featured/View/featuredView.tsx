@@ -21,7 +21,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     return (
         <section className={`section-grey ${props.background ?? ""}`}>
             <Container maxWidth="lg">
-                <div className="text-centre pt-64 pb-40" >
+                <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">
                         <Typography className="featured-caption-text">
                             {data?.isLoading ? <Skeleton variant="text" /> : featured?.caption?.toUpperCase()}

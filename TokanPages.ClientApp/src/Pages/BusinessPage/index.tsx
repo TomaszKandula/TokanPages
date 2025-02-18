@@ -14,12 +14,9 @@ export const BusinessPage = () => {
     const businessForm = state?.contentPageData?.components?.businessForm;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "businessForm"
-        ], "BusinessPage"));
+        dispatch(
+            ContentPageDataAction.request(["navigation", "templates", "cookiesPrompt", "businessForm"], "BusinessPage")
+        );
     }, [language?.id]);
 
     React.useEffect(() => {

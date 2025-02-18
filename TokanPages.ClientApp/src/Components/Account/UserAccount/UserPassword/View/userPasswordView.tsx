@@ -44,11 +44,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
                             <Typography component="span" className="caption black">
-                                {props.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    props.sectionAccountPassword?.caption
-                                )}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.sectionAccountPassword?.caption}
                             </Typography>
 
                             <CustomDivider mt={15} mb={8} />

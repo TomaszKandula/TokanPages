@@ -97,7 +97,11 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textPublished}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className="article-details-text-padding-left">
+                                <Typography
+                                    component="p"
+                                    variant="subtitle1"
+                                    className="article-details-text-padding-left"
+                                >
                                     {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
                                 </Typography>
                             </div>
@@ -105,7 +109,11 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textUpdated}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className="article-details-text-padding-left">
+                                <Typography
+                                    component="p"
+                                    variant="subtitle1"
+                                    className="article-details-text-padding-left"
+                                >
                                     {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
                                 </Typography>
                             </div>
@@ -113,7 +121,11 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <Typography component="p" variant="subtitle1">
                                     {props.content.textReadCount}
                                 </Typography>
-                                <Typography component="p" variant="subtitle1" className="article-details-text-padding-left">
+                                <Typography
+                                    component="p"
+                                    variant="subtitle1"
+                                    className="article-details-text-padding-left"
+                                >
                                     {props.articleReadCount}
                                 </Typography>
                             </div>
@@ -124,10 +136,17 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         <Grid container spacing={2}>
                             <Grid item>
                                 <Tooltip
-                                    title={<span className="article-details-likes-tip">{<Emoji text={props.renderLikesLeft} />}</span>}
+                                    title={
+                                        <span className="article-details-likes-tip">
+                                            {<Emoji text={props.renderLikesLeft} />}
+                                        </span>
+                                    }
                                     arrow
                                 >
-                                    <ThumbUpIcon className="article-details-thumbs-medium" onClick={props.thumbsHandler} />
+                                    <ThumbUpIcon
+                                        className="article-details-thumbs-medium"
+                                        onClick={props.thumbsHandler}
+                                    />
                                 </Tooltip>
                             </Grid>
                             <Grid item xs zeroMinWidth>

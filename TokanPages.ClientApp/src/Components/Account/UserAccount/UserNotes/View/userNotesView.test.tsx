@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { UserNotesView } from "./userNotesView";
 
-describe("test account group component: userNotesView", () => { 
+describe("test account group component: userNotesView", () => {
     it("should render correctly '<UserNotesView />' when content is loaded.", () => {
         const html = render(
             <BrowserRouter>

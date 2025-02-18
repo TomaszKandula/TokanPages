@@ -18,9 +18,9 @@ export interface OptionsDto {
 }
 
 export interface ButtonsDto {
-    acceptButton: ButtonProps,
-    manageButton: ButtonProps,
-    closeButton: ButtonProps
+    acceptButton: ButtonProps;
+    manageButton: ButtonProps;
+    closeButton: ButtonProps;
 }
 
 interface ButtonProps {

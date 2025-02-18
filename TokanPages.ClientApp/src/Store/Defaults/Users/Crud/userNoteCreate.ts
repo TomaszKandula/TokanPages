@@ -8,6 +8,6 @@ export const UserNoteCreate: UserNoteCreateState = {
         createdAt: "",
         createdBy: "",
         currentNotes: 0,
-        result: undefined
-    }
-}
+        result: undefined,
+    },
+};

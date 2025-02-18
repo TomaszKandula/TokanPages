@@ -15,12 +15,7 @@ export const BicyclePage = (): React.ReactElement => {
     const bicycle = state?.contentPageData?.components?.bicycle;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "cookiesPrompt", 
-            "bicycle"
-        ], "BicyclePage"));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "bicycle"], "BicyclePage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ApplicationState } from "Store/Configuration";
 
 interface RedirectToProps {
-    path: string; 
+    path: string;
     name: string;
 }
 

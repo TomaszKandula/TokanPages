@@ -27,7 +27,7 @@ interface ArticleCardViewProps {
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     const hasFlag = !Validate.isEmpty(props.flagImage);
-    const styleCard = props.styleSmallCard ? "article-card-action-small" : "article-card-action-large"
+    const styleCard = props.styleSmallCard ? "article-card-action-small" : "article-card-action-large";
 
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
@@ -61,14 +61,14 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                         <div className="article-card-details-separator"></div>
                                         <LanguageIcon className="article-card-item-icon" />
                                         <div className="article-card-details-separator"></div>
-                                        <RenderImage 
-                                            base={GET_FLAG_URL} 
-                                            source={props.flagImage} 
+                                        <RenderImage
+                                            base={GET_FLAG_URL}
+                                            source={props.flagImage}
                                             title="Articles"
                                             alt="An article language flag"
-                                            className="article-flag-image" 
+                                            className="article-flag-image"
                                         />
-                                    </> 
+                                    </>
                                 ) : (
                                     <></>
                                 )}

@@ -17,7 +17,7 @@ export const UserNotesRead: Reducer<UserNotesReadState> = (
             return {
                 status: OperationStatus.notStarted,
                 response: {
-                    notes: []
+                    notes: [],
                 },
             };
 
@@ -25,7 +25,7 @@ export const UserNotesRead: Reducer<UserNotesReadState> = (
             return {
                 status: OperationStatus.inProgress,
                 response: {
-                    notes: state.response.notes
+                    notes: state.response.notes,
                 },
             };
 

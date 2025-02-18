@@ -37,18 +37,18 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
-            {hasSnapshotMode 
-            ? null
-            : <>
-                <ApplicationToast />
-                <ApplicationDialogBox />
-                <ApplicationUserInfo />
-                <ScrollToTop>
-                    <Fab size="small" aria-label="scroll back to top" className="button-up">
-                        <KeyboardArrowUpIcon />
-                    </Fab>
-                </ScrollToTop>
-            </>}
+            {hasSnapshotMode ? null : (
+                <>
+                    <ApplicationToast />
+                    <ApplicationDialogBox />
+                    <ApplicationUserInfo />
+                    <ScrollToTop>
+                        <Fab size="small" aria-label="scroll back to top" className="button-up">
+                            <KeyboardArrowUpIcon />
+                        </Fab>
+                    </ScrollToTop>
+                </>
+            )}
         </ApplicationSession>
     );
 };

@@ -23,9 +23,9 @@ const GetNonMaterialIcon = (props: Properties): React.ReactElement | undefined =
 };
 
 const DisplayIcon = (props: Properties): React.ReactElement => {
-    const nonMaterialIcon = GetNonMaterialIcon({ 
-        name: props.name, 
-        className: props.className 
+    const nonMaterialIcon = GetNonMaterialIcon({
+        name: props.name,
+        className: props.className,
     });
 
     if (nonMaterialIcon !== undefined) {
