@@ -29,22 +29,22 @@ export const ActivationPage = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation",
-            "templates",
-            "cookiesPrompt",
-            "accountActivate"
-        ], "ActivationPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "templates", "cookiesPrompt", "accountActivate"],
+                "ActivationPage"
+            )
+        );
     }, [language?.id]);
 
     return (
         <>
             <Navigation backNavigationOnly={true} />
             {id ? (
-                <AccountActivate 
-                    id={id} 
-                    type={type} 
-                    className="pt-120 pb-240" 
+                <AccountActivate
+                    id={id}
+                    type={type}
+                    className="pt-120 pb-240"
                     background="background-colour-light-grey"
                 />
             ) : (

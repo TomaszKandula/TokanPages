@@ -15,8 +15,8 @@ export const ContentPageData: ContentPageDataState = {
             buttons: {
                 removeText: "",
                 clearText: "",
-                saveText: ""
-            }
+                saveText: "",
+            },
         },
         accountSettings: {
             language: "",
@@ -177,21 +177,21 @@ export const ContentPageData: ContentPageDataState = {
                 necessaryLabel: "",
                 statisticsLabel: "",
                 marketingLabel: "",
-                personalizationLabel: ""
+                personalizationLabel: "",
             },
             buttons: {
                 acceptButton: {
                     label: "",
-                    enabled: false
+                    enabled: false,
                 },
                 manageButton: {
                     label: "",
-                    enabled: false
+                    enabled: false,
                 },
                 closeButton: {
                     label: "",
-                    enabled: false
-                }
+                    enabled: false,
+                },
             },
             days: 0,
         },
@@ -403,44 +403,44 @@ export const ContentPageData: ContentPageDataState = {
                 images: {
                     header: "",
                     avatar: "",
-                    icon: ""
+                    icon: "",
                 },
                 textTitle: "",
                 textSubtitle: "",
                 textComment: "",
                 action: {
                     text: "",
-                    href: ""
-                }
+                    href: "",
+                },
             },
             social2: {
                 images: {
                     header: "",
                     avatar: "",
-                    icon: ""
+                    icon: "",
                 },
                 textTitle: "",
                 textSubtitle: "",
                 textComment: "",
                 action: {
                     text: "",
-                    href: ""
-                }
+                    href: "",
+                },
             },
             social3: {
                 images: {
                     header: "",
                     avatar: "",
-                    icon: ""
+                    icon: "",
                 },
                 textTitle: "",
                 textSubtitle: "",
                 textComment: "",
                 action: {
                     text: "",
-                    href: ""
-                }
-            }
+                    href: "",
+                },
+            },
         },
         passwordUpdate: {
             language: "",
@@ -455,11 +455,11 @@ export const ContentPageData: ContentPageDataState = {
             button: "",
             link1: {
                 text: "",
-                href: ""
+                href: "",
             },
             link2: {
                 text: "",
-                href: ""
+                href: "",
             },
             labelEmail: "",
             labelPassword: "",
@@ -477,7 +477,7 @@ export const ContentPageData: ContentPageDataState = {
             button: "",
             link: {
                 text: "",
-                href: ""
+                href: "",
             },
             warning: "",
             consent: "",

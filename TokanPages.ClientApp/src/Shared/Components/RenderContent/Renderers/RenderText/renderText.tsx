@@ -57,7 +57,6 @@ const RenderExternalLink = (props: TextItem): React.ReactElement => {
         }
 
         window.open(props.value as string, "_blank");
-
     }, [props.value]);
 
     return (

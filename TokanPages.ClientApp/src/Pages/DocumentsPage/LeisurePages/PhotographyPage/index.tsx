@@ -15,12 +15,9 @@ export const PhotographyPage = (): React.ReactElement => {
     const photography = state?.contentPageData?.components?.photography;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "cookiesPrompt", 
-            "photography"
-        ], "PhotographyPage"));
+        dispatch(
+            ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "photography"], "PhotographyPage")
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

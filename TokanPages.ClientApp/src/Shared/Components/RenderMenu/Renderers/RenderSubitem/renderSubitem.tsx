@@ -30,7 +30,7 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
                 className="render-navbar-href"
                 underline="none"
                 target="_blank"
-                rel="noopener"
+                rel="noopener nofollow"
             >
                 <ListItem button key={props.id} className={listItemStyle} disabled={!props.enabled}>
                     <ListItemIcon className="render-navbar-list-icon">

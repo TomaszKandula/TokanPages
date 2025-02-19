@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { Typography } from "@material-ui/core";
 import { GET_IMAGES_URL } from "../../../Api/Request";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
@@ -21,7 +20,7 @@ interface RenderPictureProps {
 
 const OpenLinkButton = (props: HeaderContentDto): React.ReactElement => {
     return (
-        <Link to={props?.resume?.href ?? ""} className="link">
+        <Link to={props?.resume?.href ?? ""} className="link" rel="noopener nofollow">
             <Button variant="contained" className="header-button-resume">
                 {props?.resume?.text}
             </Button>
@@ -39,7 +38,7 @@ const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
     }
 
     return (
-        <Link to={props?.action?.href ?? ""} className="link">
+        <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
             <Button variant="contained" className="header-button">
                 {props?.action?.text}
             </Button>
@@ -67,7 +66,16 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
     const photo4 = `${GET_IMAGES_URL}/${props.sources.w2880}`;
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
-    return <img src={photo1} srcSet={set} className="header-image-card lazyloaded" alt="Your Software Developer" />;
+    return (
+        <img
+            src={photo1}
+            srcSet={set}
+            loading="lazy"
+            title="Illustration"
+            alt="Your Software Developer"
+            className="header-image-card lazyloaded"
+        />
+    );
 };
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
@@ -85,23 +93,33 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                 </Grid>
                 <Grid item xs={12} md={5} className="header-section-container">
                     <div className="header-content-box">
-                        <Typography component="span" className="header-content-caption">
-                            {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} />}
-                        </Typography>
-                        <h1 className="header-content-subtitle">
-                            {data?.isLoading ? (
-                                <Skeleton variant="text" />
-                            ) : (
-                                <ReactHtmlParser html={header?.subtitle} />
-                            )}
-                        </h1>
-                        <h2 className="header-content-description">
-                            {data?.isLoading ? (
-                                <Skeleton variant="text" />
-                            ) : (
-                                <ReactHtmlParser html={header?.description} />
-                            )}
-                        </h2>
+                        {data?.isLoading ? (
+                            <Skeleton variant="text" />
+                        ) : (
+                            <ReactHtmlParser
+                                html={header?.caption}
+                                component="span"
+                                className="header-content-caption"
+                            />
+                        )}
+                        {data?.isLoading ? (
+                            <Skeleton variant="text" />
+                        ) : (
+                            <ReactHtmlParser
+                                html={header?.subtitle}
+                                component="h1"
+                                className="header-content-subtitle"
+                            />
+                        )}
+                        {data?.isLoading ? (
+                            <Skeleton variant="text" />
+                        ) : (
+                            <ReactHtmlParser
+                                html={header?.description}
+                                component="h2"
+                                className="header-content-description"
+                            />
+                        )}
                         <div className="mt-32">
                             {data?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />

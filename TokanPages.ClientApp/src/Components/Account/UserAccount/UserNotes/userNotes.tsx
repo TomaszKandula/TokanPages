@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserNotesView } from "./View/userNotesView";
 import { UserNoteResultDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { UserNotesReadAction, UserNoteCreateAction, UserNoteUpdateAction, UserNoteDeleteAction } from "../../../../Store/Actions";
+import {
+    UserNotesReadAction,
+    UserNoteCreateAction,
+    UserNoteUpdateAction,
+    UserNoteDeleteAction,
+} from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
@@ -40,15 +45,21 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const [canDelete, setDelete] = React.useState(false);
     const [canRefresh, setRefresh] = React.useState(false);
 
-    const selectionHandler = React.useCallback((index: number) => {
-        const data = userNotes.response.notes[index];
-        setSelection(data);
-        setForm({ note: data.note });
-    }, [selection, userNotes]);
+    const selectionHandler = React.useCallback(
+        (index: number) => {
+            const data = userNotes.response.notes[index];
+            setSelection(data);
+            setForm({ note: data.note });
+        },
+        [selection, userNotes]
+    );
 
-    const formHandler = React.useCallback((event: ReactChangeEvent) => {
-        setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
-    }, [form]);
+    const formHandler = React.useCallback(
+        (event: ReactChangeEvent) => {
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [form]
+    );
 
     const clearButtonHandler = React.useCallback(() => {
         setForm({ note: "" });
@@ -69,7 +80,9 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     }, [hasProgress, selection, actionType]);
 
     const removeButtonHandler = React.useCallback(() => {
-        if (!selection) { return; }
+        if (!selection) {
+            return;
+        }
         if (!canDelete) {
             setDelete(true);
             setProgress(true);
@@ -79,8 +92,12 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
     /* ADD NEW USER NOTE */
     React.useEffect(() => {
-        if (actionType !== "ADD") { return; }
-        if (selection) { return; }
+        if (actionType !== "ADD") {
+            return;
+        }
+        if (selection) {
+            return;
+        }
 
         if (hasError) {
             setProgress(false);
@@ -95,7 +112,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         if (hasUserNoteCreateFinished) {
             setRefresh(true);
             setProgress(false);
-            setSelection({ 
+            setSelection({
                 note: form.note,
                 id: userNoteCreate.response.id,
                 createdAt: userNoteCreate.response.createdAt,
@@ -104,14 +121,27 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
             dispatch(UserNoteCreateAction.clear());
         }
-
-    }, [actionType, selection, hasError, hasProgress, userNoteCreate, hasUserNoteCreateNotStarted, hasUserNoteCreateFinished]);
+    }, [
+        actionType,
+        selection,
+        hasError,
+        hasProgress,
+        userNoteCreate,
+        hasUserNoteCreateNotStarted,
+        hasUserNoteCreateFinished,
+    ]);
 
     /* UPDATE SELECTED USER NOTE */
     React.useEffect(() => {
-        if (actionType !== "UPDATE" ) { return; }
-        if (!selection) { return; }
-        if (canDelete) { return; }
+        if (actionType !== "UPDATE") {
+            return;
+        }
+        if (!selection) {
+            return;
+        }
+        if (canDelete) {
+            return;
+        }
 
         if (hasError) {
             setProgress(false);
@@ -120,7 +150,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
 
         if (hasUserNoteUpdateNotStarted && hasProgress) {
-            dispatch(UserNoteUpdateAction.update({ id: selection.id,  note: form.note }));
+            dispatch(UserNoteUpdateAction.update({ id: selection.id, note: form.note }));
         }
 
         if (hasUserNoteUpdateFinished) {
@@ -128,13 +158,27 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setRefresh(true);
             dispatch(UserNoteUpdateAction.clear());
         }
-    }, [actionType, selection, canDelete, hasError, hasProgress, hasUserNoteUpdateNotStarted, hasUserNoteUpdateFinished]);
+    }, [
+        actionType,
+        selection,
+        canDelete,
+        hasError,
+        hasProgress,
+        hasUserNoteUpdateNotStarted,
+        hasUserNoteUpdateFinished,
+    ]);
 
     /* REMOVE SELECTED USER NOTE */
     React.useEffect(() => {
-        if (actionType !== "REMOVE" ) { return; }
-        if (!selection) { return; }
-        if (!canDelete) { return; }
+        if (actionType !== "REMOVE") {
+            return;
+        }
+        if (!selection) {
+            return;
+        }
+        if (!canDelete) {
+            return;
+        }
 
         if (hasError) {
             setProgress(false);
@@ -155,7 +199,15 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             setForm({ note: "" });
             dispatch(UserNoteDeleteAction.clear());
         }
-    }, [actionType, selection, canDelete, hasError, hasProgress, hasUserNoteDeleteNotStarted, hasUserNoteDeleteFinished]);
+    }, [
+        actionType,
+        selection,
+        canDelete,
+        hasError,
+        hasProgress,
+        hasUserNoteDeleteNotStarted,
+        hasUserNoteDeleteFinished,
+    ]);
 
     /* ON REFRESH EVENT */
     React.useEffect(() => {
@@ -176,8 +228,8 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
         }
     }, [contentPageData?.isLoading, userNotes.response.notes]);
 
-    return(
-        <UserNotesView 
+    return (
+        <UserNotesView
             isLoading={contentPageData?.isLoading}
             hasProgress={hasProgress}
             userNotes={userNotes.response.notes}
@@ -199,4 +251,4 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             background={props.background}
         />
     );
-}
+};

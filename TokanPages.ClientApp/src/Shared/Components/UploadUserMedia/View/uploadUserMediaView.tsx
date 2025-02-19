@@ -31,15 +31,16 @@ export const UploadUserMediaView = (props: Properties): React.ReactElement => {
             />
 
             <IconButton component="span" size="small" disabled={!props.buttonState} className="button-upload">
-                {hasPreviewImage 
-                ? <UserAvatar 
-                    altSource={props.previewImage ?? ""} 
-                    isLarge={false}
-                    className="user-avatar-avatar-button"
-                /> 
-                : <BackupIcon />}
+                {hasPreviewImage ? (
+                    <UserAvatar
+                        altSource={props.previewImage ?? ""}
+                        isLarge={false}
+                        className="user-avatar-avatar-button"
+                    />
+                ) : (
+                    <BackupIcon />
+                )}
             </IconButton>
-            
         </label>
     );
 };

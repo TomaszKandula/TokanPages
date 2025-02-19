@@ -9,9 +9,12 @@ Object {
         <div
           class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
         >
-          <div
-            class="MuiCardMedia-root article-card-image"
-            style="background-image: url(/images/card.jpg);"
+          <img
+            alt="An article card for given article"
+            class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+            loading="lazy"
+            src="/images/card.jpg"
+            title="Article illustration"
           />
           <div
             class="MuiCardContent-root article-card-content"
@@ -85,9 +88,11 @@ Object {
                     class="article-card-details-separator"
                   />
                   <img
-                    alt="image of eng.png"
+                    alt="An article language flag"
                     class="article-flag-image"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                    title="Articles"
                   />
                 </div>
                 <div
@@ -120,9 +125,12 @@ Object {
       <div
         class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
       >
-        <div
-          class="MuiCardMedia-root article-card-image"
-          style="background-image: url(/images/card.jpg);"
+        <img
+          alt="An article card for given article"
+          class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+          loading="lazy"
+          src="/images/card.jpg"
+          title="Article illustration"
         />
         <div
           class="MuiCardContent-root article-card-content"
@@ -196,9 +204,11 @@ Object {
                   class="article-card-details-separator"
                 />
                 <img
-                  alt="image of eng.png"
+                  alt="An article language flag"
                   class="article-flag-image"
+                  loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                  title="Articles"
                 />
               </div>
               <div

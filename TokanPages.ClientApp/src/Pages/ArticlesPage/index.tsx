@@ -25,13 +25,12 @@ export const ArticlesPage = (): React.ReactElement => {
     const isLoading = data?.isLoading ?? false;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "templates", 
-            "cookiesPrompt", 
-            "article"], 
-            "ArticlesPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "footer", "templates", "cookiesPrompt", "article"],
+                "ArticlesPage"
+            )
+        );
     }, [language?.id]);
 
     React.useEffect(() => {

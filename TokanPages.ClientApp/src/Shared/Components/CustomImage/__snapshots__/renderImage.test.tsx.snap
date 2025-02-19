@@ -67,16 +67,18 @@ Object {
   "baseElement": <body>
     <div>
       <img
-        alt="image of test-image.jpg"
+        alt="An article test image"
         class="style"
+        loading="lazy"
         src="http://localhost:5000//test-image.jpg"
       />
     </div>
   </body>,
   "container": <div>
     <img
-      alt="image of test-image.jpg"
+      alt="An article test image"
       class="style"
+      loading="lazy"
       src="http://localhost:5000//test-image.jpg"
     />
   </div>,

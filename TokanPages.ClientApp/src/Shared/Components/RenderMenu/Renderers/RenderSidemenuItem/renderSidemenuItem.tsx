@@ -13,7 +13,7 @@ export const RenderSidemenuItem = (props: Item): React.ReactElement => {
 
     const RenderItemWithHref = (): React.ReactElement => {
         return (
-            <Href href={link} className="render-navbar-href" underline="none" target="_blank" rel="noopener">
+            <Href href={link} className="render-navbar-href" underline="none" target="_blank" rel="noopener nofollow">
                 <ListItem button key={props.id} disabled={!props.enabled}>
                     <ListItemIcon className="render-navbar-list-icon">
                         {GetIcon({ name: props.icon as string })}

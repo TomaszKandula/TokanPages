@@ -30,21 +30,21 @@ describe("test component: cookiesView", () => {
                     necessaryLabel: "Necessary",
                     statisticsLabel: "Statistics",
                     marketingLabel: "Marketing",
-                    personalizationLabel: "Personalization"            
+                    personalizationLabel: "Personalization",
                 }}
                 buttons={{
                     acceptButton: {
                         label: "Accept All",
-                        enabled: true
+                        enabled: true,
                     },
                     manageButton: {
                         label: "Manage Settings",
-                        enabled: true
+                        enabled: true,
                     },
                     closeButton: {
                         label: "Close",
-                        enabled: true
-                    }
+                        enabled: true,
+                    },
                 }}
             />
         );
@@ -78,21 +78,21 @@ describe("test component: cookiesView", () => {
                     necessaryLabel: "Necessary",
                     statisticsLabel: "Statistics",
                     marketingLabel: "Marketing",
-                    personalizationLabel: "Personalization"            
+                    personalizationLabel: "Personalization",
                 }}
                 buttons={{
                     acceptButton: {
                         label: "Accept All",
-                        enabled: true
+                        enabled: true,
                     },
                     manageButton: {
                         label: "Manage Settings",
-                        enabled: true
+                        enabled: true,
                     },
                     closeButton: {
                         label: "Close",
-                        enabled: true
-                    }
+                        enabled: true,
+                    },
                 }}
             />
         );
@@ -126,21 +126,21 @@ describe("test component: cookiesView", () => {
                     necessaryLabel: "Necessary",
                     statisticsLabel: "Statistics",
                     marketingLabel: "Marketing",
-                    personalizationLabel: "Personalization"            
+                    personalizationLabel: "Personalization",
                 }}
                 buttons={{
                     acceptButton: {
                         label: "Accept All",
-                        enabled: true
+                        enabled: true,
                     },
                     manageButton: {
                         label: "Manage Settings",
-                        enabled: true
+                        enabled: true,
                     },
                     closeButton: {
                         label: "Close",
-                        enabled: true
-                    }
+                        enabled: true,
+                    },
                 }}
             />
         );

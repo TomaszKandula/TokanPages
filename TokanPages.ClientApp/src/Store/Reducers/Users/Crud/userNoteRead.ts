@@ -22,7 +22,7 @@ export const UserNoteRead: Reducer<UserNoteReadState> = (
                     createdBy: "",
                     createdAt: "",
                     modifiedBy: "",
-                    modifiedAt: ""
+                    modifiedAt: "",
                 },
             };
 
@@ -35,7 +35,7 @@ export const UserNoteRead: Reducer<UserNoteReadState> = (
                     createdBy: state.response.createdBy,
                     createdAt: state.response.createdAt,
                     modifiedBy: state.response.modifiedBy,
-                    modifiedAt: state.response.modifiedAt
+                    modifiedAt: state.response.modifiedAt,
                 },
             };
 

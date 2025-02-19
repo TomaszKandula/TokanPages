@@ -74,8 +74,10 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             <CardMedia
                                                 image={imageUrl(props.photo1)}
                                                 component="img"
+                                                loading="lazy"
                                                 className="testimonials-card-image"
-                                                alt="Testimonail photo 1 of 3"
+                                                title="Testimonials"
+                                                alt={`Picture of ${props.name1}`}
                                             />
                                         }
                                         className="testimonials-card-image"
@@ -127,8 +129,10 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             <CardMedia
                                                 image={imageUrl(props.photo2)}
                                                 component="img"
+                                                loading="lazy"
                                                 className="testimonials-card-image"
-                                                alt="Testimonail photo 2 of 3"
+                                                title="Testimonials"
+                                                alt={`Picture of ${props.name2}`}
                                             />
                                         }
                                         className="testimonials-card-image"
@@ -180,8 +184,10 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             <CardMedia
                                                 image={imageUrl(props.photo3)}
                                                 component="img"
+                                                loading="lazy"
                                                 className="testimonials-card-image"
-                                                alt="Testimonail photo 3 of 3"
+                                                title="Testimonials"
+                                                alt={`Picture of ${props.name3}`}
                                             />
                                         }
                                         className="testimonials-card-image"

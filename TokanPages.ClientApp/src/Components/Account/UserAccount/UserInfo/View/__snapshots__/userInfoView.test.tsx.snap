@@ -176,9 +176,10 @@ Object {
                           >
                             <div
                               class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small user-avatar-avatar-button"
+                              title="Avatar"
                             >
                               <img
-                                alt="Avatar"
+                                alt="User avatar"
                                 class="MuiAvatar-img"
                                 src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
                               />
@@ -584,9 +585,10 @@ Object {
                         >
                           <div
                             class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small user-avatar-avatar-button"
+                            title="Avatar"
                           >
                             <img
-                              alt="Avatar"
+                              alt="User avatar"
                               class="MuiAvatar-img"
                               src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
                             />

@@ -13,8 +13,7 @@ export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement
     return (
         <div className={`progress-bar-box ${className}`}>
             <div className="m-auto">
-                <CircularProgress className={colour} size={props.size}
-                />
+                <CircularProgress className={colour} size={props.size} />
             </div>
         </div>
     );

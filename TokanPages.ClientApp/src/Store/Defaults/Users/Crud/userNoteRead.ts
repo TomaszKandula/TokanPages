@@ -9,6 +9,6 @@ export const UserNoteRead: UserNoteReadState = {
         createdBy: "",
         createdAt: "",
         modifiedBy: "",
-        modifiedAt: ""
-    }
-} 
+        modifiedAt: "",
+    },
+};

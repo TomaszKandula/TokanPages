@@ -40,22 +40,22 @@ export const Cookies = (): React.ReactElement => {
     const onAcceptButtonEvent = React.useCallback(() => {
         setClose(true);
 
-        const grantSelected = JSON.stringify({ 
+        const grantSelected = JSON.stringify({
             granted: {
                 necessary: true,
                 statistics: hasStatistics,
                 marketing: hasMarketing,
-                personalization: hasPersonalization
-            }
+                personalization: hasPersonalization,
+            },
         });
 
-        const grantBasic = JSON.stringify({ 
+        const grantBasic = JSON.stringify({
             granted: {
                 necessary: true,
                 statistics: false,
                 marketing: false,
-                personalization: false
-            }
+                personalization: false,
+            },
         });
 
         SetCookie({

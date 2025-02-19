@@ -24,5 +24,5 @@ export enum UserMedia {
 
 export enum UserNoteActionResult {
     noteAdded,
-    noteRejected
+    noteRejected,
 }

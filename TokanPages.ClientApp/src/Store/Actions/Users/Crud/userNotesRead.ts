@@ -21,7 +21,9 @@ export const UserNotesReadAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
     },
-    get: (payload: UserNotesDto): ApplicationAction<TKnownActions> => (dispatch, getState) => {
+    get:
+        (payload: UserNotesDto): ApplicationAction<TKnownActions> =>
+        (dispatch, getState) => {
             dispatch({ type: RECEIVE });
 
             const request: RequestContract = {

@@ -42,13 +42,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </h3>
                             </Animated>
                             <Animated dataAos="fade-up">
-                                <h4 className="technology-feature-text">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        <ReactHtmlParser html={technology?.text1} />
-                                    )}
-                                </h4>
+                                {data?.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser
+                                        html={technology?.text1}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
+                                )}
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -63,13 +65,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </h3>
                             </Animated>
                             <Animated dataAos="fade-up">
-                                <h4 className="technology-feature-text">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        <ReactHtmlParser html={technology?.text2} />
-                                    )}
-                                </h4>
+                                {data?.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser
+                                        html={technology?.text2}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
+                                )}
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -84,13 +88,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </h3>
                             </Animated>
                             <Animated dataAos="fade-up">
-                                <h4 className="technology-feature-text">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        <ReactHtmlParser html={technology?.text3} />
-                                    )}
-                                </h4>
+                                {data?.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser
+                                        html={technology?.text3}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
+                                )}
                             </Animated>
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -105,13 +111,15 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </h3>
                             </Animated>
                             <Animated dataAos="fade-up">
-                                <h4 className="technology-feature-text">
-                                    {data?.isLoading ? (
-                                        <Skeleton variant="text" />
-                                    ) : (
-                                        <ReactHtmlParser html={technology?.text4} />
-                                    )}
-                                </h4>
+                                {data?.isLoading ? (
+                                    <Skeleton variant="text" />
+                                ) : (
+                                    <ReactHtmlParser
+                                        html={technology?.text4}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
+                                )}
                             </Animated>
                         </Grid>
                     </Grid>

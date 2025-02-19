@@ -24,6 +24,7 @@ Object {
               <a
                 class="footer-links"
                 href="/terms"
+                rel="noopener nofollow"
               >
                 Terms of use
               </a>
@@ -32,6 +33,7 @@ Object {
               <a
                 class="footer-links"
                 href="/policy"
+                rel="noopener nofollow"
               >
                 Privacy policy
               </a>
@@ -45,7 +47,7 @@ Object {
               aria-label="LinkedInIcon"
               class="MuiButtonBase-root MuiIconButton-root footer-icon"
               href="https://www.linkedin.com/"
-              rel="noopener"
+              rel="noopener nofollow"
               tabindex="0"
               target="_blank"
             >
@@ -91,6 +93,7 @@ Object {
             <a
               class="footer-links"
               href="/terms"
+              rel="noopener nofollow"
             >
               Terms of use
             </a>
@@ -99,6 +102,7 @@ Object {
             <a
               class="footer-links"
               href="/policy"
+              rel="noopener nofollow"
             >
               Privacy policy
             </a>
@@ -112,7 +116,7 @@ Object {
             aria-label="LinkedInIcon"
             class="MuiButtonBase-root MuiIconButton-root footer-icon"
             href="https://www.linkedin.com/"
-            rel="noopener"
+            rel="noopener nofollow"
             tabindex="0"
             target="_blank"
           >

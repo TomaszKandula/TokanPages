@@ -4,17 +4,17 @@ import { UserNoteResultDto } from "../../../../../Api/Models";
 import { CustomDivider } from "../../../../../Shared/Components";
 import { ReactChangeEvent } from "../../../../../Shared/types";
 import Validate from "validate.js";
-import { 
-    Backdrop, 
-    Button, 
-    Card, 
-    CardContent, 
-    CircularProgress, 
-    Container, 
-    ListItem, 
-    ListItemText, 
-    TextField, 
-    Typography 
+import {
+    Backdrop,
+    Button,
+    Card,
+    CardContent,
+    CircularProgress,
+    Container,
+    ListItem,
+    ListItemText,
+    TextField,
+    Typography,
 } from "@material-ui/core";
 
 interface UserNotesViewProps {
@@ -64,10 +64,10 @@ const RenderRow = (props: RenderRowProps): React.ReactElement => {
     const highlightClass = props.selection === props.id ? "user-notes-highlight-row" : "";
     return (
         <ListItem button className={highlightClass} key={props.id}>
-            <ListItemText primary={props.note} onClick={() => props.onClick(props.index) } />
+            <ListItemText primary={props.note} onClick={() => props.onClick(props.index)} />
         </ListItem>
     );
-}
+};
 
 const RenderText = (props: RenderTextProps): React.ReactElement => {
     return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
@@ -78,7 +78,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
     const noteUid = props.selection ? ` (${props.selection.id.substring(0, 8)}):` : ":";
     const isEmpty = Validate.isEmpty(props.messageForm.note);
 
-    return(
+    return (
         <section>
             <Backdrop className="backdrop" open={props.hasProgress}>
                 <CircularProgress color="inherit" />
@@ -105,17 +105,20 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         <Typography component="span" className="label">
                                             <RenderText {...props} value={`${props.listLabel}:`} />
                                         </Typography>
-                                        <div className={`user-notes-fixed-list user-notes-border mt-10 ${props.isLoading ? "loading-indicator" : ""}`}>
-                                            {!props.isLoading && props.userNotes?.map((value: UserNoteProps, index: number) => (
-                                                <RenderRow 
-                                                    key={value.id} 
-                                                    id={value.id} 
-                                                    note={value.id.substring(0, 8)} 
-                                                    index={index}
-                                                    selection={props.selection?.id}
-                                                    onClick={props.onRowClick} 
-                                                />
-                                            ))}
+                                        <div
+                                            className={`user-notes-fixed-list user-notes-border mt-10 ${props.isLoading ? "loading-indicator" : ""}`}
+                                        >
+                                            {!props.isLoading &&
+                                                props.userNotes?.map((value: UserNoteProps, index: number) => (
+                                                    <RenderRow
+                                                        key={value.id}
+                                                        id={value.id}
+                                                        note={value.id.substring(0, 8)}
+                                                        index={index}
+                                                        selection={props.selection?.id}
+                                                        onClick={props.onRowClick}
+                                                    />
+                                                ))}
                                         </div>
                                     </div>
 
@@ -172,7 +175,6 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                             </Button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </CardContent>
@@ -181,4 +183,4 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
             </Container>
         </section>
     );
-}
+};

@@ -4,9 +4,9 @@ export interface AccountUserNotesContentDto {
     description: string;
     listLabel: string;
     noteLabel: string;
-	buttons: {
-		removeText: string;
+    buttons: {
+        removeText: string;
         clearText: string;
-		saveText: string;
-	}
+        saveText: string;
+    };
 }

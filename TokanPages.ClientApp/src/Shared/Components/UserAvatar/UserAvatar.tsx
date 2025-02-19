@@ -29,10 +29,12 @@ export const UserAvatar = (props: Properties): React.ReactElement => {
         source = props.altSource ?? "";
     }
 
-    return <UserAvatarView 
-        isLarge={props.isLarge} 
-        userLetter={props.userLetter ?? "A"} 
-        avatarSource={source}
-        className={props.className}
-    />;
+    return (
+        <UserAvatarView
+            isLarge={props.isLarge}
+            userLetter={props.userLetter ?? "A"}
+            avatarSource={source}
+            className={props.className}
+        />
+    );
 };

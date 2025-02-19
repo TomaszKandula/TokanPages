@@ -21,7 +21,9 @@ export const UserNoteReadAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
     },
-    get: (payload: UserNoteDto): ApplicationAction<TKnownActions> => (dispatch, getState) => {
+    get:
+        (payload: UserNoteDto): ApplicationAction<TKnownActions> =>
+        (dispatch, getState) => {
             dispatch({ type: RECEIVE });
 
             const baseUrl = GET_USER_NOTE.replace("{id}", payload.id);

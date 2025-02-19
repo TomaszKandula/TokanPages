@@ -15,13 +15,12 @@ export const SettingsPage = (): React.ReactElement => {
     const isAnonymous = Validate.isEmpty(userStore.userId);
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "templates", 
-            "cookiesPrompt", 
-            "accountSettings"
-        ], "SettingsPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "footer", "templates", "cookiesPrompt", "accountSettings"],
+                "SettingsPage"
+            )
+        );
     }, [language?.id]);
 
     return (

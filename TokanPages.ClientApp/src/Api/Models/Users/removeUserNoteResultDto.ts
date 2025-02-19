@@ -1,3 +1,1 @@
-export interface RemoveUserNoteResultDto {
-
-}
+export interface RemoveUserNoteResultDto {}

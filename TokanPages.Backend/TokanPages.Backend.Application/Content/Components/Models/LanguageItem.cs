@@ -9,15 +9,20 @@ namespace TokanPages.Backend.Application.Content.Components.Models;
 public class LanguageItem
 {
     /// <summary>
-    /// Identification.
+    /// Language ID.
     /// </summary>
     public string Id { get; set; } = "";
 
     /// <summary>
-    /// Name.
+    /// Language ISO 639-1.
+    /// </summary>
+    public string Iso { get; set; } = "";
+
+    /// <summary>
+    /// Language name.
     /// </summary>
     public string Name { get; set; } = "";
-    
+
     /// <summary>
     /// Default flag.
     /// </summary>

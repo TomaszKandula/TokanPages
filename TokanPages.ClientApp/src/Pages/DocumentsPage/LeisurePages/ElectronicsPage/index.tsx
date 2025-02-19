@@ -15,12 +15,9 @@ export const ElectronicsPage = (): React.ReactElement => {
     const electronics = state?.contentPageData?.components?.electronics;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "cookiesPrompt", 
-            "electronics"
-        ], "ElectronicsPage"));
+        dispatch(
+            ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "electronics"], "ElectronicsPage")
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

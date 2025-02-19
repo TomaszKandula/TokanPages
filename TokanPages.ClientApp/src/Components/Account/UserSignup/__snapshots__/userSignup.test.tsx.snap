@@ -302,6 +302,7 @@ Object {
                 >
                   <a
                     href="/undefinedundefined"
+                    rel="noopener nofollow"
                   />
                 </div>
               </div>
@@ -609,6 +610,7 @@ Object {
               >
                 <a
                   href="/undefinedundefined"
+                  rel="noopener nofollow"
                 />
               </div>
             </div>

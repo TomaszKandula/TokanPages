@@ -163,9 +163,11 @@ Object {
         class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
       >
         <img
-          alt="image"
+          alt="An image of presented article text"
           class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
+          loading="lazy"
           src="http://localhost:5000/api/v1image.jpg"
+          title="Illustration"
         />
       </div>
       <span
@@ -342,8 +344,11 @@ Object {
         class="MuiPaper-root MuiCard-root render-video-card MuiPaper-elevation3 MuiPaper-rounded"
       >
         <img
+          alt="Video related to the presented article text"
           class="MuiCardMedia-root render-video-image MuiCardMedia-media MuiCardMedia-img"
+          loading="lazy"
           src="http://localhost:5000/api/v1cheers-commercial.png"
+          title="Video"
         />
         <div
           class="MuiCardContent-root"
