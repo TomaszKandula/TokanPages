@@ -45,7 +45,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <ReactHtmlParser html={technology?.text1} component="h4" className="technology-feature-text" />
+                                    <ReactHtmlParser
+                                        html={technology?.text1}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
                                 )}
                             </Animated>
                         </Grid>
@@ -64,7 +68,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <ReactHtmlParser html={technology?.text2} component="h4" className="technology-feature-text" />
+                                    <ReactHtmlParser
+                                        html={technology?.text2}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
                                 )}
                             </Animated>
                         </Grid>
@@ -83,7 +91,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <ReactHtmlParser html={technology?.text3} component="h4" className="technology-feature-text" />
+                                    <ReactHtmlParser
+                                        html={technology?.text3}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
                                 )}
                             </Animated>
                         </Grid>
@@ -102,7 +114,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 {data?.isLoading ? (
                                     <Skeleton variant="text" />
                                 ) : (
-                                    <ReactHtmlParser html={technology?.text4} component="h4" className="technology-feature-text" />
+                                    <ReactHtmlParser
+                                        html={technology?.text4}
+                                        component="h4"
+                                        className="technology-feature-text"
+                                    />
                                 )}
                             </Animated>
                         </Grid>

@@ -92,16 +92,32 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                 </Grid>
                 <Grid item xs={12} md={5} className="header-section-container">
                     <div className="header-content-box">
-                        {data?.isLoading ? <Skeleton variant="text" /> : <ReactHtmlParser html={header?.caption} component="span" className="header-content-caption" />}
                         {data?.isLoading ? (
                             <Skeleton variant="text" />
                         ) : (
-                            <ReactHtmlParser html={header?.subtitle} component="h1" className="header-content-subtitle" />
+                            <ReactHtmlParser
+                                html={header?.caption}
+                                component="span"
+                                className="header-content-caption"
+                            />
                         )}
                         {data?.isLoading ? (
                             <Skeleton variant="text" />
                         ) : (
-                            <ReactHtmlParser html={header?.description} component="h2" className="header-content-description" />
+                            <ReactHtmlParser
+                                html={header?.subtitle}
+                                component="h1"
+                                className="header-content-subtitle"
+                            />
+                        )}
+                        {data?.isLoading ? (
+                            <Skeleton variant="text" />
+                        ) : (
+                            <ReactHtmlParser
+                                html={header?.description}
+                                component="h2"
+                                className="header-content-description"
+                            />
                         )}
                         <div className="mt-32">
                             {data?.isLoading ? (
