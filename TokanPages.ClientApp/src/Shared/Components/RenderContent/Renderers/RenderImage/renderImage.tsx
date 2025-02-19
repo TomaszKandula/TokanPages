@@ -56,6 +56,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                 <CardMedia
                     component="img"
                     image={valueUrl}
+                    title="Illustration"
                     alt="An image of presented article text"
                     style={{
                         width: props.constraint?.width,

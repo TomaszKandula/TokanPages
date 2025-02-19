@@ -37,6 +37,8 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                     image={propUrl}
                     onClick={onClickEvent}
                     className="render-video-image"
+                    title="Video"
+                    alt="Video related to the presented article text"
                     style={{
                         width: props.constraint?.width,
                         height: props.constraint?.height,
