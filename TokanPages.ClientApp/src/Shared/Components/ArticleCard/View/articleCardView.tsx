@@ -32,10 +32,10 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <Card elevation={0} className="article-card">
-                <CardMedia 
+                <CardMedia
                     component="img"
                     loading="lazy"
-                    image={props.imageUrl} 
+                    image={props.imageUrl}
                     className="article-card-image"
                     title="Article illustration"
                     alt="An article card for given article"
