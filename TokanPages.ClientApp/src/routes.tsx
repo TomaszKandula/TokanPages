@@ -1,7 +1,13 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
-import { LINK_HREF_ATTRIBUTE, LINK_HREFLANG_ATTRIBUTE, LINK_QUERY_SELECTOR, LINK_REL_ATTRIBUTE, PRERENDER_PATH_PREFIX } from "./Shared/constants";
+import {
+    LINK_HREF_ATTRIBUTE,
+    LINK_HREFLANG_ATTRIBUTE,
+    LINK_QUERY_SELECTOR,
+    LINK_REL_ATTRIBUTE,
+    PRERENDER_PATH_PREFIX,
+} from "./Shared/constants";
 import { ApplicationState } from "./Store/Configuration";
 import { LanguageItemDto } from "./Api/Models";
 import { v4 as uuidv4 } from "uuid";
