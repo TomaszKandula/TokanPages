@@ -1,6 +1,8 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
-import { PRERENDER_PATH_PREFIX } from "./Shared/constants";
+import { LINK_HREF_ATTRIBUTE, LINK_QUERY_SELECTOR, LINK_REL_ATTRIBUTE, PRERENDER_PATH_PREFIX } from "./Shared/constants";
+import { ApplicationState } from "./Store/Configuration";
 import { LanguageItemDto } from "./Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -70,15 +72,18 @@ const pages: PageProps[] = [
     { path: "/account/password-reset", page: <PasswordResetPage /> },
 ];
 
-export const Routes = (props: RoutesProps): React.ReactElement => {
-    const renderRoute = (props: PageProps) => {
-        return (
-            <Route exact={props.exact ?? true} path={props.path} key={uuidv4()}>
-                {props.page}
-            </Route>
-        );
-    };
+const renderRoute = (props: PageProps) => {
+    return (
+        <Route exact={props.exact ?? true} path={props.path} key={uuidv4()}>
+            {props.page}
+        </Route>
+    );
+};
 
+export const Routes = (props: RoutesProps): React.ReactElement => {
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+
+    /* MAP COMPONENTS TO ROUTES */
     let buffer: React.ReactElement[] = [];
     pages.forEach(item => {
         if (props.languages && props.languages.length > 0) {
@@ -93,6 +98,19 @@ export const Routes = (props: RoutesProps): React.ReactElement => {
             });
         }
     });
+
+    /* UPDATE CANONICAL URL ON PAGE CHANGE */
+    React.useEffect(() => {
+        const link = document.querySelector(LINK_QUERY_SELECTOR);
+        if (link === null) {
+            let newlink = document.createElement("link");
+            newlink.setAttribute(LINK_REL_ATTRIBUTE, "canonical");
+            newlink.setAttribute(LINK_HREF_ATTRIBUTE, window.location.href);
+            document.head.appendChild(newlink);
+        } else {
+            link.setAttribute(LINK_HREF_ATTRIBUTE, window.location.href);
+        }
+    }, [language.id, window.location.href]);
 
     return buffer.length > 0 ? <>{buffer}</> : <></>;
 };

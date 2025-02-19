@@ -1,5 +1,4 @@
 export {
-    UpdateHtmlLang,
     UpdateComponents,
     GetVerifiedComponents,
     SetComponentMeta,
