@@ -60,6 +60,7 @@ Object {
                           <a
                             class="link"
                             href="/action-link"
+                            rel="noopener nofollow"
                           >
                             <button
                               class="MuiButtonBase-root MuiButton-root MuiButton-text button"
@@ -214,6 +215,7 @@ Object {
                         <a
                           class="link"
                           href="/action-link"
+                          rel="noopener nofollow"
                         >
                           <button
                             class="MuiButtonBase-root MuiButton-root MuiButton-text button"

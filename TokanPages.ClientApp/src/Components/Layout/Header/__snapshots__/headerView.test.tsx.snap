@@ -29,25 +29,19 @@ Object {
               class="header-content-box"
             >
               <span
-                class="MuiTypography-root header-content-caption MuiTypography-body1"
+                class="header-content-caption"
               >
-                <div>
-                  Welcome to my web page
-                </div>
+                Welcome to my web page
               </span>
               <h1
                 class="header-content-subtitle"
               >
-                <div>
-                  For years...
-                </div>
+                For years...
               </h1>
               <h2
                 class="header-content-description"
               >
-                <div>
-                  I do programming for a living...
-                </div>
+                I do programming for a living...
               </h2>
               <div
                 class="mt-32"
@@ -55,6 +49,7 @@ Object {
                 <a
                   class="link"
                   href="/action-link"
+                  rel="noopener nofollow"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button"
@@ -74,6 +69,7 @@ Object {
                 <a
                   class="link"
                   href="/download-link"
+                  rel="noopener nofollow"
                 >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-resume"
@@ -119,25 +115,19 @@ Object {
             class="header-content-box"
           >
             <span
-              class="MuiTypography-root header-content-caption MuiTypography-body1"
+              class="header-content-caption"
             >
-              <div>
-                Welcome to my web page
-              </div>
+              Welcome to my web page
             </span>
             <h1
               class="header-content-subtitle"
             >
-              <div>
-                For years...
-              </div>
+              For years...
             </h1>
             <h2
               class="header-content-description"
             >
-              <div>
-                I do programming for a living...
-              </div>
+              I do programming for a living...
             </h2>
             <div
               class="mt-32"
@@ -145,6 +135,7 @@ Object {
               <a
                 class="link"
                 href="/action-link"
+                rel="noopener nofollow"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button"
@@ -164,6 +155,7 @@ Object {
               <a
                 class="link"
                 href="/download-link"
+                rel="noopener nofollow"
               >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-resume"

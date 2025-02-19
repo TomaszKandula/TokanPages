@@ -20,6 +20,7 @@ Object {
               <a
                 class="navigation-app-logo-small"
                 href="/eng"
+                rel="noopener nofollow"
               >
                 <img
                   alt="An application logo"
@@ -149,6 +150,7 @@ Object {
                 <a
                   class="navigation-app-logo-small"
                   href="/eng"
+                  rel="noopener nofollow"
                 >
                   <img
                     alt="An application logo"
@@ -159,6 +161,7 @@ Object {
                 <a
                   class="navigation-app-logo-large"
                   href="/eng"
+                  rel="noopener nofollow"
                 />
               </div>
               <div
@@ -252,6 +255,7 @@ Object {
             <a
               class="navigation-app-logo-small"
               href="/eng"
+              rel="noopener nofollow"
             >
               <img
                 alt="An application logo"
@@ -381,6 +385,7 @@ Object {
               <a
                 class="navigation-app-logo-small"
                 href="/eng"
+                rel="noopener nofollow"
               >
                 <img
                   alt="An application logo"
@@ -391,6 +396,7 @@ Object {
               <a
                 class="navigation-app-logo-large"
                 href="/eng"
+                rel="noopener nofollow"
               />
             </div>
             <div
