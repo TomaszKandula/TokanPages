@@ -69,6 +69,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                     <CardMedia
                                                         image={imageUrl(socials?.social1?.images?.avatar)}
                                                         component="img"
+                                                        loading="lazy"
                                                         className="socials-card-image"
                                                         title="Socials"
                                                         alt={socials?.social1?.textTitle}
@@ -132,6 +133,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                     <CardMedia
                                                         image={imageUrl(socials?.social2?.images?.avatar)}
                                                         component="img"
+                                                        loading="lazy"
                                                         className="socials-card-image"
                                                         title="Socials"
                                                         alt={socials?.social2?.textTitle}
@@ -195,6 +197,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                     <CardMedia
                                                         image={imageUrl(socials?.social3?.images?.avatar)}
                                                         component="img"
+                                                        loading="lazy"
                                                         className="socials-card-image"
                                                         title="Socials"
                                                         alt={socials?.social3?.textTitle}

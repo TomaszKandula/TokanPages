@@ -70,6 +70,7 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
         <img
             src={photo1}
             srcSet={set}
+            loading="lazy"
             title="Illustration"
             alt="Your Software Developer"
             className="header-image-card lazyloaded"

@@ -41,6 +41,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
             {hasPropAndValue ? (
                 <CardMedia
                     component="img"
+                    loading="lazy"
                     image={propUrl}
                     title="Illustration"
                     alt="An image of presented article text"
@@ -55,6 +56,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
             {hasValueOnly ? (
                 <CardMedia
                     component="img"
+                    loading="lazy"
                     image={valueUrl}
                     title="Illustration"
                     alt="An image of presented article text"

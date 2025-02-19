@@ -10,6 +10,6 @@ export const RenderCardMedia = (
     return validate.isEmpty(imageSource) || validate.isEmpty(basePath) ? (
         <div></div>
     ) : (
-        <CardMedia image={`${basePath}/${imageSource}`} className={className} />
+        <CardMedia component="img" loading="lazy" image={`${basePath}/${imageSource}`} className={className} />
     );
 };

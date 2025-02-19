@@ -34,6 +34,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
             {hasImage ? (
                 <CardMedia
                     component="img"
+                    loading="lazy"
                     image={propUrl}
                     onClick={onClickEvent}
                     className="render-video-image"
