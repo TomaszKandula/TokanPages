@@ -10,5 +10,5 @@ interface RedirectToProps {
 
 export const RedirectTo = (props: RedirectToProps): React.ReactElement => {
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
-    return <Link to={`/${languageId}${props.path}`}>{props.name}</Link>;
+    return <Link to={`/${languageId}${props.path}`} rel="noopener nofollow">{props.name}</Link>;
 };

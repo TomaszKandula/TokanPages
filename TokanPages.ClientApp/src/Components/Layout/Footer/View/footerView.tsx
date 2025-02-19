@@ -32,7 +32,7 @@ const SetTermsLink = (props: Properties): React.ReactElement => {
     }
 
     return (
-        <Link to={props?.terms?.href ?? ""} className="footer-links">
+        <Link to={props?.terms?.href ?? ""} className="footer-links" rel="noopener nofollow">
             {props?.terms?.text}
         </Link>
     );
@@ -44,7 +44,7 @@ const SetPolicyLink = (props: Properties): React.ReactElement => {
     }
 
     return (
-        <Link to={props?.policy?.href ?? ""} className="footer-links">
+        <Link to={props?.policy?.href ?? ""} className="footer-links" rel="noopener nofollow">
             {props?.policy?.text}
         </Link>
     );
@@ -61,7 +61,7 @@ const RenderIconButtons = (props: Properties): React.ReactElement | null => {
                     key={uuidv4()}
                     color="default"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener nofollow"
                 >
                     <GetIcon name={item.name} />
                 </IconButton>

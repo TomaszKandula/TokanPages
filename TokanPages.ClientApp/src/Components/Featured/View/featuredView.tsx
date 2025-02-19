@@ -34,7 +34,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         <Grid item xs={12} md={4}>
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <Card elevation={0} className="card">
-                                    <CardActionArea href={featured?.link1} target="_blank" rel="noopener">
+                                    <CardActionArea href={featured?.link1} target="_blank" rel="noopener nofollow">
                                         {data?.isLoading ? (
                                             <Skeleton variant="rect" height="256px" />
                                         ) : (
@@ -68,7 +68,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         <Grid item xs={12} md={4}>
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <Card elevation={0} className="card">
-                                    <CardActionArea href={featured?.link2} target="_blank" rel="noopener">
+                                    <CardActionArea href={featured?.link2} target="_blank" rel="noopener nofollow">
                                         {data?.isLoading ? (
                                             <Skeleton variant="rect" height="256px" />
                                         ) : (
@@ -102,7 +102,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         <Grid item xs={12} md={4}>
                             <Animated dataAos="fade-up" dataAosDelay={550}>
                                 <Card elevation={0} className="card">
-                                    <CardActionArea href={featured?.link3} target="_blank" rel="noopener">
+                                    <CardActionArea href={featured?.link3} target="_blank" rel="noopener nofollow">
                                         {data?.isLoading ? (
                                             <Skeleton variant="rect" height="256px" />
                                         ) : (

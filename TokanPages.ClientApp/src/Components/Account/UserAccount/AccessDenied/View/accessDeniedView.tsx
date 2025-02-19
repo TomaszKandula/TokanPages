@@ -19,7 +19,7 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
 
 const HomeButton = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
-        <Link to={`/${props.languageId}`} className="link">
+        <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
             <Button fullWidth variant="contained" className="button" disabled={props.isLoading}>
                 {props.homeButtonText}
             </Button>

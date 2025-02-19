@@ -54,7 +54,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                     <CardActionArea
                                         href={socials?.social1?.action?.href}
                                         target="_blank"
-                                        rel="noopener"
+                                        rel="noopener nofollow"
                                     >
                                         {RenderCardMedia(
                                             GET_SOCIALS_URL,
@@ -117,7 +117,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                     <CardActionArea
                                         href={socials?.social2?.action?.href}
                                         target="_blank"
-                                        rel="noopener"
+                                        rel="noopener nofollow"
                                     >
                                         {RenderCardMedia(
                                             GET_SOCIALS_URL,
@@ -180,7 +180,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                     <CardActionArea
                                         href={socials?.social3?.action?.href}
                                         target="_blank"
-                                        rel="noopener"
+                                        rel="noopener nofollow"
                                     >
                                         {RenderCardMedia(
                                             GET_SOCIALS_URL,

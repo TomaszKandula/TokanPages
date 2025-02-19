@@ -158,7 +158,7 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
     return (
         <Toolbar className="navigation-tool-bar">
             <div className="navigation-nav-menu navigation-nav-left">
-                <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
+                <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                     <RenderImage
                         base={GET_ICONS_URL}
                         source={props?.logoImgName}
@@ -189,7 +189,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                     {props.isLoading ? null : <RenderMenuIcon {...props} />}
                 </Grid>
                 <Grid item xs className="navigation-nav-items navigation-nav-centre">
-                    <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
+                    <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                         <RenderImage
                             base={GET_ICONS_URL}
                             source={props?.logoImgName}
@@ -197,7 +197,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                             className="navigation-app-full-logo"
                         />
                     </Link>
-                    <Link to={`/${props.languageId}`} className="navigation-app-logo-large">
+                    <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
                         <RenderImage
                             base={GET_ICONS_URL}
                             source={props?.menu?.image}
@@ -222,7 +222,7 @@ export const NavigationView = (props: Properties): React.ReactElement => {
             {props.backNavigationOnly ? (
                 <AppBar className="navigation-app-bar" elevation={0}>
                     <div>
-                        <Link to={navigationPath}>
+                        <Link to={navigationPath} rel="noopener nofollow">
                             <IconButton className="navigation-nav-back">
                                 <ArrowBack />
                             </IconButton>

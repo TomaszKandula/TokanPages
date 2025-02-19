@@ -33,7 +33,7 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
     }
 
     return (
-        <Link to={props?.action?.href ?? ""} className="link">
+        <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
             <Button endIcon={<ArrowRightAltIcon />} className="button">
                 {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>

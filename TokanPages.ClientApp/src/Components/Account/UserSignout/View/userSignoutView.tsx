@@ -42,7 +42,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                                 </Grid>
                             </div>
                             <div className="mt-32">
-                                <Link to={`/${props.languageId}`} className="link">
+                                <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
                                     <Button
                                         fullWidth
                                         variant="contained"

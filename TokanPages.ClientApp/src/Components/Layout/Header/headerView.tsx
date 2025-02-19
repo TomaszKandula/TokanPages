@@ -20,7 +20,7 @@ interface RenderPictureProps {
 
 const OpenLinkButton = (props: HeaderContentDto): React.ReactElement => {
     return (
-        <Link to={props?.resume?.href ?? ""} className="link">
+        <Link to={props?.resume?.href ?? ""} className="link" rel="noopener nofollow">
             <Button variant="contained" className="header-button-resume">
                 {props?.resume?.text}
             </Button>
@@ -38,7 +38,7 @@ const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
     }
 
     return (
-        <Link to={props?.action?.href ?? ""} className="link">
+        <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
             <Button variant="contained" className="header-button">
                 {props?.action?.text}
             </Button>
