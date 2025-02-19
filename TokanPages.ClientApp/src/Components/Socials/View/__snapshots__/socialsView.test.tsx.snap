@@ -49,9 +49,12 @@ Object {
                       tabindex="0"
                       target="_blank"
                     >
-                      <div
-                        class="MuiCardMedia-root socials-card-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp);"
+                      <img
+                        alt="Somebody"
+                        class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
+                        title="Illustration"
                       />
                       <div
                         class="socials-card-image-holder"
@@ -59,6 +62,7 @@ Object {
                         <img
                           alt="Somebody"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
                           title="Socials"
                         />
@@ -124,9 +128,12 @@ Object {
                       tabindex="0"
                       target="_blank"
                     >
-                      <div
-                        class="MuiCardMedia-root socials-card-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp);"
+                      <img
+                        alt="Somebody"
+                        class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
+                        title="Illustration"
                       />
                       <div
                         class="socials-card-image-holder"
@@ -134,6 +141,7 @@ Object {
                         <img
                           alt="Somebody"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
                           title="Socials"
                         />
@@ -196,9 +204,12 @@ Object {
                       tabindex="0"
                       target="_blank"
                     >
-                      <div
-                        class="MuiCardMedia-root socials-card-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp);"
+                      <img
+                        alt="TomKandula"
+                        class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
+                        title="Illustration"
                       />
                       <div
                         class="socials-card-image-holder"
@@ -206,6 +217,7 @@ Object {
                         <img
                           alt="TomKandula"
                           class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
                           title="Socials"
                         />
@@ -301,9 +313,12 @@ Object {
                     tabindex="0"
                     target="_blank"
                   >
-                    <div
-                      class="MuiCardMedia-root socials-card-media"
-                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp);"
+                    <img
+                      alt="Somebody"
+                      class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
+                      title="Illustration"
                     />
                     <div
                       class="socials-card-image-holder"
@@ -311,6 +326,7 @@ Object {
                       <img
                         alt="Somebody"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
                         title="Socials"
                       />
@@ -376,9 +392,12 @@ Object {
                     tabindex="0"
                     target="_blank"
                   >
-                    <div
-                      class="MuiCardMedia-root socials-card-media"
-                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp);"
+                    <img
+                      alt="Somebody"
+                      class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
+                      title="Illustration"
                     />
                     <div
                       class="socials-card-image-holder"
@@ -386,6 +405,7 @@ Object {
                       <img
                         alt="Somebody"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
                         title="Socials"
                       />
@@ -448,9 +468,12 @@ Object {
                     tabindex="0"
                     target="_blank"
                   >
-                    <div
-                      class="MuiCardMedia-root socials-card-media"
-                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp);"
+                    <img
+                      alt="TomKandula"
+                      class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
+                      title="Illustration"
                     />
                     <div
                       class="socials-card-image-holder"
@@ -458,6 +481,7 @@ Object {
                       <img
                         alt="TomKandula"
                         class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
                         title="Socials"
                       />

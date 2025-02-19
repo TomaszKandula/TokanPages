@@ -69,6 +69,7 @@ Object {
       <img
         alt="An article test image"
         class="style"
+        loading="lazy"
         src="http://localhost:5000//test-image.jpg"
       />
     </div>
@@ -77,6 +78,7 @@ Object {
     <img
       alt="An article test image"
       class="style"
+      loading="lazy"
       src="http://localhost:5000//test-image.jpg"
     />
   </div>,

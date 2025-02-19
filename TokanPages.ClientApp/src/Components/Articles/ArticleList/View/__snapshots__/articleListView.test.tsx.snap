@@ -105,6 +105,7 @@ Object {
                             <img
                               alt="An article language flag"
                               class="article-flag-image"
+                              loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                               title="Articles"
                             />
@@ -238,6 +239,7 @@ Object {
                           <img
                             alt="An article language flag"
                             class="article-flag-image"
+                            loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                             title="Articles"
                           />

@@ -25,6 +25,7 @@ Object {
                 <img
                   alt="An application logo"
                   class="navigation-app-left-logo"
+                  loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
               </a>
@@ -60,6 +61,7 @@ Object {
                         <img
                           alt="A flag (en) for current language selection"
                           class="navigation-flag-image"
+                          loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                         />
                         <div>
@@ -155,6 +157,7 @@ Object {
                   <img
                     alt="An application logo"
                     class="navigation-app-full-logo"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                   />
                 </a>
@@ -188,6 +191,7 @@ Object {
                           <img
                             alt="A flag (en) for current language selection"
                             class="navigation-flag-image"
+                            loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                           />
                           <div>
@@ -260,6 +264,7 @@ Object {
               <img
                 alt="An application logo"
                 class="navigation-app-left-logo"
+                loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
               />
             </a>
@@ -295,6 +300,7 @@ Object {
                       <img
                         alt="A flag (en) for current language selection"
                         class="navigation-flag-image"
+                        loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                       />
                       <div>
@@ -390,6 +396,7 @@ Object {
                 <img
                   alt="An application logo"
                   class="navigation-app-full-logo"
+                  loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
               </a>
@@ -423,6 +430,7 @@ Object {
                         <img
                           alt="A flag (en) for current language selection"
                           class="navigation-flag-image"
+                          loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                         />
                         <div>
