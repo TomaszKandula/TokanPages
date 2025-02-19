@@ -49,7 +49,7 @@ export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
 
     return (
         <>
-            <section className={`clients-section ${props.background} ?? ""`}>
+            <section className={`clients-section ${props.background ?? ""}`}>
                 <Container maxWidth="lg">
                     {data?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
                     {data?.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}
