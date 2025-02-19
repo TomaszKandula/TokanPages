@@ -868,16 +868,15 @@ body::backdrop {
 }
 
 .article-card-image {
-    padding: 10px;
     height: auto;
-    min-width: 180px;
+    width: 180px !important;
     min-height: 180px;
 }
 
 @media (max-width: 700px) {
     .article-card-image {
         height: 180px;
-        width: auto;
+        width: 100% !important;
     }
 }
 
