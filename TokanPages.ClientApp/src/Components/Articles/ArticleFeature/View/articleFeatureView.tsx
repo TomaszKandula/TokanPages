@@ -9,10 +9,12 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { CardMedia } from "@material-ui/core";
+import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { Animated, RenderCardMedia } from "../../../../Shared/Components";
-import { GET_ARTICLE_IMAGE_URL } from "../../../../Api/Request";
+import { Animated } from "../../../../Shared/Components";
+import { GetImageUrl } from "../../../../Shared/Services/Utilities";
 import Validate from "validate.js";
 
 interface ArticleFeatureViewProps {
@@ -83,11 +85,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image1,
-                                                    "article-features-media"
-                                                )
+                                                <CardMedia 
+                                                    component="img" 
+                                                    loading="lazy" 
+                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image1})} 
+                                                    className="article-features-media" 
+                                                    title="Illustration"
+                                                    alt="An image illustrating listed features"
+                                                />
                                             )}
                                         </Card>
                                     </Grid>
@@ -96,11 +101,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image2,
-                                                    "article-features-media"
-                                                )
+                                                <CardMedia 
+                                                    component="img" 
+                                                    loading="lazy" 
+                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image2})} 
+                                                    className="article-features-media" 
+                                                    title="Illustration"
+                                                    alt="An image illustrating listed features"
+                                                />
                                             )}
                                         </Card>
                                     </Grid>
@@ -109,11 +117,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image3,
-                                                    "article-features-media"
-                                                )
+                                                <CardMedia 
+                                                    component="img" 
+                                                    loading="lazy" 
+                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image4})} 
+                                                    className="article-features-media" 
+                                                    title="Illustration"
+                                                    alt="An image illustrating listed features"
+                                                />
                                             )}
                                         </Card>
                                     </Grid>
@@ -122,11 +133,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                RenderCardMedia(
-                                                    GET_ARTICLE_IMAGE_URL,
-                                                    features?.image4,
-                                                    "article-features-media"
-                                                )
+                                                <CardMedia 
+                                                    component="img" 
+                                                    loading="lazy" 
+                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image4})} 
+                                                    className="article-features-media" 
+                                                    title="Illustration"
+                                                    alt="An image illustrating listed features"
+                                                />
                                             )}
                                         </Card>
                                     </Grid>

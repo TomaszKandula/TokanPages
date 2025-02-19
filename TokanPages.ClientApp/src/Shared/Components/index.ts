@@ -7,7 +7,6 @@ export { CustomDivider } from "./CustomDivider";
 export { DocumentContentWrapper } from "./DocumentContentWrapper";
 export { DownloadAsset } from "./DownloadAsset";
 export { RenderContent } from "./RenderContent/renderContent";
-export { RenderCardMedia } from "./CustomCardMedia/customCardMedia";
 export { RenderImage } from "./CustomImage/customImage";
 export { GetIcon } from "./GetIcon/getIcon";
 export { RenderSideMenu } from "./RenderMenu/renderSideMenu";
