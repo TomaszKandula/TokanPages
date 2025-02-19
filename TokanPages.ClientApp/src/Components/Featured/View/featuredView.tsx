@@ -40,11 +40,14 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                         {data?.isLoading ? (
                                             <Skeleton variant="rect" height="256px" />
                                         ) : (
-                                            <CardMedia 
-                                                component="img" 
-                                                loading="lazy" 
-                                                image={GetImageUrl({base: GET_FEATURED_IMAGE_URL, name: featured?.image1})} 
-                                                className="featured-card-media" 
+                                            <CardMedia
+                                                component="img"
+                                                loading="lazy"
+                                                image={GetImageUrl({
+                                                    base: GET_FEATURED_IMAGE_URL,
+                                                    name: featured?.image1,
+                                                })}
+                                                className="featured-card-media"
                                                 title="Illustration"
                                                 alt={featured?.title1}
                                             />
@@ -77,11 +80,14 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                         {data?.isLoading ? (
                                             <Skeleton variant="rect" height="256px" />
                                         ) : (
-                                            <CardMedia 
-                                                component="img" 
-                                                loading="lazy" 
-                                                image={GetImageUrl({base: GET_FEATURED_IMAGE_URL, name: featured?.image2})} 
-                                                className="featured-card-media" 
+                                            <CardMedia
+                                                component="img"
+                                                loading="lazy"
+                                                image={GetImageUrl({
+                                                    base: GET_FEATURED_IMAGE_URL,
+                                                    name: featured?.image2,
+                                                })}
+                                                className="featured-card-media"
                                                 title="Illustration"
                                                 alt={featured?.title2}
                                             />
@@ -114,11 +120,14 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                         {data?.isLoading ? (
                                             <Skeleton variant="rect" height="256px" />
                                         ) : (
-                                            <CardMedia 
-                                                component="img" 
-                                                loading="lazy" 
-                                                image={GetImageUrl({base: GET_FEATURED_IMAGE_URL, name: featured?.image3})} 
-                                                className="featured-card-media" 
+                                            <CardMedia
+                                                component="img"
+                                                loading="lazy"
+                                                image={GetImageUrl({
+                                                    base: GET_FEATURED_IMAGE_URL,
+                                                    name: featured?.image3,
+                                                })}
+                                                className="featured-card-media"
                                                 title="Illustration"
                                                 alt={featured?.title3}
                                             />

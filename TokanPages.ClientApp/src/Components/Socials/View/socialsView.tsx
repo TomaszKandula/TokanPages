@@ -52,11 +52,14 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         target="_blank"
                                         rel="noopener"
                                     >
-                                        <CardMedia 
-                                            component="img" 
-                                            loading="lazy" 
-                                            image={GetImageUrl({base: GET_SOCIALS_URL, name: socials?.social1?.images?.header})} 
-                                            className="socials-card-media" 
+                                        <CardMedia
+                                            component="img"
+                                            loading="lazy"
+                                            image={GetImageUrl({
+                                                base: GET_SOCIALS_URL,
+                                                name: socials?.social1?.images?.header,
+                                            })}
+                                            className="socials-card-media"
                                             title="Illustration"
                                             alt={socials?.social1?.textTitle}
                                         />
@@ -66,7 +69,10 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             object={
                                                 <div className="socials-card-image-holder">
                                                     <CardMedia
-                                                        image={GetImageUrl({base: GET_SOCIALS_URL, name: socials?.social1?.images?.avatar})} 
+                                                        image={GetImageUrl({
+                                                            base: GET_SOCIALS_URL,
+                                                            name: socials?.social1?.images?.avatar,
+                                                        })}
                                                         component="img"
                                                         loading="lazy"
                                                         className="socials-card-image"
@@ -119,11 +125,14 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         target="_blank"
                                         rel="noopener"
                                     >
-                                        <CardMedia 
-                                            component="img" 
-                                            loading="lazy" 
-                                            image={GetImageUrl({base: GET_SOCIALS_URL, name: socials?.social2?.images?.header})} 
-                                            className="socials-card-media" 
+                                        <CardMedia
+                                            component="img"
+                                            loading="lazy"
+                                            image={GetImageUrl({
+                                                base: GET_SOCIALS_URL,
+                                                name: socials?.social2?.images?.header,
+                                            })}
+                                            className="socials-card-media"
                                             title="Illustration"
                                             alt={socials?.social2?.textTitle}
                                         />
@@ -133,7 +142,10 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             object={
                                                 <div className="socials-card-image-holder">
                                                     <CardMedia
-                                                        image={GetImageUrl({base: GET_SOCIALS_URL, name: socials?.social2?.images?.avatar})} 
+                                                        image={GetImageUrl({
+                                                            base: GET_SOCIALS_URL,
+                                                            name: socials?.social2?.images?.avatar,
+                                                        })}
                                                         component="img"
                                                         loading="lazy"
                                                         className="socials-card-image"
@@ -186,11 +198,14 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         target="_blank"
                                         rel="noopener"
                                     >
-                                        <CardMedia 
-                                            component="img" 
-                                            loading="lazy" 
-                                            image={GetImageUrl({base: GET_SOCIALS_URL, name: socials?.social3?.images?.header})} 
-                                            className="socials-card-media" 
+                                        <CardMedia
+                                            component="img"
+                                            loading="lazy"
+                                            image={GetImageUrl({
+                                                base: GET_SOCIALS_URL,
+                                                name: socials?.social3?.images?.header,
+                                            })}
+                                            className="socials-card-media"
                                             title="Illustration"
                                             alt={socials?.social3?.textTitle}
                                         />
@@ -200,7 +215,10 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             object={
                                                 <div className="socials-card-image-holder">
                                                     <CardMedia
-                                                        image={GetImageUrl({base: GET_SOCIALS_URL, name: socials?.social3?.images?.avatar})} 
+                                                        image={GetImageUrl({
+                                                            base: GET_SOCIALS_URL,
+                                                            name: socials?.social3?.images?.avatar,
+                                                        })}
                                                         component="img"
                                                         loading="lazy"
                                                         className="socials-card-image"

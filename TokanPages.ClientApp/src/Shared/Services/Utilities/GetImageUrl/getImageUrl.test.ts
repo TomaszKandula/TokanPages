@@ -31,4 +31,3 @@ describe("verify GetImageUrl method", () => {
         expect(result).toBe(undefined);
     });
 });
-

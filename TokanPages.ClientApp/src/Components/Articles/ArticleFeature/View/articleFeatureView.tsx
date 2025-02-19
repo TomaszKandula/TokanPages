@@ -85,11 +85,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                <CardMedia 
-                                                    component="img" 
-                                                    loading="lazy" 
-                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image1})} 
-                                                    className="article-features-media" 
+                                                <CardMedia
+                                                    component="img"
+                                                    loading="lazy"
+                                                    image={GetImageUrl({
+                                                        base: GET_ARTICLE_IMAGE_URL,
+                                                        name: features?.image1,
+                                                    })}
+                                                    className="article-features-media"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -101,11 +104,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                <CardMedia 
-                                                    component="img" 
-                                                    loading="lazy" 
-                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image2})} 
-                                                    className="article-features-media" 
+                                                <CardMedia
+                                                    component="img"
+                                                    loading="lazy"
+                                                    image={GetImageUrl({
+                                                        base: GET_ARTICLE_IMAGE_URL,
+                                                        name: features?.image2,
+                                                    })}
+                                                    className="article-features-media"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -117,11 +123,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                <CardMedia 
-                                                    component="img" 
-                                                    loading="lazy" 
-                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image4})} 
-                                                    className="article-features-media" 
+                                                <CardMedia
+                                                    component="img"
+                                                    loading="lazy"
+                                                    image={GetImageUrl({
+                                                        base: GET_ARTICLE_IMAGE_URL,
+                                                        name: features?.image4,
+                                                    })}
+                                                    className="article-features-media"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -133,11 +142,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             {data?.isLoading ? (
                                                 <Skeleton variant="rect" height="128px" />
                                             ) : (
-                                                <CardMedia 
-                                                    component="img" 
-                                                    loading="lazy" 
-                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image4})} 
-                                                    className="article-features-media" 
+                                                <CardMedia
+                                                    component="img"
+                                                    loading="lazy"
+                                                    image={GetImageUrl({
+                                                        base: GET_ARTICLE_IMAGE_URL,
+                                                        name: features?.image4,
+                                                    })}
+                                                    className="article-features-media"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
