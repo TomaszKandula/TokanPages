@@ -19,7 +19,7 @@ Object {
             >
               <a
                 class="navigation-app-logo-small"
-                href="/eng"
+                href="/en"
                 rel="noopener nofollow"
               >
                 <img
@@ -58,12 +58,12 @@ Object {
                         class="navigation-languages-wrapper"
                       >
                         <img
-                          alt="A flag (eng) for current language selection"
+                          alt="A flag (en) for current language selection"
                           class="navigation-flag-image"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                         />
                         <div>
-                          ENG
+                          EN
                         </div>
                       </div>
                     </div>
@@ -71,7 +71,7 @@ Object {
                       aria-hidden="true"
                       class="MuiSelect-nativeInput"
                       tabindex="-1"
-                      value="eng"
+                      value="en"
                     />
                     <svg
                       aria-hidden="true"
@@ -149,7 +149,7 @@ Object {
               >
                 <a
                   class="navigation-app-logo-small"
-                  href="/eng"
+                  href="/en"
                   rel="noopener nofollow"
                 >
                   <img
@@ -160,7 +160,7 @@ Object {
                 </a>
                 <a
                   class="navigation-app-logo-large"
-                  href="/eng"
+                  href="/en"
                   rel="noopener nofollow"
                 />
               </div>
@@ -186,12 +186,12 @@ Object {
                           class="navigation-languages-wrapper"
                         >
                           <img
-                            alt="A flag (eng) for current language selection"
+                            alt="A flag (en) for current language selection"
                             class="navigation-flag-image"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                           />
                           <div>
-                            ENG
+                            EN
                           </div>
                         </div>
                       </div>
@@ -199,7 +199,7 @@ Object {
                         aria-hidden="true"
                         class="MuiSelect-nativeInput"
                         tabindex="-1"
-                        value="eng"
+                        value="en"
                       />
                       <svg
                         aria-hidden="true"
@@ -254,7 +254,7 @@ Object {
           >
             <a
               class="navigation-app-logo-small"
-              href="/eng"
+              href="/en"
               rel="noopener nofollow"
             >
               <img
@@ -293,12 +293,12 @@ Object {
                       class="navigation-languages-wrapper"
                     >
                       <img
-                        alt="A flag (eng) for current language selection"
+                        alt="A flag (en) for current language selection"
                         class="navigation-flag-image"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                       />
                       <div>
-                        ENG
+                        EN
                       </div>
                     </div>
                   </div>
@@ -306,7 +306,7 @@ Object {
                     aria-hidden="true"
                     class="MuiSelect-nativeInput"
                     tabindex="-1"
-                    value="eng"
+                    value="en"
                   />
                   <svg
                     aria-hidden="true"
@@ -384,7 +384,7 @@ Object {
             >
               <a
                 class="navigation-app-logo-small"
-                href="/eng"
+                href="/en"
                 rel="noopener nofollow"
               >
                 <img
@@ -395,7 +395,7 @@ Object {
               </a>
               <a
                 class="navigation-app-logo-large"
-                href="/eng"
+                href="/en"
                 rel="noopener nofollow"
               />
             </div>
@@ -421,12 +421,12 @@ Object {
                         class="navigation-languages-wrapper"
                       >
                         <img
-                          alt="A flag (eng) for current language selection"
+                          alt="A flag (en) for current language selection"
                           class="navigation-flag-image"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                         />
                         <div>
-                          ENG
+                          EN
                         </div>
                       </div>
                     </div>
@@ -434,7 +434,7 @@ Object {
                       aria-hidden="true"
                       class="MuiSelect-nativeInput"
                       tabindex="-1"
-                      value="eng"
+                      value="en"
                     />
                     <svg
                       aria-hidden="true"
