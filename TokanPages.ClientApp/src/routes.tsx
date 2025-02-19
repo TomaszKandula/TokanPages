@@ -129,15 +129,15 @@ export const Routes = (props: RoutesProps): React.ReactElement => {
     React.useEffect(() => {
         createCanonicalLink();
 
-        const languages = language.languages;
-        languages.forEach(item => {
+        const languages = language?.languages;
+        languages?.forEach(item => {
             const url = window.location.href.replace(`/${language.id}`, `/${item.id}`);
             createAlternateLink(url, item.id);
             if (item.isDefault) {
                 createAlternateLink(url, "x-default");
             }
         });
-    }, [language.id, language.languages, window.location.href]);
+    }, [language?.id, language?.languages, window.location.href]);
 
     return buffer.length > 0 ? <>{buffer}</> : <></>;
 };
