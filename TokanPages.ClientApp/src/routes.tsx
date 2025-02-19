@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
-import { LINK_HREF_ATTRIBUTE, LINK_QUERY_SELECTOR, LINK_REL_ATTRIBUTE, PRERENDER_PATH_PREFIX } from "./Shared/constants";
+import { LINK_HREF_ATTRIBUTE, LINK_HREFLANG_ATTRIBUTE, LINK_QUERY_SELECTOR, LINK_REL_ATTRIBUTE, PRERENDER_PATH_PREFIX } from "./Shared/constants";
 import { ApplicationState } from "./Store/Configuration";
 import { LanguageItemDto } from "./Api/Models";
 import { v4 as uuidv4 } from "uuid";
@@ -80,6 +80,32 @@ const renderRoute = (props: PageProps) => {
     );
 };
 
+const createCanonicalLink = (): void => {
+    const link = document.querySelector(LINK_QUERY_SELECTOR);
+    if (link === null) {
+        let newlink = document.createElement("link");
+        newlink.setAttribute(LINK_REL_ATTRIBUTE, "canonical");
+        newlink.setAttribute(LINK_HREF_ATTRIBUTE, window.location.href);
+        document.head.appendChild(newlink);
+    } else {
+        link.setAttribute(LINK_HREF_ATTRIBUTE, window.location.href);
+    }
+};
+
+const createAlternateLink = (href: string, hreflang: string): void => {
+    const link = document.querySelector(`link[hreflang="${hreflang}"]`);
+    if (link === null) {
+        let element = document.createElement("link");
+        element.setAttribute(LINK_REL_ATTRIBUTE, "alternate");
+        element.setAttribute(LINK_HREFLANG_ATTRIBUTE, hreflang);
+        element.setAttribute(LINK_HREF_ATTRIBUTE, href);
+        document.head.appendChild(element);
+    } else {
+        link.setAttribute(LINK_HREFLANG_ATTRIBUTE, hreflang);
+        link.setAttribute(LINK_HREF_ATTRIBUTE, href);
+    }
+};
+
 export const Routes = (props: RoutesProps): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
@@ -99,18 +125,19 @@ export const Routes = (props: RoutesProps): React.ReactElement => {
         }
     });
 
-    /* UPDATE CANONICAL URL ON PAGE CHANGE */
+    /* UPDATE CANONICAL & ALTERNATE URL ON PAGE CHANGE */
     React.useEffect(() => {
-        const link = document.querySelector(LINK_QUERY_SELECTOR);
-        if (link === null) {
-            let newlink = document.createElement("link");
-            newlink.setAttribute(LINK_REL_ATTRIBUTE, "canonical");
-            newlink.setAttribute(LINK_HREF_ATTRIBUTE, window.location.href);
-            document.head.appendChild(newlink);
-        } else {
-            link.setAttribute(LINK_HREF_ATTRIBUTE, window.location.href);
-        }
-    }, [language.id, window.location.href]);
+        createCanonicalLink();
+
+        const languages = language.languages;
+        languages.forEach(item => {
+            const url = window.location.href.replace(`/${language.id}`, `/${item.id}`);
+            createAlternateLink(url, item.id);
+            if (item.isDefault) {
+                createAlternateLink(url, "x-default");
+            }
+        });
+    }, [language.id, language.languages, window.location.href]);
 
     return buffer.length > 0 ? <>{buffer}</> : <></>;
 };
