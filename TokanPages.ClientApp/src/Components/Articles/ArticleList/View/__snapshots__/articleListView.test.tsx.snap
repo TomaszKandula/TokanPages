@@ -27,9 +27,12 @@ Object {
                   <div
                     class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
                   >
-                    <div
-                      class="MuiCardMedia-root article-card-image"
-                      style="background-image: url(http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp);"
+                    <img
+                      alt="An article card for given article"
+                      class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
+                      title="Article illustration"
                     />
                     <div
                       class="MuiCardContent-root article-card-content"
@@ -161,9 +164,12 @@ Object {
                 <div
                   class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
                 >
-                  <div
-                    class="MuiCardMedia-root article-card-image"
-                    style="background-image: url(http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp);"
+                  <img
+                    alt="An article card for given article"
+                    class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+                    loading="lazy"
+                    src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
+                    title="Article illustration"
                   />
                   <div
                     class="MuiCardContent-root article-card-content"
