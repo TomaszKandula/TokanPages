@@ -138,7 +138,7 @@ export const Routes = (props: RoutesProps): React.ReactElement => {
         const languages = language?.languages;
         languages?.forEach(item => {
             const url = window.location.href.replace(`/${language.id}`, `/${item.id}`);
-            createAlternateLink(url, item.id);
+            createAlternateLink(url, item.iso);
             if (item.isDefault) {
                 createAlternateLink(url, "x-default");
             }

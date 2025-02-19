@@ -18,15 +18,17 @@ describe("test component: featuresView", () => {
         };
 
         const languages: ApplicationLanguageState = {
-            id: "eng",
+            id: "en",
             languages: [
                 {
-                    id: "eng",
+                    id: "en",
+                    iso: "en-GB",
                     name: "English",
                     isDefault: true,
                 },
                 {
-                    id: "pol",
+                    id: "pl",
+                    iso: "pl-PL",
                     name: "Polski",
                     isDefault: false,
                 },
@@ -48,7 +50,7 @@ describe("test component: featuresView", () => {
                     menu={{ image: "", items: [items] }}
                     logoImgName="logo.svg"
                     languages={languages}
-                    languageId="eng"
+                    languageId="en"
                     languageHandler={jest.fn()}
                 />
             </BrowserRouter>

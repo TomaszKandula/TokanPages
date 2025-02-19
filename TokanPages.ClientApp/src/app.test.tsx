@@ -27,14 +27,17 @@ it("renders without crashing", () => {
         version: "0.1",
         created: "2022-09-09",
         updated: "2022-09-09",
+        default: "x-default",
         languages: [
             {
-                id: "eng",
+                id: "en",
+                iso: "en-GB",
                 isDefault: true,
                 name: "English",
             },
             {
-                id: "pol",
+                id: "pl",
+                iso: "pl-PL",
                 isDefault: false,
                 name: "Polski",
             },
