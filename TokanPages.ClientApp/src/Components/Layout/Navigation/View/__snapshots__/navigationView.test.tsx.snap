@@ -5,10 +5,10 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <nav
+      <header
         class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary navigation-app-bar mui-fixed MuiPaper-elevation0"
       >
-        <div
+        <nav
           class="navigation-nav-large-screen"
         >
           <div
@@ -111,8 +111,8 @@ Object {
               </div>
             </div>
           </div>
-        </div>
-        <div
+        </nav>
+        <nav
           class="navigation-nav-small-screen"
         >
           <div
@@ -239,15 +239,15 @@ Object {
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
     </div>
   </body>,
   "container": <div>
-    <nav
+    <header
       class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary navigation-app-bar mui-fixed MuiPaper-elevation0"
     >
-      <div
+      <nav
         class="navigation-nav-large-screen"
       >
         <div
@@ -350,8 +350,8 @@ Object {
             </div>
           </div>
         </div>
-      </div>
-      <div
+      </nav>
+      <nav
         class="navigation-nav-small-screen"
       >
         <div
@@ -478,8 +478,8 @@ Object {
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
