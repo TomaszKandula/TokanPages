@@ -1,3 +1,10 @@
+## [0.143.1](https://github.com/TomaszKandula/TokanPages/compare/v0.143.0...v0.143.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* resolve found issues ([6a63d47](https://github.com/TomaszKandula/TokanPages/commit/6a63d47c522b7816a9bc1f75e9c1305bc3b04d33))
+
 # [0.143.0](https://github.com/TomaszKandula/TokanPages/compare/v0.142.0...v0.143.0) (2025-02-20)
 
 
