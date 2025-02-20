@@ -36,14 +36,14 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     }, [hash, props.isLoading]);
 
     return (
-        <article className={`section ${props.background ?? ""}`}>
-            <Container className="container">
+        <section className={`section ${props.background ?? ""}`}>
+            <Container component="article" className="container">
                 {props.isLoading ? (
                     <ProgressBar classNameWrapper="mt-30 mb-30" />
                 ) : (
                     <RenderContent items={props.items} />
                 )}
             </Container>
-        </article>
+        </section>
     );
 };
