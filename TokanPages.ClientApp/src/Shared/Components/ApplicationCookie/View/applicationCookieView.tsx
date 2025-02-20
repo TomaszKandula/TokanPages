@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Backdrop } from "@material-ui/core";
-import { ButtonsDto, OptionsDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { GetDateTime } from "../../../Shared/Services/Formatters";
-import { ReactChangeEvent } from "../../../Shared/types";
+import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { GetDateTime } from "../../../../Shared/Services/Formatters";
+import { ReactChangeEvent } from "../../../../Shared/types";
 
-interface Properties extends ViewProperties {
+interface ApplicationCookieViewProps extends ViewProperties {
     isClose: boolean;
     hasSnapshotMode: boolean;
     hasCookieConsent: boolean;
@@ -27,7 +27,7 @@ interface Properties extends ViewProperties {
     hasPersonalization: boolean;
 }
 
-const CookieWindowOptions = (props: Properties): React.ReactElement => {
+const CookieWindowOptions = (props: ApplicationCookieViewProps): React.ReactElement => {
     return (
         <div className="cookie-window-options-list">
             <label className="cookie-window-checkbox pointer-not-allowed">
@@ -69,7 +69,7 @@ const CookieWindowOptions = (props: Properties): React.ReactElement => {
     );
 };
 
-const CookieWindowActions = (props: Properties): React.ReactElement => {
+const CookieWindowActions = (props: ApplicationCookieViewProps): React.ReactElement => {
     return (
         <div className="cookie-window-actions">
             {props.buttons?.acceptButton.enabled ? (
@@ -98,7 +98,7 @@ const CookieWindowActions = (props: Properties): React.ReactElement => {
     );
 };
 
-const CookieWindowPrompt = (props: Properties): React.ReactElement => {
+const CookieWindowPrompt = (props: ApplicationCookieViewProps): React.ReactElement => {
     return (
         <div className="cookie-window">
             <div className="cookie-window-caption">{props.caption}</div>
@@ -116,7 +116,7 @@ const CookieWindowPrompt = (props: Properties): React.ReactElement => {
     );
 };
 
-const CookieWindowLoading = (props: Properties): React.ReactElement => {
+const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElement => {
     const maxLength = props.loading?.length - 1;
     const dateTime = new Date().toString();
     const formattedDateTime = GetDateTime({ value: dateTime, hasTimeVisible: true });
@@ -137,7 +137,7 @@ const CookieWindowLoading = (props: Properties): React.ReactElement => {
     );
 };
 
-const CookieWindowContainer = (props: Properties): React.ReactElement => {
+const CookieWindowContainer = (props: ApplicationCookieViewProps): React.ReactElement => {
     const style = props.isClose ? "cookie-window-close" : "cookie-window-open";
     const transition = props.isLoading ? undefined : 0;
     return (
@@ -149,7 +149,7 @@ const CookieWindowContainer = (props: Properties): React.ReactElement => {
     );
 };
 
-export const CookiesView = (props: Properties): React.ReactElement => {
+export const ApplicationCookieView = (props: ApplicationCookieViewProps): React.ReactElement => {
     if (props.hasSnapshotMode) {
         return <div className="cookie-window-open"></div>;
     }

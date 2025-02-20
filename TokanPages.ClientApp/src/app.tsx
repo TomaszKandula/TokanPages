@@ -12,6 +12,7 @@ import { Routes } from "./routes";
 import {
     ClearPageStart,
     ScrollToTop,
+    ApplicationCookie,
     ApplicationToast,
     ApplicationDialogBox,
     ApplicationUserInfo,
@@ -39,6 +40,7 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
             </BrowserRouter>
             {hasSnapshotMode ? null : (
                 <>
+                    <ApplicationCookie />
                     <ApplicationToast />
                     <ApplicationDialogBox />
                     <ApplicationUserInfo />

@@ -5,7 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
+      <header
         class="section margin-top-60 "
       >
         <div
@@ -88,11 +88,11 @@ Object {
             </div>
           </div>
         </div>
-      </section>
+      </header>
     </div>
   </body>,
   "container": <div>
-    <section
+    <header
       class="section margin-top-60 "
     >
       <div
@@ -175,7 +175,7 @@ Object {
           </div>
         </div>
       </div>
-    </section>
+    </header>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

@@ -11,7 +11,7 @@ Object {
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
-          <div
+          <article
             class="pb-96"
           >
             <div
@@ -187,7 +187,7 @@ Object {
                 </span>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </section>
     </div>
@@ -199,7 +199,7 @@ Object {
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
-        <div
+        <article
           class="pb-96"
         >
           <div
@@ -375,7 +375,7 @@ Object {
               </span>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </section>
   </div>,

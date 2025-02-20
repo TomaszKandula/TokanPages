@@ -220,7 +220,7 @@ export const NavigationView = (props: Properties): React.ReactElement => {
     return (
         <HideOnScroll {...props}>
             {props.backNavigationOnly ? (
-                <AppBar className="navigation-app-bar" elevation={0}>
+                <AppBar component="nav" className="navigation-app-bar" elevation={0}>
                     <div>
                         <Link to={navigationPath} rel="noopener nofollow">
                             <IconButton className="navigation-nav-back">
@@ -230,7 +230,7 @@ export const NavigationView = (props: Properties): React.ReactElement => {
                     </div>
                 </AppBar>
             ) : (
-                <AppBar className="navigation-app-bar" elevation={0}>
+                <AppBar component="nav" className="navigation-app-bar" elevation={0}>
                     <div className="navigation-nav-large-screen">
                         <RenderToolbarLargeScreen {...props} />
                     </div>

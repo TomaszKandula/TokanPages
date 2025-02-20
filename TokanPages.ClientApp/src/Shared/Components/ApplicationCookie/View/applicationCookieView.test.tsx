@@ -1,12 +1,12 @@
-import "../../../setupTests";
+import "../../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
-import { CookiesView } from "./cookiesView";
+import { ApplicationCookieView } from "./applicationCookieView";
 
 describe("test component: cookiesView", () => {
     it("should render correctly '<CookiesView />' when content is loaded.", () => {
         const html = render(
-            <CookiesView
+            <ApplicationCookieView
                 isLoading={false}
                 isClose={false}
                 hasSnapshotMode={false}
@@ -54,7 +54,7 @@ describe("test component: cookiesView", () => {
 
     it("should render correctly '<CookiesView />' when content is loaded w/options.", () => {
         const html = render(
-            <CookiesView
+            <ApplicationCookieView
                 isLoading={false}
                 isClose={false}
                 hasSnapshotMode={false}
@@ -102,7 +102,7 @@ describe("test component: cookiesView", () => {
 
     it("should render correctly '<CookiesView />' when content is loading.", () => {
         const html = render(
-            <CookiesView
+            <ApplicationCookieView
                 isLoading={true}
                 isClose={false}
                 hasSnapshotMode={false}

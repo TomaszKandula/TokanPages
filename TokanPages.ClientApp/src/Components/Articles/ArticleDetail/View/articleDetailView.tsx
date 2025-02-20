@@ -41,7 +41,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container">
-                <div className="pb-96">
+                <article className="pb-96">
                     <Animated dataAos="fade-down">
                         <Grid container spacing={2}>
                             <Grid item>
@@ -178,7 +178,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Typography>
                         </Grid>
                     </Grid>
-                </div>
+                </article>
             </Container>
         </section>
     );

@@ -5,7 +5,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Navigation } from "../../Components/Layout";
-import { Cookies } from "../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -27,10 +26,9 @@ export const PdfViewerPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <div className="mt-48">
+            <main className="mt-48">
                 <PdfViewer pdfFile={name} background="background-colour-light-grey" />
-            </div>
-            <Cookies />
+            </main>
         </>
     );
 };

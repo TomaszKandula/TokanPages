@@ -5,7 +5,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { NewsletterUpdate } from "../../Components/NewsletterUpdate";
 import { Navigation } from "../../Components/Layout";
-import { Cookies } from "../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -29,8 +28,9 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <NewsletterUpdate id={id} className="pt-120 pb-240" background="background-colour-light-grey" />
-            <Cookies />
+            <main>
+                <NewsletterUpdate id={id} className="pt-120 pb-240" background="background-colour-light-grey" />
+            </main>
         </>
     );
 };
