@@ -39,7 +39,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
     const readTime = props.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <article className={`section ${props.background ?? ""}`}>
             <Container className="container">
                 <div className="pb-96">
                     <Animated dataAos="fade-down">
@@ -180,6 +180,6 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                     </Grid>
                 </div>
             </Container>
-        </section>
+        </article>
     );
 };
