@@ -52,8 +52,8 @@ export const MainPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <Header />
             <main>
+                <Header />
                 <Clients />
                 <Technologies />
                 <ArticleFeature />
