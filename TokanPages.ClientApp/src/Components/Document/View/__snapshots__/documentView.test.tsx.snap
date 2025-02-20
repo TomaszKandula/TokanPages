@@ -8,19 +8,17 @@ Object {
       <section
         class="section "
       >
-        <div
+        <article
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
-          <span
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          <p
+            class="render-text-common render-text-paragraph"
           >
-            <div>
-              <p>
-                Policy text
-              </p>
-            </div>
-          </span>
-        </div>
+            <p>
+              Policy text
+            </p>
+          </p>
+        </article>
       </section>
     </div>
   </body>,
@@ -28,19 +26,17 @@ Object {
     <section
       class="section "
     >
-      <div
+      <article
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
-        <span
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+        <p
+          class="render-text-common render-text-paragraph"
         >
-          <div>
-            <p>
-              Policy text
-            </p>
-          </div>
-        </span>
-      </div>
+          <p>
+            Policy text
+          </p>
+        </p>
+      </article>
     </section>
   </div>,
   "debug": [Function],
@@ -105,19 +101,17 @@ Object {
       <section
         class="section "
       >
-        <div
+        <article
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
-          <span
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          <p
+            class="render-text-common render-text-paragraph"
           >
-            <div>
-              <p>
-                Showcase text
-              </p>
-            </div>
-          </span>
-        </div>
+            <p>
+              Showcase text
+            </p>
+          </p>
+        </article>
       </section>
     </div>
   </body>,
@@ -125,19 +119,17 @@ Object {
     <section
       class="section "
     >
-      <div
+      <article
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
-        <span
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+        <p
+          class="render-text-common render-text-paragraph"
         >
-          <div>
-            <p>
-              Showcase text
-            </p>
-          </div>
-        </span>
-      </div>
+          <p>
+            Showcase text
+          </p>
+        </p>
+      </article>
     </section>
   </div>,
   "debug": [Function],
@@ -202,19 +194,17 @@ Object {
       <section
         class="section "
       >
-        <div
+        <article
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
-          <span
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          <p
+            class="render-text-common render-text-paragraph"
           >
-            <div>
-              <p>
-                Story text
-              </p>
-            </div>
-          </span>
-        </div>
+            <p>
+              Story text
+            </p>
+          </p>
+        </article>
       </section>
     </div>
   </body>,
@@ -222,19 +212,17 @@ Object {
     <section
       class="section "
     >
-      <div
+      <article
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
-        <span
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+        <p
+          class="render-text-common render-text-paragraph"
         >
-          <div>
-            <p>
-              Story text
-            </p>
-          </div>
-        </span>
-      </div>
+          <p>
+            Story text
+          </p>
+        </p>
+      </article>
     </section>
   </div>,
   "debug": [Function],
@@ -299,19 +287,17 @@ Object {
       <section
         class="section "
       >
-        <div
+        <article
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
-          <span
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          <p
+            class="render-text-common render-text-paragraph"
           >
-            <div>
-              <p>
-                Terms text
-              </p>
-            </div>
-          </span>
-        </div>
+            <p>
+              Terms text
+            </p>
+          </p>
+        </article>
       </section>
     </div>
   </body>,
@@ -319,19 +305,17 @@ Object {
     <section
       class="section "
     >
-      <div
+      <article
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
-        <span
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+        <p
+          class="render-text-common render-text-paragraph"
         >
-          <div>
-            <p>
-              Terms text
-            </p>
-          </div>
-        </span>
-      </div>
+          <p>
+            Terms text
+          </p>
+        </p>
+      </article>
     </section>
   </div>,
   "debug": [Function],

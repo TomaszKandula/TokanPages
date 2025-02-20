@@ -133,32 +133,20 @@ Object {
       </div>
     </div>
     <div>
-      <div
-        class="mt-56"
+      <p
+        class="render-text-common render-text-title mt-56 mb-8 "
       >
-        <span
-          class="MuiTypography-root render-text-common render-text-title MuiTypography-body1"
-        >
-          <div>
-            <p>
-              Test line
-            </p>
-          </div>
-        </span>
-      </div>
-      <div
-        class="mt-8 mb-40"
+        <p>
+          Test line
+        </p>
+      </p>
+      <p
+        class="render-text-common render-text-sub-title mt-8 mb-40"
       >
-        <span
-          class="MuiTypography-root render-text-common render-text-sub-title MuiTypography-body1"
-        >
-          <div>
-            <p>
-              Test line
-            </p>
-          </div>
-        </span>
-      </div>
+        <p>
+          Test line
+        </p>
+      </p>
       <div
         class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
       >
@@ -170,26 +158,20 @@ Object {
           title="Illustration"
         />
       </div>
-      <span
-        class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+      <p
+        class="render-text-common render-text-paragraph custom-drop-cap"
       >
-        <div>
-          <p
-            class="custom-drop-cap"
-          >
-            Test line
-          </p>
-        </div>
-      </span>
-      <span
-        class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+        <p>
+          Test line
+        </p>
+      </p>
+      <p
+        class="render-text-common render-text-paragraph"
       >
-        <div>
-          <p>
-            Test line
-          </p>
-        </div>
-      </span>
+        <p>
+          Test line
+        </p>
+      </p>
       <div
         class="render-separator"
       >
