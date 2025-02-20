@@ -6,6 +6,15 @@ import utf8 from "utf8";
 const SNAPSHOT_STATE = "snapshot-state";
 const HANDLER = `meta[name=\"${SNAPSHOT_STATE}\"]`;
 
+export const CleanupSnapshotMode = (url: string): string => {
+    const hasSnapshotMode = HasSnapshotMode();
+    if (hasSnapshotMode) {
+        return url.replace("/snapshot", "");
+    }
+
+    return url;
+}
+
 export const IsPreRendered = (): boolean => {
     const root = document.getElementById("root");
     return root?.hasChildNodes() ?? false;
