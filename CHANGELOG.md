@@ -1,3 +1,36 @@
+# [0.143.0](https://github.com/TomaszKandula/TokanPages/compare/v0.142.0...v0.143.0) (2025-02-20)
+
+
+### Bug Fixes
+
+* resolve found issue ([71baa24](https://github.com/TomaszKandula/TokanPages/commit/71baa24fb05123fb5bd0ac4005d53408fb667446))
+* typo ([616611f](https://github.com/TomaszKandula/TokanPages/commit/616611fc0cfe25c4fc1911d89c815d1bfee58fb1))
+
+
+### Features
+
+* add alt and title ([ed46af0](https://github.com/TomaszKandula/TokanPages/commit/ed46af0b297b275bb943621f41dbebb9fb260b50))
+* add language ISO 639-1 to the manifest ([a40ddcd](https://github.com/TomaszKandula/TokanPages/commit/a40ddcd249afce2d6bfa285cd0b7b1eabb4782c7))
+* add name to ALT for clarity ([c6f3d09](https://github.com/TomaszKandula/TokanPages/commit/c6f3d09d00aca1ac3bdf59ca5e3021ef56d3a04f))
+* add title to all images ([e3a0f55](https://github.com/TomaszKandula/TokanPages/commit/e3a0f5567ede460e6433b9b830efb656f797744a))
+* allow to follow social links ([f7c39f3](https://github.com/TomaszKandula/TokanPages/commit/f7c39f32a7b333f90a415fc351af388a35005861))
+* create alternate language link ([615e351](https://github.com/TomaszKandula/TokanPages/commit/615e3512dc9c3793b6b4ea6e6c226169e9193804))
+* fallback to undefined ([9053538](https://github.com/TomaszKandula/TokanPages/commit/90535389972e2b53f2062ec7696fcae51654f630))
+* improve ALT for images ([310b8a9](https://github.com/TomaszKandula/TokanPages/commit/310b8a963bfe878576bbaccd69477fb5c319a710))
+* improve ALT texts ([64928d9](https://github.com/TomaszKandula/TokanPages/commit/64928d93785c3e16fba4d425be3fb918d42adb28))
+* remove typography ([1a413dc](https://github.com/TomaszKandula/TokanPages/commit/1a413dc8733c1cb0e7b58f635f9ff9a038d35e83))
+* render not only DIV element ([9f68213](https://github.com/TomaszKandula/TokanPages/commit/9f6821395bb01cc039cccc623413ecdcc44cb389))
+* replace custom wrapper w/CardMedia ([5e36dfd](https://github.com/TomaszKandula/TokanPages/commit/5e36dfd8c49b24873f1999d1139421f948043961))
+* simplify code ([5ee4321](https://github.com/TomaszKandula/TokanPages/commit/5ee4321471d54a785bd3dd2811ecf450f0214e94))
+* update canonical url on every url change ([8d6b307](https://github.com/TomaszKandula/TokanPages/commit/8d6b307ddbdba6ca5386f294548e387bd2c011c1))
+* update favicons ([a82c16e](https://github.com/TomaszKandula/TokanPages/commit/a82c16ed78ff049a48f412f05c2e1e7b16ba2572))
+* use 'noopener nofollow' for links ([de0ae48](https://github.com/TomaszKandula/TokanPages/commit/de0ae4835581462fc512568a2821abffcfccb125))
+* use html semantic tags ([ce0def9](https://github.com/TomaszKandula/TokanPages/commit/ce0def94cd2d452e11a66f64120a2b7c09f4966d))
+* use img element w/lazy loading ([5f9e06b](https://github.com/TomaszKandula/TokanPages/commit/5f9e06ba207a62164a1aa5ed561fb2817a5b37a7))
+* use lazy loading ([f2162e5](https://github.com/TomaszKandula/TokanPages/commit/f2162e545a8af66f715683958e9c1e19a62f1502))
+* use section and article ([c565be6](https://github.com/TomaszKandula/TokanPages/commit/c565be6c4e023c66d1d086ec5b20e53165592e18))
+* use semantic html tag ([0504541](https://github.com/TomaszKandula/TokanPages/commit/0504541f10d8eb91a82c9fbac1ad6ad80fb49b9d))
+
 # [0.142.0](https://github.com/TomaszKandula/TokanPages/compare/v0.141.0...v0.142.0) (2025-02-17)
 
 
