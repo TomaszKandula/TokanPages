@@ -1,3 +1,14 @@
+# [0.144.0](https://github.com/TomaszKandula/TokanPages/compare/v0.143.1...v0.144.0) (2025-02-20)
+
+
+### Features
+
+* add ms application tile ([48cf5a0](https://github.com/TomaszKandula/TokanPages/commit/48cf5a023be50f90aa2f0910cfe6b89df441057b))
+* add xhtml info ([a45bf93](https://github.com/TomaszKandula/TokanPages/commit/a45bf93c2cf8769f00fd3379d751a309f0a56dfd))
+* place nav tag intside header tag ([96d79a1](https://github.com/TomaszKandula/TokanPages/commit/96d79a10f4228bc459d490d58a4f3723f15cd200))
+* relocate to main ([f5d8a7f](https://github.com/TomaszKandula/TokanPages/commit/f5d8a7fba2f84337fd2352363d3928a1e9d52753))
+* remove ending slash ([ba73c76](https://github.com/TomaszKandula/TokanPages/commit/ba73c76eaeb420bfa339d5db633854bfa93b6eb8))
+
 ## [0.143.1](https://github.com/TomaszKandula/TokanPages/compare/v0.143.0...v0.143.1) (2025-02-20)
 
 
