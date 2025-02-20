@@ -12,13 +12,12 @@ import { Routes } from "./routes";
 import {
     ClearPageStart,
     ScrollToTop,
+    ApplicationCookie,
     ApplicationToast,
     ApplicationDialogBox,
     ApplicationUserInfo,
     ApplicationSession,
 } from "./Shared/Components";
-
-import { ApplicationCookie } from "./Components/ApplicationCookie";
 
 interface Properties {
     manifest: GetContentManifestDto | undefined;

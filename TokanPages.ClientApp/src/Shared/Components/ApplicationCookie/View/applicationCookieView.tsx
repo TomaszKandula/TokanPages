@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Backdrop } from "@material-ui/core";
-import { ButtonsDto, OptionsDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { GetDateTime } from "../../../Shared/Services/Formatters";
-import { ReactChangeEvent } from "../../../Shared/types";
+import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { GetDateTime } from "../../../../Shared/Services/Formatters";
+import { ReactChangeEvent } from "../../../../Shared/types";
 
 interface ApplicationCookieViewProps extends ViewProperties {
     isClose: boolean;

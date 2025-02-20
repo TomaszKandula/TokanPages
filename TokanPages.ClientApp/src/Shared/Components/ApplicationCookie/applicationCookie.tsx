@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
-import { HasSnapshotMode } from "../../Shared/Services/SpaCaching";
-import { OperationStatus } from "../../Shared/enums";
+import { ApplicationState } from "../../../Store/Configuration";
+import { SetCookie, GetCookie } from "../../../Shared/Services/CookieServices";
+import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
+import { OperationStatus } from "../../../Shared/enums";
 import { ApplicationCookieView } from "./View/applicationCookieView";
 import Validate from "validate.js";
 
