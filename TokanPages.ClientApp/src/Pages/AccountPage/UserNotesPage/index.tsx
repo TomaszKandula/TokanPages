@@ -4,7 +4,6 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { Navigation, Footer } from "../../../Components/Layout";
 import { AccessDenied, UserNotes } from "../../../Components/Account";
-import { Cookies } from "../../../Components/Cookies";
 import Validate from "validate.js";
 
 export const UserNotesPage = (): React.ReactElement => {
@@ -26,16 +25,15 @@ export const UserNotesPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-
-            {isAnonymous ? (
-                <AccessDenied />
-            ) : (
-                <div className="pb-40">
-                    <UserNotes />
-                </div>
-            )}
-
-            <Cookies />
+            <main>
+                {isAnonymous ? (
+                    <AccessDenied />
+                ) : (
+                    <div className="pb-40">
+                        <UserNotes />
+                    </div>
+                )}
+            </main>
             <Footer />
         </>
     );

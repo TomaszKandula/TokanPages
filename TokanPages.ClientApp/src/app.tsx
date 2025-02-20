@@ -18,6 +18,8 @@ import {
     ApplicationSession,
 } from "./Shared/Components";
 
+import { Cookies } from "./Components/Cookies";
+
 interface Properties {
     manifest: GetContentManifestDto | undefined;
 }
@@ -39,6 +41,7 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
             </BrowserRouter>
             {hasSnapshotMode ? null : (
                 <>
+                    <Cookies />
                     <ApplicationToast />
                     <ApplicationDialogBox />
                     <ApplicationUserInfo />

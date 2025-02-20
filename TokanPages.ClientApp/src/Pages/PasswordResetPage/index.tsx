@@ -4,7 +4,6 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { PasswordReset } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
-import { Cookies } from "../../Components/Cookies";
 
 export const PasswordResetPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -22,8 +21,9 @@ export const PasswordResetPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <PasswordReset className="pt-120 pb-240" background="background-colour-light-grey" />
-            <Cookies />
+            <main>
+                <PasswordReset className="pt-120 pb-240" background="background-colour-light-grey" />
+            </main>
         </>
     );
 };

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { Navigation, Footer } from "../../../Components/Layout";
-import { Cookies } from "../../../Components/Cookies";
 import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../../Components/Account";
 import Validate from "validate.js";
 
@@ -26,19 +25,18 @@ export const SettingsPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-
-            {isAnonymous ? (
-                <AccessDenied />
-            ) : (
-                <div className="pb-40">
-                    <UserInfo />
-                    <UserPassword />
-                    <UserDeactivation />
-                    <UserRemoval />
-                </div>
-            )}
-
-            <Cookies />
+            <main>
+                {isAnonymous ? (
+                    <AccessDenied />
+                ) : (
+                    <div className="pb-40">
+                        <UserInfo />
+                        <UserPassword />
+                        <UserDeactivation />
+                        <UserRemoval />
+                    </div>
+                )}
+            </main>
             <Footer />
         </>
     );

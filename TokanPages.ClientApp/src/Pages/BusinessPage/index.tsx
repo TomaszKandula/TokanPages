@@ -5,7 +5,6 @@ import { ContentPageDataAction } from "../../Store/Actions";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
-import { Cookies } from "../../Components/Cookies";
 
 export const BusinessPage = () => {
     const dispatch = useDispatch();
@@ -28,14 +27,15 @@ export const BusinessPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <BusinessForm
-                hasCaption={false}
-                hasIcon={true}
-                hasShadow={true}
-                className="pt-120 pb-240"
-                background="background-colour-light-grey"
-            />
-            <Cookies />
+            <main>
+                <BusinessForm
+                    hasCaption={false}
+                    hasIcon={true}
+                    hasShadow={true}
+                    className="pt-120 pb-240"
+                    background="background-colour-light-grey"
+                />
+            </main>
         </>
     );
 };

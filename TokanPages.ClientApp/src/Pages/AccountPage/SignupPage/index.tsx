@@ -4,7 +4,6 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { UserSignup } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
-import { Cookies } from "../../../Components/Cookies";
 
 export const SignupPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -22,8 +21,9 @@ export const SignupPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <UserSignup className="pt-120 pb-240" background="background-colour-light-grey" />
-            <Cookies />
+            <main>
+                <UserSignup className="pt-120 pb-240" background="background-colour-light-grey" />
+            </main>
         </>
     );
 };
