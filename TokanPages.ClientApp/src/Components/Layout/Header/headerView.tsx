@@ -82,7 +82,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.header;
     return (
-        <header className={`section margin-top-60 ${props.background ?? ""}`}>
+        <section className={`section margin-top-60 ${props.background ?? ""}`}>
             <Grid container spacing={3}>
                 <Grid item xs={12} md={7}>
                     {data?.isLoading ? (
@@ -133,6 +133,6 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                     </div>
                 </Grid>
             </Grid>
-        </header>
+        </section>
     );
 };

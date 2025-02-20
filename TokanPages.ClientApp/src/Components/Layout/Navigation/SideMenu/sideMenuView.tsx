@@ -12,10 +12,11 @@ interface Properties {
     menu: { image: string; items: Item[] };
 }
 
+//TODO: replace Drawe w/custom implementation
 export const SideMenuView = (props: Properties): React.ReactElement => {
     return (
         <Drawer anchor="left" open={props.drawerState.open} onClose={props.closeHandler}>
-            <div className="sidemenu-drawer-container">
+            <nav className="sidemenu-drawer-container">
                 <div className="sidemenu-drawer-hero">
                     <RenderImage
                         base={GET_ICONS_URL}
@@ -30,7 +31,7 @@ export const SideMenuView = (props: Properties): React.ReactElement => {
                     languageId={props.languageId}
                     items={props.menu?.items}
                 />
-            </div>
+            </nav>
         </Drawer>
     );
 };
