@@ -32,7 +32,9 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
                 <div className="clients-logo" key={uuidv4()}>
                     <img
                         src={getImagePath(item.path)}
-                        alt={`image of ${item.path}`}
+                        loading="lazy"
+                        alt={`An image of ${item.name}`}
+                        title="Clients"
                         height={item.heigh}
                         width={item.width}
                     />
@@ -48,7 +50,7 @@ export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
 
     return (
         <>
-            <section className={`clients-section ${props.background} ?? ""`}>
+            <section className={`clients-section ${props.background ?? ""}`}>
                 <Container maxWidth="lg">
                     {data?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
                     {data?.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}

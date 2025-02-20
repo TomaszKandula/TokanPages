@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="clients-section class-colour-white ?? \\"\\""
+        class="clients-section class-colour-white"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthLg"
@@ -20,7 +20,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="clients-section class-colour-white ?? \\"\\""
+      class="clients-section class-colour-white"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthLg"

@@ -5,7 +5,6 @@ import { ContentPageDataAction } from "../../../../Store/Actions";
 import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 import { Navigation, Footer } from "../../../../Components/Layout";
-import { Cookies } from "../../../../Components/Cookies";
 
 export const InfoPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -15,12 +14,7 @@ export const InfoPage = (): React.ReactElement => {
     const about = state?.contentPageData?.components?.about;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "about",
-            "cookiesPrompt", 
-        ], "InfoPage"));
+        dispatch(ContentPageDataAction.request(["navigation", "footer", "about", "cookiesPrompt"], "InfoPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
@@ -35,9 +29,10 @@ export const InfoPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb isLoading={isLoading} />
-            <DocumentContentWrapper isLoading={isLoading} items={items} />
-            <Cookies />
+            <main>
+                <CustomBreadcrumb isLoading={isLoading} />
+                <DocumentContentWrapper isLoading={isLoading} items={items} />
+            </main>
             <Footer />
         </>
     );

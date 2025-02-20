@@ -5,7 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <header
+      <nav
         class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary navigation-app-bar mui-fixed MuiPaper-elevation0"
       >
         <div
@@ -19,11 +19,13 @@ Object {
             >
               <a
                 class="navigation-app-logo-small"
-                href="/eng"
+                href="/en"
+                rel="noopener nofollow"
               >
                 <img
-                  alt="image of logo.svg"
+                  alt="An application logo"
                   class="navigation-app-left-logo"
+                  loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
               </a>
@@ -57,12 +59,13 @@ Object {
                         class="navigation-languages-wrapper"
                       >
                         <img
-                          alt="image of eng.png"
+                          alt="A flag (en) for current language selection"
                           class="navigation-flag-image"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                         />
                         <div>
-                          ENG
+                          EN
                         </div>
                       </div>
                     </div>
@@ -70,7 +73,7 @@ Object {
                       aria-hidden="true"
                       class="MuiSelect-nativeInput"
                       tabindex="-1"
-                      value="eng"
+                      value="en"
                     />
                     <svg
                       aria-hidden="true"
@@ -98,6 +101,7 @@ Object {
                   >
                     <div
                       class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                      title="Avatar"
                     />
                   </span>
                   <span
@@ -147,17 +151,20 @@ Object {
               >
                 <a
                   class="navigation-app-logo-small"
-                  href="/eng"
+                  href="/en"
+                  rel="noopener nofollow"
                 >
                   <img
-                    alt="image of logo.svg"
+                    alt="An application logo"
                     class="navigation-app-full-logo"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                   />
                 </a>
                 <a
                   class="navigation-app-logo-large"
-                  href="/eng"
+                  href="/en"
+                  rel="noopener nofollow"
                 />
               </div>
               <div
@@ -182,12 +189,13 @@ Object {
                           class="navigation-languages-wrapper"
                         >
                           <img
-                            alt="image of eng.png"
+                            alt="A flag (en) for current language selection"
                             class="navigation-flag-image"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                           />
                           <div>
-                            ENG
+                            EN
                           </div>
                         </div>
                       </div>
@@ -195,7 +203,7 @@ Object {
                         aria-hidden="true"
                         class="MuiSelect-nativeInput"
                         tabindex="-1"
-                        value="eng"
+                        value="en"
                       />
                       <svg
                         aria-hidden="true"
@@ -223,6 +231,7 @@ Object {
                     >
                       <div
                         class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                        title="Avatar"
                       />
                     </span>
                   </button>
@@ -231,11 +240,11 @@ Object {
             </div>
           </div>
         </div>
-      </header>
+      </nav>
     </div>
   </body>,
   "container": <div>
-    <header
+    <nav
       class="MuiPaper-root MuiAppBar-root MuiAppBar-positionFixed MuiAppBar-colorPrimary navigation-app-bar mui-fixed MuiPaper-elevation0"
     >
       <div
@@ -249,11 +258,13 @@ Object {
           >
             <a
               class="navigation-app-logo-small"
-              href="/eng"
+              href="/en"
+              rel="noopener nofollow"
             >
               <img
-                alt="image of logo.svg"
+                alt="An application logo"
                 class="navigation-app-left-logo"
+                loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
               />
             </a>
@@ -287,12 +298,13 @@ Object {
                       class="navigation-languages-wrapper"
                     >
                       <img
-                        alt="image of eng.png"
+                        alt="A flag (en) for current language selection"
                         class="navigation-flag-image"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                       />
                       <div>
-                        ENG
+                        EN
                       </div>
                     </div>
                   </div>
@@ -300,7 +312,7 @@ Object {
                     aria-hidden="true"
                     class="MuiSelect-nativeInput"
                     tabindex="-1"
-                    value="eng"
+                    value="en"
                   />
                   <svg
                     aria-hidden="true"
@@ -328,6 +340,7 @@ Object {
                 >
                   <div
                     class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                    title="Avatar"
                   />
                 </span>
                 <span
@@ -377,17 +390,20 @@ Object {
             >
               <a
                 class="navigation-app-logo-small"
-                href="/eng"
+                href="/en"
+                rel="noopener nofollow"
               >
                 <img
-                  alt="image of logo.svg"
+                  alt="An application logo"
                   class="navigation-app-full-logo"
+                  loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
                 />
               </a>
               <a
                 class="navigation-app-logo-large"
-                href="/eng"
+                href="/en"
+                rel="noopener nofollow"
               />
             </div>
             <div
@@ -412,12 +428,13 @@ Object {
                         class="navigation-languages-wrapper"
                       >
                         <img
-                          alt="image of eng.png"
+                          alt="A flag (en) for current language selection"
                           class="navigation-flag-image"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                         />
                         <div>
-                          ENG
+                          EN
                         </div>
                       </div>
                     </div>
@@ -425,7 +442,7 @@ Object {
                       aria-hidden="true"
                       class="MuiSelect-nativeInput"
                       tabindex="-1"
-                      value="eng"
+                      value="en"
                     />
                     <svg
                       aria-hidden="true"
@@ -453,6 +470,7 @@ Object {
                   >
                     <div
                       class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault"
+                      title="Avatar"
                     />
                   </span>
                 </button>
@@ -461,7 +479,7 @@ Object {
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

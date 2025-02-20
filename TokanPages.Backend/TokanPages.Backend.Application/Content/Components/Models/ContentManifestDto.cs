@@ -24,6 +24,11 @@ public class ContentManifestDto
     public DateTime Updated { get; set; }
 
     /// <summary>
+    /// Default key.
+    /// </summary>
+    public string Default { get; set; } = "";
+    
+    /// <summary>
     /// Registered languages.
     /// </summary>
     public List<LanguageItem> Languages { get; set; } = new();

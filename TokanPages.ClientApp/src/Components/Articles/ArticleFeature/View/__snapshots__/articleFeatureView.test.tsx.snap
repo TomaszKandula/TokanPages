@@ -60,6 +60,7 @@ Object {
                           <a
                             class="link"
                             href="/action-link"
+                            rel="noopener nofollow"
                           >
                             <button
                               class="MuiButtonBase-root MuiButton-root MuiButton-text button"
@@ -107,9 +108,12 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div
-                          class="MuiCardMedia-root article-features-media"
-                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg);"
+                        <img
+                          alt="An image illustrating listed features"
+                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
+                          title="Illustration"
                         />
                       </div>
                     </div>
@@ -119,9 +123,12 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div
-                          class="MuiCardMedia-root article-features-media"
-                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg);"
+                        <img
+                          alt="An image illustrating listed features"
+                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
+                          title="Illustration"
                         />
                       </div>
                     </div>
@@ -131,9 +138,12 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div
-                          class="MuiCardMedia-root article-features-media"
-                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg);"
+                        <img
+                          alt="An image illustrating listed features"
+                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                          title="Illustration"
                         />
                       </div>
                     </div>
@@ -143,9 +153,12 @@ Object {
                       <div
                         class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                       >
-                        <div
-                          class="MuiCardMedia-root article-features-media"
-                          style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg);"
+                        <img
+                          alt="An image illustrating listed features"
+                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                          title="Illustration"
                         />
                       </div>
                     </div>
@@ -214,6 +227,7 @@ Object {
                         <a
                           class="link"
                           href="/action-link"
+                          rel="noopener nofollow"
                         >
                           <button
                             class="MuiButtonBase-root MuiButton-root MuiButton-text button"
@@ -261,9 +275,12 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div
-                        class="MuiCardMedia-root article-features-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg);"
+                      <img
+                        alt="An image illustrating listed features"
+                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
+                        title="Illustration"
                       />
                     </div>
                   </div>
@@ -273,9 +290,12 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div
-                        class="MuiCardMedia-root article-features-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg);"
+                      <img
+                        alt="An image illustrating listed features"
+                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
+                        title="Illustration"
                       />
                     </div>
                   </div>
@@ -285,9 +305,12 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div
-                        class="MuiCardMedia-root article-features-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg);"
+                      <img
+                        alt="An image illustrating listed features"
+                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                        title="Illustration"
                       />
                     </div>
                   </div>
@@ -297,9 +320,12 @@ Object {
                     <div
                       class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
                     >
-                      <div
-                        class="MuiCardMedia-root article-features-media"
-                        style="background-image: url(http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg);"
+                      <img
+                        alt="An image illustrating listed features"
+                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                        title="Illustration"
                       />
                     </div>
                   </div>

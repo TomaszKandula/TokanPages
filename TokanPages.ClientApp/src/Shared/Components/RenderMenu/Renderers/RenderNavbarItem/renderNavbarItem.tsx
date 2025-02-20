@@ -28,7 +28,7 @@ export const RenderNavbarItem = (props: Item): React.ReactElement => {
                 className="render-navbar-href"
                 underline="none"
                 target="_blank"
-                rel="noopener"
+                rel="noopener nofollow"
                 onMouseEnter={onMouseEnter}
             >
                 <ListItem button key={props.id} disabled={!props.enabled}>

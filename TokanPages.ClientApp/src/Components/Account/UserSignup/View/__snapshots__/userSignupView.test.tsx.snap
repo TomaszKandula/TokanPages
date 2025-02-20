@@ -352,6 +352,7 @@ Object {
                 >
                   <a
                     href="/undefined/signin"
+                    rel="noopener nofollow"
                   >
                     Already have an account? Sign in
                   </a>
@@ -711,6 +712,7 @@ Object {
               >
                 <a
                   href="/undefined/signin"
+                  rel="noopener nofollow"
                 >
                   Already have an account? Sign in
                 </a>

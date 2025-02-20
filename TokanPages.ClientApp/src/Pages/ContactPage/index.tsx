@@ -5,7 +5,6 @@ import { ContentPageDataAction } from "../../Store/Actions";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
-import { Cookies } from "../../Components/Cookies";
 
 export const ContactPage = () => {
     const dispatch = useDispatch();
@@ -15,12 +14,9 @@ export const ContactPage = () => {
     const contact = state?.contentPageData?.components?.contactForm;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "templates", 
-            "cookiesPrompt", 
-            "contactForm"
-        ], "ContactPage"));
+        dispatch(
+            ContentPageDataAction.request(["navigation", "templates", "cookiesPrompt", "contactForm"], "ContactPage")
+        );
     }, [language?.id]);
 
     React.useEffect(() => {
@@ -32,14 +28,15 @@ export const ContactPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <ContactForm
-                hasCaption={false}
-                hasIcon={true}
-                hasShadow={true}
-                background="background-colour-light-grey"
-                className="pt-120 pb-240"
-            />
-            <Cookies />
+            <main>
+                <ContactForm
+                    hasCaption={false}
+                    hasIcon={true}
+                    hasShadow={true}
+                    background="background-colour-light-grey"
+                    className="pt-120 pb-240"
+                />
+            </main>
         </>
     );
 };

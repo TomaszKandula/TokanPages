@@ -2,21 +2,25 @@ import * as React from "react";
 import validate from "validate.js";
 
 interface RenderImageProps {
-    basePath: string;
-    imageSource: string;
+    base: string;
+    source: string;
     className: string;
     width?: number;
     height?: number;
+    alt?: string;
+    title?: string;
 }
 
 export const RenderImage = (props: RenderImageProps): React.ReactElement | null => {
-    return validate.isEmpty(props.imageSource) || validate.isEmpty(props.basePath) ? null : (
+    return validate.isEmpty(props.source) || validate.isEmpty(props.base) ? null : (
         <img
-            src={`${props.basePath}/${props.imageSource}`}
+            src={`${props.base}/${props.source}`}
+            loading="lazy"
             width={props.width}
             height={props.height}
             className={props.className}
-            alt={`image of ${props.imageSource}`}
+            alt={props.alt}
+            title={props.title}
         />
     );
 };

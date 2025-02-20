@@ -27,12 +27,19 @@ interface ArticleCardViewProps {
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
     const hasFlag = !Validate.isEmpty(props.flagImage);
-    const styleCard = props.styleSmallCard ? "article-card-action-small" : "article-card-action-large"
+    const styleCard = props.styleSmallCard ? "article-card-action-small" : "article-card-action-large";
 
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <Card elevation={0} className="article-card">
-                <CardMedia image={props.imageUrl} className="article-card-image" />
+                <CardMedia
+                    component="img"
+                    loading="lazy"
+                    image={props.imageUrl}
+                    className="article-card-image"
+                    title="Article illustration"
+                    alt="An article card for given article"
+                />
                 <CardContent className="article-card-content">
                     <Typography className="article-card-title">{props.title}</Typography>
                     <Typography className="article-card-description">{props.description}</Typography>
@@ -61,8 +68,14 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                         <div className="article-card-details-separator"></div>
                                         <LanguageIcon className="article-card-item-icon" />
                                         <div className="article-card-details-separator"></div>
-                                        <RenderImage basePath={GET_FLAG_URL} imageSource={props.flagImage} className="article-flag-image" />
-                                    </> 
+                                        <RenderImage
+                                            base={GET_FLAG_URL}
+                                            source={props.flagImage}
+                                            title="Articles"
+                                            alt="An article language flag"
+                                            className="article-flag-image"
+                                        />
+                                    </>
                                 ) : (
                                     <></>
                                 )}

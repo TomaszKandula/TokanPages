@@ -4,7 +4,8 @@ import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typograp
 import { Skeleton } from "@material-ui/lab";
 import { GET_SOCIALS_URL } from "../../../Api/Request";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, GetIcon, RenderCardMedia } from "../../../Shared/Components";
+import { Animated, GetIcon } from "../../../Shared/Components";
+import { GetImageUrl } from "../../../Shared/Services/Utilities";
 
 interface SocialsViewProps {
     background?: string;
@@ -26,22 +27,16 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
     const socials = data?.components?.socials;
 
-    const imageUrl = (name: string) => {
-        if (name === "") return " ";
-        return `${GET_SOCIALS_URL}/${name}`;
-    };
-
     return (
         <section className={`section-grey ${props.background ?? ""}`}>
             <Container className="container-super-wide">
-
                 <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">
                         <Typography className="socials-caption-text">
-                            <RenderSkeletonOrElement 
+                            <RenderSkeletonOrElement
                                 isLoading={isLoading}
-                                variant="text" 
-                                object={socials?.caption?.toUpperCase()} 
+                                variant="text"
+                                object={socials?.caption?.toUpperCase()}
                             />
                         </Typography>
                     </Animated>
@@ -52,17 +47,36 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                         <Grid item xs={12} md={4} className="socials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <Card elevation={0} className="card">
-                                    <CardActionArea href={socials?.social1?.action?.href} target="_blank" rel="noopener">
-                                        {RenderCardMedia(GET_SOCIALS_URL, socials?.social1?.images?.header, "socials-card-media")}
+                                    <CardActionArea
+                                        href={socials?.social1?.action?.href}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            loading="lazy"
+                                            image={GetImageUrl({
+                                                base: GET_SOCIALS_URL,
+                                                name: socials?.social1?.images?.header,
+                                            })}
+                                            className="socials-card-media"
+                                            title="Illustration"
+                                            alt={socials?.social1?.textTitle}
+                                        />
                                         <RenderSkeletonOrElement
                                             isLoading={isLoading}
                                             variant="rect"
                                             object={
                                                 <div className="socials-card-image-holder">
                                                     <CardMedia
-                                                        image={imageUrl(socials?.social1?.images?.avatar)}
+                                                        image={GetImageUrl({
+                                                            base: GET_SOCIALS_URL,
+                                                            name: socials?.social1?.images?.avatar,
+                                                        })}
                                                         component="img"
+                                                        loading="lazy"
                                                         className="socials-card-image"
+                                                        title="Socials"
                                                         alt={socials?.social1?.textTitle}
                                                     />
                                                 </div>
@@ -71,13 +85,16 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         />
                                         <CardContent className="socials-card-content">
                                             <div className="socials-card-icon-holder">
-                                                <GetIcon name={socials?.social1?.images?.icon} className="socials-card-icon" />
+                                                <GetIcon
+                                                    name={socials?.social1?.images?.icon}
+                                                    className="socials-card-icon"
+                                                />
                                             </div>
                                             <div className="socials-card-title">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
-                                                    variant="text" 
-                                                    object={socials?.social1?.textTitle} 
+                                                    variant="text"
+                                                    object={socials?.social1?.textTitle}
                                                 />
                                             </div>
                                             <h3 className="socials-card-subheader">
@@ -103,17 +120,36 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                         <Grid item xs={12} md={4} className="socials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <Card elevation={3} className="card">
-                                    <CardActionArea href={socials?.social2?.action?.href} target="_blank" rel="noopener">
-                                        {RenderCardMedia(GET_SOCIALS_URL, socials?.social2?.images?.header, "socials-card-media")}
+                                    <CardActionArea
+                                        href={socials?.social2?.action?.href}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            loading="lazy"
+                                            image={GetImageUrl({
+                                                base: GET_SOCIALS_URL,
+                                                name: socials?.social2?.images?.header,
+                                            })}
+                                            className="socials-card-media"
+                                            title="Illustration"
+                                            alt={socials?.social2?.textTitle}
+                                        />
                                         <RenderSkeletonOrElement
                                             isLoading={isLoading}
                                             variant="rect"
                                             object={
                                                 <div className="socials-card-image-holder">
                                                     <CardMedia
-                                                        image={imageUrl(socials?.social2?.images?.avatar)}
+                                                        image={GetImageUrl({
+                                                            base: GET_SOCIALS_URL,
+                                                            name: socials?.social2?.images?.avatar,
+                                                        })}
                                                         component="img"
+                                                        loading="lazy"
                                                         className="socials-card-image"
+                                                        title="Socials"
                                                         alt={socials?.social2?.textTitle}
                                                     />
                                                 </div>
@@ -122,13 +158,16 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         />
                                         <CardContent className="socials-card-content">
                                             <div className="socials-card-icon-holder">
-                                                <GetIcon name={socials?.social2?.images?.icon} className="socials-card-icon" />
+                                                <GetIcon
+                                                    name={socials?.social2?.images?.icon}
+                                                    className="socials-card-icon"
+                                                />
                                             </div>
                                             <div className="socials-card-title">
-                                                <RenderSkeletonOrElement 
+                                                <RenderSkeletonOrElement
                                                     isLoading={isLoading}
-                                                    variant="text" 
-                                                    object={socials?.social2?.textTitle} 
+                                                    variant="text"
+                                                    object={socials?.social2?.textTitle}
                                                 />
                                             </div>
                                             <h3 className="socials-card-subheader">
@@ -154,17 +193,36 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                         <Grid item xs={12} md={4} className="socials-card-holder">
                             <Animated dataAos="fade-up" dataAosDelay={250}>
                                 <Card elevation={3} className="card">
-                                    <CardActionArea href={socials?.social3?.action?.href} target="_blank" rel="noopener">
-                                        {RenderCardMedia(GET_SOCIALS_URL, socials?.social3?.images?.header, "socials-card-media")}
+                                    <CardActionArea
+                                        href={socials?.social3?.action?.href}
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            loading="lazy"
+                                            image={GetImageUrl({
+                                                base: GET_SOCIALS_URL,
+                                                name: socials?.social3?.images?.header,
+                                            })}
+                                            className="socials-card-media"
+                                            title="Illustration"
+                                            alt={socials?.social3?.textTitle}
+                                        />
                                         <RenderSkeletonOrElement
                                             isLoading={isLoading}
                                             variant="rect"
                                             object={
                                                 <div className="socials-card-image-holder">
                                                     <CardMedia
-                                                        image={imageUrl(socials?.social3?.images?.avatar)}
+                                                        image={GetImageUrl({
+                                                            base: GET_SOCIALS_URL,
+                                                            name: socials?.social3?.images?.avatar,
+                                                        })}
                                                         component="img"
+                                                        loading="lazy"
                                                         className="socials-card-image"
+                                                        title="Socials"
                                                         alt={socials?.social3?.textTitle}
                                                     />
                                                 </div>
@@ -173,20 +231,23 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         />
                                         <CardContent className="socials-card-content">
                                             <div className="socials-card-icon-holder">
-                                                <GetIcon name={socials?.social3?.images?.icon} className="socials-card-icon" />
+                                                <GetIcon
+                                                    name={socials?.social3?.images?.icon}
+                                                    className="socials-card-icon"
+                                                />
                                             </div>
                                             <div className="socials-card-title">
-                                                <RenderSkeletonOrElement 
+                                                <RenderSkeletonOrElement
                                                     isLoading={isLoading}
-                                                    variant="text" 
-                                                    object={socials?.social3?.textTitle} 
+                                                    variant="text"
+                                                    object={socials?.social3?.textTitle}
                                                 />
                                             </div>
                                             <h3 className="socials-card-subheader">
                                                 <RenderSkeletonOrElement
                                                     isLoading={isLoading}
                                                     variant="text"
-                                                    object={socials?.social3?.textSubtitle} 
+                                                    object={socials?.social3?.textSubtitle}
                                                 />
                                             </h3>
                                             <h4 className="socials-card-subtext">
@@ -203,8 +264,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                         </Grid>
                     </Grid>
                 </div>
-
             </Container>
         </section>
     );
-}
+};

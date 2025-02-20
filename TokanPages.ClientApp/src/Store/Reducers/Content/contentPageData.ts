@@ -3,7 +3,8 @@ import { ApplicationDefault } from "../../Configuration";
 import { ContentPageDataState } from "../../States";
 import { ContentPageData as ContentPageDataDefault } from "../../Defaults";
 import { OperationStatus } from "../../../Shared/enums";
-import { UpdateComponents, SetComponentMeta, UpdateHtmlLang } from "../../../Shared/Services/Utilities";
+import { UpdateComponents, SetComponentMeta } from "../../../Shared/Services/Utilities";
+import { UpdateHtmlLang } from "../../../Shared/Services/languageService";
 import { TKnownActions, CLEAR, RECEIVE, REQUEST } from "../../Actions/Content/contentPageData";
 
 export const ContentPageData: Reducer<ContentPageDataState> = (

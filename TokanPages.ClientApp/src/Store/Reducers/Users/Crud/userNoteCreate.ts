@@ -20,7 +20,7 @@ export const UserNoteCreate: Reducer<UserNoteCreateState> = (
                     id: "",
                     createdAt: "",
                     createdBy: "",
-                    currentNotes: 0
+                    currentNotes: 0,
                 },
             };
         case ADD:

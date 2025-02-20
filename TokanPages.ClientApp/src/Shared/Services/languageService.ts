@@ -74,3 +74,9 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
         dispatch(ApplicationLanguageAction.set({ id: defaultId, languages: languages }));
     }
 };
+
+export const UpdateHtmlLang = (languageId?: string): void => {
+    if (!languageId) return;
+    const html = document.querySelector("html");
+    html?.setAttribute("lang", languageId);
+};

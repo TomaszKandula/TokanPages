@@ -185,6 +185,7 @@ Object {
                   >
                     <a
                       href="/undefined/signup"
+                      rel="noopener nofollow"
                     >
                       Don't have an account?
                     </a>
@@ -194,6 +195,7 @@ Object {
                   >
                     <a
                       href="/undefined/reset"
+                      rel="noopener nofollow"
                     >
                       Forgot password?
                     </a>
@@ -387,6 +389,7 @@ Object {
                 >
                   <a
                     href="/undefined/signup"
+                    rel="noopener nofollow"
                   >
                     Don't have an account?
                   </a>
@@ -396,6 +399,7 @@ Object {
                 >
                   <a
                     href="/undefined/reset"
+                    rel="noopener nofollow"
                   >
                     Forgot password?
                   </a>

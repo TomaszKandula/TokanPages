@@ -16,7 +16,7 @@ describe("test account group component: userSignupView", () => {
                     button="Sign up"
                     link={{
                         text: "Already have an account? Sign in",
-                        href: "/signin"
+                        href: "/signin",
                     }}
                     buttonHandler={jest.fn()}
                     keyHandler={jest.fn()}

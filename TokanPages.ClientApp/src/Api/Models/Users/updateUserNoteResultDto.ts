@@ -1,3 +1,1 @@
-export interface UpdateUserNoteResultDto {
-    
-}
+export interface UpdateUserNoteResultDto {}

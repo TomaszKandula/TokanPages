@@ -7,7 +7,6 @@ import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
-import { Cookies } from "../../Components/Cookies";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -25,13 +24,12 @@ export const ArticlesPage = (): React.ReactElement => {
     const isLoading = data?.isLoading ?? false;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request([
-            "navigation", 
-            "footer", 
-            "templates", 
-            "cookiesPrompt", 
-            "article"], 
-            "ArticlesPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["navigation", "footer", "templates", "cookiesPrompt", "article"],
+                "ArticlesPage"
+            )
+        );
     }, [language?.id]);
 
     React.useEffect(() => {
@@ -43,10 +41,11 @@ export const ArticlesPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <CustomBreadcrumb watchparam="title" isLoading={isLoading} />
-            {title ? <ProgressOnScroll height={3} bgcolor="#6367EF" duration={0.1} /> : null}
-            {title ? <ArticleDetail title={title} /> : <ArticleList />}
-            <Cookies />
+            <main>
+                <CustomBreadcrumb watchparam="title" isLoading={isLoading} />
+                {title ? <ProgressOnScroll height={3} bgcolor="#6367EF" duration={0.1} /> : null}
+                {title ? <ArticleDetail title={title} /> : <ArticleList />}
+            </main>
             <Footer />
         </>
     );

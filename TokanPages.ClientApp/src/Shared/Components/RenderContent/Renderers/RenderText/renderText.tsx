@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
 import { GET_NON_VIDEO_ASSET } from "../../../../../Api/Request/Paths";
 import { ArticleInfoAction } from "../../../../../Store/Actions";
@@ -34,16 +33,14 @@ const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     }, [hash, data]);
 
     return (
-        <Typography
-            component="span"
-            className="render-text-common render-text-paragraph render-text-link"
-            onClick={onClickHandler}
-        >
-            <span className="render-text-wrapper">
-                <ArrowRight />
-                <ReactHtmlParser html={props.text ?? NO_CONTENT} />
-            </span>
-        </Typography>
+        <span className="render-text-wrapper" onClick={onClickHandler}>
+            <ArrowRight />
+            <ReactHtmlParser 
+                html={props.text ?? NO_CONTENT} 
+                component="span" 
+                className="render-text-common render-text-paragraph render-text-link" 
+            />
+        </span>
     );
 };
 
@@ -57,7 +54,6 @@ const RenderExternalLink = (props: TextItem): React.ReactElement => {
         }
 
         window.open(props.value as string, "_blank");
-
     }, [props.value]);
 
     return (
@@ -136,48 +132,51 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <div className="mt-56">
-            <Typography component="span" className="render-text-common render-text-title">
-                <ReactHtmlParser html={props.value ?? NO_CONTENT} />
-            </Typography>
-        </div>
+        <ReactHtmlParser 
+            html={props.value ?? NO_CONTENT} 
+            component="p" 
+            className="render-text-common render-text-title mt-56 mb-8 " 
+        />
     );
 };
 
 const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <div className="mt-8 mb-40">
-            <Typography component="span" className="render-text-common render-text-sub-title">
-                <ReactHtmlParser html={props.value ?? NO_CONTENT} />
-            </Typography>
-        </div>
+        <ReactHtmlParser 
+            html={props.value ?? NO_CONTENT} 
+            component="p" 
+            className="render-text-common render-text-sub-title mt-8 mb-40" 
+        />
     );
 };
 
 const RenderHeader = (props: DataProps): React.ReactElement => {
     return (
-        <div className="mt-56 mb-15">
-            <Typography component="span" className="render-text-common render-text-header">
-                <ReactHtmlParser html={props.value ?? NO_CONTENT} />
-            </Typography>
-        </div>
+        <ReactHtmlParser 
+            html={props.value ?? NO_CONTENT} 
+            component="p" 
+            className="render-text-common render-text-header mt-56 mb-15" 
+        />
     );
 };
 
 const RenderParagraph = (props: DataProps): React.ReactElement => {
     return (
-        <Typography component="span" className="render-text-common render-text-paragraph">
-            <ReactHtmlParser html={props.value ?? NO_CONTENT} />
-        </Typography>
+        <ReactHtmlParser 
+            html={props.value ?? NO_CONTENT} 
+            component="p" 
+            className="render-text-common render-text-paragraph" 
+        />
     );
 };
 
 const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
-    const replaced = props.value?.replace("<p>", "<p class='custom-drop-cap'>");
     return (
-        <Typography component="span" className="render-text-common render-text-paragraph">
-            <ReactHtmlParser html={replaced ?? NO_CONTENT} />
-        </Typography>
+        <ReactHtmlParser 
+            html={props.value ?? NO_CONTENT} 
+            component="p" 
+            className="render-text-common render-text-paragraph custom-drop-cap"
+        />
     );
 };
 

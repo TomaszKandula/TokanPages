@@ -46,15 +46,23 @@ interface Properties extends BaseProperties {
 
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
-        return <Avatar>A</Avatar>;
+        return (
+            <Avatar alt="User avatar" title="Avatar">
+                A
+            </Avatar>
+        );
     }
 
     if (Validate.isEmpty(props.avatarName)) {
         const userLetter = props.userAliasText?.charAt(0).toUpperCase();
-        return <Avatar>{userLetter}</Avatar>;
+        return (
+            <Avatar alt="User avatar" title="Avatar">
+                {userLetter}
+            </Avatar>
+        );
     }
 
-    return <Avatar alt="Avatar" src={props.avatarSource} />;
+    return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
@@ -106,7 +114,12 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
     const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
         return (
             <div className="navigation-languages-wrapper">
-                <RenderImage basePath={GET_FLAG_URL} imageSource={`${value}.png`} className="navigation-flag-image" />
+                <RenderImage
+                    base={GET_FLAG_URL}
+                    source={`${value}.png`}
+                    alt={`A flag (${value}) for current language selection`}
+                    className="navigation-flag-image"
+                />
                 <div>{toUpper(value)}</div>
             </div>
         );
@@ -126,8 +139,9 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
                     <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
                         <div className="navigation-languages-wrapper">
                             <RenderImage
-                                basePath={GET_FLAG_URL}
-                                imageSource={`${item.id}.png`}
+                                base={GET_FLAG_URL}
+                                source={`${item.id}.png`}
+                                alt={`A flag (${item.name}) symbolizing available language`}
                                 className="navigation-flag-image"
                             />
                             <div>{item.name}</div>
@@ -144,10 +158,11 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
     return (
         <Toolbar className="navigation-tool-bar">
             <div className="navigation-nav-menu navigation-nav-left">
-                <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
+                <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                     <RenderImage
-                        basePath={GET_ICONS_URL}
-                        imageSource={props?.logoImgName}
+                        base={GET_ICONS_URL}
+                        source={props?.logoImgName}
+                        alt="An application logo"
                         className="navigation-app-left-logo"
                     />
                 </Link>
@@ -174,17 +189,19 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                     {props.isLoading ? null : <RenderMenuIcon {...props} />}
                 </Grid>
                 <Grid item xs className="navigation-nav-items navigation-nav-centre">
-                    <Link to={`/${props.languageId}`} className="navigation-app-logo-small">
+                    <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                         <RenderImage
-                            basePath={GET_ICONS_URL}
-                            imageSource={props?.logoImgName}
+                            base={GET_ICONS_URL}
+                            source={props?.logoImgName}
+                            alt="An application logo"
                             className="navigation-app-full-logo"
                         />
                     </Link>
-                    <Link to={`/${props.languageId}`} className="navigation-app-logo-large">
+                    <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
                         <RenderImage
-                            basePath={GET_ICONS_URL}
-                            imageSource={props?.menu?.image}
+                            base={GET_ICONS_URL}
+                            source={props?.menu?.image}
+                            alt="An application logo"
                             className="navigation-app-just-logo"
                         />
                     </Link>
@@ -203,9 +220,9 @@ export const NavigationView = (props: Properties): React.ReactElement => {
     return (
         <HideOnScroll {...props}>
             {props.backNavigationOnly ? (
-                <AppBar className="navigation-app-bar" elevation={0}>
+                <AppBar component="nav" className="navigation-app-bar" elevation={0}>
                     <div>
-                        <Link to={navigationPath}>
+                        <Link to={navigationPath} rel="noopener nofollow">
                             <IconButton className="navigation-nav-back">
                                 <ArrowBack />
                             </IconButton>
@@ -213,7 +230,7 @@ export const NavigationView = (props: Properties): React.ReactElement => {
                     </div>
                 </AppBar>
             ) : (
-                <AppBar className="navigation-app-bar" elevation={0}>
+                <AppBar component="nav" className="navigation-app-bar" elevation={0}>
                     <div className="navigation-nav-large-screen">
                         <RenderToolbarLargeScreen {...props} />
                     </div>

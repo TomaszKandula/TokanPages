@@ -1,19 +1,13 @@
-import { META_ATTRIBUTE, QUERY_SELECTOR } from "../../../../Shared/constants";
+import { META_ATTRIBUTE, META_QUERY_SELECTOR } from "../../../../Shared/constants";
 
 export const GetComponentMeta = (): string => {
-    const meta = document.querySelector(QUERY_SELECTOR);
+    const meta = document.querySelector(META_QUERY_SELECTOR);
     return meta?.getAttribute(META_ATTRIBUTE) ?? "";
 };
 
 export const SetComponentMeta = (pageName?: string, languageId?: string): void => {
-    const meta = document.querySelector(QUERY_SELECTOR);
+    const meta = document.querySelector(META_QUERY_SELECTOR);
     meta?.setAttribute(META_ATTRIBUTE, `last-cache: ${pageName}; language: ${languageId};`.toLowerCase());
-};
-
-export const UpdateHtmlLang = (languageId?: string): void => {
-    if (!languageId) return;
-    const html = document.querySelector("html");
-    html?.setAttribute("lang", languageId);
 };
 
 export const HasPageContentLoaded = (pageName?: string, languageId?: string): boolean => {

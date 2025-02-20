@@ -43,11 +43,7 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                     <Card elevation={0} className="card">
                         <CardContent className="card-content">
                             <Typography component="span" className="caption black">
-                                {props.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    props.sectionAccountRemoval?.caption
-                                )}
+                                {props.isLoading ? <Skeleton variant="text" /> : props.sectionAccountRemoval?.caption}
                             </Typography>
 
                             <CustomDivider mt={15} mb={8} />

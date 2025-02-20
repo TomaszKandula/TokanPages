@@ -10,7 +10,6 @@ import { Testimonials } from "../../Components/Testimonials";
 import { Socials } from "../../Components/Socials";
 import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
-import { Cookies } from "../../Components/Cookies";
 import { ArticleFeature } from "../../Components/Articles";
 import { Navigation, Header, Footer } from "../../Components/Layout";
 
@@ -54,15 +53,16 @@ export const MainPage = (): React.ReactElement => {
         <>
             <Navigation />
             <Header />
-            <Clients />
-            <Technologies />
-            <ArticleFeature />
-            <Featured />
-            <Testimonials />
-            <Socials />
-            <Newsletter background="background-colour-white" />
-            <ContactForm hasCaption={true} background="background-colour-light-grey" />
-            <Cookies />
+            <main>
+                <Clients />
+                <Technologies />
+                <ArticleFeature />
+                <Featured />
+                <Testimonials />
+                <Socials />
+                <Newsletter background="background-colour-white" />
+                <ContactForm hasCaption={true} background="background-colour-light-grey" />
+            </main>
             <Footer />
         </>
     );

@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { SetCookie, GetCookie } from "../../Shared/Services/CookieServices";
-import { HasSnapshotMode } from "../../Shared/Services/SpaCaching";
-import { OperationStatus } from "../../Shared/enums";
-import { CookiesView } from "./View/cookiesView";
+import { ApplicationState } from "../../../Store/Configuration";
+import { SetCookie, GetCookie } from "../../../Shared/Services/CookieServices";
+import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
+import { OperationStatus } from "../../../Shared/enums";
+import { ApplicationCookieView } from "./View/applicationCookieView";
 import Validate from "validate.js";
 
-export const Cookies = (): React.ReactElement => {
+export const ApplicationCookie = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const hasContentLoadingFinished = data?.status === OperationStatus.hasFinished;
 
@@ -40,22 +40,22 @@ export const Cookies = (): React.ReactElement => {
     const onAcceptButtonEvent = React.useCallback(() => {
         setClose(true);
 
-        const grantSelected = JSON.stringify({ 
+        const grantSelected = JSON.stringify({
             granted: {
                 necessary: true,
                 statistics: hasStatistics,
                 marketing: hasMarketing,
-                personalization: hasPersonalization
-            }
+                personalization: hasPersonalization,
+            },
         });
 
-        const grantBasic = JSON.stringify({ 
+        const grantBasic = JSON.stringify({
             granted: {
                 necessary: true,
                 statistics: false,
                 marketing: false,
-                personalization: false
-            }
+                personalization: false,
+            },
         });
 
         SetCookie({
@@ -99,7 +99,7 @@ export const Cookies = (): React.ReactElement => {
     }, [hasNecessaryOnly]);
 
     return (
-        <CookiesView
+        <ApplicationCookieView
             isLoading={isLoading}
             isClose={isClose}
             hasSnapshotMode={hasSnapshotMode}

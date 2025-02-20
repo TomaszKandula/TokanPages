@@ -42,9 +42,11 @@ Object {
                     class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
                   >
                     <img
-                      alt="Testimonail photo 1 of 3"
+                      alt="Picture of Joanna"
                       class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                      title="Testimonials"
                     />
                     <div
                       class="MuiCardContent-root testimonials-card-content"
@@ -117,9 +119,11 @@ Object {
                     class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                   >
                     <img
-                      alt="Testimonail photo 2 of 3"
+                      alt="Picture of Adama"
                       class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
+                      title="Testimonials"
                     />
                     <div
                       class="MuiCardContent-root testimonials-card-content"
@@ -189,9 +193,11 @@ Object {
                     class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                   >
                     <img
-                      alt="Testimonail photo 3 of 3"
+                      alt="Picture of Scott"
                       class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
+                      title="Testimonials"
                     />
                     <div
                       class="MuiCardContent-root testimonials-card-content"
@@ -294,9 +300,11 @@ Object {
                   class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
                 >
                   <img
-                    alt="Testimonail photo 1 of 3"
+                    alt="Picture of Joanna"
                     class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                    title="Testimonials"
                   />
                   <div
                     class="MuiCardContent-root testimonials-card-content"
@@ -369,9 +377,11 @@ Object {
                   class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
-                    alt="Testimonail photo 2 of 3"
+                    alt="Picture of Adama"
                     class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
+                    title="Testimonials"
                   />
                   <div
                     class="MuiCardContent-root testimonials-card-content"
@@ -441,9 +451,11 @@ Object {
                   class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
                 >
                   <img
-                    alt="Testimonail photo 3 of 3"
+                    alt="Picture of Scott"
                     class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
+                    title="Testimonials"
                   />
                   <div
                     class="MuiCardContent-root testimonials-card-content"

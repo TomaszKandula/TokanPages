@@ -11,7 +11,7 @@ Object {
         <div
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
-          <div
+          <article
             class="pb-96"
           >
             <div
@@ -53,9 +53,11 @@ Object {
                      
                   </p>
                   <img
-                    alt="image of eng.png"
+                    alt="An article language flag"
                     class="article-details-flag-image"
+                    loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                    title="Articles"
                   />
                 </div>
                 <p
@@ -185,7 +187,7 @@ Object {
                 </span>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </section>
     </div>
@@ -197,7 +199,7 @@ Object {
       <div
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
-        <div
+        <article
           class="pb-96"
         >
           <div
@@ -239,9 +241,11 @@ Object {
                    
                 </p>
                 <img
-                  alt="image of eng.png"
+                  alt="An article language flag"
                   class="article-details-flag-image"
+                  loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
+                  title="Articles"
                 />
               </div>
               <p
@@ -371,7 +375,7 @@ Object {
               </span>
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </section>
   </div>,

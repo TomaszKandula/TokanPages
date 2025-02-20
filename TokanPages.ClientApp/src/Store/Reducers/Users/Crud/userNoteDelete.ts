@@ -16,7 +16,7 @@ export const UserNoteDelete: Reducer<UserNoteDeleteState> = (
         case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { },
+                response: {},
             };
         case DELETE:
             return {

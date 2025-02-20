@@ -3,5 +3,5 @@ import { UserNoteDeleteState } from "../../../../Store/States";
 
 export const UserNoteDelete: UserNoteDeleteState = {
     status: OperationStatus.notStarted,
-    response: {  }
-}
+    response: {},
+};

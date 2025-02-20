@@ -4,24 +4,24 @@ export interface SocialsContentDto {
     language: string;
     caption: string;
     social1: {
-        images: ImagesDto,
+        images: ImagesDto;
         textTitle: string;
         textSubtitle: string;
         textComment: string;
-        action: LinkDto
-    },
+        action: LinkDto;
+    };
     social2: {
-        images: ImagesDto,
+        images: ImagesDto;
         textTitle: string;
         textSubtitle: string;
         textComment: string;
-        action: LinkDto
-    },
+        action: LinkDto;
+    };
     social3: {
-        images: ImagesDto,
+        images: ImagesDto;
         textTitle: string;
         textSubtitle: string;
         textComment: string;
-        action: LinkDto
-    }
+        action: LinkDto;
+    };
 }
