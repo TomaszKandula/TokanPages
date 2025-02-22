@@ -148,7 +148,7 @@ public class CachingService : ICachingService
             await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
             var htmlContent = await page.GetContentAsync();
-            var binary = Encoding.ASCII.GetBytes(htmlContent);
+            var binary = Encoding.UTF8.GetBytes(htmlContent);
 
             var fileName = $"{pageName}.html";
             await UploadFile(binary, fileName, serviceUrl);
