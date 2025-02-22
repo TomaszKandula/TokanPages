@@ -51,7 +51,7 @@ Object {
                     >
                       <img
                         alt="Memory Management"
-                        class="MuiCardMedia-root featured-card-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root featured-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg"
                         title="Illustration"
@@ -100,7 +100,7 @@ Object {
                     >
                       <img
                         alt="Stored Procedures"
-                        class="MuiCardMedia-root featured-card-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root featured-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg"
                         title="Illustration"
@@ -146,7 +146,7 @@ Object {
                     >
                       <img
                         alt="SQL Injection"
-                        class="MuiCardMedia-root featured-card-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root featured-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg"
                         title="Illustration"
@@ -225,7 +225,7 @@ Object {
                   >
                     <img
                       alt="Memory Management"
-                      class="MuiCardMedia-root featured-card-media MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root featured-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg"
                       title="Illustration"
@@ -274,7 +274,7 @@ Object {
                   >
                     <img
                       alt="Stored Procedures"
-                      class="MuiCardMedia-root featured-card-media MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root featured-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg"
                       title="Illustration"
@@ -320,7 +320,7 @@ Object {
                   >
                     <img
                       alt="SQL Injection"
-                      class="MuiCardMedia-root featured-card-media MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root featured-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg"
                       title="Illustration"
