@@ -1,3 +1,10 @@
+## [0.144.1](https://github.com/TomaszKandula/TokanPages/compare/v0.144.0...v0.144.1) (2025-02-22)
+
+
+### Bug Fixes
+
+* resolve rendered html page fonts issue ([0543008](https://github.com/TomaszKandula/TokanPages/commit/0543008f6584efd536c53f7372b096e5cce5baf8))
+
 # [0.144.0](https://github.com/TomaszKandula/TokanPages/compare/v0.143.1...v0.144.0) (2025-02-20)
 
 
