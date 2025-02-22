@@ -10,6 +10,7 @@ import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
 import { ArticleCard, ArticleCardView, ProgressBar } from "../../../../../Shared/Components";
 import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
+import { TComponent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 
 interface DataProps {
@@ -43,6 +44,10 @@ const RenderAnchorLink = (props: DataProps): React.ReactElement => {
         </span>
     );
 };
+
+const RenderTargetLink = (props: DataProps): React.ReactElement => {
+    return <div id={props.value}>{props.text}</div>;
+}
 
 const RenderExternalLink = (props: TextItem): React.ReactElement => {
     const hasImage = !Validate.isEmpty(props.propImg);
@@ -160,11 +165,18 @@ const RenderHeader = (props: DataProps): React.ReactElement => {
     );
 };
 
-const RenderParagraph = (props: DataProps): React.ReactElement => {
+const RenderParagraph = (props: TextItem): React.ReactElement => {
+    const html = props.value as string;
+
+    let component: TComponent | undefined = "p";
+    if (props.prop === "div") {
+        component = "div";        
+    }
+
     return (
         <ReactHtmlParser 
-            html={props.value ?? NO_CONTENT} 
-            component="p" 
+            html={html ?? NO_CONTENT} 
+            component={component} 
             className="render-text-common render-text-paragraph" 
         />
     );
@@ -183,13 +195,15 @@ const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
 export const RenderText = (props: TextItem): React.ReactElement => {
     const value: string = props.value as string;
     switch (props.prop) {
-        case "item-link":
+        case "anchor-link":
             return <RenderAnchorLink value={value} text={props.text} />;
-        case "text-link":
+        case "target-link":
+            return <RenderTargetLink value={value} text={props.text} />;
+        case "internal-link":
             return <RenderInternalLink {...props} />;
         case "external-link":
             return <RenderExternalLink {...props} />;
-        case "redirect-link":
+        case "article-link":
             return <RenderArticleLink value={value} text={props.text} />;
         case "title":
             return <RenderTitle value={value} />;
@@ -200,6 +214,6 @@ export const RenderText = (props: TextItem): React.ReactElement => {
         case "dropcap":
             return <RenderParagraphWithDropCap value={value} />;
         default:
-            return <RenderParagraph value={value} />;
+            return <RenderParagraph {...props} />;
     }
 };
