@@ -45,7 +45,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                     image={propUrl}
                     title="Illustration"
                     alt="An image of presented article text"
-                    className="render-image-image"
+                    className="render-image-image lazyloaded"
                     onClick={onClickEvent}
                     style={{
                         width: props.constraint?.width,
@@ -60,6 +60,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                     image={valueUrl}
                     title="Illustration"
                     alt="An image of presented article text"
+                    className="lazyloaded"
                     style={{
                         width: props.constraint?.width,
                         height: props.constraint?.height,

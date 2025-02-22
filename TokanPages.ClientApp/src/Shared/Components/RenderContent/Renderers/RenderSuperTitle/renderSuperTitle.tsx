@@ -33,7 +33,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                     image={propUrl}
                     title="Illustration"
                     alt="An illustration of a presented article text title"
-                    className="render-super-title-image"
+                    className="render-super-title-image lazyloaded"
                     style={{
                         width: props.constraint?.width,
                         height: props.constraint?.height,

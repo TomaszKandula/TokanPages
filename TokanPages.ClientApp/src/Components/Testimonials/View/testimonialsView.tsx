@@ -75,7 +75,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                 image={imageUrl(props.photo1)}
                                                 component="img"
                                                 loading="lazy"
-                                                className="testimonials-card-image"
+                                                className="testimonials-card-image lazyloaded"
                                                 title="Testimonials"
                                                 alt={`Picture of ${props.name1}`}
                                             />
@@ -130,7 +130,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                 image={imageUrl(props.photo2)}
                                                 component="img"
                                                 loading="lazy"
-                                                className="testimonials-card-image"
+                                                className="testimonials-card-image lazyloaded"
                                                 title="Testimonials"
                                                 alt={`Picture of ${props.name2}`}
                                             />
@@ -185,7 +185,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                 image={imageUrl(props.photo3)}
                                                 component="img"
                                                 loading="lazy"
-                                                className="testimonials-card-image"
+                                                className="testimonials-card-image lazyloaded"
                                                 title="Testimonials"
                                                 alt={`Picture of ${props.name3}`}
                                             />

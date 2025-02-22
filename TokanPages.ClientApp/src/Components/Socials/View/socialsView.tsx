@@ -59,7 +59,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 base: GET_SOCIALS_URL,
                                                 name: socials?.social1?.images?.header,
                                             })}
-                                            className="socials-card-media"
+                                            className="socials-card-media lazyloaded"
                                             title="Illustration"
                                             alt={socials?.social1?.textTitle}
                                         />
@@ -75,7 +75,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         })}
                                                         component="img"
                                                         loading="lazy"
-                                                        className="socials-card-image"
+                                                        className="socials-card-image lazyloaded"
                                                         title="Socials"
                                                         alt={socials?.social1?.textTitle}
                                                     />
@@ -132,7 +132,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 base: GET_SOCIALS_URL,
                                                 name: socials?.social2?.images?.header,
                                             })}
-                                            className="socials-card-media"
+                                            className="socials-card-media lazyloaded"
                                             title="Illustration"
                                             alt={socials?.social2?.textTitle}
                                         />
@@ -148,7 +148,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         })}
                                                         component="img"
                                                         loading="lazy"
-                                                        className="socials-card-image"
+                                                        className="socials-card-image lazyloaded"
                                                         title="Socials"
                                                         alt={socials?.social2?.textTitle}
                                                     />
@@ -205,7 +205,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 base: GET_SOCIALS_URL,
                                                 name: socials?.social3?.images?.header,
                                             })}
-                                            className="socials-card-media"
+                                            className="socials-card-media lazyloaded"
                                             title="Illustration"
                                             alt={socials?.social3?.textTitle}
                                         />
@@ -221,7 +221,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         })}
                                                         component="img"
                                                         loading="lazy"
-                                                        className="socials-card-image"
+                                                        className="socials-card-image lazyloaded"
                                                         title="Socials"
                                                         alt={socials?.social3?.textTitle}
                                                     />
