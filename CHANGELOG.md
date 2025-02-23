@@ -1,3 +1,16 @@
+# [0.145.0](https://github.com/TomaszKandula/TokanPages/compare/v0.144.1...v0.145.0) (2025-02-23)
+
+
+### Bug Fixes
+
+* remove quotes ([25fb21b](https://github.com/TomaszKandula/TokanPages/commit/25fb21b8936a9aebd63c6572af86a86c290bf57f))
+* upgrade renderer, do not break html structure ([b80d06b](https://github.com/TomaszKandula/TokanPages/commit/b80d06bdb47a008df5b10b0b95e7f6e884f2bfc9))
+
+
+### Features
+
+* add lazyloaded class ([68b56e6](https://github.com/TomaszKandula/TokanPages/commit/68b56e69a20692b0fa1ea43f1c49a63e676e47ff))
+
 ## [0.144.1](https://github.com/TomaszKandula/TokanPages/compare/v0.144.0...v0.144.1) (2025-02-22)
 
 
