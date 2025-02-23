@@ -1,3 +1,10 @@
+## [0.145.1](https://github.com/TomaszKandula/TokanPages/compare/v0.145.0...v0.145.1) (2025-02-23)
+
+
+### Bug Fixes
+
+* allow less tight santitization on snapshot event ([c757f97](https://github.com/TomaszKandula/TokanPages/commit/c757f9713120a7b6b4de08e6b5c051b2bcdb0bff))
+
 # [0.145.0](https://github.com/TomaszKandula/TokanPages/compare/v0.144.1...v0.145.0) (2025-02-23)
 
 
