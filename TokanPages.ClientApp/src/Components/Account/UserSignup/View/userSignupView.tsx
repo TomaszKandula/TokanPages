@@ -9,16 +9,15 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { LinkDto } from "../../../../Api/Models";
+import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { RedirectTo, TextFiedWithPassword } from "../../../../Shared/Components";
-import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { UserSignupProps } from "../userSignup";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     caption: string;
-    warning: string;
+    warning: WarningPasswordDto;
     consent: string;
     button: string;
     link: LinkDto;
@@ -144,7 +143,22 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         <Skeleton variant="rect" width="100%" height="45px" />
                                     ) : (
                                         <Alert severity="warning">
-                                            <ReactHtmlParser html={props.warning} />
+                                            <p className="signup-warning-text-pre">
+                                                {props.warning.textPre}
+                                            </p>
+                                            <ul className="signup-warning-text-list">
+                                            {props.warning.textList.map((value, index) => (
+                                                <li key={index}>
+                                                    {value}
+                                                </li>
+                                            ))}
+                                            </ul>
+                                            <p className="signup-warning-text-post">
+                                                {props.warning.textPost}
+                                            </p>
+                                            <a href={props.warning.textNist.href} target="_blank" rel="noopener nofollow">
+                                                {props.warning.textNist.text}
+                                            </a>
                                         </Alert>
                                     )}
                                 </Grid>

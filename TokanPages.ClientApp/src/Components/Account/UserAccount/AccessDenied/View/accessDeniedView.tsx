@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Button, Typography } from "@material-ui/core";
-import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { CustomDivider } from "../../../../../Shared/Components";
 import { AccessDeniedProps } from "../accessDenied";
 
@@ -43,7 +42,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />
                                     ) : (
-                                        <ReactHtmlParser html={props.accessDeniedPrompt} />
+                                        props.accessDeniedPrompt
                                     )}
                                 </Typography>
                             </div>

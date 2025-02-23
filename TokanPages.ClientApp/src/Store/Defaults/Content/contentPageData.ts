@@ -237,6 +237,7 @@ export const ContentPageData: ContentPageDataState = {
             caption: "",
             subtitle: "",
             description: "",
+            hint: "",
             action: {
                 text: "",
                 href: "",
@@ -479,7 +480,15 @@ export const ContentPageData: ContentPageDataState = {
                 text: "",
                 href: "",
             },
-            warning: "",
+            warning: {
+                textPre: "",
+                textList: [""],
+                textPost: "",
+                textNist: {
+                    text: "",
+                    href: ""
+                }
+            },
             consent: "",
             labelFirstName: "",
             labelLastName: "",

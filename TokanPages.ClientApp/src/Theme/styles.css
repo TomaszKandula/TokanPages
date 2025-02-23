@@ -637,6 +637,23 @@ body::backdrop {
     padding-bottom: 240px;
 }
 
+/* SIGNIUP COMPONENT */
+
+.signup-warning-text-pre {
+    margin: 0;
+}
+
+.signup-warning-text-post {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.signup-warning-text-list {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
 /* ACCESS DENIED COMPONENT */
 
 .access-denied-caption {
@@ -990,6 +1007,11 @@ body::backdrop {
 }
 
 .business-pricing-text {
+    color: #757575;
+}
+
+.business-pricing-value {
+    font-weight: 700 !important;
     color: #757575;
 }
 

@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
 import { CustomDivider } from "../../../../../Shared/Components";
@@ -49,7 +48,7 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" width="200px" />
                                             ) : (
-                                                <ReactHtmlParser html={props.section?.warningText} />
+                                                props.section?.warningText
                                             )}
                                         </Typography>
                                     </Grid>

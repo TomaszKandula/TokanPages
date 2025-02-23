@@ -8,7 +8,6 @@ import InfoIcon from "@material-ui/icons/Info";
 import WarningIcon from "@material-ui/icons/Warning";
 import ErrorIcon from "@material-ui/icons/Error";
 import { Divider, Typography } from "@material-ui/core";
-import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
 
 interface Properties {
@@ -47,13 +46,13 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
             <DialogTitle id="alert-dialog-title" className="dialog-box-title">
                 <div className="dialog-box-icon-holder">
                     <RenderIcon {...props} />
-                    <ReactHtmlParser html={props.title} />
+                    {props.title}
                 </div>
             </DialogTitle>
             <Divider />
             <DialogContent>
                 <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
-                    <ReactHtmlParser html={props.message} />
+                    {props.message}
                 </Typography>
             </DialogContent>
             <Divider />

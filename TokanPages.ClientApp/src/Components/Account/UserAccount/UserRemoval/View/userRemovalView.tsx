@@ -5,7 +5,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { SectionAccountRemoval } from "../../../../../Api/Models";
-import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { CustomDivider } from "../../../../../Shared/Components";
 import { UserRemovalProps } from "../userRemoval";
@@ -55,7 +54,7 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                                             {props.isLoading ? (
                                                 <Skeleton variant="text" width="200px" />
                                             ) : (
-                                                <ReactHtmlParser html={props.sectionAccountRemoval?.warningText} />
+                                                props.sectionAccountRemoval?.warningText
                                             )}
                                         </Typography>
                                     </Grid>
