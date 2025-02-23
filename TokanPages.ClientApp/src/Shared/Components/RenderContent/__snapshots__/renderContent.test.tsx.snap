@@ -152,7 +152,7 @@ Object {
       >
         <img
           alt="An image of presented article text"
-          class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
+          class="MuiCardMedia-root lazyloaded MuiCardMedia-media MuiCardMedia-img"
           loading="lazy"
           src="http://localhost:5000/api/v1image.jpg"
           title="Illustration"
@@ -327,7 +327,7 @@ Object {
       >
         <img
           alt="Video related to the presented article text"
-          class="MuiCardMedia-root render-video-image MuiCardMedia-media MuiCardMedia-img"
+          class="MuiCardMedia-root render-video-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
           loading="lazy"
           src="http://localhost:5000/api/v1cheers-commercial.png"
           title="Video"

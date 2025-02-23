@@ -12,13 +12,18 @@ interface RenderImageProps {
 }
 
 export const RenderImage = (props: RenderImageProps): React.ReactElement | null => {
+    let className = props.className;
+    if (props.className !== "" && !props.className.includes("lazyloaded")) {
+        className = `${className} lazyloaded`;
+    }
+
     return validate.isEmpty(props.source) || validate.isEmpty(props.base) ? null : (
         <img
             src={`${props.base}/${props.source}`}
             loading="lazy"
             width={props.width}
             height={props.height}
-            className={props.className}
+            className={className}
             alt={props.alt}
             title={props.title}
         />

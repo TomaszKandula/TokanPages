@@ -68,7 +68,7 @@ Object {
     <div>
       <img
         alt="An article test image"
-        class="style"
+        class="style lazyloaded"
         loading="lazy"
         src="http://localhost:5000//test-image.jpg"
       />
@@ -77,7 +77,7 @@ Object {
   "container": <div>
     <img
       alt="An article test image"
-      class="style"
+      class="style lazyloaded"
       loading="lazy"
       src="http://localhost:5000//test-image.jpg"
     />

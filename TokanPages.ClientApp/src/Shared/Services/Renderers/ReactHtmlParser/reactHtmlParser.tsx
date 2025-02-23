@@ -1,8 +1,6 @@
 import * as React from "react";
 import DOMPurify from "dompurify";
-
-type THeaders = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-type TComponent = THeaders | "p" | "span" | "div";
+import { TComponent } from "../../../../Shared/types";
 
 interface Properties {
     html: string;

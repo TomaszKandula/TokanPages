@@ -43,7 +43,7 @@ Object {
                   >
                     <img
                       alt="Picture of Joanna"
-                      class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                       title="Testimonials"
@@ -120,7 +120,7 @@ Object {
                   >
                     <img
                       alt="Picture of Adama"
-                      class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                       title="Testimonials"
@@ -194,7 +194,7 @@ Object {
                   >
                     <img
                       alt="Picture of Scott"
-                      class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
                       title="Testimonials"
@@ -301,7 +301,7 @@ Object {
                 >
                   <img
                     alt="Picture of Joanna"
-                    class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                     title="Testimonials"
@@ -378,7 +378,7 @@ Object {
                 >
                   <img
                     alt="Picture of Adama"
-                    class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                     title="Testimonials"
@@ -452,7 +452,7 @@ Object {
                 >
                   <img
                     alt="Picture of Scott"
-                    class="MuiCardMedia-root testimonials-card-image MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
                     title="Testimonials"

@@ -92,7 +92,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                         base: GET_ARTICLE_IMAGE_URL,
                                                         name: features?.image1,
                                                     })}
-                                                    className="article-features-media"
+                                                    className="article-features-media lazyloaded"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -111,7 +111,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                         base: GET_ARTICLE_IMAGE_URL,
                                                         name: features?.image2,
                                                     })}
-                                                    className="article-features-media"
+                                                    className="article-features-media lazyloaded"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -130,7 +130,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                         base: GET_ARTICLE_IMAGE_URL,
                                                         name: features?.image4,
                                                     })}
-                                                    className="article-features-media"
+                                                    className="article-features-media lazyloaded"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -149,7 +149,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                         base: GET_ARTICLE_IMAGE_URL,
                                                         name: features?.image4,
                                                     })}
-                                                    className="article-features-media"
+                                                    className="article-features-media lazyloaded"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />

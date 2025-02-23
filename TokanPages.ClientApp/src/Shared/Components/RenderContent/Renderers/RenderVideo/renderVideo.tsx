@@ -37,7 +37,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                     loading="lazy"
                     image={propUrl}
                     onClick={onClickEvent}
-                    className="render-video-image"
+                    className="render-video-image lazyloaded"
                     title="Video"
                     alt="Video related to the presented article text"
                     style={{

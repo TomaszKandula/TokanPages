@@ -47,7 +47,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                     base: GET_FEATURED_IMAGE_URL,
                                                     name: featured?.image1,
                                                 })}
-                                                className="featured-card-media"
+                                                className="featured-card-media lazyloaded"
                                                 title="Illustration"
                                                 alt={featured?.title1}
                                             />
@@ -87,7 +87,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                     base: GET_FEATURED_IMAGE_URL,
                                                     name: featured?.image2,
                                                 })}
-                                                className="featured-card-media"
+                                                className="featured-card-media lazyloaded"
                                                 title="Illustration"
                                                 alt={featured?.title2}
                                             />
@@ -127,7 +127,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                     base: GET_FEATURED_IMAGE_URL,
                                                     name: featured?.image3,
                                                 })}
-                                                className="featured-card-media"
+                                                className="featured-card-media lazyloaded"
                                                 title="Illustration"
                                                 alt={featured?.title3}
                                             />
