@@ -38,14 +38,7 @@ Object {
                   <span
                     class="MuiTypography-root access-denied-prompt MuiTypography-body1"
                   >
-                    <div>
-                      <p>
-                        You do not have access to this page.
-                      </p>
-                      <p>
-                        If you believe this is an error, please contact IT support.
-                      </p>
-                    </div>
+                    &lt;p&gt;You do not have access to this page.&lt;/p&gt;&lt;p&gt;If you believe this is an error, please contact IT support.&lt;/p&gt;
                   </span>
                 </div>
                 <a
@@ -109,14 +102,7 @@ Object {
                 <span
                   class="MuiTypography-root access-denied-prompt MuiTypography-body1"
                 >
-                  <div>
-                    <p>
-                      You do not have access to this page.
-                    </p>
-                    <p>
-                      If you believe this is an error, please contact IT support.
-                    </p>
-                  </div>
+                  &lt;p&gt;You do not have access to this page.&lt;/p&gt;&lt;p&gt;If you believe this is an error, please contact IT support.&lt;/p&gt;
                 </span>
               </div>
               <a

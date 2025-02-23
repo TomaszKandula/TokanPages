@@ -44,11 +44,7 @@ Object {
                       <span
                         class="MuiTypography-root label MuiTypography-body1"
                       >
-                        <div>
-                          <p>
-                            You can deactivate the account...
-                          </p>
-                        </div>
+                        &lt;p&gt;You can deactivate the account...&lt;/p&gt;
                       </span>
                     </div>
                   </div>
@@ -129,11 +125,7 @@ Object {
                     <span
                       class="MuiTypography-root label MuiTypography-body1"
                     >
-                      <div>
-                        <p>
-                          You can deactivate the account...
-                        </p>
-                      </div>
+                      &lt;p&gt;You can deactivate the account...&lt;/p&gt;
                     </span>
                   </div>
                 </div>

@@ -44,14 +44,7 @@ Object {
                       <span
                         class="MuiTypography-root label MuiTypography-body1"
                       >
-                        <div>
-                          <p>
-                            Warning!
-                          </p>
-                          <p>
-                            Once you remove your existing account, you will lose all your data...
-                          </p>
-                        </div>
+                        &lt;p&gt;Warning!&lt;/p&gt;&lt;p&gt;Once you remove your existing account, you will lose all your data...&lt;/p&gt;
                       </span>
                     </div>
                   </div>
@@ -148,14 +141,7 @@ Object {
                     <span
                       class="MuiTypography-root label MuiTypography-body1"
                     >
-                      <div>
-                        <p>
-                          Warning!
-                        </p>
-                        <p>
-                          Once you remove your existing account, you will lose all your data...
-                        </p>
-                      </div>
+                      &lt;p&gt;Warning!&lt;/p&gt;&lt;p&gt;Once you remove your existing account, you will lose all your data...&lt;/p&gt;
                     </span>
                   </div>
                 </div>

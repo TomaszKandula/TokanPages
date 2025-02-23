@@ -285,9 +285,39 @@ Object {
                       <div
                         class="MuiAlert-message"
                       >
-                        <div>
-                          Please use...
-                        </div>
+                        <p
+                          class="signup-warning-text-pre"
+                        >
+                          Password requirements:
+                        </p>
+                        <ul
+                          class="signup-warning-text-list"
+                        >
+                          <li>
+                            between 15..50 characters
+                          </li>
+                          <li>
+                            minimum one large letter
+                          </li>
+                          <li>
+                            minimum one small letter
+                          </li>
+                          <li>
+                            minimum one number
+                          </li>
+                        </ul>
+                        <p
+                          class="signup-warning-text-post"
+                        >
+                          We recommend to use password generator...
+                        </p>
+                        <a
+                          href="https://www.fbi.gov"
+                          rel="noopener nofollow"
+                          target="_blank"
+                        >
+                          FBI on passphrases and account protection
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -645,9 +675,39 @@ Object {
                     <div
                       class="MuiAlert-message"
                     >
-                      <div>
-                        Please use...
-                      </div>
+                      <p
+                        class="signup-warning-text-pre"
+                      >
+                        Password requirements:
+                      </p>
+                      <ul
+                        class="signup-warning-text-list"
+                      >
+                        <li>
+                          between 15..50 characters
+                        </li>
+                        <li>
+                          minimum one large letter
+                        </li>
+                        <li>
+                          minimum one small letter
+                        </li>
+                        <li>
+                          minimum one number
+                        </li>
+                      </ul>
+                      <p
+                        class="signup-warning-text-post"
+                      >
+                        We recommend to use password generator...
+                      </p>
+                      <a
+                        href="https://www.fbi.gov"
+                        rel="noopener nofollow"
+                        target="_blank"
+                      >
+                        FBI on passphrases and account protection
+                      </a>
                     </div>
                   </div>
                 </div>
