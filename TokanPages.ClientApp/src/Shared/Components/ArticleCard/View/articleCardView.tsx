@@ -36,7 +36,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                     component="img"
                     loading="lazy"
                     image={props.imageUrl}
-                    className="article-card-image"
+                    className="article-card-image lazyloaded"
                     title="Article illustration"
                     alt="An article card for given article"
                 />

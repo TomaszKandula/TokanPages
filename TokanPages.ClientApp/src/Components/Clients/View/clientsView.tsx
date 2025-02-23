@@ -37,6 +37,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
                         title="Clients"
                         height={item.heigh}
                         width={item.width}
+                        className="lazyloaded"
                     />
                 </div>
             ))}

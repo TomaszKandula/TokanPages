@@ -51,7 +51,7 @@ Object {
                     >
                       <img
                         alt="Somebody"
-                        class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
                         title="Illustration"
@@ -61,7 +61,7 @@ Object {
                       >
                         <img
                           alt="Somebody"
-                          class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
                           title="Socials"
@@ -130,7 +130,7 @@ Object {
                     >
                       <img
                         alt="Somebody"
-                        class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
                         title="Illustration"
@@ -140,7 +140,7 @@ Object {
                       >
                         <img
                           alt="Somebody"
-                          class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
                           title="Socials"
@@ -206,7 +206,7 @@ Object {
                     >
                       <img
                         alt="TomKandula"
-                        class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
                         title="Illustration"
@@ -216,7 +216,7 @@ Object {
                       >
                         <img
                           alt="TomKandula"
-                          class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
                           title="Socials"
@@ -315,7 +315,7 @@ Object {
                   >
                     <img
                       alt="Somebody"
-                      class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
                       title="Illustration"
@@ -325,7 +325,7 @@ Object {
                     >
                       <img
                         alt="Somebody"
-                        class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
                         title="Socials"
@@ -394,7 +394,7 @@ Object {
                   >
                     <img
                       alt="Somebody"
-                      class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
                       title="Illustration"
@@ -404,7 +404,7 @@ Object {
                     >
                       <img
                         alt="Somebody"
-                        class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
                         title="Socials"
@@ -470,7 +470,7 @@ Object {
                   >
                     <img
                       alt="TomKandula"
-                      class="MuiCardMedia-root socials-card-media MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
                       title="Illustration"
@@ -480,7 +480,7 @@ Object {
                     >
                       <img
                         alt="TomKandula"
-                        class="MuiCardMedia-root socials-card-image MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
                         title="Socials"

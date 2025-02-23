@@ -11,7 +11,7 @@ Object {
         >
           <img
             alt="An article card for given article"
-            class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+            class="MuiCardMedia-root article-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
             loading="lazy"
             src="/images/card.jpg"
             title="Article illustration"
@@ -89,7 +89,7 @@ Object {
                   />
                   <img
                     alt="An article language flag"
-                    class="article-flag-image"
+                    class="article-flag-image lazyloaded"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                     title="Articles"
@@ -127,7 +127,7 @@ Object {
       >
         <img
           alt="An article card for given article"
-          class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+          class="MuiCardMedia-root article-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
           loading="lazy"
           src="/images/card.jpg"
           title="Article illustration"
@@ -205,7 +205,7 @@ Object {
                 />
                 <img
                   alt="An article language flag"
-                  class="article-flag-image"
+                  class="article-flag-image lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   title="Articles"

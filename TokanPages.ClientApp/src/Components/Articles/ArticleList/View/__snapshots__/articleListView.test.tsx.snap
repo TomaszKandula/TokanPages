@@ -29,7 +29,7 @@ Object {
                   >
                     <img
                       alt="An article card for given article"
-                      class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+                      class="MuiCardMedia-root article-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
                       title="Article illustration"
@@ -107,7 +107,7 @@ Object {
                             />
                             <img
                               alt="An article language flag"
-                              class="article-flag-image"
+                              class="article-flag-image lazyloaded"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                               title="Articles"
@@ -166,7 +166,7 @@ Object {
                 >
                   <img
                     alt="An article card for given article"
-                    class="MuiCardMedia-root article-card-image MuiCardMedia-media MuiCardMedia-img"
+                    class="MuiCardMedia-root article-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
                     title="Article illustration"
@@ -244,7 +244,7 @@ Object {
                           />
                           <img
                             alt="An article language flag"
-                            class="article-flag-image"
+                            class="article-flag-image lazyloaded"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                             title="Articles"

@@ -110,7 +110,7 @@ Object {
                       >
                         <img
                           alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
                           title="Illustration"
@@ -125,7 +125,7 @@ Object {
                       >
                         <img
                           alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
                           title="Illustration"
@@ -140,7 +140,7 @@ Object {
                       >
                         <img
                           alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                           title="Illustration"
@@ -155,7 +155,7 @@ Object {
                       >
                         <img
                           alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                           title="Illustration"
@@ -277,7 +277,7 @@ Object {
                     >
                       <img
                         alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
                         title="Illustration"
@@ -292,7 +292,7 @@ Object {
                     >
                       <img
                         alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
                         title="Illustration"
@@ -307,7 +307,7 @@ Object {
                     >
                       <img
                         alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                         title="Illustration"
@@ -322,7 +322,7 @@ Object {
                     >
                       <img
                         alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                         title="Illustration"
