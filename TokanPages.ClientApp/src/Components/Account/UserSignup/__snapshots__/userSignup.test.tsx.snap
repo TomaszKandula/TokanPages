@@ -241,7 +241,19 @@ Object {
                       <div
                         class="MuiAlert-message"
                       >
-                        <div />
+                        <p
+                          class="signup-warning-text-pre"
+                        />
+                        <ul
+                          class="signup-warning-text-list"
+                        />
+                        <p
+                          class="signup-warning-text-post"
+                        />
+                        <a
+                          rel="noopener nofollow"
+                          target="_blank"
+                        />
                       </div>
                     </div>
                   </div>
@@ -549,7 +561,19 @@ Object {
                     <div
                       class="MuiAlert-message"
                     >
-                      <div />
+                      <p
+                        class="signup-warning-text-pre"
+                      />
+                      <ul
+                        class="signup-warning-text-list"
+                      />
+                      <p
+                        class="signup-warning-text-post"
+                      />
+                      <a
+                        rel="noopener nofollow"
+                        target="_blank"
+                      />
                     </div>
                   </div>
                 </div>
