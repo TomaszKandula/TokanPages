@@ -144,20 +144,20 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     ) : (
                                         <Alert severity="warning">
                                             <p className="signup-warning-text-pre">
-                                                {props.warning.textPre}
+                                                {props.warning?.textPre}
                                             </p>
                                             <ul className="signup-warning-text-list">
-                                            {props.warning.textList.map((value, index) => (
+                                            {props.warning?.textList?.map((value, index) => (
                                                 <li key={index}>
                                                     {value}
                                                 </li>
                                             ))}
                                             </ul>
                                             <p className="signup-warning-text-post">
-                                                {props.warning.textPost}
+                                                {props.warning?.textPost}
                                             </p>
-                                            <a href={props.warning.textNist.href} target="_blank" rel="noopener nofollow">
-                                                {props.warning.textNist.text}
+                                            <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
+                                                {props.warning?.textNist?.text}
                                             </a>
                                         </Alert>
                                     )}
