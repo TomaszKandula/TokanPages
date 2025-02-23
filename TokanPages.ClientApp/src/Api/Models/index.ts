@@ -128,4 +128,5 @@ export type {
     PricingDto,
     TechItemsDto,
     ServiceItemDto,
+    WarningPasswordDto,
 } from "./Components/Common/";

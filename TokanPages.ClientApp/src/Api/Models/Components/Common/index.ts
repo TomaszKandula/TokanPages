@@ -1,3 +1,4 @@
+export type { WarningPasswordDto } from "./warningPasswordDto";
 export type { ContentDto } from "./contentDto";
 export type { DescriptionItemDto } from "./descriptionItemDto";
 export type { IconDto } from "./iconDto";

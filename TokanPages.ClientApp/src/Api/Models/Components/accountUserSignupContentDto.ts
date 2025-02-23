@@ -1,11 +1,11 @@
-import { LinkDto } from "./Common";
+import { LinkDto, WarningPasswordDto } from "./Common";
 
 export interface AccountUserSignupContentDto {
     language: string;
     caption: string;
     button: string;
     link: LinkDto;
-    warning: string;
+    warning: WarningPasswordDto;
     consent: string;
     labelFirstName: string;
     labelLastName: string;
