@@ -12,7 +12,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { RedirectTo, TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, RenderList, TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
@@ -142,17 +142,11 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     {props.isLoading ? (
                                         <Skeleton variant="rect" width="100%" height="45px" />
                                     ) : (
-                                        <Alert severity="warning">
+                                        <Alert severity="info">
                                             <p className="signup-warning-text-pre">
                                                 {props.warning?.textPre}
                                             </p>
-                                            <ul className="signup-warning-text-list">
-                                            {props.warning?.textList?.map((value, index) => (
-                                                <li key={index}>
-                                                    {value}
-                                                </li>
-                                            ))}
-                                            </ul>
+                                            <RenderList list={props.warning?.textList} className="signup-warning-text-list" />
                                             <p className="signup-warning-text-post">
                                                 {props.warning?.textPost}
                                             </p>
