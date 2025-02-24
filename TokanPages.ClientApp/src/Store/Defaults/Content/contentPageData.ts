@@ -22,7 +22,7 @@ export const ContentPageData: ContentPageDataState = {
             language: "",
             sectionAccessDenied: {
                 accessDeniedCaption: "",
-                accessDeniedPrompt: "",
+                accessDeniedPrompt: [""],
                 homeButtonText: "",
             },
             sectionAccountInformation: {
@@ -51,12 +51,12 @@ export const ContentPageData: ContentPageDataState = {
             },
             sectionAccountDeactivation: {
                 caption: "",
-                warningText: "",
+                warningText: [""],
                 deactivateButtonText: "",
             },
             sectionAccountRemoval: {
                 caption: "",
-                warningText: "",
+                warningText: [""],
                 deleteButtonText: "",
             },
         },

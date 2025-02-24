@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { SectionAccountRemoval } from "../../../../../Api/Models";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { CustomDivider } from "../../../../../Shared/Components";
+import { CustomDivider, RenderParagraphs } from "../../../../../Shared/Components";
 import { UserRemovalProps } from "../userRemoval";
 
 interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
@@ -50,13 +50,11 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                             <div className="pt-8 pb-8">
                                 <Grid container spacing={2}>
                                     <Grid item>
-                                        <Typography component="span" className="label">
-                                            {props.isLoading ? (
-                                                <Skeleton variant="text" width="200px" />
-                                            ) : (
-                                                props.sectionAccountRemoval?.warningText
-                                            )}
-                                        </Typography>
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" width="200px" />
+                                        ) : (
+                                            <RenderParagraphs text={props.sectionAccountRemoval?.warningText} className="label user-account-text-item" />
+                                        )}
                                     </Grid>
                                 </Grid>
 

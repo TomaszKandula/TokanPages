@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
-import { CustomDivider } from "../../../../../Shared/Components";
+import { CustomDivider, RenderParagraphs } from "../../../../../Shared/Components";
 import { UserDeactivationProps } from "../userDeactivation";
 
 interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
@@ -44,13 +44,11 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                             <div className="pt-8 pb-8">
                                 <Grid container spacing={2}>
                                     <Grid item>
-                                        <Typography component="span" className="label">
-                                            {props.isLoading ? (
-                                                <Skeleton variant="text" width="200px" />
-                                            ) : (
-                                                props.section?.warningText
-                                            )}
-                                        </Typography>
+                                        {props.isLoading ? (
+                                            <Skeleton variant="text" width="200px" />
+                                        ) : (
+                                            <RenderParagraphs text={props.section?.warningText} className="label user-account-text-item" />
+                                        )}
                                     </Grid>
                                 </Grid>
                                 <CustomDivider mt={15} mb={15} />

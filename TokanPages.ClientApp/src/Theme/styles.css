@@ -711,6 +711,11 @@ body::backdrop {
     }
 }
 
+.user-account-text-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 /* USER INFO COMPONENT */
 
 .backdrop {
