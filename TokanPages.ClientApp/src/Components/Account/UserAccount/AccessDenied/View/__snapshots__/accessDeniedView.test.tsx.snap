@@ -38,7 +38,16 @@ Object {
                   <span
                     class="MuiTypography-root access-denied-prompt MuiTypography-body1"
                   >
-                    &lt;p&gt;You do not have access to this page.&lt;/p&gt;&lt;p&gt;If you believe this is an error, please contact IT support.&lt;/p&gt;
+                    <p
+                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                    >
+                      You do not have access to this page.
+                    </p>
+                    <p
+                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                    >
+                      If you believe this is an error, please contact IT support.
+                    </p>
                   </span>
                 </div>
                 <a
@@ -102,7 +111,16 @@ Object {
                 <span
                   class="MuiTypography-root access-denied-prompt MuiTypography-body1"
                 >
-                  &lt;p&gt;You do not have access to this page.&lt;/p&gt;&lt;p&gt;If you believe this is an error, please contact IT support.&lt;/p&gt;
+                  <p
+                    class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                  >
+                    You do not have access to this page.
+                  </p>
+                  <p
+                    class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                  >
+                    If you believe this is an error, please contact IT support.
+                  </p>
                 </span>
               </div>
               <a

@@ -41,11 +41,16 @@ Object {
                     <div
                       class="MuiGrid-root MuiGrid-item"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
                       >
-                        &lt;p&gt;Warning!&lt;/p&gt;&lt;p&gt;Once you remove your existing account, you will lose all your data...&lt;/p&gt;
-                      </span>
+                        Warning!
+                      </p>
+                      <p
+                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                      >
+                        Once you remove your existing account, you will lose all your data...
+                      </p>
                     </div>
                   </div>
                   <div
@@ -138,11 +143,16 @@ Object {
                   <div
                     class="MuiGrid-root MuiGrid-item"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
                     >
-                      &lt;p&gt;Warning!&lt;/p&gt;&lt;p&gt;Once you remove your existing account, you will lose all your data...&lt;/p&gt;
-                    </span>
+                      Warning!
+                    </p>
+                    <p
+                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                    >
+                      Once you remove your existing account, you will lose all your data...
+                    </p>
                   </div>
                 </div>
                 <div
