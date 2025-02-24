@@ -451,6 +451,10 @@ body::backdrop {
     color: white !important;
 }
 
+.list-box {
+    margin: 0;
+}
+
 /* POINTERS */
 
 .pointer-not-allowed {
