@@ -104,7 +104,6 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
                 surnameInvalid: template.templates.password.surnameInvalid,
                 passwordInvalid: template.templates.password.passwordInvalid,
                 missingTerms: template.templates.password.missingTerms,
-                missingChar: template.templates.password.missingChar,
                 missingLargeLetter: template.templates.password.missingLargeLetter,
                 missingNumber: template.templates.password.missingNumber,
                 missingSmallLetter: template.templates.password.missingSmallLetter,

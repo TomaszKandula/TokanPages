@@ -337,7 +337,6 @@ export const ContentPageData: ContentPageDataState = {
                     surnameInvalid: "",
                     passwordInvalid: "",
                     missingTerms: "",
-                    missingChar: "",
                     missingNumber: "",
                     missingLargeLetter: "",
                     missingSmallLetter: "",

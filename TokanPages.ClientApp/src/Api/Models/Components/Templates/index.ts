@@ -23,7 +23,6 @@ export interface PasswordProps {
     surnameInvalid: string;
     passwordInvalid: string;
     missingTerms: string;
-    missingChar: string;
     missingNumber: string;
     missingLargeLetter: string;
     missingSmallLetter: string;
