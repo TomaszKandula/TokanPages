@@ -20,6 +20,10 @@ const GetListItem = (props: RenderListProps): React.ReactElement => {
 }
 
 export const RenderList = (props: RenderListProps): React.ReactElement => {
+    if (!props.list) {
+        return <></>;
+    }
+
     const className = Validate.isEmpty(props.className) 
     ? "list-box" 
     : `list-box ${props.className}`;
