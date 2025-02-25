@@ -14,7 +14,7 @@ interface Properties extends ApplicationDialogState {
 const DialogState: Properties = {
     state: false,
     title: "",
-    message: [""],
+    message: undefined,
     icon: IconType.info,
 };
 
@@ -32,7 +32,7 @@ export const ApplicationDialogBox = (): React.ReactElement => {
     }, [dispatch, dialogState]);
 
     const raiseDialog = React.useCallback(() => {
-        if (!Validate.isEmpty(dialog?.message)) {
+        if (dialog?.message && dialog?.message?.length !== 0) {
             setDialogState({
                 state: true,
                 title: dialog?.title,

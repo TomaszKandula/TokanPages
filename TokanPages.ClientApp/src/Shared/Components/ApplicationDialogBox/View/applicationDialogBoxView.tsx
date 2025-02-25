@@ -9,12 +9,13 @@ import WarningIcon from "@material-ui/icons/Warning";
 import ErrorIcon from "@material-ui/icons/Error";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../../enums";
+import { RenderParagraphs } from "Shared/Components/RenderParagraphs/renderParagraphs";
 
 interface Properties {
     state: boolean;
     icon: IconType;
     title: string;
-    message: string[];
+    message: string[] | undefined;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
@@ -52,7 +53,7 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
             <Divider />
             <DialogContent>
                 <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
-                    {props.message}
+                    <RenderParagraphs text={props.message ?? []} />
                 </Typography>
             </DialogContent>
             <Divider />
