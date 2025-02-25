@@ -14,7 +14,7 @@ interface Properties extends ApplicationDialogState {
 const DialogState: Properties = {
     state: false,
     title: "",
-    message: "",
+    message: [""],
     icon: IconType.info,
 };
 

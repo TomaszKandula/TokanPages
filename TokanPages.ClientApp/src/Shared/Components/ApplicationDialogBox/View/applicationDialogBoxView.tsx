@@ -14,7 +14,7 @@ interface Properties {
     state: boolean;
     icon: IconType;
     title: string;
-    message: string;
+    message: string[];
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
