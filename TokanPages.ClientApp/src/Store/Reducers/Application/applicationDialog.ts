@@ -16,7 +16,7 @@ export const ApplicationDialog: Reducer<ApplicationDialogState> = (
         case CLEAR:
             return {
                 title: "",
-                message: "",
+                message: [""],
                 icon: IconType.info,
             };
         case RAISE:
