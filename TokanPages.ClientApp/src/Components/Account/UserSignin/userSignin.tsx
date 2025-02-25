@@ -2,10 +2,9 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { OperationStatus } from "../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
-import { GetTextWarning, WarningMessage } from "../../../Shared/Services/Utilities";
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSigninView } from "./View/userSigninView";
@@ -42,10 +41,6 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
 
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
-
-    const showWarning = (text: string) => {
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSigning, text)));
-    };
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
@@ -107,7 +102,11 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: template.templates.user.signingWarning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textSigning,
+            message: template.templates.user.signingWarning,
+            icon: IconType.warning
+        }));
     }, [form, template]);
 
     return (

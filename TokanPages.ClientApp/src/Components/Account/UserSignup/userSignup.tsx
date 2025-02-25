@@ -1,10 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { OperationStatus } from "../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSignupView } from "./View/userSignupView";
@@ -50,11 +49,6 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const [form, setForm] = React.useState(defaultForm);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textSignup, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textSignup, text)));
-
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setHasProgress(false);
@@ -85,7 +79,11 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(defaultForm);
-            showSuccess(template.templates.user.signupSuccess);
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textSignup,
+                message: template.templates.user.signupSuccess,
+                icon: IconType.info
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -134,7 +132,11 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: template.templates.user.signupWarning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textSignup,
+            message: template.templates.user.signupWarning,
+            icon: IconType.warning
+        }));
     }, [form, template]);
 
     return (

@@ -13,10 +13,9 @@ import { ExecuteAsync, GetConfiguration, NOTIFICATION_STATUS, RequestContract } 
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
 import { useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../../Shared/Services/Utilities";
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
-import { OperationStatus } from "../../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
@@ -65,10 +64,6 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const [hasProgress, setHasProgress] = React.useState(false);
     const [canUpdateStore, setUpdateStore] = React.useState<UpdateStoreProps | undefined>(undefined);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -113,7 +108,12 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: template.templates.user.updateWarning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textAccountSettings,
+            message: template.templates.user.updateWarning,
+            icon: IconType.warning
+        }));
+
     }, [form]);
 
     const verifyButtonHandler = React.useCallback(() => {
@@ -153,9 +153,11 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 })
             );
 
-            showSuccess(
-                isUserActivated.checked ? template.templates.user.updateSuccess : template.templates.user.deactivation
-            );
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: isUserActivated.checked ? template.templates.user.updateSuccess : template.templates.user.deactivation,
+                icon: IconType.info
+            }));
 
             clear();
         }
@@ -203,7 +205,11 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             setRequesting(false);
             setCheckAltStatus(true);
             dispatch(UserEmailVerificationAction.clear());
-            showSuccess(template.templates.user.emailVerification);
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.user.emailVerification,
+                icon: IconType.info
+            }));
         }
     }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished]);
 

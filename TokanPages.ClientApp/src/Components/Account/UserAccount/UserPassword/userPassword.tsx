@@ -1,10 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { OperationStatus } from "../../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../../Shared/Services/Utilities";
 import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { UserPasswordView } from "./View/userPasswordView";
@@ -47,11 +46,6 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
-
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
 
@@ -73,7 +67,11 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
 
         if (hasFinished) {
             clear();
-            showSuccess(template.templates.password.updateSuccess);
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.password.updateSuccess,
+                icon: IconType.info
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -115,7 +113,11 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: template.templates.password.updateWarning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textAccountSettings,
+            message: template.templates.password.updateWarning,
+            icon: IconType.warning
+        }));
     }, [form]);
 
     return (
