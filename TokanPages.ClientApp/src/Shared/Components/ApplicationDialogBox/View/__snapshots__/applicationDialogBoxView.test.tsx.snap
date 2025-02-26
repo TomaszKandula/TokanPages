@@ -64,7 +64,16 @@ Object {
                 class="MuiTypography-root dialog-box-description MuiTypography-body1"
                 id="alert-dialog-description"
               >
-                Test message
+                <p
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Test item 1
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Test item 2
+                </p>
               </span>
             </div>
             <hr
@@ -164,7 +173,16 @@ Object {
               class="MuiTypography-root dialog-box-description MuiTypography-body1"
               id="alert-dialog-description"
             >
-              Test message
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                Test item 1
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                Test item 2
+              </p>
             </span>
           </div>
           <hr
