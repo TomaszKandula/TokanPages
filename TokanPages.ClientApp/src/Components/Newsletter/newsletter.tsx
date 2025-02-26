@@ -84,6 +84,7 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
         dispatch(ApplicationDialogAction.raise({
             title: template.forms.textNewsletter,
             message: template.templates.newsletter.warning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [form, template]);

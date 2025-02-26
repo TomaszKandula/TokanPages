@@ -94,6 +94,7 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
         dispatch(ApplicationDialogAction.raise({
             title: template.forms.textNewsletter,
             message: template.templates.newsletter.warning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [props.id, form, template]);

@@ -120,6 +120,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         dispatch(ApplicationDialogAction.raise({
             title: templates.forms.textContactForm,
             message: templates.templates.messageOut.warning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [form, templates]);

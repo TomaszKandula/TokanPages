@@ -135,6 +135,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
         dispatch(ApplicationDialogAction.raise({
             title: template.forms.textSignup,
             message: template.templates.user.signupWarning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [form, template]);

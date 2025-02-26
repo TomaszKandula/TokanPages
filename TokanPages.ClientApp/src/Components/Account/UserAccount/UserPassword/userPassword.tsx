@@ -116,6 +116,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
         dispatch(ApplicationDialogAction.raise({
             title: template.forms.textAccountSettings,
             message: template.templates.password.updateWarning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [form]);

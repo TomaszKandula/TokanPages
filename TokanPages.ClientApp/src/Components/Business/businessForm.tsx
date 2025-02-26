@@ -225,6 +225,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         dispatch(ApplicationDialogAction.raise({
             title: templates.forms.textBusinessForm,
             message: templates.templates.messageOut.warning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [form, templates, services, techStackItems]);

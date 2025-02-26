@@ -109,7 +109,7 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
     );
 
     const buttonHandler = React.useCallback(() => {
-        let results = ValidateUpdateForm({
+        let result = ValidateUpdateForm({
             newPassword: form.newPassword,
             verifyPassword: form.verifyPassword,
             content: {
@@ -124,7 +124,7 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
             },
         });
 
-        if (!Validate.isDefined(results)) {
+        if (!Validate.isDefined(result)) {
             setHasProgress(true);
             return;
         }
@@ -132,6 +132,7 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
         dispatch(ApplicationDialogAction.raise({
             title: template.forms.textAccountSettings,
             message: template.templates.password.updateWarning,
+            validation: result,
             icon: IconType.warning
         }));
     }, [form, template]);

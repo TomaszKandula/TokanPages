@@ -111,6 +111,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         dispatch(ApplicationDialogAction.raise({
             title: template.forms.textAccountSettings,
             message: template.templates.user.updateWarning,
+            validation: result,
             icon: IconType.warning
         }));
 

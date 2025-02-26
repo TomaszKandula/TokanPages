@@ -81,8 +81,8 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     );
 
     const buttonHandler = React.useCallback(() => {
-        let results = ValidateResetForm({ email: form.email });
-        if (!Validate.isDefined(results)) {
+        let result = ValidateResetForm({ email: form.email });
+        if (!Validate.isDefined(result)) {
             setHasProgress(true);
             return;
         }
@@ -90,6 +90,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
         dispatch(ApplicationDialogAction.raise({ 
             title: template.forms.textPasswordReset, 
             message: template.templates.password.resetWarning, 
+            validation: result,
             icon: IconType.warning 
         }));
     }, [form, template]);
