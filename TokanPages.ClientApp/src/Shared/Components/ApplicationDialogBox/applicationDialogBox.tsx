@@ -22,6 +22,7 @@ export const ApplicationDialogBox = (): React.ReactElement => {
             icon={dialog?.icon}
             title={dialog?.title}
             message={dialog?.message}
+            validation={dialog?.validation}
             closeHandler={onClickHandler}
         />
     );

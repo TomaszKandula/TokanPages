@@ -10,12 +10,14 @@ import ErrorIcon from "@material-ui/icons/Error";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../../enums";
 import { RenderParagraphs } from "../../../../Shared/Components/RenderParagraphs/renderParagraphs";
+import { RenderList } from "../../../../Shared/Components/RenderList/renderList";
 
 interface Properties {
     state: boolean;
     icon: IconType | undefined;
     title: string | undefined;
     message: string[] | undefined;
+    validation?: object | undefined;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
@@ -34,7 +36,23 @@ const RenderIcon = (props: Properties): React.ReactElement | null => {
     }
 };
 
-const RenderDialogContent = (props: Properties) => {
+const RenderValidationList = (props: Properties): React.ReactElement => {
+    const validation = props.validation;
+
+    let result: string[] = [];
+    if (validation) {
+        Object.keys(validation).forEach((key, _) => {
+            const key1 = key as keyof typeof validation;
+            const data = validation[key1];
+
+            result.push(data);
+        });
+    }
+
+    return <RenderList list={result} />;
+}
+
+const RenderDialogContent = (props: Properties): React.ReactElement => {
     return (
         <>
             <DialogTitle id="alert-dialog-title" className="dialog-box-title">
@@ -46,7 +64,13 @@ const RenderDialogContent = (props: Properties) => {
             <Divider />
             <DialogContent>
                 <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
-                    <RenderParagraphs text={props.message ?? []} />
+                    <RenderParagraphs 
+                        text={props.message ?? []}
+                        replace={{
+                            key: "{LIST}",
+                            object: <RenderValidationList {...props} />
+                        }}
+                    />
                 </Typography>
             </DialogContent>
             <Divider />
@@ -59,7 +83,7 @@ const RenderDialogContent = (props: Properties) => {
     );
 }
 
-const RenderDialogBox = (props: Properties) => {
+const RenderDialogBox = (props: Properties): React.ReactElement => {
     const hasTitle = props?.title !== undefined;
     const hasIcon = props?.icon !== undefined;
     const hasMessage = props?.message && props?.message?.length !== 0;
