@@ -13,15 +13,15 @@ import { RenderParagraphs } from "Shared/Components/RenderParagraphs/renderParag
 
 interface Properties {
     state: boolean;
-    icon: IconType;
-    title: string;
+    icon: IconType | undefined;
+    title: string | undefined;
     message: string[] | undefined;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
 }
 
-const RenderIcon = (props: Properties): React.ReactElement => {
+const RenderIcon = (props: Properties): React.ReactElement | null => {
     switch (props.icon) {
         case IconType.info:
             return <InfoIcon className="dialog-box-info-icon" />;
@@ -30,20 +30,13 @@ const RenderIcon = (props: Properties): React.ReactElement => {
         case IconType.error:
             return <ErrorIcon className="dialog-box-error-icon" />;
         default:
-            return <InfoIcon className="dialog-box-info-icon" />;
+            return null;
     }
 };
 
-export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
+const RenderDialogContent = (props: Properties) => {
     return (
-        <Dialog
-            open={props.state}
-            onClose={props.closeHandler}
-            disablePortal={props.disablePortal}
-            hideBackdrop={props.hideBackdrop}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-        >
+        <>
             <DialogTitle id="alert-dialog-title" className="dialog-box-title">
                 <div className="dialog-box-icon-holder">
                     <RenderIcon {...props} />
@@ -62,6 +55,31 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
                     OK
                 </Button>
             </DialogActions>
+        </>
+    );
+}
+
+const RenderDialogBox = (props: Properties) => {
+    const hasTitle = props?.title !== undefined;
+    const hasIcon = props?.icon !== undefined;
+    const hasMessage = props?.message && props?.message?.length !== 0;
+
+    return (
+        <Dialog
+            open={props.state}
+            onClose={props.closeHandler}
+            disablePortal={props.disablePortal}
+            hideBackdrop={props.hideBackdrop}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            {hasTitle && hasIcon && hasMessage 
+            ? <RenderDialogContent {...props} /> 
+            : <></>}
         </Dialog>
     );
+} 
+
+export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
+    return <RenderDialogBox {...props} />;
 };

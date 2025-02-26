@@ -1,7 +1,6 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDialogState } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
-import { IconType } from "../../../Shared/enums";
 
 import { CLEAR, RAISE, TDialogActions } from "../../Actions/Application/applicationDialog";
 
@@ -15,10 +14,10 @@ export const ApplicationDialog: Reducer<ApplicationDialogState> = (
     switch (action.type) {
         case CLEAR:
             return {
-                title: "",
+                title: undefined,
                 message: undefined,
                 validation: undefined,
-                icon: IconType.info,
+                icon: undefined,
             };
         case RAISE:
             return {
