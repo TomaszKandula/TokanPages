@@ -9,7 +9,7 @@ export const ApplicationDialogBox = (): React.ReactElement => {
     const dialog = useSelector((state: ApplicationState) => state.applicationDialog);
 
     const onClickHandler = React.useCallback(() => {
-            dispatch(ApplicationDialogAction.clear());
+        dispatch(ApplicationDialogAction.clear());
     }, []);
 
     const hasTitle = dialog?.title !== undefined;
