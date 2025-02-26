@@ -9,7 +9,7 @@ import WarningIcon from "@material-ui/icons/Warning";
 import ErrorIcon from "@material-ui/icons/Error";
 import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../../enums";
-import { RenderParagraphs } from "Shared/Components/RenderParagraphs/renderParagraphs";
+import { RenderParagraphs } from "../../../../Shared/Components/RenderParagraphs/renderParagraphs";
 
 interface Properties {
     state: boolean;
