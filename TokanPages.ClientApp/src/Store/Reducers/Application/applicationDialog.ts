@@ -17,12 +17,14 @@ export const ApplicationDialog: Reducer<ApplicationDialogState> = (
             return {
                 title: "",
                 message: undefined,
+                validation: undefined,
                 icon: IconType.info,
             };
         case RAISE:
             return {
                 title: action.dialog.title,
                 message: action.dialog.message,
+                validation: action.dialog.validation,
                 icon: action.dialog.icon,
             };
         default:
