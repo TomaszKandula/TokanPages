@@ -2,7 +2,7 @@ import Validate from "validate.js";
 import { UpdateFormInput } from "..";
 import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Helpers";
 
-export const ValidateUpdateForm = (props: UpdateFormInput): any => {
+export const ValidateUpdateForm = (props: UpdateFormInput): object | undefined => {
     let constraints = {
         newPassword: {
             presence: true,

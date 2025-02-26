@@ -3,7 +3,7 @@ import { SignupFormInput } from "..";
 
 import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Helpers";
 
-export const ValidateSignupForm = (props: SignupFormInput): any => {
+export const ValidateSignupForm = (props: SignupFormInput): object | undefined => {
     const nameConstraints = {
         firstName: {
             presence: true,

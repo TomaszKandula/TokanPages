@@ -1,7 +1,7 @@
 import Validate from "validate.js";
 import { BusinessFormInput } from "../Abstractions/BusinessFormInput";
 
-export const ValidateBusinessForm = (props: BusinessFormInput): any => {
+export const ValidateBusinessForm = (props: BusinessFormInput): object | undefined => {
     let constraints = {
         company: {
             presence: true,
