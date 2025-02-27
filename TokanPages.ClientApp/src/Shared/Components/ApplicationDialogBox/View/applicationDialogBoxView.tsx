@@ -42,10 +42,16 @@ const RenderValidationList = (props: Properties): React.ReactElement => {
     let result: string[] = [];
     if (validation) {
         Object.keys(validation).forEach((key, _) => {
-            const key1 = key as keyof typeof validation;
-            const data = validation[key1];
+            const prop = key as keyof typeof validation;
+            const data = validation[prop] as string | string[];
 
-            result.push(data);
+            if (Array.isArray(data)) {
+                data.forEach((item: string) => {
+                    result.push(item);
+                });
+            } else {
+                result.push(data);
+            }
         });
     }
 
