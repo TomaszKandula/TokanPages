@@ -18,7 +18,11 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
         let render: React.ReactElement[] = [];
         props.text.forEach(item => {
             if (item === props.replace?.key) {
-                render.push(props.replace.object);
+                render.push(
+                    <div key={uuidv4()} className={props.className}>
+                        {props.replace.object}
+                    </div>
+                );
             } else {
                 render.push(
                     <Typography key={uuidv4()} component="p" className={props.className}>
