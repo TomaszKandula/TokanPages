@@ -55,7 +55,7 @@ const RenderValidationList = (props: Properties): React.ReactElement => {
         });
     }
 
-    return <RenderList list={result} />;
+    return <RenderList list={result} className="mt-10 mb-10" />;
 }
 
 const RenderDialogContent = (props: Properties): React.ReactElement => {
