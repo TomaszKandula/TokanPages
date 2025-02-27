@@ -2427,11 +2427,11 @@ body::backdrop {
 .render-super-title-title {
     font-size: 28px !important;
     font-weight: bold !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-super-title-sub-title {
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-table {
@@ -2482,17 +2482,21 @@ body::backdrop {
 .render-text-title {
     font-size: 28px !important;
     font-weight: bold !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-text-sub-title {
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-text-header {
     font-size: 25px !important;
     font-weight: bold !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
+}
+
+.render-text-bold {
+    font-weight: 700 !important;
 }
 
 .render-text-paragraph {
