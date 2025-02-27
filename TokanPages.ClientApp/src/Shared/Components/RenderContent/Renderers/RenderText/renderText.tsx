@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
 import { GET_NON_VIDEO_ASSET } from "../../../../../Api/Request/Paths";
 import { ArticleInfoAction } from "../../../../../Store/Actions";
@@ -9,7 +8,7 @@ import { ApplicationState } from "../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../Models";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
-import { ArticleCard, ArticleCardView, ProgressBar } from "../../../../../Shared/Components";
+import { ArticleCard, ArticleCardView, ProgressBar, RenderList } from "../../../../../Shared/Components";
 import { TComponent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 
@@ -135,48 +134,51 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <Typography component="p" className="render-text-common render-text-title mt-56 mb-8">
+        <p className="render-text-common render-text-title mt-56 mb-8">
             {props.value ?? NO_CONTENT}
-        </Typography>
+        </p>
     );
 };
 
 const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <Typography component="p" className="render-text-common render-text-sub-title mt-8 mb-40">
+        <p className="render-text-common render-text-sub-title mt-8 mb-40">
             {props.value ?? NO_CONTENT}
-        </Typography>
+        </p>
     );
 };
 
 const RenderHeader = (props: DataProps): React.ReactElement => {
     return (
-        <Typography component="p" className="render-text-common render-text-header mt-56 mb-15">
+        <p className="render-text-common render-text-header mt-56 mb-15">
             {props.value ?? NO_CONTENT}
-        </Typography>
+        </p>
     );
 };
 
 const RenderParagraph = (props: TextItem): React.ReactElement => {
-    const html = props.value as string;
+    const html = props.value as string | string[];
+    const prop = props.prop as TComponent;
 
-    let component: TComponent | undefined = "p";
-    if (props.prop === "div") {
-        component = "div";        
+    const baseStyle = "render-text-common render-text-paragraph";
+    const classStyle = props.text === "" ? baseStyle : `${baseStyle} render-text-${props.text}`;
+
+    switch(prop) {
+        case "p": return <p className={classStyle}>{html ?? NO_CONTENT}</p>;
+        case "span": return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
+        case "ul": return <RenderList list={html as string[]} type="ul" className={classStyle} />;
+        case "ol": return <RenderList list={html as string[]} type="ol" className={classStyle} />;
+        case "div": return <div className={classStyle}>{html ?? NO_CONTENT}</div>;
+        case "br": return <div className="mt-15 mb-15">&nbsp;</div>;
+        default: return <p className={classStyle}>{html ?? NO_CONTENT}</p>;
     }
-
-    return (
-        <Typography component={component} className="render-text-common render-text-paragraph">
-            {html ?? NO_CONTENT}
-        </Typography>
-    );
 };
 
 const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     return (
-        <Typography component="p" className="render-text-common render-text-paragraph custom-drop-cap">
+        <p className="render-text-common render-text-paragraph custom-drop-cap">
             {props.value ?? NO_CONTENT}
-        </Typography>
+        </p>
     );
 };
 
