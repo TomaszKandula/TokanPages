@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 import { ArrowRight } from "@material-ui/icons";
 import { GET_NON_VIDEO_ASSET } from "../../../../../Api/Request/Paths";
 import { ArticleInfoAction } from "../../../../../Store/Actions";
@@ -9,7 +10,6 @@ import { ArticleItemBase } from "../../Models";
 import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
 import { ArticleCard, ArticleCardView, ProgressBar } from "../../../../../Shared/Components";
-import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
 import { TComponent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 
@@ -36,11 +36,9 @@ const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     return (
         <span className="render-text-wrapper" onClick={onClickHandler}>
             <ArrowRight />
-            <ReactHtmlParser 
-                html={props.text ?? NO_CONTENT} 
-                component="span" 
-                className="render-text-common render-text-paragraph render-text-link" 
-            />
+            <span className="render-text-common render-text-paragraph render-text-link">
+                {props.text ?? NO_CONTENT}
+            </span>
         </span>
     );
 };
@@ -137,31 +135,25 @@ const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <ReactHtmlParser 
-            html={props.value ?? NO_CONTENT} 
-            component="p" 
-            className="render-text-common render-text-title mt-56 mb-8 " 
-        />
+        <Typography component="p" className="render-text-common render-text-title mt-56 mb-8">
+            {props.value ?? NO_CONTENT}
+        </Typography>
     );
 };
 
 const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <ReactHtmlParser 
-            html={props.value ?? NO_CONTENT} 
-            component="p" 
-            className="render-text-common render-text-sub-title mt-8 mb-40" 
-        />
+        <Typography component="p" className="render-text-common render-text-sub-title mt-8 mb-40">
+            {props.value ?? NO_CONTENT}
+        </Typography>
     );
 };
 
 const RenderHeader = (props: DataProps): React.ReactElement => {
     return (
-        <ReactHtmlParser 
-            html={props.value ?? NO_CONTENT} 
-            component="p" 
-            className="render-text-common render-text-header mt-56 mb-15" 
-        />
+        <Typography component="p" className="render-text-common render-text-header mt-56 mb-15">
+            {props.value ?? NO_CONTENT}
+        </Typography>
     );
 };
 
@@ -174,21 +166,17 @@ const RenderParagraph = (props: TextItem): React.ReactElement => {
     }
 
     return (
-        <ReactHtmlParser 
-            html={html ?? NO_CONTENT} 
-            component={component} 
-            className="render-text-common render-text-paragraph" 
-        />
+        <Typography component={component} className="render-text-common render-text-paragraph">
+            {html ?? NO_CONTENT}
+        </Typography>
     );
 };
 
 const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     return (
-        <ReactHtmlParser 
-            html={props.value ?? NO_CONTENT} 
-            component="p" 
-            className="render-text-common render-text-paragraph custom-drop-cap"
-        />
+        <Typography component="p" className="render-text-common render-text-paragraph custom-drop-cap">
+            {props.value ?? NO_CONTENT}
+        </Typography>
     );
 };
 
