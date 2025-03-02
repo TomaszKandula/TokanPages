@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <p
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+            class="render-text-common render-text-paragraph"
           >
             &lt;p&gt;Policy text&lt;/p&gt;
           </p>
@@ -28,7 +28,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <p
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          class="render-text-common render-text-paragraph"
         >
           &lt;p&gt;Policy text&lt;/p&gt;
         </p>
@@ -101,7 +101,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <p
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+            class="render-text-common render-text-paragraph"
           >
             &lt;p&gt;Showcase text&lt;/p&gt;
           </p>
@@ -117,7 +117,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <p
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          class="render-text-common render-text-paragraph"
         >
           &lt;p&gt;Showcase text&lt;/p&gt;
         </p>
@@ -190,7 +190,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <p
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+            class="render-text-common render-text-paragraph"
           >
             &lt;p&gt;Story text&lt;/p&gt;
           </p>
@@ -206,7 +206,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <p
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          class="render-text-common render-text-paragraph"
         >
           &lt;p&gt;Story text&lt;/p&gt;
         </p>
@@ -279,7 +279,7 @@ Object {
           class="MuiContainer-root container MuiContainer-maxWidthLg"
         >
           <p
-            class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+            class="render-text-common render-text-paragraph"
           >
             &lt;p&gt;Terms text&lt;/p&gt;
           </p>
@@ -295,7 +295,7 @@ Object {
         class="MuiContainer-root container MuiContainer-maxWidthLg"
       >
         <p
-          class="MuiTypography-root render-text-common render-text-paragraph MuiTypography-body1"
+          class="render-text-common render-text-paragraph"
         >
           &lt;p&gt;Terms text&lt;/p&gt;
         </p>
