@@ -10,11 +10,23 @@ import { TextItem } from "../../Models/TextModel";
 import { useHash } from "../../../../../Shared/Hooks";
 import { ArticleCard, ArticleCardView, ProgressBar, RenderList } from "../../../../../Shared/Components";
 import { TComponent } from "../../../../../Shared/types";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface DataProps {
     value?: string;
     text?: string;
+}
+
+interface LinkProps {
+    href: string;
+    target: string;
+    rel: string;
+    text: string;
+}
+
+interface ProcessParagraphsProps {
+    html: string | undefined;
 }
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
@@ -156,6 +168,37 @@ const RenderHeader = (props: DataProps): React.ReactElement => {
     );
 };
 
+const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
+    const result: React.ReactElement[] = [];
+
+    if (!props.html || (props.html && props.html === "")) {
+        result.push(<span key={uuidv4()}>{NO_CONTENT}</span>);
+        return <>{result}</>;
+    }
+
+    const array = props.html.split(";");
+    if (array.length > 0) {
+        array.forEach(item => {
+            if (item.includes("{") && item.includes("}")) {
+                try {
+                    const data = JSON.parse(item) as LinkProps;
+                    result.push(<a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>{data.text}</a>);
+                } catch {
+                    console.error(item);
+                    throw "Parsing error.";
+                }
+            } else {
+                result.push(<span key={uuidv4()}>{item}</span>);
+            }
+        });
+    } else {
+        result.push(<span key={uuidv4()}>{props.html}</span>);
+        return <>{result}</>;
+    }
+
+    return <>{result}</>;
+}
+
 const RenderParagraph = (props: TextItem): React.ReactElement => {
     const html = props.value as string | string[];
     const prop = props.prop as TComponent;
@@ -164,13 +207,13 @@ const RenderParagraph = (props: TextItem): React.ReactElement => {
     const classStyle = props.text === "" ? baseStyle : `${baseStyle} render-text-${props.text}`;
 
     switch(prop) {
-        case "p": return <p className={classStyle}>{html ?? NO_CONTENT}</p>;
+        case "p": return <p className={classStyle}><ProcessParagraphs html={html as string} /></p>;
         case "span": return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
         case "ul": return <RenderList list={html as string[]} type="ul" className={classStyle} />;
         case "ol": return <RenderList list={html as string[]} type="ol" className={classStyle} />;
-        case "div": return <div className={classStyle}>{html ?? NO_CONTENT}</div>;
+        case "div": return <div className={classStyle}><ProcessParagraphs html={html as string} /></div>;
         case "br": return <div className="mt-15 mb-15">&nbsp;</div>;
-        default: return <p className={classStyle}>{html ?? NO_CONTENT}</p>;
+        default: return <p className={classStyle}><ProcessParagraphs html={html as string} /></p>;
     }
 };
 
