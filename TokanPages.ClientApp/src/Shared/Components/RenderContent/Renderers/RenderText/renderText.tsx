@@ -176,7 +176,7 @@ const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement =>
         return <>{result}</>;
     }
 
-    const array = props.html.split(";");
+    const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
             if (item.includes("{") && item.includes("}")) {
