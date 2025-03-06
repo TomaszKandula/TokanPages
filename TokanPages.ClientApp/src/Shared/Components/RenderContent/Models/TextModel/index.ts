@@ -10,7 +10,7 @@ export interface ConstraintProps {
 export interface TextItem {
     id: string;
     type: string;
-    value: string | RowItem[];
+    value: string | string[] | RowItem[];
     prop: string;
     text: string;
     propTitle?: string;
