@@ -1,5 +1,6 @@
 import * as React from "react";
 import Validate from "validate.js";
+import { ProcessParagraphs } from "../RenderContent/Renderers";
 
 type TList = "ul" | "ol";
 
@@ -7,12 +8,13 @@ interface RenderListProps {
     list: string[];
     type?: TList;
     className?: string;
+    textProcessor?: React.ReactElement;
 }
 
 const GetListItem = (props: RenderListProps): React.ReactElement => {
     const list = props.list.map((value: string, index: number) => (
         <li key={index}>
-            {value}
+            <ProcessParagraphs html={value} />
         </li>
     ));
 
