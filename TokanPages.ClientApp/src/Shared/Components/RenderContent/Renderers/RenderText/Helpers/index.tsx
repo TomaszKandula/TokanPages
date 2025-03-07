@@ -172,8 +172,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
     const result: React.ReactElement[] = [];
 
     if (!props.html || (props.html && props.html === "")) {
-        result.push(<span key={uuidv4()}>{NO_CONTENT}</span>);
-        return <>{result}</>;
+        return <>{NO_CONTENT}</>;
     }
 
     const array = props.html.split("__");
@@ -188,12 +187,13 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
                     throw "Parsing error.";
                 }
             } else {
-                result.push(<span key={uuidv4()}>{item}</span>);
+                if (!Validate.isEmpty(item)) {
+                    result.push(<React.Fragment key={uuidv4()}>{item}</React.Fragment>);
+                }
             }
         });
     } else {
-        result.push(<span key={uuidv4()}>{props.html}</span>);
-        return <>{result}</>;
+        return <>{props.html}</>;
     }
 
     return <>{result}</>;

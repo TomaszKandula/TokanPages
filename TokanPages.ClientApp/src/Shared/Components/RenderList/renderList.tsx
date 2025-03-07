@@ -8,7 +8,7 @@ interface RenderListProps {
     list: string[];
     type?: TList;
     className?: string;
-    textProcessor?: React.ReactElement;
+    dataTestId?: string | undefined;
 }
 
 const GetListItem = (props: RenderListProps): React.ReactElement => {
@@ -31,8 +31,8 @@ export const RenderList = (props: RenderListProps): React.ReactElement => {
     : `list-box ${props.className}`;
 
     switch(props.type) {
-        case "ul": return <ul className={className}><GetListItem {...props} /></ul>;
-        case "ol": return <ol className={className}><GetListItem {...props} /></ol>;
-        default: return <ul className={className}><GetListItem {...props} /></ul>;
+        case "ul": return <ul data-testid={props.dataTestId} className={className}><GetListItem {...props} /></ul>;
+        case "ol": return <ol data-testid={props.dataTestId} className={className}><GetListItem {...props} /></ol>;
+        default: return <ul data-testid={props.dataTestId} className={className}><GetListItem {...props} /></ul>;
     }
 }
