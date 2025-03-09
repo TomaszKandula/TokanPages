@@ -2,7 +2,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { OperationStatus } from "../../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../../Shared/enums";
 import { UserRemovalView } from "./View/userRemovalView";
 
 import {
@@ -11,8 +11,6 @@ import {
     UserSigninAction,
     UserRemoveAction,
 } from "../../../../Store/Actions";
-
-import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
@@ -36,9 +34,6 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [hasProgress, setHasProgress] = React.useState(false);
-
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -64,7 +59,12 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
 
         if (hasFinished) {
             clear();
-            showSuccess(template.templates.user.removal);
+
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.user.removal,
+                icon: IconType.info
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 

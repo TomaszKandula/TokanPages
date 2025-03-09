@@ -38,9 +38,7 @@ Object {
                     <span
                       class="MuiTypography-root aa-text1 MuiTypography-body1"
                     >
-                      <div>
-                        Processing your account..., please wait.
-                      </div>
+                      Processing your account..., please wait.
                     </span>
                   </div>
                   <div
@@ -48,9 +46,7 @@ Object {
                   >
                     <span
                       class="MuiTypography-root aa-text2 MuiTypography-body1"
-                    >
-                      <div />
-                    </span>
+                    />
                   </div>
                 </div>
               </div>
@@ -94,9 +90,7 @@ Object {
                   <span
                     class="MuiTypography-root aa-text1 MuiTypography-body1"
                   >
-                    <div>
-                      Processing your account..., please wait.
-                    </div>
+                    Processing your account..., please wait.
                   </span>
                 </div>
                 <div
@@ -104,9 +98,7 @@ Object {
                 >
                   <span
                     class="MuiTypography-root aa-text2 MuiTypography-body1"
-                  >
-                    <div />
-                  </span>
+                  />
                 </div>
               </div>
             </div>

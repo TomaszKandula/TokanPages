@@ -50,9 +50,7 @@ Object {
                       d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
                     />
                   </svg>
-                  <div>
-                    Test title
-                  </div>
+                  Test title
                 </div>
               </h2>
             </div>
@@ -66,9 +64,16 @@ Object {
                 class="MuiTypography-root dialog-box-description MuiTypography-body1"
                 id="alert-dialog-description"
               >
-                <div>
-                  Test message
-                </div>
+                <p
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Test item 1
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1"
+                >
+                  Test item 2
+                </p>
               </span>
             </div>
             <hr
@@ -154,9 +159,7 @@ Object {
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
                   />
                 </svg>
-                <div>
-                  Test title
-                </div>
+                Test title
               </div>
             </h2>
           </div>
@@ -170,9 +173,16 @@ Object {
               class="MuiTypography-root dialog-box-description MuiTypography-body1"
               id="alert-dialog-description"
             >
-              <div>
-                Test message
-              </div>
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                Test item 1
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1"
+              >
+                Test item 2
+              </p>
             </span>
           </div>
           <hr

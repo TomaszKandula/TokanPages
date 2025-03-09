@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid/Grid";
 import { GET_IMAGES_URL } from "../../../Api/Request";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import Validate from "validate.js";
 
 interface HeaderViewProps {
@@ -96,29 +95,22 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                         {data?.isLoading ? (
                             <Skeleton variant="text" />
                         ) : (
-                            <ReactHtmlParser
-                                html={header?.caption}
-                                component="span"
-                                className="header-content-caption"
-                            />
+                            <span className="header-content-caption">{header?.caption}</span>
                         )}
                         {data?.isLoading ? (
                             <Skeleton variant="text" />
                         ) : (
-                            <ReactHtmlParser
-                                html={header?.subtitle}
-                                component="h1"
-                                className="header-content-subtitle"
-                            />
+                            <h1 className="header-content-subtitle">{header?.subtitle}</h1>
                         )}
                         {data?.isLoading ? (
                             <Skeleton variant="text" />
                         ) : (
-                            <ReactHtmlParser
-                                html={header?.description}
-                                component="h2"
-                                className="header-content-description"
-                            />
+                            <h2 className="header-content-description">{header?.description}</h2>
+                        )}
+                        {data?.isLoading ? (
+                            <Skeleton variant="text" />
+                        ) : (
+                            <h2 className="header-content-description">{header?.hint}</h2>
                         )}
                         <div className="mt-32">
                             {data?.isLoading ? (

@@ -3,10 +3,9 @@ import { BusinessFormView } from "./View/businessFormView";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
-import { OperationStatus } from "../../Shared/enums";
+import { IconType, OperationStatus } from "../../Shared/enums";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
 import { BusinessFormProps, MessageFormProps } from "./Models";
@@ -74,11 +73,6 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const [services, setServices] = React.useState<string[]>([]);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(templates.forms.textBusinessForm, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(templates.forms.textBusinessForm, text)));
-
     const clearForm = React.useCallback(() => {
         if (!hasProgress) {
             return;
@@ -129,7 +123,11 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
         if (hasFinished) {
             clearForm();
-            showSuccess(templates.templates.messageOut.success);
+            dispatch(ApplicationDialogAction.raise({
+                title: templates.forms.textBusinessForm,
+                message: templates.templates.messageOut.success,
+                icon: IconType.info
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, services]);
 
@@ -224,7 +222,12 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: templates.templates.messageOut.warning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: templates.forms.textBusinessForm,
+            message: templates.templates.messageOut.warning,
+            validation: result,
+            icon: IconType.warning
+        }));
     }, [form, templates, services, techStackItems]);
 
     return (

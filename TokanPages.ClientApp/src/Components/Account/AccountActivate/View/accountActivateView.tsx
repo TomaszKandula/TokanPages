@@ -4,7 +4,6 @@ import Typography from "@material-ui/core/Typography";
 import { Card, CardContent } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { ExtendedViewProps } from "../accountActivate";
 
 interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
@@ -32,7 +31,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (
-                                            <ReactHtmlParser html={props.text1} />
+                                            props.text1
                                         )}
                                     </Typography>
                                 </div>
@@ -41,7 +40,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                                         {props.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (
-                                            <ReactHtmlParser html={props.text2} />
+                                            props.text2
                                         )}
                                     </Typography>
                                 </div>

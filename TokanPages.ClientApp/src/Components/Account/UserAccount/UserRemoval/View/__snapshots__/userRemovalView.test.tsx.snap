@@ -41,18 +41,16 @@ Object {
                     <div
                       class="MuiGrid-root MuiGrid-item"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
                       >
-                        <div>
-                          <p>
-                            Warning!
-                          </p>
-                          <p>
-                            Once you remove your existing account, you will lose all your data...
-                          </p>
-                        </div>
-                      </span>
+                        Warning!
+                      </p>
+                      <p
+                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                      >
+                        Once you remove your existing account, you will lose all your data...
+                      </p>
                     </div>
                   </div>
                   <div
@@ -145,18 +143,16 @@ Object {
                   <div
                     class="MuiGrid-root MuiGrid-item"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
                     >
-                      <div>
-                        <p>
-                          Warning!
-                        </p>
-                        <p>
-                          Once you remove your existing account, you will lose all your data...
-                        </p>
-                      </div>
-                    </span>
+                      Warning!
+                    </p>
+                    <p
+                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
+                    >
+                      Once you remove your existing account, you will lose all your data...
+                    </p>
                   </div>
                 </div>
                 <div

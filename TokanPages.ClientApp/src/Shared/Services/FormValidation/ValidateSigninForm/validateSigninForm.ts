@@ -1,7 +1,7 @@
 import Validate from "validate.js";
 import { SigninFormInput } from "..";
 
-export const ValidateSigninForm = (props: SigninFormInput): any => {
+export const ValidateSigninForm = (props: SigninFormInput): object | undefined => {
     let constraints = {
         email: {
             email: {

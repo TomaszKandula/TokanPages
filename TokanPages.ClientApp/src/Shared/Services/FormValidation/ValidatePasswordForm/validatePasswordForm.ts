@@ -1,8 +1,8 @@
 import Validate from "validate.js";
 import { PasswordFormInput } from "..";
-import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter, HaveSpecialCharacter } from "../Helpers";
+import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Helpers";
 
-export const ValidatePasswordForm = (props: PasswordFormInput): any => {
+export const ValidatePasswordForm = (props: PasswordFormInput): object | undefined => {
     let constraints = {
         oldPassword: {
             presence: true,
@@ -38,13 +38,6 @@ export const ValidatePasswordForm = (props: PasswordFormInput): any => {
         },
         constraints
     );
-
-    if (!HaveSpecialCharacter(props.newPassword)) {
-        const data = HasProperty(result, "newPassword")
-            ? [...result.newPassword, "New password " + props.content.missingChar]
-            : [props.content.missingChar];
-        result = { ...result, newPassword: data };
-    }
 
     if (!ContainNumber(props.newPassword)) {
         const data = HasProperty(result, "newPassword")

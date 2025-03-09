@@ -20,7 +20,6 @@ import {
 } from "@material-ui/core";
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactHtmlParser } from "../../../Shared/Services/Renderers";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 
@@ -129,11 +128,11 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
                 onClick={props.handler}
             >
                 <Typography component="span" className="business-pricing-text">
-                    <ReactHtmlParser html={props.value.text} />
+                    {props.value.text}
                 </Typography>
                 <div className="mt-15">
-                    <Typography component="span" className="business-pricing-text">
-                        <ReactHtmlParser html={props.value.price} />
+                    <Typography component="span" className="business-pricing-value">
+                        {props.value.price}
                     </Typography>
                 </div>
             </Paper>
@@ -349,7 +348,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         height={45}
                                         element={
                                             <Typography component="span" className="business-header">
-                                                <ReactHtmlParser html={props.pricing.caption} />
+                                                {props.pricing.caption}
                                             </Typography>
                                         }
                                     />
@@ -378,7 +377,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         <>
                                             <InfoIcon className="business-info-icon" />
                                             <Typography component="span">
-                                                <ReactHtmlParser html={props.pricing.disclaimer} />
+                                                {props.pricing.disclaimer}
                                             </Typography>
                                         </>
                                     }

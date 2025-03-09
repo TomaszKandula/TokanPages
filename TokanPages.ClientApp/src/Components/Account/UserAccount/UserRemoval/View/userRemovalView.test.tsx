@@ -14,8 +14,10 @@ describe("test account group component: userRemovalView", () => {
                     deleteAccountProgress={true}
                     sectionAccountRemoval={{
                         caption: "Account Removal",
-                        warningText:
-                            "<p>Warning!</p><p>Once you remove your existing account, you will lose all your data...</p>",
+                        warningText: [
+                            "Warning!",
+                            "Once you remove your existing account, you will lose all your data..."
+                        ],
                         deleteButtonText: "Delete",
                     }}
                 />

@@ -12,7 +12,7 @@ Object {
           class="MuiContainer-root MuiContainer-maxWidthLg"
         >
           <div
-            class="clients-render-images"
+            class="clients-render-images mt-15 mb-64"
           />
         </div>
       </section>
@@ -26,7 +26,7 @@ Object {
         class="MuiContainer-root MuiContainer-maxWidthLg"
       >
         <div
-          class="clients-render-images"
+          class="clients-render-images mt-15 mb-64"
         />
       </div>
     </section>

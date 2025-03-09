@@ -181,7 +181,7 @@
     <value>The media target is not speciafied</value>
   </data>
   <data name="PASSWORD_TOO_SHORT" xml:space="preserve">
-    <value>The user password cannot be shorter than 8 characters</value>
+    <value>The user password cannot be shorter than 15 characters</value>
   </data>
   <data name="PASSWORD_MISSING_CHAR" xml:space="preserve">
     <value>The user password must contain at least one of the following characters: !, @, #, $, %, ^, &amp;, *</value>

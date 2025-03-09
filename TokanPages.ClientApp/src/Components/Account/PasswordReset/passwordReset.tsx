@@ -1,11 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { OperationStatus } from "../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
 import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { PasswordResetView } from "./View/resetPasswordView";
 import Validate from "validate.js";
@@ -31,11 +30,6 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     const hasNotStarted = reset?.status === OperationStatus.notStarted;
     const hasFinished = reset?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
-
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textPasswordReset, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textPasswordReset, text)));
 
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);
@@ -65,7 +59,11 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            showSuccess(template.templates.password.resetSuccess);
+            dispatch(ApplicationDialogAction.raise({ 
+                title: template.forms.textPasswordReset, 
+                message: template.templates.password.resetSuccess, 
+                icon: IconType.info 
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -83,14 +81,18 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     );
 
     const buttonHandler = React.useCallback(() => {
-        let results = ValidateResetForm({ email: form.email });
-
-        if (!Validate.isDefined(results)) {
+        let result = ValidateResetForm({ email: form.email });
+        if (!Validate.isDefined(result)) {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: results, template: template.templates.password.resetWarning }));
+        dispatch(ApplicationDialogAction.raise({ 
+            title: template.forms.textPasswordReset, 
+            message: template.templates.password.resetWarning, 
+            validation: result,
+            icon: IconType.warning 
+        }));
     }, [form, template]);
 
     return (

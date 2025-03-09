@@ -38,9 +38,7 @@ Object {
                     <span
                       class="MuiTypography-root aa-text1 MuiTypography-body1"
                     >
-                      <div>
-                        Your account has been successfully activated!
-                      </div>
+                      Your account has been successfully activated!
                     </span>
                   </div>
                   <div
@@ -49,9 +47,7 @@ Object {
                     <span
                       class="MuiTypography-root aa-text2 MuiTypography-body1"
                     >
-                      <div>
-                        You can now sign in.
-                      </div>
+                      You can now sign in.
                     </span>
                   </div>
                 </div>
@@ -96,9 +92,7 @@ Object {
                   <span
                     class="MuiTypography-root aa-text1 MuiTypography-body1"
                   >
-                    <div>
-                      Your account has been successfully activated!
-                    </div>
+                    Your account has been successfully activated!
                   </span>
                 </div>
                 <div
@@ -107,9 +101,7 @@ Object {
                   <span
                     class="MuiTypography-root aa-text2 MuiTypography-body1"
                   >
-                    <div>
-                      You can now sign in.
-                    </div>
+                    You can now sign in.
                   </span>
                 </div>
               </div>

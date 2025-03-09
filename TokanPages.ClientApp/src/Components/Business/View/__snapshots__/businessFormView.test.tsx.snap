@@ -464,9 +464,7 @@ Object {
                   >
                     <span
                       class="MuiTypography-root business-header MuiTypography-body1"
-                    >
-                      <div />
-                    </span>
+                    />
                   </div>
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -482,19 +480,15 @@ Object {
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
                         >
-                          <div>
-                            Web Development
-                          </div>
+                          Web Development
                         </span>
                         <div
                           class="mt-15"
                         >
                           <span
-                            class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                            class="MuiTypography-root business-pricing-value MuiTypography-body1"
                           >
-                            <div>
-                              30 USD/h
-                            </div>
+                            30 USD/h
                           </span>
                         </div>
                       </div>
@@ -510,19 +504,15 @@ Object {
                         <span
                           class="MuiTypography-root business-pricing-text MuiTypography-body1"
                         >
-                          <div>
-                            Mobile Development
-                          </div>
+                          Mobile Development
                         </span>
                         <div
                           class="mt-15"
                         >
                           <span
-                            class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                            class="MuiTypography-root business-pricing-value MuiTypography-body1"
                           >
-                            <div>
-                              45 USD/h
-                            </div>
+                            45 USD/h
                           </span>
                         </div>
                       </div>
@@ -544,9 +534,7 @@ Object {
                   </svg>
                   <span
                     class="MuiTypography-root MuiTypography-body1"
-                  >
-                    <div />
-                  </span>
+                  />
                 </div>
                 <div
                   class="mt-40 mb-40"
@@ -1030,9 +1018,7 @@ Object {
                 >
                   <span
                     class="MuiTypography-root business-header MuiTypography-body1"
-                  >
-                    <div />
-                  </span>
+                  />
                 </div>
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
@@ -1048,19 +1034,15 @@ Object {
                       <span
                         class="MuiTypography-root business-pricing-text MuiTypography-body1"
                       >
-                        <div>
-                          Web Development
-                        </div>
+                        Web Development
                       </span>
                       <div
                         class="mt-15"
                       >
                         <span
-                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                          class="MuiTypography-root business-pricing-value MuiTypography-body1"
                         >
-                          <div>
-                            30 USD/h
-                          </div>
+                          30 USD/h
                         </span>
                       </div>
                     </div>
@@ -1076,19 +1058,15 @@ Object {
                       <span
                         class="MuiTypography-root business-pricing-text MuiTypography-body1"
                       >
-                        <div>
-                          Mobile Development
-                        </div>
+                        Mobile Development
                       </span>
                       <div
                         class="mt-15"
                       >
                         <span
-                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                          class="MuiTypography-root business-pricing-value MuiTypography-body1"
                         >
-                          <div>
-                            45 USD/h
-                          </div>
+                          45 USD/h
                         </span>
                       </div>
                     </div>
@@ -1110,9 +1088,7 @@ Object {
                 </svg>
                 <span
                   class="MuiTypography-root MuiTypography-body1"
-                >
-                  <div />
-                </span>
+                />
               </div>
               <div
                 class="mt-40 mb-40"

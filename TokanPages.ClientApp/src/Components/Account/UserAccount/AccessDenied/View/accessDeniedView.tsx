@@ -5,15 +5,14 @@ import CardContent from "@material-ui/core/CardContent";
 import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Button, Typography } from "@material-ui/core";
-import { ReactHtmlParser } from "../../../../../Shared/Services/Renderers";
-import { CustomDivider } from "../../../../../Shared/Components";
+import { CustomDivider, RenderParagraphs } from "../../../../../Shared/Components";
 import { AccessDeniedProps } from "../accessDenied";
 
 interface AccessDeniedViewProps extends AccessDeniedProps {
     isLoading: boolean;
     languageId: string;
     accessDeniedCaption: string;
-    accessDeniedPrompt: string;
+    accessDeniedPrompt: string[];
     homeButtonText: string;
 }
 
@@ -43,7 +42,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />
                                     ) : (
-                                        <ReactHtmlParser html={props.accessDeniedPrompt} />
+                                        <RenderParagraphs text={props.accessDeniedPrompt} className="label user-account-text-item" />
                                     )}
                                 </Typography>
                             </div>

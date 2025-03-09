@@ -134,18 +134,14 @@ Object {
     </div>
     <div>
       <p
-        class="render-text-common render-text-title mt-56 mb-8 "
+        class="render-text-common render-text-title mt-56 mb-8"
       >
-        <p>
-          Test line
-        </p>
+        &lt;p&gt;Test line&lt;/p&gt;
       </p>
       <p
         class="render-text-common render-text-sub-title mt-8 mb-40"
       >
-        <p>
-          Test line
-        </p>
+        &lt;p&gt;Test line&lt;/p&gt;
       </p>
       <div
         class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
@@ -161,16 +157,12 @@ Object {
       <p
         class="render-text-common render-text-paragraph custom-drop-cap"
       >
-        <p>
-          Test line
-        </p>
+        &lt;p&gt;Test line&lt;/p&gt;
       </p>
       <p
         class="render-text-common render-text-paragraph"
       >
-        <p>
-          Test line
-        </p>
+        &lt;p&gt;Test line&lt;/p&gt;
       </p>
       <div
         class="render-separator"
@@ -338,9 +330,7 @@ Object {
           <span
             class="MuiTypography-root render-video-text MuiTypography-body1"
           >
-            <div>
-              Video
-            </div>
+            Video
           </span>
         </div>
       </div>
