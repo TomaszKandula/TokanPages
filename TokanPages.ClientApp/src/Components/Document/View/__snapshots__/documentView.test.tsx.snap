@@ -14,9 +14,7 @@ Object {
           <p
             class="render-text-common render-text-paragraph"
           >
-            <span>
-              &lt;p&gt;Policy text&lt;/p&gt;
-            </span>
+            &lt;p&gt;Policy text&lt;/p&gt;
           </p>
         </article>
       </section>
@@ -32,9 +30,7 @@ Object {
         <p
           class="render-text-common render-text-paragraph"
         >
-          <span>
-            &lt;p&gt;Policy text&lt;/p&gt;
-          </span>
+          &lt;p&gt;Policy text&lt;/p&gt;
         </p>
       </article>
     </section>
@@ -107,9 +103,7 @@ Object {
           <p
             class="render-text-common render-text-paragraph"
           >
-            <span>
-              &lt;p&gt;Showcase text&lt;/p&gt;
-            </span>
+            &lt;p&gt;Showcase text&lt;/p&gt;
           </p>
         </article>
       </section>
@@ -125,9 +119,7 @@ Object {
         <p
           class="render-text-common render-text-paragraph"
         >
-          <span>
-            &lt;p&gt;Showcase text&lt;/p&gt;
-          </span>
+          &lt;p&gt;Showcase text&lt;/p&gt;
         </p>
       </article>
     </section>
@@ -200,9 +192,7 @@ Object {
           <p
             class="render-text-common render-text-paragraph"
           >
-            <span>
-              &lt;p&gt;Story text&lt;/p&gt;
-            </span>
+            &lt;p&gt;Story text&lt;/p&gt;
           </p>
         </article>
       </section>
@@ -218,9 +208,7 @@ Object {
         <p
           class="render-text-common render-text-paragraph"
         >
-          <span>
-            &lt;p&gt;Story text&lt;/p&gt;
-          </span>
+          &lt;p&gt;Story text&lt;/p&gt;
         </p>
       </article>
     </section>
@@ -293,9 +281,7 @@ Object {
           <p
             class="render-text-common render-text-paragraph"
           >
-            <span>
-              &lt;p&gt;Terms text&lt;/p&gt;
-            </span>
+            &lt;p&gt;Terms text&lt;/p&gt;
           </p>
         </article>
       </section>
@@ -311,9 +297,7 @@ Object {
         <p
           class="render-text-common render-text-paragraph"
         >
-          <span>
-            &lt;p&gt;Terms text&lt;/p&gt;
-          </span>
+          &lt;p&gt;Terms text&lt;/p&gt;
         </p>
       </article>
     </section>

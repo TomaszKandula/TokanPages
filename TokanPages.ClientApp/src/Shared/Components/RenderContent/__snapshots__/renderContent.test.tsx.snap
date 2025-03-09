@@ -162,9 +162,7 @@ Object {
       <p
         class="render-text-common render-text-paragraph"
       >
-        <span>
-          &lt;p&gt;Test line&lt;/p&gt;
-        </span>
+        &lt;p&gt;Test line&lt;/p&gt;
       </p>
       <div
         class="render-separator"

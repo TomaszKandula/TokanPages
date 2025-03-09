@@ -294,24 +294,16 @@ Object {
                           class="list-box signup-warning-text-list"
                         >
                           <li>
-                            <span>
-                              between 15..50 characters
-                            </span>
+                            between 15..50 characters
                           </li>
                           <li>
-                            <span>
-                              minimum one large letter
-                            </span>
+                            minimum one large letter
                           </li>
                           <li>
-                            <span>
-                              minimum one small letter
-                            </span>
+                            minimum one small letter
                           </li>
                           <li>
-                            <span>
-                              minimum one number
-                            </span>
+                            minimum one number
                           </li>
                         </ul>
                         <p
@@ -692,24 +684,16 @@ Object {
                         class="list-box signup-warning-text-list"
                       >
                         <li>
-                          <span>
-                            between 15..50 characters
-                          </span>
+                          between 15..50 characters
                         </li>
                         <li>
-                          <span>
-                            minimum one large letter
-                          </span>
+                          minimum one large letter
                         </li>
                         <li>
-                          <span>
-                            minimum one small letter
-                          </span>
+                          minimum one small letter
                         </li>
                         <li>
-                          <span>
-                            minimum one number
-                          </span>
+                          minimum one number
                         </li>
                       </ul>
                       <p
