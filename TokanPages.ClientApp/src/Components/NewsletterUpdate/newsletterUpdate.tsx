@@ -1,11 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { OperationStatus } from "../../Shared/enums";
+import { IconType, OperationStatus } from "../../Shared/enums";
 import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../Shared/types";
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../Store/Actions";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";
@@ -37,11 +36,6 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
     const [hasButton, setHasButton] = React.useState(hasId);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textNewsletter, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textNewsletter, text)));
-
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setHasProgress(false);
@@ -70,7 +64,11 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
         if (hasFinished) {
             clearForm();
             setForm({ email: "" });
-            showSuccess(template.templates.newsletter.success);
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textNewsletter,
+                message: template.templates.newsletter.success,
+                icon: IconType.info
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -93,7 +91,12 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: template.templates.newsletter.warning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textNewsletter,
+            message: template.templates.newsletter.warning,
+            validation: result,
+            icon: IconType.warning
+        }));
     }, [props.id, form, template]);
 
     return (

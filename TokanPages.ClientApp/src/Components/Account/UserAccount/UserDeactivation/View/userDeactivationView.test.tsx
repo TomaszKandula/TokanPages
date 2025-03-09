@@ -14,7 +14,7 @@ describe("test account group component: userDeactivationView", () => {
                     buttonHandler={jest.fn()}
                     section={{
                         caption: "Account Deactivation",
-                        warningText: "<p>You can deactivate the account...</p>",
+                        warningText: ["Warning!","You can deactivate the account..."],
                         deactivateButtonText: "Dactivate",
                     }}
                 />

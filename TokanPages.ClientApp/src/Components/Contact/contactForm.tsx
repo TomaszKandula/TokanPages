@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
-import { OperationStatus } from "../../Shared/enums";
+import { IconType, OperationStatus } from "../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ContactFormView } from "./View/contactFormView";
 import Validate from "validate.js";
@@ -43,11 +42,6 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const [form, setForm] = React.useState(formDefault);
     const [hasProgress, setHasProgress] = React.useState(false);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(templates.forms.textContactForm, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(templates.forms.textContactForm, text)));
-
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setHasProgress(false);
@@ -79,7 +73,11 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
-            showSuccess(templates.templates.messageOut.success);
+            dispatch(ApplicationDialogAction.raise({
+                title: templates.forms.textContactForm,
+                message: templates.templates.messageOut.success,
+                icon: IconType.info 
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates]);
 
@@ -119,7 +117,12 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             return;
         }
 
-        showWarning(GetTextWarning({ object: result, template: templates.templates.messageOut.warning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: templates.forms.textContactForm,
+            message: templates.templates.messageOut.warning,
+            validation: result,
+            icon: IconType.warning
+        }));
     }, [form, templates]);
 
     return (

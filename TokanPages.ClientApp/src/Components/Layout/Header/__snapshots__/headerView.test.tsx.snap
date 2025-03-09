@@ -44,6 +44,11 @@ Object {
               >
                 I do programming for a living...
               </h2>
+              <h2
+                class="header-content-description"
+              >
+                Let me know...
+              </h2>
               <div
                 class="mt-32"
               >
@@ -130,6 +135,11 @@ Object {
               class="header-content-description"
             >
               I do programming for a living...
+            </h2>
+            <h2
+              class="header-content-description"
+            >
+              Let me know...
             </h2>
             <div
               class="mt-32"

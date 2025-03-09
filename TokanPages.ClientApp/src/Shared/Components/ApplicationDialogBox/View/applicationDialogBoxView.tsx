@@ -8,20 +8,22 @@ import InfoIcon from "@material-ui/icons/Info";
 import WarningIcon from "@material-ui/icons/Warning";
 import ErrorIcon from "@material-ui/icons/Error";
 import { Divider, Typography } from "@material-ui/core";
-import { ReactHtmlParser } from "../../../../Shared/Services/Renderers";
 import { IconType } from "../../../enums";
+import { RenderParagraphs } from "../../../../Shared/Components/RenderParagraphs/renderParagraphs";
+import { RenderList } from "../../../../Shared/Components/RenderList/renderList";
 
 interface Properties {
     state: boolean;
-    icon: IconType;
-    title: string;
-    message: string;
+    icon: IconType | undefined;
+    title: string | undefined;
+    message: string[] | undefined;
+    validation?: object | undefined;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
 }
 
-const RenderIcon = (props: Properties): React.ReactElement => {
+const RenderIcon = (props: Properties): React.ReactElement | null => {
     switch (props.icon) {
         case IconType.info:
             return <InfoIcon className="dialog-box-info-icon" />;
@@ -30,11 +32,68 @@ const RenderIcon = (props: Properties): React.ReactElement => {
         case IconType.error:
             return <ErrorIcon className="dialog-box-error-icon" />;
         default:
-            return <InfoIcon className="dialog-box-info-icon" />;
+            return null;
     }
 };
 
-export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
+const RenderValidationList = (props: Properties): React.ReactElement => {
+    const validation = props.validation;
+
+    let result: string[] = [];
+    if (validation) {
+        Object.keys(validation).forEach((key, _) => {
+            const prop = key as keyof typeof validation;
+            const data = validation[prop] as string | string[];
+
+            if (Array.isArray(data)) {
+                data.forEach((item: string) => {
+                    result.push(item);
+                });
+            } else {
+                result.push(data);
+            }
+        });
+    }
+
+    return <RenderList list={result} className="mt-10 mb-10" />;
+}
+
+const RenderDialogContent = (props: Properties): React.ReactElement => {
+    return (
+        <>
+            <DialogTitle id="alert-dialog-title" className="dialog-box-title">
+                <div className="dialog-box-icon-holder">
+                    <RenderIcon {...props} />
+                    {props.title}
+                </div>
+            </DialogTitle>
+            <Divider />
+            <DialogContent>
+                <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
+                    <RenderParagraphs 
+                        text={props.message ?? []}
+                        replace={{
+                            key: "{LIST}",
+                            object: <RenderValidationList {...props} />
+                        }}
+                    />
+                </Typography>
+            </DialogContent>
+            <Divider />
+            <DialogActions>
+                <Button onClick={props.closeHandler} className="button" autoFocus>
+                    OK
+                </Button>
+            </DialogActions>
+        </>
+    );
+}
+
+const RenderDialogBox = (props: Properties): React.ReactElement => {
+    const hasTitle = props?.title !== undefined;
+    const hasIcon = props?.icon !== undefined;
+    const hasMessage = props?.message && props?.message?.length !== 0;
+
     return (
         <Dialog
             open={props.state}
@@ -44,24 +103,13 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title" className="dialog-box-title">
-                <div className="dialog-box-icon-holder">
-                    <RenderIcon {...props} />
-                    <ReactHtmlParser html={props.title} />
-                </div>
-            </DialogTitle>
-            <Divider />
-            <DialogContent>
-                <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
-                    <ReactHtmlParser html={props.message} />
-                </Typography>
-            </DialogContent>
-            <Divider />
-            <DialogActions>
-                <Button onClick={props.closeHandler} className="button" autoFocus>
-                    OK
-                </Button>
-            </DialogActions>
+            {hasTitle && hasIcon && hasMessage 
+            ? <RenderDialogContent {...props} /> 
+            : <></>}
         </Dialog>
     );
+} 
+
+export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
+    return <RenderDialogBox {...props} />;
 };

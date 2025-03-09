@@ -13,6 +13,7 @@ export interface HeaderContentDto {
     caption: string;
     subtitle: string;
     description: string;
+    hint: string;
     action: LinkDto;
     resume: LinkDto;
 }

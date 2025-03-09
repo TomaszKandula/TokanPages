@@ -17,7 +17,7 @@ describe("test articles group component: ArticleFeatureView", () => {
         title: "Articles",
         description: "I write regularly...",
         text1: ".NET Core, Azure, databases and others.",
-        text2: "Let's dive into Microsoft technology...",
+        text2: ["Let's dive into Microsoft technology...", "Readt about..."],
         action: {
             text: "View list of articles",
             href: "/action-link",

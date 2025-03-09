@@ -5,3 +5,16 @@ export { RenderTable } from "./RenderTable/renderTable";
 export { RenderText } from "./RenderText/renderText";
 export { RenderVideo } from "./RenderVideo/renderVideo";
 export { RenderSuperTitle } from "./RenderSuperTitle/renderSuperTitle";
+export { 
+    ProcessParagraphs,
+    RenderAnchorLink, 
+    RenderArticleLink, 
+    RenderExternalLink, 
+    RenderHeader,
+    RenderInternalLink,
+    RenderParagraph,
+    RenderParagraphWithDropCap,
+    RenderSubtitle,
+    RenderTargetLink,
+    RenderTitle,
+} from "./RenderText/Helpers";

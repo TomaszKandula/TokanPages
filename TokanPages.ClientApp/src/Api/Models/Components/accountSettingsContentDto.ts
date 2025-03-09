@@ -9,7 +9,7 @@ export interface AccountSettingsContentDto {
 
 export interface SectionAccessDenied {
     accessDeniedCaption: string;
-    accessDeniedPrompt: string;
+    accessDeniedPrompt: string[];
     homeButtonText: string;
 }
 
@@ -41,12 +41,12 @@ export interface SectionAccountPassword {
 
 export interface SectionAccountDeactivation {
     caption: string;
-    warningText: string;
+    warningText: string[];
     deactivateButtonText: string;
 }
 
 export interface SectionAccountRemoval {
     caption: string;
-    warningText: string;
+    warningText: string[];
     deleteButtonText: string;
 }

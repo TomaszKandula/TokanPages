@@ -2,10 +2,9 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
-import { OperationStatus } from "../../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../../Shared/enums";
 import { ApplicationDialogAction, UserDataStoreAction, UserUpdateAction } from "../../../../Store/Actions";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { SuccessMessage } from "../../../../Shared/Services/Utilities";
 import { UserDeactivationView } from "./View/userDeactivationView";
 
 export interface UserDeactivationProps {
@@ -27,9 +26,6 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const hasUpdateNotStarted = update?.status === OperationStatus.notStarted;
     const hasUpdateFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
-
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
 
     const [hasProgress, setHasProgress] = React.useState(false);
 
@@ -58,7 +54,12 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
         }
 
         if (hasUpdateFinished) {
-            showSuccess(template.templates.user.deactivation);
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.user.deactivation,
+                icon: IconType.info
+            }));
+
             dispatch(UserDataStoreAction.clear());
             dispatch(UserUpdateAction.clear());
             history.push(`/${languageId}`);

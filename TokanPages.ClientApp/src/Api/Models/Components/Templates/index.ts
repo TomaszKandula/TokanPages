@@ -23,14 +23,13 @@ export interface PasswordProps {
     surnameInvalid: string;
     passwordInvalid: string;
     missingTerms: string;
-    missingChar: string;
     missingNumber: string;
     missingLargeLetter: string;
     missingSmallLetter: string;
-    resetSuccess: string;
-    resetWarning: string;
-    updateSuccess: string;
-    updateWarning: string;
+    resetSuccess: string[];
+    resetWarning: string[];
+    updateSuccess: string[];
+    updateWarning: string[];
 }
 
 export interface ArticlesProps {
@@ -43,27 +42,27 @@ export interface ArticlesProps {
 }
 
 export interface NewsletterProps {
-    success: string;
-    warning: string;
-    generalError: string;
-    removalError: string;
+    success: string[];
+    warning: string[];
+    generalError: string[];
+    removalError: string[];
 }
 
 export interface MessageProps {
-    success: string;
-    warning: string;
-    error: string;
+    success: string[];
+    warning: string[];
+    error: string[];
 }
 
 export interface UserProps {
-    deactivation: string;
-    removal: string;
-    updateSuccess: string;
-    updateWarning: string;
-    emailVerification: string;
-    signingWarning: string;
-    signupSuccess: string;
-    signupWarning: string;
+    deactivation: string[];
+    removal: string[];
+    updateSuccess: string[];
+    updateWarning: string[];
+    emailVerification: string[];
+    signingWarning: string[];
+    signupSuccess: string[];
+    signupWarning: string[];
 }
 
 export interface PaymentsProps {

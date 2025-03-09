@@ -49,11 +49,18 @@ Object {
                         >
                           .NET Core, Azure, databases and others.
                         </h2>
-                        <h3
-                          class="article-features-text2 mt-15 mb-40"
+                        <div
+                          class="article-features-text2 mt-15 mb-15"
                         >
-                          Let's dive into Microsoft technology...
-                        </h3>
+                          <h3
+                            class="article-features-text2-heading"
+                          >
+                            Let's dive into Microsoft technology...
+                          </h3>
+                          <p>
+                            Readt about...
+                          </p>
+                        </div>
                         <div
                           class="text-right"
                         >
@@ -140,9 +147,9 @@ Object {
                       >
                         <img
                           alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
                           title="Illustration"
                         />
                       </div>
@@ -155,7 +162,7 @@ Object {
                       >
                         <img
                           alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                          class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                           title="Illustration"
@@ -216,11 +223,18 @@ Object {
                       >
                         .NET Core, Azure, databases and others.
                       </h2>
-                      <h3
-                        class="article-features-text2 mt-15 mb-40"
+                      <div
+                        class="article-features-text2 mt-15 mb-15"
                       >
-                        Let's dive into Microsoft technology...
-                      </h3>
+                        <h3
+                          class="article-features-text2-heading"
+                        >
+                          Let's dive into Microsoft technology...
+                        </h3>
+                        <p>
+                          Readt about...
+                        </p>
+                      </div>
                       <div
                         class="text-right"
                       >
@@ -307,9 +321,9 @@ Object {
                     >
                       <img
                         alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
                         title="Illustration"
                       />
                     </div>
@@ -322,7 +336,7 @@ Object {
                     >
                       <img
                         alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                        class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                         title="Illustration"

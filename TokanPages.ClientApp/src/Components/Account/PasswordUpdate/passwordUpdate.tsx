@@ -2,11 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { OperationStatus } from "../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
 import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
-import { GetTextWarning, SuccessMessage, WarningMessage } from "../../../Shared/Services/Utilities";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { PasswordUpdateView } from "./View/passwordUpdateView";
 import Validate from "validate.js";
@@ -55,11 +54,6 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
     const userId = store?.userData?.userId;
     const canDisableForm = Validate.isEmpty(resetId) && Validate.isEmpty(userId);
 
-    const showSuccess = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(SuccessMessage(template.forms.textAccountSettings, text)));
-    const showWarning = (text: string) =>
-        dispatch(ApplicationDialogAction.raise(WarningMessage(template.forms.textAccountSettings, text)));
-
     const [form, setForm] = React.useState(formDefaultValues);
     const [hasProgress, setHasProgress] = React.useState(false);
 
@@ -90,7 +84,11 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            showSuccess(template.templates.password.updateSuccess);
+            dispatch(ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.password.updateSuccess,
+                icon: IconType.info
+            }));
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -111,7 +109,7 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
     );
 
     const buttonHandler = React.useCallback(() => {
-        let results = ValidateUpdateForm({
+        let result = ValidateUpdateForm({
             newPassword: form.newPassword,
             verifyPassword: form.verifyPassword,
             content: {
@@ -120,19 +118,23 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
                 surnameInvalid: template.templates.password.surnameInvalid,
                 passwordInvalid: template.templates.password.passwordInvalid,
                 missingTerms: template.templates.password.missingTerms,
-                missingChar: template.templates.password.missingChar,
                 missingLargeLetter: template.templates.password.missingLargeLetter,
                 missingNumber: template.templates.password.missingNumber,
                 missingSmallLetter: template.templates.password.missingSmallLetter,
             },
         });
 
-        if (!Validate.isDefined(results)) {
+        if (!Validate.isDefined(result)) {
             setHasProgress(true);
             return;
         }
 
-        showWarning(GetTextWarning({ object: results, template: template.templates.password.updateWarning }));
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textAccountSettings,
+            message: template.templates.password.updateWarning,
+            validation: result,
+            icon: IconType.warning
+        }));
     }, [form, template]);
 
     return (

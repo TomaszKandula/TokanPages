@@ -22,6 +22,7 @@ describe("test component: headerView", () => {
         },
         caption: "Welcome to my web page",
         description: "I do programming for a living...",
+        hint: "Let me know...",
         subtitle: "For years...",
         action: {
             text: "Read the story",

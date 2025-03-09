@@ -451,6 +451,10 @@ body::backdrop {
     color: white !important;
 }
 
+.list-box {
+    margin: 0;
+}
+
 /* POINTERS */
 
 .pointer-not-allowed {
@@ -521,6 +525,10 @@ body::backdrop {
 
 .mb-8 {
     margin-bottom: 8px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
 }
 
 .mb-15 {
@@ -637,6 +645,23 @@ body::backdrop {
     padding-bottom: 240px;
 }
 
+/* SIGNIUP COMPONENT */
+
+.signup-warning-text-pre {
+    margin: 0;
+}
+
+.signup-warning-text-post {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.signup-warning-text-list {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
 /* ACCESS DENIED COMPONENT */
 
 .access-denied-caption {
@@ -688,6 +713,11 @@ body::backdrop {
         display: block;
         justify-content: normal;
     }
+}
+
+.user-account-text-item {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 /* USER INFO COMPONENT */
@@ -902,14 +932,29 @@ body::backdrop {
 }
 
 .article-features-text2 {
-    font-size: 1rem !important;
+    font-size: 1.125rem !important;
     font-weight: 400 !important;
     line-height: 1.8 !important;
     color: #757575 !important;
 }
 
+.article-features-text2-heading {
+    font-size: 1.125rem !important;
+    font-weight: 500 !important;
+}
+
 .article-features-media {
-    height: 128px;
+    height: 178px;
+}
+
+.article-features-media-visibility {
+    display: block;
+}
+
+@media (max-width: 960px) {
+    .article-features-media-visibility {
+        display: none !important;
+    }
 }
 
 .article-features-card {
@@ -993,6 +1038,11 @@ body::backdrop {
     color: #757575;
 }
 
+.business-pricing-value {
+    font-weight: 700 !important;
+    color: #757575;
+}
+
 .business-info-box {
     display: flex;
     justify-content: left;
@@ -1010,13 +1060,13 @@ body::backdrop {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 32px;
 }
 
 .clients-caption {
     text-align: center;
-    font-size: 2rem;
-    color: #4649c3;
+    font-size: 2rem !important;
+    font-weight: 500 !important;
+    color: #6367ef;
 }
 
 .clients-section {
@@ -1035,13 +1085,13 @@ body::backdrop {
 .clients-logo {
     padding-left: 5%;
     padding-right: 5%;
-    margin-bottom: 32px;
 }
 
 @media (max-width: 900px) {
     .clients-logo {
         padding-left: 2%;
         padding-right: 2%;
+        margin: 25px;
     }
 }
 
@@ -1533,7 +1583,7 @@ body::backdrop {
 }
 
 .technology-feature-text {
-    font-size: 1rem !important;
+    font-size: 1.125rem !important;
     font-weight: 400 !important;
     line-height: 1.8;
     color: #757575;
@@ -2392,11 +2442,11 @@ body::backdrop {
 .render-super-title-title {
     font-size: 28px !important;
     font-weight: bold !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-super-title-sub-title {
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-table {
@@ -2428,6 +2478,12 @@ body::backdrop {
     color: #616161;
 }
 
+.render-text-quote {
+    padding: 30px;
+    border-left: 5px solid #d6d9e0;
+    background-color: #f3f4f6;
+}
+
 .render-text-wrapper {
     display: flex;
     align-items: center;
@@ -2447,17 +2503,25 @@ body::backdrop {
 .render-text-title {
     font-size: 28px !important;
     font-weight: bold !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-text-sub-title {
-    line-height: 1 !important;
+    line-height: 1.4 !important;
 }
 
 .render-text-header {
     font-size: 25px !important;
     font-weight: bold !important;
-    line-height: 1 !important;
+    line-height: 1.4 !important;
+}
+
+.render-text-bold {
+    font-weight: 700 !important;
+}
+
+.render-text-italic {
+    font-style: italic !important;
 }
 
 .render-text-paragraph {

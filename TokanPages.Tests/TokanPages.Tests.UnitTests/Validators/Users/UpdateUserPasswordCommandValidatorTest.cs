@@ -62,13 +62,12 @@ public class UpdateUserPasswordCommandValidatorTest : TestBase
         var result = validator.Validate(command);
     
         // Assert
-        result.Errors.Count.Should().Be(6);
+        result.Errors.Count.Should().Be(5);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_TOO_SHORT));
-        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_CHAR));
-        result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_NUMBER));
-        result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER));
-        result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER));
+        result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_NUMBER));
+        result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER));
+        result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER));
     }
 
     [Fact]
