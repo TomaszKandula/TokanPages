@@ -1,3 +1,51 @@
+# [0.146.0](https://github.com/TomaszKandula/TokanPages/compare/v0.145.1...v0.146.0) (2025-03-09)
+
+
+### Bug Fixes
+
+* correct import path ([04d2521](https://github.com/TomaszKandula/TokanPages/commit/04d25219260b131cbba5ad3d12d8f4dcd24da212))
+
+
+### Features
+
+* add block quote ([319f1ce](https://github.com/TomaszKandula/TokanPages/commit/319f1ceda84bdbf443c7eff0f6fcfea628e20bc1))
+* add key ([f7df210](https://github.com/TomaszKandula/TokanPages/commit/f7df210d693cc66904f5b33d76a36f621b27528e))
+* add margin to logo for small screen ([62f9143](https://github.com/TomaszKandula/TokanPages/commit/62f9143e5186da101d8a2db31b7bae6977f8082f))
+* add margins ([4af4494](https://github.com/TomaszKandula/TokanPages/commit/4af44943201be284e189b1039b3acdf4f0754b0f))
+* add new render component ([300252a](https://github.com/TomaszKandula/TokanPages/commit/300252a51bfc740c4e248d84be1150bb505520ae))
+* add render paragrapths component ([30d8cf8](https://github.com/TomaszKandula/TokanPages/commit/30d8cf80124d8d102c4dee19b5c4483c77f5ed8c))
+* add validation property ([c39e1f6](https://github.com/TomaszKandula/TokanPages/commit/c39e1f64fecb1932262c582776d16139dc40bbae))
+* allow signin/signup pages to be cached ([52f1f2f](https://github.com/TomaszKandula/TokanPages/commit/52f1f2fe9a17bfd185865909467332786316026d))
+* allow to display validation list inside defined paragraphs ([3dcfd65](https://github.com/TomaszKandula/TokanPages/commit/3dcfd651ed5a02c92eab6b9c00527c55b8e3c59f))
+* change split value ([b6c373a](https://github.com/TomaszKandula/TokanPages/commit/b6c373a1a8b21d732d58f39ba81f4b99d60b1879))
+* change types, require array of string ([17ea9b6](https://github.com/TomaszKandula/TokanPages/commit/17ea9b6b3ea3803aac18e5bee223e69163a9a690))
+* define margin bottom for 10px ([71edabb](https://github.com/TomaszKandula/TokanPages/commit/71edabb75b1a274fa02de845d4f4c9710a3c65f9))
+* display more than one line ([1140831](https://github.com/TomaszKandula/TokanPages/commit/1140831a2ef49d594a4aa7de75c670bb0eeae8f4))
+* fallback to undefined ([3bb648b](https://github.com/TomaszKandula/TokanPages/commit/3bb648b4351c0b71283b92580caaf990f45fb974))
+* improve object to text conversion, take into account array of strings ([3c6fd21](https://github.com/TomaszKandula/TokanPages/commit/3c6fd218e1026624245dc89114c1e0011ea081d3))
+* pass validation results ([eb32e67](https://github.com/TomaszKandula/TokanPages/commit/eb32e675c9c5372138c40ab796ad244ef9bd68c2))
+* process paragraph w/links ([4b1f72d](https://github.com/TomaszKandula/TokanPages/commit/4b1f72dd705a84120a2bad423738e13a35b255dc))
+* relocate local helpers, process list text ([40fb963](https://github.com/TomaszKandula/TokanPages/commit/40fb96320eb1fb333b05534a266d10f0f204f9b0))
+* remove html renderers ([e41ea64](https://github.com/TomaszKandula/TokanPages/commit/e41ea64280fba467fa46e1ed2d229c50e1b664f4))
+* remove ReactHtmlParser ([42396ff](https://github.com/TomaszKandula/TokanPages/commit/42396ffa4b23a449f8a443efcdc42912cb3fc945))
+* remove special char requirement ([694cbcc](https://github.com/TomaszKandula/TokanPages/commit/694cbcc4d066cd67d2ab6b117d73b824351373fa))
+* remove special char requirement, require longer password ([38ed16c](https://github.com/TomaszKandula/TokanPages/commit/38ed16c9d6c10fa64917668c84cf8abfcb4de67f))
+* remove unused code ([048a761](https://github.com/TomaszKandula/TokanPages/commit/048a7615e1ad9d7f7d89ff36655131d4f923fc32))
+* require array of string ([93a0683](https://github.com/TomaszKandula/TokanPages/commit/93a0683ae820720f6bacbb343ce8d48c4502e152))
+* restyle ([3e326ec](https://github.com/TomaszKandula/TokanPages/commit/3e326ecb8b34cb7199136a0611862fb572982abb))
+* return fragment on undefined ([b93ac2a](https://github.com/TomaszKandula/TokanPages/commit/b93ac2a89097efc3362ac8f31a9d6b35c17ec203))
+* simplify implementation ([78e3201](https://github.com/TomaszKandula/TokanPages/commit/78e3201fa2c6a56d7413aa04f2a0cbf77f380894))
+* take into account possible array of strings ([d270d80](https://github.com/TomaszKandula/TokanPages/commit/d270d80ece2710b92932167009cf98c1adad29d2))
+* update clients component ([28e7a72](https://github.com/TomaszKandula/TokanPages/commit/28e7a72bcfb99aa56642cfd5adc973ae491055b7))
+* update dialog box to work with arrays ([be7e06e](https://github.com/TomaszKandula/TokanPages/commit/be7e06e37750668a1f84a7cbd52eeee4d889a60d))
+* update models ([ad2f1ec](https://github.com/TomaszKandula/TokanPages/commit/ad2f1ec0086e80bd53ca5eb644c9551a6a1176cf))
+* update styles ([3a4909b](https://github.com/TomaszKandula/TokanPages/commit/3a4909beb2dea86f1d824c588a18004aa3fc6e42))
+* update styles ([fbb1beb](https://github.com/TomaszKandula/TokanPages/commit/fbb1bebf0c154094feafa04839749eb99cb64406))
+* update text rendering mechanism ([edf59a0](https://github.com/TomaszKandula/TokanPages/commit/edf59a0f6043990d571491ef8f7507b359b16f68))
+* use just dispatch call ([7bf9984](https://github.com/TomaszKandula/TokanPages/commit/7bf9984977bca241c74cc6b9fb1266cb5b0e37b3))
+* use render paragraphs component ([faee6eb](https://github.com/TomaszKandula/TokanPages/commit/faee6ebf1f90c3b19bb0a195bb82624c14c406dc))
+* use typography ([0c85a8a](https://github.com/TomaszKandula/TokanPages/commit/0c85a8a12ed7e8f6028d0140188ecc9415db00e8))
+
 ## [0.145.1](https://github.com/TomaszKandula/TokanPages/compare/v0.145.0...v0.145.1) (2025-02-23)
 
 
