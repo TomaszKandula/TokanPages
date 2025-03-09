@@ -932,14 +932,29 @@ body::backdrop {
 }
 
 .article-features-text2 {
-    font-size: 1rem !important;
+    font-size: 1.125rem !important;
     font-weight: 400 !important;
     line-height: 1.8 !important;
     color: #757575 !important;
 }
 
+.article-features-text2-heading {
+    font-size: 1.125rem !important;
+    font-weight: 500 !important;
+}
+
 .article-features-media {
-    height: 128px;
+    height: 240px;
+}
+
+.article-features-media-visibility {
+    display: block;
+}
+
+@media (max-width: 960px) {
+    .article-features-media-visibility {
+        display: none !important;
+    }
 }
 
 .article-features-card {
@@ -1045,13 +1060,13 @@ body::backdrop {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 32px;
 }
 
 .clients-caption {
     text-align: center;
-    font-size: 2rem;
-    color: #4649c3;
+    font-size: 2rem !important;
+    font-weight: 500 !important;
+    color: #6367ef;
 }
 
 .clients-section {
@@ -1070,7 +1085,6 @@ body::backdrop {
 .clients-logo {
     padding-left: 5%;
     padding-right: 5%;
-    margin-bottom: 32px;
 }
 
 @media (max-width: 900px) {
@@ -1568,7 +1582,7 @@ body::backdrop {
 }
 
 .technology-feature-text {
-    font-size: 1rem !important;
+    font-size: 1.125rem !important;
     font-weight: 400 !important;
     line-height: 1.8;
     color: #757575;
@@ -2463,6 +2477,12 @@ body::backdrop {
     color: #616161;
 }
 
+.render-text-quote {
+    padding: 30px;
+    border-left: 5px solid #d6d9e0;
+    background-color: #f3f4f6;
+}
+
 .render-text-wrapper {
     display: flex;
     align-items: center;
@@ -2497,6 +2517,10 @@ body::backdrop {
 
 .render-text-bold {
     font-weight: 700 !important;
+}
+
+.render-text-italic {
+    font-style: italic !important;
 }
 
 .render-text-paragraph {
