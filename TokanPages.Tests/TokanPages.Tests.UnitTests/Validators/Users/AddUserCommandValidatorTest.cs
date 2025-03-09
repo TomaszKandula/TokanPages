@@ -16,7 +16,7 @@ public class AddUserCommandValidatorTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            Password = "Test#2023*"
+            Password = "TodaysTestThisIs2023"
         };
 
         // Act
@@ -44,16 +44,15 @@ public class AddUserCommandValidatorTest : TestBase
         var result = validator.Validate(command);
 
         // Assert
-        result.Errors.Count.Should().Be(9);
+        result.Errors.Count.Should().Be(8);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_TOO_SHORT));
-        result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_CHAR));
-        result.Errors[6].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_NUMBER));
-        result.Errors[7].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER));
-        result.Errors[8].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER));
+        result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_NUMBER));
+        result.Errors[6].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_LARGE_LETTER));
+        result.Errors[7].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_SMALL_LETTER));
     }
 
     [Fact]
@@ -102,27 +101,6 @@ public class AddUserCommandValidatorTest : TestBase
     }
 
     [Fact]
-    public void GivenPasswordMissingChar_WhenAddUser_ShouldThrowError()
-    {
-        // Arrange
-        var command = new AddUserCommand
-        {
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Password = "Abcd2020"
-        };
-
-        // Act
-        var validator = new AddUserCommandValidator();
-        var result = validator.Validate(command);
-
-        // Assert
-        result.Errors.Count.Should().Be(1);
-        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.PASSWORD_MISSING_CHAR));
-    }
-
-    [Fact]
     public void GivenPasswordMissingNumber_WhenAddUser_ShouldThrowError()
     {
         // Arrange
@@ -131,7 +109,7 @@ public class AddUserCommandValidatorTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            Password = "Abcd#Abcd$"
+            Password = "AbcdAbcdAbcdAbcd"
         };
 
         // Act
@@ -152,7 +130,7 @@ public class AddUserCommandValidatorTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            Password = "abcd#2020$"
+            Password = "abcd2020abcd20125"
         };
 
         // Act
@@ -173,7 +151,7 @@ public class AddUserCommandValidatorTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            Password = "ABCD#2020$"
+            Password = "ABCD2020ABCD20125"
         };
 
         // Act
