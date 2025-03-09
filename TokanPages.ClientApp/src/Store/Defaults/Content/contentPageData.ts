@@ -116,7 +116,7 @@ export const ContentPageData: ContentPageDataState = {
             title: "",
             description: "",
             text1: "",
-            text2: "",
+            text2: [""],
             action: {
                 text: "",
                 href: "",

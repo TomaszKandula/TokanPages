@@ -25,6 +25,10 @@ interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
     isLoading: boolean;
 }
 
+interface DisplayParagraphsProps {
+    text: string[];
+}
+
 const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
         return (
@@ -42,6 +46,30 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
         </Link>
     );
 };
+
+const DisplayParagraphs = (props: DisplayParagraphsProps): React.ReactElement => {
+    const RenderLine = (props: { value: string, index: number }) => {
+        if (props.index === 0) {
+            return (
+                <h3 className="article-features-text2-heading">
+                    {props.value}
+                </h3>
+            );
+        } else {
+            return (
+                <p>
+                    {props.value}
+                </p>
+            );
+        }
+    }
+
+    const lines = props.text?.map((value: string, index: number) => (
+        <RenderLine key={index}  value={value} index={index} />
+    ));
+
+    return <>{lines}</>;
+}
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -64,9 +92,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             <h2 className="article-features-text1">
                                                 {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                             </h2>
-                                            <h3 className="article-features-text2 mt-15 mb-40">
-                                                {data?.isLoading ? <Skeleton variant="text" /> : features?.text2}
-                                            </h3>
+                                            <div className="article-features-text2 mt-15 mb-40">
+                                                {data?.isLoading ? <Skeleton variant="text" /> : <DisplayParagraphs text={features?.text2} />}
+                                            </div>
                                             <div className="text-right">
                                                 {data?.isLoading ? (
                                                     <Skeleton variant="rect" width="100%" height="25px" />
@@ -80,6 +108,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                             </Grid>
                             <Grid item xs={12} lg={6}>
                                 <Grid container spacing={2}>
+
                                     <Grid item xs={12} md={8}>
                                         <Card elevation={0} className="card-image">
                                             {data?.isLoading ? (
@@ -118,6 +147,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                             )}
                                         </Card>
                                     </Grid>
+
                                     <Grid item xs={12} md={4}>
                                         <Card elevation={0} className="card-image">
                                             {data?.isLoading ? (
@@ -128,9 +158,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                     loading="lazy"
                                                     image={GetImageUrl({
                                                         base: GET_ARTICLE_IMAGE_URL,
-                                                        name: features?.image4,
+                                                        name: features?.image3,
                                                     })}
-                                                    className="article-features-media lazyloaded"
+                                                    className="article-features-media article-features-media-visibility lazyloaded"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
@@ -149,13 +179,14 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                         base: GET_ARTICLE_IMAGE_URL,
                                                         name: features?.image4,
                                                     })}
-                                                    className="article-features-media lazyloaded"
+                                                    className="article-features-media article-features-media-visibility lazyloaded"
                                                     title="Illustration"
                                                     alt="An image illustrating listed features"
                                                 />
                                             )}
                                         </Card>
                                     </Grid>
+
                                 </Grid>
                             </Grid>
                         </Grid>
