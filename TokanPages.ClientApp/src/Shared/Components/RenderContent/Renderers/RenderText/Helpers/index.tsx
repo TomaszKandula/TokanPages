@@ -208,6 +208,7 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
 
     switch(prop) {
         case "p": return <p className={classStyle}><ProcessParagraphs html={html as string} /></p>;
+        case "blockquote": return <blockquote className={classStyle}><ProcessParagraphs html={html as string} /></blockquote>;
         case "span": return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
         case "ul": return <RenderList list={html as string[]} type="ul" className={classStyle} />;
         case "ol": return <RenderList list={html as string[]} type="ol" className={classStyle} />;
