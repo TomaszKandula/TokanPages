@@ -15,7 +15,7 @@ interface ClientsViewProps {
 const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
     if (!Validate.isEmpty(props?.caption)) {
         return (
-            <div className="mb-64">
+            <div className="mt-48 mb-64">
                 <Typography className="clients-caption">{props?.caption?.toUpperCase()}</Typography>
             </div>
         );
@@ -27,7 +27,7 @@ const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
 const RenderImages = (props: ClientsContentDto): React.ReactElement => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
-        <div className="clients-render-images">
+        <div className="clients-render-images mt-15 mb-64">
             {props?.images?.map((item: ClientImageDto, _index: number) => (
                 <div className="clients-logo" key={uuidv4()}>
                     <img
