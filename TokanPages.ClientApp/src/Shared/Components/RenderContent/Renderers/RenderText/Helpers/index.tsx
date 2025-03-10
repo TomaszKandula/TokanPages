@@ -175,6 +175,10 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
         return <>{NO_CONTENT}</>;
     }
 
+    if (!props.html.includes("__{") && !props.html.includes("}__")) {
+        return <>{props.html}</>;
+    }
+
     const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
