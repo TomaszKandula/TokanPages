@@ -301,7 +301,7 @@ body::backdrop {
 
 .button-up:hover {
     color: #ebecfb !important;
-    background: #4649c3 !important;
+    background: #6367ef !important;
 }
 
 .button-up:disabled {
@@ -1901,39 +1901,65 @@ body::backdrop {
     }
 }
 
-.header-button {
+.header-button-box {
+    display: flex;
+    justify-content: left;
+}
+
+.header-button-primary {
+    margin-right: 15px !important;
     color: white !important;
     background: #6367ef !important;
 }
 
-.header-button:hover {
+.header-button-primary:hover {
     color: white !important;
     background: #4649c3 !important;
 }
 
+.header-button-secondary {
+    margin-right: 15px !important;
+    color: #4649c3 !important;
+    background: #ebecfb !important;
+}
+
+.header-button-secondary:hover {
+    color: #ebecfb !important;
+    background: #6367ef !important;
+}
+
+.header-button-tertiary {
+    margin-right: 15px !important;
+    color: #4649c3 !important;
+    background: #ebecfb !important;
+}
+
+.header-button-tertiary:hover {
+    color: #ebecfb !important;
+    background: #6367ef !important;
+}
+
 @media (max-width: 600px) {
-    .header-button {
+    .header-button-primary {
         width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
     }
-}
 
-.header-button-resume {
-    margin-top: 0 !important;
-    margin-left: 15px !important;
-    color: white !important;
-    background: #9e9e9e !important;
-}
-
-.header-button-resume:hover {
-    color: white !important;
-    background: #616161 !important;
-}
-
-@media (max-width: 600px) {
-    .header-button-resume {
+    .header-button-secondary {
         width: 100%;
-        margin-top: 15px !important;
-        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .header-button-tertiary {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .header-button-box {
+        display: block;
     }
 }
 
