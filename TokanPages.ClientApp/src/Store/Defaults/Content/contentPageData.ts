@@ -238,11 +238,15 @@ export const ContentPageData: ContentPageDataState = {
             subtitle: "",
             description: "",
             hint: "",
-            action: {
+            primaryButton: {
                 text: "",
                 href: "",
             },
-            resume: {
+            secondaryButton: {
+                text: "",
+                href: "",
+            },
+            tertiaryButton: {
                 text: "",
                 href: "",
             },
