@@ -910,72 +910,73 @@ body::backdrop {
     }
 }
 
-.article-features-card-box {
-    display: flex;
-    flex-direction: column;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-.article-features-title {
+.article-feature-title {
     text-align: center;
     font-size: 2rem !important;
     font-weight: 500 !important;
     color: #6367ef !important;
 }
 
-.article-features-text1 {
-    font-size: 1.5rem !important;
-    font-weight: 400 !important;
-    margin: 0;
+.article-feature-images-column {
+    order: 12;
 }
 
-.article-features-text2 {
-    font-size: 1.125rem !important;
-    font-weight: 400 !important;
-    line-height: 1.8 !important;
-    color: #757575 !important;
-}
-
-.article-features-text2-heading {
-    font-size: 1.125rem !important;
-    font-weight: 500 !important;
-}
-
-.article-features-media {
-    height: 178px;
-}
-
-.article-features-media-visibility {
-    display: block;
-}
-
-@media (max-width: 960px) {
-    .article-features-media-visibility {
-        display: none !important;
+@media (min-width: 900px) {
+    .article-feature-images-column {
+        order: 0;    
     }
 }
 
-.article-features-card {
-    height: 100%;
-    border-radius: 15px !important;
-    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
-}
-
-.article-features-card-content {
+.article-feature-image-box {
+    display: flex;
     height: 100%;
 }
 
-.article-features-content {
-    padding-right: 16px !important;
+.article-feature-card {
+    height: 100%;
+    width: 100%;
 }
 
-@media (max-width: 1280px) {
-    .article-features-content {
-        padding-right: 0 !important;
-        padding-bottom: 16px !important;
+.article-feature-card-media-large {
+    min-height: 256px;
+    height: 100%;
+}
+
+.article-feature-empty-card-container {
+    display: none;
+}
+
+@media (min-width: 900px) {
+    .article-feature-empty-card-container {
+        display: block;
     }
+}
+
+.article-feature-empty-card {
+    background-color: #fff;
+}
+
+@media (min-width: 900px) {
+    .article-feature-empty-card {
+        background-color: #fff;
+        height: 64px;
+    }
+}
+
+.article-feature-card-media {
+    height: 256px;
+}
+
+.article-feature-content-container {
+    align-self: center;
+}
+
+.article-feature-content-box {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 /* BUSINESS FORM COMPONENT */
