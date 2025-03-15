@@ -20,7 +20,7 @@ Object {
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root article-features-title MuiTypography-body1"
+                class="MuiTypography-root article-feature-title MuiTypography-body1"
               >
                 ARTICLES
               </p>
@@ -30,81 +30,10 @@ Object {
               data-aos-delay="0"
             >
               <div
-                class="MuiGrid-root MuiGrid-container"
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
               >
                 <div
-                  class="MuiGrid-root article-features-content MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
-                >
-                  <div
-                    class="MuiPaper-root MuiCard-root article-features-card MuiPaper-elevation0 MuiPaper-rounded"
-                  >
-                    <div
-                      class="MuiCardContent-root article-features-card-content"
-                    >
-                      <div
-                        class="article-features-card-box"
-                      >
-                        <h2
-                          class="article-features-text1"
-                        >
-                          .NET Core, Azure, databases and others.
-                        </h2>
-                        <div
-                          class="article-features-text2 mt-15 mb-15"
-                        >
-                          <h3
-                            class="article-features-text2-heading"
-                          >
-                            Let's dive into Microsoft technology...
-                          </h3>
-                          <p>
-                            Readt about...
-                          </p>
-                        </div>
-                        <div
-                          class="text-right"
-                        >
-                          <a
-                            class="link"
-                            href="/action-link"
-                            rel="noopener nofollow"
-                          >
-                            <button
-                              class="MuiButtonBase-root MuiButton-root MuiButton-text button"
-                              tabindex="0"
-                              type="button"
-                            >
-                              <span
-                                class="MuiButton-label"
-                              >
-                                View list of articles
-                                <span
-                                  class="MuiButton-endIcon MuiButton-iconSizeMedium"
-                                >
-                                  <svg
-                                    aria-hidden="true"
-                                    class="MuiSvgIcon-root"
-                                    focusable="false"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                    />
-                                  </svg>
-                                </span>
-                              </span>
-                              <span
-                                class="MuiTouchRipple-root"
-                              />
-                            </button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
+                  class="MuiGrid-root article-feature-images-column MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -113,61 +42,166 @@ Object {
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        class="article-feature-image-box"
                       >
-                        <img
-                          alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
-                          title="Illustration"
-                        />
+                        <div
+                          class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        >
+                          <img
+                            alt="An image illustrating listed features"
+                            class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
+                            title="Illustration"
+                          />
+                        </div>
                       </div>
                     </div>
                     <div
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
                       >
-                        <img
-                          alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
-                          title="Illustration"
-                        />
+                        <div
+                          class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
+                          />
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation1 MuiPaper-rounded"
+                          >
+                            <img
+                              alt="An image illustrating listed features"
+                              class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
+                              title="Illustration"
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  </div>
+                  <div
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  >
                     <div
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
                       >
-                        <img
-                          alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
-                          title="Illustration"
-                        />
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                          >
+                            <img
+                              alt="An image illustrating listed features"
+                              class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
+                              title="Illustration"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
+                        >
+                          <div
+                            class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
+                          />
+                        </div>
                       </div>
                     </div>
                     <div
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        class="article-feature-image-box"
                       >
-                        <img
-                          alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
-                          title="Illustration"
-                        />
+                        <div
+                          class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        >
+                          <img
+                            alt="An image illustrating listed features"
+                            class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                            title="Illustration"
+                          />
+                        </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root article-feature-content-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                >
+                  <div
+                    class="article-feature-content-box"
+                  >
+                    <h2
+                      class="article-features-text1"
+                    >
+                      .NET Core, Azure, databases and others.
+                    </h2>
+                    <div
+                      class="article-features-text2 mt-15 mb-15"
+                    >
+                      <h3
+                        class="article-features-text2-heading"
+                      >
+                        Let's dive into Microsoft technology...
+                      </h3>
+                      <p>
+                        Readt about...
+                      </p>
+                    </div>
+                    <div
+                      class="text-left"
+                    >
+                      <a
+                        class="link"
+                        href="/action-link"
+                        rel="noopener nofollow"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text button"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          >
+                            View list of articles
+                            <span
+                              class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -194,7 +228,7 @@ Object {
             data-aos-delay="0"
           >
             <p
-              class="MuiTypography-root article-features-title MuiTypography-body1"
+              class="MuiTypography-root article-feature-title MuiTypography-body1"
             >
               ARTICLES
             </p>
@@ -204,81 +238,10 @@ Object {
             data-aos-delay="0"
           >
             <div
-              class="MuiGrid-root MuiGrid-container"
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
             >
               <div
-                class="MuiGrid-root article-features-content MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
-              >
-                <div
-                  class="MuiPaper-root MuiCard-root article-features-card MuiPaper-elevation0 MuiPaper-rounded"
-                >
-                  <div
-                    class="MuiCardContent-root article-features-card-content"
-                  >
-                    <div
-                      class="article-features-card-box"
-                    >
-                      <h2
-                        class="article-features-text1"
-                      >
-                        .NET Core, Azure, databases and others.
-                      </h2>
-                      <div
-                        class="article-features-text2 mt-15 mb-15"
-                      >
-                        <h3
-                          class="article-features-text2-heading"
-                        >
-                          Let's dive into Microsoft technology...
-                        </h3>
-                        <p>
-                          Readt about...
-                        </p>
-                      </div>
-                      <div
-                        class="text-right"
-                      >
-                        <a
-                          class="link"
-                          href="/action-link"
-                          rel="noopener nofollow"
-                        >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-text button"
-                            tabindex="0"
-                            type="button"
-                          >
-                            <span
-                              class="MuiButton-label"
-                            >
-                              View list of articles
-                              <span
-                                class="MuiButton-endIcon MuiButton-iconSizeMedium"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  class="MuiSvgIcon-root"
-                                  focusable="false"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                  />
-                                </svg>
-                              </span>
-                            </span>
-                            <span
-                              class="MuiTouchRipple-root"
-                            />
-                          </button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-lg-6"
+                class="MuiGrid-root article-feature-images-column MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
               >
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -287,61 +250,166 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                      class="article-feature-image-box"
                     >
-                      <img
-                        alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
-                        title="Illustration"
-                      />
+                      <div
+                        class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                      >
+                        <img
+                          alt="An image illustrating listed features"
+                          class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
+                          title="Illustration"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
                     >
-                      <img
-                        alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
-                        title="Illustration"
-                      />
+                      <div
+                        class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
+                      >
+                        <div
+                          class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
+                        />
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                      >
+                        <div
+                          class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation1 MuiPaper-rounded"
+                        >
+                          <img
+                            alt="An image illustrating listed features"
+                            class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
+                            title="Illustration"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                >
                   <div
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
                     >
-                      <img
-                        alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
-                        title="Illustration"
-                      />
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                      >
+                        <div
+                          class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        >
+                          <img
+                            alt="An image illustrating listed features"
+                            class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
+                            title="Illustration"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
+                      >
+                        <div
+                          class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
                   >
                     <div
-                      class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                      class="article-feature-image-box"
                     >
-                      <img
-                        alt="An image illustrating listed features"
-                        class="MuiCardMedia-root article-features-media article-features-media-visibility lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
-                        title="Illustration"
-                      />
+                      <div
+                        class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                      >
+                        <img
+                          alt="An image illustrating listed features"
+                          class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                          title="Illustration"
+                        />
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root article-feature-content-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+              >
+                <div
+                  class="article-feature-content-box"
+                >
+                  <h2
+                    class="article-features-text1"
+                  >
+                    .NET Core, Azure, databases and others.
+                  </h2>
+                  <div
+                    class="article-features-text2 mt-15 mb-15"
+                  >
+                    <h3
+                      class="article-features-text2-heading"
+                    >
+                      Let's dive into Microsoft technology...
+                    </h3>
+                    <p>
+                      Readt about...
+                    </p>
+                  </div>
+                  <div
+                    class="text-left"
+                  >
+                    <a
+                      class="link"
+                      href="/action-link"
+                      rel="noopener nofollow"
+                    >
+                      <button
+                        class="MuiButtonBase-root MuiButton-root MuiButton-text button"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <span
+                          class="MuiButton-label"
+                        >
+                          View list of articles
+                          <span
+                            class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                        <span
+                          class="MuiTouchRipple-root"
+                        />
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
