@@ -661,7 +661,6 @@ body::backdrop {
     margin-bottom: 5px;
 }
 
-
 /* ACCESS DENIED COMPONENT */
 
 .access-denied-caption {
@@ -923,7 +922,7 @@ body::backdrop {
 
 @media (min-width: 900px) {
     .article-feature-images-column {
-        order: 0;    
+        order: 0;
     }
 }
 

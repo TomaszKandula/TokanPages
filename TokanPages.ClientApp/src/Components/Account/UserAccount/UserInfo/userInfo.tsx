@@ -64,7 +64,6 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const [hasProgress, setHasProgress] = React.useState(false);
     const [canUpdateStore, setUpdateStore] = React.useState<UpdateStoreProps | undefined>(undefined);
 
-
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
 
@@ -108,13 +107,14 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textAccountSettings,
-            message: template.templates.user.updateWarning,
-            validation: result,
-            icon: IconType.warning
-        }));
-
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.user.updateWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form]);
 
     const verifyButtonHandler = React.useCallback(() => {
@@ -154,11 +154,15 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 })
             );
 
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textAccountSettings,
-                message: isUserActivated.checked ? template.templates.user.updateSuccess : template.templates.user.deactivation,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textAccountSettings,
+                    message: isUserActivated.checked
+                        ? template.templates.user.updateSuccess
+                        : template.templates.user.deactivation,
+                    icon: IconType.info,
+                })
+            );
 
             clear();
         }
@@ -206,11 +210,13 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             setRequesting(false);
             setCheckAltStatus(true);
             dispatch(UserEmailVerificationAction.clear());
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textAccountSettings,
-                message: template.templates.user.emailVerification,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textAccountSettings,
+                    message: template.templates.user.emailVerification,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished]);
 

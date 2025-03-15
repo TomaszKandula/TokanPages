@@ -59,11 +59,13 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            dispatch(ApplicationDialogAction.raise({ 
-                title: template.forms.textPasswordReset, 
-                message: template.templates.password.resetSuccess, 
-                icon: IconType.info 
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textPasswordReset,
+                    message: template.templates.password.resetSuccess,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -87,12 +89,14 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({ 
-            title: template.forms.textPasswordReset, 
-            message: template.templates.password.resetWarning, 
-            validation: result,
-            icon: IconType.warning 
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textPasswordReset,
+                message: template.templates.password.resetWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, template]);
 
     return (

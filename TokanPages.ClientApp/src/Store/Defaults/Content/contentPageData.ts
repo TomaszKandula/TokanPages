@@ -489,8 +489,8 @@ export const ContentPageData: ContentPageDataState = {
                 textPost: "",
                 textNist: {
                     text: "",
-                    href: ""
-                }
+                    href: "",
+                },
             },
             consent: "",
             labelFirstName: "",

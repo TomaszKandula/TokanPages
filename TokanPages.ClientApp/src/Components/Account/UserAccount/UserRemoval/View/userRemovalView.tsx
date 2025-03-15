@@ -53,7 +53,10 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                                         {props.isLoading ? (
                                             <Skeleton variant="text" width="200px" />
                                         ) : (
-                                            <RenderParagraphs text={props.sectionAccountRemoval?.warningText} className="label user-account-text-item" />
+                                            <RenderParagraphs
+                                                text={props.sectionAccountRemoval?.warningText}
+                                                className="label user-account-text-item"
+                                            />
                                         )}
                                     </Grid>
                                 </Grid>

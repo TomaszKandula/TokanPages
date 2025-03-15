@@ -54,11 +54,13 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
         }
 
         if (hasUpdateFinished) {
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textAccountSettings,
-                message: template.templates.user.deactivation,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textAccountSettings,
+                    message: template.templates.user.deactivation,
+                    icon: IconType.info,
+                })
+            );
 
             dispatch(UserDataStoreAction.clear());
             dispatch(UserUpdateAction.clear());

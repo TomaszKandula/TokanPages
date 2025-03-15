@@ -84,11 +84,13 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textAccountSettings,
-                message: template.templates.password.updateSuccess,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textAccountSettings,
+                    message: template.templates.password.updateSuccess,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -129,12 +131,14 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textAccountSettings,
-            message: template.templates.password.updateWarning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.password.updateWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, template]);
 
     return (

@@ -47,28 +47,20 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
 };
 
 const DisplayParagraphs = (props: DisplayParagraphsProps): React.ReactElement => {
-    const RenderLine = (props: { value: string, index: number }) => {
+    const RenderLine = (props: { value: string; index: number }) => {
         if (props.index === 0) {
-            return (
-                <h3 className="article-features-text2-heading">
-                    {props.value}
-                </h3>
-            );
+            return <h3 className="article-features-text2-heading">{props.value}</h3>;
         } else {
-            return (
-                <p>
-                    {props.value}
-                </p>
-            );
+            return <p>{props.value}</p>;
         }
-    }
+    };
 
     const lines = props.text?.map((value: string, index: number) => (
-        <RenderLine key={index}  value={value} index={index} />
+        <RenderLine key={index} value={value} index={index} />
     ));
 
     return <>{lines}</>;
-}
+};
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -85,106 +77,118 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                     <Animated dataAos="fade-up">
                         <Grid container spacing={8}>
                             <Grid item xs={12} md={6} className="article-feature-images-column">
-
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={8}>
                                         <div className="article-feature-image-box">
                                             <Card className="article-feature-card card-image" elevation={0}>
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="rect" height="256px" />
-                                            ) : (
-                                                <CardMedia 
-                                                    component="img" 
-                                                    loading="lazy"
-                                                    title="Illustration"
-                                                    alt="An image illustrating listed features"
-                                                    className="article-feature-card-media-large lazyloaded" 
-                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image1, })} 
-                                                />
-                                            )}
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="rect" height="256px" />
+                                                ) : (
+                                                    <CardMedia
+                                                        component="img"
+                                                        loading="lazy"
+                                                        title="Illustration"
+                                                        alt="An image illustrating listed features"
+                                                        className="article-feature-card-media-large lazyloaded"
+                                                        image={GetImageUrl({
+                                                            base: GET_ARTICLE_IMAGE_URL,
+                                                            name: features?.image1,
+                                                        })}
+                                                    />
+                                                )}
                                             </Card>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} md={4}>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} className="article-feature-empty-card-container">
-                                                <Card className="article-feature-empty-card" elevation={0}>
-                                                </Card>
+                                                <Card className="article-feature-empty-card" elevation={0}></Card>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Card className="card-image">
-                                                {data?.isLoading ? (
-                                                    <Skeleton variant="rect" height="256px" />
-                                                ) : (
-                                                    <CardMedia 
-                                                        component="img" 
-                                                        loading="lazy"
-                                                        title="Illustration"
-                                                        alt="An image illustrating listed features"
-                                                        className="article-feature-card-media lazyloaded" 
-                                                        image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image2, })} 
-                                                    />
-                                                )}
+                                                    {data?.isLoading ? (
+                                                        <Skeleton variant="rect" height="256px" />
+                                                    ) : (
+                                                        <CardMedia
+                                                            component="img"
+                                                            loading="lazy"
+                                                            title="Illustration"
+                                                            alt="An image illustrating listed features"
+                                                            className="article-feature-card-media lazyloaded"
+                                                            image={GetImageUrl({
+                                                                base: GET_ARTICLE_IMAGE_URL,
+                                                                name: features?.image2,
+                                                            })}
+                                                        />
+                                                    )}
                                                 </Card>
                                             </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                    
+
                                 <Grid container spacing={2}>
                                     <Grid item xs={12} md={4}>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>
                                                 <Card className="card-image" elevation={0}>
-                                                {data?.isLoading ? (
-                                                    <Skeleton variant="rect" height="256px" />
-                                                ) : (
-                                                    <CardMedia 
-                                                        component="img" 
-                                                        loading="lazy"
-                                                        title="Illustration"
-                                                        alt="An image illustrating listed features"
-                                                        className="article-feature-card-media lazyloaded" 
-                                                        image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image3, })} 
-                                                    />
-                                                )}
+                                                    {data?.isLoading ? (
+                                                        <Skeleton variant="rect" height="256px" />
+                                                    ) : (
+                                                        <CardMedia
+                                                            component="img"
+                                                            loading="lazy"
+                                                            title="Illustration"
+                                                            alt="An image illustrating listed features"
+                                                            className="article-feature-card-media lazyloaded"
+                                                            image={GetImageUrl({
+                                                                base: GET_ARTICLE_IMAGE_URL,
+                                                                name: features?.image3,
+                                                            })}
+                                                        />
+                                                    )}
                                                 </Card>
                                             </Grid>
                                             <Grid item xs={12} className="article-feature-empty-card-container">
-                                                <Card className="article-feature-empty-card" elevation={0}>
-                                                </Card>
+                                                <Card className="article-feature-empty-card" elevation={0}></Card>
                                             </Grid>
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12} md={8}>
                                         <div className="article-feature-image-box">
                                             <Card className="article-feature-card card-image" elevation={0}>
-                                            {data?.isLoading ? (
-                                                <Skeleton variant="rect" height="256px" />
-                                            ) : (
-                                                <CardMedia 
-                                                    component="img"
-                                                    loading="lazy"
-                                                    title="Illustration"
-                                                    alt="An image illustrating listed features"
-                                                    className="article-feature-card-media-large lazyloaded"
-                                                    image={GetImageUrl({base: GET_ARTICLE_IMAGE_URL, name: features?.image4, })} 
-                                                />
-                                            )}
+                                                {data?.isLoading ? (
+                                                    <Skeleton variant="rect" height="256px" />
+                                                ) : (
+                                                    <CardMedia
+                                                        component="img"
+                                                        loading="lazy"
+                                                        title="Illustration"
+                                                        alt="An image illustrating listed features"
+                                                        className="article-feature-card-media-large lazyloaded"
+                                                        image={GetImageUrl({
+                                                            base: GET_ARTICLE_IMAGE_URL,
+                                                            name: features?.image4,
+                                                        })}
+                                                    />
+                                                )}
                                             </Card>
                                         </div>
                                     </Grid>
                                 </Grid>
-
                             </Grid>
-            
+
                             <Grid item xs={12} md={6} className="article-feature-content-container">
                                 <div className="article-feature-content-box">
                                     <h2 className="article-features-text1">
                                         {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                     </h2>
                                     <div className="article-features-text2 mt-15 mb-15">
-                                        {data?.isLoading ? <Skeleton variant="text" /> : <DisplayParagraphs text={features?.text2} />}
+                                        {data?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            <DisplayParagraphs text={features?.text2} />
+                                        )}
                                     </div>
                                     <div className="text-left">
                                         {data?.isLoading ? (
@@ -195,7 +199,6 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                 </div>
                             </Grid>
-
                         </Grid>
                     </Animated>
                 </div>

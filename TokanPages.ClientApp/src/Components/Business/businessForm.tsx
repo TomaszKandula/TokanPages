@@ -123,11 +123,13 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
         if (hasFinished) {
             clearForm();
-            dispatch(ApplicationDialogAction.raise({
-                title: templates.forms.textBusinessForm,
-                message: templates.templates.messageOut.success,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: templates.forms.textBusinessForm,
+                    message: templates.templates.messageOut.success,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, services]);
 
@@ -222,12 +224,14 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: templates.forms.textBusinessForm,
-            message: templates.templates.messageOut.warning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: templates.forms.textBusinessForm,
+                message: templates.templates.messageOut.warning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, templates, services, techStackItems]);
 
     return (

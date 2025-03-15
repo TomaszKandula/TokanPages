@@ -73,11 +73,13 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
-            dispatch(ApplicationDialogAction.raise({
-                title: templates.forms.textContactForm,
-                message: templates.templates.messageOut.success,
-                icon: IconType.info 
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: templates.forms.textContactForm,
+                    message: templates.templates.messageOut.success,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates]);
 
@@ -117,12 +119,14 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: templates.forms.textContactForm,
-            message: templates.templates.messageOut.warning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: templates.forms.textContactForm,
+                message: templates.templates.messageOut.warning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, templates]);
 
     return (

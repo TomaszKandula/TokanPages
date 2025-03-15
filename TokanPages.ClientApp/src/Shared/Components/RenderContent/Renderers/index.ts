@@ -5,11 +5,11 @@ export { RenderTable } from "./RenderTable/renderTable";
 export { RenderText } from "./RenderText/renderText";
 export { RenderVideo } from "./RenderVideo/renderVideo";
 export { RenderSuperTitle } from "./RenderSuperTitle/renderSuperTitle";
-export { 
+export {
     ProcessParagraphs,
-    RenderAnchorLink, 
-    RenderArticleLink, 
-    RenderExternalLink, 
+    RenderAnchorLink,
+    RenderArticleLink,
+    RenderExternalLink,
     RenderHeader,
     RenderInternalLink,
     RenderParagraph,

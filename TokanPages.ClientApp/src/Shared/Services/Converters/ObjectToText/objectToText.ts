@@ -19,7 +19,6 @@ export const ObjectToText = (props: Properties): string | undefined => {
                 value.forEach(item => {
                     stripped = stripped + " " + item.replace(/<[^>]+>/g, " ");
                 });
-
             } else {
                 stripped = value.replace(/<[^>]+>/g, " ");
             }

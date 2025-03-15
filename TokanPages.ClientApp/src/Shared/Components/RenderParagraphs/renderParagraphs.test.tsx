@@ -6,7 +6,7 @@ import { RenderParagraphs } from "./renderParagraphs";
 describe("test render function 'RenderParagraphs'", () => {
     it("should return rendered text paragraphs for given text items.", () => {
         // Arrange
-        const list = ["item1", "item2", "item3"]
+        const list = ["item1", "item2", "item3"];
         const output = `
             <span data-testid="test-list">
                 <p class="MuiTypography-root MuiTypography-body1">item1</p>
@@ -17,7 +17,11 @@ describe("test render function 'RenderParagraphs'", () => {
         const expected = output.replace(/\s+/g, " ").replaceAll(" <", "<");
 
         // Act
-        render(<span data-testid="test-list"><RenderParagraphs text={list} /></span>);
+        render(
+            <span data-testid="test-list">
+                <RenderParagraphs text={list} />
+            </span>
+        );
 
         // Assert
         const container = screen.getByTestId("test-list");

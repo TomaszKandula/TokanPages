@@ -42,7 +42,10 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
                                     {props.isLoading ? (
                                         <Skeleton variant="text" height="100px" />
                                     ) : (
-                                        <RenderParagraphs text={props.accessDeniedPrompt} className="label user-account-text-item" />
+                                        <RenderParagraphs
+                                            text={props.accessDeniedPrompt}
+                                            className="label user-account-text-item"
+                                        />
                                     )}
                                 </Typography>
                             </div>

@@ -81,7 +81,6 @@ const renderRoute = (props: PageProps) => {
     );
 };
 
-
 export const Routes = (props: RoutesProps): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 

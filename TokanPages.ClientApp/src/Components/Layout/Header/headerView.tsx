@@ -25,7 +25,7 @@ const TertiaryButton = (props: HeaderContentDto): React.ReactElement => {
             </Button>
         </Link>
     );
-}
+};
 
 const SecondaryButton = (props: HeaderContentDto): React.ReactElement => {
     return (

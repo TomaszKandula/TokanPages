@@ -47,7 +47,10 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                                         {props.isLoading ? (
                                             <Skeleton variant="text" width="200px" />
                                         ) : (
-                                            <RenderParagraphs text={props.section?.warningText} className="label user-account-text-item" />
+                                            <RenderParagraphs
+                                                text={props.section?.warningText}
+                                                className="label user-account-text-item"
+                                            />
                                         )}
                                     </Grid>
                                 </Grid>

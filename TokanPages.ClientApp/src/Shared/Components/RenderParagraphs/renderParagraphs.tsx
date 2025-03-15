@@ -42,4 +42,4 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
     ));
 
     return <>{result}</>;
-}
+};
