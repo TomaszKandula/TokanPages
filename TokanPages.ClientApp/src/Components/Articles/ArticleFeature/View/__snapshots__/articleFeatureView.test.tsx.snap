@@ -149,15 +149,15 @@ Object {
                     class="article-feature-content-box"
                   >
                     <h2
-                      class="article-features-text1"
+                      class="article-feature-text1"
                     >
                       .NET Core, Azure, databases and others.
                     </h2>
                     <div
-                      class="article-features-text2 mt-15 mb-15"
+                      class="article-feature-text2 mt-15 mb-15"
                     >
                       <h3
-                        class="article-features-text2-heading"
+                        class="article-feature-text2-heading"
                       >
                         Let's dive into Microsoft technology...
                       </h3>
@@ -357,15 +357,15 @@ Object {
                   class="article-feature-content-box"
                 >
                   <h2
-                    class="article-features-text1"
+                    class="article-feature-text1"
                   >
                     .NET Core, Azure, databases and others.
                   </h2>
                   <div
-                    class="article-features-text2 mt-15 mb-15"
+                    class="article-feature-text2 mt-15 mb-15"
                   >
                     <h3
-                      class="article-features-text2-heading"
+                      class="article-feature-text2-heading"
                     >
                       Let's dive into Microsoft technology...
                     </h3>
