@@ -916,6 +916,24 @@ body::backdrop {
     color: #6367ef !important;
 }
 
+.article-feature-text1 {
+    font-size: 1.5rem !important;
+    font-weight: 400 !important;
+    margin: 0;
+}
+
+.article-feature-text2 {
+    font-size: 1.125rem !important;
+    font-weight: 400 !important;
+    line-height: 1.8 !important;
+    color: #757575 !important;
+}
+
+.article-feature-text2-heading {
+    font-size: 1.125rem !important;
+    font-weight: 500 !important;
+}
+
 .article-feature-images-column {
     order: 12;
 }

@@ -49,7 +49,7 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
 const DisplayParagraphs = (props: DisplayParagraphsProps): React.ReactElement => {
     const RenderLine = (props: { value: string; index: number }) => {
         if (props.index === 0) {
-            return <h3 className="article-features-text2-heading">{props.value}</h3>;
+            return <h3 className="article-feature-text2-heading">{props.value}</h3>;
         } else {
             return <p>{props.value}</p>;
         }
@@ -180,10 +180,10 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
 
                             <Grid item xs={12} md={6} className="article-feature-content-container">
                                 <div className="article-feature-content-box">
-                                    <h2 className="article-features-text1">
+                                    <h2 className="article-feature-text1">
                                         {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                     </h2>
-                                    <div className="article-features-text2 mt-15 mb-15">
+                                    <div className="article-feature-text2 mt-15 mb-15">
                                         {data?.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (
