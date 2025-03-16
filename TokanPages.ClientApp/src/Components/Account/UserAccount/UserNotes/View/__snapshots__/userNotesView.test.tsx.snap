@@ -125,46 +125,46 @@ Object {
                           </div>
                         </div>
                       </div>
-                      <div
-                        class="user-notes-button-box"
-                      >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Remove
-                          </span>
-                        </button>
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                          tabindex="0"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Clear
-                          </span>
-                        </button>
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Save
-                          </span>
-                        </button>
-                      </div>
                     </div>
+                  </div>
+                  <div
+                    class="user-notes-button-box"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Remove
+                      </span>
+                    </button>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
+                      tabindex="0"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Clear
+                      </span>
+                    </button>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Save
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -295,46 +295,46 @@ Object {
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="user-notes-button-box"
-                    >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Remove
-                        </span>
-                      </button>
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                        tabindex="0"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Clear
-                        </span>
-                      </button>
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Save
-                        </span>
-                      </button>
-                    </div>
                   </div>
+                </div>
+                <div
+                  class="user-notes-button-box"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Remove
+                    </span>
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
+                    tabindex="0"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Clear
+                    </span>
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Save
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -522,46 +522,46 @@ Object {
                           </div>
                         </div>
                       </div>
-                      <div
-                        class="user-notes-button-box"
-                      >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Remove
-                          </span>
-                        </button>
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                          tabindex="0"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Clear
-                          </span>
-                        </button>
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Save
-                          </span>
-                        </button>
-                      </div>
                     </div>
+                  </div>
+                  <div
+                    class="user-notes-button-box"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Remove
+                      </span>
+                    </button>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
+                      tabindex="0"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Clear
+                      </span>
+                    </button>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Save
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -692,46 +692,46 @@ Object {
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="user-notes-button-box"
-                    >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Remove
-                        </span>
-                      </button>
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                        tabindex="0"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Clear
-                        </span>
-                      </button>
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Save
-                        </span>
-                      </button>
-                    </div>
                   </div>
+                </div>
+                <div
+                  class="user-notes-button-box"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Remove
+                    </span>
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
+                    tabindex="0"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Clear
+                    </span>
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Save
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -928,47 +928,47 @@ Object {
                           </div>
                         </div>
                       </div>
-                      <div
-                        class="user-notes-button-box"
-                      >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Remove
-                          </span>
-                        </button>
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Clear
-                          </span>
-                        </button>
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
-                          disabled=""
-                          tabindex="-1"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Save
-                          </span>
-                        </button>
-                      </div>
                     </div>
+                  </div>
+                  <div
+                    class="user-notes-button-box"
+                  >
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Remove
+                      </span>
+                    </button>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Clear
+                      </span>
+                    </button>
+                    <button
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      disabled=""
+                      tabindex="-1"
+                      type="submit"
+                    >
+                      <span
+                        class="MuiButton-label"
+                      >
+                        Save
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1108,47 +1108,47 @@ Object {
                         </div>
                       </div>
                     </div>
-                    <div
-                      class="user-notes-button-box"
-                    >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Remove
-                        </span>
-                      </button>
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Clear
-                        </span>
-                      </button>
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Save
-                        </span>
-                      </button>
-                    </div>
                   </div>
+                </div>
+                <div
+                  class="user-notes-button-box"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Remove
+                    </span>
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Clear
+                    </span>
+                  </button>
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    disabled=""
+                    tabindex="-1"
+                    type="submit"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Save
+                    </span>
+                  </button>
                 </div>
               </div>
             </div>
