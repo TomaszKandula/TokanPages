@@ -909,29 +909,24 @@ body::backdrop {
     }
 }
 
-.article-feature-title {
+.article-feature-caption {
     text-align: center;
     font-size: 2rem !important;
     font-weight: 500 !important;
     color: #6367ef !important;
 }
 
-.article-feature-text1 {
+.article-feature-title {
     font-size: 1.9rem !important;
     font-weight: 500 !important;
     margin: 0;
 }
 
-.article-feature-text2 {
+.article-feature-description {
     font-size: 1.125rem !important;
     font-weight: 400 !important;
     line-height: 1.8 !important;
     color: #757575 !important;
-}
-
-.article-feature-text2-heading {
-    font-size: 1.125rem !important;
-    font-weight: 500 !important;
 }
 
 .article-feature-images-column {

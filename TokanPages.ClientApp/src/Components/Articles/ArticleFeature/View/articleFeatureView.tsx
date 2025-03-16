@@ -24,10 +24,6 @@ interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
     isLoading: boolean;
 }
 
-interface DisplayParagraphsProps {
-    text: string[];
-}
-
 const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
         return (
@@ -46,22 +42,6 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
     );
 };
 
-const DisplayParagraphs = (props: DisplayParagraphsProps): React.ReactElement => {
-    const RenderLine = (props: { value: string; index: number }) => {
-        if (props.index === 0) {
-            return <h3 className="article-feature-text2-heading">{props.value}</h3>;
-        } else {
-            return <p>{props.value}</p>;
-        }
-    };
-
-    const lines = props.text?.map((value: string, index: number) => (
-        <RenderLine key={index} value={value} index={index} />
-    ));
-
-    return <>{lines}</>;
-};
-
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const features = data?.components?.sectionArticle;
@@ -70,8 +50,8 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
             <Container className="container-super-wide">
                 <div className="pt-64 pb-96">
                     <Animated dataAos="fade-down" className="text-centre mb-48">
-                        <Typography className="article-feature-title">
-                            {data?.isLoading ? <Skeleton variant="text" /> : features?.title.toUpperCase()}
+                        <Typography className="article-feature-caption">
+                            {data?.isLoading ? <Skeleton variant="text" /> : features?.caption.toUpperCase()}
                         </Typography>
                     </Animated>
                     <Animated dataAos="fade-up">
@@ -180,14 +160,21 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
 
                             <Grid item xs={12} md={6} className="article-feature-content-container">
                                 <div className="article-feature-content-box">
-                                    <h2 className="article-feature-text1">
-                                        {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
+                                    <h2 className="article-feature-title">
+                                        {data?.isLoading ? <Skeleton variant="text" /> : features?.title}
                                     </h2>
-                                    <div className="article-feature-text2 mt-15 mb-32">
+                                    <div className="article-feature-description mt-15">
                                         {data?.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (
-                                            <DisplayParagraphs text={features?.text2} />
+                                            <p>{features?.description}</p>
+                                        )}
+                                    </div>
+                                    <div className="article-feature-description mb-32">
+                                        {data?.isLoading ? (
+                                            <Skeleton variant="text" />
+                                        ) : (
+                                            <p>{features?.text}</p>
                                         )}
                                     </div>
                                     <div className="text-left">
