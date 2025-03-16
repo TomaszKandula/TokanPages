@@ -29,7 +29,7 @@ describe("test articles group component: ArticleFeatureView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.articleFeatures = testContent;
+    pageData.components.sectionArticle = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

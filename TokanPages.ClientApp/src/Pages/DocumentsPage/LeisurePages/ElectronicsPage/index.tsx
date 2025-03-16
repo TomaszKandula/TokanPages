@@ -11,16 +11,16 @@ export const ElectronicsPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const electronics = state?.contentPageData?.components?.electronics;
+    const electronics = state?.contentPageData?.components?.leisureElectronics;
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "electronics"], "ElectronicsPage")
+            ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureElectronics"], "ElectronicsPage")
         );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.electronics.items ?? [];
+    const items = data?.components.leisureElectronics.items ?? [];
 
     React.useEffect(() => {
         if (electronics?.language !== "") {

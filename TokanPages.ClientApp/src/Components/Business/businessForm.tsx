@@ -62,7 +62,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const templates = data.components.templates;
-    const businessForm = data.components.businessForm;
+    const businessForm = data.components.pageBusinessForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;

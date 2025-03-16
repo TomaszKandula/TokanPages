@@ -39,7 +39,7 @@ describe("test component: headerView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.header = testContent;
+    pageData.components.layoutHeader = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

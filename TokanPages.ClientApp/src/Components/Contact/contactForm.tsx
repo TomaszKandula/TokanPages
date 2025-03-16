@@ -33,7 +33,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const templates = data?.components?.templates;
-    const contactForm = data?.components?.contactForm;
+    const contactForm = data?.components?.sectionContactForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;

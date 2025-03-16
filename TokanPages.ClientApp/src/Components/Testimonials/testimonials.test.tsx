@@ -30,7 +30,7 @@ describe("test component: testimonials", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.testimonials = testContent;
+    pageData.components.sectionTestimonials = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

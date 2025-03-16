@@ -26,7 +26,7 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data.components.templates;
-    const newsletter = data.components.newsletterUpdate;
+    const newsletter = data.components.pageNewsletterUpdate;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;

@@ -89,7 +89,7 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const header = data?.components?.header;
+    const header = data?.components?.layoutHeader;
     return (
         <section className={`section margin-top-60 ${props.background ?? ""}`}>
             <Grid container spacing={3}>

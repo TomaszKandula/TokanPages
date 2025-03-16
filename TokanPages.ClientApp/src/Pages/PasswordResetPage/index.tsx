@@ -12,7 +12,7 @@ export const PasswordResetPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "passwordReset"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pagePasswordReset"],
                 "PasswordResetPage"
             )
         );

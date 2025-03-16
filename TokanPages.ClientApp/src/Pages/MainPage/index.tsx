@@ -19,25 +19,25 @@ export const MainPage = (): React.ReactElement => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const header = state?.contentPageData?.components?.header;
+    const header = state?.contentPageData?.components?.layoutHeader;
 
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
                 [
-                    "navigation",
-                    "header",
-                    "clients",
-                    "technologies",
-                    "articleFeatures",
-                    "featured",
-                    "testimonials",
-                    "featureShowcase",
-                    "socials",
-                    "newsletter",
-                    "contactForm",
-                    "cookiesPrompt",
-                    "footer",
+                    "layoutNavigation",
+                    "layoutHeader",
+                    "layoutFooter",
+                    "sectionClients",
+                    "sectionTechnologies",
+                    "sectionArticle",
+                    "sectionFeatured",
+                    "sectionTestimonials",
+                    "sectionShowcase",
+                    "sectionSocials",
+                    "pageNewsletter",
+                    "sectionContactForm",
+                    "sectionCookiesPrompt",
                     "templates",
                 ],
                 "MainPage"

@@ -26,7 +26,7 @@ describe("test component: technologiesView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.technologies = testContent;
+    pageData.components.sectionTechnologies = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

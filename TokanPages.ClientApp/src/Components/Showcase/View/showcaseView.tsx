@@ -51,7 +51,7 @@ const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.Rea
 export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
-    const showcase = data?.components?.featureShowcase;
+    const showcase = data?.components?.sectionShowcase;
 
     return (
         <section className={`section ${props.background ?? ""}`}>

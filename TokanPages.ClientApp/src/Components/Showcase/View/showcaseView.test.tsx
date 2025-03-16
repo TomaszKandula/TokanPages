@@ -25,7 +25,7 @@ describe("test component: showcaseView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.featureShowcase = testContent;
+    pageData.components.sectionShowcase = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

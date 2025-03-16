@@ -30,7 +30,7 @@ describe("test component: featuredView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.featured = testContent;
+    pageData.components.sectionFeatured = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

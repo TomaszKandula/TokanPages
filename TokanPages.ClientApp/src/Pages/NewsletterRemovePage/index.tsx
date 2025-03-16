@@ -19,7 +19,7 @@ export const NewsletterRemovePage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "newsletterRemove"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterRemove"],
                 "NewsletterRemovePage"
             )
         );

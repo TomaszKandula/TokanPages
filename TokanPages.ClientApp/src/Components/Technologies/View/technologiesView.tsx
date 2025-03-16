@@ -17,7 +17,7 @@ interface TechnologiesViewProps {
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const technology = data?.components?.technologies;
+    const technology = data?.components?.sectionTechnologies;
 
     return (
         <section className={`section ${props.background ?? ""}`}>

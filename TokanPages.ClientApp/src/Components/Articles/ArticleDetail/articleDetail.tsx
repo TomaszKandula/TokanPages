@@ -31,7 +31,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = data.components.templates.templates.articles;
-    const content = data.components.article;
+    const content = data.components.pageArticle;
 
     if (Validate.isEmpty(selection.article.id) && !selection.isLoading) {
         dispatch(ArticleSelectionAction.select({ title: props.title }));

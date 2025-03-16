@@ -158,7 +158,7 @@ const makeStyledBreadcrumb = (
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
     const history = useHistory();
     const queryParam = useQuery();
-    const navigation = useSelector((state: ApplicationState) => state.contentPageData.components.navigation);
+    const navigation = useSelector((state: ApplicationState) => state.contentPageData.components.layoutNavigation);
 
     const param = queryParam.get(props.watchparam ?? "");
     const hasParam = !Validate.isEmpty(param);

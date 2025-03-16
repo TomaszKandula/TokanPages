@@ -6,7 +6,7 @@ export const ContentPageData: ContentPageDataState = {
     isLoading: false,
     languageId: undefined,
     components: {
-        featureShowcase: {
+        sectionShowcase: {
             language: "",
             caption: "",
             heading: "",
@@ -108,7 +108,7 @@ export const ContentPageData: ContentPageDataState = {
                 button: "",
             },
         },
-        article: {
+        pageArticle: {
             language: "",
             button: "",
             textReadCount: "",
@@ -122,7 +122,7 @@ export const ContentPageData: ContentPageDataState = {
             textWritten: "",
             textAbout: "",
         },
-        articleFeatures: {
+        sectionArticle: {
             language: "",
             title: "",
             description: "",
@@ -137,7 +137,7 @@ export const ContentPageData: ContentPageDataState = {
             image3: "",
             image4: "",
         },
-        businessForm: {
+        pageBusinessForm: {
             language: "",
             caption: "",
             buttonText: "",
@@ -160,12 +160,12 @@ export const ContentPageData: ContentPageDataState = {
                 services: [],
             },
         },
-        clients: {
+        sectionClients: {
             language: "",
             caption: "",
             images: [],
         },
-        contactForm: {
+        sectionContactForm: {
             language: "",
             caption: "",
             text: "",
@@ -177,7 +177,7 @@ export const ContentPageData: ContentPageDataState = {
             labelSubject: "",
             labelMessage: "",
         },
-        cookiesPrompt: {
+        sectionCookiesPrompt: {
             language: "",
             caption: "",
             text: "",
@@ -206,7 +206,7 @@ export const ContentPageData: ContentPageDataState = {
             },
             days: 0,
         },
-        featured: {
+        sectionFeatured: {
             language: "",
             caption: "",
             text: "",
@@ -223,7 +223,7 @@ export const ContentPageData: ContentPageDataState = {
             link3: "",
             image3: "",
         },
-        footer: {
+        layoutFooter: {
             language: "",
             terms: {
                 text: "",
@@ -237,7 +237,7 @@ export const ContentPageData: ContentPageDataState = {
             reserved: "",
             icons: [],
         },
-        header: {
+        layoutHeader: {
             language: "",
             photo: {
                 w360: "",
@@ -262,7 +262,7 @@ export const ContentPageData: ContentPageDataState = {
                 href: "",
             },
         },
-        navigation: {
+        layoutNavigation: {
             language: "",
             logo: "",
             userInfo: {
@@ -277,14 +277,14 @@ export const ContentPageData: ContentPageDataState = {
                 items: [],
             },
         },
-        newsletter: {
+        pageNewsletter: {
             language: "",
             caption: "",
             text: "",
             button: "",
             labelEmail: "",
         },
-        newsletterRemove: {
+        pageNewsletterRemove: {
             language: "",
             contentPre: {
                 caption: "",
@@ -301,19 +301,19 @@ export const ContentPageData: ContentPageDataState = {
                 button: "",
             },
         },
-        newsletterUpdate: {
+        pageNewsletterUpdate: {
             language: "",
             caption: "",
             button: "",
             labelEmail: "",
         },
-        passwordReset: {
+        pagePasswordReset: {
             language: "",
             caption: "",
             button: "",
             labelEmail: "",
         },
-        technologies: {
+        sectionTechnologies: {
             language: "",
             caption: "",
             header: "",
@@ -394,7 +394,7 @@ export const ContentPageData: ContentPageDataState = {
                 },
             },
         },
-        testimonials: {
+        sectionTestimonials: {
             language: "",
             caption: "",
             subtitle: "",
@@ -411,7 +411,7 @@ export const ContentPageData: ContentPageDataState = {
             occupation3: "",
             text3: "",
         },
-        socials: {
+        sectionSocials: {
             language: "",
             caption: "",
             social1: {
@@ -457,7 +457,7 @@ export const ContentPageData: ContentPageDataState = {
                 },
             },
         },
-        passwordUpdate: {
+        pagePasswordUpdate: {
             language: "",
             caption: "",
             button: "",
@@ -509,43 +509,43 @@ export const ContentPageData: ContentPageDataState = {
             labelEmail: "",
             labelPassword: "",
         },
-        policy: {
+        legalPolicy: {
             language: "",
             items: [],
         },
-        terms: {
+        legalTerms: {
             language: "",
             items: [],
         },
-        about: {
+        pageAbout: {
             language: "",
             items: [],
         },
-        story: {
+        pageStory: {
             language: "",
             items: [],
         },
-        showcase: {
+        pageShowcase: {
             language: "",
             items: [],
         },
-        bicycle: {
+        leisureBicycle: {
             language: "",
             items: [],
         },
-        electronics: {
+        leisureElectronics: {
             language: "",
             items: [],
         },
-        football: {
+        leisureFootball: {
             language: "",
             items: [],
         },
-        guitar: {
+        leisureGuitar: {
             language: "",
             items: [],
         },
-        photography: {
+        leisurePhotography: {
             language: "",
             items: [],
         },

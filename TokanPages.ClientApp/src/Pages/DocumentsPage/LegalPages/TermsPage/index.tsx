@@ -11,14 +11,14 @@ export const TermsPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const terms = state?.contentPageData?.components?.terms;
+    const terms = state?.contentPageData?.components?.legalTerms;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "terms", "cookiesPrompt"], "TermsPage"));
+        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "legalTerms", "sectionCookiesPrompt"], "TermsPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.terms.items ?? [];
+    const items = data?.components.legalTerms.items ?? [];
 
     React.useEffect(() => {
         if (terms?.language !== "") {

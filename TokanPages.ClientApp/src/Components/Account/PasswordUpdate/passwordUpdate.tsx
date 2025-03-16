@@ -44,7 +44,7 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data?.components.templates;
-    const password = data?.components.passwordUpdate;
+    const password = data?.components.pagePasswordUpdate;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;

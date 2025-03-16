@@ -25,7 +25,7 @@ const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.Rea
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
-    const socials = data?.components?.socials;
+    const socials = data?.components?.sectionSocials;
 
     return (
         <section className={`section ${props.background ?? ""}`}>

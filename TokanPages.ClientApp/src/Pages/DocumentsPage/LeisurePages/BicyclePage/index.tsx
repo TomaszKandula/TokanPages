@@ -11,14 +11,14 @@ export const BicyclePage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const bicycle = state?.contentPageData?.components?.bicycle;
+    const bicycle = state?.contentPageData?.components?.leisureBicycle;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "bicycle"], "BicyclePage"));
+        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureBicycle"], "BicyclePage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.bicycle.items ?? [];
+    const items = data?.components.leisureBicycle.items ?? [];
 
     React.useEffect(() => {
         if (bicycle?.language !== "") {

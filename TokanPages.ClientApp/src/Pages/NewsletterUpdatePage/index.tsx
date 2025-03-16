@@ -19,7 +19,7 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "newsletterUpdate"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
                 "NewsletterUpdatePage"
             )
         );

@@ -64,7 +64,7 @@ const DisplayParagraphs = (props: DisplayParagraphsProps): React.ReactElement =>
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const features = data?.components?.articleFeatures;
+    const features = data?.components?.sectionArticle;
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
