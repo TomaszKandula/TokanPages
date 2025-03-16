@@ -28,7 +28,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const socials = data?.components?.socials;
 
     return (
-        <section className={`section-grey ${props.background ?? ""}`}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">

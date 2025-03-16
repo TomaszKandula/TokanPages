@@ -12,6 +12,7 @@ import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { ArticleFeature } from "../../Components/Articles";
 import { Navigation, Header, Footer } from "../../Components/Layout";
+import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
     const dispatch = useDispatch();
@@ -31,6 +32,7 @@ export const MainPage = (): React.ReactElement => {
                     "articleFeatures",
                     "featured",
                     "testimonials",
+                    "featureShowcase",
                     "socials",
                     "newsletter",
                     "contactForm",
@@ -55,13 +57,14 @@ export const MainPage = (): React.ReactElement => {
             <main>
                 <Header />
                 <Clients />
-                <Technologies />
-                <ArticleFeature />
+                <Technologies background="background-colour-light-grey" />
+                <Showcase />
+                <ArticleFeature background="background-colour-light-grey" />
                 <Featured />
-                <Testimonials />
+                <Testimonials background="background-colour-light-grey" />
                 <Socials />
-                <Newsletter background="background-colour-white" />
-                <ContactForm hasCaption={true} background="background-colour-light-grey" />
+                <Newsletter background="background-colour-light-grey" />
+                <ContactForm hasCaption={true} />
             </main>
             <Footer />
         </>

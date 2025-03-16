@@ -31,7 +31,7 @@ interface DisplayParagraphsProps {
 const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
         return (
-            <Button endIcon={<ArrowRightAltIcon />} className="button">
+            <Button variant="contained" endIcon={<ArrowRightAltIcon />} className="button">
                 {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>
         );
@@ -39,7 +39,7 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
 
     return (
         <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button endIcon={<ArrowRightAltIcon />} className="button">
+            <Button variant="contained" endIcon={<ArrowRightAltIcon />} className="button">
                 {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
             </Button>
         </Link>
@@ -183,7 +183,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     <h2 className="article-feature-text1">
                                         {data?.isLoading ? <Skeleton variant="text" /> : features?.text1}
                                     </h2>
-                                    <div className="article-feature-text2 mt-15 mb-15">
+                                    <div className="article-feature-text2 mt-15 mb-32">
                                         {data?.isLoading ? (
                                             <Skeleton variant="text" />
                                         ) : (
