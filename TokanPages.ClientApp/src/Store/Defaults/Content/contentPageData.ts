@@ -14,8 +14,8 @@ export const ContentPageData: ContentPageDataState = {
             image: "",
             action: {
                 text: "",
-                href: ""
-            }
+                href: "",
+            },
         },
         accountUserNotes: {
             language: "",

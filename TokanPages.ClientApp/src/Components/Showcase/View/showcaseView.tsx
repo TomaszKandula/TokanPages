@@ -74,11 +74,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                         {isLoading ? <Skeleton variant="text" /> : showcase?.heading}
                                     </h2>
                                     <div className="showcase-feature-text2 mt-15 mb-32">
-                                        {isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            <p>{showcase?.text}</p>
-                                        )}
+                                        {isLoading ? <Skeleton variant="text" /> : <p>{showcase?.text}</p>}
                                     </div>
                                     <div className="text-left">
                                         {data?.isLoading ? (
@@ -92,13 +88,13 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <Card elevation={0} className="card-image">
-                                <CardMedia 
+                                <CardMedia
                                     component="img"
                                     loading="lazy"
                                     title="Illustration"
                                     alt="An image illustrating showcase page"
                                     className="showcase-feature-image lazyloaded"
-                                    image={GetImageUrl({base: GET_SHOWCASE_IMAGE_URL, name: showcase?.image, })} 
+                                    image={GetImageUrl({ base: GET_SHOWCASE_IMAGE_URL, name: showcase?.image })}
                                 />
                             </Card>
                         </Grid>
@@ -107,4 +103,4 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
             </Container>
         </section>
     );
-}
+};

@@ -1,1 +1,1 @@
-export { ShowcaseView as Showcase} from "./View/showcaseView";
+export { ShowcaseView as Showcase } from "./View/showcaseView";
