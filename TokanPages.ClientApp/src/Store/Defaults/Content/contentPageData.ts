@@ -124,10 +124,10 @@ export const ContentPageData: ContentPageDataState = {
         },
         sectionArticle: {
             language: "",
+            caption: "",
             title: "",
             description: "",
-            text1: "",
-            text2: [""],
+            text: "",
             action: {
                 text: "",
                 href: "",
@@ -277,7 +277,7 @@ export const ContentPageData: ContentPageDataState = {
                 items: [],
             },
         },
-        pageNewsletter: {
+        sectionNewsletter: {
             language: "",
             caption: "",
             text: "",

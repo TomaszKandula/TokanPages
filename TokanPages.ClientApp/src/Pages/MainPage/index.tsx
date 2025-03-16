@@ -35,7 +35,7 @@ export const MainPage = (): React.ReactElement => {
                     "sectionTestimonials",
                     "sectionShowcase",
                     "sectionSocials",
-                    "pageNewsletter",
+                    "sectionNewsletter",
                     "sectionContactForm",
                     "sectionCookiesPrompt",
                     "templates",

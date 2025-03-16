@@ -50,7 +50,6 @@ export interface ComponentsDto {
     pageShowcase: DocumentContentDto;
     pageStory: DocumentContentDto;
     pageBusinessForm: BusinessFormContentDto;
-    pageNewsletter: NewsletterContentDto;
     pageNewsletterRemove: NewsletterRemoveContentDto;
     pageNewsletterUpdate: NewsletterUpdateContentDto;
     pagePasswordReset: PasswordResetContentDto;
@@ -60,6 +59,7 @@ export interface ComponentsDto {
     sectionContactForm: ContactFormContentDto;
     sectionCookiesPrompt: CookiesPromptContentDto;
     sectionFeatured: FeaturedContentDto;
+    sectionNewsletter: NewsletterContentDto;
     sectionShowcase: FeatureShowcaseContentDto;
     sectionSocials: SocialsContentDto;
     sectionTechnologies: TechnologiesContentDto;
