@@ -22,7 +22,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <PasswordUpdate className="pt-120 pb-240" background="background-colour-light-grey" />
+                <PasswordUpdate className="pt-120 pb-240" />
             </main>
         </>
     );

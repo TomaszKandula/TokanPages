@@ -33,7 +33,6 @@ export const ContactPage = () => {
                     hasCaption={false}
                     hasIcon={true}
                     hasShadow={true}
-                    background="background-colour-light-grey"
                     className="pt-120 pb-240"
                 />
             </main>
