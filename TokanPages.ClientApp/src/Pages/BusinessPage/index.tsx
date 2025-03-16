@@ -14,7 +14,10 @@ export const BusinessPage = () => {
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["layoutNavigation", "templates", "sectionCookiesPrompt", "pageBusinessForm"], "BusinessPage")
+            ContentPageDataAction.request(
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageBusinessForm"],
+                "BusinessPage"
+            )
         );
     }, [language?.id]);
 

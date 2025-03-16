@@ -14,7 +14,12 @@ export const ShowcasePage = (): React.ReactElement => {
     const showcase = state?.contentPageData?.components?.pageShowcase;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "pageShowcase", "sectionCookiesPrompt"], "ShowcasePage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "pageShowcase", "sectionCookiesPrompt"],
+                "ShowcasePage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

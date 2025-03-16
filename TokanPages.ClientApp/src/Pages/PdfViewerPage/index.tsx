@@ -27,7 +27,7 @@ export const PdfViewerPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <main className="mt-48">
-                <PdfViewer pdfFile={name} background="background-colour-light-grey" />
+                <PdfViewer pdfFile={name} />
             </main>
         </>
     );

@@ -15,7 +15,7 @@ export const SigninPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "accountUserSignin"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountUserSignin"],
                 "SigninPage"
             )
         );
@@ -31,7 +31,7 @@ export const SigninPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <UserSignin className="pt-120 pb-240" background="background-colour-light-grey" />
+                <UserSignin className="pt-120 pb-240" />
             </main>
         </>
     );

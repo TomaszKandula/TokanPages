@@ -14,7 +14,12 @@ export const PolicyPage = (): React.ReactElement => {
     const policy = state?.contentPageData?.components?.legalPolicy;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "legalPolicy", "layoutFooter", "sectionCookiesPrompt"], "PolicyPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "legalPolicy", "layoutFooter", "sectionCookiesPrompt"],
+                "PolicyPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

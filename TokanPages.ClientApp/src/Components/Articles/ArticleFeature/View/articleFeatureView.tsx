@@ -164,18 +164,10 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                         {data?.isLoading ? <Skeleton variant="text" /> : features?.title}
                                     </h2>
                                     <div className="article-feature-description mt-15">
-                                        {data?.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            <p>{features?.description}</p>
-                                        )}
+                                        {data?.isLoading ? <Skeleton variant="text" /> : <p>{features?.description}</p>}
                                     </div>
                                     <div className="article-feature-description mb-32">
-                                        {data?.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            <p>{features?.text}</p>
-                                        )}
+                                        {data?.isLoading ? <Skeleton variant="text" /> : <p>{features?.text}</p>}
                                     </div>
                                     <div className="text-left">
                                         {data?.isLoading ? (

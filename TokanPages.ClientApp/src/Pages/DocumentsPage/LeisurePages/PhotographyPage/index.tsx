@@ -15,7 +15,10 @@ export const PhotographyPage = (): React.ReactElement => {
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisurePhotography"], "PhotographyPage")
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisurePhotography"],
+                "PhotographyPage"
+            )
         );
     }, [language?.id]);
 

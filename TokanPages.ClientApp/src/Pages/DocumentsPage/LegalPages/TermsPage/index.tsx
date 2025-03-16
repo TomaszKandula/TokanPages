@@ -14,7 +14,12 @@ export const TermsPage = (): React.ReactElement => {
     const terms = state?.contentPageData?.components?.legalTerms;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "legalTerms", "sectionCookiesPrompt"], "TermsPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "legalTerms", "sectionCookiesPrompt"],
+                "TermsPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
