@@ -30,7 +30,7 @@ export const ActivationPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "accountActivate"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountActivate"],
                 "ActivationPage"
             )
         );
@@ -45,7 +45,6 @@ export const ActivationPage = (): React.ReactElement => {
                         id={id}
                         type={type}
                         className="pt-120 pb-240"
-                        background="background-colour-light-grey"
                     />
                 ) : (
                     <ErrorMessage />

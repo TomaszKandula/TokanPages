@@ -15,7 +15,7 @@ export const SignupPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "accountUserSignup"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountUserSignup"],
                 "SignupPage"
             )
         );
@@ -31,7 +31,7 @@ export const SignupPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <UserSignup className="pt-120 pb-240" background="background-colour-light-grey" />
+                <UserSignup className="pt-120 pb-240" />
             </main>
         </>
     );

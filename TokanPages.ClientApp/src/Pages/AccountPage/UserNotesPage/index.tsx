@@ -16,7 +16,7 @@ export const UserNotesPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "footer", "templates", "cookiesPrompt", "accountUserNotes"],
+                ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserNotes"],
                 "UserNotesPage"
             )
         );

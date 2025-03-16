@@ -12,7 +12,7 @@ export const SignoutPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "accountUserSignout"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountUserSignout"],
                 "SignoutPage"
             )
         );
@@ -22,7 +22,7 @@ export const SignoutPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <UserSignout className="pt-120 pb-240" background="background-colour-light-grey" />
+                <UserSignout className="pt-120 pb-240" />
             </main>
         </>
     );
