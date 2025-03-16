@@ -6,6 +6,17 @@ export const ContentPageData: ContentPageDataState = {
     isLoading: false,
     languageId: undefined,
     components: {
+        featureShowcase: {
+            language: "",
+            caption: "",
+            heading: "",
+            text: "",
+            image: "",
+            action: {
+                text: "",
+                href: ""
+            }
+        },
         accountUserNotes: {
             language: "",
             caption: "",

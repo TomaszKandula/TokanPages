@@ -25,6 +25,7 @@ import {
     TestimonialsContentDto,
     AccountUserNotesContentDto,
     SocialsContentDto,
+    FeatureShowcaseContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
@@ -44,6 +45,7 @@ export interface ComponentsDto {
     cookiesPrompt: CookiesPromptContentDto;
     electronics: DocumentContentDto;
     featured: FeaturedContentDto;
+    featureShowcase: FeatureShowcaseContentDto;
     football: DocumentContentDto;
     footer: FooterContentDto;
     guitar: DocumentContentDto;
