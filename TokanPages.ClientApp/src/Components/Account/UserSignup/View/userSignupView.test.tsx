@@ -13,7 +13,7 @@ describe("test account group component: userSignupView", () => {
                     caption="Create a new account"
                     warning={{
                         textPre: "Password requirements:",
-                        textPost: "We recommend to use password generator...",
+                        textPost: ["We recommend to use password generator...", "Read..."],
                         textList: [
                             "between 15..50 characters",
                             "minimum one large letter",

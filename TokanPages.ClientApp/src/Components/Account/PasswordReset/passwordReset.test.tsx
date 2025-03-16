@@ -4,6 +4,9 @@ import * as Redux from "react-redux";
 import * as Router from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
+import { PasswordResetContentDto } from "../../../Api/Models";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
+import { ContentPageData } from "../../../Store/Defaults";
 import { PasswordReset } from "./passwordReset";
 
 jest.mock("react-router", () => ({
@@ -16,20 +19,21 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test account group component: passwordReset", () => {
-    const testContent = {
+    const testContent: PasswordResetContentDto = {
         language: "eng",
         caption: "Reset Password",
         button: "Reset",
         labelEmail: "Email address",
     };
 
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.pagePasswordReset = testContent;
+
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
-
+        useSelectorMock.mockImplementation((callback) => callback(state));
         useDispatchMock.mockReturnValue(jest.fn());
     });
 
@@ -39,6 +43,8 @@ describe("test account group component: passwordReset", () => {
                 <PasswordReset />
             </BrowserRouter>
         );
+
+        expect(useSelectorMock).toBeCalledTimes(3);
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
