@@ -25,7 +25,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data?.components.templates;
-    const content = data?.components.passwordReset;
+    const content = data?.components.pagePasswordReset;
 
     const hasNotStarted = reset?.status === OperationStatus.notStarted;
     const hasFinished = reset?.status === OperationStatus.hasFinished;
@@ -59,11 +59,13 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
         if (hasFinished) {
             clearForm();
             setForm(formDefaultValues);
-            dispatch(ApplicationDialogAction.raise({ 
-                title: template.forms.textPasswordReset, 
-                message: template.templates.password.resetSuccess, 
-                icon: IconType.info 
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textPasswordReset,
+                    message: template.templates.password.resetSuccess,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -87,12 +89,14 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({ 
-            title: template.forms.textPasswordReset, 
-            message: template.templates.password.resetWarning, 
-            validation: result,
-            icon: IconType.warning 
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textPasswordReset,
+                message: template.templates.password.resetWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, template]);
 
     return (

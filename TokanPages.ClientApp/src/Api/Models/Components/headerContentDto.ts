@@ -14,6 +14,7 @@ export interface HeaderContentDto {
     subtitle: string;
     description: string;
     hint: string;
-    action: LinkDto;
-    resume: LinkDto;
+    primaryButton: LinkDto;
+    secondaryButton: LinkDto;
+    tertiaryButton: LinkDto;
 }

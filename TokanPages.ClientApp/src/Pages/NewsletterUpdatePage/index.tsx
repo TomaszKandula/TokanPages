@@ -19,7 +19,7 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "newsletterUpdate"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
                 "NewsletterUpdatePage"
             )
         );
@@ -29,7 +29,7 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <NewsletterUpdate id={id} className="pt-120 pb-240" background="background-colour-light-grey" />
+                <NewsletterUpdate id={id} className="pt-120 pb-240" />
             </main>
         </>
     );

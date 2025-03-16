@@ -11,16 +11,19 @@ export const PhotographyPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const photography = state?.contentPageData?.components?.photography;
+    const photography = state?.contentPageData?.components?.leisurePhotography;
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "photography"], "PhotographyPage")
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisurePhotography"],
+                "PhotographyPage"
+            )
         );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.photography.items ?? [];
+    const items = data?.components.leisurePhotography.items ?? [];
 
     React.useEffect(() => {
         if (photography?.language !== "") {

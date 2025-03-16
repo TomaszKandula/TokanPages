@@ -20,13 +20,13 @@ export const ArticlesPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const articles = state?.contentPageData?.components?.article;
+    const articles = state?.contentPageData?.components?.pageArticle;
     const isLoading = data?.isLoading ?? false;
 
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "footer", "templates", "cookiesPrompt", "article"],
+                ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle"],
                 "ArticlesPage"
             )
         );

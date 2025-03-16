@@ -11,14 +11,19 @@ export const PolicyPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const policy = state?.contentPageData?.components?.policy;
+    const policy = state?.contentPageData?.components?.legalPolicy;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "policy", "footer", "cookiesPrompt"], "PolicyPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "legalPolicy", "layoutFooter", "sectionCookiesPrompt"],
+                "PolicyPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.policy.items ?? [];
+    const items = data?.components.legalPolicy.items ?? [];
 
     React.useEffect(() => {
         if (policy?.language !== "") {

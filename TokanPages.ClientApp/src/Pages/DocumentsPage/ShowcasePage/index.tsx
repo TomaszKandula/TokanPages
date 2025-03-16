@@ -11,14 +11,19 @@ export const ShowcasePage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const showcase = state?.contentPageData?.components?.showcase;
+    const showcase = state?.contentPageData?.components?.pageShowcase;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "showcase", "cookiesPrompt"], "ShowcasePage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "pageShowcase", "sectionCookiesPrompt"],
+                "ShowcasePage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.showcase.items ?? [];
+    const items = data?.components.pageShowcase.items ?? [];
 
     React.useEffect(() => {
         if (showcase?.language !== "") {

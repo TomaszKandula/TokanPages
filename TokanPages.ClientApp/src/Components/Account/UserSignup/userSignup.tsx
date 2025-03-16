@@ -79,11 +79,13 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(defaultForm);
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textSignup,
-                message: template.templates.user.signupSuccess,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textSignup,
+                    message: template.templates.user.signupSuccess,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -132,12 +134,14 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textSignup,
-            message: template.templates.user.signupWarning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textSignup,
+                message: template.templates.user.signupWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, template]);
 
     return (

@@ -76,6 +76,7 @@ export type { AccountActivateContentDto } from "./Components/accountActivateCont
 export type { AccountUserSigninContentDto } from "./Components/accountUserSigninContentDto";
 export type { AccountUserSignoutContentDto } from "./Components/accountUserSignoutContentDto";
 export type { AccountUserSignupContentDto } from "./Components/accountUserSignupContentDto";
+export type { FeatureShowcaseContentDto } from "./Components/featureShowcaseContentDto";
 export type { ArticleContentDto } from "./Components/articleContentDto";
 export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { DocumentContentDto } from "./Components/documentContentDto";

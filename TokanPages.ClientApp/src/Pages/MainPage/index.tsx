@@ -12,30 +12,32 @@ import { Newsletter } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { ArticleFeature } from "../../Components/Articles";
 import { Navigation, Header, Footer } from "../../Components/Layout";
+import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
     const dispatch = useDispatch();
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const header = state?.contentPageData?.components?.header;
+    const header = state?.contentPageData?.components?.layoutHeader;
 
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
                 [
-                    "navigation",
-                    "header",
-                    "clients",
-                    "technologies",
-                    "articleFeatures",
-                    "featured",
-                    "testimonials",
-                    "socials",
-                    "newsletter",
-                    "contactForm",
-                    "cookiesPrompt",
-                    "footer",
+                    "layoutNavigation",
+                    "layoutHeader",
+                    "layoutFooter",
+                    "sectionClients",
+                    "sectionTechnologies",
+                    "sectionArticle",
+                    "sectionFeatured",
+                    "sectionTestimonials",
+                    "sectionShowcase",
+                    "sectionSocials",
+                    "sectionNewsletter",
+                    "sectionContactForm",
+                    "sectionCookiesPrompt",
                     "templates",
                 ],
                 "MainPage"
@@ -55,13 +57,14 @@ export const MainPage = (): React.ReactElement => {
             <main>
                 <Header />
                 <Clients />
-                <Technologies />
-                <ArticleFeature />
+                <Technologies background="background-colour-light-grey" />
+                <Showcase />
+                <ArticleFeature background="background-colour-light-grey" />
                 <Featured />
-                <Testimonials />
+                <Testimonials background="background-colour-light-grey" />
                 <Socials />
-                <Newsletter background="background-colour-white" />
-                <ContactForm hasCaption={true} background="background-colour-light-grey" />
+                <Newsletter background="background-colour-light-grey" />
+                <ContactForm hasCaption={true} />
             </main>
             <Footer />
         </>

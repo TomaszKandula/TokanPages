@@ -3,8 +3,10 @@ import React from "react";
 import * as Redux from "react-redux";
 import * as Dom from "react-router-dom";
 import { render } from "@testing-library/react";
-import { AccountActivate } from "./accountActivate";
+import { AccountActivateContentDto } from "../../../Api/Models";
 import { ContentPageData } from "../../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
+import { AccountActivate } from "./accountActivate";
 
 jest.mock("react-router-dom", () => ({
     ...(jest.requireActual("react-router-dom") as typeof Dom),
@@ -20,7 +22,7 @@ jest.mock("react-redux", () => ({
 
 describe("Test account group component: accountActivate", () => {
     const testId = "dba4043c-7428-4f72-ba13-fe782c7a88fa";
-    const testContent = {
+    const testContent: AccountActivateContentDto = {
         language: "eng",
         onVerifying: {
             type: "Verifying",
@@ -58,18 +60,21 @@ describe("Test account group component: accountActivate", () => {
         },
     };
 
-    const pageData = ContentPageData;
-    pageData.components.accountActivate = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.accountActivate = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
         useDispatchMock.mockReturnValue(jest.fn());
     });
 
     it("should render correctly '<AccountActivate />' when content is loaded.", () => {
         const html = render(<AccountActivate id={testId} type="" />);
-        expect(useDispatchMock).toBeCalledTimes(2);
+        expect(useSelectorMock).toBeCalledTimes(9);
+        expect(useDispatchMock).toBeCalledTimes(3);
         expect(html).toMatchSnapshot();
     });
 });

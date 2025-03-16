@@ -56,7 +56,7 @@ const RenderValidationList = (props: Properties): React.ReactElement => {
     }
 
     return <RenderList list={result} className="mt-10 mb-10" />;
-}
+};
 
 const RenderDialogContent = (props: Properties): React.ReactElement => {
     return (
@@ -70,11 +70,11 @@ const RenderDialogContent = (props: Properties): React.ReactElement => {
             <Divider />
             <DialogContent>
                 <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
-                    <RenderParagraphs 
+                    <RenderParagraphs
                         text={props.message ?? []}
                         replace={{
                             key: "{LIST}",
-                            object: <RenderValidationList {...props} />
+                            object: <RenderValidationList {...props} />,
                         }}
                     />
                 </Typography>
@@ -87,7 +87,7 @@ const RenderDialogContent = (props: Properties): React.ReactElement => {
             </DialogActions>
         </>
     );
-}
+};
 
 const RenderDialogBox = (props: Properties): React.ReactElement => {
     const hasTitle = props?.title !== undefined;
@@ -103,12 +103,10 @@ const RenderDialogBox = (props: Properties): React.ReactElement => {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            {hasTitle && hasIcon && hasMessage 
-            ? <RenderDialogContent {...props} /> 
-            : <></>}
+            {hasTitle && hasIcon && hasMessage ? <RenderDialogContent {...props} /> : <></>}
         </Dialog>
     );
-} 
+};
 
 export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
     return <RenderDialogBox {...props} />;

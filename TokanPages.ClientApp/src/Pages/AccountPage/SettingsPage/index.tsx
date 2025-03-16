@@ -16,7 +16,7 @@ export const SettingsPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "footer", "templates", "cookiesPrompt", "accountSettings"],
+                ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings"],
                 "SettingsPage"
             )
         );

@@ -11,7 +11,7 @@ export const ApplicationCookie = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const hasContentLoadingFinished = data?.status === OperationStatus.hasFinished;
 
-    const cookies = data?.components?.cookiesPrompt;
+    const cookies = data?.components?.sectionCookiesPrompt;
     const currentCookie = GetCookie({ cookieName: "cookieConsent" });
     const hasSnapshotMode = HasSnapshotMode();
     const hasCookieConsent = !Validate.isEmpty(currentCookie);

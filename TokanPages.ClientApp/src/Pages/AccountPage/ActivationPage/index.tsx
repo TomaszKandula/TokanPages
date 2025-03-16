@@ -30,7 +30,7 @@ export const ActivationPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "accountActivate"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountActivate"],
                 "ActivationPage"
             )
         );
@@ -39,18 +39,7 @@ export const ActivationPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <main>
-                {id ? (
-                    <AccountActivate
-                        id={id}
-                        type={type}
-                        className="pt-120 pb-240"
-                        background="background-colour-light-grey"
-                    />
-                ) : (
-                    <ErrorMessage />
-                )}
-            </main>
+            <main>{id ? <AccountActivate id={id} type={type} className="pt-120 pb-240" /> : <ErrorMessage />}</main>
         </>
     );
 };

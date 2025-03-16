@@ -11,11 +11,14 @@ export const ContactPage = () => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const contact = state?.contentPageData?.components?.contactForm;
+    const contact = state?.contentPageData?.components?.sectionContactForm;
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["navigation", "templates", "cookiesPrompt", "contactForm"], "ContactPage")
+            ContentPageDataAction.request(
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "sectionContactForm"],
+                "ContactPage"
+            )
         );
     }, [language?.id]);
 
@@ -29,13 +32,7 @@ export const ContactPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <ContactForm
-                    hasCaption={false}
-                    hasIcon={true}
-                    hasShadow={true}
-                    background="background-colour-light-grey"
-                    className="pt-120 pb-240"
-                />
+                <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} className="pt-120 pb-240" />
             </main>
         </>
     );

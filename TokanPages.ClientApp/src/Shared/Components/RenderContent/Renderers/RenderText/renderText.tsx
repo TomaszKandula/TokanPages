@@ -1,16 +1,16 @@
 import * as React from "react";
 import { TextItem } from "../../Models/TextModel";
-import { 
-    RenderAnchorLink, 
-    RenderArticleLink, 
-    RenderExternalLink, 
-    RenderHeader, 
-    RenderInternalLink, 
-    RenderParagraph, 
-    RenderParagraphWithDropCap, 
-    RenderSubtitle, 
-    RenderTargetLink, 
-    RenderTitle 
+import {
+    RenderAnchorLink,
+    RenderArticleLink,
+    RenderExternalLink,
+    RenderHeader,
+    RenderInternalLink,
+    RenderParagraph,
+    RenderParagraphWithDropCap,
+    RenderSubtitle,
+    RenderTargetLink,
+    RenderTitle,
 } from "./Helpers";
 
 export const RenderText = (props: TextItem): React.ReactElement => {

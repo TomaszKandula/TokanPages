@@ -50,15 +50,15 @@ Object {
                 Let me know...
               </h2>
               <div
-                class="mt-32"
+                class="header-button-box mt-32"
               >
                 <a
                   class="link"
-                  href="/action-link"
+                  href="/en/action-link"
                   rel="noopener nofollow"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-primary"
                     tabindex="0"
                     type="button"
                   >
@@ -74,11 +74,11 @@ Object {
                 </a>
                 <a
                   class="link"
-                  href="/download-link"
+                  href="/en/download-link"
                   rel="noopener nofollow"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-resume"
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-secondary"
                     tabindex="0"
                     type="button"
                   >
@@ -86,6 +86,23 @@ Object {
                       class="MuiButton-label"
                     >
                       Get the CV
+                    </span>
+                  </button>
+                </a>
+                <a
+                  class="link"
+                  href="/en/showcase"
+                  rel="noopener nofollow"
+                >
+                  <button
+                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-tertiary"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span
+                      class="MuiButton-label"
+                    >
+                      Showcase
                     </span>
                   </button>
                 </a>
@@ -142,15 +159,15 @@ Object {
               Let me know...
             </h2>
             <div
-              class="mt-32"
+              class="header-button-box mt-32"
             >
               <a
                 class="link"
-                href="/action-link"
+                href="/en/action-link"
                 rel="noopener nofollow"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-primary"
                   tabindex="0"
                   type="button"
                 >
@@ -166,11 +183,11 @@ Object {
               </a>
               <a
                 class="link"
-                href="/download-link"
+                href="/en/download-link"
                 rel="noopener nofollow"
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-resume"
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-secondary"
                   tabindex="0"
                   type="button"
                 >
@@ -178,6 +195,23 @@ Object {
                     class="MuiButton-label"
                   >
                     Get the CV
+                  </span>
+                </button>
+              </a>
+              <a
+                class="link"
+                href="/en/showcase"
+                rel="noopener nofollow"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-tertiary"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    Showcase
                   </span>
                 </button>
               </a>

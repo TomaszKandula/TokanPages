@@ -102,12 +102,14 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textSigning,
-            message: template.templates.user.signingWarning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textSigning,
+                message: template.templates.user.signingWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, template]);
 
     return (

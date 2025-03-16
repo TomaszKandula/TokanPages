@@ -25,10 +25,10 @@ const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.Rea
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
-    const socials = data?.components?.socials;
+    const socials = data?.components?.sectionSocials;
 
     return (
-        <section className={`section-grey ${props.background ?? ""}`}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">

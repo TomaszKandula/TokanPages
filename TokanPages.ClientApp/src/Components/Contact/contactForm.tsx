@@ -33,7 +33,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const templates = data?.components?.templates;
-    const contactForm = data?.components?.contactForm;
+    const contactForm = data?.components?.sectionContactForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
@@ -73,11 +73,13 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
-            dispatch(ApplicationDialogAction.raise({
-                title: templates.forms.textContactForm,
-                message: templates.templates.messageOut.success,
-                icon: IconType.info 
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: templates.forms.textContactForm,
+                    message: templates.templates.messageOut.success,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates]);
 
@@ -117,12 +119,14 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: templates.forms.textContactForm,
-            message: templates.templates.messageOut.warning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: templates.forms.textContactForm,
+                message: templates.templates.messageOut.warning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, templates]);
 
     return (

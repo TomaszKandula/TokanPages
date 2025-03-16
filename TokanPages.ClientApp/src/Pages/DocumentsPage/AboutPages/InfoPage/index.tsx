@@ -11,14 +11,19 @@ export const InfoPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const about = state?.contentPageData?.components?.about;
+    const about = state?.contentPageData?.components?.pageAbout;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "about", "cookiesPrompt"], "InfoPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "pageAbout", "cookiesPrompt"],
+                "InfoPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.about.items ?? [];
+    const items = data?.components.pageAbout.items ?? [];
 
     React.useEffect(() => {
         if (about?.language !== "") {

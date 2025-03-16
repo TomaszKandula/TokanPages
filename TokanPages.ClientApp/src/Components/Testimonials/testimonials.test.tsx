@@ -2,8 +2,10 @@ import "../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
-import { Testimonials } from "./testimonials";
+import { TestimonialsContentDto } from "../../Api/Models";
 import { ContentPageData } from "../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../Store/Configuration";
+import { Testimonials } from "./testimonials";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -11,7 +13,7 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test component: testimonials", () => {
-    const testContent = {
+    const testContent: TestimonialsContentDto = {
         language: "eng",
         caption: "Testimonials",
         subtitle: "You can read few commendations...",
@@ -29,15 +31,18 @@ describe("test component: testimonials", () => {
         text3: "Joe is one of those rare talents...",
     };
 
-    const pageData = ContentPageData;
-    pageData.components.testimonials = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.sectionTestimonials = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
     });
 
     it("should render correctly '<Testimonials />' when content is loaded.", () => {
         const html = render(<Testimonials />);
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

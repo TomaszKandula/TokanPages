@@ -13,11 +13,16 @@ describe("test account group component: userSignupView", () => {
                     caption="Create a new account"
                     warning={{
                         textPre: "Password requirements:",
-                        textPost: "We recommend to use password generator...",
-                        textList: ["between 15..50 characters","minimum one large letter","minimum one small letter","minimum one number"],
+                        textPost: ["We recommend to use password generator...", "Read..."],
+                        textList: [
+                            "between 15..50 characters",
+                            "minimum one large letter",
+                            "minimum one small letter",
+                            "minimum one number",
+                        ],
                         textNist: {
                             text: "FBI on passphrases and account protection",
-                            href: "https://www.fbi.gov"
+                            href: "https://www.fbi.gov",
                         },
                     }}
                     consent="I agree to the terms of use and privacy policy."

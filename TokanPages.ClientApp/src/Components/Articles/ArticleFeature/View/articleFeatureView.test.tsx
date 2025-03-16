@@ -3,8 +3,10 @@ import React from "react";
 import * as Redux from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { ArticleFeatureView } from "./articleFeatureView";
+import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ContentPageData } from "../../../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../../../Store/Configuration";
+import { ArticleFeatureView } from "./articleFeatureView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -12,12 +14,12 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test articles group component: ArticleFeatureView", () => {
-    const testContent = {
+    const testContent: ArticleFeaturesContentDto = {
         language: "eng",
-        title: "Articles",
+        caption: "Articles",
+        title: ".NET Core, Azure, databases and others.",
         description: "I write regularly...",
-        text1: ".NET Core, Azure, databases and others.",
-        text2: ["Let's dive into Microsoft technology...", "Readt about..."],
+        text: "Let's dive into Microsoft technology...",
         action: {
             text: "View list of articles",
             href: "/action-link",
@@ -28,11 +30,13 @@ describe("test articles group component: ArticleFeatureView", () => {
         image4: "image4.jpg",
     };
 
-    const pageData = ContentPageData;
-    pageData.components.articleFeatures = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.sectionArticle = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
     });
 
     it("should render correctly '<ArticleFeatureView />' when content is loaded.", () => {
@@ -41,6 +45,8 @@ describe("test articles group component: ArticleFeatureView", () => {
                 <ArticleFeatureView />
             </Router>
         );
+
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

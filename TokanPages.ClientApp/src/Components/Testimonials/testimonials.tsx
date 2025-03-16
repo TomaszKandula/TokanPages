@@ -9,7 +9,7 @@ interface TestimonialsProps {
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const testimonials = data?.components?.testimonials;
+    const testimonials = data?.components?.sectionTestimonials;
 
     const [hasTestimonialOne, setTestimonialOne] = React.useState(false);
     const [hasTestimonialTwo, setTestimonialTwo] = React.useState(false);

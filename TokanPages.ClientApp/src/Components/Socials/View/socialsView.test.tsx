@@ -2,7 +2,9 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
+import { SocialsContentDto } from "../../../Api/Models";
 import { ContentPageData } from "../../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
 import { SocialsView } from "./socialsView";
 
 jest.mock("react-redux", () => ({
@@ -11,7 +13,7 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test component: socialsView", () => {
-    const testContent = {
+    const testContent: SocialsContentDto = {
         language: "eng",
         caption: "Social Media",
         social1: {
@@ -58,15 +60,18 @@ describe("test component: socialsView", () => {
         },
     };
 
-    const pageData = ContentPageData;
-    pageData.components.socials = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.sectionSocials = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
     });
 
     it("should render correctly '<SocialsView />' when content is loaded.", () => {
         const html = render(<SocialsView />);
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

@@ -11,14 +11,19 @@ export const GuitarPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const guitar = state?.contentPageData?.components?.guitar;
+    const guitar = state?.contentPageData?.components?.leisureGuitar;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "guitar"], "GuitarPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureGuitar"],
+                "GuitarPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.guitar.items ?? [];
+    const items = data?.components.leisureGuitar.items ?? [];
 
     React.useEffect(() => {
         if (guitar?.language !== "") {

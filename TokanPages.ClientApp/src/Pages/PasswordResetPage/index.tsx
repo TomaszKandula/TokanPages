@@ -12,7 +12,7 @@ export const PasswordResetPage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "passwordReset"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pagePasswordReset"],
                 "PasswordResetPage"
             )
         );
@@ -22,7 +22,7 @@ export const PasswordResetPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <PasswordReset className="pt-120 pb-240" background="background-colour-light-grey" />
+                <PasswordReset className="pt-120 pb-240" />
             </main>
         </>
     );

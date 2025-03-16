@@ -12,7 +12,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { RedirectTo, RenderList, TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, RenderParagraphs, RenderList, TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
@@ -146,11 +146,19 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                             <p className="signup-warning-text-pre">
                                                 {props.warning?.textPre}
                                             </p>
-                                            <RenderList list={props.warning?.textList} className="signup-warning-text-list" />
-                                            <p className="signup-warning-text-post">
-                                                {props.warning?.textPost}
-                                            </p>
-                                            <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
+                                            <RenderList
+                                                list={props.warning?.textList}
+                                                className="signup-warning-text-list"
+                                            />
+                                            <RenderParagraphs
+                                                text={props.warning?.textPost}
+                                                className="signup-warning-text-post"
+                                            />
+                                            <a
+                                                href={props.warning?.textNist?.href}
+                                                target="_blank"
+                                                rel="noopener nofollow"
+                                            >
                                                 {props.warning?.textNist?.text}
                                             </a>
                                         </Alert>

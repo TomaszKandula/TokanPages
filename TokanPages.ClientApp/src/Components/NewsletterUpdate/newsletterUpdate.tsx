@@ -26,7 +26,7 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data.components.templates;
-    const newsletter = data.components.newsletterUpdate;
+    const newsletter = data.components.pageNewsletterUpdate;
 
     const hasNotStarted = update?.status === OperationStatus.notStarted;
     const hasFinished = update?.status === OperationStatus.hasFinished;
@@ -64,11 +64,13 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
         if (hasFinished) {
             clearForm();
             setForm({ email: "" });
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textNewsletter,
-                message: template.templates.newsletter.success,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textNewsletter,
+                    message: template.templates.newsletter.success,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -91,12 +93,14 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textNewsletter,
-            message: template.templates.newsletter.warning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textNewsletter,
+                message: template.templates.newsletter.warning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [props.id, form, template]);
 
     return (

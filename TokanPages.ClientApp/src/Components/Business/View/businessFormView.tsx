@@ -376,9 +376,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     element={
                                         <>
                                             <InfoIcon className="business-info-icon" />
-                                            <Typography component="span">
-                                                {props.pricing.disclaimer}
-                                            </Typography>
+                                            <Typography component="span">{props.pricing.disclaimer}</Typography>
                                         </>
                                     }
                                 />
