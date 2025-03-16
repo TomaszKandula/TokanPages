@@ -3,8 +3,10 @@ import React from "react";
 import * as Redux from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { HeaderView } from "./headerView";
+import { HeaderContentDto } from "../../../Api/Models";
 import { ContentPageData } from "../../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
+import { HeaderView } from "./headerView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -12,7 +14,7 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test component: headerView", () => {
-    const testContent = {
+    const testContent: HeaderContentDto = {
         language: "eng",
         photo: {
             w360: "image1-360w.webp",
@@ -38,11 +40,13 @@ describe("test component: headerView", () => {
         },
     };
 
-    const pageData = ContentPageData;
-    pageData.components.layoutHeader = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.layoutHeader = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
     });
 
     it("should render correctly '<HeaderView />' when content is loaded.", () => {
@@ -51,6 +55,8 @@ describe("test component: headerView", () => {
                 <HeaderView />
             </Router>
         );
+
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

@@ -652,8 +652,11 @@ body::backdrop {
 }
 
 .signup-warning-text-post {
-    margin-top: 5px;
-    margin-bottom: 15px;
+    font-size: 0.875rem !important;
+    font-weight: 400 !important;
+    line-height: 1.43 !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
 }
 
 .signup-warning-text-list {

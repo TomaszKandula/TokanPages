@@ -2,8 +2,10 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
-import { FeaturedView } from "./featuredView";
+import { FeaturedContentDto } from "../../../Api/Models";
 import { ContentPageData } from "../../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
+import { FeaturedView } from "./featuredView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -11,7 +13,7 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test component: featuredView", () => {
-    const testContent = {
+    const testContent: FeaturedContentDto = {
         language: "eng",
         caption: "Featured",
         text: "I picked three articles that I wrote...",
@@ -29,15 +31,18 @@ describe("test component: featuredView", () => {
         image3: "article2.jpg",
     };
 
-    const pageData = ContentPageData;
-    pageData.components.sectionFeatured = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.sectionFeatured = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
     });
 
     it("should render correctly '<FeaturedView />' when content is loaded.", () => {
         const html = render(<FeaturedView />);
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

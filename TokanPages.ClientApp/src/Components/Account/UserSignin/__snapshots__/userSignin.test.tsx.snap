@@ -35,7 +35,9 @@ Object {
                   </svg>
                   <p
                     class="MuiTypography-root caption MuiTypography-body1"
-                  />
+                  >
+                    Sign in
+                  </p>
                 </div>
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -46,6 +48,21 @@ Object {
                     <div
                       class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                     >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="email"
+                        id="email-label"
+                      >
+                        Email address
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
                       >
@@ -62,14 +79,13 @@ Object {
                         <fieldset
                           aria-hidden="true"
                           class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-2"
-                            style="width: 0.01px;"
+                            class="PrivateNotchedOutline-legendLabelled-3"
                           >
                             <span>
-                              ​
+                              Email address
+                               *
                             </span>
                           </legend>
                         </fieldset>
@@ -87,7 +103,7 @@ Object {
                         data-shrink="false"
                         for="password"
                       >
-                        
+                        Password
                       </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
@@ -156,7 +172,9 @@ Object {
                   >
                     <span
                       class="MuiButton-label"
-                    />
+                    >
+                      Sign in
+                    </span>
                   </button>
                 </div>
                 <div
@@ -166,17 +184,21 @@ Object {
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/undefinedundefined"
+                      href="/https://localhost/signup"
                       rel="noopener nofollow"
-                    />
+                    >
+                      Don't have an account?
+                    </a>
                   </div>
                   <div
                     class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                   >
                     <a
-                      href="/undefinedundefined"
+                      href="/https://localhost/reset-password"
                       rel="noopener nofollow"
-                    />
+                    >
+                      Forgot password?
+                    </a>
                   </div>
                 </div>
               </div>
@@ -217,7 +239,9 @@ Object {
                 </svg>
                 <p
                   class="MuiTypography-root caption MuiTypography-body1"
-                />
+                >
+                  Sign in
+                </p>
               </div>
               <div
                 class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -228,6 +252,21 @@ Object {
                   <div
                     class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                   >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="email"
+                      id="email-label"
+                    >
+                      Email address
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
                     >
@@ -244,14 +283,13 @@ Object {
                       <fieldset
                         aria-hidden="true"
                         class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                        style="padding-left: 8px;"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legend-2"
-                          style="width: 0.01px;"
+                          class="PrivateNotchedOutline-legendLabelled-3"
                         >
                           <span>
-                            ​
+                            Email address
+                             *
                           </span>
                         </legend>
                       </fieldset>
@@ -269,7 +307,7 @@ Object {
                       data-shrink="false"
                       for="password"
                     >
-                      
+                      Password
                     </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
@@ -338,7 +376,9 @@ Object {
                 >
                   <span
                     class="MuiButton-label"
-                  />
+                  >
+                    Sign in
+                  </span>
                 </button>
               </div>
               <div
@@ -348,17 +388,21 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/undefinedundefined"
+                    href="/https://localhost/signup"
                     rel="noopener nofollow"
-                  />
+                  >
+                    Don't have an account?
+                  </a>
                 </div>
                 <div
                   class="MuiGrid-root secondaryAction MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
                 >
                   <a
-                    href="/undefinedundefined"
+                    href="/https://localhost/reset-password"
                     rel="noopener nofollow"
-                  />
+                  >
+                    Forgot password?
+                  </a>
                 </div>
               </div>
             </div>

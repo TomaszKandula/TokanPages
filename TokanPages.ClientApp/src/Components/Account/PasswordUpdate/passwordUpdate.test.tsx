@@ -5,6 +5,9 @@ import * as Router from "react-router";
 import * as Dom from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
+import { PasswordUpdateContentDto } from "Api/Models";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
+import { ContentPageData } from "../../../Store/Defaults";
 import { PasswordUpdate } from "./passwordUpdate";
 
 jest.mock("react-router", () => ({
@@ -24,7 +27,7 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test account group component: passwordUpdate", () => {
-    const testContent = {
+    const testContent: PasswordUpdateContentDto = {
         language: "eng",
         caption: "Update Password",
         button: "Submit",
@@ -32,13 +35,14 @@ describe("test account group component: passwordUpdate", () => {
         labelVerifyPassword: "Verify new password",
     };
 
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.pagePasswordUpdate = testContent;
+
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce({
-            isLoading: false,
-            content: testContent,
-        });
-
+        useSelectorMock.mockImplementation((callback) => callback(state));
         useDispatchMock.mockReturnValue(jest.fn());
     });
 
@@ -48,6 +52,8 @@ describe("test account group component: passwordUpdate", () => {
                 <PasswordUpdate />
             </BrowserRouter>
         );
+
+        expect(useSelectorMock).toBeCalledTimes(4);
         expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });

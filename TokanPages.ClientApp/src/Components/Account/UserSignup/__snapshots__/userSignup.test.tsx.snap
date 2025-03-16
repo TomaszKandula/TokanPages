@@ -35,7 +35,9 @@ Object {
                   </svg>
                   <p
                     class="MuiTypography-root caption MuiTypography-body1"
-                  />
+                  >
+                    Create a new account
+                  </p>
                 </div>
                 <div
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -46,6 +48,21 @@ Object {
                     <div
                       class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                     >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined Mui-focused Mui-focused Mui-required Mui-required"
+                        data-shrink="true"
+                        for="firstName"
+                        id="firstName-label"
+                      >
+                        First name
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth Mui-focused Mui-focused MuiInputBase-formControl"
                       >
@@ -62,14 +79,13 @@ Object {
                         <fieldset
                           aria-hidden="true"
                           class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-2"
-                            style="width: 0.01px;"
+                            class="PrivateNotchedOutline-legendLabelled-3 PrivateNotchedOutline-legendNotched-4"
                           >
                             <span>
-                              ​
+                              First name
+                               *
                             </span>
                           </legend>
                         </fieldset>
@@ -82,6 +98,21 @@ Object {
                     <div
                       class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                     >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="lastName"
+                        id="lastName-label"
+                      >
+                        Last name
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
                       >
@@ -98,14 +129,13 @@ Object {
                         <fieldset
                           aria-hidden="true"
                           class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-6"
-                            style="width: 0.01px;"
+                            class="PrivateNotchedOutline-legendLabelled-7"
                           >
                             <span>
-                              ​
+                              Last name
+                               *
                             </span>
                           </legend>
                         </fieldset>
@@ -118,6 +148,21 @@ Object {
                     <div
                       class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                     >
+                      <label
+                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                        data-shrink="false"
+                        for="email"
+                        id="email-label"
+                      >
+                        Email address
+                        <span
+                          aria-hidden="true"
+                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                        >
+                           
+                          *
+                        </span>
+                      </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
                       >
@@ -134,14 +179,13 @@ Object {
                         <fieldset
                           aria-hidden="true"
                           class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
                         >
                           <legend
-                            class="PrivateNotchedOutline-legend-10"
-                            style="width: 0.01px;"
+                            class="PrivateNotchedOutline-legendLabelled-11"
                           >
                             <span>
-                              ​
+                              Email address
+                               *
                             </span>
                           </legend>
                         </fieldset>
@@ -159,7 +203,7 @@ Object {
                         data-shrink="false"
                         for="password"
                       >
-                        
+                        Password
                       </label>
                       <div
                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
@@ -243,14 +287,42 @@ Object {
                       >
                         <p
                           class="signup-warning-text-pre"
-                        />
+                        >
+                          Password requirements:
+                        </p>
+                        <ul
+                          class="list-box signup-warning-text-list"
+                        >
+                          <li>
+                            between 15..50 characters
+                          </li>
+                          <li>
+                            minimum one large letter
+                          </li>
+                          <li>
+                            minimum one small letter
+                          </li>
+                          <li>
+                            minimum one number
+                          </li>
+                        </ul>
                         <p
-                          class="signup-warning-text-post"
-                        />
+                          class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
+                        >
+                          We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
+                        </p>
+                        <p
+                          class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
+                        >
+                          Recommendation based on the following reading:
+                        </p>
                         <a
+                          href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
                           rel="noopener nofollow"
                           target="_blank"
-                        />
+                        >
+                          Strong Passphrases and Account Protection
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -289,7 +361,9 @@ Object {
                       </span>
                       <span
                         class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
-                      />
+                      >
+                        I agree to the terms of use and privacy policy.
+                      </span>
                     </label>
                   </div>
                 </div>
@@ -303,16 +377,20 @@ Object {
                   >
                     <span
                       class="MuiButton-label"
-                    />
+                    >
+                      Sign up
+                    </span>
                   </button>
                 </div>
                 <div
                   class="text-right"
                 >
                   <a
-                    href="/undefinedundefined"
+                    href="//account/signin"
                     rel="noopener nofollow"
-                  />
+                  >
+                    Already have an account? Sign in
+                  </a>
                 </div>
               </div>
             </div>
@@ -352,7 +430,9 @@ Object {
                 </svg>
                 <p
                   class="MuiTypography-root caption MuiTypography-body1"
-                />
+                >
+                  Create a new account
+                </p>
               </div>
               <div
                 class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
@@ -363,6 +443,21 @@ Object {
                   <div
                     class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                   >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined Mui-focused Mui-focused Mui-required Mui-required"
+                      data-shrink="true"
+                      for="firstName"
+                      id="firstName-label"
+                    >
+                      First name
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth Mui-focused Mui-focused MuiInputBase-formControl"
                     >
@@ -379,14 +474,13 @@ Object {
                       <fieldset
                         aria-hidden="true"
                         class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                        style="padding-left: 8px;"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legend-2"
-                          style="width: 0.01px;"
+                          class="PrivateNotchedOutline-legendLabelled-3 PrivateNotchedOutline-legendNotched-4"
                         >
                           <span>
-                            ​
+                            First name
+                             *
                           </span>
                         </legend>
                       </fieldset>
@@ -399,6 +493,21 @@ Object {
                   <div
                     class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                   >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="lastName"
+                      id="lastName-label"
+                    >
+                      Last name
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
                     >
@@ -415,14 +524,13 @@ Object {
                       <fieldset
                         aria-hidden="true"
                         class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
-                        style="padding-left: 8px;"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legend-6"
-                          style="width: 0.01px;"
+                          class="PrivateNotchedOutline-legendLabelled-7"
                         >
                           <span>
-                            ​
+                            Last name
+                             *
                           </span>
                         </legend>
                       </fieldset>
@@ -435,6 +543,21 @@ Object {
                   <div
                     class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
                   >
+                    <label
+                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+                      data-shrink="false"
+                      for="email"
+                      id="email-label"
+                    >
+                      Email address
+                      <span
+                        aria-hidden="true"
+                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+                      >
+                         
+                        *
+                      </span>
+                    </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
                     >
@@ -451,14 +574,13 @@ Object {
                       <fieldset
                         aria-hidden="true"
                         class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
-                        style="padding-left: 8px;"
                       >
                         <legend
-                          class="PrivateNotchedOutline-legend-10"
-                          style="width: 0.01px;"
+                          class="PrivateNotchedOutline-legendLabelled-11"
                         >
                           <span>
-                            ​
+                            Email address
+                             *
                           </span>
                         </legend>
                       </fieldset>
@@ -476,7 +598,7 @@ Object {
                       data-shrink="false"
                       for="password"
                     >
-                      
+                      Password
                     </label>
                     <div
                       class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedEnd MuiOutlinedInput-adornedEnd"
@@ -560,14 +682,42 @@ Object {
                     >
                       <p
                         class="signup-warning-text-pre"
-                      />
+                      >
+                        Password requirements:
+                      </p>
+                      <ul
+                        class="list-box signup-warning-text-list"
+                      >
+                        <li>
+                          between 15..50 characters
+                        </li>
+                        <li>
+                          minimum one large letter
+                        </li>
+                        <li>
+                          minimum one small letter
+                        </li>
+                        <li>
+                          minimum one number
+                        </li>
+                      </ul>
                       <p
-                        class="signup-warning-text-post"
-                      />
+                        class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
+                      >
+                        We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
+                      </p>
+                      <p
+                        class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
+                      >
+                        Recommendation based on the following reading:
+                      </p>
                       <a
+                        href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
                         rel="noopener nofollow"
                         target="_blank"
-                      />
+                      >
+                        Strong Passphrases and Account Protection
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -606,7 +756,9 @@ Object {
                     </span>
                     <span
                       class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
-                    />
+                    >
+                      I agree to the terms of use and privacy policy.
+                    </span>
                   </label>
                 </div>
               </div>
@@ -620,16 +772,20 @@ Object {
                 >
                   <span
                     class="MuiButton-label"
-                  />
+                  >
+                    Sign up
+                  </span>
                 </button>
               </div>
               <div
                 class="text-right"
               >
                 <a
-                  href="/undefinedundefined"
+                  href="//account/signin"
                   rel="noopener nofollow"
-                />
+                >
+                  Already have an account? Sign in
+                </a>
               </div>
             </div>
           </div>

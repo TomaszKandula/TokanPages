@@ -307,9 +307,14 @@ Object {
                           </li>
                         </ul>
                         <p
-                          class="signup-warning-text-post"
+                          class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
                         >
                           We recommend to use password generator...
+                        </p>
+                        <p
+                          class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
+                        >
+                          Read...
                         </p>
                         <a
                           href="https://www.fbi.gov"
@@ -697,9 +702,14 @@ Object {
                         </li>
                       </ul>
                       <p
-                        class="signup-warning-text-post"
+                        class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
                       >
                         We recommend to use password generator...
+                      </p>
+                      <p
+                        class="MuiTypography-root signup-warning-text-post MuiTypography-body1"
+                      >
+                        Read...
                       </p>
                       <a
                         href="https://www.fbi.gov"

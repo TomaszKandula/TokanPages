@@ -2,8 +2,10 @@ import "../../../setupTests";
 import React from "react";
 import * as Redux from "react-redux";
 import { render } from "@testing-library/react";
-import { TechnologiesView } from "./technologiesView";
+import { TechnologiesContentDto } from "../../../Api/Models";
 import { ContentPageData } from "../../../Store/Defaults";
+import { ApplicationDefault, ApplicationState } from "../../../Store/Configuration";
+import { TechnologiesView } from "./technologiesView";
 
 jest.mock("react-redux", () => ({
     ...jest.requireActual("react-redux"),
@@ -11,7 +13,7 @@ jest.mock("react-redux", () => ({
 }));
 
 describe("test component: technologiesView", () => {
-    const testContent = {
+    const testContent: TechnologiesContentDto = {
         language: "eng",
         caption: "Technologies",
         header: "I work primarily with",
@@ -25,15 +27,18 @@ describe("test component: technologiesView", () => {
         text4: "I have experience with...",
     };
 
-    const pageData = ContentPageData;
-    pageData.components.sectionTechnologies = testContent;
+    let state: ApplicationState = ApplicationDefault;
+    state.contentPageData = ContentPageData;
+    state.contentPageData.components.sectionTechnologies = testContent;
 
+    const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);
+        useSelectorMock.mockImplementation((callback) => callback(state));
     });
 
     it("should render correctly '<TechnologiesView />' when content is loaded.", () => {
         const html = render(<TechnologiesView />);
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

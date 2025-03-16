@@ -3,6 +3,6 @@ import { LinkDto } from "./linkDto";
 export interface WarningPasswordDto {
     textPre: string;
     textList: string[];
-    textPost: string;
+    textPost: string[];
     textNist: LinkDto;
 }
