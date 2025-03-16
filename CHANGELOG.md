@@ -1,3 +1,31 @@
+# [0.147.0](https://github.com/TomaszKandula/TokanPages/compare/v0.146.0...v0.147.0) (2025-03-16)
+
+
+### Bug Fixes
+
+* correct colours ([e2269eb](https://github.com/TomaszKandula/TokanPages/commit/e2269ebc7fb5b2b72c6277cf6c09c7e302c19b5d))
+* resolve incorrect component names, update colours ([b4e31a0](https://github.com/TomaszKandula/TokanPages/commit/b4e31a0cc97c9925957ab1d748d65a34f1f070a4))
+* resolve incorrect type ([4615dc6](https://github.com/TomaszKandula/TokanPages/commit/4615dc6f68de0bddbc20f12bdd49a8227b183975))
+* resolve ui issue ([57d0e76](https://github.com/TomaszKandula/TokanPages/commit/57d0e765ce5652a868831ae07696a0d208bba5c0))
+
+
+### Features
+
+* add animation ([429e0f0](https://github.com/TomaszKandula/TokanPages/commit/429e0f04e9199755cbe8d18d950b6900dc9cd0a3))
+* add new model ([0d2dc8b](https://github.com/TomaszKandula/TokanPages/commit/0d2dc8bb5158c696edb006782e68aa34dcf6d7e4))
+* add new url path for showcase component image ([eb379eb](https://github.com/TomaszKandula/TokanPages/commit/eb379eb16239f6a29961fe6d513525fa03af871d))
+* add showcase component ([4069275](https://github.com/TomaszKandula/TokanPages/commit/4069275f8fee9f418b1b3c76e6ca1c32155dfaf8))
+* change article features component ([a45157f](https://github.com/TomaszKandula/TokanPages/commit/a45157ff11d4dbb43c64d96fc0ca2dd7647a5938))
+* change component props, add text ([d681053](https://github.com/TomaszKandula/TokanPages/commit/d681053ca8945d767b63f2438319077bc7d074c6))
+* change style, add border ([1dfc77d](https://github.com/TomaszKandula/TokanPages/commit/1dfc77d872e7240efff0711d4a414e812656f4d9))
+* display showcase on main, update others ([e6ba723](https://github.com/TomaszKandula/TokanPages/commit/e6ba723a708641751091b53aaa8327495c86f6d2))
+* introduce tertriaty button ([bf92f0a](https://github.com/TomaszKandula/TokanPages/commit/bf92f0a302f18ebd842953a7dbdfd1116d0e22b6))
+* post snapshot state for signin/signup ([6188e44](https://github.com/TomaszKandula/TokanPages/commit/6188e44e222212b3722c9c38f37e309fc343852e))
+* return 'as is' when markup is not found ([159c3f9](https://github.com/TomaszKandula/TokanPages/commit/159c3f9ee258f32bac03fd16db7c2a9b2779c7c1))
+* split many paragraphs for clarity ([bd37e45](https://github.com/TomaszKandula/TokanPages/commit/bd37e45bca4b4b3459b64fbfd75156065c520630))
+* update test style ([7fa4447](https://github.com/TomaszKandula/TokanPages/commit/7fa4447ae1cf74650fd6de988451af7a62b524ce))
+* upgrade styles ([e367e7a](https://github.com/TomaszKandula/TokanPages/commit/e367e7a9e95f49624ee3f89c6b40855477616acc))
+
 # [0.146.0](https://github.com/TomaszKandula/TokanPages/compare/v0.145.1...v0.146.0) (2025-03-09)
 
 
