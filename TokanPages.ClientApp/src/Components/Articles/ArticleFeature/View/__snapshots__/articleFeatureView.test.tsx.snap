@@ -20,7 +20,7 @@ Object {
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root article-feature-title MuiTypography-body1"
+                class="MuiTypography-root article-feature-caption MuiTypography-body1"
               >
                 ARTICLES
               </p>
@@ -149,20 +149,22 @@ Object {
                     class="article-feature-content-box"
                   >
                     <h2
-                      class="article-feature-text1"
+                      class="article-feature-title"
                     >
                       .NET Core, Azure, databases and others.
                     </h2>
                     <div
-                      class="article-feature-text2 mt-15 mb-32"
+                      class="article-feature-description mt-15"
                     >
-                      <h3
-                        class="article-feature-text2-heading"
-                      >
-                        Let's dive into Microsoft technology...
-                      </h3>
                       <p>
-                        Readt about...
+                        I write regularly...
+                      </p>
+                    </div>
+                    <div
+                      class="article-feature-description mb-32"
+                    >
+                      <p>
+                        Let's dive into Microsoft technology...
                       </p>
                     </div>
                     <div
@@ -228,7 +230,7 @@ Object {
             data-aos-delay="0"
           >
             <p
-              class="MuiTypography-root article-feature-title MuiTypography-body1"
+              class="MuiTypography-root article-feature-caption MuiTypography-body1"
             >
               ARTICLES
             </p>
@@ -357,20 +359,22 @@ Object {
                   class="article-feature-content-box"
                 >
                   <h2
-                    class="article-feature-text1"
+                    class="article-feature-title"
                   >
                     .NET Core, Azure, databases and others.
                   </h2>
                   <div
-                    class="article-feature-text2 mt-15 mb-32"
+                    class="article-feature-description mt-15"
                   >
-                    <h3
-                      class="article-feature-text2-heading"
-                    >
-                      Let's dive into Microsoft technology...
-                    </h3>
                     <p>
-                      Readt about...
+                      I write regularly...
+                    </p>
+                  </div>
+                  <div
+                    class="article-feature-description mb-32"
+                  >
+                    <p>
+                      Let's dive into Microsoft technology...
                     </p>
                   </div>
                   <div
