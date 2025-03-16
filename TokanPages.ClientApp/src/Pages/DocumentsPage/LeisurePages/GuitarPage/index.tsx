@@ -14,7 +14,12 @@ export const GuitarPage = (): React.ReactElement => {
     const guitar = state?.contentPageData?.components?.leisureGuitar;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureGuitar"], "GuitarPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureGuitar"],
+                "GuitarPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

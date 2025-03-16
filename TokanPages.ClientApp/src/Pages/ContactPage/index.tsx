@@ -15,7 +15,10 @@ export const ContactPage = () => {
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["layoutNavigation", "templates", "sectionCookiesPrompt", "sectionContactForm"], "ContactPage")
+            ContentPageDataAction.request(
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "sectionContactForm"],
+                "ContactPage"
+            )
         );
     }, [language?.id]);
 
@@ -29,12 +32,7 @@ export const ContactPage = () => {
         <>
             <Navigation backNavigationOnly={true} />
             <main>
-                <ContactForm
-                    hasCaption={false}
-                    hasIcon={true}
-                    hasShadow={true}
-                    className="pt-120 pb-240"
-                />
+                <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} className="pt-120 pb-240" />
             </main>
         </>
     );

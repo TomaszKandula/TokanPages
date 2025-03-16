@@ -14,7 +14,12 @@ export const FootballPage = (): React.ReactElement => {
     const football = state?.contentPageData?.components?.leisureFootball;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureFootball"], "FootballPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureFootball"],
+                "FootballPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

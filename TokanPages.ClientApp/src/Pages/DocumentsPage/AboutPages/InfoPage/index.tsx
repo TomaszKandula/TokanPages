@@ -14,7 +14,12 @@ export const InfoPage = (): React.ReactElement => {
     const about = state?.contentPageData?.components?.pageAbout;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "pageAbout", "cookiesPrompt"], "InfoPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "pageAbout", "cookiesPrompt"],
+                "InfoPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

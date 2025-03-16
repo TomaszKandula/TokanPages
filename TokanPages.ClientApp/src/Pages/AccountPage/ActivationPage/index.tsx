@@ -39,17 +39,7 @@ export const ActivationPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <main>
-                {id ? (
-                    <AccountActivate
-                        id={id}
-                        type={type}
-                        className="pt-120 pb-240"
-                    />
-                ) : (
-                    <ErrorMessage />
-                )}
-            </main>
+            <main>{id ? <AccountActivate id={id} type={type} className="pt-120 pb-240" /> : <ErrorMessage />}</main>
         </>
     );
 };

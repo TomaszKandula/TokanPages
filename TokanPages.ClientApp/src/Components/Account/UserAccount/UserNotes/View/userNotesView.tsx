@@ -141,7 +141,6 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 disabled={props.isLoading}
                                             />
                                         </div>
-
                                     </div>
                                 </div>
 
@@ -174,7 +173,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         disabled={props.isLoading || isEmpty}
                                         onClick={props.saveButtonHandler}
                                     >
-                                    {props.saveButtonText}
+                                        {props.saveButtonText}
                                     </Button>
                                 </div>
                             </div>

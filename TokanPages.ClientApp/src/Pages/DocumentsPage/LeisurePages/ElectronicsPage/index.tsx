@@ -15,7 +15,10 @@ export const ElectronicsPage = (): React.ReactElement => {
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureElectronics"], "ElectronicsPage")
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureElectronics"],
+                "ElectronicsPage"
+            )
         );
     }, [language?.id]);
 

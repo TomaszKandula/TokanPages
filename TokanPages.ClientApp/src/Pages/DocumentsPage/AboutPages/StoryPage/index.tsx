@@ -14,7 +14,12 @@ export const StoryPage = (): React.ReactElement => {
     const story = state?.contentPageData?.components?.pageStory;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "pageStory", "sectionCookiesPrompt"], "StoryPage"));
+        dispatch(
+            ContentPageDataAction.request(
+                ["layoutNavigation", "layoutFooter", "pageStory", "sectionCookiesPrompt"],
+                "StoryPage"
+            )
+        );
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;

@@ -20,8 +20,8 @@ describe("test component: showcaseView", () => {
         image: "image.webp",
         action: {
             text: "Go to showcase",
-            href: "/en/showcase"
-        }
+            href: "/en/showcase",
+        },
     };
 
     const pageData = ContentPageData;
