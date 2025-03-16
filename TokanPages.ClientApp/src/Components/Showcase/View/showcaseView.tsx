@@ -66,39 +66,41 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                             />
                         </Typography>
                     </Animated>
-                    <Grid container spacing={8}>
-                        <Grid item xs={12} md={6}>
-                            <div className="showcase-feature-box">
-                                <div className="showcase-feature-textbox">
-                                    <h2 className="showcase-feature-text1">
-                                        {isLoading ? <Skeleton variant="text" /> : showcase?.heading}
-                                    </h2>
-                                    <div className="showcase-feature-text2 mt-15 mb-32">
-                                        {isLoading ? <Skeleton variant="text" /> : <p>{showcase?.text}</p>}
-                                    </div>
-                                    <div className="text-left">
-                                        {data?.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="25px" />
-                                        ) : (
-                                            <ActiveButton isLoading={isLoading} {...showcase} />
-                                        )}
+                    <Animated dataAos="fade-up">
+                        <Grid container spacing={8}>
+                            <Grid item xs={12} md={6}>
+                                <div className="showcase-feature-box">
+                                    <div className="showcase-feature-textbox">
+                                        <h2 className="showcase-feature-text1">
+                                            {isLoading ? <Skeleton variant="text" /> : showcase?.heading}
+                                        </h2>
+                                        <div className="showcase-feature-text2 mt-15 mb-32">
+                                            {isLoading ? <Skeleton variant="text" /> : <p>{showcase?.text}</p>}
+                                        </div>
+                                        <div className="text-left">
+                                            {data?.isLoading ? (
+                                                <Skeleton variant="rect" width="100%" height="25px" />
+                                            ) : (
+                                                <ActiveButton isLoading={isLoading} {...showcase} />
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Card elevation={0} className="card-image">
+                                    <CardMedia
+                                        component="img"
+                                        loading="lazy"
+                                        title="Illustration"
+                                        alt="An image illustrating showcase page"
+                                        className="showcase-feature-image lazyloaded"
+                                        image={GetImageUrl({ base: GET_SHOWCASE_IMAGE_URL, name: showcase?.image })}
+                                    />
+                                </Card>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Card elevation={0} className="card-image">
-                                <CardMedia
-                                    component="img"
-                                    loading="lazy"
-                                    title="Illustration"
-                                    alt="An image illustrating showcase page"
-                                    className="showcase-feature-image lazyloaded"
-                                    image={GetImageUrl({ base: GET_SHOWCASE_IMAGE_URL, name: showcase?.image })}
-                                />
-                            </Card>
-                        </Grid>
-                    </Grid>
+                    </Animated>
                 </div>
             </Container>
         </section>
