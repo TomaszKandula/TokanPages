@@ -10,11 +10,11 @@ export const BusinessPage = () => {
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const businessForm = state?.contentPageData?.components?.businessForm;
+    const businessForm = state?.contentPageData?.components?.pageBusinessForm;
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["navigation", "templates", "cookiesPrompt", "businessForm"], "BusinessPage")
+            ContentPageDataAction.request(["layoutNavigation", "templates", "sectionCookiesPrompt", "pageBusinessForm"], "BusinessPage")
         );
     }, [language?.id]);
 

@@ -12,7 +12,7 @@ export const Footer = (): React.ReactElement => {
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading ?? false;
-    const footer = data?.components?.footer;
+    const footer = data?.components?.layoutFooter;
     const hasLegalInfo = !validate.isEmpty(footer?.copyright) && !validate.isEmpty(footer?.reserved);
 
     return (

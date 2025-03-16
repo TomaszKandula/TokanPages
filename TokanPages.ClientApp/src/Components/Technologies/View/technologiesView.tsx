@@ -17,10 +17,10 @@ interface TechnologiesViewProps {
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const technology = data?.components?.technologies;
+    const technology = data?.components?.sectionTechnologies;
 
     return (
-        <section className={`section-grey ${props.background ?? ""}`}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="technology-box">
                     <Animated dataAos="fade-down" className="mb-64">

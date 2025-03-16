@@ -28,20 +28,12 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                                 </div>
                                 <div className="mt-40 mb-15">
                                     <Typography component="span" className="aa-text1">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.text1
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.text1}
                                     </Typography>
                                 </div>
                                 <div className="mt-15 mb-40">
                                     <Typography component="span" className="aa-text2">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="text" />
-                                        ) : (
-                                            props.text2
-                                        )}
+                                        {props.isLoading ? <Skeleton variant="text" /> : props.text2}
                                     </Typography>
                                 </div>
                             </div>

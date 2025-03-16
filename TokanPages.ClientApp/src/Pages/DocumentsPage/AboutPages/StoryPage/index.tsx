@@ -11,14 +11,14 @@ export const StoryPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const story = state?.contentPageData?.components?.story;
+    const story = state?.contentPageData?.components?.pageStory;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "story", "cookiesPrompt"], "StoryPage"));
+        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "pageStory", "sectionCookiesPrompt"], "StoryPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.story.items ?? [];
+    const items = data?.components.pageStory.items ?? [];
 
     React.useEffect(() => {
         if (story?.language !== "") {

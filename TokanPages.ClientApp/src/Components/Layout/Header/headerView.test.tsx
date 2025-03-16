@@ -24,18 +24,22 @@ describe("test component: headerView", () => {
         description: "I do programming for a living...",
         hint: "Let me know...",
         subtitle: "For years...",
-        action: {
+        primaryButton: {
             text: "Read the story",
-            href: "/action-link",
+            href: "/en/action-link",
         },
-        resume: {
+        secondaryButton: {
             text: "Get the CV",
-            href: "/download-link",
+            href: "/en/download-link",
+        },
+        tertiaryButton: {
+            text: "Showcase",
+            href: "/en/showcase",
         },
     };
 
     const pageData = ContentPageData;
-    pageData.components.header = testContent;
+    pageData.components.layoutHeader = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

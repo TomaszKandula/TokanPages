@@ -11,14 +11,14 @@ export const FootballPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const football = state?.contentPageData?.components?.football;
+    const football = state?.contentPageData?.components?.leisureFootball;
 
     React.useEffect(() => {
-        dispatch(ContentPageDataAction.request(["navigation", "footer", "cookiesPrompt", "football"], "FootballPage"));
+        dispatch(ContentPageDataAction.request(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureFootball"], "FootballPage"));
     }, [language?.id]);
 
     const isLoading = data?.isLoading ?? false;
-    const items = data?.components.football.items ?? [];
+    const items = data?.components.leisureFootball.items ?? [];
 
     React.useEffect(() => {
         if (football?.language !== "") {

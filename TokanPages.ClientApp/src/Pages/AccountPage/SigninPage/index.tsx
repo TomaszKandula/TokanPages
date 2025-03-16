@@ -4,10 +4,13 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { UserSignin } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
+import { TryPostStateSnapshot } from "../../../Shared/Services/SpaCaching";
 
 export const SigninPage = (): React.ReactElement => {
     const dispatch = useDispatch();
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const state = useSelector((state: ApplicationState) => state);
+    const language = state.applicationLanguage;
+    const accountUserSignin = state?.contentPageData?.components?.accountUserSignin;
 
     React.useEffect(() => {
         dispatch(
@@ -17,6 +20,12 @@ export const SigninPage = (): React.ReactElement => {
             )
         );
     }, [language?.id]);
+
+    React.useEffect(() => {
+        if (accountUserSignin?.language !== "") {
+            TryPostStateSnapshot(state);
+        }
+    }, [state]);
 
     return (
         <>

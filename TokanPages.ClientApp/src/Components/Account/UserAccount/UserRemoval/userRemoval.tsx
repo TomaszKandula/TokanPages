@@ -60,11 +60,13 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
         if (hasFinished) {
             clear();
 
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textAccountSettings,
-                message: template.templates.user.removal,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textAccountSettings,
+                    message: template.templates.user.removal,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 

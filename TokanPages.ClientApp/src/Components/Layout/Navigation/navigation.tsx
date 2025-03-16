@@ -20,7 +20,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
-    const navigation = data?.components.navigation;
+    const navigation = data?.components.layoutNavigation;
 
     const avatarSource = GET_USER_IMAGE.replace("{id}", store?.userData?.userId).replace(
         "{name}",

@@ -11,11 +11,11 @@ export const ContactPage = () => {
 
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const contact = state?.contentPageData?.components?.contactForm;
+    const contact = state?.contentPageData?.components?.sectionContactForm;
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["navigation", "templates", "cookiesPrompt", "contactForm"], "ContactPage")
+            ContentPageDataAction.request(["layoutNavigation", "templates", "sectionCookiesPrompt", "sectionContactForm"], "ContactPage")
         );
     }, [language?.id]);
 

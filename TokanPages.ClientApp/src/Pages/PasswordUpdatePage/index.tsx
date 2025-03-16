@@ -12,7 +12,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
     React.useEffect(() => {
         dispatch(
             ContentPageDataAction.request(
-                ["navigation", "templates", "cookiesPrompt", "passwordUpdate"],
+                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"],
                 "PasswordUpdatePage"
             )
         );

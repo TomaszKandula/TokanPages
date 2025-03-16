@@ -2,10 +2,10 @@ import { LinkDto } from "./Common/linkDto";
 
 export interface ArticleFeaturesContentDto {
     language: string;
+    caption: string;
     title: string;
     description: string;
-    text1: string;
-    text2: string[];
+    text: string;
     action: LinkDto;
     image1: string;
     image2: string;

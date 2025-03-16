@@ -17,29 +17,39 @@ interface RenderPictureProps {
     sources: HeaderPhotoDto | undefined;
 }
 
-const OpenLinkButton = (props: HeaderContentDto): React.ReactElement => {
+const TertiaryButton = (props: HeaderContentDto): React.ReactElement => {
     return (
-        <Link to={props?.resume?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button variant="contained" className="header-button-resume">
-                {props?.resume?.text}
+        <Link to={props?.tertiaryButton?.href ?? ""} className="link" rel="noopener nofollow">
+            <Button variant="contained" className="header-button-tertiary">
+                {props?.tertiaryButton?.text}
             </Button>
         </Link>
     );
 };
 
-const ActiveButton = (props: HeaderContentDto): React.ReactElement => {
-    if (Validate.isEmpty(props?.action?.href)) {
+const SecondaryButton = (props: HeaderContentDto): React.ReactElement => {
+    return (
+        <Link to={props?.secondaryButton?.href ?? ""} className="link" rel="noopener nofollow">
+            <Button variant="contained" className="header-button-secondary">
+                {props?.secondaryButton?.text}
+            </Button>
+        </Link>
+    );
+};
+
+const PrimaryButton = (props: HeaderContentDto): React.ReactElement => {
+    if (Validate.isEmpty(props?.primaryButton?.href)) {
         return (
-            <Button variant="contained" className="header-button">
-                {props?.action?.text}
+            <Button variant="contained" className="header-button-primary">
+                {props?.primaryButton?.text}
             </Button>
         );
     }
 
     return (
-        <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button variant="contained" className="header-button">
-                {props?.action?.text}
+        <Link to={props?.primaryButton?.href ?? ""} className="link" rel="noopener nofollow">
+            <Button variant="contained" className="header-button-primary">
+                {props?.primaryButton?.text}
             </Button>
         </Link>
     );
@@ -79,7 +89,7 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const header = data?.components?.header;
+    const header = data?.components?.layoutHeader;
     return (
         <section className={`section margin-top-60 ${props.background ?? ""}`}>
             <Grid container spacing={3}>
@@ -112,13 +122,14 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                         ) : (
                             <h2 className="header-content-description">{header?.hint}</h2>
                         )}
-                        <div className="mt-32">
+                        <div className="header-button-box mt-32">
                             {data?.isLoading ? (
                                 <Skeleton variant="rect" height="48px" />
                             ) : (
                                 <>
-                                    <ActiveButton {...header} />
-                                    <OpenLinkButton {...header} />
+                                    <PrimaryButton {...header} />
+                                    <SecondaryButton {...header} />
+                                    <TertiaryButton {...header} />
                                 </>
                             )}
                         </div>

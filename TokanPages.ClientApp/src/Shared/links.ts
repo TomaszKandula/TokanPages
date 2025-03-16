@@ -38,4 +38,4 @@ export const CreateAlternateLinks = (language: ApplicationLanguageState): void =
             CreateAlternateLink(url, "x-default");
         }
     });
-}
+};

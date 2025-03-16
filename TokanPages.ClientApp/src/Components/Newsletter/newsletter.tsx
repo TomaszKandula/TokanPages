@@ -20,7 +20,7 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const template = data?.components?.templates;
-    const newsletter = data?.components?.newsletter;
+    const newsletter = data?.components?.sectionNewsletter;
 
     const hasNotStarted = add?.status === OperationStatus.notStarted;
     const hasFinished = add?.status === OperationStatus.hasFinished;
@@ -49,11 +49,13 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm({ email: "" });
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textNewsletter,
-                message: template.templates.newsletter.success,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textNewsletter,
+                    message: template.templates.newsletter.success,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -81,12 +83,14 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textNewsletter,
-            message: template.templates.newsletter.warning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textNewsletter,
+                message: template.templates.newsletter.warning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, template]);
 
     return (

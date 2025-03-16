@@ -47,7 +47,7 @@ const RenderImages = (props: ClientsContentDto): React.ReactElement => {
 
 export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const clients = data?.components.clients;
+    const clients = data?.components.sectionClients;
 
     return (
         <>

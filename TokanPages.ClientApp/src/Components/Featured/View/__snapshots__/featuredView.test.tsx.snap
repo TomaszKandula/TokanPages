@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section-grey "
+        class="section "
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthLg"
@@ -180,7 +180,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section-grey "
+      class="section "
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthLg"

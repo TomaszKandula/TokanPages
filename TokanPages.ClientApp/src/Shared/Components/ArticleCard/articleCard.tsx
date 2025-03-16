@@ -19,7 +19,7 @@ interface ArticleCardProps {
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
-    const content = useSelector((state: ApplicationState) => state.contentPageData.components.article);
+    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticle);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);

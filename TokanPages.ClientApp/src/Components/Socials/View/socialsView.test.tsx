@@ -59,7 +59,7 @@ describe("test component: socialsView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.socials = testContent;
+    pageData.components.sectionSocials = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

@@ -19,20 +19,33 @@ const GetListItem = (props: RenderListProps): React.ReactElement => {
     ));
 
     return <>{list}</>;
-}
+};
 
 export const RenderList = (props: RenderListProps): React.ReactElement => {
     if (!props.list) {
         return <></>;
     }
 
-    const className = Validate.isEmpty(props.className) 
-    ? "list-box" 
-    : `list-box ${props.className}`;
+    const className = Validate.isEmpty(props.className) ? "list-box" : `list-box ${props.className}`;
 
-    switch(props.type) {
-        case "ul": return <ul data-testid={props.dataTestId} className={className}><GetListItem {...props} /></ul>;
-        case "ol": return <ol data-testid={props.dataTestId} className={className}><GetListItem {...props} /></ol>;
-        default: return <ul data-testid={props.dataTestId} className={className}><GetListItem {...props} /></ul>;
+    switch (props.type) {
+        case "ul":
+            return (
+                <ul data-testid={props.dataTestId} className={className}>
+                    <GetListItem {...props} />
+                </ul>
+            );
+        case "ol":
+            return (
+                <ol data-testid={props.dataTestId} className={className}>
+                    <GetListItem {...props} />
+                </ol>
+            );
+        default:
+            return (
+                <ul data-testid={props.dataTestId} className={className}>
+                    <GetListItem {...props} />
+                </ul>
+            );
     }
-}
+};

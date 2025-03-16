@@ -40,7 +40,7 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
 
 export const NewsletterView = (props: NewsletterViewProps): React.ReactElement => {
     return (
-        <section className={`section-grey ${props.background ?? ""}`}>
+        <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="text-centre pt-64 pb-64">
                     <Grid container spacing={2}>

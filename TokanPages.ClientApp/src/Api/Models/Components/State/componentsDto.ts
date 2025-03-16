@@ -25,42 +25,44 @@ import {
     TestimonialsContentDto,
     AccountUserNotesContentDto,
     SocialsContentDto,
+    FeatureShowcaseContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
-    about: DocumentContentDto;
     accountActivate: AccountActivateContentDto;
     accountSettings: AccountSettingsContentDto;
     accountUserNotes: AccountUserNotesContentDto;
     accountUserSignin: AccountUserSigninContentDto;
     accountUserSignout: AccountUserSignoutContentDto;
     accountUserSignup: AccountUserSignupContentDto;
-    article: ArticleContentDto;
-    articleFeatures: ArticleFeaturesContentDto;
-    bicycle: DocumentContentDto;
-    businessForm: BusinessFormContentDto;
-    clients: ClientsContentDto;
-    contactForm: ContactFormContentDto;
-    cookiesPrompt: CookiesPromptContentDto;
-    electronics: DocumentContentDto;
-    featured: FeaturedContentDto;
-    football: DocumentContentDto;
-    footer: FooterContentDto;
-    guitar: DocumentContentDto;
-    header: HeaderContentDto;
-    navigation: NavigationContentDto;
-    newsletter: NewsletterContentDto;
-    newsletterRemove: NewsletterRemoveContentDto;
-    newsletterUpdate: NewsletterUpdateContentDto;
-    passwordReset: PasswordResetContentDto;
-    passwordUpdate: PasswordUpdateContentDto;
-    photography: DocumentContentDto;
-    policy: DocumentContentDto;
-    showcase: DocumentContentDto;
-    socials: SocialsContentDto;
-    story: DocumentContentDto;
-    technologies: TechnologiesContentDto;
+    layoutFooter: FooterContentDto;
+    layoutHeader: HeaderContentDto;
+    layoutNavigation: NavigationContentDto;
+    legalPolicy: DocumentContentDto;
+    legalTerms: DocumentContentDto;
+    leisureBicycle: DocumentContentDto;
+    leisureElectronics: DocumentContentDto;
+    leisureFootball: DocumentContentDto;
+    leisureGuitar: DocumentContentDto;
+    leisurePhotography: DocumentContentDto;
+    pageAbout: DocumentContentDto;
+    pageArticle: ArticleContentDto;
+    pageShowcase: DocumentContentDto;
+    pageStory: DocumentContentDto;
+    pageBusinessForm: BusinessFormContentDto;
+    pageNewsletterRemove: NewsletterRemoveContentDto;
+    pageNewsletterUpdate: NewsletterUpdateContentDto;
+    pagePasswordReset: PasswordResetContentDto;
+    pagePasswordUpdate: PasswordUpdateContentDto;
+    sectionArticle: ArticleFeaturesContentDto;
+    sectionClients: ClientsContentDto;
+    sectionContactForm: ContactFormContentDto;
+    sectionCookiesPrompt: CookiesPromptContentDto;
+    sectionFeatured: FeaturedContentDto;
+    sectionNewsletter: NewsletterContentDto;
+    sectionShowcase: FeatureShowcaseContentDto;
+    sectionSocials: SocialsContentDto;
+    sectionTechnologies: TechnologiesContentDto;
+    sectionTestimonials: TestimonialsContentDto;
     templates: TemplatesContent;
-    terms: DocumentContentDto;
-    testimonials: TestimonialsContentDto;
 }

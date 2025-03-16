@@ -13,7 +13,7 @@ export const CleanupSnapshotMode = (url: string): string => {
     }
 
     return url;
-}
+};
 
 export const IsPreRendered = (): boolean => {
     const root = document.getElementById("root");

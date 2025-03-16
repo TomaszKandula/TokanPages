@@ -14,10 +14,10 @@ jest.mock("react-redux", () => ({
 describe("test articles group component: ArticleFeatureView", () => {
     const testContent = {
         language: "eng",
-        title: "Articles",
+        caption: "Articles",
+        title: ".NET Core, Azure, databases and others.",
         description: "I write regularly...",
-        text1: ".NET Core, Azure, databases and others.",
-        text2: ["Let's dive into Microsoft technology...", "Readt about..."],
+        text: "Let's dive into Microsoft technology...",
         action: {
             text: "View list of articles",
             href: "/action-link",
@@ -29,7 +29,7 @@ describe("test articles group component: ArticleFeatureView", () => {
     };
 
     const pageData = ContentPageData;
-    pageData.components.articleFeatures = testContent;
+    pageData.components.sectionArticle = testContent;
 
     beforeEach(() => {
         jest.spyOn(Redux, "useSelector").mockReturnValueOnce(pageData);

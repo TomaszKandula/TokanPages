@@ -67,11 +67,13 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
 
         if (hasFinished) {
             clear();
-            dispatch(ApplicationDialogAction.raise({
-                title: template.forms.textAccountSettings,
-                message: template.templates.password.updateSuccess,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: template.forms.textAccountSettings,
+                    message: template.templates.password.updateSuccess,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
@@ -113,12 +115,14 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textAccountSettings,
-            message: template.templates.password.updateWarning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: template.templates.password.updateWarning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form]);
 
     return (

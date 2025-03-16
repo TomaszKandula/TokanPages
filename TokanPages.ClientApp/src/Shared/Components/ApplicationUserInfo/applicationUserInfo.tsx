@@ -9,7 +9,7 @@ export const ApplicationUserInfo = (): React.ReactElement => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const navigation = data?.components?.navigation;
+    const navigation = data?.components?.layoutNavigation;
 
     const onClickHandler = React.useCallback(() => {
         dispatch(UserDataStoreAction.show(false));

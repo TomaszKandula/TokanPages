@@ -62,7 +62,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const templates = data.components.templates;
-    const businessForm = data.components.businessForm;
+    const businessForm = data.components.pageBusinessForm;
 
     const hasNotStarted = email?.status === OperationStatus.notStarted;
     const hasFinished = email?.status === OperationStatus.hasFinished;
@@ -123,11 +123,13 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
         if (hasFinished) {
             clearForm();
-            dispatch(ApplicationDialogAction.raise({
-                title: templates.forms.textBusinessForm,
-                message: templates.templates.messageOut.success,
-                icon: IconType.info
-            }));
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: templates.forms.textBusinessForm,
+                    message: templates.templates.messageOut.success,
+                    icon: IconType.info,
+                })
+            );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, services]);
 
@@ -222,12 +224,14 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             return;
         }
 
-        dispatch(ApplicationDialogAction.raise({
-            title: templates.forms.textBusinessForm,
-            message: templates.templates.messageOut.warning,
-            validation: result,
-            icon: IconType.warning
-        }));
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: templates.forms.textBusinessForm,
+                message: templates.templates.messageOut.warning,
+                validation: result,
+                icon: IconType.warning,
+            })
+        );
     }, [form, templates, services, techStackItems]);
 
     return (

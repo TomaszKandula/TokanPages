@@ -1,0 +1,282 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test component: showcaseView should render correctly '<ShowcaseView />' when content is loaded. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="section "
+      >
+        <div
+          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+        >
+          <div
+            class="pt-64 pb-96"
+          >
+            <div
+              class="text-centre mb-48"
+              data-aos="fade-down"
+              data-aos-delay="0"
+            >
+              <p
+                class="MuiTypography-root showcase-caption-text MuiTypography-body1"
+              >
+                SHOWCASE
+              </p>
+            </div>
+            <div
+              data-aos="fade-up"
+              data-aos-delay="0"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                >
+                  <div
+                    class="showcase-feature-box"
+                  >
+                    <div
+                      class="showcase-feature-textbox"
+                    >
+                      <h2
+                        class="showcase-feature-text1"
+                      >
+                        Most notable projects
+                      </h2>
+                      <div
+                        class="showcase-feature-text2 mt-15 mb-32"
+                      >
+                        <p>
+                          Let's look at some of...
+                        </p>
+                      </div>
+                      <div
+                        class="text-left"
+                      >
+                        <a
+                          class="link"
+                          href="/en/showcase"
+                          rel="noopener nofollow"
+                        >
+                          <button
+                            class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
+                            tabindex="0"
+                            type="button"
+                          >
+                            <span
+                              class="MuiButton-label"
+                            >
+                              Go to showcase
+                              <span
+                                class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                            <span
+                              class="MuiTouchRipple-root"
+                            />
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                >
+                  <div
+                    class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                  >
+                    <img
+                      alt="An image illustrating showcase page"
+                      class="MuiCardMedia-root showcase-feature-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                      title="Illustration"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="section "
+    >
+      <div
+        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+      >
+        <div
+          class="pt-64 pb-96"
+        >
+          <div
+            class="text-centre mb-48"
+            data-aos="fade-down"
+            data-aos-delay="0"
+          >
+            <p
+              class="MuiTypography-root showcase-caption-text MuiTypography-body1"
+            >
+              SHOWCASE
+            </p>
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-delay="0"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+              >
+                <div
+                  class="showcase-feature-box"
+                >
+                  <div
+                    class="showcase-feature-textbox"
+                  >
+                    <h2
+                      class="showcase-feature-text1"
+                    >
+                      Most notable projects
+                    </h2>
+                    <div
+                      class="showcase-feature-text2 mt-15 mb-32"
+                    >
+                      <p>
+                        Let's look at some of...
+                      </p>
+                    </div>
+                    <div
+                      class="text-left"
+                    >
+                      <a
+                        class="link"
+                        href="/en/showcase"
+                        rel="noopener nofollow"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <span
+                            class="MuiButton-label"
+                          >
+                            Go to showcase
+                            <span
+                              class="MuiButton-endIcon MuiButton-iconSizeMedium"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiTouchRipple-root"
+                          />
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+              >
+                <div
+                  class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                >
+                  <img
+                    alt="An image illustrating showcase page"
+                    class="MuiCardMedia-root showcase-feature-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                    loading="lazy"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                    title="Illustration"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

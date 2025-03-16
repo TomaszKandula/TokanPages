@@ -56,7 +56,7 @@ export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
 
 export const RenderTargetLink = (props: DataProps): React.ReactElement => {
     return <div id={props.value}>{props.text}</div>;
-}
+};
 
 export const RenderExternalLink = (props: TextItem): React.ReactElement => {
     const hasImage = !Validate.isEmpty(props.propImg);
@@ -145,27 +145,15 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return (
-        <p className="render-text-common render-text-title mt-56 mb-8">
-            {props.value ?? NO_CONTENT}
-        </p>
-    );
+    return <p className="render-text-common render-text-title mt-56 mb-8">{props.value ?? NO_CONTENT}</p>;
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
-    return (
-        <p className="render-text-common render-text-sub-title mt-8 mb-40">
-            {props.value ?? NO_CONTENT}
-        </p>
-    );
+    return <p className="render-text-common render-text-sub-title mt-8 mb-40">{props.value ?? NO_CONTENT}</p>;
 };
 
 export const RenderHeader = (props: DataProps): React.ReactElement => {
-    return (
-        <p className="render-text-common render-text-header mt-56 mb-15">
-            {props.value ?? NO_CONTENT}
-        </p>
-    );
+    return <p className="render-text-common render-text-header mt-56 mb-15">{props.value ?? NO_CONTENT}</p>;
 };
 
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
@@ -175,13 +163,21 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
         return <>{NO_CONTENT}</>;
     }
 
+    if (!props.html.includes("__{") && !props.html.includes("}__")) {
+        return <>{props.html}</>;
+    }
+
     const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
             if (item.includes("{") && item.includes("}")) {
                 try {
                     const data = JSON.parse(item) as LinkProps;
-                    result.push(<a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>{data.text}</a>);
+                    result.push(
+                        <a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>
+                            {data.text}
+                        </a>
+                    );
                 } catch {
                     console.error(item);
                     throw "Parsing error.";
@@ -197,7 +193,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
     }
 
     return <>{result}</>;
-}
+};
 
 export const RenderParagraph = (props: TextItem): React.ReactElement => {
     const html = props.value as string | string[];
@@ -206,22 +202,42 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
     const baseStyle = "render-text-common render-text-paragraph";
     const classStyle = props.text === "" ? baseStyle : `${baseStyle} render-text-${props.text}`;
 
-    switch(prop) {
-        case "p": return <p className={classStyle}><ProcessParagraphs html={html as string} /></p>;
-        case "blockquote": return <blockquote className={classStyle}><ProcessParagraphs html={html as string} /></blockquote>;
-        case "span": return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
-        case "ul": return <RenderList list={html as string[]} type="ul" className={classStyle} />;
-        case "ol": return <RenderList list={html as string[]} type="ol" className={classStyle} />;
-        case "div": return <div className={classStyle}><ProcessParagraphs html={html as string} /></div>;
-        case "br": return <div className="mt-15 mb-15">&nbsp;</div>;
-        default: return <p className={classStyle}><ProcessParagraphs html={html as string} /></p>;
+    switch (prop) {
+        case "p":
+            return (
+                <p className={classStyle}>
+                    <ProcessParagraphs html={html as string} />
+                </p>
+            );
+        case "blockquote":
+            return (
+                <blockquote className={classStyle}>
+                    <ProcessParagraphs html={html as string} />
+                </blockquote>
+            );
+        case "span":
+            return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
+        case "ul":
+            return <RenderList list={html as string[]} type="ul" className={classStyle} />;
+        case "ol":
+            return <RenderList list={html as string[]} type="ol" className={classStyle} />;
+        case "div":
+            return (
+                <div className={classStyle}>
+                    <ProcessParagraphs html={html as string} />
+                </div>
+            );
+        case "br":
+            return <div className="mt-15 mb-15">&nbsp;</div>;
+        default:
+            return (
+                <p className={classStyle}>
+                    <ProcessParagraphs html={html as string} />
+                </p>
+            );
     }
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
-    return (
-        <p className="render-text-common render-text-paragraph custom-drop-cap">
-            {props.value ?? NO_CONTENT}
-        </p>
-    );
+    return <p className="render-text-common render-text-paragraph custom-drop-cap">{props.value ?? NO_CONTENT}</p>;
 };

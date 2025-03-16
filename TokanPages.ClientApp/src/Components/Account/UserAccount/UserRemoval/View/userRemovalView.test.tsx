@@ -16,7 +16,7 @@ describe("test account group component: userRemovalView", () => {
                         caption: "Account Removal",
                         warningText: [
                             "Warning!",
-                            "Once you remove your existing account, you will lose all your data..."
+                            "Once you remove your existing account, you will lose all your data...",
                         ],
                         deleteButtonText: "Delete",
                     }}
