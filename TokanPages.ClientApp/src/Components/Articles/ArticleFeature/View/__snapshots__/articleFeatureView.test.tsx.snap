@@ -154,7 +154,7 @@ Object {
                       .NET Core, Azure, databases and others.
                     </h2>
                     <div
-                      class="article-feature-text2 mt-15 mb-15"
+                      class="article-feature-text2 mt-15 mb-32"
                     >
                       <h3
                         class="article-feature-text2-heading"
@@ -174,7 +174,7 @@ Object {
                         rel="noopener nofollow"
                       >
                         <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-text button"
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
                           tabindex="0"
                           type="button"
                         >
@@ -362,7 +362,7 @@ Object {
                     .NET Core, Azure, databases and others.
                   </h2>
                   <div
-                    class="article-feature-text2 mt-15 mb-15"
+                    class="article-feature-text2 mt-15 mb-32"
                   >
                     <h3
                       class="article-feature-text2-heading"
@@ -382,7 +382,7 @@ Object {
                       rel="noopener nofollow"
                     >
                       <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-text button"
+                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
                         tabindex="0"
                         type="button"
                       >
