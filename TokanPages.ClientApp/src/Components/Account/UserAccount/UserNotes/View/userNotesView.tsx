@@ -131,8 +131,8 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 required
                                                 fullWidth
                                                 multiline={props.messageMultiline}
-                                                minRows={12}
-                                                maxRows={12}
+                                                minRows={19}
+                                                maxRows={19}
                                                 id="note"
                                                 name="note"
                                                 variant="outlined"
@@ -142,39 +142,40 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                             />
                                         </div>
 
-                                        <div className="user-notes-button-box">
-                                            <Button
-                                                fullWidth
-                                                type="submit"
-                                                variant="contained"
-                                                className="button-delete button-margin-right"
-                                                disabled={props.isLoading || !hasNotes || !props.selection}
-                                                onClick={props.removeButtonHandler}
-                                            >
-                                                {props.removeButtonText}
-                                            </Button>
-                                            <Button
-                                                fullWidth
-                                                type="submit"
-                                                variant="contained"
-                                                className="button-update button-margin-right"
-                                                disabled={props.isLoading}
-                                                onClick={props.clearButtonHandler}
-                                            >
-                                                {props.clearButtonText}
-                                            </Button>
-                                            <Button
-                                                fullWidth
-                                                type="submit"
-                                                variant="contained"
-                                                className="button-update"
-                                                disabled={props.isLoading || isEmpty}
-                                                onClick={props.saveButtonHandler}
-                                            >
-                                                {props.saveButtonText}
-                                            </Button>
-                                        </div>
                                     </div>
+                                </div>
+
+                                <div className="user-notes-button-box">
+                                    <Button
+                                        fullWidth
+                                        type="submit"
+                                        variant="contained"
+                                        className="button-delete button-margin-right"
+                                        disabled={props.isLoading || !hasNotes || !props.selection}
+                                        onClick={props.removeButtonHandler}
+                                    >
+                                        {props.removeButtonText}
+                                    </Button>
+                                    <Button
+                                        fullWidth
+                                        type="submit"
+                                        variant="contained"
+                                        className="button-update button-margin-right"
+                                        disabled={props.isLoading}
+                                        onClick={props.clearButtonHandler}
+                                    >
+                                        {props.clearButtonText}
+                                    </Button>
+                                    <Button
+                                        fullWidth
+                                        type="submit"
+                                        variant="contained"
+                                        className="button-update"
+                                        disabled={props.isLoading || isEmpty}
+                                        onClick={props.saveButtonHandler}
+                                    >
+                                    {props.saveButtonText}
+                                    </Button>
                                 </div>
                             </div>
                         </CardContent>
