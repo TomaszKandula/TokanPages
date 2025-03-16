@@ -497,7 +497,7 @@ export const ContentPageData: ContentPageDataState = {
             warning: {
                 textPre: "",
                 textList: [""],
-                textPost: "",
+                textPost: [""],
                 textNist: {
                     text: "",
                     href: "",
