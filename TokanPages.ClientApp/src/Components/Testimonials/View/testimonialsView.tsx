@@ -6,19 +6,12 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { Collapse, IconButton } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { GET_TESTIMONIALS_URL } from "../../../Api/Request";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { Animated } from "../../../Shared/Components";
+import { Collapsible } from "../../../Shared/Components";
 
 interface TestimonialsViewProps extends ViewProperties {
-    hasTestimonialOne: boolean;
-    hasTestimonialTwo: boolean;
-    hasTestimonialThree: boolean;
-    buttonTestimonialOne: () => void;
-    buttonTestimonialTwo: () => void;
-    buttonTestimonialThree: () => void;
     caption: string;
     subtitle: string;
     photo1: string;
@@ -93,7 +86,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                 object={props.occupation1}
                                             />
                                         </Typography>
-                                        <Collapse in={props.hasTestimonialOne} collapsedSize={120} timeout="auto">
+                                        <Collapsible minHeight={120}>
                                             <h4 className="testimonials-card-text">
                                                 <RenderSkeletonOrElement
                                                     {...props}
@@ -101,19 +94,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                     object={props.text1}
                                                 />
                                             </h4>
-                                        </Collapse>
-                                        <IconButton
-                                            className={
-                                                props.hasTestimonialOne
-                                                    ? "testimonials-expand testimonials-expand-open"
-                                                    : "testimonials-expand"
-                                            }
-                                            onClick={props.buttonTestimonialOne}
-                                            aria-expanded={props.hasTestimonialOne}
-                                            aria-label="show more"
-                                        >
-                                            <ExpandMoreIcon />
-                                        </IconButton>
+                                        </Collapsible>
                                     </CardContent>
                                 </Card>
                             </Animated>
@@ -148,7 +129,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                 object={props.occupation2}
                                             />
                                         </Typography>
-                                        <Collapse in={props.hasTestimonialTwo} collapsedSize={120} timeout="auto">
+                                        <Collapsible minHeight={120}>
                                             <h4 className="testimonials-card-text">
                                                 <RenderSkeletonOrElement
                                                     {...props}
@@ -156,19 +137,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                     object={props.text2}
                                                 />
                                             </h4>
-                                        </Collapse>
-                                        <IconButton
-                                            className={
-                                                props.hasTestimonialTwo
-                                                    ? "testimonials-expand testimonials-expand-open"
-                                                    : "testimonials-expand"
-                                            }
-                                            onClick={props.buttonTestimonialTwo}
-                                            aria-expanded={props.hasTestimonialTwo}
-                                            aria-label="show more"
-                                        >
-                                            <ExpandMoreIcon />
-                                        </IconButton>
+                                        </Collapsible>
                                     </CardContent>
                                 </Card>
                             </Animated>
@@ -203,7 +172,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                 object={props.occupation3}
                                             />
                                         </Typography>
-                                        <Collapse in={props.hasTestimonialThree} collapsedSize={120} timeout="auto">
+                                        <Collapsible minHeight={120}>
                                             <h4 className="testimonials-card-text">
                                                 <RenderSkeletonOrElement
                                                     {...props}
@@ -211,19 +180,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                                     object={props.text3}
                                                 />
                                             </h4>
-                                        </Collapse>
-                                        <IconButton
-                                            className={
-                                                props.hasTestimonialThree
-                                                    ? "testimonials-expand testimonials-expand-open"
-                                                    : "testimonials-expand"
-                                            }
-                                            onClick={props.buttonTestimonialThree}
-                                            aria-expanded={props.hasTestimonialThree}
-                                            aria-label="show more"
-                                        >
-                                            <ExpandMoreIcon />
-                                        </IconButton>
+                                        </Collapsible>
                                     </CardContent>
                                 </Card>
                             </Animated>
