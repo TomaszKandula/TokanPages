@@ -16,6 +16,14 @@ export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement
         <>
             <div className="collapsible-transition" style={{ height: props.height }}>
                 <div className="collapsible-content" ref={props.reference}>
+                    <div 
+                        className={props.isOpen 
+                            ? "collapsible-gradient collapsible-gradient-expanded" 
+                            : "collapsible-gradient"
+                        }
+                        style={{ height: props.height }}
+                    >
+                    </div>
                     {props.children}
                 </div>
             </div>
