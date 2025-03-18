@@ -11,31 +11,9 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const testimonials = data?.components?.sectionTestimonials;
 
-    const [hasTestimonialOne, setTestimonialOne] = React.useState(false);
-    const [hasTestimonialTwo, setTestimonialTwo] = React.useState(false);
-    const [hasTestimonialThree, setTestimonialThree] = React.useState(false);
-
-    const buttonTestimonialOne = React.useCallback(() => {
-        setTestimonialOne(!hasTestimonialOne);
-    }, [hasTestimonialOne]);
-
-    const buttonTestimonialTwo = React.useCallback(() => {
-        setTestimonialTwo(!hasTestimonialTwo);
-    }, [hasTestimonialTwo]);
-
-    const buttonTestimonialThree = React.useCallback(() => {
-        setTestimonialThree(!hasTestimonialThree);
-    }, [hasTestimonialThree]);
-
     return (
         <TestimonialsView
             isLoading={data?.isLoading}
-            hasTestimonialOne={hasTestimonialOne}
-            hasTestimonialTwo={hasTestimonialTwo}
-            hasTestimonialThree={hasTestimonialThree}
-            buttonTestimonialOne={buttonTestimonialOne}
-            buttonTestimonialTwo={buttonTestimonialTwo}
-            buttonTestimonialThree={buttonTestimonialThree}
             caption={testimonials?.caption}
             subtitle={testimonials?.subtitle}
             photo1={testimonials?.photo1}

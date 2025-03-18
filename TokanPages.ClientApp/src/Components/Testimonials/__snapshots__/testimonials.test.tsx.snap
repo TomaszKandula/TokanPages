@@ -62,27 +62,26 @@ Object {
                         Senior Digital Tax Specialist
                       </p>
                       <div
-                        class="MuiCollapse-root"
-                        style="min-height: 120px;"
+                        class="collapsible-transition"
+                        style="height: 120px;"
                       >
                         <div
-                          class="MuiCollapse-wrapper"
+                          class="collapsible-content"
                         >
                           <div
-                            class="MuiCollapse-wrapperInner"
+                            class="collapsible-gradient"
+                            style="height: 120px;"
+                          />
+                          <h4
+                            class="testimonials-card-text"
                           >
-                            <h4
-                              class="testimonials-card-text"
-                            >
-                              Joe is very motivated...
-                            </h4>
-                          </div>
+                            Joe is very motivated...
+                          </h4>
                         </div>
                       </div>
                       <button
-                        aria-expanded="false"
                         aria-label="show more"
-                        class="MuiButtonBase-root MuiIconButton-root testimonials-expand"
+                        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
                         tabindex="0"
                         type="button"
                       >
@@ -139,27 +138,24 @@ Object {
                         Full-stack Developer chez DFDS POLSKA
                       </p>
                       <div
-                        class="MuiCollapse-root"
-                        style="min-height: 120px;"
+                        class="collapsible-transition"
                       >
                         <div
-                          class="MuiCollapse-wrapper"
+                          class="collapsible-content"
                         >
                           <div
-                            class="MuiCollapse-wrapperInner"
+                            class="collapsible-gradient"
+                          />
+                          <h4
+                            class="testimonials-card-text"
                           >
-                            <h4
-                              class="testimonials-card-text"
-                            >
-                              Joe have done very good work...
-                            </h4>
-                          </div>
+                            Joe have done very good work...
+                          </h4>
                         </div>
                       </div>
                       <button
-                        aria-expanded="false"
                         aria-label="show more"
-                        class="MuiButtonBase-root MuiIconButton-root testimonials-expand"
+                        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
                         tabindex="0"
                         type="button"
                       >
@@ -213,27 +209,24 @@ Object {
                         BPO
                       </p>
                       <div
-                        class="MuiCollapse-root"
-                        style="min-height: 120px;"
+                        class="collapsible-transition"
                       >
                         <div
-                          class="MuiCollapse-wrapper"
+                          class="collapsible-content"
                         >
                           <div
-                            class="MuiCollapse-wrapperInner"
+                            class="collapsible-gradient"
+                          />
+                          <h4
+                            class="testimonials-card-text"
                           >
-                            <h4
-                              class="testimonials-card-text"
-                            >
-                              Joe is one of those rare talents...
-                            </h4>
-                          </div>
+                            Joe is one of those rare talents...
+                          </h4>
                         </div>
                       </div>
                       <button
-                        aria-expanded="false"
                         aria-label="show more"
-                        class="MuiButtonBase-root MuiIconButton-root testimonials-expand"
+                        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
                         tabindex="0"
                         type="button"
                       >
@@ -320,27 +313,26 @@ Object {
                       Senior Digital Tax Specialist
                     </p>
                     <div
-                      class="MuiCollapse-root"
-                      style="min-height: 120px;"
+                      class="collapsible-transition"
+                      style="height: 120px;"
                     >
                       <div
-                        class="MuiCollapse-wrapper"
+                        class="collapsible-content"
                       >
                         <div
-                          class="MuiCollapse-wrapperInner"
+                          class="collapsible-gradient"
+                          style="height: 120px;"
+                        />
+                        <h4
+                          class="testimonials-card-text"
                         >
-                          <h4
-                            class="testimonials-card-text"
-                          >
-                            Joe is very motivated...
-                          </h4>
-                        </div>
+                          Joe is very motivated...
+                        </h4>
                       </div>
                     </div>
                     <button
-                      aria-expanded="false"
                       aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root testimonials-expand"
+                      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
                       tabindex="0"
                       type="button"
                     >
@@ -397,27 +389,24 @@ Object {
                       Full-stack Developer chez DFDS POLSKA
                     </p>
                     <div
-                      class="MuiCollapse-root"
-                      style="min-height: 120px;"
+                      class="collapsible-transition"
                     >
                       <div
-                        class="MuiCollapse-wrapper"
+                        class="collapsible-content"
                       >
                         <div
-                          class="MuiCollapse-wrapperInner"
+                          class="collapsible-gradient"
+                        />
+                        <h4
+                          class="testimonials-card-text"
                         >
-                          <h4
-                            class="testimonials-card-text"
-                          >
-                            Joe have done very good work...
-                          </h4>
-                        </div>
+                          Joe have done very good work...
+                        </h4>
                       </div>
                     </div>
                     <button
-                      aria-expanded="false"
                       aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root testimonials-expand"
+                      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
                       tabindex="0"
                       type="button"
                     >
@@ -471,27 +460,24 @@ Object {
                       BPO
                     </p>
                     <div
-                      class="MuiCollapse-root"
-                      style="min-height: 120px;"
+                      class="collapsible-transition"
                     >
                       <div
-                        class="MuiCollapse-wrapper"
+                        class="collapsible-content"
                       >
                         <div
-                          class="MuiCollapse-wrapperInner"
+                          class="collapsible-gradient"
+                        />
+                        <h4
+                          class="testimonials-card-text"
                         >
-                          <h4
-                            class="testimonials-card-text"
-                          >
-                            Joe is one of those rare talents...
-                          </h4>
-                        </div>
+                          Joe is one of those rare talents...
+                        </h4>
                       </div>
                     </div>
                     <button
-                      aria-expanded="false"
                       aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root testimonials-expand"
+                      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
                       tabindex="0"
                       type="button"
                     >

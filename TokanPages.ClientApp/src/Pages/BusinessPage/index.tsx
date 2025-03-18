@@ -36,7 +36,6 @@ export const BusinessPage = () => {
                     hasIcon={true}
                     hasShadow={true}
                     className="pt-120 pb-240"
-                    background="background-colour-light-grey"
                 />
             </main>
         </>

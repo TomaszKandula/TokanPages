@@ -1,0 +1,32 @@
+.collapsible-expand {
+    transform: rotate(0deg);
+    margin-top: 10px;
+    margin-left: auto;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.collapsible-expand-open {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    width: 100%;
+    position: relative;
+}
+
+.collapsible-gradient {
+    top: 0;
+    width: 100%;
+    position: absolute;
+    transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+.collapsible-gradient-expanded {
+    background: transparent;
+}
+
+.collapsible-transition {
+    overflow: hidden;
+    transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
