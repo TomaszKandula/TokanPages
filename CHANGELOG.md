@@ -1,3 +1,18 @@
+# [0.148.0](https://github.com/TomaszKandula/TokanPages/compare/v0.147.0...v0.148.0) (2025-03-18)
+
+
+### Bug Fixes
+
+* remove grey background ([8aa2909](https://github.com/TomaszKandula/TokanPages/commit/8aa2909afc761879b05034be2763b272afd3ae77))
+
+
+### Features
+
+* add bulma css framework ([24e85dc](https://github.com/TomaszKandula/TokanPages/commit/24e85dcd8996198f53b7ccea89f72980abab6853))
+* add gradient for collapsed content ([f0af623](https://github.com/TomaszKandula/TokanPages/commit/f0af6236158454be2497f782f241f4d343a44cac))
+* custom collapsible component ([17348da](https://github.com/TomaszKandula/TokanPages/commit/17348da60ce4497a6b54be02fe26aa8bfb681e47))
+* use custom collapsible component, simplification ([ab82635](https://github.com/TomaszKandula/TokanPages/commit/ab82635631e7650dfe15fd9e063d29775a87a92a))
+
 # [0.147.0](https://github.com/TomaszKandula/TokanPages/compare/v0.146.0...v0.147.0) (2025-03-16)
 
 
