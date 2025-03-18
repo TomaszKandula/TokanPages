@@ -24,3 +24,4 @@ export { UploadUserMedia } from "./UploadUserMedia";
 export { TextFiedWithPassword } from "./TextFieldWithPassword";
 export { ApplicationSession } from "./ApplicationSession";
 export { ErrorBoundary } from "./ErrorBoundary";
+export { Collapsible } from "./Collapsible";

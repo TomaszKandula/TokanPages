@@ -26,12 +26,6 @@ describe("test component: testimonialsView", () => {
         const html = render(
             <TestimonialsView
                 isLoading={false}
-                hasTestimonialOne={true}
-                hasTestimonialTwo={true}
-                hasTestimonialThree={true}
-                buttonTestimonialOne={jest.fn()}
-                buttonTestimonialTwo={jest.fn()}
-                buttonTestimonialThree={jest.fn()}
                 caption={testContent.caption}
                 subtitle={testContent.subtitle}
                 photo1={testContent.photo1}
