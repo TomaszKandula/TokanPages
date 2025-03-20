@@ -155,6 +155,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Chat", "TokanPag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.SpaCachingService", "TokanPages.Services\TokanPages.Services.SpaCachingService\TokanPages.Services.SpaCachingService.csproj", "{891A50FB-473A-44E2-BD28-E5473C9BEFEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Logger", "TokanPages.WebApi\TokanPages.Logger\TokanPages.Logger.csproj", "{54963F76-E292-47F0-B73F-8F85A566E6FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Logger.Dto", "TokanPages.WebApi\TokanPages.Logger.Dto\TokanPages.Logger.Dto.csproj", "{13526651-6841-4A21-80F1-1F758CE5776E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -345,6 +349,14 @@ Global
 		{891A50FB-473A-44E2-BD28-E5473C9BEFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{891A50FB-473A-44E2-BD28-E5473C9BEFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{891A50FB-473A-44E2-BD28-E5473C9BEFEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54963F76-E292-47F0-B73F-8F85A566E6FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54963F76-E292-47F0-B73F-8F85A566E6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54963F76-E292-47F0-B73F-8F85A566E6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54963F76-E292-47F0-B73F-8F85A566E6FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13526651-6841-4A21-80F1-1F758CE5776E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13526651-6841-4A21-80F1-1F758CE5776E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13526651-6841-4A21-80F1-1F758CE5776E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13526651-6841-4A21-80F1-1F758CE5776E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -396,6 +408,8 @@ Global
 		{DCA586A4-F873-4F3D-8568-DF227A08A128} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{0431889D-6A9B-445D-A8DC-E317A5FB2F16} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{891A50FB-473A-44E2-BD28-E5473C9BEFEC} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{54963F76-E292-47F0-B73F-8F85A566E6FF} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
+		{13526651-6841-4A21-80F1-1F758CE5776E} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}
