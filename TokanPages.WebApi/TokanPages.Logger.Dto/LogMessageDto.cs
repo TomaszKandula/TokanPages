@@ -6,7 +6,7 @@ namespace TokanPages.Logger.Dto;
 public class LogMessageDto
 {
     /// <summary>
-    /// 
+    /// Event date and time, when the exception occured.
     /// </summary>
     public DateTime EventDateTime { get; set; }
 
