@@ -236,5 +236,17 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("TOO_LONG_USER_NOTE", resourceCulture);
             }
         }
+        
+        public static string LENGTH_TOO_LONG_2048 {
+            get {
+                return ResourceManager.GetString("LENGTH_TOO_LONG_2048", resourceCulture);
+            }
+        }
+        
+        public static string LENGTH_TOO_LONG_4096 {
+            get {
+                return ResourceManager.GetString("LENGTH_TOO_LONG_4096", resourceCulture);
+            }
+        }
     }
 }
