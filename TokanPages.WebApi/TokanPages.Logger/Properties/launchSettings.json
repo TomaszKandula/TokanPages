@@ -5,7 +5,7 @@
     {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "http://localhost:6008",
+      "applicationUrl": "http://localhost:6009",
       "launchUrl": "swagger",
       "environmentVariables":
       {
