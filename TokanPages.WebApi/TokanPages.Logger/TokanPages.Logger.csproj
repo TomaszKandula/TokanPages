@@ -29,5 +29,9 @@
         <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj" />
         <ProjectReference Include="..\TokanPages.Logger.Dto\TokanPages.Logger.Dto.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+    </ItemGroup>
     
 </Project>
