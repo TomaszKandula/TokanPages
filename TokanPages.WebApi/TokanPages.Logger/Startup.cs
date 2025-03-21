@@ -67,6 +67,9 @@ public class Startup
         services.RegisterDependencies(_configuration, _environment);
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
+        services
+            .AddHealthChecks()
+            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), name: "SQLServer");
     }
 
     /// <summary>
