@@ -1,6 +1,8 @@
 using System.Text;
 using MediatR;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Logger.Commands;
@@ -33,7 +35,7 @@ public class LogMessageCommandHandler :  RequestHandler<LogMessageCommand, Unit>
             case "warning": LoggerService.LogWarning(message); break;
             case "error": LoggerService.LogError(message); break;
             case "fatal": LoggerService.LogCriticalError(message); break;
-            default: LoggerService.LogInformation(message); break;
+            default: throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
         }
     }
 }
