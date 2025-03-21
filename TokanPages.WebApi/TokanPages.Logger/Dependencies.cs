@@ -2,12 +2,18 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.Database;
 using TokanPages.Services.BehaviourService;
+using TokanPages.Services.UserService;
+using TokanPages.Services.UserService.Abstractions;
+using TokanPages.Services.WebTokenService;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Logger;
 
@@ -26,6 +32,7 @@ public static class Dependencies
     public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
     {
         services.CommonServices(configuration);
+        SetupDatabase(services, configuration);
         if (environment != null)
             PollySupport.SetupRetryPolicyWithPolly(services, configuration, environment);
     }
@@ -41,14 +48,30 @@ public static class Dependencies
         SetupServices(services, configuration);
         SetupValidators(services);
         SetupMediatR(services);
+        WebTokenSupport.SetupWebToken(services, configuration);
     }
 
     private static void SetupLogger(IServiceCollection services) 
         => services.AddSingleton<ILoggerService, LoggerService>();
 
+    private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
+    {
+        const int maxRetryCount = 10;
+        var maxRetryDelay = TimeSpan.FromSeconds(5);
+
+        services.AddDbContext<DatabaseContext>(options =>
+        {
+            options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"), addOptions 
+                => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
+        });
+    }
+
     private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
     {
         services.AddHttpContextAccessor();
+        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
+        services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+        services.AddScoped<IUserService, UserService>();
 
         services.AddScoped<IJsonSerializer, JsonSerializer>();
         services.AddScoped<IDateTimeService, DateTimeService>();
