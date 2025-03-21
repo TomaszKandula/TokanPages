@@ -91,6 +91,21 @@ services:
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
 
+  logger-api:
+    build:
+      context: .
+      args:
+        - ENV_VALUE=Testing
+      dockerfile: logger.dockerfile
+    hostname: logger
+    restart: on-failure
+    networks:
+      - xnet
+    expose:
+      - "80"
+    volumes:
+      - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+
   notifications-api:
     build:
       context: .
