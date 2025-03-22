@@ -1,6 +1,7 @@
 const API_VER = process.env.REACT_APP_API_VER;
 const APP_BACKEND = process.env.REACT_APP_BACKEND;
 export const API_BASE_URI = `${APP_BACKEND}/api/v${API_VER}`;
+const API_LOGGER_URI = `${API_BASE_URI}/logger`;
 const API_ARTICLES_URI = `${API_BASE_URI}/articles`;
 const API_USERS_URI = `${API_BASE_URI}/users`;
 const API_NOTIFICATIONS_WEB_URI = `${API_BASE_URI}/notifications/web`;
@@ -9,6 +10,8 @@ const API_MAILER_URI = `${API_BASE_URI}/sender/mailer`;
 const API_CONTENT_URI = `${API_BASE_URI}/content/components`;
 const API_ASSETS_URI = `${API_BASE_URI}/content/assets`;
 const API_NON_VIDEO_ASSETS_URI = `${API_ASSETS_URI}/getNonVideoAsset`;
+
+export const LOG_MESSAGE = `${API_LOGGER_URI}/logMessage`;
 
 export const GET_ARTICLE_INFO = `${API_ARTICLES_URI}/{id}/getArticleInfo`;
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;

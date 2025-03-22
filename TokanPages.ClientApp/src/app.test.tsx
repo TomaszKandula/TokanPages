@@ -42,6 +42,17 @@ it("renders without crashing", () => {
                 name: "Polski",
             },
         ],
+        errorBoundary: [
+            {
+                language: "en",
+                title: "Critical Error",
+                subtitle: "Something went wrong...",
+                text: "Contact the site's administrator or support for assistance.",
+                linkHref: "mailto:admin@tomkandula.com",
+                linkText: "IT support",
+                footer: "tomkandula.com",
+            },
+        ],
     };
 
     ReactDOM.render(

@@ -32,7 +32,7 @@ describe("test component: showcaseView", () => {
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
     });
 
     it("should render correctly '<ShowcaseView />' when content is loaded.", () => {

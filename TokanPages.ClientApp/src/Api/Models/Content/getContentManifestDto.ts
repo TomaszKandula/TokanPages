@@ -1,3 +1,4 @@
+import { ErrorContentDto } from "./Items/errorContentDto";
 import { LanguageItemDto } from "./Items/languageItemDto";
 
 export interface GetContentManifestDto {
@@ -6,4 +7,5 @@ export interface GetContentManifestDto {
     updated: string;
     default: string;
     languages: LanguageItemDto[];
+    errorBoundary: ErrorContentDto[];
 }

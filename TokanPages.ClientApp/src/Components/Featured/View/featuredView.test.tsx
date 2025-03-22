@@ -37,7 +37,7 @@ describe("test component: featuredView", () => {
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
     });
 
     it("should render correctly '<FeaturedView />' when content is loaded.", () => {
