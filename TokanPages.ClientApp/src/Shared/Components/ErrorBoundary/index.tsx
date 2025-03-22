@@ -1,44 +1,76 @@
-import React, { Component, ErrorInfo, ReactNode } from "react";
+import * as React from "react";
+import { useSelector } from "react-redux";
+import { ApplicationState } from "../../../Store/Configuration";
 
-interface Props {
-    children?: ReactNode;
+interface ErrorBoundaryProps {
+    children: React.ReactNode;
 }
 
-interface State {
-    hasError: boolean;
-}
-
-export class ErrorBoundary extends Component<Props, State> {
-    public state: State = {
-        hasError: false,
+interface ErrorPromptProps {
+    title: string;
+    subtitle: string;
+    text: string;
+    link: {
+        href: string;
+        text: string;
     };
+    footer: string;
+}
 
-    public static getDerivedStateFromError(_: Error): State {
-        return { hasError: true };
-    }
-
-    public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error("Uncaught error:", error, errorInfo);
-    }
-
-    public render() {
-        if (this.state.hasError) {
-            return (
-                <div id="error">
-                    <div className="error">
-                        <h1>Critical Error</h1>
-                        <h2>Something went wrong...</h2>
-                        <div className="error-text">
-                            <p>Contact the site's administrator or support for assistance.</p>
-                            <a href="mailto:admin@tomkandula.com">IT support</a>
-                            <hr />
-                            <p>tomkandula.com</p>
-                        </div>
-                    </div>
+const ErrorPrompt = (props: ErrorPromptProps): React.ReactElement => {
+    return(
+        <div id="error">
+            <div className="error">
+                <h1>{props.title}</h1>
+                <h2>{props.subtitle}</h2>
+                <div className="error-text">
+                    <p>{props.text}</p>
+                    <a href={props.link.href}>{props.link.text}</a>
+                    <hr />
+                    <p>{props.footer}</p>
                 </div>
-            );
+            </div>
+        </div>
+    );
+}
+
+export const ErrorBoundary = (props: ErrorBoundaryProps): React.ReactElement => {
+    const [hasError, setHasError] = React.useState(false);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+
+    React.useEffect(() => {
+        const errorHandler = (event: ErrorEvent) => {
+            setHasError(true);
+            console.error("ErrorBoundary caught an error", event.error);
+        };
+
+        const rejectionHandler = (event: PromiseRejectionEvent) => {
+            setHasError(true);
+            console.error("ErrorBoundary caught an error", event.reason);
         }
 
-        return this.props.children;
+        window.addEventListener("error", errorHandler);
+        window.addEventListener("unhandledrejection", rejectionHandler);
+
+        return () => {
+            window.removeEventListener("error", errorHandler);
+            window.removeEventListener("unhandledrejection", rejectionHandler);
+        };
+    }, []);
+
+    console.log(language);
+
+    if (hasError) {
+        return (
+            <ErrorPrompt
+                title=""
+                subtitle=""
+                text=""
+                link={{ href: "", text: "" }}
+                footer=""
+            />
+        );
     }
+
+    return <>{props.children}</>;
 }
