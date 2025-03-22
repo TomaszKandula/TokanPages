@@ -1,3 +1,37 @@
+# [0.149.0](https://github.com/TomaszKandula/TokanPages/compare/v0.148.0...v0.149.0) (2025-03-22)
+
+
+### Bug Fixes
+
+* resolve script issues ([49cf025](https://github.com/TomaszKandula/TokanPages/commit/49cf025cf36c52cce619792348aa577c02819372))
+
+
+### Features
+
+* add command ([24f6b2b](https://github.com/TomaszKandula/TokanPages/commit/24f6b2b5477e88b3d4e36f66872a71d46687157f))
+* add controller w/endpoint ([0aa101f](https://github.com/TomaszKandula/TokanPages/commit/0aa101fb6ac6ec3be7b65c1b3a438be61b680c04))
+* add error boundary text content ([0d8a69d](https://github.com/TomaszKandula/TokanPages/commit/0d8a69db34b693e23112d56fa12735f17a24c44d))
+* add error boundary to manifest ([02a44ac](https://github.com/TomaszKandula/TokanPages/commit/02a44ac558bbd51dcde6942469b28b57880f3707))
+* add handler implementation ([034a77d](https://github.com/TomaszKandula/TokanPages/commit/034a77d3402568c31a0ee93a3c604910ba37d290))
+* add logger api w/dto ([ff05729](https://github.com/TomaszKandula/TokanPages/commit/ff057291bf4a812985c0bc6e890033215f54ba2d))
+* add mapper ([2690778](https://github.com/TomaszKandula/TokanPages/commit/269077898818ba7b8e2c53e3f9d2b00f32267a90))
+* add new validation codes ([9e9aaea](https://github.com/TomaszKandula/TokanPages/commit/9e9aaea6ad3d5908de2c7652389549f54dae39fb))
+* add sql server ([6e1fa5e](https://github.com/TomaszKandula/TokanPages/commit/6e1fa5e5e68d0216b123e6f0a963cb2a02785d99))
+* add validator w/tests ([4380ccd](https://github.com/TomaszKandula/TokanPages/commit/4380ccdb0285391a42f448c6cccae78f6cd83fac))
+* change error boundary implementation ([d3f5581](https://github.com/TomaszKandula/TokanPages/commit/d3f55814b185b7b16ff63c033df9e7cf5a998de7))
+* change port for local test ([553efbd](https://github.com/TomaszKandula/TokanPages/commit/553efbdf7b7fa2e6cce573d03f8dfa05374a83d7))
+* decrease min length ([f4a815b](https://github.com/TomaszKandula/TokanPages/commit/f4a815b0c3fdf9aba7d93c4d4418f905ca647e81))
+* docker container for logger ([64baefc](https://github.com/TomaszKandula/TokanPages/commit/64baefc6f42e9ff58a9bf259afbd808881ba97bd))
+* extend dto model ([4d5981c](https://github.com/TomaszKandula/TokanPages/commit/4d5981c71dc080991ebd5280f41627887e1f2b89))
+* get error content for boundary ([5fb6ab0](https://github.com/TomaszKandula/TokanPages/commit/5fb6ab08bebfbd27d5c931540c4a523e6ff19eb6))
+* improve error boundary ([20a700c](https://github.com/TomaszKandula/TokanPages/commit/20a700c9d59563c61433e57536f14321db485385))
+* log message on boundary error ([5ba70e7](https://github.com/TomaszKandula/TokanPages/commit/5ba70e7d1a6ef345fb1ac590ca3bfaf3e1678679))
+* register dependencies ([0620ffc](https://github.com/TomaszKandula/TokanPages/commit/0620ffc7a6eaf585129e432156cc3cac013019df))
+* throw an error on incorrect severity ([05ae878](https://github.com/TomaszKandula/TokanPages/commit/05ae878d97a703ec467712e987c4d3281cefcb09))
+* update build scripts and nginx compression ([10a4106](https://github.com/TomaszKandula/TokanPages/commit/10a4106e3d64bf76022b494a2130c4fb88f9ac77))
+* update implementation ([ca5a102](https://github.com/TomaszKandula/TokanPages/commit/ca5a1028d00a2343efbf14a452ad2bca7c2585dc))
+* update startup ([cf570b3](https://github.com/TomaszKandula/TokanPages/commit/cf570b34502e9dd9cba000e88d1dd08d17469508))
+
 # [0.148.0](https://github.com/TomaszKandula/TokanPages/compare/v0.147.0...v0.148.0) (2025-03-18)
 
 
