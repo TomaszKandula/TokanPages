@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
+import { ErrorContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
+import { GetLanguageSpecificBoundary } from "../../../Shared/Services/languageService";
 
 interface ErrorBoundaryProps {
     children: React.ReactNode;
@@ -36,9 +38,16 @@ const ErrorPrompt = (props: ErrorPromptProps): React.ReactElement => {
 
 export const ErrorBoundary = (props: ErrorBoundaryProps): React.ReactElement => {
     const [hasError, setHasError] = React.useState(false);
+    const [content, setContent] = React.useState<ErrorContentDto | undefined>();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
+        const errorContent = GetLanguageSpecificBoundary(language.id, language.errorBoundary);
+        setContent(errorContent);
+    }, [language]);
+
+    React.useEffect(() => {
+
         const errorHandler = (event: ErrorEvent) => {
             setHasError(true);
             console.error("ErrorBoundary caught an error", event.error);
@@ -58,16 +67,17 @@ export const ErrorBoundary = (props: ErrorBoundaryProps): React.ReactElement => 
         };
     }, []);
 
-    console.log(language);
-
     if (hasError) {
         return (
             <ErrorPrompt
-                title=""
-                subtitle=""
-                text=""
-                link={{ href: "", text: "" }}
-                footer=""
+                title={content?.title ?? ""}
+                subtitle={content?.subtitle ?? ""}
+                text={content?.text ?? ""}
+                link={{
+                    href: content?.linkHref ?? "",
+                    text: content?.linkText ?? "",
+                }}
+                footer={content?.footer ?? ""}
             />
         );
     }

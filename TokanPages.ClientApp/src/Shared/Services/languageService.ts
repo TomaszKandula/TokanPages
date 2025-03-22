@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
-import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
+import { ErrorContentDto, GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
 import Validate from "validate.js";
 
 export const MapLanguageId = (input: string): string => {
@@ -45,6 +45,15 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
 
     return undefined;
 };
+
+export const GetLanguageSpecificBoundary = (languageId: string, errorBoundary: ErrorContentDto[]): ErrorContentDto => {
+    const filtering = (value: ErrorContentDto): boolean => {
+        return value.language === languageId;
+    };
+
+    const result = errorBoundary.filter(filtering)[0];
+    return result;
+}
 
 export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
     const pathname = window.location.pathname;
