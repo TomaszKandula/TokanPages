@@ -56,22 +56,39 @@ export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
 
 export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
+    const boundary = manifest.errorBoundary;
     const defaultId = GetDefaultId(languages);
     const pathname = window.location.pathname;
     const paths = pathname.split("/").filter(e => String(e).trim());
 
     if (paths.length > 0) {
         if (paths[0] === "snapshot") {
-            dispatch(ApplicationLanguageAction.set({ id: paths[1], languages: languages }));
+            dispatch(ApplicationLanguageAction.set({ 
+                id: paths[1], 
+                languages: languages, 
+                errorBoundary: boundary 
+            }));
         } else if (IsLanguageIdValid(paths[0], languages)) {
-            dispatch(ApplicationLanguageAction.set({ id: paths[0], languages: languages }));
+            dispatch(ApplicationLanguageAction.set({ 
+                id: paths[0], 
+                languages: languages, 
+                errorBoundary: boundary 
+            }));
         } else if (defaultId) {
-            dispatch(ApplicationLanguageAction.set({ id: defaultId, languages: languages }));
+            dispatch(ApplicationLanguageAction.set({ 
+                id: defaultId, 
+                languages: languages, 
+                errorBoundary: boundary 
+            }));
         }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
         window.history.pushState({}, "", urlWithDefaultLanguageId);
-        dispatch(ApplicationLanguageAction.set({ id: defaultId, languages: languages }));
+        dispatch(ApplicationLanguageAction.set({ 
+            id: defaultId, 
+            languages: languages, 
+            errorBoundary: boundary 
+        }));
     }
 };
 
