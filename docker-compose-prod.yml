@@ -95,7 +95,7 @@ services:
     build:
       context: .
       args:
-        - ENV_VALUE=Testing
+        - ENV_VALUE=Production
       dockerfile: logger.dockerfile
     hostname: logger
     restart: on-failure
