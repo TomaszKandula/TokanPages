@@ -31,5 +31,10 @@ public class ContentManifestDto
     /// <summary>
     /// Registered languages.
     /// </summary>
-    public List<LanguageItem> Languages { get; set; } = new();
+    public List<LanguageModel> Languages { get; set; } = new();
+
+    /// <summary>
+    /// Error boundary text content in different languages.
+    /// </summary>
+    public List<ErrorModel> ErrorBoundary { get; set; } = new();
 }
