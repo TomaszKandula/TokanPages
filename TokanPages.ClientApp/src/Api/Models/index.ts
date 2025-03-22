@@ -65,6 +65,7 @@ export type { UpdateUserNoteResultDto } from "./Users/updateUserNoteResultDto";
 /* CONTENT */
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
+export type { ErrorContentDto } from "./Content/Items/errorContentDto";
 export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
 export type { RequestPageDataDto } from "./Content/requestPageDataDto";
 export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";

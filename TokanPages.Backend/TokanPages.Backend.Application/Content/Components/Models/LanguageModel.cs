@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Application.Content.Components.Models;
 /// Language item.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class LanguageItem
+public class LanguageModel
 {
     /// <summary>
     /// Language ID.

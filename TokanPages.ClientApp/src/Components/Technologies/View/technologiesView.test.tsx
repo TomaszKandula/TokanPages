@@ -33,7 +33,7 @@ describe("test component: technologiesView", () => {
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
     });
 
     it("should render correctly '<TechnologiesView />' when content is loaded.", () => {

@@ -42,9 +42,15 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             const newUrl = window.location.href.replace(`/${paths[0]}`, `/${value}`);
 
             window.history.pushState({}, "", newUrl);
-            dispatch(ApplicationLanguageAction.set({ id: value, languages: language.languages }));
+            dispatch(
+                ApplicationLanguageAction.set({
+                    ...language,
+                    id: value,
+                    languages: language.languages,
+                })
+            );
         },
-        [language?.languages]
+        [language]
     );
 
     const onAvatarClick = React.useCallback(() => {

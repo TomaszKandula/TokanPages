@@ -27,13 +27,8 @@ export const Collapsible = (props: CollapsibleProps): React.ReactElement => {
     }, [isOpen]);
 
     return (
-        <CollapsibleView 
-            isOpen={isOpen}
-            height={height}
-            clickHandler={buttonClickHandler}
-            reference={ref}
-        >
+        <CollapsibleView isOpen={isOpen} height={height} clickHandler={buttonClickHandler} reference={ref}>
             {props.children}
         </CollapsibleView>
     );
-}
+};
