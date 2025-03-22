@@ -46,15 +46,6 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     return undefined;
 };
 
-export const GetLanguageSpecificBoundary = (languageId: string, errorBoundary: ErrorContentDto[]): ErrorContentDto => {
-    const filtering = (value: ErrorContentDto): boolean => {
-        return value.language === languageId;
-    };
-
-    const result = errorBoundary.filter(filtering)[0];
-    return result;
-}
-
 export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
     const pathname = window.location.pathname;
     if (pathname === "/") {
@@ -62,6 +53,15 @@ export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
         window.history.pushState({}, "", urlWithLanguageId);
     }
 };
+
+export const GetErrorBoundaryContent = (languageId: string, errorBoundary: ErrorContentDto[]): ErrorContentDto => {
+    const filtering = (value: ErrorContentDto): boolean => {
+        return value.language === languageId;
+    };
+
+    const result = errorBoundary.filter(filtering)[0];
+    return result;
+}
 
 export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
@@ -73,30 +73,30 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
     if (paths.length > 0) {
         if (paths[0] === "snapshot") {
             dispatch(ApplicationLanguageAction.set({ 
-                id: paths[1], 
-                languages: languages, 
-                errorBoundary: boundary 
+                id: paths[1],
+                languages: languages,
+                errorBoundary: boundary
             }));
         } else if (IsLanguageIdValid(paths[0], languages)) {
             dispatch(ApplicationLanguageAction.set({ 
-                id: paths[0], 
-                languages: languages, 
-                errorBoundary: boundary 
+                id: paths[0],
+                languages: languages,
+                errorBoundary: boundary
             }));
         } else if (defaultId) {
             dispatch(ApplicationLanguageAction.set({ 
-                id: defaultId, 
-                languages: languages, 
-                errorBoundary: boundary 
+                id: defaultId,
+                languages: languages,
+                errorBoundary: boundary
             }));
         }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
         window.history.pushState({}, "", urlWithDefaultLanguageId);
         dispatch(ApplicationLanguageAction.set({ 
-            id: defaultId, 
-            languages: languages, 
-            errorBoundary: boundary 
+            id: defaultId,
+            languages: languages,
+            errorBoundary: boundary
         }));
     }
 };
