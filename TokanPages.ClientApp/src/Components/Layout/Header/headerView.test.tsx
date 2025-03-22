@@ -46,7 +46,7 @@ describe("test component: headerView", () => {
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
     });
 
     it("should render correctly '<HeaderView />' when content is loaded.", () => {

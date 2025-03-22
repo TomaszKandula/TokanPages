@@ -16,13 +16,13 @@ export const ApplicationLanguage: Reducer<ApplicationLanguageState> = (
             return {
                 id: state.id,
                 languages: state.languages,
-                errorBoundary: state.errorBoundary
+                errorBoundary: state.errorBoundary,
             };
         case SET:
             return {
                 id: action.language.id,
                 languages: action.language.languages,
-                errorBoundary: action.language.errorBoundary
+                errorBoundary: action.language.errorBoundary,
             };
         default:
             return state;

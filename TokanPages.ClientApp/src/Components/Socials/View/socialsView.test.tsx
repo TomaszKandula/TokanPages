@@ -66,7 +66,7 @@ describe("test component: socialsView", () => {
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
     });
 
     it("should render correctly '<SocialsView />' when content is loaded.", () => {

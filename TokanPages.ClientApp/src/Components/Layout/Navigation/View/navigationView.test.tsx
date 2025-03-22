@@ -41,9 +41,9 @@ describe("test component: featuresView", () => {
                     text: "Contact the site's administrator or support for assistance.",
                     linkHref: "mailto:admin@tomkandula.com",
                     linkText: "IT support",
-                    footer: "tomkandula.com"
-                }
-            ]
+                    footer: "tomkandula.com",
+                },
+            ],
         };
 
         const html = render(

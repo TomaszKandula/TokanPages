@@ -33,7 +33,7 @@ describe("test account group component: passwordReset", () => {
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
         useDispatchMock.mockReturnValue(jest.fn());
     });
 

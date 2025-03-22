@@ -20,25 +20,30 @@ describe("test account group component: userSignup", () => {
         button: "Sign up",
         link: {
             text: "Already have an account? Sign in",
-            href: "/account/signin"
+            href: "/account/signin",
         },
         warning: {
             textPre: "Password requirements:",
-            textList: ["between 15..50 characters","minimum one large letter","minimum one small letter","minimum one number"],
+            textList: [
+                "between 15..50 characters",
+                "minimum one large letter",
+                "minimum one small letter",
+                "minimum one number",
+            ],
             textPost: [
                 "We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).",
-                "Recommendation based on the following reading:"
+                "Recommendation based on the following reading:",
             ],
             textNist: {
                 text: "Strong Passphrases and Account Protection",
-                href: "https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
-            }
+                href: "https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection",
+            },
         },
         consent: "I agree to the terms of use and privacy policy.",
         labelFirstName: "First name",
         labelLastName: "Last name",
         labelEmail: "Email address",
-        labelPassword: "Password"
+        labelPassword: "Password",
     };
 
     let state: ApplicationState = ApplicationDefault;
@@ -48,7 +53,7 @@ describe("test account group component: userSignup", () => {
     const useDispatchMock = jest.spyOn(Redux, "useDispatch");
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
         useDispatchMock.mockReturnValue(jest.fn());
     });
 

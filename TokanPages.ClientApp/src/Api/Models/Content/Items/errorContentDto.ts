@@ -3,7 +3,7 @@ export interface ErrorContentDto {
     title: string;
     subtitle: string;
     text: string;
-    linkHref: string,
-    linkText: string,
+    linkHref: string;
+    linkText: string;
     footer: string;
 }

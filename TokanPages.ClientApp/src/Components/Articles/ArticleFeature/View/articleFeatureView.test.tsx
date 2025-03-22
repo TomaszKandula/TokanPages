@@ -36,7 +36,7 @@ describe("test articles group component: ArticleFeatureView", () => {
 
     const useSelectorMock = jest.spyOn(Redux, "useSelector");
     beforeEach(() => {
-        useSelectorMock.mockImplementation((callback) => callback(state));
+        useSelectorMock.mockImplementation(callback => callback(state));
     });
 
     it("should render correctly '<ArticleFeatureView />' when content is loaded.", () => {

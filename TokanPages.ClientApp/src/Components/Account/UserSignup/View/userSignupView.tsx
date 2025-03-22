@@ -143,9 +143,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         <Skeleton variant="rect" width="100%" height="45px" />
                                     ) : (
                                         <Alert severity="info">
-                                            <p className="signup-warning-text-pre">
-                                                {props.warning?.textPre}
-                                            </p>
+                                            <p className="signup-warning-text-pre">{props.warning?.textPre}</p>
                                             <RenderList
                                                 list={props.warning?.textList}
                                                 className="signup-warning-text-list"

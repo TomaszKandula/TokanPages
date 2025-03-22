@@ -16,23 +16,17 @@ export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement
         <>
             <div className="collapsible-transition" style={{ height: props.height }}>
                 <div className="collapsible-content" ref={props.reference}>
-                    <div 
-                        className={props.isOpen 
-                            ? "collapsible-gradient collapsible-gradient-expanded" 
-                            : "collapsible-gradient"
+                    <div
+                        className={
+                            props.isOpen ? "collapsible-gradient collapsible-gradient-expanded" : "collapsible-gradient"
                         }
                         style={{ height: props.height }}
-                    >
-                    </div>
+                    ></div>
                     {props.children}
                 </div>
             </div>
             <IconButton
-                className={
-                    props.isOpen
-                    ? "collapsible-expand collapsible-expand-open"
-                    : "collapsible-expand"
-                }
+                className={props.isOpen ? "collapsible-expand collapsible-expand-open" : "collapsible-expand"}
                 onClick={props.clickHandler}
                 aria-expanded={props.isOpen}
                 aria-label="show more"
@@ -41,4 +35,4 @@ export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement
             </IconButton>
         </>
     );
-}
+};

@@ -61,7 +61,7 @@ export const GetErrorBoundaryContent = (languageId: string, errorBoundary: Error
 
     const result = errorBoundary.filter(filtering)[0];
     return result;
-}
+};
 
 export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
@@ -72,32 +72,40 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
 
     if (paths.length > 0) {
         if (paths[0] === "snapshot") {
-            dispatch(ApplicationLanguageAction.set({ 
-                id: paths[1],
-                languages: languages,
-                errorBoundary: boundary
-            }));
+            dispatch(
+                ApplicationLanguageAction.set({
+                    id: paths[1],
+                    languages: languages,
+                    errorBoundary: boundary,
+                })
+            );
         } else if (IsLanguageIdValid(paths[0], languages)) {
-            dispatch(ApplicationLanguageAction.set({ 
-                id: paths[0],
-                languages: languages,
-                errorBoundary: boundary
-            }));
+            dispatch(
+                ApplicationLanguageAction.set({
+                    id: paths[0],
+                    languages: languages,
+                    errorBoundary: boundary,
+                })
+            );
         } else if (defaultId) {
-            dispatch(ApplicationLanguageAction.set({ 
-                id: defaultId,
-                languages: languages,
-                errorBoundary: boundary
-            }));
+            dispatch(
+                ApplicationLanguageAction.set({
+                    id: defaultId,
+                    languages: languages,
+                    errorBoundary: boundary,
+                })
+            );
         }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
         window.history.pushState({}, "", urlWithDefaultLanguageId);
-        dispatch(ApplicationLanguageAction.set({ 
-            id: defaultId,
-            languages: languages,
-            errorBoundary: boundary
-        }));
+        dispatch(
+            ApplicationLanguageAction.set({
+                id: defaultId,
+                languages: languages,
+                errorBoundary: boundary,
+            })
+        );
     }
 };
 

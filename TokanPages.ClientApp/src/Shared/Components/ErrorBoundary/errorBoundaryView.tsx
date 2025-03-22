@@ -19,7 +19,7 @@ const defaultContent: ErrorBoundaryViewProps = {
     linkHref: "mailto:admin@tomkandula.com",
     linkText: "IT support",
     footer: "tomkandula.com",
-}
+};
 
 export const ErrorBoundaryView = () => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
@@ -46,4 +46,4 @@ export const ErrorBoundaryView = () => {
             </div>
         </div>
     );
-}
+};

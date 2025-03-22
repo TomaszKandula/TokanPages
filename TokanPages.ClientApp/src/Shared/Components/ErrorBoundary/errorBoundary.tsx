@@ -44,8 +44,8 @@ export class ErrorBoundary extends Component<Props, State> {
             pageUrl: window.location.href,
             browserName: " ",
             browserVersion: " ",
-            userAgent: window.navigator.userAgent
-        }
+            userAgent: window.navigator.userAgent,
+        };
 
         const request: RequestContract = {
             configuration: {
@@ -61,7 +61,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
     public render() {
         if (this.state.hasError) {
-            return (<ErrorBoundaryView />);
+            return <ErrorBoundaryView />;
         }
 
         return this.props.children;
