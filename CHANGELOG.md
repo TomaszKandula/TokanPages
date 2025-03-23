@@ -1,3 +1,10 @@
+# [0.150.0](https://github.com/TomaszKandula/TokanPages/compare/v0.149.1...v0.150.0) (2025-03-23)
+
+
+### Features
+
+* make it optional ([b695fca](https://github.com/TomaszKandula/TokanPages/commit/b695fcab70c41936fe77483caa22404bd04175f0))
+
 ## [0.149.1](https://github.com/TomaszKandula/TokanPages/compare/v0.149.0...v0.149.1) (2025-03-22)
 
 
