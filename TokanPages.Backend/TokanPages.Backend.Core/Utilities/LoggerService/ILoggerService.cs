@@ -10,5 +10,5 @@ public interface ILoggerService
 
     void LogWarning(string message);
 
-    void LogCriticalError(string message);
+    void LogFatal(string message);
 }

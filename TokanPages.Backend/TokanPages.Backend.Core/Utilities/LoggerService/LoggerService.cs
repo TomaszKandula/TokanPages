@@ -69,7 +69,7 @@ public sealed class LoggerService : ILoggerService
     /// Given message will also be printed in debug console.
     /// </remarks>
     /// <param name="message">A critical error message to store.</param>
-    public void LogCriticalError(string message)
+    public void LogFatal(string message)
     {
         Debug.WriteLine($"[{nameof(LoggerService)} output]: {message}");
         Log.Fatal("{AMessage}", message);
