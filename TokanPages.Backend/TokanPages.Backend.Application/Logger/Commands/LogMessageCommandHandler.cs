@@ -34,7 +34,7 @@ public class LogMessageCommandHandler :  RequestHandler<LogMessageCommand, Unit>
             case "info": LoggerService.LogInformation(message); break;
             case "warning": LoggerService.LogWarning(message); break;
             case "error": LoggerService.LogError(message); break;
-            case "fatal": LoggerService.LogCriticalError(message); break;
+            case "fatal": LoggerService.LogFatal(message); break;
             default: throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
         }
     }

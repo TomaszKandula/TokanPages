@@ -36,7 +36,7 @@ public class LogMessageCommandHandlerTest : TestBase
         mockedLogger.Verify(service => service.LogDebug(expected), Times.Never());
         mockedLogger.Verify(service => service.LogInformation(expected), Times.Never());
         mockedLogger.Verify(service => service.LogWarning(expected), Times.Never());
-        mockedLogger.Verify(service => service.LogCriticalError(expected), Times.Never());
+        mockedLogger.Verify(service => service.LogFatal(expected), Times.Never());
         result.Should().Be(Unit.Value);
     }
 
@@ -65,7 +65,7 @@ public class LogMessageCommandHandlerTest : TestBase
         mockedLogger.Verify(service => service.LogDebug(expected), Times.Once());
         mockedLogger.Verify(service => service.LogInformation(expected), Times.Never());
         mockedLogger.Verify(service => service.LogWarning(expected), Times.Never());
-        mockedLogger.Verify(service => service.LogCriticalError(expected), Times.Never());
+        mockedLogger.Verify(service => service.LogFatal(expected), Times.Never());
         result.Should().Be(Unit.Value);
     }
 
@@ -94,7 +94,7 @@ public class LogMessageCommandHandlerTest : TestBase
         mockedLogger.Verify(service => service.LogDebug(expected), Times.Never());
         mockedLogger.Verify(service => service.LogInformation(expected), Times.Once());
         mockedLogger.Verify(service => service.LogWarning(expected), Times.Never());
-        mockedLogger.Verify(service => service.LogCriticalError(expected), Times.Never());
+        mockedLogger.Verify(service => service.LogFatal(expected), Times.Never());
         result.Should().Be(Unit.Value);
     }
 
@@ -123,7 +123,7 @@ public class LogMessageCommandHandlerTest : TestBase
         mockedLogger.Verify(service => service.LogDebug(expected), Times.Never());
         mockedLogger.Verify(service => service.LogInformation(expected), Times.Never());
         mockedLogger.Verify(service => service.LogWarning(expected), Times.Once());
-        mockedLogger.Verify(service => service.LogCriticalError(expected), Times.Never());
+        mockedLogger.Verify(service => service.LogFatal(expected), Times.Never());
         result.Should().Be(Unit.Value);
     }
 
@@ -152,7 +152,7 @@ public class LogMessageCommandHandlerTest : TestBase
         mockedLogger.Verify(service => service.LogDebug(expected), Times.Never());
         mockedLogger.Verify(service => service.LogInformation(expected), Times.Never());
         mockedLogger.Verify(service => service.LogWarning(expected), Times.Never());
-        mockedLogger.Verify(service => service.LogCriticalError(expected), Times.Once());
+        mockedLogger.Verify(service => service.LogFatal(expected), Times.Once());
         result.Should().Be(Unit.Value);
     }
 
