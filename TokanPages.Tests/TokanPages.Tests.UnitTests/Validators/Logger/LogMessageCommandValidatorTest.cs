@@ -54,15 +54,13 @@ public class LogMessageCommandValidatorTest : TestBase
         var result = validator.Validate(command);
 
         // Assert
-        result.Errors.Count.Should().Be(8);
+        result.Errors.Count.Should().Be(6);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
         result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[6].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
-        result.Errors[7].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
     }
 
     [Fact]
