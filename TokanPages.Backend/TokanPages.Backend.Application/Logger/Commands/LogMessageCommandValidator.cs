@@ -48,17 +48,11 @@ public class LogMessageCommandValidator :  AbstractValidator<LogMessageCommand>
             .WithMessage(ValidationCodes.LENGTH_TOO_LONG_2048);
 
         RuleFor(command => command.BrowserName)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED)
             .MaximumLength(225)
             .WithErrorCode(nameof(ValidationCodes.LENGTH_TOO_LONG_225))
             .WithMessage(ValidationCodes.LENGTH_TOO_LONG_225);
 
         RuleFor(command => command.BrowserVersion)
-            .NotEmpty()
-            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED)
             .MaximumLength(100)
             .WithErrorCode(nameof(ValidationCodes.LENGTH_TOO_LONG_100))
             .WithMessage(ValidationCodes.LENGTH_TOO_LONG_100);
