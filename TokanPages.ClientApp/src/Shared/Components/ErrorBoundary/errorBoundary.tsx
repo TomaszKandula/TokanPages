@@ -32,8 +32,7 @@ export class ErrorBoundary extends Component<Props, State> {
     }
 
     public async componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        const message = "Uncaught error";
-        console.error(message, error, errorInfo);
+        console.error("Uncaught error", error, errorInfo);
 
         const logMessage: LogMessage = {
             eventDateTime: new Date().toISOString(),
@@ -42,8 +41,8 @@ export class ErrorBoundary extends Component<Props, State> {
             message: JSON.stringify(error),
             stackTrace: JSON.stringify(errorInfo),
             pageUrl: window.location.href,
-            browserName: " ",
-            browserVersion: " ",
+            browserName: "n/a",
+            browserVersion: "n/a",
             userAgent: window.navigator.userAgent,
         };
 
