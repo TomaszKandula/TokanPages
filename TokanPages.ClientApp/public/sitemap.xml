@@ -3,612 +3,612 @@
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9"
-    >
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9"
+>
 	<!-- ENGLISH -->
 	<url>
 		<loc>https://tomkandula.com/en</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/about/info</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/about/story</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/articles</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/showcase</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/document</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/business</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/leisure/bicycle</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/leisure/electronics</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/leisure/football</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/leisure/guitar</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/leisure/photography</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/terms</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/policy</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/contact</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/signin</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/signup</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/signout</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/settings</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/user-notes</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/activation</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/password-update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/account/password-reset</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/newsletter/update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/en/newsletter/remove</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- POLISH -->
 	<url>
 		<loc>https://tomkandula.com/pl</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/about/info</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/about/story</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/articles</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/showcase</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/document</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/business</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/leisure/bicycle</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/leisure/electronics</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/leisure/football</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/leisure/guitar</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/leisure/photography</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/terms</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/policy</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/contact</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/signin</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/signup</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/signout</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/settings</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/user-notes</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/activation</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/password-update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/account/password-reset</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/newsletter/update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/newsletter/remove</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- SPANISH -->
 	<url>
 		<loc>https://tomkandula.com/es</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/about/info</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/about/story</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/articles</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/showcase</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/document</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/business</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/leisure/bicycle</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/leisure/electronics</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/leisure/football</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/leisure/guitar</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/leisure/photography</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/terms</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/policy</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/contact</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/signin</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/signup</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/signout</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/settings</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/user-notes</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/activation</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/password-update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/account/password-reset</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/newsletter/update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/es/newsletter/remove</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- UKRAINIAN -->
 	<url>
 		<loc>https://tomkandula.com/uk</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/about/info</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/about/story</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/articles</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/showcase</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/document</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/business</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/leisure/bicycle</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/leisure/electronics</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/leisure/football</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/leisure/guitar</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/leisure/photography</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/terms</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/policy</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/contact</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/signin</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/signup</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/signout</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/settings</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/user-notes</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/activation</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/password-update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/account/password-reset</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/newsletter/update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/newsletter/remove</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- GERMAN -->
 	<url>
 		<loc>https://tomkandula.com/de</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/about/info</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/about/story</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/articles</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/showcase</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/document</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/business</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/leisure/bicycle</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/leisure/electronics</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/leisure/football</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/leisure/guitar</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/leisure/photography</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/terms</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/policy</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/contact</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/signin</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/signup</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/signout</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/settings</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/user-notes</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/activation</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/password-update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/account/password-reset</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/newsletter/update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/de/newsletter/remove</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- FRENCH -->
 	<url>
 		<loc>https://tomkandula.com/fr</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/about/info</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/about/story</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/articles</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/showcase</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/document</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/business</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/bicycle</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/electronics</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/football</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/guitar</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/photography</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/terms</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/policy</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/contact</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/signin</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/signup</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/signout</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/settings</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/user-notes</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/activation</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/password-update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/account/password-reset</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/newsletter/update</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/newsletter/remove</loc>
-		<lastmod>2025-03-24T00:00:00+02:00</lastmod>
+		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 </urlset>
