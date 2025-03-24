@@ -95,6 +95,8 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
                     errorBoundary: boundary,
                 })
             );
+            const urlWithDefaultLanguageId = `${window.location.origin}/${defaultId}`;
+            window.history.pushState({}, "", urlWithDefaultLanguageId);
         }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
