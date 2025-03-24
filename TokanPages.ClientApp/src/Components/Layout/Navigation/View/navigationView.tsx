@@ -117,6 +117,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
                 <RenderImage
                     base={GET_FLAG_URL}
                     source={`${value}.png`}
+                    title="Language flag"
                     alt={`A flag (${value}) for current language selection`}
                     className="navigation-flag-image"
                 />
@@ -141,6 +142,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
                             <RenderImage
                                 base={GET_FLAG_URL}
                                 source={`${item.id}.png`}
+                                title="Language flag"
                                 alt={`A flag (${item.name}) symbolizing available language`}
                                 className="navigation-flag-image"
                             />
@@ -162,6 +164,7 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
                     <RenderImage
                         base={GET_ICONS_URL}
                         source={props?.logoImgName}
+                        title="TomKandula logo"
                         alt="An application logo"
                         className="navigation-app-left-logo"
                     />
@@ -193,6 +196,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                         <RenderImage
                             base={GET_ICONS_URL}
                             source={props?.logoImgName}
+                            title="TomKandula logo"
                             alt="An application logo"
                             className="navigation-app-full-logo"
                         />
@@ -201,6 +205,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                         <RenderImage
                             base={GET_ICONS_URL}
                             source={props?.menu?.image}
+                            title="TomKandula logo"
                             alt="An application logo"
                             className="navigation-app-just-logo"
                         />
