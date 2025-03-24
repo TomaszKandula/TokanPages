@@ -60,7 +60,7 @@ const pages: PageProps[] = [
     { path: "/about/story", page: <StoryPage />, canPrerender: true },
     { path: "/terms", page: <TermsPage />, canPrerender: true },
     { path: "/policy", page: <PolicyPage />, canPrerender: true },
-    { path: "/document", page: <PdfViewerPage /> },
+    { path: "/document", page: <PdfViewerPage />, canPrerender: true },
     { path: "/newsletter/update", page: <NewsletterUpdatePage /> },
     { path: "/newsletter/remove", page: <NewsletterRemovePage /> },
     { path: "/account/signin", page: <SigninPage />, canPrerender: true },
