@@ -23,15 +23,11 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/en/showcase</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/document</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
 		<loc>https://tomkandula.com/en/business</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/en/showcase</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -54,58 +50,6 @@
 		<loc>https://tomkandula.com/en/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
-	<url>
-		<loc>https://tomkandula.com/en/terms</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/policy</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/contact</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/signin</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/signup</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/signout</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/settings</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/user-notes</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/activation</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/password-update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/account/password-reset</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/newsletter/update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/en/newsletter/remove</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
 	<!-- POLISH -->
 	<url>
 		<loc>https://tomkandula.com/pl</loc>
@@ -124,15 +68,11 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/pl/showcase</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/document</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
 		<loc>https://tomkandula.com/pl/business</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/showcase</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -155,58 +95,6 @@
 		<loc>https://tomkandula.com/pl/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/terms</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/policy</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/contact</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/signin</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/signup</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/signout</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/settings</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/user-notes</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/activation</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/password-update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/account/password-reset</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/newsletter/update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/pl/newsletter/remove</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
 	<!-- SPANISH -->
 	<url>
 		<loc>https://tomkandula.com/es</loc>
@@ -225,15 +113,11 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/es/showcase</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/document</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
 		<loc>https://tomkandula.com/es/business</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/showcase</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -256,58 +140,6 @@
 		<loc>https://tomkandula.com/es/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
-	<url>
-		<loc>https://tomkandula.com/es/terms</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/policy</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/contact</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/signin</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/signup</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/signout</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/settings</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/user-notes</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/activation</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/password-update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/account/password-reset</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/newsletter/update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/es/newsletter/remove</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
 	<!-- UKRAINIAN -->
 	<url>
 		<loc>https://tomkandula.com/uk</loc>
@@ -326,15 +158,11 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/uk/showcase</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/document</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
 		<loc>https://tomkandula.com/uk/business</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/showcase</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -357,58 +185,6 @@
 		<loc>https://tomkandula.com/uk/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/terms</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/policy</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/contact</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/signin</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/signup</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/signout</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/settings</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/user-notes</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/activation</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/password-update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/account/password-reset</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/newsletter/update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/uk/newsletter/remove</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
 	<!-- GERMAN -->
 	<url>
 		<loc>https://tomkandula.com/de</loc>
@@ -427,15 +203,11 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/de/showcase</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/document</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
 		<loc>https://tomkandula.com/de/business</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/de/showcase</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -458,58 +230,6 @@
 		<loc>https://tomkandula.com/de/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
-	<url>
-		<loc>https://tomkandula.com/de/terms</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/policy</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/contact</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/signin</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/signup</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/signout</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/settings</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/user-notes</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/activation</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/password-update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/account/password-reset</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/newsletter/update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/de/newsletter/remove</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
 	<!-- FRENCH -->
 	<url>
 		<loc>https://tomkandula.com/fr</loc>
@@ -528,15 +248,11 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
-		<loc>https://tomkandula.com/fr/showcase</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/document</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
 		<loc>https://tomkandula.com/fr/business</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/fr/showcase</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -557,58 +273,6 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/photography</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/terms</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/policy</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/contact</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/signin</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/signup</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/signout</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/settings</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/user-notes</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/activation</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/password-update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/account/password-reset</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/newsletter/update</loc>
-		<lastmod>{{TIMESTAMP}}</lastmod>
-	</url>
-	<url>
-		<loc>https://tomkandula.com/fr/newsletter/remove</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 </urlset>
