@@ -60,17 +60,17 @@ const pages: PageProps[] = [
     { path: "/about/story", page: <StoryPage />, canPrerender: true },
     { path: "/terms", page: <TermsPage />, canPrerender: true },
     { path: "/policy", page: <PolicyPage />, canPrerender: true },
-    { path: "/document", page: <PdfViewerPage />, canPrerender: true },
+    { path: "/document", page: <PdfViewerPage /> },
     { path: "/newsletter/update", page: <NewsletterUpdatePage /> },
     { path: "/newsletter/remove", page: <NewsletterRemovePage /> },
-    { path: "/account/signin", page: <SigninPage />, canPrerender: true },
-    { path: "/account/signup", page: <SignupPage />, canPrerender: true },
+    { path: "/account/signin", page: <SigninPage /> },
+    { path: "/account/signup", page: <SignupPage /> },
+    { path: "/account/password-update", page: <PasswordUpdatePage />, },
+    { path: "/account/password-reset", page: <PasswordResetPage />, },
     { path: "/account/signout", page: <SignoutPage /> },
     { path: "/account/settings", page: <SettingsPage /> },
     { path: "/account/user-notes", page: <UserNotesPage /> },
     { path: "/account/activation", page: <ActivationPage /> },
-    { path: "/account/password-update", page: <PasswordUpdatePage /> },
-    { path: "/account/password-reset", page: <PasswordResetPage /> },
 ];
 
 const renderRoute = (props: PageProps) => {
