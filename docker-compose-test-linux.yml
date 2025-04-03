@@ -3,7 +3,7 @@ version: "3.8"
 services:
   articles-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Articles
       args:
         - ENV_VALUE=Testing
       dockerfile: articles.dockerfile
@@ -18,7 +18,7 @@ services:
 
   content-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Content
       args:
         - ENV_VALUE=Testing
       dockerfile: content.dockerfile
@@ -33,7 +33,7 @@ services:
 
   sender-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Sender
       args:
         - ENV_VALUE=Testing
       dockerfile: sender.dockerfile
@@ -48,7 +48,7 @@ services:
 
   revenue-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Revenue
       args:
         - ENV_VALUE=Testing
       dockerfile: revenue.dockerfile
@@ -63,7 +63,7 @@ services:
 
   users-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Users
       args:
         - ENV_VALUE=Testing
       dockerfile: users.dockerfile
@@ -78,7 +78,7 @@ services:
 
   invoicing-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Invoicing
       args:
         - ENV_VALUE=Testing
       dockerfile: invoicing.dockerfile
@@ -93,7 +93,7 @@ services:
 
   logger-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Logger
       args:
         - ENV_VALUE=Testing
       dockerfile: logger.dockerfile
@@ -108,7 +108,7 @@ services:
 
   notifications-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Notifications
       args:
         - ENV_VALUE=Testing
       dockerfile: notifications.dockerfile
@@ -123,7 +123,7 @@ services:
 
   chat-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Chat
       args:
         - ENV_VALUE=Testing
       dockerfile: chat.dockerfile
@@ -138,7 +138,7 @@ services:
 
   gateway-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.Gateway
       args:
         - ENV_VALUE=Testing
       dockerfile: gateway.dockerfile
@@ -153,7 +153,7 @@ services:
 
   hosted-services-api:
     build:
-      context: .
+      context: TokanPages.WebApi/TokanPages.HostedServices
       args:
         - ENV_VALUE=Testing
       dockerfile: hosted.dockerfile
