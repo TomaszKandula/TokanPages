@@ -95,7 +95,7 @@
         "build-stage-6": "sed -i -e '$ d' ./build/main.*.css",
         "build-stage-7": "replace-in-file \"/static/js\" \"\" ./build/index.html --isRegex",
         "build-stage-8": "replace-in-file \"/static/css\" \"\" ./build/index.html --isRegex",
-        "build-stage-9": "sed -i -e s/{{TIMESTAMP}}/`date +%Y-%m-%dT%H:%M:%S%z`/g ./build/sitemap.xml && rm ./build/sitemap.xml-e",
+        "build-stage-9": "sed -i -e s/{{TIMESTAMP}}/`date +%Y-%m-%dT%H:%M:%S%z`/g ./build/sitemap.xml",
         "build-final-1": "gzip --keep --best -v ./build/*.*",
         "build-final-2": "gzip --keep --best -v ./build/favicons/*.*",
         "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
