@@ -83,9 +83,11 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
             <Container className="container-wide">
                 <div className="pt-80 pb-48">
                     <CustomCard 
+                        isLoading={props.isLoading}
                         caption={props?.content?.caption}
-                        text={props?.content?.text}
+                        text={[props?.content?.text]}
                         icon={<DescriptionIcon />}
+                        colour="info"
                     />
                 </div>
             </Container>
