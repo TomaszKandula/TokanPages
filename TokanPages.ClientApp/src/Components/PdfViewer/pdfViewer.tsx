@@ -6,6 +6,7 @@ import { RaiseError } from "../../Shared/Services/ErrorServices";
 import { ProgressBar } from "../../Shared/Components";
 import { PDF_JS_MIN_URL, PDF_WORKER_URL } from "../../Shared/constants";
 import { PdfViewerView } from "./View/pdfViewerView";
+import Validate from "validate.js";
 
 interface PdfViewerProps {
     pdfFile: string;
@@ -15,7 +16,11 @@ interface PdfViewerProps {
 
 export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const dispatch = useDispatch();
+
+    const hasNoFile = Validate.isEmpty(props.pdfFile);
     const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
+
+    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pagePdfViewer);
     const template = useSelector(
         (state: ApplicationState) => state.contentPageData.components.templates.templates.application
     );
@@ -83,10 +88,10 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     }, [numPages, currentPage]);
 
     React.useEffect(() => {
-        if (isPdfMounted && isLoading && hasTemplates) {
+        if (isPdfMounted && isLoading && hasTemplates && !hasNoFile) {
             getDocument();
         }
-    }, [isPdfMounted, isLoading, hasTemplates]);
+    }, [isPdfMounted, isLoading, hasTemplates, hasNoFile]);
 
     // NOTE: Load pdf.min.js an internally placed JS library
     // from Mozilla Foundation before rendering PdfViewer.
@@ -111,7 +116,12 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     ) : (
         <PdfViewerView
             isLoading={isLoading}
+            hasNoFilePrompt={hasNoFile}
             hasError={hasError}
+            content={{
+                caption: content?.caption ?? "",
+                text: content?.text ?? "",
+            }}
             currentPage={currentPage}
             numPages={numPages}
             pdfDocument={pdfDocument}

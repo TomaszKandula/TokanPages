@@ -97,6 +97,7 @@ export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveCo
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
 export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { SocialsContentDto } from "./Components/socialsContentDto";
+export type { PdfViewerContentDto } from "./Components/pdfViewerContentDto";
 export type {
     AccountSettingsContentDto,
     SectionAccessDenied,

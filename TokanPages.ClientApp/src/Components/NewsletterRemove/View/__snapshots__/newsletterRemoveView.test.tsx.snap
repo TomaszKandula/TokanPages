@@ -9,7 +9,7 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
             class="pb-120"
@@ -21,44 +21,50 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="text-centre mb-25"
+                  class="custom-card-background mt-25 mb-25"
                 >
                   <div
-                    class="mt-15 mb-15"
+                    class="custom-card-icon-holder vertical-centre"
                   >
-                    <p
-                      class="MuiTypography-root newsletter-remove-caption MuiTypography-body1"
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
+                      focusable="false"
+                      viewBox="0 0 24 24"
                     >
-                      Cancel your subscribtion
-                    </p>
+                      <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <h2
+                  class="custom-card-caption text-centre"
+                >
+                  Cancel your subscribtion
+                </h2>
+                <div
+                  class="mt-48"
+                >
+                  <div
+                    class="custom-card-text text-centre"
+                  >
+                    We are sorry to see you go...
                   </div>
                   <div
-                    class="mt-40 mb-15"
+                    class="custom-card-text text-centre"
                   >
-                    <p
-                      class="MuiTypography-root newsletter-remove-text1 MuiTypography-body1"
-                    >
-                      We are sorry to see you go...
-                    </p>
+                    ...but we understand there are circumstances
                   </div>
                   <div
-                    class="mt-40 mb-15"
+                    class="custom-card-text text-centre"
                   >
-                    <p
-                      class="MuiTypography-root newsletter-remove-text2 MuiTypography-body1"
-                    >
-                      ...but we understand there are circumstances
-                    </p>
+                    Please contact us should you have any questions
                   </div>
-                  <div
-                    class="mt-40 mb-56"
-                  >
-                    <p
-                      class="MuiTypography-root newsletter-remove-text3 MuiTypography-body1"
-                    >
-                      Please contact us should you have any questions
-                    </p>
-                  </div>
+                </div>
+                <div
+                  class="mt-48"
+                >
                   <button
                     class="MuiButtonBase-root MuiButton-root MuiButton-contained Mui-disabled MuiButton-fullWidth Mui-disabled"
                     disabled=""
@@ -72,6 +78,9 @@ Object {
                     </span>
                   </button>
                 </div>
+                <div
+                  class="mb-25"
+                />
               </div>
             </div>
           </div>
@@ -84,7 +93,7 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
           class="pb-120"
@@ -96,44 +105,50 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="text-centre mb-25"
+                class="custom-card-background mt-25 mb-25"
               >
                 <div
-                  class="mt-15 mb-15"
+                  class="custom-card-icon-holder vertical-centre"
                 >
-                  <p
-                    class="MuiTypography-root newsletter-remove-caption MuiTypography-body1"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    Cancel your subscribtion
-                  </p>
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h2
+                class="custom-card-caption text-centre"
+              >
+                Cancel your subscribtion
+              </h2>
+              <div
+                class="mt-48"
+              >
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  We are sorry to see you go...
                 </div>
                 <div
-                  class="mt-40 mb-15"
+                  class="custom-card-text text-centre"
                 >
-                  <p
-                    class="MuiTypography-root newsletter-remove-text1 MuiTypography-body1"
-                  >
-                    We are sorry to see you go...
-                  </p>
+                  ...but we understand there are circumstances
                 </div>
                 <div
-                  class="mt-40 mb-15"
+                  class="custom-card-text text-centre"
                 >
-                  <p
-                    class="MuiTypography-root newsletter-remove-text2 MuiTypography-body1"
-                  >
-                    ...but we understand there are circumstances
-                  </p>
+                  Please contact us should you have any questions
                 </div>
-                <div
-                  class="mt-40 mb-56"
-                >
-                  <p
-                    class="MuiTypography-root newsletter-remove-text3 MuiTypography-body1"
-                  >
-                    Please contact us should you have any questions
-                  </p>
-                </div>
+              </div>
+              <div
+                class="mt-48"
+              >
                 <button
                   class="MuiButtonBase-root MuiButton-root MuiButton-contained Mui-disabled MuiButton-fullWidth Mui-disabled"
                   disabled=""
@@ -147,6 +162,9 @@ Object {
                   </span>
                 </button>
               </div>
+              <div
+                class="mb-25"
+              />
             </div>
           </div>
         </div>

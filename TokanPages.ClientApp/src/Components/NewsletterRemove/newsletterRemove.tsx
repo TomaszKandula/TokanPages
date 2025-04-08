@@ -6,6 +6,7 @@ import { OperationStatus } from "../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { ContentDto } from "../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
+import Validate from "validate.js";
 
 export interface ExtendedViewProps {
     className?: string;
@@ -13,7 +14,7 @@ export interface ExtendedViewProps {
 }
 
 export interface NewsletterRemoveProps extends ExtendedViewProps {
-    id: string;
+    id: string | null;
 }
 
 export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactElement => {
@@ -35,6 +36,8 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
     const [hasButton, setHasButton] = React.useState(true);
     const [hasProgress, setHasProgress] = React.useState(false);
 
+    const hasEmptyId = Validate.isEmpty(props.id);
+
     const clearForm = React.useCallback(() => {
         if (!hasProgress) return;
         setIsRemoved(false);
@@ -45,10 +48,11 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
     React.useEffect(() => {
         if (hasError) {
             clearForm();
+            dispatch(NewsletterRemoveAction.clear());
             return;
         }
 
-        if (hasNotStarted && hasProgress) {
+        if (hasNotStarted && hasProgress && props.id) {
             dispatch(NewsletterRemoveAction.remove({ id: props.id }));
             return;
         }
@@ -58,7 +62,7 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
             setHasButton(false);
             setHasProgress(false);
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, props.id]);
 
     const buttonHandler = React.useCallback(() => {
         if (props.id == null) return;
@@ -68,6 +72,7 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
     return (
         <NewsletterRemoveView
             isLoading={data.isLoading}
+            hasEmptyId={hasEmptyId}
             contentPre={contentPre}
             contentPost={contentPost}
             buttonHandler={buttonHandler}

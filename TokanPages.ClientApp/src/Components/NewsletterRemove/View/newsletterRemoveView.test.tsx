@@ -17,6 +17,7 @@ describe("test component: newsletterRemoveView", () => {
         const html = render(
             <NewsletterRemoveView
                 isLoading={false}
+                hasEmptyId={false}
                 buttonHandler={jest.fn()}
                 buttonState={false}
                 progress={false}
