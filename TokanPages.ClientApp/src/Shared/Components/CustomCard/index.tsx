@@ -16,7 +16,8 @@ interface CustomCardProps extends ViewProperties {
     text: string[];
     icon: React.ReactElement;
     colour: Colour;
-    options?: OptionsProps;
+    linkButton?: OptionsProps;
+    externalButton?: React.ReactElement;
 }
 
 const RenderIcon = (props: CustomCardProps) => {
@@ -26,21 +27,33 @@ const RenderIcon = (props: CustomCardProps) => {
     });
 }
 
-const RenderButton = (props: CustomCardProps): React.ReactElement => {
+const RenderLinkButton = (props: CustomCardProps): React.ReactElement => {
     return (
         props.isLoading ? (
             <Skeleton variant="rect" width="100%" height="40px" />
         ) : (
             <div className="mt-48">
-                <Link to={props.options?.buttonLink ?? ""} className="link" rel="noopener nofollow">
+                <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
                     <Button fullWidth variant="contained" className="button" disabled={props.isLoading}>
-                        {props.options?.buttonLabel}
+                        {props.linkButton?.buttonLabel}
                     </Button>
                 </Link>
             </div>
         )
     );
 };
+
+const RenderExternalButton = (props: CustomCardProps): React.ReactElement => {
+    return (
+        props.isLoading ? (
+            <Skeleton variant="rect" width="100%" height="40px" />
+        ) : (
+            <div className="mt-48">
+                {props.externalButton}
+            </div>
+        )
+    );
+}
 
 export const CustomCard = (props: CustomCardProps): React.ReactElement => {
     return (
@@ -61,8 +74,9 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                         </div>
                     ))}
                 </div>
-                {props.options ? <RenderButton {...props} /> : null}
-                <div className={props.options ? "mb-25" : "mb-48"}></div>
+                {props.linkButton ? <RenderLinkButton {...props} /> : null}
+                {props.externalButton ? <RenderExternalButton {...props} /> : null}
+                <div className={props.linkButton || props.externalButton ? "mb-25" : "mb-48"}></div>
             </CardContent>
         </Card>
     );
