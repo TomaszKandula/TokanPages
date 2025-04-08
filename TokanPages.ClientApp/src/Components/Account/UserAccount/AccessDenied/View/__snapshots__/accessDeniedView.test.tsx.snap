@@ -20,56 +20,46 @@ Object {
               <div
                 class="MuiCardContent-root card-content"
               >
-                <span
-                  class="MuiTypography-root access-denied-caption MuiTypography-body1"
+                <div
+                  class="custom-card-background mt-25 mb-25"
+                >
+                  <div
+                    class="custom-card-icon-holder vertical-centre"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-error"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <h2
+                  class="custom-card-caption text-centre"
                 >
                   Access Denied
-                </span>
+                </h2>
                 <div
-                  class="mt-2 mb-1"
+                  class="mt-48"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
+                  <div
+                    class="custom-card-text text-centre"
+                  >
+                    You do not have access to this page.
+                  </div>
+                  <div
+                    class="custom-card-text text-centre"
+                  >
+                    If you believe this is an error, please contact IT support.
+                  </div>
                 </div>
                 <div
-                  class="pt-25 pb-25"
-                >
-                  <span
-                    class="MuiTypography-root access-denied-prompt MuiTypography-body1"
-                  >
-                    <p
-                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                    >
-                      You do not have access to this page.
-                    </p>
-                    <p
-                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                    >
-                      If you believe this is an error, please contact IT support.
-                    </p>
-                  </span>
-                </div>
-                <a
-                  class="link"
-                  href="/en"
-                  rel="noopener nofollow"
-                >
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
-                    tabindex="0"
-                    type="button"
-                  >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Go back
-                    </span>
-                    <span
-                      class="MuiTouchRipple-root"
-                    />
-                  </button>
-                </a>
+                  class="mb-48"
+                />
               </div>
             </div>
           </div>
@@ -93,56 +83,46 @@ Object {
             <div
               class="MuiCardContent-root card-content"
             >
-              <span
-                class="MuiTypography-root access-denied-caption MuiTypography-body1"
+              <div
+                class="custom-card-background mt-25 mb-25"
+              >
+                <div
+                  class="custom-card-icon-holder vertical-centre"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-error"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <h2
+                class="custom-card-caption text-centre"
               >
                 Access Denied
-              </span>
+              </h2>
               <div
-                class="mt-2 mb-1"
+                class="mt-48"
               >
-                <hr
-                  class="MuiDivider-root divider"
-                />
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  You do not have access to this page.
+                </div>
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  If you believe this is an error, please contact IT support.
+                </div>
               </div>
               <div
-                class="pt-25 pb-25"
-              >
-                <span
-                  class="MuiTypography-root access-denied-prompt MuiTypography-body1"
-                >
-                  <p
-                    class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                  >
-                    You do not have access to this page.
-                  </p>
-                  <p
-                    class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                  >
-                    If you believe this is an error, please contact IT support.
-                  </p>
-                </span>
-              </div>
-              <a
-                class="link"
-                href="/en"
-                rel="noopener nofollow"
-              >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
-                  tabindex="0"
-                  type="button"
-                >
-                  <span
-                    class="MuiButton-label"
-                  >
-                    Go back
-                  </span>
-                  <span
-                    class="MuiTouchRipple-root"
-                  />
-                </button>
-              </a>
+                class="mb-48"
+              />
             </div>
           </div>
         </div>

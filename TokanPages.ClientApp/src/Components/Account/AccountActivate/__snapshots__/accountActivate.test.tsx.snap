@@ -42,13 +42,17 @@ Object {
                   class="custom-card-caption text-centre"
                 />
                 <div
-                  class="custom-card-text text-centre"
-                />
+                  class="mt-48"
+                >
+                  <div
+                    class="custom-card-text text-centre"
+                  />
+                  <div
+                    class="custom-card-text text-centre"
+                  />
+                </div>
                 <div
-                  class="custom-card-text text-centre"
-                />
-                <div
-                  class="mb-32"
+                  class="mb-48"
                 />
               </div>
             </div>
@@ -95,13 +99,17 @@ Object {
                 class="custom-card-caption text-centre"
               />
               <div
-                class="custom-card-text text-centre"
-              />
+                class="mt-48"
+              >
+                <div
+                  class="custom-card-text text-centre"
+                />
+                <div
+                  class="custom-card-text text-centre"
+                />
+              </div>
               <div
-                class="custom-card-text text-centre"
-              />
-              <div
-                class="mb-32"
+                class="mb-48"
               />
             </div>
           </div>

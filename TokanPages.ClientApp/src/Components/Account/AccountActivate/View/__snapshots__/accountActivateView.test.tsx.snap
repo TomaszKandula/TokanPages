@@ -44,17 +44,21 @@ Object {
                   Account Activation
                 </h2>
                 <div
-                  class="custom-card-text text-centre"
+                  class="mt-48"
                 >
-                  Your account has been successfully activated!
+                  <div
+                    class="custom-card-text text-centre"
+                  >
+                    Your account has been successfully activated!
+                  </div>
+                  <div
+                    class="custom-card-text text-centre"
+                  >
+                    You can now sign in.
+                  </div>
                 </div>
                 <div
-                  class="custom-card-text text-centre"
-                >
-                  You can now sign in.
-                </div>
-                <div
-                  class="mb-32"
+                  class="mb-48"
                 />
               </div>
             </div>
@@ -103,17 +107,21 @@ Object {
                 Account Activation
               </h2>
               <div
-                class="custom-card-text text-centre"
+                class="mt-48"
               >
-                Your account has been successfully activated!
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  Your account has been successfully activated!
+                </div>
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  You can now sign in.
+                </div>
               </div>
               <div
-                class="custom-card-text text-centre"
-              >
-                You can now sign in.
-              </div>
-              <div
-                class="mb-32"
+                class="mb-48"
               />
             </div>
           </div>
