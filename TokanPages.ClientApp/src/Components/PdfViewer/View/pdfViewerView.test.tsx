@@ -10,7 +10,12 @@ describe("test component: pdfViewerView", () => {
             <BrowserRouter>
                 <PdfViewerView
                     isLoading={false}
+                    hasNoFilePrompt={false}
                     hasError={false}
+                    content={{
+                        caption: "Document Viewer",
+                        text: "No document has been loaded"
+                    }}
                     currentPage={1}
                     numPages={1}
                     pdfDocument={{}}

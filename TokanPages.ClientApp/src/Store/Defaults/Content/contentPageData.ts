@@ -6,6 +6,11 @@ export const ContentPageData: ContentPageDataState = {
     isLoading: false,
     languageId: undefined,
     components: {
+        pagePdfViewer: {
+            language: "",
+            caption: "",
+            text: "",
+        },
         sectionShowcase: {
             language: "",
             caption: "",

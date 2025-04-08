@@ -3,11 +3,17 @@ import { Card, CardContent, Container } from "@material-ui/core";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import DescriptionIcon from "@material-ui/icons/Description";
 import { DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 
 interface PdfViewerViewProps {
     isLoading: boolean;
+    hasNoFilePrompt: boolean;
     hasError: boolean;
+    content: {
+        caption: string;
+        text: string;
+    };
     currentPage: number;
     numPages: number;
     pdfDocument: any;
@@ -32,7 +38,7 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
     return props.isLoading && !props.hasError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
 };
 
-export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
+const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide-1000">
@@ -69,4 +75,34 @@ export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => 
             </Container>
         </section>
     );
+}
+
+const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => {
+    return (
+        <section className={`section ${props.background ?? ""}`}>
+            <Container className="container-wide">
+                <div className="pt-80 pb-48">
+                    <Card elevation={0} className="card">
+                        <CardContent className="card-content">
+                            <div className="pdf-nodocument-background mt-25 mb-25">
+                                <div className="pdf-nodocument-icon-holder vertical-centre">
+                                    <DescriptionIcon className="pdf-nodocument-icon vertical-centre" />
+                                </div>
+                            </div>
+                            <h2 className="pdf-nodocument-caption text-centre mb-32">
+                                {props.content.caption}
+                            </h2>
+                            <div className="pdf-nodocument-text text-centre mb-32">
+                                {props.content.text}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            </Container>
+        </section>
+    );
+}
+
+export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
+    return props.hasNoFilePrompt ? <RenderNoDocumentPrompt {...props} /> : <RenderDocument {...props} />;
 };

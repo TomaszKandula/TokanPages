@@ -19,7 +19,7 @@ export const PdfViewerPage = () => {
 
     React.useEffect(() => {
         dispatch(
-            ContentPageDataAction.request(["navigation", "footer", "templates", "cookiesPrompt"], "PdfViewerPage")
+            ContentPageDataAction.request(["navigation", "footer", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage")
         );
     }, [language?.id]);
 
