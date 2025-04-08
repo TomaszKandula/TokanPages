@@ -1574,7 +1574,9 @@ body::backdrop {
     background-color: #efefef;
 }
 
-.pdf-nodocument-background {
+/* CUSTOM CARD COMPONENT */
+
+.custom-card-background {
     height: 150px;
     position: relative;
     background: #fff;
@@ -1583,7 +1585,7 @@ body::backdrop {
     background-position: -5px -5px;
 }
 
-.pdf-nodocument-icon-holder {
+.custom-card-icon-holder {
     width: 120px;
     height: 120px;
     border-style: solid;
@@ -1593,17 +1595,17 @@ body::backdrop {
     background-color: #fff;
 }
 
-.pdf-nodocument-icon {
+.custom-card-icon {
     font-size: 72px !important;
     color: #6367ef;
 }
 
-.pdf-nodocument-caption {
+.custom-card-caption {
     font-size: 1.9rem !important;
     font-weight: 500 !important;
 }
 
-.pdf-nodocument-text {
+.custom-card-text {
     margin-left: 32px;
     margin-right: 32px;
     font-size: 1.125rem !important;

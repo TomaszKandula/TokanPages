@@ -4,7 +4,7 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import DescriptionIcon from "@material-ui/icons/Description";
-import { DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { CustomCard, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 
 interface PdfViewerViewProps {
     isLoading: boolean;
@@ -82,21 +82,11 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
                 <div className="pt-80 pb-48">
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            <div className="pdf-nodocument-background mt-25 mb-25">
-                                <div className="pdf-nodocument-icon-holder vertical-centre">
-                                    <DescriptionIcon className="pdf-nodocument-icon vertical-centre" />
-                                </div>
-                            </div>
-                            <h2 className="pdf-nodocument-caption text-centre mb-32">
-                                {props.content.caption}
-                            </h2>
-                            <div className="pdf-nodocument-text text-centre mb-32">
-                                {props.content.text}
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <CustomCard 
+                        caption={props?.content?.caption}
+                        text={props?.content?.text}
+                        icon={<DescriptionIcon />}
+                    />
                 </div>
             </Container>
         </section>
