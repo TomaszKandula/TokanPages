@@ -13,7 +13,7 @@ const useQuery = () => {
 export const NewsletterRemovePage = (): React.ReactElement => {
     const queryParam = useQuery();
     const dispatch = useDispatch();
-    const id = queryParam.get("id") as string;
+    const id = queryParam.get("id");
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
