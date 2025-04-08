@@ -77,8 +77,8 @@ describe("Test account group component: accountActivate", () => {
 
     it("should render correctly '<AccountActivate />' when content is loaded.", () => {
         const html = render(<AccountActivate id={testId} type="" />);
-        expect(useSelectorMock).toBeCalledTimes(9);
-        expect(useDispatchMock).toBeCalledTimes(3);
+        expect(useSelectorMock).toBeCalledTimes(3);
+        expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });
