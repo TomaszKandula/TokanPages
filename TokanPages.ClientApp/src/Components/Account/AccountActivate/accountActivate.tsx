@@ -139,6 +139,10 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
             caption={content?.caption}
             text1={content?.text1}
             text2={content?.text2}
+            fallback={{
+                caption: contentData?.fallback.caption,
+                text: contentData?.fallback.text
+            }}
             hasProgress={hasProgress}
             hasError={hasError}
             hasSuccess={hasSuccess}

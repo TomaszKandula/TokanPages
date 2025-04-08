@@ -13,6 +13,10 @@ interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
     caption: string;
     text1: string;
     text2: string;
+    fallback: {
+        caption: string;
+        text: string[];
+    };
     hasProgress: boolean;
     hasError: boolean;
     hasSuccess: boolean;
@@ -26,8 +30,8 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                     {props.shouldFallback ? 
                     <CustomCard  
                         isLoading={props.isLoading}
-                        caption="aaaaaaaaaaaaaaaaa"//TODO: add content
-                        text={["bbbbbbbbbbbbbbbb"]}//TODO: add content
+                        caption={props.fallback?.caption}
+                        text={props.fallback?.text}
                         icon={<ReportProblemIcon />}
                         colour="warning"
                     /> 

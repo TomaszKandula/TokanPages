@@ -78,6 +78,10 @@ export const ContentPageData: ContentPageDataState = {
         },
         accountActivate: {
             language: "",
+            fallback: {
+                caption: "",
+                text: [""],
+            },
             onVerifying: {
                 text1: "",
                 text2: "",
