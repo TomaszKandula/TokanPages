@@ -24,6 +24,10 @@ describe("Test account group component: accountActivate", () => {
     const testId = "dba4043c-7428-4f72-ba13-fe782c7a88fa";
     const testContent: AccountActivateContentDto = {
         language: "eng",
+        fallback: {
+            caption: "Something went wrong",
+            text: ["Line 1", "Line 2"],
+        },
         onVerifying: {
             type: "Verifying",
             caption: "Email Verification",
