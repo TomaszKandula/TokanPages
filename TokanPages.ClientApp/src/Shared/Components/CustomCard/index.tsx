@@ -1,16 +1,21 @@
 import * as React from "react";
 import { Card, CardContent } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import { ViewProperties } from "../../../Shared/Abstractions";
 
-interface CustomCardProps {
+type Colour = "info" | "success" | "warning" | "error";
+
+interface CustomCardProps extends ViewProperties {
     caption: string;
-    text: string;
+    text: string[];
     icon: React.ReactElement;
+    colour: Colour;
 }
 
 const RenderIcon = (props: CustomCardProps) => {
     return React.cloneElement(props.icon, { 
         ...props.icon.props, 
-        className: "custom-card-icon vertical-centre" 
+        className: `custom-card-icon vertical-centre alert-${props.colour}` 
     });
 }
 
@@ -23,12 +28,15 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                         <RenderIcon {...props} />
                     </div>
                 </div>
-                <h2 className="custom-card-caption text-centre mb-32">
-                    {props.caption}
+                <h2 className="custom-card-caption text-centre">
+                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                 </h2>
-                <div className="custom-card-text text-centre mb-32">
-                    {props.text}
-                </div>
+                {props.text.map((value: string, index: number) => (
+                    <div className="custom-card-text text-centre" key={index}>
+                        {props.isLoading ? <Skeleton variant="text" /> : value}
+                    </div>
+                ))}
+                <div className="mb-32"></div>
             </CardContent>
         </Card>
     );

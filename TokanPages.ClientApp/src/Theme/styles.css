@@ -465,6 +465,24 @@ body::backdrop {
     margin: 0;
 }
 
+/* ALERT COLOURS */
+
+.alert-info {
+    color: #2196f3;
+}
+
+.alert-success {
+    color: #4caf50;
+}
+
+.alert-warning {
+    color: #ff9800;
+}
+
+.alert-error {
+    color: #f44336;
+}
+
 /* POINTERS */
 
 .pointer-not-allowed {
@@ -683,29 +701,6 @@ body::backdrop {
 }
 
 .access-denied-prompt {
-    color: #9e9e9e;
-}
-
-/* ACTIVATE ACCOUNT COMPONENT */
-
-.aa-caption {
-    font-size: 2.125rem !important;
-    font-weight: 400 !important;
-    line-height: 1.235 !important;
-    color: black;
-}
-
-.aa-text1 {
-    font-size: 1.25rem !important;
-    font-weight: 500 !important;
-    line-height: 1.6 !important;
-    color: #9e9e9e;
-}
-
-.aa-text2 {
-    font-size: 1rem !important;
-    font-weight: 500 !important;
-    line-height: 1.5 !important;
     color: #9e9e9e;
 }
 
@@ -1597,7 +1592,6 @@ body::backdrop {
 
 .custom-card-icon {
     font-size: 72px !important;
-    color: #6367ef;
 }
 
 .custom-card-caption {
