@@ -692,18 +692,6 @@ body::backdrop {
     margin-bottom: 5px;
 }
 
-/* ACCESS DENIED COMPONENT */
-
-.access-denied-caption {
-    font-size: 2rem !important;
-    font-weight: 400 !important;
-    color: black;
-}
-
-.access-denied-prompt {
-    color: #9e9e9e;
-}
-
 /* UPDATE PASSWORD & USER DEACTIVATION & USER REMOVAL COMPONENTS */
 
 .button-container-update {
