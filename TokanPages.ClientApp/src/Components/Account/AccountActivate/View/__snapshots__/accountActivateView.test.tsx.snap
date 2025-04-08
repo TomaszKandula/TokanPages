@@ -9,7 +9,7 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
             class="pt-0 pb-15"
@@ -21,36 +21,41 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="text-centre mb-25"
+                  class="custom-card-background mt-25 mb-25"
                 >
                   <div
-                    class="mt-15 mb-15"
+                    class="custom-card-icon-holder vertical-centre"
                   >
-                    <div
-                      class="MuiTypography-root aa-caption MuiTypography-body1"
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-success"
+                      focusable="false"
+                      viewBox="0 0 24 24"
                     >
-                      Account Activation
-                    </div>
-                  </div>
-                  <div
-                    class="mt-40 mb-15"
-                  >
-                    <span
-                      class="MuiTypography-root aa-text1 MuiTypography-body1"
-                    >
-                      Your account has been successfully activated!
-                    </span>
-                  </div>
-                  <div
-                    class="mt-15 mb-40"
-                  >
-                    <span
-                      class="MuiTypography-root aa-text2 MuiTypography-body1"
-                    >
-                      You can now sign in.
-                    </span>
+                      <path
+                        d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+                      />
+                    </svg>
                   </div>
                 </div>
+                <h2
+                  class="custom-card-caption text-centre"
+                >
+                  Account Activation
+                </h2>
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  Your account has been successfully activated!
+                </div>
+                <div
+                  class="custom-card-text text-centre"
+                >
+                  You can now sign in.
+                </div>
+                <div
+                  class="mb-32"
+                />
               </div>
             </div>
           </div>
@@ -63,7 +68,7 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
           class="pt-0 pb-15"
@@ -75,36 +80,41 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="text-centre mb-25"
+                class="custom-card-background mt-25 mb-25"
               >
                 <div
-                  class="mt-15 mb-15"
+                  class="custom-card-icon-holder vertical-centre"
                 >
-                  <div
-                    class="MuiTypography-root aa-caption MuiTypography-body1"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-success"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    Account Activation
-                  </div>
-                </div>
-                <div
-                  class="mt-40 mb-15"
-                >
-                  <span
-                    class="MuiTypography-root aa-text1 MuiTypography-body1"
-                  >
-                    Your account has been successfully activated!
-                  </span>
-                </div>
-                <div
-                  class="mt-15 mb-40"
-                >
-                  <span
-                    class="MuiTypography-root aa-text2 MuiTypography-body1"
-                  >
-                    You can now sign in.
-                  </span>
+                    <path
+                      d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
+                    />
+                  </svg>
                 </div>
               </div>
+              <h2
+                class="custom-card-caption text-centre"
+              >
+                Account Activation
+              </h2>
+              <div
+                class="custom-card-text text-centre"
+              >
+                Your account has been successfully activated!
+              </div>
+              <div
+                class="custom-card-text text-centre"
+              >
+                You can now sign in.
+              </div>
+              <div
+                class="mb-32"
+              />
             </div>
           </div>
         </div>
