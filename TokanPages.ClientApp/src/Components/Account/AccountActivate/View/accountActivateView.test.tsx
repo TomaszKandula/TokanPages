@@ -8,10 +8,13 @@ describe("test account group component: accountActivateView", () => {
         const html = render(
             <AccountActivateView
                 isLoading={false}
+                shouldFallback={false}
                 caption={"Account Activation"}
                 text1={"Your account has been successfully activated!"}
                 text2={"You can now sign in."}
-                progress={false}
+                hasProgress={false}
+                hasError={false}
+                hasSuccess={true}
             />
         );
 

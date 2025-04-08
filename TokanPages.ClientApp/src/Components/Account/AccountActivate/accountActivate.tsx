@@ -5,6 +5,7 @@ import { UserActivateAction, UserNotificationAction } from "../../../Store/Actio
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { AccountActivateView } from "./View/accountActivateView";
+import Validate from "validate.js";
 
 const DefaultValues = {
     type: "Unset",
@@ -26,6 +27,7 @@ export interface AccountActivateProps extends ExtendedViewProps {
 
 export const AccountActivate = (props: AccountActivateProps): React.ReactElement => {
     const dispatch = useDispatch();
+    const hasEmptyId = Validate.isEmpty(props.id);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const contentData = data?.components?.accountActivate;
 
@@ -48,16 +50,22 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
     const userActivation = useSelector((state: ApplicationState) => state.userActivate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
 
-    const hasNotStarted = userActivation?.status === OperationStatus.notStarted;
-    const hasFinished = userActivation?.status === OperationStatus.hasFinished;
-    const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
+    const hasContentReady = !data.isLoading && data.status === OperationStatus.hasFinished;
+    const hasOperationNotStarted = userActivation?.status === OperationStatus.notStarted;
+    const hasOperationFinished = userActivation?.status === OperationStatus.hasFinished;
+    const hasOperationError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [content, setContent] = React.useState(DefaultValues);
     const [hasProgress, setHasProgress] = React.useState(true);
     const [hasRequested, setHasRequested] = React.useState(false);
+    const [hasSuccess, setHasSuccess] = React.useState(false);
+    const [hasError, setHasError] = React.useState(false);
+
+    const canProceed = hasContentReady && !hasEmptyId && hasProgress;
 
     React.useEffect(() => {
-        if (!hasProgress) return;
+        if (!canProceed) return;
+
         if (content?.type === "Unset") {
             if (props.type === "verification") {
                 setContent(onVerifying);
@@ -68,13 +76,14 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
             return;
         }
 
-        if (hasError) {
+        if (hasOperationError) {
             setContent(onError);
+            setHasError(true);
             setHasProgress(false);
             return;
         }
 
-        if (hasNotStarted && hasProgress && !hasRequested) {
+        if (hasOperationNotStarted && hasProgress && !hasRequested) {
             setHasRequested(true);
             setTimeout(
                 () =>
@@ -89,7 +98,7 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
             return;
         }
 
-        if (hasFinished) {
+        if (hasOperationFinished) {
             dispatch(
                 UserNotificationAction.notify({
                     userId: userActivation.response.userId,
@@ -97,6 +106,7 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
                 })
             );
 
+            setHasSuccess(true);
             setHasProgress(false);
 
             return userActivation.response.hasBusinessLock
@@ -104,18 +114,20 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
                 : setContent(onSuccessWithoutLock);
         }
     }, [
+        canProceed,
         props.id,
         props.type,
         content?.type,
-        hasError,
+        hasOperationError,
+        hasSuccess,
         hasProgress,
         hasRequested,
-        hasNotStarted,
-        hasFinished,
-        onProcessing,
-        onVerifying,
+        hasOperationNotStarted,
+        hasOperationFinished,
         userActivation?.response.hasBusinessLock,
         userActivation?.response.userId,
+        onProcessing,
+        onVerifying,
         onSuccessWithLock,
         onSuccessWithoutLock,
     ]);
@@ -123,10 +135,13 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
     return (
         <AccountActivateView
             isLoading={data?.isLoading}
+            shouldFallback={hasEmptyId}
             caption={content?.caption}
             text1={content?.text1}
             text2={content?.text2}
-            progress={hasProgress}
+            hasProgress={hasProgress}
+            hasError={hasError}
+            hasSuccess={hasSuccess}
             background={props.background}
             className={props.className}
         />
