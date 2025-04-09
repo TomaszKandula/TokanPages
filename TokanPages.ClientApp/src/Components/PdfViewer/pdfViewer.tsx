@@ -20,7 +20,8 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const hasNoFile = Validate.isEmpty(props.pdfFile);
     const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
 
-    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pagePdfViewer);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const content = data?.components?.pagePdfViewer;
     const template = useSelector(
         (state: ApplicationState) => state.contentPageData.components.templates.templates.application
     );
@@ -32,8 +33,9 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
         template.validationError !== "";
 
     const [isPdfMounted, setIsPdfMounted] = React.useState(false);
-    const [isLoading, setLoading] = React.useState(true);
-    const [hasError, setError] = React.useState(false);
+    const [isDocLoading, setDocLoading] = React.useState(true);
+    const [hasPdfError, setPdfError] = React.useState(false);
+    const [hasPdfWorkerError, setPdfWorkerError] = React.useState(false);
     const [pdfDocument, setPdfDocument] = React.useState<any>(null);
     const [numPages, setNumPages] = React.useState(0);
     const [currentPage, setCurrentPage] = React.useState(0);
@@ -53,7 +55,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
             doc = await pdfjsLib.getDocument(url).promise;
         } catch (error: any) {
             const statusText = template.unexpectedStatus.replace("{STATUS_CODE}", error.status.toString());
-            setError(true);
+            setPdfWorkerError(true);
             RaiseError({
                 dispatch: dispatch,
                 errorObject: statusText,
@@ -65,7 +67,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
 
         setNumPages(doc._pdfInfo.numPages);
         setPdfDocument(doc);
-        setLoading(false);
+        setDocLoading(false);
         setCurrentPage(1);
     }, [template]);
 
@@ -88,10 +90,10 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     }, [numPages, currentPage]);
 
     React.useEffect(() => {
-        if (isPdfMounted && isLoading && hasTemplates && !hasNoFile) {
+        if (isPdfMounted && isDocLoading && hasTemplates && !hasNoFile) {
             getDocument();
         }
-    }, [isPdfMounted, isLoading, hasTemplates, hasNoFile]);
+    }, [isPdfMounted, isDocLoading, hasTemplates, hasNoFile]);
 
     // NOTE: Load pdf.min.js an internally placed JS library
     // from Mozilla Foundation before rendering PdfViewer.
@@ -100,27 +102,34 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
         script.src = PDF_JS_MIN_URL;
         script.async = true;
 
-        document.body.appendChild(script);
-
-        setTimeout(() => {
+        script.onload = () => {
             setIsPdfMounted(true);
-        }, 500);
+        };
+
+        script.onerror = () => { 
+            setPdfError(true);
+        };
+
+        document.body.appendChild(script);
 
         return () => {
             document.body.removeChild(script);
         };
     }, []);
 
-    return !isPdfMounted ? (
+    return !isPdfMounted && !hasPdfError ? (
         <ProgressBar classNameWrapper="pt-96" />
     ) : (
         <PdfViewerView
-            isLoading={isLoading}
+            isDocLoading={isDocLoading}
             hasNoFilePrompt={hasNoFile}
-            hasError={hasError}
+            hasPdfError={hasPdfError}
+            hasPdfWorkerError={hasPdfWorkerError}
             content={{
-                caption: content?.caption ?? "",
-                text: content?.text ?? "",
+                isLoading: data?.isLoading,
+                caption: content?.caption,
+                warning: content?.text,
+                error: template.unexpectedError,
             }}
             currentPage={currentPage}
             numPages={numPages}

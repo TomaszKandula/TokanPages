@@ -4,15 +4,19 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import DescriptionIcon from "@material-ui/icons/Description";
+import ErrorIcon from "@material-ui/icons/Error";
 import { CustomCard, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 
 interface PdfViewerViewProps {
-    isLoading: boolean;
+    isDocLoading: boolean;
     hasNoFilePrompt: boolean;
-    hasError: boolean;
+    hasPdfError: boolean;
+    hasPdfWorkerError: boolean;
     content: {
+        isLoading: boolean;
         caption: string;
-        text: string;
+        warning: string;
+        error: string;
     };
     currentPage: number;
     numPages: number;
@@ -25,17 +29,17 @@ interface PdfViewerViewProps {
 }
 
 interface RenderIconOrErrorProps {
-    isLoading: boolean;
-    hasError: boolean;
+    isDocLoading: boolean;
+    hasPdfWorkerError: boolean;
     pdfUrl?: string;
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasError ? <ReportProblemIcon /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
+    return props.hasPdfWorkerError ? <ReportProblemIcon /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement => {
-    return props.isLoading && !props.hasError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
+    return props.isDocLoading && !props.hasPdfWorkerError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
 };
 
 const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
@@ -48,8 +52,8 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
                             <div className="pdf-header">
                                 <div className="pdf-header-download-icon">
                                     <RenderIconOrLoading
-                                        isLoading={props.isLoading}
-                                        hasError={props.hasError}
+                                        isDocLoading={props.isDocLoading}
+                                        hasPdfWorkerError={props.hasPdfWorkerError}
                                         pdfUrl={props.pdfUrl}
                                     />
                                 </div>
@@ -83,9 +87,9 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
             <Container className="container-wide">
                 <div className="pt-80 pb-48">
                     <CustomCard 
-                        isLoading={props.isLoading}
+                        isLoading={props?.content?.isLoading}
                         caption={props?.content?.caption}
-                        text={[props?.content?.text]}
+                        text={[props?.content?.warning]}
                         icon={<DescriptionIcon />}
                         colour="info"
                     />
@@ -95,6 +99,32 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
     );
 }
 
+const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => {
+    return (
+        <section className={`section ${props.background ?? ""}`}>
+            <Container className="container-wide">
+                <div className="pt-80 pb-48">
+                    <CustomCard 
+                        isLoading={props?.content?.isLoading}
+                        caption={props?.content?.caption}
+                        text={[props?.content?.error]}
+                        icon={<ErrorIcon />}
+                        colour="error"
+                    />
+                </div>
+            </Container>
+        </section>
+    );
+}
+
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
-    return props.hasNoFilePrompt ? <RenderNoDocumentPrompt {...props} /> : <RenderDocument {...props} />;
+    if (props.hasPdfError) {
+        return <RenderPdfErrorPrompt {...props} />;
+    }
+
+    if (props.hasNoFilePrompt) {
+        return <RenderNoDocumentPrompt {...props} />;
+    }
+
+    return <RenderDocument {...props} />;
 };
