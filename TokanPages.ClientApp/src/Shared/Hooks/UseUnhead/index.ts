@@ -1,9 +1,9 @@
-import { useHead } from "unhead";
+import { useHead } from "@unhead/react";
 
 export const useUnhead = (page?: string): void => {
     const title = page ?? "software developer";
 
-    useHead(window.__UNHEAD__ ,{
+    useHead({
         title: "tomkandula",
         titleTemplate: `%s | ${title}`,
     });
