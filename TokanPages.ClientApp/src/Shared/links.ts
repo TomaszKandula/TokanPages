@@ -1,19 +1,6 @@
 import { ApplicationLanguageState } from "../Store/States";
 import { CleanupSnapshotMode } from "./Services/SpaCaching";
-import { LINK_HREF_ATTRIBUTE, LINK_HREFLANG_ATTRIBUTE, LINK_QUERY_SELECTOR, LINK_REL_ATTRIBUTE } from "./constants";
-
-export const CreateCanonicalLink = (): void => {
-    const url = CleanupSnapshotMode(window.location.href);
-    const link = document.querySelector(LINK_QUERY_SELECTOR);
-    if (link === null) {
-        let newlink = document.createElement("link");
-        newlink.setAttribute(LINK_REL_ATTRIBUTE, "canonical");
-        newlink.setAttribute(LINK_HREF_ATTRIBUTE, url);
-        document.head.appendChild(newlink);
-    } else {
-        link.setAttribute(LINK_HREF_ATTRIBUTE, url);
-    }
-};
+import { LINK_HREF_ATTRIBUTE, LINK_HREFLANG_ATTRIBUTE, LINK_REL_ATTRIBUTE } from "./constants";
 
 export const CreateAlternateLink = (href: string, hreflang: string): void => {
     const url = CleanupSnapshotMode(href);

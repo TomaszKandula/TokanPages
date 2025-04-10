@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { LanguageItemDto } from "./Api/Models";
 import { ApplicationState } from "./Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "./Shared/constants";
-import { CreateAlternateLinks, CreateCanonicalLink } from "./Shared/links";
+import { CreateAlternateLinks } from "./Shared/links";
 import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,
@@ -102,7 +102,6 @@ export const Routes = (props: RoutesProps): React.ReactElement => {
 
     /* UPDATE CANONICAL & ALTERNATE URL ON PAGE CHANGE */
     React.useEffect(() => {
-        CreateCanonicalLink();
         CreateAlternateLinks(language);
     }, [language, window.location.href]);
 
