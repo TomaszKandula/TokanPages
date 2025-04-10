@@ -46,14 +46,6 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     return undefined;
 };
 
-export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
-    const pathname = window.location.pathname;
-    if (pathname === "/") {
-        const urlWithLanguageId = `${window.location.href}${preloadedLanguageId}`;
-        window.history.pushState({}, "", urlWithLanguageId);
-    }
-};
-
 export const GetErrorBoundaryContent = (languageId: string, errorBoundary: ErrorContentDto[]): ErrorContentDto => {
     const filtering = (value: ErrorContentDto): boolean => {
         return value.language === languageId;
@@ -109,10 +101,4 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
             })
         );
     }
-};
-
-export const UpdateHtmlLang = (languageId?: string): void => {
-    if (!languageId) return;
-    const html = document.querySelector("html");
-    html?.setAttribute("lang", languageId);
 };

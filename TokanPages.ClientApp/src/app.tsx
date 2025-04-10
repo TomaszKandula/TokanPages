@@ -5,7 +5,7 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
-import { EnsureDefaultLanguageRoot, UpdateUserLanguage } from "./Shared/Services/languageService";
+import { UpdateUserLanguage } from "./Shared/Services/languageService";
 import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
 import { Routes } from "./routes";
@@ -57,7 +57,6 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
 
 const PrerenderedWrapper = (): React.ReactElement => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    EnsureDefaultLanguageRoot(language.id);
     return <RenderApplication languages={language.languages} />;
 };
 
