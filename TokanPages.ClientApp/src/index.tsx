@@ -4,6 +4,7 @@ import * as Loader from "loader";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from "history";
+import { createHead } from "unhead/client";
 import { ThemeProvider } from "@material-ui/core";
 import { AppTheme } from "./Theme";
 import { ConfigureStore } from "./Store/Configuration";
@@ -38,6 +39,7 @@ const ReactApp = (manifest: GetContentManifestDto | undefined): void => {
     IsPreRendered() ? ReactDOM.hydrate(<AppWrapper />, root) : ReactDOM.render(<AppWrapper />, root);
 };
 
+window.__UNHEAD__ = createHead();
 Loader.Initialize(ReactApp);
 printSelfXssWarning();
 export {};
