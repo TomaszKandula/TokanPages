@@ -8,6 +8,7 @@
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.60",
         "@microsoft/signalr": "^8.0.0",
+        "@unhead/react": "^2.0.5",
         "aos": "^2.3.4",
         "axios": "1.8.2",
         "base-64": "^1.0.0",
