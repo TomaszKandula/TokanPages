@@ -2,11 +2,14 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
+import { useUnhead } from "../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../Components/Layout";
 import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../../Components/Account";
 import Validate from "validate.js";
 
 export const SettingsPage = (): React.ReactElement => {
+    useUnhead("account settings");
+
     const dispatch = useDispatch();
 
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);

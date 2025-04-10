@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
+import { useUnhead } from "../../../Shared/Hooks";
 import { AccountActivate } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
 
@@ -11,6 +12,8 @@ const useQuery = () => {
 };
 
 export const ActivationPage = (): React.ReactElement => {
+    useUnhead("account activation");
+
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const id = queryParam.get("id") ?? "";

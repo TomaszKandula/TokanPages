@@ -4,9 +4,12 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../../Store/Actions";
 import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
+import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const FootballPage = (): React.ReactElement => {
+    useUnhead("soccer playing...");
+
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;

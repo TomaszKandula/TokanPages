@@ -2,10 +2,13 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
+import { useUnhead } from "../../Shared/Hooks";
 import { PasswordReset } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 
 export const PasswordResetPage = (): React.ReactElement => {
+    useUnhead("password reset");
+
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 

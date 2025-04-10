@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
+import { useUnhead } from "../../Shared/Hooks";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Navigation } from "../../Components/Layout";
 
@@ -11,6 +12,8 @@ const useQuery = () => {
 };
 
 export const PdfViewerPage = () => {
+    useUnhead("pdf viewer");
+
     const queryParam = useQuery();
     const dispatch = useDispatch();
 

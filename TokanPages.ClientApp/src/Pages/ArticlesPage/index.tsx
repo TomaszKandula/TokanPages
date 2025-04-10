@@ -5,6 +5,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
+import { useUnhead } from "../../Shared/Hooks";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
 
@@ -13,6 +14,8 @@ const useQuery = () => {
 };
 
 export const ArticlesPage = (): React.ReactElement => {
+    useUnhead("articles");
+
     const queryParam = useQuery();
     const dispatch = useDispatch();
     const title = queryParam.get("title");

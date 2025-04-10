@@ -4,9 +4,12 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { UserSignup } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
+import { useUnhead } from "../../../Shared/Hooks";
 import { TryPostStateSnapshot } from "../../../Shared/Services/SpaCaching";
 
 export const SignupPage = (): React.ReactElement => {
+    useUnhead("sign up");
+
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;

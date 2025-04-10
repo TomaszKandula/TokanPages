@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
+import { useUnhead } from "../../Shared/Hooks";
 import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
@@ -15,8 +16,9 @@ import { Navigation, Header, Footer } from "../../Components/Layout";
 import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
-    const dispatch = useDispatch();
+    useUnhead();
 
+    const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const header = state?.contentPageData?.components?.layoutHeader;
