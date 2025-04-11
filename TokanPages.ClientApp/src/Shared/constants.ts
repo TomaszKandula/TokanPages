@@ -17,7 +17,4 @@ export const PDF_WORKER_URL = "pdf.worker.min.js";
 export const META_QUERY_SELECTOR = "meta[name=\"cache-content-info\"]";
 export const LINK_QUERY_SELECTOR = "link[rel=\"canonical\"]";
 export const META_ATTRIBUTE = "content";
-export const LINK_REL_ATTRIBUTE = "rel";
-export const LINK_HREF_ATTRIBUTE = "href";
-export const LINK_HREFLANG_ATTRIBUTE = "hreflang";
 export const PRERENDER_PATH_PREFIX = "/snapshot";
