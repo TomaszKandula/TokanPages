@@ -33,7 +33,33 @@ describe("test component: featuresView", () => {
                     isDefault: false,
                 },
             ],
-            errorBoundary: [
+            pages: [
+                {
+                    language: "en",
+                    pages: [
+                        {
+                            title: "software developer",
+                            page: "MainPage"
+                        }
+                    ]
+                }
+            ],
+            meta: [
+                {
+                    language: "en",
+                    description: "software development",
+                    facebook: {
+                        title: "",
+                        description: "",
+                        imageAlt: ""
+                    },
+                    twitter: {
+                        title: "",
+                        description: ""
+                    }
+                }
+            ],
+                errorBoundary: [
                 {
                     language: "en",
                     title: "Critical Error",
