@@ -14,6 +14,9 @@ interface PdfViewerProps {
     background?: string;
 }
 
+const pdfWorkerUrl = `${window.location.origin}/${PDF_WORKER_URL}`;
+const pdfJsUrl = `${window.location.origin}/${PDF_JS_MIN_URL}`;
+
 export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const dispatch = useDispatch();
 
@@ -21,10 +24,9 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const url = `${GET_DOCUMENTS_URL}/${props.pdfFile}`;
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const template = data?.components?.templates?.templates?.application;
     const content = data?.components?.pagePdfViewer;
-    const template = useSelector(
-        (state: ApplicationState) => state.contentPageData.components.templates.templates.application
-    );
+    const unexpectedStatus = template.unexpectedStatus;
 
     const hasTemplates =
         template.nullError !== "" &&
@@ -40,33 +42,24 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const [numPages, setNumPages] = React.useState(0);
     const [currentPage, setCurrentPage] = React.useState(0);
 
-    const getDocument = React.useCallback(async () => {
-        // @ts-expect-error
-        // NOTE: pdf.min.js must be already loaded to use pdfjsLib object.
-        const { pdfjsLib } = globalThis;
-        if (!pdfjsLib) {
-            return;
-        }
-
+    const getDocument = React.useCallback(async (pdfjsLib: any) => {
         try {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = window.location.origin + "/" + PDF_WORKER_URL;
+            pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
             const doc = await pdfjsLib.getDocument(url).promise;
 
             setNumPages(doc._pdfInfo.numPages);
             setPdfDocument(doc);
             setDocLoading(false);
             setCurrentPage(1);
-
         } catch (error: any) {
-            const statusText = template.unexpectedStatus.replace("{STATUS_CODE}", error.status.toString());
+            const statusCode = error.status.toString();
+            const statusText = unexpectedStatus.replace("{STATUS_CODE}", statusCode);
             setPdfWorkerError(true);
             RaiseError({
                 dispatch: dispatch,
                 errorObject: statusText,
                 content: template,
             });
-
-            return;
         }
     }, [template]);
 
@@ -88,9 +81,12 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
         setCurrentPage(previous);
     }, [numPages, currentPage]);
 
+    // NOTE: pdf.min.js must be already loaded to use pdfjsLib object.
     React.useEffect(() => {
         if (isPdfMounted && isDocLoading && hasTemplates && !hasNoFile) {
-            getDocument();
+            // @ts-expect-error
+            const { pdfjsLib } = globalThis;
+            getDocument(pdfjsLib);
         }
     }, [isPdfMounted, isDocLoading, hasTemplates, hasNoFile]);
 
@@ -98,7 +94,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     // from Mozilla Foundation before rendering PdfViewer.
     React.useEffect(() => {
         const script = document.createElement("script");
-        script.src = PDF_JS_MIN_URL;
+        script.src = pdfJsUrl;
         script.async = true;
 
         script.onload = () => {
