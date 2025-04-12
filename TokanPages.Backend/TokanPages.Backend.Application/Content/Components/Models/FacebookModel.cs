@@ -3,9 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Application.Content.Components.Models;
 
 [ExcludeFromCodeCoverage]
-public class ContentModel
+public class FacebookModel : TwitterModel
 {
-    public string ContentName { get; set; } = "";
-
-    public dynamic? Content { get; set; }
+    public string ImageAlt { get; set; } = "";
 }

@@ -57,6 +57,8 @@ export const GetErrorBoundaryContent = (languageId: string, errorBoundary: Error
 
 export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
+    const pages = manifest.pages;
+    const meta = manifest.meta;
     const boundary = manifest.errorBoundary;
     const defaultId = GetDefaultId(languages);
     const pathname = window.location.pathname;
@@ -68,6 +70,8 @@ export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Disp
                 ApplicationLanguageAction.set({
                     id: paths[1],
                     languages: languages,
+                    pages: pages,
+                    meta: meta,
                     errorBoundary: boundary,
                 })
             );
@@ -76,6 +80,8 @@ export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Disp
                 ApplicationLanguageAction.set({
                     id: paths[0],
                     languages: languages,
+                    pages: pages,
+                    meta: meta,
                     errorBoundary: boundary,
                 })
             );
@@ -84,6 +90,8 @@ export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Disp
                 ApplicationLanguageAction.set({
                     id: defaultId,
                     languages: languages,
+                    pages: pages,
+                    meta: meta,
                     errorBoundary: boundary,
                 })
             );
@@ -97,6 +105,8 @@ export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Disp
             ApplicationLanguageAction.set({
                 id: defaultId,
                 languages: languages,
+                pages: pages,
+                meta: meta,
                 errorBoundary: boundary,
             })
         );

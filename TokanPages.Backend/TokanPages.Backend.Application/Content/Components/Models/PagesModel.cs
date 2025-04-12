@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Application.Content.Components.Models;
 
 [ExcludeFromCodeCoverage]
-public class ContentModel
+public class PagesModel
 {
-    public string ContentName { get; set; } = "";
+    public string Language { get; set; } = "";
 
-    public dynamic? Content { get; set; }
+    public List<PageModel> Pages {get ; set; } = new();
 }
