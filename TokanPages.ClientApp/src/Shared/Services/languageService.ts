@@ -55,7 +55,7 @@ export const GetErrorBoundaryContent = (languageId: string, errorBoundary: Error
     return result;
 };
 
-export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
+export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
     const boundary = manifest.errorBoundary;
     const defaultId = GetDefaultId(languages);
