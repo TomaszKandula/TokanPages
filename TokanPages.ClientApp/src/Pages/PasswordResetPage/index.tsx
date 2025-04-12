@@ -7,7 +7,7 @@ import { PasswordReset } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 
 export const PasswordResetPage = (): React.ReactElement => {
-    useUnhead("password reset");
+    useUnhead("PasswordResetPage");
 
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);

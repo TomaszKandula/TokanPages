@@ -8,7 +8,7 @@ import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const TermsPage = (): React.ReactElement => {
-    useUnhead("website terms");
+    useUnhead("TermsPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

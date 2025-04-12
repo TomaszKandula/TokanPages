@@ -8,7 +8,7 @@ import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
 
 export const BusinessPage = () => {
-    useUnhead("let's make business");
+    useUnhead("BusinessPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

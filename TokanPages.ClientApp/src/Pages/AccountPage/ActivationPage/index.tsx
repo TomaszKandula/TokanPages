@@ -12,7 +12,7 @@ const useQuery = () => {
 };
 
 export const ActivationPage = (): React.ReactElement => {
-    useUnhead("account activation");
+    useUnhead("ActivationPage");
 
     const queryParam = useQuery();
     const dispatch = useDispatch();

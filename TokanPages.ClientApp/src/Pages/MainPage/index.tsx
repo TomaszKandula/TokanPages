@@ -16,7 +16,7 @@ import { Navigation, Header, Footer } from "../../Components/Layout";
 import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
-    useUnhead();
+    useUnhead("MainPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

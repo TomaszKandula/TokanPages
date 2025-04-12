@@ -8,7 +8,7 @@ import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const GuitarPage = (): React.ReactElement => {
-    useUnhead("guitar playing...");
+    useUnhead("GuitarPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

@@ -7,7 +7,7 @@ import { PasswordUpdate } from "../../Components/Account";
 import { Navigation } from "../../Components/Layout";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
-    useUnhead("password update");
+    useUnhead("PasswordUpdatePage");
 
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);

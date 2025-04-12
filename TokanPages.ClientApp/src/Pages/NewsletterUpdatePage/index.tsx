@@ -12,7 +12,7 @@ const useQuery = () => {
 };
 
 export const NewsletterUpdatePage = (): React.ReactElement => {
-    useUnhead("update newsletter");
+    useUnhead("NewsletterUpdatePage");
 
     const queryParam = useQuery();
     const dispatch = useDispatch();

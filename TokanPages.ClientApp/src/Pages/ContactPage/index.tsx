@@ -8,7 +8,7 @@ import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
 
 export const ContactPage = () => {
-    useUnhead("contact");
+    useUnhead("ContactPage");
 
     const dispatch = useDispatch();
 

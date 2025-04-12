@@ -12,7 +12,7 @@ const useQuery = () => {
 };
 
 export const PdfViewerPage = () => {
-    useUnhead("pdf viewer");
+    useUnhead("PdfViewerPage");
 
     const queryParam = useQuery();
     const dispatch = useDispatch();

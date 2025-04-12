@@ -8,7 +8,7 @@ import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const PolicyPage = (): React.ReactElement => {
-    useUnhead("website policy");
+    useUnhead("PolicyPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

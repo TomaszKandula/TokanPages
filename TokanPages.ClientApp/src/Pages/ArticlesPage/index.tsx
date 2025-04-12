@@ -14,7 +14,7 @@ const useQuery = () => {
 };
 
 export const ArticlesPage = (): React.ReactElement => {
-    useUnhead("articles");
+    useUnhead("ArticlesPage");
 
     const queryParam = useQuery();
     const dispatch = useDispatch();

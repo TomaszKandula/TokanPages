@@ -8,7 +8,7 @@ import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const FootballPage = (): React.ReactElement => {
-    useUnhead("soccer playing...");
+    useUnhead("FootballPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

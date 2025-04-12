@@ -8,7 +8,7 @@ import { useUnhead } from "../../../Shared/Hooks";
 import { TryPostStateSnapshot } from "../../../Shared/Services/SpaCaching";
 
 export const SignupPage = (): React.ReactElement => {
-    useUnhead("sign up");
+    useUnhead("SignupPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

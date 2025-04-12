@@ -7,7 +7,7 @@ import { UserSignout } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
 
 export const SignoutPage = (): React.ReactElement => {
-    useUnhead("signout");
+    useUnhead("SignoutPage");
 
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);

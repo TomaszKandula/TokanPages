@@ -8,7 +8,7 @@ import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } f
 import Validate from "validate.js";
 
 export const SettingsPage = (): React.ReactElement => {
-    useUnhead("account settings");
+    useUnhead("SettingsPage");
 
     const dispatch = useDispatch();
 

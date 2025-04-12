@@ -8,7 +8,7 @@ import { AccessDenied, UserNotes } from "../../../Components/Account";
 import Validate from "validate.js";
 
 export const UserNotesPage = (): React.ReactElement => {
-    useUnhead("user notes");
+    useUnhead("UserNotesPage");
 
     const dispatch = useDispatch();
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);

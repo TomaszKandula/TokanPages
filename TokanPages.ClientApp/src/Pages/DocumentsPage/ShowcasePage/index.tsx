@@ -8,7 +8,7 @@ import { useUnhead } from "../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../Components/Layout";
 
 export const ShowcasePage = (): React.ReactElement => {
-    useUnhead("showcase");
+    useUnhead("ShowcasePage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

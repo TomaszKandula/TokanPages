@@ -8,7 +8,7 @@ import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const StoryPage = (): React.ReactElement => {
-    useUnhead("my story");
+    useUnhead("StoryPage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);

@@ -8,7 +8,7 @@ import { useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const BicyclePage = (): React.ReactElement => {
-    useUnhead("bicycle riding and fun...");
+    useUnhead("BicyclePage");
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
