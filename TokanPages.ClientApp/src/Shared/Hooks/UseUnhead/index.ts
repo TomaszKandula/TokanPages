@@ -7,14 +7,13 @@ import { CleanupSnapshotMode } from "../../../Shared/Services/SpaCaching";
 import Validate from "validate.js";
 
 export const useUnhead = (page?: string): void => {
-    const state = useSelector((state: ApplicationState) => state);
-    const language = state.applicationLanguage;
-
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const [links, setLinks] = React.useState<any[]>([]);
 
-    const path = CleanupSnapshotMode(window.location.pathname);
-    const url = CleanupSnapshotMode(window.location.href);
     const title = page ?? "software developer";
+    const href = `${window.location.origin}${window.location.pathname}`;
+    const path = CleanupSnapshotMode(window.location.pathname);
+    const url = CleanupSnapshotMode(href);
 
     React.useEffect(() => {
         if (Validate.isEmpty(language.id)) {
@@ -23,9 +22,8 @@ export const useUnhead = (page?: string): void => {
 
         const data: any[] = [];
         language?.languages.forEach(item => {
-            const href = window.location.href.replace(`/${language?.id}`, `/${item.id}`);
-            const url = CleanupSnapshotMode(href);
-            data.push({ rel: "alternate", href: url, hreflang: item.iso });
+            const href = url.replace(`/${language?.id}`, `/${item.id}`);
+            data.push({ rel: "alternate", href: href, hreflang: item.iso });
             if (item.isDefault) {
                 data.push({ rel: "alternate", href: url, hreflang: "x-default" });
             }
