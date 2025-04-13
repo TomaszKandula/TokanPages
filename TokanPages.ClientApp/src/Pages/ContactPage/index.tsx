@@ -1,27 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { ContentPageDataAction } from "../../Store/Actions";
-import { useSnapshot, useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
 
 export const ContactPage = () => {
     useUnhead("ContactPage");
     useSnapshot();
-
-    const dispatch = useDispatch();
-    const state = useSelector((state: ApplicationState) => state);
-    const language = state.applicationLanguage;
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                ["layoutNavigation", "templates", "sectionCookiesPrompt", "sectionContactForm"],
-                "ContactPage"
-            )
-        );
-    }, [language?.id]);
+    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "sectionContactForm"], "ContactPage");
 
     return (
         <>

@@ -1,8 +1,5 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { ContentPageDataAction } from "../../Store/Actions";
-import { useSnapshot, useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
@@ -17,34 +14,23 @@ import { Showcase } from "../../Components/Showcase";
 export const MainPage = (): React.ReactElement => {
     useUnhead("MainPage");
     useSnapshot();
-
-    const dispatch = useDispatch();
-    const state = useSelector((state: ApplicationState) => state);
-    const language = state.applicationLanguage;
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                [
-                    "layoutNavigation",
-                    "layoutHeader",
-                    "layoutFooter",
-                    "sectionClients",
-                    "sectionTechnologies",
-                    "sectionArticle",
-                    "sectionFeatured",
-                    "sectionTestimonials",
-                    "sectionShowcase",
-                    "sectionSocials",
-                    "sectionNewsletter",
-                    "sectionContactForm",
-                    "sectionCookiesPrompt",
-                    "templates",
-                ],
-                "MainPage"
-            )
-        );
-    }, [language?.id]);
+    usePageContent([
+        "layoutNavigation",
+        "layoutHeader",
+        "layoutFooter",
+        "sectionClients",
+        "sectionTechnologies",
+        "sectionArticle",
+        "sectionFeatured",
+        "sectionTestimonials",
+        "sectionShowcase",
+        "sectionSocials",
+        "sectionNewsletter",
+        "sectionContactForm",
+        "sectionCookiesPrompt",
+        "templates",
+    ],
+    "MainPage");
 
     return (
         <>

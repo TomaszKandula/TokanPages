@@ -1,9 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { ApplicationState } from "../../Store/Configuration";
-import { ContentPageDataAction } from "../../Store/Actions";
-import { useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Navigation } from "../../Components/Layout";
 
@@ -13,18 +10,10 @@ const useQuery = () => {
 
 export const PdfViewerPage = () => {
     useUnhead("PdfViewerPage");
+    usePageContent(["navigation", "footer", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage");
 
     const queryParam = useQuery();
-    const dispatch = useDispatch();
-
     const name = queryParam.get("name") ?? "";
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(["navigation", "footer", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage")
-        );
-    }, [language?.id]);
 
     return (
         <>
