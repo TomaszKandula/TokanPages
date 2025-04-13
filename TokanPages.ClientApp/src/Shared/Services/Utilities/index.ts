@@ -1,9 +1,6 @@
 export {
     UpdateComponents,
     GetVerifiedComponents,
-    SetComponentMeta,
-    GetComponentMeta,
-    HasPageContentLoaded,
 } from "./UpdateComponents";
 
 export { CountWords } from "./CountWords/countWords";
