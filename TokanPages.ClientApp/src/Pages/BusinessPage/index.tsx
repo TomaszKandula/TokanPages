@@ -2,18 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
-import { useUnhead } from "../../Shared/Hooks";
+import { useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { BusinessForm } from "../../Components/Business";
 import { Navigation } from "../../Components/Layout";
 
 export const BusinessPage = () => {
     useUnhead("BusinessPage");
+    useSnapshot();
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const businessForm = state?.contentPageData?.components?.pageBusinessForm;
 
     React.useEffect(() => {
         dispatch(
@@ -23,12 +22,6 @@ export const BusinessPage = () => {
             )
         );
     }, [language?.id]);
-
-    React.useEffect(() => {
-        if (businessForm?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>

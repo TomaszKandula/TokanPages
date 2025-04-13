@@ -2,19 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
-import { useUnhead } from "../../Shared/Hooks";
+import { useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { ContactForm } from "../../Components/Contact";
 import { Navigation } from "../../Components/Layout";
 
 export const ContactPage = () => {
     useUnhead("ContactPage");
+    useSnapshot();
 
     const dispatch = useDispatch();
-
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const contact = state?.contentPageData?.components?.sectionContactForm;
 
     React.useEffect(() => {
         dispatch(
@@ -24,12 +22,6 @@ export const ContactPage = () => {
             )
         );
     }, [language?.id]);
-
-    React.useEffect(() => {
-        if (contact?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>

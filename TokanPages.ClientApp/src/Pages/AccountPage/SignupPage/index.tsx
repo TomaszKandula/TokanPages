@@ -4,16 +4,15 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../Store/Actions";
 import { UserSignup } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
-import { useUnhead } from "../../../Shared/Hooks";
-import { TryPostStateSnapshot } from "../../../Shared/Services/SpaCaching";
+import { useSnapshot, useUnhead } from "../../../Shared/Hooks";
 
 export const SignupPage = (): React.ReactElement => {
     useUnhead("SignupPage");
+    useSnapshot();
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const accountUserSignup = state?.contentPageData?.components?.accountUserSignup;
 
     React.useEffect(() => {
         dispatch(
@@ -23,12 +22,6 @@ export const SignupPage = (): React.ReactElement => {
             )
         );
     }, [language?.id]);
-
-    React.useEffect(() => {
-        if (accountUserSignup?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>

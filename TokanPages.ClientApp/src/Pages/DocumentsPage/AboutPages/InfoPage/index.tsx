@@ -2,19 +2,18 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { ContentPageDataAction } from "../../../../Store/Actions";
-import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
-import { useUnhead } from "../../../../Shared/Hooks";
+import { useSnapshot, useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const InfoPage = (): React.ReactElement => {
     useUnhead("InfoPage");
+    useSnapshot();
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const about = state?.contentPageData?.components?.pageAbout;
 
     React.useEffect(() => {
         dispatch(
@@ -27,12 +26,6 @@ export const InfoPage = (): React.ReactElement => {
 
     const isLoading = data?.isLoading ?? false;
     const items = data?.components.pageAbout.items ?? [];
-
-    React.useEffect(() => {
-        if (about?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>

@@ -2,8 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
-import { useUnhead } from "../../Shared/Hooks";
-import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
+import { useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { Clients } from "../../Components/Clients";
 import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
@@ -17,11 +16,11 @@ import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
     useUnhead("MainPage");
+    useSnapshot();
 
     const dispatch = useDispatch();
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
-    const header = state?.contentPageData?.components?.layoutHeader;
 
     React.useEffect(() => {
         dispatch(
@@ -46,12 +45,6 @@ export const MainPage = (): React.ReactElement => {
             )
         );
     }, [language?.id]);
-
-    React.useEffect(() => {
-        if (header?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>

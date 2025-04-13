@@ -4,8 +4,7 @@ import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
 import { ContentPageDataAction } from "../../Store/Actions";
 import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
-import { TryPostStateSnapshot } from "../../Shared/Services/SpaCaching";
-import { useUnhead } from "../../Shared/Hooks";
+import { useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
 
@@ -15,6 +14,7 @@ const useQuery = () => {
 
 export const ArticlesPage = (): React.ReactElement => {
     useUnhead("ArticlesPage");
+    useSnapshot();
 
     const queryParam = useQuery();
     const dispatch = useDispatch();
@@ -23,7 +23,6 @@ export const ArticlesPage = (): React.ReactElement => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const articles = state?.contentPageData?.components?.pageArticle;
     const isLoading = data?.isLoading ?? false;
 
     React.useEffect(() => {
@@ -34,12 +33,6 @@ export const ArticlesPage = (): React.ReactElement => {
             )
         );
     }, [language?.id]);
-
-    React.useEffect(() => {
-        if (articles?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>
