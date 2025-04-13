@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { TryPostStateSnapshot } from "../../../Shared/Services/SpaCaching";
 
-export const useSnapshot = () => {
+export const useSnapshot = (): void => {
     const state = useSelector((state: ApplicationState) => state);
     const language = state.applicationLanguage;
 
