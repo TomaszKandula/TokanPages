@@ -50,6 +50,14 @@
 		<loc>https://tomkandula.com/en/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
+	<url>
+		<loc>https://tomkandula.com/en/account/signin</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/en/account/signup</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
 	<!-- POLISH -->
 	<url>
 		<loc>https://tomkandula.com/pl</loc>
@@ -93,6 +101,14 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/leisure/photography</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/account/signin</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/account/signup</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- SPANISH -->
@@ -140,6 +156,14 @@
 		<loc>https://tomkandula.com/es/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
+	<url>
+		<loc>https://tomkandula.com/es/account/signin</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/es/account/signup</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
 	<!-- UKRAINIAN -->
 	<url>
 		<loc>https://tomkandula.com/uk</loc>
@@ -183,6 +207,14 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/leisure/photography</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/account/signin</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/account/signup</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<!-- GERMAN -->
@@ -230,6 +262,14 @@
 		<loc>https://tomkandula.com/de/leisure/photography</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
+	<url>
+		<loc>https://tomkandula.com/de/account/signin</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/de/account/signup</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
 	<!-- FRENCH -->
 	<url>
 		<loc>https://tomkandula.com/fr</loc>
@@ -273,6 +313,14 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/leisure/photography</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/fr/account/signin</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/fr/account/signup</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 </urlset>

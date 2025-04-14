@@ -1,10 +1,7 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
 import { Route } from "react-router-dom";
 import { LanguageItemDto } from "./Api/Models";
-import { ApplicationState } from "./Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "./Shared/constants";
-import { CreateAlternateLinks, CreateCanonicalLink } from "./Shared/links";
 import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,
@@ -63,8 +60,8 @@ const pages: PageProps[] = [
     { path: "/document", page: <PdfViewerPage /> },
     { path: "/newsletter/update", page: <NewsletterUpdatePage /> },
     { path: "/newsletter/remove", page: <NewsletterRemovePage /> },
-    { path: "/account/signin", page: <SigninPage /> },
-    { path: "/account/signup", page: <SignupPage /> },
+    { path: "/account/signin", page: <SigninPage />, canPrerender: true },
+    { path: "/account/signup", page: <SignupPage />, canPrerender: true },
     { path: "/account/password-update", page: <PasswordUpdatePage />, },
     { path: "/account/password-reset", page: <PasswordResetPage />, },
     { path: "/account/signout", page: <SignoutPage /> },
@@ -82,10 +79,8 @@ const renderRoute = (props: PageProps) => {
 };
 
 export const Routes = (props: RoutesProps): React.ReactElement => {
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
     /* MAP COMPONENTS TO ROUTES */
-    let buffer: React.ReactElement[] = [];
+    const buffer: React.ReactElement[] = [];
     pages.forEach(item => {
         if (props.languages && props.languages.length > 0) {
             props.languages.forEach(language => {
@@ -99,12 +94,6 @@ export const Routes = (props: RoutesProps): React.ReactElement => {
             });
         }
     });
-
-    /* UPDATE CANONICAL & ALTERNATE URL ON PAGE CHANGE */
-    React.useEffect(() => {
-        CreateCanonicalLink();
-        CreateAlternateLinks(language);
-    }, [language, window.location.href]);
 
     return buffer.length > 0 ? <>{buffer}</> : <></>;
 };

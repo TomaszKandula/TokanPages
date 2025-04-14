@@ -1,35 +1,19 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentPageDataAction } from "../../../../Store/Actions";
-import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
+import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const StoryPage = (): React.ReactElement => {
-    const dispatch = useDispatch();
+    useUnhead("StoryPage");
+    useSnapshot();
+    usePageContent(["layoutNavigation", "layoutFooter", "pageStory", "sectionCookiesPrompt"], "StoryPage");
+
     const state = useSelector((state: ApplicationState) => state);
-    const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const story = state?.contentPageData?.components?.pageStory;
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                ["layoutNavigation", "layoutFooter", "pageStory", "sectionCookiesPrompt"],
-                "StoryPage"
-            )
-        );
-    }, [language?.id]);
-
     const isLoading = data?.isLoading ?? false;
     const items = data?.components.pageStory.items ?? [];
-
-    React.useEffect(() => {
-        if (story?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>

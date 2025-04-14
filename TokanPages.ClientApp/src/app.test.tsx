@@ -8,6 +8,11 @@ import { MemoryRouter } from "react-router-dom";
 import { GetContentManifestDto } from "./Api/Models";
 import App from "./app";
 
+window.scrollTo = jest.fn();
+jest.mock("@unhead/react", () => ({
+    useHead: jest.fn(),
+}));
+
 it("renders without crashing", () => {
     const storeFake = (state: any) => ({
         default: () => {
@@ -41,6 +46,32 @@ it("renders without crashing", () => {
                 isDefault: false,
                 name: "Polski",
             },
+        ],
+        pages: [
+            {
+                language: "en",
+                pages: [
+                    {
+                        title: "software developer",
+                        page: "MainPage"
+                    }
+                ]
+            }
+        ],
+        meta: [
+            {
+                language: "en",
+                description: "software development",
+                facebook: {
+                    title: "",
+                    description: "",
+                    imageAlt: ""
+                },
+                twitter: {
+                    title: "",
+                    description: ""
+                }
+            }
         ],
         errorBoundary: [
             {

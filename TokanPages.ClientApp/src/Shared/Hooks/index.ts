@@ -1,2 +1,5 @@
 export { useInterval } from "./UseInterval";
+export { usePageContent } from "./UsePageContent";
 export { useHash } from "./UseHash";
+export { useSnapshot } from "./UseSnapshot";
+export { useUnhead } from "./UseUnhead";

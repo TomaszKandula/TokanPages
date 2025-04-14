@@ -1,26 +1,17 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { ContentPageDataAction } from "../../../Store/Actions";
+import { usePageContent, useUnhead } from "../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../Components/Layout";
 import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } from "../../../Components/Account";
 import Validate from "validate.js";
 
 export const SettingsPage = (): React.ReactElement => {
-    const dispatch = useDispatch();
+    useUnhead("SettingsPage");
+    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings"], "SettingsPage");
 
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const userStore = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const isAnonymous = Validate.isEmpty(userStore.userId);
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings"],
-                "SettingsPage"
-            )
-        );
-    }, [language?.id]);
 
     return (
         <>

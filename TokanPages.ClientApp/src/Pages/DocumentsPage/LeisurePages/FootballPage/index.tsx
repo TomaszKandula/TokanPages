@@ -1,35 +1,19 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { ContentPageDataAction } from "../../../../Store/Actions";
-import { TryPostStateSnapshot } from "../../../../Shared/Services/SpaCaching";
 import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
+import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const FootballPage = (): React.ReactElement => {
-    const dispatch = useDispatch();
+    useUnhead("FootballPage");
+    useSnapshot();
+    usePageContent(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureFootball"], "FootballPage");
+
     const state = useSelector((state: ApplicationState) => state);
-    const language = state.applicationLanguage;
     const data = state.contentPageData;
-    const football = state?.contentPageData?.components?.leisureFootball;
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureFootball"],
-                "FootballPage"
-            )
-        );
-    }, [language?.id]);
-
     const isLoading = data?.isLoading ?? false;
     const items = data?.components.leisureFootball.items ?? [];
-
-    React.useEffect(() => {
-        if (football?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
 
     return (
         <>
