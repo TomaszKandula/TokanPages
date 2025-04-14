@@ -8,6 +8,10 @@ import enableHooks from "jest-react-hooks-shallow";
 enableHooks(jest);
 window.scrollTo = jest.fn();
 
+jest.mock("@unhead/react", () => ({
+    useHead: jest.fn(),
+}));
+
 jest.mock("react-redux", () => ({
     useSelector: jest.fn(),
     useDispatch: jest.fn(),
