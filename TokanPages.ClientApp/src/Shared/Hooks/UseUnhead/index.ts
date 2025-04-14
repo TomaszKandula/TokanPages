@@ -45,13 +45,13 @@ export const useUnhead = (pageId: string): void => {
     const url = CleanupSnapshotMode(href);
 
     React.useEffect(() => {
-        if (Validate.isEmpty(language.id)) {
+        if (Validate.isEmpty(language?.id)) {
             return;
         }
 
         const links = getLinks(language, url);
-        const title = getTitle(language.pages, pageId, language.id);
-        const meta = getMeta(language.meta, language.id);
+        const title = getTitle(language?.pages, pageId, language?.id);
+        const meta = getMeta(language?.meta, language?.id);
 
         setLinks(links);
         setTitle(title);
@@ -63,19 +63,19 @@ export const useUnhead = (pageId: string): void => {
         title: "tomkandula",
         titleTemplate: `%s | ${title}`,
         htmlAttrs: {
-            lang: language.id,
+            lang: language?.id ?? "",
         },
         base: {
             href: path,
         },
         meta: [
-            { name: "description", content: meta?.description },
-            { property: "og:title", content: meta?.facebook.title },
-            { property: "og:description", content: meta?.facebook.description },
-            { property: "og:image:alt", content: meta?.facebook.imageAlt },
+            { name: "description", content: meta?.description ?? "" },
+            { property: "og:title", content: meta?.facebook?.title ?? "" },
+            { property: "og:description", content: meta?.facebook?.description ?? "" },
+            { property: "og:image:alt", content: meta?.facebook?.imageAlt ?? "" },
             { property: "og:url", content: url },
-            { property: "twitter:title", content: meta?.twitter.title },
-            { property: "twitter:description", content: meta?.twitter.description },
+            { property: "twitter:title", content: meta?.twitter?.title ?? "" },
+            { property: "twitter:description", content: meta?.twitter?.description ?? "" },
             { property: "twitter:url", content: url },
         ],
         link: links
