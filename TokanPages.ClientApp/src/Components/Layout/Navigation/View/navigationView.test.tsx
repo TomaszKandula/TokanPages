@@ -39,10 +39,10 @@ describe("test component: featuresView", () => {
                     pages: [
                         {
                             title: "software developer",
-                            page: "MainPage"
-                        }
-                    ]
-                }
+                            page: "MainPage",
+                        },
+                    ],
+                },
             ],
             meta: [
                 {
@@ -51,15 +51,15 @@ describe("test component: featuresView", () => {
                     facebook: {
                         title: "",
                         description: "",
-                        imageAlt: ""
+                        imageAlt: "",
                     },
                     twitter: {
                         title: "",
-                        description: ""
-                    }
-                }
+                        description: "",
+                    },
+                },
             ],
-                errorBoundary: [
+            errorBoundary: [
                 {
                     language: "en",
                     title: "Critical Error",

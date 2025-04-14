@@ -40,7 +40,7 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
                 <div className={!props.className ? "pb-120" : props.className}>
-                    <CustomCard 
+                    <CustomCard
                         isLoading={props.isLoading}
                         caption={content.caption}
                         text={[content.text1, content.text2, content.text3]}

@@ -11,4 +11,4 @@ export const usePageContent = (components: string[], pageId: string): void => {
     React.useEffect(() => {
         dispatch(ContentPageDataAction.request(components, pageId));
     }, [language?.id]);
-}
+};

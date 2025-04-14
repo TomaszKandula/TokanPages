@@ -79,14 +79,14 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
             </Container>
         </section>
     );
-}
+};
 
 const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
                 <div className="pt-80 pb-48">
-                    <CustomCard 
+                    <CustomCard
                         isLoading={props?.content?.isLoading}
                         caption={props?.content?.caption}
                         text={[props?.content?.warning]}
@@ -97,14 +97,14 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
             </Container>
         </section>
     );
-}
+};
 
 const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
                 <div className="pt-80 pb-48">
-                    <CustomCard 
+                    <CustomCard
                         isLoading={props?.content?.isLoading}
                         caption={props?.content?.caption}
                         text={[props?.content?.error]}
@@ -115,7 +115,7 @@ const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => 
             </Container>
         </section>
     );
-}
+};
 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     if (props.hasPdfError) {

@@ -5,7 +5,10 @@ import { Navigation } from "../../Components/Layout";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
     useUnhead("PasswordUpdatePage");
-    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"], "PasswordUpdatePage");
+    usePageContent(
+        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"],
+        "PasswordUpdatePage"
+    );
 
     return (
         <>

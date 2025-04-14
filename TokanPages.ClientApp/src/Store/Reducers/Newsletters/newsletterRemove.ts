@@ -13,10 +13,10 @@ export const NewsletterRemove: Reducer<NewsletterRemoveState> = (
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {
-        case CLEAR: 
+        case CLEAR:
             return {
                 status: OperationStatus.notStarted,
-                response: { }
+                response: {},
             };
 
         case REMOVE:

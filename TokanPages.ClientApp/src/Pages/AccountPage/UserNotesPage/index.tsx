@@ -8,7 +8,17 @@ import Validate from "validate.js";
 
 export const UserNotesPage = (): React.ReactElement => {
     useUnhead("UserNotesPage");
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings", "accountUserNotes"], "UserNotesPage");
+    usePageContent(
+        [
+            "layoutNavigation",
+            "layoutFooter",
+            "templates",
+            "sectionCookiesPrompt",
+            "accountSettings",
+            "accountUserNotes",
+        ],
+        "UserNotesPage"
+    );
 
     const userStore = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const isAnonymous = Validate.isEmpty(userStore.userId);

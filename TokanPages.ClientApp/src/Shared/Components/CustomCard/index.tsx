@@ -21,39 +21,33 @@ interface CustomCardProps extends ViewProperties {
 }
 
 const RenderIcon = (props: CustomCardProps) => {
-    return React.cloneElement(props.icon, { 
-        ...props.icon.props, 
-        className: `custom-card-icon vertical-centre alert-${props.colour}` 
+    return React.cloneElement(props.icon, {
+        ...props.icon.props,
+        className: `custom-card-icon vertical-centre alert-${props.colour}`,
     });
-}
+};
 
 const RenderLinkButton = (props: CustomCardProps): React.ReactElement => {
-    return (
-        props.isLoading ? (
-            <Skeleton variant="rect" width="100%" height="40px" />
-        ) : (
-            <div className="mt-48">
-                <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
-                    <Button fullWidth variant="contained" className="button" disabled={props.isLoading}>
-                        {props.linkButton?.buttonLabel}
-                    </Button>
-                </Link>
-            </div>
-        )
+    return props.isLoading ? (
+        <Skeleton variant="rect" width="100%" height="40px" />
+    ) : (
+        <div className="mt-48">
+            <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
+                <Button fullWidth variant="contained" className="button" disabled={props.isLoading}>
+                    {props.linkButton?.buttonLabel}
+                </Button>
+            </Link>
+        </div>
     );
 };
 
 const RenderExternalButton = (props: CustomCardProps): React.ReactElement => {
-    return (
-        props.isLoading ? (
-            <Skeleton variant="rect" width="100%" height="40px" />
-        ) : (
-            <div className="mt-48">
-                {props.externalButton}
-            </div>
-        )
+    return props.isLoading ? (
+        <Skeleton variant="rect" width="100%" height="40px" />
+    ) : (
+        <div className="mt-48">{props.externalButton}</div>
     );
-}
+};
 
 export const CustomCard = (props: CustomCardProps): React.ReactElement => {
     return (
@@ -80,4 +74,4 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
             </CardContent>
         </Card>
     );
-}
+};

@@ -8,7 +8,10 @@ import Validate from "validate.js";
 
 export const SettingsPage = (): React.ReactElement => {
     useUnhead("SettingsPage");
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings"], "SettingsPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings"],
+        "SettingsPage"
+    );
 
     const userStore = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const isAnonymous = Validate.isEmpty(userStore.userId);

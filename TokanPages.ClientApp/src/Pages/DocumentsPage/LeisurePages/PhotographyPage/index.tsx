@@ -8,7 +8,10 @@ import { Navigation, Footer } from "../../../../Components/Layout";
 export const PhotographyPage = (): React.ReactElement => {
     useUnhead("PhotographyPage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisurePhotography"], "PhotographyPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisurePhotography"],
+        "PhotographyPage"
+    );
 
     const state = useSelector((state: ApplicationState) => state);
     const data = state.contentPageData;

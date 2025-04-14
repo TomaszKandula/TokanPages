@@ -10,7 +10,10 @@ const useQuery = () => {
 
 export const NewsletterUpdatePage = (): React.ReactElement => {
     useUnhead("NewsletterUpdatePage");
-    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"], "NewsletterUpdatePage");
+    usePageContent(
+        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
+        "NewsletterUpdatePage"
+    );
 
     const queryParam = useQuery();
     const id = queryParam.get("id") as string;

@@ -1,7 +1,4 @@
-export {
-    UpdateComponents,
-    GetVerifiedComponents,
-} from "./UpdateComponents";
+export { UpdateComponents, GetVerifiedComponents } from "./UpdateComponents";
 
 export { CountWords } from "./CountWords/countWords";
 export { GetReadTime } from "./GetReadTime/getReadTime";

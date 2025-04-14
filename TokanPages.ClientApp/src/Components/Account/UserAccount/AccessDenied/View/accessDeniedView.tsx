@@ -17,7 +17,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
                 <div className="pt-120 pb-64">
-                    <CustomCard 
+                    <CustomCard
                         isLoading={props.isLoading}
                         caption={props.accessDeniedCaption}
                         text={props.accessDeniedPrompt}

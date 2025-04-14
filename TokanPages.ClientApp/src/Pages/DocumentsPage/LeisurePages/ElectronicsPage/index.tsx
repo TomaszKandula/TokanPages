@@ -8,7 +8,10 @@ import { Navigation, Footer } from "../../../../Components/Layout";
 export const ElectronicsPage = (): React.ReactElement => {
     useUnhead("ElectronicsPage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureElectronics"], "ElectronicsPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureElectronics"],
+        "ElectronicsPage"
+    );
 
     const state = useSelector((state: ApplicationState) => state);
     const data = state.contentPageData;

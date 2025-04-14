@@ -27,21 +27,23 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-wide">
                 <div className={!props.className ? "pt-0 pb-15" : props.className}>
-                    {props.shouldFallback ? 
-                    <CustomCard  
-                        isLoading={props.isLoading}
-                        caption={props.fallback?.caption}
-                        text={props.fallback?.text}
-                        icon={<ReportProblemIcon />}
-                        colour="warning"
-                    /> 
-                    : <CustomCard  
-                        isLoading={props.isLoading}
-                        caption={props.caption}
-                        text={[props.text1, props.text2]}
-                        icon={props.hasError ? <ErrorIcon /> : props.hasSuccess ? <DoneIcon /> : <InfoIcon />}
-                        colour={props.hasError ? "error" : props.hasSuccess ? "success" : "info"}
-                    />}
+                    {props.shouldFallback ? (
+                        <CustomCard
+                            isLoading={props.isLoading}
+                            caption={props.fallback?.caption}
+                            text={props.fallback?.text}
+                            icon={<ReportProblemIcon />}
+                            colour="warning"
+                        />
+                    ) : (
+                        <CustomCard
+                            isLoading={props.isLoading}
+                            caption={props.caption}
+                            text={[props.text1, props.text2]}
+                            icon={props.hasError ? <ErrorIcon /> : props.hasSuccess ? <DoneIcon /> : <InfoIcon />}
+                            colour={props.hasError ? "error" : props.hasSuccess ? "success" : "info"}
+                        />
+                    )}
                 </div>
             </Container>
         </section>
