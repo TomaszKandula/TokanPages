@@ -100,8 +100,8 @@
         "build-final-2": "gzip --keep --best -v ./build/favicons/*.*",
         "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
         "lint-fix": "eslint --fix",
-        "prettier-check": "prettier . --check",
-        "prettier-write": "prettier . --write",
+        "prettier-check": "prettier ./src --check",
+        "prettier-write": "prettier ./src --write",
         "sonar": "sonar-scanner"
     },
     "jest": {
