@@ -3,13 +3,13 @@ export type {
     GetContentRequest,
     ExecuteRequest,
     ExecuteActionRequest,
-} from "./Services";
+} from "./HttpService";
 
 export {
     GetContentAction,
     DispatchExecuteAction,
     ExecuteAsync,
-} from "./Services";
+} from "./HttpService";
 
 export {
     API_BASE_URI,
