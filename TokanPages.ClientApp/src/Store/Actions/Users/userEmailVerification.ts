@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { VerifyUserEmailDto } from "../../../Api/Models";
-import { VERIFY_USER_EMAIL, RequestContract, ExecuteContract, Execute, GetConfiguration } from "../../../Api/Request";
+import { VERIFY_USER_EMAIL, Execute, ExecuteRequest } from "../../../Api/Request";
 
 export const VERIFY = "VERIFY_USER_EMAIL";
 export const CLEAR = "VERIFY_USER_EMAIL_CLEAR";
@@ -25,20 +25,17 @@ export const UserEmailVerificationAction = {
         (payload: VerifyUserEmailDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: VERIFY });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: VERIFY_USER_EMAIL,
-                    data: { emailAddress: payload.emailAddress },
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: VERIFY_USER_EMAIL,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: { 
+                        emailAddress: payload.emailAddress 
+                    },
+                },
             };
 
             Execute(input);

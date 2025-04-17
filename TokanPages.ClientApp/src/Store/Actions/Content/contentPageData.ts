@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { RequestPageDataResultDto } from "../../../Api/Models";
 import { GetVerifiedComponents } from "../../../Shared/Services/Utilities";
-import { Execute, ExecuteContract, GetConfiguration, REQUEST_PAGE_DATA, RequestContract } from "../../../Api/Request";
+import { Execute, ExecuteRequest, REQUEST_PAGE_DATA } from "../../../Api/Request";
 
 export const CLEAR = "CLEAR_PAGE_DATA";
 export const REQUEST = "REQUEST_PAGE_DATA";
@@ -37,24 +37,19 @@ export const ContentPageDataAction = {
             }
 
             dispatch({ type: REQUEST });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: REQUEST_PAGE_DATA,
-                    data: {
-                        components: verifiedComponents,
-                        language: languageId,
-                        pageName: pageId,
-                    },
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: REQUEST_PAGE_DATA,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RECEIVE,
+                configuration: {
+                    method: "POST",
+                    body: {
+                        components: verifiedComponents,
+                        language: languageId,
+                        pageName: pageId,
+                    },                    
+                },
             };
 
             Execute(input);

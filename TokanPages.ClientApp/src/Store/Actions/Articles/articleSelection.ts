@@ -3,9 +3,7 @@ import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
 import {
     Execute,
-    GetConfiguration,
-    ExecuteContract,
-    RequestContract,
+    ExecuteRequest,
     GET_ARTICLE,
     GET_ARTICLE_BY_TITLE,
 } from "../../../Api/Request";
@@ -43,18 +41,14 @@ export const ArticleSelectionAction = {
                 url = GET_ARTICLE_BY_TITLE.replace("{title}", props.title?.toLowerCase()!);
             }
 
-            const request: RequestContract = {
-                configuration: {
-                    method: "GET",
-                    url: url,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: url,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RECEIVE,
+                configuration: {
+                    method: "GET",                    
+                },
             };
 
             Execute(input);

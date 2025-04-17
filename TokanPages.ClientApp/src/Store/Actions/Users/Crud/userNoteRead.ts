@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UserNoteDto, UserNoteResultDto } from "../../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, GET_USER_NOTE } from "../../../../Api/Request";
+import { Execute, ExecuteRequest, GET_USER_NOTE } from "../../../../Api/Request";
 
 export const RECEIVE = "GET_USER_NOTE_RECEIVE";
 export const RESPONSE = "GET_USER_NOTE_RESPONSE";
@@ -27,18 +27,14 @@ export const UserNoteReadAction = {
             dispatch({ type: RECEIVE });
 
             const baseUrl = GET_USER_NOTE.replace("{id}", payload.id);
-            const request: RequestContract = {
-                configuration: {
-                    method: "GET",
-                    url: `${baseUrl}?noCache=${payload.noCache ?? false}`,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: `${baseUrl}?noCache=${payload.noCache ?? false}`,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "GET",
+                },
             };
 
             Execute(input);

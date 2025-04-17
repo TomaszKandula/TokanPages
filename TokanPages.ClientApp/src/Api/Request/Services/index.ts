@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { ApplicationState } from "../../../Store/Configuration";
 import { USER_DATA } from "../../../Shared/constants";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
@@ -7,24 +7,52 @@ import Validate from "validate.js";
 import base64 from "base-64";
 import utf8 from "utf8";
 
-import { ExecuteContract, GetContentContract, PromiseResultContract, RequestContract } from "../Abstractions";
+export interface Configuration {
+    method: string;
+    body?: object;
+    headers?: Headers;
+}
+
+export interface PromiseResult {
+    status: number | null;
+    content: any | null;
+    error: any | null;
+}
+
+export interface GetContentRequest {
+    dispatch: (action: any) => void;
+    state: () => ApplicationState;
+    request: string;
+    receive: string;
+    url: string;
+}
+
+export interface ExecuteActionRequest {
+    url: string;
+    configuration: Configuration;
+}
+
+export interface ExecuteRequest extends ExecuteActionRequest {
+    dispatch: (action: any) => void;
+    state: () => ApplicationState;
+    optionalHandle?: string;
+    responseType?: string | string[];
+}
 
 const IsSuccessStatusCode = (statusCode: number): boolean => {
     return statusCode >= 200 && statusCode <= 299;
 };
 
-export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => {
+//rename: 'SetupHeaders'
+const GetConfiguration = (): Headers => {
+    const headers = new Headers();
     const timezoneOffset = new Date().getTimezoneOffset();
     const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
 
     if (Validate.isEmpty(encoded)) {
-        return {
-            ...props.configuration,
-            withCredentials: false,
-            headers: {
-                UserTimezoneOffset: timezoneOffset,
-            },
-        };
+        headers.append("UserTimezoneOffset", timezoneOffset.toString());
+        headers.append("Content-Type", "application/json");
+        return headers;
     }
 
     const decoded = base64.decode(encoded);
@@ -32,31 +60,20 @@ export const GetConfiguration = (props: RequestContract): AxiosRequestConfig => 
     const data = JSON.parse(text) as AuthenticateUserResultDto;
     const hasAuthorization = Validate.isObject(data) && !Validate.isEmpty(data.userToken);
 
-    const withAuthorization: any = {
-        Authorization: `Bearer ${data.userToken}`,
-        UserTimezoneOffset: timezoneOffset,
-    };
+    if (hasAuthorization) {
+        headers.append("Authorization", `Bearer ${data.userToken}`);
+        headers.append("UserTimezoneOffset", timezoneOffset.toString());
+        headers.append("Content-Type", "application/json");
+    } else {
+        headers.append("UserTimezoneOffset", timezoneOffset.toString());
+        headers.append("Content-Type", "application/json");
+    }
 
-    const withoutAuthorization: any = {
-        UserTimezoneOffset: timezoneOffset,
-    };
-
-    const withAuthorizationConfig = {
-        ...props.configuration,
-        withCredentials: true,
-        headers: withAuthorization,
-    };
-
-    const withoutAuthorizationConfig = {
-        ...props.configuration,
-        withCredentials: false,
-        headers: withoutAuthorization,
-    };
-
-    return hasAuthorization ? withAuthorizationConfig : withoutAuthorizationConfig;
+    return headers;
 };
 
-export const GetContent = (props: GetContentContract) => {
+//rename: GetContentAction
+export const GetContent = (props: GetContentRequest): void => {
     let url = props.url;
     if (props.state !== undefined) {
         const id = props.state().applicationLanguage.id as string;
@@ -66,83 +83,101 @@ export const GetContent = (props: GetContentContract) => {
 
     props.dispatch({ type: props.request });
 
-    const request: RequestContract = {
-        configuration: {
-            method: "GET",
-            url: url,
-            responseType: "json",
-        },
-    };
-
-    const input: ExecuteContract = {
-        configuration: GetConfiguration(request),
+    const input: ExecuteRequest = {
         dispatch: props.dispatch,
         state: props.state,
+        url: url,
         responseType: props.receive,
+        configuration: {
+            method: "GET",
+            headers: GetConfiguration(),
+        },
     };
 
     Execute(input);
 };
 
-export const Execute = (props: ExecuteContract): void => {
+//rename: DispatchExecuteAction
+export const Execute = async (props: ExecuteRequest): Promise<void> => {
+    if (!props.dispatch || !props.state) {
+        return;
+    }
+
     const state = props.state();
-    const content = state.contentPageData.components.templates.templates.application;
+    const components = state.contentPageData.components;
+    const content = components.templates.templates.application;
+    
+    try {
+        const optionalBody = props.configuration.body
+        ? JSON.stringify(props.configuration.body)
+        : null;
 
-    axios(props.configuration)
-        .then(response => {
-            if (!IsSuccessStatusCode(response.status)) {
-                const statusText = content.unexpectedStatus.replace("{STATUS_CODE}", response.status.toString());
-                RaiseError({
-                    dispatch: props.dispatch,
-                    errorObject: statusText,
-                    content: content,
-                });
-
-                return;
-            }
-
-            if (response.data === null) {
-                RaiseError({
-                    dispatch: props.dispatch,
-                    errorObject: content.nullError,
-                    content: content,
-                });
-                return;
-            }
-
-            if (props.responseType !== undefined) {
-                const input = { type: props.responseType, payload: response.data };
-                props.dispatch(input);
-                return;
-            }
-        })
-        .catch(error => {
-            RaiseError({
-                dispatch: props.dispatch,
-                errorObject: error,
-                content: content,
-            });
+        const response = await fetch(props.url, {
+            method: props.configuration.method,
+            headers: GetConfiguration(),
+            body: optionalBody,
         });
+
+        if (IsSuccessStatusCode(response.status)){
+            const data = await response.json();
+            if (props.responseType !== undefined) {
+                if (Array.isArray(props.responseType)) {
+                    props.responseType.forEach(item => {
+                        props.dispatch({ type: item, payload: data, handle: props.optionalHandle });
+                    });
+                } else {
+                    props.dispatch({ type: props.responseType, payload: data, handle: props.optionalHandle });
+                }
+            } else {
+                throw new Error(content.unexpectedError);
+            }
+        } else {
+            const statusCode = response.status.toString();
+            const statusText = content.unexpectedStatus.replace("{STATUS_CODE}", statusCode);
+            throw new Error(statusText);
+        }
+    } catch (exception) {
+        console.error(exception);
+        RaiseError({
+            dispatch: props.dispatch,
+            errorObject: exception,
+            content: content,
+        });
+    }
 };
 
-export const ExecuteAsync = async (configuration: AxiosRequestConfig): Promise<PromiseResultContract> => {
-    let result: PromiseResultContract = { status: null, content: null, error: null };
+//rename: ExecuteAction
+export const ExecuteAsync = async (props: ExecuteActionRequest): Promise<PromiseResult> => {
+    let result: PromiseResult = { status: null, content: null, error: null };
 
-    await axios(configuration)
-        .then(response => {
+    try {
+        const optionalBody = props.configuration.body
+        ? JSON.stringify(props.configuration.body)
+        : null;
+
+        const response = await fetch(props.url, {
+            method: props.configuration.method,
+            //headers: GetConfiguration(),
+            body: optionalBody,
+        });
+
+        if (IsSuccessStatusCode(response.status)) {
+            const data = await response.json();
             result = {
                 status: response.status,
-                content: response.data,
+                content: data,
                 error: null,
             };
-        })
-        .catch(error => {
-            result = {
-                status: null,
-                content: null,
-                error: error,
-            };
-        });
+        } else {
+            throw new Error("Unexpected error!"); 
+        }
+    } catch (exception) {
+        result = {
+            status: null,
+            content: null,
+            error: exception,
+        };
+    }
 
     return result;
 };

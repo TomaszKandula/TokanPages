@@ -1,8 +1,6 @@
-import axios from "axios";
 import { ApplicationAction } from "../../Configuration";
 import { UploadUserMediaDto, UploadUserMediaResultDto } from "../../../Api/Models";
-import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { UPLOAD_USER_IMAGE, RequestContract, GetConfiguration } from "../../../Api/Request";
+import { Execute, ExecuteRequest, UPLOAD_USER_IMAGE } from "../../../Api/Request";
 import Validate from "validate.js";
 
 export const UPLOAD = "UPLOAD_USER_MEDIA";
@@ -21,7 +19,6 @@ interface Response {
 }
 export type TKnownActions = Upload | Clear | Response;
 
-//TODO: refactor, simplify
 export const UserMediaUploadAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
@@ -31,9 +28,6 @@ export const UserMediaUploadAction = {
         (dispatch, getState) => {
             dispatch({ type: UPLOAD });
 
-            const content = getState().contentPageData.components.templates.templates.application;
-            const nullError = content.nullError;
-            const unexpectedStatus = content.unexpectedStatus;
             const hasBase64Data = !Validate.isEmpty(payload.base64Data);
             const hasBinaryData = !Validate.isEmpty(payload.binaryData);
 
@@ -42,41 +36,21 @@ export const UserMediaUploadAction = {
             if (hasBinaryData) formData.append("binaryData", payload.binaryData as File);
 
             const url = skipDb ? `${UPLOAD_USER_IMAGE}?skipDb=${skipDb}` : UPLOAD_USER_IMAGE;
-            const headers = { "Content-Type": "multipart/form-data" };
-            const request: RequestContract = {
+            const headers = new Headers();
+            headers.append("Content-Type", "multipart/form-data");
+            const input: ExecuteRequest = {
+                url: url,
+                dispatch: dispatch,
+                state: getState,
+                optionalHandle: handle,
+                responseType: RESPONSE,
                 configuration: {
                     method: "POST",
-                    url: url,
                     headers: headers,
-                    data: formData,
+                    body: payload,
                 },
             };
 
-            axios(GetConfiguration(request))
-                .then(response => {
-                    if (response.status === 200) {
-                        return response.data === null
-                            ? RaiseError({
-                                  dispatch: dispatch,
-                                  errorObject: nullError,
-                                  content: content,
-                              })
-                            : dispatch({ type: RESPONSE, payload: response.data, handle: handle });
-                    }
-
-                    const statusText = unexpectedStatus.replace("{STATUS_CODE}", response.status.toString());
-                    RaiseError({
-                        dispatch: dispatch,
-                        errorObject: statusText,
-                        content: content,
-                    });
-                })
-                .catch(error => {
-                    RaiseError({
-                        dispatch: dispatch,
-                        errorObject: error,
-                        content: content,
-                    });
-                });
+            Execute(input);
         },
 };

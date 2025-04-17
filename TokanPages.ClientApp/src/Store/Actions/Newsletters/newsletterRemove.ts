@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RemoveNewsletterDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, REMOVE_NEWSLETTER } from "../../../Api/Request";
+import { Execute, ExecuteRequest, REMOVE_NEWSLETTER } from "../../../Api/Request";
 
 export const CLEAR = "REMOVE_SUBSCRIBER_CLEAR";
 export const REMOVE = "REMOVE_SUBSCRIBER_REQUEST";
@@ -25,20 +25,15 @@ export const NewsletterRemoveAction = {
         (payload: RemoveNewsletterDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REMOVE });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: REMOVE_NEWSLETTER,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: REMOVE_NEWSLETTER,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,                    
+                },
             };
 
             Execute(input);

@@ -21,9 +21,11 @@ export const RenderGist = (props: TextItem): React.ReactElement => {
     const [gistContent, setGistContent] = React.useState("");
 
     const updateContent = React.useCallback(async () => {
-        let result = await ExecuteAsync({
+        const result = await ExecuteAsync({
             url: gistUrl,
-            method: "GET",
+            configuration: {
+                method: "GET",
+            },
         });
 
         if (result.status === 200 && validate.isString(result.content)) {

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItemBase } from "../../../Shared/Components/RenderContent/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, GET_ARTICLE_INFO } from "../../../Api/Request";
+import { Execute, ExecuteRequest, GET_ARTICLE_INFO } from "../../../Api/Request";
 
 export const REQUEST = "REQUEST_ARTICLE_INFO";
 export const RECEIVE = "RECEIVE_ARTICLE_INFO";
@@ -19,19 +19,14 @@ export const ArticleInfoAction = {
         (dispatch, getState) => {
             dispatch({ type: REQUEST });
 
-            const request: RequestContract = {
-                configuration: {
-                    method: "GET",
-                    url: GET_ARTICLE_INFO.replace("{id}", id),
-                    responseType: "json",
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: GET_ARTICLE_INFO.replace("{id}", id),
                 dispatch: dispatch,
                 state: getState,
                 responseType: RECEIVE,
+                configuration: {
+                    method: "GET",
+                },
             };
 
             Execute(input);
