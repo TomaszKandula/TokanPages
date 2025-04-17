@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RemoveNewsletterDto } from "../../../Api/Models";
-import { Execute, ExecuteRequest, REMOVE_NEWSLETTER } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, REMOVE_NEWSLETTER } from "../../../Api/Request";
 
 export const CLEAR = "REMOVE_SUBSCRIBER_CLEAR";
 export const REMOVE = "REMOVE_SUBSCRIBER_REQUEST";
@@ -36,6 +36,6 @@ export const NewsletterRemoveAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

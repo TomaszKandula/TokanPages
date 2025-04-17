@@ -1,7 +1,7 @@
 import { ApplicationAction, ApplicationState } from "../../Configuration";
 
 import {
-    Execute,
+    DispatchExecuteAction,
     ExecuteRequest,
     UPDATE_ARTICLE_CONTENT,
     UPDATE_ARTICLE_COUNT,
@@ -50,7 +50,7 @@ const DispatchCall = async (
         },
     };
 
-    Execute(input);
+    DispatchExecuteAction(input);
 };
 
 export const ArticleUpdateAction = {

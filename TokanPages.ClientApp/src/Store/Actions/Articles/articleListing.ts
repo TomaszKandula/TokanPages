@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
-import { Execute, ExecuteRequest, GET_ARTICLES } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, GET_ARTICLES } from "../../../Api/Request";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
@@ -27,6 +27,6 @@ export const ArticleListingAction = {
             },
         };
 
-        Execute(input);
+        DispatchExecuteAction(input);
     },
 };

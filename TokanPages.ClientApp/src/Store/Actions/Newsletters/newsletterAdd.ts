@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddNewsletterDto } from "../../../Api/Models";
-import { Execute, ADD_NEWSLETTER, ExecuteRequest } from "../../../Api/Request";
+import { DispatchExecuteAction, ADD_NEWSLETTER, ExecuteRequest } from "../../../Api/Request";
 
 export const ADD = "ADD_SUBSCRIBER";
 export const CLEAR = "ADD_SUBSCRIBER_CLEAR";
@@ -36,6 +36,6 @@ export const NewsletterAddAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

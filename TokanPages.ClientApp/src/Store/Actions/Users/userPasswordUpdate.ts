@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserPasswordDto } from "../../../Api/Models";
 import {
-    Execute,
+    DispatchExecuteAction,
     ExecuteRequest,
     UPDATE_USER_PASSWORD,
 } from "../../../Api/Request";
@@ -40,6 +40,6 @@ export const UserPasswordUpdateAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

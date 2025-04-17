@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { VerifyUserEmailDto } from "../../../Api/Models";
-import { VERIFY_USER_EMAIL, Execute, ExecuteRequest } from "../../../Api/Request";
+import { VERIFY_USER_EMAIL, DispatchExecuteAction, ExecuteRequest } from "../../../Api/Request";
 
 export const VERIFY = "VERIFY_USER_EMAIL";
 export const CLEAR = "VERIFY_USER_EMAIL_CLEAR";
@@ -38,6 +38,6 @@ export const UserEmailVerificationAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserDto, UpdateUserResultDto } from "../../../Api/Models";
-import { Execute, ExecuteRequest, UPDATE_USER } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_USER";
 export const CLEAR = "UPDATE_USER_CLEAR";
@@ -37,6 +37,6 @@ export const UserUpdateAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

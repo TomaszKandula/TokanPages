@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { ReAuthenticateUserDto } from "../../../Api/Models";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
-import { REAUTHENTICATE as REAUTHENTICATE_USER, ExecuteRequest, Execute } from "../../../Api/Request";
+import { REAUTHENTICATE as REAUTHENTICATE_USER, ExecuteRequest, DispatchExecuteAction } from "../../../Api/Request";
 
 export const REAUTHENTICATE = "REAUTHENTICATE_USER";
 export const CLEAR = "REAUTHENTICATE_USER_CLEAR";
@@ -43,6 +43,6 @@ export const UserReAuthenticateAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

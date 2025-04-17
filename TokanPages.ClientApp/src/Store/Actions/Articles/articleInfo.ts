@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItemBase } from "../../../Shared/Components/RenderContent/Models";
-import { Execute, ExecuteRequest, GET_ARTICLE_INFO } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, GET_ARTICLE_INFO } from "../../../Api/Request";
 
 export const REQUEST = "REQUEST_ARTICLE_INFO";
 export const RECEIVE = "RECEIVE_ARTICLE_INFO";
@@ -29,6 +29,6 @@ export const ArticleInfoAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

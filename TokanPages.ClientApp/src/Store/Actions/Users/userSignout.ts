@@ -2,7 +2,7 @@ import { ApplicationAction } from "../../Configuration";
 import { RevokeUserRefreshTokenDto } from "../../../Api/Models";
 import {
     REVOKE_USER_TOKEN as REVOKE_USER_TOKEN_URL,
-    Execute,
+    DispatchExecuteAction,
     REVOKE_REFRESH_TOKEN as REVOKE_REFRESH_TOKEN_URL,
     ExecuteRequest,
 } from "../../../Api/Request";
@@ -60,7 +60,7 @@ export const UserSignoutAction = {
             },
         };
 
-        Execute(input);
+        DispatchExecuteAction(input);
     },
     revokeRefreshToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         const payload: RevokeUserRefreshTokenDto = {
@@ -78,6 +78,6 @@ export const UserSignoutAction = {
             },
         };
         
-        Execute(input);
+        DispatchExecuteAction(input);
     },
 };

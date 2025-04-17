@@ -2,7 +2,7 @@ import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
 import {
-    Execute,
+    DispatchExecuteAction,
     ExecuteRequest,
     GET_ARTICLE,
     GET_ARTICLE_BY_TITLE,
@@ -51,6 +51,6 @@ export const ArticleSelectionAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UserNoteDto, UserNoteResultDto } from "../../../../Api/Models";
-import { Execute, ExecuteRequest, GET_USER_NOTE } from "../../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, GET_USER_NOTE } from "../../../../Api/Request";
 
 export const RECEIVE = "GET_USER_NOTE_RECEIVE";
 export const RESPONSE = "GET_USER_NOTE_RESPONSE";
@@ -37,6 +37,6 @@ export const UserNoteReadAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

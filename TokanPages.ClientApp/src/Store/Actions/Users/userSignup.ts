@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
-import { Execute, ADD_USER, ExecuteRequest } from "../../../Api/Request";
+import { DispatchExecuteAction, ADD_USER, ExecuteRequest } from "../../../Api/Request";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
@@ -37,6 +37,6 @@ export const UserSignupAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

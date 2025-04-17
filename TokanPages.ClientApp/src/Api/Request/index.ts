@@ -6,9 +6,9 @@ export type {
 } from "./Services";
 
 export {
-    GetContent, 
-    Execute, 
-    ExecuteAsync 
+    GetContentAction,
+    DispatchExecuteAction,
+    ExecuteAsync,
 } from "./Services";
 
 export {

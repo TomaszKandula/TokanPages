@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateNewsletterDto } from "../../../Api/Models";
-import { Execute, ExecuteRequest, UPDATE_NEWSLETTER } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPDATE_NEWSLETTER } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_SUBSCRIBER";
 export const RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
@@ -29,6 +29,6 @@ export const NewsletterUpdateAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

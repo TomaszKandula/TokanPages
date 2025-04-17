@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { NotificationData, NotificationRequest } from "../../../Api/Models";
-import { NOTIFY_WEB_URL, Execute, ExecuteRequest } from "../../../Api/Request";
+import { NOTIFY_WEB_URL, DispatchExecuteAction, ExecuteRequest } from "../../../Api/Request";
 
 export const CLEAR = "NOTIFICATION_CLEAR";
 export const NOTIFY = "NOTIFICATION_NOTIFY";
@@ -36,6 +36,6 @@ export const UserNotificationAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ActivateUserDto, ActivateUserResultDto } from "../../../Api/Models";
-import { Execute, ACTIVATE_USER, ExecuteRequest } from "../../../Api/Request";
+import { DispatchExecuteAction, ACTIVATE_USER, ExecuteRequest } from "../../../Api/Request";
 
 export const ACTIVATE = "ACTIVATE_ACCOUNT";
 export const CLEAR = "ACTIVATE_ACCOUNT_CLEAR";
@@ -36,6 +36,6 @@ export const UserActivateAction = {
                 },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };
