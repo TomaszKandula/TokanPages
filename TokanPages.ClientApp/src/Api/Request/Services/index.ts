@@ -13,15 +13,18 @@ export interface Configuration {
     headers?: Headers;
 }
 
+export interface StoreProps {
+    dispatch: (action: any) => void;
+    state: () => ApplicationState;
+}
+
 export interface PromiseResult {
     status: number | null;
     content: any | null;
     error: any | null;
 }
 
-export interface GetContentRequest {
-    dispatch: (action: any) => void;
-    state: () => ApplicationState;
+export interface GetContentRequest extends StoreProps {
     request: string;
     receive: string;
     url: string;
@@ -32,9 +35,7 @@ export interface ExecuteActionRequest {
     configuration: Configuration;
 }
 
-export interface ExecuteRequest extends ExecuteActionRequest {
-    dispatch: (action: any) => void;
-    state: () => ApplicationState;
+export interface ExecuteRequest extends ExecuteActionRequest, StoreProps {
     optionalHandle?: string;
     responseType?: string | string[];
 }
@@ -43,8 +44,7 @@ const IsSuccessStatusCode = (statusCode: number): boolean => {
     return statusCode >= 200 && statusCode <= 299;
 };
 
-//rename: 'SetupHeaders'
-const GetConfiguration = (): Headers => {
+const SetupHeaders = (): Headers => {
     const headers = new Headers();
     const timezoneOffset = new Date().getTimezoneOffset();
     const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
@@ -72,8 +72,7 @@ const GetConfiguration = (): Headers => {
     return headers;
 };
 
-//rename: GetContentAction
-export const GetContent = (props: GetContentRequest): void => {
+export const GetContentAction = (props: GetContentRequest): void => {
     let url = props.url;
     if (props.state !== undefined) {
         const id = props.state().applicationLanguage.id as string;
@@ -90,15 +89,14 @@ export const GetContent = (props: GetContentRequest): void => {
         responseType: props.receive,
         configuration: {
             method: "GET",
-            headers: GetConfiguration(),
+            headers: SetupHeaders(),
         },
     };
 
-    Execute(input);
+    DispatchExecuteAction(input);
 };
 
-//rename: DispatchExecuteAction
-export const Execute = async (props: ExecuteRequest): Promise<void> => {
+export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void> => {
     if (!props.dispatch || !props.state) {
         return;
     }
@@ -114,7 +112,7 @@ export const Execute = async (props: ExecuteRequest): Promise<void> => {
 
         const response = await fetch(props.url, {
             method: props.configuration.method,
-            headers: GetConfiguration(),
+            headers: SetupHeaders(),
             body: optionalBody,
         });
 
