@@ -7,10 +7,17 @@ import Validate from "validate.js";
 import base64 from "base-64";
 import utf8 from "utf8";
 
+export interface HeadersProps {
+    key: string;
+    value: string;
+}
+
 export interface Configuration {
     method: string;
     body?: object;
-    headers?: Headers;
+    form?: FormData;
+    headers?: HeadersProps[];
+    hasJsonResponse: boolean;
 }
 
 export interface StoreProps {
@@ -44,14 +51,15 @@ const IsSuccessStatusCode = (statusCode: number): boolean => {
     return statusCode >= 200 && statusCode <= 299;
 };
 
-const SetupHeaders = (): Headers => {
-    const headers = new Headers();
+const SetupHeaders = (): HeadersProps[] => {
     const timezoneOffset = new Date().getTimezoneOffset();
     const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
 
+    const headers: HeadersProps[] = [];
+    headers.push({ key: "UserTimezoneOffset", value: timezoneOffset.toString() });
+    headers.push({ key: "Content-Type", value: "application/json" });
+
     if (Validate.isEmpty(encoded)) {
-        headers.append("UserTimezoneOffset", timezoneOffset.toString());
-        headers.append("Content-Type", "application/json");
         return headers;
     }
 
@@ -61,12 +69,7 @@ const SetupHeaders = (): Headers => {
     const hasAuthorization = Validate.isObject(data) && !Validate.isEmpty(data.userToken);
 
     if (hasAuthorization) {
-        headers.append("Authorization", `Bearer ${data.userToken}`);
-        headers.append("UserTimezoneOffset", timezoneOffset.toString());
-        headers.append("Content-Type", "application/json");
-    } else {
-        headers.append("UserTimezoneOffset", timezoneOffset.toString());
-        headers.append("Content-Type", "application/json");
+        headers.push({ key: "Authorization", value: `Bearer ${data.userToken}`});
     }
 
     return headers;
@@ -90,6 +93,7 @@ export const GetContentAction = (props: GetContentRequest): void => {
         configuration: {
             method: "GET",
             headers: SetupHeaders(),
+            hasJsonResponse: true,
         },
     };
 
@@ -110,14 +114,49 @@ export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void
         ? JSON.stringify(props.configuration.body)
         : null;
 
+        const optionalFormData = props.configuration.form
+        ? props.configuration.form
+        : null;
+
+        const body = optionalBody !== null 
+        ? optionalBody 
+        : optionalFormData !== null 
+        ? optionalFormData 
+        : null;
+
+        const headers = new Headers();
+        const baseHeaders = SetupHeaders();
+        baseHeaders.forEach(header => {
+            if (optionalFormData !== null && header.key === "Content-Type") {
+            } else {
+                headers.append(header.key, header.value);
+            }
+        });
+
+        if (Array.isArray(props.configuration.headers)) {
+            props.configuration.headers.forEach(header => {
+                if (header.key === "Content-Type" && headers.has("Content-Type")) {
+                    headers.delete("Content-Type");
+                }
+
+                headers.append(header.key, header.value);
+            });
+        }
+
         const response = await fetch(props.url, {
             method: props.configuration.method,
-            headers: SetupHeaders(),
-            body: optionalBody,
+            headers: headers,
+            body: body,
         });
 
         if (IsSuccessStatusCode(response.status)){
-            const data = await response.json();
+            let data: object | string = {};
+            if (props.configuration.hasJsonResponse) {
+                data = await response.json();
+            } else {
+                data = await response.text();
+            }
+
             if (props.responseType !== undefined) {
                 if (Array.isArray(props.responseType)) {
                     props.responseType.forEach(item => {
@@ -144,7 +183,6 @@ export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void
     }
 };
 
-//rename: ExecuteAction
 export const ExecuteAsync = async (props: ExecuteActionRequest): Promise<PromiseResult> => {
     let result: PromiseResult = { status: null, content: null, error: null };
 
@@ -153,14 +191,49 @@ export const ExecuteAsync = async (props: ExecuteActionRequest): Promise<Promise
         ? JSON.stringify(props.configuration.body)
         : null;
 
+        const optionalFormData = props.configuration.form
+        ? props.configuration.form
+        : null;
+
+        const body = optionalBody !== null 
+        ? optionalBody 
+        : optionalFormData !== null 
+        ? optionalFormData 
+        : null;
+
+        const headers = new Headers();
+        const baseHeaders = SetupHeaders();
+        baseHeaders.forEach(header => {
+            if (optionalFormData !== null && header.key === "Content-Type") {
+            } else {
+                headers.append(header.key, header.value);
+            }
+        });
+
+        if (Array.isArray(props.configuration.headers)) {
+            props.configuration.headers.forEach(header => {
+                if (header.key === "Content-Type" && headers.has("Content-Type")) {
+                    headers.delete("Content-Type");
+                }
+
+                headers.append(header.key, header.value);
+            });
+        }
+
         const response = await fetch(props.url, {
             method: props.configuration.method,
-            //headers: GetConfiguration(),
-            body: optionalBody,
+            headers: headers,
+            body: body,
         });
 
         if (IsSuccessStatusCode(response.status)) {
-            const data = await response.json();
+            let data: object | string = {};
+            if (props.configuration.hasJsonResponse) {
+                data = await response.json();
+            } else {
+                data = await response.text();
+            }
+
             result = {
                 status: response.status,
                 content: data,
