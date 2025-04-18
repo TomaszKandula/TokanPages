@@ -46,7 +46,8 @@ const DispatchCall = async (
         responseType: RESPONSE,
         configuration: {
             method: "POST",
-            body: data,            
+            body: data,
+            hasJsonResponse: true,
         },
     };
 

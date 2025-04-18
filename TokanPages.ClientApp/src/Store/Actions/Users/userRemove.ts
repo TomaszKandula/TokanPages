@@ -33,6 +33,7 @@ export const UserRemoveAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

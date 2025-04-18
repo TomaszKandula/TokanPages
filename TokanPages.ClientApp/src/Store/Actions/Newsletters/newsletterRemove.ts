@@ -32,7 +32,8 @@ export const NewsletterRemoveAction = {
                 responseType: RESPONSE,
                 configuration: {
                     method: "POST",
-                    body: payload,                    
+                    body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

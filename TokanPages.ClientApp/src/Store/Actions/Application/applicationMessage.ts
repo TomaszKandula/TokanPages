@@ -34,6 +34,7 @@ export const ApplicationMessageAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

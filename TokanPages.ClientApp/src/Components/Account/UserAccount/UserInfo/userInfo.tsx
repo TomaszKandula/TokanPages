@@ -261,6 +261,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             url: NOTIFICATION_STATUS,
             configuration: {
                 method: "POST",
+                hasJsonResponse: true,
                 body: { statusId: store.userId }
             }
         };

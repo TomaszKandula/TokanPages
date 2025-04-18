@@ -24,6 +24,7 @@ export const ArticleListingAction = {
             responseType: RECEIVE,
             configuration: {
                 method: "GET",
+                hasJsonResponse: true,
             },
         };
 

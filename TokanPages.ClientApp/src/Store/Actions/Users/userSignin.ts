@@ -34,6 +34,7 @@ export const UserSigninAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

@@ -47,7 +47,8 @@ export const ArticleSelectionAction = {
                 state: getState,
                 responseType: RECEIVE,
                 configuration: {
-                    method: "GET",                    
+                    method: "GET",
+                    hasJsonResponse: true,
                 },
             };
 

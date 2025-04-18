@@ -34,6 +34,7 @@ export const UserUpdateAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

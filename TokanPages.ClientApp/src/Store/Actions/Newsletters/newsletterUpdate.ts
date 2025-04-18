@@ -26,6 +26,7 @@ export const NewsletterUpdateAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

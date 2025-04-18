@@ -6,6 +6,7 @@ const requestManifest: ExecuteActionRequest = {
     url: GET_CONTENT_MANIFEST,
     configuration: {
         method: "GET",
+        hasJsonResponse: true,
     },
 };
 

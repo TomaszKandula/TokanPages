@@ -33,6 +33,7 @@ export const UserNotificationAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

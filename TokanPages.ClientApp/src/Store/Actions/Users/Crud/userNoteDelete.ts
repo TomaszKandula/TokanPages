@@ -33,6 +33,7 @@ export const UserNoteDeleteAction = {
                 configuration: {
                     method: "DELETE",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

@@ -32,6 +32,7 @@ export const UserNotesReadAction = {
                 responseType: RESPONSE,
                 configuration: {
                     method: "GET",
+                    hasJsonResponse: true,
                 },
             };
 

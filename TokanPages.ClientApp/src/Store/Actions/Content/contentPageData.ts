@@ -44,6 +44,7 @@ export const ContentPageDataAction = {
                 responseType: RECEIVE,
                 configuration: {
                     method: "POST",
+                    hasJsonResponse: true,
                     body: {
                         components: verifiedComponents,
                         language: languageId,

@@ -57,6 +57,7 @@ export const UserSignoutAction = {
             responseType: USER_TOKEN_RESPONSE,
             configuration: {
                 method: "POST",
+                hasJsonResponse: true,
             },
         };
 
@@ -75,6 +76,7 @@ export const UserSignoutAction = {
             configuration: {
                 method: "POST",
                 body: payload,
+                hasJsonResponse: true,
             },
         };
         

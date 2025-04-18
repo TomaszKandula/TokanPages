@@ -25,6 +25,7 @@ export const RenderGist = (props: TextItem): React.ReactElement => {
             url: gistUrl,
             configuration: {
                 method: "GET",
+                hasJsonResponse: false,
             },
         });
 

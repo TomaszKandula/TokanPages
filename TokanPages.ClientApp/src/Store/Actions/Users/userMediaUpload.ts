@@ -31,13 +31,12 @@ export const UserMediaUploadAction = {
             const hasBase64Data = !Validate.isEmpty(payload.base64Data);
             const hasBinaryData = !Validate.isEmpty(payload.binaryData);
 
-            let formData = new FormData();
-            if (hasBase64Data) formData.append("binaryData", payload.base64Data as string);
-            if (hasBinaryData) formData.append("binaryData", payload.binaryData as File);
+            const filehandle = "binaryData";
+            const formData = new FormData();
+            if (hasBase64Data) formData.append(filehandle, payload.base64Data as string);
+            if (hasBinaryData) formData.append(filehandle, payload.binaryData as File);
 
             const url = skipDb ? `${UPLOAD_USER_IMAGE}?skipDb=${skipDb}` : UPLOAD_USER_IMAGE;
-            const headers = new Headers();
-            headers.append("Content-Type", "multipart/form-data");
             const input: ExecuteRequest = {
                 url: url,
                 dispatch: dispatch,
@@ -46,8 +45,8 @@ export const UserMediaUploadAction = {
                 responseType: RESPONSE,
                 configuration: {
                     method: "POST",
-                    headers: headers,
-                    body: payload,
+                    form: formData,
+                    hasJsonResponse: true,
                 },
             };
 

@@ -33,6 +33,7 @@ export const UserNoteUpdateAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

@@ -40,6 +40,7 @@ export const UserReAuthenticateAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

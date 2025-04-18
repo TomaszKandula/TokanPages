@@ -26,6 +26,7 @@ export const ArticleInfoAction = {
                 responseType: RECEIVE,
                 configuration: {
                     method: "GET",
+                    hasJsonResponse: true,
                 },
             };
 

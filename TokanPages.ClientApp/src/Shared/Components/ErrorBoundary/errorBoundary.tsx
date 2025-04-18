@@ -50,6 +50,7 @@ export class ErrorBoundary extends Component<Props, State> {
             url: LOG_MESSAGE,
             configuration: {
                 method: "POST",
+                hasJsonResponse: true,
                 body: logMessage,
             },
         };

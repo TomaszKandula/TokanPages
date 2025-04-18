@@ -32,6 +32,7 @@ export const UserEmailVerificationAction = {
                 responseType: RESPONSE,
                 configuration: {
                     method: "POST",
+                    hasJsonResponse: true,
                     body: { 
                         emailAddress: payload.emailAddress 
                     },

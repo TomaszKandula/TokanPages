@@ -33,6 +33,7 @@ export const NewsletterAddAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 

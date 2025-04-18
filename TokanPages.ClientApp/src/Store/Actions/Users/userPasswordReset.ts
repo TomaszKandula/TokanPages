@@ -33,6 +33,7 @@ export const UserPasswordResetAction = {
                 configuration: {
                     method: "POST",
                     body: payload,
+                    hasJsonResponse: true,
                 },
             };
 
