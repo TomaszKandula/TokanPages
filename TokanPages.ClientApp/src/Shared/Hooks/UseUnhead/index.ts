@@ -9,14 +9,14 @@ import { CleanupSnapshotMode } from "../../../Shared/Services/SpaCaching";
 import Validate from "validate.js";
 
 const getTitle = (pages: PagesModelDto[], pageId: string, languageId: string): string => {
-    const data = pages.filter((value: PagesModelDto) => value.language === languageId ? value : undefined)[0];
-    const result = data.pages.filter((value: PageModelDto) => value.page === pageId ? value : undefined)[0].title;
+    const data = pages.filter((value: PagesModelDto) => (value.language === languageId ? value : undefined))[0];
+    const result = data.pages.filter((value: PageModelDto) => (value.page === pageId ? value : undefined))[0].title;
     return result;
-}
+};
 
 const getMeta = (meta: MetaModelDto[], languageId: string): MetaModelDto => {
-    return meta.filter((value: MetaModelDto) => value.language === languageId ? value : undefined)[0];
-}
+    return meta.filter((value: MetaModelDto) => (value.language === languageId ? value : undefined))[0];
+};
 
 const getLinks = (language: ApplicationLanguageState, url: string): any[] => {
     const data: any[] = [];
@@ -31,7 +31,7 @@ const getLinks = (language: ApplicationLanguageState, url: string): any[] => {
     data.push({ rel: "canonical", href: url });
 
     return data;
-}
+};
 
 export const useUnhead = (pageId: string): void => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
@@ -56,7 +56,6 @@ export const useUnhead = (pageId: string): void => {
         setLinks(links);
         setTitle(title);
         setMeta(meta);
-
     }, [language, window.location.href]);
 
     const configuration: UseHeadInput = {
@@ -78,8 +77,8 @@ export const useUnhead = (pageId: string): void => {
             { property: "twitter:description", content: meta?.twitter?.description ?? "" },
             { property: "twitter:url", content: url },
         ],
-        link: links
+        link: links,
     };
 
     useHead(configuration);
-}
+};

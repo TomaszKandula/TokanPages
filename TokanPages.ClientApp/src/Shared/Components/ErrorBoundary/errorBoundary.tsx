@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from "react";
 import { ErrorBoundaryView } from "./errorBoundaryView";
-import { ExecuteAsync, GetConfiguration, LOG_MESSAGE, RequestContract } from "../../../Api/Request";
+import { ExecuteActionRequest, ExecuteAsync, LOG_MESSAGE } from "../../../Api/Request";
 
 interface Props {
     children?: ReactNode;
@@ -46,16 +46,16 @@ export class ErrorBoundary extends Component<Props, State> {
             userAgent: window.navigator.userAgent,
         };
 
-        const request: RequestContract = {
+        const request: ExecuteActionRequest = {
+            url: LOG_MESSAGE,
             configuration: {
-                url: LOG_MESSAGE,
                 method: "POST",
-                responseType: "json",
-                data: logMessage,
+                hasJsonResponse: true,
+                body: logMessage,
             },
         };
 
-        await ExecuteAsync(GetConfiguration(request));
+        await ExecuteAsync(request);
     }
 
     public render() {

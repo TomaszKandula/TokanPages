@@ -1,10 +1,8 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserPasswordDto } from "../../../Api/Models";
 import {
-    Execute,
-    GetConfiguration,
-    ExecuteContract,
-    RequestContract,
+    DispatchExecuteAction,
+    ExecuteRequest,
     UPDATE_USER_PASSWORD,
 } from "../../../Api/Request";
 
@@ -31,22 +29,18 @@ export const UserPasswordUpdateAction = {
         (payload: UpdateUserPasswordDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: UPDATE_USER_PASSWORD,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: UPDATE_USER_PASSWORD,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

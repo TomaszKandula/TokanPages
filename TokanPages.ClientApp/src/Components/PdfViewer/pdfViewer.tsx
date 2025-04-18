@@ -42,26 +42,29 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     const [numPages, setNumPages] = React.useState(0);
     const [currentPage, setCurrentPage] = React.useState(0);
 
-    const getDocument = React.useCallback(async (pdfjsLib: any) => {
-        try {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
-            const doc = await pdfjsLib.getDocument(url).promise;
+    const getDocument = React.useCallback(
+        async (pdfjsLib: any) => {
+            try {
+                pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+                const doc = await pdfjsLib.getDocument(url).promise;
 
-            setNumPages(doc._pdfInfo.numPages);
-            setPdfDocument(doc);
-            setDocLoading(false);
-            setCurrentPage(1);
-        } catch (error: any) {
-            const statusCode = error.status.toString();
-            const statusText = unexpectedStatus.replace("{STATUS_CODE}", statusCode);
-            setPdfWorkerError(true);
-            RaiseError({
-                dispatch: dispatch,
-                errorObject: statusText,
-                content: template,
-            });
-        }
-    }, [template]);
+                setNumPages(doc._pdfInfo.numPages);
+                setPdfDocument(doc);
+                setDocLoading(false);
+                setCurrentPage(1);
+            } catch (error: any) {
+                const statusCode = error.status.toString();
+                const statusText = unexpectedStatus.replace("{STATUS_CODE}", statusCode);
+                setPdfWorkerError(true);
+                RaiseError({
+                    dispatch: dispatch,
+                    errorObject: statusText,
+                    content: template,
+                });
+            }
+        },
+        [template]
+    );
 
     const onNextPageHandler = React.useCallback(() => {
         if (numPages === currentPage) {
@@ -101,7 +104,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
             setIsPdfMounted(true);
         };
 
-        script.onerror = () => { 
+        script.onerror = () => {
             setPdfError(true);
         };
 

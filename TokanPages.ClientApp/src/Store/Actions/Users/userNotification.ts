@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
-import { NOTIFY_WEB_URL, RequestContract, ExecuteContract, Execute, GetConfiguration } from "../../../Api/Request";
 import { NotificationData, NotificationRequest } from "../../../Api/Models";
+import { NOTIFY_WEB_URL, DispatchExecuteAction, ExecuteRequest } from "../../../Api/Request";
 
 export const CLEAR = "NOTIFICATION_CLEAR";
 export const NOTIFY = "NOTIFICATION_NOTIFY";
@@ -25,22 +25,18 @@ export const UserNotificationAction = {
         (payload: NotificationRequest): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: NOTIFY });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: NOTIFY_WEB_URL,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: NOTIFY_WEB_URL,
                 dispatch: dispatch,
                 state: getState,
                 responseType: NOTIFIED,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

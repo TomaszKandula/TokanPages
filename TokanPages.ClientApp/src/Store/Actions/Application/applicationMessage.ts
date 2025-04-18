@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { SendMessageDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, SEND_MESSAGE } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, SEND_MESSAGE } from "../../../Api/Request";
 
 export const SEND = "SEND_MESSAGE";
 export const CLEAR = "SEND_MESSAGE_CLEAR";
@@ -26,21 +26,18 @@ export const ApplicationMessageAction = {
         (dispatch, getState) => {
             dispatch({ type: SEND });
 
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: SEND_MESSAGE,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: SEND_MESSAGE,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

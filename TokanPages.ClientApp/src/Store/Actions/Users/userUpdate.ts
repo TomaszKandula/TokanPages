@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserDto, UpdateUserResultDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, UPDATE_USER } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_USER";
 export const CLEAR = "UPDATE_USER_CLEAR";
@@ -26,21 +26,18 @@ export const UserUpdateAction = {
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
 
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: UPDATE_USER,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: UPDATE_USER,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

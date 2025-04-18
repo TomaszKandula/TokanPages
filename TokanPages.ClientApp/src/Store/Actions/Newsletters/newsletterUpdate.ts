@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateNewsletterDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, UPDATE_NEWSLETTER } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPDATE_NEWSLETTER } from "../../../Api/Request";
 
 export const UPDATE = "UPDATE_SUBSCRIBER";
 export const RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
@@ -18,22 +18,18 @@ export const NewsletterUpdateAction = {
         (payload: UpdateNewsletterDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: UPDATE_NEWSLETTER,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: UPDATE_NEWSLETTER,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

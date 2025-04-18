@@ -53,10 +53,10 @@ it("renders without crashing", () => {
                 pages: [
                     {
                         title: "software developer",
-                        page: "MainPage"
-                    }
-                ]
-            }
+                        page: "MainPage",
+                    },
+                ],
+            },
         ],
         meta: [
             {
@@ -65,13 +65,13 @@ it("renders without crashing", () => {
                 facebook: {
                     title: "",
                     description: "",
-                    imageAlt: ""
+                    imageAlt: "",
                 },
                 twitter: {
                     title: "",
-                    description: ""
-                }
-            }
+                    description: "",
+                },
+            },
         ],
         errorBoundary: [
             {

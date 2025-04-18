@@ -1,12 +1,10 @@
 import { ApplicationAction } from "../../Configuration";
 import { RevokeUserRefreshTokenDto } from "../../../Api/Models";
 import {
-    RequestContract,
-    GetConfiguration,
     REVOKE_USER_TOKEN as REVOKE_USER_TOKEN_URL,
-    ExecuteContract,
-    Execute,
+    DispatchExecuteAction,
     REVOKE_REFRESH_TOKEN as REVOKE_REFRESH_TOKEN_URL,
+    ExecuteRequest,
 } from "../../../Api/Request";
 
 export const REVOKE_USER_TOKEN_CLEAR = "REVOKE_USER_TOKEN_CLEAR";
@@ -51,45 +49,37 @@ export const UserSignoutAction = {
         dispatch({ type: REVOKE_REFRESH_TOKEN_CLEAR });
     },
     revokeUserToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        const requestRevokeToken: RequestContract = {
-            configuration: {
-                method: "POST",
-                url: REVOKE_USER_TOKEN_URL,
-                data: {},
-            },
-        };
-
-        const revokeUserToken: ExecuteContract = {
-            configuration: GetConfiguration(requestRevokeToken),
+        dispatch({ type: REVOKE_USER_TOKEN });
+        const input: ExecuteRequest = {
+            url: REVOKE_USER_TOKEN_URL,
             dispatch: dispatch,
             state: getState,
             responseType: USER_TOKEN_RESPONSE,
+            configuration: {
+                method: "POST",
+                hasJsonResponse: true,
+            },
         };
 
-        dispatch({ type: REVOKE_USER_TOKEN });
-        Execute(revokeUserToken);
+        DispatchExecuteAction(input);
     },
     revokeRefreshToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         const payload: RevokeUserRefreshTokenDto = {
             refreshToken: getState().userDataStore.userData.refreshToken,
         };
-
-        const requestRevokeRefreshToken: RequestContract = {
-            configuration: {
-                method: "POST",
-                url: REVOKE_REFRESH_TOKEN_URL,
-                data: payload,
-            },
-        };
-
-        const revokeRefreshToken: ExecuteContract = {
-            configuration: GetConfiguration(requestRevokeRefreshToken),
+        dispatch({ type: REVOKE_REFRESH_TOKEN });
+        const input: ExecuteRequest = {
+            url: REVOKE_REFRESH_TOKEN_URL,
             dispatch: dispatch,
             state: getState,
             responseType: REFRESH_TOKEN_RESPONSE,
+            configuration: {
+                method: "POST",
+                body: payload,
+                hasJsonResponse: true,
+            },
         };
-
-        dispatch({ type: REVOKE_REFRESH_TOKEN });
-        Execute(revokeRefreshToken);
+        
+        DispatchExecuteAction(input);
     },
 };

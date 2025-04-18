@@ -10,7 +10,10 @@ const useQuery = () => {
 
 export const NewsletterRemovePage = (): React.ReactElement => {
     useUnhead("NewsletterRemovePage");
-    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterRemove"], "NewsletterRemovePage");
+    usePageContent(
+        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterRemove"],
+        "NewsletterRemovePage"
+    );
 
     const queryParam = useQuery();
     const id = queryParam.get("id");

@@ -12,4 +12,4 @@ export const useSnapshot = (): void => {
             TryPostStateSnapshot(state);
         }
     }, [state]);
-}
+};

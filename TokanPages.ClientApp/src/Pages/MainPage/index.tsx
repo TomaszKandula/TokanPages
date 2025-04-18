@@ -14,23 +14,25 @@ import { Showcase } from "../../Components/Showcase";
 export const MainPage = (): React.ReactElement => {
     useUnhead("MainPage");
     useSnapshot();
-    usePageContent([
-        "layoutNavigation",
-        "layoutHeader",
-        "layoutFooter",
-        "sectionClients",
-        "sectionTechnologies",
-        "sectionArticle",
-        "sectionFeatured",
-        "sectionTestimonials",
-        "sectionShowcase",
-        "sectionSocials",
-        "sectionNewsletter",
-        "sectionContactForm",
-        "sectionCookiesPrompt",
-        "templates",
-    ],
-    "MainPage");
+    usePageContent(
+        [
+            "layoutNavigation",
+            "layoutHeader",
+            "layoutFooter",
+            "sectionClients",
+            "sectionTechnologies",
+            "sectionArticle",
+            "sectionFeatured",
+            "sectionTestimonials",
+            "sectionShowcase",
+            "sectionSocials",
+            "sectionNewsletter",
+            "sectionContactForm",
+            "sectionCookiesPrompt",
+            "templates",
+        ],
+        "MainPage"
+    );
 
     return (
         <>

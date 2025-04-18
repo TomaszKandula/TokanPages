@@ -1,10 +1,8 @@
 import { ApplicationAction, ApplicationState } from "../../Configuration";
 
 import {
-    Execute,
-    ExecuteContract,
-    GetConfiguration,
-    RequestContract,
+    DispatchExecuteAction,
+    ExecuteRequest,
     UPDATE_ARTICLE_CONTENT,
     UPDATE_ARTICLE_COUNT,
     UPDATE_ARTICLE_LIKES,
@@ -41,22 +39,19 @@ const DispatchCall = async (
 ) => {
     dispatch({ type: UPDATE });
 
-    const request: RequestContract = {
-        configuration: {
-            method: "POST",
-            url: url,
-            data: data,
-        },
-    };
-
-    const input: ExecuteContract = {
-        configuration: GetConfiguration(request),
+    const input: ExecuteRequest = {
+        url: url,
         dispatch: dispatch,
         state: getState,
         responseType: RESPONSE,
+        configuration: {
+            method: "POST",
+            body: data,
+            hasJsonResponse: true,
+        },
     };
 
-    Execute(input);
+    DispatchExecuteAction(input);
 };
 
 export const ArticleUpdateAction = {

@@ -14,7 +14,10 @@ const useQuery = () => {
 export const ArticlesPage = (): React.ReactElement => {
     useUnhead("ArticlesPage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle"], "ArticlesPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle"],
+        "ArticlesPage"
+    );
 
     const queryParam = useQuery();
     const title = queryParam.get("title");

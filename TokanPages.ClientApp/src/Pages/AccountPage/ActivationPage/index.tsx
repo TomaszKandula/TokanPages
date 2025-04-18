@@ -10,7 +10,10 @@ const useQuery = () => {
 
 export const ActivationPage = (): React.ReactElement => {
     useUnhead("ActivationPage");
-    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"], "ActivationPage");
+    usePageContent(
+        ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"],
+        "ActivationPage"
+    );
 
     const queryParam = useQuery();
     const id = queryParam.get("id") ?? "";

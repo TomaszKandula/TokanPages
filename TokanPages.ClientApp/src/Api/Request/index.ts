@@ -1,5 +1,16 @@
-export type { ExecuteContract, GetContentContract, PromiseResultContract, RequestContract } from "./Abstractions";
-export { GetConfiguration, GetContent, Execute, ExecuteAsync } from "./Services";
+export type {
+    PromiseResult,
+    GetContentRequest,
+    ExecuteRequest,
+    ExecuteActionRequest,
+} from "./HttpService";
+
+export {
+    GetContentAction,
+    DispatchExecuteAction,
+    ExecuteAsync,
+} from "./HttpService";
+
 export {
     API_BASE_URI,
     GET_ARTICLES,

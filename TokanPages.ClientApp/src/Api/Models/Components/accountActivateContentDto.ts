@@ -26,7 +26,7 @@ interface Fallback {
 
 export interface AccountActivateContentDto {
     language: string;
-    fallback: Fallback;    
+    fallback: Fallback;
     onVerifying: TextData;
     onProcessing: TextData;
     onSuccess: SuccessData;

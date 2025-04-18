@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UpdateUserNoteDto, UpdateUserNoteResultDto } from "../../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, UPDATE_USER_NOTE } from "../../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER_NOTE } from "../../../../Api/Request";
 
 export const UPDATE = "UPDATE_USER_NOTE";
 export const CLEAR = "UPDATE_USER_NOTE_CLEAR";
@@ -25,22 +25,18 @@ export const UserNoteUpdateAction = {
         (payload: UpdateUserNoteDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: UPDATE_USER_NOTE,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: UPDATE_USER_NOTE,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddNewsletterDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, ADD_NEWSLETTER } from "../../../Api/Request";
+import { DispatchExecuteAction, ADD_NEWSLETTER, ExecuteRequest } from "../../../Api/Request";
 
 export const ADD = "ADD_SUBSCRIBER";
 export const CLEAR = "ADD_SUBSCRIBER_CLEAR";
@@ -25,22 +25,18 @@ export const NewsletterAddAction = {
         (payload: AddNewsletterDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: ADD });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: ADD_NEWSLETTER,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteRequest = {
+                url: ADD_NEWSLETTER,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            DispatchExecuteAction(input);
         },
 };

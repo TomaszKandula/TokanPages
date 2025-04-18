@@ -10,7 +10,6 @@
         "@microsoft/signalr": "^8.0.0",
         "@unhead/react": "^2.0.5",
         "aos": "^2.3.4",
-        "axios": "1.8.2",
         "base-64": "^1.0.0",
         "jwt-decode": "^3.1.2",
         "react": "^17.0.2",
@@ -101,8 +100,8 @@
         "build-final-2": "gzip --keep --best -v ./build/favicons/*.*",
         "lint": "eslint ./src/**/*.ts ./src/**/*.tsx",
         "lint-fix": "eslint --fix",
-        "prettier-check": "prettier . --check",
-        "prettier-write": "prettier . --write",
+        "prettier-check": "prettier ./src --check",
+        "prettier-write": "prettier ./src --write",
         "sonar": "sonar-scanner"
     },
     "jest": {

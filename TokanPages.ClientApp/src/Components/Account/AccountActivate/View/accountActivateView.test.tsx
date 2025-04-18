@@ -14,7 +14,7 @@ describe("test account group component: accountActivateView", () => {
                 text2={"You can now sign in."}
                 fallback={{
                     caption: "Something went wrong",
-                    text: ["Line 1", "Line2"]
+                    text: ["Line 1", "Line2"],
                 }}
                 hasProgress={false}
                 hasError={false}
