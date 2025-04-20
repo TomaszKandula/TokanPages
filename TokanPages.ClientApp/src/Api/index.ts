@@ -6,6 +6,7 @@ export {
     GetContentAction,
     DispatchExecuteAction,
     ExecuteAsync,
+    LogMessage,
 } from "./HttpService";
 
 export {

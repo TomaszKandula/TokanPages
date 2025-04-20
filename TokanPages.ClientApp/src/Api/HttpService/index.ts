@@ -2,7 +2,10 @@ import { ApplicationState } from "../../Store/Configuration";
 import { USER_DATA } from "../../Shared/constants";
 import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
 import { RaiseError } from "../../Shared/Services/ErrorServices";
-import { AuthenticateUserResultDto } from "../Models";
+import { LOG_MESSAGE } from "../../Api/Paths";
+import { AuthenticateUserResultDto, LogMessageDto } from "../Models";
+import { TSeverity } from "../../Shared/types";
+import { UAParser } from "ua-parser-js";
 import Validate from "validate.js";
 import base64 from "base-64";
 import utf8 from "utf8";
@@ -74,6 +77,55 @@ const SetupHeaders = (): HeadersProps[] => {
 
     return headers;
 };
+
+export const LogMessage = async (message: object, stackTrace: object, eventType: string, severity: TSeverity): Promise<void> => {
+    const ua = UAParser(window.navigator.userAgent);
+
+    const logMessage: LogMessageDto = {
+        eventDateTime: new Date().toISOString(),
+        eventType: eventType,
+        severity: severity,
+        message: JSON.stringify(message),
+        stackTrace: JSON.stringify(stackTrace),
+        pageUrl: window.location.href,
+        userAgent: window.navigator.userAgent,
+        clientData: {
+            browser: {
+                major: ua.browser.major,
+                name: ua.browser.name,
+                type: ua.browser.type,
+                version: ua.browser.version,
+            },
+            cpu: {
+                architecture: ua.cpu.architecture,
+            },
+            device: {
+                model: ua.device.model,
+                type: ua.device.type,
+                vendor: ua.device.vendor,
+            },
+            engine: {
+                name: ua.engine.name,
+                version: ua.engine.version,
+            },
+            os: {
+                name: ua.os.name,
+                version: ua.os.version,
+            },
+        },
+    };
+
+    const request: ExecuteActionRequest = {
+        url: LOG_MESSAGE,
+        configuration: {
+            method: "POST",
+            hasJsonResponse: true,
+            body: logMessage,
+        },
+    };
+
+    await ExecuteAsync(request);
+}
 
 export const GetContentAction = (props: GetContentRequest): void => {
     let url = props.url;
