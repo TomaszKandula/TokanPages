@@ -1,11 +1,8 @@
-export type {
-    PromiseResult,
-    GetContentRequest,
-    ExecuteRequest,
-    ExecuteActionRequest,
-} from "./HttpService";
-
 export {
+    type PromiseResult,
+    type GetContentRequest,
+    type ExecuteRequest,
+    type ExecuteActionRequest,
     GetContentAction,
     DispatchExecuteAction,
     ExecuteAsync,
