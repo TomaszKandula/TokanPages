@@ -192,7 +192,13 @@ services:
       - ./TokanPages.ClientApp/nginx/nginx-base.conf:/etc/nginx/nginx-base.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-proxy.conf:/etc/nginx/nginx-proxy.conf:ro
       - ./TokanPages.ClientApp/nginx/nginx-ssl.conf:/etc/nginx/nginx-ssl.conf:ro
-      - ./TokanPages.ClientApp/nginx/nginx-ui-paths.conf:/etc/nginx/nginx-ui-paths.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths.conf:/etc/nginx/nginx-paths.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths-en.conf:/etc/nginx/nginx-paths-en.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths-pl.conf:/etc/nginx/nginx-paths-pl.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths-es.conf:/etc/nginx/nginx-paths-es.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths-uk.conf:/etc/nginx/nginx-paths-uk.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths-de.conf:/etc/nginx/nginx-paths-de.conf:ro
+      - ./TokanPages.ClientApp/nginx/nginx-paths-fr.conf:/etc/nginx/nginx-paths-fr.conf:ro
       - /opt/certs/wildcard-tomkandula.com.chain:/etc/nginx/wildcard-tomkandula.com.chain:ro
       - /opt/certs/wildcard-tomkandula.com.key:/etc/nginx/wildcard-tomkandula.com.key:ro
       - /opt/certs/wildcard-tomkandula.com.ca:/etc/nginx/wildcard-tomkandula.com.ca:ro
