@@ -1,6 +1,9 @@
 /*  JWT  */
 export type { JWT } from "./Jwt";
 
+/* LOGGER */
+export type { LogMessageDto } from "./Logger/logMessageDto";
+
 /* ERROR */
 export type { ErrorDto } from "./Error/errorDto";
 export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
