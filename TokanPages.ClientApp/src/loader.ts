@@ -1,5 +1,5 @@
 import { GetContentManifestDto } from "./Api/Models";
-import { ExecuteActionRequest, ExecuteAsync, GET_CONTENT_MANIFEST } from "./Api/Request";
+import { ExecuteActionRequest, ExecuteAsync, GET_CONTENT_MANIFEST } from "./Api";
 import { IsPreRendered } from "./Shared/Services/SpaCaching";
 
 const requestManifest: ExecuteActionRequest = {

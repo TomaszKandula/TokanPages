@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { RemoveUserNoteDto, RemoveUserNoteResultDto } from "../../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, REMOVE_USER_NOTE } from "../../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, REMOVE_USER_NOTE } from "../../../../Api";
 
 export const DELETE = "DELETE_USER_NOTE";
 export const CLEAR = "DELETE_USER_NOTE_CLEAR";

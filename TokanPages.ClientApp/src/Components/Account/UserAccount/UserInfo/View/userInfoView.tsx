@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Button, CircularProgress, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
-import { GET_USER_IMAGE } from "../../../../../Api/Request";
+import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
 import { CustomDivider, UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";

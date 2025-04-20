@@ -7,7 +7,7 @@ import {
     UPDATE_ARTICLE_COUNT,
     UPDATE_ARTICLE_LIKES,
     UPDATE_ARTICLE_VISIBILITY,
-} from "../../../Api/Request";
+} from "../../../Api";
 
 import {
     UpdateArticleContentDto,

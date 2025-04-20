@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import { Grid, Popover, Tooltip, Typography } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import Emoji from "react-emoji-render";
-import { GET_FLAG_URL } from "../../../../Api/Request";
+import { GET_FLAG_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
 import { Animated, CustomDivider, RenderImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";

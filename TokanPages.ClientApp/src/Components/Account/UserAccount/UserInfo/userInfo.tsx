@@ -9,7 +9,7 @@ import {
     UserSigninAction,
     UserEmailVerificationAction,
 } from "../../../../Store/Actions";
-import { ExecuteAsync, ExecuteActionRequest, NOTIFICATION_STATUS } from "../../../../Api/Request";
+import { ExecuteAsync, ExecuteActionRequest, NOTIFICATION_STATUS } from "../../../../Api";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
 import { useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";

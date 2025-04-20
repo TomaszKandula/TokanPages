@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UploadUserMediaDto, UploadUserMediaResultDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, UPLOAD_USER_IMAGE } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPLOAD_USER_IMAGE } from "../../../Api";
 import Validate from "validate.js";
 
 export const UPLOAD = "UPLOAD_USER_MEDIA";

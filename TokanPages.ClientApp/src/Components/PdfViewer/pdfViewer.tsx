@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
-import { GET_DOCUMENTS_URL } from "../../Api/Request";
+import { GET_DOCUMENTS_URL } from "../../Api";
 import { RaiseError } from "../../Shared/Services/ErrorServices";
 import { ProgressBar } from "../../Shared/Components";
 import { PDF_JS_MIN_URL, PDF_WORKER_URL } from "../../Shared/constants";

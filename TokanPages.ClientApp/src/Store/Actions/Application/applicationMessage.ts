@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { SendMessageDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, SEND_MESSAGE } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, SEND_MESSAGE } from "../../../Api";
 
 export const SEND = "SEND_MESSAGE";
 export const CLEAR = "SEND_MESSAGE_CLEAR";

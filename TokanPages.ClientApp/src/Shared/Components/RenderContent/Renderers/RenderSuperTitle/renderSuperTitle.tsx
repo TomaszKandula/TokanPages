@@ -1,7 +1,7 @@
 import * as React from "react";
 import { TextItem } from "../../Models";
 import { Card, CardMedia, Typography } from "@material-ui/core";
-import { API_BASE_URI } from "../../../../../Api/Request";
+import { API_BASE_URI } from "../../../../../Api";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 

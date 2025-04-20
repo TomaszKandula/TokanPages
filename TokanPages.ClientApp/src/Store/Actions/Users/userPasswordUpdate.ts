@@ -4,7 +4,7 @@ import {
     DispatchExecuteAction,
     ExecuteRequest,
     UPDATE_USER_PASSWORD,
-} from "../../../Api/Request";
+} from "../../../Api";
 
 export const UPDATE = "UPDATE_USER_PASSWORD";
 export const CLEAR = "UPDATE_USER_PASSWORD_CLEAR";

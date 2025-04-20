@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UpdateUserNoteDto, UpdateUserNoteResultDto } from "../../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER_NOTE } from "../../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER_NOTE } from "../../../../Api";
 
 export const UPDATE = "UPDATE_USER_NOTE";
 export const CLEAR = "UPDATE_USER_NOTE_CLEAR";

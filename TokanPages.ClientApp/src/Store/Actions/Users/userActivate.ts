@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ActivateUserDto, ActivateUserResultDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ACTIVATE_USER, ExecuteRequest } from "../../../Api/Request";
+import { DispatchExecuteAction, ACTIVATE_USER, ExecuteRequest } from "../../../Api";
 
 export const ACTIVATE = "ACTIVATE_ACCOUNT";
 export const CLEAR = "ACTIVATE_ACCOUNT_CLEAR";

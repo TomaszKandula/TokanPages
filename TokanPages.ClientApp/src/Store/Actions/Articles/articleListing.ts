@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
-import { DispatchExecuteAction, ExecuteRequest, GET_ARTICLES } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, GET_ARTICLES } from "../../../Api";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";

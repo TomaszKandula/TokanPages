@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
-import { API_BASE_URI } from "../../../../../Api/Request";
+import { API_BASE_URI } from "../../../../../Api";
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
 

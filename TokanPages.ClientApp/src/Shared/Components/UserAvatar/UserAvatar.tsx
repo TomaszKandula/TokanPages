@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GET_USER_IMAGE } from "../../../Api/Request";
+import { GET_USER_IMAGE } from "../../../Api";
 import { UserAvatarView } from "./View/userAvatarView";
 import Validate from "validate.js";
 

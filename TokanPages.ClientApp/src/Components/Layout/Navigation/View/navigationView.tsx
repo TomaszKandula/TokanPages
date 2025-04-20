@@ -9,7 +9,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import { FormControl, Grid, MenuItem, Select, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
-import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api/Request";
+import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";

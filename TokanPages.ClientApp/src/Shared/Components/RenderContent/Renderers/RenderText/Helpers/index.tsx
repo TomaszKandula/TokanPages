@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ArrowRight } from "@material-ui/icons";
-import { GET_NON_VIDEO_ASSET } from "../../../../../../Api/Request/Paths";
+import { GET_NON_VIDEO_ASSET } from "../../../../../../Api/Paths";
 import { ArticleInfoAction } from "../../../../../../Store/Actions";
 import { ApplicationState } from "../../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../../Models";

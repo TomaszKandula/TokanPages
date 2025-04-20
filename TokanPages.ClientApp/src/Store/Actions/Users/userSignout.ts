@@ -5,7 +5,7 @@ import {
     DispatchExecuteAction,
     REVOKE_REFRESH_TOKEN as REVOKE_REFRESH_TOKEN_URL,
     ExecuteRequest,
-} from "../../../Api/Request";
+} from "../../../Api";
 
 export const REVOKE_USER_TOKEN_CLEAR = "REVOKE_USER_TOKEN_CLEAR";
 export const REVOKE_REFRESH_TOKEN_CLEAR = "REVOKE_REFRESH_TOKEN_CLEAR";

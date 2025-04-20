@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import LanguageIcon from "@material-ui/icons/Language";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import { GET_FLAG_URL } from "../../../../Api/Request";
+import { GET_FLAG_URL } from "../../../../Api";
 import { Animated, RenderImage } from "../../../../Shared/Components";
 import Validate from "validate.js";
 

@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { AuthenticateUserDto } from "../../../Api/Models";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
-import { AUTHENTICATE as AUTHENTICATE_USER, DispatchExecuteAction, ExecuteRequest } from "../../../Api/Request";
+import { AUTHENTICATE as AUTHENTICATE_USER, DispatchExecuteAction, ExecuteRequest } from "../../../Api";
 
 export const SIGNIN = "SIGNIN_USER";
 export const CLEAR = "SIGNIN_USER_CLEAR";

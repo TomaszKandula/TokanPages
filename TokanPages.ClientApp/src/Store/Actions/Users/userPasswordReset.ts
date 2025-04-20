@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ResetUserPasswordDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, RESET_USER_PASSWORD } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, RESET_USER_PASSWORD } from "../../../Api";
 
 export const RESET = "RESET_USER_PASSWORD";
 export const CLEAR = "RESET_USER_PASSWORD_CLEAR";

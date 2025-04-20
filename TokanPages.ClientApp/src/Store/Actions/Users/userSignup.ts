@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ADD_USER, ExecuteRequest } from "../../../Api/Request";
+import { DispatchExecuteAction, ADD_USER, ExecuteRequest } from "../../../Api";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddNewsletterDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ADD_NEWSLETTER, ExecuteRequest } from "../../../Api/Request";
+import { DispatchExecuteAction, ADD_NEWSLETTER, ExecuteRequest } from "../../../Api";
 
 export const ADD = "ADD_SUBSCRIBER";
 export const CLEAR = "ADD_SUBSCRIBER_CLEAR";

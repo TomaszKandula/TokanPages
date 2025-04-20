@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_USER_IMAGE } from "../../../Api/Request";
+import { GET_USER_IMAGE } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { LanguageChangeEvent } from "../../../Shared/types";
 import { NavigationView } from "./View/navigationView";

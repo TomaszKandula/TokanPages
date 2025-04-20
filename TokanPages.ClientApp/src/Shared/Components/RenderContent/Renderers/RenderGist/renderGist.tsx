@@ -6,7 +6,7 @@ import { TextItem } from "../../Models/TextModel";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { RaiseError } from "../../../../../Shared/Services/ErrorServices";
 import { ApplicationState } from "../../../../../Store/Configuration";
-import { API_BASE_URI, ExecuteAsync } from "../../../../../Api/Request";
+import { API_BASE_URI, ExecuteAsync } from "../../../../../Api";
 import validate from "validate.js";
 
 export const RenderGist = (props: TextItem): React.ReactElement => {

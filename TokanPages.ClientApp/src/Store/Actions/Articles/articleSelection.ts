@@ -6,7 +6,7 @@ import {
     ExecuteRequest,
     GET_ARTICLE,
     GET_ARTICLE_BY_TITLE,
-} from "../../../Api/Request";
+} from "../../../Api";
 
 export const RESET = "RESET_SELECTION";
 export const REQUEST = "REQUEST_ARTICLE";

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RemoveUserDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, REMOVE_USER } from "../../../Api/Request";
+import { DispatchExecuteAction, ExecuteRequest, REMOVE_USER } from "../../../Api";
 
 export const REMOVE = "REMOVE_ACCOUNT";
 export const CLEAR = "REMOVE_ACCOUNT_CLEAR";

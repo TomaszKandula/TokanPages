@@ -1,8 +1,8 @@
-import { ApplicationState } from "../../../Store/Configuration";
-import { USER_DATA } from "../../../Shared/constants";
-import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
-import { RaiseError } from "../../../Shared/Services/ErrorServices";
-import { AuthenticateUserResultDto } from "../../Models";
+import { ApplicationState } from "../../Store/Configuration";
+import { USER_DATA } from "../../Shared/constants";
+import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
+import { RaiseError } from "../../Shared/Services/ErrorServices";
+import { AuthenticateUserResultDto } from "../Models";
 import Validate from "validate.js";
 import base64 from "base-64";
 import utf8 from "utf8";
