@@ -1,3 +1,63 @@
+# [0.151.0](https://github.com/TomaszKandula/TokanPages/compare/v0.150.0...v0.151.0) (2025-04-20)
+
+
+### Bug Fixes
+
+* add missing title ([11eceac](https://github.com/TomaszKandula/TokanPages/commit/11eceacea55d104bcd107e80f0b4889f9b51bf73))
+* correct tags ([9ef27fb](https://github.com/TomaszKandula/TokanPages/commit/9ef27fbd34fdebc2e60201d5321c3050f2fc7082))
+* handle undefined, use fallback ([7979770](https://github.com/TomaszKandula/TokanPages/commit/79797702f133fcc2b91911b31a8ec685ec95bdc1))
+* resolve fallback issue ([75d3c8c](https://github.com/TomaszKandula/TokanPages/commit/75d3c8ced31c63199d8a8c9c1ca8a16ee79cf580))
+
+
+### Features
+
+* add default view for missing document name ([83bc076](https://github.com/TomaszKandula/TokanPages/commit/83bc076390bcccd46c4098855c9b69072649cff1))
+* add fallback content ([fd23dab](https://github.com/TomaszKandula/TokanPages/commit/fd23dabaadf5fd90da7f93cce8cd56d80b9f15ac))
+* add favicons for different sizes ([6cfb192](https://github.com/TomaszKandula/TokanPages/commit/6cfb192670c83d2ca765bfd5521c5bae6fccb07c))
+* add last mod, reformat ([a5413a0](https://github.com/TomaszKandula/TokanPages/commit/a5413a00a0cd84332bd3d1856a922ed48f087c84))
+* add lastmod to sitemap.xml ([a73a3ff](https://github.com/TomaszKandula/TokanPages/commit/a73a3ffc94be9e93db5b7310a499b57cc16dc35e))
+* add multiline and icon ([5571c7a](https://github.com/TomaszKandula/TokanPages/commit/5571c7a87f64bfc8d8974f29b2408dd24d6a1471))
+* add new hook for page content ([173e65f](https://github.com/TomaszKandula/TokanPages/commit/173e65f55778353b6535246e61f968e429a6ee8f))
+* add optional button ([b768457](https://github.com/TomaszKandula/TokanPages/commit/b768457126455438fb71bab4674a7a6effc98a20))
+* add reusable custom card component ([abbacb3](https://github.com/TomaszKandula/TokanPages/commit/abbacb3997603bf7e1da1371c3da7b73163bed7c))
+* add unhead package, configure window ([750ad21](https://github.com/TomaszKandula/TokanPages/commit/750ad2172300241342f8b55107dba75c762bdb2f))
+* align robots and sitemap ([37fc73d](https://github.com/TomaszKandula/TokanPages/commit/37fc73d8ea825b86745beaadaa6a70beaa5aec30))
+* change allowed HTTP methods ([374761e](https://github.com/TomaszKandula/TokanPages/commit/374761e4210922351cc65cce5637a10587719fe9))
+* change logger implementation w/tests ([b5ee265](https://github.com/TomaszKandula/TokanPages/commit/b5ee2659f3c499acd6b7d53e2206b8c11f5e461f))
+* change route configuration ([f686627](https://github.com/TomaszKandula/TokanPages/commit/f686627849abfcc229855f758e1c9aba8086fc57))
+* create helper hook for unhead ([756b268](https://github.com/TomaszKandula/TokanPages/commit/756b26874315fa73e43721195a27e1a36a2939fd))
+* expose signin/signup pages, allow pre-render ([a5b28ee](https://github.com/TomaszKandula/TokanPages/commit/a5b28eed99616c7585d8fcce064d9d1f00de5999))
+* extend custom card ([a654b87](https://github.com/TomaszKandula/TokanPages/commit/a654b87410cb34d8cba8aef5a0ab1cf97473e43f))
+* extend hook ([ab9a9a2](https://github.com/TomaszKandula/TokanPages/commit/ab9a9a26c988d5945d2d865da121e495d948b652))
+* extend manifest, add page titles and meta data for SEO ([7e5c6a5](https://github.com/TomaszKandula/TokanPages/commit/7e5c6a5dcbf09eba7219c44303bf48b0c095a8f0))
+* get component content for settings ([be6c119](https://github.com/TomaszKandula/TokanPages/commit/be6c119d9f64b07ea5f9bb360fb5a7723d6000f2))
+* handle redirection to default path ([8de4044](https://github.com/TomaszKandula/TokanPages/commit/8de404497de2c8ca3dbf23219c57de0aad62e82c))
+* improve ([a29064c](https://github.com/TomaszKandula/TokanPages/commit/a29064c18d08ac011a7e7af981e1c206a96005d1))
+* improve newsletter removal component ([fc4ad81](https://github.com/TomaszKandula/TokanPages/commit/fc4ad818b02a7fd8a16b382b9d6018e631d8b22a))
+* pre-render document page ([b3d1fcd](https://github.com/TomaszKandula/TokanPages/commit/b3d1fcd1d45715984c8e956262db9c5ab3bcafa2))
+* refer to https ([b710b8f](https://github.com/TomaszKandula/TokanPages/commit/b710b8fc05553afb467f383965efd6a171159e40))
+* register unhead ([b4496d0](https://github.com/TomaszKandula/TokanPages/commit/b4496d0ebf38185043e4697161fddbe9eeb3fc1a))
+* relocate code for snapshot to separate hook ([f3f206d](https://github.com/TomaszKandula/TokanPages/commit/f3f206d7d483a2c77c96ac16d6c62913643e4f1a))
+* remove axios ([3668e62](https://github.com/TomaszKandula/TokanPages/commit/3668e6291c6ada5323b15e1450c5fa1dde318ee3))
+* remove ending slash and/or whitespace ([6728c40](https://github.com/TomaszKandula/TokanPages/commit/6728c40eeae2ca53218ea1c3077c6aa79b2dff4b))
+* remove unsed code ([9544cec](https://github.com/TomaszKandula/TokanPages/commit/9544cec2f76e924434b79bbdfbd8897bedb4206a))
+* replace axios with fetch ([e0a9fee](https://github.com/TomaszKandula/TokanPages/commit/e0a9fee70b5c85dccfc0174308b724e3273a8556))
+* save currently rendered page in a redux store ([8dc2d9b](https://github.com/TomaszKandula/TokanPages/commit/8dc2d9b86f2e40002495cacea0c6462910ac3012))
+* set json response flag ([8431382](https://github.com/TomaszKandula/TokanPages/commit/843138268ab8d6b1eebba4a42e55502d2bba367e))
+* setup individual page title ([9614c69](https://github.com/TomaszKandula/TokanPages/commit/9614c697becfb99563bf1ad4a2e05cb0d5aee629))
+* upgrade account activation ([a7faa77](https://github.com/TomaszKandula/TokanPages/commit/a7faa7731a85c693ef49c17e270a44f4e5f4b71c))
+* upgrade http service implementation ([6221f32](https://github.com/TomaszKandula/TokanPages/commit/6221f320478f716e201fd4dfe3b07f18ef29fb9f))
+* upgrade log error ([de4d9b6](https://github.com/TomaszKandula/TokanPages/commit/de4d9b610b85822f914f59a78940f90f3aa884ef))
+* upgrade pdf mounting, add prompts ([ae964b2](https://github.com/TomaszKandula/TokanPages/commit/ae964b29b0ba677b8e65510f1254cdcf442826ce))
+* upgrade pdf viewer ([3a0ba99](https://github.com/TomaszKandula/TokanPages/commit/3a0ba9955740958d8e85cef2290f901847294f46))
+* upgrade pdf viewer ([2133bb8](https://github.com/TomaszKandula/TokanPages/commit/2133bb852de52144cdca6c452b74f98138f2cf48))
+* use custom card component, simplify ([b54247b](https://github.com/TomaszKandula/TokanPages/commit/b54247be6daf0503a8b8503fa3c1e0b446ea3ba2))
+* use hook, simplify code ([cf83d81](https://github.com/TomaszKandula/TokanPages/commit/cf83d81c6b1e21a9d5e4cca36a4c0a7f5c2cf4b7))
+* use page ID ([2fb7d0d](https://github.com/TomaszKandula/TokanPages/commit/2fb7d0d9088139d7769ac1e7701e946fce146da8))
+* use unhead lib to manage links w/languages ([9b6818e](https://github.com/TomaszKandula/TokanPages/commit/9b6818e4a488be2cc4e2477210a0dc53eb91dd71))
+* use Unhead to update html/head sections ([752c9bd](https://github.com/TomaszKandula/TokanPages/commit/752c9bd2d7820affcbbf1f75435d7fab149a9398))
+* use unhead/react ([0e6b1ef](https://github.com/TomaszKandula/TokanPages/commit/0e6b1efc1be437761376c9cb138610e37a6fc612))
+
 # [0.150.0](https://github.com/TomaszKandula/TokanPages/compare/v0.149.1...v0.150.0) (2025-03-23)
 
 
