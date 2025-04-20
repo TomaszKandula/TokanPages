@@ -1,3 +1,10 @@
+# [0.152.0](https://github.com/TomaszKandula/TokanPages/compare/v0.151.0...v0.152.0) (2025-04-20)
+
+
+### Features
+
+* improve nginx language handling ([fd9064d](https://github.com/TomaszKandula/TokanPages/commit/fd9064d32fa606a7581c1f9a1574324bc423e8ee))
+
 # [0.151.0](https://github.com/TomaszKandula/TokanPages/compare/v0.150.0...v0.151.0) (2025-04-20)
 
 
