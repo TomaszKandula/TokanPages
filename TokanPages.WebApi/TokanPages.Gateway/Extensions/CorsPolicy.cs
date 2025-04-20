@@ -23,7 +23,7 @@ public static class CorsPolicy
 
     private static readonly string[] Methods = 
     {
-        "GET", "POST", "PUT", "DELETE"
+        "HEAD", "OPTIONS", "TRACE", "GET", "PUT", "POST", "DELETE"
     };
 
     /// <summary>

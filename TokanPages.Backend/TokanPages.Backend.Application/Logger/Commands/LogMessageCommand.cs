@@ -1,4 +1,5 @@
 using MediatR;
+using TokanPages.Backend.Application.Logger.Commands.Models;
 
 namespace TokanPages.Backend.Application.Logger.Commands;
 
@@ -16,9 +17,7 @@ public class LogMessageCommand : IRequest<Unit>
 
     public string PageUrl { get; set; } = "";
 
-    public string BrowserName { get; set; } = "";
-
-    public string BrowserVersion { get; set; } = "";
-
     public string UserAgent { get; set; } = "";
+
+    public Parsed Parsed { get; set; } = new();
 }

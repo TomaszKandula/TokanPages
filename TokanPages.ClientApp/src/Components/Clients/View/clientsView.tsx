@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { Container, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../../Store/Configuration";
-import { GET_ICONS_URL } from "../../../Api/Request";
+import { GET_ICONS_URL } from "../../../Api";
 import { ClientImageDto, ClientsContentDto } from "../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";

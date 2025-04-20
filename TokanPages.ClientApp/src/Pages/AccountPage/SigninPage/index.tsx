@@ -1,31 +1,12 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../../Store/Configuration";
-import { ContentPageDataAction } from "../../../Store/Actions";
 import { UserSignin } from "../../../Components/Account";
 import { Navigation } from "../../../Components/Layout";
-import { TryPostStateSnapshot } from "../../../Shared/Services/SpaCaching";
+import { usePageContent, useSnapshot, useUnhead } from "../../../Shared/Hooks";
 
 export const SigninPage = (): React.ReactElement => {
-    const dispatch = useDispatch();
-    const state = useSelector((state: ApplicationState) => state);
-    const language = state.applicationLanguage;
-    const accountUserSignin = state?.contentPageData?.components?.accountUserSignin;
-
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountUserSignin"],
-                "SigninPage"
-            )
-        );
-    }, [language?.id]);
-
-    React.useEffect(() => {
-        if (accountUserSignin?.language !== "") {
-            TryPostStateSnapshot(state);
-        }
-    }, [state]);
+    useUnhead("SigninPage");
+    useSnapshot();
+    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "accountUserSignin"], "SigninPage");
 
     return (
         <>

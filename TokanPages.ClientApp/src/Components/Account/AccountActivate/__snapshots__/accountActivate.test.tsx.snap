@@ -9,7 +9,7 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
         >
           <div
             class="pt-0 pb-15"
@@ -21,34 +21,39 @@ Object {
                 class="MuiCardContent-root card-content"
               >
                 <div
-                  class="text-centre mb-25"
+                  class="custom-card-background mt-25 mb-25"
                 >
                   <div
-                    class="mt-15 mb-15"
+                    class="custom-card-icon-holder vertical-centre"
                   >
-                    <div
-                      class="MuiTypography-root aa-caption MuiTypography-body1"
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
+                      focusable="false"
+                      viewBox="0 0 24 24"
                     >
-                      Account Activation
-                    </div>
-                  </div>
-                  <div
-                    class="mt-40 mb-15"
-                  >
-                    <span
-                      class="MuiTypography-root aa-text1 MuiTypography-body1"
-                    >
-                      Processing your account..., please wait.
-                    </span>
-                  </div>
-                  <div
-                    class="mt-15 mb-40"
-                  >
-                    <span
-                      class="MuiTypography-root aa-text2 MuiTypography-body1"
-                    />
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
                   </div>
                 </div>
+                <h2
+                  class="custom-card-caption text-centre"
+                />
+                <div
+                  class="mt-48"
+                >
+                  <div
+                    class="custom-card-text text-centre"
+                  />
+                  <div
+                    class="custom-card-text text-centre"
+                  />
+                </div>
+                <div
+                  class="mb-48"
+                />
               </div>
             </div>
           </div>
@@ -61,7 +66,7 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
       >
         <div
           class="pt-0 pb-15"
@@ -73,34 +78,39 @@ Object {
               class="MuiCardContent-root card-content"
             >
               <div
-                class="text-centre mb-25"
+                class="custom-card-background mt-25 mb-25"
               >
                 <div
-                  class="mt-15 mb-15"
+                  class="custom-card-icon-holder vertical-centre"
                 >
-                  <div
-                    class="MuiTypography-root aa-caption MuiTypography-body1"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
+                    focusable="false"
+                    viewBox="0 0 24 24"
                   >
-                    Account Activation
-                  </div>
-                </div>
-                <div
-                  class="mt-40 mb-15"
-                >
-                  <span
-                    class="MuiTypography-root aa-text1 MuiTypography-body1"
-                  >
-                    Processing your account..., please wait.
-                  </span>
-                </div>
-                <div
-                  class="mt-15 mb-40"
-                >
-                  <span
-                    class="MuiTypography-root aa-text2 MuiTypography-body1"
-                  />
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                    />
+                  </svg>
                 </div>
               </div>
+              <h2
+                class="custom-card-caption text-centre"
+              />
+              <div
+                class="mt-48"
+              >
+                <div
+                  class="custom-card-text text-centre"
+                />
+                <div
+                  class="custom-card-text text-centre"
+                />
+              </div>
+              <div
+                class="mb-48"
+              />
             </div>
           </div>
         </div>

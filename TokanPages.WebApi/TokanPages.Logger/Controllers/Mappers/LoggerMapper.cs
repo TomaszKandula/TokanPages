@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Application.Logger.Commands;
+using TokanPages.Backend.Application.Logger.Commands.Models;
 using TokanPages.Logger.Dto;
 
 namespace TokanPages.Logger.Controllers.Mappers;
@@ -23,8 +24,36 @@ public static class LoggerMapper
         Message = model.Message,
         StackTrace = model.StackTrace,
         PageUrl = model.PageUrl,
-        BrowserName = model.BrowserName,
-        BrowserVersion = model.BrowserVersion,
-        UserAgent = model.UserAgent
+        UserAgent = model.UserAgent,
+        Parsed = new Parsed
+        {
+            Browser = new Browser
+            {
+                Name = model.Parsed.Browser.Name,
+                Version = model.Parsed.Browser.Version,
+                Type = model.Parsed.Browser.Type,
+                Major = model.Parsed.Browser.Major
+            },
+            Cpu = new Cpu
+            {
+                Architecture = model.Parsed.Cpu.Architecture
+            },
+            Device = new Device
+            {
+                Model = model.Parsed.Device.Model,
+                Type = model.Parsed.Device.Type,
+                Vendor = model.Parsed.Device.Vendor
+            },
+            Engine = new Engine
+            {
+                Name = model.Parsed.Engine.Name,
+                Version = model.Parsed.Engine.Version
+            },
+            Os = new Os
+            {
+                Name = model.Parsed.Os.Name,
+                Version = model.Parsed.Os.Version
+            }
+        }
     };
 }

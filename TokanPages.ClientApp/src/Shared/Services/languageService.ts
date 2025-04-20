@@ -46,14 +46,6 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     return undefined;
 };
 
-export const EnsureDefaultLanguageRoot = (preloadedLanguageId: string) => {
-    const pathname = window.location.pathname;
-    if (pathname === "/") {
-        const urlWithLanguageId = `${window.location.href}${preloadedLanguageId}`;
-        window.history.pushState({}, "", urlWithLanguageId);
-    }
-};
-
 export const GetErrorBoundaryContent = (languageId: string, errorBoundary: ErrorContentDto[]): ErrorContentDto => {
     const filtering = (value: ErrorContentDto): boolean => {
         return value.language === languageId;
@@ -63,8 +55,10 @@ export const GetErrorBoundaryContent = (languageId: string, errorBoundary: Error
     return result;
 };
 
-export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
+export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
     const languages = manifest.languages;
+    const pages = manifest.pages;
+    const meta = manifest.meta;
     const boundary = manifest.errorBoundary;
     const defaultId = GetDefaultId(languages);
     const pathname = window.location.pathname;
@@ -76,6 +70,8 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
                 ApplicationLanguageAction.set({
                     id: paths[1],
                     languages: languages,
+                    pages: pages,
+                    meta: meta,
                     errorBoundary: boundary,
                 })
             );
@@ -84,6 +80,8 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
                 ApplicationLanguageAction.set({
                     id: paths[0],
                     languages: languages,
+                    pages: pages,
+                    meta: meta,
                     errorBoundary: boundary,
                 })
             );
@@ -92,9 +90,13 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
                 ApplicationLanguageAction.set({
                     id: defaultId,
                     languages: languages,
+                    pages: pages,
+                    meta: meta,
                     errorBoundary: boundary,
                 })
             );
+            const urlWithDefaultLanguageId = `${window.location.origin}/${defaultId}`;
+            window.history.pushState({}, "", urlWithDefaultLanguageId);
         }
     } else if (defaultId) {
         const urlWithDefaultLanguageId = `${window.location.href}${defaultId}`;
@@ -103,14 +105,10 @@ export const UpdateUserLanguage = (manifest: GetContentManifestDto, dispatch: Di
             ApplicationLanguageAction.set({
                 id: defaultId,
                 languages: languages,
+                pages: pages,
+                meta: meta,
                 errorBoundary: boundary,
             })
         );
     }
-};
-
-export const UpdateHtmlLang = (languageId?: string): void => {
-    if (!languageId) return;
-    const html = document.querySelector("html");
-    html?.setAttribute("lang", languageId);
 };

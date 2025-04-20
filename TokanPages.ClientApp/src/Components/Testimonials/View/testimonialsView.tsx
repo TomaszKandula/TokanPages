@@ -6,7 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { GET_TESTIMONIALS_URL } from "../../../Api/Request";
+import { GET_TESTIMONIALS_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { Animated } from "../../../Shared/Components";
 import { Collapsible } from "../../../Shared/Components";

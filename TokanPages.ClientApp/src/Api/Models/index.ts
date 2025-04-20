@@ -1,6 +1,9 @@
 /*  JWT  */
 export type { JWT } from "./Jwt";
 
+/* LOGGER */
+export type { LogMessageDto } from "./Logger/logMessageDto";
+
 /* ERROR */
 export type { ErrorDto } from "./Error/errorDto";
 export type { ValidationErrorsDto } from "./Error/validationErrorsDto";
@@ -66,6 +69,9 @@ export type { UpdateUserNoteResultDto } from "./Users/updateUserNoteResultDto";
 export type { GetContentManifestDto } from "./Content/getContentManifestDto";
 export type { LanguageItemDto } from "./Content/Items/languageItemDto";
 export type { ErrorContentDto } from "./Content/Items/errorContentDto";
+export type { MetaModelDto } from "./Content/Items/metaModelDto";
+export type { PagesModelDto } from "./Content/Items/pagesModelDto";
+export type { PageModelDto } from "./Content/Items/pageModelDto";
 export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
 export type { RequestPageDataDto } from "./Content/requestPageDataDto";
 export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";
@@ -97,6 +103,7 @@ export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveCo
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
 export type { TestimonialsContentDto } from "./Components/testimonialsContentDto";
 export type { SocialsContentDto } from "./Components/socialsContentDto";
+export type { PdfViewerContentDto } from "./Components/pdfViewerContentDto";
 export type {
     AccountSettingsContentDto,
     SectionAccessDenied,

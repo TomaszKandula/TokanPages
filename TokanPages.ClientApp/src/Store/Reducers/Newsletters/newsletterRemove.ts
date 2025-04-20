@@ -3,7 +3,7 @@ import { ApplicationDefault } from "../../Configuration";
 import { NewsletterRemoveState } from "../../States";
 import { OperationStatus } from "../../../Shared/enums";
 
-import { TKnownActions, REMOVE, RESPONSE } from "../../Actions/Newsletters/newsletterRemove";
+import { TKnownActions, REMOVE, RESPONSE, CLEAR } from "../../Actions/Newsletters/newsletterRemove";
 
 export const NewsletterRemove: Reducer<NewsletterRemoveState> = (
     state: NewsletterRemoveState | undefined,
@@ -13,6 +13,12 @@ export const NewsletterRemove: Reducer<NewsletterRemoveState> = (
 
     const action = incomingAction as TKnownActions;
     switch (action.type) {
+        case CLEAR:
+            return {
+                status: OperationStatus.notStarted,
+                response: {},
+            };
+
         case REMOVE:
             return {
                 status: OperationStatus.inProgress,

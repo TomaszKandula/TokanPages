@@ -19,8 +19,14 @@ interface SuccessData extends BaseData {
     businessLock: BaseText;
 }
 
+interface Fallback {
+    caption: string;
+    text: string[];
+}
+
 export interface AccountActivateContentDto {
     language: string;
+    fallback: Fallback;
     onVerifying: TextData;
     onProcessing: TextData;
     onSuccess: SuccessData;

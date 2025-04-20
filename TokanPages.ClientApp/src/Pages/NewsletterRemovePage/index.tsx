@@ -1,8 +1,6 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { ApplicationState } from "../../Store/Configuration";
-import { ContentPageDataAction } from "../../Store/Actions";
+import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { NewsletterRemove } from "../../Components/NewsletterRemove";
 import { Navigation } from "../../Components/Layout";
 
@@ -11,19 +9,14 @@ const useQuery = () => {
 };
 
 export const NewsletterRemovePage = (): React.ReactElement => {
-    const queryParam = useQuery();
-    const dispatch = useDispatch();
-    const id = queryParam.get("id") as string;
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    useUnhead("NewsletterRemovePage");
+    usePageContent(
+        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterRemove"],
+        "NewsletterRemovePage"
+    );
 
-    React.useEffect(() => {
-        dispatch(
-            ContentPageDataAction.request(
-                ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterRemove"],
-                "NewsletterRemovePage"
-            )
-        );
-    }, [language?.id]);
+    const queryParam = useQuery();
+    const id = queryParam.get("id");
 
     return (
         <>

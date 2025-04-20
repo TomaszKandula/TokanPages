@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, GET_ARTICLES } from "../../../Api/Request";
+import { ExecuteStoreAction, ExecuteStoreActionProps, GET_ARTICLES } from "../../../Api";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
@@ -17,21 +17,17 @@ export const ArticleListingAction = {
     get: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         dispatch({ type: REQUEST });
 
-        const request: RequestContract = {
-            configuration: {
-                method: "GET",
-                url: GET_ARTICLES,
-                responseType: "json",
-            },
-        };
-
-        const input: ExecuteContract = {
-            configuration: GetConfiguration(request),
+        const input: ExecuteStoreActionProps = {
+            url: GET_ARTICLES,
             dispatch: dispatch,
             state: getState,
             responseType: RECEIVE,
+            configuration: {
+                method: "GET",
+                hasJsonResponse: true,
+            },
         };
 
-        Execute(input);
+        ExecuteStoreAction(input);
     },
 };

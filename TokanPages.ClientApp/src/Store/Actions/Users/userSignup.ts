@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, ADD_USER } from "../../../Api/Request";
+import { ExecuteStoreAction, ADD_USER, ExecuteStoreActionProps } from "../../../Api";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
@@ -26,21 +26,18 @@ export const UserSignupAction = {
         (dispatch, getState) => {
             dispatch({ type: SIGNUP });
 
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: ADD_USER,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteStoreActionProps = {
+                url: ADD_USER,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            ExecuteStoreAction(input);
         },
 };

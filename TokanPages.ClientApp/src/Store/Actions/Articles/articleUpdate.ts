@@ -1,15 +1,13 @@
 import { ApplicationAction, ApplicationState } from "../../Configuration";
 
 import {
-    Execute,
-    ExecuteContract,
-    GetConfiguration,
-    RequestContract,
+    ExecuteStoreAction,
+    ExecuteStoreActionProps,
     UPDATE_ARTICLE_CONTENT,
     UPDATE_ARTICLE_COUNT,
     UPDATE_ARTICLE_LIKES,
     UPDATE_ARTICLE_VISIBILITY,
-} from "../../../Api/Request";
+} from "../../../Api";
 
 import {
     UpdateArticleContentDto,
@@ -41,22 +39,19 @@ const DispatchCall = async (
 ) => {
     dispatch({ type: UPDATE });
 
-    const request: RequestContract = {
-        configuration: {
-            method: "POST",
-            url: url,
-            data: data,
-        },
-    };
-
-    const input: ExecuteContract = {
-        configuration: GetConfiguration(request),
+    const input: ExecuteStoreActionProps = {
+        url: url,
         dispatch: dispatch,
         state: getState,
         responseType: RESPONSE,
+        configuration: {
+            method: "POST",
+            body: data,
+            hasJsonResponse: true,
+        },
     };
 
-    Execute(input);
+    ExecuteStoreAction(input);
 };
 
 export const ArticleUpdateAction = {

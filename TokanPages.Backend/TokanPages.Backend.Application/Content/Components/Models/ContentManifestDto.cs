@@ -34,6 +34,16 @@ public class ContentManifestDto
     public List<LanguageModel> Languages { get; set; } = new();
 
     /// <summary>
+    /// List of all website pages per language.
+    /// </summary>
+    public List<PagesModel> Pages { get; set; } = new();
+
+    /// <summary>
+    /// Meta tags configuration per language.
+    /// </summary>
+    public List<MetaModel> Meta { get; set; } = new();
+
+    /// <summary>
     /// Error boundary text content in different languages.
     /// </summary>
     public List<ErrorModel> ErrorBoundary { get; set; } = new();

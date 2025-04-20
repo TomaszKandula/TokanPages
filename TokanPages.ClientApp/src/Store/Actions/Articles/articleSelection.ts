@@ -1,14 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
-import {
-    Execute,
-    GetConfiguration,
-    ExecuteContract,
-    RequestContract,
-    GET_ARTICLE,
-    GET_ARTICLE_BY_TITLE,
-} from "../../../Api/Request";
+import { ExecuteStoreAction, ExecuteStoreActionProps, GET_ARTICLE, GET_ARTICLE_BY_TITLE } from "../../../Api";
 
 export const RESET = "RESET_SELECTION";
 export const REQUEST = "REQUEST_ARTICLE";
@@ -43,20 +36,17 @@ export const ArticleSelectionAction = {
                 url = GET_ARTICLE_BY_TITLE.replace("{title}", props.title?.toLowerCase()!);
             }
 
-            const request: RequestContract = {
-                configuration: {
-                    method: "GET",
-                    url: url,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteStoreActionProps = {
+                url: url,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RECEIVE,
+                configuration: {
+                    method: "GET",
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            ExecuteStoreAction(input);
         },
 };

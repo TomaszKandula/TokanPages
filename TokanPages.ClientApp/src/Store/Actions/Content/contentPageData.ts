@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { RequestPageDataResultDto } from "../../../Api/Models";
-import { GetVerifiedComponents, HasPageContentLoaded } from "../../../Shared/Services/Utilities";
-import { Execute, ExecuteContract, GetConfiguration, REQUEST_PAGE_DATA, RequestContract } from "../../../Api/Request";
+import { GetVerifiedComponents } from "../../../Shared/Services/Utilities";
+import { ExecuteStoreAction, ExecuteStoreActionProps, REQUEST_PAGE_DATA } from "../../../Api";
 
 export const CLEAR = "CLEAR_PAGE_DATA";
 export const REQUEST = "REQUEST_PAGE_DATA";
@@ -23,11 +23,13 @@ export const ContentPageDataAction = {
         dispatch({ type: CLEAR });
     },
     request:
-        (components: string[], pageName: string): ApplicationAction<TKnownActions> =>
+        (components: string[], pageId: string): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            if (HasPageContentLoaded(pageName)) return;
-
             const state = getState().contentPageData;
+            if (state.pageId === pageId) {
+                return;
+            }
+
             const languageId = getState().applicationLanguage.id;
             const verifiedComponents = GetVerifiedComponents({ components, state, languageId });
             if (!verifiedComponents) {
@@ -35,26 +37,22 @@ export const ContentPageDataAction = {
             }
 
             dispatch({ type: REQUEST });
-
-            const request: RequestContract = {
+            const input: ExecuteStoreActionProps = {
+                url: REQUEST_PAGE_DATA,
+                dispatch: dispatch,
+                state: getState,
+                responseType: RECEIVE,
                 configuration: {
                     method: "POST",
-                    url: REQUEST_PAGE_DATA,
-                    data: {
+                    hasJsonResponse: true,
+                    body: {
                         components: verifiedComponents,
                         language: languageId,
-                        pageName: pageName,
+                        pageName: pageId,
                     },
                 },
             };
 
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
-                dispatch: dispatch,
-                state: getState,
-                responseType: RECEIVE,
-            };
-
-            Execute(input);
+            ExecuteStoreAction(input);
         },
 };

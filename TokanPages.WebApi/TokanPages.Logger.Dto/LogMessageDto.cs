@@ -1,3 +1,5 @@
+using TokanPages.Logger.Dto.Models;
+
 namespace TokanPages.Logger.Dto;
 
 /// <summary>
@@ -36,17 +38,12 @@ public class LogMessageDto
     public string PageUrl { get; set; } = "";
 
     /// <summary>
-    /// Parsed browser name.
-    /// </summary>
-    public string BrowserName { get; set; } = "";
-
-    /// <summary>
-    /// Parsed browser version.
-    /// </summary>
-    public string BrowserVersion { get; set; } = "";
-
-    /// <summary>
     /// User agent string for the current browser.
     /// </summary>
     public string UserAgent { get; set; } = "";
+
+    /// <summary>
+    /// Client detailed information parsed from user agent string.
+    /// </summary>
+    public Parsed Parsed { get; set; } = new();
 }

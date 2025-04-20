@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ActivateUserDto, ActivateUserResultDto } from "../../../Api/Models";
-import { Execute, GetConfiguration, ExecuteContract, RequestContract, ACTIVATE_USER } from "../../../Api/Request";
+import { ExecuteStoreAction, ACTIVATE_USER, ExecuteStoreActionProps } from "../../../Api";
 
 export const ACTIVATE = "ACTIVATE_ACCOUNT";
 export const CLEAR = "ACTIVATE_ACCOUNT_CLEAR";
@@ -25,22 +25,18 @@ export const UserActivateAction = {
         (payload: ActivateUserDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: ACTIVATE });
-
-            const request: RequestContract = {
-                configuration: {
-                    method: "POST",
-                    url: ACTIVATE_USER,
-                    data: payload,
-                },
-            };
-
-            const input: ExecuteContract = {
-                configuration: GetConfiguration(request),
+            const input: ExecuteStoreActionProps = {
+                url: ACTIVATE_USER,
                 dispatch: dispatch,
                 state: getState,
                 responseType: RESPONSE,
+                configuration: {
+                    method: "POST",
+                    body: payload,
+                    hasJsonResponse: true,
+                },
             };
 
-            Execute(input);
+            ExecuteStoreAction(input);
         },
 };

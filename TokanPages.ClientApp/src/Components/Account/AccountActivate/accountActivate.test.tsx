@@ -24,6 +24,10 @@ describe("Test account group component: accountActivate", () => {
     const testId = "dba4043c-7428-4f72-ba13-fe782c7a88fa";
     const testContent: AccountActivateContentDto = {
         language: "eng",
+        fallback: {
+            caption: "Something went wrong",
+            text: ["Line 1", "Line 2"],
+        },
         onVerifying: {
             type: "Verifying",
             caption: "Email Verification",
@@ -73,8 +77,8 @@ describe("Test account group component: accountActivate", () => {
 
     it("should render correctly '<AccountActivate />' when content is loaded.", () => {
         const html = render(<AccountActivate id={testId} type="" />);
-        expect(useSelectorMock).toBeCalledTimes(9);
-        expect(useDispatchMock).toBeCalledTimes(3);
+        expect(useSelectorMock).toBeCalledTimes(3);
+        expect(useDispatchMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

@@ -4,8 +4,14 @@ import { ContentPageDataState } from "../../../Store/States";
 export const ContentPageData: ContentPageDataState = {
     status: OperationStatus.notStarted,
     isLoading: false,
+    pageId: undefined,
     languageId: undefined,
     components: {
+        pagePdfViewer: {
+            language: "",
+            caption: "",
+            text: "",
+        },
         sectionShowcase: {
             language: "",
             caption: "",
@@ -73,6 +79,10 @@ export const ContentPageData: ContentPageDataState = {
         },
         accountActivate: {
             language: "",
+            fallback: {
+                caption: "",
+                text: [""],
+            },
             onVerifying: {
                 text1: "",
                 text2: "",

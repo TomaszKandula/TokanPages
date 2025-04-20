@@ -27,6 +27,7 @@ public static class CorsPolicy
             policyBuilder
                 .WithOrigins(origins)
                 .WithHeaders(
+                    "X-SignalR-User-Agent",
                     "UserTimezoneOffset",
                     HeaderNames.Accept,
                     HeaderNames.ContentType,
@@ -37,7 +38,7 @@ public static class CorsPolicy
                     HeaderNames.AccessControlAllowMethods,
                     HeaderNames.AccessControlAllowCredentials,
                     HeaderNames.AccessControlMaxAge)
-                .WithMethods("GET", "POST")
+                .WithMethods("HEAD", "OPTIONS", "TRACE", "GET", "PUT", "POST", "DELETE")
                 .AllowCredentials()
                 .SetPreflightMaxAge(TimeSpan.FromSeconds(86400));
         });            

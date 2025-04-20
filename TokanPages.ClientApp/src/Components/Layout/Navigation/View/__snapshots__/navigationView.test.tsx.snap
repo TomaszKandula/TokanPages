@@ -27,6 +27,7 @@ Object {
                   class="navigation-app-left-logo lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+                  title="TomKandula logo"
                 />
               </a>
             </div>
@@ -63,6 +64,7 @@ Object {
                           class="navigation-flag-image lazyloaded"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                          title="Language flag"
                         />
                         <div>
                           EN
@@ -159,6 +161,7 @@ Object {
                     class="navigation-app-full-logo lazyloaded"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+                    title="TomKandula logo"
                   />
                 </a>
                 <a
@@ -193,6 +196,7 @@ Object {
                             class="navigation-flag-image lazyloaded"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                            title="Language flag"
                           />
                           <div>
                             EN
@@ -266,6 +270,7 @@ Object {
                 class="navigation-app-left-logo lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+                title="TomKandula logo"
               />
             </a>
           </div>
@@ -302,6 +307,7 @@ Object {
                         class="navigation-flag-image lazyloaded"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                        title="Language flag"
                       />
                       <div>
                         EN
@@ -398,6 +404,7 @@ Object {
                   class="navigation-app-full-logo lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+                  title="TomKandula logo"
                 />
               </a>
               <a
@@ -432,6 +439,7 @@ Object {
                           class="navigation-flag-image lazyloaded"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                          title="Language flag"
                         />
                         <div>
                           EN

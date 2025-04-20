@@ -9,8 +9,16 @@ describe("test component: pdfViewerView", () => {
         const html = render(
             <BrowserRouter>
                 <PdfViewerView
-                    isLoading={false}
-                    hasError={false}
+                    isDocLoading={false}
+                    hasNoFilePrompt={false}
+                    hasPdfError={false}
+                    hasPdfWorkerError={false}
+                    content={{
+                        isLoading: false,
+                        caption: "Document Viewer",
+                        warning: "No document has been loaded",
+                        error: "Something went wrong...",
+                    }}
                     currentPage={1}
                     numPages={1}
                     pdfDocument={{}}

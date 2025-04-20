@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Card, CardMedia, Container, Grid, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
-import { GET_SHOWCASE_IMAGE_URL } from "../../../Api/Request";
+import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";
