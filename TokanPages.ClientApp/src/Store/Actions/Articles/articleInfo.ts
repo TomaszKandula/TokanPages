@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItemBase } from "../../../Shared/Components/RenderContent/Models";
-import { DispatchExecuteAction, ExecuteRequest, GET_ARTICLE_INFO } from "../../../Api/Request";
+import { ExecuteStoreAction, ExecuteStoreActionProps, GET_ARTICLE_INFO } from "../../../Api";
 
 export const REQUEST = "REQUEST_ARTICLE_INFO";
 export const RECEIVE = "RECEIVE_ARTICLE_INFO";
@@ -19,7 +19,7 @@ export const ArticleInfoAction = {
         (dispatch, getState) => {
             dispatch({ type: REQUEST });
 
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: GET_ARTICLE_INFO.replace("{id}", id),
                 dispatch: dispatch,
                 state: getState,
@@ -30,6 +30,6 @@ export const ArticleInfoAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

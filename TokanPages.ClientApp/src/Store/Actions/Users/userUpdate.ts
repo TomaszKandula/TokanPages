@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserDto, UpdateUserResultDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER } from "../../../Api/Request";
+import { ExecuteStoreAction, ExecuteStoreActionProps, UPDATE_USER } from "../../../Api";
 
 export const UPDATE = "UPDATE_USER";
 export const CLEAR = "UPDATE_USER_CLEAR";
@@ -26,7 +26,7 @@ export const UserUpdateAction = {
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
 
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: UPDATE_USER,
                 dispatch: dispatch,
                 state: getState,
@@ -38,6 +38,6 @@ export const UserUpdateAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

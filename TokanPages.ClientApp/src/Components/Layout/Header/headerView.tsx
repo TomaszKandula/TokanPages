@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid/Grid";
-import { GET_IMAGES_URL } from "../../../Api/Request";
+import { GET_IMAGES_URL } from "../../../Api";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import Validate from "validate.js";

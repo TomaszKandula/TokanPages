@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
-import { GET_SOCIALS_URL } from "../../../Api/Request";
+import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, GetIcon } from "../../../Shared/Components";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";

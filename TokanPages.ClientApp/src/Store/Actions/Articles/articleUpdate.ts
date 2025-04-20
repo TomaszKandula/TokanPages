@@ -1,13 +1,13 @@
 import { ApplicationAction, ApplicationState } from "../../Configuration";
 
 import {
-    DispatchExecuteAction,
-    ExecuteRequest,
+    ExecuteStoreAction,
+    ExecuteStoreActionProps,
     UPDATE_ARTICLE_CONTENT,
     UPDATE_ARTICLE_COUNT,
     UPDATE_ARTICLE_LIKES,
     UPDATE_ARTICLE_VISIBILITY,
-} from "../../../Api/Request";
+} from "../../../Api";
 
 import {
     UpdateArticleContentDto,
@@ -39,7 +39,7 @@ const DispatchCall = async (
 ) => {
     dispatch({ type: UPDATE });
 
-    const input: ExecuteRequest = {
+    const input: ExecuteStoreActionProps = {
         url: url,
         dispatch: dispatch,
         state: getState,
@@ -51,7 +51,7 @@ const DispatchCall = async (
         },
     };
 
-    DispatchExecuteAction(input);
+    ExecuteStoreAction(input);
 };
 
 export const ArticleUpdateAction = {

@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ADD_USER, ExecuteRequest } from "../../../Api/Request";
+import { ExecuteStoreAction, ADD_USER, ExecuteStoreActionProps } from "../../../Api";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
@@ -26,7 +26,7 @@ export const UserSignupAction = {
         (dispatch, getState) => {
             dispatch({ type: SIGNUP });
 
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: ADD_USER,
                 dispatch: dispatch,
                 state: getState,
@@ -38,6 +38,6 @@ export const UserSignupAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

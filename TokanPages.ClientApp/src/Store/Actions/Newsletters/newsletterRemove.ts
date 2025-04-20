@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RemoveNewsletterDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, REMOVE_NEWSLETTER } from "../../../Api/Request";
+import { ExecuteStoreAction, ExecuteStoreActionProps, REMOVE_NEWSLETTER } from "../../../Api";
 
 export const CLEAR = "REMOVE_SUBSCRIBER_CLEAR";
 export const REMOVE = "REMOVE_SUBSCRIBER_REQUEST";
@@ -25,7 +25,7 @@ export const NewsletterRemoveAction = {
         (payload: RemoveNewsletterDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REMOVE });
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: REMOVE_NEWSLETTER,
                 dispatch: dispatch,
                 state: getState,
@@ -37,6 +37,6 @@ export const NewsletterRemoveAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

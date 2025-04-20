@@ -2,7 +2,7 @@ import * as React from "react";
 import { Drawer } from "@material-ui/core";
 import { RenderImage, RenderSideMenu } from "../../../../Shared/Components";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
-import { GET_ICONS_URL } from "../../../../Api/Request";
+import { GET_ICONS_URL } from "../../../../Api";
 
 interface Properties {
     drawerState: { open: boolean };

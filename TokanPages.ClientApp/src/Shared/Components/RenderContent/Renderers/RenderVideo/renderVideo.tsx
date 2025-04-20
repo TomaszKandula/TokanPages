@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { TextItem } from "../../Models/TextModel";
-import { API_BASE_URI } from "../../../../../Api/Request";
+import { API_BASE_URI } from "../../../../../Api";
 import Validate from "validate.js";
 
 const RenderDescription = (props: { text: string }): React.ReactElement => {

@@ -8,7 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { GET_FEATURED_IMAGE_URL } from "../../../Api/Request";
+import { GET_FEATURED_IMAGE_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated } from "../../../Shared/Components";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";

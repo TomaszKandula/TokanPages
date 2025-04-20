@@ -9,7 +9,7 @@ import {
     UserSigninAction,
     UserEmailVerificationAction,
 } from "../../../../Store/Actions";
-import { ExecuteAsync, ExecuteActionRequest, NOTIFICATION_STATUS } from "../../../../Api/Request";
+import { ExecuteApiAction, ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
 import { useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
@@ -257,16 +257,16 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             return;
         }
 
-        const request: ExecuteActionRequest = {
+        const request: ExecuteApiActionProps = {
             url: NOTIFICATION_STATUS,
             configuration: {
                 method: "POST",
                 hasJsonResponse: true,
-                body: { statusId: store.userId }
-            }
+                body: { statusId: store.userId },
+            },
         };
 
-        const response = await ExecuteAsync(request);
+        const response = await ExecuteApiAction(request);
         const notification = response.content as NotificationData;
 
         if (notification.handler === "user_activated") {
