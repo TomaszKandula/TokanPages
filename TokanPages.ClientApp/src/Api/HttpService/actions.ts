@@ -2,9 +2,9 @@ import { RaiseError } from "../../Shared/Services/ErrorServices";
 import { LOG_MESSAGE } from "../../Api/Paths";
 import { LogMessageDto } from "../Models";
 import { TSeverity } from "../../Shared/types";
+import { ExecuteApiActionProps, ExecuteStoreActionProps, ExecuteContentActionProps, GetProcessedHeaders, IsSuccessStatusCode, GetProcessedResponse, ExecuteApiActionResultProps, GetBaseHeaders, GetProcessedBody } from "./utils";
 import { UAParser } from "ua-parser-js";
 import Validate from "validate.js";
-import { ExecuteApiActionProps, ExecuteStoreActionProps, ExecuteContentActionProps, GetProcessedHeaders, IsSuccessStatusCode, GetProcessedResponse, ExecuteApiActionResultProps, GetBaseHeaders } from "./utils";
 
 export const ExecuteLogAction = async (message: object, stackTrace: object, eventType: string, severity: TSeverity): Promise<void> => {
     const ua = UAParser(window.navigator.userAgent);
@@ -91,21 +91,8 @@ export const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promis
     const content = components.templates.templates.application;
 
     try {
-        const optionalBody = props.configuration.body
-        ? JSON.stringify(props.configuration.body)
-        : null;
-
-        const optionalFormData = props.configuration.form
-        ? props.configuration.form
-        : null;
-
-        const body = optionalBody !== null 
-        ? optionalBody 
-        : optionalFormData !== null 
-        ? optionalFormData 
-        : null;
-
-        const hasFormData = optionalFormData !== null;
+        const body = GetProcessedBody(props);
+        const hasFormData = body instanceof FormData;
         const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
             method: props.configuration.method,
@@ -147,21 +134,8 @@ export const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<Ex
     let result: ExecuteApiActionResultProps = { status: null, content: null, error: null };
 
     try {
-        const optionalBody = props.configuration.body
-        ? JSON.stringify(props.configuration.body)
-        : null;
-
-        const optionalFormData = props.configuration.form
-        ? props.configuration.form
-        : null;
-
-        const body = optionalBody !== null 
-        ? optionalBody 
-        : optionalFormData !== null 
-        ? optionalFormData 
-        : null;
-
-        const hasFormData = optionalFormData !== null;
+        const body = GetProcessedBody(props);
+        const hasFormData = body instanceof FormData;
         const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
             method: props.configuration.method,
