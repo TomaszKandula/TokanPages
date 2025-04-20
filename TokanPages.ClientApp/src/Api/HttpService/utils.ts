@@ -68,7 +68,7 @@ export const GetBaseHeaders = (): HeadersProps[] => {
     const hasAuthorization = Validate.isObject(data) && !Validate.isEmpty(data.userToken);
 
     if (hasAuthorization) {
-        headers.push({ key: "Authorization", value: `Bearer ${data.userToken}`});
+        headers.push({ key: "Authorization", value: `Bearer ${data.userToken}` });
     }
 
     return headers;
@@ -96,7 +96,7 @@ export const GetProcessedHeaders = (hasFormData: boolean, configurationHeaders?:
     }
 
     return headers;
-}
+};
 
 export const GetProcessedResponse = async (response: Response, isJson?: boolean): Promise<object | string> => {
     if (isJson) {
@@ -104,20 +104,12 @@ export const GetProcessedResponse = async (response: Response, isJson?: boolean)
     } else {
         return await response.text();
     }
-}
+};
 
 export const GetProcessedBody = (props: ExecuteApiActionProps): string | FormData | null => {
-    const optionalBody = props.configuration.body
-    ? JSON.stringify(props.configuration.body)
-    : null;
+    const optionalBody = props.configuration.body ? JSON.stringify(props.configuration.body) : null;
 
-    const optionalFormData = props.configuration.form
-    ? props.configuration.form
-    : null;
+    const optionalFormData = props.configuration.form ? props.configuration.form : null;
 
-    return optionalBody !== null 
-    ? optionalBody 
-    : optionalFormData !== null 
-    ? optionalFormData 
-    : null;
-}
+    return optionalBody !== null ? optionalBody : optionalFormData !== null ? optionalFormData : null;
+};

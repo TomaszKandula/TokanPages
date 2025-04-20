@@ -1,13 +1,8 @@
-export { 
-    ExecuteApiAction,
-    ExecuteContentAction,
-    ExecuteLogAction,
-    ExecuteStoreAction
-} from "./actions";
+export { ExecuteApiAction, ExecuteContentAction, ExecuteLogAction, ExecuteStoreAction } from "./actions";
 
-export type { 
+export type {
     ExecuteApiActionProps,
     ExecuteApiActionResultProps,
     ExecuteContentActionProps,
-    ExecuteStoreActionProps
+    ExecuteStoreActionProps,
 } from "./utils";

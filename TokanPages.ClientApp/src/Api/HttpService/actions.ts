@@ -2,11 +2,26 @@ import { RaiseError } from "../../Shared/Services/ErrorServices";
 import { LOG_MESSAGE } from "../../Api/Paths";
 import { LogMessageDto } from "../Models";
 import { TSeverity } from "../../Shared/types";
-import { ExecuteApiActionProps, ExecuteStoreActionProps, ExecuteContentActionProps, GetProcessedHeaders, IsSuccessStatusCode, GetProcessedResponse, ExecuteApiActionResultProps, GetBaseHeaders, GetProcessedBody } from "./utils";
+import {
+    ExecuteApiActionProps,
+    ExecuteStoreActionProps,
+    ExecuteContentActionProps,
+    GetProcessedHeaders,
+    IsSuccessStatusCode,
+    GetProcessedResponse,
+    ExecuteApiActionResultProps,
+    GetBaseHeaders,
+    GetProcessedBody,
+} from "./utils";
 import { UAParser } from "ua-parser-js";
 import Validate from "validate.js";
 
-export const ExecuteLogAction = async (message: object, stackTrace: object, eventType: string, severity: TSeverity): Promise<void> => {
+export const ExecuteLogAction = async (
+    message: object,
+    stackTrace: object,
+    eventType: string,
+    severity: TSeverity
+): Promise<void> => {
     const ua = UAParser(window.navigator.userAgent);
 
     const logMessage: LogMessageDto = {
@@ -53,7 +68,7 @@ export const ExecuteLogAction = async (message: object, stackTrace: object, even
     };
 
     await ExecuteApiAction(request);
-}
+};
 
 export const ExecuteContentAction = (props: ExecuteContentActionProps): void => {
     let url = props.url;
@@ -100,7 +115,7 @@ export const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promis
             body: body,
         });
 
-        if (IsSuccessStatusCode(response.status)){
+        if (IsSuccessStatusCode(response.status)) {
             const isJson = props.configuration.hasJsonResponse;
             const data = await GetProcessedResponse(response, isJson);
 
@@ -153,7 +168,7 @@ export const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<Ex
                 error: null,
             };
         } else {
-            throw new Error("Unexpected error!"); 
+            throw new Error("Unexpected error!");
         }
     } catch (exception) {
         result = {
@@ -165,4 +180,3 @@ export const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<Ex
 
     return result;
 };
-

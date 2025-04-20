@@ -49,7 +49,7 @@ export const ContentPageDataAction = {
                         components: verifiedComponents,
                         language: languageId,
                         pageName: pageId,
-                    },                    
+                    },
                 },
             };
 

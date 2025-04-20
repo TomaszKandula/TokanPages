@@ -79,7 +79,7 @@ export const UserSignoutAction = {
                 hasJsonResponse: true,
             },
         };
-        
+
         ExecuteStoreAction(input);
     },
 };

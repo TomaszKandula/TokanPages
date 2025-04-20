@@ -1,12 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
-import {
-    ExecuteStoreAction,
-    ExecuteStoreActionProps,
-    GET_ARTICLE,
-    GET_ARTICLE_BY_TITLE,
-} from "../../../Api";
+import { ExecuteStoreAction, ExecuteStoreActionProps, GET_ARTICLE, GET_ARTICLE_BY_TITLE } from "../../../Api";
 
 export const RESET = "RESET_SELECTION";
 export const REQUEST = "REQUEST_ARTICLE";

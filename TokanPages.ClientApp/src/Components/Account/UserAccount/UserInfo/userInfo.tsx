@@ -262,8 +262,8 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             configuration: {
                 method: "POST",
                 hasJsonResponse: true,
-                body: { statusId: store.userId }
-            }
+                body: { statusId: store.userId },
+            },
         };
 
         const response = await ExecuteApiAction(request);

@@ -1,10 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserPasswordDto } from "../../../Api/Models";
-import {
-    ExecuteStoreAction,
-    ExecuteStoreActionProps,
-    UPDATE_USER_PASSWORD,
-} from "../../../Api";
+import { ExecuteStoreAction, ExecuteStoreActionProps, UPDATE_USER_PASSWORD } from "../../../Api";
 
 export const UPDATE = "UPDATE_USER_PASSWORD";
 export const CLEAR = "UPDATE_USER_PASSWORD_CLEAR";
