@@ -13,14 +13,32 @@ public class LogMessageCommandHandler :  RequestHandler<LogMessageCommand, Unit>
 
     public override async Task<Unit> Handle(LogMessageCommand request, CancellationToken cancellationToken)
     {
+        var browserName = request.Parsed.Browser.Name;
+        var browserType = request.Parsed.Browser.Type;
+        var browserVersion = request.Parsed.Browser.Version;
+        var browserMajor = request.Parsed.Browser.Major;
+
+        var deviceModel = request.Parsed.Device.Model;
+        var deviceVendor = request.Parsed.Device.Vendor;
+        var deviceType = request.Parsed.Device.Type;
+
+        var engineName = request.Parsed.Engine.Name;
+        var engineVersion = request.Parsed.Engine.Version;
+
+        var osName = request.Parsed.Os.Name;
+        var osVersion = request.Parsed.Os.Version;
+
         var message = new StringBuilder();
         message.AppendLine($"[ClientApp event date]: {request.EventDateTime:yyyy-MM-dd HH:mm:ss}");
         message.AppendLine($"[ClientApp event type]: {request.EventType}");
         message.AppendLine($"[ClientApp page url]: {request.PageUrl}");
         message.AppendLine($"[Message]: {request.Message}");
         message.AppendLine($"[StackTrace]: {request.StackTrace}");
-        message.AppendLine($"[Browser]: {request.BrowserName} {request.BrowserVersion}");
-        message.AppendLine($"[UserAgent]: {request.UserAgent}");
+        message.AppendLine($"[Browser]: {browserName} {browserType} {browserVersion} {browserMajor}");
+        message.AppendLine($"[Device]: {deviceModel} {deviceVendor} {deviceType}");
+        message.AppendLine($"[Engine]: {engineName} {engineVersion}");
+        message.AppendLine($"[O/S]: {osName} {osVersion}");
+        message.AppendLine($"[Reported UserAgent]: {request.UserAgent}");
 
         LogMessage(message.ToString(), request.Severity);
         return await Task.FromResult(Unit.Value);

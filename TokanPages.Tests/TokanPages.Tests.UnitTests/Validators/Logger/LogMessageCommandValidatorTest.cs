@@ -19,8 +19,6 @@ public class LogMessageCommandValidatorTest : TestBase
             Message = DataUtilityService.GetRandomString(),
             StackTrace = DataUtilityService.GetRandomString(),
             PageUrl = DataUtilityService.GetRandomString(),
-            BrowserName = DataUtilityService.GetRandomString(),
-            BrowserVersion = DataUtilityService.GetRandomString(),
             UserAgent = DataUtilityService.GetRandomString()
         };
 
@@ -44,8 +42,6 @@ public class LogMessageCommandValidatorTest : TestBase
             Message = string.Empty,
             StackTrace = string.Empty,
             PageUrl = string.Empty,
-            BrowserName = string.Empty,
-            BrowserVersion = string.Empty,
             UserAgent = string.Empty
         };
 
@@ -75,24 +71,20 @@ public class LogMessageCommandValidatorTest : TestBase
             Message = DataUtilityService.GetRandomString(2049),
             StackTrace = DataUtilityService.GetRandomString(4097),
             PageUrl = DataUtilityService.GetRandomString(2049),
-            BrowserName = DataUtilityService.GetRandomString(226),
-            BrowserVersion = DataUtilityService.GetRandomString(101),
             UserAgent = DataUtilityService.GetRandomString(226)
         };
 
         // Act
         var validator = new LogMessageCommandValidator();
         var result = validator.Validate(command);
-        
+
         // Assert
-        result.Errors.Count.Should().Be(8);
+        result.Errors.Count.Should().Be(6);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_100));
         result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_100));
         result.Errors[2].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_2048));
         result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_4096));
         result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_2048));
         result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_225));
-        result.Errors[6].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_100));
-        result.Errors[7].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_225));
     }
 }
