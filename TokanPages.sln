@@ -119,7 +119,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Nginx", "5. Nginx", "{81559082-2D02-493B-98BA-12AA28B99871}"
 	ProjectSection(SolutionItems) = preProject
 		TokanPages.ClientApp\nginx\nginx-base.conf = TokanPages.ClientApp\nginx\nginx-base.conf
-		TokanPages.ClientApp\nginx\nginx-ui-paths.conf = TokanPages.ClientApp\nginx\nginx-ui-paths.conf
+		TokanPages.ClientApp\nginx\nginx-paths.conf = TokanPages.ClientApp\nginx\nginx-paths.conf
+		TokanPages.ClientApp\nginx\nginx-paths-en.conf = TokanPages.ClientApp\nginx\nginx-paths-en.conf
+		TokanPages.ClientApp\nginx\nginx-paths-pl.conf = TokanPages.ClientApp\nginx\nginx-paths-pl.conf
+		TokanPages.ClientApp\nginx\nginx-paths-es.conf = TokanPages.ClientApp\nginx\nginx-paths-es.conf
+		TokanPages.ClientApp\nginx\nginx-paths-uk.conf = TokanPages.ClientApp\nginx\nginx-paths-uk.conf
+		TokanPages.ClientApp\nginx\nginx-paths-de.conf = TokanPages.ClientApp\nginx\nginx-paths-de.conf
+		TokanPages.ClientApp\nginx\nginx-paths-fr.conf = TokanPages.ClientApp\nginx\nginx-paths-fr.conf
 		TokanPages.ClientApp\nginx\nginx-proxy.conf = TokanPages.ClientApp\nginx\nginx-proxy.conf
 		TokanPages.ClientApp\nginx\nginx-ssl.conf = TokanPages.ClientApp\nginx\nginx-ssl.conf
 		TokanPages.ClientApp\nginx\nginx-http.conf = TokanPages.ClientApp\nginx\nginx-http.conf
