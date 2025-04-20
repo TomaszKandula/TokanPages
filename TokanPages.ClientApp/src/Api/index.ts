@@ -1,12 +1,12 @@
 export {
-    type PromiseResult,
-    type GetContentRequest,
-    type ExecuteRequest,
-    type ExecuteActionRequest,
-    GetContentAction,
-    DispatchExecuteAction,
-    ExecuteAsync,
-    LogMessage,
+    type ExecuteApiActionResultProps,
+    type ExecuteContentActionProps,
+    type ExecuteStoreActionProps,
+    type ExecuteApiActionProps,
+    ExecuteContentAction,
+    ExecuteStoreAction,
+    ExecuteApiAction,
+    ExecuteLogAction,
 } from "./HttpService";
 
 export {

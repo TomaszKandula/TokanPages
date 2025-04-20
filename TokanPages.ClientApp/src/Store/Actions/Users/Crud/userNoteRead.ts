@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UserNoteDto, UserNoteResultDto } from "../../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, GET_USER_NOTE } from "../../../../Api";
+import { ExecuteStoreAction, ExecuteStoreActionProps, GET_USER_NOTE } from "../../../../Api";
 
 export const RECEIVE = "GET_USER_NOTE_RECEIVE";
 export const RESPONSE = "GET_USER_NOTE_RESPONSE";
@@ -27,7 +27,7 @@ export const UserNoteReadAction = {
             dispatch({ type: RECEIVE });
 
             const baseUrl = GET_USER_NOTE.replace("{id}", payload.id);
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: `${baseUrl}?noCache=${payload.noCache ?? false}`,
                 dispatch: dispatch,
                 state: getState,
@@ -38,6 +38,6 @@ export const UserNoteReadAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

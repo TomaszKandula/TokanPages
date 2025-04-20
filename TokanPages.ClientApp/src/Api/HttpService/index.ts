@@ -15,7 +15,7 @@ export interface HeadersProps {
     value: string;
 }
 
-export interface Configuration {
+export interface ConfigurationProps {
     method: string;
     body?: object;
     form?: FormData;
@@ -28,24 +28,24 @@ export interface StoreProps {
     state: () => ApplicationState;
 }
 
-export interface PromiseResult {
+export interface ExecuteApiActionResultProps {
     status: number | null;
     content: any | null;
     error: any | null;
 }
 
-export interface GetContentRequest extends StoreProps {
+export interface ExecuteContentActionProps extends StoreProps {
     request: string;
     receive: string;
     url: string;
 }
 
-export interface ExecuteActionRequest {
+export interface ExecuteApiActionProps {
     url: string;
-    configuration: Configuration;
+    configuration: ConfigurationProps;
 }
 
-export interface ExecuteRequest extends ExecuteActionRequest, StoreProps {
+export interface ExecuteStoreActionProps extends ExecuteApiActionProps, StoreProps {
     optionalHandle?: string;
     responseType?: string | string[];
 }
@@ -54,7 +54,7 @@ const IsSuccessStatusCode = (statusCode: number): boolean => {
     return statusCode >= 200 && statusCode <= 299;
 };
 
-const SetupHeaders = (): HeadersProps[] => {
+const GetBaseHeaders = (): HeadersProps[] => {
     const timezoneOffset = new Date().getTimezoneOffset();
     const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
 
@@ -78,7 +78,39 @@ const SetupHeaders = (): HeadersProps[] => {
     return headers;
 };
 
-export const LogMessage = async (message: object, stackTrace: object, eventType: string, severity: TSeverity): Promise<void> => {
+const GetProcessedHeaders = (hasFormData: boolean, configurationHeaders?: HeadersProps[]): Headers => {
+    const headers = new Headers();
+    const baseHeaders = GetBaseHeaders();
+    baseHeaders.forEach(header => {
+        if (hasFormData && header.key === "Content-Type") {
+            return;
+        }
+
+        headers.append(header.key, header.value);
+    });
+
+    if (Array.isArray(configurationHeaders)) {
+        configurationHeaders.forEach(header => {
+            if (header.key === "Content-Type" && headers.has("Content-Type")) {
+                headers.delete("Content-Type");
+            }
+
+            headers.append(header.key, header.value);
+        });
+    }
+
+    return headers;
+}
+
+const GetProcessedResponse = async (response: Response, isJson?: boolean): Promise<object | string> => {
+    if (isJson) {
+        return await response.json();
+    } else {
+        return await response.text();
+    }
+}
+
+export const ExecuteLogAction = async (message: object, stackTrace: object, eventType: string, severity: TSeverity): Promise<void> => {
     const ua = UAParser(window.navigator.userAgent);
 
     const logMessage: LogMessageDto = {
@@ -115,7 +147,7 @@ export const LogMessage = async (message: object, stackTrace: object, eventType:
         },
     };
 
-    const request: ExecuteActionRequest = {
+    const request: ExecuteApiActionProps = {
         url: LOG_MESSAGE,
         configuration: {
             method: "POST",
@@ -124,10 +156,10 @@ export const LogMessage = async (message: object, stackTrace: object, eventType:
         },
     };
 
-    await ExecuteAsync(request);
+    await ExecuteApiAction(request);
 }
 
-export const GetContentAction = (props: GetContentRequest): void => {
+export const ExecuteContentAction = (props: ExecuteContentActionProps): void => {
     let url = props.url;
     if (props.state !== undefined) {
         const id = props.state().applicationLanguage.id as string;
@@ -137,22 +169,22 @@ export const GetContentAction = (props: GetContentRequest): void => {
 
     props.dispatch({ type: props.request });
 
-    const input: ExecuteRequest = {
+    const input: ExecuteStoreActionProps = {
         dispatch: props.dispatch,
         state: props.state,
         url: url,
         responseType: props.receive,
         configuration: {
             method: "GET",
-            headers: SetupHeaders(),
+            headers: GetBaseHeaders(),
             hasJsonResponse: true,
         },
     };
 
-    DispatchExecuteAction(input);
+    ExecuteStoreAction(input);
 };
 
-export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void> => {
+export const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promise<void> => {
     if (!props.dispatch || !props.state) {
         return;
     }
@@ -160,7 +192,7 @@ export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void
     const state = props.state();
     const components = state.contentPageData.components;
     const content = components.templates.templates.application;
-    
+
     try {
         const optionalBody = props.configuration.body
         ? JSON.stringify(props.configuration.body)
@@ -176,25 +208,8 @@ export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void
         ? optionalFormData 
         : null;
 
-        const headers = new Headers();
-        const baseHeaders = SetupHeaders();
-        baseHeaders.forEach(header => {
-            if (optionalFormData !== null && header.key === "Content-Type") {
-            } else {
-                headers.append(header.key, header.value);
-            }
-        });
-
-        if (Array.isArray(props.configuration.headers)) {
-            props.configuration.headers.forEach(header => {
-                if (header.key === "Content-Type" && headers.has("Content-Type")) {
-                    headers.delete("Content-Type");
-                }
-
-                headers.append(header.key, header.value);
-            });
-        }
-
+        const hasFormData = optionalFormData !== null;
+        const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
             method: props.configuration.method,
             headers: headers,
@@ -202,12 +217,8 @@ export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void
         });
 
         if (IsSuccessStatusCode(response.status)){
-            let data: object | string = {};
-            if (props.configuration.hasJsonResponse) {
-                data = await response.json();
-            } else {
-                data = await response.text();
-            }
+            const isJson = props.configuration.hasJsonResponse;
+            const data = await GetProcessedResponse(response, isJson);
 
             if (props.responseType !== undefined) {
                 if (Array.isArray(props.responseType)) {
@@ -235,8 +246,8 @@ export const DispatchExecuteAction = async (props: ExecuteRequest): Promise<void
     }
 };
 
-export const ExecuteAsync = async (props: ExecuteActionRequest): Promise<PromiseResult> => {
-    let result: PromiseResult = { status: null, content: null, error: null };
+export const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<ExecuteApiActionResultProps> => {
+    let result: ExecuteApiActionResultProps = { status: null, content: null, error: null };
 
     try {
         const optionalBody = props.configuration.body
@@ -253,25 +264,8 @@ export const ExecuteAsync = async (props: ExecuteActionRequest): Promise<Promise
         ? optionalFormData 
         : null;
 
-        const headers = new Headers();
-        const baseHeaders = SetupHeaders();
-        baseHeaders.forEach(header => {
-            if (optionalFormData !== null && header.key === "Content-Type") {
-            } else {
-                headers.append(header.key, header.value);
-            }
-        });
-
-        if (Array.isArray(props.configuration.headers)) {
-            props.configuration.headers.forEach(header => {
-                if (header.key === "Content-Type" && headers.has("Content-Type")) {
-                    headers.delete("Content-Type");
-                }
-
-                headers.append(header.key, header.value);
-            });
-        }
-
+        const hasFormData = optionalFormData !== null;
+        const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
             method: props.configuration.method,
             headers: headers,
@@ -279,12 +273,8 @@ export const ExecuteAsync = async (props: ExecuteActionRequest): Promise<Promise
         });
 
         if (IsSuccessStatusCode(response.status)) {
-            let data: object | string = {};
-            if (props.configuration.hasJsonResponse) {
-                data = await response.json();
-            } else {
-                data = await response.text();
-            }
+            const isJson = props.configuration.hasJsonResponse;
+            const data = await GetProcessedResponse(response, isJson);
 
             result = {
                 status: response.status,

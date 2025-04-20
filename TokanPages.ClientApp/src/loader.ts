@@ -1,8 +1,8 @@
 import { GetContentManifestDto } from "./Api/Models";
-import { ExecuteActionRequest, ExecuteAsync, GET_CONTENT_MANIFEST } from "./Api";
+import { ExecuteApiActionProps, ExecuteApiAction, GET_CONTENT_MANIFEST } from "./Api";
 import { IsPreRendered } from "./Shared/Services/SpaCaching";
 
-const requestManifest: ExecuteActionRequest = {
+const requestManifest: ExecuteApiActionProps = {
     url: GET_CONTENT_MANIFEST,
     configuration: {
         method: "GET",
@@ -21,7 +21,7 @@ export const Initialize = async (callback: (manifest: GetContentManifestDto | un
         return;
     }
 
-    const manifest = await ExecuteAsync(requestManifest);
+    const manifest = await ExecuteApiAction(requestManifest);
     const manifestDto: GetContentManifestDto = manifest.content as GetContentManifestDto;
 
     hidePreloader();

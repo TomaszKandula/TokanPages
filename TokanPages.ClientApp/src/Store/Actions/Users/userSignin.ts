@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { AuthenticateUserDto } from "../../../Api/Models";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
-import { AUTHENTICATE as AUTHENTICATE_USER, DispatchExecuteAction, ExecuteRequest } from "../../../Api";
+import { AUTHENTICATE as AUTHENTICATE_USER, ExecuteStoreAction, ExecuteStoreActionProps } from "../../../Api";
 
 export const SIGNIN = "SIGNIN_USER";
 export const CLEAR = "SIGNIN_USER_CLEAR";
@@ -26,7 +26,7 @@ export const UserSigninAction = {
         (payload: AuthenticateUserDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: SIGNIN });
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: AUTHENTICATE_USER,
                 dispatch: dispatch,
                 state: getState,
@@ -38,6 +38,6 @@ export const UserSigninAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { RequestPageDataResultDto } from "../../../Api/Models";
 import { GetVerifiedComponents } from "../../../Shared/Services/Utilities";
-import { DispatchExecuteAction, ExecuteRequest, REQUEST_PAGE_DATA } from "../../../Api";
+import { ExecuteStoreAction, ExecuteStoreActionProps, REQUEST_PAGE_DATA } from "../../../Api";
 
 export const CLEAR = "CLEAR_PAGE_DATA";
 export const REQUEST = "REQUEST_PAGE_DATA";
@@ -37,7 +37,7 @@ export const ContentPageDataAction = {
             }
 
             dispatch({ type: REQUEST });
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: REQUEST_PAGE_DATA,
                 dispatch: dispatch,
                 state: getState,
@@ -53,6 +53,6 @@ export const ContentPageDataAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

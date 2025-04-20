@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../Configuration";
 import { RemoveUserDto } from "../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, REMOVE_USER } from "../../../Api";
+import { ExecuteStoreAction, ExecuteStoreActionProps, REMOVE_USER } from "../../../Api";
 
 export const REMOVE = "REMOVE_ACCOUNT";
 export const CLEAR = "REMOVE_ACCOUNT_CLEAR";
@@ -25,7 +25,7 @@ export const UserRemoveAction = {
         (payload: RemoveUserDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REMOVE });
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: REMOVE_USER,
                 dispatch: dispatch,
                 state: getState,
@@ -37,6 +37,6 @@ export const UserRemoveAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

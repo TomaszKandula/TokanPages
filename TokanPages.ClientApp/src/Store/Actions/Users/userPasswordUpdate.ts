@@ -1,8 +1,8 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserPasswordDto } from "../../../Api/Models";
 import {
-    DispatchExecuteAction,
-    ExecuteRequest,
+    ExecuteStoreAction,
+    ExecuteStoreActionProps,
     UPDATE_USER_PASSWORD,
 } from "../../../Api";
 
@@ -29,7 +29,7 @@ export const UserPasswordUpdateAction = {
         (payload: UpdateUserPasswordDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: UPDATE_USER_PASSWORD,
                 dispatch: dispatch,
                 state: getState,
@@ -41,6 +41,6 @@ export const UserPasswordUpdateAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

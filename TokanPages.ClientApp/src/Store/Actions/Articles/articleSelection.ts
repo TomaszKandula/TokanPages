@@ -2,8 +2,8 @@ import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import Validate from "validate.js";
 import {
-    DispatchExecuteAction,
-    ExecuteRequest,
+    ExecuteStoreAction,
+    ExecuteStoreActionProps,
     GET_ARTICLE,
     GET_ARTICLE_BY_TITLE,
 } from "../../../Api";
@@ -41,7 +41,7 @@ export const ArticleSelectionAction = {
                 url = GET_ARTICLE_BY_TITLE.replace("{title}", props.title?.toLowerCase()!);
             }
 
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: url,
                 dispatch: dispatch,
                 state: getState,
@@ -52,6 +52,6 @@ export const ArticleSelectionAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };

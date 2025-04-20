@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from "react";
-import { LogMessage } from "../../../Api";
+import { ExecuteLogAction } from "../../../Api";
 import { ErrorBoundaryView } from "./errorBoundaryView";
 
 interface Props {
@@ -21,7 +21,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
     public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
         console.error("Uncaught error", error, errorInfo);
-        LogMessage(error, errorInfo, "ErrorBoundary", "error");
+        ExecuteLogAction(error, errorInfo, "ErrorBoundary", "error");
     }
 
     public render() {

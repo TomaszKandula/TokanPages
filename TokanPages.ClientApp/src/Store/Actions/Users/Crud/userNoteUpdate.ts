@@ -1,6 +1,6 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UpdateUserNoteDto, UpdateUserNoteResultDto } from "../../../../Api/Models";
-import { DispatchExecuteAction, ExecuteRequest, UPDATE_USER_NOTE } from "../../../../Api";
+import { ExecuteStoreAction, ExecuteStoreActionProps, UPDATE_USER_NOTE } from "../../../../Api";
 
 export const UPDATE = "UPDATE_USER_NOTE";
 export const CLEAR = "UPDATE_USER_NOTE_CLEAR";
@@ -25,7 +25,7 @@ export const UserNoteUpdateAction = {
         (payload: UpdateUserNoteDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
-            const input: ExecuteRequest = {
+            const input: ExecuteStoreActionProps = {
                 url: UPDATE_USER_NOTE,
                 dispatch: dispatch,
                 state: getState,
@@ -37,6 +37,6 @@ export const UserNoteUpdateAction = {
                 },
             };
 
-            DispatchExecuteAction(input);
+            ExecuteStoreAction(input);
         },
 };
