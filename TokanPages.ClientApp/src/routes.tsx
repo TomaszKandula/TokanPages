@@ -45,7 +45,7 @@ interface RoutesProps {
 const pages: PageProps[] = [
     { path: "/", page: <MainPage />, canPrerender: true },
     { path: "/showcase", page: <ShowcasePage />, canPrerender: true },
-    { path: "/articles", page: <ArticlesPage /> },
+    { path: "/articles", page: <ArticlesPage />, canPrerender: true },
     { path: "/business", page: <BusinessPage />, canPrerender: true },
     { path: "/leisure/bicycle", page: <BicyclePage />, canPrerender: true },
     { path: "/leisure/electronics", page: <ElectronicsPage />, canPrerender: true },
@@ -78,9 +78,9 @@ const renderRoute = (props: PageProps) => {
     );
 };
 
-export const Routes = (props: RoutesProps): React.ReactElement => {
-    /* MAP COMPONENTS TO ROUTES */
+export const MapComponentsToRoutes = (props: RoutesProps): React.ReactElement => {
     const buffer: React.ReactElement[] = [];
+
     pages.forEach(item => {
         if (props.languages && props.languages.length > 0) {
             props.languages.forEach(language => {

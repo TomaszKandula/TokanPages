@@ -1,14 +1,13 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
-import { UpdateReduxStore } from "./Shared/Services/languageService";
-import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
-import { Routes } from "./routes";
+import { useAnimation, useApplicationLanguage, useUserData, useXssWarning } from "./Shared/Hooks";
+import { MapComponentsToRoutes } from "./routes";
 import {
     ClearPageStart,
     ScrollToTop,
@@ -19,7 +18,7 @@ import {
     ApplicationSession,
 } from "./Shared/Components";
 
-interface Properties {
+interface AppProps {
     manifest: GetContentManifestDto | undefined;
 }
 
@@ -29,12 +28,14 @@ interface RenderApplicationProps {
 
 const RenderApplication = (props: RenderApplicationProps): React.ReactElement => {
     const hasSnapshotMode = HasSnapshotMode();
+    useXssWarning();
+
     return (
         <ApplicationSession>
             <BrowserRouter>
                 <ClearPageStart>
                     <Switch>
-                        <Routes languages={props.languages} />
+                        <MapComponentsToRoutes languages={props.languages} />
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
@@ -60,24 +61,16 @@ const PrerenderedWrapper = (): React.ReactElement => {
     return <RenderApplication languages={language.languages} />;
 };
 
-const App = (props: Properties): React.ReactElement => {
-    const dispatch = useDispatch();
-
-    React.useEffect(() => {
-        EnsureUserData(dispatch);
-    }, []);
-
-    React.useEffect(() => {
-        const intervalId = InitializeAnimations();
-        return () => clearInterval(intervalId);
-    }, []);
+const App = (props: AppProps): React.ReactElement => {
+    useUserData();
+    useAnimation();
 
     if (!props.manifest) {
         /* Pre-rendered SPA */
         return <PrerenderedWrapper />;
     } else {
         /* Normal mode */
-        UpdateReduxStore(props.manifest, dispatch);
+        useApplicationLanguage(props.manifest);
     }
 
     return <RenderApplication languages={props.manifest?.languages} />;
