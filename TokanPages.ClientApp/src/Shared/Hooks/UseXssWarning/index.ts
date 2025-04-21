@@ -19,8 +19,11 @@ export const useXssWarning = (): void => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     React.useEffect(() => {
-        const languageId = language.id;
-        const warnings = language.warnings;
+        const languageId = language?.id;
+        const warnings = language?.warnings ?? [];
+        if (warnings.length === 0) {
+            return;
+        }
 
         const filtering = (value: WarningModelDto): boolean => value.language === languageId;
         const data = warnings.filter(filtering);
