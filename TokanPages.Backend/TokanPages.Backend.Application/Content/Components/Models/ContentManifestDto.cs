@@ -34,6 +34,11 @@ public class ContentManifestDto
     public List<LanguageModel> Languages { get; set; } = new();
 
     /// <summary>
+    /// XSS warning content in different languages.
+    /// </summary>
+    public List<WarningModel> Warnings { get; set; } = new();
+
+    /// <summary>
     /// List of all website pages per language.
     /// </summary>
     public List<PagesModel> Pages { get; set; } = new();

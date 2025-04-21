@@ -1,7 +1,5 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
-import { GetErrorBoundaryContent } from "../../../Shared/Services/languageService";
-import { ApplicationState } from "Store/Configuration";
+import { useErrorBoundaryContent } from "../../../Shared/Hooks";
 
 interface ErrorBoundaryViewProps {
     title?: string;
@@ -22,8 +20,7 @@ const defaultContent: ErrorBoundaryViewProps = {
 };
 
 export const ErrorBoundaryView = () => {
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-    const content = GetErrorBoundaryContent(language.id, language.errorBoundary);
+    const content = useErrorBoundaryContent();
 
     const title = content?.title ?? defaultContent.title;
     const subtitle = content?.subtitle ?? defaultContent.subtitle;

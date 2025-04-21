@@ -7,7 +7,7 @@ import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { ReactMouseEvent } from "../../../Shared/types";
-import { MapLanguageId } from "../../../Shared/Services/languageService";
+import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { ArticleContent } from "./Helpers/articleContent";
 import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
@@ -49,7 +49,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    const flagImage = MapLanguageId(selection.article.languageIso);
+    const flagImage = MapLanguage(selection.article.languageIso);
 
     React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;

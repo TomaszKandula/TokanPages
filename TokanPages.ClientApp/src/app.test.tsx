@@ -47,6 +47,7 @@ it("renders without crashing", () => {
                 name: "Polski",
             },
         ],
+        warnings: [],
         pages: [
             {
                 language: "en",

@@ -10,7 +10,6 @@ import { AppTheme } from "./Theme";
 import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
 import { IsPreRendered, TryGetStateSnapshot } from "./Shared/Services/SpaCaching";
-import { printSelfXssWarning } from "./xssWarning";
 import { GetContentManifestDto } from "./Api/Models";
 import "./Theme/styles.css";
 import App from "./app";
@@ -43,5 +42,4 @@ const ReactApp = (manifest: GetContentManifestDto | undefined): void => {
 };
 
 Loader.Initialize(ReactApp);
-printSelfXssWarning();
 export {};

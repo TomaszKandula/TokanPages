@@ -33,6 +33,7 @@ describe("test component: featuresView", () => {
                     isDefault: false,
                 },
             ],
+            warnings: [],
             pages: [
                 {
                     language: "en",
