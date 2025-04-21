@@ -5,10 +5,9 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
-import { UpdateReduxStore } from "./Shared/Services/languageService";
 import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
-import { useXssWarning } from "./Shared/Hooks";
+import { useApplicationLanguage, useXssWarning } from "./Shared/Hooks";
 import { MapComponentsToRoutes } from "./routes";
 import {
     ClearPageStart,
@@ -80,7 +79,7 @@ const App = (props: Properties): React.ReactElement => {
         return <PrerenderedWrapper />;
     } else {
         /* Normal mode */
-        UpdateReduxStore(props.manifest, dispatch);
+        useApplicationLanguage(props.manifest);
     }
 
     return <RenderApplication languages={props.manifest?.languages} />;
