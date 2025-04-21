@@ -72,6 +72,7 @@ export type { ErrorContentDto } from "./Content/Items/errorContentDto";
 export type { MetaModelDto } from "./Content/Items/metaModelDto";
 export type { PagesModelDto } from "./Content/Items/pagesModelDto";
 export type { PageModelDto } from "./Content/Items/pageModelDto";
+export type { WarningModelDto } from "./Content/Items/warningModelDto";
 export type { ContentModelDto, ContentType } from "./Content/Items/contentModelDto";
 export type { RequestPageDataDto } from "./Content/requestPageDataDto";
 export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDto";

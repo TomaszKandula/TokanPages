@@ -16,6 +16,7 @@ export const ApplicationLanguage: Reducer<ApplicationLanguageState> = (
             return {
                 id: state.id,
                 languages: state.languages,
+                warnings: state.warnings,
                 pages: state.pages,
                 meta: state.meta,
                 errorBoundary: state.errorBoundary,
@@ -24,6 +25,7 @@ export const ApplicationLanguage: Reducer<ApplicationLanguageState> = (
             return {
                 id: action.language.id,
                 languages: action.language.languages,
+                warnings: action.language.warnings,
                 pages: action.language.pages,
                 meta: action.language.meta,
                 errorBoundary: action.language.errorBoundary,
