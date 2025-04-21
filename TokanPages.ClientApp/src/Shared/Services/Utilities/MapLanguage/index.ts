@@ -1,4 +1,4 @@
-export const MapLanguageId = (input: string): string => {
+export const MapLanguage = (input: string): string => {
     switch (input.toLowerCase()) {
         case "eng":
             return "en.png";

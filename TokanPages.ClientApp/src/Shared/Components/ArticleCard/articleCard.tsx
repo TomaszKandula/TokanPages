@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText } from "../../../Shared/Services/Utilities";
-import { MapLanguageId } from "../../../Shared/Services/languageService";
+import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api";
 import { ArticleCardView } from "./View/articleCardView";
 
@@ -33,7 +33,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
         history.push(`/${languageId}${articleUrl}`);
     }, [props.id, languageId, articleUrl]);
 
-    const flagImage = MapLanguageId(props.languageIso);
+    const flagImage = MapLanguage(props.languageIso);
 
     const readCount =
         props.readCount !== undefined
