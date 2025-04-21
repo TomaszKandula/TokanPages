@@ -1,13 +1,12 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Switch } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
-import { EnsureUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
-import { useAnimation, useApplicationLanguage, useXssWarning } from "./Shared/Hooks";
+import { useAnimation, useApplicationLanguage, useUserData, useXssWarning } from "./Shared/Hooks";
 import { MapComponentsToRoutes } from "./routes";
 import {
     ClearPageStart,
@@ -19,7 +18,7 @@ import {
     ApplicationSession,
 } from "./Shared/Components";
 
-interface Properties {
+interface AppProps {
     manifest: GetContentManifestDto | undefined;
 }
 
@@ -62,13 +61,8 @@ const PrerenderedWrapper = (): React.ReactElement => {
     return <RenderApplication languages={language.languages} />;
 };
 
-const App = (props: Properties): React.ReactElement => {
-    const dispatch = useDispatch();
-
-    React.useEffect(() => {
-        EnsureUserData(dispatch);
-    }, []);
-
+const App = (props: AppProps): React.ReactElement => {
+    useUserData();
     useAnimation();
 
     if (!props.manifest) {
