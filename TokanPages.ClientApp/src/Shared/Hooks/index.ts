@@ -3,3 +3,4 @@ export { usePageContent } from "./UsePageContent";
 export { useHash } from "./UseHash";
 export { useSnapshot } from "./UseSnapshot";
 export { useUnhead } from "./UseUnhead";
+export { useXssWarning } from "./UseXssWarning";

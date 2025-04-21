@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { ApplicationLanguageAction } from "../../Store/Actions";
-import { ErrorContentDto, GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
+import { GetContentManifestDto, LanguageItemDto } from "../../Api/Models";
 import Validate from "validate.js";
 
 export const MapLanguageId = (input: string): string => {
@@ -22,7 +22,7 @@ export const MapLanguageId = (input: string): string => {
     }
 };
 
-export const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
+const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean => {
     if (Validate.isEmpty(id)) {
         return false;
     }
@@ -36,7 +36,7 @@ export const IsLanguageIdValid = (id: string, items: LanguageItemDto[]): boolean
     return false;
 };
 
-export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
+const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     for (let index in items) {
         if (items[index].isDefault) {
             return items[index].id;
@@ -46,53 +46,43 @@ export const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     return undefined;
 };
 
-export const GetErrorBoundaryContent = (languageId: string, errorBoundary: ErrorContentDto[]): ErrorContentDto => {
-    const filtering = (value: ErrorContentDto): boolean => {
-        return value.language === languageId;
-    };
-
-    const result = errorBoundary.filter(filtering)[0];
-    return result;
-};
-
 export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Dispatch<any>): void => {
-    const languages = manifest.languages;
-    const pages = manifest.pages;
-    const meta = manifest.meta;
-    const boundary = manifest.errorBoundary;
-    const defaultId = GetDefaultId(languages);
+    const defaultId = GetDefaultId(manifest.languages);
     const pathname = window.location.pathname;
-    const paths = pathname.split("/").filter(e => String(e).trim());
+    const paths = pathname.split("/").filter(item => String(item).trim());
 
     if (paths.length > 0) {
         if (paths[0] === "snapshot") {
             dispatch(
                 ApplicationLanguageAction.set({
                     id: paths[1],
-                    languages: languages,
-                    pages: pages,
-                    meta: meta,
-                    errorBoundary: boundary,
+                    languages: manifest.languages,
+                    warnings: manifest.warnings,
+                    pages: manifest.pages,
+                    meta: manifest.meta,
+                    errorBoundary: manifest.errorBoundary,
                 })
             );
-        } else if (IsLanguageIdValid(paths[0], languages)) {
+        } else if (IsLanguageIdValid(paths[0], manifest.languages)) {
             dispatch(
                 ApplicationLanguageAction.set({
                     id: paths[0],
-                    languages: languages,
-                    pages: pages,
-                    meta: meta,
-                    errorBoundary: boundary,
+                    languages: manifest.languages,
+                    warnings: manifest.warnings,
+                    pages: manifest.pages,
+                    meta: manifest.meta,
+                    errorBoundary: manifest.errorBoundary,
                 })
             );
         } else if (defaultId) {
             dispatch(
                 ApplicationLanguageAction.set({
                     id: defaultId,
-                    languages: languages,
-                    pages: pages,
-                    meta: meta,
-                    errorBoundary: boundary,
+                    languages: manifest.languages,
+                    warnings: manifest.warnings,
+                    pages: manifest.pages,
+                    meta: manifest.meta,
+                    errorBoundary: manifest.errorBoundary,
                 })
             );
             const urlWithDefaultLanguageId = `${window.location.origin}/${defaultId}`;
@@ -104,10 +94,11 @@ export const UpdateReduxStore = (manifest: GetContentManifestDto, dispatch: Disp
         dispatch(
             ApplicationLanguageAction.set({
                 id: defaultId,
-                languages: languages,
-                pages: pages,
-                meta: meta,
-                errorBoundary: boundary,
+                languages: manifest.languages,
+                warnings: manifest.warnings,
+                pages: manifest.pages,
+                meta: manifest.meta,
+                errorBoundary: manifest.errorBoundary,
             })
         );
     }
