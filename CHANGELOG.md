@@ -1,3 +1,25 @@
+# [0.153.0](https://github.com/TomaszKandula/TokanPages/compare/v0.152.0...v0.153.0) (2025-04-21)
+
+
+### Bug Fixes
+
+* check both page and language ([961bf5e](https://github.com/TomaszKandula/TokanPages/commit/961bf5e91bfe0ba61226ea0e43ab3ebaaa96afb1))
+* consider undefined ([c292085](https://github.com/TomaszKandula/TokanPages/commit/c292085d807cee646e7f67220abc4db0e1997688))
+
+
+### Features
+
+* add models, update store ([013b3ae](https://github.com/TomaszKandula/TokanPages/commit/013b3ae2dcb167e7b3cc6fe42a6b1ad7c7d1c49c))
+* add xss warning content model to manifest ([2427023](https://github.com/TomaszKandula/TokanPages/commit/24270236ef8b5548c5ef108af1f246a5e8536d2b))
+* clear console to reduce noise when language is changed ([1b26ea5](https://github.com/TomaszKandula/TokanPages/commit/1b26ea5b987ec794571f0b4cf066a28a080c2f05))
+* relocate error boundary to hook ([724b060](https://github.com/TomaszKandula/TokanPages/commit/724b060e3b5f0de054c61dce0686147b16c6765d))
+* relocate to separate hook ([f331dce](https://github.com/TomaszKandula/TokanPages/commit/f331dce6b61caf51705f96eaa13c3532e3871194))
+* remove some specific paths ([1f833c8](https://github.com/TomaszKandula/TokanPages/commit/1f833c839963a80bd390a4979ad647020759dfdb))
+* rename for clarity ([93034c8](https://github.com/TomaszKandula/TokanPages/commit/93034c852e02f19950f4004ec9c65a210c2524c6))
+* uce hook for xss warning ([48c8b2b](https://github.com/TomaszKandula/TokanPages/commit/48c8b2b39b28ccd6068dbe1d5fe108ec908af85b))
+* use hook for user data ([4005e53](https://github.com/TomaszKandula/TokanPages/commit/4005e53b1350105a1f596c7d7a81aec613253147))
+* use hook function ([a3eb55c](https://github.com/TomaszKandula/TokanPages/commit/a3eb55cc40a1ba64acaa038061848f138571a566))
+
 # [0.152.0](https://github.com/TomaszKandula/TokanPages/compare/v0.151.0...v0.152.0) (2025-04-20)
 
 
