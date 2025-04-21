@@ -5,9 +5,9 @@ import Fab from "@material-ui/core/Fab";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
-import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
+import { EnsureUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
-import { useApplicationLanguage, useXssWarning } from "./Shared/Hooks";
+import { useAnimation, useApplicationLanguage, useXssWarning } from "./Shared/Hooks";
 import { MapComponentsToRoutes } from "./routes";
 import {
     ClearPageStart,
@@ -69,10 +69,7 @@ const App = (props: Properties): React.ReactElement => {
         EnsureUserData(dispatch);
     }, []);
 
-    React.useEffect(() => {
-        const intervalId = InitializeAnimations();
-        return () => clearInterval(intervalId);
-    }, []);
+    useAnimation();
 
     if (!props.manifest) {
         /* Pre-rendered SPA */
