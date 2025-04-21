@@ -1,3 +1,4 @@
+export { useErrorBoundaryContent } from "./UseErrorBoundaryContent";
 export { useInterval } from "./UseInterval";
 export { usePageContent } from "./UsePageContent";
 export { useHash } from "./UseHash";
