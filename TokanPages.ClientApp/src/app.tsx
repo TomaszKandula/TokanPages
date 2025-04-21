@@ -8,7 +8,7 @@ import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
 import { UpdateReduxStore } from "./Shared/Services/languageService";
 import { InitializeAnimations, EnsureUserData } from "./Shared/Services/initializeService";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
-import { Routes } from "./routes";
+import { MapComponentsToRoutes } from "./routes";
 import {
     ClearPageStart,
     ScrollToTop,
@@ -34,7 +34,7 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
             <BrowserRouter>
                 <ClearPageStart>
                     <Switch>
-                        <Routes languages={props.languages} />
+                        <MapComponentsToRoutes languages={props.languages} />
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
