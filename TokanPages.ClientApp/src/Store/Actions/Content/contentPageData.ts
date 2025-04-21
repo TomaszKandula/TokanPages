@@ -25,13 +25,18 @@ export const ContentPageDataAction = {
     request:
         (components: string[], pageId: string): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
-            const state = getState().contentPageData;
-            if (state.pageId === pageId) {
+            const stateContent = getState().contentPageData;
+            const stateLanguage = getState().applicationLanguage;
+
+            const isLanguageSame = stateContent.languageId === stateLanguage.id;
+            const isPageSame = stateContent.pageId === pageId;
+
+            if (isLanguageSame && isPageSame) {
                 return;
             }
 
-            const languageId = getState().applicationLanguage.id;
-            const verifiedComponents = GetVerifiedComponents({ components, state, languageId });
+            const languageId = stateLanguage.id;
+            const verifiedComponents = GetVerifiedComponents({ components, state: stateContent, languageId });
             if (!verifiedComponents) {
                 return;
             }
