@@ -8,9 +8,9 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { CleanupSnapshotMode } from "../../../Shared/Services/SpaCaching";
 import Validate from "validate.js";
 
-const getTitle = (pages: PagesModelDto[], pageId: string, languageId: string): string => {
+const getTitle = (pages: PagesModelDto[], pageId: string, languageId: string): PageModelDto => {
     const data = pages.filter((value: PagesModelDto) => (value.language === languageId ? value : undefined))[0];
-    const result = data.pages.filter((value: PageModelDto) => (value.page === pageId ? value : undefined))[0].title;
+    const result = data.pages.filter((value: PageModelDto) => (value.page === pageId ? value : undefined))[0];
     return result;
 };
 
@@ -37,7 +37,7 @@ export const useUnhead = (pageId: string): void => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     const [links, setLinks] = React.useState<any[]>([]);
-    const [title, setTitle] = React.useState<string>("");
+    const [title, setTitle] = React.useState<PageModelDto | undefined>(undefined);
     const [meta, setMeta] = React.useState<MetaModelDto | undefined>(undefined);
 
     const href = `${window.location.origin}${window.location.pathname}`;
@@ -60,7 +60,7 @@ export const useUnhead = (pageId: string): void => {
 
     const configuration: UseHeadInput = {
         title: "tomkandula",
-        titleTemplate: `%s | ${title}`,
+        titleTemplate: `%s | ${title?.title}`,
         htmlAttrs: {
             lang: language?.id ?? "",
         },
@@ -68,7 +68,7 @@ export const useUnhead = (pageId: string): void => {
             href: path,
         },
         meta: [
-            { name: "description", content: meta?.description ?? "" },
+            { name: "description", content: title?.description ?? "" },
             { property: "og:title", content: meta?.facebook?.title ?? "" },
             { property: "og:description", content: meta?.facebook?.description ?? "" },
             { property: "og:image:alt", content: meta?.facebook?.imageAlt ?? "" },
