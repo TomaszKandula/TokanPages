@@ -41,6 +41,7 @@ describe("test component: featuresView", () => {
                         {
                             title: "software developer",
                             page: "MainPage",
+                            description: "software development",
                         },
                     ],
                 },
@@ -48,7 +49,6 @@ describe("test component: featuresView", () => {
             meta: [
                 {
                     language: "en",
-                    description: "software development",
                     facebook: {
                         title: "",
                         description: "",

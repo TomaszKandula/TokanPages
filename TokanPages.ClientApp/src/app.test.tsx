@@ -55,6 +55,7 @@ it("renders without crashing", () => {
                     {
                         title: "software developer",
                         page: "MainPage",
+                        description: "software development",
                     },
                 ],
             },
@@ -62,7 +63,6 @@ it("renders without crashing", () => {
         meta: [
             {
                 language: "en",
-                description: "software development",
                 facebook: {
                     title: "",
                     description: "",
