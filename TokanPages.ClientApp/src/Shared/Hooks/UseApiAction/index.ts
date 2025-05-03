@@ -21,9 +21,9 @@ const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promise<void>
     const state = props.state();
     const components = state.contentPageData.components;
     const content = components.templates.templates.application;
-    
+
     try {
-        const body = GetProcessedBody(props);
+        const body = GetProcessedBody(props.configuration);
         const hasFormData = body instanceof FormData;
         const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
@@ -66,7 +66,7 @@ const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promise<void>
 const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<ExecuteApiActionResultProps> => {
     let result: ExecuteApiActionResultProps = { };
     try {
-        const body = GetProcessedBody(props);
+        const body = GetProcessedBody(props.configuration);
         const hasFormData = body instanceof FormData;
         const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
