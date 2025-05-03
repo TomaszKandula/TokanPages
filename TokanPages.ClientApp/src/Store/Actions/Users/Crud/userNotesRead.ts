@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../../Configuration";
 import { UserNotesDto, UserNotesResultDto } from "../../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, GET_USER_NOTES } from "../../../../Api";
+import { ExecuteStoreActionProps, GET_USER_NOTES } from "../../../../Api";
+import { useApiAction } from "Shared/Hooks";
 
 export const RECEIVE = "GET_USER_NOTES_RECEIVE";
 export const RESPONSE = "GET_USER_NOTES_RESPONSE";
@@ -25,6 +26,7 @@ export const UserNotesReadAction = {
         (payload: UserNotesDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: RECEIVE });
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: `${GET_USER_NOTES}?noCache=${payload.noCache ?? false}`,
                 dispatch: dispatch,
@@ -36,6 +38,6 @@ export const UserNotesReadAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

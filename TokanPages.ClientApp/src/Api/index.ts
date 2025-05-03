@@ -1,9 +1,7 @@
 export {
     type ExecuteApiActionResultProps,
-    type ExecuteContentActionProps,
     type ExecuteStoreActionProps,
     type ExecuteApiActionProps,
-    ExecuteStoreAction,
     IsSuccessStatusCode,
     GetBaseHeaders,
     GetProcessedBody,

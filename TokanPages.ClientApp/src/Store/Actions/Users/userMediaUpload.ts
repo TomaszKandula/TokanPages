@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { UploadUserMediaDto, UploadUserMediaResultDto } from "../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, UPLOAD_USER_IMAGE } from "../../../Api";
+import { ExecuteStoreActionProps, UPLOAD_USER_IMAGE } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 import Validate from "validate.js";
 
 export const UPLOAD = "UPLOAD_USER_MEDIA";
@@ -37,6 +38,7 @@ export const UserMediaUploadAction = {
             if (hasBinaryData) formData.append(filehandle, payload.binaryData as File);
 
             const url = skipDb ? `${UPLOAD_USER_IMAGE}?skipDb=${skipDb}` : UPLOAD_USER_IMAGE;
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: url,
                 dispatch: dispatch,
@@ -50,6 +52,6 @@ export const UserMediaUploadAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

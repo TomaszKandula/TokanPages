@@ -2,10 +2,10 @@ import { ApplicationAction } from "../../Configuration";
 import { RevokeUserRefreshTokenDto } from "../../../Api/Models";
 import {
     REVOKE_USER_TOKEN as REVOKE_USER_TOKEN_URL,
-    ExecuteStoreAction,
     REVOKE_REFRESH_TOKEN as REVOKE_REFRESH_TOKEN_URL,
     ExecuteStoreActionProps,
 } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const REVOKE_USER_TOKEN_CLEAR = "REVOKE_USER_TOKEN_CLEAR";
 export const REVOKE_REFRESH_TOKEN_CLEAR = "REVOKE_REFRESH_TOKEN_CLEAR";
@@ -50,6 +50,7 @@ export const UserSignoutAction = {
     },
     revokeUserToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         dispatch({ type: REVOKE_USER_TOKEN });
+        const actions = useApiAction();
         const input: ExecuteStoreActionProps = {
             url: REVOKE_USER_TOKEN_URL,
             dispatch: dispatch,
@@ -61,13 +62,14 @@ export const UserSignoutAction = {
             },
         };
 
-        ExecuteStoreAction(input);
+        actions.storeAction(input);
     },
     revokeRefreshToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         const payload: RevokeUserRefreshTokenDto = {
             refreshToken: getState().userDataStore.userData.refreshToken,
         };
         dispatch({ type: REVOKE_REFRESH_TOKEN });
+        const actions = useApiAction();
         const input: ExecuteStoreActionProps = {
             url: REVOKE_REFRESH_TOKEN_URL,
             dispatch: dispatch,
@@ -80,6 +82,6 @@ export const UserSignoutAction = {
             },
         };
 
-        ExecuteStoreAction(input);
+        actions.storeAction(input);
     },
 };

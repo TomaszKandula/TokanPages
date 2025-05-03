@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { ResetUserPasswordDto } from "../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, RESET_USER_PASSWORD } from "../../../Api";
+import { ExecuteStoreActionProps, RESET_USER_PASSWORD } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const RESET = "RESET_USER_PASSWORD";
 export const CLEAR = "RESET_USER_PASSWORD_CLEAR";
@@ -25,6 +26,7 @@ export const UserPasswordResetAction = {
         (payload: ResetUserPasswordDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: RESET });
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: RESET_USER_PASSWORD,
                 dispatch: dispatch,
@@ -37,6 +39,6 @@ export const UserPasswordResetAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

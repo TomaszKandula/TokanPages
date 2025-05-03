@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
-import { ExecuteStoreAction, ADD_USER, ExecuteStoreActionProps } from "../../../Api";
+import { ADD_USER, ExecuteStoreActionProps } from "../../../Api";
+import { useApiAction } from "Shared/Hooks";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
@@ -26,6 +27,7 @@ export const UserSignupAction = {
         (dispatch, getState) => {
             dispatch({ type: SIGNUP });
 
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: ADD_USER,
                 dispatch: dispatch,
@@ -38,6 +40,6 @@ export const UserSignupAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

@@ -1,15 +1,67 @@
 import { LogMessageDto } from "../../../Api/Models";
 import { TSeverity } from "../../../Shared/types";
+import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { UAParser } from "ua-parser-js";
 import {
     ExecuteApiActionProps,
     ExecuteApiActionResultProps,
+    ExecuteStoreActionProps,
     GetProcessedBody,
     GetProcessedHeaders,
     GetProcessedResponse,
     IsSuccessStatusCode,
     LOG_MESSAGE,
-} from "Api";
+} from "../../../Api";
+
+const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promise<void> => {
+    if (!props.dispatch || !props.state) {
+        return;
+    }
+
+    const state = props.state();
+    const components = state.contentPageData.components;
+    const content = components.templates.templates.application;
+    
+    try {
+        const body = GetProcessedBody(props);
+        const hasFormData = body instanceof FormData;
+        const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
+        const response = await fetch(props.url, {
+            method: props.configuration.method,
+            headers: headers,
+            body: body,
+        });
+
+        const isJson = props.configuration.hasJsonResponse;
+        const data = await GetProcessedResponse(response, isJson);
+
+        if (IsSuccessStatusCode(response.status)) {
+            if (props.responseType !== undefined) {
+                if (Array.isArray(props.responseType)) {
+                    props.responseType.forEach(item => {
+                        props.dispatch({ type: item, payload: data, handle: props.optionalHandle });
+                    });
+                } else {
+                    props.dispatch({ type: props.responseType, payload: data, handle: props.optionalHandle });
+                }
+            } else {
+                throw new Error(content.unexpectedError);
+            }
+        } else {
+            RaiseError({
+                dispatch: props.dispatch,
+                errorObject: data,
+                content: content,
+            });
+        }
+    } catch (exception) {
+        RaiseError({
+            dispatch: props.dispatch,
+            errorObject: exception,
+            content: content,
+        });
+    }
+};
 
 const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<ExecuteApiActionResultProps> => {
     let result: ExecuteApiActionResultProps = { };
@@ -98,11 +150,9 @@ export const ExecuteLogAction = async (
 };
 
 export const useApiAction = () => {
-    const executeApiAction = ExecuteApiAction;
-    const executeLogAction = ExecuteLogAction;
-
     return {
-        apiAction: executeApiAction,
-        logAction: executeLogAction,
+        storeAction: ExecuteStoreAction,
+        apiAction: ExecuteApiAction,
+        logAction: ExecuteLogAction,
     }
 }
