@@ -7,7 +7,7 @@ export {
     GetProcessedBody,
     GetProcessedHeaders,
     GetProcessedResponse,
-} from "./HttpService";
+} from "./Utilities";
 
 export {
     API_BASE_URI,
