@@ -25,9 +25,9 @@ export interface StoreProps {
 }
 
 export interface ExecuteApiActionResultProps {
-    status: number | null;
-    content: any | null;
-    error: any | null;
+    status?: number;
+    content?: string | object;
+    error?: string | object | unknown;
 }
 
 export interface ExecuteContentActionProps extends StoreProps {

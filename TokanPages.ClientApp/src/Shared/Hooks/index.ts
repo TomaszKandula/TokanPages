@@ -1,4 +1,5 @@
 export { useAnimation } from "./UseAnimation";
+export { useApiAction } from "./UseApiAction";
 export { useApplicationLanguage } from "./UseApplicationLanguage";
 export { useErrorBoundaryContent } from "./UseErrorBoundaryContent";
 export { useInterval } from "./UseInterval";
