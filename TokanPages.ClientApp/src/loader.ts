@@ -1,6 +1,7 @@
 import { GetContentManifestDto } from "./Api/Models";
-import { ExecuteApiActionProps, ExecuteApiAction, GET_CONTENT_MANIFEST } from "./Api";
+import { ExecuteApiActionProps, GET_CONTENT_MANIFEST } from "./Api";
 import { IsPreRendered } from "./Shared/Services/SpaCaching";
+import { useApiAction } from "./Shared/Hooks";
 
 const requestManifest: ExecuteApiActionProps = {
     url: GET_CONTENT_MANIFEST,
@@ -16,12 +17,14 @@ const hidePreloader = (): void => {
 };
 
 export const Initialize = async (callback: (manifest: GetContentManifestDto | undefined) => void): Promise<void> => {
+    const actions = useApiAction();
+
     if (IsPreRendered()) {
         callback(undefined);
         return;
     }
 
-    const manifest = await ExecuteApiAction(requestManifest);
+    const manifest = await actions.apiAction(requestManifest);
     const manifestDto: GetContentManifestDto = manifest.content as GetContentManifestDto;
 
     hidePreloader();

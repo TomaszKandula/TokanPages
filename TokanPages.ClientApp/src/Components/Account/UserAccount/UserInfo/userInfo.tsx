@@ -9,9 +9,9 @@ import {
     UserSigninAction,
     UserEmailVerificationAction,
 } from "../../../../Store/Actions";
-import { ExecuteApiAction, ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
+import { ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
-import { useInterval } from "../../../../Shared/Hooks";
+import { useApiAction, useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
@@ -32,6 +32,7 @@ export interface UserInfoProps {
 export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const actions = useApiAction();
     const socket = useWebSockets();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
@@ -266,7 +267,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             },
         };
 
-        const response = await ExecuteApiAction(request);
+        const response = await actions.apiAction(request);
         const notification = response.content as NotificationData;
 
         if (notification.handler === "user_activated") {

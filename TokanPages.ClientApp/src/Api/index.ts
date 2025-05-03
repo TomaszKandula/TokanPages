@@ -3,10 +3,12 @@ export {
     type ExecuteContentActionProps,
     type ExecuteStoreActionProps,
     type ExecuteApiActionProps,
-    ExecuteContentAction,
     ExecuteStoreAction,
-    ExecuteApiAction,
-    ExecuteLogAction,
+    IsSuccessStatusCode,
+    GetBaseHeaders,
+    GetProcessedBody,
+    GetProcessedHeaders,
+    GetProcessedResponse,
 } from "./HttpService";
 
 export {
