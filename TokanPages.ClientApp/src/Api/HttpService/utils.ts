@@ -108,8 +108,6 @@ export const GetProcessedResponse = async (response: Response, isJson?: boolean)
 
 export const GetProcessedBody = (props: ExecuteApiActionProps): string | FormData | null => {
     const optionalBody = props.configuration.body ? JSON.stringify(props.configuration.body) : null;
-
     const optionalFormData = props.configuration.form ? props.configuration.form : null;
-
     return optionalBody !== null ? optionalBody : optionalFormData !== null ? optionalFormData : null;
 };
