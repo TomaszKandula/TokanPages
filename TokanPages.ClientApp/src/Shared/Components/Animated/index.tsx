@@ -12,11 +12,7 @@ interface AnimatedProps {
 
 export const Animated = (props: AnimatedProps): React.ReactElement => {
     const hasSnapshot = HasSnapshotMode();
-    if (hasSnapshot) {
-        return <div className={props.className}>{props.children}</div>;
-    }
-
-    if (props.isDisabled) {
+    if (hasSnapshot || props.isDisabled) {
         return <div className={props.className}>{props.children}</div>;
     }
 
