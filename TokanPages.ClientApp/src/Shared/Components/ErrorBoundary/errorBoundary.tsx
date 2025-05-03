@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from "react";
 import { ErrorBoundaryView } from "./errorBoundaryView";
-import { useApiAction } from "Shared/Hooks";
+import { useApiAction } from "../../../Shared/Hooks";
 
 interface Props {
     children?: ReactNode;

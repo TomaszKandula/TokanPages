@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { ExecuteStoreActionProps, GET_ARTICLES } from "../../../Api";
-import { useApiAction } from "Shared/Hooks";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";

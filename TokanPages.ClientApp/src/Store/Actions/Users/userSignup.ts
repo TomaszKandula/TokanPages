@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { AddUserDto } from "../../../Api/Models";
 import { ADD_USER, ExecuteStoreActionProps } from "../../../Api";
-import { useApiAction } from "Shared/Hooks";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const SIGNUP = "SIGNUP_USER";
 export const CLEAR = "SIGNUP_USER_CLEAR";
