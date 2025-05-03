@@ -15,7 +15,7 @@ interface RenderParagraphsProps {
 
 export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactElement => {
     if (props.replace) {
-        let render: React.ReactElement[] = [];
+        const render: React.ReactElement[] = [];
         props.text.forEach(item => {
             if (item === props.replace?.key) {
                 render.push(

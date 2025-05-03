@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../../Configuration";
 import { RemoveUserNoteDto, RemoveUserNoteResultDto } from "../../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, REMOVE_USER_NOTE } from "../../../../Api";
+import { ExecuteStoreActionProps, REMOVE_USER_NOTE } from "../../../../Api";
+import { useApiAction } from "../../../../Shared/Hooks";
 
 export const DELETE = "DELETE_USER_NOTE";
 export const CLEAR = "DELETE_USER_NOTE_CLEAR";
@@ -25,6 +26,7 @@ export const UserNoteDeleteAction = {
         (payload: RemoveUserNoteDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: DELETE });
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: REMOVE_USER_NOTE,
                 dispatch: dispatch,
@@ -37,6 +39,6 @@ export const UserNoteDeleteAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

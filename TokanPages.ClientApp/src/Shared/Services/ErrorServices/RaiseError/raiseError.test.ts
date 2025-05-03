@@ -17,19 +17,15 @@ describe("Verify RaiseError.", () => {
                 nullError: "Null error",
             },
             errorObject: {
-                response: {
-                    data: {
-                        errorCode: "CANNOT_READ_FROM_AZURE_STORAGE",
-                        errorMessage: "Cannot read from Azure Storage Blob",
-                        validationErrors: [
-                            {
-                                propertyName: "Id",
-                                errorCode: "INVALID_GUID",
-                                errorMessage: "Must be GUID",
-                            },
-                        ],
+                errorCode: "CANNOT_READ_FROM_AZURE_STORAGE",
+                errorMessage: "Cannot read from Azure Storage Blob",
+                validationErrors: [
+                    {
+                        propertyName: "Id",
+                        errorCode: "INVALID_GUID",
+                        errorMessage: "Must be GUID",
                     },
-                },
+                ],
             },
         };
 
@@ -58,13 +54,9 @@ describe("Verify RaiseError.", () => {
                 nullError: "Null error",
             },
             errorObject: {
-                response: {
-                    data: {
-                        errorCode: "USERNAME_ALREADY_EXISTS",
-                        errorMessage: "This user name already exists",
-                        validationErrors: null,
-                    },
-                },
+                errorCode: "USERNAME_ALREADY_EXISTS",
+                errorMessage: "This user name already exists",
+                validationErrors: null,
             },
         };
 
@@ -91,24 +83,20 @@ describe("Verify RaiseError.", () => {
                 nullError: "Null error",
             },
             errorObject: {
-                response: {
-                    data: {
-                        errorCode: "CANNOT_ADD_DATA",
-                        errorMessage: "Cannot add invalid data",
-                        validationErrors: [
-                            {
-                                propertyName: "Id",
-                                errorCode: "INVALID_GUID",
-                                errorMessage: "Must be GUID",
-                            },
-                            {
-                                propertyName: "UserAge",
-                                errorCode: "INVALID_NUMBER",
-                                errorMessage: "Cannot be negative number",
-                            },
-                        ],
+                errorCode: "CANNOT_ADD_DATA",
+                errorMessage: "Cannot add invalid data",
+                validationErrors: [
+                    {
+                        propertyName: "Id",
+                        errorCode: "INVALID_GUID",
+                        errorMessage: "Must be GUID",
                     },
-                },
+                    {
+                        propertyName: "UserAge",
+                        errorCode: "INVALID_NUMBER",
+                        errorMessage: "Cannot be negative number",
+                    },
+                ],
             },
         };
 

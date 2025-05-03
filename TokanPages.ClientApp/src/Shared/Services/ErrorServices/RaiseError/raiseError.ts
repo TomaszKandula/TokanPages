@@ -20,8 +20,8 @@ const GetErrorMessage = (props: BaseErrorProps): string => {
     let result: string = props.content.unexpectedError;
     let validationError: string = "";
 
-    if (props.errorObject?.response?.data) {
-        const parsed: ErrorDto = props.errorObject.response.data as ErrorDto;
+    if (props.errorObject) {
+        const parsed: ErrorDto = props.errorObject as ErrorDto;
         result = Validate.isEmpty(parsed.errorMessage) ? props.content.unexpectedError : parsed.errorMessage;
 
         if (parsed.validationErrors && parsed.validationErrors !== null && parsed.validationErrors.length > 0) {

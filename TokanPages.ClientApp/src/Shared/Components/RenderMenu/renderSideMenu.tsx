@@ -27,7 +27,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
     const signinPath = `/${props.languageId}/account/signin`;
     const signupPath = `/${props.languageId}/account/signup`;
 
-    let renderBuffer: React.ReactElement[] = [];
+    const renderBuffer: React.ReactElement[] = [];
     props.items.forEach(item => {
         const isAnonymous = props.isAnonymous && item.link === accountPath;
         const isNotAnonymous = !props.isAnonymous && (item.link === signinPath || item.link === signupPath);

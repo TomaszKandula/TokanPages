@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateUserDto, UpdateUserResultDto } from "../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, UPDATE_USER } from "../../../Api";
+import { ExecuteStoreActionProps, UPDATE_USER } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const UPDATE = "UPDATE_USER";
 export const CLEAR = "UPDATE_USER_CLEAR";
@@ -26,6 +27,7 @@ export const UserUpdateAction = {
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
 
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: UPDATE_USER,
                 dispatch: dispatch,
@@ -38,6 +40,6 @@ export const UserUpdateAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

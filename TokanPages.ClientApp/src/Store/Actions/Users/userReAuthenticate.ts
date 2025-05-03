@@ -1,7 +1,8 @@
 import { ApplicationAction } from "../../Configuration";
 import { ReAuthenticateUserDto } from "../../../Api/Models";
 import { UPDATE, TKnownActions as TUpdateActions } from "./userDataStore";
-import { REAUTHENTICATE as REAUTHENTICATE_USER, ExecuteStoreActionProps, ExecuteStoreAction } from "../../../Api";
+import { REAUTHENTICATE as REAUTHENTICATE_USER, ExecuteStoreActionProps } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const REAUTHENTICATE = "REAUTHENTICATE_USER";
 export const CLEAR = "REAUTHENTICATE_USER_CLEAR";
@@ -18,7 +19,6 @@ interface Response {
 }
 export type TKnownActions = ReAuthenticate | Clear | Response | TUpdateActions;
 
-//TODO: refactor, simplify
 export const UserReAuthenticateAction = {
     clear: (): ApplicationAction<TKnownActions> => dispatch => {
         dispatch({ type: CLEAR });
@@ -32,6 +32,7 @@ export const UserReAuthenticateAction = {
                 refreshToken: refreshToken,
             };
 
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: REAUTHENTICATE_USER,
                 dispatch: dispatch,
@@ -44,6 +45,6 @@ export const UserReAuthenticateAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };
