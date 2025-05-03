@@ -35,7 +35,7 @@ export const RenderGist = (props: TextItem): React.ReactElement => {
             setGistContent(result.content as string);
         }
 
-        if (result.error !== null) {
+        if (result.error) {
             RaiseError({
                 dispatch: dispatch,
                 errorObject: result.error,
