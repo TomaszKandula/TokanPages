@@ -4,7 +4,8 @@ import {
     RenderAnchorLink,
     RenderArticleLink,
     RenderExternalLink,
-    RenderHeader,
+    RenderHeader1,
+    RenderHeader2,
     RenderInternalLink,
     RenderParagraph,
     RenderParagraphWithDropCap,
@@ -30,8 +31,10 @@ export const RenderText = (props: TextItem): React.ReactElement => {
             return <RenderTitle value={value} />;
         case "subtitle":
             return <RenderSubtitle value={value} />;
-        case "header":
-            return <RenderHeader value={value} />;
+        case "header1":
+            return <RenderHeader1 value={value} />;
+        case "header2":
+            return <RenderHeader2 value={value} />;
         case "dropcap":
             return <RenderParagraphWithDropCap value={value} />;
         default:

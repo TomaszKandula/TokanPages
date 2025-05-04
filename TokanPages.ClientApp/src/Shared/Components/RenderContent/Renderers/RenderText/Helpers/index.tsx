@@ -152,8 +152,12 @@ export const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return <h2 className="render-text-common render-text-sub-title mt-8 mb-40">{props.value ?? NO_CONTENT}</h2>;
 };
 
-export const RenderHeader = (props: DataProps): React.ReactElement => {
-    return <h3 className="render-text-common render-text-header mt-56 mb-15">{props.value ?? NO_CONTENT}</h3>;
+export const RenderHeader1 = (props: DataProps): React.ReactElement => {
+    return <h1 className="render-text-common render-text-header1 mt-56 mb-15">{props.value ?? NO_CONTENT}</h1>;
+};
+
+export const RenderHeader2 = (props: DataProps): React.ReactElement => {
+    return <h2 className="render-text-common render-text-header2 mt-56 mb-15">{props.value ?? NO_CONTENT}</h2>;
 };
 
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
