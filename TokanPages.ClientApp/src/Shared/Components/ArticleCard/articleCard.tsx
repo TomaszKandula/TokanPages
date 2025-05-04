@@ -19,14 +19,18 @@ interface ArticleCardProps {
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
-    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticle);
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+
+    const isLoading = data.isLoading;
+    const content = data.components.pageArticle;
+
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);
     const imageUrl = props.id !== "" ? GET_ARTICLE_MAIN_IMAGE_URL.replace("{id}", props.id) : "";
-
-    const dispatch = useDispatch();
-    const history = useHistory();
 
     const onClickEvent = React.useCallback(() => {
         dispatch(ArticleSelectionAction.select({ id: props.id }));
@@ -47,6 +51,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
 
     return (
         <ArticleCardView
+            isLoading={isLoading}
             imageUrl={imageUrl}
             title={GetShortText({ value: props.title, limit: 6 })}
             description={GetShortText({ value: props.description, limit: 12 })}
