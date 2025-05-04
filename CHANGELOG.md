@@ -1,3 +1,26 @@
+# [0.154.0](https://github.com/TomaszKandula/TokanPages/compare/v0.153.0...v0.154.0) (2025-05-04)
+
+
+### Bug Fixes
+
+* check if undefined ([4fb65c7](https://github.com/TomaszKandula/TokanPages/commit/4fb65c7316c269be08de7a983599a333f893c43e))
+* correct import paths ([e9b4b72](https://github.com/TomaszKandula/TokanPages/commit/e9b4b72b6469eabc8da7a97520fd8b1b6dc6871e))
+* resolve issues with error action ([fac8314](https://github.com/TomaszKandula/TokanPages/commit/fac8314959995b6b1c9104bb14f3d805f4c4fca9))
+
+
+### Features
+
+* add new API hooks ([150a146](https://github.com/TomaszKandula/TokanPages/commit/150a146080e3683e30ac9b519fa86f15067fa1d6))
+* change font siezes ([6212e99](https://github.com/TomaszKandula/TokanPages/commit/6212e99b110bffecc6221410cdb289e1faef96c4))
+* change headings style ([78b924f](https://github.com/TomaszKandula/TokanPages/commit/78b924f45517d2eab8f9e072a0b455b1cb4bfca6))
+* fallback to undefined ([609c0a9](https://github.com/TomaszKandula/TokanPages/commit/609c0a9149800cdf8c3972e816b8f5af844b73ae))
+* split header into H1 and H2 ([6436d48](https://github.com/TomaszKandula/TokanPages/commit/6436d48569dcd32de843d0aa4c2dbd29bf40bcbf))
+* use api hook ([68ec8a3](https://github.com/TomaszKandula/TokanPages/commit/68ec8a3585a59155774bbc818c18b5eaf80004c2))
+* use html 'header' tags ([55c265a](https://github.com/TomaszKandula/TokanPages/commit/55c265ae02f27d4a13af800415ab0576e39c3d44))
+* use loading, use headings ([36ab67a](https://github.com/TomaszKandula/TokanPages/commit/36ab67ab6c97100ece71fb0d3b0f0a1e0a5a9ec1))
+* use meta description for each page separately ([f491061](https://github.com/TomaszKandula/TokanPages/commit/f491061c5506d5cd16f9b91ec86e9f8d31918173))
+* use separate api hook ([7052815](https://github.com/TomaszKandula/TokanPages/commit/705281510f68c5c65440bfdf377d2074ea9d900c))
+
 # [0.153.0](https://github.com/TomaszKandula/TokanPages/compare/v0.152.0...v0.153.0) (2025-04-21)
 
 
