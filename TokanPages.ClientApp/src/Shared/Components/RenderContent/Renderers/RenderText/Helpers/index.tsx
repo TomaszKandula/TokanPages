@@ -31,6 +31,8 @@ interface ProcessParagraphsProps {
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
+/* LINK COMPONENTS */
+
 export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     const hash = useHash();
     const data = props.value;
@@ -59,6 +61,8 @@ export const RenderTargetLink = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderExternalLink = (props: TextItem): React.ReactElement => {
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+
     const hasImage = !Validate.isEmpty(props.propImg);
     const imageUrl = hasImage ? GET_NON_VIDEO_ASSET.replace("{name}", props.propImg!) : "";
 
@@ -72,6 +76,7 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
 
     return (
         <ArticleCardView
+            isLoading={data.isLoading}
             imageUrl={imageUrl}
             title={props.propTitle ?? ""}
             description={props.propSubtitle ?? ""}
@@ -86,7 +91,10 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
 
 export const RenderInternalLink = (props: TextItem): React.ReactElement => {
     const history = useHistory();
+
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+
     const hasImage = !Validate.isEmpty(props.propImg);
     const imageUrl = hasImage ? GET_NON_VIDEO_ASSET.replace("{name}", props.propImg!) : "";
 
@@ -96,6 +104,7 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
 
     return (
         <ArticleCardView
+            isLoading={data.isLoading}
             imageUrl={imageUrl}
             title={props.propTitle ?? ""}
             description={props.propSubtitle ?? ""}
@@ -144,56 +153,29 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
     );
 };
 
+/* HEADER COMPONENT */
+
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-title mt-56 mb-8">{props.value ?? NO_CONTENT}</p>;
+    return <h1 className="render-text-common render-text-title mt-56 mb-0">{props.value ?? NO_CONTENT}</h1>;
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-sub-title mt-8 mb-40">{props.value ?? NO_CONTENT}</p>;
+    return <h2 className="render-text-common render-text-subtitle mt-0 mb-40">{props.value ?? NO_CONTENT}</h2>;
 };
 
-export const RenderHeader = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-header mt-56 mb-15">{props.value ?? NO_CONTENT}</p>;
+export const RenderHeader1 = (props: DataProps): React.ReactElement => {
+    return <h1 className="render-text-common render-text-header1 mt-56 mb-15">{props.value ?? NO_CONTENT}</h1>;
 };
 
-export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
-    const result: React.ReactElement[] = [];
-
-    if (!props.html || (props.html && props.html === "")) {
-        return <>{NO_CONTENT}</>;
-    }
-
-    if (!props.html.includes("__{") && !props.html.includes("}__")) {
-        return <>{props.html}</>;
-    }
-
-    const array = props.html.split("__");
-    if (array.length > 0) {
-        array.forEach(item => {
-            if (item.includes("{") && item.includes("}")) {
-                try {
-                    const data = JSON.parse(item) as LinkProps;
-                    result.push(
-                        <a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>
-                            {data.text}
-                        </a>
-                    );
-                } catch {
-                    console.error(item);
-                    throw "Parsing error.";
-                }
-            } else {
-                if (!Validate.isEmpty(item)) {
-                    result.push(<React.Fragment key={uuidv4()}>{item}</React.Fragment>);
-                }
-            }
-        });
-    } else {
-        return <>{props.html}</>;
-    }
-
-    return <>{result}</>;
+export const RenderHeader2 = (props: DataProps): React.ReactElement => {
+    return <h2 className="render-text-common render-text-header2 mt-56 mb-15">{props.value ?? NO_CONTENT}</h2>;
 };
+
+export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
+    return <h3 className="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap">{props.value ?? NO_CONTENT}</h3>;
+};
+
+/* PARAGRAPH COMPONENTS */
 
 export const RenderParagraph = (props: TextItem): React.ReactElement => {
     const html = props.value as string | string[];
@@ -238,6 +220,41 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
     }
 };
 
-export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-paragraph custom-drop-cap">{props.value ?? NO_CONTENT}</p>;
+export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
+    const result: React.ReactElement[] = [];
+
+    if (!props.html || (props.html && props.html === "")) {
+        return <>{NO_CONTENT}</>;
+    }
+
+    if (!props.html.includes("__{") && !props.html.includes("}__")) {
+        return <>{props.html}</>;
+    }
+
+    const array = props.html.split("__");
+    if (array.length > 0) {
+        array.forEach(item => {
+            if (item.includes("{") && item.includes("}")) {
+                try {
+                    const data = JSON.parse(item) as LinkProps;
+                    result.push(
+                        <a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>
+                            {data.text}
+                        </a>
+                    );
+                } catch {
+                    console.error(item);
+                    throw "Parsing error.";
+                }
+            } else {
+                if (!Validate.isEmpty(item)) {
+                    result.push(<React.Fragment key={uuidv4()}>{item}</React.Fragment>);
+                }
+            }
+        });
+    } else {
+        return <>{props.html}</>;
+    }
+
+    return <>{result}</>;
 };

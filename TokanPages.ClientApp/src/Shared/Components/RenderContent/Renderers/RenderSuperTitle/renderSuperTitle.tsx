@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TextItem } from "../../Models";
-import { Card, CardMedia, Typography } from "@material-ui/core";
+import { Card, CardMedia } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
@@ -14,12 +14,12 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     return (
         <div className="render-super-title-container">
             <div className="render-super-title-content-text">
-                <Typography component="p" className="render-super-title-common render-super-title-title mt-40 mb-8">
+                <h2 className="render-super-title-common render-super-title-title mt-40 mb-8">
                     {props.propTitle ?? NO_CONTENT}
-                </Typography>
-                <Typography component="p" className="render-super-title-common render-super-title-sub-title mt-8 mb-40">
+                </h2>
+                <h3 className="render-super-title-common render-super-title-sub-title render-text-no-bold mt-8 mb-40">
                     {props.propSubtitle ?? NO_CONTENT}
-                </Typography>
+                </h3>
             </div>
             <Card elevation={0} className="render-super-title-card render-super-title-content-image">
                 <CardMedia
