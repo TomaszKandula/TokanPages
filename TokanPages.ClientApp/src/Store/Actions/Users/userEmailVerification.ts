@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { VerifyUserEmailDto } from "../../../Api/Models";
-import { VERIFY_USER_EMAIL, ExecuteStoreAction, ExecuteStoreActionProps } from "../../../Api";
+import { VERIFY_USER_EMAIL, ExecuteStoreActionProps } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const VERIFY = "VERIFY_USER_EMAIL";
 export const CLEAR = "VERIFY_USER_EMAIL_CLEAR";
@@ -25,6 +26,7 @@ export const UserEmailVerificationAction = {
         (payload: VerifyUserEmailDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: VERIFY });
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: VERIFY_USER_EMAIL,
                 dispatch: dispatch,
@@ -39,6 +41,6 @@ export const UserEmailVerificationAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

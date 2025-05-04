@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from "react";
-import { ExecuteLogAction } from "../../../Api";
 import { ErrorBoundaryView } from "./errorBoundaryView";
+import { useApiAction } from "../../../Shared/Hooks";
 
 interface Props {
     children?: ReactNode;
@@ -20,8 +20,9 @@ export class ErrorBoundary extends Component<Props, State> {
     }
 
     public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+        const actions = useApiAction();
         console.error("Uncaught error", error, errorInfo);
-        ExecuteLogAction(error, errorInfo, "ErrorBoundary", "error");
+        actions.logAction(error, errorInfo, "ErrorBoundary", "error");
     }
 
     public render() {

@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { SendMessageDto } from "../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, SEND_MESSAGE } from "../../../Api";
+import { ExecuteStoreActionProps, SEND_MESSAGE } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const SEND = "SEND_MESSAGE";
 export const CLEAR = "SEND_MESSAGE_CLEAR";
@@ -26,6 +27,7 @@ export const ApplicationMessageAction = {
         (dispatch, getState) => {
             dispatch({ type: SEND });
 
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: SEND_MESSAGE,
                 dispatch: dispatch,
@@ -38,6 +40,6 @@ export const ApplicationMessageAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

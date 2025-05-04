@@ -37,16 +37,16 @@ Object {
                     <div
                       class="MuiCardContent-root article-card-content"
                     >
-                      <p
-                        class="MuiTypography-root article-card-title MuiTypography-body1"
+                      <h2
+                        class="article-card-title m-zero"
                       >
                         Test article
-                      </p>
-                      <p
-                        class="MuiTypography-root article-card-description MuiTypography-body1"
+                      </h2>
+                      <h3
+                        class="article-card-description m-zero"
                       >
                         Some article
-                      </p>
+                      </h3>
                       <div
                         class="article-card-action-container article-card-action-large"
                       >
@@ -174,16 +174,16 @@ Object {
                   <div
                     class="MuiCardContent-root article-card-content"
                   >
-                    <p
-                      class="MuiTypography-root article-card-title MuiTypography-body1"
+                    <h2
+                      class="article-card-title m-zero"
                     >
                       Test article
-                    </p>
-                    <p
-                      class="MuiTypography-root article-card-description MuiTypography-body1"
+                    </h2>
+                    <h3
+                      class="article-card-description m-zero"
                     >
                       Some article
-                    </p>
+                    </h3>
                     <div
                       class="article-card-action-container article-card-action-large"
                     >

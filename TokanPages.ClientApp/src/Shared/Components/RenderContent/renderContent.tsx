@@ -16,7 +16,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
     if (textObject === undefined) return <div>Cannot render content.</div>;
     if (textObject.items.length === 0) return <div>Cannot render content.</div>;
 
-    let renderBuffer: React.ReactElement[] = [];
+    const renderBuffer: React.ReactElement[] = [];
     textObject.items.forEach(item => {
         switch (item.type) {
             case "separator":

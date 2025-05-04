@@ -7,6 +7,7 @@ describe("test articles group component: ArticleCardView", () => {
     it("should render correctly '<ArticleCardView />' when content is loaded.", () => {
         const html = render(
             <ArticleCardView
+                isLoading={false}
                 imageUrl="/images/card.jpg"
                 title="Article title"
                 description="Article short description"

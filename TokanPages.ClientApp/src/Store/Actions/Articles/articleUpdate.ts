@@ -1,7 +1,7 @@
 import { ApplicationAction, ApplicationState } from "../../Configuration";
+import { useApiAction } from "../../../Shared/Hooks";
 
 import {
-    ExecuteStoreAction,
     ExecuteStoreActionProps,
     UPDATE_ARTICLE_CONTENT,
     UPDATE_ARTICLE_COUNT,
@@ -39,6 +39,7 @@ const DispatchCall = async (
 ) => {
     dispatch({ type: UPDATE });
 
+    const actions = useApiAction();
     const input: ExecuteStoreActionProps = {
         url: url,
         dispatch: dispatch,
@@ -51,7 +52,7 @@ const DispatchCall = async (
         },
     };
 
-    ExecuteStoreAction(input);
+    actions.storeAction(input);
 };
 
 export const ArticleUpdateAction = {

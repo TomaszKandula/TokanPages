@@ -1,6 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
 import { UpdateNewsletterDto } from "../../../Api/Models";
-import { ExecuteStoreAction, ExecuteStoreActionProps, UPDATE_NEWSLETTER } from "../../../Api";
+import { ExecuteStoreActionProps, UPDATE_NEWSLETTER } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 
 export const UPDATE = "UPDATE_SUBSCRIBER";
 export const RESPONSE = "UPDATE_SUBSCRIBER_RESPONSE";
@@ -18,6 +19,7 @@ export const NewsletterUpdateAction = {
         (payload: UpdateNewsletterDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: UPDATE });
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: UPDATE_NEWSLETTER,
                 dispatch: dispatch,
@@ -30,6 +32,6 @@ export const NewsletterUpdateAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };

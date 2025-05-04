@@ -1,7 +1,8 @@
 import { ApplicationAction } from "../../Configuration";
 import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
+import { ExecuteStoreActionProps, GET_ARTICLE, GET_ARTICLE_BY_TITLE } from "../../../Api";
+import { useApiAction } from "../../../Shared/Hooks";
 import Validate from "validate.js";
-import { ExecuteStoreAction, ExecuteStoreActionProps, GET_ARTICLE, GET_ARTICLE_BY_TITLE } from "../../../Api";
 
 export const RESET = "RESET_SELECTION";
 export const REQUEST = "REQUEST_ARTICLE";
@@ -36,6 +37,7 @@ export const ArticleSelectionAction = {
                 url = GET_ARTICLE_BY_TITLE.replace("{title}", props.title?.toLowerCase()!);
             }
 
+            const actions = useApiAction();
             const input: ExecuteStoreActionProps = {
                 url: url,
                 dispatch: dispatch,
@@ -47,6 +49,6 @@ export const ArticleSelectionAction = {
                 },
             };
 
-            ExecuteStoreAction(input);
+            actions.storeAction(input);
         },
 };
