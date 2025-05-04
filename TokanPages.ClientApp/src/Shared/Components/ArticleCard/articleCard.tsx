@@ -25,8 +25,8 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
 
-    const isLoading = data.isLoading;
-    const content = data.components.pageArticle;
+    const isLoading = data?.isLoading;
+    const content = data?.components?.pageArticle;
 
     const quaryableTitle = props.title.replaceAll(" ", "-").toLowerCase();
     const articleUrl = ARTICLE_PATH.replace("{title}", quaryableTitle);
