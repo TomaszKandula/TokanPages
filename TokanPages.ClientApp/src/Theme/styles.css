@@ -551,6 +551,10 @@ body::backdrop {
     margin-bottom: 0;
 }
 
+.mb-2 {
+    margin-bottom: 2px;
+}
+
 .mb-8 {
     margin-bottom: 8px;
 }
@@ -2590,13 +2594,15 @@ body::backdrop {
 }
 
 .render-text-title {
-    font-size: 28px !important;
-    font-weight: bold !important;
+    font-size: 48px !important;
+    font-weight: 500 !important;
     line-height: 1.4 !important;
 }
 
-.render-text-sub-title {
-    line-height: 1.4 !important;
+.render-text-subtitle {
+    font-size: 25px !important;
+    font-weight: 300 !important;
+    line-height: 1.2 !important;
 }
 
 .render-text-header1 {

@@ -145,11 +145,11 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return <h1 className="render-text-common render-text-title mt-56 mb-8">{props.value ?? NO_CONTENT}</h1>;
+    return <h1 className="render-text-common render-text-title mt-56 mb-0">{props.value ?? NO_CONTENT}</h1>;
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
-    return <h2 className="render-text-common render-text-sub-title mt-8 mb-40">{props.value ?? NO_CONTENT}</h2>;
+    return <h2 className="render-text-common render-text-subtitle mt-0 mb-40">{props.value ?? NO_CONTENT}</h2>;
 };
 
 export const RenderHeader1 = (props: DataProps): React.ReactElement => {
