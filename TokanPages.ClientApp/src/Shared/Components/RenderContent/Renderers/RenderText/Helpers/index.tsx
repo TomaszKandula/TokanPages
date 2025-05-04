@@ -145,15 +145,15 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-title mt-56 mb-8">{props.value ?? NO_CONTENT}</p>;
+    return <h1 className="render-text-common render-text-title mt-56 mb-8">{props.value ?? NO_CONTENT}</h1>;
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-sub-title mt-8 mb-40">{props.value ?? NO_CONTENT}</p>;
+    return <h2 className="render-text-common render-text-sub-title mt-8 mb-40">{props.value ?? NO_CONTENT}</h2>;
 };
 
 export const RenderHeader = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-header mt-56 mb-15">{props.value ?? NO_CONTENT}</p>;
+    return <h3 className="render-text-common render-text-header mt-56 mb-15">{props.value ?? NO_CONTENT}</h3>;
 };
 
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
@@ -239,5 +239,5 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
-    return <p className="render-text-common render-text-paragraph custom-drop-cap">{props.value ?? NO_CONTENT}</p>;
+    return <h3 className="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap">{props.value ?? NO_CONTENT}</h3>;
 };
