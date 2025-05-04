@@ -133,16 +133,16 @@ Object {
       </div>
     </div>
     <div>
-      <p
-        class="render-text-common render-text-title mt-56 mb-8"
+      <h1
+        class="render-text-common render-text-title mt-56 mb-0"
       >
         &lt;p&gt;Test line&lt;/p&gt;
-      </p>
-      <p
-        class="render-text-common render-text-sub-title mt-8 mb-40"
+      </h1>
+      <h2
+        class="render-text-common render-text-subtitle mt-0 mb-40"
       >
         &lt;p&gt;Test line&lt;/p&gt;
-      </p>
+      </h2>
       <div
         class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
       >
@@ -154,11 +154,11 @@ Object {
           title="Illustration"
         />
       </div>
-      <p
-        class="render-text-common render-text-paragraph custom-drop-cap"
+      <h3
+        class="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap"
       >
         &lt;p&gt;Test line&lt;/p&gt;
-      </p>
+      </h3>
       <p
         class="render-text-common render-text-paragraph"
       >
