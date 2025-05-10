@@ -13,6 +13,7 @@ import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { AuthenticateUserResultDto, UserInfoProps, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { v4 as uuidv4 } from "uuid";
+import "./applicationUserInfoView.css";
 
 interface ApplicationUserInfoViewProps {
     state: boolean;

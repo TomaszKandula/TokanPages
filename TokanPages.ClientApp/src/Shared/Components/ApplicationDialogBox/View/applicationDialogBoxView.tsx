@@ -11,6 +11,7 @@ import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../../enums";
 import { RenderParagraphs } from "../../../../Shared/Components/RenderParagraphs/renderParagraphs";
 import { RenderList } from "../../../../Shared/Components/RenderList/renderList";
+import "./applicationDialogBoxView.css";
 
 interface Properties {
     state: boolean;

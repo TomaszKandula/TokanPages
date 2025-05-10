@@ -1,0 +1,9 @@
+.progress-bar-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-bar-progress {
+    color: #6367ef !important;
+}

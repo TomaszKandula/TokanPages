@@ -16,6 +16,7 @@ import {
     TextField,
     Typography,
 } from "@material-ui/core";
+import "./userNotesView.css";
 
 interface UserNotesViewProps {
     isLoading: boolean;

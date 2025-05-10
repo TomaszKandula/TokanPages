@@ -3,6 +3,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import { SlideProps, SnackbarOrigin } from "@material-ui/core";
 import { Alert, Color } from "@material-ui/lab";
 import { ReactSyntheticEvent } from "../../../../Shared/types";
+import "./applicationToastView.css";
 
 interface Properties {
     anchorOrigin: SnackbarOrigin;

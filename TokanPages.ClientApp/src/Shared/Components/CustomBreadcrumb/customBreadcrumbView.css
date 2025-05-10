@@ -1,0 +1,14 @@
+.custom-chip {
+    background-color: #f5f5f5 !important;
+    height: 24px !important;
+    color: #424242 !important;
+    font-weight: 400;
+}
+
+.custom-chip:hover {
+    background-color: #e0e0e0 !important;
+}
+
+.custom-chip:focus {
+    background-color: #e0e0e0 !important;
+}
