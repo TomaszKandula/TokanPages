@@ -10,6 +10,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { Typography } from "@material-ui/core";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated } from "../../../Shared/Components";
+import "./technologiesView.css";
 
 interface TechnologiesViewProps {
     background?: string;

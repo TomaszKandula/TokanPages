@@ -10,6 +10,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";
 import { Animated } from "../../../Shared/Components";
 import Validate from "validate.js";
+import "./showcaseView.css";
 
 interface ShowcaseViewProps {
     background?: string;

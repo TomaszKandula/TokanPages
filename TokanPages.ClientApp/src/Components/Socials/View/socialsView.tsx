@@ -6,6 +6,7 @@ import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, GetIcon } from "../../../Shared/Components";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";
+import "./socialsView.css";
 
 interface SocialsViewProps {
     background?: string;

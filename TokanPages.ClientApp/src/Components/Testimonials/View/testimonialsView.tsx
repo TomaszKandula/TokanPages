@@ -10,6 +10,7 @@ import { GET_TESTIMONIALS_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { Animated } from "../../../Shared/Components";
 import { Collapsible } from "../../../Shared/Components";
+import "./testimonialsView.css";
 
 interface TestimonialsViewProps extends ViewProperties {
     caption: string;

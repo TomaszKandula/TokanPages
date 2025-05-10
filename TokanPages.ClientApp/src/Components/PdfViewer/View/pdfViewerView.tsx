@@ -6,6 +6,7 @@ import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import DescriptionIcon from "@material-ui/icons/Description";
 import ErrorIcon from "@material-ui/icons/Error";
 import { CustomCard, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import "./pdfViewerView.css";
 
 interface PdfViewerViewProps {
     isDocLoading: boolean;
