@@ -12,6 +12,7 @@ import { GET_FEATURED_IMAGE_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated } from "../../../Shared/Components";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";
+import "./featuredView.css";
 
 interface FeaturedViewProps {
     background?: string;

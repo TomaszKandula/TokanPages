@@ -1,0 +1,321 @@
+@keyframes blink {
+    0%,
+    100% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #fff;
+    }
+}
+
+.cookie-window-caret {
+    display: inline-block;
+    background-color: #fff;
+    width: 10px;
+    height: 14px;
+    animation: blink 1s infinite;
+}
+
+.cookie-window-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cookie-window-close {
+    opacity: 0;
+    transition: 0.3s all ease;
+    visibility: hidden;
+}
+
+.cookie-window-button {
+    position: relative;
+    background: #e8e8e8;
+    border: none;
+    padding: 0 16px;
+    margin: 0;
+    color: #aaaaad;
+    font:
+        14px/18px JetSites Cookie Banner JetBrains Mono,
+        Menlo,
+        Consolas,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace,
+        serif;
+    font-weight: 900;
+    box-shadow: 6px 6px 0 0 #000;
+}
+
+@media (max-width: 560px) {
+    .cookie-window-button {
+        height: 24px;
+    }
+}
+
+.cookie-window-button-accent {
+    background-color: #fefc4f;
+    color: #700000;
+}
+
+.cookie-window-button:focus {
+    color: #700000;
+}
+
+.cookie-window-button:hover {
+    background-color: #fefc4f;
+    cursor: pointer;
+}
+
+.cookie-window-button:before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+}
+
+.cookie-window-button:first-letter {
+    color: #000;
+}
+
+.cookie-window-checkbox {
+    position: relative;
+    color: #e8e8e8;
+    font:
+        14px/18px JetSites Cookie Banner JetBrains Mono,
+        Menlo,
+        Consolas,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace,
+        serif;
+    font-weight: 900;
+}
+
+.cookie-window-checkbox:nth-of-type(2):after {
+    position: absolute;
+    content: "";
+    top: -7px;
+    right: -44px;
+    width: 160%;
+    height: 127%;
+}
+
+.cookie-window-checkbox:nth-of-type(3):after {
+    position: absolute;
+    content: "";
+    top: -7px;
+    right: -13px;
+    width: 125%;
+    height: 191%;
+}
+
+.cookie-window-checkbox:nth-of-type(4):after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -8px;
+    width: 119%;
+    height: 149%;
+}
+
+.cookie-window-checkbox-input {
+    position: absolute;
+    box-sizing: border-box;
+    opacity: 0.01;
+}
+
+.cookie-window-checkbox-visual-input {
+    margin-right: 8px;
+}
+
+.cookie-window-checkbox-visual-input:before {
+    content: "[ ]";
+}
+
+.cookie-window-checkbox-input:checked ~ .cookie-window-checkbox-visual-input:before {
+    content: "[X]";
+}
+
+.cookie-window-checkbox:hover {
+    color: #700000;
+    cursor: pointer;
+}
+
+.cookie-window-checkbox-input:focus ~ .cookie-window-checkbox-label,
+.cookie-window-checkbox-input:focus ~ .cookie-window-checkbox-visual-input {
+    color: #700000;
+}
+
+.cookie-window-checkbox-input:disabled ~ .cookie-window-checkbox-label,
+.cookie-window-checkbox-input:disabled ~ .cookie-window-checkbox-visual-input {
+    color: #8a8a8a;
+}
+
+.cookie-window {
+    position: fixed;
+    z-index: 999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 20px 20px 0 0 rgba(0, 0, 0, 0.682);
+    box-sizing: border-box;
+    width: 570px;
+    min-height: 300px;
+    padding: 7px 5px 5px;
+    background-color: #0550c0;
+    color: #e8e8e8;
+    font:
+        14px/18px JetSites Cookie Banner JetBrains Mono,
+        Menlo,
+        Consolas,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace,
+        serif;
+    font-weight: 900;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.cookie-window-caption {
+    display: block;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    padding: 0 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    top: 0;
+    white-space: nowrap;
+    font:
+        14px/18px JetSites Cookie Banner JetBrains Mono,
+        Menlo,
+        Consolas,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace,
+        serif;
+    font-weight: 900;
+}
+
+.cookie-window-box {
+    position: relative;
+    border: 1px solid #e8e8e8;
+    padding: 2px;
+}
+
+.cookie-window-section-fixed-height {
+    height: 300px;
+}
+
+.cookie-window-section-detail {
+    font-weight: 700;
+}
+
+.cookie-window-section-text {
+    font-weight: 700;
+}
+
+.cookie-window-section {
+    text-align: center;
+    padding: 20px 18px;
+    border: 1px solid #e8e8e8;
+    margin-top: 2px;
+    font-weight: 700;
+}
+
+.cookie-window-section-left {
+    text-align: left !important;
+}
+
+.cookie-window-section:first-child {
+    margin-top: 0;
+}
+
+.cookie-window-section p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.cookie-window-section a,
+.cookie-window-section p {
+    color: #e8e8e8;
+    font:
+        14px/18px JetSites Cookie Banner JetBrains Mono,
+        Menlo,
+        Consolas,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace,
+        serif;
+    font-weight: 900;
+}
+
+.cookie-window-section a {
+    text-decoration: underline;
+    border: none;
+}
+
+.cookie-window-options-list {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: flex-start;
+    width: 350px;
+    margin-inline: auto;
+}
+
+.cookie-window-actions {
+    display: flex;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-inline: auto;
+    margin-top: 28px;
+    margin-bottom: 8px;
+    gap: 28px;
+}
+
+@media (max-width: 560px) {
+    .cookie-window-actions {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 560px) {
+    .cookie-window-action {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .cookie-window {
+        width: 100%;
+    }
+}

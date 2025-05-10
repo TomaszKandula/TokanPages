@@ -1,0 +1,73 @@
+.business-large-caption {
+    text-align: center;
+    font-size: 2rem !important;
+    color: #6367ef;
+}
+
+.business-small-caption {
+    font-size: 1.8rem !important;
+    color: #9e9e9e;
+}
+
+.business-main-icon {
+    font-size: 72px !important;
+    color: #6367ef;
+}
+
+.business-header {
+    font-size: 20px !important;
+}
+
+.business-list-item {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.business-unselected {
+    border: 1px solid #efefef;
+    border-radius: 10px !important;
+    background-color: white;
+}
+
+.business-selected {
+    border: 1.5px solid #6367ef;
+    border-radius: 10px !important;
+    background-color: white;
+}
+
+.business-disabled {
+    cursor: wait;
+}
+
+.business-enabled {
+    cursor: pointer;
+}
+
+.business-paper {
+    min-height: 120px;
+    padding: 15px;
+}
+
+.business-paper:hover {
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%) !important;
+}
+
+.business-pricing-text {
+    color: #757575;
+}
+
+.business-pricing-value {
+    font-weight: 700 !important;
+    color: #757575;
+}
+
+.business-info-box {
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.business-info-icon {
+    margin-right: 10px;
+    color: #6367ef;
+}

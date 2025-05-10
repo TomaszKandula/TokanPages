@@ -22,6 +22,7 @@ import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "..
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
+import "./businessFormView.css";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
     caption: string;

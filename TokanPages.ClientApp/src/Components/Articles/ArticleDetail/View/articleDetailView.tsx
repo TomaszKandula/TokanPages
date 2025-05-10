@@ -9,6 +9,7 @@ import { Animated, CustomDivider, RenderImage } from "../../../../Shared/Compone
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactMouseEvent } from "../../../../Shared/types";
 import { ExtendedViewProps } from "../articleDetail";
+import "./articleDetailView.css";
 
 interface ArticleDetailViewProps extends ExtendedViewProps {
     backButtonHandler: () => void;

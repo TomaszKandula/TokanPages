@@ -7,6 +7,7 @@ import { GET_ICONS_URL } from "../../../Api";
 import { ClientImageDto, ClientsContentDto } from "../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
+import "./clientsView.css";
 
 interface ClientsViewProps {
     background?: string;

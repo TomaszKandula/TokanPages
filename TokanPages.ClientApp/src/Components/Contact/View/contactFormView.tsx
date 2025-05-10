@@ -12,6 +12,7 @@ import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { Animated } from "../../../Shared/Components";
 import { ContactFormProps } from "../contactForm";
+import "./contactFormView.css";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     caption: string;
