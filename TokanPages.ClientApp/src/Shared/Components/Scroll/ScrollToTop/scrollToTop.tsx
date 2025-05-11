@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
+import { Fab } from "@material-ui/core";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { useScrollTrigger } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
 
@@ -17,7 +19,7 @@ export const ClearPageStart = (props: Properties): React.ReactElement => {
     return <>{props.children}</>;
 };
 
-export const ScrollToTop = (props: Properties): React.ReactElement => {
+export const ScrollToTop = (): React.ReactElement => {
     const hasTrigger = useScrollTrigger();
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -36,7 +38,9 @@ export const ScrollToTop = (props: Properties): React.ReactElement => {
     return (
         <div style={{ visibility: hasTrigger ? "visible" : "hidden" }}>
             <div onClick={handleClick} role="presentation" className="scroll-to-top">
-                {props.children}
+                <Fab size="small" aria-label="scroll back to top" className="button-up">
+                    <KeyboardArrowUpIcon />
+                </Fab>
             </div>
         </div>
     );
