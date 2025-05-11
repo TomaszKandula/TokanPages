@@ -1,11 +1,11 @@
 import * as React from "react";
 
-let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
-
 export const useScrollTrigger = (): boolean => {
     const [isScrollTop, setIsScrollTop] = React.useState(window.scrollY === 0);
 
-    const handleScrolling = (): number => {
+    let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    const handleScrolling = React.useCallback(() => {
         const scrollTopPosition = window.scrollY || document.documentElement.scrollTop;
 
         if (scrollTopPosition > lastScrollTop) {
@@ -15,7 +15,7 @@ export const useScrollTrigger = (): boolean => {
         }
 
         return lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
-    }
+    }, [lastScrollTop]);
 
     React.useEffect(() => {
         window.addEventListener("scroll", handleScrolling);
