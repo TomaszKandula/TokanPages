@@ -8,6 +8,7 @@ import { IconDto, LinkDto } from "../../../../Api/Models";
 import { ProgressBar } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
+import "./footerView.css";
 
 interface LegalInfoProps {
     copyright: string;

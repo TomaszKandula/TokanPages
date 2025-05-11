@@ -2,6 +2,7 @@ import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import { Table, TableBody, TableContainer, TableHead, TableRow, TableCell } from "@material-ui/core";
 import { RowItem, TextItem } from "../../Models/TextModel";
+import "./renderTable.css";
 
 export const RenderTable = (props: TextItem): React.ReactElement => {
     const tableData: RowItem[] = props.value as RowItem[];

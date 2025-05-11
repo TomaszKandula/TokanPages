@@ -15,6 +15,7 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { Animated } from "../../../../Shared/Components";
 import { GetImageUrl } from "../../../../Shared/Services/Utilities";
 import Validate from "validate.js";
+import "./articleFeatureView.css";
 
 interface ArticleFeatureViewProps {
     background?: string;

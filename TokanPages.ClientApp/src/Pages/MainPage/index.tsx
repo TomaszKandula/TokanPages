@@ -5,7 +5,7 @@ import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";
 import { Socials } from "../../Components/Socials";
-import { Newsletter } from "../../Components/Newsletter";
+import { NewsletterSection } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { ArticleFeature } from "../../Components/Articles";
 import { Navigation, Header, Footer } from "../../Components/Layout";
@@ -46,7 +46,7 @@ export const MainPage = (): React.ReactElement => {
                 <Featured />
                 <Testimonials background="background-colour-light-grey" />
                 <Socials />
-                <Newsletter background="background-colour-light-grey" />
+                <NewsletterSection background="background-colour-light-grey" />
                 <ContactForm hasCaption={true} />
             </main>
             <Footer />

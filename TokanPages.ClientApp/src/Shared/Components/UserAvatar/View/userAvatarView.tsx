@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Avatar } from "@material-ui/core";
 import Validate from "validate.js";
+import "./userAvatarView.css";
 
 interface Properties {
     isLarge: boolean;

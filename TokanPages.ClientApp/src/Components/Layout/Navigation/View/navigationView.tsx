@@ -19,6 +19,7 @@ import { RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
+import "./navigationView.css";
 
 interface BaseProperties extends ViewProperties {
     drawerState: { open: boolean };

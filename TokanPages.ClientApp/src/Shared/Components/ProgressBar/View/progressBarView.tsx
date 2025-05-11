@@ -1,5 +1,6 @@
 import * as React from "react";
 import { CircularProgress } from "@material-ui/core";
+import "./progressBarView.css";
 
 interface ProgressBarViewProps {
     classNameWrapper?: string;

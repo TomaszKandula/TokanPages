@@ -1,0 +1,15 @@
+.user-info-fullname {
+    font-size: 1.5rem !important;
+    color: black;
+}
+
+.user-info-item {
+    font-size: 1.1rem;
+    color: black;
+}
+
+.user-info-value {
+    font-size: 1.1rem;
+    line-height: 0.9 !important;
+    color: #757575;
+}

@@ -12,6 +12,7 @@ import { AccountFormInput } from "../../../../../Shared/Services/FormValidation"
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoProps } from "../userInfo";
+import "./userInfoView.css";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     fileUploadingCustomHandle?: string;

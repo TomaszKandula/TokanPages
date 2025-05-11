@@ -1,0 +1,29 @@
+.dialog-box-icon-holder {
+    display: flex;
+    align-items: center;
+}
+
+.dialog-box-info-icon {
+    color: #2196f3;
+    margin-right: 15px;
+}
+
+.dialog-box-warning-icon {
+    color: #ffc107;
+    margin-right: 15px;
+}
+
+.dialog-box-error-icon {
+    color: #f50057;
+    margin-right: 15px;
+}
+
+.dialog-box-title {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.dialog-box-description {
+    font-size: 1rem;
+    color: #9e9e9e;
+}

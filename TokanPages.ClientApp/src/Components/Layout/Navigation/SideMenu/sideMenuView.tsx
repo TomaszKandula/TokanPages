@@ -3,6 +3,7 @@ import { Drawer } from "@material-ui/core";
 import { RenderImage, RenderSideMenu } from "../../../../Shared/Components";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { GET_ICONS_URL } from "../../../../Api";
+import "./sideMenuView.css";
 
 interface Properties {
     drawerState: { open: boolean };

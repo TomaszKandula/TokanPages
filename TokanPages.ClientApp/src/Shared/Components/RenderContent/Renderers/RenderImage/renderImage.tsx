@@ -3,6 +3,7 @@ import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api";
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
+import "./renderImage.css";
 
 const RenderDescription = (props: { text: string }): React.ReactElement => {
     return (

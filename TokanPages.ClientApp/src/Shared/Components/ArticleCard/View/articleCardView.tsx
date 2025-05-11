@@ -12,6 +12,7 @@ import { Animated, RenderImage } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import Validate from "validate.js";
 import Skeleton from "@material-ui/lab/Skeleton";
+import "./articleCardView.css";
 
 interface ArticleCardViewProps extends ViewProperties {
     imageUrl: string;

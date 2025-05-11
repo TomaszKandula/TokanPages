@@ -8,6 +8,7 @@ import { GET_IMAGES_URL } from "../../../Api";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import Validate from "validate.js";
+import "./headerView.css";
 
 interface HeaderViewProps {
     background?: string;

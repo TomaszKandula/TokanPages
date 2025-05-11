@@ -4,6 +4,7 @@ import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactChangeEvent } from "../../../../Shared/types";
+import "./applicationCookieView.css";
 
 interface ApplicationCookieViewProps extends ViewProperties {
     isClose: boolean;

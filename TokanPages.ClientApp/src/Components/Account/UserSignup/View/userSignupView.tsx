@@ -14,6 +14,7 @@ import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { RedirectTo, RenderParagraphs, RenderList, TextFiedWithPassword } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
+import "./userSignupView.css";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
     caption: string;

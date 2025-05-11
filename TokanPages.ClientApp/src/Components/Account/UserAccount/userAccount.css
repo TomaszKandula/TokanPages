@@ -1,0 +1,15 @@
+.button-container-update {
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+    .button-container-update {
+        margin-top: 30px;
+        display: block;
+        justify-content: normal;
+    }
+}

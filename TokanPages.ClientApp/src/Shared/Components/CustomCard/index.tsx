@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "@material-ui/lab";
 import { Button, Card, CardContent } from "@material-ui/core";
 import { ViewProperties } from "../../../Shared/Abstractions";
+import "./customCard.css";
 
 type Colour = "info" | "success" | "warning" | "error";
 

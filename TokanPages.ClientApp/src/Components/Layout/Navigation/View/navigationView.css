@@ -1,0 +1,150 @@
+.navigation-app-logo-small {
+    height: 30px !important;
+}
+
+.navigation-app-logo-large {
+    height: 40px !important;
+}
+
+.navigation-app-bar {
+    background: white !important;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
+    min-height: 64px !important;
+}
+
+.navigation-app-left-logo {
+    height: 30px !important;
+    width: 181px !important;
+    align-self: center !important;
+}
+
+.navigation-tool-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.navigation-nav-menu {
+    color: black;
+    display: flex;
+}
+
+.navigation-nav-icon {
+    height: 48px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.navigation-nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-nav-left {
+    justify-content: flex-start;
+}
+
+.navigation-nav-right {
+    justify-content: flex-end;
+}
+
+.navigation-nav-centre {
+    justify-content: center;
+}
+
+.navigation-nav-back {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+    margin-left: 8px !important;
+}
+
+.navigation-languages-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.navigation-languages-selection {
+    color: black;
+    width: 75px;
+}
+
+.navigation-languages-check {
+    padding-left: 5px;
+    color: #4649c3;
+}
+
+.navigation-flag-image {
+    height: 14px;
+    width: 14px;
+    margin-right: 5px;
+}
+
+.navigation-app-full-logo {
+    display: block;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+@media (max-width: 600px) {
+    .navigation-app-full-logo {
+        display: none;
+    }
+}
+
+.navigation-app-just-logo {
+    display: none;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+@media (max-width: 600px) {
+    .navigation-app-just-logo {
+        display: block;
+    }
+}
+
+.navigation-user-avatar {
+    display: none;
+}
+
+@media (min-width: 1000px) {
+    .navigation-user-avatar {
+        display: flex;
+    }
+}
+
+.navigation-languages-box {
+    margin-right: 30px;
+    align-self: center;
+}
+
+@media (max-width: 600px) {
+    .navigation-languages-box {
+        margin-right: 0;
+    }
+}
+
+.navigation-nav-large-screen {
+    display: block;
+}
+
+@media (max-width: 1000px) {
+    .navigation-nav-large-screen {
+        display: none;
+    }
+}
+
+.navigation-nav-small-screen {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .navigation-nav-small-screen {
+        display: block;
+    }
+}

@@ -2,6 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import "./scrollToTop.css";
 
 export interface Properties {
     children: React.ReactElement;

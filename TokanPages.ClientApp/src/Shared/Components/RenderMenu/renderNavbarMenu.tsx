@@ -2,6 +2,7 @@ import * as React from "react";
 import List from "@material-ui/core/List";
 import { Item } from "./Models";
 import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
+import "./styles.css";
 
 interface Properties {
     isAnonymous: boolean;

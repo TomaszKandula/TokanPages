@@ -10,6 +10,7 @@ import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
 import { Item, Subitem } from "../RenderMenu/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
+import "./customBreadcrumbView.css";
 
 interface CustomBreadcrumbProps {
     isLoading: boolean;

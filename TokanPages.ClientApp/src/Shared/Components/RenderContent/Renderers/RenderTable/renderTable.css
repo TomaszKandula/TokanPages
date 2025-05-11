@@ -1,0 +1,22 @@
+.render-table {
+    min-width: 650px !important;
+}
+
+.render-table-header {
+    text-align: left;
+}
+
+.render-table-cell {
+    text-align: left;
+}
+
+.render-table-row:nth-of-type(odd) {
+    background-color: #efefef;
+}
+
+.render-table-head {
+    background-color: #9e9e9e !important;
+    color: white !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
