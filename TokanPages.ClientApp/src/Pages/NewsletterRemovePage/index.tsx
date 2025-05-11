@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { usePageContent, useUnhead } from "../../Shared/Hooks";
-import { NewsletterRemove } from "../../Components/NewsletterRemove";
+import { NewsletterRemove } from "../../Components/Newsletter";
 import { Navigation } from "../../Components/Layout";
 
 const useQuery = () => {

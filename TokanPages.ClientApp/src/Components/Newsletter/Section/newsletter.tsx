@@ -1,19 +1,19 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
-import { ApplicationState } from "../../Store/Configuration";
-import { IconType, OperationStatus } from "../../Shared/enums";
-import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
-import { NewsletterAddAction, ApplicationDialogAction } from "../../Store/Actions";
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
-import { NewsletterView } from "./View/newsletterView";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ApplicationState } from "../../../Store/Configuration";
+import { IconType, OperationStatus } from "../../../Shared/enums";
+import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
+import { NewsletterAddAction, ApplicationDialogAction } from "../../../Store/Actions";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { NewsletterSectionView } from "./View/newsletterSectionView";
 import Validate from "validate.js";
 
 interface NewsletterProps {
     background?: string;
 }
 
-export const Newsletter = (props: NewsletterProps): React.ReactElement => {
+export const NewsletterSection = (props: NewsletterProps): React.ReactElement => {
     const dispatch = useDispatch();
 
     const add = useSelector((state: ApplicationState) => state.newsletterAdd);
@@ -94,7 +94,7 @@ export const Newsletter = (props: NewsletterProps): React.ReactElement => {
     }, [form, template]);
 
     return (
-        <NewsletterView
+        <NewsletterSectionView
             isLoading={data?.isLoading}
             caption={newsletter?.caption}
             text={newsletter?.text}

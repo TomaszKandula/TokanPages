@@ -1,12 +1,12 @@
 import "../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
-import { NewsletterView } from "./newsletterView";
+import { NewsletterSectionView } from "./newsletterSectionView";
 
 describe("test component: newsletterView", () => {
     it("should render correctly '<NewsletterView />' when content is loaded.", () => {
         const html = render(
-            <NewsletterView
+            <NewsletterSectionView
                 isLoading={false}
                 caption={"Join the newsletter!"}
                 text={"We will never share your email address."}

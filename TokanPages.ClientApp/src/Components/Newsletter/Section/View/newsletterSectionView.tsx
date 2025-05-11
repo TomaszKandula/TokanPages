@@ -6,9 +6,9 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { CircularProgress } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { Animated } from "../../../Shared/Components";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { Animated } from "../../../../Shared/Components";
 
 interface NewsletterViewProps extends ViewProperties {
     caption: string;
@@ -38,7 +38,7 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
     );
 };
 
-export const NewsletterView = (props: NewsletterViewProps): React.ReactElement => {
+export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
             <Container className="container-super-wide">

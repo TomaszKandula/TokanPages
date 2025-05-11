@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
 import { NewsletterRemoveView } from "./newsletterRemoveView";
-import { ContentDto } from "../../../Api/Models";
+import { ContentDto } from "../../../../Api/Models";
 
 describe("test component: newsletterRemoveView", () => {
     it("should render correctly '<NewsletterRemoveView />' when content is loaded.", () => {

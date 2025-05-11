@@ -3,9 +3,9 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Container from "@material-ui/core/Container";
 import EmailIcon from "@material-ui/icons/Email";
-import { ContentDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { CustomCard } from "../../../Shared/Components";
+import { ContentDto } from "../../../../Api/Models";
+import { ViewProperties } from "../../../../Shared/Abstractions";
+import { CustomCard } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterRemove";
 
 interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {

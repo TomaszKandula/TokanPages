@@ -1,16 +1,11 @@
 /*
-  Master stylesheet file for MUI components
+  Master stylesheet file for UI components
   -----------------------------------------
   Because SPA is pre-rendered on the backend side, 
   JSS has been abandoned; the styles generated on the fly 
   that are typically included in the HTML head are not
   optimal for pre-rendered React applications.
-  In addition to that, historically MUI styling mechanism 
-  has been changed a few times, therefore, it is much more 
-  convenient to stick with the plain CSS.
-*/
 
-/* 
   Security note
   -------------
   Due to a high probability of interference in what a user sees, 
@@ -395,38 +390,4 @@ body::backdrop {
         display: block;
         justify-content: normal;
     }
-}
-
-/* NEWSLETTER COMPONENT */
-
-.newsletter-container {
-    display: flex;
-    height: 100%;
-}
-
-.newsletter-box {
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 100%;
-}
-
-.newsletter-caption {
-    font-size: 2rem !important;
-}
-
-.newsletter-text {
-    font-size: 1.2rem !important;
-    color: #757575;
-}
-
-/* NEWSLETTER UPDATE COMPONENT  */
-
-.newsletter-update-account {
-    font-size: 72px !important;
-    color: #6367ef;
-}
-
-.newsletter-update-caption {
-    font-size: 1.8rem !important;
-    color: #9e9e9e;
 }

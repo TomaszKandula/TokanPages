@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { IconType, OperationStatus } from "../../Shared/enums";
-import { ValidateEmailForm } from "../../Shared/Services/FormValidation";
-import { ReactChangeEvent } from "../../Shared/types";
-import { ApplicationDialogAction, NewsletterUpdateAction } from "../../Store/Actions";
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { ApplicationState } from "../../../Store/Configuration";
+import { IconType, OperationStatus } from "../../../Shared/enums";
+import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
+import { ReactChangeEvent } from "../../../Shared/types";
+import { ApplicationDialogAction, NewsletterUpdateAction } from "../../../Store/Actions";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";
 

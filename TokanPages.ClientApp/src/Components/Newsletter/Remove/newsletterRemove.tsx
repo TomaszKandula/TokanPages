@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ApplicationState } from "../../Store/Configuration";
-import { NewsletterRemoveAction } from "../../Store/Actions";
-import { OperationStatus } from "../../Shared/enums";
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
-import { ContentDto } from "../../Api/Models";
+import { ApplicationState } from "../../../Store/Configuration";
+import { NewsletterRemoveAction } from "../../../Store/Actions";
+import { OperationStatus } from "../../../Shared/enums";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { ContentDto } from "../../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 import Validate from "validate.js";
 
