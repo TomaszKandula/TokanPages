@@ -30,6 +30,11 @@
   An application MUST NOT use the pseudo function expression.
 */
 
+@import url("margins.css");
+@import url("paddings.css");
+@import url("spinner.css");
+@import url("error.css");
+
 /* BASELINE */
 
 html {
@@ -67,132 +72,6 @@ body {
 
 body::backdrop {
     background-color: #ffffff;
-}
-
-/* ERROR PAGE STYLING */
-
-#error {
-    position: relative;
-    height: 100vh;
-}
-
-#error .error {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-.error {
-    max-width: 520px;
-    width: 100%;
-    line-height: 1.4;
-    text-align: center;
-}
-
-.error .error-text {
-    position: relative;
-    height: 200px;
-    margin: 0px auto 20px;
-    z-index: -1;
-}
-
-.error .error-text h1 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 200px;
-    font-weight: 300;
-    margin: 0px;
-    color: #211b19;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-
-@media only screen and (max-width: 767px) {
-    .error .error-text h1 {
-        font-size: 148px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .error .error-text {
-        height: 148px;
-        margin: 0 auto 10px;
-    }
-    .error .error-text h1 {
-        font-size: 120px;
-        font-weight: 200;
-    }
-    .error .error-text h2 {
-        font-size: 30px;
-    }
-    .error a {
-        padding: 7px 15px;
-        font-size: 24px;
-    }
-}
-
-/* PRE-LOADER SPINNER */
-
-.preloader {
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: fixed;
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background:
-        radial-gradient(farthest-side, #6367ef 94%, #0000) top/8px 8px no-repeat,
-        conic-gradient(#0000 30%, #6367ef);
-    mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
-    animation: l13 1s infinite linear;
-}
-
-@keyframes l13 {
-    100% {
-        transform: rotate(1turn);
-    }
-}
-
-/* DROP CAP */
-
-.custom-drop-cap:first-letter {
-    float: left;
-    font-size: 5.2rem;
-    line-height: 0.65;
-    margin: 0.1em 0.1em 0.2em 0;
-}
-
-.dropcap {
-    background: #303030;
-    color: #fdf9f2;
-    float: left;
-    font-size: 5.2rem;
-    line-height: 1;
-    margin: 0.1em 0.1em 0.2em 0;
-    padding: 0.1em;
-}
-
-.dropcap:before,
-.dropcap:after {
-    content: "";
-    display: block;
-}
-
-.dropcap:before {
-    margin-top: -0.2em;
-}
-
-.dropcap:after {
-    margin-bottom: -0.15em;
 }
 
 /* SHARED STYLES BY COMPONENTS */
@@ -489,193 +368,16 @@ body::backdrop {
     cursor: not-allowed !important;
 }
 
-/* MARGIN */
 
-.m-auto {
-    margin: auto;
-}
 
-.m-zero {
-    margin: 0;
-}
 
-/* MARGINS TOP */
 
-.mt-0 {
-    margin-top: 0;
-}
 
-.mt-2 {
-    margin-top: 2px;
-}
 
-.mt-8 {
-    margin-top: 8px;
-}
 
-.mt-10 {
-    margin-top: 10px;
-}
 
-.mt-15 {
-    margin-top: 15px;
-}
 
-.mt-25 {
-    margin-top: 25px;
-}
 
-.mt-32 {
-    margin-top: 32px;
-}
-
-.mt-40 {
-    margin-top: 40px;
-}
-
-.mt-48 {
-    margin-top: 48px;
-}
-
-.mt-56 {
-    margin-top: 56px;
-}
-
-.mt-80 {
-    margin-top: 80px;
-}
-
-/* MARGINS BOTTOM */
-
-.mb-0 {
-    margin-bottom: 0;
-}
-
-.mb-2 {
-    margin-bottom: 2px;
-}
-
-.mb-8 {
-    margin-bottom: 8px;
-}
-
-.mb-10 {
-    margin-bottom: 10px;
-}
-
-.mb-15 {
-    margin-bottom: 15px;
-}
-
-.mb-25 {
-    margin-bottom: 25px;
-}
-
-.mb-32 {
-    margin-bottom: 32px;
-}
-
-.mb-40 {
-    margin-bottom: 40px;
-}
-
-.mb-48 {
-    margin-bottom: 48px;
-}
-
-.mb-56 {
-    margin-bottom: 56px;
-}
-
-.mb-64 {
-    margin-bottom: 64px;
-}
-
-.mb-80 {
-    margin-bottom: 80px;
-}
-
-/* PADDING */
-
-.p-25 {
-    padding: 25px;
-}
-
-/* PADDING TOP */
-
-.pt-8 {
-    padding-top: 8px;
-}
-
-.pt-25 {
-    padding-top: 25px;
-}
-
-.pt-32 {
-    padding-top: 32px;
-}
-
-.pt-40 {
-    padding-top: 40px;
-}
-
-.pt-64 {
-    padding-top: 64px;
-}
-
-.pt-80 {
-    padding-top: 80px;
-}
-
-.pt-96 {
-    padding-top: 96px;
-}
-
-.pt-120 {
-    padding-top: 120px;
-}
-
-.pt-140 {
-    padding-top: 140px;
-}
-
-/* PADDING BOTTOM */
-
-.pb-8 {
-    padding-bottom: 8px;
-}
-
-.pb-25 {
-    padding-bottom: 25px;
-}
-
-.pb-40 {
-    padding-bottom: 40px;
-}
-
-.pb-48 {
-    padding-bottom: 48px;
-}
-
-.pb-64 {
-    padding-bottom: 64px;
-}
-
-.pb-80 {
-    padding-bottom: 80px;
-}
-
-.pb-96 {
-    padding-bottom: 96px;
-}
-
-.pb-120 {
-    padding-bottom: 120px;
-}
-
-.pb-240 {
-    padding-bottom: 240px;
-}
 
 /* UPDATE PASSWORD & USER DEACTIVATION & USER REMOVAL COMPONENTS */
 
