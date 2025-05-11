@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import Zoom from "@material-ui/core/Zoom";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import "./scrollToTop.css";
 
@@ -38,10 +37,10 @@ export const ScrollToTop = (props: Properties): React.ReactElement => {
     };
 
     return (
-        <Zoom in={hasTrigger}>
+        <div style={{ visibility: hasTrigger ? "visible" : "hidden" }}>
             <div onClick={handleClick} role="presentation" className="scroll-to-top">
                 {props.children}
             </div>
-        </Zoom>
+        </div>
     );
 };
