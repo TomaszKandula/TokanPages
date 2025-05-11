@@ -1,3 +1,4 @@
+import "./userAccount.css";
 export { AccessDenied } from "./AccessDenied";
 export { UserInfo } from "./UserInfo/userInfo";
 export { UserNotes } from "./UserNotes/userNotes";
