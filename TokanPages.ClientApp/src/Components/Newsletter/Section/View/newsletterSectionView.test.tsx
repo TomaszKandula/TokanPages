@@ -1,4 +1,4 @@
-import "../../../setupTests";
+import "../../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
 import { NewsletterSectionView } from "./newsletterSectionView";
