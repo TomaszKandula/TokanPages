@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import { useScrollTrigger } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
 
 export interface Properties {
@@ -18,10 +18,7 @@ export const ClearPageStart = (props: Properties): React.ReactElement => {
 };
 
 export const ScrollToTop = (props: Properties): React.ReactElement => {
-    const hasTrigger = useScrollTrigger({
-        disableHysteresis: true,
-        threshold: 100,
-    });
+    const hasTrigger = useScrollTrigger();
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         const ownerDocument = (event.target as HTMLDivElement).ownerDocument || document;
