@@ -9,7 +9,7 @@ import { ConfigureStore } from "./Store/Configuration";
 import { ErrorBoundary } from "./Shared/Components";
 import { IsPreRendered, TryGetStateSnapshot } from "./Shared/Services/SpaCaching";
 import { GetContentManifestDto } from "./Api/Models";
-import "./Theme/styles.css";
+import "./Styles/main.css";
 import App from "./app";
 
 const root = document.getElementById("root");
