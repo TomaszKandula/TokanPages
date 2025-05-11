@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./renderSeparator.css";
 
 export const RenderSeparator = (): React.ReactElement => {
     return (

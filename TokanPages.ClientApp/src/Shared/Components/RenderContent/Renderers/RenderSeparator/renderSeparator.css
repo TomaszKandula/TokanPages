@@ -1,0 +1,14 @@
+.render-separator {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.render-separator-span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #9e9e9e;
+    display: inline-block;
+    margin: 0 10px;
+}

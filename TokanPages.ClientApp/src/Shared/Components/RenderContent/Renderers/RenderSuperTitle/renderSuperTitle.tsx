@@ -2,6 +2,7 @@ import * as React from "react";
 import { TextItem } from "../../Models";
 import { Card, CardMedia } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api";
+import "./renderSuperTitle.css";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 

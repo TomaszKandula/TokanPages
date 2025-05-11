@@ -9,6 +9,7 @@ import { useApiAction } from "../../../../../Shared/Hooks";
 import { ApplicationState } from "../../../../../Store/Configuration";
 import { API_BASE_URI } from "../../../../../Api";
 import validate from "validate.js";
+import "./renderGist.css";
 
 export const RenderGist = (props: TextItem): React.ReactElement => {
     const dispatch = useDispatch();
