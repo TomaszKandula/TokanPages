@@ -3,3 +3,19 @@
     bottom: 16px;
     right: 16px;
 }
+
+.scroll-to-top-button {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: #4649c3 !important;
+    background: #ebecfb !important;
+}
+
+.scroll-to-top-button:hover {
+    color: #ebecfb !important;
+    background: #6367ef !important;
+}

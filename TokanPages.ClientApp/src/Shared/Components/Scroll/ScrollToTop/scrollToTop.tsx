@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import { Fab } from "@material-ui/core";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import Icon from "@mdi/react";
+import { mdiChevronUp } from "@mdi/js";
 import { useScroll } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
 
@@ -38,9 +38,9 @@ export const ScrollToTop = (): React.ReactElement => {
     return (
         <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
             <div onClick={handleClick} role="presentation" className="scroll-to-top">
-                <Fab size="small" aria-label="scroll back to top" className="button-up">
-                    <KeyboardArrowUpIcon />
-                </Fab>
+                <div aria-label="scroll back to top" className="scroll-to-top-button">
+                    <Icon path={mdiChevronUp} size={1} />
+                </div>
             </div>
         </div>
     );
