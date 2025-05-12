@@ -2,7 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { Fab } from "@material-ui/core";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { useScrollTrigger } from "../../../../Shared/Hooks";
+import { useScroll } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
 
 export interface Properties {
@@ -33,10 +33,10 @@ const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 };
 
 export const ScrollToTop = (): React.ReactElement => {
-    const hasTrigger = useScrollTrigger();
+    const scroll = useScroll();
 
     return (
-        <div style={{ visibility: hasTrigger ? "visible" : "hidden" }}>
+        <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
             <div onClick={handleClick} role="presentation" className="scroll-to-top">
                 <Fab size="small" aria-label="scroll back to top" className="button-up">
                     <KeyboardArrowUpIcon />
