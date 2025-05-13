@@ -116,7 +116,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
                     />
                     <div>{toUpper(props.languageId)}</div>
                 </a>
-                <div className="bulma-navbar-dropdown">
+                <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
                     {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                         <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languageHandler(item.id)}>
                             <RenderImage
