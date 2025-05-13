@@ -60,9 +60,7 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     }
 
     return (
-        <Avatar alt="User avatar" title="Avatar" src={props.avatarSource}>
-            <></>
-        </Avatar>
+        <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />
     );
 };
 
