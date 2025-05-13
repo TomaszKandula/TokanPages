@@ -54,9 +54,7 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
         );
     }
 
-    return (
-        <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />
-    );
+    return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
@@ -107,33 +105,33 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 
     return (
         <div className="bulma-navbar-menu">
-        <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
-            <a className="bulma-navbar-link">
-                <RenderImage
-                    base={GET_FLAG_URL}
-                    source={`${props.languageId}.png`}
-                    title="Language flag"
-                    alt={`A flag (${props.languageId}) for current language selection`}
-                    className="navigation-flag-image"
-                />
-                <div>{toUpper(props.languageId)}</div>
-            </a>
-            <div className="bulma-navbar-dropdown">
-                {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
-                    <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languageHandler(item.id)}>
-                        <RenderImage
-                            base={GET_FLAG_URL}
-                            source={`${item.id}.png`}
-                            title="Language flag"
-                            alt={`A flag (${item.name}) symbolizing available language`}
-                            className="navigation-flag-image"
-                        />
-                        <div>{item.name}</div>
-                        {renderIcon(item.id)}
-                    </a>
-                ))}
+            <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
+                <a className="bulma-navbar-link">
+                    <RenderImage
+                        base={GET_FLAG_URL}
+                        source={`${props.languageId}.png`}
+                        title="Language flag"
+                        alt={`A flag (${props.languageId}) for current language selection`}
+                        className="navigation-flag-image"
+                    />
+                    <div>{toUpper(props.languageId)}</div>
+                </a>
+                <div className="bulma-navbar-dropdown">
+                    {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
+                        <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languageHandler(item.id)}>
+                            <RenderImage
+                                base={GET_FLAG_URL}
+                                source={`${item.id}.png`}
+                                title="Language flag"
+                                alt={`A flag (${item.name}) symbolizing available language`}
+                                className="navigation-flag-image"
+                            />
+                            <div>{item.name}</div>
+                            {renderIcon(item.id)}
+                        </a>
+                    ))}
+                </div>
             </div>
-        </div>
         </div>
     );
 };
