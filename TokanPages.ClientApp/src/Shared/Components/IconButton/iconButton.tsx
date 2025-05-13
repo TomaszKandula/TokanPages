@@ -8,8 +8,15 @@ interface IconButtonProps {
     onClick?: (event: ReactMouseEvent) => void;
 }
 
-export const IconButton = (props: IconButtonProps): React.ReactElement => (
-    <button className="icon-button" onClick={props.onClick} style={{ height: props.size ?? 48 }}>
-        {props.children}
-    </button>
-);
+export const IconButton = (props: IconButtonProps): React.ReactElement => { 
+    const size = props.size ?? 48;
+    return (
+        <button 
+            className="icon-button" 
+            onClick={props.onClick} 
+            style={{ height: size, width: size }}
+        >
+            {props.children}
+        </button>
+    )
+};
