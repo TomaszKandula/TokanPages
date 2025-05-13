@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -157,7 +156,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 
 const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
     return (
-        <Toolbar className="navigation-tool-bar">
+        <div className="navigation-tool-bar">
             <div className="navigation-nav-menu navigation-nav-left">
                 <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                     <RenderImage
@@ -179,13 +178,13 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
             <div className="navigation-nav-items navigation-nav-right">
                 {props.isLoading ? null : <RenderContent {...props} />}
             </div>
-        </Toolbar>
+        </div>
     );
 };
 
 const RenderToolbarSmallScreen = (props: Properties) => {
     return (
-        <Toolbar className="navigation-tool-bar">
+        <div className="navigation-tool-bar">
             <Grid container item xs={12} spacing={3}>
                 <Grid item xs className="navigation-nav-menu navigation-nav-left">
                     {props.isLoading ? null : <RenderMenuIcon {...props} />}
@@ -214,7 +213,7 @@ const RenderToolbarSmallScreen = (props: Properties) => {
                     {props.isLoading ? null : <RenderContent {...props} />}
                 </Grid>
             </Grid>
-        </Toolbar>
+        </div>
     );
 };
 
