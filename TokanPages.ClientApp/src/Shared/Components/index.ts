@@ -4,6 +4,7 @@ export { ApplicationCookie } from "./ApplicationCookie/applicationCookie";
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
 export { ArticleCard, ArticleCardView } from "./ArticleCard";
+export { Avatar } from "./Avatar";
 export { CustomBreadcrumb } from "./CustomBreadcrumb";
 export { CustomDivider } from "./CustomDivider";
 export { CustomCard } from "./CustomCard";
