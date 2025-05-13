@@ -2,13 +2,14 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiMenu, mdiCheck, mdiArrowLeft } from "@mdi/js";
-import { FormControl, Grid, MenuItem, Select, SelectProps } from "@material-ui/core";
+import { FormControl, MenuItem, Select, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
+import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import { AppBar, Avatar, IconButton, RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { v4 as uuidv4 } from "uuid";
@@ -34,6 +35,7 @@ interface BaseProperties extends ViewProperties {
 }
 
 interface Properties extends BaseProperties {
+    height?: number;
     styleControl?: string;
     styleSelect?: string;
     styleMenu?: string;
@@ -149,9 +151,8 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
     );
 };
 
-const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
-    return (
-        <div className="navigation-tool-bar">
+const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => (
+        <div className="navigation-tool-bar" style={{ height: props.height }}>
             <div className="navigation-nav-menu navigation-nav-left">
                 <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                     <RenderImage
@@ -174,51 +175,47 @@ const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => {
                 {props.isLoading ? null : <RenderContent {...props} />}
             </div>
         </div>
-    );
-};
+);
 
-const RenderToolbarSmallScreen = (props: Properties) => {
-    return (
-        <div className="navigation-tool-bar">
-            <Grid container item xs={12} spacing={3}>
-                <Grid item xs className="navigation-nav-menu navigation-nav-left">
-                    {props.isLoading ? null : <RenderMenuIcon {...props} />}
-                </Grid>
-                <Grid item xs className="navigation-nav-items navigation-nav-centre">
-                    <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
-                        <RenderImage
-                            base={GET_ICONS_URL}
-                            source={props?.logoImgName}
-                            title="TomKandula logo"
-                            alt="An application logo"
-                            className="navigation-app-full-logo"
-                        />
-                    </Link>
-                    <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
-                        <RenderImage
-                            base={GET_ICONS_URL}
-                            source={props?.menu?.image}
-                            title="TomKandula logo"
-                            alt="An application logo"
-                            className="navigation-app-just-logo"
-                        />
-                    </Link>
-                </Grid>
-                <Grid item xs className="navigation-nav-items navigation-nav-right">
-                    {props.isLoading ? null : <RenderContent {...props} />}
-                </Grid>
-            </Grid>
+const RenderToolbarSmallScreen = (props: Properties) => (
+        <div className="navigation-tool-bar" style={{ height: props.height }}>
+            <div className="navigation-nav-menu navigation-nav-left">
+                {props.isLoading ? null : <RenderMenuIcon {...props} />}
+            </div>
+            <div className="navigation-nav-items navigation-nav-centre">
+                <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
+                    <RenderImage
+                        base={GET_ICONS_URL}
+                        source={props?.logoImgName}
+                        title="TomKandula logo"
+                        alt="An application logo"
+                        className="navigation-app-full-logo"
+                    />
+                </Link>
+                <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
+                    <RenderImage
+                        base={GET_ICONS_URL}
+                        source={props?.menu?.image}
+                        title="TomKandula logo"
+                        alt="An application logo"
+                        className="navigation-app-just-logo"
+                    />
+                </Link>
+            </div>
+            <div className="navigation-nav-items navigation-nav-right">
+                {props.isLoading ? null : <RenderContent {...props} />}
+            </div>
         </div>
     );
-};
 
 export const NavigationView = (props: Properties): React.ReactElement => {
     const mainPath = `/${props.languageId}`;
     const navigationPath = props.backPathFragment === undefined ? mainPath : `${mainPath}${props.backPathFragment}`;
+
     return (
         <>
             {props.backNavigationOnly ? (
-                <AppBar height={64}>
+                <AppBar height={APP_BAR_HEIGHT}>
                     <Link to={navigationPath} rel="noopener nofollow">
                         <div className="navigation-nav-back">
                             <IconButton>
@@ -228,13 +225,13 @@ export const NavigationView = (props: Properties): React.ReactElement => {
                     </Link>
                 </AppBar>
             ) : (
-                <AppBar height={64}>
+                <AppBar height={APP_BAR_HEIGHT}>
                     <>
                         <nav className="navigation-nav-large-screen">
-                            <RenderToolbarLargeScreen {...props} />
+                            <RenderToolbarLargeScreen {...props} height={APP_BAR_HEIGHT} />
                         </nav>
                         <nav className="navigation-nav-small-screen">
-                            <RenderToolbarSmallScreen {...props} />
+                            <RenderToolbarSmallScreen {...props} height={APP_BAR_HEIGHT} />
                         </nav>
                         <SideMenuView
                             drawerState={props.drawerState}
