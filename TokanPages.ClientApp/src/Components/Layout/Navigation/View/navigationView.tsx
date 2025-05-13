@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
@@ -11,11 +10,10 @@ import { FormControl, Grid, MenuItem, Select, SelectProps } from "@material-ui/c
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api";
 import { ApplicationLanguageState } from "../../../../Store/States/";
-import { HideOnScroll } from "../../../../Shared/Components/Scroll";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
-import { RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
+import { AppBar, RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
@@ -224,34 +222,34 @@ export const NavigationView = (props: Properties): React.ReactElement => {
     const mainPath = `/${props.languageId}`;
     const navigationPath = props.backPathFragment === undefined ? mainPath : `${mainPath}${props.backPathFragment}`;
     return (
-        <HideOnScroll {...props}>
+        <>
             {props.backNavigationOnly ? (
-                <AppBar className="navigation-app-bar" elevation={0}>
-                    <div>
-                        <Link to={navigationPath} rel="noopener nofollow">
-                            <IconButton className="navigation-nav-back">
-                                <ArrowBack />
-                            </IconButton>
-                        </Link>
-                    </div>
+                <AppBar height={64}>
+                    <Link to={navigationPath} rel="noopener nofollow">
+                        <IconButton className="navigation-nav-back">
+                            <ArrowBack />
+                        </IconButton>
+                    </Link>
                 </AppBar>
             ) : (
-                <AppBar className="navigation-app-bar" elevation={0}>
-                    <nav className="navigation-nav-large-screen">
-                        <RenderToolbarLargeScreen {...props} />
-                    </nav>
-                    <nav className="navigation-nav-small-screen">
-                        <RenderToolbarSmallScreen {...props} />
-                    </nav>
-                    <SideMenuView
-                        drawerState={props.drawerState}
-                        closeHandler={props.closeHandler}
-                        isAnonymous={props.isAnonymous}
-                        languageId={props.languageId}
-                        menu={props.menu}
-                    />
+                <AppBar height={64}>
+                    <>
+                        <nav className="navigation-nav-large-screen">
+                            <RenderToolbarLargeScreen {...props} />
+                        </nav>
+                        <nav className="navigation-nav-small-screen">
+                            <RenderToolbarSmallScreen {...props} />
+                        </nav>
+                        <SideMenuView
+                            drawerState={props.drawerState}
+                            closeHandler={props.closeHandler}
+                            isAnonymous={props.isAnonymous}
+                            languageId={props.languageId}
+                            menu={props.menu}
+                        />
+                    </>
                 </AppBar>
             )}
-        </HideOnScroll>
+        </>
     );
 };

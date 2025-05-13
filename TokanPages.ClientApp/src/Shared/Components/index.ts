@@ -1,4 +1,5 @@
 export { Animated } from "./Animated";
+export { AppBar } from "./AppBar";
 export { ApplicationCookie } from "./ApplicationCookie/applicationCookie";
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
@@ -18,7 +19,7 @@ export { RenderNavbarMenu } from "./RenderMenu/renderNavbarMenu";
 export { RedirectTo } from "./RedirectWrapper";
 export { ProgressBarView as ProgressBar } from "./ProgressBar";
 export { PdfCanvas } from "./PdfCanvas";
-export { ScrollToTop, HideOnScroll, ProgressOnScroll, ClearPageStart } from "./Scroll";
+export { ScrollToTop, ProgressOnScroll, ClearPageStart } from "./Scroll";
 export { ApplicationToast } from "./Toasts/applicationToast";
 export { UserAvatar } from "./UserAvatar";
 export { UploadUserMedia } from "./UploadUserMedia";
