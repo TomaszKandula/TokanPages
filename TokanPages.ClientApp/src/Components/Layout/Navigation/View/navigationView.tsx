@@ -1,10 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import IconButton from "@material-ui/core/IconButton";
-import Avatar from "@material-ui/core/Avatar";
-import MenuIcon from "@material-ui/icons/Menu";
-import CheckIcon from "@material-ui/icons/Check";
-import ArrowBack from "@material-ui/icons/ArrowBack";
+import Icon from "@mdi/react";
+import { mdiMenu, mdiCheck, mdiArrowLeft } from "@mdi/js";
 import { FormControl, Grid, MenuItem, Select, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api";
@@ -12,7 +9,7 @@ import { ApplicationLanguageState } from "../../../../Store/States/";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { LanguageChangeEvent } from "../../../../Shared/types";
-import { AppBar, RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
+import { AppBar, Avatar, IconButton, RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
@@ -45,9 +42,7 @@ interface Properties extends BaseProperties {
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
         return (
-            <Avatar alt="User avatar" title="Avatar">
-                A
-            </Avatar>
+            <Avatar alt="User avatar" title="Avatar">A</Avatar>
         );
     }
 
@@ -60,13 +55,13 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
         );
     }
 
-    return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
+    return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource}><></></Avatar>;
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
     return (
         <div className="navigation-user-avatar">
-            <IconButton color="inherit" onClick={props.infoHandler}>
+            <IconButton onClick={props.infoHandler}>
                 <RenderAvatar {...props} />
             </IconButton>
         </div>
@@ -86,8 +81,8 @@ const RenderContent = (props: BaseProperties): React.ReactElement => {
 
 const RenderMenuIcon = (props: Properties): React.ReactElement => {
     return (
-        <IconButton color="inherit" aria-label="menu" onClick={props.openHandler} className="navigation-nav-icon">
-            <MenuIcon />
+        <IconButton aria-label="menu" onClick={props.openHandler}>
+            <Icon path={mdiMenu} size={1} />
         </IconButton>
     );
 };
@@ -103,7 +98,7 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 
     const renderIcon = (selection: string): React.ReactElement | null => {
         if (props.languageId === selection) {
-            return <CheckIcon className="navigation-languages-check" />;
+            return <Icon path={mdiCheck} size={1} className="navigation-languages-check" />;
         }
 
         return null;
@@ -225,9 +220,11 @@ export const NavigationView = (props: Properties): React.ReactElement => {
             {props.backNavigationOnly ? (
                 <AppBar height={64}>
                     <Link to={navigationPath} rel="noopener nofollow">
-                        <IconButton className="navigation-nav-back">
-                            <ArrowBack />
-                        </IconButton>
+                        <div className="navigation-nav-back">
+                            <IconButton>
+                                <Icon path={mdiArrowLeft} size={1} />
+                            </IconButton>
+                        </div>
                     </Link>
                 </AppBar>
             ) : (
