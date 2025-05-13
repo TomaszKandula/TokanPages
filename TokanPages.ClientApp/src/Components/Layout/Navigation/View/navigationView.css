@@ -56,16 +56,6 @@
     margin-left: 8px;
 }
 
-.navigation-languages-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.navigation-languages-selection {
-    color: black;
-    width: 75px;
-}
-
 .navigation-languages-check {
     padding-left: 5px;
     color: #4649c3;

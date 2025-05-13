@@ -2,13 +2,11 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiMenu, mdiCheck, mdiArrowLeft } from "@mdi/js";
-import { FormControl, MenuItem, Select, SelectProps } from "@material-ui/core";
 import { LanguageItemDto } from "../../../../Api/Models/";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../Api";
 import { ApplicationLanguageState } from "../../../../Store/States/";
 import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { LanguageChangeEvent } from "../../../../Shared/types";
 import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import { AppBar, Avatar, IconButton, RenderImage, RenderNavbarMenu } from "../../../../Shared/Components";
 import { SideMenuView } from "./../SideMenu/sideMenuView";
@@ -28,7 +26,7 @@ interface BaseProperties extends ViewProperties {
     logoImgName: string;
     languages: ApplicationLanguageState;
     languageId: string;
-    languageHandler: (event: LanguageChangeEvent) => void;
+    languageHandler: (id: string) => void;
     menu: { image: string; items: Item[] };
     backNavigationOnly?: boolean;
     backPathFragment?: string;
@@ -36,9 +34,6 @@ interface BaseProperties extends ViewProperties {
 
 interface Properties extends BaseProperties {
     height?: number;
-    styleControl?: string;
-    styleSelect?: string;
-    styleMenu?: string;
 }
 
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
@@ -78,7 +73,7 @@ const RenderContent = (props: BaseProperties): React.ReactElement => {
     return (
         <>
             <div className="navigation-languages-box">
-                <RenderLanguageSelection {...props} styleSelect="navigation-languages-selection" />
+                <RenderLanguageSelection {...props} />
             </div>
             {props.isAnonymous ? <></> : <RenderAvatarIconButton {...props} />}
         </>
@@ -104,54 +99,42 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 
     const renderIcon = (selection: string): React.ReactElement | null => {
         if (props.languageId === selection) {
-            return <Icon path={mdiCheck} size={1} className="navigation-languages-check" />;
+            return <Icon path={mdiCheck} size={1.5} className="navigation-languages-check" />;
         }
 
         return null;
     };
 
-    const renderValue = React.useCallback((value: SelectProps["value"]): React.ReactNode => {
-        return (
-            <div className="navigation-languages-wrapper">
+    return (
+        <div className="bulma-navbar-menu">
+        <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
+            <a className="bulma-navbar-link">
                 <RenderImage
                     base={GET_FLAG_URL}
-                    source={`${value}.png`}
+                    source={`${props.languageId}.png`}
                     title="Language flag"
-                    alt={`A flag (${value}) for current language selection`}
+                    alt={`A flag (${props.languageId}) for current language selection`}
                     className="navigation-flag-image"
                 />
-                <div>{toUpper(value)}</div>
-            </div>
-        );
-    }, []);
-
-    return (
-        <FormControl className={props.styleControl}>
-            <Select
-                displayEmpty
-                disableUnderline
-                value={props.languageId}
-                onChange={props.languageHandler}
-                className={props.styleSelect}
-                renderValue={renderValue}
-            >
+                <div>{toUpper(props.languageId)}</div>
+            </a>
+            <div className="bulma-navbar-dropdown">
                 {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
-                    <MenuItem value={item.id} key={uuidv4()} className={props.styleMenu}>
-                        <div className="navigation-languages-wrapper">
-                            <RenderImage
-                                base={GET_FLAG_URL}
-                                source={`${item.id}.png`}
-                                title="Language flag"
-                                alt={`A flag (${item.name}) symbolizing available language`}
-                                className="navigation-flag-image"
-                            />
-                            <div>{item.name}</div>
-                            {renderIcon(item.id)}
-                        </div>
-                    </MenuItem>
+                    <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languageHandler(item.id)}>
+                        <RenderImage
+                            base={GET_FLAG_URL}
+                            source={`${item.id}.png`}
+                            title="Language flag"
+                            alt={`A flag (${item.name}) symbolizing available language`}
+                            className="navigation-flag-image"
+                        />
+                        <div>{item.name}</div>
+                        {renderIcon(item.id)}
+                    </a>
                 ))}
-            </Select>
-        </FormControl>
+            </div>
+        </div>
+        </div>
     );
 };
 
@@ -227,10 +210,10 @@ export const NavigationView = (props: Properties): React.ReactElement => {
             ) : (
                 <AppBar height={APP_BAR_HEIGHT}>
                     <>
-                        <nav className="navigation-nav-large-screen">
+                        <nav className="bulma-navbar navigation-nav-large-screen">
                             <RenderToolbarLargeScreen {...props} height={APP_BAR_HEIGHT} />
                         </nav>
-                        <nav className="navigation-nav-small-screen">
+                        <nav className="bulma-navbar navigation-nav-small-screen">
                             <RenderToolbarSmallScreen {...props} height={APP_BAR_HEIGHT} />
                         </nav>
                         <SideMenuView

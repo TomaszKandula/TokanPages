@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_IMAGE } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { LanguageChangeEvent } from "../../../Shared/types";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
@@ -35,17 +34,16 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     };
 
     const languageHandler = React.useCallback(
-        (event: LanguageChangeEvent) => {
-            const value = event.target.value as string;
+        (id: string) => {
             const pathname = window.location.pathname;
             const paths = pathname.split("/").filter(e => String(e).trim());
-            const newUrl = window.location.href.replace(`/${paths[0]}`, `/${value}`);
+            const newUrl = window.location.href.replace(`/${paths[0]}`, `/${id}`);
 
             window.history.pushState({}, "", newUrl);
             dispatch(
                 ApplicationLanguageAction.set({
                     ...language,
-                    id: value,
+                    id: id,
                     languages: language.languages,
                 })
             );
