@@ -24,13 +24,11 @@ export const ApplicationToast = (): React.ReactElement => {
     const isEmpty = Validate.isEmpty(error?.errorDetails);
     const isOpen = !isEmpty && error.dialogType === DialogType.toast;
 
-    const closeEventHandler = React.useCallback(
-        (event?: ReactSyntheticEvent, reason?: string) => {
-            if (event === undefined) return;
-            if (reason === "clickaway") return;
-            dispatch(ApplicationErrorAction.clear());
-        },[]
-    );
+    const closeEventHandler = React.useCallback((event?: ReactSyntheticEvent, reason?: string) => {
+        if (event === undefined) return;
+        if (reason === "clickaway") return;
+        dispatch(ApplicationErrorAction.clear());
+    }, []);
 
     return (
         <ApplicationToastView

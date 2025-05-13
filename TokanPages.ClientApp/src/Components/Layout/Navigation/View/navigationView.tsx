@@ -44,7 +44,9 @@ interface Properties extends BaseProperties {
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
         return (
-            <Avatar alt="User avatar" title="Avatar">A</Avatar>
+            <Avatar alt="User avatar" title="Avatar">
+                A
+            </Avatar>
         );
     }
 
@@ -57,7 +59,11 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
         );
     }
 
-    return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource}><></></Avatar>;
+    return (
+        <Avatar alt="User avatar" title="Avatar" src={props.avatarSource}>
+            <></>
+        </Avatar>
+    );
 };
 
 const RenderAvatarIconButton = (props: BaseProperties): React.ReactElement => {
@@ -152,61 +158,57 @@ const RenderLanguageSelection = (props: Properties): React.ReactElement => {
 };
 
 const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => (
-        <div className="navigation-tool-bar" style={{ height: props.height }}>
-            <div className="navigation-nav-menu navigation-nav-left">
-                <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
-                    <RenderImage
-                        base={GET_ICONS_URL}
-                        source={props?.logoImgName}
-                        title="TomKandula logo"
-                        alt="An application logo"
-                        className="navigation-app-left-logo"
-                    />
-                </Link>
-            </div>
-            <div className="navigation-nav-items navigation-nav-centre">
-                <RenderNavbarMenu
-                    isAnonymous={props.isAnonymous}
-                    languageId={props.languageId}
-                    items={props.menu?.items}
+    <div className="navigation-tool-bar" style={{ height: props.height }}>
+        <div className="navigation-nav-menu navigation-nav-left">
+            <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
+                <RenderImage
+                    base={GET_ICONS_URL}
+                    source={props?.logoImgName}
+                    title="TomKandula logo"
+                    alt="An application logo"
+                    className="navigation-app-left-logo"
                 />
-            </div>
-            <div className="navigation-nav-items navigation-nav-right">
-                {props.isLoading ? null : <RenderContent {...props} />}
-            </div>
+            </Link>
         </div>
+        <div className="navigation-nav-items navigation-nav-centre">
+            <RenderNavbarMenu isAnonymous={props.isAnonymous} languageId={props.languageId} items={props.menu?.items} />
+        </div>
+        <div className="navigation-nav-items navigation-nav-right">
+            {props.isLoading ? null : <RenderContent {...props} />}
+        </div>
+    </div>
 );
 
 const RenderToolbarSmallScreen = (props: Properties) => (
-        <div className="navigation-tool-bar" style={{ height: props.height }}>
-            <div className="navigation-nav-menu navigation-nav-left">
-                {props.isLoading ? null : <RenderMenuIcon {...props} />}
-            </div>
-            <div className="navigation-nav-items navigation-nav-centre">
-                <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
-                    <RenderImage
-                        base={GET_ICONS_URL}
-                        source={props?.logoImgName}
-                        title="TomKandula logo"
-                        alt="An application logo"
-                        className="navigation-app-full-logo"
-                    />
-                </Link>
-                <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
-                    <RenderImage
-                        base={GET_ICONS_URL}
-                        source={props?.menu?.image}
-                        title="TomKandula logo"
-                        alt="An application logo"
-                        className="navigation-app-just-logo"
-                    />
-                </Link>
-            </div>
-            <div className="navigation-nav-items navigation-nav-right">
-                {props.isLoading ? null : <RenderContent {...props} />}
-            </div>
+    <div className="navigation-tool-bar" style={{ height: props.height }}>
+        <div className="navigation-nav-menu navigation-nav-left">
+            {props.isLoading ? null : <RenderMenuIcon {...props} />}
         </div>
-    );
+        <div className="navigation-nav-items navigation-nav-centre">
+            <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
+                <RenderImage
+                    base={GET_ICONS_URL}
+                    source={props?.logoImgName}
+                    title="TomKandula logo"
+                    alt="An application logo"
+                    className="navigation-app-full-logo"
+                />
+            </Link>
+            <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
+                <RenderImage
+                    base={GET_ICONS_URL}
+                    source={props?.menu?.image}
+                    title="TomKandula logo"
+                    alt="An application logo"
+                    className="navigation-app-just-logo"
+                />
+            </Link>
+        </div>
+        <div className="navigation-nav-items navigation-nav-right">
+            {props.isLoading ? null : <RenderContent {...props} />}
+        </div>
+    </div>
+);
 
 export const NavigationView = (props: Properties): React.ReactElement => {
     const mainPath = `/${props.languageId}`;

@@ -34,74 +34,83 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <Card elevation={0} className="article-card">
-                {props.isLoading 
-                ? <Skeleton variant="rect" width="200px" height="200px" />
-                : <CardMedia
-                    component="img"
-                    loading="lazy"
-                    image={props.imageUrl}
-                    className="article-card-image lazyloaded"
-                    title="Article illustration"
-                    alt="An article card for given article"
-                />}
+                {props.isLoading ? (
+                    <Skeleton variant="rect" width="200px" height="200px" />
+                ) : (
+                    <CardMedia
+                        component="img"
+                        loading="lazy"
+                        image={props.imageUrl}
+                        className="article-card-image lazyloaded"
+                        title="Article illustration"
+                        alt="An article card for given article"
+                    />
+                )}
 
                 <CardContent className="article-card-content">
-                    {props.isLoading 
-                    ? <Skeleton variant="rect" width="150px" height="30px" />
-                    : <h2 className="article-card-title m-zero">{props.title}</h2>}
+                    {props.isLoading ? (
+                        <Skeleton variant="rect" width="150px" height="30px" />
+                    ) : (
+                        <h2 className="article-card-title m-zero">{props.title}</h2>
+                    )}
 
-                    {props.isLoading 
-                    ? <Skeleton variant="rect" width="100px" height="30px" /> 
-                    : <h3 className="article-card-description m-zero">{props.description}</h3>}
+                    {props.isLoading ? (
+                        <Skeleton variant="rect" width="100px" height="30px" />
+                    ) : (
+                        <h3 className="article-card-description m-zero">{props.description}</h3>
+                    )}
 
                     <div className={`article-card-action-container ${styleCard}`}>
                         <CardActions className="article-card-action">
-                            {props.isLoading 
-                            ? <Skeleton variant="rect" width="190px" height="30px" /> 
-                            : <div className="article-card-details">
-                                {props.readCount === undefined ? (
-                                    <></>
-                                ) : (
-                                    <>
-                                        <VisibilityIcon className="article-card-item-icon" />
-                                        <div className="article-card-item-value">{props.readCount}</div>
-                                    </>
-                                )}
-                                <div className="article-card-details-separator"></div>
-                                {props.totalLikes === undefined ? (
-                                    <></>
-                                ) : (
-                                    <>
-                                        <ThumbUpIcon className="article-card-item-icon" />
-                                        <div className="article-card-item-value">{props.totalLikes}</div>
-                                    </>
-                                )}
-                                {hasFlag ? (
-                                    <>
-                                        <div className="article-card-details-separator"></div>
-                                        <LanguageIcon className="article-card-item-icon" />
-                                        <div className="article-card-details-separator"></div>
-                                        <RenderImage
-                                            base={GET_FLAG_URL}
-                                            source={props.flagImage}
-                                            title="Articles"
-                                            alt="An article language flag"
-                                            className="article-flag-image"
-                                        />
-                                    </>
-                                ) : (
-                                    <></>
-                                )}
-                            </div>}
+                            {props.isLoading ? (
+                                <Skeleton variant="rect" width="190px" height="30px" />
+                            ) : (
+                                <div className="article-card-details">
+                                    {props.readCount === undefined ? (
+                                        <></>
+                                    ) : (
+                                        <>
+                                            <VisibilityIcon className="article-card-item-icon" />
+                                            <div className="article-card-item-value">{props.readCount}</div>
+                                        </>
+                                    )}
+                                    <div className="article-card-details-separator"></div>
+                                    {props.totalLikes === undefined ? (
+                                        <></>
+                                    ) : (
+                                        <>
+                                            <ThumbUpIcon className="article-card-item-icon" />
+                                            <div className="article-card-item-value">{props.totalLikes}</div>
+                                        </>
+                                    )}
+                                    {hasFlag ? (
+                                        <>
+                                            <div className="article-card-details-separator"></div>
+                                            <LanguageIcon className="article-card-item-icon" />
+                                            <div className="article-card-details-separator"></div>
+                                            <RenderImage
+                                                base={GET_FLAG_URL}
+                                                source={props.flagImage}
+                                                title="Articles"
+                                                alt="An article language flag"
+                                                className="article-flag-image"
+                                            />
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            )}
 
                             <div className="article-card-button-holder">
-                                {props.isLoading 
-                                ? <Skeleton variant="rect" width="64px" height="30px" /> 
-                                : <Button onClick={props.onClickEvent} size="small" className="button article-button">
-                                    {props.buttonText}
-                                </Button>}
+                                {props.isLoading ? (
+                                    <Skeleton variant="rect" width="64px" height="30px" />
+                                ) : (
+                                    <Button onClick={props.onClickEvent} size="small" className="button article-button">
+                                        {props.buttonText}
+                                    </Button>
+                                )}
                             </div>
-
                         </CardActions>
                     </div>
                 </CardContent>

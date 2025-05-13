@@ -172,7 +172,11 @@ export const RenderHeader2 = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
-    return <h3 className="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap">{props.value ?? NO_CONTENT}</h3>;
+    return (
+        <h3 className="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap">
+            {props.value ?? NO_CONTENT}
+        </h3>
+    );
 };
 
 /* PARAGRAPH COMPONENTS */

@@ -18,12 +18,11 @@ export const AppBar = (props: AppBarProps) => {
         } else {
             setTop(-height);
         }
-
     }, [scroll.isScrollingUp, scroll.isScrolledTop]);
 
-    return(
+    return (
         <div className="app-bar" style={{ top: top, minHeight: props.height }}>
             {props.children}
         </div>
     );
-}
+};
