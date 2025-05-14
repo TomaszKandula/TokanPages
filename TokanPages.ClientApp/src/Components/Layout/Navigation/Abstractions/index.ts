@@ -24,7 +24,7 @@ export interface Properties extends BaseProperties {
     height?: number;
 }
 
-export interface LanguageSelectionProps { 
+export interface LanguageSelectionProps {
     selection: string;
     languageId: string;
 }

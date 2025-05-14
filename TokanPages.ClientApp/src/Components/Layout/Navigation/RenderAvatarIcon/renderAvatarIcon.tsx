@@ -8,15 +8,17 @@ export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => {
     return (
         <div className="navigation-user-avatar">
             <IconButton onClick={props.infoHandler}>
-                {props.isAnonymous
-                ? <Avatar alt="User avatar" title="Avatar">
-                    {ANONYMOUS_LETTER}
-                </Avatar>
-                : Validate.isEmpty(props.avatarName) 
-                ? <Avatar alt="User avatar" title="Avatar">
-                    {props.userAliasText?.charAt(0).toUpperCase()}
-                </Avatar> 
-                : <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />}
+                {props.isAnonymous ? (
+                    <Avatar alt="User avatar" title="Avatar">
+                        {ANONYMOUS_LETTER}
+                    </Avatar>
+                ) : Validate.isEmpty(props.avatarName) ? (
+                    <Avatar alt="User avatar" title="Avatar">
+                        {props.userAliasText?.charAt(0).toUpperCase()}
+                    </Avatar>
+                ) : (
+                    <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />
+                )}
             </IconButton>
         </div>
     );

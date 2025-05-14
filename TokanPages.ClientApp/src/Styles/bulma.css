@@ -8,7 +8,8 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .bulma-navbar-item, .bulma-navbar-link {
+    .bulma-navbar-item,
+    .bulma-navbar-link {
         align-items: center;
         display: flex;
     }
@@ -22,7 +23,8 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .bulma-navbar-dropdown.bulma-is-boxed, .bulma-navbar.bulma-is-spaced .bulma-navbar-dropdown {
+    .bulma-navbar-dropdown.bulma-is-boxed,
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-dropdown {
         border-radius: var(--bulma-navbar-dropdown-boxed-radius);
         border-top: none;
         box-shadow: var(--bulma-navbar-dropdown-boxed-shadow);
@@ -44,9 +46,9 @@
         border-top-color: var(--bulma-navbar-dropdown-border-color);
         border-top-style: var(--bulma-navbar-dropdown-border-style);
         border-top-width: var(--bulma-navbar-dropdown-border-width);
-        box-shadow: 0 .5em .5em hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-invert-l), .1);
+        box-shadow: 0 0.5em 0.5em hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-invert-l), 0.1);
         display: none;
-        font-size: .875rem;
+        font-size: 0.875rem;
         inset-inline-start: 0;
         min-width: 100%;
         position: absolute;
