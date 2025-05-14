@@ -1,0 +1,1 @@
+export { RenderLanguageIcon } from "./renderLanguageIcon";

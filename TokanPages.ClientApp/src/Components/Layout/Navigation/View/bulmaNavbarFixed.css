@@ -1,0 +1,56 @@
+/*
+    This CSS overwrites Bulma's navbar to keep navbar visible and fully functional on screens below 1024px.
+*/
+@media screen and (max-width: 1024px) {
+    .bulma-navbar-item.bulma-has-dropdown {
+        align-items: stretch;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .bulma-navbar-item, .bulma-navbar-link {
+        align-items: center;
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .bulma-navbar-dropdown.bulma-is-right {
+        left: auto;
+        right: 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .bulma-navbar-dropdown.bulma-is-boxed, .bulma-navbar.bulma-is-spaced .bulma-navbar-dropdown {
+        border-radius: var(--bulma-navbar-dropdown-boxed-radius);
+        border-top: none;
+        box-shadow: var(--bulma-navbar-dropdown-boxed-shadow);
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        top: calc(100% + (var(--bulma-navbar-dropdown-offset)));
+        transform: translateY(-5px);
+        transition-duration: var(--bulma-duration);
+        transition-property: opacity, transform;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .bulma-navbar-dropdown {
+        background-color: var(--bulma-navbar-dropdown-background-color);
+        border-end-start-radius: var(--bulma-navbar-dropdown-radius);
+        border-end-end-radius: var(--bulma-navbar-dropdown-radius);
+        border-top-color: var(--bulma-navbar-dropdown-border-color);
+        border-top-style: var(--bulma-navbar-dropdown-border-style);
+        border-top-width: var(--bulma-navbar-dropdown-border-width);
+        box-shadow: 0 .5em .5em hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-invert-l), .1);
+        display: none;
+        font-size: .875rem;
+        inset-inline-start: 0;
+        min-width: 100%;
+        position: absolute;
+        top: 100%;
+        z-index: var(--bulma-navbar-dropdown-z);
+    }
+}
