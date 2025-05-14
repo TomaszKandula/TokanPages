@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Drawer } from "@material-ui/core";
-import { RenderImage, RenderSideMenu } from "../../../../Shared/Components";
-import { Item } from "../../../../Shared/Components/RenderMenu/Models";
+import { RenderImage } from "../../../../Shared/Components";
+import { ItemDto } from "../../../../Api/Models";
 import { GET_ICONS_URL } from "../../../../Api";
+import { RenderSideMenu } from "../RenderMenu";
 import "./sideMenuView.css";
 
 interface Properties {
@@ -10,7 +11,7 @@ interface Properties {
     closeHandler: any;
     isAnonymous: boolean;
     languageId: string;
-    menu: { image: string; items: Item[] };
+    menu: { image: string; items: ItemDto[] };
 }
 
 //TODO: replace Drawe w/custom implementation

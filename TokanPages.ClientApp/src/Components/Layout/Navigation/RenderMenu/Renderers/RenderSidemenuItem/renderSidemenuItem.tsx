@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Item } from "../../Models";
-import { GetIcon } from "../../..";
+import { GetIcon } from "../../../../../../Shared/Components";
+import { ItemDto } from "../../../../../../Api/Models";
 import { EnsureDefined } from "../EnsureDefined";
 
-export const RenderSidemenuItem = (props: Item): React.ReactElement => {
+export const RenderSidemenuItem = (props: ItemDto): React.ReactElement => {
     const link: string = props.link as string;
     const isHref: boolean = link.includes("http://") || link.includes("https://");
 

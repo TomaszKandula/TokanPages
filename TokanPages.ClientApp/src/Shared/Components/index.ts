@@ -15,8 +15,6 @@ export { RenderImage } from "./CustomImage/customImage";
 export { RenderList } from "./RenderList/renderList";
 export { RenderParagraphs } from "./RenderParagraphs/renderParagraphs";
 export { GetIcon } from "./GetIcon/getIcon";
-export { RenderSideMenu } from "./RenderMenu/renderSideMenu";
-export { RenderNavbarMenu } from "./RenderMenu/renderNavbarMenu";
 export { RedirectTo } from "./RedirectWrapper";
 export { ProgressBarView as ProgressBar } from "./ProgressBar";
 export { PdfCanvas } from "./PdfCanvas";

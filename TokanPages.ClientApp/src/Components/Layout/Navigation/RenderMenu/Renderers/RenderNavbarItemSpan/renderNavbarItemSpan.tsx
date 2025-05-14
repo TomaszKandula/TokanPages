@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
-import { ApplicationNavbarAction } from "../../../../../Store/Actions";
-import { ApplicationState } from "../../../../../Store/Configuration";
-import { Item } from "../../Models";
+import { ApplicationState } from "../../../../../../Store/Configuration";
+import { ApplicationNavbarAction } from "../../../../../../Store/Actions";
+import { ItemDto } from "../../../../../../Api/Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
-interface ItemsProps extends Item {
+interface ItemsProps extends ItemDto {
     onClickEvent?: () => void;
 }
 
@@ -30,7 +30,7 @@ const Items = (props: ItemsProps): React.ReactElement => {
     return <>{data}</>;
 };
 
-export const RenderNavbarItemSpan = (props: Item): React.ReactElement => {
+export const RenderNavbarItemSpan = (props: ItemDto): React.ReactElement => {
     const dispatch = useDispatch();
 
     const [isOpen, setOpen] = React.useState(false);

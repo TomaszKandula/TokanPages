@@ -5,12 +5,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Collapse } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
-import { GetIcon } from "../../..";
-import { Item } from "../../Models";
+import { GetIcon } from "../../../../../../Shared/Components";
+import { ItemDto } from "../../../../../../Api/Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
-export const RenderSidemenuItemSpan = (props: Item): React.ReactElement => {
+export const RenderSidemenuItemSpan = (props: ItemDto): React.ReactElement => {
     const [isOpen, setIsOpen] = React.useState(false);
     const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 

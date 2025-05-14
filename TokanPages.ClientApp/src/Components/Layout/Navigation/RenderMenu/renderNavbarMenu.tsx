@@ -1,20 +1,20 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
-import { Item } from "./Models";
 import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
+import { ItemDto } from "../../../../Api/Models";
 import "./styles.css";
 
 interface Properties {
     isAnonymous: boolean;
     languageId: string;
-    items: Item[] | undefined;
+    items: ItemDto[] | undefined;
 }
 
 export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
-    props.items.sort((a: Item, b: Item) => {
+    props.items.sort((a: ItemDto, b: ItemDto) => {
         const item1 = a.navbarMenu?.sortOrder ?? 0;
         const item2 = b.navbarMenu?.sortOrder ?? 0;
         const isGreater = item1 > item2 ? 1 : 0;

@@ -1,5 +1,5 @@
+import { ItemDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { Item } from "../../../../Shared/Components/RenderMenu/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
 export interface BaseProperties extends ViewProperties {
@@ -15,7 +15,7 @@ export interface BaseProperties extends ViewProperties {
     languages: ApplicationLanguageState;
     languageId: string;
     languageHandler: (id: string) => void;
-    menu: { image: string; items: Item[] };
+    menu: { image: string; items: ItemDto[] };
     backNavigationOnly?: boolean;
     backPathFragment?: string;
 }

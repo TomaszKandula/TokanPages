@@ -3,12 +3,12 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { NavigationView } from "../../Navigation/View/navigationView";
-import { Item } from "../../../../Shared/Components/RenderMenu/Models";
+import { ItemDto } from "../../../../Api/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
 describe("test component: featuresView", () => {
     it("should render correctly '<NavigationView />' when content is loaded.", () => {
-        const items: Item = {
+        const items: ItemDto = {
             id: "79a6c65d-08b8-479b-9507-97feb05e30c2",
             type: "item",
             value: "Home",

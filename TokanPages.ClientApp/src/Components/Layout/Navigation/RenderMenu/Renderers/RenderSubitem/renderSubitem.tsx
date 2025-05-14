@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Subitem } from "../../Models";
-import { GetIcon } from "../../..";
+import { SubitemDto } from "../../../../../../Api/Models";
+import { GetIcon } from "../../../../../../Shared/Components";
 import { EnsureDefined } from "../EnsureDefined";
 
-interface RenderSubitemProps extends Subitem {
+interface RenderSubitemProps extends SubitemDto {
     indent?: boolean;
     navbar?: boolean;
     onClickEvent?: () => void;

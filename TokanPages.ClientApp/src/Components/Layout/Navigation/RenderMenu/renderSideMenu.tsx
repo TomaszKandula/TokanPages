@@ -1,13 +1,13 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
-import { Item } from "./Models";
+import { ItemDto } from "../../../../Api/Models";
 import { RenderSidemenuItem, RenderSidemenuItemSpan } from "./Renderers";
 import { Divider } from "@material-ui/core";
 
 interface Properties {
     isAnonymous: boolean;
     languageId: string;
-    items: Item[] | undefined;
+    items: ItemDto[] | undefined;
 }
 
 type VariantType = "inset" | "middle" | "fullWidth" | undefined;
@@ -16,7 +16,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
-    props.items.sort((a: Item, b: Item) => {
+    props.items.sort((a: ItemDto, b: ItemDto) => {
         const item1 = a.sideMenu?.sortOrder ?? 0;
         const item2 = b.sideMenu?.sortOrder ?? 0;
         const isGreater = item1 > item2 ? 1 : 0;

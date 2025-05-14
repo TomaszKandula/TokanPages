@@ -2,13 +2,13 @@ import "../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { RenderSideMenu } from "./renderSideMenu";
-import { Item } from "./Models";
+import { ItemDto } from "../../../../Api/Models";
+import { RenderNavbarMenu } from "./renderNavbarMenu";
 
-describe("test render function 'RenderSideMenu'", () => {
+describe("test render function 'RenderNavbarMenu'", () => {
     const noItems = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} languageId="en" items={undefined}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={true} languageId="en" items={undefined}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
@@ -18,7 +18,7 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const emptyItems = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} languageId="en" items={[]}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={true} languageId="en" items={[]}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
@@ -26,7 +26,7 @@ describe("test render function 'RenderSideMenu'", () => {
         expect(emptyItems).toMatchSnapshot();
     });
 
-    const items: Item[] = [
+    const items: ItemDto[] = [
         {
             id: "c44bb2cd-ee75-470c-942e-5560e3589102",
             type: "item",
@@ -185,7 +185,7 @@ describe("test render function 'RenderSideMenu'", () => {
                     id: "d3ada751-012d-4c58-a4dd-a89c89928338",
                     type: "subitem",
                     value: "Sign out",
-                    link: "/en/signout",
+                    link: "/en/account/signout",
                     icon: "Lock",
                     enabled: true,
                     sideMenu: {
@@ -515,21 +515,21 @@ describe("test render function 'RenderSideMenu'", () => {
 
     const menuItemsLogged = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={false} languageId="en" items={items}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={false} languageId="en" items={items}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
-    it("should return rendered list when items are provided, user is logged.", () => {
+    it("should return rendered list when items are provided and user is logged.", () => {
         expect(menuItemsLogged).toMatchSnapshot();
     });
 
     const menuItemsAnonymous = render(
         <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} languageId="en" items={items}></RenderSideMenu>
+            <RenderNavbarMenu isAnonymous={true} languageId="en" items={items}></RenderNavbarMenu>
         </BrowserRouter>
     );
 
-    it("should return rendered list when items are provided, user is anonymous.", () => {
+    it("should return rendered list when items are provided and user is anonymous.", () => {
         expect(menuItemsAnonymous).toMatchSnapshot();
     });
 });

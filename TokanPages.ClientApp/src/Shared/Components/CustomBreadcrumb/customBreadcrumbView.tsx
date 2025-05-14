@@ -4,10 +4,9 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Skeleton } from "@material-ui/lab";
 import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
 import { NavigateNext, Home } from "@material-ui/icons";
-import { UserInfoProps } from "../../../Api/Models";
+import { ItemDto, SubitemDto, UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
-import { Item, Subitem } from "../RenderMenu/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
@@ -23,7 +22,7 @@ interface NavigationProps {
     userInfo: UserInfoProps;
     menu: {
         image: string;
-        items: Item[];
+        items: ItemDto[];
     };
 }
 
@@ -56,7 +55,7 @@ const toUpper = (value: string | undefined): string => {
 };
 
 const getHomeText = (navigation: NavigationProps): string => {
-    const text = navigation.menu.items.find((item: Item) => {
+    const text = navigation.menu.items.find((item: ItemDto) => {
         if (item.link === `/${navigation.language}`) {
             return item;
         }
@@ -74,7 +73,7 @@ const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
     const rootWithSlash = `/${fragments[0]}`;
     let hasHash: boolean = false;
 
-    const text = props.navigation.menu.items.find((item: Item) => {
+    const text = props.navigation.menu.items.find((item: ItemDto) => {
         if (item.link?.toUpperCase().includes(rootWithHash.toUpperCase())) {
             hasHash = true;
             return item;
@@ -98,7 +97,7 @@ const pathToSubitemText = (props: PathProps): string => {
     const fragments = array.filter(e => String(e).trim());
     const root = `#${fragments[0]}`;
 
-    const itemWithSubitem = props.navigation.menu.items.find((item: Item) => {
+    const itemWithSubitem = props.navigation.menu.items.find((item: ItemDto) => {
         if (item.link?.toUpperCase().includes(root.toUpperCase()) && item.subitems !== undefined) {
             return item;
         }
@@ -107,7 +106,7 @@ const pathToSubitemText = (props: PathProps): string => {
     });
 
     if (itemWithSubitem?.subitems) {
-        const text = itemWithSubitem?.subitems.find((subitem: Subitem) => {
+        const text = itemWithSubitem?.subitems.find((subitem: SubitemDto) => {
             if (subitem.link?.toUpperCase().includes(props.pathname.toUpperCase())) {
                 return subitem;
             }

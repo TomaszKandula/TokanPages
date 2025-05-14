@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ApplicationNavbarAction } from "../../../../../Store/Actions";
-import { Item } from "../../Models";
+import { ItemDto } from "../../../../../../Api/Models";
+import { ApplicationNavbarAction } from "../../../../../../Store/Actions";
 import { EnsureDefined } from "../EnsureDefined";
 
-export const RenderNavbarItem = (props: Item): React.ReactElement => {
+export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {
     const dispatch = useDispatch();
 
     const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
