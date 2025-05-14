@@ -8,7 +8,6 @@ import { Properties } from "../Abstractions";
 import { SideMenuView } from "../SideMenu/sideMenuView";
 import { RenderToolbarLargeScreen } from "../RenderToolbarLargeScreen";
 import { RenderToolbarSmallScreen } from "../RenderToolbarSmallScreen";
-import "./bulmaNavbarFixed.css";
 import "./navigationView.css";
 
 export const NavigationView = (props: Properties): React.ReactElement => {
