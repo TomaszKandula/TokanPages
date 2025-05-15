@@ -14,7 +14,6 @@ interface Properties {
     menu: { image: string; items: ItemDto[] };
 }
 
-//TODO: replace Drawe w/custom implementation
 export const SideMenuView = (props: Properties): React.ReactElement => {
     return (
         <Drawer anchor="left" open={props.drawerState.open} onClose={props.closeHandler}>
