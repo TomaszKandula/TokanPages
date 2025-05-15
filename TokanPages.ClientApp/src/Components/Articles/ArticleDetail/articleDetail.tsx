@@ -121,6 +121,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             isLarge={false}
             avatarName={selection.article.author.avatarName}
             userLetter={userLetter}
+            className="article-details-avatar"
         />
     );
 
@@ -130,6 +131,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             isLarge={true}
             avatarName={selection.article.author.avatarName}
             userLetter={userLetter}
+            className="article-details-avatar"
         />
     );
 
