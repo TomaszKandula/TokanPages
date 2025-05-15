@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { SubitemDto } from "../../../../../../Api/Models";
-import { GetIcon } from "../../../../../../Shared/Components";
+import { SubitemDto } from "../../../../../../../Api/Models";
+import { GetIcon } from "../../../../../../../Shared/Components";
 import { EnsureDefined } from "../EnsureDefined";
 
 interface RenderSubitemProps extends SubitemDto {

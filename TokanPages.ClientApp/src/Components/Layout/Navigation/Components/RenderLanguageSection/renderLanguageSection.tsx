@@ -1,10 +1,10 @@
 import * as React from "react";
-import { BaseProperties, Properties } from "../Abstractions";
+import { BaseProperties, Properties } from "../../Abstractions";
 import { RenderAvatarIcon } from "../RenderAvatarIcon";
 import { RenderLanguageIcon } from "../RenderLanguageIcon";
-import { RenderImage } from "../../../../Shared/Components";
-import { GET_FLAG_URL } from "../../../../Api";
-import { LanguageItemDto } from "../../../../Api/Models";
+import { RenderImage } from "../../../../../Shared/Components";
+import { GET_FLAG_URL } from "../../../../../Api";
+import { LanguageItemDto } from "../../../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 
 export const RenderLanguageSection = (props: BaseProperties): React.ReactElement => {

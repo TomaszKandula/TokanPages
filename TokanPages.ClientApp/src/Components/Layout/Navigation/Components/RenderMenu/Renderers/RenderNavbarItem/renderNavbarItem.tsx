@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemText from "@material-ui/core/ListItemText";
-import { ItemDto } from "../../../../../../Api/Models";
-import { ApplicationNavbarAction } from "../../../../../../Store/Actions";
+import { ItemDto } from "../../../../../../../Api/Models";
+import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
 import { EnsureDefined } from "../EnsureDefined";
 
 export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {

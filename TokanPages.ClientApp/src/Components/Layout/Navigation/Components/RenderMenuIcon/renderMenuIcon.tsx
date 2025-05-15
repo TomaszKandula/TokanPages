@@ -1,8 +1,8 @@
 import * as React from "react";
 import Icon from "@mdi/react";
 import { mdiMenu } from "@mdi/js";
-import { IconButton } from "../../../../Shared/Components";
-import { Properties } from "../Abstractions";
+import { IconButton } from "../../../../../Shared/Components";
+import { Properties } from "../../Abstractions";
 
 export const RenderMenuIcon = (props: Properties): React.ReactElement => {
     return (

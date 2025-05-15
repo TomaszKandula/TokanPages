@@ -2,7 +2,7 @@ import "../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { ItemDto } from "../../../../Api/Models";
+import { ItemDto } from "../../../../../Api/Models";
 import { RenderSideMenu } from "./renderSideMenu";
 
 describe("test render function 'RenderSideMenu'", () => {

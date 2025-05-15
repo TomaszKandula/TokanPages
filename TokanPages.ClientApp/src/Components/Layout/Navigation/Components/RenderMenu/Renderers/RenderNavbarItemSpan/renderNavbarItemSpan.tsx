@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ClickAwayListener, Grow, ListItemText, MenuList, Popper } from "@material-ui/core";
-import { ApplicationState } from "../../../../../../Store/Configuration";
-import { ApplicationNavbarAction } from "../../../../../../Store/Actions";
-import { ItemDto } from "../../../../../../Api/Models";
+import { ApplicationState } from "../../../../../../../Store/Configuration";
+import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
+import { ItemDto } from "../../../../../../../Api/Models";
 import { EnsureDefinedExt } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 

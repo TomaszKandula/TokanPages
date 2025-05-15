@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { ListItem, Link as Href } from "@material-ui/core";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { GetIcon } from "../../../../../../Shared/Components";
-import { ItemDto } from "../../../../../../Api/Models";
+import { GetIcon } from "../../../../../../../Shared/Components";
+import { ItemDto } from "../../../../../../../Api/Models";
 import { EnsureDefined } from "../EnsureDefined";
 
 export const RenderSidemenuItem = (props: ItemDto): React.ReactElement => {

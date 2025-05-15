@@ -5,8 +5,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Collapse } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
-import { GetIcon } from "../../../../../../Shared/Components";
-import { ItemDto } from "../../../../../../Api/Models";
+import { GetIcon } from "../../../../../../../Shared/Components";
+import { ItemDto } from "../../../../../../../Api/Models";
 import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 

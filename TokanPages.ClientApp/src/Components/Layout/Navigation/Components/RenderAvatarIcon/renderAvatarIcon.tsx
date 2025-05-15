@@ -1,7 +1,7 @@
 import * as React from "react";
 import Validate from "validate.js";
-import { Avatar, IconButton } from "../../../../Shared/Components";
-import { BaseProperties } from "../Abstractions";
+import { Avatar, IconButton } from "../../../../../Shared/Components";
+import { BaseProperties } from "../../Abstractions";
 
 export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => {
     const ANONYMOUS_LETTER = "A";

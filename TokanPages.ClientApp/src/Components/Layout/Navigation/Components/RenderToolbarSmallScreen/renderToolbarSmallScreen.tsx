@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Properties } from "../Abstractions";
-import { RenderMenuIcon } from "../RenderMenuIcon";
 import { Link } from "react-router-dom";
-import { RenderImage } from "../../../../Shared/Components";
-import { GET_ICONS_URL } from "../../../../Api";
+import { Properties } from "../../Abstractions";
+import { RenderMenuIcon } from "../RenderMenuIcon";
+import { RenderImage } from "../../../../../Shared/Components";
+import { GET_ICONS_URL } from "../../../../../Api";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 
 export const RenderToolbarSmallScreen = (props: Properties) => (

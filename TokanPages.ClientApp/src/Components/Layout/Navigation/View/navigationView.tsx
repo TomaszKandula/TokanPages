@@ -2,15 +2,13 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiArrowLeft } from "@mdi/js";
+import { Drawer } from "@material-ui/core";
+import { GET_ICONS_URL } from "../../../../Api";
 import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import { AppBar, IconButton, RenderImage } from "../../../../Shared/Components";
+import { RenderSideMenu, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
 import { Properties } from "../Abstractions";
-import { RenderToolbarLargeScreen } from "../RenderToolbarLargeScreen";
-import { RenderToolbarSmallScreen } from "../RenderToolbarSmallScreen";
 import "./navigationView.css";
-import { Drawer } from "@material-ui/core";
-import { GET_ICONS_URL } from "Api";
-import { RenderSideMenu } from "../RenderMenu";
 
 export const NavigationView = (props: Properties): React.ReactElement => {
     const mainPath = `/${props.languageId}`;

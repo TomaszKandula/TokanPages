@@ -1,7 +1,7 @@
 import * as React from "react";
 import List from "@material-ui/core/List";
 import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
-import { ItemDto } from "../../../../Api/Models";
+import { ItemDto } from "../../../../../Api/Models";
 import "./styles.css";
 
 interface Properties {

@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Properties } from "../Abstractions";
 import { Link } from "react-router-dom";
-import { GET_ICONS_URL } from "../../../../Api";
-import { RenderImage } from "../../../../Shared/Components";
+import { Properties } from "../../Abstractions";
+import { GET_ICONS_URL } from "../../../../../Api";
+import { RenderImage } from "../../../../../Shared/Components";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 import { RenderNavbarMenu } from "../RenderMenu";
 
