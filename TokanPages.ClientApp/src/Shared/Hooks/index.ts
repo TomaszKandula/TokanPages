@@ -1,6 +1,7 @@
 export { useAnimation } from "./UseAnimation";
 export { useApiAction } from "./UseApiAction";
 export { useApplicationLanguage } from "./UseApplicationLanguage";
+export { useDimensions } from "./useDimensions";
 export { useErrorBoundaryContent } from "./UseErrorBoundaryContent";
 export { useInterval } from "./UseInterval";
 export { usePageContent } from "./UsePageContent";
