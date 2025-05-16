@@ -12,7 +12,7 @@ export const RenderToolbarLargeScreen = (props: Properties): React.ReactElement 
             <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
                 <RenderImage
                     base={GET_ICONS_URL}
-                    source={props?.logoImgName}
+                    source={props?.logo}
                     title="TomKandula logo"
                     alt="An application logo"
                     className="navigation-app-left-logo"

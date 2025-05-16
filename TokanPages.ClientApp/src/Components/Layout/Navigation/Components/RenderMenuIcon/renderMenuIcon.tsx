@@ -6,7 +6,7 @@ import { Properties } from "../../Abstractions";
 
 export const RenderMenuIcon = (props: Properties): React.ReactElement => {
     return (
-        <IconButton aria-label="menu" onClick={props.openHandler}>
+        <IconButton aria-label="menu" onClick={props.menuHandler}>
             <Icon path={mdiMenu} size={1} />
         </IconButton>
     );

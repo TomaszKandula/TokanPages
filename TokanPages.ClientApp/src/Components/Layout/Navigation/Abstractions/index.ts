@@ -4,14 +4,14 @@ import { ApplicationLanguageState } from "../../../../Store/States";
 
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
-    drawerState: { open: boolean };
-    openHandler: (event: any) => void;
-    closeHandler: (event: any) => void;
+    isMenuOpen: boolean;
+    width: number;
+    menuHandler: () => void;
     infoHandler: () => void;
+    aliasName: string;
     avatarName: string;
     avatarSource: string;
-    userAliasText: string;
-    logoImgName: string;
+    logo: string;
     menu: { image: string; items: ItemDto[] };
     backNavigationOnly?: boolean;
     backPathFragment?: string;

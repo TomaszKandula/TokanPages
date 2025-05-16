@@ -14,7 +14,7 @@ export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => {
                     </Avatar>
                 ) : Validate.isEmpty(props.avatarName) ? (
                     <Avatar alt="User avatar" title="Avatar">
-                        {props.userAliasText?.charAt(0).toUpperCase()}
+                        {props.aliasName?.charAt(0).toUpperCase()}
                     </Avatar>
                 ) : (
                     <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />
