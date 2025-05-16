@@ -77,11 +77,11 @@ describe("test component: featuresView", () => {
             <BrowserRouter>
                 <NavigationView
                     isLoading={false}
+                    isAnonymous={false}
                     drawerState={{ open: false }}
                     openHandler={jest.fn()}
                     closeHandler={jest.fn()}
                     infoHandler={jest.fn()}
-                    isAnonymous={false}
                     avatarName=""
                     avatarSource=""
                     userAliasText=""
@@ -89,7 +89,9 @@ describe("test component: featuresView", () => {
                     logoImgName="logo.svg"
                     languages={languages}
                     languageId="en"
-                    languageHandler={jest.fn()}
+                    languagePickHandler={jest.fn()}
+                    languageMenuHandler={jest.fn()}
+                    isLanguageMenuOpen={false}
                 />
             </BrowserRouter>
         );
