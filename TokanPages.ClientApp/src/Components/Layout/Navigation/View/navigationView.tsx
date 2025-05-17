@@ -26,15 +26,9 @@ export const NavigationView = (props: Properties): React.ReactElement => {
                 </AppBar>
             ) : (
                 <AppBar height={APP_BAR_HEIGHT}>
-                    <>
-                        <nav className="bulma-navbar navigation-nav-large-screen">
-                            <RenderToolbarLargeScreen {...props} height={APP_BAR_HEIGHT} />
-                        </nav>
-                        <nav className="bulma-navbar navigation-nav-small-screen">
-                            <RenderToolbarSmallScreen {...props} height={APP_BAR_HEIGHT} />
-                        </nav>
-                        <RenderDrawer {...props} />
-                    </>
+                    <RenderToolbarLargeScreen {...props} height={APP_BAR_HEIGHT} />
+                    <RenderToolbarSmallScreen {...props} height={APP_BAR_HEIGHT} />
+                    <RenderDrawer {...props} />
                 </AppBar>
             )}
         </>
