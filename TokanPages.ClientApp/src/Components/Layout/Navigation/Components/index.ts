@@ -5,3 +5,4 @@ export { RenderNavbarMenu, RenderSideMenu } from "./RenderMenu";
 export { RenderMenuIcon } from "./RenderMenuIcon";
 export { RenderToolbarLargeScreen } from "./RenderToolbarLargeScreen";
 export { RenderToolbarSmallScreen } from "./RenderToolbarSmallScreen";
+export { RenderDrawer } from "./RenderDrawer";
