@@ -6,7 +6,7 @@ import { useScroll } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
 
 export interface Properties {
-    children: React.ReactElement;
+    children: React.ReactElement | React.ReactElement[];
 }
 
 export const ClearPageStart = (props: Properties): React.ReactElement => {

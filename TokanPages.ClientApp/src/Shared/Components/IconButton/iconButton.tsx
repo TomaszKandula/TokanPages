@@ -4,7 +4,7 @@ import "./iconButton.css";
 
 interface IconButtonProps {
     size?: number;
-    children: React.ReactElement;
+    children: React.ReactElement | React.ReactElement[];
     onClick?: (event: ReactMouseEvent) => void;
 }
 

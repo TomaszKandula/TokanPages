@@ -4,7 +4,7 @@ import "./appBar.css";
 
 interface AppBarProps {
     height?: number;
-    children: React.ReactElement;
+    children: React.ReactElement | React.ReactElement[];
 }
 
 export const AppBar = (props: AppBarProps) => {
