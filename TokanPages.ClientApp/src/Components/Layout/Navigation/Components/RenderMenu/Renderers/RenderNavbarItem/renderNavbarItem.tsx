@@ -63,7 +63,7 @@ export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {
     const dispatch = useDispatch();
 
     const [isSelected, setIsSelected] = React.useState(false);
-    const [selectionStyle, setSelectionStyle] = React.useState<string | undefined>(undefined);
+    const [selectionStyle, setSelectionStyle] = React.useState<string>(selectionBase);
 
     const hasSubitems = props.subitems !== undefined && props.subitems.length > 0;
 
