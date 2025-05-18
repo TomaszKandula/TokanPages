@@ -5,12 +5,13 @@ import Icon from "@mdi/react";
 import * as Icons from "@mdi/js";
 import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
+import { ReactMouseEventHandler } from "../../../../../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 import "./renderNavbarItem.css";
 
 interface NavbarItemWithoutSubitemsProps extends ItemDto {
     selectionStyle: string | undefined;
-    onMouseEnter: () => void;
+    onMouseEnter: ReactMouseEventHandler;
 }
 
 interface NavbarItemWithSubitemsProps extends ItemDto {
@@ -42,7 +43,7 @@ const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.React
         </div>
     );
 
-const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps) => {
+const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React.ReactElement => {
     return (
         <Link
             key={props.id}
