@@ -5,7 +5,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { SubitemDto } from "../../../../../../../Api/Models";
 import { GetIcon } from "../../../../../../../Shared/Components";
-import { EnsureDefined } from "../EnsureDefined";
 
 interface RenderSubitemProps extends SubitemDto {
     indent?: boolean;
@@ -61,19 +60,5 @@ export const RenderSubitem = (props: RenderSubitemProps): React.ReactElement => 
         );
     };
 
-    const RenderListItem = (): React.ReactElement => {
-        return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
-    };
-
-    return EnsureDefined(
-        {
-            values: [props.link, props.icon, props.enabled],
-            messages: [
-                "Cannot render. Missing 'link' property.",
-                "Cannot render. Missing 'icon' property.",
-                "Cannot render. Missing 'enabled' property.",
-            ],
-        },
-        <RenderListItem />
-    );
+    return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
 };

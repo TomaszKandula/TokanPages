@@ -1,72 +1,100 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { ListItem, Link as Href } from "@material-ui/core";
-import ListItemText from "@material-ui/core/ListItemText";
-import { ItemDto } from "../../../../../../../Api/Models";
+import Icon from "@mdi/react";
+import * as Icons from "@mdi/js";
+import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
-import { EnsureDefined } from "../EnsureDefined";
+import { v4 as uuidv4 } from "uuid";
+import "./renderNavbarItem.css";
+
+interface NavbarItemWithoutSubitemsProps extends ItemDto {
+    selectionStyle: string | undefined;
+    onMouseEnter: () => void;
+}
+
+interface NavbarItemWithSubitemsProps extends ItemDto {
+    selectionStyle: string | undefined;
+}
+
+const getIconSvgPath = (item: string | undefined): string => {
+    const key = `mdi${item ?? ""}`;
+    // @ts-expect-error
+    const svg = Icons[key]
+    return svg;
+}
+
+const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.ReactElement => (
+        <div className="bulma-navbar">
+            <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
+                <a className={`bulma-navbar-link ${props.selectionStyle}`}>
+                    {props.value}
+                </a>
+                <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
+                    {props.subitems?.map((item: SubitemDto, _index: number) => (
+                    <Link className="bulma-navbar-item" key={uuidv4()} to={item.link as string}>
+                        <Icon path={getIconSvgPath(item.icon)} size={1.2} className="navigation-languages-check" />
+                        <span>{item.value}</span>
+                    </Link>
+                ))}
+                </div>
+            </div>
+        </div>
+    );
+
+const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps) => {
+    return (
+        <Link
+            key={props.id}
+            to={props.link as string}
+            className="render-navbar-list-item"
+            onMouseEnter={props.onMouseEnter}
+            //disabled={!props.enabled}
+        >
+            <span className={props.selectionStyle}>{props.value}</span>
+        </Link>
+    );
+}
+
+const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
+const selectionBase = "render-navbar-list-item-text";
 
 export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {
     const dispatch = useDispatch();
 
-    const isSelected = window.location.pathname !== "/" && window.location.pathname === props.link;
-    const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
-    const selectionStyle = isSelected ? selectionClass : "render-navbar-list-item-text";
+    const [isSelected, setIsSelected] = React.useState(false);
+    const [selectionStyle, setSelectionStyle] = React.useState<string | undefined>(undefined);
 
-    const link: string = props.link as string;
-    const isHref: boolean = link.includes("http://") || link.includes("https://");
+    const hasSubitems = props.subitems !== undefined && props.subitems.length > 0;
+
+    React.useEffect(() => {
+        const isNotRootPath = window.location.pathname !== "/";
+        const pathname = window.location.pathname;
+
+        if (hasSubitems) {
+            const nomilized = props.value.toLowerCase();
+            setIsSelected(isNotRootPath && pathname.includes(nomilized));
+        } else {
+            setIsSelected(isNotRootPath && pathname === props.link);
+        }
+    }, [props.value, props.link, props.subitems, hasSubitems]);
+
+    React.useEffect(() => {
+        setSelectionStyle(isSelected ? selectionClass : selectionBase);
+    }, [isSelected]);
 
     const onMouseEnter = React.useCallback(() => {
         dispatch(ApplicationNavbarAction.set({ selection: props.value }));
     }, [props.value]);
 
-    const RenderItemWithHref = (): React.ReactElement => {
-        return (
-            <Href
-                href={link}
-                className="render-navbar-href"
-                underline="none"
-                target="_blank"
-                rel="noopener nofollow"
-                onMouseEnter={onMouseEnter}
-            >
-                <ListItem button key={props.id} disabled={!props.enabled}>
-                    <ListItemText primary={props.value} className={selectionStyle} disableTypography={true} />
-                </ListItem>
-            </Href>
-        );
-    };
-
-    const RenderItemWithLink = (): React.ReactElement => {
-        return (
-            <ListItem
-                button
-                key={props.id}
-                disabled={!props.enabled}
-                component={Link}
-                to={props.link as string}
-                className="render-navbar-list-item"
-                onMouseEnter={onMouseEnter}
-            >
-                <ListItemText primary={props.value} className={selectionStyle} disableTypography={true} />
-            </ListItem>
-        );
-    };
-
-    const RenderListItem = (): React.ReactElement => {
-        return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
-    };
-
-    return EnsureDefined(
-        {
-            values: [props.link, props.icon, props.enabled],
-            messages: [
-                "Cannot render. Missing 'link' property.",
-                "Cannot render. Missing 'icon' property.",
-                "Cannot render. Missing 'enabled' property.",
-            ],
-        },
-        <RenderListItem />
-    );
+    return hasSubitems
+        ? <NavbarItemWithSubitems 
+            {...props}
+            selectionStyle={selectionStyle}
+        />
+        : <NavbarItemWithoutSubitems 
+            {...props}
+            selectionStyle={selectionStyle}
+            onMouseEnter={onMouseEnter}
+        />;
 };

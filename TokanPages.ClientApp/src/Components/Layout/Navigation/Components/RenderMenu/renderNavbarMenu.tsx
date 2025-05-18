@@ -1,8 +1,7 @@
 import * as React from "react";
-import List from "@material-ui/core/List";
-import { RenderNavbarItem, RenderNavbarItemSpan } from "./Renderers";
+import { RenderNavbarItem } from "./Renderers";
 import { ItemDto } from "../../../../../Api/Models";
-import "./styles.css";
+import "./renderNavbarMenu.css";
 
 interface Properties {
     isAnonymous: boolean;
@@ -56,7 +55,7 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
                 if (!item.navbarMenu?.enabled) return;
 
                 renderBuffer.push(
-                    <RenderNavbarItemSpan
+                    <RenderNavbarItem
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -81,5 +80,5 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
         }
     });
 
-    return <List className="render-menu-list">{renderBuffer}</List>;
+    return <div className="render-menu-list">{renderBuffer}</div>;
 };

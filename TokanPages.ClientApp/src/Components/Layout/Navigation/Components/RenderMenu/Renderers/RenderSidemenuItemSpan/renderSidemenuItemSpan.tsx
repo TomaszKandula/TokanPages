@@ -7,23 +7,13 @@ import { Collapse } from "@material-ui/core";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { GetIcon } from "../../../../../../../Shared/Components";
 import { ItemDto } from "../../../../../../../Api/Models";
-import { EnsureDefined } from "../EnsureDefined";
 import { RenderSubitem } from "../RenderSubitem/renderSubitem";
 
 export const RenderSidemenuItemSpan = (props: ItemDto): React.ReactElement => {
     const [isOpen, setIsOpen] = React.useState(false);
     const onListItemClickEvent = React.useCallback(() => setIsOpen(!isOpen), [isOpen]);
 
-    return EnsureDefined(
-        {
-            values: [props.link, props.icon, props.enabled, props.subitems],
-            messages: [
-                "Cannot render. Missing 'link' property.",
-                "Cannot render. Missing 'icon' property.",
-                "Cannot render. Missing 'enabled' property.",
-                "Cannot render. Missing 'subitem' property.",
-            ],
-        },
+    return (
         <>
             <ListItem button key={props.id} onClick={onListItemClickEvent} disabled={!props.enabled}>
                 <ListItemIcon className="render-navbar-list-icon">

@@ -1,0 +1,37 @@
+.render-navbar-list-item {
+    padding: 15px;
+}
+
+.render-navbar-list-item-disabled {
+    padding: 15px;
+    cursor: not-allowed;
+    color: darkgray;
+}
+
+.render-navbar-list-item-text {
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: transparent !important;
+}
+
+@media (min-width: 1280px) {
+    .render-navbar-list-item-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .render-navbar-list-item-text {
+        font-size: 13px;
+    }
+}
+
+.render-navbar-list-item-text:hover {
+    color: #4649c3;
+}
+
+.render-navbar-list-item-text-selected {
+    color: #4649c3;
+}
