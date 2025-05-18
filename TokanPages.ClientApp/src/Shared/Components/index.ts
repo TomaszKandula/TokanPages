@@ -27,3 +27,4 @@ export { ApplicationSession } from "./ApplicationSession";
 export { ErrorBoundary } from "./ErrorBoundary";
 export { Collapsible } from "./Collapsible";
 export { IconButton } from "./IconButton";
+export { Link } from "./Link";
