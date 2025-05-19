@@ -45,8 +45,16 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     }
 
     return (
-        <nav className="navigation-nav-drawer-root" style={{ width: dimensions.width, left: canOpen ? 0 : -dimensions.width }} onMouseLeave={menuHandler}>
-            <div className="navigation-nav-drawer-backdrop" style={{ opacity: canOpen ? 1 : 0 }} onClick={menuHandler}></div>
+        <nav
+            className="navigation-nav-drawer-root"
+            style={{ width: dimensions.width, left: canOpen ? 0 : -dimensions.width }}
+            onMouseLeave={menuHandler}
+        >
+            <div
+                className="navigation-nav-drawer-backdrop"
+                style={{ opacity: canOpen ? 1 : 0 }}
+                onClick={menuHandler}
+            ></div>
             <div className="navigation-nav-drawer-container">
                 <div className="navigation-nav-drawer-hero">
                     <RenderImage
@@ -65,4 +73,4 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
             </div>
         </nav>
     );
-}
+};

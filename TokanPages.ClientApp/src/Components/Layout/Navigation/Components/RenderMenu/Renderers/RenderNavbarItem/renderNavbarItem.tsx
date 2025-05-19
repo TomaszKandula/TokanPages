@@ -21,27 +21,30 @@ interface NavbarItemWithSubitemsProps extends ItemDto {
 const getIconSvgPath = (item: string | undefined): string => {
     const key = `mdi${item ?? ""}`;
     // @ts-expect-error
-    const svg = Icons[key]
+    const svg = Icons[key];
     return svg;
-}
+};
 
 const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.ReactElement => (
-        <div className="bulma-navbar">
-            <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
-                <a className={`bulma-navbar-link ${props.selectionStyle}`}>
-                    {props.value}
-                </a>
-                <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
-                    {props.subitems?.map((item: SubitemDto, _index: number) => (
-                    <Link className="bulma-navbar-item" key={uuidv4()} to={item.link as string} isDisabled={!item.enabled}>
+    <div className="bulma-navbar">
+        <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
+            <a className={`bulma-navbar-link ${props.selectionStyle}`}>{props.value}</a>
+            <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
+                {props.subitems?.map((item: SubitemDto, _index: number) => (
+                    <Link
+                        className="bulma-navbar-item"
+                        key={uuidv4()}
+                        to={item.link as string}
+                        isDisabled={!item.enabled}
+                    >
                         <Icon path={getIconSvgPath(item.icon)} size={0.8} />
                         <span>{item.value}</span>
                     </Link>
                 ))}
-                </div>
             </div>
         </div>
-    );
+    </div>
+);
 
 const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React.ReactElement => {
     return (
@@ -55,7 +58,7 @@ const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React
             <span className={props.selectionStyle}>{props.value}</span>
         </Link>
     );
-}
+};
 
 const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
 const selectionBase = "render-navbar-list-item-text";
@@ -88,14 +91,9 @@ export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {
         dispatch(ApplicationNavbarAction.set({ selection: props.value }));
     }, [props.value]);
 
-    return hasSubitems
-        ? <NavbarItemWithSubitems 
-            {...props}
-            selectionStyle={selectionStyle}
-        />
-        : <NavbarItemWithoutSubitems 
-            {...props}
-            selectionStyle={selectionStyle}
-            onMouseEnter={onMouseEnter}
-        />;
+    return hasSubitems ? (
+        <NavbarItemWithSubitems {...props} selectionStyle={selectionStyle} />
+    ) : (
+        <NavbarItemWithoutSubitems {...props} selectionStyle={selectionStyle} onMouseEnter={onMouseEnter} />
+    );
 };

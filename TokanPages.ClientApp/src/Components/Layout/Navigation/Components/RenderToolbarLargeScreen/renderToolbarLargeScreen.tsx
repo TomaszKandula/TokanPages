@@ -21,7 +21,11 @@ export const RenderToolbarLargeScreen = (props: Properties): React.ReactElement 
                 </Link>
             </div>
             <div className="navigation-nav-items navigation-nav-centre">
-                <RenderNavbarMenu isAnonymous={props.isAnonymous} languageId={props.languageId} items={props.menu?.items} />
+                <RenderNavbarMenu
+                    isAnonymous={props.isAnonymous}
+                    languageId={props.languageId}
+                    items={props.menu?.items}
+                />
             </div>
             <div className="navigation-nav-items navigation-nav-right">
                 {props.isLoading ? null : <RenderLanguageSection {...props} />}

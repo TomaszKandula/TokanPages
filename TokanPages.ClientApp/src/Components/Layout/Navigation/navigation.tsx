@@ -31,19 +31,20 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [isLanguageMenuOpen, setIsLanguageMenuOpen] = React.useState(false);
 
-    const languagePickHandler = React.useCallback((id: string) => {
-        const pathname = window.location.pathname;
-        const paths = pathname.split("/").filter(e => String(e).trim());
-        const newUrl = window.location.href.replace(`/${paths[0]}`, `/${id}`);
+    const languagePickHandler = React.useCallback(
+        (id: string) => {
+            const pathname = window.location.pathname;
+            const paths = pathname.split("/").filter(e => String(e).trim());
+            const newUrl = window.location.href.replace(`/${paths[0]}`, `/${id}`);
 
-        window.history.pushState({}, "", newUrl);
-        dispatch(
-            ApplicationLanguageAction.set({
-                ...language,
-                id: id,
-                languages: language.languages,
-            })
-        );
+            window.history.pushState({}, "", newUrl);
+            dispatch(
+                ApplicationLanguageAction.set({
+                    ...language,
+                    id: id,
+                    languages: language.languages,
+                })
+            );
         },
         [language]
     );

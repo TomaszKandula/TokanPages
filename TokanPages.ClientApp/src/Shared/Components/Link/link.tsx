@@ -15,17 +15,12 @@ interface LinkProps {
 export const Link = (props: LinkProps): React.ReactElement => {
     if (props.isDisabled === true) {
         const className = `${props.className} link-disabled`;
-        return (<div className={className}>{props.children}</div>);
-    }    
+        return <div className={className}>{props.children}</div>;
+    }
 
     return (
-        <RouterLink
-            key={props.key}
-            to={props.to}
-            className={props.className}
-            onMouseEnter={props.onMouseEnter}
-        >
+        <RouterLink key={props.key} to={props.to} className={props.className} onMouseEnter={props.onMouseEnter}>
             {props.children}
         </RouterLink>
     );
-}
+};
