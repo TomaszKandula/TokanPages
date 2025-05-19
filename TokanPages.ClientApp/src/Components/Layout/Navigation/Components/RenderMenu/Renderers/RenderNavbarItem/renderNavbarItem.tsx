@@ -46,19 +46,17 @@ const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.React
     </div>
 );
 
-const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React.ReactElement => {
-    return (
-        <Link
-            key={props.id}
-            to={props.link as string}
-            className="render-navbar-list-item"
-            onMouseEnter={props.onMouseEnter}
-            isDisabled={!props.enabled}
-        >
-            <span className={props.selectionStyle}>{props.value}</span>
-        </Link>
-    );
-};
+const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React.ReactElement => (
+    <Link
+        key={props.id}
+        to={props.link as string}
+        className="render-navbar-list-item"
+        onMouseEnter={props.onMouseEnter}
+        isDisabled={!props.enabled}
+    >
+        <span className={props.selectionStyle}>{props.value}</span>
+    </Link>
+);
 
 const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
 const selectionBase = "render-navbar-list-item-text";
