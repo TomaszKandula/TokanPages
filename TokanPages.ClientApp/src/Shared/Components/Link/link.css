@@ -1,3 +1,4 @@
 .link-disabled {
-    cursor: not-allowed;
+    cursor: default;
+    color: rgb(0, 0, 0, 0.54) !important;
 }

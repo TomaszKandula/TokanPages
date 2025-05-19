@@ -8,14 +8,13 @@ interface LinkProps {
     to: string;
     className?: string;
     onMouseEnter?: ReactMouseEventHandler;
-    isDisabled: boolean;
+    isDisabled?: boolean;
     children: React.ReactElement | React.ReactElement[];
 }
 
 export const Link = (props: LinkProps): React.ReactElement => {
-    const className = `${props.className} link-disabled`;
-
-    if (props.isDisabled) {
+    if (props.isDisabled === true) {
+        const className = `${props.className} link-disabled`;
         return (<div className={className}>{props.children}</div>);
     }    
 
@@ -23,7 +22,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
         <RouterLink
             key={props.key}
             to={props.to}
-            className={className}
+            className={props.className}
             onMouseEnter={props.onMouseEnter}
         >
             {props.children}
