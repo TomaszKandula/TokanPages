@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Icon from "@mdi/react";
 import * as Icons from "@mdi/js";
 import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
 import { ReactMouseEventHandler } from "../../../../../../../Shared/types";
+import { Link } from "../../../../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import "./renderNavbarItem.css";
 
@@ -33,8 +33,8 @@ const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.React
                 </a>
                 <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
                     {props.subitems?.map((item: SubitemDto, _index: number) => (
-                    <Link className="bulma-navbar-item" key={uuidv4()} to={item.link as string}>
-                        <Icon path={getIconSvgPath(item.icon)} size={1.2} className="navigation-languages-check" />
+                    <Link className="bulma-navbar-item" key={uuidv4()} to={item.link as string} isDisabled={!item.enabled}>
+                        <Icon path={getIconSvgPath(item.icon)} size={0.8} />
                         <span>{item.value}</span>
                     </Link>
                 ))}
@@ -50,7 +50,7 @@ const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React
             to={props.link as string}
             className="render-navbar-list-item"
             onMouseEnter={props.onMouseEnter}
-            //disabled={!props.enabled}
+            isDisabled={!props.enabled}
         >
             <span className={props.selectionStyle}>{props.value}</span>
         </Link>
