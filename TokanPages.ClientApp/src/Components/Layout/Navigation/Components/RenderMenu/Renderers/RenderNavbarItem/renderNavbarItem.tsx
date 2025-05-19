@@ -1,11 +1,9 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import Icon from "@mdi/react";
-import * as Icons from "@mdi/js";
 import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
 import { ReactMouseEventHandler } from "../../../../../../../Shared/types";
-import { Link } from "../../../../../../../Shared/Components";
+import { Icon, Link } from "../../../../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import "./renderNavbarItem.css";
 
@@ -17,13 +15,6 @@ interface NavbarItemWithoutSubitemsProps extends ItemDto {
 interface NavbarItemWithSubitemsProps extends ItemDto {
     selectionStyle: string | undefined;
 }
-
-const getIconSvgPath = (item: string | undefined): string => {
-    const key = `mdi${item ?? ""}`;
-    // @ts-expect-error
-    const svg = Icons[key];
-    return svg;
-};
 
 const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.ReactElement => (
     <div className="bulma-navbar">
@@ -37,7 +28,7 @@ const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.React
                         to={item.link as string}
                         isDisabled={!item.enabled}
                     >
-                        <Icon path={getIconSvgPath(item.icon)} size={0.8} />
+                        <Icon name={item.icon as string} size={0.8} />
                         <span>{item.value}</span>
                     </Link>
                 ))}
