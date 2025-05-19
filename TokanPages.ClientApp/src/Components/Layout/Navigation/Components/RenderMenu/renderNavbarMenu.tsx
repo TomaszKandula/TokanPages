@@ -68,15 +68,6 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
                 );
                 break;
             }
-
-            case "itempipe": {
-                renderBuffer.push(
-                    <div key={item.id} className="render-menu-list-item-pipe">
-                        &nbsp;
-                    </div>
-                );
-                break;
-            }
         }
     });
 
