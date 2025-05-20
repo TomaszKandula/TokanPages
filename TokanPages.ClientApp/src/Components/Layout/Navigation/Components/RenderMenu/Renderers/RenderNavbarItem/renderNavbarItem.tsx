@@ -4,7 +4,6 @@ import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
 import { ReactMouseEventHandler } from "../../../../../../../Shared/types";
 import { Icon, Link } from "../../../../../../../Shared/Components";
-import { v4 as uuidv4 } from "uuid";
 import "./renderNavbarItem.css";
 
 interface NavbarItemWithoutSubitemsProps extends ItemDto {
@@ -24,7 +23,7 @@ const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.React
                 {props.subitems?.map((item: SubitemDto, _index: number) => (
                     <Link
                         className="bulma-navbar-item"
-                        key={uuidv4()}
+                        key={item.id}
                         to={item.link as string}
                         isDisabled={!item.enabled}
                     >

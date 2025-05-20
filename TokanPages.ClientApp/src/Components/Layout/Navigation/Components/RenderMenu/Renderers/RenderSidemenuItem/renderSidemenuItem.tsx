@@ -4,16 +4,15 @@ import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import "./renderSidemenuItem.css";
 
 const SidemenuWithSubitems = (props: ItemDto): React.ReactElement => (
-    <li>
+    <li key={props.id}>
         <a>
             {/* <Icon name={props.icon as string} size={1} className="" /> */}
             <span>{props.value}</span>
         </a>
         <ul className="bulma-menu-list">
             {props.subitems?.map((item: SubitemDto, _index: number) => (
-                <li>
+                <li key={item.id}>
                     <Link
-                        key={item.id}
                         to={item.link as string}
                         isDisabled={!item.enabled}
                     >
@@ -27,8 +26,8 @@ const SidemenuWithSubitems = (props: ItemDto): React.ReactElement => (
 );
 
 const SidemenuWithoutSubitems = (props: ItemDto): React.ReactElement => (
-    <li>
-        <Link key={props.id} to={props.link as string} isDisabled={!props.enabled}>
+    <li key={props.id}>
+        <Link to={props.link as string} isDisabled={!props.enabled}>
             {/* <Icon name={props.icon as string} size={1} className="" /> */}
             <span>{props.value}</span>
         </Link>

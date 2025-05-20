@@ -4,7 +4,6 @@ import { ReactMouseEventHandler } from "../../../Shared/types";
 import "./link.css";
 
 interface LinkProps {
-    key?: string | number | null | undefined;
     to: string;
     className?: string;
     isDisabled?: boolean;
@@ -39,7 +38,6 @@ export const Link = (props: LinkProps): React.ReactElement => {
 
     return (
         <RouterLink 
-            key={props.key} 
             to={props.to} 
             className={props.className} 
             onMouseEnter={props.onMouseEnter}
