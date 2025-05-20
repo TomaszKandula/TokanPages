@@ -1,6 +1,5 @@
 import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
-import { CustomDivider } from "../../../../../Shared/Components";
 import { RenderSidemenuItem } from "./Renderers";
 
 interface Properties {
@@ -69,18 +68,8 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
                 break;
             }
 
-            case "itempipe": {
-                renderBuffer.push(<div key={item.id}></div>);
-                break;
-            }
-
-            case "divider": {
-                renderBuffer.push(<CustomDivider key={item.id} />);
-                break;
-            }
-
             default: {
-                renderBuffer.push(<div key={item.id}>Unknown element.</div>);
+                renderBuffer.push(<React.Fragment key={item.id}></React.Fragment>);
             }
         }
     });
