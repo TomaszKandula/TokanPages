@@ -1,38 +1,41 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { ListItem, Link as Href } from "@material-ui/core";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import { GetIcon } from "../../../../../../../Shared/Components";
-import { ItemDto } from "../../../../../../../Api/Models";
+import { Link } from "../../../../../../../Shared/Components";
+import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
+import "./renderSidemenuItem.css";
 
-export const RenderSidemenuItem = (props: ItemDto): React.ReactElement => {
-    const link: string = props.link as string;
-    const isHref: boolean = link.includes("http://") || link.includes("https://");
+const SidemenuWithSubitems = (props: ItemDto): React.ReactElement => (
+    <li>
+        <a>
+            {/* <Icon name={props.icon as string} size={1} className="" /> */}
+            <span>{props.value}</span>
+        </a>
+        <ul className="bulma-menu-list">
+            {props.subitems?.map((item: SubitemDto, _index: number) => (
+                <li>
+                    <Link
+                        key={item.id}
+                        to={item.link as string}
+                        isDisabled={!item.enabled}
+                    >
+                        {/* <Icon name={item.icon as string} size={1} className="" /> */}
+                        <span>{item.value}</span>
+                    </Link>
+                </li>
+            ))}
+        </ul>
+    </li>
+);
 
-    const RenderItemWithHref = (): React.ReactElement => {
-        return (
-            <Href href={link} className="render-navbar-href" underline="none" target="_blank" rel="noopener nofollow">
-                <ListItem button key={props.id} disabled={!props.enabled}>
-                    <ListItemIcon className="render-navbar-list-icon">
-                        {GetIcon({ name: props.icon as string })}
-                    </ListItemIcon>
-                    <ListItemText primary={props.value} />
-                </ListItem>
-            </Href>
-        );
-    };
+const SidemenuWithoutSubitems = (props: ItemDto): React.ReactElement => (
+    <li>
+        <Link key={props.id} to={props.link as string} isDisabled={!props.enabled}>
+            {/* <Icon name={props.icon as string} size={1} className="" /> */}
+            <span>{props.value}</span>
+        </Link>
+    </li>
+);
 
-    const RenderItemWithLink = (): React.ReactElement => {
-        return (
-            <ListItem button key={props.id} disabled={!props.enabled} component={Link} to={props.link as string}>
-                <ListItemIcon className="render-navbar-list-icon">
-                    {GetIcon({ name: props.icon as string })}
-                </ListItemIcon>
-                <ListItemText primary={props.value} />
-            </ListItem>
-        );
-    };
-
-    return isHref ? <RenderItemWithHref /> : <RenderItemWithLink />;
+export const RenderSidemenuItem = (props: ItemDto): React.ReactElement => { 
+    const hasSubitems = props.subitems !== undefined && props.subitems.length > 0;
+    return hasSubitems ? <SidemenuWithSubitems {...props} /> : <SidemenuWithoutSubitems {...props} />;
 };

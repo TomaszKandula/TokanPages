@@ -1,4 +1,2 @@
-export { RenderSubitem } from "./RenderSubitem/renderSubitem";
-export { RenderSidemenuItem } from "./RenderSidemenuItem/renderSidemenuItem";
-export { RenderSidemenuItemSpan } from "./RenderSidemenuItemSpan/renderSidemenuItemSpan";
-export { RenderNavbarItem } from "./RenderNavbarItem/renderNavbarItem";
+export { RenderSidemenuItem } from "./RenderSidemenuItem";
+export { RenderNavbarItem } from "./RenderNavbarItem";

@@ -1,16 +1,13 @@
 import * as React from "react";
-import List from "@material-ui/core/List";
 import { ItemDto } from "../../../../../Api/Models";
-import { RenderSidemenuItem, RenderSidemenuItemSpan } from "./Renderers";
-import { Divider } from "@material-ui/core";
+import { CustomDivider } from "../../../../../Shared/Components";
+import { RenderSidemenuItem } from "./Renderers";
 
 interface Properties {
     isAnonymous: boolean;
     languageId: string;
     items: ItemDto[] | undefined;
 }
-
-type VariantType = "inset" | "middle" | "fullWidth" | undefined;
 
 export const RenderSideMenu = (props: Properties): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
@@ -58,7 +55,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
                 if (!item.sideMenu?.enabled) return;
 
                 renderBuffer.push(
-                    <RenderSidemenuItemSpan
+                    <RenderSidemenuItem
                         key={item.id}
                         id={item.id}
                         type={item.type}
@@ -78,7 +75,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
             }
 
             case "divider": {
-                renderBuffer.push(<Divider key={item.id} variant={item.value as VariantType} />);
+                renderBuffer.push(<CustomDivider key={item.id} />);
                 break;
             }
 
@@ -88,5 +85,11 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
         }
     });
 
-    return <List>{renderBuffer}</List>;
+    return (
+        <aside className="bulma-menu">
+            <ul className="bulma-menu-list">
+                {renderBuffer}
+            </ul>
+        </aside>
+    );
 };
