@@ -7,8 +7,9 @@ interface LinkProps {
     key?: string | number | null | undefined;
     to: string;
     className?: string;
-    onMouseEnter?: ReactMouseEventHandler;
     isDisabled?: boolean;
+    onMouseEnter?: ReactMouseEventHandler;
+    onMouseLeave?: ReactMouseEventHandler;
     children: React.ReactElement | React.ReactElement[];
 }
 
@@ -18,8 +19,32 @@ export const Link = (props: LinkProps): React.ReactElement => {
         return <div className={className}>{props.children}</div>;
     }
 
+    const link: string = props.to;
+    const isHref: boolean = link.includes("http://") || link.includes("https://");
+
+    if (isHref) {
+        return (
+            <a 
+                href={link} 
+                className={`href ${props.className}`} 
+                target="_blank" 
+                rel="noopener nofollow"
+                onMouseEnter={props.onMouseEnter}
+                onMouseLeave={props.onMouseLeave}
+            >
+                {props.children}
+            </a>
+        );
+    }
+
     return (
-        <RouterLink key={props.key} to={props.to} className={props.className} onMouseEnter={props.onMouseEnter}>
+        <RouterLink 
+            key={props.key} 
+            to={props.to} 
+            className={props.className} 
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
+        >
             {props.children}
         </RouterLink>
     );
