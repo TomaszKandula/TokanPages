@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
 import { RenderSidemenuItem } from "./Renderers";
+import { v4 as uuidv4 } from "uuid";
 
 interface Properties {
     isAnonymous: boolean;
@@ -66,6 +67,10 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
                     />
                 );
                 break;
+            }
+
+            case "group": {
+                renderBuffer.push(<p key={uuidv4()} className="bulma-menu-label">{item.value}</p>);
             }
 
             default: {
