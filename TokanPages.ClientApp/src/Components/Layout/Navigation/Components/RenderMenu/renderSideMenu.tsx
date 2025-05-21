@@ -2,6 +2,7 @@ import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
 import { RenderSidemenuItem } from "./Renderers";
 import { v4 as uuidv4 } from "uuid";
+import "./renderSideMenu.css";
 
 interface Properties {
     isAnonymous: boolean;
@@ -80,7 +81,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
     });
 
     return (
-        <aside className="bulma-menu">
+        <aside className="bulma-menu p-3 sidemenu-background">
             <ul className="bulma-menu-list">
                 {renderBuffer}
             </ul>
