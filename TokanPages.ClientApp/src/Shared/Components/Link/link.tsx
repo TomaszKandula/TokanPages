@@ -23,10 +23,10 @@ export const Link = (props: LinkProps): React.ReactElement => {
 
     if (isHref) {
         return (
-            <a 
-                href={link} 
-                className={`href ${props.className}`} 
-                target="_blank" 
+            <a
+                href={link}
+                className={`href ${props.className}`}
+                target="_blank"
                 rel="noopener nofollow"
                 onMouseEnter={props.onMouseEnter}
                 onMouseLeave={props.onMouseLeave}
@@ -37,9 +37,9 @@ export const Link = (props: LinkProps): React.ReactElement => {
     }
 
     return (
-        <RouterLink 
-            to={props.to} 
-            className={props.className} 
+        <RouterLink
+            to={props.to}
+            className={props.className}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >

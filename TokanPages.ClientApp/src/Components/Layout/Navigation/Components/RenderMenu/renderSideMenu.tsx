@@ -71,7 +71,11 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
             }
 
             case "group": {
-                renderBuffer.push(<p key={uuidv4()} className="bulma-menu-label">{item.value}</p>);
+                renderBuffer.push(
+                    <p key={uuidv4()} className="bulma-menu-label">
+                        {item.value}
+                    </p>
+                );
             }
 
             default: {
@@ -82,9 +86,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
 
     return (
         <aside className="bulma-menu p-3 sidemenu-background">
-            <ul className="bulma-menu-list">
-                {renderBuffer}
-            </ul>
+            <ul className="bulma-menu-list">{renderBuffer}</ul>
         </aside>
     );
 };

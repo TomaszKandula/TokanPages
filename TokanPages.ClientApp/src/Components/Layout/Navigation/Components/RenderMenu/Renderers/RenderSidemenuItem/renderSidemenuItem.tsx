@@ -12,10 +12,7 @@ const SidemenuWithSubitems = (props: ItemDto): React.ReactElement => (
         <ul className="bulma-menu-list">
             {props.subitems?.map((item: SubitemDto, _index: number) => (
                 <li key={item.id}>
-                    <Link
-                        to={item.link as string}
-                        isDisabled={!item.enabled}
-                    >
+                    <Link to={item.link as string} isDisabled={!item.enabled}>
                         {/* <Icon name={item.icon as string} size={1} className="" /> */}
                         <span>{item.value}</span>
                     </Link>
@@ -34,7 +31,7 @@ const SidemenuWithoutSubitems = (props: ItemDto): React.ReactElement => (
     </li>
 );
 
-export const RenderSidemenuItem = (props: ItemDto): React.ReactElement => { 
+export const RenderSidemenuItem = (props: ItemDto): React.ReactElement => {
     const hasSubitems = props.subitems !== undefined && props.subitems.length > 0;
     return hasSubitems ? <SidemenuWithSubitems {...props} /> : <SidemenuWithoutSubitems {...props} />;
 };

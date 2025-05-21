@@ -17,10 +17,5 @@ const getIconSvgPath = (item: string | undefined): string => {
 };
 
 export const Icon = (props: IconProps) => (
-    <MdiIcon
-        path={getIconSvgPath(props.name)}
-        size={props.size}
-        className={props.className}
-        color={props.colour}
-    />
+    <MdiIcon path={getIconSvgPath(props.name)} size={props.size} className={props.className} color={props.colour} />
 );
