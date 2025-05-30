@@ -1,12 +1,9 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid/Grid";
 import { GET_IMAGES_URL } from "../../../Api";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
+import { Link } from "../../../Shared/Components";
 import Validate from "validate.js";
 import "./headerView.css";
 
@@ -16,42 +13,51 @@ interface HeaderViewProps {
 
 interface RenderPictureProps {
     sources: HeaderPhotoDto | undefined;
+    className?: string;
 }
 
-const TertiaryButton = (props: HeaderContentDto): React.ReactElement => {
+interface ButtonProps extends HeaderContentDto {
+    isLoading: boolean;
+}
+
+const TertiaryButton = (props: ButtonProps): React.ReactElement => {
+    const baseClass = "bulma-button bulma-is-light header-button-tertiary";
     return (
-        <Link to={props?.tertiaryButton?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button variant="contained" className="header-button-tertiary">
+        <Link to={props?.tertiaryButton?.href ?? ""} className="link">
+            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.tertiaryButton?.text}
-            </Button>
+            </button>
         </Link>
     );
 };
 
-const SecondaryButton = (props: HeaderContentDto): React.ReactElement => {
+const SecondaryButton = (props: ButtonProps): React.ReactElement => {
+    const baseClass = "bulma-button bulma-is-light header-button-secondary";
     return (
-        <Link to={props?.secondaryButton?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button variant="contained" className="header-button-secondary">
+        <Link to={props?.secondaryButton?.href ?? ""} className="link">
+            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.secondaryButton?.text}
-            </Button>
+            </button>
         </Link>
     );
 };
 
-const PrimaryButton = (props: HeaderContentDto): React.ReactElement => {
+const PrimaryButton = (props: ButtonProps): React.ReactElement => {
+    const baseClass = "bulma-button bulma-is-link bulma-is-light header-button-primary";
+
     if (Validate.isEmpty(props?.primaryButton?.href)) {
         return (
-            <Button variant="contained" className="header-button-primary">
+            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.primaryButton?.text}
-            </Button>
+            </button>
         );
     }
 
     return (
-        <Link to={props?.primaryButton?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button variant="contained" className="header-button-primary">
+        <Link to={props?.primaryButton?.href ?? ""} className="link">
+            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.primaryButton?.text}
-            </Button>
+            </button>
         </Link>
     );
 };
@@ -77,66 +83,52 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
     return (
-        <img
-            src={photo1}
-            srcSet={set}
-            loading="lazy"
-            title="Illustration"
-            alt="Your Software Developer"
-            className="header-image-card lazyloaded"
-        />
+        <figure>
+            <img
+                src={photo1}
+                srcSet={set}
+                loading="lazy"
+                title="Illustration"
+                alt="Your Software Developer"
+                className={`header-image-card lazyloaded ${props.className}`}
+            />
+        </figure>
     );
 };
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.layoutHeader;
+    const isLoading = data?.isLoading;
+
     return (
         <section className={`section margin-top-60 ${props.background ?? ""}`}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={7}>
-                    {data?.isLoading ? (
-                        <Skeleton variant="rect" className="header-image-skeleton" />
-                    ) : (
-                        <RenderPicture sources={header?.photo} />
-                    )}
-                </Grid>
-                <Grid item xs={12} md={5} className="header-section-container">
-                    <div className="header-content-box">
-                        {data?.isLoading ? (
-                            <Skeleton variant="text" />
-                        ) : (
-                            <span className="header-content-caption">{header?.caption}</span>
-                        )}
-                        {data?.isLoading ? (
-                            <Skeleton variant="text" />
-                        ) : (
-                            <h1 className="header-content-subtitle">{header?.subtitle}</h1>
-                        )}
-                        {data?.isLoading ? (
-                            <Skeleton variant="text" />
-                        ) : (
-                            <h2 className="header-content-description">{header?.description}</h2>
-                        )}
-                        {data?.isLoading ? (
-                            <Skeleton variant="text" />
-                        ) : (
-                            <h2 className="header-content-description">{header?.hint}</h2>
-                        )}
+            <div className="bulma-grid">
+                <div className="bulma-cell">
+                    <RenderPicture sources={header?.photo} className={`${isLoading ? "bulma-is-skeleton header-image-skeleton" : ""}`} />
+                </div>
+                <div className="bulma-cell is-flex is-flex-direction-column is-flex-wrap-wrap">
+                    <div className="bulma-content header-content-box">
+                        <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            {header?.caption}
+                        </h1>
+                        <h2 className={`has-text-weight-medium has-text-grey-dark is-size-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            {header?.subtitle}
+                        </h2>
+                        <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            {header?.description}
+                        </h3>
+                        <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            {header?.hint}
+                        </h3>
                         <div className="header-button-box mt-32">
-                            {data?.isLoading ? (
-                                <Skeleton variant="rect" height="48px" />
-                            ) : (
-                                <>
-                                    <PrimaryButton {...header} />
-                                    <SecondaryButton {...header} />
-                                    <TertiaryButton {...header} />
-                                </>
-                            )}
+                            <PrimaryButton {...header} isLoading={isLoading} />
+                            <SecondaryButton {...header} isLoading={isLoading} />
+                            <TertiaryButton {...header} isLoading={isLoading} />
                         </div>
                     </div>
-                </Grid>
-            </Grid>
+                </div>
+            </div>
         </section>
     );
 };

@@ -1,8 +1,3 @@
-.header-section-container {
-    display: flex;
-    flex-direction: column;
-}
-
 .header-content-box {
     margin-top: auto;
     margin-right: 30px;
@@ -30,28 +25,9 @@
     }
 }
 
-.header-content-caption {
-    color: #616161;
-    font-size: 3.4rem !important;
-    font-weight: 700 !important;
-    line-height: 1.5;
-}
-
-.header-content-subtitle {
-    color: #616161;
-    line-height: 1.5;
-}
-
-.header-content-description {
-    color: #616161;
-    font-size: 1.125rem !important;
-    font-weight: 400;
-    line-height: 1.5;
-}
-
 .header-image-skeleton {
-    height: 550px !important;
-    width: 550px !important;
+    height: 700px !important;
+    width: 700px !important;
 }
 
 .header-image-box {
@@ -95,55 +71,34 @@
 }
 
 .header-button-primary {
-    margin-right: 15px !important;
-    color: white !important;
-    background: #6367ef !important;
-}
-
-.header-button-primary:hover {
-    color: white !important;
-    background: #4649c3 !important;
+    margin-right: 15px;
 }
 
 .header-button-secondary {
-    margin-right: 15px !important;
-    color: #4649c3 !important;
-    background: #ebecfb !important;
-}
-
-.header-button-secondary:hover {
-    color: #ebecfb !important;
-    background: #6367ef !important;
+    margin-right: 15px;
 }
 
 .header-button-tertiary {
-    margin-right: 15px !important;
-    color: #4649c3 !important;
-    background: #ebecfb !important;
-}
-
-.header-button-tertiary:hover {
-    color: #ebecfb !important;
-    background: #6367ef !important;
+    margin-right: 15px;
 }
 
 @media (max-width: 600px) {
     .header-button-primary {
         width: 100%;
-        margin-right: 0 !important;
-        margin-bottom: 15px !important;
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 
     .header-button-secondary {
         width: 100%;
-        margin-right: 0 !important;
-        margin-bottom: 15px !important;
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 
     .header-button-tertiary {
         width: 100%;
-        margin-right: 0 !important;
-        margin-bottom: 15px !important;
+        margin-right: 0;
+        margin-bottom: 15px;
     }
 
     .header-button-box {
