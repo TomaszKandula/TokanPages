@@ -1,11 +1,6 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import { GetIcon } from "../../../../Shared/Components/GetIcon/getIcon";
 import { IconDto, LinkDto } from "../../../../Api/Models";
-import { ProgressBar } from "../../../../Shared/Components";
+import { Icon, IconButton, ProgressBar, Link } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./footerView.css";
@@ -33,8 +28,8 @@ const SetTermsLink = (props: Properties): React.ReactElement => {
     }
 
     return (
-        <Link to={props?.terms?.href ?? ""} className="footer-links" rel="noopener nofollow">
-            {props?.terms?.text}
+        <Link to={props?.terms?.href ?? ""} className="footer-links">
+            <span>{props?.terms?.text}</span>
         </Link>
     );
 };
@@ -45,8 +40,8 @@ const SetPolicyLink = (props: Properties): React.ReactElement => {
     }
 
     return (
-        <Link to={props?.policy?.href ?? ""} className="footer-links" rel="noopener nofollow">
-            {props?.policy?.text}
+        <Link to={props?.policy?.href ?? ""} className="footer-links">
+            <span>{props?.policy?.text}</span>
         </Link>
     );
 };
@@ -55,17 +50,15 @@ const RenderIconButtons = (props: Properties): React.ReactElement | null => {
     const icons = (
         <div className="footer-icon-box footer-centred">
             {props?.icons?.map((item: IconDto, _index: number) => (
-                <IconButton
-                    className="footer-icon"
-                    aria-label={item.name}
-                    href={item.href}
+                <Link 
+                    to={item.href}
                     key={uuidv4()}
-                    color="default"
-                    target="_blank"
-                    rel="noopener nofollow"
+                    aria-label={item.name}
                 >
-                    <GetIcon name={item.name} />
-                </IconButton>
+                    <IconButton>
+                        <Icon name={item.name} size={48} className="footer-icon" />
+                    </IconButton>
+                </Link>
             ))}
         </div>
     );
@@ -76,10 +69,10 @@ const RenderIconButtons = (props: Properties): React.ReactElement | null => {
 const RenderCopyrightBar = (props: Properties): React.ReactElement | null => {
     const legalInformation = (
         <div className="footer-copyright-box footer-centred">
-            <Typography className="footer-copyright">
+            <div className="footer-copyright">
                 {props?.legalInfo.copyright} | {props?.legalInfo.reserved} | <SetTermsLink {...props} /> |{" "}
                 <SetPolicyLink {...props} />
-            </Typography>
+            </div>
         </div>
     );
 
@@ -89,7 +82,7 @@ const RenderCopyrightBar = (props: Properties): React.ReactElement | null => {
 const RenderVersionInfo = (props: Properties): React.ReactElement | null => {
     const applicationVersionInfo = (
         <div className="footer-centred">
-            <Typography className="footer-version">{props?.versionInfo}</Typography>
+            <div className="footer-version">{props?.versionInfo}</div>
         </div>
     );
 
@@ -102,12 +95,12 @@ export const FooterView = (props: Properties): React.ReactElement => {
             {props.isLoading ? (
                 <ProgressBar classNameWrapper="p-25" classNameColour="colour-white" size={32} />
             ) : (
-                <Container className="container-wide">
+                <div className="bulma-container container-wide">
                     <RenderCopyrightBar {...props} />
                     <RenderVersionInfo {...props} />
                     <RenderIconButtons {...props} />
                     <div className="pb-64"></div>
-                </Container>
+                </div>
             )}
         </footer>
     );
