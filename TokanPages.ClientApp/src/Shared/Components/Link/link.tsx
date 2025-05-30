@@ -7,6 +7,7 @@ interface LinkProps {
     to: string;
     className?: string;
     isDisabled?: boolean;
+    rel?: string | undefined;
     onMouseEnter?: ReactMouseEventHandler;
     onMouseLeave?: ReactMouseEventHandler;
     children: React.ReactElement | React.ReactElement[];
@@ -27,7 +28,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
                 href={link}
                 className={`href ${props.className}`}
                 target="_blank"
-                rel="noopener nofollow"
+                rel={props.rel ?? "noopener nofollow"}
                 onMouseEnter={props.onMouseEnter}
                 onMouseLeave={props.onMouseLeave}
             >
