@@ -103,28 +103,30 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
 
     return (
         <section className={`section margin-top-60 ${props.background ?? ""}`}>
-            <div className="bulma-grid">
-                <div className="bulma-cell">
-                    <RenderPicture sources={header?.photo} className={`${isLoading ? "bulma-is-skeleton header-image-skeleton" : ""}`} />
-                </div>
-                <div className="bulma-cell is-flex is-flex-direction-column is-flex-wrap-wrap">
-                    <div className="bulma-content header-content-box">
-                        <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
-                            {header?.caption}
-                        </h1>
-                        <h2 className={`has-text-weight-medium has-text-grey-dark is-size-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
-                            {header?.subtitle}
-                        </h2>
-                        <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
-                            {header?.description}
-                        </h3>
-                        <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
-                            {header?.hint}
-                        </h3>
-                        <div className="header-button-box mt-32">
-                            <PrimaryButton {...header} isLoading={isLoading} />
-                            <SecondaryButton {...header} isLoading={isLoading} />
-                            <TertiaryButton {...header} isLoading={isLoading} />
+            <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
+                <div className="bulma-grid">
+                    <div className="bulma-cell">
+                        <RenderPicture sources={header?.photo} className={`${isLoading ? "bulma-is-skeleton header-image-skeleton" : ""}`} />
+                    </div>
+                    <div className="bulma-cell is-flex is-flex-direction-column">
+                        <div className="bulma-content header-content-box">
+                            <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                                {header?.caption}
+                            </h1>
+                            <h2 className={`has-text-weight-medium has-text-grey-dark is-size-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                                {header?.subtitle}
+                            </h2>
+                            <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                                {header?.description}
+                            </h3>
+                            <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                                {header?.hint}
+                            </h3>
+                            <div className="header-button-box mt-32">
+                                <PrimaryButton {...header} isLoading={isLoading} />
+                                <SecondaryButton {...header} isLoading={isLoading} />
+                                <TertiaryButton {...header} isLoading={isLoading} />
+                            </div>
                         </div>
                     </div>
                 </div>

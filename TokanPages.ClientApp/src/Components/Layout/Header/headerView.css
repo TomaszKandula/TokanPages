@@ -6,17 +6,17 @@
     padding-left: 80px;
     background-color: white;
     max-width: 600px;
-    margin-left: -33%;
+    margin-left: -25%;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1408px) {
     .header-content-box {
         max-width: 600px;
-        margin-left: -33%;
+        margin-left: -25%;
     }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
     .header-content-box {
         max-width: 900px;
         padding: 15px;
