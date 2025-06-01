@@ -44,7 +44,7 @@ export const Icon = (props: IconProps) => {
     switch (props.name.toLocaleLowerCase()) {
         case "linkedin": return <LinkedinIcon size={props.size} />;
         case "github": return <GithubIcon size={props.size} />;
-        case "instgram": return <InstgramIcon size={props.size} />;
+        case "instagram": return <InstgramIcon size={props.size} />;
         default: return <MdiIcon path={getIconSvgPath(props.name)} size={props.size} className={props.className} color={props.colour} />;
     }
 };
