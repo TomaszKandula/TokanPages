@@ -4,7 +4,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typograp
 import { Skeleton } from "@material-ui/lab";
 import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, GetIcon } from "../../../Shared/Components";
+import { Animated, Icon } from "../../../Shared/Components";
 import { GetImageUrl } from "../../../Shared/Services/Utilities";
 import "./socialsView.css";
 
@@ -86,8 +86,9 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         />
                                         <CardContent className="socials-card-content">
                                             <div className="socials-card-icon-holder">
-                                                <GetIcon
+                                                <Icon
                                                     name={socials?.social1?.images?.icon}
+                                                    size={2}
                                                     className="socials-card-icon"
                                                 />
                                             </div>
@@ -159,8 +160,9 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         />
                                         <CardContent className="socials-card-content">
                                             <div className="socials-card-icon-holder">
-                                                <GetIcon
+                                                <Icon
                                                     name={socials?.social2?.images?.icon}
+                                                    size={2}
                                                     className="socials-card-icon"
                                                 />
                                             </div>
@@ -232,8 +234,9 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         />
                                         <CardContent className="socials-card-content">
                                             <div className="socials-card-icon-holder">
-                                                <GetIcon
+                                                <Icon
                                                     name={socials?.social3?.images?.icon}
+                                                    size={2}
                                                     className="socials-card-icon"
                                                 />
                                             </div>
