@@ -116,7 +116,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
     }, []);
 
     return !isPdfMounted && !hasPdfError ? (
-        <ProgressBar classNameWrapper="pt-96" />
+        <ProgressBar className="pt-96" />
     ) : (
         <PdfViewerView
             isDocLoading={isDocLoading}

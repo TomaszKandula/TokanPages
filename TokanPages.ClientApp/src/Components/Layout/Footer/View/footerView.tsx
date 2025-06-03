@@ -37,7 +37,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
     return (
         <footer className="bulma-footer">
             {props.isLoading 
-            ? <ProgressBar classNameWrapper="p-25" size={32} /> 
+            ? <ProgressBar size={32} /> 
             : <div className="bulma-content has-text-centered">
                 <p className="is-size-5">
                     <span className="ml-2 mr-2">
