@@ -10,16 +10,19 @@ interface ProgressBarViewProps {
 
 export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement => {
     const className = !props.className ? "" : props.className;
+    const thickness = props.thickness ? props.thickness + "px" : "2px";
+    const colour = props.colour ?? "#6367ef";
+
     return (
         <div className={`progress-bar-box ${className}`}>
             <span 
                 className="progress-bar-loader" 
                 style={{ 
-                    height: props.size, 
-                    width: props.size,
+                    height: props.size ?? "40px",
+                    width: props.size ?? "40px",
                     borderStyle: "solid",
-                    borderWidth: `${props.thickness ?? "2px"}`,
-                    borderColor: `${props.colour ?? "#6367ef"}`,
+                    borderWidth: `${thickness}`,
+                    borderColor: `${colour}`,
                 }}
             ></span>
         </div>
