@@ -1,4 +1,4 @@
-.custom-card-background {
+.custom-card-icon-background {
     height: 150px;
     position: relative;
     background: #fff;
@@ -19,18 +19,4 @@
 
 .custom-card-icon {
     font-size: 72px !important;
-}
-
-.custom-card-caption {
-    font-size: 1.9rem !important;
-    font-weight: 500 !important;
-}
-
-.custom-card-text {
-    margin-left: 32px;
-    margin-right: 32px;
-    font-size: 1.125rem !important;
-    font-weight: 400 !important;
-    line-height: 1.8 !important;
-    color: #757575 !important;
 }

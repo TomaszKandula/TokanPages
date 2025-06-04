@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@material-ui/lab";
-import { Button, Card, CardContent } from "@material-ui/core";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import "./customCard.css";
 
@@ -34,9 +33,9 @@ const RenderLinkButton = (props: CustomCardProps): React.ReactElement => {
     ) : (
         <div className="mt-48">
             <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
-                <Button fullWidth variant="contained" className="button" disabled={props.isLoading}>
+                <button className="bulma-button" disabled={props.isLoading}>
                     {props.linkButton?.buttonLabel}
-                </Button>
+                </button>
             </Link>
         </div>
     );
@@ -52,27 +51,27 @@ const RenderExternalButton = (props: CustomCardProps): React.ReactElement => {
 
 export const CustomCard = (props: CustomCardProps): React.ReactElement => {
     return (
-        <Card elevation={0} className="card">
-            <CardContent className="card-content">
-                <div className="custom-card-background mt-25 mb-25">
+        <div className="bulma-card">
+            <div className="bulma-card-content">
+                <div className="custom-card-icon-background my-6">
                     <div className="custom-card-icon-holder vertical-centre">
                         <RenderIcon {...props} />
                     </div>
                 </div>
-                <h2 className="custom-card-caption text-centre">
+                <h2 className="bulma-title has-text-centered">
                     {props.isLoading ? <Skeleton variant="text" /> : props.caption}
                 </h2>
-                <div className="mt-48">
+                <div className="my-5">
                     {props.text.map((value: string, index: number) => (
-                        <div className="custom-card-text text-centre" key={index}>
+                        <p className="is-size-6 has-text-centered line-height-20" key={index}>
                             {props.isLoading ? <Skeleton variant="text" /> : value}
-                        </div>
+                        </p>
                     ))}
                 </div>
                 {props.linkButton ? <RenderLinkButton {...props} /> : null}
                 {props.externalButton ? <RenderExternalButton {...props} /> : null}
                 <div className={props.linkButton || props.externalButton ? "mb-25" : "mb-48"}></div>
-            </CardContent>
-        </Card>
+            </div>
+        </div>
     );
 };
