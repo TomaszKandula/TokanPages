@@ -1,11 +1,8 @@
 import * as React from "react";
-import TextField from "@material-ui/core/TextField";
-import { Card, CardContent, CircularProgress } from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { Icon, ProgressBar } from "../../../../Shared/Components";
 import { PasswordResetProps } from "../passwordReset";
-import { Icon } from "Shared/Components";
 
 interface Properties extends ViewProperties, PasswordResetProps {
     progress: boolean;
@@ -26,7 +23,7 @@ const ActiveButton = (props: Properties): React.ReactElement => {
             className="bulma-button bulma-is-light bulma-is-fullwidth"
             disabled={props.progress || props.email.length === 0}
         >
-            {!props.progress ? props.button : <CircularProgress size={20} />}
+            {!props.progress ? props.button : <ProgressBar size={20} />}
         </button>
     );
 };
@@ -36,44 +33,34 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "pt-96 pb-80" : props.className}>
-                    
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            
+                    <div className="bulma-card">
+                        <div className="bulma-card-content">
                             <div className="has-text-centered">
                                 <Icon name="Account" size={3} className="account" />
-                                <p className="caption">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
+                                <p className={`has-text-grey is-size-3 my-3 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+                                    {props.caption}
                                 </p>
                             </div>
-                            
-                            <div>
-
-
-                                <TextField
+                            <div className={`my-5 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+                                <input
                                     required
-                                    fullWidth
                                     id="email"
                                     name="email"
-                                    variant="outlined"
                                     autoComplete="email"
                                     onKeyUp={props.keyHandler}
                                     onChange={props.formHandler}
                                     value={props.email}
-                                    label={props.labelEmail}
+                                    placeholder={props.labelEmail}
+                                    className="bulma-input bulma-is-link my-3"
                                 />
-
-                                <ActiveButton {...props} />
-
-
                             </div>
-
-                        </CardContent>
-                    </Card>
-
+                            <div className={`my-5 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+                                <ActiveButton {...props} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </section>
     );
 };
