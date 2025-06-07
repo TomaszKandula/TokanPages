@@ -38,14 +38,15 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                 <div className={!props.className ? "pt-96 pb-80" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <div className="has-text-centered my-3">
+                            <div className="has-text-centered">
                                 <Icon name="Account" size={3} className="account" />
                                 <p className={`is-size-3 ${props.isLoading ? "bulma-is-skeleton" : "has-text-grey"}`}>
                                     {props.caption}
                                 </p>
                             </div>
-                            <div className="my-3">
+                            <div className="my-5">
                                 <TextFiedWithPassword
+                                    className="pb-4"
                                     uuid="newPassword"
                                     fullWidth={true}
                                     value={props.newPassword}
@@ -54,9 +55,8 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                     onChange={props.formHandler}
                                     isDisabled={props.disableForm || props.progress}
                                 />
-                            </div>
-                            <div className="my-3">
                                 <TextFiedWithPassword
+                                    className="pb-4"
                                     uuid="verifyPassword"
                                     fullWidth={true}
                                     value={props.verifyPassword}

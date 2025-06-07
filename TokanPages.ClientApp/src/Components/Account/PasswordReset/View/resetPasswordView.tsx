@@ -35,7 +35,7 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
                 <div className={!props.className ? "pt-96 pb-80" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <div className="has-text-centered my-3">
+                            <div className="has-text-centered">
                                 <Icon name="Account" size={3} className="account" />
                                 <p className={`is-size-3 ${props.isLoading ? "bulma-is-skeleton" : "has-text-grey"}`}>
                                     {props.caption}
