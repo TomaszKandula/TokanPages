@@ -11,6 +11,7 @@ interface Properties {
     inputValue: string;
     inputLabel: string;
     showPassword: boolean;
+    className?: string;
     onKeyUpHandler: (event: ReactKeyboardEvent) => void;
     onChangeHandler: (event: ReactChangeEvent) => void;
     iconOnClickHandler: (event: ReactMouseEvent) => void;
@@ -20,7 +21,7 @@ interface Properties {
 export const TextFiedWithPasswordView = (props: Properties): React.ReactElement => {
     return (
         <>
-            <div className="bulma-control bulma-has-icons-right">
+            <div className={`bulma-control bulma-has-icons-right ${props.className ?? ""}`}>
                 <input
                     id={props.uuid}
                     name={props.uuid}

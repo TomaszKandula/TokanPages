@@ -10,6 +10,7 @@ interface Properties {
     onKeyUp: (event: ReactKeyboardEvent) => void;
     onChange: (event: ReactChangeEvent) => void;
     isDisabled?: boolean;
+    className?: string;
 }
 
 export const TextFiedWithPassword = (props: Properties): React.ReactElement => {
@@ -25,6 +26,7 @@ export const TextFiedWithPassword = (props: Properties): React.ReactElement => {
 
     return (
         <TextFiedWithPasswordView
+            className={props.className}
             uuid={props.uuid}
             fullWidth={props.fullWidth}
             disabled={props.isDisabled}
