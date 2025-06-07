@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { FormControl, IconButton, OutlinedInput, InputAdornment, InputLabel } from "@material-ui/core";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../../Shared/types";
+import { Icon } from "../../../../Shared/Components/Icon";
+import { IconButton } from "../../../../Shared/Components/IconButton";
+import "./textFiedWithPasswordView.css";
 
 interface Properties {
     uuid: string;
@@ -19,9 +20,8 @@ interface Properties {
 export const TextFiedWithPasswordView = (props: Properties): React.ReactElement => {
     return (
         <>
-            <FormControl fullWidth={props.fullWidth} variant="outlined" className="m-zero">
-                <InputLabel htmlFor={props.uuid}>{props.inputLabel}</InputLabel>
-                <OutlinedInput
+            <div className="bulma-control bulma-has-icons-right">
+                <input
                     id={props.uuid}
                     name={props.uuid}
                     type={props.showPassword ? "text" : "password"}
@@ -29,21 +29,15 @@ export const TextFiedWithPasswordView = (props: Properties): React.ReactElement 
                     onKeyUp={props.onKeyUpHandler}
                     onChange={props.onChangeHandler}
                     disabled={props.disabled}
-                    labelWidth={70}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={props.iconOnClickHandler}
-                                onMouseDown={props.iconOnMouseDownHandler}
-                                edge="end"
-                            >
-                                {props.showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
+                    placeholder={props.inputLabel}
+                    className="bulma-input"
                 />
-            </FormControl>
+                <span className="bulma-icon bulma-is-right text-field-with-password">
+                    <IconButton onClick={props.iconOnClickHandler} onMouseDown={props.iconOnMouseDownHandler} hasNoHoverEffect>
+                        {props.showPassword ? <Icon name="Eye" size={1} /> : <Icon name="EyeOff" size={1} />}
+                    </IconButton>
+                </span>
+            </div>
         </>
     );
 };
