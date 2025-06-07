@@ -20,7 +20,7 @@ const ActiveButton = (props: Properties): React.ReactElement => {
         <button
             type="submit"
             onClick={props.buttonHandler}
-            className="bulma-button bulma-is-light bulma-is-fullwidth"
+            className={`bulma-button ${props.isLoading ? "bulma-is-skeleton" : ""} bulma-is-light bulma-is-fullwidth`}
             disabled={props.progress || props.email.length === 0}
         >
             {!props.progress ? props.button : <ProgressBar size={20} />}
@@ -35,9 +35,9 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
                 <div className={!props.className ? "pt-96 pb-80" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <div className="has-text-centered">
+                            <div className="has-text-centered my-3">
                                 <Icon name="Account" size={3} className="account" />
-                                <p className={`has-text-grey is-size-3 my-3 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+                                <p className={`is-size-3 ${props.isLoading ? "bulma-is-skeleton" : "has-text-grey"}`}>
                                     {props.caption}
                                 </p>
                             </div>
@@ -51,10 +51,10 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
                                     onChange={props.formHandler}
                                     value={props.email}
                                     placeholder={props.labelEmail}
-                                    className="bulma-input bulma-is-link my-3"
+                                    className="bulma-input bulma-is-link"
                                 />
                             </div>
-                            <div className={`my-5 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <div className="my-5">
                                 <ActiveButton {...props} />
                             </div>
                         </div>
