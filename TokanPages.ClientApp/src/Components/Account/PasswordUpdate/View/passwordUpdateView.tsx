@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { Icon, ProgressBar, TextFiedWithPassword } from "../../../../Shared/Components";
+import { Icon, ProgressBar, Skeleton, TextFiedWithPassword } from "../../../../Shared/Components";
 import { PasswordUpdateProps } from "../passwordUpdate";
 
 interface Properties extends ViewProperties, PasswordUpdateProps {
@@ -23,7 +23,7 @@ const ActiveButton = (props: Properties): React.ReactElement => {
         <button
             type="submit"
             onClick={props.buttonHandler}
-            className={`bulma-button ${props.isLoading ? "bulma-is-skeleton" : ""} bulma-is-light bulma-is-fullwidth`}
+            className="bulma-button bulma-is-light bulma-is-fullwidth"
             disabled={props.progress || props.disableForm}
         >
             {!props.progress ? props.button : <ProgressBar size={20} />}
@@ -38,37 +38,39 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                 <div className={!props.className ? "pt-96 pb-80" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <div className="has-text-centered">
-                                <Icon name="Account" size={3} className="account" />
-                                <p className={`is-size-3 ${props.isLoading ? "bulma-is-skeleton" : "has-text-grey"}`}>
-                                    {props.caption}
-                                </p>
-                            </div>
-                            <div className="my-5">
-                                <TextFiedWithPassword
-                                    className="pb-4"
-                                    uuid="newPassword"
-                                    fullWidth={true}
-                                    value={props.newPassword}
-                                    label={props.labelNewPassword}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    isDisabled={props.disableForm || props.progress}
-                                />
-                                <TextFiedWithPassword
-                                    className="pb-4"
-                                    uuid="verifyPassword"
-                                    fullWidth={true}
-                                    value={props.verifyPassword}
-                                    label={props.labelVerifyPassword}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    isDisabled={props.disableForm || props.progress}
-                                />
-                            </div>
-                            <div className="my-5">
-                                <ActiveButton {...props} />
-                            </div>
+                            <Skeleton isLoading={props.isLoading}>
+                                <div className="has-text-centered">
+                                    <Icon name="Account" size={3} className="account" />
+                                    <p className="is-size-3 has-text-grey">
+                                        {props.caption}
+                                    </p>
+                                </div>
+                                <div className="my-5">
+                                    <TextFiedWithPassword
+                                        className="pb-4"
+                                        uuid="newPassword"
+                                        fullWidth={true}
+                                        value={props.newPassword}
+                                        label={props.labelNewPassword}
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        isDisabled={props.disableForm || props.progress}
+                                    />
+                                    <TextFiedWithPassword
+                                        className="pb-4"
+                                        uuid="verifyPassword"
+                                        fullWidth={true}
+                                        value={props.verifyPassword}
+                                        label={props.labelVerifyPassword}
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        isDisabled={props.disableForm || props.progress}
+                                    />
+                                </div>
+                                <div className="my-5">
+                                    <ActiveButton {...props} />
+                                </div>
+                            </Skeleton>
                         </div>
                     </div>
                 </div>
