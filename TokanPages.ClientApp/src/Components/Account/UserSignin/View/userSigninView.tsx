@@ -74,11 +74,11 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                 <div className="my-5">
                                     <ActiveButton {...props} />
                                 </div>
-                                <div className="is-flex is-flex-direction-row my-5">
-                                    <div className="is-justify-content-flex-start">
+                                <div className="is-flex is-flex-direction-row is-justify-content-space-between">
+                                    <div className="my-2">
                                         <RedirectTo path={props.link1?.href} name={props.link1?.text} />
                                     </div>
-                                    <div className="is-justify-content-flex-end">
+                                    <div className="my-2">
                                         <RedirectTo path={props.link2?.href} name={props.link2?.text} />
                                     </div>
                                 </div>
