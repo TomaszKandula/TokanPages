@@ -40,7 +40,11 @@ const getIconSvgPath = (item: string | undefined): string => {
     return svg;
 };
 
-export const Icon = (props: IconProps) => { 
+export const Icon = (props: IconProps): React.ReactElement => { 
+    if (props.name === "" || props.name === undefined) {
+        return <></>;
+    }
+
     switch (props.name.toLocaleLowerCase()) {
         case "linkedin": return <LinkedinIcon size={props.size} />;
         case "github": return <GithubIcon size={props.size} />;
