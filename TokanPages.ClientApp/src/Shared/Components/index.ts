@@ -28,3 +28,4 @@ export { Collapsible } from "./Collapsible";
 export { IconButton } from "./IconButton";
 export { Link } from "./Link";
 export { Icon } from "./Icon";
+export { Skeleton } from "./Skeleton";
