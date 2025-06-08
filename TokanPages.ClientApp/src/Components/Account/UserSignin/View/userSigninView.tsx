@@ -47,7 +47,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                         {props.caption}
                                     </p>
                                 </div>
-                                <div className="my-5">
+                                <div className="mt-5 mb-6">
                                     <input
                                         required
                                         id="email"
@@ -61,7 +61,6 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                         className="bulma-input bulma-is-link mb-4"
                                     />
                                     <TextFiedWithPassword
-                                        className="mb-4"
                                         uuid="password"
                                         fullWidth={true}
                                         value={props.password}
@@ -71,7 +70,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                         isDisabled={props.progress}
                                     />
                                 </div>
-                                <div className="my-5">
+                                <div className="mb-5">
                                     <ActiveButton {...props} />
                                 </div>
                                 <div className="is-flex is-flex-direction-row is-justify-content-space-between">
