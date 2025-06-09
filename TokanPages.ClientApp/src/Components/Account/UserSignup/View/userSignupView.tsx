@@ -12,7 +12,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { RedirectTo, RenderParagraphs, RenderList, TextFiedWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, RenderParagraphs, RenderList, TextFieldWithPassword } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 import "./userSignupView.css";
 
@@ -128,7 +128,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     {props.isLoading ? (
                                         <Skeleton variant="rect" width="100%" height="45px" />
                                     ) : (
-                                        <TextFiedWithPassword
+                                        <TextFieldWithPassword
                                             uuid="password"
                                             fullWidth={true}
                                             value={props.password}

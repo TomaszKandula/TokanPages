@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { Icon, ProgressBar, Skeleton, TextFiedWithPassword } from "../../../../Shared/Components";
+import { Icon, ProgressBar, Skeleton, TextFieldWithPassword } from "../../../../Shared/Components";
 import { PasswordUpdateProps } from "../passwordUpdate";
 
 interface Properties extends ViewProperties, PasswordUpdateProps {
@@ -46,7 +46,7 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                     </p>
                                 </div>
                                 <div className="my-5">
-                                    <TextFiedWithPassword
+                                    <TextFieldWithPassword
                                         className="pb-4"
                                         uuid="newPassword"
                                         fullWidth={true}
@@ -56,7 +56,7 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                         onChange={props.formHandler}
                                         isDisabled={props.disableForm || props.progress}
                                     />
-                                    <TextFiedWithPassword
+                                    <TextFieldWithPassword
                                         className="pb-4"
                                         uuid="verifyPassword"
                                         fullWidth={true}

@@ -7,7 +7,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { SectionAccountPassword } from "../../../../../Api/Models";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
-import { CustomDivider, TextFiedWithPassword } from "../../../../../Shared/Components";
+import { CustomDivider, TextFieldWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordProps } from "../userPassword";
 
 interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
@@ -64,7 +64,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="40px" />
                                         ) : (
-                                            <TextFiedWithPassword
+                                            <TextFieldWithPassword
                                                 uuid="oldPassword"
                                                 fullWidth={true}
                                                 value={props.oldPassword}
@@ -86,7 +86,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="40px" />
                                         ) : (
-                                            <TextFiedWithPassword
+                                            <TextFieldWithPassword
                                                 uuid="newPassword"
                                                 fullWidth={true}
                                                 value={props.newPassword}
@@ -108,7 +108,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                         {props.isLoading ? (
                                             <Skeleton variant="rect" width="100%" height="40px" />
                                         ) : (
-                                            <TextFiedWithPassword
+                                            <TextFieldWithPassword
                                                 uuid="confirmPassword"
                                                 fullWidth={true}
                                                 value={props.confirmPassword}
