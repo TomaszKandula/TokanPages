@@ -1,6 +1,6 @@
 import * as React from "react";
-import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
-import { TextFiedWithPasswordView } from "./View/textFiedWithPasswordView";
+import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "Shared/types";
+import { TextFieldWithPasswordView } from "./View/textFieldWithPasswordView";
 
 interface Properties {
     uuid: string;
@@ -13,7 +13,7 @@ interface Properties {
     className?: string;
 }
 
-export const TextFiedWithPassword = (props: Properties): React.ReactElement => {
+export const TextFieldWithPassword = (props: Properties): React.ReactElement => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
     const iconOnClickHandler = React.useCallback(() => {
@@ -25,7 +25,7 @@ export const TextFiedWithPassword = (props: Properties): React.ReactElement => {
     }, []);
 
     return (
-        <TextFiedWithPasswordView
+        <TextFieldWithPasswordView
             className={props.className}
             uuid={props.uuid}
             fullWidth={props.fullWidth}
