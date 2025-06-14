@@ -1,7 +1,5 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import CancelIcon from "@material-ui/icons/Cancel";
-import { CustomCard } from "../../../../../Shared/Components";
+import { CustomCard, Icon } from "../../../../../Shared/Components";
 import { AccessDeniedProps } from "../accessDenied";
 
 interface AccessDeniedViewProps extends AccessDeniedProps {
@@ -15,17 +13,17 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
 export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
+            <div className="bulma-container bulma-is-max-desktop">
                 <div className="pt-120 pb-64">
                     <CustomCard
                         isLoading={props.isLoading}
                         caption={props.accessDeniedCaption}
                         text={props.accessDeniedPrompt}
-                        icon={<CancelIcon />}
+                        icon={<Icon name="CloseCircle" size={3} />}
                         colour="error"
                     />
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
