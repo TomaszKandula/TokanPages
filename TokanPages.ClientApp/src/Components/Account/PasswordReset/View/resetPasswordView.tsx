@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { Icon, ProgressBar, Skeleton } from "../../../../Shared/Components";
+import { Icon, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
 import { PasswordResetProps } from "../passwordReset";
 
 interface Properties extends ViewProperties, PasswordResetProps {
@@ -43,16 +43,14 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
                                     </p>
                                 </div>
                                 <div className="my-5">
-                                    <input
+                                    <TextField
                                         required
-                                        id="email"
-                                        name="email"
+                                        uuid="email"
                                         autoComplete="email"
                                         onKeyUp={props.keyHandler}
                                         onChange={props.formHandler}
                                         value={props.email}
                                         placeholder={props.labelEmail}
-                                        className="bulma-input bulma-is-link"
                                     />
                                 </div>
                                 <div className="my-5">

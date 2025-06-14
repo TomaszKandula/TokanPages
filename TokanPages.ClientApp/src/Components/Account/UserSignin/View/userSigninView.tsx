@@ -2,7 +2,7 @@ import * as React from "react";
 import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { Icon, ProgressBar, RedirectTo, Skeleton, TextFieldWithPassword } from "../../../../Shared/Components";
+import { Icon, ProgressBar, RedirectTo, Skeleton, TextField, TextFieldWithPassword } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
@@ -48,17 +48,16 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     </p>
                                 </div>
                                 <div className="mt-5 mb-6">
-                                    <input
+                                    <TextField
                                         required
-                                        id="email"
-                                        name="email"
+                                        uuid="email"
                                         autoComplete="email"
                                         onKeyUp={props.keyHandler}
                                         onChange={props.formHandler}
                                         value={props.email}
                                         placeholder={props.labelEmail}
-                                        disabled={props.progress}
-                                        className="bulma-input bulma-is-link mb-4"
+                                        isDisabled={props.progress}
+                                        className="mb-4"
                                     />
                                     <TextFieldWithPassword
                                         uuid="password"
