@@ -19,6 +19,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
                 autoComplete={props.autoComplete}
                 autoFocus={props.autoFocus}
                 value={props.value}
+                onChange={props.onChange}
                 placeholder={props.placeholder}
                 disabled={props.isDisabled}
                 className={className}

@@ -7,9 +7,14 @@ import { TextFieldExtendedProps } from "./types";
 export const TextFieldWithPasswordView = (props: TextFieldExtendedProps): React.ReactElement => {
     const IconElement = (): React.ReactElement => props.showPassword ? <Icon name="Eye" size={1} /> : <Icon name="EyeOff" size={1} />;
 
+    const rounded = props.isRounded ? "bulma-is-rounded" : "";
     const type = props.showPassword ? "text" : "password";
     const icon = "bulma-icon bulma-is-right text-field-with-password";
     const control = `bulma-control bulma-has-icons-right ${props.className ?? ""}`;
+    const colour = props.colour ?? "";
+    const size = props.size ?? "";
+
+    const className = `bulma-input ${rounded} ${colour} ${size}`;
 
     return (
         <div className={control}>
@@ -22,7 +27,8 @@ export const TextFieldWithPasswordView = (props: TextFieldExtendedProps): React.
                 onChange={props.onChange}
                 disabled={props.isDisabled}
                 placeholder={props.placeholder}
-                className="bulma-input"
+                readOnly={props.isReadonly}
+                className={className}
             />
             <span className={icon}>
                 <IconButton 
