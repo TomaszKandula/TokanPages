@@ -23,7 +23,7 @@ const ActiveButton = (props: Properties): React.ReactElement => {
         <button
             type="submit"
             onClick={props.buttonHandler}
-            className="bulma-button bulma-is-light bulma-is-fullwidth"
+            className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
             disabled={props.progress || props.disableForm}
         >
             {!props.progress ? props.button : <ProgressBar size={20} />}

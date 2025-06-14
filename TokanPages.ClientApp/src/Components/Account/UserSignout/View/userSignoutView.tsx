@@ -34,7 +34,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                                 <div className="mt-6 mb-3">
                                     <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
                                         <button
-                                            className="bulma-button bulma-is-light bulma-is-fullwidth"
+                                            className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
                                             disabled={props.isLoading || !props.isAnonymous}
                                         >
                                             {props.buttonText}
