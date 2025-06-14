@@ -1,26 +1,5 @@
 import * as React from "react";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../types";
-
-type Colours = "bulma-is-link" | "bulma-is-primary" | "bulma-is-info" | "bulma-is-success" | "bulma-is-warning" | "bulma-is-danger";
-type Sizes = "bulma-is-small" | "bulma-is-normal" | "bulma-is-medium" | "bulma-is-large";
-
-interface TextFieldProps {
-    uuid: string;
-    required?: boolean;
-    fullWidth?: boolean;
-    autoComplete?: string;
-    autoFocus: boolean;
-    onKeyUp: (event: ReactKeyboardEvent) => void;
-    onChange: (event: ReactChangeEvent) => void;
-    value: string | number | readonly string[] | undefined;
-    placeholder?: string;
-    isDisabled?: boolean;
-    colour?: Colours;
-    size?: Sizes;
-    isRounded?: boolean;
-    isLoading?: boolean;
-    isReadonly?: boolean;
-}
+import { TextFieldProps } from "./types";
 
 export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const rounded = props.isRounded ? "bulma-is-rounded" : "";
@@ -31,7 +10,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const className = `bulma-input ${rounded} ${colour} ${size}`;
 
     return (
-        <div className={`bulma-control ${loading}`}>
+        <div className={`bulma-control ${loading} ${props.className}`}>
             <input 
                 id={props.uuid}
                 name={props.uuid}

@@ -1,24 +1,10 @@
 import * as React from "react";
-import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../types";
 import { Icon } from "../../Icon";
 import { IconButton } from "../../IconButton";
 import "./textFiedWithPasswordView.css";
+import { TextFieldExtendedProps } from "./types";
 
-interface Properties {
-    uuid: string;
-    fullWidth?: boolean;
-    disabled?: boolean;
-    inputValue: string;
-    inputLabel: string;
-    showPassword: boolean;
-    className?: string;
-    onKeyUpHandler: (event: ReactKeyboardEvent) => void;
-    onChangeHandler: (event: ReactChangeEvent) => void;
-    iconOnClickHandler: (event: ReactMouseEvent) => void;
-    iconOnMouseDownHandler: (event: ReactMouseEvent) => void;
-}
-
-export const TextFieldWithPasswordView = (props: Properties): React.ReactElement => {
+export const TextFieldWithPasswordView = (props: TextFieldExtendedProps): React.ReactElement => {
     const IconElement = (): React.ReactElement => props.showPassword ? <Icon name="Eye" size={1} /> : <Icon name="EyeOff" size={1} />;
 
     const type = props.showPassword ? "text" : "password";
@@ -31,17 +17,17 @@ export const TextFieldWithPasswordView = (props: Properties): React.ReactElement
                 id={props.uuid}
                 name={props.uuid}
                 type={type}
-                value={props.inputValue}
-                onKeyUp={props.onKeyUpHandler}
-                onChange={props.onChangeHandler}
-                disabled={props.disabled}
-                placeholder={props.inputLabel}
+                value={props.value}
+                onKeyUp={props.onKeyUp}
+                onChange={props.onChange}
+                disabled={props.isDisabled}
+                placeholder={props.placeholder}
                 className="bulma-input"
             />
             <span className={icon}>
                 <IconButton 
-                    onClick={props.iconOnClickHandler} 
-                    onMouseDown={props.iconOnMouseDownHandler} 
+                    onClick={props.iconOnClick}
+                    onMouseDown={props.iconOnMouseDown} 
                     hasNoHoverEffect
                 >
                     <IconElement />

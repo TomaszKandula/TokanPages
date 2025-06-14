@@ -1,26 +1,16 @@
 import * as React from "react";
-import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "Shared/types";
+import { ReactMouseEvent } from "Shared/types";
 import { TextFieldWithPasswordView } from "./View/textFieldWithPasswordView";
+import { TextFieldProps } from "./View/types";
 
-interface Properties {
-    uuid: string;
-    fullWidth?: boolean;
-    value: string;
-    label?: string;
-    onKeyUp: (event: ReactKeyboardEvent) => void;
-    onChange: (event: ReactChangeEvent) => void;
-    isDisabled?: boolean;
-    className?: string;
-}
-
-export const TextFieldWithPassword = (props: Properties): React.ReactElement => {
+export const TextFieldWithPassword = (props: TextFieldProps): React.ReactElement => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
-    const iconOnClickHandler = React.useCallback(() => {
+    const iconOnClick = React.useCallback(() => {
         setIsPasswordVisible(!isPasswordVisible);
     }, [isPasswordVisible]);
 
-    const iconOnMouseDownHandler = React.useCallback((event: ReactMouseEvent) => {
+    const iconOnMouseDown = React.useCallback((event: ReactMouseEvent) => {
         event.preventDefault();
     }, []);
 
@@ -29,14 +19,14 @@ export const TextFieldWithPassword = (props: Properties): React.ReactElement => 
             className={props.className}
             uuid={props.uuid}
             fullWidth={props.fullWidth}
-            disabled={props.isDisabled}
-            inputValue={props.value}
-            inputLabel={props.label ?? ""}
+            isDisabled={props.isDisabled}
+            value={props.value}
+            placeholder={props.placeholder ?? ""}
             showPassword={isPasswordVisible}
-            onKeyUpHandler={props.onKeyUp}
-            onChangeHandler={props.onChange}
-            iconOnClickHandler={iconOnClickHandler}
-            iconOnMouseDownHandler={iconOnMouseDownHandler}
+            onKeyUp={props.onKeyUp}
+            onChange={props.onChange}
+            iconOnClick={iconOnClick}
+            iconOnMouseDown={iconOnMouseDown}
         />
     );
 };

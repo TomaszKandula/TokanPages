@@ -64,7 +64,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                         uuid="password"
                                         fullWidth={true}
                                         value={props.password}
-                                        label={props.labelPassword}
+                                        placeholder={props.labelPassword}
                                         onKeyUp={props.keyHandler}
                                         onChange={props.formHandler}
                                         isDisabled={props.progress}

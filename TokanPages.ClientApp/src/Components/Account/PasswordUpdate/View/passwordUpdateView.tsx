@@ -51,7 +51,7 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                         uuid="newPassword"
                                         fullWidth={true}
                                         value={props.newPassword}
-                                        label={props.labelNewPassword}
+                                        placeholder={props.labelNewPassword}
                                         onKeyUp={props.keyHandler}
                                         onChange={props.formHandler}
                                         isDisabled={props.disableForm || props.progress}
@@ -61,7 +61,7 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                         uuid="verifyPassword"
                                         fullWidth={true}
                                         value={props.verifyPassword}
-                                        label={props.labelVerifyPassword}
+                                        placeholder={props.labelVerifyPassword}
                                         onKeyUp={props.keyHandler}
                                         onChange={props.formHandler}
                                         isDisabled={props.disableForm || props.progress}

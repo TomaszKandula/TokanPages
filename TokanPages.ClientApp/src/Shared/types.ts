@@ -2,6 +2,9 @@ export type THeaders = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 export type TComponent = THeaders | "p" | "span" | "div" | "ul" | "ol" | "br" | "blockquote";
 export type TSeverity = "debug" | "info" | "warning" | "error" | "fatal";
 
+export type TInputColours = "bulma-is-link" | "bulma-is-primary" | "bulma-is-info" | "bulma-is-success" | "bulma-is-warning" | "bulma-is-danger";
+export type TInputSizes = "bulma-is-small" | "bulma-is-normal" | "bulma-is-medium" | "bulma-is-large";
+
 export type ReactSyntheticEvent = React.SyntheticEvent;
 
 export type ReactMouseEvent = React.MouseEvent<HTMLElement, MouseEvent>;
