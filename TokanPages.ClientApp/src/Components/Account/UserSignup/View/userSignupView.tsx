@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Card, CardContent, CircularProgress, Checkbox } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { AccountCircle } from "@material-ui/icons";
 import { Alert } from "@material-ui/lab";
@@ -12,7 +11,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { RedirectTo, RenderParagraphs, RenderList, TextFieldWithPassword } from "../../../../Shared/Components";
+import { RedirectTo, RenderParagraphs, RenderList, TextField, TextFieldWithPassword } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 import "./userSignupView.css";
 
@@ -73,16 +72,14 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         <TextField
                                             required
                                             fullWidth
-                                            id="firstName"
-                                            name="firstName"
-                                            variant="outlined"
+                                            uuid="firstName"
                                             autoComplete="one-time-code"
                                             autoFocus={true}
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler}
                                             value={props.firstName}
-                                            label={props.labelFirstName}
-                                            disabled={props.progress}
+                                            placeholder={props.labelFirstName}
+                                            isDisabled={props.progress}
                                         />
                                     )}
                                 </Grid>
@@ -93,15 +90,13 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         <TextField
                                             required
                                             fullWidth
-                                            id="lastName"
-                                            name="lastName"
-                                            variant="outlined"
+                                            uuid="lastName"
                                             autoComplete="one-time-code"
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler}
                                             value={props.lastName}
-                                            label={props.labelLastName}
-                                            disabled={props.progress}
+                                            placeholder={props.labelLastName}
+                                            isDisabled={props.progress}
                                         />
                                     )}
                                 </Grid>
@@ -112,15 +107,13 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         <TextField
                                             required
                                             fullWidth
-                                            id="email"
-                                            name="email"
-                                            variant="outlined"
+                                            uuid="email"
                                             autoComplete="one-time-code"
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler}
                                             value={props.email}
-                                            label={props.labelEmail}
-                                            disabled={props.progress}
+                                            placeholder={props.labelEmail}
+                                            isDisabled={props.progress}
                                         />
                                     )}
                                 </Grid>
