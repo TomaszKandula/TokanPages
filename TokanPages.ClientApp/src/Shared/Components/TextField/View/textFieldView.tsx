@@ -1,6 +1,7 @@
 import * as React from "react";
 import { TextFieldProps } from "./types";
 
+//TODO: add multilne support
 export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const rounded = props.isRounded ? "bulma-is-rounded" : "";
     const loading = props.isLoading ? "bulma-is-loading" : "";
