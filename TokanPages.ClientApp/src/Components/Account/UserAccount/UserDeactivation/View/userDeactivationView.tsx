@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
-import { CustomDivider, ProgressBar, RenderParagraphs } from "../../../../../Shared/Components";
+import { ProgressBar, RenderParagraphs } from "../../../../../Shared/Components";
 import { UserDeactivationProps } from "../userDeactivation";
 
 interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
@@ -33,16 +33,14 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                             <p className="is-size-4 has-text-grey">
                                 {props.section?.caption}
                             </p>
-                            <CustomDivider mt={15} mb={8} />
-                            <div className="pt-8 pb-8">
-                                <RenderParagraphs
-                                    text={props.section?.warningText}
-                                    className="is-size-6 has-text-grey line-height-20"
-                                />
-                                <CustomDivider mt={15} mb={15} />
-                                <div className="has-text-right">
-                                    <DeactivationButton {...props} />
-                                </div>
+                            <hr className="my-5" />
+                            <RenderParagraphs
+                                text={props.section?.warningText}
+                                className="is-size-6 has-text-grey line-height-20"
+                            />
+                            <hr className="my-5" />
+                            <div className="has-text-right">
+                                <DeactivationButton {...props} />
                             </div>
                         </div>
                     </div>
