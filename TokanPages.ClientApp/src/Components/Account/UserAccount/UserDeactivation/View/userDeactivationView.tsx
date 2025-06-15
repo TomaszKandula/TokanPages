@@ -33,12 +33,12 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                             <p className="is-size-4 has-text-grey">
                                 {props.section?.caption}
                             </p>
-                            <hr className="my-5" />
+                            <hr />
                             <RenderParagraphs
                                 text={props.section?.warningText}
                                 className="is-size-6 has-text-grey line-height-20"
                             />
-                            <hr className="my-5" />
+                            <hr />
                             <div className="has-text-right">
                                 <DeactivationButton {...props} />
                             </div>

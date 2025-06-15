@@ -37,12 +37,12 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                             <p className="is-size-4 has-text-grey">
                                 {props.sectionAccountRemoval?.caption}
                             </p>
-                            <hr className="my-5" />
+                            <hr />
                             <RenderParagraphs
                                 text={props.sectionAccountRemoval?.warningText}
                                 className="is-size-6 has-text-grey line-height-20"
                             />
-                            <hr className="my-5" />
+                            <hr />
                             <div className="has-text-right">
                                 <DeleteAccountButton {...props} />
                             </div>

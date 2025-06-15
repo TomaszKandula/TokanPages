@@ -39,7 +39,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                             <p className="is-size-4 has-text-grey">
                                 {props.sectionAccountPassword?.caption}
                             </p>
-                            <hr className="my-5" />
+                            <hr />
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="oldPassword"
@@ -70,7 +70,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelConfirmPassword}
                                 />
                             </div>
-                            <hr className="my-5" />
+                            <hr />
                             <div className="has-text-right">
                                 <UpdatePasswordButton {...props} />
                             </div>
