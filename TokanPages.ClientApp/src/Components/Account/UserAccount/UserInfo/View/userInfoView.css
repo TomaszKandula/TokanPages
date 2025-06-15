@@ -1,49 +1,20 @@
 .backdrop {
-    z-index: 9999 !important;
-    color: #ffffff;
+    z-index: 1201;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.user-id {
-    margin-bottom: 30px;
-}
-
-@media (max-width: 600px) {
-    .user-id {
-        margin-bottom: 15px;
-    }
-}
-
-.user-alias {
-    margin-bottom: 30px;
-}
-
-@media (max-width: 600px) {
-    .user-alias {
-        margin-bottom: 15px;
-    }
-}
-
-.user-email-status {
-    margin-bottom: 4px;
-}
-
-@media (max-width: 600px) {
-    .user-email-status {
-        margin-bottom: 0;
-    }
-}
-
-.user-email-verification {
+.has-pointer {
     cursor: pointer;
-    color: red;
-    text-decoration: underline;
 }
 
-.user-avatar-text {
-    margin-left: 15px !important;
-}
-
-.user-account-text-item {
-    padding-top: 5px;
-    padding-bottom: 5px;
+.cancel-margin-bottom {
+    margin-bottom: 0 !important;
 }
