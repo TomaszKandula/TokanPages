@@ -66,10 +66,6 @@ body {
     }
 }
 
-body::backdrop {
-    background-color: #ffffff;
-}
-
 /* LINE HEIGHT */
 
 .line-height-9 {
