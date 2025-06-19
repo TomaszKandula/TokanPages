@@ -28,4 +28,4 @@ export { IconButton } from "./IconButton";
 export { Link } from "./Link";
 export { Icon } from "./Icon";
 export { Skeleton } from "./Skeleton";
-export { TextField, TextFieldWithPassword } from "./TextField";
+export { TextField, TextFieldWithPassword, TextArea } from "./TextField";

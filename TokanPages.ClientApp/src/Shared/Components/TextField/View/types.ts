@@ -1,19 +1,19 @@
-import { 
+import {
     ReactChangeEvent,
+    ReactChangeTextEvent,
     ReactKeyboardEvent,
+    ReactKeyboardTextEvent,
     ReactMouseEvent,
     TInputColours,
     TInputSizes
-} from "Shared/types";
+} from "../../../../Shared/types";
 
-export interface TextFieldProps {
+interface BaseProps {
     uuid: string;
     required?: boolean;
     fullWidth?: boolean;
     autoComplete?: string;
     autoFocus?: boolean;
-    onKeyUp: (event: ReactKeyboardEvent) => void;
-    onChange: (event: ReactChangeEvent) => void;
     value: string | number | readonly string[] | undefined;
     placeholder?: string;
     isDisabled?: boolean;
@@ -25,8 +25,20 @@ export interface TextFieldProps {
     className?: string;
 }
 
+export interface TextFieldProps extends BaseProps {
+    onKeyUp?: (event: ReactKeyboardEvent) => void;
+    onChange?: (event: ReactChangeEvent) => void;
+}
+
 export interface TextFieldExtendedProps extends TextFieldProps {
     showPassword: boolean;
     iconOnClick: (event: ReactMouseEvent) => void;
     iconOnMouseDown: (event: ReactMouseEvent) => void;
+}
+
+export interface TextAreaProps extends BaseProps {
+    rows?: number;
+    isFixedSize?: boolean;
+    onKeyUp?: (event: ReactKeyboardTextEvent) => void;
+    onChange?: (event: ReactChangeTextEvent) => void;
 }

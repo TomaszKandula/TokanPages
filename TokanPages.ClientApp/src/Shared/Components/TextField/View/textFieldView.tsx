@@ -1,7 +1,6 @@
 import * as React from "react";
 import { TextFieldProps } from "./types";
 
-//TODO: add multilne support
 export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const rounded = props.isRounded ? "bulma-is-rounded" : "";
     const loading = props.isLoading ? "bulma-is-loading" : "";
@@ -11,7 +10,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const className = `bulma-input ${rounded} ${colour} ${size}`;
 
     return (
-        <div className={`bulma-control ${loading} ${props.className}`}>
+        <div className={`bulma-control ${loading} ${props.className ?? ""}`}>
             <input 
                 id={props.uuid}
                 name={props.uuid}
@@ -20,6 +19,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
                 autoComplete={props.autoComplete}
                 autoFocus={props.autoFocus}
                 value={props.value}
+                onKeyUp={props.onKeyUp}
                 onChange={props.onChange}
                 placeholder={props.placeholder}
                 disabled={props.isDisabled}
