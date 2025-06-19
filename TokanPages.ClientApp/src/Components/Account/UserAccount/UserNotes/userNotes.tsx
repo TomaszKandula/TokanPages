@@ -10,7 +10,7 @@ import {
     UserNoteDeleteAction,
 } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
-import { ReactChangeEvent } from "../../../../Shared/types";
+import { ReactChangeTextEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
 
 type ActionType = "ADD" | "UPDATE" | "REMOVE";
@@ -55,7 +55,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     );
 
     const formHandler = React.useCallback(
-        (event: ReactChangeEvent) => {
+        (event: ReactChangeTextEvent) => {
             setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
         [form]

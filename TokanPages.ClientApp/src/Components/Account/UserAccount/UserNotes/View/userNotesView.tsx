@@ -1,9 +1,8 @@
 import * as React from "react";
 import { UserNoteResultDto } from "../../../../../Api/Models";
-import { ProgressBar } from "../../../../../Shared/Components";
-import { ReactChangeEvent } from "../../../../../Shared/types";
+import { ProgressBar, TextArea } from "../../../../../Shared/Components";
+import { ReactChangeTextEvent } from "../../../../../Shared/types";
 import Validate from "validate.js";
-import { TextField } from "@material-ui/core";
 import "./userNotesView.css";
 
 interface UserNotesViewProps {
@@ -23,7 +22,7 @@ interface UserNotesViewProps {
     saveButtonText: string;
     saveButtonHandler: () => void;
     messageForm: { note: string };
-    messageHandler: (event: ReactChangeEvent) => void;
+    messageHandler: (event: ReactChangeTextEvent) => void;
     messageMultiline: boolean;
     background?: React.CSSProperties;
 }
@@ -115,18 +114,15 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                             {`${props.noteLabel}${noteUid}`}
                                         </p>
                                         <div className="user-notes-text-box mt-10">
-                                            <TextField
+                                            <TextArea
                                                 required
                                                 fullWidth
-                                                multiline={props.messageMultiline}
-                                                minRows={19}
-                                                maxRows={19}
-                                                id="note"
-                                                name="note"
-                                                variant="outlined"
+                                                isFixedSize
+                                                uuid="note"
+                                                rows={16}
                                                 onChange={props.messageHandler}
                                                 value={props.messageForm.note}
-                                                disabled={props.isLoading}
+                                                isDisabled={props.isLoading}
                                             />
                                         </div>
                                     </div>
