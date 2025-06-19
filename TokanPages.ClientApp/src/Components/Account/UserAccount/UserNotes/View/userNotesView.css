@@ -1,3 +1,16 @@
+.backdrop {
+    z-index: 1201;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
 .user-notes-box {
     display: flex;
     flex-direction: row;
@@ -69,16 +82,5 @@
 @media (max-width: 600px) {
     .user-notes-button-box {
         display: block;
-    }
-}
-
-.button-margin-right {
-    margin-right: 15px !important;
-}
-
-@media (max-width: 600px) {
-    .button-margin-right {
-        margin-right: 0 !important;
-        margin-bottom: 15px !important;
     }
 }
