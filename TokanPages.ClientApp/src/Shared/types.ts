@@ -12,7 +12,7 @@ export type ReactMouseEventButton = React.MouseEvent<HTMLButtonElement, MouseEve
 export type ReactMouseEventHandler = React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 
 export type ReactKeyboardEvent = React.KeyboardEvent<HTMLInputElement>;
-export type ReactKeyboardEventHandler = React.KeyboardEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-
 export type ReactChangeEvent = React.ChangeEvent<HTMLInputElement>;
-export type ReactChangeEventHandler = React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+
+export type ReactKeyboardTextEvent = React.KeyboardEvent<HTMLTextAreaElement>;
+export type ReactChangeTextEvent = React.ChangeEvent<HTMLTextAreaElement>;
