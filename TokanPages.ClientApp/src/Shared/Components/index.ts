@@ -29,3 +29,4 @@ export { Link } from "./Link";
 export { Icon } from "./Icon";
 export { Skeleton } from "./Skeleton";
 export { TextField, TextFieldWithPassword, TextArea } from "./TextField";
+export { Backdrop } from "./Backdrop";
