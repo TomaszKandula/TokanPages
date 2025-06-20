@@ -1,6 +1,6 @@
 import * as React from "react";
 import { UserNoteResultDto } from "../../../../../Api/Models";
-import { ProgressBar, TextArea } from "../../../../../Shared/Components";
+import { Backdrop, TextArea } from "../../../../../Shared/Components";
 import { ReactChangeTextEvent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 import "./userNotesView.css";
@@ -55,16 +55,6 @@ const RenderRow = (props: RenderRowProps): React.ReactElement => {
     );
 };
 
-const RenderBackdrop = (props: UserNotesViewProps) => (
-    <>
-        {props.hasProgress 
-        ? <div className="backdrop">
-            <ProgressBar colour="#fff" size={50} thickness={4} />
-        </div>
-        : null}
-    </>
-);
-
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
     const hasNotes = props.userNotes && props.userNotes.length > 0;
     const noteUid = props.selection ? ` (${props.selection.id.substring(0, 8)}):` : ":";
@@ -72,7 +62,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
 
     return (
         <section>
-            <RenderBackdrop {...props} />
+            <Backdrop isLoading={props.hasProgress} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="pt-120 pb-40">
                     <div className="bulma-card">

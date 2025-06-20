@@ -2,7 +2,7 @@ import * as React from "react";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
-import { ProgressBar, TextField, UploadUserMedia } from "../../../../../Shared/Components";
+import { Backdrop, ProgressBar, TextField, UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
@@ -68,16 +68,6 @@ const RenderEmailStatus = (props: UserInfoViewProps): React.ReactElement => {
     );
 };
 
-const RenderBackdrop = (props: UserInfoViewProps) => (
-    <>
-        {props.isRequestingVerification 
-        ? <div className="backdrop">
-            <ProgressBar colour="#fff" size={50} thickness={4} />
-        </div>
-        : null}
-    </>
-);
-
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     const previewImage = GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace(
         "{name}",
@@ -86,7 +76,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
 
     return (
         <section className={`section ${props.background ?? ""}`}>
-            <RenderBackdrop {...props} />
+            <Backdrop isLoading={props.isRequestingVerification} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="pt-120 pb-40">
                     <div className="bulma-card">
