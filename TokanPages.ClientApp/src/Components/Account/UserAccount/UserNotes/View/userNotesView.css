@@ -1,15 +1,14 @@
-.user-notes-box {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: left;
+.user-notes-container {
+    width: 60%;
 }
 
-@media (max-width: 900px) {
-    .user-notes-box {
-        flex-direction: column;
+@media (max-width: 1024px) {
+    .user-notes-container {
+        width: 100%;
     }
 }
+
+
 
 .user-notes-message-box {
     margin-left: 30px;
@@ -21,15 +20,6 @@
     .user-notes-message-box {
         margin-left: 0;
         margin-top: 30px;
-    }
-}
-.user-notes-container {
-    width: 60%;
-}
-
-@media (max-width: 900px) {
-    .user-notes-container {
-        width: 100%;
     }
 }
 
@@ -53,21 +43,4 @@
 
 .user-notes-text-box {
     width: 100%;
-}
-
-.user-notes-button-box {
-    width: 100%;
-    padding-top: 30px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: right;
-    position: relative;
-    bottom: 0;
-}
-
-@media (max-width: 600px) {
-    .user-notes-button-box {
-        display: block;
-    }
 }

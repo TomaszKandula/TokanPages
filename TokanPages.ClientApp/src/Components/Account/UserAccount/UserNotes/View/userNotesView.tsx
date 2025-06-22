@@ -7,6 +7,10 @@ import "./userNotesView.css";
 
 interface UserNotesViewProps {
     isLoading: boolean;
+    mediaQuery: {
+        isTablet: boolean;
+        isMobile: boolean;
+    };
     hasProgress: boolean;
     userNotes?: UserNoteProps[] | undefined;
     captionText: string;
@@ -56,9 +60,11 @@ const RenderRow = (props: RenderRowProps): React.ReactElement => {
 };
 
 export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => {
+    const isMobileOrTablet = props.mediaQuery.isMobile || props.mediaQuery.isTablet;
     const hasNotes = props.userNotes && props.userNotes.length > 0;
     const noteUid = props.selection ? ` (${props.selection.id.substring(0, 8)}):` : ":";
     const isEmpty = Validate.isEmpty(props.messageForm.note);
+    const flexDirection = isMobileOrTablet ? "is-flex-direction-column" : "is-flex-direction-row";
 
     return (
         <section>
@@ -72,12 +78,12 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                             </p>
                             <hr />
                             <div className="py-4">
-
                                 <p className="is-size-6 has-text-grey pb-5">
                                     {props.descriptionText}
                                 </p>
 
-                                <div className="user-notes-box">
+                                <div className={`bulma-cell is-flex ${flexDirection} is-align-items-flex-start is-justify-content-left`}>
+
                                     <div className="user-notes-container">
                                         <p className="is-size-6 has-text-grey">
                                             {`${props.listLabel}:`}
@@ -116,12 +122,13 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                             />
                                         </div>
                                     </div>
+
                                 </div>
 
-                                <div className="user-notes-button-box">
+                                <div className="bulma-content pt-4">
                                     <button
                                         type="submit"
-                                        className="bulma-button bulma-is-danger bulma-is-light mr-3"
+                                        className="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                                         disabled={props.isLoading || !hasNotes || !props.selection}
                                         onClick={props.removeButtonHandler}
                                     >
@@ -129,7 +136,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                     </button>
                                     <button
                                         type="submit"
-                                        className="bulma-button bulma-is-light mr-3"
+                                        className="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                                         disabled={props.isLoading}
                                         onClick={props.clearButtonHandler}
                                     >
@@ -137,7 +144,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                     </button>
                                     <button
                                         type="submit"
-                                        className="bulma-button bulma-is-light bulma-is-link"
+                                        className="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                                         disabled={props.isLoading || isEmpty}
                                         onClick={props.saveButtonHandler}
                                     >
