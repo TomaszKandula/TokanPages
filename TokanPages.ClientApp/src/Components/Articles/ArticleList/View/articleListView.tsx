@@ -1,6 +1,4 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import { Grid } from "@material-ui/core";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleCard, ProgressBar } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
@@ -32,15 +30,11 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
-            <Container className="container">
-                <div className="pb-64">
-                    <Grid container justifyContent="center">
-                        <Grid item xs={12} sm={12}>
-                            {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
-                        </Grid>
-                    </Grid>
+            <div className="bulma-container bulma-is-max-tablet pb-6">
+                <div className="py-4">
+                    {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
