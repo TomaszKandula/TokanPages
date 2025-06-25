@@ -4,14 +4,23 @@ import "./backdrop.css";
 
 interface RenderbackdropProps {
     isLoading: boolean;
+    children?: React.ReactElement;
 }
 
-export const RenderBackdrop = (props: RenderbackdropProps): React.ReactElement => (
-    <>
-        {props.isLoading 
-        ? <div className="backdrop">
-            <ProgressBar colour="#fff" size={50} thickness={4} />
-        </div>
-        : null}
-    </>
-);
+export const RenderBackdrop = (props: RenderbackdropProps): React.ReactElement => { 
+    const ChildrenOrSpinner = (props: RenderbackdropProps) => {
+        return props.children === undefined
+        ? <ProgressBar colour="#fff" size={50} thickness={4} />
+        : props.children;
+    }
+
+    return (
+        <>
+            {props.isLoading 
+            ? <div className="backdrop">
+                <ChildrenOrSpinner {...props} />
+            </div>
+            : null}
+        </>
+    )
+};
