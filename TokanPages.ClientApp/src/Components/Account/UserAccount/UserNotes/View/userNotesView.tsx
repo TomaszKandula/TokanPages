@@ -52,7 +52,7 @@ const RenderRow = (props: RenderRowProps): React.ReactElement => {
     const highlightClass = props.selection === props.id ? "user-notes-highlight-row" : "";
     return (
         <div className={highlightClass} key={props.id}>
-            <p className="is-size-6 has-text-grey py-4 px-4" onClick={() => props.onClick(props.index)}>
+            <p className="is-size-6 has-text-grey py-4 px-4 user-notes-text-selection" onClick={() => props.onClick(props.index)}>
                 {props.note}
             </p>
         </div>
@@ -81,16 +81,12 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                 <p className="is-size-6 has-text-grey pb-5">
                                     {props.descriptionText}
                                 </p>
-
                                 <div className={`bulma-cell is-flex ${flexDirection} is-align-items-flex-start is-justify-content-left`}>
-
-                                    <div className="user-notes-container">
+                                    <div className="user-notes-list-box">
                                         <p className="is-size-6 has-text-grey">
                                             {`${props.listLabel}:`}
                                         </p>
-                                        <div
-                                            className={`user-notes-fixed-list user-notes-border mt-10 ${props.isLoading ? "loading-indicator" : ""}`}
-                                        >
+                                        <div className="user-notes-fixed-list">
                                             {!props.isLoading &&
                                                 props.userNotes?.map((value: UserNoteProps, index: number) => (
                                                     <RenderRow
@@ -104,27 +100,23 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                                 ))}
                                         </div>
                                     </div>
-
                                     <div className="user-notes-message-box">
                                         <p className="is-size-6 has-text-grey">
                                             {`${props.noteLabel}${noteUid}`}
                                         </p>
-                                        <div className="user-notes-text-box mt-10">
-                                            <TextArea
-                                                required
-                                                fullWidth
-                                                isFixedSize
-                                                uuid="note"
-                                                rows={16}
-                                                onChange={props.messageHandler}
-                                                value={props.messageForm.note}
-                                                isDisabled={props.isLoading}
-                                            />
-                                        </div>
+                                        <TextArea
+                                            required
+                                            fullWidth
+                                            isFixedSize
+                                            uuid="note"
+                                            rows={16}
+                                            onChange={props.messageHandler}
+                                            value={props.messageForm.note}
+                                            isDisabled={props.isLoading}
+                                            className="user-notes-text-box"
+                                        />
                                     </div>
-
                                 </div>
-
                                 <div className="bulma-content pt-4">
                                     <button
                                         type="submit"
@@ -151,7 +143,6 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         {props.saveButtonText}
                                     </button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
