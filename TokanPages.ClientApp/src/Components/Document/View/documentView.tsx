@@ -1,5 +1,4 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
 import { ProgressBar, RenderContent } from "../../../Shared/Components";
 import { TextItem } from "../../../Shared/Components/RenderContent/Models";
 import { useHash } from "../../../Shared/Hooks";
@@ -37,13 +36,13 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
 
     return (
         <section className={`section ${props.background ?? ""}`}>
-            <Container component="article" className="container">
+            <article className="bulma-container bulma-is-max-tablet">
                 {props.isLoading ? (
                     <ProgressBar className="my-5" thickness={4} />
                 ) : (
                     <RenderContent items={props.items} />
                 )}
-            </Container>
+            </article>
         </section>
     );
 };
