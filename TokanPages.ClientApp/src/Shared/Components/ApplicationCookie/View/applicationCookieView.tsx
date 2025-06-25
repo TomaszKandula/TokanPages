@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Backdrop } from "@material-ui/core";
 import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
@@ -140,12 +139,9 @@ const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElem
 
 const CookieWindowContainer = (props: ApplicationCookieViewProps): React.ReactElement => {
     const style = props.isClose ? "cookie-window-close" : "cookie-window-open";
-    const transition = props.isLoading ? undefined : 0;
     return (
-        <div className={style}>
-            <Backdrop className="backdrop" open={true} transitionDuration={transition} aria-hidden={false}>
-                {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
-            </Backdrop>
+        <div className={`backdrop ${style}`}>
+            {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
         </div>
     );
 };
