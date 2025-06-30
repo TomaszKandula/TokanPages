@@ -40,7 +40,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 {props.renderSmallAvatar}
                             </div>
                             <div className="bulma-cell is-align-content-center">
-                                <p className="is-size-6">
+                                <p className="is-size-5">
                                     {props.authorAliasName}
                                 </p>
                             </div>
