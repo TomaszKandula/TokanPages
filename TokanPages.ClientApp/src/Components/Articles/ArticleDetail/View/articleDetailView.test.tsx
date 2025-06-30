@@ -25,13 +25,9 @@ describe("test articles group component: ArticleDetailView", () => {
             <ArticleDetailView
                 backButtonHandler={jest.fn()}
                 articleReadCount={"1.000.000"}
-                openPopoverHandler={jest.fn()}
-                closePopoverHandler={jest.fn()}
                 renderSmallAvatar={<div>renderSmallAvatar</div>}
                 renderLargeAvatar={<div>renderLargeAvatar</div>}
                 authorAliasName="Ester"
-                popoverOpen={false}
-                popoverElement={null}
                 authorFirstName="Ester"
                 authorLastName="Exposito"
                 authorRegistered=""
