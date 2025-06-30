@@ -6,7 +6,6 @@ import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Acti
 import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
-import { ReactMouseEvent } from "../../../Shared/types";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { ArticleContent } from "./Helpers/articleContent";
 import { AuthorName } from "./Helpers/authorName";
@@ -37,7 +36,6 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
         dispatch(ArticleSelectionAction.select({ title: props.title }));
     }
 
-    const [popoverElement, setPopover] = React.useState<HTMLElement | null>(null);
     const [totalThumbs, setTotalThumbs] = React.useState(0);
     const [totalLikes, setTotalLikes] = React.useState(0);
     const [userLikes, setUserLikes] = React.useState(0);
@@ -45,7 +43,6 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const [likesLeft, setLikesLeft] = React.useState(0);
 
     const history = useHistory();
-    const isPopoverOpen = Boolean(popoverElement);
     const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
@@ -107,45 +104,25 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
         history.push(`/${languageId}/articles`);
     }, [languageId]);
 
-    const openPopoverHandler = React.useCallback((event: ReactMouseEvent) => {
-        setPopover(event.currentTarget);
-    }, []);
-
-    const closePopoverHandler = React.useCallback(() => {
-        setPopover(null);
-    }, []);
-
-    const smallAvatar = (
-        <UserAvatar
-            userId={selection.article.author.userId}
-            isLarge={false}
-            avatarName={selection.article.author.avatarName}
-            userLetter={userLetter}
-            className="article-details-avatar"
-        />
-    );
-
-    const largeAvatar = (
-        <UserAvatar
-            userId={selection.article.author.userId}
-            isLarge={true}
-            avatarName={selection.article.author.avatarName}
-            userLetter={userLetter}
-            className="article-details-avatar"
-        />
-    );
-
     return (
         <ArticleDetailView
             backButtonHandler={backButtonHandler}
             articleReadCount={selection.article.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })}
-            openPopoverHandler={openPopoverHandler}
-            closePopoverHandler={closePopoverHandler}
-            renderSmallAvatar={smallAvatar}
-            renderLargeAvatar={largeAvatar}
+            renderSmallAvatar={<UserAvatar
+                userId={selection.article.author.userId}
+                isLarge={false}
+                avatarName={selection.article.author.avatarName}
+                userLetter={userLetter}
+                className="has-background-grey-light has-text-light"
+            />}
+            renderLargeAvatar={<UserAvatar
+                userId={selection.article.author.userId}
+                isLarge={true}
+                avatarName={selection.article.author.avatarName}
+                userLetter={userLetter}
+                className="has-background-grey-light has-text-light"
+            />}
             authorAliasName={selection.article.author.aliasName}
-            popoverOpen={isPopoverOpen}
-            popoverElement={popoverElement}
             authorFirstName={selection.article.author.firstName}
             authorLastName={selection.article.author.lastName}
             authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
