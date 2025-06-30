@@ -2,7 +2,6 @@ import * as React from "react";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -21,6 +20,7 @@ import {
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
+import { TextArea, TextField } from "../../../Shared/Components";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 import "./businessFormView.css";
 
@@ -200,15 +200,13 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="company"
-                                                name="company"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="company"
+                                                isDisabled={props.progress}
+                                                //inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.companyText}
-                                                label={props.companyLabel}
+                                                placeholder={props.companyLabel}
                                             />
                                         }
                                     />
@@ -221,15 +219,13 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="firstName"
-                                                name="firstName"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="firstName"
+                                                isDisabled={props.progress}
+                                                //inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.firstNameText}
-                                                label={props.firstNameLabel}
+                                                placeholder={props.firstNameLabel}
                                             />
                                         }
                                     />
@@ -242,15 +238,13 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="lastName"
-                                                name="lastName"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="lastName"
+                                                isDisabled={props.progress}
+                                                //inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.lastNameText}
-                                                label={props.lastNameLabel}
+                                                placeholder={props.lastNameLabel}
                                             />
                                         }
                                     />
@@ -263,15 +257,13 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="email"
-                                                name="email"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="email"
+                                                isDisabled={props.progress}
+                                                //inputProps={{ maxLength: 255 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.emailText}
-                                                label={props.emailLabel}
+                                                placeholder={props.emailLabel}
                                             />
                                         }
                                     />
@@ -284,15 +276,13 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             <TextField
                                                 required
                                                 fullWidth
-                                                id="phone"
-                                                name="phone"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 17 }}
+                                                uuid="phone"
+                                                isDisabled={props.progress}
+                                                //inputProps={{ maxLength: 17 }}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.phoneText}
-                                                label={props.phoneLabel}
+                                                placeholder={props.phoneLabel}
                                             />
                                         }
                                     />
@@ -302,19 +292,18 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         isLoading={props.isLoading}
                                         height={45}
                                         element={
-                                            <TextField
+                                            <TextArea
                                                 required={props.description.required}
                                                 fullWidth
-                                                id="description"
-                                                name="description"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
+                                                isFixedSize
+                                                uuid="description"
+                                                isDisabled={props.progress}
+                                                //onKeyUp={props.keyHandler}
+                                                //onChange={props.formHandler}
                                                 value={props.description.text}
-                                                label={props.description.label}
-                                                multiline={props.description.multiline}
-                                                minRows={props.description.rows}
+                                                placeholder={props.description.label}
+                                                //multiline={props.description.multiline}
+                                                rows={props.description.rows}
                                             />
                                         }
                                     />
