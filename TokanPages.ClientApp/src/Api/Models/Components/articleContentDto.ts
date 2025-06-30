@@ -6,7 +6,8 @@ export interface ArticleContentDto {
     textSurname: string;
     textRegistered: string;
     textLanguage: string;
-    textReadTime: string;
+    textReadTime1: string;
+    textReadTime2: string;
     textPublished: string;
     textUpdated: string;
     textWritten: string;

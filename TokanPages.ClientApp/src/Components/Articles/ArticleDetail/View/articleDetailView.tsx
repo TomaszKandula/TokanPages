@@ -29,7 +29,6 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 }
 
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
-    const readTime = props.content.textReadTime.replace("{TIME}", props.articleReadTime);
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-tablet">
@@ -50,7 +49,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         <div className="my-4">
                             <div className="bulma-grid is-flex m-0">
                                 <p className="bulma-cell is-align-content-center is-size-6">
-                                    {props.content.textLanguage}&nbsp;
+                                    {props.content.textLanguage}
                                 </p>
                                     <RenderImage
                                         base={GET_FLAG_URL}
@@ -60,9 +59,14 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                         className="article-details-flag is-flex is-align-self-center"
                                     />
                             </div>
-                            <p className="is-size-6">
-                                {readTime}
-                            </p>
+                            <div className="bulma-grid is-flex m-0">
+                                <p className="is-size-6">
+                                    {props.content.textReadTime1}
+                                </p>
+                                <p className="is-size-6">
+                                    {props.articleReadTime} {props.content.textReadTime2}
+                                </p>
+                            </div>
                             <div className="bulma-grid is-flex m-0">
                                 <p className="is-size-6">
                                     {props.content.textPublished}
