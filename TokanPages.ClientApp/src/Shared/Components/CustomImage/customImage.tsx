@@ -4,7 +4,7 @@ import validate from "validate.js";
 interface RenderImageProps {
     base: string;
     source: string;
-    className: string;
+    className?: string;
     width?: number;
     height?: number;
     alt?: string;
@@ -13,7 +13,7 @@ interface RenderImageProps {
 
 export const RenderImage = (props: RenderImageProps): React.ReactElement | null => {
     let className = props.className;
-    if (props.className !== "" && !props.className.includes("lazyloaded")) {
+    if (props.className && props.className !== "" && !props.className.includes("lazyloaded")) {
         className = `${className} lazyloaded`;
     }
 
