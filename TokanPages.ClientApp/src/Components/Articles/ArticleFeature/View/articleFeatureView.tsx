@@ -1,19 +1,10 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
-import Card from "@material-ui/core/Card";
-import Skeleton from "@material-ui/lab/Skeleton";
-import { CardMedia } from "@material-ui/core";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { Animated } from "../../../../Shared/Components";
-import { GetImageUrl } from "../../../../Shared/Services/Utilities";
+import { Animated, RenderImage } from "../../../../Shared/Components";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
 
@@ -28,17 +19,17 @@ interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
 const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
         return (
-            <Button variant="contained" endIcon={<ArrowRightAltIcon />} className="button">
-                {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
-            </Button>
+            <button className="bulma-button bulma-is-link bulma-is-light">
+                {props?.action?.text}
+            </button>
         );
     }
 
     return (
         <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
-            <Button variant="contained" endIcon={<ArrowRightAltIcon />} className="button">
-                {props?.isLoading ? <Skeleton variant="text" /> : props?.action?.text}
-            </Button>
+            <button className="bulma-button bulma-is-link bulma-is-light">
+                {props?.action?.text}
+            </button>
         </Link>
     );
 };
@@ -48,141 +39,91 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
     const features = data?.components?.sectionArticle;
     return (
         <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-super-wide">
-                <div className="pt-64 pb-96">
-                    <Animated dataAos="fade-down" className="text-centre mb-48">
-                        <Typography className="article-feature-caption">
-                            {data?.isLoading ? <Skeleton variant="text" /> : features?.caption.toUpperCase()}
-                        </Typography>
+            <div className="bulma-container">
+                <div className="py-6">
+                    <Animated dataAos="fade-down" className="">
+                        <p className="is-size-3	has-text-centered has-text-link">
+                            {features?.caption.toUpperCase()}
+                        </p>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <Grid container spacing={8}>
-                            <Grid item xs={12} md={6} className="article-feature-images-column">
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} md={8}>
-                                        <div className="article-feature-image-box">
-                                            <Card className="article-feature-card card-image" elevation={0}>
-                                                {data?.isLoading ? (
-                                                    <Skeleton variant="rect" height="256px" />
-                                                ) : (
-                                                    <CardMedia
-                                                        component="img"
-                                                        loading="lazy"
-                                                        title="Illustration"
-                                                        alt="An image illustrating listed features"
-                                                        className="article-feature-card-media-large lazyloaded"
-                                                        image={GetImageUrl({
-                                                            base: GET_ARTICLE_IMAGE_URL,
-                                                            name: features?.image1,
-                                                        })}
+                        <div className="bulma-columns bulma-is-3 is-flex-direction-row p-6">
+                            <div className="bulma-column">
+                                <div className="bulma-columns bulma-is-3">
+                                    <div className="bulma-column bulma-is-three-quarters">
+                                        <div className="bulma-card article-feature-card-shadow">
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_ARTICLE_IMAGE_URL}
+                                                        source={features?.image1}
+                                                        className="article-feature-image article-feature-image-large"
                                                     />
-                                                )}
-                                            </Card>
+                                                </figure>
+                                            </div>
                                         </div>
-                                    </Grid>
-                                    <Grid item xs={12} md={4}>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12} className="article-feature-empty-card-container">
-                                                <Card className="article-feature-empty-card" elevation={0}></Card>
-                                            </Grid>
-                                            <Grid item xs={12}>
-                                                <Card className="card-image">
-                                                    {data?.isLoading ? (
-                                                        <Skeleton variant="rect" height="256px" />
-                                                    ) : (
-                                                        <CardMedia
-                                                            component="img"
-                                                            loading="lazy"
-                                                            title="Illustration"
-                                                            alt="An image illustrating listed features"
-                                                            className="article-feature-card-media lazyloaded"
-                                                            image={GetImageUrl({
-                                                                base: GET_ARTICLE_IMAGE_URL,
-                                                                name: features?.image2,
-                                                            })}
-                                                        />
-                                                    )}
-                                                </Card>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} md={4}>
-                                        <Grid container spacing={2}>
-                                            <Grid item xs={12}>
-                                                <Card className="card-image" elevation={0}>
-                                                    {data?.isLoading ? (
-                                                        <Skeleton variant="rect" height="256px" />
-                                                    ) : (
-                                                        <CardMedia
-                                                            component="img"
-                                                            loading="lazy"
-                                                            title="Illustration"
-                                                            alt="An image illustrating listed features"
-                                                            className="article-feature-card-media lazyloaded"
-                                                            image={GetImageUrl({
-                                                                base: GET_ARTICLE_IMAGE_URL,
-                                                                name: features?.image3,
-                                                            })}
-                                                        />
-                                                    )}
-                                                </Card>
-                                            </Grid>
-                                            <Grid item xs={12} className="article-feature-empty-card-container">
-                                                <Card className="article-feature-empty-card" elevation={0}></Card>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item xs={12} md={8}>
-                                        <div className="article-feature-image-box">
-                                            <Card className="article-feature-card card-image" elevation={0}>
-                                                {data?.isLoading ? (
-                                                    <Skeleton variant="rect" height="256px" />
-                                                ) : (
-                                                    <CardMedia
-                                                        component="img"
-                                                        loading="lazy"
-                                                        title="Illustration"
-                                                        alt="An image illustrating listed features"
-                                                        className="article-feature-card-media-large lazyloaded"
-                                                        image={GetImageUrl({
-                                                            base: GET_ARTICLE_IMAGE_URL,
-                                                            name: features?.image4,
-                                                        })}
+                                    </div>
+                                    <div className="bulma-column is-flex is-align-self-flex-end">
+                                        <div className="bulma-card article-feature-card-shadow">
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_ARTICLE_IMAGE_URL}
+                                                        source={features?.image2}
+                                                        className="article-feature-image article-feature-image-small"
                                                     />
-                                                )}
-                                            </Card>
+                                                </figure>
+                                            </div>
                                         </div>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item xs={12} md={6} className="article-feature-content-container">
-                                <div className="article-feature-content-box">
-                                    <h2 className="article-feature-title">
-                                        {data?.isLoading ? <Skeleton variant="text" /> : features?.title}
-                                    </h2>
-                                    <div className="article-feature-description mt-15">
-                                        {data?.isLoading ? <Skeleton variant="text" /> : <p>{features?.description}</p>}
-                                    </div>
-                                    <div className="article-feature-description mb-32">
-                                        {data?.isLoading ? <Skeleton variant="text" /> : <p>{features?.text}</p>}
-                                    </div>
-                                    <div className="text-left">
-                                        {data?.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="25px" />
-                                        ) : (
-                                            <ActiveButton isLoading={data?.isLoading} {...features} />
-                                        )}
                                     </div>
                                 </div>
-                            </Grid>
-                        </Grid>
+                                <div className="bulma-columns bulma-is-3">
+                                    <div className="bulma-column is-flex is-align-self-flex-start">
+                                        <div className="bulma-card article-feature-card-shadow">
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_ARTICLE_IMAGE_URL}
+                                                        source={features?.image3}
+                                                        className="article-feature-image article-feature-image-small"
+                                                    />
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="bulma-column bulma-is-three-quarters">
+                                        <div className="bulma-card article-feature-card-shadow">
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_ARTICLE_IMAGE_URL}
+                                                        source={features?.image4}
+                                                        className="article-feature-image article-feature-image-large"
+                                                    />
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bulma-column is-align-self-center p-6">
+                                <h2 className="is-size-3 py-5 has-text-black">
+                                    {features?.title}
+                                </h2>
+                                <p className="is-size-5 py-3 has-text-grey line-height-18">
+                                    {features?.description}
+                                </p>
+                                <p className="is-size-5 py-3 has-text-grey line-height-18">
+                                    {features?.text}
+                                </p>
+                                <div className="has-text-left py-5">
+                                    <ActiveButton isLoading={data?.isLoading} {...features} />
+                                </div>
+                            </div>
+                        </div>
                     </Animated>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
