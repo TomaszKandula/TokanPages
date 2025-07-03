@@ -2,7 +2,6 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon } from "../../../Shared/Components";
-import "./technologiesView.css";
 
 interface TechnologiesViewProps {
     background?: string;
