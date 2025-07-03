@@ -23,7 +23,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                         </p>
                     </Animated>
                     <div className="bulma-columns p-6">
-                        <div className="bulma-column">
+                        <div className="bulma-column is-clickable">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <div className="bulma-card">
                                     <div className="bulma-card-image">
@@ -48,7 +48,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                 </div>
                             </Animated>
                         </div>
-                        <div className="bulma-column">
+                        <div className="bulma-column is-clickable">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <div className="bulma-card">
                                     <div className="bulma-card-image">
@@ -73,7 +73,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                 </div>
                             </Animated>
                         </div>
-                        <div className="bulma-column">
+                        <div className="bulma-column is-clickable">
                             <Animated dataAos="fade-up" dataAosDelay={550}>
                                 <div className="bulma-card">
                                     <div className="bulma-card-image">
