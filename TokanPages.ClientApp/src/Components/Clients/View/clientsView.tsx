@@ -1,13 +1,10 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import Skeleton from "@material-ui/lab/Skeleton";
-import { Container, Typography } from "@material-ui/core";
 import { ApplicationState } from "../../../Store/Configuration";
 import { GET_ICONS_URL } from "../../../Api";
 import { ClientImageDto, ClientsContentDto } from "../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
-import "./clientsView.css";
 
 interface ClientsViewProps {
     background?: string;
@@ -16,9 +13,9 @@ interface ClientsViewProps {
 const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
     if (!Validate.isEmpty(props?.caption)) {
         return (
-            <div className="mt-48 mb-64">
-                <Typography className="clients-caption">{props?.caption?.toUpperCase()}</Typography>
-            </div>
+            <p className="is-size-3	has-text-centered has-text-link">
+                {props?.caption?.toUpperCase()}
+            </p>
         );
     }
 
@@ -28,9 +25,9 @@ const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
 const RenderImages = (props: ClientsContentDto): React.ReactElement => {
     const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
     return (
-        <div className="clients-render-images mt-15 mb-64">
+        <div className="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center">
             {props?.images?.map((item: ClientImageDto, _index: number) => (
-                <div className="clients-logo" key={uuidv4()}>
+                <div className="p-6" key={uuidv4()}>
                     <img
                         src={getImagePath(item.path)}
                         loading="lazy"
@@ -53,10 +50,12 @@ export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
     return (
         <>
             <section className={`clients-section ${props.background ?? ""}`}>
-                <Container maxWidth="lg">
-                    {data?.isLoading ? <Skeleton variant="text" /> : <RenderCaption {...clients} />}
-                    {data?.isLoading ? <Skeleton variant="rect" height="48px" /> : <RenderImages {...clients} />}
-                </Container>
+                <div className="bulma-container">
+                    <div className="py-6">
+                        <RenderCaption {...clients} />
+                        <RenderImages {...clients} />
+                    </div>
+                </div>
             </section>
         </>
     );
