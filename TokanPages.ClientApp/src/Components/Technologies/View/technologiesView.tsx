@@ -21,7 +21,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                         </p>
                     </Animated>
                     <div className="p-6">
-                        <div className="bulma-columns ">
+                        <div className="bulma-columns">
                             <div className="bulma-column">
                                 <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">
                                     <Icon name="CodeBraces" size={1.2} className="has-text-link is-flex is-align-self-center mr-2" />
