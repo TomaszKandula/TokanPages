@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import { GET_IMAGES_URL } from "../../../Api";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
+import { useDimensions } from "../../../Shared/Hooks";
 import { Link } from "../../../Shared/Components";
 import Validate from "validate.js";
 import "./headerView.css";
 
 interface HeaderViewProps {
-    background?: string;
+    className?: string;
 }
 
 interface RenderPictureProps {
@@ -18,13 +19,16 @@ interface RenderPictureProps {
 
 interface ButtonProps extends HeaderContentDto {
     isLoading: boolean;
+    isMobile: boolean;
 }
 
 const TertiaryButton = (props: ButtonProps): React.ReactElement => {
-    const baseClass = "bulma-button bulma-is-light header-button-tertiary";
+    const baseClass = "bulma-button bulma-is-light mr-2";
+    const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
+
     return (
         <Link to={props?.tertiaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.tertiaryButton?.text}
             </button>
         </Link>
@@ -32,10 +36,12 @@ const TertiaryButton = (props: ButtonProps): React.ReactElement => {
 };
 
 const SecondaryButton = (props: ButtonProps): React.ReactElement => {
-    const baseClass = "bulma-button bulma-is-light header-button-secondary";
+    const baseClass = "bulma-button bulma-is-light mr-2";
+    const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
+
     return (
         <Link to={props?.secondaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.secondaryButton?.text}
             </button>
         </Link>
@@ -43,11 +49,12 @@ const SecondaryButton = (props: ButtonProps): React.ReactElement => {
 };
 
 const PrimaryButton = (props: ButtonProps): React.ReactElement => {
-    const baseClass = "bulma-button bulma-is-link bulma-is-light header-button-primary";
+    const baseClass = "bulma-button bulma-is-link bulma-is-light mr-2";
+    const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
 
     if (Validate.isEmpty(props?.primaryButton?.href)) {
         return (
-            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.primaryButton?.text}
             </button>
         );
@@ -55,7 +62,7 @@ const PrimaryButton = (props: ButtonProps): React.ReactElement => {
 
     return (
         <Link to={props?.primaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
                 {props?.primaryButton?.text}
             </button>
         </Link>
@@ -97,12 +104,13 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
 };
 
 export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.layoutHeader;
     const isLoading = data?.isLoading;
 
     return (
-        <section className={`section margin-top-60 ${props.background ?? ""}`}>
+        <section className={`section mt-6 ${props.className ?? ""}`}>
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">
@@ -113,19 +121,19 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                             <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
                                 {header?.caption}
                             </h1>
-                            <h2 className={`has-text-weight-medium has-text-grey-dark is-size-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <h2 className={`has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
                                 {header?.subtitle}
                             </h2>
-                            <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <h3 className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
                                 {header?.description}
                             </h3>
-                            <h3 className={`has-text-weight-light is-size-5 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <h3 className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
                                 {header?.hint}
                             </h3>
-                            <div className="header-button-box mt-32">
-                                <PrimaryButton {...header} isLoading={isLoading} />
-                                <SecondaryButton {...header} isLoading={isLoading} />
-                                <TertiaryButton {...header} isLoading={isLoading} />
+                            <div className="pt-4">
+                                <PrimaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                <SecondaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                <TertiaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
                             </div>
                         </div>
                     </div>
