@@ -1,7 +1,6 @@
 import * as React from "react";
-import { IconButton } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import "../../../../Shared/Components/Collapsible/View/collapsibleStyle.css";
+import { Icon, IconButton } from "../../../../Shared/Components";
 
 interface CollapsibleViewProps {
     isOpen?: boolean;
@@ -13,7 +12,7 @@ interface CollapsibleViewProps {
 
 export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement => {
     return (
-        <>
+        <div className="is-flex is-flex-direction-column is-align-items-center">
             <div className="collapsible-transition" style={{ height: props.height }}>
                 <div className="collapsible-content" ref={props.reference}>
                     <div
@@ -28,11 +27,9 @@ export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement
             <IconButton
                 className={props.isOpen ? "collapsible-expand collapsible-expand-open" : "collapsible-expand"}
                 onClick={props.clickHandler}
-                aria-expanded={props.isOpen}
-                aria-label="show more"
             >
-                <ExpandMoreIcon />
+                <Icon name="ChevronDown" size={1.0} className="has-text-grey" />
             </IconButton>
-        </>
+        </div>
     );
 };
