@@ -1,274 +1,159 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
 import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, Icon } from "../../../Shared/Components";
-import { GetImageUrl } from "../../../Shared/Services/Utilities";
+import { Animated, Icon, Link, RenderImage } from "../../../Shared/Components";
 import "./socialsView.css";
 
 interface SocialsViewProps {
     className?: string;
 }
 
-interface RenderSkeletonOrElementProps extends SocialsViewProps {
-    isLoading: boolean;
-    className?: string;
-    variant: "rect" | "text";
-    object: React.ReactElement | string;
-}
-
-const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.ReactElement => {
-    return props.isLoading ? <Skeleton variant={props.variant} className={props.className} /> : <>{props.object}</>;
-};
-
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const isLoading = data?.isLoading;
     const socials = data?.components?.sectionSocials;
 
     return (
         <section className={`section ${props.className ?? ""}`}>
-            <Container className="container-super-wide">
-                <div className="text-centre pt-64 pb-40">
+            <div className="bulma-container">
+                <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <Typography className="socials-caption-text">
-                            <RenderSkeletonOrElement
-                                isLoading={isLoading}
-                                variant="text"
-                                object={socials?.caption?.toUpperCase()}
-                            />
-                        </Typography>
+                        <p className="is-size-3	has-text-centered has-text-link">
+                            {socials?.caption?.toUpperCase()}
+                        </p>
                     </Animated>
-                </div>
-
-                <div className="text-centre pb-120">
-                    <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} className="socials-card-holder">
-                            <Animated dataAos="fade-up" dataAosDelay={350}>
-                                <Card elevation={0} className="card">
-                                    <CardActionArea
-                                        href={socials?.social1?.action?.href}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        <CardMedia
-                                            component="img"
-                                            loading="lazy"
-                                            image={GetImageUrl({
-                                                base: GET_SOCIALS_URL,
-                                                name: socials?.social1?.images?.header,
-                                            })}
-                                            className="socials-card-media lazyloaded"
-                                            title="Illustration"
-                                            alt={socials?.social1?.textTitle}
-                                        />
-                                        <RenderSkeletonOrElement
-                                            isLoading={isLoading}
-                                            variant="rect"
-                                            object={
-                                                <div className="socials-card-image-holder">
-                                                    <CardMedia
-                                                        image={GetImageUrl({
-                                                            base: GET_SOCIALS_URL,
-                                                            name: socials?.social1?.images?.avatar,
-                                                        })}
-                                                        component="img"
-                                                        loading="lazy"
-                                                        className="socials-card-image lazyloaded"
-                                                        title="Socials"
+                    <div className="p-6">
+                        <div className="bulma-columns">
+                            <div className="bulma-column is-clickable">
+                                <Animated dataAos="fade-up" dataAosDelay={350}>
+                                    <div className="bulma-card">
+                                        <Link to={socials?.social1?.action?.href}>
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_SOCIALS_URL}
+                                                        source={socials?.social1?.images?.header}
+                                                        className="socials-image"
+                                                        title="Illustration"
                                                         alt={socials?.social1?.textTitle}
                                                     />
+                                                </figure>
+                                            </div>
+                                            <div className="socials-card-image-holder">
+                                                <RenderImage
+                                                    base={GET_SOCIALS_URL}
+                                                    source={socials?.social1?.images?.avatar}
+                                                    className="socials-avatar"
+                                                    title="Socials"
+                                                    alt={socials?.social1?.textTitle}
+                                                />
+                                            </div>
+                                            <div className="bulma-card-content">
+                                                <div className="has-text-centered pt-6">
+                                                    <Icon name={socials?.social1?.images?.icon} size={2} />
                                                 </div>
-                                            }
-                                            className="socials-card-image"
-                                        />
-                                        <CardContent className="socials-card-content">
-                                            <div className="socials-card-icon-holder">
-                                                <Icon
-                                                    name={socials?.social1?.images?.icon}
-                                                    size={2}
-                                                    className="socials-card-icon"
-                                                />
+                                                <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social1?.textTitle}
+                                                </div>
+                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                    {socials?.social1?.textSubtitle}
+                                                </h3>
+                                                <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social1?.textComment}
+                                                </h4>
                                             </div>
-                                            <div className="socials-card-title">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social1?.textTitle}
-                                                />
-                                            </div>
-                                            <h3 className="socials-card-subheader">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social1?.textSubtitle}
-                                                />
-                                            </h3>
-                                            <h4 className="socials-card-subtext">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social1?.textComment}
-                                                />
-                                            </h4>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Animated>
-                        </Grid>
-
-                        <Grid item xs={12} md={4} className="socials-card-holder">
-                            <Animated dataAos="fade-up" dataAosDelay={150}>
-                                <Card elevation={3} className="card">
-                                    <CardActionArea
-                                        href={socials?.social2?.action?.href}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        <CardMedia
-                                            component="img"
-                                            loading="lazy"
-                                            image={GetImageUrl({
-                                                base: GET_SOCIALS_URL,
-                                                name: socials?.social2?.images?.header,
-                                            })}
-                                            className="socials-card-media lazyloaded"
-                                            title="Illustration"
-                                            alt={socials?.social2?.textTitle}
-                                        />
-                                        <RenderSkeletonOrElement
-                                            isLoading={isLoading}
-                                            variant="rect"
-                                            object={
-                                                <div className="socials-card-image-holder">
-                                                    <CardMedia
-                                                        image={GetImageUrl({
-                                                            base: GET_SOCIALS_URL,
-                                                            name: socials?.social2?.images?.avatar,
-                                                        })}
-                                                        component="img"
-                                                        loading="lazy"
-                                                        className="socials-card-image lazyloaded"
-                                                        title="Socials"
+                                        </Link>
+                                    </div>
+                                </Animated>
+                            </div>
+                            <div className="bulma-column is-clickable">
+                                <Animated dataAos="fade-up" dataAosDelay={150}>
+                                    <div className="bulma-card">
+                                        <Link to={socials?.social2?.action?.href}>
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_SOCIALS_URL}
+                                                        source={socials?.social2?.images?.header}
+                                                        className="socials-image"
+                                                        title="Illustration"
                                                         alt={socials?.social2?.textTitle}
                                                     />
+                                                </figure>
+                                            </div>
+                                            <div className="socials-card-image-holder">
+                                                <RenderImage
+                                                    base={GET_SOCIALS_URL}
+                                                    source={socials?.social2?.images?.avatar}
+                                                    className="socials-avatar"
+                                                    title="Socials"
+                                                    alt={socials?.social2?.textTitle}
+                                                />
+                                            </div>
+                                            <div className="bulma-card-content">
+                                                <div className="has-text-centered pt-6">
+                                                    <Icon name={socials?.social2?.images?.icon} size={2} />
                                                 </div>
-                                            }
-                                            className="socials-card-image"
-                                        />
-                                        <CardContent className="socials-card-content">
-                                            <div className="socials-card-icon-holder">
-                                                <Icon
-                                                    name={socials?.social2?.images?.icon}
-                                                    size={2}
-                                                    className="socials-card-icon"
-                                                />
+                                                <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social2?.textTitle}
+                                                </div>
+                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                    {socials?.social2?.textSubtitle}
+                                                </h3>
+                                                <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social2?.textComment}
+                                                </h4>
                                             </div>
-                                            <div className="socials-card-title">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social2?.textTitle}
-                                                />
-                                            </div>
-                                            <h3 className="socials-card-subheader">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social2?.textSubtitle}
-                                                />
-                                            </h3>
-                                            <h4 className="socials-card-subtext">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social2?.textComment}
-                                                />
-                                            </h4>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Animated>
-                        </Grid>
-
-                        <Grid item xs={12} md={4} className="socials-card-holder">
-                            <Animated dataAos="fade-up" dataAosDelay={250}>
-                                <Card elevation={3} className="card">
-                                    <CardActionArea
-                                        href={socials?.social3?.action?.href}
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        <CardMedia
-                                            component="img"
-                                            loading="lazy"
-                                            image={GetImageUrl({
-                                                base: GET_SOCIALS_URL,
-                                                name: socials?.social3?.images?.header,
-                                            })}
-                                            className="socials-card-media lazyloaded"
-                                            title="Illustration"
-                                            alt={socials?.social3?.textTitle}
-                                        />
-                                        <RenderSkeletonOrElement
-                                            isLoading={isLoading}
-                                            variant="rect"
-                                            object={
-                                                <div className="socials-card-image-holder">
-                                                    <CardMedia
-                                                        image={GetImageUrl({
-                                                            base: GET_SOCIALS_URL,
-                                                            name: socials?.social3?.images?.avatar,
-                                                        })}
-                                                        component="img"
-                                                        loading="lazy"
-                                                        className="socials-card-image lazyloaded"
-                                                        title="Socials"
+                                        </Link>
+                                    </div>
+                                </Animated>
+                            </div>
+                            <div className="bulma-column is-clickable">
+                                <Animated dataAos="fade-up" dataAosDelay={250}>
+                                    <div className="bulma-card">
+                                        <Link to={socials?.social3?.action?.href}>
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <RenderImage
+                                                        base={GET_SOCIALS_URL}
+                                                        source={socials?.social3?.images?.header}
+                                                        className="socials-image"
+                                                        title="Illustration"
                                                         alt={socials?.social3?.textTitle}
                                                     />
+                                                </figure>
+                                            </div>
+                                            <div className="socials-card-image-holder">
+                                                <RenderImage
+                                                    base={GET_SOCIALS_URL}
+                                                    source={socials?.social3?.images?.avatar}
+                                                    className="socials-avatar"
+                                                    title="Socials"
+                                                    alt={socials?.social3?.textTitle}
+                                                />
+                                            </div>
+                                            <div className="bulma-card-content">
+                                                <div className="has-text-centered pt-6">
+                                                    <Icon name={socials?.social3?.images?.icon} size={2} />
                                                 </div>
-                                            }
-                                            className="socials-card-image"
-                                        />
-                                        <CardContent className="socials-card-content">
-                                            <div className="socials-card-icon-holder">
-                                                <Icon
-                                                    name={socials?.social3?.images?.icon}
-                                                    size={2}
-                                                    className="socials-card-icon"
-                                                />
+                                                <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social3?.textTitle}
+                                                </div>
+                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                    {socials?.social3?.textSubtitle}
+                                                </h3>
+                                                <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social3?.textComment}
+                                                </h4>
                                             </div>
-                                            <div className="socials-card-title">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social3?.textTitle}
-                                                />
-                                            </div>
-                                            <h3 className="socials-card-subheader">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social3?.textSubtitle}
-                                                />
-                                            </h3>
-                                            <h4 className="socials-card-subtext">
-                                                <RenderSkeletonOrElement
-                                                    isLoading={isLoading}
-                                                    variant="text"
-                                                    object={socials?.social3?.textComment}
-                                                />
-                                            </h4>
-                                        </CardContent>
-                                    </CardActionArea>
-                                </Card>
-                            </Animated>
-                        </Grid>
-                    </Grid>
+                                        </Link>
+                                    </div>
+                                </Animated>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
