@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, RenderImage } from "../../../Shared/Components";
+import { Animated, Link, RenderImage } from "../../../Shared/Components";
 import "./featuredView.css";
 
 interface FeaturedViewProps {
@@ -25,77 +25,83 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                     <div className="bulma-columns p-6">
                         <div className="bulma-column is-clickable">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
-                                <div className="bulma-card">
-                                    <div className="bulma-card-image">
-                                        <figure className="bulma-image">
-                                            <RenderImage
-                                                base={GET_FEATURED_IMAGE_URL}
-                                                source={featured?.image1}
-                                                className="featured-card-image"
-                                                title="Illustration"
-                                                alt={featured?.title1}
-                                            />
-                                        </figure>
+                                <Link to={featured?.link1}>
+                                    <div className="bulma-card">
+                                        <div className="bulma-card-image">
+                                            <figure className="bulma-image">
+                                                <RenderImage
+                                                    base={GET_FEATURED_IMAGE_URL}
+                                                    source={featured?.image1}
+                                                    className="featured-card-image"
+                                                    title="Illustration"
+                                                    alt={featured?.title1}
+                                                />
+                                            </figure>
+                                        </div>
+                                        <div className="bulma-card-content py-6">
+                                            <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                {featured?.title1}
+                                            </h2>
+                                            <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                {featured?.subtitle1}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="bulma-card-content py-6">
-                                        <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
-                                            {featured?.title1}
-                                        </h2>
-                                        <p className="is-size-5 has-text-grey-light has-text-centered">
-                                            {featured?.subtitle1}
-                                        </p>
-                                    </div>
-                                </div>
+                                </Link>
                             </Animated>
                         </div>
                         <div className="bulma-column is-clickable">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
-                                <div className="bulma-card">
-                                    <div className="bulma-card-image">
-                                        <figure className="bulma-image">
-                                            <RenderImage
-                                                base={GET_FEATURED_IMAGE_URL}
-                                                source={featured?.image2}
-                                                className="featured-card-image"
-                                                title="Illustration"
-                                                alt={featured?.title2}
-                                            />
-                                        </figure>
+                                <Link to={featured?.link2}>
+                                    <div className="bulma-card">
+                                        <div className="bulma-card-image">
+                                            <figure className="bulma-image">
+                                                <RenderImage
+                                                    base={GET_FEATURED_IMAGE_URL}
+                                                    source={featured?.image2}
+                                                    className="featured-card-image"
+                                                    title="Illustration"
+                                                    alt={featured?.title2}
+                                                />
+                                            </figure>
+                                        </div>
+                                        <div className="bulma-card-content py-6">
+                                            <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                {featured?.title2}
+                                            </h2>
+                                            <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                {featured?.subtitle2}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="bulma-card-content py-6">
-                                        <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
-                                            {featured?.title2}
-                                        </h2>
-                                        <p className="is-size-5 has-text-grey-light has-text-centered">
-                                            {featured?.subtitle2}
-                                        </p>
-                                    </div>
-                                </div>
+                                </Link>
                             </Animated>
                         </div>
                         <div className="bulma-column is-clickable">
                             <Animated dataAos="fade-up" dataAosDelay={550}>
-                                <div className="bulma-card">
-                                    <div className="bulma-card-image">
-                                        <figure className="bulma-image">
-                                            <RenderImage
-                                                base={GET_FEATURED_IMAGE_URL}
-                                                source={featured?.image3}
-                                                className="featured-card-image"
-                                                title="Illustration"
-                                                alt={featured?.title3}
-                                            />
-                                        </figure>
+                                <Link to={featured?.link3}>
+                                    <div className="bulma-card">
+                                        <div className="bulma-card-image">
+                                            <figure className="bulma-image">
+                                                <RenderImage
+                                                    base={GET_FEATURED_IMAGE_URL}
+                                                    source={featured?.image3}
+                                                    className="featured-card-image"
+                                                    title="Illustration"
+                                                    alt={featured?.title3}
+                                                />
+                                            </figure>
+                                        </div>
+                                        <div className="bulma-card-content py-6">
+                                            <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                {featured?.title3}
+                                            </h2>
+                                            <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                {featured?.subtitle3}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="bulma-card-content py-6">
-                                        <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
-                                            {featured?.title3}
-                                        </h2>
-                                        <p className="is-size-5 has-text-grey-light has-text-centered">
-                                            {featured?.subtitle3}
-                                        </p>
-                                    </div>
-                                </div>
+                                </Link>
                             </Animated>
                         </div>
                     </div>
