@@ -41,7 +41,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container">
                 <div className="py-6">
-                    <Animated dataAos="fade-down" className="">
+                    <Animated dataAos="fade-down">
                         <p className="is-size-3	has-text-centered has-text-link">
                             {features?.caption.toUpperCase()}
                         </p>
