@@ -1,14 +1,7 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Skeleton from "@material-ui/lab/Skeleton";
 import { GET_TESTIMONIALS_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { Animated } from "../../../Shared/Components";
+import { Animated, RenderImage } from "../../../Shared/Components";
 import { Collapsible } from "../../../Shared/Components";
 import "./testimonialsView.css";
 
@@ -30,165 +23,97 @@ interface TestimonialsViewProps extends ViewProperties {
     background?: string;
 }
 
-interface RenderSkeletonOrElementProps extends TestimonialsViewProps {
-    className?: string;
-    variant: "rect" | "text";
-    object: React.ReactElement | string;
-}
-
-const RenderSkeletonOrElement = (props: RenderSkeletonOrElementProps): React.ReactElement => {
-    return props.isLoading ? <Skeleton variant={props.variant} className={props.className} /> : <>{props.object}</>;
-};
-
-export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => {
-    const imageUrl = (name: string) => {
-        if (name === "") return " ";
-        return `${GET_TESTIMONIALS_URL}/${name}`;
-    };
-
-    return (
+export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => (
         <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-super-wide">
-                <div className="text-centre pt-64 testimonials-bottom-padding">
+            <div className="bulma-container">
+                <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <Typography className="testimonials-caption-text">
-                            <RenderSkeletonOrElement {...props} variant="text" object={props.caption?.toUpperCase()} />
-                        </Typography>
+                        <p className="is-size-3	has-text-centered has-text-link">
+                            {props.caption?.toUpperCase()}
+                        </p>
                     </Animated>
-                </div>
-                <div className="text-centre pb-120">
-                    <Grid container spacing={6}>
-                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                    <div className="bulma-columns p-6">
+                        <div className="bulma-column">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
-                                <Card elevation={0} className="testimonials-card">
-                                    <RenderSkeletonOrElement
-                                        {...props}
-                                        variant="rect"
-                                        object={
-                                            <CardMedia
-                                                image={imageUrl(props.photo1)}
-                                                component="img"
-                                                loading="lazy"
-                                                className="testimonials-card-image lazyloaded"
-                                                title="Testimonials"
-                                                alt={`Picture of ${props.name1}`}
-                                            />
-                                        }
+                                <div className="bulma-card">
+                                    <RenderImage
+                                        base={GET_TESTIMONIALS_URL}
+                                        source={props.photo1}
                                         className="testimonials-card-image"
+                                        title="Testimonials"
+                                        alt={`Picture of ${props.name1}`}
                                     />
-                                    <CardContent className="testimonials-card-content">
-                                        <Typography className="testimonials-card-title">
-                                            <RenderSkeletonOrElement {...props} variant="text" object={props.name1} />
-                                        </Typography>
-                                        <Typography className="testimonials-card-subheader">
-                                            <RenderSkeletonOrElement
-                                                {...props}
-                                                variant="text"
-                                                object={props.occupation1}
-                                            />
-                                        </Typography>
+                                    <div className="bulma-card-content mt-6">
+                                        <p className="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4">
+                                            {props.name1}
+                                        </p>
+                                        <p className="is-size-6 has-text-centered has-text-link p-2">
+                                            {props.occupation1}
+                                        </p>
                                         <Collapsible minHeight={120}>
-                                            <h4 className="testimonials-card-text">
-                                                <RenderSkeletonOrElement
-                                                    {...props}
-                                                    variant="text"
-                                                    object={props.text1}
-                                                />
+                                            <h4 className="is-size-6 has-text-centered has-text-grey p-2 line-height-18">
+                                                {props.text1}
                                             </h4>
                                         </Collapsible>
-                                    </CardContent>
-                                </Card>
+                                    </div>
+                                </div>
                             </Animated>
-                        </Grid>
-
-                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                        </div>
+                        <div className="bulma-column">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
-                                <Card elevation={3} className="testimonials-card">
-                                    <RenderSkeletonOrElement
-                                        {...props}
-                                        variant="rect"
-                                        object={
-                                            <CardMedia
-                                                image={imageUrl(props.photo2)}
-                                                component="img"
-                                                loading="lazy"
-                                                className="testimonials-card-image lazyloaded"
-                                                title="Testimonials"
-                                                alt={`Picture of ${props.name2}`}
-                                            />
-                                        }
+                                <div className="bulma-card">
+                                    <RenderImage
+                                        base={GET_TESTIMONIALS_URL}
+                                        source={props.photo2}
                                         className="testimonials-card-image"
+                                        title="Testimonials"
+                                        alt={`Picture of ${props.name2}`}
                                     />
-                                    <CardContent className="testimonials-card-content">
-                                        <Typography className="testimonials-card-title">
-                                            <RenderSkeletonOrElement {...props} variant="text" object={props.name2} />
-                                        </Typography>
-                                        <Typography className="testimonials-card-subheader">
-                                            <RenderSkeletonOrElement
-                                                {...props}
-                                                variant="text"
-                                                object={props.occupation2}
-                                            />
-                                        </Typography>
+                                    <div className="bulma-card-content mt-6">
+                                        <p className="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4">
+                                            {props.name2}
+                                        </p>
+                                        <p className="is-size-6 has-text-centered has-text-link p-2">
+                                            {props.occupation2}
+                                        </p>
                                         <Collapsible minHeight={120}>
-                                            <h4 className="testimonials-card-text">
-                                                <RenderSkeletonOrElement
-                                                    {...props}
-                                                    variant="text"
-                                                    object={props.text2}
-                                                />
+                                            <h4 className="is-size-6 has-text-centered has-text-grey p-2 line-height-18">
+                                                {props.text2}
                                             </h4>
                                         </Collapsible>
-                                    </CardContent>
-                                </Card>
+                                    </div>
+                                </div>
                             </Animated>
-                        </Grid>
-
-                        <Grid item xs={12} md={4} className="testimonials-card-holder">
+                        </div>
+                        <div className="bulma-column">
                             <Animated dataAos="fade-up" dataAosDelay={250}>
-                                <Card elevation={3} className="testimonials-card">
-                                    <RenderSkeletonOrElement
-                                        {...props}
-                                        variant="rect"
-                                        object={
-                                            <CardMedia
-                                                image={imageUrl(props.photo3)}
-                                                component="img"
-                                                loading="lazy"
-                                                className="testimonials-card-image lazyloaded"
-                                                title="Testimonials"
-                                                alt={`Picture of ${props.name3}`}
-                                            />
-                                        }
+                                <div className="bulma-card">
+                                    <RenderImage
+                                        base={GET_TESTIMONIALS_URL}
+                                        source={props.photo3}
                                         className="testimonials-card-image"
+                                        title="Testimonials"
+                                        alt={`Picture of ${props.name3}`}
                                     />
-                                    <CardContent className="testimonials-card-content">
-                                        <Typography className="testimonials-card-title">
-                                            <RenderSkeletonOrElement {...props} variant="text" object={props.name3} />
-                                        </Typography>
-                                        <Typography className="testimonials-card-subheader">
-                                            <RenderSkeletonOrElement
-                                                {...props}
-                                                variant="text"
-                                                object={props.occupation3}
-                                            />
-                                        </Typography>
+                                    <div className="bulma-card-content mt-6">
+                                        <p className="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4">
+                                            {props.name3}
+                                        </p>
+                                        <p className="is-size-6 has-text-centered has-text-link p-2">
+                                            {props.occupation3}
+                                        </p>
                                         <Collapsible minHeight={120}>
-                                            <h4 className="testimonials-card-text">
-                                                <RenderSkeletonOrElement
-                                                    {...props}
-                                                    variant="text"
-                                                    object={props.text3}
-                                                />
+                                            <h4 className="is-size-6 has-text-centered has-text-grey p-2 line-height-18">
+                                                {props.text3}
                                             </h4>
                                         </Collapsible>
-                                    </CardContent>
-                                </Card>
+                                    </div>
+                                </div>
                             </Animated>
-                        </Grid>
-                    </Grid>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
-};
+
