@@ -6,13 +6,15 @@ interface IconButtonProps {
     size?: number;
     children: React.ReactElement | React.ReactElement[];
     hasNoHoverEffect?: boolean;
+    className?: string;
     onClick?: (event: ReactMouseEvent) => void;
     onMouseDown?: (event: ReactMouseEvent) => void;
 }
 
 export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const size = props.size ?? 48;
-    const className = props.hasNoHoverEffect ? "icon-button-no-hover" : "icon-button";
+    const baseClassName = props.hasNoHoverEffect ? "icon-button-no-hover" : "icon-button";
+    const className = `${baseClassName} ${props.className ?? ""}`;
 
     return (
         <button 
