@@ -15,14 +15,14 @@ import { GetImageUrl } from "../../../Shared/Services/Utilities";
 import "./featuredView.css";
 
 interface FeaturedViewProps {
-    background?: string;
+    className?: string;
 }
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const featured = data?.components?.sectionFeatured;
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={`section ${props.className ?? ""}`}>
             <Container maxWidth="lg">
                 <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">

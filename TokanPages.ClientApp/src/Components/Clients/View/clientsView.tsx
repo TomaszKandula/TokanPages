@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 interface ClientsViewProps {
-    background?: string;
+    className?: string;
 }
 
 const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
@@ -49,7 +49,7 @@ export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
 
     return (
         <>
-            <section className={`clients-section ${props.background ?? ""}`}>
+            <section className={`clients-section ${props.className ?? ""}`}>
                 <div className="bulma-container">
                     <div className="py-6">
                         <RenderCaption {...clients} />

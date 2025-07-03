@@ -9,7 +9,7 @@ import Validate from "validate.js";
 import "./showcaseView.css";
 
 interface ShowcaseViewProps {
-    background?: string;
+    className?: string;
 }
 
 interface ActiveButtonProps extends FeatureShowcaseContentDto {
@@ -40,7 +40,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
     const showcase = data?.components?.sectionShowcase;
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={`section ${props.className ?? ""}`}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">

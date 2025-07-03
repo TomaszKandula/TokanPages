@@ -10,7 +10,7 @@ import { NewsletterSectionView } from "./View/newsletterSectionView";
 import Validate from "validate.js";
 
 interface NewsletterProps {
-    background?: string;
+    className?: string;
 }
 
 export const NewsletterSection = (props: NewsletterProps): React.ReactElement => {
@@ -105,7 +105,7 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
             progress={hasProgress}
             buttonText={newsletter?.button}
             labelEmail={newsletter?.labelEmail}
-            background={props.background}
+            background={props.className}
         />
     );
 };

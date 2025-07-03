@@ -9,7 +9,7 @@ import { GetImageUrl } from "../../../Shared/Services/Utilities";
 import "./socialsView.css";
 
 interface SocialsViewProps {
-    background?: string;
+    className?: string;
 }
 
 interface RenderSkeletonOrElementProps extends SocialsViewProps {
@@ -29,7 +29,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const socials = data?.components?.sectionSocials;
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={`section ${props.className ?? ""}`}>
             <Container className="container-super-wide">
                 <div className="text-centre pt-64 pb-40">
                     <Animated dataAos="fade-down">

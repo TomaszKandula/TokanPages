@@ -19,6 +19,7 @@ interface Properties {
     hasLegalInfo: boolean;
     icons: IconDto[];
     hasIcons: boolean;
+    className?: string;
 }
 
 const SetTermsLink = (props: Properties): React.ReactElement => (
@@ -35,7 +36,7 @@ const SetPolicyLink = (props: Properties): React.ReactElement => (
 
 export const FooterView = (props: Properties): React.ReactElement => {
     return (
-        <footer className="bulma-footer">
+        <footer className={`bulma-footer ${props.className ?? ""}`}>
             {props.isLoading 
             ? <ProgressBar size={32} /> 
             : <div className="bulma-content has-text-centered">
@@ -62,7 +63,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
                         aria-label={item.name}
                     >
                         <IconButton>
-                            <Icon name={item.name} size={1.5} className="" />
+                            <Icon name={item.name} size={1.5} />
                         </IconButton>
                     </Link>
                 ))}

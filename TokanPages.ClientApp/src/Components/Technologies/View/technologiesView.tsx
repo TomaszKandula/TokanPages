@@ -4,7 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon } from "../../../Shared/Components";
 
 interface TechnologiesViewProps {
-    background?: string;
+    className?: string;
 }
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
@@ -12,7 +12,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
     const technology = data?.components?.sectionTechnologies;
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={`section ${props.className ?? ""}`}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
