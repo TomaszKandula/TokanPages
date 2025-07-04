@@ -2,10 +2,11 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
+import { useDimensions } from "../../Shared/Hooks";
 import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IconType, OperationStatus } from "../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { ContactFormView } from "./View/contactFormView";
 import Validate from "validate.js";
 
@@ -15,7 +16,7 @@ const formDefault: ContactFormInput = {
     email: "",
     subject: "",
     message: "",
-    terms: false,
+    terms: true,
 };
 
 export interface ContactFormProps {
@@ -27,6 +28,7 @@ export interface ContactFormProps {
 }
 
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
@@ -40,6 +42,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState(formDefault);
+    const [message, setMessage] = React.useState({ message: "" });
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const clearForm = React.useCallback(() => {
@@ -63,7 +66,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                     emailFrom: form.email,
                     emailTos: [form.email],
                     subject: form.subject,
-                    message: form.message,
+                    message: message.message,
                 })
             );
 
@@ -73,6 +76,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         if (hasFinished) {
             clearForm();
             setForm(formDefault);
+            setMessage({ message: "" });
             dispatch(
                 ApplicationDialogAction.raise({
                     title: templates.forms.textContactForm,
@@ -81,7 +85,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                 })
             );
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, message, form]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -94,14 +98,16 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
 
     const formHandler = React.useCallback(
         (event: ReactChangeEvent) => {
-            if (event.currentTarget.name !== "terms") {
-                setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
-                return;
-            }
-
-            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.checked });
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
         [form]
+    );
+
+    const messageHandler = React.useCallback(
+        (event: ReactChangeTextEvent) => {
+            setMessage({ ...message, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [message]
     );
 
     const buttonHandler = React.useCallback(() => {
@@ -110,8 +116,8 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             lastName: form.lastName,
             email: form.email,
             subject: form.subject,
-            message: form.message,
-            terms: form.terms,
+            message: message.message,
+            terms: true,
         });
 
         if (!Validate.isDefined(result)) {
@@ -127,21 +133,22 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                 icon: IconType.warning,
             })
         );
-    }, [form, templates]);
+    }, [form, message, templates]);
 
     return (
         <ContactFormView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             caption={contactForm?.caption}
             text={contactForm?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
+            messageHandler={messageHandler}
             firstName={form.firstName}
             lastName={form.lastName}
             email={form.email}
             subject={form.subject}
-            message={form.message}
-            terms={form.terms}
+            message={message.message}
             buttonHandler={buttonHandler}
             progress={hasProgress}
             buttonText={contactForm?.button}
@@ -151,7 +158,6 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             labelEmail={contactForm?.labelEmail}
             labelSubject={contactForm?.labelSubject}
             labelMessage={contactForm?.labelMessage}
-            multiline={true}
             minRows={6}
             background={props.background}
             hasIcon={props.hasIcon}
