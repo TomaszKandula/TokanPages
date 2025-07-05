@@ -14,7 +14,7 @@ const defaultForm: SignupFormInput = {
     lastName: "",
     email: "",
     password: "",
-    terms: false,
+    terms: true,
     content: {
         emailInvalid: "",
         nameInvalid: "",
@@ -116,7 +116,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
             lastName: form.lastName,
             email: form.email,
             password: form.password,
-            terms: form.terms,
+            terms: true,
             content: {
                 emailInvalid: template.templates.password.emailInvalid,
                 nameInvalid: template.templates.password.nameInvalid,
