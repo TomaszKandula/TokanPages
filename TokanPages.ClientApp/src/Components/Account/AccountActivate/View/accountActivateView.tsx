@@ -26,7 +26,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-desktop">
-                <div className={!props.className ? "pt-0 pb-15" : props.className}>
+                <div className={!props.className ? "py-6" : props.className}>
                     {props.shouldFallback ? (
                         <CustomCard
                             isLoading={props.isLoading}

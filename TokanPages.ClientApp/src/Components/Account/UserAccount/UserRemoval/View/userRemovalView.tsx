@@ -31,7 +31,7 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-desktop">
-                <div className="pb-40">
+                <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
                             <p className="is-size-4 has-text-grey">

@@ -37,17 +37,17 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-tablet">
-                <div className={!props.className ? "pt-32 pb-80" : props.className}>
+                <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
                             <Skeleton isLoading={props.isLoading}>
-                                <div className="has-text-centered">
-                                    <Icon name="Account" size={3} className="account" />
+                                <div className="is-flex is-flex-direction-column is-align-items-center">
+                                    <Icon name="AccountCircle" size={3} className="has-text-link" />
                                     <p className="is-size-3 has-text-grey">
                                         {props.caption}
                                     </p>
                                 </div>
-                                <div className="mt-5 mb-6">
+                                <div className="my-5">
                                     <TextField
                                         required
                                         uuid="email"

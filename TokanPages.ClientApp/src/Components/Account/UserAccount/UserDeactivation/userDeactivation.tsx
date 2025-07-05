@@ -8,6 +8,7 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { UserDeactivationView } from "./View/userDeactivationView";
 
 export interface UserDeactivationProps {
+    className?: string;
     background?: string;
 }
 
@@ -84,6 +85,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
             buttonHandler={deactivateButtonHandler}
             progress={hasProgress}
             section={account.sectionAccountDeactivation}
+            className={props.className}
             background={props.background}
         />
     );

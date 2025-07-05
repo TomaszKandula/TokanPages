@@ -44,7 +44,7 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
     const boxPadding = props.isMobile ? "py-6 px-3" : "p-6";
-    const cardPadding = props.isMobile ? "py-3" : "px-6";
+    const cardPadding = props.isMobile ? "px-3" : "px-6";
     const colPadding = props.hasIcon ? "pt-5" : "";
 
     return (
@@ -64,7 +64,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                         <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
                             <div className="bulma-card-content background-colour-inherited">
                                 {props.hasIcon ? (
-                                    <div className="has-text-centered">
+                                    <div className="is-flex is-flex-direction-column is-align-items-center">
                                         <Icon name="CardAccountMail" size={3} className="has-text-link" />
                                         <p className="is-size-3 has-text-grey">{props.caption}</p>
                                     </div>

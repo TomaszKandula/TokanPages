@@ -10,6 +10,7 @@ import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
 
 export interface UserPasswordProps {
+    className?: string;
     background?: string;
 }
 
@@ -136,6 +137,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             sectionAccountPassword={account.sectionAccountPassword}
+            className={props.className}
             background={props.background}
         />
     );

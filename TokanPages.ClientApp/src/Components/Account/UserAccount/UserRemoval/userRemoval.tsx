@@ -15,6 +15,7 @@ import {
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export interface UserRemovalProps {
+    className?: string;
     background?: string;
 }
 
@@ -86,6 +87,7 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
             sectionAccountRemoval={account.sectionAccountRemoval}
+            className={props.className}
             background={props.background}
         />
     );

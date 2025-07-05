@@ -43,96 +43,94 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-tablet">
-                <div className={!props.className ? "pt-32 pb-80" : props.className}>
+                <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
                             <Skeleton isLoading={props.isLoading}>
-
-                            <div className="has-text-centered">
-                                <Icon name="Account" size={3} className="account" />
-                                <p className="is-size-3 has-text-grey">
-                                    {props.caption}
-                                </p>
-                            </div>
-
-                            <div className="mt-5 mb-5">
-                                <TextField
-                                    required
-                                    uuid="firstName"
-                                    autoComplete="one-time-code"
-                                    autoFocus={true}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.firstName}
-                                    placeholder={props.labelFirstName}
-                                    isDisabled={props.progress}
-                                    className="mb-3"
-                                />
-                                <TextField
-                                    required
-                                    uuid="lastName"
-                                    autoComplete="one-time-code"
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.lastName}
-                                    placeholder={props.labelLastName}
-                                    isDisabled={props.progress}
-                                    className="mb-3"
-                                />
-                                <TextField
-                                    required
-                                    uuid="email"
-                                    autoComplete="one-time-code"
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.email}
-                                    placeholder={props.labelEmail}
-                                    isDisabled={props.progress}
-                                    className="mb-3"
-                                />
-                                <TextFieldWithPassword
-                                    uuid="password"
-                                    value={props.password}
-                                    placeholder={props.labelPassword}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    isDisabled={props.progress}
-                                />
-                            </div>
-
-                            <article className="bulma-message bulma-is-info">
-                                <div className="bulma-message-header">
-                                    <p>{props.warning?.textPre}</p>
+                                <div className="is-flex is-flex-direction-column is-align-items-center">
+                                    <Icon name="AccountCircle" size={3} className="has-text-link" />
+                                    <p className="is-size-3 has-text-grey">
+                                        {props.caption}
+                                    </p>
                                 </div>
-                                <div className="bulma-message-body bulma-content">
-                                    <RenderList
-                                        list={props.warning?.textList}
-                                        className=""
+                                <div className="my-5">
+                                    <TextField
+                                        required
+                                        uuid="firstName"
+                                        autoComplete="one-time-code"
+                                        autoFocus={true}
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        value={props.firstName}
+                                        placeholder={props.labelFirstName}
+                                        isDisabled={props.progress}
+                                        className="mb-3"
                                     />
-                                    <RenderParagraphs
-                                        text={props.warning?.textPost}
-                                        className=""
+                                    <TextField
+                                        required
+                                        uuid="lastName"
+                                        autoComplete="one-time-code"
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        value={props.lastName}
+                                        placeholder={props.labelLastName}
+                                        isDisabled={props.progress}
+                                        className="mb-3"
                                     />
-                                    <a
-                                        href={props.warning?.textNist?.href}
-                                        target="_blank"
-                                        rel="noopener nofollow"
-                                    >
-                                        {props.warning?.textNist?.text}
-                                    </a>
+                                    <TextField
+                                        required
+                                        uuid="email"
+                                        autoComplete="one-time-code"
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        value={props.email}
+                                        placeholder={props.labelEmail}
+                                        isDisabled={props.progress}
+                                        className="mb-3"
+                                    />
+                                    <TextFieldWithPassword
+                                        uuid="password"
+                                        value={props.password}
+                                        placeholder={props.labelPassword}
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        isDisabled={props.progress}
+                                    />
                                 </div>
-                            </article>
-
-                            <div className="mb-5">
-                                <ActiveButton {...props} />
-                            </div>
-
-                            <div className="has-text-right">
-                                <RedirectTo path={props.link?.href} name={props.link?.text} />
-                            </div>
-
+                                <article className="bulma-message bulma-is-info">
+                                    <div className="bulma-message-header">
+                                        <p>{props.warning?.textPre}</p>
+                                    </div>
+                                    <div className="bulma-message-body bulma-content">
+                                        <RenderList
+                                            list={props.warning?.textList}
+                                            className=""
+                                        />
+                                        <RenderParagraphs
+                                            text={props.warning?.textPost}
+                                            className=""
+                                        />
+                                        <a
+                                            href={props.warning?.textNist?.href}
+                                            target="_blank"
+                                            rel="noopener nofollow"
+                                        >
+                                            {props.warning?.textNist?.text}
+                                        </a>
+                                    </div>
+                                </article>
+                                <div className="bulma-notification">
+                                    <p className="is-size-6">
+                                        {props.consent}
+                                    </p>
+                                </div>
+                                <div className="mb-5">
+                                    <ActiveButton {...props} />
+                                </div>
+                                <div className="has-text-right">
+                                    <RedirectTo path={props.link?.href} name={props.link?.text} />
+                                </div>
                             </Skeleton>
-
                         </div>
                     </div>
                 </div>

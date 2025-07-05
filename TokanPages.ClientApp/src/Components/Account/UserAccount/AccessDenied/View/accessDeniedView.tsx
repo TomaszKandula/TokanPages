@@ -14,7 +14,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-desktop">
-                <div className="pt-120 pb-64">
+                <div className="py-6">
                     <CustomCard
                         isLoading={props.isLoading}
                         caption={props.accessDeniedCaption}

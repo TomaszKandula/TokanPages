@@ -33,7 +33,7 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
     return (
         <section className={`section ${props.background ?? ""}`}>
             <div className="bulma-container bulma-is-max-desktop">
-                <div className={!props.className ? "pb-120" : props.className}>
+                <div className={!props.className ? "py-6" : props.className}>
                     <CustomCard
                         isLoading={props.isLoading}
                         caption={content.caption}
