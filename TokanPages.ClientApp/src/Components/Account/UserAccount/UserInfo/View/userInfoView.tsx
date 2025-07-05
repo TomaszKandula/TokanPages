@@ -2,10 +2,10 @@ import * as React from "react";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
-import { Backdrop, ProgressBar, TextField, UploadUserMedia } from "../../../../../Shared/Components";
+import { Backdrop, ProgressBar, TextArea, TextField, UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoProps } from "../userInfo";
 import "./userInfoView.css";
 
@@ -19,13 +19,14 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     formProgress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
+    descriptionHandler: (event: ReactChangeTextEvent) => void;
     switchHandler: (event: ReactChangeEvent) => void;
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
     userAbout?: {
-        multiline?: boolean;
         minRows?: number;
+        message: string;
     };
 }
 
@@ -78,7 +79,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
         <section className={`section ${props.background ?? ""}`}>
             <Backdrop isLoading={props.isRequestingVerification} />
             <div className="bulma-container bulma-is-max-desktop">
-                <div className="pt-120 pb-40">
+                <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
                             <p className="is-size-4 has-text-grey">
@@ -197,14 +198,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         </p>
                                     </div>
                                     <div className="bulma-column">
-                                        <TextField
+                                        <TextArea
                                             required
-                                            //multiline={props.userAbout?.multiline}
-                                            //minRows={props.userAbout?.minRows}
+                                            isFixedSize
+                                            rows={props.userAbout?.minRows}
                                             uuid="userAboutText"
-                                            value={props.accountForm?.userAboutText}
-                                            onKeyUp={() => {}}
-                                            onChange={props.formHandler}
+                                            value={props.userAbout?.message}
+                                            onChange={props.descriptionHandler}
                                         />
                                     </div>
                                 </div>
