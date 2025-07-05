@@ -62,6 +62,8 @@ const getIconSvgPath = (item: string | undefined): string => {
     return svg;
 };
 
+const baseClass = "is-flex is-align-self-center";
+
 export const Icon = (props: IconProps): React.ReactElement => { 
     if (props.name === "" || props.name === undefined) {
         return <></>;
@@ -71,6 +73,14 @@ export const Icon = (props: IconProps): React.ReactElement => {
         case "linkedin": return <LinkedinIcon size={props.size} onClick={props.onClick} />;
         case "github": return <GithubIcon size={props.size} onClick={props.onClick} />;
         case "instagram": return <InstgramIcon size={props.size} onClick={props.onClick} />;
-        default: return <div onClick={props.onClick}><MdiIcon path={getIconSvgPath(props.name)} size={props.size} className={props.className} color={props.colour} /></div>;
+        default: return (
+            <div onClick={props.onClick}>
+                <MdiIcon
+                    path={getIconSvgPath(props.name)}
+                    size={props.size}
+                    className={`${baseClass} ${props.className}`}
+                    color={props.colour} />
+            </div>
+        );
     }
 };
