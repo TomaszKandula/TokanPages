@@ -106,7 +106,6 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         </p>
                                         <TextArea
                                             required
-                                            fullWidth
                                             isFixedSize
                                             uuid="note"
                                             rows={16}

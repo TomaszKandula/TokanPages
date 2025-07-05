@@ -11,14 +11,14 @@ import {
 interface BaseProps {
     uuid: string;
     required?: boolean;
-    fullWidth?: boolean;
+    maxLength?: number;
     autoComplete?: string;
     autoFocus?: boolean;
     value: string | number | readonly string[] | undefined;
     placeholder?: string;
-    isDisabled?: boolean;
     colour?: TInputColours;
     size?: TInputSizes;
+    isDisabled?: boolean;
     isRounded?: boolean;
     isLoading?: boolean;
     isReadonly?: boolean;

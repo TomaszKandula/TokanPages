@@ -151,7 +151,6 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <div className="bulma-column">
                                         <TextField
                                             required
-                                            fullWidth
                                             uuid="firstName"
                                             value={props.accountForm?.firstName}
                                             onKeyUp={props.keyHandler}
@@ -168,7 +167,6 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <div className="bulma-column">
                                         <TextField
                                             required
-                                            fullWidth
                                             uuid="lastName"
                                             value={props.accountForm?.lastName}
                                             onKeyUp={props.keyHandler}
@@ -185,7 +183,6 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <div className="bulma-column">
                                         <TextField
                                             required
-                                            fullWidth
                                             uuid="email"
                                             value={props.accountForm?.email}
                                             onKeyUp={props.keyHandler}
@@ -202,7 +199,6 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <div className="bulma-column">
                                         <TextField
                                             required
-                                            fullWidth
                                             //multiline={props.userAbout?.multiline}
                                             //minRows={props.userAbout?.minRows}
                                             uuid="userAboutText"

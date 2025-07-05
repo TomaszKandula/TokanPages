@@ -18,7 +18,6 @@ export const TextFieldWithPassword = (props: TextFieldProps): React.ReactElement
         <TextFieldWithPasswordView
             className={props.className}
             uuid={props.uuid}
-            fullWidth={props.fullWidth}
             isDisabled={props.isDisabled}
             value={props.value}
             placeholder={props.placeholder ?? ""}

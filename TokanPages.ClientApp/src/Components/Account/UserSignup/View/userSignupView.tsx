@@ -58,7 +58,6 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                             <div className="mt-5 mb-5">
                                 <TextField
                                     required
-                                    fullWidth
                                     uuid="firstName"
                                     autoComplete="one-time-code"
                                     autoFocus={true}
@@ -71,7 +70,6 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                 />
                                 <TextField
                                     required
-                                    fullWidth
                                     uuid="lastName"
                                     autoComplete="one-time-code"
                                     onKeyUp={props.keyHandler}
@@ -83,7 +81,6 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                 />
                                 <TextField
                                     required
-                                    fullWidth
                                     uuid="email"
                                     autoComplete="one-time-code"
                                     onKeyUp={props.keyHandler}
@@ -95,7 +92,6 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                 />
                                 <TextFieldWithPassword
                                     uuid="password"
-                                    fullWidth={true}
                                     value={props.password}
                                     placeholder={props.labelPassword}
                                     onKeyUp={props.keyHandler}

@@ -16,6 +16,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
                 name={props.uuid}
                 type="text"
                 required={props.required}
+                maxLength={props.maxLength}
                 autoComplete={props.autoComplete}
                 autoFocus={props.autoFocus}
                 value={props.value}

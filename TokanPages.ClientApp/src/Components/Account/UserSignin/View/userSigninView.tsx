@@ -61,7 +61,6 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     />
                                     <TextFieldWithPassword
                                         uuid="password"
-                                        fullWidth={true}
                                         value={props.password}
                                         placeholder={props.labelPassword}
                                         onKeyUp={props.keyHandler}

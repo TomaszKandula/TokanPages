@@ -49,7 +49,6 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                     <TextFieldWithPassword
                                         className="pb-4"
                                         uuid="newPassword"
-                                        fullWidth={true}
                                         value={props.newPassword}
                                         placeholder={props.labelNewPassword}
                                         onKeyUp={props.keyHandler}
@@ -59,7 +58,6 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                     <TextFieldWithPassword
                                         className="pb-4"
                                         uuid="verifyPassword"
-                                        fullWidth={true}
                                         value={props.verifyPassword}
                                         placeholder={props.labelVerifyPassword}
                                         onKeyUp={props.keyHandler}

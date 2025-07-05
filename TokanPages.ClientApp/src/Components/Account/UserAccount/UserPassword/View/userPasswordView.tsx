@@ -43,7 +43,6 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="oldPassword"
-                                    fullWidth={true}
                                     value={props.oldPassword}
                                     onKeyUp={props.keyHandler}
                                     onChange={props.formHandler}
@@ -53,7 +52,6 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="newPassword"
-                                    fullWidth={true}
                                     value={props.newPassword}
                                     onKeyUp={props.keyHandler}
                                     onChange={props.formHandler}
@@ -63,7 +61,6 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="confirmPassword"
-                                    fullWidth={true}
                                     value={props.confirmPassword}
                                     onKeyUp={props.keyHandler}
                                     onChange={props.formHandler}
