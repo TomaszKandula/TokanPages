@@ -255,7 +255,6 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             saveButtonHandler={saveButtonHandler}
             messageForm={form}
             messageHandler={formHandler}
-            messageMultiline={true}
             background={props.background}
         />
     );

@@ -27,7 +27,6 @@ interface UserNotesViewProps {
     saveButtonHandler: () => void;
     messageForm: { note: string };
     messageHandler: (event: ReactChangeTextEvent) => void;
-    messageMultiline: boolean;
     background?: React.CSSProperties;
 }
 
@@ -49,10 +48,12 @@ interface RenderRowProps {
 }
 
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
+    const baseClass = "is-size-6 has-text-grey py-4 px-4 user-notes-text-selection";
     const highlightClass = props.selection === props.id ? "user-notes-highlight-row" : "";
+
     return (
         <div className={highlightClass} key={props.id}>
-            <p className="is-size-6 has-text-grey py-4 px-4 user-notes-text-selection" onClick={() => props.onClick(props.index)}>
+            <p className={baseClass} onClick={() => props.onClick(props.index)}>
                 {props.note}
             </p>
         </div>
@@ -70,7 +71,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
         <section>
             <Backdrop isLoading={props.hasProgress} />
             <div className="bulma-container bulma-is-max-desktop">
-                <div className="pt-120 pb-40">
+                <div className="py-6">
                     <div className="bulma-card">
                         <div className="bulma-card-content">
                             <p className="is-size-4 has-text-grey">

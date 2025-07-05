@@ -28,7 +28,6 @@ describe("test account group component: userNotesView", () => {
                     saveButtonHandler={jest.fn()}
                     messageForm={{ note: "" }}
                     messageHandler={jest.fn()}
-                    messageMultiline={false}
                 />
             </BrowserRouter>
         );
@@ -59,7 +58,6 @@ describe("test account group component: userNotesView", () => {
                     saveButtonHandler={jest.fn()}
                     messageForm={{ note: "" }}
                     messageHandler={jest.fn()}
-                    messageMultiline={false}
                 />
             </BrowserRouter>
         );
@@ -90,7 +88,6 @@ describe("test account group component: userNotesView", () => {
                     saveButtonHandler={jest.fn()}
                     messageForm={{ note: "" }}
                     messageHandler={jest.fn()}
-                    messageMultiline={false}
                 />
             </BrowserRouter>
         );
