@@ -19,7 +19,7 @@ import {
 } from "@material-ui/core";
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
 import { TextArea, TextField } from "../../../Shared/Components";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 import "./businessFormView.css";
@@ -30,6 +30,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     buttonText: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
+    descriptionHandler: (event: ReactChangeTextEvent) => void;
     buttonHandler: () => void;
     techHandler: (event: ReactChangeEvent, isChecked: boolean) => void;
     serviceHandler: (event: ReactMouseEvent) => void;
@@ -199,10 +200,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         element={
                                             <TextField
                                                 required
-                                                fullWidth
                                                 uuid="company"
                                                 isDisabled={props.progress}
-                                                //inputProps={{ maxLength: 255 }}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.companyText}
@@ -218,10 +218,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         element={
                                             <TextField
                                                 required
-                                                fullWidth
                                                 uuid="firstName"
                                                 isDisabled={props.progress}
-                                                //inputProps={{ maxLength: 255 }}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.firstNameText}
@@ -237,10 +236,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         element={
                                             <TextField
                                                 required
-                                                fullWidth
                                                 uuid="lastName"
                                                 isDisabled={props.progress}
-                                                //inputProps={{ maxLength: 255 }}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.lastNameText}
@@ -256,10 +254,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         element={
                                             <TextField
                                                 required
-                                                fullWidth
                                                 uuid="email"
                                                 isDisabled={props.progress}
-                                                //inputProps={{ maxLength: 255 }}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.emailText}
@@ -275,10 +272,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         element={
                                             <TextField
                                                 required
-                                                fullWidth
                                                 uuid="phone"
                                                 isDisabled={props.progress}
-                                                //inputProps={{ maxLength: 17 }}
+                                                maxLength={17}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.phoneText}
@@ -294,15 +290,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         element={
                                             <TextArea
                                                 required={props.description.required}
-                                                fullWidth
                                                 isFixedSize
                                                 uuid="description"
                                                 isDisabled={props.progress}
-                                                //onKeyUp={props.keyHandler}
-                                                //onChange={props.formHandler}
+                                                onChange={props.descriptionHandler}
                                                 value={props.description.text}
                                                 placeholder={props.description.label}
-                                                //multiline={props.description.multiline}
                                                 rows={props.description.rows}
                                             />
                                         }

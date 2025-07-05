@@ -16,6 +16,7 @@ describe("test component: businessFormView", () => {
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}
                     buttonHandler={jest.fn()}
+                    descriptionHandler={jest.fn()}
                     techHandler={jest.fn()}
                     serviceHandler={jest.fn()}
                     serviceSelection={["ABC", "CDE"]}
@@ -45,7 +46,6 @@ describe("test component: businessFormView", () => {
                     description={{
                         text: "",
                         label: "",
-                        multiline: false,
                         rows: 0,
                         required: true,
                     }}
