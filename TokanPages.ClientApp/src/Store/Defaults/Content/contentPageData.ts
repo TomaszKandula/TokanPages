@@ -161,7 +161,6 @@ export const ContentPageData: ContentPageDataState = {
             techItems: [],
             description: {
                 label: "",
-                multiline: false,
                 rows: 0,
                 required: false,
             },
