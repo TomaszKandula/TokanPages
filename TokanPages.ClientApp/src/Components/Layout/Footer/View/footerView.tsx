@@ -56,6 +56,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
                 <p className="is-size-6">
                     {props?.versionInfo}
                 </p>
+                <div className="is-flex is-justify-content-center">
                 {props?.icons?.map((item: IconDto, _index: number) => (
                     <Link 
                         to={item.href}
@@ -67,6 +68,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
                         </IconButton>
                     </Link>
                 ))}
+                </div>
             </div>}
         </footer>
     );
