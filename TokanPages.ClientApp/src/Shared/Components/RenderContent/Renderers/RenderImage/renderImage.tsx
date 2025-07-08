@@ -1,17 +1,16 @@
 import * as React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api";
+import { RenderImage as CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
-import "./renderImage.css";
 
 const RenderDescription = (props: { text: string }): React.ReactElement => {
     return (
-        <CardContent>
-            <Typography component="span" className="render-image-text">
+        <div className="bulma-card-content">
+            <span className="is-size-6">
                 {props.text}
-            </Typography>
-        </CardContent>
+            </span>
+        </div>
     );
 };
 
@@ -37,37 +36,36 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
     }, [valueUrl]);
 
     return (
-        <Card elevation={3} className="render-image-card">
+        <div className="bulma-card">
             {hasPropAndValue ? (
-                <CardMedia
-                    component="img"
-                    loading="lazy"
-                    image={propUrl}
-                    title="Illustration"
-                    alt="An image of presented article text"
-                    className="render-image-image lazyloaded"
-                    onClick={onClickEvent}
-                    style={{
-                        width: props.constraint?.width,
-                        height: props.constraint?.height,
-                    }}
-                />
+                <div className="bulma-card-image">
+                    <figure className="bulma-image">
+                        <CustomImage
+                            source={propUrl}
+                            title="Illustration"
+                            alt="An image of presented article text"
+                            onClick={onClickEvent}
+                            width={props.constraint?.width}
+                            height={props.constraint?.height}
+                        />
+                    </figure>
+                </div>
             ) : null}
             {hasValueOnly ? (
-                <CardMedia
-                    component="img"
-                    loading="lazy"
-                    image={valueUrl}
-                    title="Illustration"
-                    alt="An image of presented article text"
-                    className="lazyloaded"
-                    style={{
-                        width: props.constraint?.width,
-                        height: props.constraint?.height,
-                    }}
-                />
+                <div className="bulma-card-image">
+                    <figure className="bulma-image">
+                        <CustomImage
+                            source={valueUrl}
+                            title="Illustration"
+                            alt="An image of presented article text"
+                            onClick={onClickEvent}
+                            width={props.constraint?.width}
+                            height={props.constraint?.height}
+                        />
+                    </figure>
+                </div>
             ) : null}
             {hasText ? <RenderDescription text={props.text} /> : null}
-        </Card>
+        </div>
     );
 };
