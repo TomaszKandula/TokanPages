@@ -6,7 +6,6 @@ export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
 export { ArticleCard, ArticleCardView } from "./ArticleCard";
 export { Avatar } from "./Avatar";
 export { CustomBreadcrumb } from "./CustomBreadcrumb";
-export { CustomDivider } from "./CustomDivider";
 export { CustomCard } from "./CustomCard";
 export { DocumentContentWrapper } from "./DocumentContentWrapper";
 export { DownloadAsset } from "./DownloadAsset";
