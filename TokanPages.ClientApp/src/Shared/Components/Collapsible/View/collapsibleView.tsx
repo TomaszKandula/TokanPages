@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../../../Shared/Components/Collapsible/View/collapsibleStyle.css";
+import "./collapsibleStyle.css";
 import { Icon, IconButton } from "../../../../Shared/Components";
 
 interface CollapsibleViewProps {
