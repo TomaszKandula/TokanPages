@@ -31,7 +31,7 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasPdfWorkerError ? <Icon name="AlertOctagon" size={3} /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
+    return props.hasPdfWorkerError ? <Icon name="AlertOctagon" size={3} /> : <DownloadAsset url={props.pdfUrl ?? ""} className="has-text-black" />;
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement => {
@@ -41,38 +41,34 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
     return (
         <section className={`section ${props.background ?? ""}`}>
-            <div className="bulma-container">
+            <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <div className="pdf-header">
-                                <div className="pdf-header-download-icon">
-                                    <RenderIconOrLoading
-                                        isDocLoading={props.isDocLoading}
-                                        hasPdfWorkerError={props.hasPdfWorkerError}
-                                        pdfUrl={props.pdfUrl}
-                                    />
-                                </div>
-                                <div className="pdf-header-pages">
+                            <div className="is-flex is-justify-content-space-around">
+                                <RenderIconOrLoading
+                                    isDocLoading={props.isDocLoading}
+                                    hasPdfWorkerError={props.hasPdfWorkerError}
+                                    pdfUrl={props.pdfUrl}
+                                />
+                                <p className="is-size-6 has-text-weight-semibold is-flex is-align-self-center">
                                     {props.currentPage} / {props.numPages}
-                                </div>
-                                <div className="pdf-header-buttons-container">
+                                </p>
+                                <div className="is-flex">
                                     <IconButton onClick={props.onPreviousPage}>
-                                        <Icon name="ChevronLeft" size={2} className="pdf-header-buttons" />
+                                        <Icon name="ChevronLeft" size={1.1} />
                                     </IconButton>
                                     <IconButton onClick={props.onNextPage}>
-                                        <Icon name="ChevronRight" size={2} className="pdf-header-buttons" />
+                                        <Icon name="ChevronRight" size={1.1} />
                                     </IconButton>
                                 </div>
                             </div>
-                            <div className="pdf-canvas-wrapper">
-                                <PdfCanvas
-                                    pdfDocument={props.pdfDocument}
-                                    pageNumber={props.currentPage}
-                                    scale={props.scale ?? 1.5}
-                                    htmlAttributes={{ className: "pdf-canvas" }}
-                                />
-                            </div>
+                            <PdfCanvas
+                                pdfDocument={props.pdfDocument}
+                                pageNumber={props.currentPage}
+                                scale={props.scale ?? 1.5}
+                                htmlAttributes={{ className: "pdf-canvas" }}
+                            />
                         </div>
                     </div>
                 </div>
