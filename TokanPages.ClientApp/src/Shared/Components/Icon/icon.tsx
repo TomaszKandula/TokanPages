@@ -11,7 +11,6 @@ interface IconBaseProps {
 interface IconProps extends IconBaseProps {
     name: string;
     size: number;
-    colour?: string;
     className?: string;
 }
 
@@ -69,17 +68,20 @@ export const Icon = (props: IconProps): React.ReactElement => {
         return <></>;
     }
 
+    const className = `${baseClass} ${props.className ?? ""}`;
+
     switch (props.name.toLocaleLowerCase()) {
         case "linkedin": return <LinkedinIcon size={props.size} onClick={props.onClick} />;
         case "github": return <GithubIcon size={props.size} onClick={props.onClick} />;
         case "instagram": return <InstgramIcon size={props.size} onClick={props.onClick} />;
+
         default: return (
             <div onClick={props.onClick}>
                 <MdiIcon
                     path={getIconSvgPath(props.name)}
                     size={props.size}
-                    className={`${baseClass} ${props.className}`}
-                    color={props.colour} />
+                    className={className}
+                />
             </div>
         );
     }
