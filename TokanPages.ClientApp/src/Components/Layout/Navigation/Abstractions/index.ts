@@ -15,6 +15,7 @@ export interface BaseProperties extends ViewProperties {
     menu: { image: string; items: ItemDto[] };
     backNavigationOnly?: boolean;
     backPathFragment?: string;
+    backPathHandler: () => void;
     languages: ApplicationLanguageState;
     languageId: string;
     languagePickHandler: (id: string) => void;

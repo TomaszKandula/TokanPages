@@ -92,6 +92,7 @@ describe("test component: featuresView", () => {
                     languagePickHandler={jest.fn()}
                     languageMenuHandler={jest.fn()}
                     isLanguageMenuOpen={false}
+                    backPathHandler={jest.fn()}
                 />
             </BrowserRouter>
         );

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_IMAGE } from "../../../Api";
 import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/Actions";
@@ -14,6 +15,7 @@ interface NavigationProps {
 
 export const Navigation = (props: NavigationProps): React.ReactElement => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const dimensions = useDimensions();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -65,6 +67,15 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
         dispatch(UserDataStoreAction.show(true));
     }, [isAnonymous]);
 
+    const backButtonHandler = React.useCallback(() => {
+        const mainPath = `/${language?.id}`;
+        const backPath = `${mainPath}${props.backPathFragment}`;
+        const navigationPath = props.backPathFragment === undefined ? mainPath : backPath;
+
+        history.push(navigationPath);
+
+    }, [language?.id, props.backPathFragment]);
+
     return (
         <NavigationView
             isLoading={isLoading}
@@ -80,6 +91,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             menu={navigation?.menu}
             backNavigationOnly={props.backNavigationOnly}
             backPathFragment={props.backPathFragment}
+            backPathHandler={backButtonHandler}
             languages={language}
             languageId={language?.id}
             languagePickHandler={languagePickHandler}

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiArrowLeft } from "@mdi/js";
 import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
@@ -8,21 +7,15 @@ import { RenderDrawer, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from
 import { Properties } from "../Abstractions";
 import "./navigationView.css";
 
-export const NavigationView = (props: Properties): React.ReactElement => {
-    const mainPath = `/${props.languageId}`;
-    const navigationPath = props.backPathFragment === undefined ? mainPath : `${mainPath}${props.backPathFragment}`;
-
-    return (
+export const NavigationView = (props: Properties): React.ReactElement => (
         <>
             {props.backNavigationOnly ? (
                 <AppBar height={APP_BAR_HEIGHT}>
-                    <Link to={navigationPath} rel="noopener nofollow">
-                        <div className="navigation-nav-back">
-                            <IconButton>
-                                <Icon path={mdiArrowLeft} size={1} />
-                            </IconButton>
-                        </div>
-                    </Link>
+                    <div className="navigation-nav-back">
+                        <IconButton onClick={props.backPathHandler}>
+                            <Icon path={mdiArrowLeft} size={1} />
+                        </IconButton>
+                    </div>
                 </AppBar>
             ) : (
                 <AppBar height={APP_BAR_HEIGHT}>
@@ -33,4 +26,3 @@ export const NavigationView = (props: Properties): React.ReactElement => {
             )}
         </>
     );
-};
