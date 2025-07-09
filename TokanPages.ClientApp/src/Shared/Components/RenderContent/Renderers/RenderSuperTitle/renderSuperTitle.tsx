@@ -1,8 +1,7 @@
 import * as React from "react";
 import { TextItem } from "../../Models";
-import { Card, CardMedia } from "@material-ui/core";
 import { API_BASE_URI } from "../../../../../Api";
-import "./renderSuperTitle.css";
+import { RenderImage } from "../../../../../Shared/Components/CustomImage/customImage";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
@@ -13,29 +12,24 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     }
 
     return (
-        <div className="render-super-title-container">
-            <div className="render-super-title-content-text">
-                <h2 className="render-super-title-common render-super-title-title mt-40 mb-8">
+        <div className="bulma-content is-flex is-justify-content-space-between">
+            <div className="is-flex is-flex-direction-column">
+                <p className="bulma-title bulma-is-3 has-text-grey-darker">
                     {props.propTitle ?? NO_CONTENT}
-                </h2>
-                <h3 className="render-super-title-common render-super-title-sub-title render-text-no-bold mt-8 mb-40">
+                </p>
+                <p className="bulma-subtitle bulma-is-5 has-text-grey-darker">
                     {props.propSubtitle ?? NO_CONTENT}
-                </h3>
+                </p>
             </div>
-            <Card elevation={0} className="render-super-title-card render-super-title-content-image">
-                <CardMedia
-                    component="img"
-                    loading="lazy"
-                    image={propUrl}
+            <figure className="is-flex is-align-items-center">
+                <RenderImage 
+                    source={propUrl}
                     title="Illustration"
                     alt="An illustration of a presented article text title"
-                    className="render-super-title-image lazyloaded"
-                    style={{
-                        width: props.constraint?.width,
-                        height: props.constraint?.height,
-                    }}
+                    width={props.constraint?.width}
+                    height={props.constraint?.height}
                 />
-            </Card>
+            </figure>
         </div>
     );
 };
