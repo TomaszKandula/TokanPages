@@ -1,8 +1,5 @@
 import * as React from "react";
-import Paper from "@material-ui/core/Paper";
-import { Table, TableBody, TableContainer, TableHead, TableRow, TableCell } from "@material-ui/core";
 import { RowItem, TextItem } from "../../Models/TextModel";
-import "./renderTable.css";
 
 export const RenderTable = (props: TextItem): React.ReactElement => {
     const tableData: RowItem[] = props.value as RowItem[];
@@ -12,11 +9,11 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
         tableData.forEach(item => {
             if (item.column0 === "") {
                 renderBuffer.push(
-                    <TableRow key={item.column0}>
-                        <TableCell className="render-table-head">{item.column0}</TableCell>
-                        <TableCell className="render-table-head">{item.column1}</TableCell>
-                        <TableCell className="render-table-head">{item.column2}</TableCell>
-                    </TableRow>
+                    <tr key={item.column0}>
+                        <td className="is-size-6 has-text-weight-bold">{item.column0}</td>
+                        <td className="is-size-6 has-text-weight-bold">{item.column1}</td>
+                        <td className="is-size-6 has-text-weight-bold">{item.column2}</td>
+                    </tr>
                 );
             }
         });
@@ -29,17 +26,17 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
         tableData.forEach(item => {
             if (item.column0 !== "") {
                 renderBuffer.push(
-                    <TableRow key={item.column0} className="render-table-row">
-                        <TableCell component="th" scope="row" className="render-table-header">
+                    <tr key={item.column0}>
+                        <td className="is-size-6">
                             {item.column0}
-                        </TableCell>
-                        <TableCell component="td" scope="row" className="render-table-cell">
+                        </td>
+                        <td className="is-size-6">
                             {item.column1}
-                        </TableCell>
-                        <TableCell component="td" scope="row" className="render-table-cell">
+                        </td>
+                        <td className="is-size-6">
                             {item.column2}
-                        </TableCell>
-                    </TableRow>
+                        </td>
+                    </tr>
                 );
             }
         });
@@ -48,11 +45,9 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
     };
 
     return (
-        <TableContainer component={Paper}>
-            <Table className="render-table" aria-label="table">
-                <TableHead>{renderHeader()}</TableHead>
-                <TableBody>{renderRows()}</TableBody>
-            </Table>
-        </TableContainer>
+        <table className="bulma-table bulma-is-striped bulma-is-narrow bulma-is-hoverable bulma-is-fullwidth my-6">
+            <thead>{renderHeader()}</thead>
+            <tbody>{renderRows()}</tbody>
+        </table>
     );
 };
