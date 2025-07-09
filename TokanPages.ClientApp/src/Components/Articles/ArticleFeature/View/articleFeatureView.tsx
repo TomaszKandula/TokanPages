@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { Animated, RenderImage } from "../../../../Shared/Components";
+import { Animated, CustomImage } from "../../../../Shared/Components";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
 
@@ -54,7 +54,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                         <div className="bulma-card article-feature-card-shadow">
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_ARTICLE_IMAGE_URL}
                                                         source={features?.image1}
                                                         className="article-feature-image article-feature-image-large"
@@ -67,7 +67,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                         <div className="bulma-card article-feature-card-shadow">
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_ARTICLE_IMAGE_URL}
                                                         source={features?.image2}
                                                         className="article-feature-image article-feature-image-small"
@@ -82,7 +82,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                         <div className="bulma-card article-feature-card-shadow">
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_ARTICLE_IMAGE_URL}
                                                         source={features?.image3}
                                                         className="article-feature-image article-feature-image-small"
@@ -95,7 +95,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                         <div className="bulma-card article-feature-card-shadow">
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_ARTICLE_IMAGE_URL}
                                                         source={features?.image4}
                                                         className="article-feature-image article-feature-image-large"

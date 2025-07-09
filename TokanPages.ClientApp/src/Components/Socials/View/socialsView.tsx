@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, Icon, Link, RenderImage } from "../../../Shared/Components";
+import { Animated, Icon, Link, CustomImage } from "../../../Shared/Components";
 import "./socialsView.css";
 
 interface SocialsViewProps {
@@ -30,7 +30,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <Link to={socials?.social1?.action?.href}>
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_SOCIALS_URL}
                                                         source={socials?.social1?.images?.header}
                                                         className="socials-image"
@@ -40,7 +40,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </figure>
                                             </div>
                                             <div className="socials-card-image-holder">
-                                                <RenderImage
+                                                <CustomImage
                                                     base={GET_SOCIALS_URL}
                                                     source={socials?.social1?.images?.avatar}
                                                     className="socials-avatar"
@@ -72,7 +72,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <Link to={socials?.social2?.action?.href}>
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_SOCIALS_URL}
                                                         source={socials?.social2?.images?.header}
                                                         className="socials-image"
@@ -82,7 +82,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </figure>
                                             </div>
                                             <div className="socials-card-image-holder">
-                                                <RenderImage
+                                                <CustomImage
                                                     base={GET_SOCIALS_URL}
                                                     source={socials?.social2?.images?.avatar}
                                                     className="socials-avatar"
@@ -114,7 +114,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <Link to={socials?.social3?.action?.href}>
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <RenderImage
+                                                    <CustomImage
                                                         base={GET_SOCIALS_URL}
                                                         source={socials?.social3?.images?.header}
                                                         className="socials-image"
@@ -124,7 +124,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </figure>
                                             </div>
                                             <div className="socials-card-image-holder">
-                                                <RenderImage
+                                                <CustomImage
                                                     base={GET_SOCIALS_URL}
                                                     source={socials?.social3?.images?.avatar}
                                                     className="socials-avatar"

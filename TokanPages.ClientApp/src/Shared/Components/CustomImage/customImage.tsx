@@ -12,7 +12,7 @@ interface RenderImageProps {
     onClick?: () => void;
 }
 
-export const RenderImage = (props: RenderImageProps): React.ReactElement | null => {
+export const CustomImage = (props: RenderImageProps): React.ReactElement | null => {
     let className = props.className;
     if (props.className && props.className !== "" && !props.className.includes("lazyloaded")) {
         className = `${className} lazyloaded`;

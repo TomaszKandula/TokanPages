@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_TESTIMONIALS_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { Animated, RenderImage } from "../../../Shared/Components";
+import { Animated, CustomImage } from "../../../Shared/Components";
 import { Collapsible } from "../../../Shared/Components";
 import "./testimonialsView.css";
 
@@ -36,7 +36,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <div className="bulma-column">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <div className="bulma-card">
-                                    <RenderImage
+                                    <CustomImage
                                         base={GET_TESTIMONIALS_URL}
                                         source={props.photo1}
                                         className="testimonials-card-image"
@@ -62,7 +62,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <div className="bulma-column">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <div className="bulma-card">
-                                    <RenderImage
+                                    <CustomImage
                                         base={GET_TESTIMONIALS_URL}
                                         source={props.photo2}
                                         className="testimonials-card-image"
@@ -88,7 +88,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <div className="bulma-column">
                             <Animated dataAos="fade-up" dataAosDelay={250}>
                                 <div className="bulma-card">
-                                    <RenderImage
+                                    <CustomImage
                                         base={GET_TESTIMONIALS_URL}
                                         source={props.photo3}
                                         className="testimonials-card-image"

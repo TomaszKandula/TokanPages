@@ -1,6 +1,6 @@
 import * as React from "react";
 import { API_BASE_URI } from "../../../../../Api";
-import { RenderImage as CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
+import { CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
 

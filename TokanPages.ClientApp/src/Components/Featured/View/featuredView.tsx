@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, Link, RenderImage } from "../../../Shared/Components";
+import { Animated, Link, CustomImage } from "../../../Shared/Components";
 import "./featuredView.css";
 
 interface FeaturedViewProps {
@@ -29,7 +29,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     <div className="bulma-card">
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
-                                                <RenderImage
+                                                <CustomImage
                                                     base={GET_FEATURED_IMAGE_URL}
                                                     source={featured?.image1}
                                                     className="featured-card-image"
@@ -56,7 +56,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     <div className="bulma-card">
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
-                                                <RenderImage
+                                                <CustomImage
                                                     base={GET_FEATURED_IMAGE_URL}
                                                     source={featured?.image2}
                                                     className="featured-card-image"
@@ -83,7 +83,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     <div className="bulma-card">
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
-                                                <RenderImage
+                                                <CustomImage
                                                     base={GET_FEATURED_IMAGE_URL}
                                                     source={featured?.image3}
                                                     className="featured-card-image"

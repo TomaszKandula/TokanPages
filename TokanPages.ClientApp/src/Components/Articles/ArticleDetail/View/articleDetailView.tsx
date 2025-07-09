@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_FLAG_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { Animated, Icon, RenderImage } from "../../../../Shared/Components";
+import { Animated, Icon, CustomImage } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ExtendedViewProps } from "../articleDetail";
 import "./articleDetailView.css";
@@ -51,7 +51,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <p className="bulma-cell is-align-content-center is-size-6">
                                     {props.content.textLanguage}
                                 </p>
-                                    <RenderImage
+                                    <CustomImage
                                         base={GET_FLAG_URL}
                                         source={props.flagImage}
                                         title="Articles"

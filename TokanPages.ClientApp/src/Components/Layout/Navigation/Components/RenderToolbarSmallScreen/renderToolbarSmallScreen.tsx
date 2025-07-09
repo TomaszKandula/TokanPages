@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Properties } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
-import { RenderImage } from "../../../../../Shared/Components";
+import { CustomImage } from "../../../../../Shared/Components";
 import { GET_ICONS_URL } from "../../../../../Api";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 
@@ -14,7 +14,7 @@ export const RenderToolbarSmallScreen = (props: Properties) => (
             </div>
             <div className="navigation-nav-items navigation-nav-centre">
                 <Link to={`/${props.languageId}`} className="navigation-app-logo-small" rel="noopener nofollow">
-                    <RenderImage
+                    <CustomImage
                         base={GET_ICONS_URL}
                         source={props?.logo}
                         title="TomKandula logo"
@@ -23,7 +23,7 @@ export const RenderToolbarSmallScreen = (props: Properties) => (
                     />
                 </Link>
                 <Link to={`/${props.languageId}`} className="navigation-app-logo-large" rel="noopener nofollow">
-                    <RenderImage
+                    <CustomImage
                         base={GET_ICONS_URL}
                         source={props?.menu?.image}
                         title="TomKandula logo"

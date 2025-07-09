@@ -10,7 +10,7 @@ export { CustomCard } from "./CustomCard";
 export { DocumentContentWrapper } from "./DocumentContentWrapper";
 export { DownloadAsset } from "./DownloadAsset";
 export { RenderContent } from "./RenderContent/renderContent";
-export { RenderImage } from "./CustomImage/customImage";
+export { CustomImage } from "./CustomImage/customImage";
 export { RenderList } from "./RenderList/renderList";
 export { RenderParagraphs } from "./RenderParagraphs/renderParagraphs";
 export { RedirectTo } from "./RedirectWrapper";

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { TextItem } from "../../Models";
 import { API_BASE_URI } from "../../../../../Api";
-import { RenderImage } from "../../../../../Shared/Components/CustomImage/customImage";
+import { CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
@@ -22,7 +22,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                 </p>
             </div>
             <figure className="is-flex is-align-items-center">
-                <RenderImage 
+                <CustomImage 
                     source={propUrl}
                     title="Illustration"
                     alt="An illustration of a presented article text title"

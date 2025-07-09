@@ -8,7 +8,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import LanguageIcon from "@material-ui/icons/Language";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import { GET_FLAG_URL } from "../../../../Api";
-import { Animated, RenderImage } from "../../../../Shared/Components";
+import { Animated, CustomImage } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import Validate from "validate.js";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -88,7 +88,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                                             <div className="article-card-details-separator"></div>
                                             <LanguageIcon className="article-card-item-icon" />
                                             <div className="article-card-details-separator"></div>
-                                            <RenderImage
+                                            <CustomImage
                                                 base={GET_FLAG_URL}
                                                 source={props.flagImage}
                                                 title="Articles"

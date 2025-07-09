@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_ICONS_URL } from "../../../../../Api";
 import { ItemDto } from "../../../../../Api/Models";
-import { RenderImage } from "../../../../../Shared/Components";
+import { CustomImage } from "../../../../../Shared/Components";
 import { useDimensions } from "../../../../../Shared/Hooks";
 import { RenderSideMenu } from "../RenderMenu";
 import "./renderDrawer.css";
@@ -57,7 +57,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
             ></div>
             <div className="navigation-nav-drawer-container">
                 <div className="navigation-nav-drawer-hero">
-                    <RenderImage
+                    <CustomImage
                         base={GET_ICONS_URL}
                         source={props?.menu?.image}
                         title="Logo"

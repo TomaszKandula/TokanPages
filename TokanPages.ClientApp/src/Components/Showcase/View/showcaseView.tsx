@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, RenderImage } from "../../../Shared/Components";
+import { Animated, CustomImage } from "../../../Shared/Components";
 import Validate from "validate.js";
 import "./showcaseView.css";
 
@@ -67,7 +67,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                 <div className="bulma-card">
                                     <div className="bulma-card-image">
                                         <figure className="bulma-image">
-                                            <RenderImage
+                                            <CustomImage
                                                 base={GET_SHOWCASE_IMAGE_URL}
                                                 source={showcase?.image}
                                                 className="showcase-feature-image"
