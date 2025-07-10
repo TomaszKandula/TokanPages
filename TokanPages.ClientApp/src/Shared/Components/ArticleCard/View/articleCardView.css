@@ -1,24 +1,25 @@
-.article-card-image {
-    width: 180px !important;
-    height: auto;
+.article-box-content {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+}
+
+.article-box-content-text {
+    height: 120px;
+}
+
+.article-box-image {
+    height: 200px !important;
     min-height: 180px;
     object-fit: cover;
 }
 
-.article-card-image-desktop {
+.article-box-image-desktop {
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
 }
 
-.article-card-image-mobile {
+.article-box-image-mobile {
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
-}
-
-.article-card-action-small {
-    height: 50px;
-}
-
-.article-card-action-large {
-    height: 100px;
 }

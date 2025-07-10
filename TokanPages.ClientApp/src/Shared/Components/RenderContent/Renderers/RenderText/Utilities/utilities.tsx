@@ -108,7 +108,6 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
-            styleSmallCard={true}
         />
     );
 };

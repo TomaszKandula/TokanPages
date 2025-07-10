@@ -16,7 +16,6 @@ interface ArticleCardViewProps extends ViewProperties {
     canAnimate: boolean;
     readCount?: string;
     totalLikes?: string;
-    styleSmallCard?: boolean;
 }
 
 interface RenderReadCountProps {
@@ -73,27 +72,24 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
 };
 
 export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
-    const styleCard = props.styleSmallCard ? "article-card-action-small" : "article-card-action-large";
     const styleBox = props.isMobile ? "is-flex-direction-column" : "is-flex-direction-row";
-    const styleImage = props.isMobile ? "article-card-image-mobile" : "article-card-image-desktop";
+    const styleImage = props.isMobile ? "article-box-image-mobile" : "article-box-image-desktop";
 
     return (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <div className={`bulma-box is-flex p-0 mb-6 ${styleBox}`}>
-                <div className={`${props.isMobile ? "mr-0" : "mr-4"}`}>
-                    <figure className="bulma-image">
-                        <CustomImage 
-                            source={props.imageUrl}
-                            className={`article-card-image ${styleImage} lazyloaded`}
-                            title="Article illustration"
-                            alt="An article card for given article"
-                        />
-                    </figure>
-                </div>
-                <div className="is-flex is-flex-direction-column">
-                    <div className={styleCard}>
+                <figure className="bulma-image">
+                    <CustomImage 
+                        source={props.imageUrl}
+                        className={`article-box-image ${styleImage} lazyloaded`}
+                        title="Article illustration"
+                        alt="An article card for given article"
+                    />
+                </figure>
+                <div className="article-box-content">
+                    <div className="article-box-content-text">
                         <h2 className="is-size-4 has-text-black-ter">{props.title}</h2>
-                        <h3 className="is-size-6 has-text-grey">{props.description}</h3>
+                        <h3 className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</h3>
                     </div>
                     <div className="is-flex is-justify-content-space-between">
                         <div className="is-flex is-align-items-center">
@@ -101,7 +97,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                             <RenderTotalLikes {...props} />
                             <RenderFlag {...props} />
                         </div>
-                        <button onClick={props.onClickEvent} className="bulma-button bulma-is-link bulma-is-light m-2">
+                        <button onClick={props.onClickEvent} className="bulma-button bulma-is-link bulma-is-light">
                             {props.buttonText}
                         </button>
                     </div>
