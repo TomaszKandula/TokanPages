@@ -117,6 +117,14 @@ body {
     line-height: 2.0 !important;
 }
 
+.line-height-21 {
+    line-height: 2.1 !important;
+}
+
+.line-height-22 {
+    line-height: 2.2 !important;
+}
+
 /* SHARED STYLES BY COMPONENTS */
 
 .text-centre {
