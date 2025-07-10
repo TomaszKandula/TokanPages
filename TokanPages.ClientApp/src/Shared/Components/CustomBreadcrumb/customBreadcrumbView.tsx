@@ -1,12 +1,11 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Skeleton } from "@material-ui/lab";
-import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
-import { NavigateNext, Home } from "@material-ui/icons";
+import { Breadcrumbs, Chip } from "@material-ui/core";
 import { ItemDto, SubitemDto, UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
+import { Icon } from "../Icon";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
@@ -173,25 +172,19 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <div className="custom-breadcrumb-container">
-            {props.isLoading ? (
-                <Skeleton variant="rect" width={220} height={20} />
-            ) : (
-                <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
-                    <Chip
-                        component="div"
-                        label={getHomeText(navigation)}
-                        icon={<Home fontSize="small" />}
-                        onClick={onBackToRoot}
-                        className="custom-chip"
-                    />
-                    {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-                    {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
-                </Breadcrumbs>
-            )}
-            <div className="custom-breadcrumb-divider">
-                <Divider />
-            </div>
+        <div className="bulma-container bulma-is-max-tablet mt-6 pt-6">
+            <Breadcrumbs separator={<Icon name="ChevronRight" size={0.75} />} aria-label="breadcrumb">
+                <Chip
+                    component="div"
+                    label={getHomeText(navigation)}
+                    icon={<Icon name="Home" size={0.75} />}
+                    onClick={onBackToRoot}
+                    className="custom-chip"
+                />
+                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
+                {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
+            </Breadcrumbs>
+            <hr className="my-5" />
         </div>
     );
 };

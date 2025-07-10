@@ -12,15 +12,3 @@
 .custom-chip:focus {
     background-color: #e0e0e0 !important;
 }
-
-.custom-breadcrumb-container {
-    margin-top: 96px;
-    margin-bottom: 16px;
-    margin-right: 40px;
-    margin-left: 40px;
-}
-
-.custom-breadcrumb-divider {
-    margin-top: 32px;
-    margin-bottom: 32px;
-}
