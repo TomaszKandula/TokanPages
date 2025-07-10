@@ -1,17 +1,16 @@
 import * as React from "react";
-import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { TextItem } from "../../Models/TextModel";
 import { API_BASE_URI } from "../../../../../Api";
+import { CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
 import Validate from "validate.js";
-import "./renderVideo.css";
 
 const RenderDescription = (props: { text: string }): React.ReactElement => {
     return (
-        <CardContent>
-            <Typography component="span" className="render-video-text">
+        <div className="bulma-card-content">
+            <span className="is-size-6">
                 {props.text}
-            </Typography>
-        </CardContent>
+            </span>
+        </div>
     );
 };
 
@@ -30,25 +29,33 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
     const onClickEvent = React.useCallback(() => setHasImage(false), []);
 
     return (
-        <Card elevation={3} className="render-video-card">
-            {hasImage ? (
-                <CardMedia
-                    component="img"
-                    loading="lazy"
-                    image={propUrl}
-                    onClick={onClickEvent}
-                    className="render-video-image lazyloaded"
-                    title="Video"
-                    alt="Video related to the presented article text"
-                    style={{
-                        width: props.constraint?.width,
-                        height: props.constraint?.height,
-                    }}
-                />
-            ) : (
-                <CardMedia component="video" src={valueUrl} controls autoPlay />
-            )}
+        <div className="bulma-card my-4">
+            <div className="bulma-card-image">
+                <figure className="bulma-image">
+                    {hasImage ? (
+                        <CustomImage 
+                            source={propUrl}
+                            onClick={onClickEvent}
+                            className="lazyloaded"
+                            title="Video"
+                            alt="Video related to the presented article text"
+                            width={props.constraint?.width}
+                            height={props.constraint?.height}
+                        />
+                    ) : (
+                        <video 
+                            src={valueUrl}
+                            controls
+                            autoPlay
+                            style={{ 
+                                borderTopLeftRadius: "0.75rem",
+                                borderTopRightRadius: "0.75rem",
+                            }} 
+                        />
+                    )}
+                </figure>
+            </div>
             {Validate.isEmpty(props.text) ? null : <RenderDescription text={props.text} />}
-        </Card>
+        </div>
     );
 };
