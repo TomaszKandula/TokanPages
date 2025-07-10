@@ -1,14 +1,13 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ArrowRight } from "@material-ui/icons";
 import { GET_NON_VIDEO_ASSET } from "../../../../../../Api/Paths";
 import { ArticleInfoAction } from "../../../../../../Store/Actions";
 import { ApplicationState } from "../../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../../Models";
 import { TextItem } from "../../../Models/TextModel";
 import { useHash } from "../../../../../../Shared/Hooks";
-import { ArticleCard, ArticleCardView, ProgressBar, RenderList } from "../../../../../../Shared/Components";
+import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderList } from "../../../../../../Shared/Components";
 import { TComponent } from "../../../../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
@@ -48,7 +47,7 @@ export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
 
     return (
         <span className="render-text-wrapper" onClick={onClickHandler}>
-            <ArrowRight />
+            <Icon name="MenuRight" size={1} />
             <span className="render-text-common render-text-paragraph render-text-link">
                 {props.text ?? NO_CONTENT}
             </span>
