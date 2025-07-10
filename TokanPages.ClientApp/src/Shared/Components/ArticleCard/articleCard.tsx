@@ -5,9 +5,9 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText } from "../../../Shared/Services/Utilities";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
+import { useDimensions } from "../../../Shared/Hooks";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api";
 import { ArticleCardView } from "./View/articleCardView";
-import { useDimensions } from "Shared/Hooks";
 
 interface ArticleCardProps {
     id: string;
