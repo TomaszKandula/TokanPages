@@ -11,7 +11,7 @@ import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderList } from "../
 import { TComponent } from "../../../../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
-import "../renderText.css";
+import "./utilities.css";
 
 interface DataProps {
     value?: string;

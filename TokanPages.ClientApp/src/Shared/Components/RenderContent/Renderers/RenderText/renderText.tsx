@@ -12,7 +12,7 @@ import {
     RenderSubtitle,
     RenderTargetLink,
     RenderTitle,
-} from "./Helpers";
+} from "./Utilities";
 
 export const RenderText = (props: TextItem): React.ReactElement => {
     const value: string = props.value as string;

@@ -18,4 +18,4 @@ export {
     RenderSubtitle,
     RenderTargetLink,
     RenderTitle,
-} from "./RenderText/Helpers";
+} from "./RenderText/Utilities";
