@@ -116,5 +116,5 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
         }
     });
 
-    return <>{renderBuffer}</>;
+    return <div className="bulma-content">{renderBuffer}</div>;
 };

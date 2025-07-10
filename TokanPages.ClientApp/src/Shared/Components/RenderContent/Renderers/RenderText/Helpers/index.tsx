@@ -11,6 +11,7 @@ import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderList } from "../
 import { TComponent } from "../../../../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
+import "../renderText.css";
 
 interface DataProps {
     value?: string;
@@ -30,6 +31,28 @@ interface ProcessParagraphsProps {
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
+const GetFontStyle = (value: string): string => {
+    switch (value) {
+        /* TEXT WEIGHT */
+        case "light": return "has-text-weight-light";
+        case "normal": return "has-text-weight-normal";
+        case "medium": return "has-text-weight-medium";
+        case "semibold": return "has-text-weight-semibold";
+        case "bold": return "has-text-weight-bold";
+        case "extrabold": return "has-text-weight-extrabold";
+
+        /* TEXT TRANSFORMATION */
+        case "capitalized": return "is-capitalized";
+        case "lowercase": return "is-lowercase";
+        case "uppercase": return "is-uppercase";
+        case "italic": return "is-italic";
+        case "underlined": return "is-underlined";
+
+        /* FALLBACK */
+        default: return "";
+    }
+}
+
 /* LINK COMPONENTS */
 
 export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
@@ -46,9 +69,9 @@ export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     }, [hash, data]);
 
     return (
-        <span className="render-text-wrapper" onClick={onClickHandler}>
+        <span className="is-flex py-2 is-align-items-center" onClick={onClickHandler}>
             <Icon name="MenuRight" size={1} />
-            <span className="render-text-common render-text-paragraph render-text-link">
+            <span className="is-size-5 has-text-grey-dark is-clickable">
                 {props.text ?? NO_CONTENT}
             </span>
         </span>
@@ -155,24 +178,24 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 /* HEADER COMPONENT */
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return <h1 className="render-text-common render-text-title mt-56 mb-0">{props.value ?? NO_CONTENT}</h1>;
+    return <h1 className="bulma-title has-text-grey-dark m-0 pb-2">{props.value ?? NO_CONTENT}</h1>;
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
-    return <h2 className="render-text-common render-text-subtitle mt-0 mb-40">{props.value ?? NO_CONTENT}</h2>;
+    return <h2 className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4">{props.value ?? NO_CONTENT}</h2>;
 };
 
 export const RenderHeader1 = (props: DataProps): React.ReactElement => {
-    return <h1 className="render-text-common render-text-header1 mt-56 mb-15">{props.value ?? NO_CONTENT}</h1>;
+    return <h1 className="bulma-title has-text-grey-dark">{props.value ?? NO_CONTENT}</h1>;
 };
 
 export const RenderHeader2 = (props: DataProps): React.ReactElement => {
-    return <h2 className="render-text-common render-text-header2 mt-56 mb-15">{props.value ?? NO_CONTENT}</h2>;
+    return <h2 className="bulma-subtitle has-text-grey-dark">{props.value ?? NO_CONTENT}</h2>;
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     return (
-        <h3 className="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap">
+        <h3 className="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap">
             {props.value ?? NO_CONTENT}
         </h3>
     );
@@ -184,8 +207,8 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
     const html = props.value as string | string[];
     const prop = props.prop as TComponent;
 
-    const baseStyle = "render-text-common render-text-paragraph";
-    const classStyle = props.text === "" ? baseStyle : `${baseStyle} render-text-${props.text}`;
+    const baseStyle = "is-size-5 has-text-grey-dark line-height-22";
+    const classStyle = props.text === "" ? baseStyle : `${baseStyle} ${GetFontStyle(props.text)}`;
 
     switch (prop) {
         case "p":
@@ -213,7 +236,7 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
                 </div>
             );
         case "br":
-            return <div className="mt-15 mb-15">&nbsp;</div>;
+            return <div className="my-4">&nbsp;</div>;
         default:
             return (
                 <p className={classStyle}>
