@@ -1,121 +1,17 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { ItemDto, SubitemDto, UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
 import { Icon } from "../Icon";
+import { CustomBreadcrumbProps, NavigationProps } from "./Types";
+import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./Utilities";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
 
-interface CustomBreadcrumbProps {
-    isLoading: boolean;
-    watchparam?: string;
-}
-
-interface NavigationProps {
-    language: string;
-    logo: string;
-    userInfo: UserInfoProps;
-    menu: {
-        image: string;
-        items: ItemDto[];
-    };
-}
-
-interface PathProps {
-    pathname: string;
-    navigation: NavigationProps;
-}
-
-interface PathToRootTextResultProps {
-    value: string;
-    hasHash: boolean;
-}
-
 const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
-};
-
-const toUpper = (value: string | undefined): string => {
-    if (value === undefined) {
-        return "";
-    }
-
-    return value
-        .toLowerCase()
-        .split(" ")
-        .map(function (word) {
-            return word[0].toUpperCase() + word.substring(1);
-        })
-        .join(" ");
-};
-
-const getHomeText = (navigation: NavigationProps): string => {
-    const text = navigation.menu.items.find((item: ItemDto) => {
-        if (item.link === `/${navigation.language}`) {
-            return item;
-        }
-
-        return undefined;
-    });
-
-    return text?.value ?? "";
-};
-
-const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
-    const array = props.pathname.split("/");
-    const fragments = array.filter(e => String(e).trim());
-    const rootWithHash = `#${fragments[0]}`;
-    const rootWithSlash = `/${fragments[0]}`;
-    let hasHash: boolean = false;
-
-    const text = props.navigation.menu.items.find((item: ItemDto) => {
-        if (item.link?.toUpperCase().includes(rootWithHash.toUpperCase())) {
-            hasHash = true;
-            return item;
-        }
-
-        if (item.link?.toUpperCase().includes(rootWithSlash.toUpperCase())) {
-            return item;
-        }
-
-        return undefined;
-    });
-
-    return {
-        value: text?.value ?? "",
-        hasHash: hasHash,
-    };
-};
-
-const pathToSubitemText = (props: PathProps): string => {
-    const array = props.pathname.split("/");
-    const fragments = array.filter(e => String(e).trim());
-    const root = `#${fragments[0]}`;
-
-    const itemWithSubitem = props.navigation.menu.items.find((item: ItemDto) => {
-        if (item.link?.toUpperCase().includes(root.toUpperCase()) && item.subitems !== undefined) {
-            return item;
-        }
-
-        return undefined;
-    });
-
-    if (itemWithSubitem?.subitems) {
-        const text = itemWithSubitem?.subitems.find((subitem: SubitemDto) => {
-            if (subitem.link?.toUpperCase().includes(props.pathname.toUpperCase())) {
-                return subitem;
-            }
-
-            return undefined;
-        });
-
-        return text?.value ?? "";
-    }
-
-    return "";
 };
 
 const makeStyledBreadcrumb = (
@@ -190,7 +86,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                         <li>
                             <div className="mx-2">
                                 <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
-                                    <span className="p-2">{toUpper(paramValue)}</span>
+                                    <span className="p-2">{toUpperCase(paramValue)}</span>
                                 </div>
                             </div>
                         </li>
