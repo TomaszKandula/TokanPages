@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Breadcrumbs, Chip } from "@material-ui/core";
 import { ItemDto, SubitemDto, UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
@@ -141,13 +140,16 @@ const makeStyledBreadcrumb = (
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <Chip
+            <li
                 key={uuidv4()}
-                component="div"
-                label={setValue(index)}
                 onClick={rootName.hasHash ? undefined : onClick}
-                className="custom-chip"
-            />
+            >
+                <div className="mx-2">
+                    <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
+                        <span className="p-2">{setValue(index)}</span>
+                    </div>
+                </div>
+            </li>
         ));
     }
 
@@ -173,17 +175,28 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
 
     return (
         <div className="bulma-container bulma-is-max-tablet mt-6 pt-6">
-            <Breadcrumbs separator={<Icon name="ChevronRight" size={0.75} />} aria-label="breadcrumb">
-                <Chip
-                    component="div"
-                    label={getHomeText(navigation)}
-                    icon={<Icon name="Home" size={0.75} />}
-                    onClick={onBackToRoot}
-                    className="custom-chip"
-                />
-                {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-                {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
-            </Breadcrumbs>
+            <nav className="bulma-breadcrumb bulma-has-arrow-separator">
+                <ul>
+                    <li>
+                        <div className="mr-2">
+                            <div onClick={onBackToRoot} className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
+                                <Icon name="Home" size={0.75} className="mx-1" />
+                                <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
+                            </div>
+                        </div>
+                    </li>
+                    {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
+                    {hasParam ? (
+                        <li>
+                            <div className="mx-2">
+                                <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
+                                    <span className="p-2">{toUpper(paramValue)}</span>
+                                </div>
+                            </div>
+                        </li>
+                    ) : null}
+                </ul>
+            </nav>
             <hr className="my-5" />
         </div>
     );

@@ -2,7 +2,8 @@
     background-color: #f5f5f5 !important;
     height: 24px !important;
     color: #424242 !important;
-    font-weight: 400;
+    border-radius: 16px;
+    font-size: 0.85rem;
 }
 
 .custom-chip:hover {
