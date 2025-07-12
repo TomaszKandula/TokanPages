@@ -9,12 +9,17 @@ export const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
     let hasHash: boolean = false;
 
     const text = props.navigation.menu.items.find((item: ItemDto) => {
-        if (item.link?.toUpperCase().includes(rootWithHash.toUpperCase())) {
+        const hasNavbar = item.navbarMenu?.enabled === true;
+        const link = item.link?.toUpperCase();
+        const hashRoot = rootWithHash.toUpperCase();
+        const slashRoot = rootWithSlash.toUpperCase();
+
+        if (hasNavbar && link?.includes(hashRoot)) {
             hasHash = true;
             return item;
         }
 
-        if (item.link?.toUpperCase().includes(rootWithSlash.toUpperCase())) {
+        if (hasNavbar && link?.includes(slashRoot)) {
             return item;
         }
 

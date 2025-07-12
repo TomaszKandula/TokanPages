@@ -7,7 +7,11 @@ export const pathToSubitemText = (props: PathProps): string => {
     const root = `#${fragments[0]}`;
 
     const itemWithSubitem = props.navigation.menu.items.find((item: ItemDto) => {
-        if (item.link?.toUpperCase().includes(root.toUpperCase()) && item.subitems !== undefined) {
+        const hasNavbar = item.navbarMenu?.enabled === true;
+        const link = item.link?.toUpperCase();
+        const rootValue = root.toUpperCase();
+
+        if (hasNavbar && link?.includes(rootValue) && item.subitems !== undefined) {
             return item;
         }
 
@@ -16,7 +20,10 @@ export const pathToSubitemText = (props: PathProps): string => {
 
     if (itemWithSubitem?.subitems) {
         const text = itemWithSubitem?.subitems.find((subitem: SubitemDto) => {
-            if (subitem.link?.toUpperCase().includes(props.pathname.toUpperCase())) {
+            const link = subitem.link?.toUpperCase();
+            const pathname = props.pathname.toUpperCase();
+
+            if (link?.includes(pathname)) {
                 return subitem;
             }
 
