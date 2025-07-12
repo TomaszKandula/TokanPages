@@ -29,7 +29,7 @@ interface ApplicationCookieViewProps extends ViewProperties {
 
 const CookieWindowOptions = (props: ApplicationCookieViewProps): React.ReactElement => {
     return (
-        <div className="cookie-window-options-list">
+        <div data-testid="cookie-window-options" className="cookie-window-options-list">
             <label className="cookie-window-checkbox pointer-not-allowed">
                 <input type="checkbox" className="cookie-window-checkbox-input" disabled={true} checked={true} />
                 <span className="cookie-window-checkbox-visual-input"></span>
@@ -71,7 +71,7 @@ const CookieWindowOptions = (props: ApplicationCookieViewProps): React.ReactElem
 
 const CookieWindowActions = (props: ApplicationCookieViewProps): React.ReactElement => {
     return (
-        <div className="cookie-window-actions">
+        <div data-testid="cookie-window-actions" className="cookie-window-actions">
             {props.buttons?.acceptButton.enabled ? (
                 <button
                     className="cookie-window-button cookie-window-button-accent cookie-window-action"
@@ -100,7 +100,7 @@ const CookieWindowActions = (props: ApplicationCookieViewProps): React.ReactElem
 
 const CookieWindowPrompt = (props: ApplicationCookieViewProps): React.ReactElement => {
     return (
-        <div className="cookie-window">
+        <div data-testid="cookie-window-prompt" className="cookie-window">
             <div className="cookie-window-caption">{props.caption}</div>
             <div className="cookie-window-box">
                 <div className="cookie-window-section">
@@ -121,7 +121,7 @@ const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElem
     const dateTime = new Date().toString();
     const formattedDateTime = GetDateTime({ value: dateTime, hasTimeVisible: true });
     return (
-        <div className="cookie-window">
+        <div data-testid="cookie-window-loading" className="cookie-window">
             <div className="cookie-window-caption">{props.caption}</div>
             <div className="cookie-window-box">
                 <div className="cookie-window-section cookie-window-section-fixed-height cookie-window-section-left">
@@ -140,23 +140,16 @@ const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElem
 const CookieWindowContainer = (props: ApplicationCookieViewProps): React.ReactElement => {
     const style = props.isClose ? "cookie-window-close" : "cookie-window-open";
     return (
-        <div className={`backdrop ${style}`}>
+        <div data-testid="application-cookie-view" className={`backdrop ${style}`}>
             {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
         </div>
     );
 };
 
 export const ApplicationCookieView = (props: ApplicationCookieViewProps): React.ReactElement => {
-    if (props.hasSnapshotMode) {
-        return <div className="cookie-window-open"></div>;
-    }
-
-    if (props.hasCookieConsent) {
-        return <div className="cookie-window-open"></div>;
-    }
-
-    if (props.loading?.length === 0) {
-        return <div className="cookie-window-open"></div>;
+    const shouldFallback = props.hasSnapshotMode || props.hasCookieConsent || props.loading?.length === 0;
+    if (shouldFallback) {
+        return <div data-testid="application-cookie-view" className="cookie-window-open"></div>;
     }
 
     return <CookieWindowContainer {...props} />;
