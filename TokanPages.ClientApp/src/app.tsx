@@ -10,10 +10,10 @@ import {
     ClearPageStart,
     ScrollToTop,
     ApplicationCookie,
-    ApplicationToast,
     ApplicationDialogBox,
     ApplicationUserInfo,
     ApplicationSession,
+    ApplicationToaster,
 } from "./Shared/Components";
 
 interface AppProps {
@@ -37,10 +37,10 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
-            {hasSnapshotMode ? null : (
+            {hasSnapshotMode && (
                 <>
                     <ApplicationCookie />
-                    <ApplicationToast />
+                    <ApplicationToaster hasAutoClose={true} AutoCloseDurationSec={15} position="top-right" />
                     <ApplicationDialogBox />
                     <ApplicationUserInfo />
                     <ScrollToTop />
