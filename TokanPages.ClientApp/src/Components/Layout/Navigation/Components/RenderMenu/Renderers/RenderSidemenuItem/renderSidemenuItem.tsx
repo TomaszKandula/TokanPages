@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "../../../../../../../Shared/Components";
 import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
-import "./renderSidemenuItem.css";
 
 const SidemenuWithSubitems = (props: ItemDto): React.ReactElement => (
     <li key={props.id}>
