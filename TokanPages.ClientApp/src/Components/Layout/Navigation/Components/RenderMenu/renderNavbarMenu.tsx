@@ -3,13 +3,36 @@ import { RenderNavbarItem } from "./Renderers";
 import { ItemDto } from "../../../../../Api/Models";
 import "./renderNavbarMenu.css";
 
-interface Properties {
+interface RenderNavbarMenuBaseProps {
     isAnonymous: boolean;
     languageId: string;
+}
+
+interface RenderNavbarMenuProps extends RenderNavbarMenuBaseProps {
     items: ItemDto[] | undefined;
 }
 
-export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
+interface CanContinueProps extends RenderNavbarMenuBaseProps {
+    item: ItemDto;
+}
+
+const CanContinue = (props: CanContinueProps): boolean => {
+    const accountPath = `/${props.languageId}/account`;
+    const signinPath = `/${props.languageId}/account/signin`;
+    const signupPath = `/${props.languageId}/account/signup`;
+
+    const isAnonymous = props.isAnonymous && props.item.link === accountPath;
+    const isNotAnonymous = !props.isAnonymous && (props.item.link === signinPath || props.item.link === signupPath);
+    const hasNavbar = props.item.navbarMenu?.enabled ?? false;
+
+    if (isAnonymous) return false;
+    if (isNotAnonymous) return false;
+    if (!hasNavbar) return false;
+
+    return true;
+}
+
+export const RenderNavbarMenu = (props: RenderNavbarMenuProps): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
@@ -20,20 +43,13 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
         return item1 < item2 ? -1 : isGreater;
     });
 
-    const accountPath = `/${props.languageId}/account`;
-    const signinPath = `/${props.languageId}/account/signin`;
-    const signupPath = `/${props.languageId}/account/signup`;
-
     const renderBuffer: React.ReactElement[] = [];
     props.items?.forEach(item => {
-        const isAnonymous = props.isAnonymous && item.link === accountPath;
-        const isNotAnonymous = !props.isAnonymous && (item.link === signinPath || item.link === signupPath);
-
         switch (item.type) {
             case "item": {
-                if (isAnonymous) return;
-                if (isNotAnonymous) return;
-                if (!item.navbarMenu?.enabled) return;
+                if (!CanContinue({ ...props, item })) {
+                    return;
+                }
 
                 renderBuffer.push(
                     <RenderNavbarItem
@@ -50,9 +66,9 @@ export const RenderNavbarMenu = (props: Properties): React.ReactElement => {
             }
 
             case "itemspan": {
-                if (isAnonymous) return;
-                if (isNotAnonymous) return;
-                if (!item.navbarMenu?.enabled) return;
+                if (!CanContinue({ ...props, item })) {
+                    return;
+                }
 
                 renderBuffer.push(
                     <RenderNavbarItem

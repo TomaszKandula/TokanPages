@@ -4,13 +4,36 @@ import { RenderSidemenuItem } from "./Renderers";
 import { v4 as uuidv4 } from "uuid";
 import "./renderSideMenu.css";
 
-interface Properties {
+interface RenderSideMenuBaseProps {
     isAnonymous: boolean;
     languageId: string;
+}
+
+interface RenderSideMenuProps extends RenderSideMenuBaseProps {
     items: ItemDto[] | undefined;
 }
 
-export const RenderSideMenu = (props: Properties): React.ReactElement => {
+interface CanContinueProps extends RenderSideMenuBaseProps {
+    item: ItemDto;
+}
+
+const CanContinue = (props: CanContinueProps): boolean => {
+    const accountPath = `/${props.languageId}/account`;
+    const signinPath = `/${props.languageId}/account/signin`;
+    const signupPath = `/${props.languageId}/account/signup`;
+
+    const isAnonymous = props.isAnonymous && props.item.link === accountPath;
+    const isNotAnonymous = !props.isAnonymous && (props.item.link === signinPath || props.item.link === signupPath);
+    const hasSideMenu = props.item.sideMenu?.enabled ?? false;
+
+    if (isAnonymous) return false;
+    if (isNotAnonymous) return false;
+    if (!hasSideMenu) return false;
+
+    return true;
+}
+
+export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;
     if (props.items.length === 0) return <div>Cannot render content.</div>;
 
@@ -21,20 +44,13 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
         return item1 < item2 ? -1 : isGreater;
     });
 
-    const accountPath = `/${props.languageId}/account`;
-    const signinPath = `/${props.languageId}/account/signin`;
-    const signupPath = `/${props.languageId}/account/signup`;
-
     const renderBuffer: React.ReactElement[] = [];
     props.items.forEach(item => {
-        const isAnonymous = props.isAnonymous && item.link === accountPath;
-        const isNotAnonymous = !props.isAnonymous && (item.link === signinPath || item.link === signupPath);
-
         switch (item.type) {
             case "item": {
-                if (isAnonymous) return;
-                if (isNotAnonymous) return;
-                if (!item.sideMenu?.enabled) return;
+                if (!CanContinue({ ...props, item })) {
+                    return;
+                }
 
                 renderBuffer.push(
                     <RenderSidemenuItem
@@ -51,9 +67,9 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
             }
 
             case "itemspan": {
-                if (isAnonymous) return;
-                if (isNotAnonymous) return;
-                if (!item.sideMenu?.enabled) return;
+                if (!CanContinue({ ...props, item })) {
+                    return;
+                }
 
                 renderBuffer.push(
                     <RenderSidemenuItem
@@ -76,6 +92,7 @@ export const RenderSideMenu = (props: Properties): React.ReactElement => {
                         {item.value}
                     </p>
                 );
+                break;
             }
 
             default: {
