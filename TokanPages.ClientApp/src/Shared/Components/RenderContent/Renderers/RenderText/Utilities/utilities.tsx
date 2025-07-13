@@ -228,12 +228,6 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
     const classStyle = props.text === "" ? baseStyle : `${baseStyle} ${GetFontStyle(props.text)}`;
 
     switch (prop) {
-        case "p":
-            return (
-                <p className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </p>
-            );
         case "blockquote":
             return (
                 <blockquote className={classStyle}>
@@ -287,7 +281,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
                     );
                 } catch {
                     console.error(item);
-                    throw "Parsing error.";
+                    throw new Error("Parsing error.");
                 }
             } else {
                 if (!Validate.isEmpty(item)) {

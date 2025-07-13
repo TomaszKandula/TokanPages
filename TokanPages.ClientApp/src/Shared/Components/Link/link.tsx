@@ -7,7 +7,7 @@ interface LinkProps {
     to: string;
     className?: string;
     isDisabled?: boolean;
-    rel?: string | undefined;
+    rel?: string;
     onMouseEnter?: ReactMouseEventHandler;
     onMouseLeave?: ReactMouseEventHandler;
     children: React.ReactElement | React.ReactElement[];

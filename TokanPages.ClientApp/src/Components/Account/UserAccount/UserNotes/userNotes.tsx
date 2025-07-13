@@ -245,7 +245,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             descriptionText={content?.description}
             listLabel={content?.listLabel}
             noteLabel={content?.noteLabel}
-            onRowClick={(index: number) => selectionHandler(index)}
+            onRowClick={selectionHandler}
             selection={selection}
             clearButtonText={content?.buttons?.clearText}
             clearButtonHandler={clearButtonHandler}

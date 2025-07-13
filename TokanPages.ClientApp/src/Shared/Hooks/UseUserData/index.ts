@@ -11,19 +11,20 @@ import utf8 from "utf8";
 export const useUserData = (): void => {
     const dispatch = useDispatch();
 
-    const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
-    if (Validate.isEmpty(encoded)) {
-        return;
-    }
-
-    const decoded = base64.decode(encoded);
-    const text = utf8.decode(decoded);
-    const data = JSON.parse(text) as AuthenticateUserResultDto;
-    const hasData = Object.entries(data).length !== 0;
-
     React.useEffect(() => {
+
+        const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
+        if (Validate.isEmpty(encoded)) {
+            return;
+        }
+
+        const decoded = base64.decode(encoded);
+        const text = utf8.decode(decoded);
+        const data = JSON.parse(text) as AuthenticateUserResultDto;
+        const hasData = Object.entries(data).length !== 0;
+
         if (hasData) {
             dispatch(UserDataStoreAction.update(data));
         }
-    }, [hasData]);
+    }, []);
 };

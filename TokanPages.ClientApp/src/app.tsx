@@ -59,15 +59,12 @@ const App = (props: AppProps): React.ReactElement => {
     useUserData();
     useAnimation();
 
-    if (!props.manifest) {
-        /* Pre-rendered SPA */
-        return <PrerenderedWrapper />;
+    const { isNormalMode } = useApplicationLanguage(props.manifest);
+    if (isNormalMode) {
+        return <RenderApplication languages={props.manifest?.languages} />;
     } else {
-        /* Normal mode */
-        useApplicationLanguage(props.manifest);
+        return <PrerenderedWrapper />;
     }
-
-    return <RenderApplication languages={props.manifest?.languages} />;
 };
 
 export default App;

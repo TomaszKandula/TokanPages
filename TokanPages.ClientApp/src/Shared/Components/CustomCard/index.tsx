@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { ViewProperties } from "../../../Shared/Abstractions";
+import { v4 as uuidv4 } from "uuid";
 import "./customCard.css";
 
 type Colour = "has-text-info" | "has-text-success" | "has-text-warning" | "has-text-danger";
@@ -53,10 +54,10 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                     {props.caption}
                 </h2>
                 <div className="my-5">
-                    {props.text.map((value: string, index: number) => (
+                    {props.text.map((value: string, _index: number) => (
                         <p
                             className={`is-size-6 has-text-centered line-height-20 ${props.isLoading ? "bulma-is-skeleton" : ""}`}
-                            key={index}
+                            key={uuidv4()}
                         >
                             {value}
                         </p>
