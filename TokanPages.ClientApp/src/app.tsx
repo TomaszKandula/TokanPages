@@ -37,7 +37,7 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
                     </Switch>
                 </ClearPageStart>
             </BrowserRouter>
-            {hasSnapshotMode && (
+            {hasSnapshotMode ? null : (
                 <>
                     <ApplicationCookie />
                     <ApplicationToaster hasAutoClose={true} AutoCloseDurationSec={15} position="top-right" />
