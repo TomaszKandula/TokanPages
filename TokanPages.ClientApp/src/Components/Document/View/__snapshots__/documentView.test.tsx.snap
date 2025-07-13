@@ -9,13 +9,17 @@ Object {
         class="section "
       >
         <article
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-tablet"
         >
-          <p
-            class="render-text-common render-text-paragraph"
+          <div
+            class="bulma-content"
           >
-            &lt;p&gt;Policy text&lt;/p&gt;
-          </p>
+            <p
+              class="is-size-5 has-text-grey-dark line-height-22"
+            >
+              &lt;p&gt;Policy text&lt;/p&gt;
+            </p>
+          </div>
         </article>
       </section>
     </div>
@@ -25,13 +29,17 @@ Object {
       class="section "
     >
       <article
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-tablet"
       >
-        <p
-          class="render-text-common render-text-paragraph"
+        <div
+          class="bulma-content"
         >
-          &lt;p&gt;Policy text&lt;/p&gt;
-        </p>
+          <p
+            class="is-size-5 has-text-grey-dark line-height-22"
+          >
+            &lt;p&gt;Policy text&lt;/p&gt;
+          </p>
+        </div>
       </article>
     </section>
   </div>,
@@ -98,13 +106,17 @@ Object {
         class="section "
       >
         <article
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-tablet"
         >
-          <p
-            class="render-text-common render-text-paragraph"
+          <div
+            class="bulma-content"
           >
-            &lt;p&gt;Showcase text&lt;/p&gt;
-          </p>
+            <p
+              class="is-size-5 has-text-grey-dark line-height-22"
+            >
+              &lt;p&gt;Showcase text&lt;/p&gt;
+            </p>
+          </div>
         </article>
       </section>
     </div>
@@ -114,13 +126,17 @@ Object {
       class="section "
     >
       <article
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-tablet"
       >
-        <p
-          class="render-text-common render-text-paragraph"
+        <div
+          class="bulma-content"
         >
-          &lt;p&gt;Showcase text&lt;/p&gt;
-        </p>
+          <p
+            class="is-size-5 has-text-grey-dark line-height-22"
+          >
+            &lt;p&gt;Showcase text&lt;/p&gt;
+          </p>
+        </div>
       </article>
     </section>
   </div>,
@@ -187,13 +203,17 @@ Object {
         class="section "
       >
         <article
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-tablet"
         >
-          <p
-            class="render-text-common render-text-paragraph"
+          <div
+            class="bulma-content"
           >
-            &lt;p&gt;Story text&lt;/p&gt;
-          </p>
+            <p
+              class="is-size-5 has-text-grey-dark line-height-22"
+            >
+              &lt;p&gt;Story text&lt;/p&gt;
+            </p>
+          </div>
         </article>
       </section>
     </div>
@@ -203,13 +223,17 @@ Object {
       class="section "
     >
       <article
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-tablet"
       >
-        <p
-          class="render-text-common render-text-paragraph"
+        <div
+          class="bulma-content"
         >
-          &lt;p&gt;Story text&lt;/p&gt;
-        </p>
+          <p
+            class="is-size-5 has-text-grey-dark line-height-22"
+          >
+            &lt;p&gt;Story text&lt;/p&gt;
+          </p>
+        </div>
       </article>
     </section>
   </div>,
@@ -276,13 +300,17 @@ Object {
         class="section "
       >
         <article
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-tablet"
         >
-          <p
-            class="render-text-common render-text-paragraph"
+          <div
+            class="bulma-content"
           >
-            &lt;p&gt;Terms text&lt;/p&gt;
-          </p>
+            <p
+              class="is-size-5 has-text-grey-dark line-height-22"
+            >
+              &lt;p&gt;Terms text&lt;/p&gt;
+            </p>
+          </div>
         </article>
       </section>
     </div>
@@ -292,13 +320,17 @@ Object {
       class="section "
     >
       <article
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-tablet"
       >
-        <p
-          class="render-text-common render-text-paragraph"
+        <div
+          class="bulma-content"
         >
-          &lt;p&gt;Terms text&lt;/p&gt;
-        </p>
+          <p
+            class="is-size-5 has-text-grey-dark line-height-22"
+          >
+            &lt;p&gt;Terms text&lt;/p&gt;
+          </p>
+        </div>
       </article>
     </section>
   </div>,

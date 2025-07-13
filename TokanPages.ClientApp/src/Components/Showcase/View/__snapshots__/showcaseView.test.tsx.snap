@@ -9,18 +9,17 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="pt-64 pb-96"
+            class="py-6"
           >
             <div
-              class="text-centre mb-48"
               data-aos="fade-down"
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root showcase-caption-text MuiTypography-body1"
+                class="is-size-3	has-text-centered has-text-link"
               >
                 SHOWCASE
               </p>
@@ -30,83 +29,60 @@ Object {
               data-aos-delay="0"
             >
               <div
-                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
+                class="bulma-columns p-6"
               >
                 <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                  class="bulma-column is-flex is-align-items-center"
                 >
                   <div
-                    class="showcase-feature-box"
+                    class=""
                   >
-                    <div
-                      class="showcase-feature-textbox"
+                    <h2
+                      class="is-size-3 py-5 has-text-black"
                     >
-                      <h2
-                        class="showcase-feature-text1"
+                      Most notable projects
+                    </h2>
+                    <p
+                      class="is-size-5 py-3 has-text-grey line-height-18"
+                    >
+                      Let's look at some of...
+                    </p>
+                    <div
+                      class="has-text-left py-5"
+                    >
+                      <a
+                        class="link"
+                        href="/en/showcase"
+                        rel="noopener nofollow"
                       >
-                        Most notable projects
-                      </h2>
-                      <div
-                        class="showcase-feature-text2 mt-15 mb-32"
-                      >
-                        <p>
-                          Let's look at some of...
-                        </p>
-                      </div>
-                      <div
-                        class="text-left"
-                      >
-                        <a
-                          class="link"
-                          href="/en/showcase"
-                          rel="noopener nofollow"
+                        <button
+                          class="bulma-button bulma-is-link bulma-is-light"
                         >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
-                            tabindex="0"
-                            type="button"
-                          >
-                            <span
-                              class="MuiButton-label"
-                            >
-                              Go to showcase
-                              <span
-                                class="MuiButton-endIcon MuiButton-iconSizeMedium"
-                              >
-                                <svg
-                                  aria-hidden="true"
-                                  class="MuiSvgIcon-root"
-                                  focusable="false"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                  />
-                                </svg>
-                              </span>
-                            </span>
-                            <span
-                              class="MuiTouchRipple-root"
-                            />
-                          </button>
-                        </a>
-                      </div>
+                          Go to showcase
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                  class="bulma-column"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                    class="bulma-card"
                   >
-                    <img
-                      alt="An image illustrating showcase page"
-                      class="MuiCardMedia-root showcase-feature-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
-                      title="Illustration"
-                    />
+                    <div
+                      class="bulma-card-image"
+                    >
+                      <figure
+                        class="bulma-image"
+                      >
+                        <img
+                          class="showcase-feature-image lazyloaded"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                        />
+                      </figure>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -121,18 +97,17 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+        class="bulma-container"
       >
         <div
-          class="pt-64 pb-96"
+          class="py-6"
         >
           <div
-            class="text-centre mb-48"
             data-aos="fade-down"
             data-aos-delay="0"
           >
             <p
-              class="MuiTypography-root showcase-caption-text MuiTypography-body1"
+              class="is-size-3	has-text-centered has-text-link"
             >
               SHOWCASE
             </p>
@@ -142,83 +117,60 @@ Object {
             data-aos-delay="0"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
+              class="bulma-columns p-6"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                class="bulma-column is-flex is-align-items-center"
               >
                 <div
-                  class="showcase-feature-box"
+                  class=""
                 >
-                  <div
-                    class="showcase-feature-textbox"
+                  <h2
+                    class="is-size-3 py-5 has-text-black"
                   >
-                    <h2
-                      class="showcase-feature-text1"
+                    Most notable projects
+                  </h2>
+                  <p
+                    class="is-size-5 py-3 has-text-grey line-height-18"
+                  >
+                    Let's look at some of...
+                  </p>
+                  <div
+                    class="has-text-left py-5"
+                  >
+                    <a
+                      class="link"
+                      href="/en/showcase"
+                      rel="noopener nofollow"
                     >
-                      Most notable projects
-                    </h2>
-                    <div
-                      class="showcase-feature-text2 mt-15 mb-32"
-                    >
-                      <p>
-                        Let's look at some of...
-                      </p>
-                    </div>
-                    <div
-                      class="text-left"
-                    >
-                      <a
-                        class="link"
-                        href="/en/showcase"
-                        rel="noopener nofollow"
+                      <button
+                        class="bulma-button bulma-is-link bulma-is-light"
                       >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
-                          tabindex="0"
-                          type="button"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Go to showcase
-                            <span
-                              class="MuiButton-endIcon MuiButton-iconSizeMedium"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root"
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                />
-                              </svg>
-                            </span>
-                          </span>
-                          <span
-                            class="MuiTouchRipple-root"
-                          />
-                        </button>
-                      </a>
-                    </div>
+                        Go to showcase
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                class="bulma-column"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                  class="bulma-card"
                 >
-                  <img
-                    alt="An image illustrating showcase page"
-                    class="MuiCardMedia-root showcase-feature-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
-                    title="Illustration"
-                  />
+                  <div
+                    class="bulma-card-image"
+                  >
+                    <figure
+                      class="bulma-image"
+                    >
+                      <img
+                        class="showcase-feature-image lazyloaded"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                      />
+                    </figure>
+                  </div>
                 </div>
               </div>
             </div>

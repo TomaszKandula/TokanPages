@@ -133,209 +133,182 @@ Object {
       </div>
     </div>
     <div>
-      <h1
-        class="render-text-common render-text-title mt-56 mb-0"
-      >
-        &lt;p&gt;Test line&lt;/p&gt;
-      </h1>
-      <h2
-        class="render-text-common render-text-subtitle mt-0 mb-40"
-      >
-        &lt;p&gt;Test line&lt;/p&gt;
-      </h2>
       <div
-        class="MuiPaper-root MuiCard-root render-image-card MuiPaper-elevation3 MuiPaper-rounded"
+        class="bulma-content"
       >
-        <img
-          alt="An image of presented article text"
-          class="MuiCardMedia-root lazyloaded MuiCardMedia-media MuiCardMedia-img"
-          loading="lazy"
-          src="http://localhost:5000/api/v1image.jpg"
-          title="Illustration"
-        />
-      </div>
-      <h3
-        class="render-text-common render-text-paragraph render-text-no-bold custom-drop-cap"
-      >
-        &lt;p&gt;Test line&lt;/p&gt;
-      </h3>
-      <p
-        class="render-text-common render-text-paragraph"
-      >
-        &lt;p&gt;Test line&lt;/p&gt;
-      </p>
-      <div
-        class="render-separator"
-      >
-        <span
-          class="render-separator-span"
-        />
-        <span
-          class="render-separator-span"
-        />
-        <span
-          class="render-separator-span"
-        />
-      </div>
-      <div
-        class="MuiPaper-root MuiTableContainer-root MuiPaper-elevation1 MuiPaper-rounded"
-      >
-        <table
-          aria-label="table"
-          class="MuiTable-root render-table"
+        <h1
+          class="bulma-title has-text-grey-dark m-0 pb-2"
         >
-          <thead
-            class="MuiTableHead-root"
+          &lt;p&gt;Test line&lt;/p&gt;
+        </h1>
+        <h2
+          class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
+        >
+          &lt;p&gt;Test line&lt;/p&gt;
+        </h2>
+        <div
+          class="bulma-card my-4"
+        >
+          <div
+            class="bulma-card-image"
           >
-            <tr
-              class="MuiTableRow-root MuiTableRow-head"
+            <figure
+              class="bulma-image"
             >
-              <th
-                class="MuiTableCell-root MuiTableCell-head render-table-head"
-                scope="col"
+              <img
+                alt="An image of presented article text"
+                loading="lazy"
+                src="http://localhost:5000/api/v1image.jpg"
+                title="Illustration"
               />
-              <th
-                class="MuiTableCell-root MuiTableCell-head render-table-head"
-                scope="col"
+            </figure>
+          </div>
+        </div>
+        <h3
+          class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
+        >
+          &lt;p&gt;Test line&lt;/p&gt;
+        </h3>
+        <p
+          class="is-size-5 has-text-grey-dark line-height-22"
+        >
+          &lt;p&gt;Test line&lt;/p&gt;
+        </p>
+        <div
+          class="render-separator"
+        >
+          <span
+            class="render-separator-span"
+          />
+          <span
+            class="render-separator-span"
+          />
+          <span
+            class="render-separator-span"
+          />
+        </div>
+        <table
+          class="bulma-table bulma-is-striped bulma-is-narrow bulma-is-hoverable bulma-is-fullwidth my-6"
+        >
+          <thead>
+            <tr>
+              <td
+                class="is-size-6 has-text-weight-bold"
+              />
+              <td
+                class="is-size-6 has-text-weight-bold"
               >
                 Header line
-              </th>
-              <th
-                class="MuiTableCell-root MuiTableCell-head render-table-head"
-                scope="col"
+              </td>
+              <td
+                class="is-size-6 has-text-weight-bold"
               >
                 Header line
-              </th>
+              </td>
             </tr>
           </thead>
-          <tbody
-            class="MuiTableBody-root"
-          >
-            <tr
-              class="MuiTableRow-root render-table-row"
-            >
-              <th
-                class="MuiTableCell-root MuiTableCell-body render-table-header"
-                role="cell"
-                scope="row"
+          <tbody>
+            <tr>
+              <td
+                class="is-size-6"
               >
                 1
-              </th>
+              </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
             </tr>
-            <tr
-              class="MuiTableRow-root render-table-row"
-            >
-              <th
-                class="MuiTableCell-root MuiTableCell-body render-table-header"
-                role="cell"
-                scope="row"
+            <tr>
+              <td
+                class="is-size-6"
               >
                 2
-              </th>
+              </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
             </tr>
-            <tr
-              class="MuiTableRow-root render-table-row"
-            >
-              <th
-                class="MuiTableCell-root MuiTableCell-body render-table-header"
-                role="cell"
-                scope="row"
+            <tr>
+              <td
+                class="is-size-6"
               >
                 3
-              </th>
+              </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
             </tr>
-            <tr
-              class="MuiTableRow-root render-table-row"
-            >
-              <th
-                class="MuiTableCell-root MuiTableCell-body render-table-header"
-                role="cell"
-                scope="row"
+            <tr>
+              <td
+                class="is-size-6"
               >
                 4
-              </th>
+              </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
               <td
-                class="MuiTableCell-root MuiTableCell-body render-table-cell"
-                role="cell"
-                scope="row"
+                class="is-size-6"
               >
                 value
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
-      <div
-        class="MuiPaper-root MuiCard-root render-video-card MuiPaper-elevation3 MuiPaper-rounded"
-      >
-        <img
-          alt="Video related to the presented article text"
-          class="MuiCardMedia-root render-video-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-          loading="lazy"
-          src="http://localhost:5000/api/v1cheers-commercial.png"
-          title="Video"
-        />
         <div
-          class="MuiCardContent-root"
+          class="bulma-card my-4"
         >
-          <span
-            class="MuiTypography-root render-video-text MuiTypography-body1"
+          <div
+            class="bulma-card-image"
           >
-            Video
-          </span>
+            <figure
+              class="bulma-image"
+            >
+              <img
+                alt="Video related to the presented article text"
+                class="lazyloaded"
+                loading="lazy"
+                src="http://localhost:5000/api/v1cheers-commercial.png"
+                title="Video"
+              />
+            </figure>
+          </div>
+          <div
+            class="bulma-card-content"
+          >
+            <span
+              class="is-size-6"
+            >
+              Video
+            </span>
+          </div>
         </div>
-      </div>
-      <div>
-        Unknown element.
+        <div>
+          Unknown element.
+        </div>
       </div>
     </div>
   </body>,

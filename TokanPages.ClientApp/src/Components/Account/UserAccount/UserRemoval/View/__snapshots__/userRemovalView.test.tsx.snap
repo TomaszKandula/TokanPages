@@ -9,95 +9,51 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pb-40"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
+                <p
+                  class="is-size-4 has-text-grey"
                 >
                   Account Removal
-                </span>
-                <div
-                  class="mt-15 mb-8"
+                </p>
+                <hr />
+                <p
+                  class="is-size-6 has-text-grey line-height-20"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="pt-8 pb-8"
+                  Warning!
+                </p>
+                <p
+                  class="is-size-6 has-text-grey line-height-20"
                 >
-                  <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  Once you remove your existing account, you will lose all your data...
+                </p>
+                <hr />
+                <div
+                  class="has-text-right"
+                >
+                  <button
+                    class="bulma-button bulma-is-danger bulma-is-light"
+                    disabled=""
+                    type="submit"
                   >
                     <div
-                      class="MuiGrid-root MuiGrid-item"
+                      class="progress-bar-box "
                     >
-                      <p
-                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                      >
-                        Warning!
-                      </p>
-                      <p
-                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                      >
-                        Once you remove your existing account, you will lose all your data...
-                      </p>
+                      <span
+                        class="progress-bar-loader"
+                        style="height: 20px; width: 20px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+                      />
                     </div>
-                  </div>
-                  <div
-                    class="mt-15 mb-15"
-                  >
-                    <hr
-                      class="MuiDivider-root divider"
-                    />
-                  </div>
-                  <div
-                    class="MuiGrid-root button-container-update"
-                  >
-                    <div
-                      class="mt-15 mb-15"
-                    >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete Mui-disabled MuiButton-fullWidth Mui-disabled"
-                        disabled=""
-                        tabindex="-1"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          <div
-                            class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-                            role="progressbar"
-                            style="width: 20px; height: 20px;"
-                          >
-                            <svg
-                              class="MuiCircularProgress-svg"
-                              viewBox="22 22 44 44"
-                            >
-                              <circle
-                                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                                cx="44"
-                                cy="44"
-                                fill="none"
-                                r="20.2"
-                                stroke-width="3.6"
-                              />
-                            </svg>
-                          </div>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -111,95 +67,51 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pb-40"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
-              <span
-                class="MuiTypography-root caption black MuiTypography-body1"
+              <p
+                class="is-size-4 has-text-grey"
               >
                 Account Removal
-              </span>
-              <div
-                class="mt-15 mb-8"
+              </p>
+              <hr />
+              <p
+                class="is-size-6 has-text-grey line-height-20"
               >
-                <hr
-                  class="MuiDivider-root divider"
-                />
-              </div>
-              <div
-                class="pt-8 pb-8"
+                Warning!
+              </p>
+              <p
+                class="is-size-6 has-text-grey line-height-20"
               >
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                Once you remove your existing account, you will lose all your data...
+              </p>
+              <hr />
+              <div
+                class="has-text-right"
+              >
+                <button
+                  class="bulma-button bulma-is-danger bulma-is-light"
+                  disabled=""
+                  type="submit"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-item"
+                    class="progress-bar-box "
                   >
-                    <p
-                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                    >
-                      Warning!
-                    </p>
-                    <p
-                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                    >
-                      Once you remove your existing account, you will lose all your data...
-                    </p>
+                    <span
+                      class="progress-bar-loader"
+                      style="height: 20px; width: 20px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+                    />
                   </div>
-                </div>
-                <div
-                  class="mt-15 mb-15"
-                >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="MuiGrid-root button-container-update"
-                >
-                  <div
-                    class="mt-15 mb-15"
-                  >
-                    <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete Mui-disabled MuiButton-fullWidth Mui-disabled"
-                      disabled=""
-                      tabindex="-1"
-                      type="submit"
-                    >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        <div
-                          class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-                          role="progressbar"
-                          style="width: 20px; height: 20px;"
-                        >
-                          <svg
-                            class="MuiCircularProgress-svg"
-                            viewBox="22 22 44 44"
-                          >
-                            <circle
-                              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                              cx="44"
-                              cy="44"
-                              fill="none"
-                              r="20.2"
-                              stroke-width="3.6"
-                            />
-                          </svg>
-                        </div>
-                      </span>
-                    </button>
-                  </div>
-                </div>
+                </button>
               </div>
             </div>
           </div>

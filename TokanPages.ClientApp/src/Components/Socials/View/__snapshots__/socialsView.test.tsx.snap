@@ -9,256 +9,276 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="text-centre pt-64 pb-40"
+            class="py-6"
           >
             <div
               data-aos="fade-down"
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root socials-caption-text MuiTypography-body1"
+                class="is-size-3	has-text-centered has-text-link"
               >
                 SOCIAL MEDIA
               </p>
             </div>
-          </div>
-          <div
-            class="text-centre pb-120"
-          >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
+              class="p-6"
             >
               <div
-                class="MuiGrid-root socials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="bulma-columns"
               >
                 <div
-                  data-aos="fade-up"
-                  data-aos-delay="350"
+                  class="bulma-column is-clickable"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+                    data-aos="fade-up"
+                    data-aos-delay="350"
                   >
-                    <a
-                      aria-disabled="false"
-                      class="MuiButtonBase-root MuiCardActionArea-root"
-                      href="https://google.com"
-                      rel="noopener"
-                      tabindex="0"
-                      target="_blank"
+                    <div
+                      class="bulma-card"
                     >
-                      <img
-                        alt="Somebody"
-                        class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
-                        title="Illustration"
-                      />
-                      <div
-                        class="socials-card-image-holder"
-                      >
-                        <img
-                          alt="Somebody"
-                          class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
-                          title="Socials"
-                        />
-                      </div>
-                      <div
-                        class="MuiCardContent-root socials-card-content"
+                      <a
+                        class="href undefined"
+                        href="https://google.com"
+                        rel="noopener nofollow"
+                        target="_blank"
                       >
                         <div
-                          class="socials-card-icon-holder"
+                          class="bulma-card-image"
                         >
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root socials-card-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                          <figure
+                            class="bulma-image"
                           >
-                            <path
-                              d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+                            <img
+                              alt="Somebody"
+                              class="socials-image lazyloaded"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
+                              title="Illustration"
                             />
-                          </svg>
+                          </figure>
                         </div>
                         <div
-                          class="socials-card-title"
+                          class="socials-card-image-holder"
                         >
-                          Somebody
+                          <img
+                            alt="Somebody"
+                            class="socials-avatar lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
+                            title="Socials"
+                          />
                         </div>
-                        <h3
-                          class="socials-card-subheader"
+                        <div
+                          class="bulma-card-content"
                         >
-                          Software Engineer...
-                        </h3>
-                        <h4
-                          class="socials-card-subtext"
-                        >
-                          Warsaw Metropolitan Area
-                        </h4>
-                      </div>
-                      <span
-                        class="MuiCardActionArea-focusHighlight"
-                      />
-                      <span
-                        class="MuiTouchRipple-root"
-                      />
-                    </a>
+                          <div
+                            class="has-text-centered pt-6"
+                          >
+                            <svg
+                              fill="#000000"
+                              height="2rem"
+                              version="1.1"
+                              viewBox="0 0 32 32"
+                              width="2rem"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M28.778 1.004h-25.56c-0.008-0-0.017-0-0.027-0-1.199 0-2.172 0.964-2.186 2.159v25.672c0.014 1.196 0.987 2.161 2.186 2.161 0.010 0 0.019-0 0.029-0h25.555c0.008 0 0.018 0 0.028 0 1.2 0 2.175-0.963 2.194-2.159l0-0.002v-25.67c-0.019-1.197-0.994-2.161-2.195-2.161-0.010 0-0.019 0-0.029 0h0.001zM9.9 26.562h-4.454v-14.311h4.454zM7.674 10.293c-1.425 0-2.579-1.155-2.579-2.579s1.155-2.579 2.579-2.579c1.424 0 2.579 1.154 2.579 2.578v0c0 0.001 0 0.002 0 0.004 0 1.423-1.154 2.577-2.577 2.577-0.001 0-0.002 0-0.003 0h0zM26.556 26.562h-4.441v-6.959c0-1.66-0.034-3.795-2.314-3.795-2.316 0-2.669 1.806-2.669 3.673v7.082h-4.441v-14.311h4.266v1.951h0.058c0.828-1.395 2.326-2.315 4.039-2.315 0.061 0 0.121 0.001 0.181 0.003l-0.009-0c4.5 0 5.332 2.962 5.332 6.817v7.855z"
+                              />
+                            </svg>
+                          </div>
+                          <div
+                            class="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                          >
+                            Somebody
+                          </div>
+                          <h3
+                            class="is-size-6 has-text-grey has-text-centered py-2"
+                          >
+                            Software Engineer...
+                          </h3>
+                          <h4
+                            class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                          >
+                            Warsaw Metropolitan Area
+                          </h4>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="MuiGrid-root socials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-              >
                 <div
-                  data-aos="fade-up"
-                  data-aos-delay="150"
+                  class="bulma-column is-clickable"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root card MuiPaper-elevation3 MuiPaper-rounded"
+                    data-aos="fade-up"
+                    data-aos-delay="150"
                   >
-                    <a
-                      aria-disabled="false"
-                      class="MuiButtonBase-root MuiCardActionArea-root"
-                      href="https://google.com"
-                      rel="noopener"
-                      tabindex="0"
-                      target="_blank"
+                    <div
+                      class="bulma-card"
                     >
-                      <img
-                        alt="Somebody"
-                        class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
-                        title="Illustration"
-                      />
-                      <div
-                        class="socials-card-image-holder"
-                      >
-                        <img
-                          alt="Somebody"
-                          class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
-                          title="Socials"
-                        />
-                      </div>
-                      <div
-                        class="MuiCardContent-root socials-card-content"
+                      <a
+                        class="href undefined"
+                        href="https://google.com"
+                        rel="noopener nofollow"
+                        target="_blank"
                       >
                         <div
-                          class="socials-card-icon-holder"
+                          class="bulma-card-image"
                         >
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root socials-card-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                          <figure
+                            class="bulma-image"
                           >
-                            <path
-                              d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
+                            <img
+                              alt="Somebody"
+                              class="socials-image lazyloaded"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
+                              title="Illustration"
                             />
-                          </svg>
+                          </figure>
                         </div>
                         <div
-                          class="socials-card-title"
+                          class="socials-card-image-holder"
                         >
-                          Somebody
+                          <img
+                            alt="Somebody"
+                            class="socials-avatar lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
+                            title="Socials"
+                          />
                         </div>
-                        <h3
-                          class="socials-card-subheader"
+                        <div
+                          class="bulma-card-content"
                         >
-                          JavaScript/TypeScript...
-                        </h3>
-                        <h4
-                          class="socials-card-subtext"
-                        >
-                          GitHub Repository
-                        </h4>
-                      </div>
-                      <span
-                        class="MuiCardActionArea-focusHighlight"
-                      />
-                    </a>
+                          <div
+                            class="has-text-centered pt-6"
+                          >
+                            <svg
+                              fill="none"
+                              height="2rem"
+                              viewBox="0 0 48 48"
+                              width="2rem"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle
+                                cx="24"
+                                cy="24"
+                                fill="#181717"
+                                r="20"
+                              />
+                              <path
+                                d="M6.81348 34.235C9.24811 38.3138 13.0939 41.4526 17.6772 42.9784C18.6779 43.1614 19.0425 42.5438 19.0425 42.0134C19.0425 41.7938 19.0388 41.4058 19.0339 40.8866C19.0282 40.2852 19.0208 39.5079 19.0155 38.6124C13.4524 39.8206 12.2787 35.931 12.2787 35.931C11.3689 33.6215 10.0576 33.0064 10.0576 33.0064C8.2417 31.7651 10.1951 31.7896 10.1951 31.7896C12.2025 31.9321 13.2584 33.8511 13.2584 33.8511C15.0424 36.9071 17.94 36.0243 19.0794 35.5135C19.2611 34.2207 19.7767 33.3391 20.3489 32.8394C15.908 32.3348 11.2387 30.6183 11.2387 22.9545C11.2387 20.7715 12.0184 18.9863 13.2977 17.5879C13.0914 17.082 12.4051 15.0488 13.4929 12.2949C13.4929 12.2949 15.1725 11.7571 18.9934 14.3453C20.5883 13.9021 22.2998 13.6798 24.0003 13.6725C25.6983 13.6798 27.4099 13.9021 29.0072 14.3453C32.8256 11.7571 34.5016 12.2949 34.5016 12.2949C35.5931 15.0488 34.9067 17.082 34.7005 17.5879C35.9823 18.9863 36.757 20.7715 36.757 22.9545C36.757 30.638 32.0804 32.3286 27.6247 32.8234C28.343 33.441 28.9827 34.6614 28.9827 36.5277C28.9827 38.3152 28.9717 39.8722 28.9644 40.9035C28.9608 41.4143 28.9581 41.7962 28.9581 42.0134C28.9581 42.5487 29.3178 43.1712 30.3332 42.976C33.9844 41.7572 37.1671 39.5154 39.5403 36.5903C35.8734 41.1108 30.274 44 23.9997 44C16.6943 44 10.3038 40.0832 6.81348 34.235Z"
+                                fill="white"
+                              />
+                            </svg>
+                          </div>
+                          <div
+                            class="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                          >
+                            Somebody
+                          </div>
+                          <h3
+                            class="is-size-6 has-text-grey has-text-centered py-2"
+                          >
+                            JavaScript/TypeScript...
+                          </h3>
+                          <h4
+                            class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                          >
+                            GitHub Repository
+                          </h4>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="MuiGrid-root socials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-              >
                 <div
-                  data-aos="fade-up"
-                  data-aos-delay="250"
+                  class="bulma-column is-clickable"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root card MuiPaper-elevation3 MuiPaper-rounded"
+                    data-aos="fade-up"
+                    data-aos-delay="250"
                   >
-                    <a
-                      aria-disabled="false"
-                      class="MuiButtonBase-root MuiCardActionArea-root"
-                      href="https://google.com"
-                      rel="noopener"
-                      tabindex="0"
-                      target="_blank"
+                    <div
+                      class="bulma-card"
                     >
-                      <img
-                        alt="TomKandula"
-                        class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
-                        title="Illustration"
-                      />
-                      <div
-                        class="socials-card-image-holder"
-                      >
-                        <img
-                          alt="TomKandula"
-                          class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
-                          title="Socials"
-                        />
-                      </div>
-                      <div
-                        class="MuiCardContent-root socials-card-content"
+                      <a
+                        class="href undefined"
+                        href="https://google.com"
+                        rel="noopener nofollow"
+                        target="_blank"
                       >
                         <div
-                          class="socials-card-icon-holder"
+                          class="bulma-card-image"
                         >
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root socials-card-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                          <figure
+                            class="bulma-image"
                           >
-                            <path
-                              d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
+                            <img
+                              alt="TomKandula"
+                              class="socials-image lazyloaded"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
+                              title="Illustration"
                             />
-                          </svg>
+                          </figure>
                         </div>
                         <div
-                          class="socials-card-title"
+                          class="socials-card-image-holder"
                         >
-                          TomKandula
+                          <img
+                            alt="TomKandula"
+                            class="socials-avatar lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
+                            title="Socials"
+                          />
                         </div>
-                        <h3
-                          class="socials-card-subheader"
+                        <div
+                          class="bulma-card-content"
                         >
-                          Photographer 📸 ...
-                        </h3>
-                        <h4
-                          class="socials-card-subtext"
-                        >
-                          Personal photo blog
-                        </h4>
-                      </div>
-                      <span
-                        class="MuiCardActionArea-focusHighlight"
-                      />
-                    </a>
+                          <div
+                            class="has-text-centered pt-6"
+                          >
+                            <svg
+                              fill="none"
+                              height="2rem"
+                              viewBox="0 0 24 24"
+                              width="2rem"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                clip-rule="evenodd"
+                                d="M2 6C2 3.79086 3.79086 2 6 2H18C20.2091 2 22 3.79086 22 6V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V6ZM6 4C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM17.5 8C18.3284 8 19 7.32843 19 6.5C19 5.67157 18.3284 5 17.5 5C16.6716 5 16 5.67157 16 6.5C16 7.32843 16.6716 8 17.5 8Z"
+                                fill="#000000"
+                                fill-rule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                          <div
+                            class="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                          >
+                            TomKandula
+                          </div>
+                          <h3
+                            class="is-size-6 has-text-grey has-text-centered py-2"
+                          >
+                            Photographer 📸 ...
+                          </h3>
+                          <h4
+                            class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                          >
+                            Personal photo blog
+                          </h4>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -273,256 +293,276 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+        class="bulma-container"
       >
         <div
-          class="text-centre pt-64 pb-40"
+          class="py-6"
         >
           <div
             data-aos="fade-down"
             data-aos-delay="0"
           >
             <p
-              class="MuiTypography-root socials-caption-text MuiTypography-body1"
+              class="is-size-3	has-text-centered has-text-link"
             >
               SOCIAL MEDIA
             </p>
           </div>
-        </div>
-        <div
-          class="text-centre pb-120"
-        >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
+            class="p-6"
           >
             <div
-              class="MuiGrid-root socials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="bulma-columns"
             >
               <div
-                data-aos="fade-up"
-                data-aos-delay="350"
+                class="bulma-column is-clickable"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+                  data-aos="fade-up"
+                  data-aos-delay="350"
                 >
-                  <a
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiCardActionArea-root"
-                    href="https://google.com"
-                    rel="noopener"
-                    tabindex="0"
-                    target="_blank"
+                  <div
+                    class="bulma-card"
                   >
-                    <img
-                      alt="Somebody"
-                      class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
-                      title="Illustration"
-                    />
-                    <div
-                      class="socials-card-image-holder"
-                    >
-                      <img
-                        alt="Somebody"
-                        class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
-                        title="Socials"
-                      />
-                    </div>
-                    <div
-                      class="MuiCardContent-root socials-card-content"
+                    <a
+                      class="href undefined"
+                      href="https://google.com"
+                      rel="noopener nofollow"
+                      target="_blank"
                     >
                       <div
-                        class="socials-card-icon-holder"
+                        class="bulma-card-image"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root socials-card-icon"
-                          focusable="false"
-                          viewBox="0 0 24 24"
+                        <figure
+                          class="bulma-image"
                         >
-                          <path
-                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"
+                          <img
+                            alt="Somebody"
+                            class="socials-image lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
+                            title="Illustration"
                           />
-                        </svg>
+                        </figure>
                       </div>
                       <div
-                        class="socials-card-title"
+                        class="socials-card-image-holder"
                       >
-                        Somebody
+                        <img
+                          alt="Somebody"
+                          class="socials-avatar lazyloaded"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
+                          title="Socials"
+                        />
                       </div>
-                      <h3
-                        class="socials-card-subheader"
+                      <div
+                        class="bulma-card-content"
                       >
-                        Software Engineer...
-                      </h3>
-                      <h4
-                        class="socials-card-subtext"
-                      >
-                        Warsaw Metropolitan Area
-                      </h4>
-                    </div>
-                    <span
-                      class="MuiCardActionArea-focusHighlight"
-                    />
-                    <span
-                      class="MuiTouchRipple-root"
-                    />
-                  </a>
+                        <div
+                          class="has-text-centered pt-6"
+                        >
+                          <svg
+                            fill="#000000"
+                            height="2rem"
+                            version="1.1"
+                            viewBox="0 0 32 32"
+                            width="2rem"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M28.778 1.004h-25.56c-0.008-0-0.017-0-0.027-0-1.199 0-2.172 0.964-2.186 2.159v25.672c0.014 1.196 0.987 2.161 2.186 2.161 0.010 0 0.019-0 0.029-0h25.555c0.008 0 0.018 0 0.028 0 1.2 0 2.175-0.963 2.194-2.159l0-0.002v-25.67c-0.019-1.197-0.994-2.161-2.195-2.161-0.010 0-0.019 0-0.029 0h0.001zM9.9 26.562h-4.454v-14.311h4.454zM7.674 10.293c-1.425 0-2.579-1.155-2.579-2.579s1.155-2.579 2.579-2.579c1.424 0 2.579 1.154 2.579 2.578v0c0 0.001 0 0.002 0 0.004 0 1.423-1.154 2.577-2.577 2.577-0.001 0-0.002 0-0.003 0h0zM26.556 26.562h-4.441v-6.959c0-1.66-0.034-3.795-2.314-3.795-2.316 0-2.669 1.806-2.669 3.673v7.082h-4.441v-14.311h4.266v1.951h0.058c0.828-1.395 2.326-2.315 4.039-2.315 0.061 0 0.121 0.001 0.181 0.003l-0.009-0c4.5 0 5.332 2.962 5.332 6.817v7.855z"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                        >
+                          Somebody
+                        </div>
+                        <h3
+                          class="is-size-6 has-text-grey has-text-centered py-2"
+                        >
+                          Software Engineer...
+                        </h3>
+                        <h4
+                          class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                        >
+                          Warsaw Metropolitan Area
+                        </h4>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              class="MuiGrid-root socials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-            >
               <div
-                data-aos="fade-up"
-                data-aos-delay="150"
+                class="bulma-column is-clickable"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root card MuiPaper-elevation3 MuiPaper-rounded"
+                  data-aos="fade-up"
+                  data-aos-delay="150"
                 >
-                  <a
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiCardActionArea-root"
-                    href="https://google.com"
-                    rel="noopener"
-                    tabindex="0"
-                    target="_blank"
+                  <div
+                    class="bulma-card"
                   >
-                    <img
-                      alt="Somebody"
-                      class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
-                      title="Illustration"
-                    />
-                    <div
-                      class="socials-card-image-holder"
-                    >
-                      <img
-                        alt="Somebody"
-                        class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
-                        title="Socials"
-                      />
-                    </div>
-                    <div
-                      class="MuiCardContent-root socials-card-content"
+                    <a
+                      class="href undefined"
+                      href="https://google.com"
+                      rel="noopener nofollow"
+                      target="_blank"
                     >
                       <div
-                        class="socials-card-icon-holder"
+                        class="bulma-card-image"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root socials-card-icon"
-                          focusable="false"
-                          viewBox="0 0 24 24"
+                        <figure
+                          class="bulma-image"
                         >
-                          <path
-                            d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
+                          <img
+                            alt="Somebody"
+                            class="socials-image lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
+                            title="Illustration"
                           />
-                        </svg>
+                        </figure>
                       </div>
                       <div
-                        class="socials-card-title"
+                        class="socials-card-image-holder"
                       >
-                        Somebody
+                        <img
+                          alt="Somebody"
+                          class="socials-avatar lazyloaded"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
+                          title="Socials"
+                        />
                       </div>
-                      <h3
-                        class="socials-card-subheader"
+                      <div
+                        class="bulma-card-content"
                       >
-                        JavaScript/TypeScript...
-                      </h3>
-                      <h4
-                        class="socials-card-subtext"
-                      >
-                        GitHub Repository
-                      </h4>
-                    </div>
-                    <span
-                      class="MuiCardActionArea-focusHighlight"
-                    />
-                  </a>
+                        <div
+                          class="has-text-centered pt-6"
+                        >
+                          <svg
+                            fill="none"
+                            height="2rem"
+                            viewBox="0 0 48 48"
+                            width="2rem"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="24"
+                              cy="24"
+                              fill="#181717"
+                              r="20"
+                            />
+                            <path
+                              d="M6.81348 34.235C9.24811 38.3138 13.0939 41.4526 17.6772 42.9784C18.6779 43.1614 19.0425 42.5438 19.0425 42.0134C19.0425 41.7938 19.0388 41.4058 19.0339 40.8866C19.0282 40.2852 19.0208 39.5079 19.0155 38.6124C13.4524 39.8206 12.2787 35.931 12.2787 35.931C11.3689 33.6215 10.0576 33.0064 10.0576 33.0064C8.2417 31.7651 10.1951 31.7896 10.1951 31.7896C12.2025 31.9321 13.2584 33.8511 13.2584 33.8511C15.0424 36.9071 17.94 36.0243 19.0794 35.5135C19.2611 34.2207 19.7767 33.3391 20.3489 32.8394C15.908 32.3348 11.2387 30.6183 11.2387 22.9545C11.2387 20.7715 12.0184 18.9863 13.2977 17.5879C13.0914 17.082 12.4051 15.0488 13.4929 12.2949C13.4929 12.2949 15.1725 11.7571 18.9934 14.3453C20.5883 13.9021 22.2998 13.6798 24.0003 13.6725C25.6983 13.6798 27.4099 13.9021 29.0072 14.3453C32.8256 11.7571 34.5016 12.2949 34.5016 12.2949C35.5931 15.0488 34.9067 17.082 34.7005 17.5879C35.9823 18.9863 36.757 20.7715 36.757 22.9545C36.757 30.638 32.0804 32.3286 27.6247 32.8234C28.343 33.441 28.9827 34.6614 28.9827 36.5277C28.9827 38.3152 28.9717 39.8722 28.9644 40.9035C28.9608 41.4143 28.9581 41.7962 28.9581 42.0134C28.9581 42.5487 29.3178 43.1712 30.3332 42.976C33.9844 41.7572 37.1671 39.5154 39.5403 36.5903C35.8734 41.1108 30.274 44 23.9997 44C16.6943 44 10.3038 40.0832 6.81348 34.235Z"
+                              fill="white"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                        >
+                          Somebody
+                        </div>
+                        <h3
+                          class="is-size-6 has-text-grey has-text-centered py-2"
+                        >
+                          JavaScript/TypeScript...
+                        </h3>
+                        <h4
+                          class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                        >
+                          GitHub Repository
+                        </h4>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div
-              class="MuiGrid-root socials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-            >
               <div
-                data-aos="fade-up"
-                data-aos-delay="250"
+                class="bulma-column is-clickable"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root card MuiPaper-elevation3 MuiPaper-rounded"
+                  data-aos="fade-up"
+                  data-aos-delay="250"
                 >
-                  <a
-                    aria-disabled="false"
-                    class="MuiButtonBase-root MuiCardActionArea-root"
-                    href="https://google.com"
-                    rel="noopener"
-                    tabindex="0"
-                    target="_blank"
+                  <div
+                    class="bulma-card"
                   >
-                    <img
-                      alt="TomKandula"
-                      class="MuiCardMedia-root socials-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
-                      title="Illustration"
-                    />
-                    <div
-                      class="socials-card-image-holder"
-                    >
-                      <img
-                        alt="TomKandula"
-                        class="MuiCardMedia-root socials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
-                        title="Socials"
-                      />
-                    </div>
-                    <div
-                      class="MuiCardContent-root socials-card-content"
+                    <a
+                      class="href undefined"
+                      href="https://google.com"
+                      rel="noopener nofollow"
+                      target="_blank"
                     >
                       <div
-                        class="socials-card-icon-holder"
+                        class="bulma-card-image"
                       >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root socials-card-icon"
-                          focusable="false"
-                          viewBox="0 0 24 24"
+                        <figure
+                          class="bulma-image"
                         >
-                          <path
-                            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
+                          <img
+                            alt="TomKandula"
+                            class="socials-image lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
+                            title="Illustration"
                           />
-                        </svg>
+                        </figure>
                       </div>
                       <div
-                        class="socials-card-title"
+                        class="socials-card-image-holder"
                       >
-                        TomKandula
+                        <img
+                          alt="TomKandula"
+                          class="socials-avatar lazyloaded"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
+                          title="Socials"
+                        />
                       </div>
-                      <h3
-                        class="socials-card-subheader"
+                      <div
+                        class="bulma-card-content"
                       >
-                        Photographer 📸 ...
-                      </h3>
-                      <h4
-                        class="socials-card-subtext"
-                      >
-                        Personal photo blog
-                      </h4>
-                    </div>
-                    <span
-                      class="MuiCardActionArea-focusHighlight"
-                    />
-                  </a>
+                        <div
+                          class="has-text-centered pt-6"
+                        >
+                          <svg
+                            fill="none"
+                            height="2rem"
+                            viewBox="0 0 24 24"
+                            width="2rem"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M2 6C2 3.79086 3.79086 2 6 2H18C20.2091 2 22 3.79086 22 6V18C22 20.2091 20.2091 22 18 22H6C3.79086 22 2 20.2091 2 18V6ZM6 4C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4H6ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12ZM17.5 8C18.3284 8 19 7.32843 19 6.5C19 5.67157 18.3284 5 17.5 5C16.6716 5 16 5.67157 16 6.5C16 7.32843 16.6716 8 17.5 8Z"
+                              fill="#000000"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <div
+                          class="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                        >
+                          TomKandula
+                        </div>
+                        <h3
+                          class="is-size-6 has-text-grey has-text-centered py-2"
+                        >
+                          Photographer 📸 ...
+                        </h3>
+                        <h4
+                          class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
+                        >
+                          Personal photo blog
+                        </h4>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

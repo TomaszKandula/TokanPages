@@ -6,8 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large  MuiAvatar-colorDefault"
-        title="Avatar"
+        class="avatar-wrapper user-avatar-avatar-large "
       >
         T
       </div>
@@ -15,8 +14,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large  MuiAvatar-colorDefault"
-      title="Avatar"
+      class="avatar-wrapper user-avatar-avatar-large "
     >
       T
     </div>
@@ -81,26 +79,26 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
-        title="Avatar"
+        class="avatar-wrapper user-avatar-avatar-large "
       >
         <img
           alt="User avatar"
-          class="MuiAvatar-img"
+          class="avatar-image"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
+          title="Avatar"
         />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
-      title="Avatar"
+      class="avatar-wrapper user-avatar-avatar-large "
     >
       <img
         alt="User avatar"
-        class="MuiAvatar-img"
+        class="avatar-image"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
+        title="Avatar"
       />
     </div>
   </div>,
@@ -164,8 +162,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small  MuiAvatar-colorDefault"
-        title="Avatar"
+        class="avatar-wrapper user-avatar-avatar-small "
       >
         T
       </div>
@@ -173,8 +170,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small  MuiAvatar-colorDefault"
-      title="Avatar"
+      class="avatar-wrapper user-avatar-avatar-small "
     >
       T
     </div>
@@ -239,26 +235,26 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small "
-        title="Avatar"
+        class="avatar-wrapper user-avatar-avatar-small "
       >
         <img
           alt="User avatar"
-          class="MuiAvatar-img"
+          class="avatar-image"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
+          title="Avatar"
         />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small "
-      title="Avatar"
+      class="avatar-wrapper user-avatar-avatar-small "
     >
       <img
         alt="User avatar"
-        class="MuiAvatar-img"
+        class="avatar-image"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
+        title="Avatar"
       />
     </div>
   </div>,

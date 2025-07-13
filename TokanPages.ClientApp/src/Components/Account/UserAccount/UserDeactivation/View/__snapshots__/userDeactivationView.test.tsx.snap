@@ -9,79 +9,43 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pb-40"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
+                <p
+                  class="is-size-4 has-text-grey"
                 >
                   Account Deactivation
-                </span>
-                <div
-                  class="mt-15 mb-8"
+                </p>
+                <hr />
+                <p
+                  class="is-size-6 has-text-grey line-height-20"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="pt-8 pb-8"
+                  Warning!
+                </p>
+                <p
+                  class="is-size-6 has-text-grey line-height-20"
                 >
-                  <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  You can deactivate the account...
+                </p>
+                <hr />
+                <div
+                  class="has-text-right"
+                >
+                  <button
+                    class="bulma-button bulma-is-danger bulma-is-light"
+                    type="submit"
                   >
-                    <div
-                      class="MuiGrid-root MuiGrid-item"
-                    >
-                      <p
-                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                      >
-                        Warning!
-                      </p>
-                      <p
-                        class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                      >
-                        You can deactivate the account...
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="mt-15 mb-15"
-                  >
-                    <hr
-                      class="MuiDivider-root divider"
-                    />
-                  </div>
-                  <div
-                    class="MuiGrid-root button-container-update"
-                  >
-                    <div
-                      class="mt-15 mb-15"
-                    >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete MuiButton-fullWidth"
-                        tabindex="0"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Dactivate
-                        </span>
-                        <span
-                          class="MuiTouchRipple-root"
-                        />
-                      </button>
-                    </div>
-                  </div>
+                    Dactivate
+                  </button>
                 </div>
               </div>
             </div>
@@ -95,79 +59,43 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pb-40"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
-              <span
-                class="MuiTypography-root caption black MuiTypography-body1"
+              <p
+                class="is-size-4 has-text-grey"
               >
                 Account Deactivation
-              </span>
-              <div
-                class="mt-15 mb-8"
+              </p>
+              <hr />
+              <p
+                class="is-size-6 has-text-grey line-height-20"
               >
-                <hr
-                  class="MuiDivider-root divider"
-                />
-              </div>
-              <div
-                class="pt-8 pb-8"
+                Warning!
+              </p>
+              <p
+                class="is-size-6 has-text-grey line-height-20"
               >
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                You can deactivate the account...
+              </p>
+              <hr />
+              <div
+                class="has-text-right"
+              >
+                <button
+                  class="bulma-button bulma-is-danger bulma-is-light"
+                  type="submit"
                 >
-                  <div
-                    class="MuiGrid-root MuiGrid-item"
-                  >
-                    <p
-                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                    >
-                      Warning!
-                    </p>
-                    <p
-                      class="MuiTypography-root label user-account-text-item MuiTypography-body1"
-                    >
-                      You can deactivate the account...
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="mt-15 mb-15"
-                >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="MuiGrid-root button-container-update"
-                >
-                  <div
-                    class="mt-15 mb-15"
-                  >
-                    <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete MuiButton-fullWidth"
-                      tabindex="0"
-                      type="submit"
-                    >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Dactivate
-                      </span>
-                      <span
-                        class="MuiTouchRipple-root"
-                      />
-                    </button>
-                  </div>
-                </div>
+                  Dactivate
+                </button>
               </div>
             </div>
           </div>

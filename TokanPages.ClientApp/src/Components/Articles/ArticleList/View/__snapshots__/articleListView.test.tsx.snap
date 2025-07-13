@@ -9,129 +9,110 @@ Object {
         class="section "
       >
         <div
-          class="MuiContainer-root container MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-tablet pb-6"
         >
           <div
-            class="pb-64"
+            class="py-4"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
+              data-aos="fade-up"
+              data-aos-delay="0"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12"
+                class="bulma-box is-flex p-0 mb-6 is-flex-direction-row"
               >
+                <figure
+                  class="bulma-image"
+                >
+                  <img
+                    alt="An article card for given article"
+                    class="article-box-image article-box-image-desktop lazyloaded"
+                    loading="lazy"
+                    src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
+                    title="Article illustration"
+                  />
+                </figure>
                 <div
-                  data-aos="fade-up"
-                  data-aos-delay="0"
+                  class="article-box-content"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
+                    class="article-box-content-text"
                   >
-                    <img
-                      alt="An article card for given article"
-                      class="MuiCardMedia-root article-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
-                      title="Article illustration"
-                    />
-                    <div
-                      class="MuiCardContent-root article-card-content"
+                    <h2
+                      class="is-size-4 has-text-black-ter"
                     >
-                      <h2
-                        class="article-card-title m-zero"
-                      >
-                        Test article
-                      </h2>
-                      <h3
-                        class="article-card-description m-zero"
-                      >
-                        Some article
-                      </h3>
-                      <div
-                        class="article-card-action-container article-card-action-large"
-                      >
-                        <div
-                          class="MuiCardActions-root article-card-action MuiCardActions-spacing"
+                      Test article
+                    </h2>
+                    <h3
+                      class="is-size-6 has-text-grey has-text-weight-normal m-0"
+                    >
+                      Some article
+                    </h3>
+                  </div>
+                  <div
+                    class="is-flex is-justify-content-space-between"
+                  >
+                    <div
+                      class="is-flex is-align-items-center"
+                    >
+                      <div>
+                        <svg
+                          class="is-flex is-align-self-center mr-2"
+                          role="presentation"
+                          style="width: 1.5rem; height: 1.5rem;"
+                          viewBox="0 0 24 24"
                         >
-                          <div
-                            class="article-card-details"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root article-card-item-icon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-                              />
-                            </svg>
-                            <div
-                              class="article-card-item-value"
-                            >
-                              0
-                            </div>
-                            <div
-                              class="article-card-details-separator"
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root article-card-item-icon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
-                              />
-                            </svg>
-                            <div
-                              class="article-card-item-value"
-                            >
-                              0
-                            </div>
-                            <div
-                              class="article-card-details-separator"
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root article-card-item-icon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"
-                              />
-                            </svg>
-                            <div
-                              class="article-card-details-separator"
-                            />
-                            <img
-                              alt="An article language flag"
-                              class="article-flag-image lazyloaded"
-                              loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                              title="Articles"
-                            />
-                          </div>
-                          <div
-                            class="article-card-button-holder"
-                          >
-                            <button
-                              class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-                              tabindex="0"
-                              type="button"
-                            >
-                              <span
-                                class="MuiButton-label"
-                              />
-                              <span
-                                class="MuiTouchRipple-root"
-                              />
-                            </button>
-                          </div>
-                        </div>
+                          <path
+                            d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"
+                            style="fill: currentColor;"
+                          />
+                        </svg>
                       </div>
+                      <p>
+                        0
+                      </p>
+                      <div>
+                        <svg
+                          class="is-flex is-align-self-center mx-2"
+                          role="presentation"
+                          style="width: 1.5rem; height: 1.5rem;"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z"
+                            style="fill: currentColor;"
+                          />
+                        </svg>
+                      </div>
+                      <p>
+                        0
+                      </p>
+                      <div>
+                        <svg
+                          class="is-flex is-align-self-center mx-2"
+                          role="presentation"
+                          style="width: 1.5rem; height: 1.5rem;"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                            style="fill: currentColor;"
+                          />
+                        </svg>
+                      </div>
+                      <img
+                        alt="An article language flag"
+                        class="article-flag-image lazyloaded"
+                        height="24"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                        title="Articles"
+                        width="24"
+                      />
                     </div>
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light"
+                    />
                   </div>
                 </div>
               </div>
@@ -146,129 +127,110 @@ Object {
       class="section "
     >
       <div
-        class="MuiContainer-root container MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-tablet pb-6"
       >
         <div
-          class="pb-64"
+          class="py-4"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-justify-content-xs-center"
+            data-aos="fade-up"
+            data-aos-delay="0"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12"
+              class="bulma-box is-flex p-0 mb-6 is-flex-direction-row"
             >
+              <figure
+                class="bulma-image"
+              >
+                <img
+                  alt="An article card for given article"
+                  class="article-box-image article-box-image-desktop lazyloaded"
+                  loading="lazy"
+                  src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
+                  title="Article illustration"
+                />
+              </figure>
               <div
-                data-aos="fade-up"
-                data-aos-delay="0"
+                class="article-box-content"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root article-card MuiPaper-elevation0 MuiPaper-rounded"
+                  class="article-box-content-text"
                 >
-                  <img
-                    alt="An article card for given article"
-                    class="MuiCardMedia-root article-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
-                    title="Article illustration"
-                  />
-                  <div
-                    class="MuiCardContent-root article-card-content"
+                  <h2
+                    class="is-size-4 has-text-black-ter"
                   >
-                    <h2
-                      class="article-card-title m-zero"
-                    >
-                      Test article
-                    </h2>
-                    <h3
-                      class="article-card-description m-zero"
-                    >
-                      Some article
-                    </h3>
-                    <div
-                      class="article-card-action-container article-card-action-large"
-                    >
-                      <div
-                        class="MuiCardActions-root article-card-action MuiCardActions-spacing"
+                    Test article
+                  </h2>
+                  <h3
+                    class="is-size-6 has-text-grey has-text-weight-normal m-0"
+                  >
+                    Some article
+                  </h3>
+                </div>
+                <div
+                  class="is-flex is-justify-content-space-between"
+                >
+                  <div
+                    class="is-flex is-align-items-center"
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center mr-2"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
                       >
-                        <div
-                          class="article-card-details"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root article-card-item-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-                            />
-                          </svg>
-                          <div
-                            class="article-card-item-value"
-                          >
-                            0
-                          </div>
-                          <div
-                            class="article-card-details-separator"
-                          />
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root article-card-item-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
-                            />
-                          </svg>
-                          <div
-                            class="article-card-item-value"
-                          >
-                            0
-                          </div>
-                          <div
-                            class="article-card-details-separator"
-                          />
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root article-card-item-icon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"
-                            />
-                          </svg>
-                          <div
-                            class="article-card-details-separator"
-                          />
-                          <img
-                            alt="An article language flag"
-                            class="article-flag-image lazyloaded"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                            title="Articles"
-                          />
-                        </div>
-                        <div
-                          class="article-card-button-holder"
-                        >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-text button article-button MuiButton-textSizeSmall MuiButton-sizeSmall"
-                            tabindex="0"
-                            type="button"
-                          >
-                            <span
-                              class="MuiButton-label"
-                            />
-                            <span
-                              class="MuiTouchRipple-root"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                        <path
+                          d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
                     </div>
+                    <p>
+                      0
+                    </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center mx-2"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <p>
+                      0
+                    </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center mx-2"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12.87,15.07L10.33,12.56L10.36,12.53C12.1,10.59 13.34,8.36 14.07,6H17V4H10V2H8V4H1V6H12.17C11.5,7.92 10.44,9.75 9,11.35C8.07,10.32 7.3,9.19 6.69,8H4.69C5.42,9.63 6.42,11.17 7.67,12.56L2.58,17.58L4,19L9,14L12.11,17.11L12.87,15.07M18.5,10H16.5L12,22H14L15.12,19H19.87L21,22H23L18.5,10M15.88,17L17.5,12.67L19.12,17H15.88Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <img
+                      alt="An article language flag"
+                      class="article-flag-image lazyloaded"
+                      height="24"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                      title="Articles"
+                      width="24"
+                    />
                   </div>
+                  <button
+                    class="bulma-button bulma-is-link bulma-is-light"
+                  />
                 </div>
               </div>
             </div>
