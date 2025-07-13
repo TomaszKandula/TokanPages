@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import "./customCard.css";
 
-type Colour = "info" | "success" | "warning" | "error";
+type Colour = "has-text-info" | "has-text-success" | "has-text-warning" | "has-text-danger";
 
 interface OptionsProps {
     buttonLink: string;
@@ -22,12 +22,12 @@ interface CustomCardProps extends ViewProperties {
 const RenderIcon = (props: CustomCardProps) => {
     return React.cloneElement(props.icon, {
         ...props.icon.props,
-        className: `custom-card-icon vertical-centre alert-${props.colour}`,
+        className: `custom-card-icon ${props.colour}`,
     });
 };
 
 const RenderLinkButton = (props: CustomCardProps): React.ReactElement => (
-    <div className="mt-48">
+    <div className="mt-6">
         <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
             <button className={`bulma-button ${props.isLoading ? "bulma-is-skeleton" : ""}`} disabled={props.isLoading}>
                 {props.linkButton?.buttonLabel}
@@ -37,15 +37,15 @@ const RenderLinkButton = (props: CustomCardProps): React.ReactElement => (
 );
 
 const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
-    <div className={`mt-48 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>{props.externalButton}</div>
+    <div className={`mt-6 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>{props.externalButton}</div>
 );
 
 export const CustomCard = (props: CustomCardProps): React.ReactElement => {
     return (
         <div className="bulma-card">
             <div className="bulma-card-content">
-                <div className="custom-card-icon-background my-6">
-                    <div className="custom-card-icon-holder vertical-centre">
+                <div className="custom-card-icon-background is-flex is-justify-content-center my-6">
+                    <div className="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center">
                         <RenderIcon {...props} />
                     </div>
                 </div>
@@ -64,7 +64,7 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                 </div>
                 {props.linkButton ? <RenderLinkButton {...props} /> : null}
                 {props.externalButton ? <RenderExternalButton {...props} /> : null}
-                <div className={props.linkButton || props.externalButton ? "mb-25" : "mb-48"}></div>
+                <div className={props.linkButton || props.externalButton ? "mb-2" : "mb-4"}></div>
             </div>
         </div>
     );
