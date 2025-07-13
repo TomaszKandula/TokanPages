@@ -20,6 +20,10 @@ export const ToastList = (props: ToastListProps): React.ReactElement => {
         [props.position]
     );
 
+    const handleToastRemoval = React.useCallback((id: number) => {
+        props.removeToast(id)
+    }, []);
+
     React.useEffect(() => {
         handleScrolling(listRef.current);
     }, [props.position, props.data]);
@@ -37,10 +41,11 @@ export const ToastList = (props: ToastListProps): React.ReactElement => {
         >
             {sortedData.map((toast: ToastData) => (
                 <Toast
+                    id={toast.id}
                     key={toast.id}
                     message={toast.message}
                     type={toast.type}
-                    onClose={() => props.removeToast(toast.id)}
+                    onClose={handleToastRemoval}
                 />
             ))}
         </div>

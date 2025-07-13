@@ -7,8 +7,8 @@ export interface ToastData extends ToastBaseProps {
     id: number;
 }
 
-export interface ToastProps extends ToastBaseProps {
-    onClose: () => void;
+export interface ToastProps extends ToastData {
+    onClose: (id: number) => void;
 }
 
 export interface ToastListProps {
