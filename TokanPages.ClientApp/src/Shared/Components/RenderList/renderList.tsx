@@ -1,6 +1,7 @@
 import * as React from "react";
-import Validate from "validate.js";
 import { ProcessParagraphs } from "../RenderContent/Renderers";
+import { v4 as uuidv4 } from "uuid";
+import Validate from "validate.js";
 
 type TList = "ul" | "ol";
 
@@ -12,8 +13,8 @@ interface RenderListProps {
 }
 
 const GetListItem = (props: RenderListProps): React.ReactElement => {
-    const list = props.list.map((value: string, index: number) => (
-        <li key={index}>
+    const list = props.list.map((value: string, _index: number) => (
+        <li key={uuidv4()}>
             <ProcessParagraphs html={value} />
         </li>
     ));
