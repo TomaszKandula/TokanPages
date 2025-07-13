@@ -1,10 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { ViewProperties } from "../../../Shared/Abstractions";
+import { TColour } from "../../../Shared/types";
 import { v4 as uuidv4 } from "uuid";
 import "./customCard.css";
-
-type Colour = "has-text-info" | "has-text-success" | "has-text-warning" | "has-text-danger";
 
 interface OptionsProps {
     buttonLink: string;
@@ -15,7 +14,7 @@ interface CustomCardProps extends ViewProperties {
     caption: string;
     text: string[];
     icon: React.ReactElement;
-    colour: Colour;
+    colour: TColour;
     linkButton?: OptionsProps;
     externalButton?: React.ReactElement;
 }
