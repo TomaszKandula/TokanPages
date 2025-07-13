@@ -281,7 +281,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
                     );
                 } catch {
                     console.error(item);
-                    throw "Parsing error.";
+                    throw new Error("Parsing error.");
                 }
             } else {
                 if (!Validate.isEmpty(item)) {
