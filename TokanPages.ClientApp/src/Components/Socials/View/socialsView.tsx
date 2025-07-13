@@ -14,7 +14,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const socials = data?.components?.sectionSocials;
 
     return (
-        <section className={`section ${props.className ?? ""}`}>
+        <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">

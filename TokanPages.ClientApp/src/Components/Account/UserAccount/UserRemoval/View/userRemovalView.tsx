@@ -25,7 +25,7 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
 
 export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">

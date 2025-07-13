@@ -31,7 +31,7 @@ const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
 export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     <CustomCard

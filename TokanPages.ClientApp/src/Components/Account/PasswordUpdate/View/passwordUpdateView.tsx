@@ -33,7 +33,7 @@ const ActiveButton = (props: Properties): React.ReactElement => {
 
 export const PasswordUpdateView = (props: Properties): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">

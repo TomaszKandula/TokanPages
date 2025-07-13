@@ -97,7 +97,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
     const cardPadding = props.isMobile ? "px-3" : "px-6";
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     {props.hasCaption ? (

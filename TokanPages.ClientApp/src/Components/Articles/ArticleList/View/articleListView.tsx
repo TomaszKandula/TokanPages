@@ -29,7 +29,7 @@ const RenderContent = (args: { articles: ArticleItem[] }): React.ReactElement =>
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet pb-6">
                 <div className="py-4">
                     {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}

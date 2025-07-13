@@ -110,7 +110,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
 
     return (
-        <section className={`section mt-6 ${props.className ?? ""}`}>
+        <section className={props.className}>
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">

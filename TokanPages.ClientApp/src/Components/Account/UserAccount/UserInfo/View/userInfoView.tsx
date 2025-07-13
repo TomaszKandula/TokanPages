@@ -76,7 +76,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     );
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <Backdrop isLoading={props.isRequestingVerification} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>

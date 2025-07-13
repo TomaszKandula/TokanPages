@@ -12,7 +12,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
     const technology = data?.components?.sectionTechnologies;
 
     return (
-        <section className={`section ${props.className ?? ""}`}>
+        <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">

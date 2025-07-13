@@ -24,7 +24,7 @@ const InfoIcon = <Icon name="Information" size={3} />;
 
 export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     {props.shouldFallback ? (

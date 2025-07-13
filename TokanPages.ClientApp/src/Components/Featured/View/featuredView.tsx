@@ -14,7 +14,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const featured = data?.components?.sectionFeatured;
 
     return (
-        <section className={`section ${props.className ?? ""}`}>
+        <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">

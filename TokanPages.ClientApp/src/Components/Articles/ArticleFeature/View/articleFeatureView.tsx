@@ -32,7 +32,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const features = data?.components?.sectionArticle;
     return (
-        <section className={`section ${props.className ?? ""}`}>
+        <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">

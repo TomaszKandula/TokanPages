@@ -42,7 +42,7 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">

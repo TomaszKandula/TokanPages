@@ -48,7 +48,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
     const colPadding = props.hasIcon ? "pt-5" : "";
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? boxPadding : props.className}>
                     {props.hasCaption ? (

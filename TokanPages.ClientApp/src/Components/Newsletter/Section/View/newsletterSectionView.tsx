@@ -31,7 +31,7 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
 
 export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container">
                 <div className="py-6">
                     <div className="p-6">

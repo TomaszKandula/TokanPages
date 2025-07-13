@@ -25,7 +25,7 @@ const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElemen
 
 export const UserDeactivationView = (props: UserDeactivationViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">

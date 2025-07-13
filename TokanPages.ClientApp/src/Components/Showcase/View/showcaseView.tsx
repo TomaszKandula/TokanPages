@@ -34,7 +34,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
     const showcase = data?.components?.sectionShowcase;
 
     return (
-        <section className={`section ${props.className ?? ""}`}>
+        <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">

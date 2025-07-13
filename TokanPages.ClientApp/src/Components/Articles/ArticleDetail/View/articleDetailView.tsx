@@ -30,7 +30,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
+        <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <article className="py-4">
                     <Animated dataAos="fade-down">
