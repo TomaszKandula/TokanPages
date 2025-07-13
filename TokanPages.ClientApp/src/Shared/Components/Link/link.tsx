@@ -20,7 +20,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
     }
 
     const link: string = props.to;
-    const isHref: boolean = link.includes("http://") || link.includes("https://");
+    const isHref: boolean = link?.includes("http://") || link?.includes("https://");
 
     if (isHref) {
         return (
