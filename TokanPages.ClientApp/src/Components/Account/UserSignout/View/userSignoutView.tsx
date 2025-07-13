@@ -22,14 +22,10 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                             <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
                                     <Icon name="Account" size={3} className="account" />
-                                    <p className="is-size-3 has-text-grey">
-                                        {props.caption}
-                                    </p>
+                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
                                 </div>
                                 <div className="has-text-centered mt-5">
-                                    <p className="is-size-6 has-text-black">
-                                        {props.status}
-                                    </p>
+                                    <p className="is-size-6 has-text-black">{props.status}</p>
                                 </div>
                                 <div className="mt-6 mb-3">
                                     <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">

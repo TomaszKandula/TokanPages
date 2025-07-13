@@ -30,9 +30,7 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">
-                                {props.section?.caption}
-                            </p>
+                            <p className="is-size-4 has-text-grey">{props.section?.caption}</p>
                             <hr />
                             <RenderParagraphs
                                 text={props.section?.warningText}

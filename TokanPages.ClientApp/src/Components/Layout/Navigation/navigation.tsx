@@ -73,7 +73,6 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
         const navigationPath = props.backPathFragment === undefined ? mainPath : backPath;
 
         history.push(navigationPath);
-
     }, [language?.id, props.backPathFragment]);
 
     return (

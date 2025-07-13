@@ -18,11 +18,7 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
             disabled={props.deleteAccountProgress}
             className="bulma-button bulma-is-danger bulma-is-light"
         >
-            {!props.deleteAccountProgress ? (
-                props.sectionAccountRemoval?.deleteButtonText
-            ) : (
-                <ProgressBar size={20} />
-            )}
+            {!props.deleteAccountProgress ? props.sectionAccountRemoval?.deleteButtonText : <ProgressBar size={20} />}
         </button>
     );
 };
@@ -34,9 +30,7 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">
-                                {props.sectionAccountRemoval?.caption}
-                            </p>
+                            <p className="is-size-4 has-text-grey">{props.sectionAccountRemoval?.caption}</p>
                             <hr />
                             <RenderParagraphs
                                 text={props.sectionAccountRemoval?.warningText}

@@ -31,7 +31,11 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasPdfWorkerError ? <Icon name="AlertOctagon" size={3} /> : <DownloadAsset url={props.pdfUrl ?? ""} className="has-text-black" />;
+    return props.hasPdfWorkerError ? (
+        <Icon name="AlertOctagon" size={3} />
+    ) : (
+        <DownloadAsset url={props.pdfUrl ?? ""} className="has-text-black" />
+    );
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement => {

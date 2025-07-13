@@ -50,35 +50,33 @@ const RenderValidationList = (props: Properties): React.ReactElement => {
 };
 
 export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => (
-        <div className={`bulma-modal ${props.isOpen ? "bulma-is-active" : ""}`}>
-            <div className="bulma-modal-background"></div>
-            <div className="bulma-modal-card py-6 my-6">
-                <header className="bulma-modal-card-head">
-                    <RenderIcon {...props} />
-                    <p className="bulma-modal-card-title p-3">
-                        {props.title}
-                    </p>
-                    <button className="bulma-delete" aria-label="close" onClick={props.closeHandler}></button>
-                </header>
-                <section className="bulma-modal-card-body">
-                    <div className="bulma-content">
-                        <RenderParagraphs
-                            className="is-size-6 has-text-dark"
-                            text={props.message ?? []}
-                            replace={{
-                                key: "{LIST}",
-                                object: <RenderValidationList {...props} />,
-                            }}
-                        />
-                    </div>
-                </section>
-                <footer className="bulma-modal-card-foot is-justify-content-flex-end">
-                    <div className="bulma-buttons">
-                        <button className="bulma-button bulma-is-link bulma-is-light" onClick={props.closeHandler}>
-                            OK
-                        </button>
-                    </div>
-                </footer>
-            </div>
+    <div className={`bulma-modal ${props.isOpen ? "bulma-is-active" : ""}`}>
+        <div className="bulma-modal-background"></div>
+        <div className="bulma-modal-card py-6 my-6">
+            <header className="bulma-modal-card-head">
+                <RenderIcon {...props} />
+                <p className="bulma-modal-card-title p-3">{props.title}</p>
+                <button className="bulma-delete" aria-label="close" onClick={props.closeHandler}></button>
+            </header>
+            <section className="bulma-modal-card-body">
+                <div className="bulma-content">
+                    <RenderParagraphs
+                        className="is-size-6 has-text-dark"
+                        text={props.message ?? []}
+                        replace={{
+                            key: "{LIST}",
+                            object: <RenderValidationList {...props} />,
+                        }}
+                    />
+                </div>
+            </section>
+            <footer className="bulma-modal-card-foot is-justify-content-flex-end">
+                <div className="bulma-buttons">
+                    <button className="bulma-button bulma-is-link bulma-is-light" onClick={props.closeHandler}>
+                        OK
+                    </button>
+                </div>
+            </footer>
         </div>
-    );
+    </div>
+);

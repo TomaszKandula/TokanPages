@@ -36,9 +36,7 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
                         <div className="bulma-card-content">
                             <div className="has-text-centered">
                                 <Icon name="AccountCircle" size={3} className="has-text-link" />
-                                <p className="is-size-3 has-text-grey">
-                                    {props.caption}
-                                </p>
+                                <p className="is-size-3 has-text-grey">{props.caption}</p>
                             </div>
                             <div className="bulma-columns is-flex is-flex-direction-column my-5">
                                 <div className="bulma-column">

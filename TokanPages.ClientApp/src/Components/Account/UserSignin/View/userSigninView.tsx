@@ -2,7 +2,14 @@ import * as React from "react";
 import { LinkDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { Icon, ProgressBar, RedirectTo, Skeleton, TextField, TextFieldWithPassword } from "../../../../Shared/Components";
+import {
+    Icon,
+    ProgressBar,
+    RedirectTo,
+    Skeleton,
+    TextField,
+    TextFieldWithPassword,
+} from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
@@ -43,9 +50,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
                                     <Icon name="AccountCircle" size={3} className="has-text-link" />
-                                    <p className="is-size-3 has-text-grey">
-                                        {props.caption}
-                                    </p>
+                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
                                 </div>
                                 <div className="my-5">
                                     <TextField

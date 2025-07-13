@@ -17,25 +17,28 @@ export const ApplicationToaster = (props: NotificationToasterProps): React.React
     const [toasts, setToasts] = React.useState<ToastData[]>([]);
 
     const removeToast = React.useCallback((id: number) => {
-        setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
+        setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
         dispatch(ApplicationErrorAction.clear());
     }, []);
 
-    const showToast = React.useCallback((message: string, type: MessageType) => {
-        const toast: ToastData = {
-            id: Date.now(),
-            message,
-            type,
-        };
-    
-        setToasts((prevToasts) => [...prevToasts, toast]);
-    
-        if (props.hasAutoClose) {
-            setTimeout(() => {
-                removeToast(toast.id);
-            }, props.AutoCloseDurationSec * 1000);
-        }
-    }, [props.hasAutoClose, props.AutoCloseDurationSec]);
+    const showToast = React.useCallback(
+        (message: string, type: MessageType) => {
+            const toast: ToastData = {
+                id: Date.now(),
+                message,
+                type,
+            };
+
+            setToasts(prevToasts => [...prevToasts, toast]);
+
+            if (props.hasAutoClose) {
+                setTimeout(() => {
+                    removeToast(toast.id);
+                }, props.AutoCloseDurationSec * 1000);
+            }
+        },
+        [props.hasAutoClose, props.AutoCloseDurationSec]
+    );
 
     React.useEffect(() => {
         if (isOpen) {
@@ -43,5 +46,5 @@ export const ApplicationToaster = (props: NotificationToasterProps): React.React
         }
     }, [isOpen]);
 
-    return (<ToastList data={toasts} position={props.position ?? "bottom-right"} removeToast={removeToast} />);
-}
+    return <ToastList data={toasts} position={props.position ?? "bottom-right"} removeToast={removeToast} />;
+};

@@ -18,18 +18,12 @@ interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
 
 const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
-        return (
-            <button className="bulma-button bulma-is-link bulma-is-light">
-                {props?.action?.text}
-            </button>
-        );
+        return <button className="bulma-button bulma-is-link bulma-is-light">{props?.action?.text}</button>;
     }
 
     return (
         <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
-            <button className="bulma-button bulma-is-link bulma-is-light">
-                {props?.action?.text}
-            </button>
+            <button className="bulma-button bulma-is-link bulma-is-light">{props?.action?.text}</button>
         </Link>
     );
 };
@@ -42,9 +36,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <p className="is-size-3	has-text-centered has-text-link">
-                            {features?.caption.toUpperCase()}
-                        </p>
+                        <p className="is-size-3	has-text-centered has-text-link">{features?.caption.toUpperCase()}</p>
                     </Animated>
                     <Animated dataAos="fade-up">
                         <div className="bulma-columns bulma-is-3 is-flex-direction-row p-6">
@@ -113,15 +105,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 </div>
                             </div>
                             <div className="bulma-column is-align-self-center p-6">
-                                <h2 className="is-size-3 py-5 has-text-black">
-                                    {features?.title}
-                                </h2>
-                                <p className="is-size-5 py-3 has-text-grey line-height-18">
-                                    {features?.description}
-                                </p>
-                                <p className="is-size-5 py-3 has-text-grey line-height-18">
-                                    {features?.text}
-                                </p>
+                                <h2 className="is-size-3 py-5 has-text-black">{features?.title}</h2>
+                                <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.description}</p>
+                                <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.text}</p>
                                 <div className="has-text-left py-5">
                                     <ActiveButton isLoading={data?.isLoading} {...features} />
                                 </div>

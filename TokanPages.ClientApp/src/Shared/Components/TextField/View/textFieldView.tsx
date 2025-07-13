@@ -11,7 +11,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
 
     return (
         <div className={`bulma-control ${loading} ${props.className ?? ""}`}>
-            <input 
+            <input
                 id={props.uuid}
                 name={props.uuid}
                 type="text"
@@ -29,4 +29,4 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
             />
         </div>
     );
-}
+};

@@ -5,7 +5,7 @@ import {
     ReactKeyboardTextEvent,
     ReactMouseEvent,
     TInputColours,
-    TInputSizes
+    TInputSizes,
 } from "../../../../Shared/types";
 
 interface BaseProps {

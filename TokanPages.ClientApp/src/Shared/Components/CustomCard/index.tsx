@@ -37,9 +37,7 @@ const RenderLinkButton = (props: CustomCardProps): React.ReactElement => (
 );
 
 const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
-    <div className={`mt-48 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
-        {props.externalButton}
-    </div>
+    <div className={`mt-48 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>{props.externalButton}</div>
 );
 
 export const CustomCard = (props: CustomCardProps): React.ReactElement => {
@@ -56,7 +54,10 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                 </h2>
                 <div className="my-5">
                     {props.text.map((value: string, index: number) => (
-                        <p className={`is-size-6 has-text-centered line-height-20 ${props.isLoading ? "bulma-is-skeleton" : ""}`} key={index}>
+                        <p
+                            className={`is-size-6 has-text-centered line-height-20 ${props.isLoading ? "bulma-is-skeleton" : ""}`}
+                            key={index}
+                        >
                             {value}
                         </p>
                     ))}

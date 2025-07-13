@@ -114,20 +114,29 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">
-                        <RenderPicture sources={header?.photo} className={`${isLoading ? "bulma-is-skeleton header-image-skeleton" : ""}`} />
+                        <RenderPicture
+                            sources={header?.photo}
+                            className={`${isLoading ? "bulma-is-skeleton header-image-skeleton" : ""}`}
+                        />
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
                         <div className="bulma-content header-content-box">
                             <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
                                 {header?.caption}
                             </h1>
-                            <h2 className={`has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <h2
+                                className={`has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}
+                            >
                                 {header?.subtitle}
                             </h2>
-                            <h3 className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <h3
+                                className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}
+                            >
                                 {header?.description}
                             </h3>
-                            <h3 className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                            <h3
+                                className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}
+                            >
                                 {header?.hint}
                             </h3>
                             <div className="pt-4">

@@ -15,9 +15,7 @@ export const Toast = (props: ToastProps): React.ReactElement => {
     return (
         <div data-testid="toast-view" className={`toast toast--${props.type}`} role="alert">
             <div className="toast-message">
-                {toastIcon && (
-                    <div className="icon icon--lg icon--thumb">{toastIcon}</div>
-                )}
+                {toastIcon && <div className="icon icon--lg icon--thumb">{toastIcon}</div>}
                 <p>{props.message}</p>
             </div>
             <button className="toast-close-btn" onClick={props.onClose}>
@@ -25,6 +23,6 @@ export const Toast = (props: ToastProps): React.ReactElement => {
                     <CloseIcon />
                 </span>
             </button>
-        </div>    
+        </div>
     );
-}
+};

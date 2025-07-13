@@ -5,7 +5,8 @@ import "./textFiedWithPasswordView.css";
 import { TextFieldExtendedProps } from "./types";
 
 export const TextFieldWithPasswordView = (props: TextFieldExtendedProps): React.ReactElement => {
-    const IconElement = (): React.ReactElement => props.showPassword ? <Icon name="Eye" size={1} /> : <Icon name="EyeOff" size={1} />;
+    const IconElement = (): React.ReactElement =>
+        props.showPassword ? <Icon name="Eye" size={1} /> : <Icon name="EyeOff" size={1} />;
 
     const rounded = props.isRounded ? "bulma-is-rounded" : "";
     const type = props.showPassword ? "text" : "password";
@@ -31,11 +32,7 @@ export const TextFieldWithPasswordView = (props: TextFieldExtendedProps): React.
                 className={className}
             />
             <span className={icon}>
-                <IconButton 
-                    onClick={props.iconOnClick}
-                    onMouseDown={props.iconOnMouseDown} 
-                    hasNoHoverEffect
-                >
+                <IconButton onClick={props.iconOnClick} onMouseDown={props.iconOnMouseDown} hasNoHoverEffect>
                     <IconElement />
                 </IconButton>
             </span>

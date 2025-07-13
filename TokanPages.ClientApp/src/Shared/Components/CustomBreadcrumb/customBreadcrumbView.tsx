@@ -36,10 +36,7 @@ const makeStyledBreadcrumb = (
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <li
-                key={uuidv4()}
-                onClick={rootName.hasHash ? undefined : onClick}
-            >
+            <li key={uuidv4()} onClick={rootName.hasHash ? undefined : onClick}>
                 <div className="mx-2">
                     <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
                         <span className="p-2">{setValue(index)}</span>
@@ -75,7 +72,10 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                 <ul>
                     <li>
                         <div className="mr-2">
-                            <div onClick={onBackToRoot} className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
+                            <div
+                                onClick={onBackToRoot}
+                                className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
+                            >
                                 <Icon name="Home" size={0.75} className="mx-1" />
                                 <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
                             </div>

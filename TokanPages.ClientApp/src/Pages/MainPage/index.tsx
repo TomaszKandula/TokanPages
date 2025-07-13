@@ -46,7 +46,7 @@ export const MainPage = (): React.ReactElement => {
                 <Featured />
                 <Testimonials className="has-background-white-bis" />
                 <Socials />
-                <NewsletterSection className="has-background-white-bis"  />
+                <NewsletterSection className="has-background-white-bis" />
                 <ContactForm hasCaption={true} />
             </main>
             <Footer className="has-background-white-bis" />

@@ -12,11 +12,7 @@ interface ClientsViewProps {
 
 const RenderCaption = (props: ClientsContentDto): React.ReactElement | null => {
     if (!Validate.isEmpty(props?.caption)) {
-        return (
-            <p className="is-size-3	has-text-centered has-text-link">
-                {props?.caption?.toUpperCase()}
-            </p>
-        );
+        return <p className="is-size-3	has-text-centered has-text-link">{props?.caption?.toUpperCase()}</p>;
     }
 
     return null;

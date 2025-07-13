@@ -6,11 +6,7 @@ interface SkeletonProps {
     children?: React.ReactElement | React.ReactElement[];
 }
 
-const SkeletonBlock = () => (
-    <div className="my-2 bulma-skeleton-block">
-        &nbsp;
-    </div>
-);
+const SkeletonBlock = () => <div className="my-2 bulma-skeleton-block">&nbsp;</div>;
 
 export const Skeleton = (props: SkeletonProps): React.ReactElement => {
     if (props.isLoading) {
@@ -20,11 +16,11 @@ export const Skeleton = (props: SkeletonProps): React.ReactElement => {
                 buffer.push(<SkeletonBlock key={uuidv4()} />);
             });
 
-            return (<>{buffer}</>);
+            return <>{buffer}</>;
         }
 
-        return (<SkeletonBlock />);
+        return <SkeletonBlock />;
     }
 
-    return (<>{props.children}</>);
-}
+    return <>{props.children}</>;
+};

@@ -108,20 +108,24 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
         <ArticleDetailView
             backButtonHandler={backButtonHandler}
             articleReadCount={selection.article.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })}
-            renderSmallAvatar={<UserAvatar
-                userId={selection.article.author.userId}
-                isLarge={false}
-                avatarName={selection.article.author.avatarName}
-                userLetter={userLetter}
-                className="has-background-grey-light has-text-light"
-            />}
-            renderLargeAvatar={<UserAvatar
-                userId={selection.article.author.userId}
-                isLarge={true}
-                avatarName={selection.article.author.avatarName}
-                userLetter={userLetter}
-                className="has-background-grey-light has-text-light"
-            />}
+            renderSmallAvatar={
+                <UserAvatar
+                    userId={selection.article.author.userId}
+                    isLarge={false}
+                    avatarName={selection.article.author.avatarName}
+                    userLetter={userLetter}
+                    className="has-background-grey-light has-text-light"
+                />
+            }
+            renderLargeAvatar={
+                <UserAvatar
+                    userId={selection.article.author.userId}
+                    isLarge={true}
+                    avatarName={selection.article.author.avatarName}
+                    userLetter={userLetter}
+                    className="has-background-grey-light has-text-light"
+                />
+            }
             authorAliasName={selection.article.author.aliasName}
             authorFirstName={selection.article.author.firstName}
             authorLastName={selection.article.author.lastName}

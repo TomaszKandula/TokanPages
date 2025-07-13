@@ -38,14 +38,10 @@ export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactEl
                         <div className="bulma-columns bulma-is-vcentered">
                             <div className="bulma-column">
                                 <Animated dataAos="fade-down" dataAosDelay={150}>
-                                    <p className="is-size-3 has-text-grey-dark has-text-centered">
-                                        {props.caption}
-                                    </p>
+                                    <p className="is-size-3 has-text-grey-dark has-text-centered">{props.caption}</p>
                                 </Animated>
                                 <Animated dataAos="zoom-in" dataAosDelay={200}>
-                                    <p className="is-size-5 has-text-grey has-text-centered">
-                                        {props.text}
-                                    </p>
+                                    <p className="is-size-5 has-text-grey has-text-centered">{props.text}</p>
                                 </Animated>
                             </div>
                             <div className="bulma-column">

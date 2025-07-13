@@ -72,9 +72,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                         />
                         <label htmlFor={`${index}`} className="is-clickable"></label>
                     </div>
-                    <p className="is-size-6 p-2">
-                        {value.value}
-                    </p>
+                    <p className="is-size-6 p-2">{value.value}</p>
                 </div>
             ))}
         </>
@@ -89,12 +87,8 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
 
     return (
         <div id={props.value.id} data-disabled={props.isDisabled} className={className} onClick={props.handler}>
-            <p className="is-size-6 business-item-text">
-                {props.value.text}
-            </p>
-            <p className="is-size-6 has-text-weight-semibold business-item-price">
-                {props.value.price}
-            </p>
+            <p className="is-size-6 business-item-text">{props.value.text}</p>
+            <p className="is-size-6 has-text-weight-semibold business-item-price">{props.value.price}</p>
         </div>
     );
 };
@@ -107,9 +101,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     {props.hasCaption ? (
-                        <p className="is-size-3	has-text-centered has-text-link">
-                            {props.caption?.toUpperCase()}
-                        </p>
+                        <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
                     ) : (
                         <></>
                     )}
@@ -119,9 +111,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 {props.hasIcon ? (
                                     <div className="is-flex is-flex-direction-column is-align-items-center">
                                         <Icon name="BriefcaseVariant" size={3} className="has-text-link" />
-                                        <p className="is-size-3 has-text-grey">
-                                            {props.caption}
-                                        </p>
+                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
                                     </div>
                                 ) : (
                                     <></>
@@ -208,9 +198,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         </div>
                                     </div>
                                     <div className="bulma-content">
-                                        <p className="is-size-5 py-2">
-                                            {props.techLabel}
-                                        </p>
+                                        <p className="is-size-5 py-2">{props.techLabel}</p>
                                     </div>
                                     <div className="bulma-content">
                                         <TechStackList
@@ -220,9 +208,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                         />
                                     </div>
                                     <div className="bulma-content">
-                                        <p className="is-size-5 py-2">
-                                            {props.pricing.caption}
-                                        </p>
+                                        <p className="is-size-5 py-2">{props.pricing.caption}</p>
                                     </div>
                                     <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
                                         {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
@@ -237,9 +223,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     </div>
                                     <div className="bulma-notification is-flex is-align-items-center">
                                         <Icon name="Information" size={1} className="has-text-link" />
-                                        <span className="is-size-6 p-3">
-                                            {props.pricing.disclaimer}
-                                        </span>
+                                        <span className="is-size-6 p-3">{props.pricing.disclaimer}</span>
                                     </div>
                                     <ActiveButton {...props} />
                                 </div>

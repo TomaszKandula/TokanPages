@@ -166,9 +166,12 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         [form, form.phone]
     );
 
-    const descriptionHandler = React.useCallback((event: ReactChangeTextEvent) => {
-        setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
-    }, [description]);
+    const descriptionHandler = React.useCallback(
+        (event: ReactChangeTextEvent) => {
+            setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [description]
+    );
 
     const techHandler = React.useCallback(
         (event: ReactChangeEvent) => {

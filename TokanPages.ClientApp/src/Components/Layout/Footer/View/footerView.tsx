@@ -37,39 +37,31 @@ const SetPolicyLink = (props: Properties): React.ReactElement => (
 export const FooterView = (props: Properties): React.ReactElement => {
     return (
         <footer className={`bulma-footer ${props.className ?? ""}`}>
-            {props.isLoading 
-            ? <ProgressBar size={32} /> 
-            : <div className="bulma-content has-text-centered">
-                <p className="is-size-5">
-                    <span className="ml-2 mr-2">
-                        {props?.legalInfo.copyright}
-                    </span>
-                    <span>|</span>
-                    <span className="ml-2 mr-2">
-                        {props?.legalInfo.reserved}
-                    </span>
-                    <span>|</span>
-                    <SetTermsLink {...props} />
-                    <span>|</span>
-                    <SetPolicyLink {...props} />
-                </p>
-                <p className="is-size-6">
-                    {props?.versionInfo}
-                </p>
-                <div className="is-flex is-justify-content-center">
-                {props?.icons?.map((item: IconDto, _index: number) => (
-                    <Link 
-                        to={item.href}
-                        key={uuidv4()}
-                        aria-label={item.name}
-                    >
-                        <IconButton>
-                            <Icon name={item.name} size={1.5} />
-                        </IconButton>
-                    </Link>
-                ))}
+            {props.isLoading ? (
+                <ProgressBar size={32} />
+            ) : (
+                <div className="bulma-content has-text-centered">
+                    <p className="is-size-5">
+                        <span className="ml-2 mr-2">{props?.legalInfo.copyright}</span>
+                        <span>|</span>
+                        <span className="ml-2 mr-2">{props?.legalInfo.reserved}</span>
+                        <span>|</span>
+                        <SetTermsLink {...props} />
+                        <span>|</span>
+                        <SetPolicyLink {...props} />
+                    </p>
+                    <p className="is-size-6">{props?.versionInfo}</p>
+                    <div className="is-flex is-justify-content-center">
+                        {props?.icons?.map((item: IconDto, _index: number) => (
+                            <Link to={item.href} key={uuidv4()} aria-label={item.name}>
+                                <IconButton>
+                                    <Icon name={item.name} size={1.5} />
+                                </IconButton>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
-            </div>}
+            )}
         </footer>
     );
 };

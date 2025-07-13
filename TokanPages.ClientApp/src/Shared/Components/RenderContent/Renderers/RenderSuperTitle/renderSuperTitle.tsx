@@ -14,15 +14,11 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     return (
         <div className="bulma-content is-flex is-justify-content-space-between">
             <div className="is-flex is-flex-direction-column">
-                <p className="bulma-title bulma-is-3 has-text-grey-darker">
-                    {props.propTitle ?? NO_CONTENT}
-                </p>
-                <p className="bulma-subtitle bulma-is-5 has-text-grey-darker">
-                    {props.propSubtitle ?? NO_CONTENT}
-                </p>
+                <p className="bulma-title bulma-is-3 has-text-grey-darker">{props.propTitle ?? NO_CONTENT}</p>
+                <p className="bulma-subtitle bulma-is-5 has-text-grey-darker">{props.propSubtitle ?? NO_CONTENT}</p>
             </div>
             <figure className="is-flex is-align-items-center">
-                <CustomImage 
+                <CustomImage
                     source={propUrl}
                     title="Illustration"
                     alt="An illustration of a presented article text title"

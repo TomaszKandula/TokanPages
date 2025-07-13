@@ -36,9 +36,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">
-                                {props.sectionAccountPassword?.caption}
-                            </p>
+                            <p className="is-size-4 has-text-grey">{props.sectionAccountPassword?.caption}</p>
                             <hr />
                             <div className="py-2">
                                 <TextFieldWithPassword
@@ -56,7 +54,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     onKeyUp={props.keyHandler}
                                     onChange={props.formHandler}
                                     placeholder={props.sectionAccountPassword?.labelNewPassword}
-                            />
+                                />
                             </div>
                             <div className="py-2">
                                 <TextFieldWithPassword

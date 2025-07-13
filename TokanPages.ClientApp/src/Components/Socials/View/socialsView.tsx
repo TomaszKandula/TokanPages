@@ -18,9 +18,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <p className="is-size-3	has-text-centered has-text-link">
-                            {socials?.caption?.toUpperCase()}
-                        </p>
+                        <p className="is-size-3	has-text-centered has-text-link">{socials?.caption?.toUpperCase()}</p>
                     </Animated>
                     <div className="p-6">
                         <div className="bulma-columns">

@@ -18,9 +18,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <p className="is-size-3	has-text-centered has-text-link">
-                            {featured?.caption?.toUpperCase()}
-                        </p>
+                        <p className="is-size-3	has-text-centered has-text-link">{featured?.caption?.toUpperCase()}</p>
                     </Animated>
                     <div className="bulma-columns p-6">
                         <div className="bulma-column is-clickable">

@@ -74,19 +74,15 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                 <div className="py-6">
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">
-                                {props.captionText}
-                            </p>
+                            <p className="is-size-4 has-text-grey">{props.captionText}</p>
                             <hr />
                             <div className="py-4">
-                                <p className="is-size-6 has-text-grey pb-5">
-                                    {props.descriptionText}
-                                </p>
-                                <div className={`bulma-cell is-flex ${flexDirection} is-align-items-flex-start is-justify-content-left`}>
+                                <p className="is-size-6 has-text-grey pb-5">{props.descriptionText}</p>
+                                <div
+                                    className={`bulma-cell is-flex ${flexDirection} is-align-items-flex-start is-justify-content-left`}
+                                >
                                     <div className="user-notes-list-box">
-                                        <p className="is-size-6 has-text-grey">
-                                            {`${props.listLabel}:`}
-                                        </p>
+                                        <p className="is-size-6 has-text-grey">{`${props.listLabel}:`}</p>
                                         <div className="user-notes-fixed-list">
                                             {!props.isLoading &&
                                                 props.userNotes?.map((value: UserNoteProps, index: number) => (
@@ -102,9 +98,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                         </div>
                                     </div>
                                     <div className="user-notes-message-box">
-                                        <p className="is-size-6 has-text-grey">
-                                            {`${props.noteLabel}${noteUid}`}
-                                        </p>
+                                        <p className="is-size-6 has-text-grey">{`${props.noteLabel}${noteUid}`}</p>
                                         <TextArea
                                             required
                                             isFixedSize

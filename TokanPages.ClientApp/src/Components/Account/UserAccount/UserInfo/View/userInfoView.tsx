@@ -82,9 +82,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">
-                                {props.sectionAccountInformation?.caption}
-                            </p>
+                            <p className="is-size-4 has-text-grey">{props.sectionAccountInformation?.caption}</p>
                             <hr />
                             <div className="py-4">
                                 <div className="bulma-columns cancel-margin-bottom">
@@ -94,9 +92,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         </p>
                                     </div>
                                     <div className="bulma-column">
-                                        <p className="is-size-6 has-text-grey">
-                                            {props.userStore?.userId}
-                                        </p>
+                                        <p className="is-size-6 has-text-grey">{props.userStore?.userId}</p>
                                     </div>
                                 </div>
                                 <div className="bulma-columns cancel-margin-bottom">
@@ -119,9 +115,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         </p>
                                     </div>
                                     <div className="bulma-column">
-                                        <p className="is-size-6 has-text-grey">
-                                            {props.userStore?.aliasName}
-                                        </p>
+                                        <p className="is-size-6 has-text-grey">{props.userStore?.aliasName}</p>
                                     </div>
                                 </div>
                                 <hr />

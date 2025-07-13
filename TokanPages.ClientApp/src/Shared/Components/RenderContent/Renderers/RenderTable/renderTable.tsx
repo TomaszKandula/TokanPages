@@ -27,15 +27,9 @@ export const RenderTable = (props: TextItem): React.ReactElement => {
             if (item.column0 !== "") {
                 renderBuffer.push(
                     <tr key={item.column0}>
-                        <td className="is-size-6">
-                            {item.column0}
-                        </td>
-                        <td className="is-size-6">
-                            {item.column1}
-                        </td>
-                        <td className="is-size-6">
-                            {item.column2}
-                        </td>
+                        <td className="is-size-6">{item.column0}</td>
+                        <td className="is-size-6">{item.column1}</td>
+                        <td className="is-size-6">{item.column2}</td>
                     </tr>
                 );
             }

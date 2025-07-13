@@ -7,9 +7,7 @@ import Validate from "validate.js";
 const RenderDescription = (props: { text: string }): React.ReactElement => {
     return (
         <div className="bulma-card-content">
-            <span className="is-size-6">
-                {props.text}
-            </span>
+            <span className="is-size-6">{props.text}</span>
         </div>
     );
 };
@@ -33,7 +31,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
             <div className="bulma-card-image">
                 <figure className="bulma-image">
                     {hasImage ? (
-                        <CustomImage 
+                        <CustomImage
                             source={propUrl}
                             onClick={onClickEvent}
                             className="lazyloaded"
@@ -43,14 +41,14 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                             height={props.constraint?.height}
                         />
                     ) : (
-                        <video 
+                        <video
                             src={valueUrl}
                             controls
                             autoPlay
-                            style={{ 
+                            style={{
                                 borderTopLeftRadius: "0.75rem",
                                 borderTopRightRadius: "0.75rem",
-                            }} 
+                            }}
                         />
                     )}
                 </figure>

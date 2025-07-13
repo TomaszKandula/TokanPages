@@ -2,7 +2,16 @@ import * as React from "react";
 import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
-import { RedirectTo, RenderParagraphs, RenderList, TextField, TextFieldWithPassword, Icon, ProgressBar, Skeleton } from "../../../../Shared/Components";
+import {
+    RedirectTo,
+    RenderParagraphs,
+    RenderList,
+    TextField,
+    TextFieldWithPassword,
+    Icon,
+    ProgressBar,
+    Skeleton,
+} from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
@@ -49,9 +58,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                             <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
                                     <Icon name="AccountCircle" size={3} className="has-text-link" />
-                                    <p className="is-size-3 has-text-grey">
-                                        {props.caption}
-                                    </p>
+                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
                                 </div>
                                 <div className="my-5">
                                     <TextField
@@ -102,27 +109,15 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                         <p>{props.warning?.textPre}</p>
                                     </div>
                                     <div className="bulma-message-body bulma-content">
-                                        <RenderList
-                                            list={props.warning?.textList}
-                                            className=""
-                                        />
-                                        <RenderParagraphs
-                                            text={props.warning?.textPost}
-                                            className=""
-                                        />
-                                        <a
-                                            href={props.warning?.textNist?.href}
-                                            target="_blank"
-                                            rel="noopener nofollow"
-                                        >
+                                        <RenderList list={props.warning?.textList} className="" />
+                                        <RenderParagraphs text={props.warning?.textPost} className="" />
+                                        <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
                                             {props.warning?.textNist?.text}
                                         </a>
                                     </div>
                                 </article>
                                 <div className="bulma-notification">
-                                    <p className="is-size-6">
-                                        {props.consent}
-                                    </p>
+                                    <p className="is-size-6">{props.consent}</p>
                                 </div>
                                 <div className="mb-5">
                                     <ActiveButton {...props} />

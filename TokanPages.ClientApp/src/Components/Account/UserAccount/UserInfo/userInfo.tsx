@@ -96,9 +96,12 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         [form]
     );
 
-    const descriptionHandler = React.useCallback((event: ReactChangeTextEvent) => {
-        setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
-    }, [description]);
+    const descriptionHandler = React.useCallback(
+        (event: ReactChangeTextEvent) => {
+            setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [description]
+    );
 
     const switchHandler = React.useCallback(
         (event: ReactChangeEvent) => {
@@ -300,7 +303,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             sectionAccountInformation={account.sectionAccountInformation}
             userAbout={{
                 minRows: 6,
-                message: description.userAboutText
+                message: description.userAboutText,
             }}
             className={props.className}
             background={props.background}

@@ -54,32 +54,20 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
                 <section className="bulma-modal-card-body">
                     <div className="bulma-content">
                         <div className="is-flex">
-                            <p className="is-size-6">
-                                {props.content?.textUserAlias}:
-                            </p>
-                            <p className="is-size-6 pl-2 has-text-weight-semibold">
-                                {props.data?.aliasName}
-                            </p>
+                            <p className="is-size-6">{props.content?.textUserAlias}:</p>
+                            <p className="is-size-6 pl-2 has-text-weight-semibold">{props.data?.aliasName}</p>
                         </div>
                         <div className="is-flex">
-                            <p className="is-size-6">
-                                {props.content?.textRegistered}:
-                            </p>
-                            <span className="is-size-6 pl-2 has-text-weight-semibold">
-                                {registered}
-                            </span>
+                            <p className="is-size-6">{props.content?.textRegistered}:</p>
+                            <span className="is-size-6 pl-2 has-text-weight-semibold">{registered}</span>
                         </div>
-                        <p className="is-size-6">
-                            {props.content?.textRoles}:
-                        </p>
+                        <p className="is-size-6">{props.content?.textRoles}:</p>
                         <ul>
                             {props.data.roles?.map((item: UserRoleDto, _index: number) => (
                                 <CustomListItem item={item.name} key={item.id ?? uuidv4()} />
                             ))}
                         </ul>
-                        <p className="is-size-6">
-                            {props.content?.textPermissions}:
-                        </p>
+                        <p className="is-size-6">{props.content?.textPermissions}:</p>
                         <ul>
                             {props.data.permissions?.map((item: UserPermissionDto, _index: number) => (
                                 <CustomListItem item={item.name} key={item.id ?? uuidv4()} />

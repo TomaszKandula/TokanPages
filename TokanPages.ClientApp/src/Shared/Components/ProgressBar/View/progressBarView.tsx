@@ -15,9 +15,9 @@ export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement
 
     return (
         <div className={`progress-bar-box ${className}`}>
-            <span 
-                className="progress-bar-loader" 
-                style={{ 
+            <span
+                className="progress-bar-loader"
+                style={{
                     height: props.size ?? "40px",
                     width: props.size ?? "40px",
                     borderStyle: "solid",

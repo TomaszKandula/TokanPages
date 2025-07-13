@@ -34,15 +34,10 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
             <div className="bulma-container bulma-is-max-tablet">
                 <article className="py-4">
                     <Animated dataAos="fade-down">
-
                         <div className="bulma-grid is-flex m-0">
+                            <div className="bulma-cell is-align-content-center">{props.renderSmallAvatar}</div>
                             <div className="bulma-cell is-align-content-center">
-                                {props.renderSmallAvatar}
-                            </div>
-                            <div className="bulma-cell is-align-content-center">
-                                <p className="is-size-5">
-                                    {props.authorAliasName}
-                                </p>
+                                <p className="is-size-5">{props.authorAliasName}</p>
                             </div>
                         </div>
 
@@ -51,45 +46,35 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                 <p className="bulma-cell is-align-content-center is-size-6">
                                     {props.content.textLanguage}
                                 </p>
-                                    <CustomImage
-                                        base={GET_FLAG_URL}
-                                        source={props.flagImage}
-                                        title="Articles"
-                                        alt="An article language flag"
-                                        className="article-details-flag is-flex is-align-self-center"
-                                    />
+                                <CustomImage
+                                    base={GET_FLAG_URL}
+                                    source={props.flagImage}
+                                    title="Articles"
+                                    alt="An article language flag"
+                                    className="article-details-flag is-flex is-align-self-center"
+                                />
                             </div>
                             <div className="bulma-grid is-flex m-0">
-                                <p className="is-size-6">
-                                    {props.content.textReadTime1}
-                                </p>
+                                <p className="is-size-6">{props.content.textReadTime1}</p>
                                 <p className="is-size-6">
                                     {props.articleReadTime} {props.content.textReadTime2}
                                 </p>
                             </div>
                             <div className="bulma-grid is-flex m-0">
-                                <p className="is-size-6">
-                                    {props.content.textPublished}
-                                </p>
+                                <p className="is-size-6">{props.content.textPublished}</p>
                                 <p className="is-size-6">
                                     {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
                                 </p>
                             </div>
                             <div className="bulma-grid is-flex m-0">
-                                <p className="is-size-6">
-                                    {props.content.textUpdated}
-                                </p>
+                                <p className="is-size-6">{props.content.textUpdated}</p>
                                 <p className="is-size-6">
                                     {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
                                 </p>
                             </div>
                             <div className="bulma-grid is-flex m-0">
-                                <p className="is-size-6">
-                                    {props.content.textReadCount}
-                                </p>
-                                <p className="is-size-6">
-                                    {props.articleReadCount}
-                                </p>
+                                <p className="is-size-6">{props.content.textReadCount}</p>
+                                <p className="is-size-6">{props.articleReadCount}</p>
                             </div>
                         </div>
                     </Animated>
@@ -99,12 +84,15 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                     <div className="mt-6">
                         <div className="bulma-grid is-flex">
                             <div className="bulma-cell is-align-content-center">
-                                <Icon name="ThumbUp" size={1.2} className="article-details-thumbup" onClick={props.thumbsHandler} />
+                                <Icon
+                                    name="ThumbUp"
+                                    size={1.2}
+                                    className="article-details-thumbup"
+                                    onClick={props.thumbsHandler}
+                                />
                             </div>
                             <div className="bulma-cell is-align-content-center">
-                                <p>
-                                    {props.totalLikes}
-                                </p>
+                                <p>{props.totalLikes}</p>
                             </div>
                         </div>
                     </div>
@@ -112,16 +100,10 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                     <hr />
 
                     <div className="bulma-grid is-flex mb-5">
+                        <div className="bulma-cell is-align-content-center">{props.renderLargeAvatar}</div>
                         <div className="bulma-cell is-align-content-center">
-                            {props.renderLargeAvatar}
-                        </div>
-                        <div className="bulma-cell is-align-content-center">
-                            <p className="is-size-6 has-text-weight-bold">
-                                {props.content.textWritten}
-                            </p>
-                            <p className="is-size-6">
-                                {props.renderAuthorName}
-                            </p>
+                            <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
+                            <p className="is-size-6">{props.renderAuthorName}</p>
                             <p className="is-size-6">
                                 {props.content.textRegistered}&nbsp;{props.authorRegistered}
                             </p>

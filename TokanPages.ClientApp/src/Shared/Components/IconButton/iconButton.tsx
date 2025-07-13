@@ -17,7 +17,7 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const className = `${baseClassName} ${props.className ?? ""}`;
 
     return (
-        <button 
+        <button
             className={`${className} is-flex is-align-self-center`}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}

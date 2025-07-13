@@ -53,13 +53,9 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                 <div className={!props.className ? boxPadding : props.className}>
                     {props.hasCaption ? (
                         <Animated dataAos="fade-down">
-                            <p className="is-size-3	has-text-centered has-text-link">
-                                {props.caption?.toUpperCase()}
-                            </p>
+                            <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
                         </Animated>
-                    ): (
-                        null
-                    )}
+                    ) : null}
                     <div className={cardPadding}>
                         <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
                             <div className="bulma-card-content background-colour-inherited">
@@ -68,9 +64,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                         <Icon name="CardAccountMail" size={3} className="has-text-link" />
                                         <p className="is-size-3 has-text-grey">{props.caption}</p>
                                     </div>
-                                ) : (
-                                    null
-                                )}
+                                ) : null}
                                 <div className={colPadding}>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
@@ -148,9 +142,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                     </div>
                                     <div className="bulma-content">
                                         <div className="bulma-notification">
-                                            <p className="is-size-6">
-                                                {props.consent}
-                                            </p>
+                                            <p className="is-size-6">{props.consent}</p>
                                         </div>
                                         <Animated dataAos="fade-up">
                                             <ActiveButton {...props} />

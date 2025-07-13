@@ -8,14 +8,17 @@ export const ToastList = (props: ToastListProps): React.ReactElement => {
 
     const sortedData = props.position.includes("bottom") ? [...props.data].reverse() : [...props.data];
 
-    const handleScrolling = React.useCallback((element: HTMLDivElement | null) => {
-        const isTopPosition = ["top-left", "top-right"].includes(props.position);
-        if (isTopPosition) {
-            element?.scrollTo(0, element.scrollHeight);
-        } else {
-            element?.scrollTo(0, 0);
-        }
-    }, [props.position]);
+    const handleScrolling = React.useCallback(
+        (element: HTMLDivElement | null) => {
+            const isTopPosition = ["top-left", "top-right"].includes(props.position);
+            if (isTopPosition) {
+                element?.scrollTo(0, element.scrollHeight);
+            } else {
+                element?.scrollTo(0, 0);
+            }
+        },
+        [props.position]
+    );
 
     React.useEffect(() => {
         handleScrolling(listRef.current);
@@ -42,4 +45,4 @@ export const ToastList = (props: ToastListProps): React.ReactElement => {
             ))}
         </div>
     );
-}
+};

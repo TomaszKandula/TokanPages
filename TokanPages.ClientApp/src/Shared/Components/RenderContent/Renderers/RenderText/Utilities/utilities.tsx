@@ -34,24 +34,36 @@ const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 const GetFontStyle = (value: string): string => {
     switch (value) {
         /* TEXT WEIGHT */
-        case "light": return "has-text-weight-light";
-        case "normal": return "has-text-weight-normal";
-        case "medium": return "has-text-weight-medium";
-        case "semibold": return "has-text-weight-semibold";
-        case "bold": return "has-text-weight-bold";
-        case "extrabold": return "has-text-weight-extrabold";
+        case "light":
+            return "has-text-weight-light";
+        case "normal":
+            return "has-text-weight-normal";
+        case "medium":
+            return "has-text-weight-medium";
+        case "semibold":
+            return "has-text-weight-semibold";
+        case "bold":
+            return "has-text-weight-bold";
+        case "extrabold":
+            return "has-text-weight-extrabold";
 
         /* TEXT TRANSFORMATION */
-        case "capitalized": return "is-capitalized";
-        case "lowercase": return "is-lowercase";
-        case "uppercase": return "is-uppercase";
-        case "italic": return "is-italic";
-        case "underlined": return "is-underlined";
+        case "capitalized":
+            return "is-capitalized";
+        case "lowercase":
+            return "is-lowercase";
+        case "uppercase":
+            return "is-uppercase";
+        case "italic":
+            return "is-italic";
+        case "underlined":
+            return "is-underlined";
 
         /* FALLBACK */
-        default: return "";
+        default:
+            return "";
     }
-}
+};
 
 /* LINK COMPONENTS */
 
@@ -71,9 +83,7 @@ export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
     return (
         <span className="is-flex py-2 is-align-items-center" onClick={onClickHandler}>
             <Icon name="MenuRight" size={1} />
-            <span className="is-size-5 has-text-grey-dark is-clickable">
-                {props.text ?? NO_CONTENT}
-            </span>
+            <span className="is-size-5 has-text-grey-dark is-clickable">{props.text ?? NO_CONTENT}</span>
         </span>
     );
 };
@@ -185,7 +195,11 @@ export const RenderTitle = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
-    return <h2 className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4">{props.value ?? NO_CONTENT}</h2>;
+    return (
+        <h2 className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4">
+            {props.value ?? NO_CONTENT}
+        </h2>
+    );
 };
 
 export const RenderHeader1 = (props: DataProps): React.ReactElement => {

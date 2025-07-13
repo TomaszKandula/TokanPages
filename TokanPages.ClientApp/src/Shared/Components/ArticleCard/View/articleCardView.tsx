@@ -19,7 +19,7 @@ interface ArticleCardViewProps extends ViewProperties {
 }
 
 interface RenderReadCountProps {
-    readCount?: string; 
+    readCount?: string;
 }
 
 interface RenderTotalLikesProps {
@@ -79,7 +79,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
             <div className={`bulma-box is-flex p-0 mb-6 ${styleBox}`}>
                 <figure className="bulma-image">
-                    <CustomImage 
+                    <CustomImage
                         source={props.imageUrl}
                         className={`article-box-image ${styleImage} lazyloaded`}
                         title="Article illustration"

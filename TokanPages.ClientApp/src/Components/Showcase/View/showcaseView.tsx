@@ -18,18 +18,12 @@ interface ActiveButtonProps extends FeatureShowcaseContentDto {
 
 const ActiveButton = (props: ActiveButtonProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
-        return (
-            <button className="bulma-button bulma-is-link bulma-is-light">
-                {props?.action?.text}
-            </button>
-        );
+        return <button className="bulma-button bulma-is-link bulma-is-light">{props?.action?.text}</button>;
     }
 
     return (
         <Link to={props?.action?.href ?? ""} className="link" rel="noopener nofollow">
-            <button className="bulma-button bulma-is-link bulma-is-light">
-                {props?.action?.text}
-            </button>
+            <button className="bulma-button bulma-is-link bulma-is-light">{props?.action?.text}</button>
         </Link>
     );
 };
@@ -44,20 +38,14 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <p className="is-size-3	has-text-centered has-text-link">
-                            {showcase?.caption?.toUpperCase()}
-                        </p>
+                        <p className="is-size-3	has-text-centered has-text-link">{showcase?.caption?.toUpperCase()}</p>
                     </Animated>
                     <Animated dataAos="fade-up">
                         <div className="bulma-columns p-6">
                             <div className="bulma-column is-flex is-align-items-center">
                                 <div className="">
-                                    <h2 className="is-size-3 py-5 has-text-black">
-                                        {showcase?.heading}
-                                    </h2>
-                                    <p className="is-size-5 py-3 has-text-grey line-height-18">
-                                        {showcase?.text}
-                                    </p>
+                                    <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>
+                                    <p className="is-size-5 py-3 has-text-grey line-height-18">{showcase?.text}</p>
                                     <div className="has-text-left py-5">
                                         <ActiveButton isLoading={isLoading} {...showcase} />
                                     </div>

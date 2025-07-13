@@ -7,9 +7,7 @@ import Validate from "validate.js";
 const RenderDescription = (props: { text: string }): React.ReactElement => {
     return (
         <div className="bulma-card-content">
-            <span className="is-size-6">
-                {props.text}
-            </span>
+            <span className="is-size-6">{props.text}</span>
         </div>
     );
 };
