@@ -39,7 +39,7 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
                         caption={content.caption}
                         text={[content.text1, content.text2, content.text3]}
                         icon={<Icon size={3} name="Email" />}
-                        colour="info"
+                        colour="has-text-info"
                         externalButton={<ActiveButton {...props} />}
                     />
                 </div>

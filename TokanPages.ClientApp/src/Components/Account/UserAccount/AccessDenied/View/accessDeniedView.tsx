@@ -20,7 +20,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
                         caption={props.accessDeniedCaption}
                         text={props.accessDeniedPrompt}
                         icon={<Icon name="CloseCircle" size={3} />}
-                        colour="error"
+                        colour="has-text-danger"
                     />
                 </div>
             </div>

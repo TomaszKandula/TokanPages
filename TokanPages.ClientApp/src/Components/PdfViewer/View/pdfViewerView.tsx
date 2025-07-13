@@ -91,7 +91,7 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
                         caption={props?.content?.caption}
                         text={[props?.content?.warning]}
                         icon={<Icon name="FileDocument" size={3} />}
-                        colour="info"
+                        colour="has-text-info"
                     />
                 </div>
             </div>
@@ -109,7 +109,7 @@ const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => 
                         caption={props?.content?.caption}
                         text={[props?.content?.error]}
                         icon={<Icon name="AlertCircle" size={3} />}
-                        colour="error"
+                        colour="has-text-danger"
                     />
                 </div>
             </div>
