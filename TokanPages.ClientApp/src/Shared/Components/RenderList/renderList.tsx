@@ -30,12 +30,6 @@ export const RenderList = (props: RenderListProps): React.ReactElement => {
     const className = Validate.isEmpty(props.className) ? "list-box" : `list-box ${props.className}`;
 
     switch (props.type) {
-        case "ul":
-            return (
-                <ul data-testid={props.dataTestId} className={className}>
-                    <GetListItem {...props} />
-                </ul>
-            );
         case "ol":
             return (
                 <ol data-testid={props.dataTestId} className={className}>
