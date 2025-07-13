@@ -1,8 +1,7 @@
 import * as React from "react";
 import { GET_TESTIMONIALS_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { Animated, CustomImage } from "../../../Shared/Components";
-import { Collapsible } from "../../../Shared/Components";
+import { Animated, CustomImage, Collapsible } from "../../../Shared/Components";
 import "./testimonialsView.css";
 
 interface TestimonialsViewProps extends ViewProperties {
