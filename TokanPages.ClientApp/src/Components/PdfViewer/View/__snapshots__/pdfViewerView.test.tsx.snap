@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="class-colour-white"
+        class="has-background-white"
       >
         <div
           class="bulma-container bulma-is-max-desktop"
@@ -105,7 +105,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="class-colour-white"
+      class="has-background-white"
     >
       <div
         class="bulma-container bulma-is-max-desktop"

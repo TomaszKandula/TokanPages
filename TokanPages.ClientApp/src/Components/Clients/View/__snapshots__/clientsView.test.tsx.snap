@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="clients-section class-colour-white"
+        class="clients-section has-background-white"
       >
         <div
           class="bulma-container"
@@ -24,7 +24,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="clients-section class-colour-white"
+      class="clients-section has-background-white"
     >
       <div
         class="bulma-container"

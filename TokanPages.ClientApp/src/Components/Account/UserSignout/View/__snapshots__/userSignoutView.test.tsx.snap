@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="class-colour-white"
+        class="has-background-white"
       >
         <div
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="mt-15"
+            class="mt-5"
           >
             <div
               class="bulma-card"
@@ -76,13 +76,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="class-colour-white"
+      class="has-background-white"
     >
       <div
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="mt-15"
+          class="mt-5"
         >
           <div
             class="bulma-card"
