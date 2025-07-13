@@ -74,668 +74,430 @@ Object {
       </div>
     </div>
     <div>
-      <ul
-        class="MuiList-root MuiList-padding"
+      <aside
+        class="bulma-menu p-3 sidemenu-background"
       >
-        <div />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en"
-          role="button"
-          tabindex="0"
+        <ul
+          class="bulma-menu-list"
         >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+          <li>
+            <a
+              href="/en"
             >
-              home
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Home
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                Account
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
             >
-              Home
-            </span>
-          </div>
-        </a>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <div
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <li>
+                <div
+                  class="undefined link-disabled"
+                >
+                  <span>
+                    User articles
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="undefined link-disabled"
+                >
+                  <span>
+                    User notes
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="undefined link-disabled"
+                >
+                  <span>
+                    User files
+                  </span>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="/en/account"
+                >
+                  <span>
+                    User settings
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/signout"
+                >
+                  <span>
+                    Sign out
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/showcase"
             >
-              person
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Showcase
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                Github
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
             >
-              Account
-            </span>
-          </div>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-            />
-          </svg>
-        </div>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/showcase"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula?tab=overview"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Profile
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/TokanPages"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Tokan Pages Project
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/EmailSender"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Email Sender Project
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/articles"
             >
-              video_library
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Tech Articles
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                My interests
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
             >
-              Showcase
-            </span>
-          </div>
-        </a>
-        <div
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 24 24"
+              <li>
+                <a
+                  href="/en/photography"
+                >
+                  <span>
+                    Photography
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/football"
+                >
+                  <span>
+                    Football
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/guitar"
+                >
+                  <span>
+                    Guitar
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/bicycle"
+                >
+                  <span>
+                    Bicycle
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/electronics"
+                >
+                  <span>
+                    Electronics
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/contact"
             >
-              <path
-                d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Contact
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/about"
             >
-              Github
-            </span>
-          </div>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-            />
-          </svg>
-        </div>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/articles"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <span>
+                About
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/terms"
             >
-              menu_book
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Terms of use
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/policy"
             >
-              Tech Articles
-            </span>
-          </div>
-        </a>
-        <div
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              star
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              My interests
-            </span>
-          </div>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-            />
-          </svg>
-        </div>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/contact"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              contact_mail
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Contact
-            </span>
-          </div>
-        </a>
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/about"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              information_circle
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              About
-            </span>
-          </div>
-        </a>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/terms"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              gavel
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Terms of use
-            </span>
-          </div>
-        </a>
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/policy"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              policy
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Privacy policy
-            </span>
-          </div>
-        </a>
-      </ul>
+              <span>
+                Privacy policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </aside>
     </div>
     <div>
-      <ul
-        class="MuiList-root MuiList-padding"
+      <aside
+        class="bulma-menu p-3 sidemenu-background"
       >
-        <div />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en"
-          role="button"
-          tabindex="0"
+        <ul
+          class="bulma-menu-list"
         >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+          <li>
+            <a
+              href="/en"
             >
-              home
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Home
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/account/signin"
             >
-              Home
-            </span>
-          </div>
-        </a>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/account/signin"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <span>
+                Sign in
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/account/signup"
             >
-              vpn_key
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                Sign up
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/showcase"
             >
-              Sign in
-            </span>
-          </div>
-        </a>
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/account/signup"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <span>
+                Showcase
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                Github
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
             >
-              person_add
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula?tab=overview"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Profile
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/TokanPages"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Tokan Pages Project
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/EmailSender"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Email Sender Project
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/articles"
             >
-              Sign up
-            </span>
-          </div>
-        </a>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/showcase"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <span>
+                Tech Articles
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                My interests
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
             >
-              video_library
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <li>
+                <a
+                  href="/en/photography"
+                >
+                  <span>
+                    Photography
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/football"
+                >
+                  <span>
+                    Football
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/guitar"
+                >
+                  <span>
+                    Guitar
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/bicycle"
+                >
+                  <span>
+                    Bicycle
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/electronics"
+                >
+                  <span>
+                    Electronics
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/contact"
             >
-              Showcase
-            </span>
-          </div>
-        </a>
-        <div
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              focusable="false"
-              viewBox="0 0 24 24"
+              <span>
+                Contact
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/about"
             >
-              <path
-                d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"
-              />
-            </svg>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+              <span>
+                About
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/terms"
             >
-              Github
-            </span>
-          </div>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-            />
-          </svg>
-        </div>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/articles"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
+              <span>
+                Terms of use
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/policy"
             >
-              menu_book
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Tech Articles
-            </span>
-          </div>
-        </a>
-        <div
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              star
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              My interests
-            </span>
-          </div>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-            />
-          </svg>
-        </div>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/contact"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              contact_mail
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Contact
-            </span>
-          </div>
-        </a>
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/about"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              information_circle
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              About
-            </span>
-          </div>
-        </a>
-        <hr
-          class="MuiDivider-root MuiDivider-middle"
-        />
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/terms"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              gavel
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Terms of use
-            </span>
-          </div>
-        </a>
-        <a
-          aria-disabled="false"
-          class="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button"
-          href="/en/policy"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiListItemIcon-root render-navbar-list-icon"
-          >
-            <span
-              aria-hidden="true"
-              class="material-icons MuiIcon-root"
-            >
-              policy
-            </span>
-          </div>
-          <div
-            class="MuiListItemText-root"
-          >
-            <span
-              class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-            >
-              Privacy policy
-            </span>
-          </div>
-        </a>
-      </ul>
+              <span>
+                Privacy policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </aside>
     </div>
   </body>,
   "container": <div>

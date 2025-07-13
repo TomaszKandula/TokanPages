@@ -6,106 +6,88 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section margin-top-60 "
+        class="section mt-6 "
       >
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+          class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
-          >
-            <img
-              alt="Your Software Developer"
-              class="header-image-card lazyloaded"
-              loading="lazy"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
-              srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
-              title="Illustration"
-            />
-          </div>
-          <div
-            class="MuiGrid-root header-section-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+            class="bulma-grid"
           >
             <div
-              class="header-content-box"
+              class="bulma-cell"
             >
-              <span
-                class="header-content-caption"
-              >
-                Welcome to my web page
-              </span>
-              <h1
-                class="header-content-subtitle"
-              >
-                For years...
-              </h1>
-              <h2
-                class="header-content-description"
-              >
-                I do programming for a living...
-              </h2>
-              <h2
-                class="header-content-description"
-              >
-                Let me know...
-              </h2>
+              <figure>
+                <img
+                  alt="Your Software Developer"
+                  class="header-image-card lazyloaded "
+                  loading="lazy"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
+                  srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
+                  title="Illustration"
+                />
+              </figure>
+            </div>
+            <div
+              class="bulma-cell is-flex is-flex-direction-column"
+            >
               <div
-                class="header-button-box mt-32"
+                class="bulma-content header-content-box"
               >
-                <a
-                  class="link"
-                  href="/en/action-link"
-                  rel="noopener nofollow"
+                <h1
+                  class="is-size-1 has-text-grey-dark "
                 >
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-primary"
-                    tabindex="0"
-                    type="button"
+                  Welcome to my web page
+                </h1>
+                <h2
+                  class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 "
+                >
+                  For years...
+                </h2>
+                <h3
+                  class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+                >
+                  I do programming for a living...
+                </h3>
+                <h3
+                  class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+                >
+                  Let me know...
+                </h3>
+                <div
+                  class="pt-4"
+                >
+                  <a
+                    class="link"
+                    href="/en/action-link"
                   >
-                    <span
-                      class="MuiButton-label"
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light mr-2  "
                     >
                       Read the story
-                    </span>
-                    <span
-                      class="MuiTouchRipple-root"
-                    />
-                  </button>
-                </a>
-                <a
-                  class="link"
-                  href="/en/download-link"
-                  rel="noopener nofollow"
-                >
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-secondary"
-                    tabindex="0"
-                    type="button"
+                    </button>
+                  </a>
+                  <a
+                    class="link"
+                    href="/en/download-link"
                   >
-                    <span
-                      class="MuiButton-label"
+                    <button
+                      class="bulma-button bulma-is-light mr-2  "
                     >
                       Get the CV
-                    </span>
-                  </button>
-                </a>
-                <a
-                  class="link"
-                  href="/en/showcase"
-                  rel="noopener nofollow"
-                >
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-tertiary"
-                    tabindex="0"
-                    type="button"
+                    </button>
+                  </a>
+                  <a
+                    class="link"
+                    href="/en/showcase"
                   >
-                    <span
-                      class="MuiButton-label"
+                    <button
+                      class="bulma-button bulma-is-light mr-2  "
                     >
                       Showcase
-                    </span>
-                  </button>
-                </a>
+                    </button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -115,106 +97,88 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section margin-top-60 "
+      class="section mt-6 "
     >
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
+        class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
-        >
-          <img
-            alt="Your Software Developer"
-            class="header-image-card lazyloaded"
-            loading="lazy"
-            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
-            srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
-            title="Illustration"
-          />
-        </div>
-        <div
-          class="MuiGrid-root header-section-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+          class="bulma-grid"
         >
           <div
-            class="header-content-box"
+            class="bulma-cell"
           >
-            <span
-              class="header-content-caption"
-            >
-              Welcome to my web page
-            </span>
-            <h1
-              class="header-content-subtitle"
-            >
-              For years...
-            </h1>
-            <h2
-              class="header-content-description"
-            >
-              I do programming for a living...
-            </h2>
-            <h2
-              class="header-content-description"
-            >
-              Let me know...
-            </h2>
+            <figure>
+              <img
+                alt="Your Software Developer"
+                class="header-image-card lazyloaded "
+                loading="lazy"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
+                srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
+                title="Illustration"
+              />
+            </figure>
+          </div>
+          <div
+            class="bulma-cell is-flex is-flex-direction-column"
+          >
             <div
-              class="header-button-box mt-32"
+              class="bulma-content header-content-box"
             >
-              <a
-                class="link"
-                href="/en/action-link"
-                rel="noopener nofollow"
+              <h1
+                class="is-size-1 has-text-grey-dark "
               >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-primary"
-                  tabindex="0"
-                  type="button"
+                Welcome to my web page
+              </h1>
+              <h2
+                class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 "
+              >
+                For years...
+              </h2>
+              <h3
+                class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+              >
+                I do programming for a living...
+              </h3>
+              <h3
+                class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+              >
+                Let me know...
+              </h3>
+              <div
+                class="pt-4"
+              >
+                <a
+                  class="link"
+                  href="/en/action-link"
                 >
-                  <span
-                    class="MuiButton-label"
+                  <button
+                    class="bulma-button bulma-is-link bulma-is-light mr-2  "
                   >
                     Read the story
-                  </span>
-                  <span
-                    class="MuiTouchRipple-root"
-                  />
-                </button>
-              </a>
-              <a
-                class="link"
-                href="/en/download-link"
-                rel="noopener nofollow"
-              >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-secondary"
-                  tabindex="0"
-                  type="button"
+                  </button>
+                </a>
+                <a
+                  class="link"
+                  href="/en/download-link"
                 >
-                  <span
-                    class="MuiButton-label"
+                  <button
+                    class="bulma-button bulma-is-light mr-2  "
                   >
                     Get the CV
-                  </span>
-                </button>
-              </a>
-              <a
-                class="link"
-                href="/en/showcase"
-                rel="noopener nofollow"
-              >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained header-button-tertiary"
-                  tabindex="0"
-                  type="button"
+                  </button>
+                </a>
+                <a
+                  class="link"
+                  href="/en/showcase"
                 >
-                  <span
-                    class="MuiButton-label"
+                  <button
+                    class="bulma-button bulma-is-light mr-2  "
                   >
                     Showcase
-                  </span>
-                </button>
-              </a>
+                  </button>
+                </a>
+              </div>
             </div>
           </div>
         </div>
