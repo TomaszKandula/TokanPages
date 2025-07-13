@@ -8,8 +8,8 @@ interface ReplaceProps {
 
 interface RenderParagraphsProps {
     text: string[];
-    className?: string | undefined;
-    replace?: ReplaceProps | undefined;
+    className?: string;
+    replace?: ReplaceProps;
 }
 
 export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactElement => {
