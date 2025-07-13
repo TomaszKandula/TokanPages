@@ -48,7 +48,7 @@ export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactEl
                                 <Animated dataAos="zoom-in" dataAosDelay={300}>
                                     <TextField
                                         required
-                                        uuid="email_newletter"
+                                        uuid="email"
                                         autoComplete="email"
                                         onKeyUp={props.keyHandler}
                                         onChange={props.formHandler}
