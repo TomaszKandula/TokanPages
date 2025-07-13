@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { CustomCard, Icon } from "../../../../Shared/Components";
+import { TColour } from "../../../../Shared/types";
 import { ExtendedViewProps } from "../accountActivate";
 
 interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
@@ -23,6 +24,16 @@ const CheckIcon = <Icon name="Check" size={3} />;
 const InfoIcon = <Icon name="Information" size={3} />;
 
 export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
+    let icon = AlertIcon;
+    let colour: TColour = "has-text-danger";
+    if (props.hasSuccess) {
+        icon = CheckIcon;
+        colour = "has-text-success";
+    } else {
+        icon = InfoIcon;
+        colour = "has-text-info";
+    }
+
     return (
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
@@ -40,8 +51,8 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                             isLoading={props.isLoading}
                             caption={props.caption}
                             text={[props.text1, props.text2]}
-                            icon={props.hasError ? AlertIcon : props.hasSuccess ? CheckIcon : InfoIcon}
-                            colour={props.hasError ? "has-text-danger" : props.hasSuccess ? "has-text-success" : "has-text-info"}
+                            icon={icon}
+                            colour={colour}
                         />
                     )}
                 </div>

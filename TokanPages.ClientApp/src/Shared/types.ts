@@ -1,6 +1,7 @@
 export type THeaders = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 export type TComponent = THeaders | "p" | "span" | "div" | "ul" | "ol" | "br" | "blockquote";
 export type TSeverity = "debug" | "info" | "warning" | "error" | "fatal";
+export type TColour = "has-text-info" | "has-text-success" | "has-text-warning" | "has-text-danger";
 
 export type TInputColours =
     | "bulma-is-link"
