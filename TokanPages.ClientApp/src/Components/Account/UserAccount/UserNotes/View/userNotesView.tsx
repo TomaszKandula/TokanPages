@@ -12,13 +12,13 @@ interface UserNotesViewProps {
         isMobile: boolean;
     };
     hasProgress: boolean;
-    userNotes?: UserNoteProps[] | undefined;
+    userNotes?: UserNoteProps[];
     captionText: string;
     descriptionText: string;
     listLabel: string;
     noteLabel: string;
     onRowClick: (index: number) => void;
-    selection?: UserNoteResultDto | undefined;
+    selection?: UserNoteResultDto;
     clearButtonText: string;
     clearButtonHandler: () => void;
     removeButtonText: string;
