@@ -7,7 +7,7 @@ interface Properties {
     icon: IconType | undefined;
     title: string | undefined;
     message: string[] | undefined;
-    validation?: object | undefined;
+    validation?: object;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
